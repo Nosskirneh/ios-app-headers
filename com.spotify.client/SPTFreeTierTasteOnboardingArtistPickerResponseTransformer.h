@@ -4,14 +4,13 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 @interface SPTFreeTierTasteOnboardingArtistPickerResponseTransformer : NSObject
 {
 }
 
 + (id)relatedItemsWithObject:(id)arg1;
-+ (unsigned long long)numberOfItemsRequiredWithObject:(id)arg1;
 + (id)itemsWithObject:(id)arg1;
 
 @end

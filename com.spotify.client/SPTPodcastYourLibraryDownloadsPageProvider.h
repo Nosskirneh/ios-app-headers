@@ -4,11 +4,12 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 #import "SPTYourLibraryPageProvider-Protocol.h"
 
-@class NSString, NSURL;
+@class NSString, NSURL, SPTPodcastCosmosDataLoader, SPTTheme;
+@protocol GLUETheme, SPTExplicitContentAccessManager, SPTGLUEImageLoaderFactory, SPTOfflineManager, SPTPlayerFeature, SPTPodcastTestManager;
 
 @interface SPTPodcastYourLibraryDownloadsPageProvider : NSObject <SPTYourLibraryPageProvider>
 {
@@ -16,8 +17,24 @@
     unsigned long long _providerIdentifier;
     NSString *_title;
     NSURL *_URI;
+    id <SPTPodcastTestManager> _testManager;
+    SPTPodcastCosmosDataLoader *_dataLoader;
+    id <SPTExplicitContentAccessManager> _explicitContentAccessManager;
+    SPTTheme *_theme;
+    id <GLUETheme> _glueTheme;
+    id <SPTGLUEImageLoaderFactory> _imageLoaderFactory;
+    id <SPTPlayerFeature> _playerFeature;
+    id <SPTOfflineManager> _offlineManager;
 }
 
+@property(nonatomic) __weak id <SPTOfflineManager> offlineManager; // @synthesize offlineManager=_offlineManager;
+@property(nonatomic) __weak id <SPTPlayerFeature> playerFeature; // @synthesize playerFeature=_playerFeature;
+@property(retain, nonatomic) id <SPTGLUEImageLoaderFactory> imageLoaderFactory; // @synthesize imageLoaderFactory=_imageLoaderFactory;
+@property(retain, nonatomic) id <GLUETheme> glueTheme; // @synthesize glueTheme=_glueTheme;
+@property(retain, nonatomic) SPTTheme *theme; // @synthesize theme=_theme;
+@property(retain, nonatomic) id <SPTExplicitContentAccessManager> explicitContentAccessManager; // @synthesize explicitContentAccessManager=_explicitContentAccessManager;
+@property(retain, nonatomic) SPTPodcastCosmosDataLoader *dataLoader; // @synthesize dataLoader=_dataLoader;
+@property(retain, nonatomic) id <SPTPodcastTestManager> testManager; // @synthesize testManager=_testManager;
 @property(readonly, nonatomic) NSURL *URI; // @synthesize URI=_URI;
 @property(readonly, nonatomic) NSString *title; // @synthesize title=_title;
 @property(readonly, nonatomic) unsigned long long providerIdentifier; // @synthesize providerIdentifier=_providerIdentifier;
@@ -25,7 +42,7 @@
 - (void).cxx_destruct;
 - (id)pageViewControllerForContext:(id)arg1;
 - (_Bool)claimsURI:(id)arg1;
-- (id)initWithURI:(id)arg1 title:(id)arg2 pageProviderIdentifier:(unsigned long long)arg3;
+- (id)initWithURI:(id)arg1 title:(id)arg2 pageProviderIdentifier:(unsigned long long)arg3 testManager:(id)arg4 dataLoader:(id)arg5 offlineManager:(id)arg6 explicitContentAccessManager:(id)arg7 theme:(id)arg8 glueTheme:(id)arg9 imageLoaderFactory:(id)arg10 playerFeature:(id)arg11;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

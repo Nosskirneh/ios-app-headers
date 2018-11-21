@@ -5,11 +5,10 @@
 //
 
 #import "NSObject-Protocol.h"
-#import "SPTNowPlayingPlayableButton-Protocol.h"
 
 @class UIColor;
 
-@protocol SPTNowPlayingPlayButton <NSObject, SPTNowPlayingPlayableButton>
+@protocol SPTNowPlayingPlayButton <NSObject>
 @property(nonatomic) struct UIEdgeInsets touchInsets;
 @property(nonatomic) struct CGSize circleSize;
 @property(retain, nonatomic) UIColor *fillColor;

@@ -4,7 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 @class NSDictionary, NSSet, NSString, SPTGaiaDeviceManager;
 @protocol SPTAsyncScheduler, SPTGaiaDeviceDelegate;
@@ -74,6 +74,7 @@
 - (_Bool)isEqual:(id)arg1;
 - (shared_ptr_e7b078e8)cpp;
 - (id)initWithCpp:(const shared_ptr_e7b078e8 *)arg1 manager:(id)arg2 scheduler:(id)arg3;
+- (_Bool)isAlwaysLocallyDiscoverable;
 - (id)incarnationOfDeviceClass:(id)arg1;
 - (unsigned long long)supportedIncarnationsCount;
 - (id)connectIncarnation;

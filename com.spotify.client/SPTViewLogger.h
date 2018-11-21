@@ -4,7 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 #import "SPTViewLogger-Protocol.h"
 
@@ -50,6 +50,7 @@
 - (void)logViewDataDidLoadWithPageIdentifier:(id)arg1;
 - (void)logViewLoadingStartedWithPageIdentifier:(id)arg1;
 - (_Bool)isViewLoadingInProgress;
+- (void)reset;
 - (void)terminateSequence;
 - (void)logViewLoadWithStepName:(id)arg1 timeSinceStart:(double)arg2 isTerminalStep:(_Bool)arg3 terminateSequence:(_Bool)arg4;
 - (double)durationSinceStart:(id)arg1;

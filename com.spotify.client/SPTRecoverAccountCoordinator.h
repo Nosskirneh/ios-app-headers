@@ -4,17 +4,19 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
-@class SPTRecoverAccountConfiguration, SPTRecoverAccountSlatePresenter, SPTRecoverAccountTestManager;
+@class SPTLoginSpinnerButtonTestManager, SPTRecoverAccountConfiguration, SPTRecoverAccountSlatePresenter, SPTRecoverAccountTestManager;
 
 @interface SPTRecoverAccountCoordinator : NSObject
 {
     SPTRecoverAccountSlatePresenter *_slatePresenter;
     SPTRecoverAccountConfiguration *_configuration;
     SPTRecoverAccountTestManager *_testManager;
+    SPTLoginSpinnerButtonTestManager *_spinnerButtonTestManager;
 }
 
+@property(readonly, nonatomic) SPTLoginSpinnerButtonTestManager *spinnerButtonTestManager; // @synthesize spinnerButtonTestManager=_spinnerButtonTestManager;
 @property(readonly, nonatomic) SPTRecoverAccountTestManager *testManager; // @synthesize testManager=_testManager;
 @property(readonly, nonatomic) SPTRecoverAccountConfiguration *configuration; // @synthesize configuration=_configuration;
 @property(readonly, nonatomic) SPTRecoverAccountSlatePresenter *slatePresenter; // @synthesize slatePresenter=_slatePresenter;
@@ -23,7 +25,7 @@
 - (id)provideResetPasswordViewController;
 - (void)presentResetPasswordSlate;
 - (void)presentCollectEmailSlate;
-- (id)initWithConfiguration:(id)arg1 slatePresenter:(id)arg2 testManager:(id)arg3;
+- (id)initWithConfiguration:(id)arg1 slatePresenter:(id)arg2 testManager:(id)arg3 spinnerButtonTestManager:(id)arg4;
 
 @end
 

@@ -4,20 +4,20 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <UIKit/UIView.h>
+#import "SPTLoginLoadingView.h"
 
 #import "GLUEStyleable-Protocol.h"
 #import "SPTSignupAnimatableViewProtocol-Protocol.h"
 
-@class GLUEButton, GLUEGradientView, GLUELabel, NSLayoutConstraint, NSString, SPTLoginFormScrollView, SPTLoginInputFormView, SPTSignupTermsAndPolicyView;
+@class GLUEGradientView, GLUELabel, NSLayoutConstraint, NSString, SPTLoginFormScrollView, SPTLoginInputFormView, SPTLoginLoadingActionButton, SPTSignupTermsAndPolicyView, UIView;
 
-@interface SPTSignupStepThreeView : UIView <GLUEStyleable, SPTSignupAnimatableViewProtocol>
+@interface SPTSignupStepThreeView : SPTLoginLoadingView <GLUEStyleable, SPTSignupAnimatableViewProtocol>
 {
     NSString *_transitionContextViewKey;
+    SPTLoginLoadingActionButton *_submitButton;
     GLUELabel *_titleLabel;
     SPTLoginInputFormView *_formView;
     SPTSignupTermsAndPolicyView *_termsView;
-    GLUEButton *_submitButton;
     GLUEGradientView *_backgroundGradientView;
     SPTLoginFormScrollView *_scrollView;
     UIView *_contentView;
@@ -42,10 +42,10 @@
 @property(retain, nonatomic) UIView *contentView; // @synthesize contentView=_contentView;
 @property(retain, nonatomic) SPTLoginFormScrollView *scrollView; // @synthesize scrollView=_scrollView;
 @property(retain, nonatomic) GLUEGradientView *backgroundGradientView; // @synthesize backgroundGradientView=_backgroundGradientView;
-@property(readonly, nonatomic) GLUEButton *submitButton; // @synthesize submitButton=_submitButton;
 @property(readonly, nonatomic) SPTSignupTermsAndPolicyView *termsView; // @synthesize termsView=_termsView;
 @property(readonly, nonatomic) SPTLoginInputFormView *formView; // @synthesize formView=_formView;
 @property(readonly, nonatomic) GLUELabel *titleLabel; // @synthesize titleLabel=_titleLabel;
+- (id)submitButton;
 @property(retain, nonatomic) NSString *transitionContextViewKey; // @synthesize transitionContextViewKey=_transitionContextViewKey;
 - (void).cxx_destruct;
 @property(readonly, nonatomic) UIView *animatableContentView;

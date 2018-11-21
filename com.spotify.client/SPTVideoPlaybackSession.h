@@ -4,7 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 #import "SPTNetworkConnectivityControllerObserver-Protocol.h"
 #import "SPTVideoPlaybackTimeObservableDataSource-Protocol.h"
@@ -120,8 +120,6 @@
 - (_Bool)playing;
 - (_Bool)paused;
 - (id)playbackID;
-- (double)durationForPlayer;
-- (double)positionForPlayer;
 - (void)refreshSelectedSubtitle;
 - (void)markLastUsedCDNFail;
 - (void)markLastUsedCDNOk;

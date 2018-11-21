@@ -9,15 +9,11 @@
 @interface NSURL (SPTFreeTierTasteOnboardingAdditions)
 + (id)spt_freeTierTasteQueryParameters;
 + (id)spt_freeTierTasteOnboardingCurateURL:(id)arg1;
-+ (id)spt_freeTierTasteOnboardingDislikeURL:(id)arg1;
-+ (id)spt_freeTierTasteOnboardingLikeURL:(id)arg1;
-+ (id)spt_freeTierTasteOnboardingStartURL:(id)arg1;
 + (id)spt_freeTierTasteOnboardingSearchURL:(id)arg1;
 + (id)spt_freeTierTasteOnboardingRelatedURL:(id)arg1;
 + (id)spt_freeTierTasteOnboardingQuestionnaireURL;
 + (id)spt_freeTierTasteOnboardingSkipDialogURI;
 + (id)spt_freeTierTasteOnboardingUpdateTasteViewURI;
-+ (id)spt_freeTierTasteOnboardingSwipeTracksViewURI;
 + (id)spt_freeTierTasteOnboardingArtistSearchViewURI;
 + (id)spt_freeTierTasteOnboardingArtistPickerViewURI;
 @end

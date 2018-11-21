@@ -4,7 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 #import "SPTCanvasIdleMonitorObserverDelegate-Protocol.h"
 #import "SPTCanvasService-Protocol.h"
@@ -13,7 +13,7 @@
 #import "SPTNowPlayingShowsFormatOverrider-Protocol.h"
 
 @class NSString, SPTAllocationContext, SPTCanvasBackendService, SPTCanvasLoadStateTracker, SPTCanvasLogger, SPTCanvasLoggingService, SPTCanvasNowPlayingRegistrator, SPTCanvasTrackCheckerImplementation, SPTCanvasViewControllerFactory;
-@protocol GaiaFeature, SPContextMenuFeature, SPTContainerService, SPTCoreService, SPTDataSaverService, SPTFeatureFlagSignal, SPTFeatureFlaggingService, SPTNetworkService, SPTNowPlayingContainerIdleMonitorObservable, SPTNowPlayingService, SPTPlayerFeature, SPTSessionService, SPTVideoFeature;
+@protocol GaiaFeature, SPContextMenuFeature, SPTContainerService, SPTCoreService, SPTDataSaverService, SPTFeatureFlagSignal, SPTFeatureFlaggingService, SPTNetworkService, SPTNowPlayingContainerIdleMonitorObservable, SPTNowPlayingPlatformService, SPTNowPlayingService, SPTPlayerFeature, SPTSessionService, SPTVideoFeature;
 
 @interface SPTCanvasServiceImplementation : NSObject <SPTNowPlayingCarouselContentProviderFactory, SPTNowPlayingShowsFormatOverrider, SPTFeatureFlagSignalObserver, SPTCanvasIdleMonitorObserverDelegate, SPTCanvasService>
 {
@@ -25,6 +25,7 @@
     id <SPTCoreService> _coreService;
     id <SPTNetworkService> _networkFeature;
     id <SPTNowPlayingService> _nowPlayingService;
+    id <SPTNowPlayingPlatformService> _nowPlayingPlatformService;
     id <SPTVideoFeature> _videoFeature;
     id <SPTPlayerFeature> _playerFeature;
     id <SPContextMenuFeature> _contextMenu;
@@ -66,6 +67,7 @@
 @property(nonatomic) __weak id <SPContextMenuFeature> contextMenu; // @synthesize contextMenu=_contextMenu;
 @property(nonatomic) __weak id <SPTPlayerFeature> playerFeature; // @synthesize playerFeature=_playerFeature;
 @property(nonatomic) __weak id <SPTVideoFeature> videoFeature; // @synthesize videoFeature=_videoFeature;
+@property(nonatomic) __weak id <SPTNowPlayingPlatformService> nowPlayingPlatformService; // @synthesize nowPlayingPlatformService=_nowPlayingPlatformService;
 @property(nonatomic) __weak id <SPTNowPlayingService> nowPlayingService; // @synthesize nowPlayingService=_nowPlayingService;
 @property(nonatomic) __weak id <SPTNetworkService> networkFeature; // @synthesize networkFeature=_networkFeature;
 @property(nonatomic) __weak id <SPTCoreService> coreService; // @synthesize coreService=_coreService;

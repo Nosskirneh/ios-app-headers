@@ -4,7 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 #import "SPTFeatureFlagSignalObserver-Protocol.h"
 #import "SPTInAppMessageTestManager-Protocol.h"
@@ -18,6 +18,7 @@
     _Bool _inAppMessageEnabled;
     _Bool _cardEnabled;
     _Bool _bannerEnabled;
+    _Bool _noteEnabled;
     _Bool _playerEventEnabled;
     _Bool _creativeV2Enabled;
     _Bool _skipLimitReachedQuicksilverGroupEnabled;
@@ -29,6 +30,7 @@
     id <SPTFeatureFlagSignal> _inAppMessagingFlagSignal;
     id <SPTFeatureFlagSignal> _cardFlagSignal;
     id <SPTFeatureFlagSignal> _bannerFlagSignal;
+    id <SPTFeatureFlagSignal> _noteFlagSignal;
     id <SPTFeatureFlagSignal> _playerEventFlagSignal;
     id <SPTFeatureFlagSignal> _creativeV2FlagSignal;
     id <SPTFeatureFlagSignal> _skipLimitReachedNeitherSignal;
@@ -51,6 +53,7 @@
 @property(nonatomic) __weak id <SPTLocalSettings> localSettings; // @synthesize localSettings=_localSettings;
 @property(nonatomic, getter=isCreativeV2Enabled) _Bool creativeV2Enabled; // @synthesize creativeV2Enabled=_creativeV2Enabled;
 @property(nonatomic, getter=isPlayerEventEnabled) _Bool playerEventEnabled; // @synthesize playerEventEnabled=_playerEventEnabled;
+@property(nonatomic, getter=isNoteEnabled) _Bool noteEnabled; // @synthesize noteEnabled=_noteEnabled;
 @property(nonatomic, getter=isBannerEnabled) _Bool bannerEnabled; // @synthesize bannerEnabled=_bannerEnabled;
 @property(nonatomic, getter=isCardEnabled) _Bool cardEnabled; // @synthesize cardEnabled=_cardEnabled;
 @property(nonatomic, getter=isInAppMessageEnabled) _Bool inAppMessageEnabled; // @synthesize inAppMessageEnabled=_inAppMessageEnabled;
@@ -60,6 +63,7 @@
 @property(readonly, nonatomic) id <SPTFeatureFlagSignal> skipLimitReachedNeitherSignal; // @synthesize skipLimitReachedNeitherSignal=_skipLimitReachedNeitherSignal;
 @property(readonly, nonatomic) id <SPTFeatureFlagSignal> creativeV2FlagSignal; // @synthesize creativeV2FlagSignal=_creativeV2FlagSignal;
 @property(readonly, nonatomic) id <SPTFeatureFlagSignal> playerEventFlagSignal; // @synthesize playerEventFlagSignal=_playerEventFlagSignal;
+@property(readonly, nonatomic) id <SPTFeatureFlagSignal> noteFlagSignal; // @synthesize noteFlagSignal=_noteFlagSignal;
 @property(readonly, nonatomic) id <SPTFeatureFlagSignal> bannerFlagSignal; // @synthesize bannerFlagSignal=_bannerFlagSignal;
 @property(readonly, nonatomic) id <SPTFeatureFlagSignal> cardFlagSignal; // @synthesize cardFlagSignal=_cardFlagSignal;
 @property(readonly, nonatomic) id <SPTFeatureFlagSignal> inAppMessagingFlagSignal; // @synthesize inAppMessagingFlagSignal=_inAppMessagingFlagSignal;

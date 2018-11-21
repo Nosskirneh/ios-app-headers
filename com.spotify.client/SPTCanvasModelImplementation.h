@@ -4,12 +4,11 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 #import "SPTCanvasModel-Protocol.h"
 
 @class NSString, NSURL;
-@protocol SPTArtistEntity;
 
 @interface SPTCanvasModelImplementation : NSObject <SPTCanvasModel>
 {
@@ -17,7 +16,8 @@
     NSURL *_contentURL;
     NSString *_contentId;
     unsigned long long _type;
-    id <SPTArtistEntity> _artist;
+    NSURL *_artistURI;
+    NSString *_artistName;
     NSURL *_entityURI;
     NSURL *_placeholderURI;
 }
@@ -25,14 +25,15 @@
 + (unsigned long long)canvasContentTypeFromString:(id)arg1;
 @property(readonly, copy, nonatomic) NSURL *placeholderURI; // @synthesize placeholderURI=_placeholderURI;
 @property(readonly, copy, nonatomic) NSURL *entityURI; // @synthesize entityURI=_entityURI;
-@property(readonly, nonatomic) id <SPTArtistEntity> artist; // @synthesize artist=_artist;
+@property(readonly, nonatomic) NSString *artistName; // @synthesize artistName=_artistName;
+@property(readonly, nonatomic) NSURL *artistURI; // @synthesize artistURI=_artistURI;
 @property(readonly, nonatomic) unsigned long long type; // @synthesize type=_type;
 @property(readonly, copy, nonatomic) NSString *contentId; // @synthesize contentId=_contentId;
 @property(readonly, copy, nonatomic) NSURL *contentURL; // @synthesize contentURL=_contentURL;
 @property(readonly, copy, nonatomic) NSString *canvasId; // @synthesize canvasId=_canvasId;
 - (void).cxx_destruct;
 - (_Bool)isEqual:(id)arg1;
-- (id)initWithCanvasId:(id)arg1 contentURL:(id)arg2 contentId:(id)arg3 type:(unsigned long long)arg4 artist:(id)arg5 entityURI:(id)arg6 placeholderURI:(id)arg7;
+- (id)initWithCanvasId:(id)arg1 contentURL:(id)arg2 contentId:(id)arg3 type:(unsigned long long)arg4 artistURI:(id)arg5 artistName:(id)arg6 entityURI:(id)arg7 placeholderURI:(id)arg8;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

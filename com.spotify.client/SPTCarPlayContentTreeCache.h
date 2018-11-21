@@ -4,7 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 @class NSMutableOrderedSet;
 
@@ -16,6 +16,7 @@
 @property(retain, nonatomic) NSMutableOrderedSet *rootItems; // @synthesize rootItems=_rootItems;
 - (void).cxx_destruct;
 - (void)removeDeletedRootItemsWithNewRootItems:(id)arg1;
+- (id)contentTreeCacheDescription;
 - (void)setRootItemsShouldRefreshOnUpdate:(id)arg1;
 - (void)insertListOfRootItems:(id)arg1;
 - (void)insertItem:(id)arg1 atIndexPath:(id)arg2;

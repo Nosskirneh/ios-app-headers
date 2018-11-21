@@ -4,7 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 #import "SPTFeatureFlagSignalObserver-Protocol.h"
 #import "SPTPremiumDestinationExperiments-Protocol.h"
@@ -14,10 +14,12 @@
 
 @interface SPTPremiumDestinationExperimentsImplementation : NSObject <SPTFeatureFlagSignalObserver, SPTPremiumDestinationExperiments>
 {
+    _Bool _shouldUseDevEndpointSetting;
     _Bool _shouldPresentPriceValuePremiumDestination;
     _Bool _shouldFetchPremiumDestinationHubsFromBackend;
     _Bool _shouldFetchPremiumDestinationHubsFromBackendV2;
     id <SPTFeatureFlagFactory> _featureFlagFactory;
+    id <SPTFeatureFlagSignal> _shouldUseDevEndpointSettingSignal;
     id <SPTFeatureFlagSignal> _shouldPresentPriceValuePremiumDestinationSignal;
     id <SPTFeatureFlagSignal> _shouldFetchPremiumDestinationHubsFromBackendSignal;
     id <SPTFeatureFlagSignal> _shouldFetchPremiumDestinationHubsFromBackendV2Signal;
@@ -29,12 +31,15 @@
 @property(retain, nonatomic) id <SPTFeatureFlagSignal> shouldFetchPremiumDestinationHubsFromBackendSignal; // @synthesize shouldFetchPremiumDestinationHubsFromBackendSignal=_shouldFetchPremiumDestinationHubsFromBackendSignal;
 @property(nonatomic) _Bool shouldPresentPriceValuePremiumDestination; // @synthesize shouldPresentPriceValuePremiumDestination=_shouldPresentPriceValuePremiumDestination;
 @property(retain, nonatomic) id <SPTFeatureFlagSignal> shouldPresentPriceValuePremiumDestinationSignal; // @synthesize shouldPresentPriceValuePremiumDestinationSignal=_shouldPresentPriceValuePremiumDestinationSignal;
+@property(nonatomic) _Bool shouldUseDevEndpointSetting; // @synthesize shouldUseDevEndpointSetting=_shouldUseDevEndpointSetting;
+@property(retain, nonatomic) id <SPTFeatureFlagSignal> shouldUseDevEndpointSettingSignal; // @synthesize shouldUseDevEndpointSettingSignal=_shouldUseDevEndpointSettingSignal;
 @property(readonly, nonatomic) id <SPTFeatureFlagFactory> featureFlagFactory; // @synthesize featureFlagFactory=_featureFlagFactory;
 - (void).cxx_destruct;
 - (void)featureFlagSignal:(id)arg1 hasAssumedState:(long long)arg2;
 - (void)setupHubsBackendV2RolloutFlag;
 - (void)setupHubsBackendRolloutFlag;
 - (void)setupPriceValueRolloutFlag;
+- (void)setupUseDevEndpointSetting;
 - (void)loadFlags;
 - (id)initWithFeatureFlagFactory:(id)arg1;
 

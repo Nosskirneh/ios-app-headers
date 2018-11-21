@@ -4,17 +4,18 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 #import "SPTHomeMixModelDelegate-Protocol.h"
 #import "SPTHomeMixPlaybackEffectHandlerDelegate-Protocol.h"
 #import "SPTHomeMixViewModel-Protocol.h"
+#import "SPTOfflineModeStateObserver-Protocol.h"
 #import "SPTPlayerObserver-Protocol.h"
 
 @class NSArray, NSString, NSURL, SPTHomeMixCompositeEffectHandler, SPTHomeMixDomainModel;
-@protocol SPTHomeMixHeaderViewModel, SPTHomeMixModel, SPTHomeMixViewModelDelegate;
+@protocol SPTHomeMixHeaderViewModel, SPTHomeMixModel, SPTHomeMixViewModelDelegate, SPTOfflineModeState;
 
-@interface SPTHomeMixViewModelImplementation : NSObject <SPTHomeMixModelDelegate, SPTHomeMixPlaybackEffectHandlerDelegate, SPTPlayerObserver, SPTHomeMixViewModel>
+@interface SPTHomeMixViewModelImplementation : NSObject <SPTHomeMixModelDelegate, SPTHomeMixPlaybackEffectHandlerDelegate, SPTPlayerObserver, SPTOfflineModeStateObserver, SPTHomeMixViewModel>
 {
     _Bool _settingsAvailable;
     _Bool _pendingSettingsUpdate;
@@ -27,6 +28,7 @@
     id <SPTHomeMixModel> _homeMixModel;
     SPTHomeMixDomainModel *_domainModel;
     SPTHomeMixCompositeEffectHandler *_effectHandler;
+    id <SPTOfflineModeState> _offlineModeState;
     NSArray *_homeMixMembers;
     NSArray *_trackURIs;
     NSArray *_trackViewModels;
@@ -44,11 +46,13 @@
 @property(copy, nonatomic) NSArray *trackURIs; // @synthesize trackURIs=_trackURIs;
 @property(copy, nonatomic) NSArray *homeMixMembers; // @synthesize homeMixMembers=_homeMixMembers;
 @property(readonly, nonatomic, getter=areSettingsAvailable) _Bool settingsAvailable; // @synthesize settingsAvailable=_settingsAvailable;
+@property(retain, nonatomic) id <SPTOfflineModeState> offlineModeState; // @synthesize offlineModeState=_offlineModeState;
 @property(retain, nonatomic) SPTHomeMixCompositeEffectHandler *effectHandler; // @synthesize effectHandler=_effectHandler;
 @property(copy, nonatomic) SPTHomeMixDomainModel *domainModel; // @synthesize domainModel=_domainModel;
 @property(readonly, nonatomic) id <SPTHomeMixModel> homeMixModel; // @synthesize homeMixModel=_homeMixModel;
 @property(nonatomic) __weak id <SPTHomeMixViewModelDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
+- (void)offlineModeState:(id)arg1 updated:(_Bool)arg2;
 - (void)player:(id)arg1 stateDidChange:(id)arg2 fromState:(id)arg3;
 - (void)homeMixPlaybackEffectHandler:(id)arg1 didFailToStartDueToError:(id)arg2;
 - (void)homeMixModel:(id)arg1 didFailToUpdateHomeMixEntityWithError:(id)arg2;
@@ -60,6 +64,7 @@
 - (void)handlePublishExplicitOptOutTapped;
 - (void)handleTappingEntityContextMenu;
 - (void)handleLikeButtonTappedWithSelectedState:(_Bool)arg1;
+- (_Bool)isTrackEnabledAtIndex:(long long)arg1;
 - (_Bool)isTrackActiveAtIndex:(long long)arg1;
 - (void)handleTappingTrackFacePileForTrackViewModel:(id)arg1;
 - (void)handleTappingTrackContextMenuForTrackViewModel:(id)arg1;
@@ -68,13 +73,14 @@
 - (id)trackViewModelForIndex:(long long)arg1;
 - (void)headerActionButtonTapped;
 - (void)load;
+@property(readonly, nonatomic, getter=isHomeMixConfigurable) _Bool homeMixConfigurable;
 @property(readonly, copy, nonatomic) NSString *addToPlaylistTitle;
 @property(readonly, copy, nonatomic) NSString *localizedLikeButtonTitleSelected;
 @property(readonly, copy, nonatomic) NSString *localizedLikeButtonTitle;
 @property(readonly, nonatomic) unsigned long long numberOfTracks;
 @property(readonly, nonatomic) NSURL *URI;
 @property(readonly, nonatomic) NSString *pageIdentifier;
-- (id)initWithHomeMixModel:(id)arg1 domainModel:(id)arg2 playbackEffectHandler:(id)arg3 player:(id)arg4 loggingEffectHandler:(id)arg5 areSettingsAvailable:(_Bool)arg6;
+- (id)initWithHomeMixModel:(id)arg1 domainModel:(id)arg2 playbackEffectHandler:(id)arg3 player:(id)arg4 loggingEffectHandler:(id)arg5 offlineModeState:(id)arg6 areSettingsAvailable:(_Bool)arg7;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

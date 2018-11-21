@@ -13,14 +13,14 @@
 #import "SPTPodcastImportPickerDelegate-Protocol.h"
 #import "SPTPodcastImportViewController-Protocol.h"
 
-@class GLUEAccessoryIconButton, GLUEButton, GLUELabel, NSString, NSURL, SPTActivityIndicatorView, SPTPodcastImportManager, SPTPodcastImportPickerTabViewController, UIStackView;
-@protocol GLUETheme, SPTModalPresentationController, SPTPageContainer;
+@class GLUEAccessoryIconButton, GLUEButton, GLUELabel, NSString, NSURL, SPTActivityIndicatorView, SPTPodcastImportManager, SPTPodcastImportPickerTabViewController, SPTPodcastImportTheme, UIStackView;
+@protocol SPTModalPresentationController, SPTPageContainer;
 
 @interface SPTPodcastImportPickerViewController : UIViewController <SPContentInsetViewController, SPTPageController, SPTPodcastImportManagerDelegate, SPTPodcastImportPickerDataSource, SPTPodcastImportPickerDelegate, SPTPodcastImportViewController>
 {
     SPTPodcastImportManager *_manager;
     id <SPTModalPresentationController> _modalPresentationController;
-    id <GLUETheme> _theme;
+    SPTPodcastImportTheme *_theme;
     GLUEAccessoryIconButton *_closeButton;
     UIStackView *_actionableStack;
     GLUELabel *_actionableTitle;
@@ -29,12 +29,12 @@
     GLUELabel *_activityIndicatorTitle;
     SPTActivityIndicatorView *_activityIndicator;
     UIStackView *_selectPodcastsStack;
+    GLUELabel *_selectPodcastsHeader;
     SPTPodcastImportPickerTabViewController *_selectPodcastsViewController;
-    GLUEButton *_selectPodcastsButton;
 }
 
-@property(retain, nonatomic) GLUEButton *selectPodcastsButton; // @synthesize selectPodcastsButton=_selectPodcastsButton;
 @property(retain, nonatomic) SPTPodcastImportPickerTabViewController *selectPodcastsViewController; // @synthesize selectPodcastsViewController=_selectPodcastsViewController;
+@property(retain, nonatomic) GLUELabel *selectPodcastsHeader; // @synthesize selectPodcastsHeader=_selectPodcastsHeader;
 @property(retain, nonatomic) UIStackView *selectPodcastsStack; // @synthesize selectPodcastsStack=_selectPodcastsStack;
 @property(retain, nonatomic) SPTActivityIndicatorView *activityIndicator; // @synthesize activityIndicator=_activityIndicator;
 @property(retain, nonatomic) GLUELabel *activityIndicatorTitle; // @synthesize activityIndicatorTitle=_activityIndicatorTitle;
@@ -43,7 +43,7 @@
 @property(retain, nonatomic) GLUELabel *actionableTitle; // @synthesize actionableTitle=_actionableTitle;
 @property(retain, nonatomic) UIStackView *actionableStack; // @synthesize actionableStack=_actionableStack;
 @property(retain, nonatomic) GLUEAccessoryIconButton *closeButton; // @synthesize closeButton=_closeButton;
-@property(retain, nonatomic) id <GLUETheme> theme; // @synthesize theme=_theme;
+@property(retain, nonatomic) SPTPodcastImportTheme *theme; // @synthesize theme=_theme;
 @property(retain, nonatomic) id <SPTModalPresentationController> modalPresentationController; // @synthesize modalPresentationController=_modalPresentationController;
 @property(retain, nonatomic) SPTPodcastImportManager *manager; // @synthesize manager=_manager;
 - (void).cxx_destruct;
@@ -53,6 +53,7 @@
 @property(readonly, nonatomic, getter=spt_pageIdentifier) NSString *pageIdentifier;
 - (void)sp_updateContentInsets;
 - (void)didSelectPodcastAtIndex:(unsigned long long)arg1;
+- (unsigned long long)numberOfSelectedPodcasts;
 - (_Bool)isPodcastSelectedAtIndex:(unsigned long long)arg1;
 - (id)followedPodcastAtIndex:(unsigned long long)arg1;
 - (id)availablePodcastAtIndex:(unsigned long long)arg1;

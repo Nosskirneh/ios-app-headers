@@ -11,6 +11,7 @@
 }
 
 + (id)styleWithTheme:(id)arg1;
++ (id)metadataCardSubtitleLabelStyleWithTheme:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 
 @end

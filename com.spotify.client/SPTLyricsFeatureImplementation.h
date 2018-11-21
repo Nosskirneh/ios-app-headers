@@ -4,7 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 #import "SPTAbbaFeatureFlagsObserver-Protocol.h"
 #import "SPTLocalSettingsObserver-Protocol.h"
@@ -12,7 +12,7 @@
 #import "SPTNowPlayingCarouselContentProviderFactory-Protocol.h"
 
 @class NSString, SPTAllocationContext, SPTLyricsLoggingService, SPTLyricsNowPlayingBarContentProvider, SPTLyricsService;
-@protocol SPContextMenuFeature, SPTAbbaFeatureFlags, SPTAbbaService, SPTContainerService, SPTCoreService, SPTGLUEService, SPTKaraokeService, SPTLocalSettings, SPTLyricsOnboardingManager, SPTLyricsTrackChecker, SPTNetworkService, SPTNowPlayingService, SPTPageRegistrationToken, SPTPlayer, SPTPlayerFeature, SPTSessionService, SPTSettingsFeature, SPTTooltipService, SPTUIPresentationService, SPTURIDispatchService;
+@protocol SPContextMenuFeature, SPTAbbaFeatureFlags, SPTAbbaService, SPTContainerService, SPTCoreService, SPTGLUEService, SPTKaraokeService, SPTLocalSettings, SPTLyricsOnboardingManager, SPTLyricsTrackChecker, SPTNetworkService, SPTNowPlayingPlatformService, SPTNowPlayingService, SPTPageRegistrationToken, SPTPlayer, SPTPlayerFeature, SPTSessionService, SPTSettingsFeature, SPTTooltipService, SPTUIPresentationService, SPTURIDispatchService;
 
 @interface SPTLyricsFeatureImplementation : NSObject <SPTAbbaFeatureFlagsObserver, SPTLocalSettingsObserver, SPTNowPlayingCarouselContentProviderFactory, SPTLyricsFeature>
 {
@@ -26,6 +26,7 @@
     id <SPTKaraokeService> _karaokeService;
     id <SPTNetworkService> _networkService;
     id <SPTNowPlayingService> _nowPlayingService;
+    id <SPTNowPlayingPlatformService> _nowPlayingPlatformService;
     id <SPTPlayerFeature> _playerService;
     id <SPTSettingsFeature> _settingsService;
     id <SPTTooltipService> _tooltipService;
@@ -60,6 +61,7 @@
 @property(nonatomic) __weak id <SPTTooltipService> tooltipService; // @synthesize tooltipService=_tooltipService;
 @property(nonatomic) __weak id <SPTSettingsFeature> settingsService; // @synthesize settingsService=_settingsService;
 @property(nonatomic) __weak id <SPTPlayerFeature> playerService; // @synthesize playerService=_playerService;
+@property(nonatomic) __weak id <SPTNowPlayingPlatformService> nowPlayingPlatformService; // @synthesize nowPlayingPlatformService=_nowPlayingPlatformService;
 @property(nonatomic) __weak id <SPTNowPlayingService> nowPlayingService; // @synthesize nowPlayingService=_nowPlayingService;
 @property(nonatomic) __weak id <SPTNetworkService> networkService; // @synthesize networkService=_networkService;
 @property(nonatomic) __weak id <SPTKaraokeService> karaokeService; // @synthesize karaokeService=_karaokeService;

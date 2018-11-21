@@ -4,7 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 @class GLUEEntityRowStyle, SPTHomeMixFamilyPileConfigurator, SPTHomeMixGlueTheme;
 @protocol GLUEImageLoader, SPTHomeMixTrackCellDelegate;
@@ -19,15 +19,13 @@
 }
 
 + (id)actionViewStyleFromTheme:(id)arg1;
-+ (id)trackRowStyleFromTheme:(id)arg1;
-+ (unsigned long long)defaultTrackRowAccessibilityTraits;
 @property(readonly, nonatomic) SPTHomeMixFamilyPileConfigurator *pileConfigurator; // @synthesize pileConfigurator=_pileConfigurator;
 @property(readonly, nonatomic) GLUEEntityRowStyle *trackRowStyle; // @synthesize trackRowStyle=_trackRowStyle;
 @property(readonly, nonatomic) __weak id <SPTHomeMixTrackCellDelegate> cellDelegate; // @synthesize cellDelegate=_cellDelegate;
 @property(readonly, nonatomic) SPTHomeMixGlueTheme *theme; // @synthesize theme=_theme;
 @property(readonly, nonatomic) id <GLUEImageLoader> glueImageLoader; // @synthesize glueImageLoader=_glueImageLoader;
 - (void).cxx_destruct;
-- (void)configureCell:(id)arg1 withActiveState:(_Bool)arg2;
+- (void)configureCell:(id)arg1 activeState:(_Bool)arg2 enabledState:(_Bool)arg3;
 - (void)setUpTrailingAccessoryForCell:(id)arg1 viewModel:(id)arg2 oldInteractionListener:(id)arg3;
 - (void)setUpLeadingAccessoryForCell:(id)arg1 viewModel:(id)arg2 oldInteractionListener:(id)arg3;
 - (void)setUpMultipleAccessoriesViewForCell:(id)arg1 trackViewModel:(id)arg2;

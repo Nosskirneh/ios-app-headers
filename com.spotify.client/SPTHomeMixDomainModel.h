@@ -4,7 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 #import "NSCopying-Protocol.h"
 
@@ -14,11 +14,13 @@
 {
     _Bool _playing;
     _Bool _playingHomeMixContext;
+    _Bool _offline;
     NSURL *_homeMixURI;
     NSURL *_currentlyPlayingTrackURI;
 }
 
 + (id)defaultModelWithHomeMixURI:(id)arg1;
+@property(readonly, nonatomic, getter=isOffline) _Bool offline; // @synthesize offline=_offline;
 @property(readonly, nonatomic, getter=isPlayingHomeMixContext) _Bool playingHomeMixContext; // @synthesize playingHomeMixContext=_playingHomeMixContext;
 @property(readonly, nonatomic, getter=isPlaying) _Bool playing; // @synthesize playing=_playing;
 @property(readonly, nonatomic) NSURL *currentlyPlayingTrackURI; // @synthesize currentlyPlayingTrackURI=_currentlyPlayingTrackURI;
@@ -30,7 +32,7 @@
 - (_Bool)isEqualToModel:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)toBuilder;
-- (id)initWithHomeMixURI:(id)arg1 currentlyPlayingTrackURI:(id)arg2 playing:(_Bool)arg3 playingHomeMixContext:(_Bool)arg4;
+- (id)initWithHomeMixURI:(id)arg1 currentlyPlayingTrackURI:(id)arg2 playing:(_Bool)arg3 playingHomeMixContext:(_Bool)arg4 offline:(_Bool)arg5;
 
 @end
 

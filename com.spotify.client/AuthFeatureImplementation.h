@@ -4,15 +4,15 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 #import "SPSessionObserver-Protocol.h"
 #import "SPTAuthRequestDelegate-Protocol.h"
 #import "SPTAuthService-Protocol.h"
 #import "SPTURISubtypeHandler-Protocol.h"
 
-@class NSString, SPTAllocationContext, SPTAuthRequest, SPTObserverManager, SPTProgressView;
-@protocol GaiaFeature, SPTContainerUIService, SPTExternalIntegrationPlatformService, SPTNetworkService, SPTSessionService, SPTURIDispatchService;
+@class NSString, SPTAllocationContext, SPTAuthAccountsFeatureFlagManager, SPTAuthRequest, SPTObserverManager, SPTProgressView;
+@protocol GaiaFeature, SPTContainerUIService, SPTExternalIntegrationPlatformService, SPTFeatureFlaggingService, SPTNetworkService, SPTSessionService, SPTURIDispatchService;
 
 @interface AuthFeatureImplementation : NSObject <SPTURISubtypeHandler, SPTAuthRequestDelegate, SPTAuthService, SPSessionObserver>
 {
@@ -22,6 +22,8 @@
     id <SPTExternalIntegrationPlatformService> _externalIntegrationPlatformService;
     id <GaiaFeature> _gaiaFeature;
     id <SPTURIDispatchService> _URIDispatchService;
+    id <SPTFeatureFlaggingService> _featureFlaggingService;
+    SPTAuthAccountsFeatureFlagManager *_featureFlagManager;
     SPTAuthRequest *_authRequest;
     SPTProgressView *_progressView;
     SPTObserverManager *_observerManager;
@@ -31,6 +33,8 @@
 @property(readonly, nonatomic) SPTObserverManager *observerManager; // @synthesize observerManager=_observerManager;
 @property(retain, nonatomic) SPTProgressView *progressView; // @synthesize progressView=_progressView;
 @property(retain, nonatomic) SPTAuthRequest *authRequest; // @synthesize authRequest=_authRequest;
+@property(retain, nonatomic) SPTAuthAccountsFeatureFlagManager *featureFlagManager; // @synthesize featureFlagManager=_featureFlagManager;
+@property(nonatomic) __weak id <SPTFeatureFlaggingService> featureFlaggingService; // @synthesize featureFlaggingService=_featureFlaggingService;
 @property(nonatomic) __weak id <SPTURIDispatchService> URIDispatchService; // @synthesize URIDispatchService=_URIDispatchService;
 @property(nonatomic) __weak id <GaiaFeature> gaiaFeature; // @synthesize gaiaFeature=_gaiaFeature;
 @property(nonatomic) __weak id <SPTExternalIntegrationPlatformService> externalIntegrationPlatformService; // @synthesize externalIntegrationPlatformService=_externalIntegrationPlatformService;

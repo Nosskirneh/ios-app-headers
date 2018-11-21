@@ -14,7 +14,7 @@
 @property(readonly, nonatomic, getter=isHomeMixEnabled) _Bool homeMixEnabled;
 @property(readonly, nonatomic, getter=isPublishExplicitTracksAvailable) _Bool publishExplicitTracksAvailable;
 @property(readonly, nonatomic, getter=shouldPublishExplicitTracks) _Bool publishExplicitTracks;
-@property(readonly, nonatomic, getter=isPendingSettingsUpdate) _Bool pendingSettingsUpdate;
+@property(readonly, nonatomic, getter=isHomeMixConfigurable) _Bool homeMixConfigurable;
 @property(readonly, copy, nonatomic) NSString *addToPlaylistTitle;
 @property(readonly, copy, nonatomic) NSArray *trackURIs;
 @property(readonly, copy, nonatomic) NSString *localizedLikeButtonTitleSelected;
@@ -28,6 +28,7 @@
 - (void)handleTappingEntityContextMenu;
 - (void)headerActionButtonTapped;
 - (void)handleLikeButtonTappedWithSelectedState:(_Bool)arg1;
+- (_Bool)isTrackEnabledAtIndex:(long long)arg1;
 - (_Bool)isTrackActiveAtIndex:(long long)arg1;
 - (void)handleTappingTrackFacePileForTrackViewModel:(id <SPTHomeMixTrackViewModel>)arg1;
 - (void)handleTappingTrackContextMenuForTrackViewModel:(id <SPTHomeMixTrackViewModel>)arg1;

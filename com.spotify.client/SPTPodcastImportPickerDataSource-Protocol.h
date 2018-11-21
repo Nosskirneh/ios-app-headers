@@ -9,6 +9,7 @@
 @class SPTPodcastImportPodcast;
 
 @protocol SPTPodcastImportPickerDataSource <NSObject>
+- (unsigned long long)numberOfSelectedPodcasts;
 - (_Bool)isPodcastSelectedAtIndex:(unsigned long long)arg1;
 - (SPTPodcastImportPodcast *)followedPodcastAtIndex:(unsigned long long)arg1;
 - (SPTPodcastImportPodcast *)availablePodcastAtIndex:(unsigned long long)arg1;

@@ -8,7 +8,6 @@
 
 @protocol SPTFreeTierCollectionTestManager <NSObject>
 @property(readonly, nonatomic, getter=isAlternativeActionButtonsEnabled) _Bool alternativeActionButtonsEnabled;
-@property(readonly, nonatomic, getter=isCollectionFoldersEnabled) _Bool collectionFoldersEnabled;
 @property(readonly, nonatomic, getter=isFrecencySortOrderDefaultInPlaylistsEnabled) _Bool frecencySortOrderDefaultInPlaylistsEnabled;
 @property(readonly, nonatomic, getter=isFrecencySortOrderInPlaylistsEnabled) _Bool frecencySortOrderInPlaylistsEnabled;
 @property(readonly, nonatomic, getter=isSortingAndFilteringFavoriteSongsEnabled) _Bool sortingAndFilteringFavoriteSongsEnabled;

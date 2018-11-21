@@ -31,6 +31,7 @@
 @property(retain, nonatomic) id <GLUETheme> theme; // @synthesize theme=_theme;
 @property(retain, nonatomic) id <EXP_HUBComponentEventHandler> eventHandler; // @synthesize eventHandler=_eventHandler;
 - (void).cxx_destruct;
+- (void)didTapDismissButton;
 - (void)didTapActionButton;
 - (void)themeUpdated:(id)arg1;
 - (void)setupConstraints;

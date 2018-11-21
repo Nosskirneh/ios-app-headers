@@ -4,12 +4,12 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 #import "SPSessionObserver-Protocol.h"
 #import "SPTAuthViewControllerDelegate-Protocol.h"
 
-@class NSString, NSTimer, SPSession, SPTAuthAccountsRequest, SPTHermesController;
+@class NSString, NSTimer, SPSession, SPTAuthAccountsFeatureFlagManager, SPTAuthAccountsRequest, SPTHermesController;
 @protocol GaiaFeature, SPTAuthRequestDelegate, SPTContainerUIService, SPTExternalIntegrationPlatform;
 
 @interface SPTAuthRequest : NSObject <SPSessionObserver, SPTAuthViewControllerDelegate>
@@ -21,6 +21,7 @@
     NSTimer *_authenticationTimeoutTimer;
     SPSession *_session;
     SPTHermesController *_hermesController;
+    SPTAuthAccountsFeatureFlagManager *_featureFlagManager;
     long long _retryCount;
     id <SPTExternalIntegrationPlatform> _externalIntegrationPlatform;
     id <GaiaFeature> _gaiaFeature;
@@ -30,6 +31,7 @@
 @property(nonatomic) __weak id <SPTExternalIntegrationPlatform> externalIntegrationPlatform; // @synthesize externalIntegrationPlatform=_externalIntegrationPlatform;
 @property(nonatomic) long long retryCount; // @synthesize retryCount=_retryCount;
 @property(nonatomic) _Bool shouldPerformRequest; // @synthesize shouldPerformRequest=_shouldPerformRequest;
+@property(nonatomic) __weak SPTAuthAccountsFeatureFlagManager *featureFlagManager; // @synthesize featureFlagManager=_featureFlagManager;
 @property(retain, nonatomic) SPTHermesController *hermesController; // @synthesize hermesController=_hermesController;
 @property(nonatomic) __weak SPSession *session; // @synthesize session=_session;
 @property(retain, nonatomic) NSTimer *authenticationTimeoutTimer; // @synthesize authenticationTimeoutTimer=_authenticationTimeoutTimer;
@@ -57,7 +59,7 @@
 - (void)startTimeoutTimer;
 - (double)timeoutTimerInterval;
 - (void)dealloc;
-- (id)initWithSession:(id)arg1 hermesController:(id)arg2 containerUIService:(id)arg3 externalIntegrationPlatform:(id)arg4 gaiaFeature:(id)arg5;
+- (id)initWithSession:(id)arg1 hermesController:(id)arg2 containerUIService:(id)arg3 externalIntegrationPlatform:(id)arg4 gaiaFeature:(id)arg5 featureFlagManager:(id)arg6;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

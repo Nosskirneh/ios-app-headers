@@ -36,7 +36,7 @@
 @property(readonly, nonatomic, getter=spt_pageIdentifier) NSString *pageIdentifier;
 @property(readonly, nonatomic, getter=spt_pageURI) NSURL *pageURI;
 - (unsigned long long)preferredNavigationBarState;
-- (_Bool)textFieldDidChange:(id)arg1;
+- (void)textFieldDidChange:(id)arg1;
 - (_Bool)textFieldShouldReturn:(id)arg1;
 - (void)textFieldDidBeginEditing:(id)arg1;
 - (void)userDidTapStillNeedHelpLabel:(id)arg1;

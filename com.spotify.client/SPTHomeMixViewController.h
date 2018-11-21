@@ -39,7 +39,6 @@
     SPTEntityHeaderViewController *_entityHeaderViewController;
 }
 
-+ (id)defaultHeartActionButtonStyleForTheme:(id)arg1;
 @property(nonatomic) __weak SPTEntityHeaderViewController *entityHeaderViewController; // @synthesize entityHeaderViewController=_entityHeaderViewController;
 @property(nonatomic) __weak SPTHomeMixHeaderContentViewController *headerContentViewController; // @synthesize headerContentViewController=_headerContentViewController;
 @property(retain, nonatomic) id <SPTHomeMixHeaderViewModel> headerViewModel; // @synthesize headerViewModel=_headerViewModel;
@@ -65,6 +64,8 @@
 - (void)homeMixHeaderContentViewControllerDidReceiveActionButtonTap:(id)arg1;
 - (void)homeMixTrackCellFacePileTapped:(id)arg1 fromView:(id)arg2;
 - (void)homeMixTrackCellContextMenuTapped:(id)arg1 fromView:(id)arg2;
+- (void)updateVisibleCells;
+- (void)homeMixViewModel:(id)arg1 didChangeOfflineStatus:(_Bool)arg2;
 - (void)homeMixViewModel:(id)arg1 didUpdateLikeStatus:(_Bool)arg2;
 - (void)homeMixViewModelDidSwitchTracks:(id)arg1;
 - (void)homeMixViewModel:(id)arg1 didUpdateHeaderMetadata:(id)arg2;

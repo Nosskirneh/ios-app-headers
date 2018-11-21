@@ -10,27 +10,44 @@
 #import "UITableViewDataSource-Protocol.h"
 #import "UITableViewDelegate-Protocol.h"
 
-@class NSString, SPTTableView;
-@protocol SPTPodcastImportPickerDataSource, SPTPodcastImportPickerDelegate;
+@class GLUEButton, GLUEEntityRowStyle, GLUEGradientView, NSLayoutConstraint, NSString, SPTEntityHeaderViewController, SPTTableView;
+@protocol GLUETheme, SPTEntityHeaderContentController, SPTPodcastImportPickerDataSource, SPTPodcastImportPickerDelegate;
 
 @interface SPTPodcastImportPickerTabViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, SPContentInsetViewController>
 {
     id <SPTPodcastImportPickerDataSource> _dataSource;
     id <SPTPodcastImportPickerDelegate> _delegate;
+    GLUEButton *_selectPodcastsButton;
+    id <GLUETheme> _theme;
+    GLUEEntityRowStyle *_rowStyle;
+    UIViewController<SPTEntityHeaderContentController> *_headerContentViewController;
+    SPTEntityHeaderViewController *_headerViewController;
     SPTTableView *_tableView;
+    GLUEGradientView *_buttonBackground;
+    NSLayoutConstraint *_buttonBackgroundBottomConstraint;
 }
 
+@property(retain, nonatomic) NSLayoutConstraint *buttonBackgroundBottomConstraint; // @synthesize buttonBackgroundBottomConstraint=_buttonBackgroundBottomConstraint;
+@property(retain, nonatomic) GLUEGradientView *buttonBackground; // @synthesize buttonBackground=_buttonBackground;
 @property(retain, nonatomic) SPTTableView *tableView; // @synthesize tableView=_tableView;
+@property(retain, nonatomic) SPTEntityHeaderViewController *headerViewController; // @synthesize headerViewController=_headerViewController;
+@property(retain, nonatomic) UIViewController<SPTEntityHeaderContentController> *headerContentViewController; // @synthesize headerContentViewController=_headerContentViewController;
+@property(retain, nonatomic) GLUEEntityRowStyle *rowStyle; // @synthesize rowStyle=_rowStyle;
+@property(retain, nonatomic) id <GLUETheme> theme; // @synthesize theme=_theme;
+@property(retain, nonatomic) GLUEButton *selectPodcastsButton; // @synthesize selectPodcastsButton=_selectPodcastsButton;
 @property(nonatomic) __weak id <SPTPodcastImportPickerDelegate> delegate; // @synthesize delegate=_delegate;
 @property(nonatomic) __weak id <SPTPodcastImportPickerDataSource> dataSource; // @synthesize dataSource=_dataSource;
 - (void).cxx_destruct;
 - (void)sp_updateContentInsets;
 - (void)tableView:(id)arg1 didSelectRowAtIndexPath:(id)arg2;
 - (long long)tableView:(id)arg1 editingStyleForRowAtIndexPath:(id)arg2;
+- (void)tableView:(id)arg1 willDisplayCell:(id)arg2 forRowAtIndexPath:(id)arg3;
 - (id)tableView:(id)arg1 cellForRowAtIndexPath:(id)arg2;
+- (double)tableView:(id)arg1 heightForRowAtIndexPath:(id)arg2;
 - (long long)tableView:(id)arg1 numberOfRowsInSection:(long long)arg2;
 - (long long)numberOfSectionsInTableView:(id)arg1;
 - (void)viewDidLoad;
+- (id)initWithTheme:(id)arg1;
 
 // Remaining properties
 @property(nonatomic) _Bool automaticallyAdjustsScrollViewInsets;

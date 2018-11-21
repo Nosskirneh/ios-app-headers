@@ -4,24 +4,23 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 #import "INSEventMessageNode-Protocol.h"
 
 @class NSString;
-@protocol INSMessageProtocol;
 
 @interface INSEventMessageNodeWrapper : NSObject <INSEventMessageNode>
 {
-    id <INSMessageProtocol> _message;
+    NSString *_name;
     long long _sequenceNumber;
 }
 
-+ (id)wrapperWithMessage:(id)arg1 sequenceNumber:(long long)arg2;
++ (id)wrapperWithEnvelope:(id)arg1;
 @property(nonatomic) long long sequenceNumber; // @synthesize sequenceNumber=_sequenceNumber;
-@property(retain, nonatomic) id <INSMessageProtocol> message; // @synthesize message=_message;
+@property(copy, nonatomic) NSString *name; // @synthesize name=_name;
 - (void).cxx_destruct;
-- (id)initWithMessage:(id)arg1 sequenceNumber:(long long)arg2;
+- (id)initWithEnvelope:(id)arg1;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

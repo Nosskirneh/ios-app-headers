@@ -13,6 +13,7 @@
 
 @interface SPTAuthViewController : UIViewController <UIWebViewDelegate>
 {
+    _Bool _usingStaging;
     id <SPTAuthViewControllerDelegate> _delegate;
     UIWebView *_webView;
     UIActivityIndicatorView *_activityIndicatorView;
@@ -20,6 +21,7 @@
     NSHTTPCookie *_cookie;
 }
 
+@property(nonatomic) _Bool usingStaging; // @synthesize usingStaging=_usingStaging;
 @property(retain, nonatomic) NSHTTPCookie *cookie; // @synthesize cookie=_cookie;
 @property(retain, nonatomic) SPTAuthAccountsRequest *request; // @synthesize request=_request;
 @property(retain, nonatomic) UIActivityIndicatorView *activityIndicatorView; // @synthesize activityIndicatorView=_activityIndicatorView;
@@ -37,7 +39,7 @@
 - (void)viewDidDisappear:(_Bool)arg1;
 - (void)viewDidLoad;
 - (void)dealloc;
-- (id)initWithAccountsRequest:(id)arg1 cookie:(id)arg2;
+- (id)initWithAccountsRequest:(id)arg1 cookie:(id)arg2 useStaging:(_Bool)arg3;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

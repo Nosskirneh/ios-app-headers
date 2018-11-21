@@ -4,18 +4,20 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 #import "SPTAuthServiceObserver-Protocol.h"
 #import "SPTExternalIntegrationPlaybackControllerObserver-Protocol.h"
+#import "SPTPartnerNavigationIntegration-Protocol.h"
+#import "SPTWazeNavigationStateObserver-Protocol.h"
 #import "SPTWazeService-Protocol.h"
 #import "SPTWazeTestManagerImplementationDataSource-Protocol.h"
 #import "SPTWazeTestManagerObserver-Protocol.h"
 
-@class NSString, SPTAllocationContext, SPTWazeLogger, SPTWazePresenter, SPTWazeTestManagerImplementation, SPTWazeTransportManager, SPTWazeViewModel;
-@protocol GaiaFeature, SPTAbbaService, SPTAuthService, SPTBannerFeature, SPTContainerService, SPTDrivingStateDetectionService, SPTExternalIntegrationDebugLog, SPTExternalIntegrationDebugLogService, SPTExternalIntegrationPlaybackService, SPTGLUEService, SPTLocalSettings, SPTSessionService, SPTSettingsFeature, SPTURIDispatchService, SlateFeature;
+@class NSString, SPTAllocationContext, SPTObserverManager, SPTWazeLogger, SPTWazePresenter, SPTWazeTestManagerImplementation, SPTWazeTransportManager, SPTWazeViewModel, UIImage;
+@protocol GaiaFeature, SPTAbbaService, SPTAuthService, SPTBannerFeature, SPTContainerService, SPTDrivingStateDetectionService, SPTExternalIntegrationDebugLog, SPTExternalIntegrationDebugLogService, SPTExternalIntegrationPlaybackService, SPTGLUEService, SPTLocalSettings, SPTPartnerService, SPTSessionService, SPTSettingsFeature, SPTURIDispatchService, SlateFeature;
 
-@interface SPTWazeServiceImplementation : NSObject <SPTWazeTestManagerObserver, SPTAuthServiceObserver, SPTWazeTestManagerImplementationDataSource, SPTExternalIntegrationPlaybackControllerObserver, SPTWazeService>
+@interface SPTWazeServiceImplementation : NSObject <SPTWazeTestManagerObserver, SPTAuthServiceObserver, SPTWazeTestManagerImplementationDataSource, SPTExternalIntegrationPlaybackControllerObserver, SPTWazeNavigationStateObserver, SPTPartnerNavigationIntegration, SPTWazeService>
 {
     _Bool _serviceEnabled;
     id <SPTAbbaService> _abbaService;
@@ -31,6 +33,7 @@
     id <SPTURIDispatchService> _uriDispatchService;
     id <SlateFeature> _slateService;
     id <SPTGLUEService> _glueService;
+    id <SPTPartnerService> _partnerService;
     id <SPTLocalSettings> _localSettings;
     SPTWazeViewModel *_viewModel;
     SPTWazePresenter *_presenter;
@@ -38,10 +41,12 @@
     SPTWazeTestManagerImplementation *_testManager;
     id <SPTExternalIntegrationDebugLog> _debugLog;
     SPTWazeLogger *_logger;
+    SPTObserverManager *_partnerObserverManager;
 }
 
 + (id)serviceIdentifier;
 @property _Bool serviceEnabled; // @synthesize serviceEnabled=_serviceEnabled;
+@property(retain, nonatomic) SPTObserverManager *partnerObserverManager; // @synthesize partnerObserverManager=_partnerObserverManager;
 @property(retain, nonatomic) SPTWazeLogger *logger; // @synthesize logger=_logger;
 @property(retain, nonatomic) id <SPTExternalIntegrationDebugLog> debugLog; // @synthesize debugLog=_debugLog;
 @property(retain, nonatomic) SPTWazeTestManagerImplementation *testManager; // @synthesize testManager=_testManager;
@@ -49,6 +54,7 @@
 @property(retain, nonatomic) SPTWazePresenter *presenter; // @synthesize presenter=_presenter;
 @property(retain, nonatomic) SPTWazeViewModel *viewModel; // @synthesize viewModel=_viewModel;
 @property(retain, nonatomic) id <SPTLocalSettings> localSettings; // @synthesize localSettings=_localSettings;
+@property(readonly, nonatomic) __weak id <SPTPartnerService> partnerService; // @synthesize partnerService=_partnerService;
 @property(readonly, nonatomic) __weak id <SPTGLUEService> glueService; // @synthesize glueService=_glueService;
 @property(readonly, nonatomic) __weak id <SlateFeature> slateService; // @synthesize slateService=_slateService;
 @property(readonly, nonatomic) __weak id <SPTURIDispatchService> uriDispatchService; // @synthesize uriDispatchService=_uriDispatchService;
@@ -63,6 +69,16 @@
 @property(readonly, nonatomic) __weak id <SPTAuthService> authService; // @synthesize authService=_authService;
 @property(readonly, nonatomic) __weak id <SPTAbbaService> abbaService; // @synthesize abbaService=_abbaService;
 - (void).cxx_destruct;
+- (void)wazeNavigationDidEnd;
+- (void)wazeNavigationDidStart;
+- (void)removeObserver:(id)arg1;
+- (void)addObserver:(id)arg1;
+@property(readonly, nonatomic, getter=isNavigating) _Bool navigating;
+@property(readonly, nonatomic) unsigned long long category;
+- (void)setEnabled:(_Bool)arg1 completion:(CDUnknownBlockType)arg2;
+@property(readonly, nonatomic) UIImage *icon;
+@property(readonly, nonatomic) NSString *name;
+@property(readonly, nonatomic) _Bool isEnabled;
 - (_Bool)shouldSendResumedPlaybackNotificationWithNewPlayerState:(id)arg1 oldPlayerState:(id)arg2;
 - (void)externalIntegrationPlaybackController:(id)arg1 didReceiveNewPlayerState:(id)arg2 oldPlayerState:(id)arg3;
 - (id)fragmentsParameterFromURI:(id)arg1;

@@ -4,11 +4,11 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 #import "SPTSignupDataLoaderDelegate-Protocol.h"
 
-@class NSString, SPTLoginRecoverAccountDataLoader, SPTLoginRecoverAccountViewLogger, SPTLoginTheme;
+@class NSString, SPTLoginRecoverAccountDataLoader, SPTLoginRecoverAccountViewLogger, SPTLoginSpinnerButtonTestManager, SPTLoginTheme;
 @protocol SPTLinkDispatcher, SPTLoginRecoverAccountViewModelDelegate, SPTNavigationRouter;
 
 @interface SPTLoginRecoverAccountViewModel : NSObject <SPTSignupDataLoaderDelegate>
@@ -16,6 +16,7 @@
     id <SPTLoginRecoverAccountViewModelDelegate> _delegate;
     SPTLoginRecoverAccountViewLogger *_logger;
     NSString *_userEmail;
+    SPTLoginSpinnerButtonTestManager *_spinnerButtonTestManager;
     SPTLoginTheme *_theme;
     id <SPTNavigationRouter> _navigationRouter;
     SPTLoginRecoverAccountDataLoader *_dataLoader;
@@ -26,6 +27,7 @@
 @property(retain, nonatomic) SPTLoginRecoverAccountDataLoader *dataLoader; // @synthesize dataLoader=_dataLoader;
 @property(retain, nonatomic) id <SPTNavigationRouter> navigationRouter; // @synthesize navigationRouter=_navigationRouter;
 @property(readonly, nonatomic) SPTLoginTheme *theme; // @synthesize theme=_theme;
+@property(readonly, nonatomic) SPTLoginSpinnerButtonTestManager *spinnerButtonTestManager; // @synthesize spinnerButtonTestManager=_spinnerButtonTestManager;
 @property(readonly, nonatomic) NSString *userEmail; // @synthesize userEmail=_userEmail;
 @property(readonly, nonatomic) SPTLoginRecoverAccountViewLogger *logger; // @synthesize logger=_logger;
 @property(nonatomic) __weak id <SPTLoginRecoverAccountViewModelDelegate> delegate; // @synthesize delegate=_delegate;
@@ -46,7 +48,7 @@
 - (id)messageText;
 - (id)titleText;
 - (id)viewStyle;
-- (id)initWithTheme:(id)arg1 navigationRouter:(id)arg2 dataLoader:(id)arg3 logger:(id)arg4 linkDispatcher:(id)arg5 userEmail:(id)arg6;
+- (id)initWithTheme:(id)arg1 navigationRouter:(id)arg2 dataLoader:(id)arg3 logger:(id)arg4 linkDispatcher:(id)arg5 userEmail:(id)arg6 spinnerButtonTestManager:(id)arg7;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

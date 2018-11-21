@@ -4,7 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 #import "SPTInAppMessageCardMessageWebViewContentDelegate-Protocol.h"
 #import "SPTSlateDataSource-Protocol.h"
@@ -41,6 +41,7 @@
 - (_Bool)shouldFullscreen;
 - (id)contentUnitForSlateViewController:(id)arg1;
 - (id)provideSlate;
+- (_Bool)isIpad;
 - (id)initWithViewModel:(id)arg1 slateManager:(id)arg2 slateBuilderProvider:(id)arg3 serviceLogger:(id)arg4;
 
 // Remaining properties

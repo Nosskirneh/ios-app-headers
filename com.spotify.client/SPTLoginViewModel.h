@@ -4,12 +4,12 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 #import "SPTLoginRecoverAccountHelpControllerDelegate-Protocol.h"
 #import "SPTSignupDataLoaderDelegate-Protocol.h"
 
-@class NSString, SPTAuthenticationHandler, SPTLoginMagicLinkTestManager, SPTLoginNetworkControllerUtility, SPTLoginOnePasswordHandler, SPTLoginRecoverAccountDataLoader, SPTLoginRecoverAccountHelpController, SPTLoginTheme, SPTLoginViewLogger, SPTPopupManager;
+@class NSString, SPTAuthenticationHandler, SPTLoginMagicLinkTestManager, SPTLoginNetworkControllerUtility, SPTLoginOnePasswordHandler, SPTLoginRecoverAccountDataLoader, SPTLoginRecoverAccountHelpController, SPTLoginSpinnerButtonTestManager, SPTLoginTheme, SPTLoginViewLogger, SPTPopupManager;
 @protocol SPTLoginViewModelDelegate, SPTNavigationRouter;
 
 @interface SPTLoginViewModel : NSObject <SPTSignupDataLoaderDelegate, SPTLoginRecoverAccountHelpControllerDelegate>
@@ -18,6 +18,7 @@
     SPTLoginViewLogger *_logger;
     SPTLoginOnePasswordHandler *_onePassword;
     SPTLoginMagicLinkTestManager *_magicLinkTestManager;
+    SPTLoginSpinnerButtonTestManager *_spinnerButtonTestManager;
     NSString *_userEmail;
     SPTLoginTheme *_theme;
     id <SPTNavigationRouter> _navigationRouter;
@@ -36,6 +37,7 @@
 @property(retain, nonatomic) id <SPTNavigationRouter> navigationRouter; // @synthesize navigationRouter=_navigationRouter;
 @property(readonly, nonatomic) SPTLoginTheme *theme; // @synthesize theme=_theme;
 @property(retain, nonatomic) NSString *userEmail; // @synthesize userEmail=_userEmail;
+@property(readonly, nonatomic) SPTLoginSpinnerButtonTestManager *spinnerButtonTestManager; // @synthesize spinnerButtonTestManager=_spinnerButtonTestManager;
 @property(retain, nonatomic) SPTLoginMagicLinkTestManager *magicLinkTestManager; // @synthesize magicLinkTestManager=_magicLinkTestManager;
 @property(readonly, nonatomic) SPTLoginOnePasswordHandler *onePassword; // @synthesize onePassword=_onePassword;
 @property(readonly, nonatomic) SPTLoginViewLogger *logger; // @synthesize logger=_logger;
@@ -61,7 +63,7 @@
 - (_Bool)shouldEnableLoginButtonForEmail:(id)arg1 password:(id)arg2;
 - (void)reportLoginCompletionWithError:(id)arg1;
 - (void)loginWithUser:(id)arg1 andPassword:(id)arg2;
-- (id)initWithTheme:(id)arg1 navigationRouter:(id)arg2 logger:(id)arg3 authenticationHandler:(id)arg4 onePasswordLogin:(id)arg5 popupManager:(id)arg6 networkControllerUtility:(id)arg7 userEmail:(id)arg8 recoverAccountHelpController:(id)arg9 magicLinkTestManager:(id)arg10 recoverAccountDataLoader:(id)arg11;
+- (id)initWithTheme:(id)arg1 navigationRouter:(id)arg2 logger:(id)arg3 authenticationHandler:(id)arg4 onePasswordLogin:(id)arg5 popupManager:(id)arg6 networkControllerUtility:(id)arg7 userEmail:(id)arg8 recoverAccountHelpController:(id)arg9 magicLinkTestManager:(id)arg10 spinnerButtonTestManager:(id)arg11 recoverAccountDataLoader:(id)arg12;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

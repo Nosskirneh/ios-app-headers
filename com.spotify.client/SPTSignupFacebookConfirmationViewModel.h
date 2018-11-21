@@ -4,11 +4,11 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 #import "SPTSignupDataLoaderDelegate-Protocol.h"
 
-@class NSString, SPTAuthenticationHandler, SPTLoginDialogController, SPTLoginTheme, SPTSignupCreateUserDataLoader, SPTSignupFacebookConfirmationLogger, SPTSignupTermsAndPolicyViewModel, SPTSignupUserInfoModel;
+@class NSString, SPTAuthenticationHandler, SPTLoginDialogController, SPTLoginSpinnerButtonTestManager, SPTLoginTheme, SPTSignupCreateUserDataLoader, SPTSignupFacebookConfirmationLogger, SPTSignupTermsAndPolicyViewModel, SPTSignupUserInfoModel;
 @protocol GLUEImageLoader, SPTNavigationRouter, SPTSignupFacebookConfirmationViewModelDelegate;
 
 @interface SPTSignupFacebookConfirmationViewModel : NSObject <SPTSignupDataLoaderDelegate>
@@ -16,6 +16,7 @@
     id <SPTSignupFacebookConfirmationViewModelDelegate> _delegate;
     SPTSignupFacebookConfirmationLogger *_logger;
     SPTSignupTermsAndPolicyViewModel *_termsAndPolicyViewModel;
+    SPTLoginSpinnerButtonTestManager *_spinnerButtonTestManager;
     SPTLoginTheme *_theme;
     SPTSignupUserInfoModel *_userInfo;
     id <GLUEImageLoader> _glueImageLoader;
@@ -32,6 +33,7 @@
 @property(readonly, nonatomic) id <GLUEImageLoader> glueImageLoader; // @synthesize glueImageLoader=_glueImageLoader;
 @property(readonly, nonatomic) SPTSignupUserInfoModel *userInfo; // @synthesize userInfo=_userInfo;
 @property(readonly, nonatomic) SPTLoginTheme *theme; // @synthesize theme=_theme;
+@property(retain, nonatomic) SPTLoginSpinnerButtonTestManager *spinnerButtonTestManager; // @synthesize spinnerButtonTestManager=_spinnerButtonTestManager;
 @property(readonly, nonatomic) SPTSignupTermsAndPolicyViewModel *termsAndPolicyViewModel; // @synthesize termsAndPolicyViewModel=_termsAndPolicyViewModel;
 @property(readonly, nonatomic) SPTSignupFacebookConfirmationLogger *logger; // @synthesize logger=_logger;
 @property(nonatomic) __weak id <SPTSignupFacebookConfirmationViewModelDelegate> delegate; // @synthesize delegate=_delegate;
@@ -50,7 +52,7 @@
 - (id)explanationText;
 - (id)greetingText;
 - (id)viewStyle;
-- (id)initWithTheme:(id)arg1 userInfo:(id)arg2 imageLoader:(id)arg3 navigationRouter:(id)arg4 logger:(id)arg5 termsAndPolicyViewModel:(id)arg6 createUserDataLoader:(id)arg7 authenticationHandler:(id)arg8 alertController:(id)arg9;
+- (id)initWithTheme:(id)arg1 userInfo:(id)arg2 imageLoader:(id)arg3 navigationRouter:(id)arg4 logger:(id)arg5 termsAndPolicyViewModel:(id)arg6 createUserDataLoader:(id)arg7 authenticationHandler:(id)arg8 alertController:(id)arg9 spinnerButtonTestManager:(id)arg10;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

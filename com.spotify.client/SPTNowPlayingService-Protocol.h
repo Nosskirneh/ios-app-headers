@@ -6,21 +6,12 @@
 
 #import "SPTService-Protocol.h"
 
-@protocol SPTNowPlayingAuxiliaryActionsHandler, SPTNowPlayingContainerIdleMonitorObservable, SPTNowPlayingContentProviderRegistries, SPTNowPlayingFeedbackObservable, SPTNowPlayingInformationUnitViewModel, SPTNowPlayingManager, SPTNowPlayingModeResolver, SPTNowPlayingModeViewControllerRegistry, SPTNowPlayingModesRegistry, SPTNowPlayingNavigationBarModel, SPTNowPlayingRemoteControlEventControllerRegistry, SPTNowPlayingRemoteControlPolicyRegistry, SPTNowPlayingShowsFormatOverriderRegistry, SPTNowPlayingStateObservable, SPTNowPlayingTestManager;
+@protocol SPTNowPlayingAuxiliaryActionsHandler, SPTNowPlayingContainerIdleMonitorObservable, SPTNowPlayingInformationUnitViewModel, SPTNowPlayingManager, SPTNowPlayingNavigationBarModel, SPTNowPlayingStateObservable;
 
 @protocol SPTNowPlayingService <SPTService>
 - (id <SPTNowPlayingInformationUnitViewModel>)createInformationUnitViewModel;
 - (id <SPTNowPlayingNavigationBarModel>)provideNavigationBarModel;
 - (id <SPTNowPlayingAuxiliaryActionsHandler>)provideAuxiliaryActionsHandler;
-- (id <SPTNowPlayingModeViewControllerRegistry>)provideModeViewControllerRegistry;
-- (id <SPTNowPlayingModesRegistry>)provideModesRegistry;
-- (id <SPTNowPlayingModeResolver>)provideNowPlayingModeResolver;
-- (id <SPTNowPlayingTestManager>)provideTestManager;
-- (id <SPTNowPlayingFeedbackObservable>)provideNowPlayingFeedbackObservable;
-- (id <SPTNowPlayingRemoteControlPolicyRegistry>)provideRemoteControlPolicyRegistry;
-- (id <SPTNowPlayingRemoteControlEventControllerRegistry>)provideRemoteControlEventControllerRegistry;
-- (id <SPTNowPlayingShowsFormatOverriderRegistry>)provideShowsFormatOverriderRegistry;
-- (id <SPTNowPlayingContentProviderRegistries>)provideContentProviderRegistries;
 - (id <SPTNowPlayingStateObservable>)provideNowPlayingStateObservable;
 - (id <SPTNowPlayingContainerIdleMonitorObservable>)provideNowPlayingContainerIdleMonitorObservable;
 - (id <SPTNowPlayingManager>)provideNowPlayingManager;

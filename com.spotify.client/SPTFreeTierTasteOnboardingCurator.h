@@ -4,7 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 #import "SPTDataLoaderDelegate-Protocol.h"
 #import "SPTFreeTierTasteOnboardingCurationProvider-Protocol.h"
@@ -28,7 +28,6 @@
 - (void)dataLoader:(id)arg1 didReceiveErrorResponse:(id)arg2;
 - (void)dataLoader:(id)arg1 didReceiveSuccessfulResponse:(id)arg2;
 - (void)curateWithType:(id)arg1 sourceIdentifier:(id)arg2;
-- (void)curateTrackTaste;
 - (void)curateArtistTaste;
 @property(readonly, nonatomic, getter=isInitialCurationCompleted) _Bool initialCurationCompleted;
 - (id)initWithDataLoader:(id)arg1 localSettings:(id)arg2;

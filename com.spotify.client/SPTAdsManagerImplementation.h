@@ -4,13 +4,13 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 #import "SPTAdsManager-Protocol.h"
 #import "SPTNavigationManagerDelegate-Protocol.h"
 
 @class NSString, SPTAdContextManager, SPTAdFeatureFlagChecks, SPTAdFeaturedActionHandler, SPTAdGlobalSettingsController, SPTAdNowPlayingManager, SPTAdRulesManager, SPTAdsViewModel, SPTObserverManager;
-@protocol SPTLinkDispatcher, SPTMetaViewController, SPTNowPlayingModesRegistry, SPTNowPlayingNavigationBarModel;
+@protocol SPTAdNowPlayingRemoteControlPolicy, SPTLinkDispatcher, SPTMetaViewController, SPTNowPlayingModesRegistry, SPTNowPlayingNavigationBarModel;
 
 @interface SPTAdsManagerImplementation : NSObject <SPTAdsManager, SPTNavigationManagerDelegate>
 {
@@ -28,8 +28,10 @@
     id <SPTLinkDispatcher> _linkDispatcher;
     id <SPTNowPlayingModesRegistry> _npvModeRegistry;
     SPTObserverManager *_observerManager;
+    id <SPTAdNowPlayingRemoteControlPolicy> _remoteControlPolicy;
 }
 
+@property(retain, nonatomic) id <SPTAdNowPlayingRemoteControlPolicy> remoteControlPolicy; // @synthesize remoteControlPolicy=_remoteControlPolicy;
 @property(retain, nonatomic) SPTObserverManager *observerManager; // @synthesize observerManager=_observerManager;
 @property(nonatomic) __weak id <SPTNowPlayingModesRegistry> npvModeRegistry; // @synthesize npvModeRegistry=_npvModeRegistry;
 @property(retain, nonatomic) id <SPTLinkDispatcher> linkDispatcher; // @synthesize linkDispatcher=_linkDispatcher;

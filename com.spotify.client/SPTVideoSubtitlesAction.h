@@ -6,18 +6,18 @@
 
 #import "SPAction.h"
 
-@class SPTVideoPreferences;
+@class SPTVideoContextPlayerCoordinator;
 @protocol SPTUIPresentationService, SPTVideoPlayerSubtitleModule;
 
 @interface SPTVideoSubtitlesAction : SPAction
 {
     id <SPTVideoPlayerSubtitleModule> _videoPlayerSubtitleModule;
-    SPTVideoPreferences *_preferences;
+    SPTVideoContextPlayerCoordinator *_coordinator;
     id <SPTUIPresentationService> _presentationService;
 }
 
 @property(nonatomic) __weak id <SPTUIPresentationService> presentationService; // @synthesize presentationService=_presentationService;
-@property(nonatomic) __weak SPTVideoPreferences *preferences; // @synthesize preferences=_preferences;
+@property(nonatomic) __weak SPTVideoContextPlayerCoordinator *coordinator; // @synthesize coordinator=_coordinator;
 @property(nonatomic) __weak id <SPTVideoPlayerSubtitleModule> videoPlayerSubtitleModule; // @synthesize videoPlayerSubtitleModule=_videoPlayerSubtitleModule;
 - (void).cxx_destruct;
 - (id)menuActionWithSubtitle:(id)arg1;
@@ -25,7 +25,7 @@
 - (_Bool)isEnabled;
 - (long long)icon;
 - (id)title;
-- (id)initWithLogContext:(id)arg1 presentationService:(id)arg2 videoPlayerSubtitleModule:(id)arg3 preferences:(id)arg4;
+- (id)initWithLogContext:(id)arg1 presentationService:(id)arg2 videoPlayerSubtitleModule:(id)arg3 coordinator:(id)arg4;
 
 @end
 

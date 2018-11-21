@@ -10,6 +10,7 @@
 @protocol SPTHomeMixHeaderViewModel, SPTHomeMixViewModel;
 
 @protocol SPTHomeMixViewModelDelegate <NSObject>
+- (void)homeMixViewModel:(id <SPTHomeMixViewModel>)arg1 didChangeOfflineStatus:(_Bool)arg2;
 - (void)homeMixViewModel:(id <SPTHomeMixViewModel>)arg1 didUpdateLikeStatus:(_Bool)arg2;
 - (void)homeMixViewModelDidSwitchTracks:(id <SPTHomeMixViewModel>)arg1;
 - (void)homeMixViewModel:(id <SPTHomeMixViewModel>)arg1 didUpdateHeaderMetadata:(id <SPTHomeMixHeaderViewModel>)arg2;

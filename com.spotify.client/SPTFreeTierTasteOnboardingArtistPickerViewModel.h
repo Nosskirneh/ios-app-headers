@@ -4,7 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 #import "SPTDataLoaderDelegate-Protocol.h"
 #import "SPTFreeTierTasteOnboardingOfflineStateAggregateObserver-Protocol.h"
@@ -18,7 +18,6 @@
 @interface SPTFreeTierTasteOnboardingArtistPickerViewModel : NSObject <SPTFreeTierTasteOnboardingOfflineStateAggregateObserver, SPTDataLoaderDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, SPTInstrumentationInteractionMediatorColleague>
 {
     _Bool _repeatVisit;
-    _Bool _hasMoreSteps;
     id <SPTFreeTierTasteOnboardingArtistPickerViewModelDelegate> _delegate;
     SPTFreeTierTasteOnboardingArtistPickerViewLogger *_logger;
     SPTFreeTierTasteOnboardingSession *_session;
@@ -60,7 +59,6 @@
 @property(readonly, nonatomic) SPTDataLoader *dataLoader; // @synthesize dataLoader=_dataLoader;
 @property(readonly, nonatomic) SPTFreeTierTasteOnboardingCurator *curator; // @synthesize curator=_curator;
 @property(readonly, nonatomic) SPTFreeTierTasteOnboardingTheme *theme; // @synthesize theme=_theme;
-@property(nonatomic) _Bool hasMoreSteps; // @synthesize hasMoreSteps=_hasMoreSteps;
 @property(nonatomic, getter=isRepeatVisit) _Bool repeatVisit; // @synthesize repeatVisit=_repeatVisit;
 @property(readonly, nonatomic) SPTFreeTierTasteOnboardingSession *session; // @synthesize session=_session;
 @property(readonly, nonatomic) SPTFreeTierTasteOnboardingArtistPickerViewLogger *logger; // @synthesize logger=_logger;
@@ -71,12 +69,16 @@
 - (void)handleOfflineStateIfPossible;
 - (_Bool)isOffline;
 - (void)scrollIndexPathsToVisible:(id)arg1 animated:(_Bool)arg2;
+- (unsigned long long)insertItems:(id)arg1 atIndex:(unsigned long long)arg2 insertedIndexPaths:(id)arg3;
 - (void)insertRelatedItems:(id)arg1 forItem:(id)arg2;
-- (void)expandItemAtIndex:(unsigned long long)arg1;
+- (void)expandItemAtIndex:(unsigned long long)arg1 afterResponse:(_Bool)arg2;
 - (void)artistItem:(id)arg1 setFollowing:(_Bool)arg2;
 - (void)mediator:(id)arg1 requiresDataForBuilder:(id)arg2 forInteractionInformation:(id)arg3;
+- (void)triggerSecondaryFeedbackIfEnabled;
+- (void)triggerPrimaryFeedbackIfEnabled;
 - (void)presentRetryDialogWithResponse:(id)arg1;
-- (void)processFetchRelatedItemsResponse:(id)arg1;
+- (void)processFetchRelatedGenreItemsResponse:(id)arg1;
+- (void)processFetchRelatedArtistItemsResponse:(id)arg1;
 - (void)fetchRelatedItems:(id)arg1;
 - (void)processFetchItemsResponse:(id)arg1;
 - (void)performRequest:(id)arg1;

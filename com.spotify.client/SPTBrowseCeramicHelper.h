@@ -4,13 +4,13 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 @interface SPTBrowseCeramicHelper : NSObject
 {
 }
 
-+ (void)addInteraction5DataToComponentModelBuilder:(id)arg1 inBlock:(id)arg2 itemIndex:(unsigned long long)arg3 featureID:(id)arg4 pageURI:(id)arg5 targetURI:(id)arg6;
++ (void)addInteraction5DataToComponentModelBuilder:(id)arg1 inBlock:(id)arg2 itemIndex:(unsigned long long)arg3 featureID:(id)arg4 pageURI:(id)arg5;
 + (void)addImpression5DataToComponentModelBuilder:(id)arg1 inBlock:(id)arg2 itemIndex:(unsigned long long)arg3 featureID:(id)arg4 pageURI:(id)arg5 targetURI:(id)arg6;
 + (void)addLoggingDataToComponentModelBuilder:(id)arg1 inBlock:(id)arg2 itemIndex:(unsigned long long)arg3 featureID:(id)arg4 pageURI:(id)arg5 targetURI:(id)arg6;
 + (void)addNavigateCommandToComponentModelBuilder:(id)arg1 fromItem:(id)arg2;

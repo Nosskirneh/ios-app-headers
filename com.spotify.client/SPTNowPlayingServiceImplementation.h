@@ -4,19 +4,17 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 #import "SPTNowPlayingService-Protocol.h"
 #import "SPTQueueViewControllerDelegate-Protocol.h"
-#import "SPTService-Protocol.h"
 #import "SpotifyApplicationRemoteControlDelegate-Protocol.h"
 
-@class NSArray, NSString, SPTAllocationContext, SPTNowPlayingAuxiliaryActionsHandlerImplementation, SPTNowPlayingContentProviderRegistriesImplementation, SPTNowPlayingContextMenuHeaderFactory, SPTNowPlayingDefaultMode, SPTNowPlayingDeviceOrientationManager, SPTNowPlayingFeedbackMode, SPTNowPlayingLogger, SPTNowPlayingManagerImplementation, SPTNowPlayingModeResolverImplementation, SPTNowPlayingModeViewControllerRegistryImplementation, SPTNowPlayingModel, SPTNowPlayingPlaybackActionsHandler, SPTNowPlayingPodcastMode, SPTNowPlayingRemoteControlEventControllerManager, SPTNowPlayingRemoteControlEventDefaultController, SPTNowPlayingRemoteControlPolicyResolver, SPTNowPlayingStateProxy, SPTNowPlayingToggleViewController, SPTNowPlayingTrackMetadataQueue, SPTNowPlayingVideoManagerImplementation, SPTNowPlayingVideoShowMode, SPTNowPlayingViewFullscreenConfigurator, SPTStatefulPlayer, UIViewController;
-@protocol CollectionFeature, GaiaFeature, PlaylistFeature, SPContextMenuFeature, SPTAbbaService, SPTAdsService, SPTBannerFeature, SPTCollectionPlatformService, SPTContainerService, SPTContainerUIService, SPTCoreService, SPTCrashReporterService, SPTDailyMixFeature, SPTFeatureFlaggingService, SPTFeedbackService, SPTFormatListPlatformService, SPTFreeTierEducationService, SPTFreeTierService, SPTInAppMessageService, SPTKaraokeService, SPTMediaPlayerService, SPTNetworkService, SPTNowPlayingFeedbackObservable, SPTNowPlayingInfoCenterManagerProtocol, SPTNowPlayingLegacyFeedbackCoordinator, SPTNowPlayingModesRegistry, SPTNowPlayingNavigationBarModel, SPTNowPlayingRemoteControlPolicyRegistry, SPTNowPlayingScrollService_Internal, SPTNowPlayingShowsFormatOverriderRegistry, SPTNowPlayingTestManager, SPTOnDemandService, SPTPermissionsService, SPTPersonalisedSetsService, SPTPlayer, SPTPlayerFeature, SPTPlaylistPlatformService, SPTPodcastFeature, SPTQueueInteractor, SPTQueueLogger, SPTQueueService, SPTRadioService, SPTSessionService, SPTSettingsFeature, SPTShareFeature, SPTShowsFormatService, SPTSleepTimerService, SPTUIPresentationService, SPTURIDispatchService, SPTVideoFeature, UpsellFeature;
+@class NSArray, NSString, SPTAllocationContext, SPTNowPlayingAuxiliaryActionsHandlerImplementation, SPTNowPlayingContextMenuHeaderFactory, SPTNowPlayingDefaultMode, SPTNowPlayingDeviceOrientationManager, SPTNowPlayingFeedbackMode, SPTNowPlayingLogger, SPTNowPlayingManagerImplementation, SPTNowPlayingModel, SPTNowPlayingPlaybackActionsHandler, SPTNowPlayingPodcastMode, SPTNowPlayingRemoteControlEventDefaultController, SPTNowPlayingRemoteControlPolicyResolver, SPTNowPlayingStateProxy, SPTNowPlayingToggleViewController, SPTNowPlayingTrackMetadataQueue, SPTNowPlayingVideoManagerImplementation, SPTNowPlayingVideoShowMode, SPTNowPlayingViewFullscreenConfigurator, SPTStatefulPlayer, UIViewController;
+@protocol CollectionFeature, GaiaFeature, PlaylistFeature, SPContextMenuFeature, SPTAdsService, SPTBannerFeature, SPTCollectionPlatformService, SPTContainerService, SPTContainerUIService, SPTCoreService, SPTCrashReporterService, SPTDailyMixFeature, SPTFeedbackService, SPTFormatListPlatformService, SPTFreeTierEducationService, SPTInAppMessageService, SPTKaraokeService, SPTMediaPlayerService, SPTNetworkService, SPTNowPlayingFeedbackObservable, SPTNowPlayingInfoCenterManagerProtocol, SPTNowPlayingLegacyFeedbackCoordinator, SPTNowPlayingNavigationBarModel, SPTNowPlayingPlatformService, SPTNowPlayingRemoteControlPolicyRegistry, SPTNowPlayingScrollService_Internal, SPTNowPlayingTestManager, SPTPermissionsService, SPTPersonalisedSetsService, SPTPlayer, SPTPlayerFeature, SPTPlaylistPlatformService, SPTPodcastFeature, SPTQueueInteractor, SPTQueueLogger, SPTQueueService, SPTRadioService, SPTSessionService, SPTSettingsFeature, SPTShareFeature, SPTShowsFormatService, SPTSleepTimerService, SPTUIPresentationService, SPTURIDispatchService, SPTVideoFeature, UpsellFeature;
 
-@interface SPTNowPlayingServiceImplementation : NSObject <SpotifyApplicationRemoteControlDelegate, SPTQueueViewControllerDelegate, SPTService, SPTNowPlayingService>
+@interface SPTNowPlayingServiceImplementation : NSObject <SpotifyApplicationRemoteControlDelegate, SPTQueueViewControllerDelegate, SPTNowPlayingService>
 {
-    SPTNowPlayingRemoteControlEventControllerManager *_remoteControlEventControllerManager;
     id <SPTSessionService> _clientSessionService;
     id <SPTContainerService> _containerService;
     id <SPTCoreService> _coreService;
@@ -35,7 +33,6 @@
     id <SPTVideoFeature> _videoFeature;
     id <SPTPodcastFeature> _podcastFeature;
     id <SPTShowsFormatService> _showsFormatService;
-    id <SPTAbbaService> _abbaService;
     id <SPTMediaPlayerService> _mediaPlayerService;
     id <SPTFormatListPlatformService> _formatListPlatformService;
     id <SPTContainerUIService> _containerUIService;
@@ -44,25 +41,22 @@
     id <SPTShareFeature> _shareFeature;
     id <SPTPersonalisedSetsService> _personalisedSetsService;
     id <PlaylistFeature> _playlistFeature;
-    id <SPTFreeTierService> _freeTierService;
     id <SPTFreeTierEducationService> _freeTierEducationService;
     id <SPTFeedbackService> _feedbackService;
     id <SPTUIPresentationService> _presentationService;
     id <SPTKaraokeService> _karaokeService;
-    id <SPTOnDemandService> _onDemandService;
     id <SPTSleepTimerService> _sleepTimerService;
     id <SPTPermissionsService> _permissionService;
     id <SPTCrashReporterService> _crashReporterService;
     id <SPTNowPlayingScrollService_Internal> _scrollService;
     id <SPTInAppMessageService> _inappmessageService;
     id <SPTBannerFeature> _bannerFeature;
-    id <SPTFeatureFlaggingService> _featureFlaggingSevice;
+    id <SPTNowPlayingPlatformService> _nowPlayingPlatformService;
     SPTNowPlayingToggleViewController *_nowPlayingToggleVC;
     UIViewController *_nowPlayingViewController;
     UIViewController *_nowPlayingBarViewController;
     id <SPTQueueInteractor> _queueInteractor;
     id <SPTNowPlayingRemoteControlPolicyRegistry> _remoteControlPolicyRegistry;
-    id <SPTNowPlayingModesRegistry> _modesRegistry;
     SPTNowPlayingViewFullscreenConfigurator *_fullscreenConfigurator;
     id <SPTNowPlayingInfoCenterManagerProtocol> _nowPlayingInfoCenterManager;
     id <SPTPlayer> _player;
@@ -71,12 +65,8 @@
     SPTNowPlayingVideoManagerImplementation *_videoManager;
     SPTNowPlayingRemoteControlEventDefaultController *_remoteControlEventController;
     SPTNowPlayingModel *_nowPlayingModel;
-    SPTNowPlayingModeResolverImplementation *_modeResolver;
     SPTNowPlayingRemoteControlPolicyResolver *_remoteControlPolicyResolver;
     id <SPTNowPlayingNavigationBarModel> _navigationBarModel;
-    id <SPTNowPlayingShowsFormatOverriderRegistry> _showsFormatOverriderRegistry;
-    SPTNowPlayingContentProviderRegistriesImplementation *_contentProviderRegistries;
-    id <SPTNowPlayingTestManager> _testManager;
     SPTStatefulPlayer *_statefulPlayer;
     SPTNowPlayingTrackMetadataQueue *_trackMetadataQueue;
     SPTNowPlayingLogger *_nowPlayingLogger;
@@ -84,10 +74,10 @@
     SPTNowPlayingStateProxy *_nowPlayingStateProxy;
     id <SPTNowPlayingFeedbackObservable> _nowPlayingFeedbackObservable;
     id <SPTNowPlayingLegacyFeedbackCoordinator> _feedbackCoordinator;
+    id <SPTNowPlayingTestManager> _testManager;
     SPTNowPlayingPlaybackActionsHandler *_playbackActionsHandler;
     SPTNowPlayingAuxiliaryActionsHandlerImplementation *_auxiliaryActionsHandler;
     SPTNowPlayingContextMenuHeaderFactory *_contextMenuHeaderFactory;
-    SPTNowPlayingModeViewControllerRegistryImplementation *_modeViewControllerRegistry;
     UIViewController *_queueNavigationBarViewController;
     SPTNowPlayingDefaultMode *_defaultMode;
     SPTNowPlayingFeedbackMode *_feedbackMode;
@@ -103,10 +93,10 @@
 @property(retain, nonatomic) SPTNowPlayingFeedbackMode *feedbackMode; // @synthesize feedbackMode=_feedbackMode;
 @property(retain, nonatomic) SPTNowPlayingDefaultMode *defaultMode; // @synthesize defaultMode=_defaultMode;
 @property(retain, nonatomic) UIViewController *queueNavigationBarViewController; // @synthesize queueNavigationBarViewController=_queueNavigationBarViewController;
-@property(retain, nonatomic) SPTNowPlayingModeViewControllerRegistryImplementation *modeViewControllerRegistry; // @synthesize modeViewControllerRegistry=_modeViewControllerRegistry;
 @property(retain, nonatomic) SPTNowPlayingContextMenuHeaderFactory *contextMenuHeaderFactory; // @synthesize contextMenuHeaderFactory=_contextMenuHeaderFactory;
 @property(retain, nonatomic) SPTNowPlayingAuxiliaryActionsHandlerImplementation *auxiliaryActionsHandler; // @synthesize auxiliaryActionsHandler=_auxiliaryActionsHandler;
 @property(retain, nonatomic) SPTNowPlayingPlaybackActionsHandler *playbackActionsHandler; // @synthesize playbackActionsHandler=_playbackActionsHandler;
+@property(retain, nonatomic) id <SPTNowPlayingTestManager> testManager; // @synthesize testManager=_testManager;
 @property(retain, nonatomic) id <SPTNowPlayingLegacyFeedbackCoordinator> feedbackCoordinator; // @synthesize feedbackCoordinator=_feedbackCoordinator;
 @property(retain, nonatomic) id <SPTNowPlayingFeedbackObservable> nowPlayingFeedbackObservable; // @synthesize nowPlayingFeedbackObservable=_nowPlayingFeedbackObservable;
 @property(retain, nonatomic) SPTNowPlayingStateProxy *nowPlayingStateProxy; // @synthesize nowPlayingStateProxy=_nowPlayingStateProxy;
@@ -114,12 +104,8 @@
 @property(retain, nonatomic) SPTNowPlayingLogger *nowPlayingLogger; // @synthesize nowPlayingLogger=_nowPlayingLogger;
 @property(retain, nonatomic) SPTNowPlayingTrackMetadataQueue *trackMetadataQueue; // @synthesize trackMetadataQueue=_trackMetadataQueue;
 @property(retain, nonatomic) SPTStatefulPlayer *statefulPlayer; // @synthesize statefulPlayer=_statefulPlayer;
-@property(retain, nonatomic) id <SPTNowPlayingTestManager> testManager; // @synthesize testManager=_testManager;
-@property(retain, nonatomic) SPTNowPlayingContentProviderRegistriesImplementation *contentProviderRegistries; // @synthesize contentProviderRegistries=_contentProviderRegistries;
-@property(retain, nonatomic) id <SPTNowPlayingShowsFormatOverriderRegistry> showsFormatOverriderRegistry; // @synthesize showsFormatOverriderRegistry=_showsFormatOverriderRegistry;
 @property(retain, nonatomic) id <SPTNowPlayingNavigationBarModel> navigationBarModel; // @synthesize navigationBarModel=_navigationBarModel;
 @property(retain, nonatomic) SPTNowPlayingRemoteControlPolicyResolver *remoteControlPolicyResolver; // @synthesize remoteControlPolicyResolver=_remoteControlPolicyResolver;
-@property(retain, nonatomic) SPTNowPlayingModeResolverImplementation *modeResolver; // @synthesize modeResolver=_modeResolver;
 @property(retain, nonatomic) SPTNowPlayingModel *nowPlayingModel; // @synthesize nowPlayingModel=_nowPlayingModel;
 @property(retain, nonatomic) SPTNowPlayingRemoteControlEventDefaultController *remoteControlEventController; // @synthesize remoteControlEventController=_remoteControlEventController;
 @property(retain, nonatomic) SPTNowPlayingVideoManagerImplementation *videoManager; // @synthesize videoManager=_videoManager;
@@ -128,25 +114,22 @@
 @property(retain, nonatomic) id <SPTPlayer> player; // @synthesize player=_player;
 @property(retain, nonatomic) id <SPTNowPlayingInfoCenterManagerProtocol> nowPlayingInfoCenterManager; // @synthesize nowPlayingInfoCenterManager=_nowPlayingInfoCenterManager;
 @property(retain, nonatomic) SPTNowPlayingViewFullscreenConfigurator *fullscreenConfigurator; // @synthesize fullscreenConfigurator=_fullscreenConfigurator;
-@property(retain, nonatomic) id <SPTNowPlayingModesRegistry> modesRegistry; // @synthesize modesRegistry=_modesRegistry;
 @property(retain, nonatomic) id <SPTNowPlayingRemoteControlPolicyRegistry> remoteControlPolicyRegistry; // @synthesize remoteControlPolicyRegistry=_remoteControlPolicyRegistry;
 @property(retain, nonatomic) id <SPTQueueInteractor> queueInteractor; // @synthesize queueInteractor=_queueInteractor;
 @property(retain, nonatomic) UIViewController *nowPlayingBarViewController; // @synthesize nowPlayingBarViewController=_nowPlayingBarViewController;
 @property(retain, nonatomic) UIViewController *nowPlayingViewController; // @synthesize nowPlayingViewController=_nowPlayingViewController;
 @property(retain, nonatomic) SPTNowPlayingToggleViewController *nowPlayingToggleVC; // @synthesize nowPlayingToggleVC=_nowPlayingToggleVC;
-@property(nonatomic) __weak id <SPTFeatureFlaggingService> featureFlaggingSevice; // @synthesize featureFlaggingSevice=_featureFlaggingSevice;
+@property(nonatomic) __weak id <SPTNowPlayingPlatformService> nowPlayingPlatformService; // @synthesize nowPlayingPlatformService=_nowPlayingPlatformService;
 @property(nonatomic) __weak id <SPTBannerFeature> bannerFeature; // @synthesize bannerFeature=_bannerFeature;
 @property(nonatomic) __weak id <SPTInAppMessageService> inappmessageService; // @synthesize inappmessageService=_inappmessageService;
 @property(nonatomic) __weak id <SPTNowPlayingScrollService_Internal> scrollService; // @synthesize scrollService=_scrollService;
 @property(nonatomic) __weak id <SPTCrashReporterService> crashReporterService; // @synthesize crashReporterService=_crashReporterService;
 @property(nonatomic) __weak id <SPTPermissionsService> permissionService; // @synthesize permissionService=_permissionService;
 @property(nonatomic) __weak id <SPTSleepTimerService> sleepTimerService; // @synthesize sleepTimerService=_sleepTimerService;
-@property(nonatomic) __weak id <SPTOnDemandService> onDemandService; // @synthesize onDemandService=_onDemandService;
 @property(nonatomic) __weak id <SPTKaraokeService> karaokeService; // @synthesize karaokeService=_karaokeService;
 @property(nonatomic) __weak id <SPTUIPresentationService> presentationService; // @synthesize presentationService=_presentationService;
 @property(nonatomic) __weak id <SPTFeedbackService> feedbackService; // @synthesize feedbackService=_feedbackService;
 @property(nonatomic) __weak id <SPTFreeTierEducationService> freeTierEducationService; // @synthesize freeTierEducationService=_freeTierEducationService;
-@property(nonatomic) __weak id <SPTFreeTierService> freeTierService; // @synthesize freeTierService=_freeTierService;
 @property(nonatomic) __weak id <PlaylistFeature> playlistFeature; // @synthesize playlistFeature=_playlistFeature;
 @property(nonatomic) __weak id <SPTPersonalisedSetsService> personalisedSetsService; // @synthesize personalisedSetsService=_personalisedSetsService;
 @property(nonatomic) __weak id <SPTShareFeature> shareFeature; // @synthesize shareFeature=_shareFeature;
@@ -155,7 +138,6 @@
 @property(nonatomic) __weak id <SPTContainerUIService> containerUIService; // @synthesize containerUIService=_containerUIService;
 @property(nonatomic) __weak id <SPTFormatListPlatformService> formatListPlatformService; // @synthesize formatListPlatformService=_formatListPlatformService;
 @property(nonatomic) __weak id <SPTMediaPlayerService> mediaPlayerService; // @synthesize mediaPlayerService=_mediaPlayerService;
-@property(nonatomic) __weak id <SPTAbbaService> abbaService; // @synthesize abbaService=_abbaService;
 @property(nonatomic) __weak id <SPTShowsFormatService> showsFormatService; // @synthesize showsFormatService=_showsFormatService;
 @property(nonatomic) __weak id <SPTPodcastFeature> podcastFeature; // @synthesize podcastFeature=_podcastFeature;
 @property(nonatomic) __weak id <SPTVideoFeature> videoFeature; // @synthesize videoFeature=_videoFeature;
@@ -177,19 +159,11 @@
 - (void).cxx_destruct;
 - (void)registerArtworkDecorators;
 - (void)registerContextMenuActions;
-- (id)provideTestManager;
 - (void)queue:(struct UIViewController *)arg1 didTapNowPlayingTrack:(id)arg2;
 - (_Bool)spotifyApplication:(id)arg1 handleRemoteControlEventOfSubtype:(long long)arg2;
-@property(readonly, nonatomic) SPTNowPlayingRemoteControlEventControllerManager *remoteControlEventControllerManager; // @synthesize remoteControlEventControllerManager=_remoteControlEventControllerManager;
-- (id)provideModesRegistry;
 - (void)registerDefaultModes;
 - (void)registerDefaultModeViewControllers;
-- (id)provideNowPlayingFeedbackObservable;
-- (id)provideContentProviderRegistries;
 - (id)provideRemoteControlEventDefaultController;
-- (id)provideShowsFormatOverriderRegistry;
-- (id)provideRemoteControlPolicyRegistry;
-- (id)provideRemoteControlEventControllerRegistry;
 - (id)provideQueueLogger;
 - (id)provideVideoManager;
 - (id)provideNowPlayingStateObservable;
@@ -199,7 +173,6 @@
 - (void)loadRemoteControlPolicyResolver;
 - (id)createNowPlayingBarModel;
 - (id)createNowPlayingModel;
-- (id)provideModeViewControllerRegistry;
 - (id)provideNowPlayingBarViewController:(id)arg1;
 - (id)createNowPlayingViewController:(id)arg1;
 - (id)provideFeedbackCoordinator;
@@ -209,7 +182,6 @@
 - (id)provideNavigationBarModel;
 - (id)provideNowPlayingViewController:(id)arg1;
 - (void)unload;
-- (id)provideNowPlayingModeResolver;
 - (id)provideOpenGLEasterEggSettingsSection:(id)arg1;
 - (id)provideFeedbackSoundsSettingsSection:(id)arg1;
 - (void)load;

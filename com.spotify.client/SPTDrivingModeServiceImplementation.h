@@ -4,7 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 #import "SPTDrivingModeContextMenuFactory-Protocol.h"
 #import "SPTDrivingModeService-Protocol.h"
@@ -12,7 +12,7 @@
 #import "SPTDrivingModeViewControllerFactory-Protocol.h"
 
 @class NSString, SPTAllocationContext, SPTDrivingModeControllerImplementation;
-@protocol SPTDrivingModeTestManager, SPTDrivingStateDetectionService, SPTFeatureFlaggingService, SPTGLUEService, SPTNowPlayingMode, SPTNowPlayingService, SPTSessionService, SPTUIPresentationService;
+@protocol SPTDrivingModeTestManager, SPTDrivingStateDetectionService, SPTFeatureFlaggingService, SPTGLUEService, SPTNowPlayingMode, SPTNowPlayingPlatformService, SPTNowPlayingService, SPTSessionService, SPTUIPresentationService;
 
 @interface SPTDrivingModeServiceImplementation : NSObject <SPTDrivingModeTestManagerObserver, SPTDrivingModeViewControllerFactory, SPTDrivingModeContextMenuFactory, SPTDrivingModeService>
 {
@@ -20,6 +20,7 @@
     id <SPTSessionService> _sessionService;
     id <SPTDrivingStateDetectionService> _drivingDetectionService;
     id <SPTNowPlayingService> _nowPlayingService;
+    id <SPTNowPlayingPlatformService> _nowPlayingPlatformService;
     id <SPTFeatureFlaggingService> _featureFlaggingService;
     id <SPTUIPresentationService> _UIPresentationService;
     id <SPTGLUEService> _glueService;
@@ -36,6 +37,7 @@
 @property(nonatomic) __weak id <SPTGLUEService> glueService; // @synthesize glueService=_glueService;
 @property(nonatomic) __weak id <SPTUIPresentationService> UIPresentationService; // @synthesize UIPresentationService=_UIPresentationService;
 @property(nonatomic) __weak id <SPTFeatureFlaggingService> featureFlaggingService; // @synthesize featureFlaggingService=_featureFlaggingService;
+@property(nonatomic) __weak id <SPTNowPlayingPlatformService> nowPlayingPlatformService; // @synthesize nowPlayingPlatformService=_nowPlayingPlatformService;
 @property(nonatomic) __weak id <SPTNowPlayingService> nowPlayingService; // @synthesize nowPlayingService=_nowPlayingService;
 @property(nonatomic) __weak id <SPTDrivingStateDetectionService> drivingDetectionService; // @synthesize drivingDetectionService=_drivingDetectionService;
 @property(nonatomic) __weak id <SPTSessionService> sessionService; // @synthesize sessionService=_sessionService;

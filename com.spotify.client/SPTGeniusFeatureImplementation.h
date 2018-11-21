@@ -4,14 +4,14 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 #import "SPTAbbaFeatureFlagsObserver-Protocol.h"
 #import "SPTGeniusFeature-Protocol.h"
 #import "SPTLocalSettingsObserver-Protocol.h"
 
 @class NSString, SPTAllocationContext, SPTGeniusCardManager, SPTGeniusLoggingService, SPTGeniusService, SPTGeniusTestManager;
-@protocol SPTAbbaFeatureFlags, SPTAbbaService, SPTContainerService, SPTCoreService, SPTLocalSettings, SPTLyricsFeature, SPTNetworkService, SPTNowPlayingScrollService, SPTNowPlayingService, SPTPageRegistrationToken, SPTPlayer, SPTPlayerFeature, SPTSessionService, SPTSettingsFeature, SPTURIDispatchService;
+@protocol SPTAbbaFeatureFlags, SPTAbbaService, SPTContainerService, SPTCoreService, SPTLocalSettings, SPTLyricsFeature, SPTNetworkService, SPTNowPlayingPlatformService, SPTNowPlayingScrollService, SPTPageRegistrationToken, SPTPlayer, SPTPlayerFeature, SPTSessionService, SPTSettingsFeature, SPTURIDispatchService;
 
 @interface SPTGeniusFeatureImplementation : NSObject <SPTLocalSettingsObserver, SPTAbbaFeatureFlagsObserver, SPTGeniusFeature>
 {
@@ -22,7 +22,7 @@
     id <SPTSettingsFeature> _settings;
     id <SPTAbbaService> _abbaService;
     id <SPTPlayerFeature> _playerFeature;
-    id <SPTNowPlayingService> _nowPlayingService;
+    id <SPTNowPlayingPlatformService> _nowPlayingPlatformService;
     id <SPTNowPlayingScrollService> _nowPlayingScrollService;
     id <SPTLyricsFeature> _lyricsFeature;
     id <SPTURIDispatchService> _URIDispatchService;
@@ -48,7 +48,7 @@
 @property(nonatomic) __weak id <SPTURIDispatchService> URIDispatchService; // @synthesize URIDispatchService=_URIDispatchService;
 @property(nonatomic) __weak id <SPTLyricsFeature> lyricsFeature; // @synthesize lyricsFeature=_lyricsFeature;
 @property(nonatomic) __weak id <SPTNowPlayingScrollService> nowPlayingScrollService; // @synthesize nowPlayingScrollService=_nowPlayingScrollService;
-@property(nonatomic) __weak id <SPTNowPlayingService> nowPlayingService; // @synthesize nowPlayingService=_nowPlayingService;
+@property(nonatomic) __weak id <SPTNowPlayingPlatformService> nowPlayingPlatformService; // @synthesize nowPlayingPlatformService=_nowPlayingPlatformService;
 @property(nonatomic) __weak id <SPTPlayerFeature> playerFeature; // @synthesize playerFeature=_playerFeature;
 @property(nonatomic) __weak id <SPTAbbaService> abbaService; // @synthesize abbaService=_abbaService;
 @property(nonatomic) __weak id <SPTSettingsFeature> settings; // @synthesize settings=_settings;

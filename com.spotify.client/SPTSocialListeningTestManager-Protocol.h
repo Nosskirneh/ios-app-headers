@@ -6,7 +6,10 @@
 
 #import "NSObject-Protocol.h"
 
+@protocol SPTFeatureFlagSignal;
+
 @protocol SPTSocialListeningTestManager <NSObject>
+@property(readonly, nonatomic) id <SPTFeatureFlagSignal> socialListeningEnabledSignal;
 @property(readonly, nonatomic, getter=isSocialListeningEnabled) _Bool socialListeningEnabled;
 @end
 

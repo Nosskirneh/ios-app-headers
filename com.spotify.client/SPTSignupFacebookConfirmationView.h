@@ -4,18 +4,18 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <UIKit/UIView.h>
+#import "SPTLoginLoadingView.h"
 
 #import "GLUEStyleable-Protocol.h"
 
-@class GLUEButton, GLUEGradientView, GLUEImageView, GLUELabel, NSArray, NSLayoutConstraint, NSString, SPTSignupTermsAndPolicyView, UIScrollView, UIStackView;
+@class GLUEButton, GLUEGradientView, GLUEImageView, GLUELabel, NSArray, NSLayoutConstraint, NSString, SPTLoginLoadingActionButton, SPTSignupTermsAndPolicyView, UIScrollView, UIStackView, UIView;
 
-@interface SPTSignupFacebookConfirmationView : UIView <GLUEStyleable>
+@interface SPTSignupFacebookConfirmationView : SPTLoginLoadingView <GLUEStyleable>
 {
+    SPTLoginLoadingActionButton *_submitButton;
     GLUEImageView *_profilePicture;
     GLUELabel *_titleHeader;
     GLUELabel *_textBody;
-    GLUEButton *_createButton;
     GLUELabel *_separatorLabel;
     GLUEButton *_loginButton;
     SPTSignupTermsAndPolicyView *_termsView;
@@ -62,10 +62,10 @@
 @property(readonly, nonatomic) SPTSignupTermsAndPolicyView *termsView; // @synthesize termsView=_termsView;
 @property(readonly, nonatomic) GLUEButton *loginButton; // @synthesize loginButton=_loginButton;
 @property(retain, nonatomic) GLUELabel *separatorLabel; // @synthesize separatorLabel=_separatorLabel;
-@property(readonly, nonatomic) GLUEButton *createButton; // @synthesize createButton=_createButton;
 @property(readonly, nonatomic) GLUELabel *textBody; // @synthesize textBody=_textBody;
 @property(readonly, nonatomic) GLUELabel *titleHeader; // @synthesize titleHeader=_titleHeader;
 @property(readonly, nonatomic) GLUEImageView *profilePicture; // @synthesize profilePicture=_profilePicture;
+- (id)submitButton;
 - (void).cxx_destruct;
 - (void)glue_applyStyle:(id)arg1;
 - (void)layoutProfilePicture;

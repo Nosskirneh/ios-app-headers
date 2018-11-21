@@ -4,7 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 #import "SPTAbbaFeatureFlagsObserver-Protocol.h"
 
@@ -55,7 +55,6 @@
 @property(nonatomic) _Bool identifySurfacesVisually; // @synthesize identifySurfacesVisually=_identifySurfacesVisually;
 - (void).cxx_destruct;
 @property(readonly, copy) NSString *debugDescription;
-- (void)setPreferredSubtitle:(id)arg1;
 - (id)videoKeyframeImageURLForSourceID:(id)arg1 height:(unsigned long long)arg2 timestampMS:(unsigned long long)arg3;
 - (id)remoteManifestURLForVideoSourceID:(id)arg1;
 - (void)registerSettingsPage;

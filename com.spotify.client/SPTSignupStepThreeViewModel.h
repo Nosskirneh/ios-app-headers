@@ -4,12 +4,12 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 #import "SPTSignupDataLoaderDelegate-Protocol.h"
 #import "SPTSignupViewModel-Protocol.h"
 
-@class NSDictionary, NSString, SPTAuthenticationHandler, SPTLoginTheme, SPTSignupCreateUserDataLoader, SPTSignupStepThreeViewLogger, SPTSignupTermsAndPolicyViewModel, SPTSignupUserInfoModel;
+@class NSDictionary, NSString, SPTAuthenticationHandler, SPTLoginSpinnerButtonTestManager, SPTLoginTheme, SPTSignupCreateUserDataLoader, SPTSignupStepThreeViewLogger, SPTSignupTermsAndPolicyViewModel, SPTSignupUserInfoModel;
 @protocol SPTSignupStepThreeViewModelDelegate;
 
 @interface SPTSignupStepThreeViewModel : NSObject <SPTSignupDataLoaderDelegate, SPTSignupViewModel>
@@ -18,6 +18,7 @@
     id <SPTSignupStepThreeViewModelDelegate> _delegate;
     SPTSignupTermsAndPolicyViewModel *_termsAndPolicyViewModel;
     SPTSignupStepThreeViewLogger *_logger;
+    SPTLoginSpinnerButtonTestManager *_spinnerButtonTestManager;
     SPTSignupUserInfoModel *_userInfoModel;
     SPTSignupCreateUserDataLoader *_createUserDataLoader;
     SPTLoginTheme *_theme;
@@ -28,6 +29,7 @@
 @property(retain, nonatomic) SPTLoginTheme *theme; // @synthesize theme=_theme;
 @property(retain, nonatomic) SPTSignupCreateUserDataLoader *createUserDataLoader; // @synthesize createUserDataLoader=_createUserDataLoader;
 @property(retain, nonatomic) SPTSignupUserInfoModel *userInfoModel; // @synthesize userInfoModel=_userInfoModel;
+@property(readonly, nonatomic) SPTLoginSpinnerButtonTestManager *spinnerButtonTestManager; // @synthesize spinnerButtonTestManager=_spinnerButtonTestManager;
 @property(readonly, nonatomic) SPTSignupStepThreeViewLogger *logger; // @synthesize logger=_logger;
 @property(readonly, nonatomic) SPTSignupTermsAndPolicyViewModel *termsAndPolicyViewModel; // @synthesize termsAndPolicyViewModel=_termsAndPolicyViewModel;
 @property(nonatomic) __weak id <SPTSignupStepThreeViewModelDelegate> delegate; // @synthesize delegate=_delegate;
@@ -46,7 +48,7 @@
 - (id)displayNameLabelText;
 - (id)titleLabelText;
 - (id)viewStyle;
-- (id)initWithUserInfoModel:(id)arg1 createUserDataLoader:(id)arg2 theme:(id)arg3 logger:(id)arg4 termsAndPolicyViewModel:(id)arg5 authenticationHandler:(id)arg6;
+- (id)initWithUserInfoModel:(id)arg1 createUserDataLoader:(id)arg2 theme:(id)arg3 logger:(id)arg4 termsAndPolicyViewModel:(id)arg5 authenticationHandler:(id)arg6 spinnerButtonTestManager:(id)arg7;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

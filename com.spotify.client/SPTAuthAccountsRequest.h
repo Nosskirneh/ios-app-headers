@@ -4,12 +4,13 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 @class NSArray, NSString;
 
 @interface SPTAuthAccountsRequest : NSObject
 {
+    _Bool _usingStagingEnvironment;
     NSString *_clientId;
     NSString *_redirectURI;
     NSString *_responseType;
@@ -22,6 +23,7 @@
     NSString *_codeChallengeMethod;
 }
 
+@property(readonly, nonatomic, getter=isUsingStagingEnvironment) _Bool usingStagingEnvironment; // @synthesize usingStagingEnvironment=_usingStagingEnvironment;
 @property(readonly, nonatomic) NSString *codeChallengeMethod; // @synthesize codeChallengeMethod=_codeChallengeMethod;
 @property(readonly, nonatomic) NSString *codeChallenge; // @synthesize codeChallenge=_codeChallenge;
 @property(readonly, nonatomic) NSString *playURI; // @synthesize playURI=_playURI;
@@ -36,7 +38,7 @@
 - (id)toURL;
 - (id)getMap:(id)arg1;
 - (id)parseScopes:(id)arg1;
-- (id)initWithBundleId:(id)arg1 queryString:(id)arg2;
+- (id)initWithBundleId:(id)arg1 queryString:(id)arg2 useStaging:(_Bool)arg3;
 
 @end
 

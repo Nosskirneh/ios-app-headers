@@ -4,7 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 #import "SPTServiceOrchestratorDelegate-Protocol.h"
 #import "SPTSessionServicesLoader-Protocol.h"
@@ -63,7 +63,8 @@
 - (void)serviceOrchestrator:(id)arg1 willUnloadServicesForScope:(id)arg2;
 - (void)serviceOrchestrator:(id)arg1 didLoadServicesForScope:(id)arg2;
 - (void)serviceOrchestrator:(id)arg1 willLoadServicesForScope:(id)arg2;
-- (void)withLoadedScope:(id)arg1 do:(CDUnknownBlockType)arg2;
+- (void)executeDeferredBlock:(CDUnknownBlockType)arg1 scope:(id)arg2 origin:(id)arg3;
+- (void)withLoadedScope:(id)arg1 origin:(SEL)arg2 do:(CDUnknownBlockType)arg3;
 - (void)runDeferredBlocksForScope:(id)arg1;
 - (id)optionalServiceForIdentifier:(id)arg1 inScope:(id)arg2;
 - (id)serviceForIdentifier:(id)arg1 inScope:(id)arg2;

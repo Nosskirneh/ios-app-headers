@@ -7,7 +7,7 @@
 #import <Foundation/NSURL.h>
 
 @interface NSURL (SPTConcertsView)
-+ (id)spt_ConcertsSeeAllURLWithArtist:(id)arg1 location:(id)arg2 version:(long long)arg3;
++ (id)spt_ConcertsSeeAllURLWithArtist:(id)arg1 location:(id)arg2;
 + (id)spt_concertEntityServiceURLWithIdentifier:(id)arg1 location:(id)arg2 transport:(long long)arg3;
 + (id)spt_ConcertsLocationSearchURLWithQuery:(id)arg1 transport:(long long)arg2;
 + (id)spt_ConcertsURLWithLocation:(id)arg1 transport:(long long)arg2;

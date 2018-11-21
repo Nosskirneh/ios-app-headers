@@ -13,7 +13,7 @@
 #import "SPTPageController-Protocol.h"
 #import "UISearchControllerDelegate-Protocol.h"
 
-@class GLUELabel, NSString, NSURL, SPTFreeTierTasteOnboardingArtistPickerOfflineView, SPTFreeTierTasteOnboardingArtistPickerView, SPTFreeTierTasteOnboardingArtistPickerViewModel, SPTFreeTierTasteOnboardingArtistSearchViewModel, UIActivityIndicatorView, UISearchController;
+@class GLUELabel, NSString, NSURL, SPTFreeTierTasteOnboardingArtistPickerOfflineView, SPTFreeTierTasteOnboardingArtistPickerView, SPTFreeTierTasteOnboardingArtistPickerViewModel, SPTFreeTierTasteOnboardingArtistSearchViewModel, UIActivityIndicatorView, UIImpactFeedbackGenerator, UINotificationFeedbackGenerator, UISearchController;
 @protocol SPTFreeTierTasteOnboardingArtistPickerViewControllerDelegate, SPTPageContainer;
 
 @interface SPTFreeTierTasteOnboardingArtistPickerViewController : UIViewController <UISearchControllerDelegate, SPTInstrumentationInteractionMediatorColleague, GLUEStyleable, SPTFreeTierTasteOnboardingArtistPickerViewModelDelegate, SPTFreeTierTasteOnboardingArtistSearchViewModelDelegate, SPTPageController>
@@ -26,8 +26,12 @@
     SPTFreeTierTasteOnboardingArtistPickerOfflineView *_offlineStateView;
     UIActivityIndicatorView *_activityIndicatorView;
     UISearchController *_searchController;
+    UINotificationFeedbackGenerator *_primaryFeedbackGenerator;
+    UIImpactFeedbackGenerator *_secondaryFeedbackGenerator;
 }
 
+@property(retain, nonatomic) UIImpactFeedbackGenerator *secondaryFeedbackGenerator; // @synthesize secondaryFeedbackGenerator=_secondaryFeedbackGenerator;
+@property(retain, nonatomic) UINotificationFeedbackGenerator *primaryFeedbackGenerator; // @synthesize primaryFeedbackGenerator=_primaryFeedbackGenerator;
 @property(nonatomic, getter=isSelectionCompleted) _Bool selectionCompleted; // @synthesize selectionCompleted=_selectionCompleted;
 @property(retain, nonatomic) UISearchController *searchController; // @synthesize searchController=_searchController;
 @property(retain, nonatomic) UIActivityIndicatorView *activityIndicatorView; // @synthesize activityIndicatorView=_activityIndicatorView;
@@ -50,6 +54,8 @@
 - (void)artistPickerViewModelWillLoadItems:(id)arg1 isFreshData:(_Bool)arg2;
 - (void)artistPickerViewModel:(id)arg1 isOffline:(_Bool)arg2;
 - (void)artistPickerViewModelDidCancel:(id)arg1;
+- (void)artistPickerViewModelShouldTriggerSecondaryFeedback:(id)arg1;
+- (void)artistPickerViewModelShouldTriggerPrimaryFeedback:(id)arg1;
 - (void)artistPickerViewModel:(id)arg1 didSelectRequiredNumberOfItems:(_Bool)arg2;
 - (void)artistPickerViewModelDidChangeSelectedItems:(id)arg1;
 - (void)artistPickerViewModelDidLoadItems:(id)arg1;
@@ -58,6 +64,7 @@
 - (void)configureSearchBarAppearanceForSearchBar:(id)arg1;
 - (void)setupSearchController;
 - (void)setupNavigationTitleView;
+- (void)setupFeedbackGenerators;
 - (void)viewDidLayoutSubviews;
 - (void)viewWillAppear:(_Bool)arg1;
 - (void)viewDidLoad;

@@ -4,21 +4,23 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 #import "EXP_HUBCommandHandler-Protocol.h"
 
-@protocol SPTRadioManager;
+@protocol EXP_SPTHubInteractionLogger, SPTRadioManager;
 
 @interface SPTBrowsePlayRadioCommandHandler : NSObject <EXP_HUBCommandHandler>
 {
     id <SPTRadioManager> _radioManager;
+    id <EXP_SPTHubInteractionLogger> _interactionLogger;
 }
 
+@property(readonly, nonatomic) id <EXP_SPTHubInteractionLogger> interactionLogger; // @synthesize interactionLogger=_interactionLogger;
 @property(readonly, nonatomic) id <SPTRadioManager> radioManager; // @synthesize radioManager=_radioManager;
 - (void).cxx_destruct;
 - (void)handleCommand:(id)arg1 event:(id)arg2;
-- (id)initWithRadioManager:(id)arg1;
+- (id)initWithRadioManager:(id)arg1 interactionLogger:(id)arg2;
 
 @end
 

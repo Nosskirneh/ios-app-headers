@@ -4,24 +4,27 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 #import "SPTSocialListeningService-Protocol.h"
 
-@class NSString, SPTAllocationContext, SPTSocialListeningTestManagerImplementation;
+@class NSString, SPTAllocationContext, SPTSocialListeningTestManagerImplementation, SPTSocialListeningUserInterfaceFactoryImplementation;
 @protocol SPTFeatureFlaggingService;
 
 @interface SPTSocialListeningServiceImplementation : NSObject <SPTSocialListeningService>
 {
     id <SPTFeatureFlaggingService> _featureFlagService;
     SPTSocialListeningTestManagerImplementation *_testManager;
+    SPTSocialListeningUserInterfaceFactoryImplementation *_userInterfaceFactory;
 }
 
 + (id)serviceIdentifier;
+@property(retain, nonatomic) SPTSocialListeningUserInterfaceFactoryImplementation *userInterfaceFactory; // @synthesize userInterfaceFactory=_userInterfaceFactory;
 @property(retain, nonatomic) SPTSocialListeningTestManagerImplementation *testManager; // @synthesize testManager=_testManager;
 @property(nonatomic) __weak id <SPTFeatureFlaggingService> featureFlagService; // @synthesize featureFlagService=_featureFlagService;
 - (void).cxx_destruct;
 - (void)dummyMethod;
+- (id)provideUserInterfaceFactory;
 - (id)provideTestManager;
 - (void)unload;
 - (void)load;

@@ -4,20 +4,20 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <UIKit/UIView.h>
+#import "SPTLoginLoadingView.h"
 
 #import "GLUEStyleable-Protocol.h"
 
-@class GLUEButton, GLUEGradientStyle, GLUEGradientView, GLUELabel, NSLayoutConstraint, NSString, SPTLoginFormScrollView, SPTLoginTextField;
+@class GLUEGradientStyle, GLUEGradientView, GLUELabel, NSLayoutConstraint, NSString, SPTLoginFormScrollView, SPTLoginLoadingActionButton, SPTLoginTextField, UIView;
 
-@interface SPTLoginRecoverAccountView : UIView <GLUEStyleable>
+@interface SPTLoginRecoverAccountView : SPTLoginLoadingView <GLUEStyleable>
 {
+    SPTLoginLoadingActionButton *_submitButton;
     GLUELabel *_titleLabel;
     GLUELabel *_messageLabel;
     GLUELabel *_inputFieldLabel;
     GLUELabel *_errorLabel;
     SPTLoginTextField *_inputField;
-    GLUEButton *_sendButton;
     GLUELabel *_stillNeedHelpLabel;
     UIView *_contentView;
     SPTLoginFormScrollView *_scrollView;
@@ -56,12 +56,12 @@
 @property(retain, nonatomic) SPTLoginFormScrollView *scrollView; // @synthesize scrollView=_scrollView;
 @property(retain, nonatomic) UIView *contentView; // @synthesize contentView=_contentView;
 @property(readonly, nonatomic) GLUELabel *stillNeedHelpLabel; // @synthesize stillNeedHelpLabel=_stillNeedHelpLabel;
-@property(readonly, nonatomic) GLUEButton *sendButton; // @synthesize sendButton=_sendButton;
 @property(readonly, nonatomic) SPTLoginTextField *inputField; // @synthesize inputField=_inputField;
 @property(readonly, nonatomic) GLUELabel *errorLabel; // @synthesize errorLabel=_errorLabel;
 @property(readonly, nonatomic) GLUELabel *inputFieldLabel; // @synthesize inputFieldLabel=_inputFieldLabel;
 @property(readonly, nonatomic) GLUELabel *messageLabel; // @synthesize messageLabel=_messageLabel;
 @property(readonly, nonatomic) GLUELabel *titleLabel; // @synthesize titleLabel=_titleLabel;
+- (id)submitButton;
 - (void).cxx_destruct;
 - (void)glue_applyStyle:(id)arg1;
 - (void)setupConstraints;

@@ -4,7 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 #import "SPTDataLoaderDelegate-Protocol.h"
 
@@ -24,7 +24,7 @@
 - (void)dataLoader:(id)arg1 didCancelRequest:(id)arg2;
 - (void)dataLoader:(id)arg1 didReceiveSuccessfulResponse:(id)arg2;
 - (void)parseBody:(id)arg1 completion:(CDUnknownBlockType)arg2;
-- (void)fetchRadioFormatListLinkForSeedURI:(id)arg1 completion:(CDUnknownBlockType)arg2;
+- (void)fetchRadioFormatListURIForSeedURI:(id)arg1 completion:(CDUnknownBlockType)arg2;
 - (id)initWithDataLoader:(id)arg1;
 
 // Remaining properties

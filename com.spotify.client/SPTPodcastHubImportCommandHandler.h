@@ -4,21 +4,23 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 #import "EXP_HUBCommandHandler-Protocol.h"
 
-@protocol SPTPodcastImportViewControllerFactory;
+@protocol SPTPodcastImportEntryCardManager, SPTPodcastImportViewControllerFactory;
 
 @interface SPTPodcastHubImportCommandHandler : NSObject <EXP_HUBCommandHandler>
 {
     id <SPTPodcastImportViewControllerFactory> _podcastImportViewControllerFactory;
+    id <SPTPodcastImportEntryCardManager> _importCardManager;
 }
 
-@property(retain, nonatomic) id <SPTPodcastImportViewControllerFactory> podcastImportViewControllerFactory; // @synthesize podcastImportViewControllerFactory=_podcastImportViewControllerFactory;
+@property(nonatomic) __weak id <SPTPodcastImportEntryCardManager> importCardManager; // @synthesize importCardManager=_importCardManager;
+@property(nonatomic) __weak id <SPTPodcastImportViewControllerFactory> podcastImportViewControllerFactory; // @synthesize podcastImportViewControllerFactory=_podcastImportViewControllerFactory;
 - (void).cxx_destruct;
 - (void)handleCommand:(id)arg1 event:(id)arg2;
-- (id)initWithPodcastImportViewControllerFactory:(id)arg1;
+- (id)initWithPodcastImportViewControllerFactory:(id)arg1 podcastImportCardManager:(id)arg2;
 
 @end
 

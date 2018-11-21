@@ -4,7 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 #import "SPTColdStartObserver-Protocol.h"
 
@@ -35,6 +35,8 @@
 - (void).cxx_destruct;
 @property(readonly, nonatomic, getter=isDurationTrackingEnabled) _Bool durationTrackingEnabled;
 - (void)saveTemporaryTimestampToMetadataWithKey:(id)arg1;
+- (void)logFinishedDeferredBlockForScope:(id)arg1 identifier:(id)arg2;
+- (void)logStartDeferredBlockForScope:(id)arg1 identifier:(id)arg2;
 - (void)logFinishedSetupRootUIForURI:(id)arg1;
 - (void)logStartSetupRootUIForURI:(id)arg1;
 - (void)logFinishedLoadingService:(id)arg1 inBackground:(_Bool)arg2;

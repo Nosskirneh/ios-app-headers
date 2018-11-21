@@ -4,16 +4,17 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 #import "SPTGoogleMapsDeepLinkObserver-Protocol.h"
 #import "SPTGoogleMapsFeatureFlagManagerObserver-Protocol.h"
 #import "SPTGoogleMapsService-Protocol.h"
+#import "SPTPartnerNavigationIntegration-Protocol.h"
 
-@class NSString, SPTAllocationContext, SPTGoogleMapsFeatureFlagManager, SPTGoogleMapsLogger, SPTGoogleMapsPresenter;
-@protocol SPTBannerFeature, SPTContainerService, SPTFeatureFlaggingService, SPTGLUEService, SPTURIDispatchService;
+@class NSString, SPTAllocationContext, SPTGoogleMapsFeatureFlagManager, SPTGoogleMapsLogger, SPTGoogleMapsPresenter, UIImage;
+@protocol SPTBannerFeature, SPTContainerService, SPTFeatureFlaggingService, SPTGLUEService, SPTPartnerService, SPTURIDispatchService;
 
-@interface SPTGoogleMapsServiceImplementation : NSObject <SPTGoogleMapsFeatureFlagManagerObserver, SPTGoogleMapsDeepLinkObserver, SPTGoogleMapsService>
+@interface SPTGoogleMapsServiceImplementation : NSObject <SPTGoogleMapsFeatureFlagManagerObserver, SPTGoogleMapsDeepLinkObserver, SPTPartnerNavigationIntegration, SPTGoogleMapsService>
 {
     SPTGoogleMapsFeatureFlagManager *_featureFlagManager;
     id <SPTContainerService> _containerService;
@@ -21,6 +22,7 @@
     id <SPTGLUEService> _glueService;
     id <SPTFeatureFlaggingService> _featureFlaggingService;
     id <SPTURIDispatchService> _uriDispatchService;
+    id <SPTPartnerService> _partnerService;
     SPTGoogleMapsPresenter *_presenter;
     SPTGoogleMapsLogger *_logger;
 }
@@ -28,6 +30,7 @@
 + (id)serviceIdentifier;
 @property(retain, nonatomic) SPTGoogleMapsLogger *logger; // @synthesize logger=_logger;
 @property(retain, nonatomic) SPTGoogleMapsPresenter *presenter; // @synthesize presenter=_presenter;
+@property(readonly, nonatomic) __weak id <SPTPartnerService> partnerService; // @synthesize partnerService=_partnerService;
 @property(readonly, nonatomic) __weak id <SPTURIDispatchService> uriDispatchService; // @synthesize uriDispatchService=_uriDispatchService;
 @property(readonly, nonatomic) __weak id <SPTFeatureFlaggingService> featureFlaggingService; // @synthesize featureFlaggingService=_featureFlaggingService;
 @property(readonly, nonatomic) __weak id <SPTGLUEService> glueService; // @synthesize glueService=_glueService;
@@ -35,6 +38,14 @@
 @property(readonly, nonatomic) __weak id <SPTContainerService> containerService; // @synthesize containerService=_containerService;
 @property(retain, nonatomic) SPTGoogleMapsFeatureFlagManager *featureFlagManager; // @synthesize featureFlagManager=_featureFlagManager;
 - (void).cxx_destruct;
+- (void)removeObserver:(id)arg1;
+- (void)addObserver:(id)arg1;
+@property(readonly, nonatomic, getter=isNavigating) _Bool navigating;
+@property(readonly, nonatomic) unsigned long long category;
+- (void)setEnabled:(_Bool)arg1 completion:(CDUnknownBlockType)arg2;
+@property(readonly, nonatomic) UIImage *icon;
+@property(readonly, nonatomic) NSString *name;
+@property(readonly, nonatomic) _Bool isEnabled;
 - (void)applicationDidLaunchFromGoogleMapsDeepLink;
 - (void)googleMapsFeatureFlagManager:(id)arg1 didUpdateEnabled:(_Bool)arg2;
 - (void)disable;

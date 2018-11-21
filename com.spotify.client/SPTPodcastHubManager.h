@@ -4,10 +4,10 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 @class EXP_HUBComponentDefaults, EXP_HUBComponentRegistry, NSString;
-@protocol EXP_HUBIconImageResolver, EXP_SPTHubCommandHandlerFactory, EXP_SPTHubRemoteContentOperationURLResolver, EXP_SPTHubsRendererFactory, GLUETheme, SPTHugsFactory, SPTPodcastImportViewControllerFactory;
+@protocol EXP_HUBIconImageResolver, EXP_SPTHubCommandHandlerFactory, EXP_SPTHubRemoteContentOperationURLResolver, EXP_SPTHubsRendererFactory, GLUETheme, SPTHugsFactory, SPTPodcastImportEntryCardManager, SPTPodcastImportViewControllerFactory;
 
 @interface SPTPodcastHubManager : NSObject
 {
@@ -21,8 +21,10 @@
     id <EXP_SPTHubCommandHandlerFactory> _commandHandlerFactory;
     EXP_HUBComponentRegistry *_componentRegistry;
     id <SPTPodcastImportViewControllerFactory> _podcastImportViewControllerFactory;
+    id <SPTPodcastImportEntryCardManager> _podcastImportEntryCardManager;
 }
 
+@property(nonatomic) __weak id <SPTPodcastImportEntryCardManager> podcastImportEntryCardManager; // @synthesize podcastImportEntryCardManager=_podcastImportEntryCardManager;
 @property(readonly, nonatomic) id <SPTPodcastImportViewControllerFactory> podcastImportViewControllerFactory; // @synthesize podcastImportViewControllerFactory=_podcastImportViewControllerFactory;
 @property(readonly, nonatomic) EXP_HUBComponentRegistry *componentRegistry; // @synthesize componentRegistry=_componentRegistry;
 @property(readonly, nonatomic) id <EXP_SPTHubCommandHandlerFactory> commandHandlerFactory; // @synthesize commandHandlerFactory=_commandHandlerFactory;
@@ -35,7 +37,7 @@
 @property(readonly, nonatomic) NSString *serviceIdentifier; // @synthesize serviceIdentifier=_serviceIdentifier;
 - (void).cxx_destruct;
 - (id)provideViewControllerForURL:(id)arg1 referrerIdentifier:(id)arg2;
-- (id)initWithServiceIdentifier:(id)arg1 remoteURLResolver:(id)arg2 hubsRendererFactory:(id)arg3 hugsFactory:(id)arg4 GLUETheme:(id)arg5 podcastImportViewControllerFactory:(id)arg6 browseUIComponentFactory:(id)arg7;
+- (id)initWithServiceIdentifier:(id)arg1 remoteURLResolver:(id)arg2 hubsRendererFactory:(id)arg3 hugsFactory:(id)arg4 GLUETheme:(id)arg5 podcastImportViewControllerFactory:(id)arg6 browseUIComponentFactory:(id)arg7 podcastImportEntryCardManager:(id)arg8;
 
 @end
 

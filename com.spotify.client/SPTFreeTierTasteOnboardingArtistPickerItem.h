@@ -4,7 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 @class NSArray, NSString, NSURL, SPTFreeTierTasteOnboardingLogging;
 
@@ -15,19 +15,21 @@
     NSString *_name;
     NSURL *_imageURL;
     NSArray *_relatedItems;
+    NSString *_moreURI;
     SPTFreeTierTasteOnboardingLogging *_logging;
 }
 
 @property(readonly, copy, nonatomic) SPTFreeTierTasteOnboardingLogging *logging; // @synthesize logging=_logging;
 @property(readonly, nonatomic) _Bool isArtist; // @synthesize isArtist=_isArtist;
-@property(readonly, copy, nonatomic) NSArray *relatedItems; // @synthesize relatedItems=_relatedItems;
+@property(copy, nonatomic) NSString *moreURI; // @synthesize moreURI=_moreURI;
+@property(copy, nonatomic) NSArray *relatedItems; // @synthesize relatedItems=_relatedItems;
 @property(readonly, nonatomic) NSURL *imageURL; // @synthesize imageURL=_imageURL;
 @property(readonly, copy, nonatomic) NSString *name; // @synthesize name=_name;
 @property(readonly, copy, nonatomic) NSString *identifier; // @synthesize identifier=_identifier;
 - (void).cxx_destruct;
 - (_Bool)isEqual:(id)arg1;
 - (id)createItemWithLogging:(id)arg1;
-- (id)initWithIdentifier:(id)arg1 name:(id)arg2 imageURL:(id)arg3 relatedItems:(id)arg4 logging:(id)arg5;
+- (id)initWithIdentifier:(id)arg1 name:(id)arg2 imageURL:(id)arg3 relatedItems:(id)arg4 moreURI:(id)arg5 logging:(id)arg6;
 
 @end
 

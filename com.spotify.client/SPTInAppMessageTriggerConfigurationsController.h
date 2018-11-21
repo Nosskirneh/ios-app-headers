@@ -4,7 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 #import "SPTDataLoaderDelegate-Protocol.h"
 #import "SPTInAppMessageFeatureFlagChecksObserver-Protocol.h"
@@ -19,6 +19,7 @@
     _Bool _refreshing;
     _Bool _useDevEndpoint;
     _Bool _bannerEnabled;
+    _Bool _noteEnabled;
     _Bool _cardEnabled;
     _Bool _creativeV2Enabled;
     id <SPTInAppMessageTriggerConfigurationsControllerDelegate> _delegate;
@@ -36,6 +37,7 @@
 @property(retain, nonatomic) SPTInAppMessageFeatureFlagChecks *featureFlagChecker; // @synthesize featureFlagChecker=_featureFlagChecker;
 @property(nonatomic) _Bool creativeV2Enabled; // @synthesize creativeV2Enabled=_creativeV2Enabled;
 @property(nonatomic) _Bool cardEnabled; // @synthesize cardEnabled=_cardEnabled;
+@property(nonatomic) _Bool noteEnabled; // @synthesize noteEnabled=_noteEnabled;
 @property(nonatomic) _Bool bannerEnabled; // @synthesize bannerEnabled=_bannerEnabled;
 @property(nonatomic) _Bool useDevEndpoint; // @synthesize useDevEndpoint=_useDevEndpoint;
 @property(nonatomic) double requestStartTime; // @synthesize requestStartTime=_requestStartTime;

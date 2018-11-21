@@ -6,9 +6,10 @@
 
 #import "SPTService-Protocol.h"
 
-@protocol SPTFeatureFlagSignal, SPTPodcastImportViewControllerFactory;
+@protocol SPTFeatureFlagSignal, SPTPodcastImportEntryCardManager, SPTPodcastImportViewControllerFactory;
 
 @protocol SPTPodcastImportService <SPTService>
+- (id <SPTPodcastImportEntryCardManager>)providePodcastImportEntryCardManager;
 - (id <SPTPodcastImportViewControllerFactory>)providePodcastImportViewControllerFactory;
 - (id <SPTFeatureFlagSignal>)provideFeatureFlagSignal;
 @end

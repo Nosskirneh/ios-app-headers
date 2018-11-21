@@ -4,7 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 #import "SPTVideoContextPlayerDelegate-Protocol.h"
 #import "SPTVideoEventObserver-Protocol.h"
@@ -50,12 +50,14 @@
 - (void)invalidateStalledTimer;
 - (void)setDeferredState:(id)arg1;
 - (void)playVideoWithPlaybackRequest:(id)arg1;
+- (void)sendMessage:(id)arg1 toCPEndpoint:(id)arg2 withRequestAction:(id)arg3;
 - (void)postMessage:(id)arg1 toCPEndpoint:(id)arg2;
 - (float)playbackRateFromParams:(id)arg1;
 - (id)subtitleFromParams:(id)arg1;
 - (void)handleCommandWithPayload:(id)arg1;
 - (void)addHandlerForCommand:(id)arg1 block:(CDUnknownBlockType)arg2;
 - (void)handleSubscription;
+- (void)setPreferredSubtitle:(id)arg1;
 - (void)unsubscribe;
 - (void)subscribe;
 - (void)dealloc;

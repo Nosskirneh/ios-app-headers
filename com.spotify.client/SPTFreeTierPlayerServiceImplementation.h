@@ -4,13 +4,13 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 #import "SPTFeatureFlagSignalObserver-Protocol.h"
 #import "SPTFreeTierPlayerService-Protocol.h"
 
 @class NSString, SPTAllocationContext, SPTFreeTierPlayerLoggerImplementation, SPTFreeTierRemoteControlPolicy;
-@protocol SPTCollectionPlatformService, SPTContainerService, SPTFeatureFlagSignal, SPTFreeTierService, SPTNowPlayingService, SPTPlayer, SPTPlayerFeature;
+@protocol SPTCollectionPlatformService, SPTContainerService, SPTFeatureFlagSignal, SPTFreeTierService, SPTNowPlayingPlatformService, SPTPlayer, SPTPlayerFeature;
 
 @interface SPTFreeTierPlayerServiceImplementation : NSObject <SPTFeatureFlagSignalObserver, SPTFreeTierPlayerService>
 {
@@ -20,7 +20,7 @@
     id <SPTFreeTierService> _freeTierService;
     id <SPTFeatureFlagSignal> _freeTierEnabledSignal;
     id <SPTPlayerFeature> _playback;
-    id <SPTNowPlayingService> _nowPlayingService;
+    id <SPTNowPlayingPlatformService> _nowPlayingPlatformService;
     SPTFreeTierRemoteControlPolicy *_remoteControlPolicy;
     SPTFreeTierPlayerLoggerImplementation *_logger;
     id <SPTPlayer> _player;
@@ -30,7 +30,7 @@
 @property(retain, nonatomic) id <SPTPlayer> player; // @synthesize player=_player;
 @property(retain, nonatomic) SPTFreeTierPlayerLoggerImplementation *logger; // @synthesize logger=_logger;
 @property(retain, nonatomic) SPTFreeTierRemoteControlPolicy *remoteControlPolicy; // @synthesize remoteControlPolicy=_remoteControlPolicy;
-@property(nonatomic) __weak id <SPTNowPlayingService> nowPlayingService; // @synthesize nowPlayingService=_nowPlayingService;
+@property(nonatomic) __weak id <SPTNowPlayingPlatformService> nowPlayingPlatformService; // @synthesize nowPlayingPlatformService=_nowPlayingPlatformService;
 @property(nonatomic) __weak id <SPTPlayerFeature> playback; // @synthesize playback=_playback;
 @property(nonatomic, getter=isFreeTierEnabled) _Bool freeTierEnabled; // @synthesize freeTierEnabled=_freeTierEnabled;
 @property(nonatomic) __weak id <SPTFeatureFlagSignal> freeTierEnabledSignal; // @synthesize freeTierEnabledSignal=_freeTierEnabledSignal;

@@ -4,27 +4,22 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 #import "SPTConcertsService-Protocol.h"
-#import "SPTFeatureFlagSignalObserver-Protocol.h"
 
 @class NSSet, NSString, SPTAllocationContext, SPTConcertsDateFormatter, SPTConcertsLocalDataManager;
-@protocol EXP_SPTHubFrameworkService, SPContextMenuFeature, SPTContainerService, SPTContainerUIService, SPTCoreService, SPTFeatureFlagSignal, SPTFeatureFlaggingService, SPTGLUEService, SPTHubFrameworkService, SPTLocalSettings, SPTNavigationFeature, SPTNetworkService, SPTPageRegistrationToken, SPTPerformanceMetricsService, SPTSessionService, SPTSettingsFeature, SPTURIDispatchService;
+@protocol EXP_SPTHubFrameworkService, SPContextMenuFeature, SPTContainerService, SPTContainerUIService, SPTCoreService, SPTGLUEService, SPTLocalSettings, SPTNavigationFeature, SPTNetworkService, SPTPerformanceMetricsService, SPTSessionService, SPTSettingsFeature, SPTURIDispatchService;
 
-@interface SPTConcertsServiceImplementation : NSObject <SPTFeatureFlagSignalObserver, SPTConcertsService>
+@interface SPTConcertsServiceImplementation : NSObject <SPTConcertsService>
 {
-    _Bool _shouldUseHubsRendererForAllArtistConcertsPage;
-    _Bool _hasRegisteredWithHubFramework;
     SPTConcertsDateFormatter *_dateFormatterProvider;
     id <SPTSessionService> _clientSessionService;
     id <SPTCoreService> _coreService;
-    id <SPTFeatureFlaggingService> _featureFlaggingService;
     id <SPTNetworkService> _networkFeature;
     id <SPTSettingsFeature> _settingsFeature;
     id <SPTGLUEService> _glueService;
     id <SPTContainerService> _containerService;
-    id <SPTHubFrameworkService> _hubFrameworkService;
     id <EXP_SPTHubFrameworkService> _hubsRendererService;
     id <SPContextMenuFeature> _contextMenuFeature;
     id <SPTNavigationFeature> _navigationService;
@@ -33,17 +28,11 @@
     id <SPTURIDispatchService> _uriDispatchService;
     id <SPTLocalSettings> _localSettings;
     SPTConcertsLocalDataManager *_localDataManager;
-    id <SPTFeatureFlagSignal> _useHubsRendererForAllArtistPageSignal;
-    id <SPTPageRegistrationToken> _allArtistConcertsPageRegistration;
     NSSet *_pageRegistrations;
 }
 
 + (id)serviceIdentifier;
 @property(copy, nonatomic) NSSet *pageRegistrations; // @synthesize pageRegistrations=_pageRegistrations;
-@property(nonatomic) _Bool hasRegisteredWithHubFramework; // @synthesize hasRegisteredWithHubFramework=_hasRegisteredWithHubFramework;
-@property(nonatomic) _Bool shouldUseHubsRendererForAllArtistConcertsPage; // @synthesize shouldUseHubsRendererForAllArtistConcertsPage=_shouldUseHubsRendererForAllArtistConcertsPage;
-@property(retain, nonatomic) id <SPTPageRegistrationToken> allArtistConcertsPageRegistration; // @synthesize allArtistConcertsPageRegistration=_allArtistConcertsPageRegistration;
-@property(retain, nonatomic) id <SPTFeatureFlagSignal> useHubsRendererForAllArtistPageSignal; // @synthesize useHubsRendererForAllArtistPageSignal=_useHubsRendererForAllArtistPageSignal;
 @property(retain, nonatomic) SPTConcertsLocalDataManager *localDataManager; // @synthesize localDataManager=_localDataManager;
 @property(retain, nonatomic) id <SPTLocalSettings> localSettings; // @synthesize localSettings=_localSettings;
 @property(nonatomic) __weak id <SPTURIDispatchService> uriDispatchService; // @synthesize uriDispatchService=_uriDispatchService;
@@ -52,21 +41,14 @@
 @property(nonatomic) __weak id <SPTNavigationFeature> navigationService; // @synthesize navigationService=_navigationService;
 @property(nonatomic) __weak id <SPContextMenuFeature> contextMenuFeature; // @synthesize contextMenuFeature=_contextMenuFeature;
 @property(nonatomic) __weak id <EXP_SPTHubFrameworkService> hubsRendererService; // @synthesize hubsRendererService=_hubsRendererService;
-@property(nonatomic) __weak id <SPTHubFrameworkService> hubFrameworkService; // @synthesize hubFrameworkService=_hubFrameworkService;
 @property(nonatomic) __weak id <SPTContainerService> containerService; // @synthesize containerService=_containerService;
 @property(nonatomic) __weak id <SPTGLUEService> glueService; // @synthesize glueService=_glueService;
 @property(nonatomic) __weak id <SPTSettingsFeature> settingsFeature; // @synthesize settingsFeature=_settingsFeature;
 @property(nonatomic) __weak id <SPTNetworkService> networkFeature; // @synthesize networkFeature=_networkFeature;
-@property(nonatomic) __weak id <SPTFeatureFlaggingService> featureFlaggingService; // @synthesize featureFlaggingService=_featureFlaggingService;
 @property(nonatomic) __weak id <SPTCoreService> coreService; // @synthesize coreService=_coreService;
 @property(nonatomic) __weak id <SPTSessionService> clientSessionService; // @synthesize clientSessionService=_clientSessionService;
 - (void).cxx_destruct;
-- (void)featureFlagSignal:(id)arg1 hasAssumedState:(long long)arg2;
-- (void)unregisterLegacyAllArtistConcertsView;
-- (void)registerLegacyAllArtistConcertsView;
 - (id)provideArtistConcertsPageForURI:(id)arg1 context:(id)arg2;
-- (void)unregisterHubsRendererAllArtistConcertsPage;
-- (void)registerHubsRendererAllArtistConcertsPage;
 - (void)registerAllArtistConcertsPage;
 - (id)provideConcertsConcertsViewControllerWithEventEntityModel:(id)arg1;
 - (id)provideConcertEntityPageForURL:(id)arg1 context:(id)arg2;
@@ -74,8 +56,6 @@
 - (id)provideConcertsLocationSearchVC;
 - (id)provideConcertsVCForURI:(id)arg1 context:(id)arg2;
 @property(readonly, nonatomic) SPTConcertsDateFormatter *dateFormatterProvider; // @synthesize dateFormatterProvider=_dateFormatterProvider;
-- (void)unloadUseHubsRendererFeatureFlag;
-- (void)loadUseHubsRendererFeatureFlag;
 - (void)loadTheme;
 - (void)unregisterPages;
 - (void)registerPages;

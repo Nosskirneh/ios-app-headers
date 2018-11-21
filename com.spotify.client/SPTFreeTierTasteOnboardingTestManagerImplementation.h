@@ -4,7 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 #import "SPTFeatureFlagSignalObserver-Protocol.h"
 #import "SPTFreeTierTasteOnboardingTestManager-Protocol.h"
@@ -18,6 +18,7 @@
     _Bool _shouldHideCloseButtonInArtistPicker;
     _Bool _onboardingCoordinationEnabled;
     _Bool _onboardingIPadEnabled;
+    _Bool _hapticFeedbackEnabled;
     id <SPTFeatureFlagFactory> _featureFlagFactory;
     id <SPTProductState> _productState;
     id <SPTLocalSettings> _localSettings;
@@ -27,8 +28,11 @@
     id <SPTFeatureFlagSignal> _shouldHideCloseButtonInArtistPickerSignal;
     id <SPTFeatureFlagSignal> _onboardingCoordinationEnabledFlagSignal;
     id <SPTFeatureFlagSignal> _onboardingIPadEnabledFlagSignal;
+    id <SPTFeatureFlagSignal> _hapticFeedbackEnabledSignal;
 }
 
+@property(nonatomic, getter=isHapticFeedbackEnabled) _Bool hapticFeedbackEnabled; // @synthesize hapticFeedbackEnabled=_hapticFeedbackEnabled;
+@property(retain, nonatomic) id <SPTFeatureFlagSignal> hapticFeedbackEnabledSignal; // @synthesize hapticFeedbackEnabledSignal=_hapticFeedbackEnabledSignal;
 @property(nonatomic, getter=isOnboardingIPadEnabled) _Bool onboardingIPadEnabled; // @synthesize onboardingIPadEnabled=_onboardingIPadEnabled;
 @property(retain, nonatomic) id <SPTFeatureFlagSignal> onboardingIPadEnabledFlagSignal; // @synthesize onboardingIPadEnabledFlagSignal=_onboardingIPadEnabledFlagSignal;
 @property(nonatomic, getter=isOnboardingCoordinationEnabled) _Bool onboardingCoordinationEnabled; // @synthesize onboardingCoordinationEnabled=_onboardingCoordinationEnabled;
@@ -46,6 +50,7 @@
 @property(readonly, nonatomic, getter=isFollowTextEnabled) _Bool followTextEnabled;
 @property(readonly, nonatomic, getter=isFollowIconEnabled) _Bool followIconEnabled;
 - (void)featureFlagSignal:(id)arg1 hasAssumedState:(long long)arg2;
+- (void)setupUseHapticFeedbackEnabledFlag;
 - (void)setupOnboardingIPadEnabledFlag;
 - (void)setupOnboardingCoordinationEnabledFlag;
 - (void)setupCloseButtonVisibilityFlag;

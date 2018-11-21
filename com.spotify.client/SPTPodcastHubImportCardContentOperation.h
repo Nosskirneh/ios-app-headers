@@ -4,20 +4,23 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 #import "EXP_HUBContentOperation-Protocol.h"
 
-@protocol EXP_HUBContentOperationDelegate;
+@protocol EXP_HUBContentOperationDelegate, SPTPodcastImportEntryCardManager;
 
 @interface SPTPodcastHubImportCardContentOperation : NSObject <EXP_HUBContentOperation>
 {
     id <EXP_HUBContentOperationDelegate> _delegate;
+    id <SPTPodcastImportEntryCardManager> _importCardManager;
 }
 
+@property(nonatomic) __weak id <SPTPodcastImportEntryCardManager> importCardManager; // @synthesize importCardManager=_importCardManager;
 @property(nonatomic) __weak id <EXP_HUBContentOperationDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
 - (void)performForViewModelBuilder:(id)arg1 previousError:(id)arg2;
+- (id)initWithImportCardManager:(id)arg1;
 
 @end
 

@@ -4,9 +4,13 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import "NSObject-Protocol.h"
+#import "GLUEThemeBase.h"
 
-@protocol SPTNowPlayingPlayableButton <NSObject>
-@property(nonatomic, getter=isPlaying) _Bool playing;
+@interface SPTPodcastImportTheme : GLUEThemeBase
+{
+}
+
+- (id)podcastRowStyle;
+
 @end
 

@@ -4,7 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 @class IDApplication, NSDate, NSString, RAPICarDescription, RAPIConfiguration, RAPIItemLocation, RAPIPreviewManager, RAPIResources, RAPIScreenTable;
 @protocol IDHmiProvider, RAPIEntertainmentAppLinkDelegate;

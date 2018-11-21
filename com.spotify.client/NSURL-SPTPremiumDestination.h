@@ -9,8 +9,10 @@
 @interface NSURL (SPTPremiumDestination)
 + (id)spt_localPremiumDestinationHubsResponseFileURLWithLocaleIdentifier:(id)arg1;
 + (id)spt_localPremiumDestinationHubsResponseFileURL;
-+ (id)spt_premiumDestinationHubsServiceURLWithPathComponents:(id)arg1;
++ (id)spt_premiumDestinationHubsServiceURLWithPathComponents:(id)arg1 usingDevEnabled:(_Bool)arg2;
++ (id)spt_premiumDestinationHubsDevV2ServiceURL;
 + (id)spt_premiumDestinationHubsV2ServiceURL;
++ (id)spt_premiumDestinationHubsDevServiceURL;
 + (id)spt_premiumDestinationHubsServiceURL;
 + (id)spt_trialStartedUpsellURL;
 + (id)spt_accountUpsellURL;

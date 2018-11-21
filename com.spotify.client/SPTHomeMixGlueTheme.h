@@ -6,12 +6,15 @@
 
 #import "GLUEThemeBase.h"
 
-@class GLUEImageStyle, GLUELabelStyle, SPTHomeMixMemberPileContainerViewStyle, SPTHomeMixMemberPileViewStyle;
+@class GLUEEntityRowStyle, GLUEImageStyle, GLUELabelStyle, SPTHomeMixEntityRowActionViewStyle, SPTHomeMixHeaderActionButtonStyle, SPTHomeMixMemberPileContainerViewStyle, SPTHomeMixMemberPileViewStyle;
 
 @interface SPTHomeMixGlueTheme : GLUEThemeBase
 {
 }
 
+@property(readonly, copy, nonatomic) SPTHomeMixHeaderActionButtonStyle *defaultHeartActionButtonStyle;
+@property(readonly, copy, nonatomic) SPTHomeMixEntityRowActionViewStyle *actionViewStyle;
+@property(readonly, copy, nonatomic) GLUEEntityRowStyle *trackRowStyle;
 @property(readonly, copy, nonatomic) SPTHomeMixMemberPileContainerViewStyle *memberPileContainerStyle;
 @property(readonly, copy, nonatomic) GLUEImageStyle *memberPileImageStyle;
 @property(readonly, copy, nonatomic) SPTHomeMixMemberPileViewStyle *memberPileViewStyle;

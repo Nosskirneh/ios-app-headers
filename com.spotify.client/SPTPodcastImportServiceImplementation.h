@@ -4,12 +4,12 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 #import "SPTPodcastImportService-Protocol.h"
 #import "SPTPodcastImportViewControllerFactory-Protocol.h"
 
-@class NSString, SPTAllocationContext;
+@class NSString, SPTAllocationContext, SPTPodcastImportEntryCardManagerImplementation;
 @protocol SPTCollectionPlatformService, SPTContainerService, SPTContainerUIService, SPTFeatureFlagSignal, SPTFeatureFlaggingService, SPTNetworkService, SPTSessionService, SPTSettingsFeature, SPTUIPresentationService, SPTURIDispatchService;
 
 @interface SPTPodcastImportServiceImplementation : NSObject <SPTPodcastImportViewControllerFactory, SPTPodcastImportService>
@@ -23,11 +23,15 @@
     id <SPTUIPresentationService> _UIPresentationService;
     id <SPTNetworkService> _networkService;
     id <SPTURIDispatchService> _uriDispatchService;
+    id <SPTSessionService> _sessionService;
     id <SPTFeatureFlagSignal> _featureFlagSignal;
+    SPTPodcastImportEntryCardManagerImplementation *_podcastImportEntryCardManager;
 }
 
 + (id)serviceIdentifier;
+@property(retain, nonatomic) SPTPodcastImportEntryCardManagerImplementation *podcastImportEntryCardManager; // @synthesize podcastImportEntryCardManager=_podcastImportEntryCardManager;
 @property(retain, nonatomic) id <SPTFeatureFlagSignal> featureFlagSignal; // @synthesize featureFlagSignal=_featureFlagSignal;
+@property(nonatomic) __weak id <SPTSessionService> sessionService; // @synthesize sessionService=_sessionService;
 @property(nonatomic) __weak id <SPTURIDispatchService> uriDispatchService; // @synthesize uriDispatchService=_uriDispatchService;
 @property(nonatomic) __weak id <SPTNetworkService> networkService; // @synthesize networkService=_networkService;
 @property(nonatomic) __weak id <SPTUIPresentationService> UIPresentationService; // @synthesize UIPresentationService=_UIPresentationService;
@@ -39,6 +43,7 @@
 @property(nonatomic) __weak id <SPTContainerService> containerService; // @synthesize containerService=_containerService;
 - (void).cxx_destruct;
 - (void)registerSettingsPage:(id)arg1 featureSettingsItemFactory:(id)arg2;
+- (id)providePodcastImportEntryCardManager;
 - (id)provideFeatureFlagSignal;
 - (void)unload;
 - (id)provideLocalSettings;

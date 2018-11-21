@@ -4,7 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 @class NSURL;
 
@@ -12,11 +12,13 @@
 {
     _Bool _playing;
     _Bool _playingHomeMixContext;
+    _Bool _offline;
     NSURL *_homeMixURI;
     NSURL *_currentlyPlayingTrackURI;
 }
 
 + (id)defaultBuilder;
+@property(nonatomic, getter=isOffline) _Bool offline; // @synthesize offline=_offline;
 @property(nonatomic, getter=isPlayingHomeMixContext) _Bool playingHomeMixContext; // @synthesize playingHomeMixContext=_playingHomeMixContext;
 @property(nonatomic, getter=isPlaying) _Bool playing; // @synthesize playing=_playing;
 @property(copy, nonatomic) NSURL *currentlyPlayingTrackURI; // @synthesize currentlyPlayingTrackURI=_currentlyPlayingTrackURI;

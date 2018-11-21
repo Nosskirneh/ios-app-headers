@@ -4,7 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 #import "SPTFeatureFlagSignalObserver-Protocol.h"
 #import "SPTFreeTierCollectionTestManager-Protocol.h"
@@ -21,7 +21,6 @@
     _Bool _sortingAndFilteringFavoriteSongsEnabled;
     _Bool _frecencySortOrderInPlaylistsEnabled;
     _Bool _frecencySortOrderDefaultInPlaylistsEnabled;
-    _Bool _collectionFoldersEnabled;
     _Bool _alternativeActionButtonsEnabled;
     id <SPTFeatureFlagFactory> _featureFlagFactory;
     id <SPTProductState> _productState;
@@ -34,14 +33,11 @@
     id <SPTFeatureFlagSignal> _sortingAndFilteringFavoriteSongsSignal;
     id <SPTFeatureFlagSignal> _frecencySortOrderInPlaylistsSignal;
     id <SPTFeatureFlagSignal> _frecencySortOrderDefaultInPlaylistsSignal;
-    id <SPTFeatureFlagSignal> _collectionFoldersSignal;
     id <SPTFeatureFlagSignal> _alternativeActionButtonsSignal;
 }
 
 @property(nonatomic, getter=isAlternativeActionButtonsEnabled) _Bool alternativeActionButtonsEnabled; // @synthesize alternativeActionButtonsEnabled=_alternativeActionButtonsEnabled;
 @property(retain, nonatomic) id <SPTFeatureFlagSignal> alternativeActionButtonsSignal; // @synthesize alternativeActionButtonsSignal=_alternativeActionButtonsSignal;
-@property(nonatomic, getter=isCollectionFoldersEnabled) _Bool collectionFoldersEnabled; // @synthesize collectionFoldersEnabled=_collectionFoldersEnabled;
-@property(retain, nonatomic) id <SPTFeatureFlagSignal> collectionFoldersSignal; // @synthesize collectionFoldersSignal=_collectionFoldersSignal;
 @property(nonatomic, getter=isFrecencySortOrderDefaultInPlaylistsEnabled) _Bool frecencySortOrderDefaultInPlaylistsEnabled; // @synthesize frecencySortOrderDefaultInPlaylistsEnabled=_frecencySortOrderDefaultInPlaylistsEnabled;
 @property(nonatomic, getter=isFrecencySortOrderInPlaylistsEnabled) _Bool frecencySortOrderInPlaylistsEnabled; // @synthesize frecencySortOrderInPlaylistsEnabled=_frecencySortOrderInPlaylistsEnabled;
 @property(retain, nonatomic) id <SPTFeatureFlagSignal> frecencySortOrderDefaultInPlaylistsSignal; // @synthesize frecencySortOrderDefaultInPlaylistsSignal=_frecencySortOrderDefaultInPlaylistsSignal;
@@ -62,7 +58,6 @@
 @property(readonly, nonatomic) id <SPTFeatureFlagFactory> featureFlagFactory; // @synthesize featureFlagFactory=_featureFlagFactory;
 - (void).cxx_destruct;
 @property(readonly, nonatomic, getter=isBookmarkModelEnabled) _Bool bookmarkModelEnabled;
-- (void)setupCollectionFoldersSignal;
 - (_Bool)isNPTUser;
 - (void)setupAlternativeActionButtonsSignal;
 - (void)handleFilteringAndSortingSignal:(id)arg1 hasAssumedState:(long long)arg2;

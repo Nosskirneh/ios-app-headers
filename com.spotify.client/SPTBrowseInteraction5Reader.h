@@ -4,7 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 @class EXP_HUBComponentEvent, NSNumber, NSString;
 
@@ -16,10 +16,9 @@
 @property(readonly, nonatomic) EXP_HUBComponentEvent *componentEvent; // @synthesize componentEvent=_componentEvent;
 - (void).cxx_destruct;
 - (id)interaction5;
-- (id)interaction5LogMessageWithTimestamp:(id)arg1 userIntent:(id)arg2;
+- (id)interaction5LogMessageWithTimestamp:(id)arg1 targetURI:(id)arg2 userIntent:(id)arg3;
 @property(readonly, copy, nonatomic) NSString *interactionType;
 @property(readonly, copy, nonatomic) NSNumber *itemIndex;
-@property(readonly, copy, nonatomic) NSString *targetURI;
 @property(readonly, copy, nonatomic) NSString *sectionID;
 @property(readonly, copy, nonatomic) NSString *requestID;
 @property(readonly, copy, nonatomic) NSString *featureID;

@@ -4,12 +4,12 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 #import "SPTPodcastImportDataModelDelegate-Protocol.h"
 
 @class NSArray, NSError, NSMutableSet, NSString, SPTPodcastImportAuthorizationRequester, SPTPodcastImportDataModel;
-@protocol SPTAlertController, SPTCollectionPlatform, SPTLinkDispatcher, SPTPodcastImportManagerDelegate;
+@protocol SPTAlertController, SPTCollectionPlatform, SPTLinkDispatcher, SPTPodcastImportEntryCardManager, SPTPodcastImportManagerDelegate;
 
 @interface SPTPodcastImportManager : NSObject <SPTPodcastImportDataModelDelegate>
 {
@@ -23,10 +23,12 @@
     id <SPTAlertController> _alertController;
     SPTPodcastImportAuthorizationRequester *_auth;
     id <SPTLinkDispatcher> _linkDispatcher;
+    id <SPTPodcastImportEntryCardManager> _podcastImportEntryCardManager;
     SPTPodcastImportDataModel *_dataModel;
 }
 
 @property(retain, nonatomic) SPTPodcastImportDataModel *dataModel; // @synthesize dataModel=_dataModel;
+@property(nonatomic) __weak id <SPTPodcastImportEntryCardManager> podcastImportEntryCardManager; // @synthesize podcastImportEntryCardManager=_podcastImportEntryCardManager;
 @property(retain, nonatomic) id <SPTLinkDispatcher> linkDispatcher; // @synthesize linkDispatcher=_linkDispatcher;
 @property(retain, nonatomic) SPTPodcastImportAuthorizationRequester *auth; // @synthesize auth=_auth;
 @property(retain, nonatomic) id <SPTAlertController> alertController; // @synthesize alertController=_alertController;
@@ -40,6 +42,7 @@
 - (void).cxx_destruct;
 - (void)dataModel:(id)arg1 didError:(id)arg2;
 - (void)dataModel:(id)arg1 didReceiveAvailablePodcasts:(id)arg2 alreadyFollowedPodcasts:(id)arg3;
+- (void)openYourLibrary;
 - (void)subscribeToSelected;
 - (void)fetchAvailablePodcasts;
 - (void)openSettings;
@@ -47,7 +50,7 @@
 - (void)next;
 - (void)applyChangedState:(long long)arg1;
 - (long long)calculateInitialState;
-- (id)initWithCollectionPlatform:(id)arg1 dataModel:(id)arg2 alertController:(id)arg3 authRequester:(id)arg4 linkDispatcher:(id)arg5;
+- (id)initWithCollectionPlatform:(id)arg1 dataModel:(id)arg2 alertController:(id)arg3 authRequester:(id)arg4 linkDispatcher:(id)arg5 podcastImportEntryCardManager:(id)arg6;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

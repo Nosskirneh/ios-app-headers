@@ -9,6 +9,6 @@
 @interface NSURL (EntitySeeAllSongs)
 + (id)spt_entitySeeAllSongsViewURIWithEmbeddedURI:(id)arg1;
 @property(readonly, nonatomic, getter=spt_entitySeeAllSongsEmbeddedViewURI) NSURL *entitySeeAllSongsEmbeddedViewURI;
-@property(readonly, nonatomic, getter=spt_isEntitySeeAllSongsViewURI) _Bool entitySeeAllSongsViewURI;
+@property(readonly, nonatomic, getter=spt_isEntitySeeAllSongsViewURI) _Bool isEntitySeeAllSongsViewURI;
 @end
 

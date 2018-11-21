@@ -9,6 +9,7 @@
 @protocol SPTFeatureFlagSignal;
 
 @protocol SPTFreeTierTasteOnboardingTestManager <NSObject>
+@property(readonly, nonatomic, getter=isHapticFeedbackEnabled) _Bool hapticFeedbackEnabled;
 @property(readonly, nonatomic, getter=isFollowTextEnabled) _Bool followTextEnabled;
 @property(readonly, nonatomic, getter=isFollowIconEnabled) _Bool followIconEnabled;
 @property(readonly, nonatomic, getter=isOnboardingIPadEnabled) _Bool onboardingIPadEnabled;

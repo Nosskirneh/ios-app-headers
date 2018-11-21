@@ -4,13 +4,13 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 #import "SPTCarPlayFeatureFlagStateObserver-Protocol.h"
 #import "SPTService-Protocol.h"
 
 @class NSString, SPTAccessory, SPTAllocationContext, SPTCarPlayDataSourceStateManager, SPTCarPlayRemoteControlEventController, SPTCarPlayTestManager;
-@protocol GaiaFeature, SPTAccessoryManagerService, SPTAccessoryStateManager, SPTCarPlayAppFeature, SPTExternalIntegrationDebugLog, SPTExternalIntegrationDebugLogService, SPTExternalIntegrationPlatformService, SPTFeatureFlaggingService, SPTNetworkService, SPTNowPlayingService, SPTSessionService;
+@protocol GaiaFeature, SPTAccessoryManagerService, SPTAccessoryStateManager, SPTCarPlayAppFeature, SPTExternalIntegrationDebugLog, SPTExternalIntegrationDebugLogService, SPTExternalIntegrationPlatformService, SPTFeatureFlaggingService, SPTNetworkService, SPTNowPlayingPlatformService, SPTNowPlayingService, SPTSessionService;
 
 @interface SPTCarPlaySessionFeatureImplementation : NSObject <SPTCarPlayFeatureFlagStateObserver, SPTService>
 {
@@ -22,6 +22,7 @@
     id <SPTNetworkService> _networkService;
     id <GaiaFeature> _gaiaFeature;
     id <SPTNowPlayingService> _nowPlayingService;
+    id <SPTNowPlayingPlatformService> _nowPlayingPlatformService;
     SPTCarPlayDataSourceStateManager *_stateManager;
     id <SPTAccessoryStateManager> _accessoryStateManager;
     SPTAccessory *_currentAccessory;
@@ -39,6 +40,7 @@
 @property(retain, nonatomic) SPTAccessory *currentAccessory; // @synthesize currentAccessory=_currentAccessory;
 @property(readonly, nonatomic) id <SPTAccessoryStateManager> accessoryStateManager; // @synthesize accessoryStateManager=_accessoryStateManager;
 @property(readonly, nonatomic) __weak SPTCarPlayDataSourceStateManager *stateManager; // @synthesize stateManager=_stateManager;
+@property(readonly, nonatomic) __weak id <SPTNowPlayingPlatformService> nowPlayingPlatformService; // @synthesize nowPlayingPlatformService=_nowPlayingPlatformService;
 @property(readonly, nonatomic) __weak id <SPTNowPlayingService> nowPlayingService; // @synthesize nowPlayingService=_nowPlayingService;
 @property(readonly, nonatomic) __weak id <GaiaFeature> gaiaFeature; // @synthesize gaiaFeature=_gaiaFeature;
 @property(readonly, nonatomic) __weak id <SPTNetworkService> networkService; // @synthesize networkService=_networkService;

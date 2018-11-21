@@ -4,12 +4,12 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 #import "SPTJapanExperimentationService-Protocol.h"
 
 @class NSString, SPTAllocationContext, SPTContentEngagementOptionsLocalSettingsManager;
-@protocol GaiaFeature, SPTContainerService, SPTContentEngagementOptionsTestManager, SPTFeatureFlaggingService, SPTNowPlayingService, SPTPlayerFeature, SPTSessionService, SPTSettingsFeature;
+@protocol GaiaFeature, SPTContainerService, SPTContentEngagementOptionsTestManager, SPTFeatureFlaggingService, SPTNowPlayingPlatformService, SPTNowPlayingService, SPTPlayerFeature, SPTSessionService, SPTSettingsFeature;
 
 @interface SPTJapanExperimentationServiceImplementation : NSObject <SPTJapanExperimentationService>
 {
@@ -18,6 +18,7 @@
     id <SPTFeatureFlaggingService> _featureFlaggingSevice;
     id <SPTPlayerFeature> _playerFeature;
     id <SPTNowPlayingService> _nowPlayingService;
+    id <SPTNowPlayingPlatformService> _nowPlayingPlatformService;
     id <GaiaFeature> _gaiaFeature;
     id <SPTSettingsFeature> _settingsFeature;
     id <SPTContentEngagementOptionsTestManager> _ceoTestManager;
@@ -29,6 +30,7 @@
 @property(retain, nonatomic) id <SPTContentEngagementOptionsTestManager> ceoTestManager; // @synthesize ceoTestManager=_ceoTestManager;
 @property(nonatomic) __weak id <SPTSettingsFeature> settingsFeature; // @synthesize settingsFeature=_settingsFeature;
 @property(nonatomic) __weak id <GaiaFeature> gaiaFeature; // @synthesize gaiaFeature=_gaiaFeature;
+@property(nonatomic) __weak id <SPTNowPlayingPlatformService> nowPlayingPlatformService; // @synthesize nowPlayingPlatformService=_nowPlayingPlatformService;
 @property(nonatomic) __weak id <SPTNowPlayingService> nowPlayingService; // @synthesize nowPlayingService=_nowPlayingService;
 @property(nonatomic) __weak id <SPTPlayerFeature> playerFeature; // @synthesize playerFeature=_playerFeature;
 @property(nonatomic) __weak id <SPTFeatureFlaggingService> featureFlaggingSevice; // @synthesize featureFlaggingSevice=_featureFlaggingSevice;

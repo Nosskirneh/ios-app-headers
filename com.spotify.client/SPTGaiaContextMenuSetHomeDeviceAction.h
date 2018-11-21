@@ -4,7 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 #import "SPTGaiaContextMenuAction-Protocol.h"
 
@@ -33,7 +33,6 @@
 - (id)iconColor;
 - (long long)icon;
 - (id)performAction;
-- (_Bool)isDeviceCast;
 @property(readonly, nonatomic) _Bool available;
 - (id)title;
 @property(readonly, nonatomic) NSString *identifier;

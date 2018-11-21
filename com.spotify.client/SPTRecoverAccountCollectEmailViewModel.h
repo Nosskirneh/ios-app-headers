@@ -4,17 +4,18 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 #import "SPTDataLoaderDelegate-Protocol.h"
 
-@class NSString, SPTDataLoader, SPTLoginTheme, SPTRecoverAccountCollectEmailViewLogger, SPTRecoverAccountTestManager, SPTSignupEmailFieldValidator;
+@class NSString, SPTDataLoader, SPTLoginSpinnerButtonTestManager, SPTLoginTheme, SPTRecoverAccountCollectEmailViewLogger, SPTRecoverAccountTestManager, SPTSignupEmailFieldValidator;
 @protocol SPTRecoverAccountCollectEmailViewModelDelegate;
 
 @interface SPTRecoverAccountCollectEmailViewModel : NSObject <SPTDataLoaderDelegate>
 {
     id <SPTRecoverAccountCollectEmailViewModelDelegate> _delegate;
     SPTRecoverAccountCollectEmailViewLogger *_logger;
+    SPTLoginSpinnerButtonTestManager *_spinnerButtonTestManager;
     SPTLoginTheme *_theme;
     SPTDataLoader *_dataLoader;
     SPTRecoverAccountTestManager *_testManager;
@@ -29,6 +30,7 @@
 @property(readonly, nonatomic) SPTRecoverAccountTestManager *testManager; // @synthesize testManager=_testManager;
 @property(readonly, nonatomic) SPTDataLoader *dataLoader; // @synthesize dataLoader=_dataLoader;
 @property(readonly, nonatomic) SPTLoginTheme *theme; // @synthesize theme=_theme;
+@property(readonly, nonatomic) SPTLoginSpinnerButtonTestManager *spinnerButtonTestManager; // @synthesize spinnerButtonTestManager=_spinnerButtonTestManager;
 @property(readonly, nonatomic) SPTRecoverAccountCollectEmailViewLogger *logger; // @synthesize logger=_logger;
 @property(nonatomic) __weak id <SPTRecoverAccountCollectEmailViewModelDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
@@ -49,7 +51,7 @@
 - (id)subtitleLabelText;
 - (id)titleLabelText;
 - (id)viewStyle;
-- (id)initWithTheme:(id)arg1 dataLoader:(id)arg2 logger:(id)arg3 testManager:(id)arg4 emailValidator:(id)arg5;
+- (id)initWithTheme:(id)arg1 dataLoader:(id)arg2 logger:(id)arg3 testManager:(id)arg4 emailValidator:(id)arg5 spinnerButtonTestManager:(id)arg6;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

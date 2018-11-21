@@ -51,10 +51,11 @@
 - (void)viewModelDidCompleteLoginWithNetworkDisabledError:(id)arg1;
 - (unsigned long long)preferredNavigationBarState;
 - (void)enableLoginButtonIfNeeded;
-- (_Bool)textFieldDidChange:(id)arg1;
+- (void)textFieldDidChange:(id)arg1;
 - (_Bool)textFieldShouldReturn:(id)arg1;
 - (void)textFieldDidBeginEditing:(id)arg1;
 - (void)hideLoadingState;
+- (void)showLoadingState;
 - (void)login;
 - (void)updateLoginFormWithUserName:(id)arg1 password:(id)arg2;
 - (void)onePasswordLoginButtonTapped:(id)arg1;

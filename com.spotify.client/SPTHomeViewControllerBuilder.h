@@ -4,7 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 @class EXP_HUBComponentDefaults, EXP_HUBComponentRegistry, NSDictionary, NSString, NSURL, SPTDataLoaderFactory;
 @protocol EXP_HUBCommandHandler, EXP_HUBComponentFallbackHandler, EXP_HUBComponentLayoutManager, EXP_HUBIconImageResolver, EXP_HUBImageLoaderFactory, EXP_SPTHubCommandHandlerFactory, EXP_SPTHubContentOperationFactory, EXP_SPTHubLogger, EXP_SPTHubRemoteContentOperationURLResolver, GLUETheme, SPTCollectionEntityList, SPTFeedFeatureFlagExposureLogger, SPTFeedHeartBeatManager, SPTHomeBarButtonManagerFactory, SPTHomeTestManager, SPTHomeUIService, SPTOfflineModeState, SPTRecentlyPlayedService;

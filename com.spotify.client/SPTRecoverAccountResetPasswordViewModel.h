@@ -4,17 +4,18 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 #import "SPTRecoverAccountResetPasswordDataLoaderDelegate-Protocol.h"
 
-@class NSString, SPTLoginTheme, SPTRecoverAccountResetPasswordDataLoader, SPTRecoverAccountResetPasswordViewLogger, SPTSignupPasswordFieldValidator;
+@class NSString, SPTLoginSpinnerButtonTestManager, SPTLoginTheme, SPTRecoverAccountResetPasswordDataLoader, SPTRecoverAccountResetPasswordViewLogger, SPTSignupPasswordFieldValidator;
 @protocol SPTRecoverAccountResetPasswordViewModelDelegate;
 
 @interface SPTRecoverAccountResetPasswordViewModel : NSObject <SPTRecoverAccountResetPasswordDataLoaderDelegate>
 {
     id <SPTRecoverAccountResetPasswordViewModelDelegate> _delegate;
     SPTRecoverAccountResetPasswordViewLogger *_logger;
+    SPTLoginSpinnerButtonTestManager *_spinnerButtonTestManager;
     SPTLoginTheme *_theme;
     SPTRecoverAccountResetPasswordDataLoader *_dataLoader;
     SPTSignupPasswordFieldValidator *_passwordValidator;
@@ -27,6 +28,7 @@
 @property(readonly, nonatomic) SPTSignupPasswordFieldValidator *passwordValidator; // @synthesize passwordValidator=_passwordValidator;
 @property(readonly, nonatomic) SPTRecoverAccountResetPasswordDataLoader *dataLoader; // @synthesize dataLoader=_dataLoader;
 @property(readonly, nonatomic) SPTLoginTheme *theme; // @synthesize theme=_theme;
+@property(readonly, nonatomic) SPTLoginSpinnerButtonTestManager *spinnerButtonTestManager; // @synthesize spinnerButtonTestManager=_spinnerButtonTestManager;
 @property(readonly, nonatomic) SPTRecoverAccountResetPasswordViewLogger *logger; // @synthesize logger=_logger;
 @property(nonatomic) __weak id <SPTRecoverAccountResetPasswordViewModelDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
@@ -44,7 +46,7 @@
 - (id)subtitleLabelText;
 - (id)titleLabelText;
 - (id)viewStyle;
-- (id)initWithTheme:(id)arg1 dataLoader:(id)arg2 logger:(id)arg3 passwordValidator:(id)arg4;
+- (id)initWithTheme:(id)arg1 dataLoader:(id)arg2 logger:(id)arg3 passwordValidator:(id)arg4 spinnerButtonTestManager:(id)arg5;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

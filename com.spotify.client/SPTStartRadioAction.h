@@ -11,29 +11,26 @@
 
 @interface SPTStartRadioAction : SPAction
 {
-    _Bool _formatListShouldOpenAfterFetching;
-    NSURL *_seedURL;
+    unsigned long long _state;
+    NSURL *_seedURI;
     SPSession *_session;
     id <SPTLinkDispatcher> _linkDispatcher;
     SPTRadioFormatListMapper *_mapper;
     id <SPTAlertController> _alertController;
-    NSURL *_formatListURI;
+    NSURL *_resolvedURI;
 }
 
-@property(retain, nonatomic) NSURL *formatListURI; // @synthesize formatListURI=_formatListURI;
-@property(nonatomic) _Bool formatListShouldOpenAfterFetching; // @synthesize formatListShouldOpenAfterFetching=_formatListShouldOpenAfterFetching;
+@property(retain, nonatomic) NSURL *resolvedURI; // @synthesize resolvedURI=_resolvedURI;
 @property(retain, nonatomic) id <SPTAlertController> alertController; // @synthesize alertController=_alertController;
 @property(retain, nonatomic) SPTRadioFormatListMapper *mapper; // @synthesize mapper=_mapper;
 @property(readonly, nonatomic) id <SPTLinkDispatcher> linkDispatcher; // @synthesize linkDispatcher=_linkDispatcher;
 @property(nonatomic) __weak SPSession *session; // @synthesize session=_session;
-@property(retain, nonatomic) NSURL *seedURL; // @synthesize seedURL=_seedURL;
+@property(retain, nonatomic) NSURL *seedURI; // @synthesize seedURI=_seedURI;
+@property(nonatomic) unsigned long long state; // @synthesize state=_state;
 - (void).cxx_destruct;
-- (void)navigateToFormatListURI;
-- (void)navigateOrWaitToFormatList;
-- (void)fetchedFormatListUri:(id)arg1 error:(id)arg2;
+- (void)navigateToResolvedURI;
 - (void)showError;
-- (void)fetchFormatListURIWhenNecessary;
-- (_Bool)shouldUseFormatListMapper;
+- (void)fetchFormatListURI;
 - (id)execute:(id)arg1;
 - (_Bool)isEnabled;
 - (id)logEntityURL;
@@ -41,7 +38,7 @@
 - (long long)icon;
 - (id)title;
 - (void)start;
-- (id)initWithSeedURL:(id)arg1 session:(id)arg2 linkDispatcher:(id)arg3 logContext:(id)arg4 mapper:(id)arg5 alertController:(id)arg6;
+- (id)initWithSeedURI:(id)arg1 session:(id)arg2 linkDispatcher:(id)arg3 logContext:(id)arg4 mapper:(id)arg5 alertController:(id)arg6;
 
 @end
 

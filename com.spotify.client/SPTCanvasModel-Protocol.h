@@ -7,12 +7,12 @@
 #import "NSObject-Protocol.h"
 
 @class NSString, NSURL;
-@protocol SPTArtistEntity;
 
 @protocol SPTCanvasModel <NSObject>
 @property(readonly, copy, nonatomic) NSURL *placeholderURI;
 @property(readonly, copy, nonatomic) NSURL *entityURI;
-@property(readonly, nonatomic) id <SPTArtistEntity> artist;
+@property(readonly, nonatomic) NSString *artistName;
+@property(readonly, nonatomic) NSURL *artistURI;
 @property(readonly, nonatomic) unsigned long long type;
 @property(readonly, copy, nonatomic) NSString *contentId;
 @property(readonly, copy, nonatomic) NSURL *contentURL;

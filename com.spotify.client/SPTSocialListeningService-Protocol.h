@@ -6,9 +6,10 @@
 
 #import "SPTService-Protocol.h"
 
-@protocol SPTSocialListeningTestManager;
+@protocol SPTSocialListeningTestManager, SPTSocialListeningUserInterfaceFactory;
 
 @protocol SPTSocialListeningService <SPTService>
+- (id <SPTSocialListeningUserInterfaceFactory>)provideUserInterfaceFactory;
 - (id <SPTSocialListeningTestManager>)provideTestManager;
 @end
 

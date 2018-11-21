@@ -4,7 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 @class SPTFreeTierEntityContextMenuButton, UIButton;
 @protocol SPTBarButtonItemManager, SPTFreeTierAddToCollectionButton, SPTFreeTierEntityContextMenuButtonViewModel, SPTFreeTierEntityHeartBanButtonViewModel;
@@ -17,8 +17,10 @@
     UIButton<SPTFreeTierAddToCollectionButton> *_addToCollectionButton;
     id <SPTBarButtonItemManager> _barButtonItemManager;
     id <SPTFreeTierEntityHeartBanButtonViewModel> _heartBanButtonViewModel;
+    double _addToCollectionButtonAlpha;
 }
 
+@property(nonatomic) double addToCollectionButtonAlpha; // @synthesize addToCollectionButtonAlpha=_addToCollectionButtonAlpha;
 @property(nonatomic) _Bool useFollowButton; // @synthesize useFollowButton=_useFollowButton;
 @property(retain, nonatomic) id <SPTFreeTierEntityHeartBanButtonViewModel> heartBanButtonViewModel; // @synthesize heartBanButtonViewModel=_heartBanButtonViewModel;
 @property(retain, nonatomic) id <SPTBarButtonItemManager> barButtonItemManager; // @synthesize barButtonItemManager=_barButtonItemManager;

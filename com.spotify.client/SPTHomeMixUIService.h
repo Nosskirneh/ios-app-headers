@@ -4,13 +4,13 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 #import "SPTFeatureFlagSignalObserver-Protocol.h"
 #import "SPTService-Protocol.h"
 
 @class NSString, SPTAllocationContext;
-@protocol SPContextMenuFeature, SPTContainerService, SPTFeatureFlagSignal, SPTFeatureFlaggingService, SPTFormatListPlatformRegistration, SPTFormatListPlatformService, SPTGLUEService, SPTHomeMixService, SPTNavigationFeature, SPTPlayerFeature, SPTPlaylistPlatformService, SPTURIDispatchService;
+@protocol SPContextMenuFeature, SPTContainerService, SPTFeatureFlagSignal, SPTFeatureFlaggingService, SPTFormatListPlatformRegistration, SPTFormatListPlatformService, SPTGLUEService, SPTHomeMixService, SPTNavigationFeature, SPTPlayerFeature, SPTPlaylistPlatformService, SPTSessionService, SPTURIDispatchService;
 
 @interface SPTHomeMixUIService : NSObject <SPTFeatureFlagSignalObserver, SPTService>
 {
@@ -25,6 +25,7 @@
     id <SPTPlayerFeature> _playbackFeature;
     id <SPTPlaylistPlatformService> _playlistPlatformService;
     id <SPTURIDispatchService> _URIDispatchService;
+    id <SPTSessionService> _sessionService;
     id <SPTFeatureFlagSignal> _enabledSignal;
     id <SPTFormatListPlatformRegistration> _formatListPlatformRegistrationToken;
     id <SPTFeatureFlagSignal> _settingsAvailableSignal;
@@ -35,6 +36,7 @@
 @property(nonatomic, getter=areSettingsAvailable) _Bool settingsAvailable; // @synthesize settingsAvailable=_settingsAvailable;
 @property(retain, nonatomic) id <SPTFormatListPlatformRegistration> formatListPlatformRegistrationToken; // @synthesize formatListPlatformRegistrationToken=_formatListPlatformRegistrationToken;
 @property(retain, nonatomic) id <SPTFeatureFlagSignal> enabledSignal; // @synthesize enabledSignal=_enabledSignal;
+@property(nonatomic) __weak id <SPTSessionService> sessionService; // @synthesize sessionService=_sessionService;
 @property(nonatomic) __weak id <SPTURIDispatchService> URIDispatchService; // @synthesize URIDispatchService=_URIDispatchService;
 @property(nonatomic) __weak id <SPTPlaylistPlatformService> playlistPlatformService; // @synthesize playlistPlatformService=_playlistPlatformService;
 @property(nonatomic) __weak id <SPTPlayerFeature> playbackFeature; // @synthesize playbackFeature=_playbackFeature;

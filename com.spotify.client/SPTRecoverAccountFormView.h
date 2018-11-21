@@ -4,18 +4,18 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <UIKit/UIView.h>
+#import "SPTLoginLoadingView.h"
 
 #import "GLUEStyleable-Protocol.h"
 
-@class GLUEButton, GLUEGradientView, GLUELabel, NSLayoutConstraint, NSString, SPTLoginFormScrollView, SPTLoginInputFormView;
+@class GLUEGradientView, GLUELabel, NSLayoutConstraint, NSString, SPTLoginFormScrollView, SPTLoginInputFormView, SPTLoginLoadingActionButton, UIView;
 
-@interface SPTRecoverAccountFormView : UIView <GLUEStyleable>
+@interface SPTRecoverAccountFormView : SPTLoginLoadingView <GLUEStyleable>
 {
+    SPTLoginLoadingActionButton *_submitButton;
     GLUELabel *_titleLabel;
     GLUELabel *_subtitleLabel;
     SPTLoginInputFormView *_formView;
-    GLUEButton *_submitButton;
     UIView *_contentView;
     SPTLoginFormScrollView *_scrollView;
     GLUEGradientView *_backgroundGradientView;
@@ -38,10 +38,10 @@
 @property(retain, nonatomic) GLUEGradientView *backgroundGradientView; // @synthesize backgroundGradientView=_backgroundGradientView;
 @property(retain, nonatomic) SPTLoginFormScrollView *scrollView; // @synthesize scrollView=_scrollView;
 @property(retain, nonatomic) UIView *contentView; // @synthesize contentView=_contentView;
-@property(readonly, nonatomic) GLUEButton *submitButton; // @synthesize submitButton=_submitButton;
 @property(readonly, nonatomic) SPTLoginInputFormView *formView; // @synthesize formView=_formView;
 @property(readonly, nonatomic) GLUELabel *subtitleLabel; // @synthesize subtitleLabel=_subtitleLabel;
 @property(readonly, nonatomic) GLUELabel *titleLabel; // @synthesize titleLabel=_titleLabel;
+- (id)submitButton;
 - (void).cxx_destruct;
 - (void)glue_applyStyle:(id)arg1;
 - (void)setupConstraints;
