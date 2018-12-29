@@ -10,8 +10,11 @@
 
 @interface _TtC4WiMP26CustomNavigationController : UINavigationController
 {
+    // Error parsing type: , name: rootViewController
     // Error parsing type: , name: customNavigationBar
+    // Error parsing type: , name: navigationBarTopPadding
     // Error parsing type: , name: customNavigationItem
+    // Error parsing type: , name: customCloseItem.storage
 }
 
 - (CDUnknownBlockType).cxx_destruct;
@@ -19,8 +22,9 @@
 - (void)didTapBackButton:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;
+- (void)viewDidDisappear:(_Bool)arg1;
 - (id)initWithRootViewController:(id)arg1;
-@property(nonatomic, readonly) UINavigationItem *customNavigationItem; // @synthesize customNavigationItem;
+@property(nonatomic, retain) UINavigationItem *customCloseItem;
 @property(nonatomic, readonly) UINavigationBar *customNavigationBar; // @synthesize customNavigationBar;
 
 @end

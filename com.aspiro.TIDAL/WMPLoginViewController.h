@@ -9,12 +9,13 @@
 #import "UITextFieldDelegate-Protocol.h"
 #import "_TtP4WiMP28DialogWithTextFieldsDelegate_-Protocol.h"
 
-@class NSString, UIActivityIndicatorView, UIBarButtonItem, UIButton, UILabel, UIScrollView, UITextField, _TtC4WiMP19RoundedCornerButton;
+@class NSDictionary, NSString, UIActivityIndicatorView, UIBarButtonItem, UIButton, UILabel, UIScrollView, UITextField, _TtC4WiMP19RoundedCornerButton;
 @protocol WMPLoginViewControllerDelegate;
 
 @interface WMPLoginViewController : UIViewController <UITextFieldDelegate, _TtP4WiMP28DialogWithTextFieldsDelegate_>
 {
     id <WMPLoginViewControllerDelegate> _delegate;
+    NSDictionary *_eventMetadata;
     UIBarButtonItem *_cancelButton;
     _TtC4WiMP19RoundedCornerButton *_loginUsingThirdPartyServiceButton;
     _TtC4WiMP19RoundedCornerButton *_loginUsingTwitterButton;
@@ -40,8 +41,10 @@
 @property(retain, nonatomic) _TtC4WiMP19RoundedCornerButton *loginUsingTwitterButton; // @synthesize loginUsingTwitterButton=_loginUsingTwitterButton;
 @property(retain, nonatomic) _TtC4WiMP19RoundedCornerButton *loginUsingThirdPartyServiceButton; // @synthesize loginUsingThirdPartyServiceButton=_loginUsingThirdPartyServiceButton;
 @property(retain, nonatomic) UIBarButtonItem *cancelButton; // @synthesize cancelButton=_cancelButton;
+@property(copy, nonatomic) NSDictionary *eventMetadata; // @synthesize eventMetadata=_eventMetadata;
 @property(nonatomic) __weak id <WMPLoginViewControllerDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
+- (void)configureUsernameAndPasswordFields;
 - (void)setupLocalizableStrings;
 - (void)setupViews;
 - (void)addActivityViewToButton:(id)arg1;
@@ -50,12 +53,12 @@
 - (unsigned long long)loginServiceForCountryCode:(id)arg1;
 - (void)cancelButtonPressed:(id)arg1;
 - (void)okButtonPressed:(id)arg1;
+- (void)didPressCancelButton:(id)arg1;
+- (void)userDidLogIn;
 - (void)didPressResetPasswordButton:(id)arg1;
 - (void)didPressLoginUsingUsernameButton:(id)arg1;
-- (void)userDidLoggedIn;
 - (void)didPressLoginUsingTwitterButton:(id)arg1;
 - (void)didPressLoginUsingThirdPartyServiceButton:(id)arg1;
-- (void)didPressCancelButton:(id)arg1;
 - (void)didPressSwitchLoginMethodButton:(id)arg1;
 - (void)textFieldDidChange:(id)arg1;
 - (void)addTextFieldEventObservers;
@@ -65,10 +68,10 @@
 - (void)resetLoginView;
 - (void)loginDidFailWithSubstatusErrorCode:(id)arg1;
 - (_Bool)shouldAutorotate;
+- (void)dealloc;
 - (void)viewDidAppear:(_Bool)arg1;
 - (void)viewWillDisappear:(_Bool)arg1;
 - (void)viewWillAppear:(_Bool)arg1;
-- (void)dealloc;
 - (void)viewDidLoad;
 
 // Remaining properties

@@ -4,12 +4,14 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 @class NSNumber, NSString, NSUserDefaults, WMPClient, WMPSession, WMPSubscription, _TtC4WiMP13UserFavorites, _TtC4WiMP22RestorePurchaseManager;
 
 @interface WMPUser : NSObject
 {
+    _Bool _hasFavoriteTracksOfflined;
+    _Bool _acceptedEULA;
     _Bool _hasConnectedFacebook;
     _Bool _ignoreFacebookContentLogin;
     _Bool _userHasLoggedOut;
@@ -40,6 +42,8 @@
 @property(nonatomic) _Bool userHasLoggedOut; // @synthesize userHasLoggedOut=_userHasLoggedOut;
 @property(nonatomic) _Bool ignoreFacebookContentLogin; // @synthesize ignoreFacebookContentLogin=_ignoreFacebookContentLogin;
 @property(nonatomic) _Bool hasConnectedFacebook; // @synthesize hasConnectedFacebook=_hasConnectedFacebook;
+@property(nonatomic) _Bool acceptedEULA; // @synthesize acceptedEULA=_acceptedEULA;
+@property(nonatomic) _Bool hasFavoriteTracksOfflined; // @synthesize hasFavoriteTracksOfflined=_hasFavoriteTracksOfflined;
 @property(retain, nonatomic) _TtC4WiMP13UserFavorites *favorites; // @synthesize favorites=_favorites;
 @property(retain, nonatomic) _TtC4WiMP22RestorePurchaseManager *restorePurchaseManager; // @synthesize restorePurchaseManager=_restorePurchaseManager;
 @property(retain, nonatomic) WMPSubscription *subscription; // @synthesize subscription=_subscription;
@@ -54,6 +58,7 @@
 @property(retain, nonatomic) NSString *sessionIdentifier; // @synthesize sessionIdentifier=_sessionIdentifier;
 @property(retain, nonatomic) NSNumber *userIdentifier; // @synthesize userIdentifier=_userIdentifier;
 - (void).cxx_destruct;
+- (void)updateServicesWithUserIdentifier:(id)arg1;
 - (void)loadPersistedValues;
 - (id)videoQualities;
 - (id)soundQualities;

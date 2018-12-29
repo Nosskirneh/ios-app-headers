@@ -4,7 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 #import "FBSDKWebDialogViewDelegate-Protocol.h"
 
@@ -24,7 +24,7 @@
 + (id)showWithName:(id)arg1 parameters:(id)arg2 delegate:(id)arg3;
 @property(copy, nonatomic) NSDictionary *parameters; // @synthesize parameters=_parameters;
 @property(copy, nonatomic) NSString *name; // @synthesize name=_name;
-@property(nonatomic) id <FBSDKWebDialogDelegate> delegate; // @synthesize delegate=_delegate;
+@property(nonatomic) __weak id <FBSDKWebDialogDelegate> delegate; // @synthesize delegate=_delegate;
 @property(nonatomic) _Bool deferVisibility; // @synthesize deferVisibility=_deferVisibility;
 - (void).cxx_destruct;
 - (void)_updateViewsWithScale:(double)arg1 alpha:(double)arg2 animationDuration:(double)arg3 completion:(CDUnknownBlockType)arg4;
@@ -32,7 +32,6 @@
 - (struct CGAffineTransform)_transformForOrientation;
 - (_Bool)_showWebView;
 - (id)_generateURL:(id *)arg1;
-- (id)_findWindow;
 - (void)_failWithError:(id)arg1;
 - (void)_dismissAnimated:(_Bool)arg1;
 - (void)_completeWithResults:(id)arg1;

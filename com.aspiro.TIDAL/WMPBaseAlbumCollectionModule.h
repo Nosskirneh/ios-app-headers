@@ -14,6 +14,7 @@
 
 @interface WMPBaseAlbumCollectionModule : UIViewController <WMPModule, WMPCollectionStyle>
 {
+    _Bool _isLoadedFromNavigation;
     _Bool _canCollapse;
     _Bool _isFullScreen;
     _Bool _scrollEnabled;
@@ -49,6 +50,7 @@
 @property(nonatomic) double heightUnits; // @synthesize heightUnits=_heightUnits;
 @property(nonatomic) double horizontalUnits; // @synthesize horizontalUnits=_horizontalUnits;
 @property(retain, nonatomic) NSArray *items; // @synthesize items=_items;
+@property(nonatomic) _Bool isLoadedFromNavigation; // @synthesize isLoadedFromNavigation=_isLoadedFromNavigation;
 @property(copy, nonatomic) NSDictionary *eventMetadata; // @synthesize eventMetadata=_eventMetadata;
 @property(retain, nonatomic) id itemId; // @synthesize itemId=_itemId;
 @property(retain, nonatomic) WMPAlbumCollectionViewController *albumCollectionViewController; // @synthesize albumCollectionViewController=_albumCollectionViewController;
@@ -57,11 +59,13 @@
 - (void).cxx_destruct;
 - (void)refreshContentWithCompletion:(CDUnknownBlockType)arg1;
 - (void)moduleDidInvalidateConstraints:(id)arg1;
+- (void)configureHorizontalUnits;
+- (void)setupAlbumCollectionViewController;
 - (id)createSortAndRangeParameterWithLimit:(id)arg1;
 - (long long)fetchLimitForSortAndRangeParameters;
 - (id)predicateForSortAndRangeParameters;
-- (void)dealloc;
 - (void)callModuleDelegateWithSuccess:(_Bool)arg1;
+- (void)dealloc;
 - (void)viewDidLoad;
 
 // Remaining properties

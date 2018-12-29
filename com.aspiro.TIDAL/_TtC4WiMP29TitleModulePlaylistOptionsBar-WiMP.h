@@ -11,7 +11,5 @@
 - (void)didTapDownloadSliderWithSender:(id)arg1;
 - (void)didTapPlayButtonWithSender:(id)arg1;
 - (void)didTapShufflePlayButtonWithSender:(id)arg1;
-- (void)shuffleAndPlayItemsWithCheckItemsCount:(_Bool)arg1;
-- (void)didTapContextMenuButtonWithSender:(id)arg1;
 @end
 

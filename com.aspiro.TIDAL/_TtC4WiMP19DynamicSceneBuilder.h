@@ -8,7 +8,9 @@
 
 @interface _TtC4WiMP19DynamicSceneBuilder : SwiftObject
 {
+    // Error parsing type: , name: infoCreditsPresenter
     // Error parsing type: , name: pageComponents
+    // Error parsing type: , name: highlightedItemId
     // Error parsing type: , name: detailButtonCallback
 }
 

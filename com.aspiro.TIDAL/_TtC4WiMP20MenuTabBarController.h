@@ -27,7 +27,6 @@
 - (void)offlineModeDidTapOnTabController:(id)arg1;
 - (void)handleOfflineMode;
 - (void)tabBar:(id)arg1 didSelectItem:(id)arg2;
-- (void)setupTabBarController;
 - (void)dealloc;
 - (void)viewDidLoad;
 @property(nonatomic, copy) CDUnknownBlockType sameTabTapped; // @synthesize sameTabTapped;

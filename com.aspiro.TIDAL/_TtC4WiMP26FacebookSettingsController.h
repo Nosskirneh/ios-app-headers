@@ -6,8 +6,6 @@
 
 #import "WMPAbstractScene.h"
 
-@class WMPFacebookService;
-
 @interface _TtC4WiMP26FacebookSettingsController : WMPAbstractScene
 {
     // Error parsing type: , name: didChangeConnectionStatusHandler
@@ -21,8 +19,6 @@
 - (id)initWithCoder:(id)arg1;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;
 - (void)viewDidLoad;
-@property(nonatomic, readonly) WMPFacebookService *service; // @synthesize service;
-@property(nonatomic, copy) CDUnknownBlockType didChangeConnectionStatusHandler; // @synthesize didChangeConnectionStatusHandler;
 
 @end
 

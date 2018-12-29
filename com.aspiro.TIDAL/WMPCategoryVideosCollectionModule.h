@@ -13,10 +13,12 @@
     long long _collectionModuleType;
     NSArray *_videoItems;
     NSString *_loadMorePath;
+    NSString *_fullScreenPath;
     WMPSortAndRangeParameters *_sortAndRangeParameters;
 }
 
 @property(retain, nonatomic) WMPSortAndRangeParameters *sortAndRangeParameters; // @synthesize sortAndRangeParameters=_sortAndRangeParameters;
+@property(retain, nonatomic) NSString *fullScreenPath; // @synthesize fullScreenPath=_fullScreenPath;
 @property(retain, nonatomic) NSString *loadMorePath; // @synthesize loadMorePath=_loadMorePath;
 @property(retain, nonatomic) NSArray *videoItems; // @synthesize videoItems=_videoItems;
 @property(nonatomic) long long collectionModuleType; // @synthesize collectionModuleType=_collectionModuleType;

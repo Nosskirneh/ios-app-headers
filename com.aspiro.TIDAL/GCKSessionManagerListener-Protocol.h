@@ -6,15 +6,17 @@
 
 #import "NSObject-Protocol.h"
 
-@class GCKCastSession, GCKSession, GCKSessionManager, NSError, NSString;
+@class GCKCastSession, GCKDevice, GCKSession, GCKSessionManager, NSError, NSString;
 
 @protocol GCKSessionManagerListener <NSObject>
 
 @optional
+- (void)sessionManager:(GCKSessionManager *)arg1 didUpdateDefaultSessionOptionsForDeviceCategory:(NSString *)arg2;
 - (void)sessionManager:(GCKSessionManager *)arg1 castSession:(GCKCastSession *)arg2 didReceiveDeviceStatus:(NSString *)arg3;
 - (void)sessionManager:(GCKSessionManager *)arg1 session:(GCKSession *)arg2 didReceiveDeviceStatus:(NSString *)arg3;
 - (void)sessionManager:(GCKSessionManager *)arg1 castSession:(GCKCastSession *)arg2 didReceiveDeviceVolume:(float)arg3 muted:(_Bool)arg4;
 - (void)sessionManager:(GCKSessionManager *)arg1 session:(GCKSession *)arg2 didReceiveDeviceVolume:(float)arg3 muted:(_Bool)arg4;
+- (void)sessionManager:(GCKSessionManager *)arg1 session:(GCKSession *)arg2 didUpdateDevice:(GCKDevice *)arg3;
 - (void)sessionManager:(GCKSessionManager *)arg1 didResumeCastSession:(GCKCastSession *)arg2;
 - (void)sessionManager:(GCKSessionManager *)arg1 willResumeCastSession:(GCKCastSession *)arg2;
 - (void)sessionManager:(GCKSessionManager *)arg1 didResumeSession:(GCKSession *)arg2;

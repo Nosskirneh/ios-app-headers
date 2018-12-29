@@ -25,9 +25,11 @@
 + (id)midnightBlackAlpha30;
 + (id)midnightBlackAlpha20;
 + (id)midnightBlackAlpha10;
++ (id)midnightBlackAlpha5;
 + (id)snowWhiteAlpha75;
 + (id)snowWhiteAlpha60;
 + (id)snowWhiteAlpha40;
++ (id)snowWhiteAlpha30;
 + (id)snowWhiteAlpha15;
 + (id)snowWhiteAlpha05;
 + (id)snowWhite;

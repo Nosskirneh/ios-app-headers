@@ -4,7 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 @class NSDate, NSNumber, NSString;
 
@@ -48,7 +48,6 @@
 - (void)requestPurchasesInformation;
 - (void)requestSubscriptionInformationWithCompletion:(CDUnknownBlockType)arg1;
 - (void)refreshSoundQualityTo:(long long)arg1;
-- (void)setDefaultsForBasicSubscription;
 - (void)updateSubscriptionWithStatus:(id)arg1 validUntil:(id)arg2 highestSoundQuality:(id)arg3 subscriptionType:(id)arg4 paymentType:(id)arg5 hasPremiumAccess:(_Bool)arg6 canGetTrialSubscription:(_Bool)arg7 offlineGracePeriod:(id)arg8;
 - (id)init;
 

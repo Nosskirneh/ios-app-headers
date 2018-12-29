@@ -7,6 +7,6 @@
 #import <Foundation/NSLocale.h>
 
 @interface NSLocale (WiMP)
-+ (_Bool)isPolish;
++ (_Bool)isLanguage:(id)arg1;
 @end
 

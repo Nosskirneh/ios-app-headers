@@ -7,6 +7,6 @@
 #import "_TtC4WiMP25TableFooterViewWithButton.h"
 
 @interface _TtC4WiMP25TableFooterViewWithButton (WiMP)
-- (void)configureWithButtonTitle:(id)arg1 buttonColor:(id)arg2 buttonTapHandler:(CDUnknownBlockType)arg3;
+- (void)didTapButton;
 @end
 

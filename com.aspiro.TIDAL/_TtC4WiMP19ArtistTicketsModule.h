@@ -17,7 +17,6 @@
     // Error parsing type: , name: artistService.storage
     // Error parsing type: , name: events
     // Error parsing type: , name: artistHeaderView
-    // Error parsing type: , name: tableHeaderFrame
 }
 
 + (id)getInstanceWithCastedArtist:(id)arg1 eventsUrl:(id)arg2;
@@ -25,8 +24,6 @@
 - (id)initWithCoder:(id)arg1;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;
 - (id)initWithStyle:(long long)arg1;
-- (void)stretchHeaderView;
-- (void)scrollViewDidScroll:(id)arg1;
 - (void)tableView:(id)arg1 didSelectRowAtIndexPath:(id)arg2;
 - (id)tableView:(id)arg1 cellForRowAtIndexPath:(id)arg2;
 - (long long)tableView:(id)arg1 numberOfRowsInSection:(long long)arg2;

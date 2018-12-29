@@ -13,7 +13,6 @@
 
 - (id)initWithFrame:(struct CGRect)arg1;
 - (id)initWithCoder:(id)arg1;
-- (id)initWith:(double)arg1;
 
 @end
 

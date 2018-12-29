@@ -6,8 +6,6 @@
 
 #import "_TtC4WiMP13SonosBaseBody.h"
 
-@class NSString, _TtC4WiMP20SonosQueueItemWindow;
-
 @interface _TtCCC4WiMP20SonosPlaybackSession24LoadCloudQueueWithWindow28LoadCloudQueueWithWindowBody : _TtC4WiMP13SonosBaseBody
 {
     // Error parsing type: , name: queueBaseUrl
@@ -20,14 +18,8 @@
 }
 
 - (CDUnknownBlockType).cxx_destruct;
-- (id)getParameterTypes;
 - (void)setValue:(id)arg1 forUndefinedKey:(id)arg2;
 - (id)init;
-@property(nonatomic, copy) NSString *accountId; // @synthesize accountId;
-@property(nonatomic, copy) NSString *httpAuthorization; // @synthesize httpAuthorization;
-@property(nonatomic, retain) _TtC4WiMP20SonosQueueItemWindow *window; // @synthesize window;
-@property(nonatomic, copy) NSString *itemId; // @synthesize itemId;
-@property(nonatomic, copy) NSString *queueBaseUrl; // @synthesize queueBaseUrl;
 
 @end
 

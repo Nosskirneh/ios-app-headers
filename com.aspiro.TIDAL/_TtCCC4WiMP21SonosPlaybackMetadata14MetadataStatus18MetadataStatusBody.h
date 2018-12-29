@@ -6,8 +6,6 @@
 
 #import "_TtC4WiMP13SonosBaseBody.h"
 
-@class _TtC4WiMP14SonosContainer, _TtC4WiMP14SonosQueueItem;
-
 @interface _TtCCC4WiMP21SonosPlaybackMetadata14MetadataStatus18MetadataStatusBody : _TtC4WiMP13SonosBaseBody
 {
     // Error parsing type: , name: container
@@ -16,12 +14,7 @@
 }
 
 - (CDUnknownBlockType).cxx_destruct;
-- (id)getParameterTypes;
-- (id)initWithContainer:(id)arg1 currentItem:(id)arg2 nextItem:(id)arg3;
 - (id)init;
-@property(nonatomic, retain) _TtC4WiMP14SonosQueueItem *nextItem; // @synthesize nextItem;
-@property(nonatomic, retain) _TtC4WiMP14SonosQueueItem *currentItem; // @synthesize currentItem;
-@property(nonatomic, retain) _TtC4WiMP14SonosContainer *container; // @synthesize container;
 
 @end
 

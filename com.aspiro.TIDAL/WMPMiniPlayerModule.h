@@ -6,7 +6,7 @@
 
 #import <UIKit/UIViewController.h>
 
-@class NSLayoutConstraint, NSNumber, UIActivityIndicatorView, UIButton, UIImageView, UILabel, UIProgressView, UIView, UIVisualEffectView;
+@class NSDictionary, NSLayoutConstraint, UIActivityIndicatorView, UIButton, UIImageView, UILabel, UIProgressView, UIView, UIVisualEffectView;
 @protocol WMPPlaybackDelegate;
 
 @interface WMPMiniPlayerModule : UIViewController
@@ -26,13 +26,13 @@
     UIImageView *_hifiImageView;
     NSLayoutConstraint *_imageModuleWidthConstraint;
     UIActivityIndicatorView *_activityIndicatorView;
-    NSNumber *_currentTrackDuration;
+    NSDictionary *_currentMediaItemInfo;
     UIVisualEffectView *_blurryBackgroundView;
 }
 
 + (id)getInstance;
 @property(retain, nonatomic) UIVisualEffectView *blurryBackgroundView; // @synthesize blurryBackgroundView=_blurryBackgroundView;
-@property(retain, nonatomic) NSNumber *currentTrackDuration; // @synthesize currentTrackDuration=_currentTrackDuration;
+@property(retain, nonatomic) NSDictionary *currentMediaItemInfo; // @synthesize currentMediaItemInfo=_currentMediaItemInfo;
 @property(nonatomic) __weak UIActivityIndicatorView *activityIndicatorView; // @synthesize activityIndicatorView=_activityIndicatorView;
 @property(nonatomic) __weak NSLayoutConstraint *imageModuleWidthConstraint; // @synthesize imageModuleWidthConstraint=_imageModuleWidthConstraint;
 @property(nonatomic) __weak UIImageView *hifiImageView; // @synthesize hifiImageView=_hifiImageView;
@@ -51,7 +51,7 @@
 - (void).cxx_destruct;
 - (void)handleSwipeFrom:(id)arg1;
 - (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
-- (void)refreshForwardButton:(id)arg1;
+- (void)refreshForwardButton;
 - (void)refreshRepeatButton;
 - (void)refreshShuffleButton:(id)arg1;
 - (void)didTapQueueButton:(id)arg1;
@@ -69,6 +69,9 @@
 - (void)refreshButtonsStates;
 - (void)setHifiImageViewState:(long long)arg1;
 - (void)handlePlaybackQualityChangedNotification:(id)arg1;
+- (void)repeatModeDidChange:(id)arg1;
+- (void)shuffleStateDidChange:(id)arg1;
+- (id)currentMediaItemDuration;
 - (void)elapsedTimeNotification:(id)arg1;
 - (void)currentMediaItemNotification:(id)arg1;
 - (void)playbackChangedNotification:(id)arg1;
@@ -79,8 +82,8 @@
 - (void)showProgressAnimator;
 - (void)setupBlurryBackgroundView;
 - (void)configureIcons;
+- (void)addObservers;
 - (void)viewDidLoad;
-- (void)dealloc;
 
 @end
 

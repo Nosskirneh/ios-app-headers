@@ -4,7 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 #import "FBSDKCopying-Protocol.h"
 #import "NSSecureCoding-Protocol.h"
@@ -24,6 +24,7 @@
 
 + (_Bool)supportsSecureCoding;
 + (void)refreshCurrentAccessToken:(CDUnknownBlockType)arg1;
++ (_Bool)currentAccessTokenIsActive;
 + (void)setCurrentAccessToken:(id)arg1;
 + (id)currentAccessToken;
 @property(readonly, copy, nonatomic) NSString *userID; // @synthesize userID=_userID;
@@ -40,6 +41,7 @@
 - (_Bool)isEqualToAccessToken:(id)arg1;
 - (_Bool)isEqual:(id)arg1;
 @property(readonly) unsigned long long hash;
+@property(readonly, nonatomic, getter=isExpired) _Bool expired;
 - (_Bool)hasGranted:(id)arg1;
 - (id)initWithTokenString:(id)arg1 permissions:(id)arg2 declinedPermissions:(id)arg3 appID:(id)arg4 userID:(id)arg5 expirationDate:(id)arg6 refreshDate:(id)arg7;
 - (id)init;

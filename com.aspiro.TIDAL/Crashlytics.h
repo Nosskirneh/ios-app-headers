@@ -4,7 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 #import "CLSBetaControllerDelegate-Protocol.h"
 #import "CLSCrashReportingControllerDelegate-Protocol.h"
@@ -36,6 +36,7 @@
 + (id)startWithAPIKey:(id)arg1 afterDelay:(double)arg2;
 + (id)startWithAPIKey:(id)arg1 delegate:(id)arg2;
 + (id)startWithAPIKey:(id)arg1;
++ (void)disableUninitializedKitMessaging;
 + (void)initializeIfNeeded;
 + (id)kitBuildVersion;
 + (id)kitDisplayVersion;

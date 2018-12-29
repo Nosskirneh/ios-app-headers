@@ -9,30 +9,34 @@
 #import "WMPLoginServiceDelegate-Protocol.h"
 #import "WMPLoginViewControllerDelegate-Protocol.h"
 
-@class NSString, UIImageView, UIView, WMPInformationCarouselViewController, WMPLoginService, WMPMainScene, _TtC4WiMP18SprintSignupModule, _TtC4WiMP19RoundedCornerButton;
+@class NSDictionary, NSString, UIImageView, UIView, WMPInformationCarouselViewController, WMPLoginService, WMPMainScene, _TtC4WiMP16VivoSignupModule, _TtC4WiMP18SprintSignupModule, _TtC4WiMP19RoundedCornerButton;
 
 @interface WMPLoginModule : UIViewController <WMPLoginViewControllerDelegate, WMPLoginServiceDelegate>
 {
-    _Bool _viewHasAppearedBefore;
+    _Bool _showLoginScreenOnViewWillAppear;
     UIView *_informationCarouselContainerView;
     UIImageView *_logoImageView;
     _TtC4WiMP19RoundedCornerButton *_loginButton;
     _TtC4WiMP19RoundedCornerButton *_signupButton;
+    NSDictionary *_eventMetadata;
     WMPLoginService *_loginService;
     WMPInformationCarouselViewController *_informationCarouselViewController;
     UIViewController *_loginSignupViewController;
     WMPMainScene *_mainScene;
     _TtC4WiMP18SprintSignupModule *_sprintSignupModule;
+    _TtC4WiMP16VivoSignupModule *_vivoSignupModule;
     id _activationObserver;
 }
 
 @property(retain, nonatomic) id activationObserver; // @synthesize activationObserver=_activationObserver;
-@property(nonatomic) _Bool viewHasAppearedBefore; // @synthesize viewHasAppearedBefore=_viewHasAppearedBefore;
+@property(nonatomic) _Bool showLoginScreenOnViewWillAppear; // @synthesize showLoginScreenOnViewWillAppear=_showLoginScreenOnViewWillAppear;
+@property(retain, nonatomic) _TtC4WiMP16VivoSignupModule *vivoSignupModule; // @synthesize vivoSignupModule=_vivoSignupModule;
 @property(retain, nonatomic) _TtC4WiMP18SprintSignupModule *sprintSignupModule; // @synthesize sprintSignupModule=_sprintSignupModule;
 @property(retain, nonatomic) WMPMainScene *mainScene; // @synthesize mainScene=_mainScene;
 @property(retain, nonatomic) UIViewController *loginSignupViewController; // @synthesize loginSignupViewController=_loginSignupViewController;
 @property(retain, nonatomic) WMPInformationCarouselViewController *informationCarouselViewController; // @synthesize informationCarouselViewController=_informationCarouselViewController;
 @property(retain, nonatomic) WMPLoginService *loginService; // @synthesize loginService=_loginService;
+@property(copy, nonatomic) NSDictionary *eventMetadata; // @synthesize eventMetadata=_eventMetadata;
 @property(retain, nonatomic) _TtC4WiMP19RoundedCornerButton *signupButton; // @synthesize signupButton=_signupButton;
 @property(retain, nonatomic) _TtC4WiMP19RoundedCornerButton *loginButton; // @synthesize loginButton=_loginButton;
 @property(nonatomic) __weak UIImageView *logoImageView; // @synthesize logoImageView=_logoImageView;
@@ -43,16 +47,21 @@
 - (void)userFailedToLogInWithTwitterWithSubstatusError:(long long)arg1;
 - (void)userFailedToLogInWithFacebookWithSubstatusError:(long long)arg1;
 - (void)userFailedToLogInWithSubstatusError:(long long)arg1;
-- (void)userDidLoggedIn;
+- (void)userDidLogIn;
 - (void)setLoadingViewHidden:(_Bool)arg1;
 - (void)loginWithFacebook;
 - (void)loginWithUsername;
 - (void)setUpAndDisplayInformationCarousel;
-- (void)showSprintWelcomeScreenForSubscriber:(id)arg1 product:(id)arg2;
+- (void)attemptLoginWithToken:(id)arg1;
+- (void)dismissVivoSignupAndLoginWithToken:(id)arg1;
+- (void)showVivoScreenWithSignupURL:(id)arg1;
+- (void)showVivoDialogWithSignupURL:(id)arg1;
+- (void)showSprintWelcomeScreenForSubscriber:(id)arg1 socId:(id)arg2 productId:(id)arg3 offerTitle:(id)arg4 offerHeader:(id)arg5 offerIngress:(id)arg6 offerText:(id)arg7;
+- (void)ShowSignupScreen;
 - (void)showDefaultScreen;
 - (void)showSprintScreenOrDefaultScreen;
 - (void)hidePresentingLoginViewController;
-- (void)finalizeCredentialsWhenPossible;
+- (void)showSetUserNameDialogIfNeeded;
 - (void)showMenuModuleInController:(id)arg1;
 - (void)openHomeScene;
 - (void)setupViews;

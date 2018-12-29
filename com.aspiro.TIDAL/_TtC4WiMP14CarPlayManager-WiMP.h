@@ -6,12 +6,7 @@
 
 #import "_TtC4WiMP14CarPlayManager.h"
 
-#import "MPPlayableContentDataSource-Protocol.h"
-
-@interface _TtC4WiMP14CarPlayManager (WiMP) <MPPlayableContentDataSource>
-- (void)handleUserIsLoggedOutAt:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
-- (void)beginLoadingChildItemsAtIndexPath:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
-- (id)contentItemAtIndexPath:(id)arg1;
-- (long long)numberOfChildItemsAtIndexPath:(id)arg1;
+@interface _TtC4WiMP14CarPlayManager (WiMP)
+- (void)offlineModeDidChange:(id)arg1;
 @end
 

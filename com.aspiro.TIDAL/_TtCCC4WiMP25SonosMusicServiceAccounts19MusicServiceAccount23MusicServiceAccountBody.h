@@ -18,7 +18,6 @@
 }
 
 - (CDUnknownBlockType).cxx_destruct;
-- (id)getParameterTypes;
 - (void)setValue:(id)arg1 forUndefinedKey:(id)arg2;
 - (id)init;
 @property(nonatomic, retain) _TtC4WiMP12SonosService *service; // @synthesize service;

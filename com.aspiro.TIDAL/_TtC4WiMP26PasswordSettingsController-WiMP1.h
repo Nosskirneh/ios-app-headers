@@ -9,6 +9,6 @@
 @interface _TtC4WiMP26PasswordSettingsController (WiMP1)
 - (void)userFailedToLogInWithSubstatusError:(long long)arg1;
 - (void)userFailedToLogin;
-- (void)userDidLoggedIn;
+- (void)userDidLogIn;
 @end
 

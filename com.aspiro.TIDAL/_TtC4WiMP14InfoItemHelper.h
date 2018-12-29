@@ -4,9 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
-
-@class NSDictionary;
+#import <objc/NSObject.h>
 
 @interface _TtC4WiMP14InfoItemHelper : NSObject
 {
@@ -14,20 +12,9 @@
     // Error parsing type: , name: infoItemTopMargin
     // Error parsing type: , name: markup
     // Error parsing type: , name: defaultCellHeight
-    // Error parsing type: , name: defaultCreditAttributes
 }
 
-- (CDUnknownBlockType).cxx_destruct;
 - (id)init;
-- (double)cellHeightForItemValue:(id)arg1 constrainedToWidth:(double)arg2;
-- (id)getPlaylistDescription:(id)arg1;
-- (id)getAlbumDescription:(id)arg1;
-- (void)appendBioSourceIfPresent:(id)arg1 bio:(id)arg2;
-- (id)createArtistBio:(id)arg1;
-@property(nonatomic, readonly) NSDictionary *defaultCreditAttributes; // @synthesize defaultCreditAttributes;
-@property(nonatomic, readonly) double defaultCellHeight; // @synthesize defaultCellHeight;
-@property(nonatomic, readonly) double infoItemTopMargin; // @synthesize infoItemTopMargin;
-@property(nonatomic, readonly) double infoItemMargin; // @synthesize infoItemMargin;
 
 @end
 

@@ -4,7 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 @class FABApplicationIdentiferModel, FABSettingsOnboardingManager, NSArray, NSDictionary, NSString;
 
@@ -21,19 +21,23 @@
     FABSettingsOnboardingManager *_settingsAndOnboardingManager;
     FABApplicationIdentiferModel *_applicationIdentifierModel;
     unsigned long long _installationMode;
+    NSString *_firebaseGoogleAppId;
 }
 
 + (void)load;
 + (id)configurationDictionaryForKitClass:(Class)arg1;
 + (void)initializeKit:(Class)arg1;
++ (void)disableUninitializedKitMessagingForKit:(Class)arg1;
 + (id)kitClassesByAddingAdMobIfFound:(id)arg1;
 + (id)kitClassesByEnsuringAppseeIsFirst:(id)arg1;
 + (id)kitClassesByAddingAnswersIfFound:(id)arg1;
 + (id)kitClassesByAddingDigitsIfFound:(id)arg1;
++ (_Bool)isAutomaticDataCollectionEnabled;
 + (void)validateFABKitConformance:(id)arg1;
 + (id)convertToKitClassesIfNeeded:(id)arg1;
 + (id)with:(id)arg1;
 + (id)sharedSDK;
+@property(copy, nonatomic) NSString *firebaseGoogleAppId; // @synthesize firebaseGoogleAppId=_firebaseGoogleAppId;
 @property(nonatomic) unsigned long long installationMode; // @synthesize installationMode=_installationMode;
 @property(readonly, nonatomic) FABApplicationIdentiferModel *applicationIdentifierModel; // @synthesize applicationIdentifierModel=_applicationIdentifierModel;
 @property(retain, nonatomic) FABSettingsOnboardingManager *settingsAndOnboardingManager; // @synthesize settingsAndOnboardingManager=_settingsAndOnboardingManager;

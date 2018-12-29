@@ -4,9 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
-
-@class NSString;
+#import <objc/NSObject.h>
 
 @interface _TtC4WiMP9SonosItem : NSObject
 {
@@ -16,9 +14,7 @@
 
 - (CDUnknownBlockType).cxx_destruct;
 - (id)init;
-- (id)getParameterTypes;
 - (void)setValue:(id)arg1 forUndefinedKey:(id)arg2;
-@property(nonatomic, copy) NSString *id; // @synthesize id;
 
 @end
 

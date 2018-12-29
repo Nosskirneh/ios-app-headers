@@ -7,6 +7,7 @@
 #import "_TtC4WiMP18SprintSignupModule.h"
 
 @interface _TtC4WiMP18SprintSignupModule (WiMP)
-- (_Bool)textView:(id)arg1 shouldInteractWithURL:(id)arg2 inRange:(struct _NSRange)arg3;
+- (void)didTapCancelButton;
+- (void)didTapAcceptButton;
 @end
 

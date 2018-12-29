@@ -6,8 +6,6 @@
 
 #import "_TtC4WiMP13SonosBaseBody.h"
 
-@class _TtC4WiMP14SonosContainer, _TtC4WiMP27SonosUniversalMusicObjectId;
-
 @interface _TtCCC4WiMP20SonosPlaybackSession19LoadProgrammedRadio23LoadProgrammedRadioBody : _TtC4WiMP13SonosBaseBody
 {
     // Error parsing type: , name: stationId
@@ -16,11 +14,8 @@
 }
 
 - (CDUnknownBlockType).cxx_destruct;
-- (id)getParameterTypes;
 - (void)setValue:(id)arg1 forUndefinedKey:(id)arg2;
 - (id)init;
-@property(nonatomic, retain) _TtC4WiMP14SonosContainer *stationMetadata; // @synthesize stationMetadata;
-@property(nonatomic, retain) _TtC4WiMP27SonosUniversalMusicObjectId *stationId; // @synthesize stationId;
 
 @end
 

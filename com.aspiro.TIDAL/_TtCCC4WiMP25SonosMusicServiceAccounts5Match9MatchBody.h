@@ -6,8 +6,6 @@
 
 #import "_TtC4WiMP13SonosBaseBody.h"
 
-@class NSString;
-
 @interface _TtCCC4WiMP25SonosMusicServiceAccounts5Match9MatchBody : _TtC4WiMP13SonosBaseBody
 {
     // Error parsing type: , name: userIdHashCode
@@ -17,12 +15,7 @@
 }
 
 - (CDUnknownBlockType).cxx_destruct;
-- (id)initWithUserIdHashCode:(id)arg1 nickname:(id)arg2 serviceId:(id)arg3 linkCode:(id)arg4;
 - (id)init;
-@property(nonatomic, copy) NSString *linkCode; // @synthesize linkCode;
-@property(nonatomic, copy) NSString *serviceId; // @synthesize serviceId;
-@property(nonatomic, copy) NSString *nickname; // @synthesize nickname;
-@property(nonatomic, copy) NSString *userIdHashCode; // @synthesize userIdHashCode;
 
 @end
 

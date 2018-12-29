@@ -20,7 +20,6 @@
 - (CDUnknownBlockType).cxx_destruct;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithFrame:(struct CGRect)arg1;
-- (void)configureWith:(id)arg1;
 - (void)awakeFromNib;
 @property(nonatomic) __weak UILabel *albumArtistLabel; // @synthesize albumArtistLabel;
 @property(nonatomic) __weak UILabel *albumTitleLabel; // @synthesize albumTitleLabel;

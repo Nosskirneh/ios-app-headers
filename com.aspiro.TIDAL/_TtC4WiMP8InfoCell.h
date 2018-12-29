@@ -20,7 +20,6 @@
 - (id)initWithStyle:(long long)arg1 reuseIdentifier:(id)arg2;
 - (void)drawRect:(struct CGRect)arg1;
 - (void)awakeFromNib;
-@property(nonatomic) _Bool displayBorder; // @synthesize displayBorder;
 @property(nonatomic) __weak _TtC4WiMP9LinkLabel *valueLabel; // @synthesize valueLabel;
 @property(nonatomic) __weak _TtC4WiMP15TopAlignedLabel *keyLabel; // @synthesize keyLabel;
 

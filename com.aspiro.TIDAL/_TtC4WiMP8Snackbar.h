@@ -6,8 +6,6 @@
 
 #import <UIKit/UIView.h>
 
-@class NSArray, NSString, NSTimer, UIButton, UIImageView, UILabel;
-
 @interface _TtC4WiMP8Snackbar : UIView
 {
     // Error parsing type: , name: kVerticalPadding
@@ -28,28 +26,12 @@
     // Error parsing type: , name: dismissTimer
 }
 
-+ (double)defaultDuration;
 - (CDUnknownBlockType).cxx_destruct;
 - (id)initWithFrame:(struct CGRect)arg1;
-- (void)dismissWithAnimated:(_Bool)arg1;
 - (void)didTapToDismiss;
 - (void)timeOut;
-- (void)show;
-- (void)showIn:(id)arg1;
 - (void)buttonPressed:(id)arg1;
 - (id)initWithCoder:(id)arg1;
-@property(nonatomic, retain) NSTimer *dismissTimer; // @synthesize dismissTimer;
-@property(nonatomic, copy) NSArray *constraintsWithSuperview; // @synthesize constraintsWithSuperview;
-@property(nonatomic, copy) NSString *actionText; // @synthesize actionText;
-@property(nonatomic, copy) NSString *message; // @synthesize message;
-@property(nonatomic, copy) NSString *title; // @synthesize title;
-@property(nonatomic, retain) UIButton *actionButton; // @synthesize actionButton;
-@property(nonatomic, retain) UIImageView *errorImageView; // @synthesize errorImageView;
-@property(nonatomic, retain) UILabel *messageLabel; // @synthesize messageLabel;
-@property(nonatomic, copy) CDUnknownBlockType actionBlock; // @synthesize actionBlock;
-@property(nonatomic, readonly) double kErrorIconWidth; // @synthesize kErrorIconWidth;
-@property(nonatomic, readonly) double kHorizontalPadding; // @synthesize kHorizontalPadding;
-@property(nonatomic, readonly) double kVerticalPadding; // @synthesize kVerticalPadding;
 
 @end
 

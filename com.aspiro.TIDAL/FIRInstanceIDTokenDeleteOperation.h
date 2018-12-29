@@ -12,7 +12,7 @@
 
 - (void)handleResponseWithData:(id)arg1 response:(id)arg2 error:(id)arg3;
 - (void)performTokenOperation;
-- (id)initWithScope:(id)arg1 checkinPreferences:(id)arg2 keyPair:(id)arg3 action:(long long)arg4;
+- (id)initWithAuthorizedEntity:(id)arg1 scope:(id)arg2 checkinPreferences:(id)arg3 keyPair:(id)arg4 action:(long long)arg5;
 
 @end
 

@@ -8,12 +8,13 @@
 
 @interface _TtC4WiMP29OfflineClientDetailController : WMPAbstractScene
 {
+    // Error parsing type: , name: pageTitle
     // Error parsing type: , name: client
     // Error parsing type: , name: type
+    // Error parsing type: , name: restoreButton
     // Error parsing type: , name: sectionInfo.storage
     // Error parsing type: , name: tableConfigurer.storage
     // Error parsing type: , name: tableView.storage
-    // Error parsing type: , name: restoreButton
 }
 
 - (CDUnknownBlockType).cxx_destruct;

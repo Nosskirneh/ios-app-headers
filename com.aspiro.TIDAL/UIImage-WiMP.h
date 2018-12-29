@@ -7,6 +7,7 @@
 #import <UIKit/UIImage.h>
 
 @interface UIImage (WiMP)
-- (id)imageByAddingBorderWithBorderWidth:(double)arg1 borderColor:(id)arg2;
+- (id)resizeImageWith:(struct CGSize)arg1 apply:(id)arg2;
+- (id)cropRectangleToSquareWith:(double)arg1 height:(double)arg2;
 @end
 

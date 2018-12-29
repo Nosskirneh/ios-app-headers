@@ -7,6 +7,6 @@
 #import "_TtC4WiMP13WelcomeDialog.h"
 
 @interface _TtC4WiMP13WelcomeDialog (WiMP)
-- (void)show;
+- (void)continueButtonPressed:(id)arg1;
 @end
 

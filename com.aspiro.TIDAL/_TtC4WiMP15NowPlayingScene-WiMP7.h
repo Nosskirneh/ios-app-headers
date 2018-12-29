@@ -6,7 +6,12 @@
 
 #import "_TtC4WiMP15NowPlayingScene.h"
 
-@interface _TtC4WiMP15NowPlayingScene (WiMP7)
-+ (long long)currentMediaItemType;
+#import "_TtP4WiMP21IMAdsPlaybackDelegate_-Protocol.h"
+
+@interface _TtC4WiMP15NowPlayingScene (WiMP7) <_TtP4WiMP21IMAdsPlaybackDelegate_>
+- (id)webOpenerPresentingController;
+- (id)adsPlayerView;
+- (void)adsPlaybackWillEnd;
+- (void)adsPlaybackWillBegin;
 @end
 

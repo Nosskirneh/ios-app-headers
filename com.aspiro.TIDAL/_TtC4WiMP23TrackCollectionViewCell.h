@@ -19,7 +19,6 @@
 - (CDUnknownBlockType).cxx_destruct;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithFrame:(struct CGRect)arg1;
-- (void)configureWith:(id)arg1;
 - (void)awakeFromNib;
 @property(nonatomic) __weak UILabel *trackArtistLabel; // @synthesize trackArtistLabel;
 @property(nonatomic) __weak UILabel *trackTitleLabel; // @synthesize trackTitleLabel;

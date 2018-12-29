@@ -10,7 +10,6 @@
 {
 }
 
-+ (id)shared;
 - (CDUnknownBlockType).cxx_destruct;
 - (void)removeFromSuperview;
 - (id)initWithCoder:(id)arg1;

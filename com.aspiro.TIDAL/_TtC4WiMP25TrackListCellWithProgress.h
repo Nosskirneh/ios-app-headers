@@ -7,9 +7,11 @@
 #import "WMPTrackListCell.h"
 
 @class NSDate, NSLayoutConstraint, NSString, UIImageView, UILabel, _TtC4WiMP20ProgressIndicatorPie;
+@protocol _TtP4WiMP27PlayQueueSourceCellDelegate_;
 
 @interface _TtC4WiMP25TrackListCellWithProgress : WMPTrackListCell
 {
+    // Error parsing type: , name: delegate
     // Error parsing type: , name: progressView
     // Error parsing type: , name: subtitleLeftToVideoIconConstraint
     // Error parsing type: , name: subtitleLeftToEditedIconConstraint
@@ -21,8 +23,10 @@
     // Error parsing type: , name: trackArtist
     // Error parsing type: , name: releaseDurationLabel
     // Error parsing type: , name: progressObserver
+    // Error parsing type: , name: playQueuePositionObserver
     // Error parsing type: , name: releaseDateText
     // Error parsing type: , name: itemIdentifier
+    // Error parsing type: , name: playlistItemUuid
     // Error parsing type: , name: itemReleaseDate
     // Error parsing type: , name: isStreamable
     // Error parsing type: , name: isPlaying
@@ -46,6 +50,7 @@
 @property(nonatomic) _Bool isPlaying; // @synthesize isPlaying;
 @property(nonatomic) _Bool isStreamable; // @synthesize isStreamable;
 @property(nonatomic, retain) NSDate *itemReleaseDate; // @synthesize itemReleaseDate;
+@property(nonatomic, copy) NSString *playlistItemUuid; // @synthesize playlistItemUuid;
 @property(nonatomic, copy) NSString *itemIdentifier; // @synthesize itemIdentifier;
 @property(nonatomic, retain) UILabel *releaseDurationLabel; // @synthesize releaseDurationLabel;
 @property(nonatomic, retain) UILabel *trackArtist; // @synthesize trackArtist;
@@ -57,6 +62,7 @@
 @property(nonatomic, retain) NSLayoutConstraint *subtitleLeftToEditedIconConstraint; // @synthesize subtitleLeftToEditedIconConstraint;
 @property(nonatomic, retain) NSLayoutConstraint *subtitleLeftToVideoIconConstraint; // @synthesize subtitleLeftToVideoIconConstraint;
 @property(nonatomic, retain) _TtC4WiMP20ProgressIndicatorPie *progressView; // @synthesize progressView;
+@property(nonatomic) __weak id <_TtP4WiMP27PlayQueueSourceCellDelegate_> delegate; // @synthesize delegate;
 
 @end
 

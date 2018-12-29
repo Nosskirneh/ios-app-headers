@@ -4,7 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 @interface _TtC4WiMP20SonosMediaController : NSObject
 {
@@ -15,10 +15,8 @@
     // Error parsing type: , name: scrubbing
 }
 
-+ (id)PlaybackQualityNotification;
 - (CDUnknownBlockType).cxx_destruct;
 - (void)onElapsedTimeTimer;
-- (id)initWithLastElapsedTime:(double)arg1;
 - (id)init;
 - (void)dealloc;
 

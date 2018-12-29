@@ -7,7 +7,14 @@
 #import "_TtC4WiMP11PlayerScene.h"
 
 @interface _TtC4WiMP11PlayerScene (WiMP2)
-- (void)didTapArtistLabel:(id)arg1;
-- (void)didTapMediaItemLabel:(id)arg1;
+- (void)playPreviousItem;
+- (void)playNextItem;
+- (void)seekToTime:(double)arg1;
+- (void)didPressRepeatButton;
+- (void)didPressShuffleButton;
+- (void)didPressVideoQualitiesButton;
+- (void)didPressNextButton;
+- (void)didPressBackButton;
+- (void)didPressPlayButton;
 @end
 

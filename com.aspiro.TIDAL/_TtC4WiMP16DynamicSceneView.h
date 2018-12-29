@@ -6,27 +6,26 @@
 
 #import "WMPAbstractScene.h"
 
-@class UIScrollView, _TtC4WiMP18DynamicSceneLoader;
+@class _TtC4WiMP18DynamicSceneLoader;
 
 @interface _TtC4WiMP16DynamicSceneView : WMPAbstractScene
 {
     // Error parsing type: , name: scrollView
+    // Error parsing type: , name: singleView
     // Error parsing type: , name: dataSource
     // Error parsing type: , name: dynamicSceneData
-    // Error parsing type: , name: headerTitle
-    // Error parsing type: , name: viewIsVisible
+    // Error parsing type: , name: isSingleModuleScene
     // Error parsing type: , name: dynamicSceneBuilder.storage
 }
 
 - (CDUnknownBlockType).cxx_destruct;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;
+- (id)contentNotAvailableMessage;
 - (void)viewWillTransitionToSize:(struct CGSize)arg1 withTransitionCoordinator:(id)arg2;
-- (void)viewDidDisappear:(_Bool)arg1;
 - (void)viewDidAppear:(_Bool)arg1;
 - (void)viewDidLoad;
 @property(nonatomic, retain) _TtC4WiMP18DynamicSceneLoader *dataSource; // @synthesize dataSource;
-@property(nonatomic, readonly) UIScrollView *scrollView; // @synthesize scrollView;
 
 @end
 

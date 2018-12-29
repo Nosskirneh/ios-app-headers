@@ -4,7 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 #import "AudioPlayerDelegate-Protocol.h"
 #import "EncryptionManagerDelegate-Protocol.h"
@@ -32,12 +32,14 @@
     long long _streamEncoding;
     UIImageView *_artworkImageView;
     WMPPlayReportService *_playReportService;
+    NSString *_currentlyLoadingMediaItemUuid;
     id _offlineModeObserver;
 }
 
 + (id)sharedInstance;
 @property(retain, nonatomic) id offlineModeObserver; // @synthesize offlineModeObserver=_offlineModeObserver;
 @property(nonatomic) _Bool replayTrackInNormalQuality; // @synthesize replayTrackInNormalQuality=_replayTrackInNormalQuality;
+@property(copy, nonatomic) NSString *currentlyLoadingMediaItemUuid; // @synthesize currentlyLoadingMediaItemUuid=_currentlyLoadingMediaItemUuid;
 @property(retain, nonatomic) WMPPlayReportService *playReportService; // @synthesize playReportService=_playReportService;
 @property(retain, nonatomic) UIImageView *artworkImageView; // @synthesize artworkImageView=_artworkImageView;
 @property(nonatomic) _Bool playbackWasInterrupted; // @synthesize playbackWasInterrupted=_playbackWasInterrupted;
@@ -49,9 +51,11 @@
 - (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
 - (_Bool)started;
 - (double)secondsElapsed;
+- (_Bool)isInterrupted;
 - (_Bool)isPaused;
 - (_Bool)isPlaying;
 - (double)timeElapsed;
+- (void)mediaItemFromPlayQueueItem:(id)arg1 callback:(CDUnknownBlockType)arg2;
 - (void)handleTrackCutWasUpdatedNotification:(id)arg1;
 - (void)handleAudioSessionRouteChange;
 - (void)resetPreloadedItem;
@@ -65,8 +69,8 @@
 - (void)encryptionManagerDidDecryptItem:(id)arg1 itemUrl:(id)arg2;
 - (void)resumePlayingVideoWithQualityUrl:(id)arg1;
 - (id)getOriginatingPlaylistUuidForItemUuid:(id)arg1;
-- (void)prepareItemToPlay:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
-- (void)getURLAndPrepareMediaItemToPlay:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
+- (void)prepareItemToPlay:(id)arg1 sessionStartAction:(CDUnknownBlockType)arg2 playbackSessionId:(id)arg3 completionBlock:(CDUnknownBlockType)arg4;
+- (void)getURLAndPrepareMediaItemToPlay:(id)arg1 sessionStartAction:(CDUnknownBlockType)arg2 playbackSessionId:(id)arg3 completionBlock:(CDUnknownBlockType)arg4;
 - (void)preloadNextTrackAndCrossfadeTrackIndex;
 - (void)handleCrossfadeEffect:(double)arg1;
 - (_Bool)allowToPlayInBasicSubscription;
@@ -84,9 +88,6 @@
 - (void)audioPlayerDidLostNetworkConnection;
 - (void)updateElapsedTime:(double)arg1;
 - (void)audioPlayerWillStartPrebuffering;
-- (_Bool)shouldUseCacheForMediaItem:(id)arg1;
-- (_Bool)shouldCacheItem:(id)arg1 withAudioEncoding:(long long)arg2;
-- (void)crossfadeDidFinish;
 - (void)audioPlayerIsFullyBuffered;
 - (void)audioPlayerDidFailWithError:(id)arg1;
 - (void)cleanNextPreloadedTrackInfo;
@@ -97,8 +98,9 @@
 - (void)preloadAndStartAudioPlayerWithURL:(id)arg1 andItem:(id)arg2 streamEncoding:(long long)arg3;
 - (void)updateStreamEncoding:(long long)arg1;
 - (_Bool)shouldRewindToBeginningOfTrack;
+- (void)checkIfPossibleToStream:(id)arg1 showMessageIfNoStreamPossible:(_Bool)arg2 callback:(CDUnknownBlockType)arg3;
 - (_Bool)checkAndHandleNotPossibleStreamingCase:(id)arg1;
-- (void)handleTrackPreloadingError:(id)arg1;
+- (void)handlePreloadingError:(id)arg1;
 - (void)preloadAndStartPlayMediaItem:(id)arg1;
 - (void)seekToTime:(double)arg1 forcePlay:(_Bool)arg2;
 - (void)seekToTime:(double)arg1;
@@ -120,7 +122,19 @@
 - (void)dealloc;
 - (void)configureAudioSession;
 - (id)init;
+- (void)reportPlayStop:(id)arg1 playbackSessionId:(id)arg2 elapsedTime:(float)arg3;
+- (void)reportPlayStart:(id)arg1 playbackSessionId:(id)arg2 elapsedTime:(float)arg3;
+- (void)reportPlaybackStatisticOnErrorWithPlaybackSessionId:(id)arg1 for:(id)arg2 playbackStartup:(id)arg3 bufferInfos:(id)arg4;
+- (void)reportPlaybackStatisticOnEndWithPlaybackSessionId:(id)arg1 for:(id)arg2 playbackStartup:(id)arg3 bufferInfos:(id)arg4;
+- (void)reportPlaybackStatisticOnSkipWithPlaybackSessionId:(id)arg1 for:(id)arg2 playbackStartup:(id)arg3 bufferInfos:(id)arg4;
+- (void)reportStreamingStartWithPlaybackSessionId:(id)arg1 isCached:(_Bool)arg2 isDownloaded:(_Bool)arg3;
+- (void)reportPrefetchStatisticWithSessionId:(id)arg1 isError:(_Bool)arg2;
+- (void)reportStreamingSessionStartPrefetchWithSessionId:(id)arg1;
 - (void)reportPlayProgress;
+- (void)verifyStreamingPrivilegesFor:(id)arg1;
+- (_Bool)shouldUseCachedVersionOf:(id)arg1;
+- (_Bool)isDownloadedAndAllowedToPlayWithMediaItem:(id)arg1;
+- (void)reportPlaybackStateFor:(id)arg1;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

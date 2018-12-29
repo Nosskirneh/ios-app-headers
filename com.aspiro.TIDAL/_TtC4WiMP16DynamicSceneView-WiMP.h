@@ -7,6 +7,7 @@
 #import "_TtC4WiMP16DynamicSceneView.h"
 
 @interface _TtC4WiMP16DynamicSceneView (WiMP)
+- (void)updateModules;
 - (void)showNoConnectionView;
 - (void)refreshContent;
 - (void)showLoadingAnimation;

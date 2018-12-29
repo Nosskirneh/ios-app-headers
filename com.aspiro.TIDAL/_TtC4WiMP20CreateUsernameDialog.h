@@ -6,7 +6,7 @@
 
 #import <UIKit/UIViewController.h>
 
-@class UIButton, UIColor, UILabel, UIView, _TtC4WiMP20PlaceHolderTextField;
+@class UIButton, UILabel, UIView, _TtC4WiMP20PlaceHolderTextField;
 
 @interface _TtC4WiMP20CreateUsernameDialog : UIViewController
 {
@@ -36,7 +36,6 @@
 - (_Bool)textFieldShouldReturn:(id)arg1;
 - (void)didPressCancelButton:(id)arg1;
 - (void)didPressCreateUsernameButton:(id)arg1;
-- (void)setupText;
 - (void)viewDidLayoutSubviews;
 - (void)viewDidLoad;
 @property(nonatomic) __weak UIView *passwordLineView; // @synthesize passwordLineView;
@@ -50,12 +49,6 @@
 @property(nonatomic) __weak UILabel *titleLabel; // @synthesize titleLabel;
 @property(nonatomic) __weak UIView *buttonsView; // @synthesize buttonsView;
 @property(nonatomic) __weak UIView *topView; // @synthesize topView;
-@property(nonatomic, readonly) UIColor *errorColor; // @synthesize errorColor;
-@property(nonatomic, readonly) UIColor *validColor; // @synthesize validColor;
-@property(nonatomic, readonly) long long kPasswordTag; // @synthesize kPasswordTag;
-@property(nonatomic, readonly) long long kReEmailTag; // @synthesize kReEmailTag;
-@property(nonatomic, readonly) long long kEmailTag; // @synthesize kEmailTag;
-@property(nonatomic, readonly) long long kSuccessTag; // @synthesize kSuccessTag;
 
 @end
 

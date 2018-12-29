@@ -11,7 +11,6 @@
 }
 
 - (id)init;
-- (void)loadProgressWith:(id)arg1 callback:(CDUnknownBlockType)arg2;
 
 @end
 

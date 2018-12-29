@@ -8,7 +8,7 @@
 
 @protocol WMPLoginServiceDelegate <NSObject>
 - (void)userFailedToLogin;
-- (void)userDidLoggedIn;
+- (void)userDidLogIn;
 
 @optional
 - (void)userFailedToLogInWithTwitterWithSubstatusError:(long long)arg1;

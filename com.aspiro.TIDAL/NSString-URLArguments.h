@@ -7,6 +7,6 @@
 #import <Foundation/NSString.h>
 
 @interface NSString (URLArguments)
-- (id)fira_stringByUnescapingFromURLArgument;
+- (id)apm_stringByUnescapingFromURLArgument;
 @end
 

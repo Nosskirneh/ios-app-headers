@@ -14,7 +14,6 @@
 - (id)initWithCoder:(id)arg1;
 - (id)init;
 - (id)layoutAttributesForElementsInRect:(struct CGRect)arg1;
-@property(nonatomic) double cellSpacing; // @synthesize cellSpacing;
 
 @end
 

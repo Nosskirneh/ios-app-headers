@@ -11,19 +11,16 @@
 @interface _TtC4WiMP17AlbumHeaderModule : _TtC4WiMP11TitleModule
 {
     // Error parsing type: , name: dataProvider
-    // Error parsing type: , name: coverPayload.storage
-    // Error parsing type: , name: optionsBar.storage
+    // Error parsing type: , name: infoCreditsPresenter
+    // Error parsing type: , name: privateCoverPayloadInstance.storage
+    // Error parsing type: , name: privateOptionsBarInstance.storage
 }
 
 - (CDUnknownBlockType).cxx_destruct;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;
 - (_Bool)isOnboardingSupported:(long long)arg1;
-@property(nonatomic, retain) UIViewController *optionsBar;
-@property(nonatomic, retain) UIViewController *coverPayload;
-@property(nonatomic, readonly) double optionsHeight;
-@property(nonatomic, readonly) double coverHeight;
+@property(nonatomic, readonly) UIViewController *optionsBar;
 - (id)initWithCoder:(id)arg1;
-- (void)fetchAndSetupAlbumHeader;
 - (void)viewDidLoad;
 
 @end

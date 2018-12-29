@@ -4,15 +4,14 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
-@class NSCondition, NSError, NSException, NSMutableArray;
+@class NSCondition, NSError, NSMutableArray;
 
 @interface BFTask : NSObject
 {
     id _result;
     NSError *_error;
-    NSException *_exception;
     _Bool _cancelled;
     _Bool _faulted;
     _Bool _completed;
@@ -28,7 +27,6 @@
 + (id)taskForCompletionOfAllTasksWithResults:(id)arg1;
 + (id)taskForCompletionOfAllTasks:(id)arg1;
 + (id)cancelledTask;
-+ (id)taskWithException:(id)arg1;
 + (id)taskWithError:(id)arg1;
 + (id)taskWithResult:(id)arg1;
 @property(retain, nonatomic) NSMutableArray *callbacks; // @synthesize callbacks=_callbacks;
@@ -51,14 +49,11 @@
 - (id)continueWithExecutor:(id)arg1 withBlock:(CDUnknownBlockType)arg2;
 - (void)runContinuations;
 - (_Bool)trySetCancelled;
-- (_Bool)trySetException:(id)arg1;
-@property(readonly, nonatomic) NSException *exception;
 - (_Bool)trySetError:(id)arg1;
 @property(readonly, nonatomic) NSError *error;
 - (_Bool)trySetResult:(id)arg1;
 @property(readonly, nonatomic) id result;
 - (id)initCancelled;
-- (id)initWithException:(id)arg1;
 - (id)initWithError:(id)arg1;
 - (id)initWithResult:(id)arg1;
 - (id)init;

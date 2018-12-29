@@ -4,7 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 #import "WMPDownloadTaskDelegate-Protocol.h"
 
@@ -36,15 +36,15 @@
 - (void)removeAllContentAndInformBackend:(_Bool)arg1;
 - (void)removePlaylist:(id)arg1;
 - (void)removeAlbum:(id)arg1;
+- (void)removeFavoriteTracks;
 - (void)removeItemByObjectId:(id)arg1;
 - (_Bool)gotOfflineContent;
 - (void)addPlaylistToQueue:(id)arg1 notifyToStartDownload:(_Bool)arg2 notifyBadgeChange:(_Bool)arg3 informBackend:(_Bool)arg4 withDispatchGroup:(id)arg5;
 - (void)addAlbumToQueue:(id)arg1 notifyToStartDownload:(_Bool)arg2 notifyBadgeChange:(_Bool)arg3 informBackend:(_Bool)arg4 withDispatchGroup:(id)arg5;
+- (void)addFavoriteTracksToQueueWithNotify:(_Bool)arg1 notifyBadge:(_Bool)arg2;
 - (void)addMediaItemToQueueByObjectID:(id)arg1 notifyToStartDownload:(_Bool)arg2;
 - (void)setupQueue;
 - (id)init;
-- (void)didTapPlaylistDownloadWithPlaylistUuid:(id)arg1 offlineSwitch:(id)arg2 isOfflined:(_Bool)arg3;
-- (void)didTapAlbumDownloadWithAlbumId:(long long)arg1 offlineSwitch:(id)arg2 isOfflined:(_Bool)arg3 completionHandler:(CDUnknownBlockType)arg4;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

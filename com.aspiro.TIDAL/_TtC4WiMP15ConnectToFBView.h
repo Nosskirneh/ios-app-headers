@@ -18,15 +18,12 @@
     // Error parsing type: , name: dismissCallback
 }
 
-+ (double)getHeightWithConstraintTo:(double)arg1;
 - (CDUnknownBlockType).cxx_destruct;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithFrame:(struct CGRect)arg1;
 - (void)dismissDidPress:(id)arg1;
 - (void)connectDidPress:(id)arg1;
 - (void)awakeFromNib;
-@property(nonatomic, copy) CDUnknownBlockType dismissCallback; // @synthesize dismissCallback;
-@property(nonatomic, copy) CDUnknownBlockType connectCallback; // @synthesize connectCallback;
 @property(nonatomic) __weak UIButton *dismissButton; // @synthesize dismissButton;
 @property(nonatomic) __weak UIButton *connectButton; // @synthesize connectButton;
 @property(nonatomic) __weak UILabel *descriptionText; // @synthesize descriptionText;

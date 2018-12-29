@@ -4,7 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 #import "WMPTrackListModuleConfig-Protocol.h"
 
@@ -28,25 +28,25 @@
 @property(retain, nonatomic) WMPAlbumService *albumService; // @synthesize albumService=_albumService;
 @property(nonatomic) _Bool isObserving; // @synthesize isObserving=_isObserving;
 - (void).cxx_destruct;
+- (void)progress:(id)arg1;
 - (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
-- (void)updatePauseResumeButtonForStatus:(unsigned long long)arg1;
 - (void)removeObservers;
 - (void)addObservers;
 - (void)unregisterForNotifications;
 - (void)registerForNotifications;
-- (void)updateTopCell:(double)arg1;
-- (void)progress:(id)arg1;
 - (void)downloadButtonPressed:(id)arg1;
+- (void)updatePauseResumeButtonForStatus:(unsigned long long)arg1;
+- (void)updateTopCell:(double)arg1;
 - (void)updateDownloadButton:(id)arg1 isPaused:(_Bool)arg2;
 - (void)tableView:(id)arg1 willDisplayCell:(id)arg2 forRowAtIndexPath:(id)arg3;
-- (void)configureCell:(id)arg1 atIndexPath:(id)arg2 forObject:(id)arg3 inTableView:(id)arg4;
-- (id)noContentMessage;
-- (id)mediaItemFromManagedObject:(id)arg1;
-- (id)cellReuseIdentifierForManagedObject:(id)arg1;
 - (long long)type;
+- (void)configureCell:(id)arg1 atIndexPath:(id)arg2 forObject:(id)arg3 inTableView:(id)arg4;
+- (id)mediaItemFromManagedObject:(id)arg1;
+- (id)noContentMessage;
+- (id)cellReuseIdentifierForManagedObject:(id)arg1;
 - (id)fetchedResultsControllerForDelegate:(id)arg1;
-- (void)dealloc;
 - (id)initWithIdentifier:(id)arg1;
+- (void)dealloc;
 - (id)init;
 
 // Remaining properties

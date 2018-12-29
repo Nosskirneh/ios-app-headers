@@ -18,13 +18,8 @@
 - (void)didEndEditing;
 - (void)didStartEditing;
 - (void)valueChanged;
-- (void)addTargets;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithFrame:(struct CGRect)arg1;
-@property(nonatomic, copy) CDUnknownBlockType endEditingCallback; // @synthesize endEditingCallback;
-@property(nonatomic, copy) CDUnknownBlockType startEditingCallback; // @synthesize startEditingCallback;
-@property(nonatomic, copy) CDUnknownBlockType valueChangedCallback; // @synthesize valueChangedCallback;
-@property(nonatomic, copy) id model; // @synthesize model;
 
 @end
 

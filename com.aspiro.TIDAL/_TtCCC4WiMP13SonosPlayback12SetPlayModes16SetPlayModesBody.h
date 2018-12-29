@@ -6,18 +6,13 @@
 
 #import "_TtC4WiMP13SonosBaseBody.h"
 
-@class _TtC4WiMP13SonosPlayMode;
-
 @interface _TtCCC4WiMP13SonosPlayback12SetPlayModes16SetPlayModesBody : _TtC4WiMP13SonosBaseBody
 {
     // Error parsing type: , name: playModes
 }
 
 - (CDUnknownBlockType).cxx_destruct;
-- (id)getParameterTypes;
-- (id)initWithPlayModes:(id)arg1;
 - (id)init;
-@property(nonatomic, retain) _TtC4WiMP13SonosPlayMode *playModes; // @synthesize playModes;
 
 @end
 

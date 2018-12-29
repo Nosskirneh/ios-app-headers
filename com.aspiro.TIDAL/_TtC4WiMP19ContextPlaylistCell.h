@@ -15,11 +15,9 @@
     // Error parsing type: , name: subtitleLabel
 }
 
-+ (id)reuseIdentifier;
 - (CDUnknownBlockType).cxx_destruct;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithStyle:(long long)arg1 reuseIdentifier:(id)arg2;
-- (void)configureCellWithAction:(id)arg1;
 - (void)awakeFromNib;
 @property(nonatomic) __weak UILabel *subtitleLabel; // @synthesize subtitleLabel;
 @property(nonatomic) __weak UILabel *titleLabel; // @synthesize titleLabel;

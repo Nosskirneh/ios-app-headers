@@ -4,14 +4,15 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 @interface CLSFCRAnalytics : NSObject
 {
 }
 
 + (id)buildLogParamsFromCrash:(double)arg1;
-+ (void)logCrashWithTimeStamp:(double)arg1;
++ (void)registerAnalyticsEventListener:(CDUnknownBlockType)arg1;
++ (void)logCrashWithTimeStamp:(double)arg1 firebaseCrashlyticsEnabled:(_Bool)arg2;
 
 @end
 

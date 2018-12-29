@@ -4,37 +4,47 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
-@class NSMutableArray, NSURLSessionDataTask, WMPCacheItem;
+@class NSMutableArray, NSOperationQueue, NSString, NSURLSessionDataTask;
 
 @interface WMPCacheService : NSObject
 {
+    NSString *_sessionId;
     NSMutableArray *_recentlyAccessedKeys;
     NSURLSessionDataTask *_downloadTask;
-    WMPCacheItem *_itemToBeCached;
+    NSOperationQueue *_precacheQueue;
+    double _cacheSizeInBytes;
 }
 
 + (id)sharedService;
-@property(retain, nonatomic) WMPCacheItem *itemToBeCached; // @synthesize itemToBeCached=_itemToBeCached;
+@property(nonatomic) double cacheSizeInBytes; // @synthesize cacheSizeInBytes=_cacheSizeInBytes;
+@property(retain, nonatomic) NSOperationQueue *precacheQueue; // @synthesize precacheQueue=_precacheQueue;
 @property(retain, nonatomic) NSURLSessionDataTask *downloadTask; // @synthesize downloadTask=_downloadTask;
 @property(retain, nonatomic) NSMutableArray *recentlyAccessedKeys; // @synthesize recentlyAccessedKeys=_recentlyAccessedKeys;
+@property(retain, nonatomic) NSString *sessionId; // @synthesize sessionId=_sessionId;
 - (void).cxx_destruct;
 - (id)trackIdFromPath:(id)arg1;
 - (id)pathFromItemUuid:(id)arg1 type:(long long)arg2 codec:(long long)arg3;
 - (void)removeLeastUsedItem;
-- (unsigned long long)calculatedCacheSize;
+- (void)printKeys;
 - (void)limitCache;
-- (void)processQueuedItem;
 - (_Bool)isItemInCache:(id)arg1 type:(long long)arg2 codec:(long long)arg3;
 - (void)cancelAllTasks;
 - (void)touchCachedMediaItem:(id)arg1;
 - (void)removeMediaItemFromCache:(id)arg1;
-- (void)addMediaItemToCacheLowPriority:(id)arg1 withUrl:(id)arg2 codec:(long long)arg3;
-- (void)addMediaItemToCacheWithUuid:(id)arg1 type:(long long)arg2 withUrl:(id)arg3 soundQuality:(long long)arg4 codec:(long long)arg5 duration:(id)arg6;
-- (void)addMediaItemToCache:(id)arg1 withUrl:(id)arg2 codec:(long long)arg3;
+- (void)addCacheItem:(id)arg1 withUrl:(id)arg2 playbackSessionId:(id)arg3 completion:(CDUnknownBlockType)arg4;
+- (_Bool)shouldCacheItem:(id)arg1;
+- (_Bool)itemCacheFileSizeIsTooBig:(id)arg1;
+- (void)precacheItem:(id)arg1;
+- (void)startPrecacheItems:(id)arg1;
 - (void)initCache;
 - (id)init;
+- (void)startPrecache;
+- (void)reportPrefetchStatisticsWithPlaybackSessionId:(id)arg1 requests:(id)arg2 didEndSuccessfully:(_Bool)arg3;
+- (void)reportPrefetchSessionStartWithPlaybackSessionId:(id)arg1;
+- (void)reportCacheEviction;
+- (void)reportCacheHitWithCached:(_Bool)arg1;
 
 @end
 

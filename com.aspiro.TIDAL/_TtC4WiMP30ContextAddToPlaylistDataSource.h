@@ -15,8 +15,6 @@
 
 - (CDUnknownBlockType).cxx_destruct;
 - (id)init;
-- (void)cancelButtonPressed:(id)arg1;
-- (void)okButtonPressed:(id)arg1;
 
 @end
 

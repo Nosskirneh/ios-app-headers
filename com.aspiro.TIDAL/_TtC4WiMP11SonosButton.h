@@ -6,8 +6,6 @@
 
 #import <UIKit/UIButton.h>
 
-@class UIImage;
-
 @interface _TtC4WiMP11SonosButton : UIButton
 {
     // Error parsing type: , name: disconnected
@@ -24,17 +22,9 @@
 
 - (CDUnknownBlockType).cxx_destruct;
 - (void)onConnectingTimer;
-- (void)setState:(long long)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithFrame:(struct CGRect)arg1;
 - (void)dealloc;
-@property(nonatomic, readonly) double animationDuration; // @synthesize animationDuration;
-@property(nonatomic, readonly) double connectingAnimationDuration; // @synthesize connectingAnimationDuration;
-@property(nonatomic, readonly) UIImage *connecting3; // @synthesize connecting3;
-@property(nonatomic, readonly) UIImage *connecting2; // @synthesize connecting2;
-@property(nonatomic, readonly) UIImage *connecting1; // @synthesize connecting1;
-@property(nonatomic, readonly) UIImage *connected; // @synthesize connected;
-@property(nonatomic, readonly) UIImage *disconnected; // @synthesize disconnected;
 
 @end
 

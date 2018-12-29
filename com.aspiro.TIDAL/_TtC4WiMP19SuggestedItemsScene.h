@@ -6,36 +6,27 @@
 
 #import "WMPAbstractScene.h"
 
-@class NSArray, NSLayoutConstraint, UITableView, _TtC4WiMP15ImageHeaderView;
+@class UITableView;
 
 @interface _TtC4WiMP19SuggestedItemsScene : WMPAbstractScene
 {
     // Error parsing type: , name: tableView
-    // Error parsing type: , name: tableTopConstraint
     // Error parsing type: , name: headerHeight
     // Error parsing type: , name: didTapOnSuggestedItem
     // Error parsing type: , name: tableHeaderView
+    // Error parsing type: , name: currentLoadedItemsForUuid
     // Error parsing type: , name: itemsArray
     // Error parsing type: , name: mediaItemType
 }
 
-+ (id)getInstance;
 - (CDUnknownBlockType).cxx_destruct;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;
 - (void)didTapGoOnlineButtonWithSender:(id)arg1;
 - (void)offlineModeDidChange:(id)arg1;
-- (void)loadSuggestedItems;
-- (void)setHeaderWithImage:(id)arg1;
-- (void)setHeaderWithTitle:(id)arg1 artistName:(id)arg2;
 - (double)getOverlayViewHeight;
 - (void)dealloc;
 - (void)viewDidLoad;
-@property(nonatomic, copy) NSArray *itemsArray; // @synthesize itemsArray;
-@property(nonatomic, retain) _TtC4WiMP15ImageHeaderView *tableHeaderView; // @synthesize tableHeaderView;
-@property(nonatomic, copy) CDUnknownBlockType didTapOnSuggestedItem; // @synthesize didTapOnSuggestedItem;
-@property(nonatomic, readonly) double headerHeight; // @synthesize headerHeight;
-@property(nonatomic) __weak NSLayoutConstraint *tableTopConstraint; // @synthesize tableTopConstraint;
 @property(nonatomic) __weak UITableView *tableView; // @synthesize tableView;
 
 @end

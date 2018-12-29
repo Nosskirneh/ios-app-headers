@@ -14,7 +14,6 @@
     // Error parsing type: , name: createdByLabel
     // Error parsing type: , name: offlineLabel
     // Error parsing type: , name: offlineSwitch
-    // Error parsing type: , name: contextMenuButton
     // Error parsing type: , name: favoriteButton
     // Error parsing type: , name: descriptionContainer
     // Error parsing type: , name: playlistUuid
@@ -31,7 +30,6 @@
 - (void)viewDidLoad;
 @property(nonatomic) __weak UIView *descriptionContainer; // @synthesize descriptionContainer;
 @property(nonatomic) __weak UIButton *favoriteButton; // @synthesize favoriteButton;
-@property(nonatomic) __weak UIButton *contextMenuButton; // @synthesize contextMenuButton;
 @property(nonatomic) __weak UISwitch *offlineSwitch; // @synthesize offlineSwitch;
 @property(nonatomic) __weak UILabel *offlineLabel; // @synthesize offlineLabel;
 @property(nonatomic) __weak UILabel *createdByLabel; // @synthesize createdByLabel;

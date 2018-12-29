@@ -7,15 +7,7 @@
 #import "_TtC4WiMP26RemoteCommandCenterManager.h"
 
 @interface _TtC4WiMP26RemoteCommandCenterManager (WiMP)
-- (void)didPressLikeButtonWithSender:(id)arg1;
-- (void)didChangePlayPositionWithSender:(id)arg1;
-- (void)didPressChangeShuffleMode;
-- (void)didPressChangeRepeatMode;
-- (void)didPressPreviousTrack;
-- (void)didPressNextTrack;
-- (void)didTogglePlayPause;
-- (void)didPressStop;
-- (void)didPressPause;
-- (void)didPressPlay;
+- (void)repeatModeDidChange:(id)arg1;
+- (void)shuffleStateDidChange:(id)arg1;
 @end
 

@@ -7,6 +7,6 @@
 #import "_TtC4WiMP12AccountScene.h"
 
 @interface _TtC4WiMP12AccountScene (WiMP1)
-- (void)loadUser;
+- (void)userDidChange:(id)arg1;
 @end
 

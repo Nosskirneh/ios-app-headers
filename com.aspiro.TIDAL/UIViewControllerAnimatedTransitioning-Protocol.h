@@ -6,7 +6,7 @@
 
 #import "NSObject-Protocol.h"
 
-@protocol UIViewControllerContextTransitioning, UIViewImplicitlyAnimating;
+@protocol UIViewControllerContextTransitioning;
 
 @protocol UIViewControllerAnimatedTransitioning <NSObject>
 - (void)animateTransition:(id <UIViewControllerContextTransitioning>)arg1;
@@ -14,6 +14,5 @@
 
 @optional
 - (void)animationEnded:(_Bool)arg1;
-- (id <UIViewImplicitlyAnimating>)interruptibleAnimatorForTransition:(id <UIViewControllerContextTransitioning>)arg1;
 @end
 

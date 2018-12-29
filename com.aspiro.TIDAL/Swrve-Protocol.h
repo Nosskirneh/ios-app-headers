@@ -6,30 +6,32 @@
 
 #import "NSObject-Protocol.h"
 
-@class ImmutableSwrveConfig, NSDate, NSDictionary, NSString, SKPaymentTransaction, SKProduct, SwrveConfig, SwrveIAPRewards, SwrveMessageController, SwrveResourceManager, SwrveSignatureProtectedFile, UNNotificationResponse;
+@class ImmutableSwrveConfig, NSData, NSDate, NSDictionary, NSString, NSURL, SKPaymentTransaction, SKProduct, SwrveConfig, SwrveIAPRewards, SwrveMessageController, SwrveResourceManager, UNNotificationResponse;
 
 @protocol Swrve <NSObject>
-@property(readonly) NSString *deviceToken;
-@property(readonly) SwrveResourceManager *resourceManager;
-@property(readonly) SwrveMessageController *talk;
-@property(readonly) NSDictionary *deviceInfo;
+@property(readonly) SwrveMessageController *messaging;
 @property(readonly) NSString *userID;
 @property(readonly) NSString *apiKey;
 @property(readonly) long long appID;
 @property(readonly) ImmutableSwrveConfig *config;
-- (SwrveSignatureProtectedFile *)getLocationCampaignFile;
-- (_Bool)appInBackground;
-- (void)processNotificationResponseWithIndentifier:(NSString *)arg1 andUserInfo:(NSDictionary *)arg2;
+- (void)installAction:(NSURL *)arg1;
+- (void)handleDeferredDeeplink:(NSURL *)arg1;
+- (void)handleDeeplink:(NSURL *)arg1;
+- (_Bool)didReceiveRemoteNotification:(NSDictionary *)arg1 withBackgroundCompletionHandler:(void (^)(unsigned long long, NSDictionary *))arg2;
+- (void)processNotificationResponseWithIdentifier:(NSString *)arg1 andUserInfo:(NSDictionary *)arg2;
 - (void)processNotificationResponse:(UNNotificationResponse *)arg1;
 - (void)sendPushEngagedEvent:(NSString *)arg1;
+- (void)pushNotificationReceived:(NSDictionary *)arg1;
+- (NSString *)deviceToken;
+- (void)setDeviceToken:(NSData *)arg1;
 - (void)shutdown;
 - (int)eventWithNoCallback:(NSString *)arg1 payload:(NSDictionary *)arg2;
 - (void)setEventQueuedCallback:(void (^)(NSDictionary *, NSString *))arg1;
 - (void)saveEventsToDisk;
 - (void)sendQueuedEvents;
-- (void)getUserResourcesDiff:(void (^)(NSDictionary *, NSDictionary *, NSString *))arg1;
-- (void)getUserResources:(void (^)(NSDictionary *, NSString *))arg1;
-- (SwrveResourceManager *)getSwrveResourceManager;
+- (void)userResourcesDiff:(void (^)(NSDictionary *, NSDictionary *, NSString *))arg1;
+- (void)userResources:(void (^)(NSDictionary *, NSString *))arg1;
+@property(readonly) SwrveResourceManager *resourceManager;
 - (void)refreshCampaignsAndResources;
 - (int)userUpdate:(NSString *)arg1 withDate:(NSDate *)arg2;
 - (int)userUpdate:(NSDictionary *)arg1;
@@ -40,8 +42,6 @@
 - (int)iap:(SKPaymentTransaction *)arg1 product:(SKProduct *)arg2 rewards:(SwrveIAPRewards *)arg3;
 - (int)iap:(SKPaymentTransaction *)arg1 product:(SKProduct *)arg2;
 - (int)purchaseItem:(NSString *)arg1 currency:(NSString *)arg2 cost:(int)arg3 quantity:(int)arg4;
-- (id)initWithAppID:(int)arg1 apiKey:(NSString *)arg2 userID:(NSString *)arg3 config:(SwrveConfig *)arg4;
-- (id)initWithAppID:(int)arg1 apiKey:(NSString *)arg2 userID:(NSString *)arg3;
 - (id)initWithAppID:(int)arg1 apiKey:(NSString *)arg2 config:(SwrveConfig *)arg3 launchOptions:(NSDictionary *)arg4;
 - (id)initWithAppID:(int)arg1 apiKey:(NSString *)arg2 launchOptions:(NSDictionary *)arg3;
 - (id)initWithAppID:(int)arg1 apiKey:(NSString *)arg2 config:(SwrveConfig *)arg3;

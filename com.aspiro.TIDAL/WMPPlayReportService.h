@@ -4,9 +4,9 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
-@class NSDateFormatter, NSNumber, WMPLastFmScrobbleController;
+@class NSDate, NSDateFormatter, NSNumber, WMPLastFmScrobbleController;
 
 @interface WMPPlayReportService : NSObject
 {
@@ -15,8 +15,10 @@
     NSDateFormatter *_dateFormatter;
     WMPLastFmScrobbleController *_scrobbleController;
     id _trackChangeObserver;
+    NSDate *_allowedRequestDate;
 }
 
+@property(retain, nonatomic) NSDate *allowedRequestDate; // @synthesize allowedRequestDate=_allowedRequestDate;
 @property(retain, nonatomic) id trackChangeObserver; // @synthesize trackChangeObserver=_trackChangeObserver;
 @property(retain, nonatomic) WMPLastFmScrobbleController *scrobbleController; // @synthesize scrobbleController=_scrobbleController;
 @property(retain, nonatomic) NSDateFormatter *dateFormatter; // @synthesize dateFormatter=_dateFormatter;

@@ -4,9 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
-
-@class NSString;
+#import <objc/NSObject.h>
 
 @interface _TtC4WiMP22RestorePurchaseManager : NSObject
 {
@@ -18,7 +16,6 @@
 - (void)attemptToRestorePurchase;
 - (void)dealloc;
 - (id)init;
-@property(nonatomic, readonly) NSString *receiptNotification; // @synthesize receiptNotification;
 
 @end
 

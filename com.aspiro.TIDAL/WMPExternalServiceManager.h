@@ -4,39 +4,31 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
-#import "AppsFlyerTrackerDelegate-Protocol.h"
-
-@class NSString;
-
-@interface WMPExternalServiceManager : NSObject <AppsFlyerTrackerDelegate>
+@interface WMPExternalServiceManager : NSObject
 {
 }
 
 + (_Bool)isUITestMode;
 + (id)sharedInstance;
-- (void)onConversionDataRequestFailure:(id)arg1;
-- (void)onConversionDataReceived:(id)arg1;
 - (void)subscribeToAppLifecycleNotifications;
 - (_Bool)application:(id)arg1 continueUserActivity:(id)arg2 restorationHandler:(CDUnknownBlockType)arg3;
 - (void)applicationWillTerminate:(id)arg1;
 - (void)applicationDidBecomeActive:(id)arg1;
-- (_Bool)processURLWithAppsFlyer:(id)arg1 fromSourceApplication:(id)arg2 withAnnotation:(id)arg3;
+- (void)registerAdjustWithUserId:(id)arg1;
+- (void)configureAdjust;
 - (id)swrveConfigWithUserId:(id)arg1;
 - (void)shutdownSwrveWithUserId:(id)arg1;
 - (void)initializeSwrveWithUserId:(id)arg1 withLaunchOptions:(id)arg2;
-- (void)registerPushNotificationFrameworksFor:(id)arg1 withLaunchOptions:(id)arg2;
+- (void)registerServicesFor:(id)arg1 withLaunchOptions:(id)arg2;
 - (void)askForPushNotification;
 - (_Bool)consumeURL:(id)arg1 sourceApplication:(id)arg2 annotation:(id)arg3;
 - (void)dealloc;
 - (id)init;
-
-// Remaining properties
-@property(readonly, copy) NSString *debugDescription;
-@property(readonly, copy) NSString *description;
-@property(readonly) unsigned long long hash;
-@property(readonly) Class superclass;
+- (void)fetchRemoteConfig;
+- (void)initializeRemoteConfig;
+- (void)configureFirebase;
 
 @end
 

@@ -4,14 +4,17 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 @interface FIRMessagingLog : NSObject
 {
 }
 
++ (id)currentUIApplication;
 + (void)logMessage:(id)arg1;
 + (void)logAnalyticsEventWithOrigin:(id)arg1 name:(id)arg2 parameters:(id)arg3;
++ (void)logUserPropertyForCoversionTracking:(id)arg1;
++ (id)paramsForEvent:(id)arg1 withNotification:(id)arg2;
 + (void)logEvent:(id)arg1 withNotification:(id)arg2;
 + (void)logForegroundNotification:(id)arg1;
 + (void)logOpenNotification:(id)arg1;

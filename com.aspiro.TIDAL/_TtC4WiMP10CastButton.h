@@ -6,8 +6,6 @@
 
 #import <UIKit/UIButton.h>
 
-@class NSArray, UIImage;
-
 @interface _TtC4WiMP10CastButton : UIButton
 {
     // Error parsing type: , name: animationDuration
@@ -20,17 +18,8 @@
 }
 
 - (CDUnknownBlockType).cxx_destruct;
-- (void)setConnectionState:(long long)arg1;
-- (void)configureButton;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithFrame:(struct CGRect)arg1;
-@property(nonatomic, copy) NSArray *connectionImages; // @synthesize connectionImages;
-@property(nonatomic, readonly) UIImage *castImageThree; // @synthesize castImageThree;
-@property(nonatomic, readonly) UIImage *castImageTwo; // @synthesize castImageTwo;
-@property(nonatomic, readonly) UIImage *castImageOne; // @synthesize castImageOne;
-@property(nonatomic, readonly) UIImage *connected; // @synthesize connected;
-@property(nonatomic, readonly) UIImage *disconnected; // @synthesize disconnected;
-@property(nonatomic, readonly) double animationDuration; // @synthesize animationDuration;
 
 @end
 

@@ -26,6 +26,7 @@
 - (void)setupNavigationbarForPlaylistWithId:(id)arg1;
 - (void)refreshContent;
 - (void)showContent;
+- (void)setupContainersWithPlaylistFromCoreOrObtain;
 - (void)viewDidDisappear:(_Bool)arg1;
 - (void)viewDidAppear:(_Bool)arg1;
 - (void)viewWillAppear:(_Bool)arg1;

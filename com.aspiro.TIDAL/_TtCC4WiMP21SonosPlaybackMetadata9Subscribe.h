@@ -11,7 +11,6 @@
 }
 
 - (id)init;
-- (id)initWithGroupId:(id)arg1 householdId:(id)arg2 cmdId:(id)arg3;
 
 @end
 

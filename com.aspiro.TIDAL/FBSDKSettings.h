@@ -4,7 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 @interface FBSDKSettings : NSObject
 {
@@ -12,8 +12,11 @@
 
 + (id)graphAPIDebugParamValue;
 + (void)updateGraphAPIDebugBehavior;
++ (id)graphAPIVersion;
++ (void)setGraphAPIVersion:(id)arg1;
 + (void)setUserAgentSuffix:(id)arg1;
 + (id)userAgentSuffix;
++ (void)setAccessTokenCache:(id)arg1;
 + (id)accessTokenCache;
 + (id)sdkVersion;
 + (id)legacyUserDefaultTokenInformationKeyName;
@@ -28,6 +31,10 @@
 + (double)JPEGCompressionQuality;
 + (_Bool)isGraphErrorRecoveryDisabled;
 + (void)setGraphErrorRecoveryDisabled:(_Bool)arg1;
++ (void)setCodelessDebugLogEnabled:(id)arg1;
++ (id)codelessDebugLogEnabled;
++ (void)setAutoLogAppEventsEnabled:(id)arg1;
++ (id)autoLogAppEventsEnabled;
 + (void)_setJPEGCompressionQualityNumber:(id)arg1;
 + (id)_JPEGCompressionQualityNumber;
 + (void)setFacebookDomainPart:(id)arg1;
@@ -41,7 +48,6 @@
 + (void)setAppID:(id)arg1;
 + (id)appID;
 + (void)initialize;
-- (void)setAccessTokenCache:(id)arg1;
 - (id)init;
 
 @end

@@ -58,6 +58,7 @@
 - (void)moveToOnlineMode;
 - (void)moveToOfflineMode;
 - (void)prepareMainSceneForExternalLink;
+- (void)updateModules;
 - (void)replaceControllerWith:(id)arg1;
 - (id)getDynamicSceneWithPath:(id)arg1;
 - (id)rootControllerForTab:(long long)arg1;

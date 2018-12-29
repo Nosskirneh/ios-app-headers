@@ -7,9 +7,6 @@
 #import "_TtC4WiMP12AccountScene.h"
 
 @interface _TtC4WiMP12AccountScene (WiMP2)
-- (void)updateUser;
-- (void)updateConnectSection;
-- (void)updateInfoSection;
-- (void)updateTableHeaderViewImage;
+- (void)adjustTitleModuleForContentOffset:(struct CGPoint)arg1;
 @end
 

@@ -4,7 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 @class NSData;
 
@@ -17,8 +17,9 @@
 }
 
 + (id)appIdentityWithKeyPair:(id)arg1;
++ (_Bool)hasMigratedKeyPairWithLegacyPublicKeyTag:(id)arg1 andNewPublicKeyTag:(id)arg2;
 + (_Bool)deleteKeyPairWithPrivateTag:(id)arg1 publicTag:(id)arg2 error:(id *)arg3;
-+ (_Bool)updateKeyRef:(struct __SecKey *)arg1 fromTag:(id)arg2 toTag:(id)arg3;
++ (_Bool)updateKeyRef:(struct __SecKey *)arg1 withTag:(id)arg2;
 + (struct __SecKey *)cachedKeyRefWithTag:(id)arg1;
 + (id)keyDataWithTag:(id)arg1;
 + (id)queryDictWithTag:(id)arg1 addReturnAttr:(_Bool)arg2 withTypeData:(_Bool)arg3;

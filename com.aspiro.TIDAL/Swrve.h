@@ -4,19 +4,19 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 #import "Swrve-Protocol.h"
 #import "SwrveCommonDelegate-Protocol.h"
 #import "SwrvePushDelegate-Protocol.h"
-#import "SwrveSignatureErrorListener-Protocol.h"
+#import "SwrveSignatureErrorDelegate-Protocol.h"
 
-@class ImmutableSwrveConfig, NSDate, NSDictionary, NSMutableArray, NSMutableDictionary, NSNumber, NSOutputStream, NSString, NSTimer, NSURL, SwrveMessageController, SwrvePush, SwrveRESTClient, SwrveResourceManager, SwrveSignatureProtectedFile;
+@class ImmutableSwrveConfig, NSDate, NSDictionary, NSMutableArray, NSMutableDictionary, NSNumber, NSOutputStream, NSString, NSTimer, NSURL, SwrveDeeplinkManager, SwrveEventsManager, SwrveMessageController, SwrveProfileManager, SwrvePush, SwrveRESTClient, SwrveReceiptProvider, SwrveResourceManager, SwrveSignatureProtectedFile;
 
-@interface Swrve : NSObject <Swrve, SwrveCommonDelegate, SwrveSignatureErrorListener, SwrvePushDelegate>
+@interface Swrve : NSObject <SwrveCommonDelegate, Swrve, SwrveSignatureErrorDelegate, SwrvePushDelegate>
 {
     _Bool initialised;
-    _Bool isNewUser;
+    SwrveEventsManager *eventsManager;
     unsigned long long installTimeSeconds;
     NSDate *lastSessionDate;
     CDUnknownBlockType event_queued_callback;
@@ -27,19 +27,20 @@
     int campaignsAndResourcesTimerSeconds;
     int eventBufferBytes;
     int locationSegmentVersion;
+    NSString *eventsServer;
     ImmutableSwrveConfig *config;
     long long appID;
     NSString *apiKey;
     NSString *userID;
     NSDictionary *deviceInfo;
-    SwrveMessageController *talk;
+    SwrveMessageController *messaging;
     SwrveResourceManager *resourceManager;
     SwrvePush *push;
+    SwrveProfileManager *profileManager;
     NSMutableDictionary *userUpdates;
     NSString *_deviceToken;
-    NSNumber *shortDeviceID;
+    NSNumber *deviceId;
     NSMutableArray *httpPerformanceMetrics;
-    NSString *campaignsAndResourcesETAG;
     double campaignsAndResourcesFlushFrequency;
     double campaignsAndResourcesFlushRefreshDelay;
     NSTimer *campaignsAndResourcesTimer;
@@ -49,28 +50,20 @@
     NSMutableArray *eventBuffer;
     NSOutputStream *eventStream;
     NSURL *eventFilename;
-    NSURL *eventSecondaryFilename;
     NSURL *batchURL;
-    NSURL *campaignsAndResourcesURL;
+    NSURL *baseCampaignsAndResourcesURL;
     SwrveRESTClient *restClient;
+    SwrveReceiptProvider *receiptProvider;
+    SwrveDeeplinkManager *swrveDeeplinkManager;
 }
 
-+ (id)createInstance;
-+ (id)sharedInstanceWithAppID:(int)arg1 apiKey:(id)arg2 userID:(id)arg3 config:(id)arg4;
-+ (id)sharedInstanceWithAppID:(int)arg1 apiKey:(id)arg2 userID:(id)arg3;
-+ (id)sharedInstanceWithAppID:(int)arg1 apiKey:(id)arg2 config:(id)arg3 launchOptions:(id)arg4;
-+ (id)sharedInstanceWithAppID:(int)arg1 apiKey:(id)arg2 launchOptions:(id)arg3;
-+ (id)sharedInstanceWithAppID:(int)arg1 apiKey:(id)arg2 config:(id)arg3;
-+ (id)sharedInstanceWithAppID:(int)arg1 apiKey:(id)arg2;
-+ (id)sharedInstance;
-+ (void)addSharedInstance:(id)arg1;
-+ (void)resetSwrveSharedInstance;
+@property(retain) SwrveDeeplinkManager *swrveDeeplinkManager; // @synthesize swrveDeeplinkManager;
+@property(readonly, nonatomic) SwrveReceiptProvider *receiptProvider; // @synthesize receiptProvider;
 @property(retain) SwrveRESTClient *restClient; // @synthesize restClient;
 @property int locationSegmentVersion; // @synthesize locationSegmentVersion;
-@property(retain) NSURL *campaignsAndResourcesURL; // @synthesize campaignsAndResourcesURL;
+@property(retain) NSURL *baseCampaignsAndResourcesURL; // @synthesize baseCampaignsAndResourcesURL;
 @property(retain) NSURL *batchURL; // @synthesize batchURL;
 @property _Bool eventsWereSent; // @synthesize eventsWereSent;
-@property(retain) NSURL *eventSecondaryFilename; // @synthesize eventSecondaryFilename;
 @property(retain) NSURL *eventFilename; // @synthesize eventFilename;
 @property(retain) NSOutputStream *eventStream; // @synthesize eventStream;
 @property _Bool eventFileHasData; // @synthesize eventFileHasData;
@@ -84,32 +77,37 @@
 @property(retain) NSTimer *campaignsAndResourcesTimer; // @synthesize campaignsAndResourcesTimer;
 @property double campaignsAndResourcesFlushRefreshDelay; // @synthesize campaignsAndResourcesFlushRefreshDelay;
 @property double campaignsAndResourcesFlushFrequency; // @synthesize campaignsAndResourcesFlushFrequency;
-@property(retain) NSString *campaignsAndResourcesETAG; // @synthesize campaignsAndResourcesETAG;
 @property(retain) NSMutableArray *httpPerformanceMetrics; // @synthesize httpPerformanceMetrics;
-@property(retain) NSNumber *shortDeviceID; // @synthesize shortDeviceID;
-@property(readonly) NSString *deviceToken; // @synthesize deviceToken=_deviceToken;
+@property(retain) NSNumber *deviceId; // @synthesize deviceId;
 @property(retain) NSMutableDictionary *userUpdates; // @synthesize userUpdates;
+@property(retain) SwrveProfileManager *profileManager; // @synthesize profileManager;
+@property _Bool initialised; // @synthesize initialised;
 @property(readonly) SwrvePush *push; // @synthesize push;
 @property(readonly) SwrveResourceManager *resourceManager; // @synthesize resourceManager;
-@property(readonly) SwrveMessageController *talk; // @synthesize talk;
+@property(readonly) SwrveMessageController *messaging; // @synthesize messaging;
 @property(readonly) NSDictionary *deviceInfo; // @synthesize deviceInfo;
 @property(readonly) NSString *userID; // @synthesize userID;
 @property(readonly) NSString *apiKey; // @synthesize apiKey;
 @property(readonly) long long appID; // @synthesize appID;
 @property(readonly) ImmutableSwrveConfig *config; // @synthesize config;
+@property(readonly) NSString *eventsServer; // @synthesize eventsServer;
 - (void).cxx_destruct;
-- (void)generateShortDeviceId;
+- (void)installAction:(id)arg1;
+- (void)handleDeferredDeeplink:(id)arg1;
+- (void)handleDeeplink:(id)arg1;
+- (void)initSwrveDeeplinkManager;
+- (id)messagingController;
+- (id)signatureFileWithType:(int)arg1 errorDelegate:(id)arg2;
 - (id)getNow;
-- (id)getUserResourcesDiffURL;
-- (void)getUserResourcesDiff:(CDUnknownBlockType)arg1;
-- (void)getUserResources:(CDUnknownBlockType)arg1;
+- (id)userResourcesDiffURL;
+- (void)userResourcesDiff:(CDUnknownBlockType)arg1;
+- (void)userResources:(CDUnknownBlockType)arg1;
 - (void)initResourcesDiff;
 - (void)signatureError:(id)arg1;
-- (id)getSignatureKey;
+- (id)signatureKey;
 - (id)createSessionToken;
-- (id)createStringWithMD5:(id)arg1;
-- (void)initBuffer;
 - (_Bool)isValidJson:(id)arg1;
+- (void)initBuffer;
 - (unsigned long long)getTime;
 - (void)resetEventCache;
 - (void)sendLogfile;
@@ -119,23 +117,17 @@
 - (id)copyBufferToJson:(id)arg1;
 - (void)eventsSentCallback:(int)arg1 withData:(id)arg2 andContext:(id)arg3;
 - (id)createLogfile:(int)arg1;
-- (int)getHttpStatus:(id)arg1;
+- (int)httpStatusFromResponse:(id)arg1;
 - (void)updateResources:(id)arg1 writeToCache:(_Bool)arg2;
 - (void)updateABTestDetails:(id)arg1;
 - (void)initABTestDetails;
 - (void)initResources;
-- (id)getLocationCampaignFile;
 - (void)saveLocationCampaignsInCache:(id)arg1;
 - (void)invalidateETag;
 - (unsigned long long)secondsSinceEpoch;
-- (unsigned long long)getInstallTime:(id)arg1 withSecondaryFile:(id)arg2;
 - (void)queueDeviceProperties;
-- (id)getCarrierInfo;
-- (id)getDeviceProperties;
-- (id)getHWMachineName;
-- (struct CGRect)getDeviceScreenBounds;
+- (id)deviceProperties;
 - (void)sendCrashlyticsMetadata;
-- (float)_estimate_dpi;
 - (id)appGroupIdentifier;
 - (id)notificationCategories;
 - (id)pushCategories;
@@ -143,12 +135,16 @@
 - (id)swrveSDKVersion;
 - (void)queueEvent:(id)arg1 data:(id)arg2 triggerCallback:(_Bool)arg3;
 - (void)maybeFlushToDisk;
-- (id)getStackHostPrefixFromConfig:(id)arg1;
+- (id)stackHostPrefixFromConfig:(id)arg1;
 - (void)setupConfig:(id)arg1;
 - (void)deeplinkReceived:(id)arg1;
 - (void)processNotificationResponse:(id)arg1;
-- (void)processNotificationResponseWithIndentifier:(id)arg1 andUserInfo:(id)arg2;
+- (void)processNotificationResponseWithIdentifier:(id)arg1 andUserInfo:(id)arg2;
 - (void)sendPushEngagedEvent:(id)arg1;
+- (_Bool)didReceiveRemoteNotification:(id)arg1 withBackgroundCompletionHandler:(CDUnknownBlockType)arg2;
+- (void)pushNotificationReceived:(id)arg1;
+@property(readonly) NSString *deviceToken; // @synthesize deviceToken=_deviceToken;
+- (void)setDeviceToken:(id)arg1;
 - (void)remoteNotificationReceived:(id)arg1;
 - (void)deviceTokenUpdated:(id)arg1;
 - (void)deviceTokenIncoming:(id)arg1;
@@ -166,19 +162,17 @@
 - (void)updateDeviceInfo;
 - (void)dealloc;
 - (int)eventInternal:(id)arg1 payload:(id)arg2 triggerCallback:(_Bool)arg3;
-- (_Bool)appInBackground;
 - (void)shutdown;
 - (void)setEventQueuedCallback:(CDUnknownBlockType)arg1;
 - (void)saveEventsToDisk;
 - (void)sendQueuedEvents;
 - (_Bool)processPermissionRequest:(id)arg1;
-- (id)getCampaignData:(int)arg1;
+- (id)campaignData:(int)arg1;
 - (void)checkForCampaignAndResourcesUpdates:(id)arg1;
-- (id)getCampaignsAndResourcesURL;
-- (unsigned long long)getJoinedDateMilliSeconds;
+- (id)campaignsAndResourcesURL;
+- (unsigned long long)joinedDateMilliSeconds;
 - (void)refreshCampaignsAndResources;
 - (void)refreshCampaignsAndResources:(id)arg1;
-- (id)getSwrveResourceManager;
 - (id)convertDateToString:(id)arg1;
 - (int)userUpdate:(id)arg1 withDate:(id)arg2;
 - (int)userUpdate:(id)arg1;
@@ -186,20 +180,17 @@
 - (int)unvalidatedIap:(id)arg1 localCost:(double)arg2 localCurrency:(id)arg3 productId:(id)arg4 productIdQuantity:(int)arg5;
 - (int)iap:(id)arg1 product:(id)arg2 rewards:(id)arg3;
 - (int)iap:(id)arg1 product:(id)arg2;
-- (_Bool)isValidEventName:(id)arg1;
 - (int)eventWithNoCallback:(id)arg1 payload:(id)arg2;
 - (int)event:(id)arg1 payload:(id)arg2;
 - (int)event:(id)arg1;
 - (int)purchaseItem:(id)arg1 currency:(id)arg2 cost:(int)arg3 quantity:(int)arg4;
-- (int)sessionEnd;
 - (int)sessionStart;
 - (void)queueSessionStart;
 - (void)initSwrveRestClient:(double)arg1;
 - (void)beginSession;
+- (void)initWithUserId:(id)arg1;
 - (id)initWithAppID:(int)arg1 apiKey:(id)arg2 config:(id)arg3 launchOptions:(id)arg4;
 - (id)initWithAppID:(int)arg1 apiKey:(id)arg2 launchOptions:(id)arg3;
-- (id)initWithAppID:(int)arg1 apiKey:(id)arg2 userID:(id)arg3 config:(id)arg4;
-- (id)initWithAppID:(int)arg1 apiKey:(id)arg2 userID:(id)arg3;
 - (id)initWithAppID:(int)arg1 apiKey:(id)arg2 config:(id)arg3;
 - (id)initWithAppID:(int)arg1 apiKey:(id)arg2;
 

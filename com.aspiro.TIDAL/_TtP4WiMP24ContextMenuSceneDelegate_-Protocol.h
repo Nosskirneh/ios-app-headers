@@ -7,6 +7,7 @@
 @protocol _TtP4WiMP24ContextMenuSceneDelegate_
 
 @optional
+- (void)didPressAlbumInfoTrackCredits;
 - (void)didPressAddToOfflineWithAction:(long long)arg1;
 - (void)didPressAddToFavorites;
 - (void)dismissPresentingViewController;

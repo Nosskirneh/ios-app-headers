@@ -4,7 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 @class WMPAlbumServiceDAL;
 
@@ -22,6 +22,7 @@
 - (void)removeAlbumFromFavorites:(id)arg1 completion:(CDUnknownBlockType)arg2;
 - (void)addAlbumToFavorites:(id)arg1 showFeedbackMessage:(_Bool)arg2 completion:(CDUnknownBlockType)arg3;
 - (void)obtainAllItemsByAlbumId:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
+- (void)obtainAllItemsByAlbumId:(id)arg1 callCompletionOnError:(_Bool)arg2 completionBlock:(CDUnknownBlockType)arg3;
 - (void)obtainAllItemsByAlbumId:(id)arg1;
 - (void)obtainAllItemsByAlbumId:(id)arg1 completionBlock:(CDUnknownBlockType)arg2 errorBlock:(CDUnknownBlockType)arg3;
 - (id)getAlbumById:(id)arg1;

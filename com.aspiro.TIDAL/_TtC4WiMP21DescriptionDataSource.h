@@ -4,9 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
-
-@class UITableView;
+#import <objc/NSObject.h>
 
 @interface _TtC4WiMP21DescriptionDataSource : NSObject
 {
@@ -21,8 +19,6 @@
 
 - (CDUnknownBlockType).cxx_destruct;
 - (id)init;
-- (id)createDetailSectionHeader:(id)arg1 withSeparatorColor:(id)arg2;
-- (_Bool)isLastRow:(id)arg1;
 - (double)tableView:(id)arg1 heightForFooterInSection:(long long)arg2;
 - (double)tableView:(id)arg1 heightForHeaderInSection:(long long)arg2;
 - (double)tableView:(id)arg1 heightForRowAtIndexPath:(id)arg2;
@@ -30,15 +26,6 @@
 - (long long)tableView:(id)arg1 numberOfRowsInSection:(long long)arg2;
 - (long long)numberOfSectionsInTableView:(id)arg1;
 - (void)tableView:(id)arg1 didSelectRowAtIndexPath:(id)arg2;
-- (void)update:(id)arg1;
-- (void)attach;
-- (id)initWithTableView:(id)arg1;
-@property(nonatomic, readonly) double popUpWidth; // @synthesize popUpWidth;
-@property(nonatomic, readonly) double tableViewWidth;
-@property(nonatomic, readonly) double descriptionWidth;
-@property(nonatomic, readonly) double sectionHeaderLeftMargin; // @synthesize sectionHeaderLeftMargin;
-@property(nonatomic, readonly) double sectionHeaderHeight; // @synthesize sectionHeaderHeight;
-@property(nonatomic) __weak UITableView *tableView; // @synthesize tableView;
 
 @end
 

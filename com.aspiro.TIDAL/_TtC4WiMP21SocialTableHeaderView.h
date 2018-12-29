@@ -6,8 +6,6 @@
 
 #import <UIKit/UIView.h>
 
-@class UIImageView, UILabel;
-
 @interface _TtC4WiMP21SocialTableHeaderView : UIView
 {
     // Error parsing type: , name: imageView.storage
@@ -17,8 +15,6 @@
 - (CDUnknownBlockType).cxx_destruct;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithFrame:(struct CGRect)arg1;
-@property(nonatomic, retain) UILabel *textLabel;
-@property(nonatomic, retain) UIImageView *imageView;
 
 @end
 

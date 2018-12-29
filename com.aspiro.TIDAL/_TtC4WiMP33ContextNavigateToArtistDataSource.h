@@ -11,7 +11,6 @@
 }
 
 - (id)init;
-- (void)configureActionsWithArtistNames:(id)arg1 artistIds:(id)arg2;
 
 @end
 

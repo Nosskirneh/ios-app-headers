@@ -4,7 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 @class NSString;
 
@@ -26,11 +26,9 @@
 - (void)setValue:(id)arg1 forUndefinedKey:(id)arg2;
 @property(nonatomic, copy) NSString *type; // @synthesize type;
 @property(nonatomic, copy) NSString *response; // @synthesize response;
-@property(nonatomic, copy) NSString *cmdId; // @synthesize cmdId;
 @property(nonatomic, copy) NSString *sessionId; // @synthesize sessionId;
 @property(nonatomic, copy) NSString *householdId; // @synthesize householdId;
 @property(nonatomic, copy) NSString *groupId; // @synthesize groupId;
-@property(nonatomic, copy) NSString *command; // @synthesize command;
 @property(nonatomic, copy) NSString *namespace; // @synthesize namespace;
 
 @end

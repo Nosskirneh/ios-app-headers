@@ -6,13 +6,11 @@
 
 #import "_TtC4WiMP35ConfigurableCellTableViewController.h"
 
-@class NSURL, UIView, _TtC4WiMP16BlurredImageView;
-
 @interface _TtC4WiMP23ArtistTwitterFeedModule : _TtC4WiMP35ConfigurableCellTableViewController
 {
+    // Error parsing type: , name: tableHeaderViewHeight
     // Error parsing type: , name: showItemsCount
     // Error parsing type: , name: tableHeaderView
-    // Error parsing type: , name: artistHeaderViewContainer
     // Error parsing type: , name: artist
     // Error parsing type: , name: profileUrl
     // Error parsing type: , name: contentMode
@@ -32,10 +30,6 @@
 @property(nonatomic) double heightConstraint;
 - (void)viewDidLayoutSubviews;
 - (void)viewDidLoad;
-@property(nonatomic, copy) NSURL *profileUrl; // @synthesize profileUrl;
-@property(nonatomic) __weak UIView *artistHeaderViewContainer; // @synthesize artistHeaderViewContainer;
-@property(nonatomic) __weak _TtC4WiMP16BlurredImageView *tableHeaderView; // @synthesize tableHeaderView;
-@property(nonatomic) long long showItemsCount; // @synthesize showItemsCount;
 
 @end
 

@@ -9,7 +9,7 @@
 #import "AVPictureInPictureControllerDelegate-Protocol.h"
 #import "WMPPlaybackDelegate-Protocol.h"
 
-@class AHKActionSheet, AVPictureInPictureController, MarqueeLabel, NSArray, NSDictionary, NSLayoutConstraint, NSString, NSTimer, UIButton, UIImageView, UILabel, UIStackView, UIView, WMPCoreListener, WMPPlayerView, WMPProgressAnimator, WMPSlider, _TtC4WiMP16LeafletImageView, _TtC4WiMP17BookletTransition, _TtC4WiMP20ExternalPlaybackView;
+@class MarqueeLabel, NSLayoutConstraint, UIActivityIndicatorView, UIButton, UIImageView, UILabel, UIStackView, UIView, WMPPlayerView, WMPSlider;
 
 @interface _TtC4WiMP11PlayerScene : WMPAbstractScene <WMPPlaybackDelegate, AVPictureInPictureControllerDelegate>
 {
@@ -27,17 +27,18 @@
     // Error parsing type: , name: shuffleButton
     // Error parsing type: , name: repeatButton
     // Error parsing type: , name: optionsButton
+    // Error parsing type: , name: infoCreditsButton
     // Error parsing type: , name: favoriteButton
     // Error parsing type: , name: streamOnlineButton
     // Error parsing type: , name: invisibleButtonBehindSlider
     // Error parsing type: , name: pipButton
     // Error parsing type: , name: mediaInfoView
     // Error parsing type: , name: controlsView
-    // Error parsing type: , name: animatorView
     // Error parsing type: , name: audioOnlyView
     // Error parsing type: , name: iPadControlsGradientContainer
     // Error parsing type: , name: bottomControlsStackView
     // Error parsing type: , name: liveImageView
+    // Error parsing type: , name: playButtonActivityIndicator
     // Error parsing type: , name: videoTopView
     // Error parsing type: , name: videoImageView
     // Error parsing type: , name: videoPlayerLayer
@@ -52,14 +53,14 @@
     // Error parsing type: , name: landscapeExternalPlaybackContainer
     // Error parsing type: , name: landscapeQualityButtonContainer
     // Error parsing type: , name: ipadVideoTopConstraint
+    // Error parsing type: , name: progressAnimatorDefaultDelayTime
+    // Error parsing type: , name: progressAnimatorSeekDelayTime
     // Error parsing type: , name: pictureInPictureController
-    // Error parsing type: , name: trackInfoTransition
     // Error parsing type: , name: kPlayerControlSliderEndTimeGap
     // Error parsing type: , name: kPlayerModulePressButtonFrequency
     // Error parsing type: , name: pressButtonFrequency
     // Error parsing type: , name: showProgressTimer
     // Error parsing type: , name: mediaItemInfo
-    // Error parsing type: , name: progressAnimator
     // Error parsing type: , name: didTapOnStreamVideoOnline
     // Error parsing type: , name: coreListener
     // Error parsing type: , name: qualitiesActionSheet
@@ -68,48 +69,21 @@
     // Error parsing type: , name: selectedQualityIndex
     // Error parsing type: , name: nextVideoUrlPositionInArray
     // Error parsing type: , name: kMaxVideoUrlsToStore
-    // Error parsing type: , name: pipKeyPath
+    // Error parsing type: , name: pictureInPictureObserver
     // Error parsing type: , name: externalPlaybackView.storage
     // Error parsing type: , name: hifiButton.storage
     // Error parsing type: , name: videoQualityButton.storage
 }
 
-+ (id)getInstance;
 - (CDUnknownBlockType).cxx_destruct;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;
 - (void)handleLongPress:(id)arg1;
-- (void)loadVideoQualities;
-- (void)setDefaultImage;
-- (void)setVideoWithImage:(id)arg1;
-- (void)setTrackWithImage:(id)arg1;
-- (void)updatePlayerView;
-- (void)updateCurrentPlayingWith:(id)arg1;
-- (void)handleViewTransitionTo:(struct CGSize)arg1 with:(id)arg2;
 - (void)viewWillTransitionToSize:(struct CGSize)arg1 withTransitionCoordinator:(id)arg2;
 - (void)dealloc;
 - (void)viewDidAppear:(_Bool)arg1;
 - (void)viewWillAppear:(_Bool)arg1;
 - (void)viewDidLoad;
-@property(nonatomic, retain) UIButton *videoQualityButton;
-@property(nonatomic, retain) UIButton *hifiButton;
-@property(nonatomic, retain) _TtC4WiMP20ExternalPlaybackView *externalPlaybackView;
-@property(nonatomic, readonly) NSString *pipKeyPath; // @synthesize pipKeyPath;
-@property(nonatomic, readonly) long long kMaxVideoUrlsToStore; // @synthesize kMaxVideoUrlsToStore;
-@property(nonatomic) long long nextVideoUrlPositionInArray; // @synthesize nextVideoUrlPositionInArray;
-@property(nonatomic, copy) NSArray *videoUrlsArray; // @synthesize videoUrlsArray;
-@property(nonatomic, copy) NSArray *qualitiesArray; // @synthesize qualitiesArray;
-@property(nonatomic, retain) AHKActionSheet *qualitiesActionSheet; // @synthesize qualitiesActionSheet;
-@property(nonatomic, retain) WMPCoreListener *coreListener; // @synthesize coreListener;
-@property(nonatomic) _Bool didTapOnStreamVideoOnline; // @synthesize didTapOnStreamVideoOnline;
-@property(nonatomic, retain) WMPProgressAnimator *progressAnimator; // @synthesize progressAnimator;
-@property(nonatomic, retain) NSDictionary *mediaItemInfo; // @synthesize mediaItemInfo;
-@property(nonatomic, retain) NSTimer *showProgressTimer; // @synthesize showProgressTimer;
-@property(nonatomic, retain) NSTimer *pressButtonFrequency; // @synthesize pressButtonFrequency;
-@property(nonatomic, readonly) double kPlayerModulePressButtonFrequency; // @synthesize kPlayerModulePressButtonFrequency;
-@property(nonatomic, readonly) float kPlayerControlSliderEndTimeGap; // @synthesize kPlayerControlSliderEndTimeGap;
-@property(nonatomic, retain) _TtC4WiMP17BookletTransition *trackInfoTransition; // @synthesize trackInfoTransition;
-@property(nonatomic, retain) AVPictureInPictureController *pictureInPictureController; // @synthesize pictureInPictureController;
 @property(nonatomic) __weak NSLayoutConstraint *ipadVideoTopConstraint; // @synthesize ipadVideoTopConstraint;
 @property(nonatomic) __weak UIView *landscapeQualityButtonContainer; // @synthesize landscapeQualityButtonContainer;
 @property(nonatomic) __weak UIView *landscapeExternalPlaybackContainer; // @synthesize landscapeExternalPlaybackContainer;
@@ -124,17 +98,18 @@
 @property(nonatomic) __weak WMPPlayerView *videoPlayerLayer; // @synthesize videoPlayerLayer;
 @property(nonatomic) __weak UIImageView *videoImageView; // @synthesize videoImageView;
 @property(nonatomic) __weak UIView *videoTopView; // @synthesize videoTopView;
+@property(nonatomic) __weak UIActivityIndicatorView *playButtonActivityIndicator; // @synthesize playButtonActivityIndicator;
 @property(nonatomic) __weak UIImageView *liveImageView; // @synthesize liveImageView;
 @property(nonatomic) __weak UIStackView *bottomControlsStackView; // @synthesize bottomControlsStackView;
 @property(nonatomic) __weak UIView *iPadControlsGradientContainer; // @synthesize iPadControlsGradientContainer;
 @property(nonatomic) __weak UIView *audioOnlyView; // @synthesize audioOnlyView;
-@property(nonatomic) __weak UIView *animatorView; // @synthesize animatorView;
 @property(nonatomic) __weak UIView *controlsView; // @synthesize controlsView;
 @property(nonatomic) __weak UIView *mediaInfoView; // @synthesize mediaInfoView;
 @property(nonatomic) __weak UIButton *pipButton; // @synthesize pipButton;
 @property(nonatomic) __weak UIButton *invisibleButtonBehindSlider; // @synthesize invisibleButtonBehindSlider;
 @property(nonatomic) __weak UIButton *streamOnlineButton; // @synthesize streamOnlineButton;
 @property(nonatomic) __weak UIButton *favoriteButton; // @synthesize favoriteButton;
+@property(nonatomic) __weak UIButton *infoCreditsButton; // @synthesize infoCreditsButton;
 @property(nonatomic) __weak UIButton *optionsButton; // @synthesize optionsButton;
 @property(nonatomic) __weak UIButton *repeatButton; // @synthesize repeatButton;
 @property(nonatomic) __weak UIButton *shuffleButton; // @synthesize shuffleButton;
@@ -148,7 +123,7 @@
 @property(nonatomic) __weak UILabel *elapsedTimeLabel; // @synthesize elapsedTimeLabel;
 @property(nonatomic) __weak WMPSlider *slider; // @synthesize slider;
 @property(nonatomic) __weak UIView *mediaItemImageOverlayView; // @synthesize mediaItemImageOverlayView;
-@property(nonatomic) __weak _TtC4WiMP16LeafletImageView *mediaItemImageView; // @synthesize mediaItemImageView;
+@property(nonatomic) __weak UIImageView *mediaItemImageView; // @synthesize mediaItemImageView;
 - (void)applicationDidBecomeActive:(id)arg1;
 - (void)applicationDidEnterBackground:(id)arg1;
 - (void)externalPlaybackChanged:(id)arg1;
@@ -157,11 +132,14 @@
 - (void)handleSonosDisconnected:(id)arg1;
 - (void)sonosStateUpdated:(id)arg1;
 - (void)handlePlaybackQualityChangedNotification:(id)arg1;
+- (void)repeatModeDidChange:(id)arg1;
+- (void)shuffleStateDidChange:(id)arg1;
 - (void)offlineModeDidChange:(id)arg1;
 - (void)playerBufferLoadedAndReadyToPlay:(id)arg1;
 - (void)playerBadConnection:(id)arg1;
 - (void)playerFailedToPlay:(id)arg1;
 - (void)playerBufferIsEmpty:(id)arg1;
+- (void)playerWillSeek:(id)arg1;
 - (void)mediaItemWillPlayNotification:(id)arg1;
 - (void)playerReadyToPlay:(id)arg1;
 - (void)elapsedTime:(id)arg1;
@@ -170,20 +148,12 @@
 - (void)queuePositionDidChange:(id)arg1;
 - (void)preparePlayerView:(id)arg1;
 - (void)fetchCurrentVideoQualitiesWithNotification:(id)arg1;
-- (void)removeObservers;
-- (void)addObservers;
-- (void)setPictureInPictureWithEnabled:(_Bool)arg1;
-- (_Bool)isPictureInPictureSupported;
-- (_Bool)isPictureInPictureActive;
-- (void)stopPictureInPicturePlayback;
-- (void)setupPictureInPicturePlayback;
 - (void)pictureInPictureControllerWillStopPictureInPicture:(id)arg1;
 - (void)pictureInPictureControllerWillStartPictureInPicture:(id)arg1;
-- (void)rearrangeBottomControls;
-- (void)showCurrentMediaItemInfo;
 - (void)didTapToStreamVideoOnlineWithSender:(id)arg1;
 - (void)didTapPiPButtonWithSender:(id)arg1;
 - (void)didTapFavoriteButtonWithSender:(id)arg1;
+- (void)didTapInfoButtonWithSender:(id)arg1;
 - (void)didTapOptionsButtonWithSender:(id)arg1;
 - (void)didTapExternalPlaybackButtonWithSender:(id)arg1;
 - (void)didTapHifiButtonWithSender:(id)arg1;
@@ -193,35 +163,11 @@
 - (void)didTapPreviousButtonWithSender:(id)arg1;
 - (void)didTapNextButtonWithSender:(id)arg1;
 - (void)didTapPlayButtonWithSender:(id)arg1;
-- (_Bool)isAnimatorStateInProgress;
-- (void)hideProgressAnimator;
-- (void)showProgressAnimatorAfterDelay;
 - (void)showProgressAnimator;
 - (void)sliderScrubbingEnded:(id)arg1;
 - (void)sliderValueChanged:(id)arg1;
 - (void)sliderScrubbingStarted:(id)arg1;
 - (void)objectDidChangeWithController:(id)arg1;
-- (void)reinitiateCoreListener;
-- (_Bool)isVideoQualityAudioOnly;
-- (void)setAudioOnlyModeWithIsAudioOnly:(_Bool)arg1;
-- (void)updateAudioOnlyMode;
-- (void)setHifiButtonWithState:(long long)arg1;
-- (void)setFavoriteButtonStateWithIsFavorite:(_Bool)arg1;
-- (void)updateFavoriteButtonState;
-- (void)updateOptionsButton;
-- (void)updatePreviousButton;
-- (void)updateNextButton;
-- (void)updatePlayButton;
-- (void)updateElapsedTimeWithSeconds:(float)arg1;
-- (void)updateSliderAndElapsedTime;
-- (void)setVideoQualityButtonEnabledWithIsEnabled:(_Bool)arg1;
-- (void)refreshRepeatButton;
-- (void)refreshShuffleButton;
-- (void)setMediaItemDurationWithDuration:(float)arg1;
-- (void)setLiveViewWithIsLive:(_Bool)arg1;
-- (void)prepareControlsForNewPlayingItem;
-- (void)moveButtonsForOrientationWithIsLandscape:(_Bool)arg1;
-- (void)configureControls;
 
 @end
 

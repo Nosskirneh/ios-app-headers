@@ -4,9 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
-
-@class NSArray, NSDictionary, NSString, NSURL, OS_dispatch_queue;
+#import <objc/NSObject.h>
 
 @interface _TtC4WiMP9WebSocket : NSObject
 {
@@ -62,52 +60,10 @@
     // Error parsing type: , name: notificationCenter
 }
 
-+ (id)ErrorDomain;
 - (CDUnknownBlockType).cxx_destruct;
 - (id)init;
 - (void)dealloc;
 - (void)stream:(id)arg1 handleEvent:(unsigned long long)arg2;
-- (void)writeWithPing:(id)arg1 completion:(CDUnknownBlockType)arg2;
-- (void)writeWithData:(id)arg1 completion:(CDUnknownBlockType)arg2;
-- (void)writeWithString:(id)arg1 completion:(CDUnknownBlockType)arg2;
-- (void)connect;
-- (id)initWithUrl:(id)arg1 writeQueueQOS:(long long)arg2 protocols:(id)arg3;
-- (id)initWithUrl:(id)arg1 protocols:(id)arg2;
-@property(nonatomic, readonly) NSURL *currentURL;
-@property(nonatomic, readonly) _Bool isConnected;
-@property(nonatomic) long long timeout; // @synthesize timeout;
-@property(nonatomic, copy) NSString *origin; // @synthesize origin;
-@property(nonatomic, copy) NSArray *enabledSSLCipherSuites; // @synthesize enabledSSLCipherSuites;
-@property(nonatomic) _Bool disableSSLCertValidation; // @synthesize disableSSLCertValidation;
-@property(nonatomic) _Bool voipEnabled; // @synthesize voipEnabled;
-@property(nonatomic, copy) NSDictionary *headers; // @synthesize headers;
-@property(nonatomic, copy) CDUnknownBlockType onPong; // @synthesize onPong;
-@property(nonatomic, copy) CDUnknownBlockType onData; // @synthesize onData;
-@property(nonatomic, copy) CDUnknownBlockType onText; // @synthesize onText;
-@property(nonatomic, copy) CDUnknownBlockType onDisconnect; // @synthesize onDisconnect;
-@property(nonatomic, copy) CDUnknownBlockType onConnect; // @synthesize onConnect;
-@property(nonatomic, readonly) NSArray *supportedSSLSchemes; // @synthesize supportedSSLSchemes;
-@property(nonatomic, readonly) long long httpSwitchProtocolCode; // @synthesize httpSwitchProtocolCode;
-@property(nonatomic, readonly) long long MaxFrameSize; // @synthesize MaxFrameSize;
-@property(nonatomic, readonly) unsigned char PayloadLenMask; // @synthesize PayloadLenMask;
-@property(nonatomic, readonly) unsigned char MaskMask; // @synthesize MaskMask;
-@property(nonatomic, readonly) unsigned char RSVMask; // @synthesize RSVMask;
-@property(nonatomic, readonly) unsigned char OpCodeMask; // @synthesize OpCodeMask;
-@property(nonatomic, readonly) unsigned char FinMask; // @synthesize FinMask;
-@property(nonatomic, readonly) long long BUFFER_MAX; // @synthesize BUFFER_MAX;
-@property(nonatomic, readonly) NSString *headerWSAcceptName; // @synthesize headerWSAcceptName;
-@property(nonatomic, readonly) NSString *headerOriginName; // @synthesize headerOriginName;
-@property(nonatomic, readonly) NSString *headerWSKeyName; // @synthesize headerWSKeyName;
-@property(nonatomic, readonly) NSString *headerWSVersionValue; // @synthesize headerWSVersionValue;
-@property(nonatomic, readonly) NSString *headerWSVersionName; // @synthesize headerWSVersionName;
-@property(nonatomic, readonly) NSString *headerWSProtocolName; // @synthesize headerWSProtocolName;
-@property(nonatomic, readonly) NSString *headerWSConnectionValue; // @synthesize headerWSConnectionValue;
-@property(nonatomic, readonly) NSString *headerWSConnectionName; // @synthesize headerWSConnectionName;
-@property(nonatomic, readonly) NSString *headerWSHostName; // @synthesize headerWSHostName;
-@property(nonatomic, readonly) NSString *headerWSUpgradeValue; // @synthesize headerWSUpgradeValue;
-@property(nonatomic, readonly) NSString *headerWSUpgradeName; // @synthesize headerWSUpgradeName;
-@property(nonatomic, copy) NSArray *optionalProtocols; // @synthesize optionalProtocols;
-@property(nonatomic, retain) OS_dispatch_queue *callbackQueue; // @synthesize callbackQueue;
 
 @end
 

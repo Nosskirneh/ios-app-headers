@@ -16,14 +16,9 @@
     // Error parsing type: , name: itemImageViewHeightConstraint
 }
 
-+ (id)getInstance;
 - (CDUnknownBlockType).cxx_destruct;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithFrame:(struct CGRect)arg1;
-- (void)setHeightForVerticalScrollOffset:(double)arg1;
-- (void)setHeaderWithImage:(id)arg1;
-- (void)setHeaderWithSubtitle:(id)arg1;
-- (void)setHeaderWithTitle:(id)arg1;
 - (void)awakeFromNib;
 @property(nonatomic) __weak NSLayoutConstraint *itemImageViewHeightConstraint; // @synthesize itemImageViewHeightConstraint;
 @property(nonatomic) __weak UIImageView *itemImageView; // @synthesize itemImageView;

@@ -4,30 +4,23 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
-
-@class NSString;
+#import <objc/NSObject.h>
 
 @interface _TtC4WiMP18DynamicSceneLoader : NSObject
 {
     // Error parsing type: , name: sceneId
     // Error parsing type: , name: state
     // Error parsing type: , name: model
+    // Error parsing type: , name: pageMode
     // Error parsing type: , name: delegate
     // Error parsing type: , name: parameters
-    // Error parsing type: , name: pageMode
     // Error parsing type: , name: service
 }
 
 - (CDUnknownBlockType).cxx_destruct;
 - (id)init;
-- (_Bool)shouldRefresh;
-- (void)loadData;
-- (id)initWithArtistId:(id)arg1;
-- (id)initWithAlbumId:(id)arg1;
 - (id)initWithSceneId:(id)arg1 selectedTabIndex:(long long)arg2;
 - (id)initWithSceneId:(id)arg1;
-@property(nonatomic, readonly) NSString *sceneId; // @synthesize sceneId;
 
 @end
 

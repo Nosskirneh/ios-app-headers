@@ -4,7 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 #import "UIAlertViewDelegate-Protocol.h"
 
@@ -23,6 +23,8 @@
 - (void).cxx_destruct;
 - (void)didPresentErrorWithRecovery:(_Bool)arg1 contextInfo:(void *)arg2;
 - (void)alertView:(id)arg1 didDismissWithButtonIndex:(long long)arg2;
+- (void)displayAlertWithTitle:(id)arg1 message:(id)arg2 cancelButtonTitle:(id)arg3;
+- (void)displayAlertWithRecoverySuggestion:(id)arg1 recoveryOptionsTitles:(id)arg2;
 - (_Bool)processError:(id)arg1 request:(id)arg2 delegate:(id)arg3;
 - (void)dealloc;
 

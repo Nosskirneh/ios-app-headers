@@ -29,7 +29,6 @@
 - (CDUnknownBlockType).cxx_destruct;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;
-- (void)refreshContentWithCompletion:(CDUnknownBlockType)arg1;
 - (void)didPressFullscreenButton;
 @property(nonatomic) double heightConstraint;
 - (void)viewDidLayoutSubviews;

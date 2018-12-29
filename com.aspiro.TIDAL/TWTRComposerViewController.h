@@ -7,11 +7,12 @@
 #import <UIKit/UIViewController.h>
 
 #import "UIScrollViewDelegate-Protocol.h"
+#import "UIViewControllerTransitioningDelegate-Protocol.h"
 
 @class NSLayoutConstraint, NSString, TWTRAPIClient, TWTRCardConfiguration, TWTRComposerActionBar, TWTRComposerContentView, TWTRComposerPresenter, TWTRComposerTheme, TWTRComposerTopBar, TWTRUser, UITraitCollection, UIView;
 @protocol TWTRComposerViewControllerDelegate;
 
-@interface TWTRComposerViewController : UIViewController <UIScrollViewDelegate>
+@interface TWTRComposerViewController : UIViewController <UIViewControllerTransitioningDelegate, UIScrollViewDelegate>
 {
     _Bool _textFieldHasBecomeFirstResponder;
     id <TWTRComposerViewControllerDelegate> _delegate;

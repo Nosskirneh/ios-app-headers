@@ -4,9 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
-
-@class NSArray;
+#import <objc/NSObject.h>
 
 @interface _TtC4WiMP40ItemListModuleLightweightItemsDataSource : NSObject
 {
@@ -19,7 +17,6 @@
 - (void)loadMoreLightweightItemsFrom:(id)arg1 sortAndRangeParams:(id)arg2 completionHandler:(CDUnknownBlockType)arg3;
 - (id)initWithItems:(id)arg1;
 @property(nonatomic) long long moduleFormat; // @synthesize moduleFormat;
-@property(nonatomic, copy) NSArray *lightweightItems; // @synthesize lightweightItems;
 
 @end
 

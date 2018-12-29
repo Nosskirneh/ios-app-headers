@@ -8,8 +8,5 @@
 
 @interface _TtC4WiMP26PasswordSettingsController (WiMP)
 - (void)didTapBackground;
-- (void)didEndEditingIn:(id)arg1 at:(id)arg2;
-- (void)didStartEditingIn:(id)arg1 at:(id)arg2;
-- (void)valueDidChangeIn:(id)arg1 at:(id)arg2;
 @end
 

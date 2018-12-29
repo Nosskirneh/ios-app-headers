@@ -19,13 +19,7 @@
 + (id)fetchRequest;
 + (id)insertNewObjectIntoContext:(id)arg1;
 + (id)entityName;
-+ (id)extractPlaylistItemCut:(id)arg1;
-+ (id)newOrExistingPlaylistItemInPlaylist:(id)arg1 cutUuid:(id)arg2 order:(long long)arg3 context:(id)arg4;
-+ (id)newOrExistingCut:(id)arg1 context:(id)arg2;
-+ (id)cutObjectIdByUuid:(id)arg1 context:(id)arg2;
-+ (id)playlistItem:(id)arg1 cutUuid:(id)arg2 order:(long long)arg3 context:(id)arg4;
 + (id)playlistCutFromJSON:(id)arg1 playlistUuid:(id)arg2 trackId:(long long)arg3 receivedOrder:(long long)arg4 context:(id)arg5;
-+ (id)cutFromJSON:(id)arg1 context:(id)arg2 trackId:(long long)arg3;
 @property(retain, nonatomic) NSString *imageResourceId; // @synthesize imageResourceId;
 @property(retain, nonatomic) NSString *title; // @synthesize title;
 - (void).cxx_destruct;

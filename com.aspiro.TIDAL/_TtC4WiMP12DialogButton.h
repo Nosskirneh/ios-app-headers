@@ -6,8 +6,6 @@
 
 #import <UIKit/UIButton.h>
 
-@class NSString;
-
 @interface _TtC4WiMP12DialogButton : UIButton
 {
     // Error parsing type: , name: title
@@ -16,16 +14,12 @@
     // Error parsing type: , name: delegate
 }
 
-+ (double)height;
 - (CDUnknownBlockType).cxx_destruct;
 - (id)initWithFrame:(struct CGRect)arg1;
 @property(nonatomic) _Bool highlighted;
 - (_Bool)isHighlighted;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithTitle:(id)arg1 buttonType:(long long)arg2 completionHandler:(CDUnknownBlockType)arg3;
-@property(nonatomic, readonly) CDUnknownBlockType completionHandler; // @synthesize completionHandler;
-@property(nonatomic, readonly) long long type; // @synthesize type;
-@property(nonatomic, readonly) NSString *title; // @synthesize title;
 
 @end
 

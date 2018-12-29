@@ -15,25 +15,12 @@
 }
 
 - (CDUnknownBlockType).cxx_destruct;
-- (id)createDetailSectionHeader:(id)arg1 withSeparatorColor:(id)arg2;
 - (void)linkLabelDidTapLink:(id)arg1;
 - (double)tableView:(id)arg1 heightForRowAtIndexPath:(id)arg2;
 - (id)tableView:(id)arg1 viewForFooterInSection:(long long)arg2;
 - (double)tableView:(id)arg1 heightForFooterInSection:(long long)arg2;
 - (id)tableView:(id)arg1 viewForHeaderInSection:(long long)arg2;
 - (double)tableView:(id)arg1 heightForHeaderInSection:(long long)arg2;
-- (void)createVideoInfoSection:(id)arg1;
-- (void)createArtistInfoSection:(id)arg1;
-- (void)createAlbumInfoSection:(id)arg1;
-- (void)updateTrackExtendedInfoSection:(id)arg1;
-- (void)createTrackCutCreditsSection:(id)arg1;
-- (void)createTrackCreditsSection:(id)arg1;
-- (void)update:(id)arg1;
-- (id)initWithTableView:(id)arg1;
-@property(nonatomic, copy) CDUnknownBlockType tappedUrlHandler; // @synthesize tappedUrlHandler;
-@property(nonatomic, readonly) double nowPlayingSectionFooterHeight; // @synthesize nowPlayingSectionFooterHeight;
-@property(nonatomic, readonly) double nowPlayingSectionHeaderHeight; // @synthesize nowPlayingSectionHeaderHeight;
-@property(nonatomic, readonly) double nowPlayingSectionHeaderLeftMargin; // @synthesize nowPlayingSectionHeaderLeftMargin;
 
 @end
 

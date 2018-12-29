@@ -4,7 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 @interface AudioSessionCallback : NSObject
 {
@@ -12,9 +12,11 @@
 
 + (id)sharedInstance;
 - (_Bool)isAirPlayOutputRoute;
+- (void)addObserversForSession:(id)arg1;
 - (void)initializeAudioSession;
 - (void)dealloc;
 - (void)resetSession;
+- (void)restartAudioSession;
 - (void)handleAudioServicesNotification:(id)arg1;
 - (void)handleAudioSessionRouteChange:(id)arg1;
 - (void)handleAudioSessionInterruption:(id)arg1;

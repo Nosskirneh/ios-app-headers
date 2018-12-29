@@ -4,9 +4,9 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
-@class NSArray, UIView;
+@class NSArray;
 
 @interface _TtC4WiMP17ContextDataSource : NSObject
 {
@@ -20,15 +20,6 @@
 
 - (CDUnknownBlockType).cxx_destruct;
 - (id)init;
-- (void)didPressShowArtistWithArtistNames:(id)arg1 artistIds:(id)arg2;
-- (id)addToPlaylistAction;
-- (_Bool)isOpenFromNowPlayingPlayerPage;
-- (long long)tableView:(id)arg1 numberOfRowsInSection:(long long)arg2;
-- (void)configureActionsWithArtistNames:(id)arg1 artistIds:(id)arg2;
-- (void)configureHeaderWithItemId:(id)arg1 toView:(id)arg2 owner:(id)arg3;
-@property(nonatomic, copy) CDUnknownBlockType cancelBlock; // @synthesize cancelBlock;
-@property(nonatomic, retain) UIView *extendedFooterView; // @synthesize extendedFooterView;
-@property(nonatomic, retain) UIView *shareViewValue; // @synthesize shareViewValue;
 @property(nonatomic, copy) NSArray *actions; // @synthesize actions;
 
 @end

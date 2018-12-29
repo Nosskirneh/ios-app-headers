@@ -7,6 +7,6 @@
 #import <UIKit/UIImage.h>
 
 @interface UIImage (WiMP1)
-- (id)imageWithColor:(id)arg1;
+- (id)init:(long long)arg1;
 @end
 

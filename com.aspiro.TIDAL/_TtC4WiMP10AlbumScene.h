@@ -6,29 +6,30 @@
 
 #import "WMPAbstractScene.h"
 
-@class _TtC4WiMP17AlbumHeaderModule;
-
 @interface _TtC4WiMP10AlbumScene : WMPAbstractScene
 {
+    // Error parsing type: , name: dynamicSceneData
+    // Error parsing type: , name: headerModule
+    // Error parsing type: , name: mediaListModule
+    // Error parsing type: , name: pageComponents
+    // Error parsing type: , name: dynamicSceneBuilder.storage
     // Error parsing type: , name: albumId
     // Error parsing type: , name: highlightedItemId
-    // Error parsing type: , name: dynamicSceneData
-    // Error parsing type: , name: didLoadPersistedObject
-    // Error parsing type: , name: headerModule
+    // Error parsing type: , name: isOnboardingHandled
+    // Error parsing type: , name: presentedOfflineModules
+    // Error parsing type: , name: currentPlayQueueSourceModule
+    // Error parsing type: , name: isAlbumPurchased
+    // Error parsing type: , name: isSingleModuleAlbumScene
     // Error parsing type: , name: scrollView.storage
-    // Error parsing type: , name: dynamicSceneLoader.storage
-    // Error parsing type: , name: dynamicSceneBuilder.storage
+    // Error parsing type: , name: dataSource.storage
 }
 
-+ (id)screenName;
 - (CDUnknownBlockType).cxx_destruct;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;
 - (void)viewDidAppear:(_Bool)arg1;
 - (void)viewDidLoad;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithAlbumId:(id)arg1 highlightedItemId:(id)arg2;
-@property(nonatomic, retain) _TtC4WiMP17AlbumHeaderModule *headerModule; // @synthesize headerModule;
-@property(nonatomic) _Bool didLoadPersistedObject; // @synthesize didLoadPersistedObject;
 
 @end
 

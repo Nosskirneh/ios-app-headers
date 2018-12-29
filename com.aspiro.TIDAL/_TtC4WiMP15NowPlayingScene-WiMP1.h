@@ -7,7 +7,6 @@
 #import "_TtC4WiMP15NowPlayingScene.h"
 
 @interface _TtC4WiMP15NowPlayingScene (WiMP1)
-- (void)handleViewTransitionTo:(struct CGSize)arg1 with:(id)arg2;
 - (void)viewWillTransitionToSize:(struct CGSize)arg1 withTransitionCoordinator:(id)arg2;
 @property(nonatomic, readonly) _Bool shouldAutorotate;
 @end

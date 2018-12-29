@@ -31,8 +31,6 @@
 - (void)viewDidLayoutSubviews;
 - (void)viewDidLoad;
 - (id)initWithCoder:(id)arg1;
-- (id)initWith:(id)arg1;
-@property(nonatomic, copy) CDUnknownBlockType tapCallback; // @synthesize tapCallback;
 @property(nonatomic) _Bool canCollapse; // @synthesize canCollapse;
 @property(nonatomic) double heightUnits; // @synthesize heightUnits;
 @property(nonatomic) double heightConstraint;

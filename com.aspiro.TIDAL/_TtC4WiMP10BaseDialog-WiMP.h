@@ -7,8 +7,6 @@
 #import "_TtC4WiMP10BaseDialog.h"
 
 @interface _TtC4WiMP10BaseDialog (WiMP)
-- (void)addButtons:(id)arg1;
 - (void)show;
-- (void)setTransitionStyle:(long long)arg1;
 @end
 

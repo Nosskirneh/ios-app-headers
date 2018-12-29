@@ -6,8 +6,6 @@
 
 #import <UIKit/UIViewController.h>
 
-@class NSDictionary;
-
 @interface _TtC4WiMP20SwipeablePromoModule : UIViewController
 {
     // Error parsing type: , name: eventMetadata
@@ -29,7 +27,6 @@
 - (void)viewWillAppear:(_Bool)arg1;
 - (void)viewDidLoad;
 - (id)initWithCoder:(id)arg1;
-@property(nonatomic, copy) NSDictionary *eventMetadata; // @synthesize eventMetadata;
 
 @end
 

@@ -6,24 +6,23 @@
 
 #import "_TtC4WiMP21TitleModuleOptionsBar.h"
 
+@class UILabel, UISwitch;
+
 @interface _TtC4WiMP22TitleModuleHeaderTrack : _TtC4WiMP21TitleModuleOptionsBar
 {
-    // Error parsing type: , name: playButton.storage
-    // Error parsing type: , name: shuffleButton.storage
-    // Error parsing type: , name: stackView.storage
-    // Error parsing type: , name: sortAndRangeParameters
+    // Error parsing type: , name: offlineSwitch
+    // Error parsing type: , name: offlineLabel
     // Error parsing type: , name: screenName
+    // Error parsing type: , name: sortAndRangeParameters
 }
 
++ (id)instantiate;
 - (CDUnknownBlockType).cxx_destruct;
-- (id)initWithNibName:(id)arg1 bundle:(id)arg2;
-- (void)configurationDidChangeSortingOptions:(id)arg1;
-- (void)didTapPlayButton:(id)arg1;
-- (void)didTapShufflePlayButton:(id)arg1;
-- (void)dealloc;
-- (void)viewDidLoad;
 - (id)initWithCoder:(id)arg1;
-- (id)init;
+- (id)initWithNibName:(id)arg1 bundle:(id)arg2;
+- (void)viewDidLoad;
+@property(nonatomic) __weak UILabel *offlineLabel; // @synthesize offlineLabel;
+@property(nonatomic) __weak UISwitch *offlineSwitch; // @synthesize offlineSwitch;
 
 @end
 

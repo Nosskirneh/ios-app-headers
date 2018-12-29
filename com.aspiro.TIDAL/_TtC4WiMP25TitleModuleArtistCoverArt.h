@@ -10,6 +10,7 @@
 
 @interface _TtC4WiMP25TitleModuleArtistCoverArt : UIViewController
 {
+    // Error parsing type: , name: kCornerRadius
     // Error parsing type: , name: coverArtView
     // Error parsing type: , name: defaultImageView
     // Error parsing type: , name: artist
@@ -18,7 +19,6 @@
 - (CDUnknownBlockType).cxx_destruct;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;
-- (void)setCoverArtWithImage:(id)arg1;
 - (void)viewDidLoad;
 @property(nonatomic) __weak UIImageView *defaultImageView; // @synthesize defaultImageView;
 @property(nonatomic) __weak UIImageView *coverArtView; // @synthesize coverArtView;

@@ -17,12 +17,9 @@
     // Error parsing type: , name: labelsStackView
 }
 
-+ (id)reuseAirplayIdentifier;
-+ (id)reuseIdentifier;
 - (CDUnknownBlockType).cxx_destruct;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithStyle:(long long)arg1 reuseIdentifier:(id)arg2;
-- (void)configureCellWithAction:(id)arg1;
 - (void)awakeFromNib;
 @property(nonatomic) __weak UIStackView *labelsStackView; // @synthesize labelsStackView;
 @property(nonatomic) __weak UILabel *subtitleLabel; // @synthesize subtitleLabel;

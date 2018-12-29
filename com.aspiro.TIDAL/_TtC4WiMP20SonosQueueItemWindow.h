@@ -4,9 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
-
-@class NSString, _TtC4WiMP14SonosQueueItem;
+#import <objc/NSObject.h>
 
 @interface _TtC4WiMP20SonosQueueItemWindow : NSObject
 {
@@ -19,11 +17,7 @@
 
 - (CDUnknownBlockType).cxx_destruct;
 - (id)init;
-- (id)getParameterTypes;
 - (void)setValue:(id)arg1 forUndefinedKey:(id)arg2;
-@property(nonatomic, retain) _TtC4WiMP14SonosQueueItem *items; // @synthesize items;
-@property(nonatomic, copy) NSString *queueVersion; // @synthesize queueVersion;
-@property(nonatomic, copy) NSString *contextVersion; // @synthesize contextVersion;
 
 @end
 

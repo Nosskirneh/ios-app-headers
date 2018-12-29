@@ -15,7 +15,6 @@
 }
 
 - (CDUnknownBlockType).cxx_destruct;
-- (void)configureWith:(id)arg1;
 - (void)prepareForReuse;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithFrame:(struct CGRect)arg1;

@@ -17,7 +17,6 @@
     // Error parsing type: , name: entryPoint
 }
 
-+ (double)cellHeight;
 - (CDUnknownBlockType).cxx_destruct;
 - (void)setHighlighted:(_Bool)arg1 animated:(_Bool)arg2;
 - (id)initWithCoder:(id)arg1;

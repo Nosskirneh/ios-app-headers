@@ -4,24 +4,28 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
+#import "Navigating-Protocol.h"
 #import "UINavigationControllerDelegate-Protocol.h"
 
-@class NSString, UINavigationController, UIViewController;
+@class NSDictionary, NSString, UINavigationController, UIViewController;
 
-@interface WMPNavigationHelper : NSObject <UINavigationControllerDelegate>
+@interface WMPNavigationHelper : NSObject <UINavigationControllerDelegate, Navigating>
 {
     _Bool _isBusyNavigating;
     UINavigationController *_navigationController;
     UIViewController *_sharingPopoverController;
+    NSDictionary *_eventMetadata;
 }
 
 + (id)sharedInstance;
+@property(retain, nonatomic) NSDictionary *eventMetadata; // @synthesize eventMetadata=_eventMetadata;
 @property(retain, nonatomic) UIViewController *sharingPopoverController; // @synthesize sharingPopoverController=_sharingPopoverController;
 @property(nonatomic) _Bool isBusyNavigating; // @synthesize isBusyNavigating=_isBusyNavigating;
 @property(retain, nonatomic) UINavigationController *navigationController; // @synthesize navigationController=_navigationController;
 - (void).cxx_destruct;
+- (void)setEventMetadataForModule:(id)arg1;
 - (void)hideSharingPopupController;
 - (void)showShareMenuForObject:(id)arg1 fromRect:(struct CGRect)arg2 fromView:(id)arg3;
 - (void)dismissContextSceneMenu;
@@ -46,7 +50,7 @@
 - (_Bool)navigateToDescription:(id)arg1 type:(long long)arg2 typeDescriptor:(id)arg3 withTransition:(id)arg4 animated:(_Bool)arg5;
 - (_Bool)navigateToDescription:(id)arg1 navigationType:(long long)arg2 animated:(_Bool)arg3;
 - (_Bool)navigateToDescriptionWithId:(id)arg1 typeDescriptor:(id)arg2 animated:(_Bool)arg3;
-- (_Bool)navigateToCreateCutSceneWithMode:(long long)arg1 itemUuid:(id)arg2 inPlaylistUuid:(id)arg3 withPosition:(long long)arg4;
+- (_Bool)navigateToCreateCutSceneWithMode:(long long)arg1 itemUuid:(id)arg2 inPlaylistUuid:(id)arg3 withPosition:(long long)arg4 navigation:(id)arg5;
 - (_Bool)navigateToSubscriptionChooserAnimated:(_Bool)arg1;
 - (_Bool)navigateToArtistTracksWithArtistId:(id)arg1 animated:(_Bool)arg2;
 - (_Bool)navigateToFavoriteVideosWithUserId:(id)arg1 animated:(_Bool)arg2;
@@ -78,13 +82,17 @@
 - (_Bool)navigateToPlaylistCategoryWithCategoryIdentifier:(id)arg1 animated:(_Bool)arg2;
 - (_Bool)navigateToArtistAlbumsWithId:(id)arg1 withFilter:(long long)arg2 withPageTitle:(id)arg3 animated:(_Bool)arg4;
 - (_Bool)navigateToArtistWithId:(id)arg1 animated:(_Bool)arg2;
+- (_Bool)navigateToMixWithArtistId:(id)arg1 animated:(_Bool)arg2;
+- (_Bool)navigateToMyMixesAnimated:(_Bool)arg1;
+- (_Bool)navigateToMixWithTrackId:(id)arg1 animated:(_Bool)arg2;
+- (_Bool)navigateToMixWithId:(id)arg1 animated:(_Bool)arg2;
 - (_Bool)navigateToAlbumWithId:(id)arg1 highlightTrackId:(id)arg2 animated:(_Bool)arg3;
 - (void)resetNavigationDelegate;
 - (_Bool)navigateBackAnimated:(_Bool)arg1;
 - (_Bool)canNavigateBack;
-- (_Bool)navigateToCreateCut:(id)arg1 inPlaylistUuid:(id)arg2 withPosition:(long long)arg3;
-- (_Bool)navigateToTrackid:(id)arg1 inAlbumId:(id)arg2 animated:(_Bool)arg3;
-- (void)navigateToViewController:(id)arg1;
+- (_Bool)navigateToCreateCut:(id)arg1 inPlaylistUuid:(id)arg2 withPosition:(long long)arg3 navigation:(id)arg4;
+- (_Bool)navigateToTrackId:(id)arg1 inAlbumId:(id)arg2 animated:(_Bool)arg3;
+- (void)presentViewController:(id)arg1;
 - (_Bool)navigateTo:(long long)arg1 itemId:(id)arg2 withItems:(id)arg3 withFilter:(long long)arg4 withPageTitle:(id)arg5 animated:(_Bool)arg6;
 - (_Bool)navigateTo:(long long)arg1 itemId:(id)arg2 withFilter:(long long)arg3 withPageTitle:(id)arg4 animated:(_Bool)arg5;
 - (_Bool)navigateTo:(long long)arg1 itemId:(id)arg2 withFilter:(long long)arg3 animated:(_Bool)arg4;
@@ -92,6 +100,7 @@
 - (_Bool)navigateTo:(long long)arg1 withFilter:(long long)arg2 itemId:(id)arg3;
 - (_Bool)navigateTo:(long long)arg1 itemId:(id)arg2 animated:(_Bool)arg3;
 - (_Bool)navigateTo:(long long)arg1 itemId:(id)arg2;
+- (void)updateNavigationDestinationWithMetadata:(id)arg1;
 - (void)navigationController:(id)arg1 didShowViewController:(id)arg2 animated:(_Bool)arg3;
 - (id)getMainScene;
 - (_Bool)isConfigured;
@@ -100,6 +109,7 @@
 - (void)configureWithController:(id)arg1;
 - (id)currentTopController;
 - (void)dealloc;
+- (_Bool)navigateToTrackId:(id)arg1 animated:(_Bool)arg2;
 - (id)createSharingViewControllerFor:(id)arg1;
 
 // Remaining properties

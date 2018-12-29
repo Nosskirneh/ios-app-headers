@@ -4,14 +4,14 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 #import "Swrve-Protocol.h"
 #import "SwrveCommonDelegate-Protocol.h"
 
-@class ImmutableSwrveConfig, NSDictionary, NSString, SwrveMessageController, SwrveResourceManager;
+@class ImmutableSwrveConfig, NSDictionary, NSNumber, NSString, SwrveMessageController, SwrveResourceManager;
 
-@interface SwrveEmpty : NSObject <Swrve, SwrveCommonDelegate>
+@interface SwrveEmpty : NSObject <SwrveCommonDelegate, Swrve>
 {
     SwrveResourceManager *resourceManager;
     int locationSegmentVersion;
@@ -20,14 +20,16 @@
     NSString *apiKey;
     NSString *userID;
     NSDictionary *deviceInfo;
-    SwrveMessageController *talk;
+    SwrveMessageController *messaging;
     NSString *deviceToken;
+    NSString *eventsServer;
+    NSNumber *deviceId;
 }
 
+@property(readonly) NSNumber *deviceId; // @synthesize deviceId;
+@property(readonly) NSString *eventsServer; // @synthesize eventsServer;
 @property int locationSegmentVersion; // @synthesize locationSegmentVersion;
-@property(readonly) NSString *deviceToken; // @synthesize deviceToken;
-@property(readonly) SwrveResourceManager *resourceManager; // @synthesize resourceManager;
-@property(readonly) SwrveMessageController *talk; // @synthesize talk;
+@property(readonly) SwrveMessageController *messaging; // @synthesize messaging;
 @property(readonly) NSDictionary *deviceInfo; // @synthesize deviceInfo;
 @property(readonly) NSString *userID; // @synthesize userID;
 @property(readonly) NSString *apiKey; // @synthesize apiKey;
@@ -41,20 +43,25 @@
 - (void)queueEvent:(id)arg1 data:(id)arg2 triggerCallback:(_Bool)arg3;
 - (_Bool)processPermissionRequest:(id)arg1;
 - (int)eventInternal:(id)arg1 payload:(id)arg2 triggerCallback:(_Bool)arg3;
-- (id)getCampaignData:(int)arg1;
-- (id)getLocationCampaignFile;
-- (_Bool)appInBackground;
-- (void)processNotificationResponseWithIndentifier:(id)arg1 andUserInfo:(id)arg2;
-- (void)processNotificationResponse:(id)arg1;
+- (id)campaignData:(int)arg1;
+- (void)installAction:(id)arg1;
+- (void)handleDeferredDeeplink:(id)arg1;
+- (void)handleDeeplink:(id)arg1;
 - (void)sendPushEngagedEvent:(id)arg1;
+- (_Bool)didReceiveRemoteNotification:(id)arg1 withBackgroundCompletionHandler:(CDUnknownBlockType)arg2;
+- (void)pushNotificationReceived:(id)arg1;
+@property(readonly) NSString *deviceToken; // @synthesize deviceToken;
+- (void)processNotificationResponseWithIdentifier:(id)arg1 andUserInfo:(id)arg2;
+- (void)processNotificationResponse:(id)arg1;
+- (void)setDeviceToken:(id)arg1;
 - (void)shutdown;
 - (int)eventWithNoCallback:(id)arg1 payload:(id)arg2;
 - (void)setEventQueuedCallback:(CDUnknownBlockType)arg1;
 - (void)saveEventsToDisk;
 - (void)sendQueuedEvents;
-- (void)getUserResourcesDiff:(CDUnknownBlockType)arg1;
-- (void)getUserResources:(CDUnknownBlockType)arg1;
-- (id)getSwrveResourceManager;
+- (void)userResourcesDiff:(CDUnknownBlockType)arg1;
+- (void)userResources:(CDUnknownBlockType)arg1;
+@property(readonly) SwrveResourceManager *resourceManager; // @synthesize resourceManager;
 - (void)refreshCampaignsAndResources;
 - (int)userUpdate:(id)arg1 withDate:(id)arg2;
 - (int)userUpdate:(id)arg1;
@@ -66,9 +73,7 @@
 - (int)iap:(id)arg1 product:(id)arg2;
 - (int)purchaseItem:(id)arg1 currency:(id)arg2 cost:(int)arg3 quantity:(int)arg4;
 - (id)swrveSDKVersion;
-- (void)setup:(int)arg1 apiKey:(id)arg2 userID:(id)arg3 config:(id)arg4;
-- (id)initWithAppID:(int)arg1 apiKey:(id)arg2 userID:(id)arg3 config:(id)arg4;
-- (id)initWithAppID:(int)arg1 apiKey:(id)arg2 userID:(id)arg3;
+- (void)setup:(int)arg1 apiKey:(id)arg2 config:(id)arg3;
 - (id)initWithAppID:(int)arg1 apiKey:(id)arg2 config:(id)arg3 launchOptions:(id)arg4;
 - (id)initWithAppID:(int)arg1 apiKey:(id)arg2 launchOptions:(id)arg3;
 - (id)initWithAppID:(int)arg1 apiKey:(id)arg2 config:(id)arg3;

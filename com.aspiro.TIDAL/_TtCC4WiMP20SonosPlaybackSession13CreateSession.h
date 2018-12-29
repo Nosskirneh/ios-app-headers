@@ -10,8 +10,6 @@
 {
 }
 
-- (id)initWithGroupId:(id)arg1 householdId:(id)arg2 cmdId:(id)arg3 body:(id)arg4;
-- (id)initWithGroupId:(id)arg1 householdId:(id)arg2 cmdId:(id)arg3;
 - (id)init;
 
 @end

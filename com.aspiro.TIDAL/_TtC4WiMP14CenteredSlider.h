@@ -6,8 +6,6 @@
 
 #import <UIKit/UISlider.h>
 
-@class NSLayoutConstraint;
-
 @interface _TtC4WiMP14CenteredSlider : UISlider
 {
     // Error parsing type: , name: sliderHeight
@@ -19,9 +17,6 @@
 - (id)initWithFrame:(struct CGRect)arg1;
 - (void)valueChanged;
 - (id)initWithCoder:(id)arg1;
-@property(nonatomic, retain) NSLayoutConstraint *sliderRightPartWidthConstraint; // @synthesize sliderRightPartWidthConstraint;
-@property(nonatomic, retain) NSLayoutConstraint *sliderLeftPartWidthConstraint; // @synthesize sliderLeftPartWidthConstraint;
-@property(nonatomic, readonly) double sliderHeight; // @synthesize sliderHeight;
 
 @end
 

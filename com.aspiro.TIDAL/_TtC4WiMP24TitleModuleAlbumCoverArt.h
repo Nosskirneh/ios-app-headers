@@ -6,30 +6,29 @@
 
 #import <UIKit/UIViewController.h>
 
-@class UIImageView, _TtC4WiMP16LeafletImageView, _TtC4WiMP17AnimatedCoverView;
+@class NSLayoutConstraint, UIImageView, _TtC4WiMP17AnimatedCoverView;
 
 @interface _TtC4WiMP24TitleModuleAlbumCoverArt : UIViewController
 {
+    // Error parsing type: , name: kCoverArtTopPadding
     // Error parsing type: , name: coverArtView
     // Error parsing type: , name: animatedCoverView
-    // Error parsing type: , name: defaultImageView
-    // Error parsing type: , name: bookletTransition
+    // Error parsing type: , name: covertArtTopConstraint
+    // Error parsing type: , name: longPressRecognizer
     // Error parsing type: , name: dataProvider
     // Error parsing type: , name: album
+    // Error parsing type: , name: infoCreditsPresenter
 }
 
 - (CDUnknownBlockType).cxx_destruct;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;
-- (void)setCoverArtViewWithImage:(id)arg1;
-- (void)showAlbumInfo;
 - (void)handleLongPress:(id)arg1;
 - (void)viewDidAppear:(_Bool)arg1;
 - (void)viewDidLoad;
-- (void)dealloc;
-@property(nonatomic) __weak UIImageView *defaultImageView; // @synthesize defaultImageView;
+@property(nonatomic) __weak NSLayoutConstraint *covertArtTopConstraint; // @synthesize covertArtTopConstraint;
 @property(nonatomic) __weak _TtC4WiMP17AnimatedCoverView *animatedCoverView; // @synthesize animatedCoverView;
-@property(nonatomic) __weak _TtC4WiMP16LeafletImageView *coverArtView; // @synthesize coverArtView;
+@property(nonatomic) __weak UIImageView *coverArtView; // @synthesize coverArtView;
 
 @end
 

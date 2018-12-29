@@ -4,7 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 @class BFTask;
 
@@ -17,11 +17,9 @@
 @property(readonly, nonatomic) BFTask *task; // @synthesize task=_task;
 - (void).cxx_destruct;
 - (_Bool)trySetCancelled;
-- (_Bool)trySetException:(id)arg1;
 - (_Bool)trySetError:(id)arg1;
 - (_Bool)trySetResult:(id)arg1;
 - (void)cancel;
-- (void)setException:(id)arg1;
 - (void)setError:(id)arg1;
 - (void)setResult:(id)arg1;
 - (id)init;

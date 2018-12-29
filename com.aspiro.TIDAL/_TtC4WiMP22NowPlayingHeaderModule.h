@@ -13,12 +13,12 @@
     // Error parsing type: , name: didTapClose
     // Error parsing type: , name: didTapContextMenu
     // Error parsing type: , name: didTapInfoButton
-    // Error parsing type: , name: mediaItemTitleLabel
+    // Error parsing type: , name: didTapSourceTitleLabel
+    // Error parsing type: , name: sourceTitleLabel
     // Error parsing type: , name: suggestedItemsTitleLabel
     // Error parsing type: , name: queueTitleLabel
     // Error parsing type: , name: closeButton
     // Error parsing type: , name: contextMenuButton
-    // Error parsing type: , name: infoButton
     // Error parsing type: , name: indicatorView
     // Error parsing type: , name: indicatorContainerView
     // Error parsing type: , name: indicatorLeadingConstraint
@@ -27,16 +27,12 @@
     // Error parsing type: , name: queueCenterXConstraint
 }
 
-+ (id)getInstance;
 - (CDUnknownBlockType).cxx_destruct;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;
-- (void)didTapInfoButtonWithSender:(id)arg1;
+- (void)didTapSourcetitleLabel:(id)arg1;
 - (void)didTapContextMenuButtonWithSender:(id)arg1;
 - (void)didTapCloseButtonWithSender:(id)arg1;
-- (void)setInfoButtonWithHidden:(_Bool)arg1;
-- (void)animateHeaderContentWithScrollOffset:(double)arg1 totalLength:(double)arg2;
-- (void)setTitleWithTitle:(id)arg1;
 - (void)viewDidLoad;
 @property(nonatomic) __weak NSLayoutConstraint *queueCenterXConstraint; // @synthesize queueCenterXConstraint;
 @property(nonatomic) __weak NSLayoutConstraint *suggestedItemsCenterXConstraint; // @synthesize suggestedItemsCenterXConstraint;
@@ -44,15 +40,11 @@
 @property(nonatomic) __weak NSLayoutConstraint *indicatorLeadingConstraint; // @synthesize indicatorLeadingConstraint;
 @property(nonatomic) __weak UIView *indicatorContainerView; // @synthesize indicatorContainerView;
 @property(nonatomic) __weak UIView *indicatorView; // @synthesize indicatorView;
-@property(nonatomic) __weak UIButton *infoButton; // @synthesize infoButton;
 @property(nonatomic) __weak UIButton *contextMenuButton; // @synthesize contextMenuButton;
 @property(nonatomic) __weak UIButton *closeButton; // @synthesize closeButton;
 @property(nonatomic) __weak UILabel *queueTitleLabel; // @synthesize queueTitleLabel;
 @property(nonatomic) __weak UILabel *suggestedItemsTitleLabel; // @synthesize suggestedItemsTitleLabel;
-@property(nonatomic) __weak UILabel *mediaItemTitleLabel; // @synthesize mediaItemTitleLabel;
-@property(nonatomic, copy) CDUnknownBlockType didTapInfoButton; // @synthesize didTapInfoButton;
-@property(nonatomic, copy) CDUnknownBlockType didTapContextMenu; // @synthesize didTapContextMenu;
-@property(nonatomic, copy) CDUnknownBlockType didTapClose; // @synthesize didTapClose;
+@property(nonatomic) __weak UILabel *sourceTitleLabel; // @synthesize sourceTitleLabel;
 
 @end
 

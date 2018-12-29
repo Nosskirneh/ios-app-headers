@@ -4,7 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 #import "ANSMetadataSerializable-Protocol.h"
 
@@ -29,10 +29,6 @@
     NSString *_platform;
 }
 
-+ (id)identifierForAdvertisingWithManager:(id)arg1;
-+ (id)identifierForAdvertising;
-+ (_Bool)trackingForAdvertisingEnabled;
-+ (_Bool)advertisingSupportFrameworkLinked;
 + (id)ASManager;
 @property(readonly, nonatomic) NSString *platform; // @synthesize platform=_platform;
 @property(readonly, nonatomic) NSString *OSDisplayVersion; // @synthesize OSDisplayVersion=_OSDisplayVersion;

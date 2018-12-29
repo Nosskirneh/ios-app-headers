@@ -12,6 +12,7 @@
 
 - (void)removeAlbumFromFavorites:(id)arg1 completion:(CDUnknownBlockType)arg2;
 - (void)addAlbumToFavorites:(id)arg1 completion:(CDUnknownBlockType)arg2;
+- (void)loadItemCreditsForAlbumWithIdentifier:(id)arg1 withCompletion:(CDUnknownBlockType)arg2;
 - (void)loadCreditsForAlbumWithIdentifier:(id)arg1 withCompletion:(CDUnknownBlockType)arg2;
 - (void)loadAlbumsByCategoryIdentifier:(id)arg1 withEtag:(id)arg2 completion:(CDUnknownBlockType)arg3;
 - (void)loadPurchasedAlbumsByUserId:(id)arg1 sortAndRangeParameters:(id)arg2 completion:(CDUnknownBlockType)arg3;

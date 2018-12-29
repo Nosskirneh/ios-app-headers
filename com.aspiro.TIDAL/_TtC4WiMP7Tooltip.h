@@ -45,16 +45,8 @@
 - (id)initWithFrame:(struct CGRect)arg1;
 - (void)performTapAction;
 - (void)didTapBackground;
-- (void)dismissWithCompletionHandler:(CDUnknownBlockType)arg1;
-- (void)dismiss;
-- (void)show;
-- (void)setVerticalStartPointOffset:(double)arg1 direction:(long long)arg2;
-- (void)setHorizontalStartPointOffset:(double)arg1 direction:(long long)arg2;
-- (void)setForceVerticalDirection:(long long)arg1;
-- (void)setForceHorizontalDirection:(long long)arg1;
 - (void)dealloc;
 - (id)initWithCoder:(id)arg1;
-- (id)initWithTitle:(id)arg1 message:(id)arg2 targetElement:(id)arg3 dismissHandler:(CDUnknownBlockType)arg4;
 
 @end
 

@@ -4,9 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
-
-@class NSArray;
+#import <objc/NSObject.h>
 
 @interface _TtC4WiMP13UserFavorites : NSObject
 {
@@ -20,7 +18,6 @@
 
 - (CDUnknownBlockType).cxx_destruct;
 - (id)init;
-- (id)favoritesPathForUser:(long long)arg1 type:(long long)arg2;
 - (void)updateWithArtists:(id)arg1;
 - (void)updateWithAlbums:(id)arg1;
 - (void)updateWithVideos:(id)arg1;
@@ -30,26 +27,20 @@
 - (void)removeFavoriteArtist:(id)arg1;
 - (void)removeFavoriteAlbum:(id)arg1;
 - (void)removeFavoriteVideo:(id)arg1;
-- (void)removeFavoriteTrack:(id)arg1;
+- (void)removeFavoriteTracks:(id)arg1;
 - (void)addFavoritePlaylist:(id)arg1;
 - (void)addFavoriteArtist:(id)arg1;
 - (void)addFavoriteAlbum:(id)arg1;
 - (void)addFavoriteVideo:(id)arg1;
-- (void)addFavoriteTrack:(id)arg1;
+- (void)addFavoriteTracks:(id)arg1;
 - (_Bool)isFavoritePlaylist:(id)arg1;
 - (_Bool)isFavoriteArtist:(id)arg1;
 - (_Bool)isFavoriteAlbum:(id)arg1;
 - (_Bool)isFavoriteVideo:(id)arg1;
 - (_Bool)isFavoriteTrack:(id)arg1;
 - (void)obtainAllFavoritesForUser:(long long)arg1;
-- (void)loadStoredFavoritesForUser:(long long)arg1;
 - (id)initWithUserId:(long long)arg1 loadFavorites:(_Bool)arg2;
 - (id)initWithUserId:(long long)arg1;
-@property(nonatomic, copy) NSArray *artists; // @synthesize artists;
-@property(nonatomic, copy) NSArray *albums; // @synthesize albums;
-@property(nonatomic, copy) NSArray *videos; // @synthesize videos;
-@property(nonatomic, copy) NSArray *tracks; // @synthesize tracks;
-@property(nonatomic, copy) NSArray *playlists; // @synthesize playlists;
 @property(nonatomic) long long userId; // @synthesize userId;
 
 @end

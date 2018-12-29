@@ -7,6 +7,15 @@
 #import "_TtC4WiMP20SonosMediaController.h"
 
 @interface _TtC4WiMP20SonosMediaController (WiMP)
-- (void)sonosPlaybackQualityChanged;
+- (_Bool)isPaused;
+- (_Bool)isPlaying;
+- (double)timeElapsed;
+- (void)beginScrubbing;
+- (void)seekToTime:(double)arg1;
+- (void)stop;
+- (void)playPreviousItem;
+- (void)playNextItem;
+- (void)pause;
+- (void)play;
 @end
 

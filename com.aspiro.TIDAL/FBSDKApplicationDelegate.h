@@ -4,11 +4,11 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 #import "FBSDKContainerViewControllerDelegate-Protocol.h"
 
-@class FBSDKBridgeAPIRequest, NSString, UIViewController;
+@class FBSDKBridgeAPIRequest, NSString, SFAuthenticationSession, UIViewController;
 @protocol FBSDKURLOpening;
 
 @interface FBSDKApplicationDelegate : NSObject <FBSDKContainerViewControllerDelegate>
@@ -16,9 +16,10 @@
     FBSDKBridgeAPIRequest *_pendingRequest;
     CDUnknownBlockType _pendingRequestCompletionBlock;
     id <FBSDKURLOpening> _pendingURLOpen;
-    CDUnknownBlockType _organicDeeplinkHandler;
+    SFAuthenticationSession *_authenticationSession;
     _Bool _expectingBackground;
     UIViewController *_safariViewController;
+    _Bool _isDismissingSafariViewController;
     _Bool _active;
 }
 
@@ -26,10 +27,10 @@
 + (void)initializeWithLaunchData:(id)arg1;
 + (void)load;
 @property(readonly, nonatomic, getter=isActive) _Bool active; // @synthesize active=_active;
-@property(copy, nonatomic) CDUnknownBlockType organicDeeplinkHandler; // @synthesize organicDeeplinkHandler=_organicDeeplinkHandler;
 - (void).cxx_destruct;
 - (void)_cancelBridgeRequest;
 - (_Bool)_handleBridgeAPIResponseURL:(id)arg1 sourceApplication:(id)arg2;
+- (void)_logSDKInitialize;
 - (void)_logIfAppLinkEvent:(id)arg1;
 - (void)viewControllerDidDisappear:(id)arg1 animated:(_Bool)arg2;
 - (void)safariViewControllerDidFinish:(id)arg1;
@@ -40,6 +41,7 @@
 - (void)applicationDidEnterBackground:(id)arg1;
 - (_Bool)application:(id)arg1 didFinishLaunchingWithOptions:(id)arg2;
 - (_Bool)application:(id)arg1 openURL:(id)arg2 sourceApplication:(id)arg3 annotation:(id)arg4;
+- (_Bool)application:(id)arg1 openURL:(id)arg2 options:(id)arg3;
 - (void)dealloc;
 - (id)init;
 - (id)_init;

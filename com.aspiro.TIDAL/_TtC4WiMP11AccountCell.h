@@ -11,6 +11,9 @@
     // Error parsing type: , name: roundedImageView.storage
     // Error parsing type: , name: titleLabel.storage
     // Error parsing type: , name: descriptionLabel.storage
+    // Error parsing type: , name: customAccessoryView.storage
+    // Error parsing type: , name: verticalStackView.storage
+    // Error parsing type: , name: horizontalStackView.storage
 }
 
 - (CDUnknownBlockType).cxx_destruct;

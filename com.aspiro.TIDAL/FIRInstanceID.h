@@ -4,7 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 #import "FIRInstanceIDKeyPairStoreDelegate-Protocol.h"
 
@@ -46,7 +46,7 @@
 - (void)logAPNSConfigurationError:(id)arg1;
 - (_Bool)isProductionApp;
 - (_Bool)isSandboxApp;
-- (void)setAPNSToken:(id)arg1 type:(long long)arg2;
+- (void)notifyAPNSTokenIsSet:(id)arg1;
 - (void)defaultTokenWithHandler:(CDUnknownBlockType)arg1;
 - (void)fetchDefaultToken;
 - (long long)retryIntervalToFetchDefaultToken;
@@ -55,6 +55,7 @@
 - (void)setupKeyPairManager;
 - (void)setupTokenManager;
 - (void)start;
+- (_Bool)isFCMAutoInitEnabled;
 - (void)didCompleteConfigure;
 - (void)deleteIdentity:(id *)arg1;
 - (void)notifyIdentityReset;
@@ -64,6 +65,7 @@
 - (void)deleteTokenWithAuthorizedEntity:(id)arg1 scope:(id)arg2 handler:(CDUnknownBlockType)arg3;
 - (void)tokenWithAuthorizedEntity:(id)arg1 scope:(id)arg2 options:(id)arg3 handler:(CDUnknownBlockType)arg4;
 - (id)cachedTokenIfAvailable;
+- (void)instanceIDWithHandler:(CDUnknownBlockType)arg1;
 - (id)token;
 - (void)stopAllRequests;
 - (void)dealloc;

@@ -7,10 +7,9 @@
 #import "_TtC4WiMP16ContextMenuScene.h"
 
 @interface _TtC4WiMP16ContextMenuScene (WiMP)
-- (void)didPressAddToOfflineWithAction:(long long)arg1;
-- (void)didPressAddToFavorites;
-- (void)didUpdateDataSource;
-- (void)didPressNavigateToArtistWithArtistNames:(id)arg1 artistIds:(id)arg2;
-- (void)didPressAddToPlaylist;
+- (void)tableView:(id)arg1 didSelectRowAtIndexPath:(id)arg2;
+- (id)tableView:(id)arg1 cellForRowAtIndexPath:(id)arg2;
+- (long long)tableView:(id)arg1 numberOfRowsInSection:(long long)arg2;
+- (long long)numberOfSectionsInTableView:(id)arg1;
 @end
 

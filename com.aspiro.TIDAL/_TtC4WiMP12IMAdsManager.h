@@ -4,13 +4,10 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 #import "IMAAdsLoaderDelegate-Protocol.h"
 #import "IMAAdsManagerDelegate-Protocol.h"
-
-@class AVPlayer, IMAAVPlayerContentPlayhead, IMAAdsLoader, IMAAdsManager;
-@protocol _TtP4WiMP21IMAdsPlaybackDelegate_;
 
 @interface _TtC4WiMP12IMAdsManager : NSObject <IMAAdsLoaderDelegate, IMAAdsManagerDelegate>
 {
@@ -24,16 +21,9 @@
 
 + (id)sharedInstance;
 - (CDUnknownBlockType).cxx_destruct;
-- (void)togglePlayPause;
 - (_Bool)attemptToPlayAdsBeforeMediaItem:(id)arg1;
 - (void)configurePlayer:(id)arg1;
 - (id)init;
-@property(nonatomic, readonly) _Bool isShowingAd;
-@property(nonatomic, retain) IMAAdsManager *adsManager; // @synthesize adsManager;
-@property(nonatomic, retain) IMAAdsLoader *adsLoader; // @synthesize adsLoader;
-@property(nonatomic, retain) IMAAVPlayerContentPlayhead *contentPlayhead; // @synthesize contentPlayhead;
-@property(nonatomic) __weak id <_TtP4WiMP21IMAdsPlaybackDelegate_> delegate; // @synthesize delegate;
-@property(nonatomic) __weak AVPlayer *currentPlayer; // @synthesize currentPlayer;
 
 @end
 

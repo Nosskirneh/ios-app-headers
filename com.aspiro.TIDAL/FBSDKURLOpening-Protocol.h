@@ -9,7 +9,9 @@
 @class NSString, NSURL, UIApplication;
 
 @protocol FBSDKURLOpening <NSObject>
+- (_Bool)isAuthenticationURL:(NSURL *)arg1;
 - (void)applicationDidBecomeActive:(UIApplication *)arg1;
+- (_Bool)canOpenURL:(NSURL *)arg1 forApplication:(UIApplication *)arg2 sourceApplication:(NSString *)arg3 annotation:(id)arg4;
 - (_Bool)application:(UIApplication *)arg1 openURL:(NSURL *)arg2 sourceApplication:(NSString *)arg3 annotation:(id)arg4;
 @end
 

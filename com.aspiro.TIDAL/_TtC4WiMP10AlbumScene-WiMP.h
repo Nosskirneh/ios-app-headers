@@ -7,6 +7,10 @@
 #import "_TtC4WiMP10AlbumScene.h"
 
 @interface _TtC4WiMP10AlbumScene (WiMP)
-- (void)noDataLoaded;
+- (void)updateModules;
+- (void)adjustTitleModuleForContentOffset:(struct CGPoint)arg1;
+- (void)refreshContent;
+- (void)showNoConnectionView;
+- (void)showLoadingAnimation;
 @end
 

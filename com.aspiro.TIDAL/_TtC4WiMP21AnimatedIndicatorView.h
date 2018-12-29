@@ -6,8 +6,6 @@
 
 #import <UIKit/UIProgressView.h>
 
-@class NSLayoutConstraint;
-
 @interface _TtC4WiMP21AnimatedIndicatorView : UIProgressView
 {
     // Error parsing type: , name: state
@@ -20,8 +18,6 @@
 - (id)initWithFrame:(struct CGRect)arg1;
 - (void)layoutSubviews;
 - (id)initWithCoder:(id)arg1;
-- (id)initWith:(double)arg1 defaultColor:(id)arg2;
-@property(nonatomic, retain) NSLayoutConstraint *widthConstraint; // @synthesize widthConstraint;
 
 @end
 

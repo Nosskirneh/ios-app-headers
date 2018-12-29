@@ -4,7 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 #import "FBSDKURLOpening-Protocol.h"
 #import "FBSDKWebDialogDelegate-Protocol.h"
@@ -15,8 +15,10 @@
 {
     CDUnknownBlockType _handler;
     FBSDKLoginManagerLogger *_logger;
-    _Bool _performingLogIn;
+    long long _state;
     FBSDKKeychainStore *_keychainStore;
+    _Bool _usedSFAuthSession;
+    NSString *_authType;
     unsigned long long _defaultAudience;
     unsigned long long _loginBehavior;
     UIViewController *_fromViewController;
@@ -30,6 +32,7 @@
 @property(nonatomic) __weak UIViewController *fromViewController; // @synthesize fromViewController=_fromViewController;
 @property(nonatomic) unsigned long long loginBehavior; // @synthesize loginBehavior=_loginBehavior;
 @property(nonatomic) unsigned long long defaultAudience; // @synthesize defaultAudience=_defaultAudience;
+@property(retain, nonatomic) NSString *authType; // @synthesize authType=_authType;
 - (void).cxx_destruct;
 - (void)setRequestedPermissions:(id)arg1;
 - (void)setHandler:(CDUnknownBlockType)arg1;
@@ -37,20 +40,25 @@
 - (void)storeExpectedChallenge:(id)arg1;
 - (void)logInWithBehavior:(unsigned long long)arg1;
 - (void)logInWithPermissions:(id)arg1 handler:(CDUnknownBlockType)arg2;
-- (id)logInParametersWithPermissions:(id)arg1;
+- (id)logInParametersWithPermissions:(id)arg1 serverConfiguration:(id)arg2;
 - (id)loadExpectedChallenge;
 - (void)invokeHandler:(id)arg1 error:(id)arg2;
 - (void)determineRecentlyGrantedPermissions:(id *)arg1 recentlyDeclinedPermissions:(id *)arg2 forGrantedPermission:(id)arg3 declinedPermissions:(id)arg4;
 - (void)completeAuthentication:(id)arg1 expectChallenge:(_Bool)arg2;
 - (void)assertPermissions:(id)arg1;
+- (_Bool)isPerformingLogin;
+- (_Bool)validateLoginStartState;
+- (void)handleImplicitCancelOfLogIn;
+- (void)raiseLoginException:(id)arg1;
 - (void)logOut;
 - (void)logInWithPublishPermissions:(id)arg1 fromViewController:(id)arg2 handler:(CDUnknownBlockType)arg3;
 - (void)logInWithPublishPermissions:(id)arg1 handler:(CDUnknownBlockType)arg2;
 - (void)logInWithReadPermissions:(id)arg1 fromViewController:(id)arg2 handler:(CDUnknownBlockType)arg3;
 - (void)logInWithReadPermissions:(id)arg1 handler:(CDUnknownBlockType)arg2;
 - (id)init;
-- (void)handleImplicitCancelOfLogIn;
+- (_Bool)isAuthenticationURL:(id)arg1;
 - (void)applicationDidBecomeActive:(id)arg1;
+- (_Bool)canOpenURL:(id)arg1 forApplication:(id)arg2 sourceApplication:(id)arg3 annotation:(id)arg4;
 - (_Bool)application:(id)arg1 openURL:(id)arg2 sourceApplication:(id)arg3 annotation:(id)arg4;
 - (void)performBrowserLogInWithParameters:(id)arg1 handler:(CDUnknownBlockType)arg2;
 - (void)performNativeLogInWithParameters:(id)arg1 handler:(CDUnknownBlockType)arg2;

@@ -6,8 +6,6 @@
 
 #import <UIKit/UIViewController.h>
 
-@class NSDictionary;
-
 @interface _TtC4WiMP21SingleItemPromoModule : UIViewController
 {
     // Error parsing type: , name: eventMetadata
@@ -25,7 +23,6 @@
 - (void)viewWillTransitionToSize:(struct CGSize)arg1 withTransitionCoordinator:(id)arg2;
 - (void)viewDidLoad;
 - (id)initWithCoder:(id)arg1;
-@property(nonatomic, copy) NSDictionary *eventMetadata; // @synthesize eventMetadata;
 
 @end
 

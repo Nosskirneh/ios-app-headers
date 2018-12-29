@@ -11,6 +11,7 @@
 @protocol GCKDiscoveryManagerListener <NSObject>
 
 @optional
+- (void)didRemoveDevice:(GCKDevice *)arg1 atIndex:(unsigned long long)arg2;
 - (void)didRemoveDeviceAtIndex:(unsigned long long)arg1;
 - (void)didUpdateDevice:(GCKDevice *)arg1 atIndex:(unsigned long long)arg2 andMoveToIndex:(unsigned long long)arg3;
 - (void)didUpdateDevice:(GCKDevice *)arg1 atIndex:(unsigned long long)arg2;

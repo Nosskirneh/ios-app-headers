@@ -4,7 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 @class NSNumber;
 
@@ -38,6 +38,7 @@
 - (void)removePlaylist:(id)arg1;
 - (void)removeAlbum:(id)arg1 inContext:(id)arg2;
 - (void)removeAlbum:(id)arg1;
+- (void)removeFavoriteTracks;
 - (void)removeTrackSoftlyByObjectId:(id)arg1;
 - (void)removeCut:(id)arg1 inContext:(id)arg2;
 - (void)removeVideo:(id)arg1 inContext:(id)arg2;
@@ -47,6 +48,7 @@
 - (void)addPlaylistToQueue:(id)arg1 notify:(_Bool)arg2 notifyBadge:(_Bool)arg3 withDispatchGroup:(id)arg4;
 - (void)handleNonStreamReadyAlbum:(id)arg1;
 - (void)addAlbumToQueue:(id)arg1 notify:(_Bool)arg2 notifyBadge:(_Bool)arg3 withDispatchGroup:(id)arg4;
+- (void)addFavoriteTracksToQueueWithNotify:(_Bool)arg1 notifyBadge:(_Bool)arg2;
 - (void)addMediaItemToQueueByObjectID:(id)arg1 notify:(_Bool)arg2;
 
 @end

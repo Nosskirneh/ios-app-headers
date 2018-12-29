@@ -6,29 +6,13 @@
 
 #import "WMPBaseServiceProvider.h"
 
-@class NSString;
-
 @interface _TtC4WiMP18CutServiceProvider : WMPBaseServiceProvider
 {
     // Error parsing type: , name: countryCode
 }
 
-+ (long long)errorCodeWrongType;
-+ (long long)errorCodeStreamURL;
-+ (long long)errorCodeURL;
 - (CDUnknownBlockType).cxx_destruct;
 - (id)init;
-- (id)urlForGetTrackWaveformWithTrackUuid:(id)arg1;
-- (id)urlForGetCutWithItemUuid:(id)arg1;
-- (id)urlForPreviewCutWithItemUuid:(id)arg1;
-- (id)urlForCreateCutWithItemUuid:(id)arg1;
-- (void)fetchWaveformWithTrackUuid:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
-- (void)renameCut:(id)arg1 name:(id)arg2 completionHandler:(CDUnknownBlockType)arg3;
-- (void)updateCut:(id)arg1 name:(id)arg2 startTime:(unsigned long long)arg3 endTime:(unsigned long long)arg4 fadeInDuration:(unsigned long long)arg5 fadeOutDuration:(unsigned long long)arg6 speed:(long long)arg7 completionHandler:(CDUnknownBlockType)arg8;
-- (void)fetchCut:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
-- (void)addNewCutFromTrack:(id)arg1 name:(id)arg2 startTime:(unsigned long long)arg3 endTime:(unsigned long long)arg4 fadeInDuration:(unsigned long long)arg5 fadeOutDuration:(unsigned long long)arg6 speed:(long long)arg7 completionHandler:(CDUnknownBlockType)arg8;
-- (id)initWithCountryCode:(id)arg1;
-@property(nonatomic, readonly) NSString *countryCode; // @synthesize countryCode;
 
 @end
 

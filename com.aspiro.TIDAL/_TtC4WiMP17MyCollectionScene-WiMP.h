@@ -7,6 +7,6 @@
 #import "_TtC4WiMP17MyCollectionScene.h"
 
 @interface _TtC4WiMP17MyCollectionScene (WiMP)
-- (void)recentActivityModule:(id)arg1 didUpdateActivityItems:(id)arg2;
+- (void)offlineModeChanged:(id)arg1;
 @end
 

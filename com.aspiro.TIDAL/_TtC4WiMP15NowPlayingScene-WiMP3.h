@@ -7,8 +7,6 @@
 #import "_TtC4WiMP15NowPlayingScene.h"
 
 @interface _TtC4WiMP15NowPlayingScene (WiMP3)
-- (void)setupVideoConstraint;
-- (void)showControlsTapGestureWithRecognizer:(id)arg1;
-- (void)setupControllers;
+- (_Bool)isSkipAllowedInBasicSubscription;
 @end
 

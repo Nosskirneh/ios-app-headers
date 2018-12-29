@@ -4,9 +4,9 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
-@class AVQueuePlayer, NSMutableArray, WMPPlayerTimeObserver;
+@class AVQueuePlayer, FIRTrace, NSDictionary, NSMutableArray, NSMutableDictionary, NSString, WMPPlayerTimeObserver;
 @protocol AudioPlayerDelegate, WMPMediaItem;
 
 @interface MediaPlayer : NSObject
@@ -28,19 +28,33 @@
     AVQueuePlayer *_player;
     AVQueuePlayer *_crossfadePlayer;
     NSObject<WMPMediaItem> *_mediaItemToPlay;
+    NSString *_playbackSessionId;
+    NSString *_lastPlaybackSessionId;
     NSObject<WMPMediaItem> *_lastMediaItem;
     id <AudioPlayerDelegate> _delegate;
     long long _crossfadeTrackIndex;
     NSMutableArray *_playQueue;
+    NSMutableDictionary *_playbackStartDates;
+    NSDictionary *_bufferUnderrun;
+    NSMutableArray *_collectedBufferInfos;
     double _lastBufferEmptyTimeToSeek;
+    NSString *_emptyBufferItemUuid;
+    FIRTrace *_traceStartupTime;
 }
 
+@property(retain, nonatomic) FIRTrace *traceStartupTime; // @synthesize traceStartupTime=_traceStartupTime;
+@property(retain, nonatomic) NSString *emptyBufferItemUuid; // @synthesize emptyBufferItemUuid=_emptyBufferItemUuid;
 @property(nonatomic) double lastBufferEmptyTimeToSeek; // @synthesize lastBufferEmptyTimeToSeek=_lastBufferEmptyTimeToSeek;
+@property(retain, nonatomic) NSMutableArray *collectedBufferInfos; // @synthesize collectedBufferInfos=_collectedBufferInfos;
+@property(retain, nonatomic) NSDictionary *bufferUnderrun; // @synthesize bufferUnderrun=_bufferUnderrun;
+@property(retain, nonatomic) NSMutableDictionary *playbackStartDates; // @synthesize playbackStartDates=_playbackStartDates;
 @property(readonly, nonatomic) NSMutableArray *playQueue; // @synthesize playQueue=_playQueue;
 @property(nonatomic) long long crossfadeTrackIndex; // @synthesize crossfadeTrackIndex=_crossfadeTrackIndex;
 @property(nonatomic) _Bool isInterrupted; // @synthesize isInterrupted=_isInterrupted;
 @property(nonatomic) __weak id <AudioPlayerDelegate> delegate; // @synthesize delegate=_delegate;
 @property(retain, nonatomic) NSObject<WMPMediaItem> *lastMediaItem; // @synthesize lastMediaItem=_lastMediaItem;
+@property(copy, nonatomic) NSString *lastPlaybackSessionId; // @synthesize lastPlaybackSessionId=_lastPlaybackSessionId;
+@property(copy, nonatomic) NSString *playbackSessionId; // @synthesize playbackSessionId=_playbackSessionId;
 @property(retain, nonatomic) NSObject<WMPMediaItem> *mediaItemToPlay; // @synthesize mediaItemToPlay=_mediaItemToPlay;
 @property(nonatomic) _Bool isStartedPlaying; // @synthesize isStartedPlaying=_isStartedPlaying;
 @property(retain, nonatomic) AVQueuePlayer *crossfadePlayer; // @synthesize crossfadePlayer=_crossfadePlayer;
@@ -49,6 +63,7 @@
 - (double)mediaItemDuration;
 - (id)getLastMediaItemReplayGain;
 - (id)getMediaItemReplayGain;
+- (void)cleanPlaybackStartDates;
 - (void)addObserversForPlayer:(id)arg1;
 - (void)removeObserversForPlayer:(id)arg1;
 - (void)addObserversForPlayerItem:(id)arg1;
@@ -57,13 +72,13 @@
 - (void)crossfadePlayerItemDidReachEnd:(id)arg1;
 - (void)calculateAndSetLoudnessNormalization;
 - (void)resetPrefetchedQueue;
-- (_Bool)crossfadePlayTrack:(float)arg1 isAirPlayOutputRoute:(_Bool)arg2;
+- (_Bool)crossfadePlayTrack:(float)arg1;
 - (_Bool)isCrossfadePlaying;
 - (void)syncPlayPauseButtons;
 - (void)beginScrubbing;
-- (CDStruct_198678f7)playerItemDuration;
-- (CDStruct_198678f7)playerItemDuration:(id)arg1;
-- (void)syncScrubber:(CDStruct_198678f7)arg1;
+- (CDStruct_1b6d18a9)playerItemDuration;
+- (CDStruct_1b6d18a9)playerItemDuration:(id)arg1;
+- (void)syncScrubber:(CDStruct_1b6d18a9)arg1;
 - (void)removePlayerTimeObserver;
 - (void)updateTimeObserver:(double)arg1;
 - (void)initScrubberTimer;
@@ -76,24 +91,33 @@
 - (_Bool)isPlayBufferEmpty;
 - (id)currentPlayerItem;
 - (void)prepareToCrossfading;
+- (void)recordBufferUnderrun;
 - (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
 - (void)playerRateDidChange;
 - (void)playerItemLoadedTimeRange;
+- (id)bufferInfos;
+- (void)removeAllBufferInfos;
+- (void)succeedExistingBufferUnderruns;
+- (void)abortExistingBufferUnderruns;
 - (void)playerItemBufferEmpty:(id)arg1;
 - (void)playerStatusFailed;
+- (void)resetBufferEmptyInfo;
+- (_Bool)isCurrentHandlingBufferEmpty;
 - (void)playerStatusReadyToPlay;
 - (void)configureAirPlayForPlayer:(id)arg1;
 - (void)notifyStateChange;
+- (void)playerItemFailedToPlayToEndTime:(id)arg1;
+- (void)playerItemNewErrorLogEntry:(id)arg1;
 - (void)playerItemDidReachEnd:(id)arg1;
 - (void)resumePlayingVideoWithQualityUrl:(id)arg1;
 - (void)prepareToPlayURL:(id)arg1 title:(id)arg2 imageResourceId:(id)arg3;
-- (void)prepareToPlayURL:(id)arg1;
 - (void)releaseOldPlayer;
 - (void)streamURL:(id)arg1 title:(id)arg2 imageResourceId:(id)arg3;
 - (void)streamURL:(id)arg1;
 - (void)syncTrackLoadingNotification:(_Bool)arg1;
 - (void)addItemURLAsNextInQueue:(id)arg1;
 - (long long)itemsCount;
+- (id)playbackStartupDateFor:(id)arg1;
 - (void)streamNextPreloaded;
 - (void)setAutoPlay:(_Bool)arg1;
 - (void)setInitialSeekTime:(double)arg1;
@@ -120,6 +144,10 @@
 - (void)softPause:(_Bool)arg1;
 - (double)reducedGainWith:(double)arg1 peak:(double)arg2 preAmp:(double)arg3 targetOffset:(double)arg4;
 - (double)trackVolumeWithReplayGain:(id)arg1;
+- (id)underrunAbort:(id)arg1;
+- (id)underrunSuccess:(id)arg1;
+- (id)createInitialBufferInfo;
+- (void)logWithError:(id)arg1;
 
 @end
 

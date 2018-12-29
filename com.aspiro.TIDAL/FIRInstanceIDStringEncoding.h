@@ -4,7 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 @class NSData;
 
@@ -14,7 +14,7 @@
     char *charMap_;
     int reverseCharMap_[128];
     int shift_;
-    int mask_;
+    unsigned int mask_;
     _Bool doPad_;
     BOOL paddingChar_;
     int padLen_;

@@ -4,7 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 @interface FBSDKInternalUtility : NSObject
 {
@@ -19,15 +19,18 @@
 + (_Bool)isRegisteredURLScheme:(id)arg1;
 + (id)hexadecimalStringFromData:(id)arg1;
 + (id)topMostViewController;
++ (id)findWindow;
 + (void)validateFacebookReservedURLSchemes;
 + (void)validateURLSchemes;
 + (id)validateRequiredClientAccessToken;
 + (void)validateAppID;
++ (_Bool)_canOpenURLScheme:(id)arg1;
 + (id)_convertObjectToJSONObject:(id)arg1 invalidObjectHandler:(CDUnknownBlockType)arg2 stop:(_Bool *)arg3;
 + (long long)_compareOperatingSystemVersion:(CDStruct_2ec95fd7)arg1 toVersion:(CDStruct_2ec95fd7)arg2;
++ (_Bool)isMSQRDPlayerAppInstalled;
 + (_Bool)isMessengerAppInstalled;
 + (_Bool)isFacebookAppInstalled;
-+ (id)viewControllerforView:(id)arg1;
++ (id)viewControllerForView:(id)arg1;
 + (void)unregisterTransientObject:(id)arg1;
 + (void)registerTransientObject:(id)arg1;
 + (void)deleteFacebookCookies;

@@ -12,6 +12,7 @@
 + (id)wmp_socialPostAgeOld:(id)arg1;
 + (_Bool)dateIsNotToday:(id)arg1;
 + (id)currentDateWithoutTime;
++ (id)mediumDateFormatter;
 + (id)shortDateFormatter;
 + (id)dateAndTimeFormatter;
 + (id)yearStringFromDate:(id)arg1;

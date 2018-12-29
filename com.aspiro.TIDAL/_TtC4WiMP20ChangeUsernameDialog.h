@@ -20,13 +20,10 @@
 }
 
 + (id)getInstance;
-+ (id)storyboardName;
 - (CDUnknownBlockType).cxx_destruct;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;
-- (void)showNotNowFeedbackText;
 - (void)didPressCancelButton:(id)arg1;
-- (void)setupText;
 - (void)viewDidLayoutSubviews;
 - (void)viewWillAppear:(_Bool)arg1;
 - (void)viewDidLoad;
@@ -36,7 +33,6 @@
 @property(nonatomic) __weak UILabel *titleLabel; // @synthesize titleLabel;
 @property(nonatomic) __weak UIView *buttonsView; // @synthesize buttonsView;
 @property(nonatomic) __weak UIView *topView; // @synthesize topView;
-@property(nonatomic) _Bool isPresentingNotFromSettings; // @synthesize isPresentingNotFromSettings;
 
 @end
 

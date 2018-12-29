@@ -6,9 +6,7 @@
 
 #import "_TtC4WiMP21DescriptionDataSource.h"
 
-#import "_TtP4WiMP17LinkLabelDelegate_-Protocol.h"
-
-@interface _TtC4WiMP27ArtistDescriptionDataSource : _TtC4WiMP21DescriptionDataSource <_TtP4WiMP17LinkLabelDelegate_>
+@interface _TtC4WiMP27ArtistDescriptionDataSource : _TtC4WiMP21DescriptionDataSource
 {
     // Error parsing type: , name: kArtistBioSection
     // Error parsing type: , name: tappedUrlHandler
@@ -16,10 +14,7 @@
 }
 
 - (CDUnknownBlockType).cxx_destruct;
-- (id)initWithTableView:(id)arg1;
 - (void)linkLabelDidTapLink:(id)arg1;
-- (void)update:(id)arg1;
-@property(nonatomic, copy) CDUnknownBlockType tappedUrlHandler; // @synthesize tappedUrlHandler;
 
 @end
 

@@ -6,8 +6,6 @@
 
 #import "WMPBaseServiceProvider.h"
 
-@class NSString;
-
 @interface _TtC4WiMP20MediaServiceProvider : WMPBaseServiceProvider
 {
     // Error parsing type: , name: countryCode
@@ -15,10 +13,6 @@
 
 - (CDUnknownBlockType).cxx_destruct;
 - (id)init;
-- (id)urlForItemWithItemUuid:(id)arg1 itemType:(long long)arg2 urlType:(long long)arg3 quality:(id)arg4 originatingPlaylistUuid:(id)arg5;
-- (void)fetchMediaUrlWithItemUuid:(id)arg1 originatingPlaylistUuid:(id)arg2 urlType:(long long)arg3 quality:(id)arg4 completionHandler:(CDUnknownBlockType)arg5;
-- (id)initWithCountryCode:(id)arg1;
-@property(nonatomic, readonly) NSString *countryCode; // @synthesize countryCode;
 
 @end
 

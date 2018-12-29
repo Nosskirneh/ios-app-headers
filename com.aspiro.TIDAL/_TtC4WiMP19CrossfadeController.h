@@ -6,8 +6,6 @@
 
 #import "WMPAbstractScene.h"
 
-@class WMPSettingsService;
-
 @interface _TtC4WiMP19CrossfadeController : WMPAbstractScene
 {
     // Error parsing type: , name: settings
@@ -21,7 +19,6 @@
 - (id)initWithCoder:(id)arg1;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;
 - (void)viewDidLoad;
-@property(nonatomic, readonly) WMPSettingsService *settings; // @synthesize settings;
 
 @end
 

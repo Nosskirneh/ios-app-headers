@@ -4,7 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 #import "WMPTrackListModuleConfig-Protocol.h"
 
@@ -28,6 +28,7 @@
 @property(nonatomic) __weak id <WMPModuleDelegate> moduleDelegate; // @synthesize moduleDelegate=_moduleDelegate;
 @property(retain, nonatomic) WMPSortAndRangeParameters *sortAndRangeParameters; // @synthesize sortAndRangeParameters=_sortAndRangeParameters;
 - (void).cxx_destruct;
+- (_Bool)shouldHighlight:(id)arg1;
 - (void)fullScreen:(id)arg1;
 - (id)tableHeaderView:(id)arg1 withTitleModule:(id)arg2;
 - (id)titleModule;

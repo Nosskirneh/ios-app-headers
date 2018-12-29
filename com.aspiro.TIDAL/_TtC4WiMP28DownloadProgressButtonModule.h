@@ -6,8 +6,11 @@
 
 #import <UIKit/UIViewController.h>
 
+@class NSDictionary;
+
 @interface _TtC4WiMP28DownloadProgressButtonModule : UIViewController
 {
+    // Error parsing type: , name: eventMetadata
     // Error parsing type: , name: canCollapse
     // Error parsing type: , name: itemId
     // Error parsing type: , name: moduleInsets
@@ -28,11 +31,11 @@
 - (id)initWithCoder:(id)arg1;
 - (id)init;
 @property(nonatomic) _Bool isHidden; // @synthesize isHidden;
-@property(nonatomic) struct UIEdgeInsets moduleInsets; // @synthesize moduleInsets;
 - (void)refreshData;
 @property(nonatomic) double heightConstraint;
 @property(nonatomic, copy) id itemId; // @synthesize itemId;
 @property(nonatomic) _Bool canCollapse; // @synthesize canCollapse;
+@property(nonatomic, copy) NSDictionary *eventMetadata; // @synthesize eventMetadata;
 
 @end
 

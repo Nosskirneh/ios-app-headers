@@ -6,8 +6,6 @@
 
 #import "WMPAbstractScene.h"
 
-@class NSArray;
-
 @interface _TtC4WiMP23OfflineClientController : WMPAbstractScene
 {
     // Error parsing type: , name: clients
@@ -16,6 +14,7 @@
     // Error parsing type: , name: tableConfigurer.storage
     // Error parsing type: , name: tableView.storage
     // Error parsing type: , name: noContentLabel.storage
+    // Error parsing type: , name: pageTitle
     // Error parsing type: , name: type
     // Error parsing type: , name: state
 }
@@ -25,7 +24,6 @@
 - (void)viewWillAppear:(_Bool)arg1;
 - (void)viewDidLoad;
 - (id)initWithCoder:(id)arg1;
-@property(nonatomic, copy) NSArray *clients; // @synthesize clients;
 
 @end
 

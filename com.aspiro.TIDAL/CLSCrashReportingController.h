@@ -4,7 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 #import "CLSNetworkClientDelegate-Protocol.h"
 #import "CLSReportsControllerDelegate-Protocol.h"
@@ -23,6 +23,7 @@
     UIAlertView *_crashReportSubmissionAlert;
     CLSInternalReport *_promptedReport;
     long long _promptChoice;
+    _Bool _registeredAnalyticsEventListener;
     id <CLSCrashReportingControllerDelegate> _delegate;
     CLSFileManager *_fileManager;
 }
@@ -39,12 +40,14 @@
 - (id)settingsForReportsController:(id)arg1;
 - (void)networkClient:(id)arg1 didFinishUploadWithPath:(id)arg2 error:(id)arg3;
 - (_Bool)networkClientCanUseBackgroundSessions:(id)arg1;
+- (void)fabricSettingsDownloaded:(id)arg1;
 - (void)didChangeUIOrientation:(id)arg1;
 - (void)didChangeOrientation:(id)arg1;
 - (void)didBecomeInactive:(id)arg1;
 - (void)willBecomeActive:(id)arg1;
 - (void)captureInitialNotificationStates;
 - (void)setupStateNotifications;
+- (void)registerAnalyticsEventListener;
 - (_Bool)checkForAndCreateLaunchMarker;
 - (_Bool)removeLaunchFailureMarker;
 - (_Bool)launchFailureMarkerPresent;

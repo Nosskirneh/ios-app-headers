@@ -4,7 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 #import "NSURLConnectionDataDelegate-Protocol.h"
 
@@ -26,7 +26,7 @@
 @property(retain) NSDate *startTime; // @synthesize startTime;
 - (void).cxx_destruct;
 - (void)addHttpPerformanceMetrics:(id)arg1;
-- (id)getTimeIntervalFromStartAsString:(id)arg1;
+- (id)timeIntervalFromStartAsString:(id)arg1;
 - (void)connectionDidFinishLoading:(id)arg1;
 - (void)connection:(id)arg1 didReceiveData:(id)arg2;
 - (void)connection:(id)arg1 didReceiveResponse:(id)arg2;

@@ -4,7 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 @interface WMPContextHelper : NSObject
 {
@@ -46,7 +46,7 @@
 + (id)fetchRequestForCategoryTrack:(id)arg1 inContext:(id)arg2;
 + (id)fetchArtistTracks:(id)arg1 inContext:(id)arg2;
 + (id)fetchTopArtistTracks:(id)arg1 sortAndRangeParameters:(id)arg2 inContext:(id)arg3;
-+ (id)fetchFavoriteTracksForUserId:(id)arg1 inContext:(id)arg2;
++ (id)fetchFavoriteTracksForUserId:(id)arg1 sortDescriptors:(id)arg2 inContext:(id)arg3;
 + (id)fetchTopArtistTracks:(id)arg1 inContext:(id)arg2;
 + (id)fetchRequestForTopArtistTracks:(id)arg1 sortAndRangeParameters:(id)arg2 inContext:(id)arg3;
 + (id)fetchRequestForTopArtistTracks:(id)arg1 inContext:(id)arg2;

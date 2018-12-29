@@ -4,9 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
-
-@class NSNumber, NSString;
+#import <objc/NSObject.h>
 
 @interface _TtC4WiMP12ActivityItem : NSObject
 {
@@ -22,13 +20,6 @@
 - (id)init;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
-- (id)initWithTitle:(id)arg1 imageResourceId:(id)arg2 type:(long long)arg3;
-@property(nonatomic, retain) NSNumber *itemId; // @synthesize itemId;
-@property(nonatomic, copy) NSString *itemSubtitle; // @synthesize itemSubtitle;
-@property(nonatomic, copy) NSString *uuid; // @synthesize uuid;
-@property(nonatomic) long long activityType; // @synthesize activityType;
-@property(nonatomic, copy) NSString *imageResourceId; // @synthesize imageResourceId;
-@property(nonatomic, copy) NSString *itemTitle; // @synthesize itemTitle;
 
 @end
 

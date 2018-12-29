@@ -4,7 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 @interface WMPAnalyticsService : NSObject
 {
@@ -136,11 +136,13 @@
 + (void)tagScreenForAlbumListType:(long long)arg1 fullscreen:(_Bool)arg2;
 + (void)tagScreenForEditorialType:(long long)arg1 identifier:(id)arg2 fullscreen:(_Bool)arg3;
 + (void)tagScreenForTracklistType:(long long)arg1 itemId:(id)arg2 fullscreen:(_Bool)arg3;
++ (_Bool)isSwrveEvent:(id)arg1;
 + (void)tagEventToAnswers:(id)arg1 attributes:(id)arg2;
 + (void)tagEvent:(id)arg1 attributes:(id)arg2 postToSwrve:(_Bool)arg3;
 + (void)tagEvent:(id)arg1 attributes:(id)arg2;
 + (void)tagEvent:(id)arg1;
 + (void)tagScreen:(id)arg1;
++ (void)reportCrossFadeState;
 
 @end
 

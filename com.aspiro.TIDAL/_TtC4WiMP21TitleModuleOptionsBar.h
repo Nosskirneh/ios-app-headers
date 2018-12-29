@@ -23,7 +23,6 @@
 - (CDUnknownBlockType).cxx_destruct;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;
-- (void)setupPlayButtons;
 - (void)updateUI;
 - (void)viewWillAppear:(_Bool)arg1;
 - (void)viewDidLoad;

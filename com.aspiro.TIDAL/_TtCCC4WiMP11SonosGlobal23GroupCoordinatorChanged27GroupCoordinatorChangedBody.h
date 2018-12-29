@@ -6,8 +6,6 @@
 
 #import "_TtC4WiMP13SonosBaseBody.h"
 
-@class NSString;
-
 @interface _TtCCC4WiMP11SonosGlobal23GroupCoordinatorChanged27GroupCoordinatorChangedBody : _TtC4WiMP13SonosBaseBody
 {
     // Error parsing type: , name: groupId
@@ -18,13 +16,7 @@
 }
 
 - (CDUnknownBlockType).cxx_destruct;
-- (id)initWithGroupId:(id)arg1 groupStatus:(id)arg2 groupName:(id)arg3 websocketUrl:(id)arg4 playerId:(id)arg5;
 - (id)init;
-@property(nonatomic, copy) NSString *playerId; // @synthesize playerId;
-@property(nonatomic, copy) NSString *websocketUrl; // @synthesize websocketUrl;
-@property(nonatomic, copy) NSString *groupName; // @synthesize groupName;
-@property(nonatomic, copy) NSString *groupStatus; // @synthesize groupStatus;
-@property(nonatomic, copy) NSString *groupId; // @synthesize groupId;
 
 @end
 

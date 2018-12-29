@@ -7,7 +7,6 @@
 #import <UIKit/UILabel.h>
 
 @interface UILabel (WiMP)
-- (void)setLineHeight:(double)arg1;
 - (void)addCharacterSpacing:(double)arg1;
 @end
 

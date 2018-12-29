@@ -4,22 +4,11 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import "APMConditionalUserPropertyController.h"
 
-@interface FIRAConditionalUserPropertyController : NSObject
+@interface FIRAConditionalUserPropertyController : APMConditionalUserPropertyController
 {
 }
-
-+ (id)sharedInstance;
-- (void)removeConditionalUserPropertyOnWorkerQueue:(id)arg1;
-- (void)setConditionalUserPropertyOnWorkerQueue:(id)arg1;
-- (id)conditionalUserPropertiesWithNamePrefix:(id)arg1 filterByOrigin:(id)arg2;
-- (void)clearConditionalUserPropertyWithClearEvent:(id)arg1 forName:(id)arg2;
-- (void)setConditionalUserProperty:(id)arg1 forName:(id)arg2;
-- (id)updateConditionalUserPropertiesWithEventNameOnWorkerQueue:(id)arg1;
-- (_Bool)removeExpiredCUPWithExpiredEvents:(id *)arg1;
-- (_Bool)removeTimedOutCUPWithTimedOutEvents:(id *)arg1;
-- (id)processEventOnWorkerQueue:(id)arg1;
 
 @end
 

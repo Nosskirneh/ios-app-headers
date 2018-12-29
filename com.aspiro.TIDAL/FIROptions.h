@@ -4,7 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 #import "NSCopying-Protocol.h"
 
@@ -23,6 +23,7 @@
 + (void)resetDefaultOptions;
 + (id)plistFilePathWithName:(id)arg1;
 + (id)defaultOptionsDictionary;
++ (void)initialize;
 + (id)defaultOptions;
 @property(nonatomic, getter=isEditingLocked) _Bool editingLocked; // @synthesize editingLocked=_editingLocked;
 @property(nonatomic) _Bool usingOptionsFromDefaultPlist; // @synthesize usingOptionsFromDefaultPlist=_usingOptionsFromDefaultPlist;
@@ -33,8 +34,10 @@
 @property(readonly, nonatomic) _Bool isAnalyticsEnabled;
 @property(readonly, nonatomic) _Bool isAnalyticsCollectionDeactivated;
 @property(readonly, nonatomic) _Bool isAnalyticsCollectionEnabled;
+@property(readonly, nonatomic) _Bool isAnalyticsCollectionExpicitlySet;
 @property(readonly, nonatomic) _Bool isMeasurementEnabled;
 @property(readonly, nonatomic) NSDictionary *analyticsOptionsDictionary;
+- (id)analyticsOptionsDictionaryWithInfoDictionary:(id)arg1;
 @property(copy, nonatomic) NSString *bundleID;
 @property(copy, nonatomic) NSString *storageBucket;
 @property(copy, nonatomic) NSString *databaseURL;
@@ -50,7 +53,6 @@
 - (void)checkEditingLocked;
 - (id)initWithGoogleAppID:(id)arg1 GCMSenderID:(id)arg2;
 - (id)initWithContentsOfFile:(id)arg1;
-- (id)initWithGoogleAppID:(id)arg1 bundleID:(id)arg2 GCMSenderID:(id)arg3 APIKey:(id)arg4 clientID:(id)arg5 trackingID:(id)arg6 androidClientID:(id)arg7 databaseURL:(id)arg8 storageBucket:(id)arg9 deepLinkURLScheme:(id)arg10;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)initInternalWithOptionsDictionary:(id)arg1;
 

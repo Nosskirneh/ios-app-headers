@@ -7,8 +7,8 @@
 #import <Foundation/NSData.h>
 
 @interface NSData (MD5)
-- (long long)fira_64LeastSignificantBits;
-- (long long)fira_64LSBMD5;
-- (id)fira_MD5Data;
+- (long long)apm_64LeastSignificantBits;
+- (long long)apm_64LSBMD5;
+- (id)apm_MD5Data;
 @end
 

@@ -4,7 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 #import "IMAContentPlayhead-Protocol.h"
 
@@ -24,7 +24,7 @@
 - (void).cxx_destruct;
 - (void)stopTracking;
 - (void)startTracking;
-- (void)didReceiveTimeUpdate:(CDStruct_198678f7)arg1;
+- (void)didReceiveTimeUpdate:(CDStruct_1b6d18a9)arg1;
 - (void)dealloc;
 - (id)initWithAVPlayer:(id)arg1;
 

@@ -6,8 +6,6 @@
 
 #import <UIKit/UIView.h>
 
-@class UIColor;
-
 @interface _TtC4WiMP21AnimatedPageIndicator : UIView
 {
     // Error parsing type: , name: currentPage
@@ -15,6 +13,7 @@
     // Error parsing type: , name: numberOfPages
     // Error parsing type: , name: pageIndicatorTintColor
     // Error parsing type: , name: currentPageIndicatorTintColor
+    // Error parsing type: , name: currentViewToExpand
     // Error parsing type: , name: previousPage
     // Error parsing type: , name: pageIndicators
     // Error parsing type: , name: animationDuration
@@ -25,11 +24,6 @@
 - (CDUnknownBlockType).cxx_destruct;
 - (id)initWithFrame:(struct CGRect)arg1;
 - (id)initWithCoder:(id)arg1;
-- (id)initWithNumberOfPages:(long long)arg1 animationDuration:(double)arg2;
-@property(nonatomic, retain) UIColor *currentPageIndicatorTintColor; // @synthesize currentPageIndicatorTintColor;
-@property(nonatomic, retain) UIColor *pageIndicatorTintColor; // @synthesize pageIndicatorTintColor;
-@property(nonatomic) long long numberOfPages; // @synthesize numberOfPages;
-@property(nonatomic) long long currentPage; // @synthesize currentPage;
 
 @end
 

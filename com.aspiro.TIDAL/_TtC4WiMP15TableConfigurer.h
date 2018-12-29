@@ -4,9 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
-
-@protocol UITableViewDelegate;
+#import <objc/NSObject.h>
 
 @interface _TtC4WiMP15TableConfigurer : NSObject
 {
@@ -18,7 +16,6 @@
 - (id)init;
 - (id)forwardingTargetForSelector:(SEL)arg1;
 - (_Bool)respondsToSelector:(SEL)arg1;
-@property(nonatomic) __weak id <UITableViewDelegate> delegate; // @synthesize delegate;
 
 @end
 

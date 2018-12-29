@@ -4,7 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 #import "NSCoding-Protocol.h"
 #import "WMPModule-Protocol.h"
@@ -22,11 +22,13 @@
     NSNumber *_albumId;
     NSNumber *_isExplicit;
     NSString *_imageResourceId;
+    NSString *_squareImageResourceId;
     NSString *_imagePath;
 }
 
 + (id)typeStringFromEnum:(long long)arg1;
 @property(retain, nonatomic) NSString *imagePath; // @synthesize imagePath=_imagePath;
+@property(retain, nonatomic) NSString *squareImageResourceId; // @synthesize squareImageResourceId=_squareImageResourceId;
 @property(retain, nonatomic) NSString *imageResourceId; // @synthesize imageResourceId=_imageResourceId;
 @property(retain, nonatomic) NSNumber *isExplicit; // @synthesize isExplicit=_isExplicit;
 @property(retain, nonatomic) NSNumber *albumId; // @synthesize albumId=_albumId;
@@ -58,6 +60,7 @@
 @property(nonatomic) double heightUnits;
 @property(nonatomic) double horizontalUnits;
 @property(nonatomic) _Bool isFullScreen;
+@property(nonatomic) _Bool isLoadedFromNavigation;
 @property(nonatomic) __weak id <WMPModuleDelegate> moduleDelegate;
 @property(retain, nonatomic) NSString *moduleTag;
 @property(retain, nonatomic) UIView *noConnectionView;

@@ -7,6 +7,7 @@
 #import "_TtC4WiMP11PlayerScene.h"
 
 @interface _TtC4WiMP11PlayerScene (WiMP1)
-- (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
+- (void)didTapArtistLabel:(id)arg1;
+- (void)didTapMediaItemLabel:(id)arg1;
 @end
 

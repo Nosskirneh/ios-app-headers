@@ -20,11 +20,9 @@
     // Error parsing type: , name: delegate
 }
 
-+ (double)getHeight:(id)arg1 constraintTo:(double)arg2;
 - (CDUnknownBlockType).cxx_destruct;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithStyle:(long long)arg1 reuseIdentifier:(id)arg2;
-- (void)configureWith:(id)arg1;
 - (void)prepareForReuse;
 - (void)awakeFromNib;
 @property(nonatomic, retain) NSLayoutConstraint *pictureTopToNameBottom; // @synthesize pictureTopToNameBottom;

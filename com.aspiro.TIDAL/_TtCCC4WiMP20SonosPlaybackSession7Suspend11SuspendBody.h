@@ -6,17 +6,13 @@
 
 #import "_TtC4WiMP13SonosBaseBody.h"
 
-@class NSString;
-
 @interface _TtCCC4WiMP20SonosPlaybackSession7Suspend11SuspendBody : _TtC4WiMP13SonosBaseBody
 {
     // Error parsing type: , name: queueVersion
 }
 
 - (CDUnknownBlockType).cxx_destruct;
-- (id)initWithQueueVersion:(id)arg1;
 - (id)init;
-@property(nonatomic, copy) NSString *queueVersion; // @synthesize queueVersion;
 
 @end
 

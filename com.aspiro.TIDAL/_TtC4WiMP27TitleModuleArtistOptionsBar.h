@@ -12,9 +12,10 @@
 {
     // Error parsing type: , name: delegate
     // Error parsing type: , name: artist
+    // Error parsing type: , name: mixId
     // Error parsing type: , name: artistNameLabel
-    // Error parsing type: , name: contextMenuButton
     // Error parsing type: , name: favoriteButton
+    // Error parsing type: , name: mixesButton
     // Error parsing type: , name: artistId
     // Error parsing type: , name: artistName
     // Error parsing type: , name: artistImageResourceId
@@ -26,8 +27,8 @@
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;
 - (void)updateUI;
 - (void)viewDidLoad;
+@property(nonatomic, retain) UIButton *mixesButton; // @synthesize mixesButton;
 @property(nonatomic, retain) UIButton *favoriteButton; // @synthesize favoriteButton;
-@property(nonatomic) __weak UIButton *contextMenuButton; // @synthesize contextMenuButton;
 @property(nonatomic) __weak MarqueeLabel *artistNameLabel; // @synthesize artistNameLabel;
 
 @end

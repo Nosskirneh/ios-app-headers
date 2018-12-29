@@ -4,9 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
-
-@protocol WMPTrackListModuleConfig, _TtP4WiMP22FetchedResultsDelegate_;
+#import <objc/NSObject.h>
 
 @interface _TtC4WiMP37ItemListModuleCoreDataItemsDataSource : NSObject
 {
@@ -23,7 +21,6 @@
 - (void)controllerWillChangeContent:(id)arg1;
 - (void)controller:(id)arg1 didChangeSection:(id)arg2 atIndex:(long long)arg3 forChangeType:(unsigned long long)arg4;
 - (void)controller:(id)arg1 didChangeObject:(id)arg2 atIndexPath:(id)arg3 forChangeType:(unsigned long long)arg4 newIndexPath:(id)arg5;
-- (void)didLoadItems;
 - (void)reloadDataSource;
 - (id)indexPathForItem:(id)arg1;
 - (id)items;
@@ -33,8 +30,6 @@
 - (long long)tableView:(id)arg1 numberOfRowsInSection:(long long)arg2;
 - (long long)numberOfSectionsInTableView:(id)arg1;
 - (id)initWithConfiguration:(id)arg1 resultsDelegate:(id)arg2;
-@property(nonatomic) __weak id <_TtP4WiMP22FetchedResultsDelegate_> delegate; // @synthesize delegate;
-@property(nonatomic, retain) id <WMPTrackListModuleConfig> config; // @synthesize config;
 @property(nonatomic) long long moduleFormat; // @synthesize moduleFormat;
 
 @end

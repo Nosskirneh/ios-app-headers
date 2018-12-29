@@ -4,7 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 @interface WMPCommunicator : NSObject
 {
@@ -12,6 +12,8 @@
 
 + (id)encodeSHA256:(id)arg1 withSecret:(id)arg2;
 + (id)generateJWTStringWithDictionary:(id)arg1;
++ (id)loadCachedResponseForUrl:(id)arg1;
++ (_Bool)hasCachedResponseForUrl:(id)arg1;
 + (id)createErrorFromHttpResponse:(id)arg1 withSubStatus:(long long)arg2;
 + (void)addSessionHeadersToRequest:(id)arg1;
 + (id)urlEncodeString:(id)arg1;

@@ -4,7 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 @interface WMPMessageService : NSObject
 {
@@ -21,6 +21,7 @@
 - (void)showBasicSubscriptionWelcomeMessage;
 - (_Bool)timeToShowAlertDialog;
 - (_Bool)appIsActiveInForeground;
+- (void)showVivoOfferDialogWithConfirmAction:(CDUnknownBlockType)arg1 declineAction:(CDUnknownBlockType)arg2;
 - (void)showSprintExclusiveContentErrorWithURL:(id)arg1;
 - (void)showKeychainDidFailError;
 - (void)showNetworkMessageWithDescription:(id)arg1;
@@ -46,6 +47,7 @@
 - (void)showRestoreOfflineWarningMessageForClient:(id)arg1 completion:(CDUnknownBlockType)arg2;
 - (void)showDownloadOverCellularDisabledMessagewithCompletion:(CDUnknownBlockType)arg1;
 - (void)showNotEnoughSpaceMessage;
+- (void)showDoNotMeetAgeRequirementsMessage;
 - (void)showErrorAlertWithTitle:(id)arg1 message:(id)arg2;
 - (void)showErrorAlertWithMessage:(id)arg1;
 - (void)hideAllAnimated:(_Bool)arg1;

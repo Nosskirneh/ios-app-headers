@@ -22,14 +22,8 @@
 - (CDUnknownBlockType).cxx_destruct;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithFrame:(struct CGRect)arg1;
-- (void)configureWithVideo:(id)arg1;
-- (void)configureWithArtist:(id)arg1;
-- (void)configureWithAlbum:(id)arg1;
-- (void)configureWithTrack:(id)arg1;
-- (void)configureWithPlaylist:(id)arg1;
 - (void)layoutSubviews;
 - (void)awakeFromNib;
-@property(nonatomic) _Bool shouldCreateCircularImage; // @synthesize shouldCreateCircularImage;
 @property(nonatomic) __weak NSLayoutConstraint *equalWidthSubtitleConstraint; // @synthesize equalWidthSubtitleConstraint;
 @property(nonatomic) __weak NSLayoutConstraint *equalWidthTitleConstraint; // @synthesize equalWidthTitleConstraint;
 @property(nonatomic) __weak UIImageView *imageView; // @synthesize imageView;

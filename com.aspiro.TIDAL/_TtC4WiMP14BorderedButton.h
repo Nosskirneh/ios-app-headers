@@ -6,8 +6,6 @@
 
 #import <UIKit/UIButton.h>
 
-@class UIColor;
-
 @interface _TtC4WiMP14BorderedButton : UIButton
 {
     // Error parsing type: , name: kDefaultSidesMargin
@@ -23,9 +21,6 @@
 - (_Bool)isHighlighted;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithFrame:(struct CGRect)arg1;
-@property(nonatomic) double padding; // @synthesize padding;
-@property(nonatomic, retain) UIColor *borderColor; // @synthesize borderColor;
-@property(nonatomic, readonly) double kDefaultSidesMargin; // @synthesize kDefaultSidesMargin;
 
 @end
 

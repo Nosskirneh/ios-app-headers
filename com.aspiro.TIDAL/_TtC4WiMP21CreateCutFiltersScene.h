@@ -6,7 +6,7 @@
 
 #import "_TtC4WiMP18CreateCutBaseScene.h"
 
-@class NSString, UILabel, UISlider, _TtC4WiMP10SaveDialog, _TtC4WiMP14BorderedButton;
+@class UILabel, UISlider, _TtC4WiMP14BorderedButton;
 
 @interface _TtC4WiMP21CreateCutFiltersScene : _TtC4WiMP18CreateCutBaseScene
 {
@@ -29,16 +29,7 @@
 - (CDUnknownBlockType).cxx_destruct;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;
-- (CDStruct_198678f7)elapsedTimeForScrollPosition:(double)arg1;
 - (void)playerItemDidReachEnd;
-- (double)positionForTime:(CDStruct_198678f7)arg1;
-- (void)handleReadyToPlayStatus;
-- (float)maxAllowedFadeOutValue;
-- (float)maxAllowedFadeInValue;
-- (_Bool)shouldShowDiscardAlert;
-- (void)trackFailedToLoad:(id)arg1;
-- (void)dismissScene;
-- (_Bool)conditionsWereChanged;
 - (void)didTapBackButtonWithSender:(id)arg1;
 - (void)didPressSaveButtonWithSender:(id)arg1;
 - (void)didReleaseSlider:(id)arg1;
@@ -48,14 +39,7 @@
 - (void)playButtonAction:(id)arg1;
 - (void)didTapSkipToEndButton:(id)arg1;
 - (void)didTapSkipToStartButton:(id)arg1;
-- (void)seekFromCurrentTimeWithSecondsToSeek:(double)arg1;
-- (void)showPauseIcon;
-- (void)configureIcons;
 - (void)viewDidLoad;
-@property(nonatomic) _Bool shouldResumePlayback; // @synthesize shouldResumePlayback;
-@property(nonatomic, readonly) float kFadeSlidersMaximumValue; // @synthesize kFadeSlidersMaximumValue;
-@property(nonatomic, copy) NSString *conditions; // @synthesize conditions;
-@property(nonatomic, retain) _TtC4WiMP10SaveDialog *saveDialog; // @synthesize saveDialog;
 @property(nonatomic) __weak UILabel *speedSecondsLabel; // @synthesize speedSecondsLabel;
 @property(nonatomic) __weak UILabel *fadeOutSecondsLabel; // @synthesize fadeOutSecondsLabel;
 @property(nonatomic) __weak UILabel *fadeInSecondsLabel; // @synthesize fadeInSecondsLabel;

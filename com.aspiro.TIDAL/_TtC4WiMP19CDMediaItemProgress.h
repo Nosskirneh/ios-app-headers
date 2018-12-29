@@ -12,7 +12,6 @@
 {
 }
 
-+ (id)insertNewObjectInto:(id)arg1;
 + (id)entityName;
 - (id)initWithEntity:(id)arg1 insertIntoManagedObjectContext:(id)arg2;
 

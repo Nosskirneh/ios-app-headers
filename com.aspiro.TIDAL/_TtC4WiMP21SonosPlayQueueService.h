@@ -4,23 +4,23 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import "_TtC4WiMP21LocalPlayQueueService.h"
+#import "_TtC4WiMP14LocalPlayQueue.h"
 
-@interface _TtC4WiMP21SonosPlayQueueService : _TtC4WiMP21LocalPlayQueueService
+@interface _TtC4WiMP21SonosPlayQueueService : _TtC4WiMP14LocalPlayQueue
 {
+    // Error parsing type: , name: isPreparingForPlayback
     // Error parsing type: , name: operationQueue
 }
 
 - (CDUnknownBlockType).cxx_destruct;
 - (void)preventRemoteReconnection;
 - (void)clearQueueAndStopPlayback;
+- (void)endPreparingForPlayback;
+- (void)beginPreparingForPlayback;
 - (void)setPlayQueueItems:(id)arg1;
-- (void)replaceInactivePlayQueueItems:(id)arg1 completion:(CDUnknownBlockType)arg2;
-- (void)playVideoById:(long long)arg1;
-- (void)playTrackById:(long long)arg1;
+- (void)replacePlayQueueItemsWith:(id)arg1 options:(id)arg2 completion:(CDUnknownBlockType)arg3;
 - (void)playCurrentItem;
 - (void)setPositionAndPlay:(long long)arg1;
-- (id)init;
 - (void)dealloc;
 
 @end

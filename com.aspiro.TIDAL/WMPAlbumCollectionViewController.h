@@ -25,11 +25,13 @@
 - (id)albumAtIndexPath:(id)arg1;
 - (void)scrollViewDidEndDecelerating:(id)arg1;
 - (struct CGSize)collectionView:(id)arg1 layout:(id)arg2 sizeForItemAtIndexPath:(id)arg3;
+- (double)getRowHeight;
 - (double)otherContentHeight;
 - (double)artworkRatio;
 - (void)didPressMoreButton:(id)arg1;
 - (void)configureWithItemId:(id)arg1 entityName:(id)arg2 sortAndRangeParameters:(id)arg3 cellType:(long long)arg4;
 - (void)configureWithCellType:(long long)arg1;
+- (void)viewDidAppear:(_Bool)arg1;
 - (id)initWithCoder:(id)arg1;
 - (void)presentContextMenuAt:(id)arg1;
 - (id)collectionView:(id)arg1 cellForItemAtIndexPath:(id)arg2;

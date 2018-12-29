@@ -7,8 +7,6 @@
 #import "_TtC4WiMP15NowPlayingScene.h"
 
 @interface _TtC4WiMP15NowPlayingScene (WiMP6)
-- (_Bool)isControlsHidden;
-- (void)hideControlsTimeoff;
-- (void)resetControlsHidingTimer;
+- (_Bool)gestureRecognizer:(id)arg1 shouldReceiveTouch:(id)arg2;
 @end
 

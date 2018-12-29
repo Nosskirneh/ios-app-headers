@@ -4,7 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 @class FIRInstanceIDBackupExcludedPlist, FIRInstanceIDKeyPair;
 @protocol FIRInstanceIDKeyPairStoreDelegate;
@@ -30,7 +30,7 @@
 - (void).cxx_destruct;
 - (_Bool)removeKeyPairCreationTimePlistWithError:(id *)arg1;
 - (_Bool)deleteSavedKeyPairWithSubtype:(id)arg1 error:(id *)arg2;
-- (_Bool)migrateKeyPairCacheIfNeeded;
+- (void)migrateKeyPairCacheIfNeeded;
 - (id)cachedKeyPairWithSubtype:(id)arg1 error:(id *)arg2;
 - (id)validCachedKeyPairWithSubtype:(id)arg1 error:(id *)arg2;
 - (id)generateAndSaveKeyWithSubtype:(id)arg1 creationTime:(long long)arg2 error:(id *)arg3;

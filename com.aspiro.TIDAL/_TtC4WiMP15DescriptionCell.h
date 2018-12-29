@@ -14,6 +14,9 @@
     // Error parsing type: , name: descriptionLabel
     // Error parsing type: , name: headerTopSpaceConstraint
     // Error parsing type: , name: headerLabelHeightConstraint
+    // Error parsing type: , name: gradientView
+    // Error parsing type: , name: gradientHeight
+    // Error parsing type: , name: maxDescHeight
     // Error parsing type: , name: headerLabelHeight
     // Error parsing type: , name: shouldExpandHeaderLabel
 }
@@ -21,10 +24,7 @@
 - (CDUnknownBlockType).cxx_destruct;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithStyle:(long long)arg1 reuseIdentifier:(id)arg2;
-- (void)setHeaderTitle:(id)arg1;
 - (void)awakeFromNib;
-@property(nonatomic) _Bool shouldExpandHeaderLabel; // @synthesize shouldExpandHeaderLabel;
-@property(nonatomic, readonly) double headerLabelHeight; // @synthesize headerLabelHeight;
 @property(nonatomic) __weak NSLayoutConstraint *headerLabelHeightConstraint; // @synthesize headerLabelHeightConstraint;
 @property(nonatomic) __weak NSLayoutConstraint *headerTopSpaceConstraint; // @synthesize headerTopSpaceConstraint;
 @property(nonatomic) __weak _TtC4WiMP19TopAlignedLinkLabel *descriptionLabel; // @synthesize descriptionLabel;

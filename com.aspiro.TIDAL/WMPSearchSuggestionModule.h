@@ -6,12 +6,13 @@
 
 #import <UIKit/UITableViewController.h>
 
-@class NSNumber, NSString, UIButton, UILabel, UIView, WMPSearchResults, WMPSearchService;
+@class NSDictionary, NSNumber, NSString, UIButton, UILabel, UIView, WMPSearchResults, WMPSearchService;
 
 @interface WMPSearchSuggestionModule : UITableViewController
 {
     NSNumber *_searchType;
     NSString *_searchTerm;
+    NSDictionary *_eventMetadata;
     UIView *_noResultsView;
     UILabel *_noResultsLabel;
     UIView *_headerView;
@@ -31,6 +32,7 @@
 @property(retain, nonatomic) UIView *headerView; // @synthesize headerView=_headerView;
 @property(retain, nonatomic) UILabel *noResultsLabel; // @synthesize noResultsLabel=_noResultsLabel;
 @property(retain, nonatomic) UIView *noResultsView; // @synthesize noResultsView=_noResultsView;
+@property(retain, nonatomic) NSDictionary *eventMetadata; // @synthesize eventMetadata=_eventMetadata;
 @property(retain, nonatomic) NSString *searchTerm; // @synthesize searchTerm=_searchTerm;
 @property(retain, nonatomic) NSNumber *searchType; // @synthesize searchType=_searchType;
 - (void).cxx_destruct;
@@ -51,7 +53,7 @@
 - (double)tableView:(id)arg1 heightForRowAtIndexPath:(id)arg2;
 - (long long)tableView:(id)arg1 numberOfRowsInSection:(long long)arg2;
 - (long long)numberOfSectionsInTableView:(id)arg1;
-- (void)navigateToDetailedSearchType:(long long)arg1 searchTerm:(id)arg2;
+- (void)navigateToDetailedSearchType:(long long)arg1 searchTerm:(id)arg2 section:(long long)arg3;
 - (void)navigateToSuggestion:(id)arg1;
 - (void)hideKeyboard;
 - (void)reloadTableViewAnimated:(_Bool)arg1;
@@ -63,6 +65,7 @@
 - (id)contentTitle;
 - (void)viewWillAppear:(_Bool)arg1;
 - (void)viewDidLoad;
+- (void)playItem:(long long)arg1 isVideo:(_Bool)arg2;
 
 @end
 

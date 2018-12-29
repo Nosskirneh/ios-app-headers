@@ -6,8 +6,6 @@
 
 #import "_TtC4WiMP13TableViewCell.h"
 
-@class UIDatePicker, _TtC4WiMP17ReactiveTextField;
-
 @interface _TtC4WiMP21TitleAndTextFieldCell : _TtC4WiMP13TableViewCell
 {
     // Error parsing type: , name: datePicker
@@ -21,8 +19,6 @@
 - (void)setHighlighted:(_Bool)arg1 animated:(_Bool)arg2;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithStyle:(long long)arg1 reuseIdentifier:(id)arg2;
-@property(nonatomic, retain) _TtC4WiMP17ReactiveTextField *textField;
-@property(nonatomic, retain) UIDatePicker *datePicker; // @synthesize datePicker;
 
 @end
 

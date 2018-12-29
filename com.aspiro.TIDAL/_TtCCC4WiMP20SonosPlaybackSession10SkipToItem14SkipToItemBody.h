@@ -6,8 +6,6 @@
 
 #import "_TtC4WiMP13SonosBaseBody.h"
 
-@class NSString, _TtC4WiMP10SonosTrack;
-
 @interface _TtCCC4WiMP20SonosPlaybackSession10SkipToItem14SkipToItemBody : _TtC4WiMP13SonosBaseBody
 {
     // Error parsing type: , name: itemId
@@ -18,12 +16,8 @@
 }
 
 - (CDUnknownBlockType).cxx_destruct;
-- (id)getParameterTypes;
 - (void)setValue:(id)arg1 forUndefinedKey:(id)arg2;
 - (id)init;
-@property(nonatomic, retain) _TtC4WiMP10SonosTrack *trackMetadata; // @synthesize trackMetadata;
-@property(nonatomic, copy) NSString *queueVersion; // @synthesize queueVersion;
-@property(nonatomic, copy) NSString *itemId; // @synthesize itemId;
 
 @end
 

@@ -15,7 +15,6 @@
     // Error parsing type: , name: imageService
 }
 
-+ (struct CGSize)size;
 - (CDUnknownBlockType).cxx_destruct;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithFrame:(struct CGRect)arg1;

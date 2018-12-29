@@ -6,8 +6,6 @@
 
 #import "_TtC4WiMP13SonosBaseBody.h"
 
-@class NSString;
-
 @interface _TtCCC4WiMP20SonosPlaybackSession19JoinOrCreateSession23JoinOrCreateSessionBody : _TtC4WiMP13SonosBaseBody
 {
     // Error parsing type: , name: appId
@@ -17,12 +15,7 @@
 }
 
 - (CDUnknownBlockType).cxx_destruct;
-- (id)initWithAppId:(id)arg1 appContext:(id)arg2 accountId:(id)arg3 customData:(id)arg4;
 - (id)init;
-@property(nonatomic, copy) NSString *customData; // @synthesize customData;
-@property(nonatomic, copy) NSString *accountId; // @synthesize accountId;
-@property(nonatomic, copy) NSString *appContext; // @synthesize appContext;
-@property(nonatomic, copy) NSString *appId; // @synthesize appId;
 
 @end
 

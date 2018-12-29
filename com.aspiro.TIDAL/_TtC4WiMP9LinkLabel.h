@@ -6,8 +6,7 @@
 
 #import <UIKit/UILabel.h>
 
-@class NSAttributedString, NSLayoutManager, NSTextContainer;
-@protocol _TtP4WiMP17LinkLabelDelegate_;
+@class NSAttributedString;
 
 @interface _TtC4WiMP9LinkLabel : UILabel
 {
@@ -21,18 +20,11 @@
 
 - (CDUnknownBlockType).cxx_destruct;
 - (id)initWithFrame:(struct CGRect)arg1;
-- (id)urlAtPoint:(struct CGPoint)arg1;
-- (void)mapLinkRanges;
 - (void)touchesEnded:(id)arg1 withEvent:(id)arg2;
 - (void)layoutSubviews;
 - (void)drawTextInRect:(struct CGRect)arg1;
 - (id)initWithCoder:(id)arg1;
 @property(nonatomic, retain) NSAttributedString *attributedText;
-@property(nonatomic, readonly) struct CGPoint glyphsPosition;
-@property(nonatomic, readonly) NSLayoutManager *layoutManager; // @synthesize layoutManager;
-@property(nonatomic, readonly) NSTextContainer *textContainer; // @synthesize textContainer;
-@property(nonatomic) __weak id <_TtP4WiMP17LinkLabelDelegate_> delegate; // @synthesize delegate;
-@property(nonatomic, readonly) double labelBottomMargin; // @synthesize labelBottomMargin;
 
 @end
 

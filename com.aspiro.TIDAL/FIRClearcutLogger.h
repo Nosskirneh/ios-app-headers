@@ -4,14 +4,14 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
-#import "FIRNetworkReachabilityDelegate-Protocol.h"
+#import "GULNetworkReachabilityDelegate-Protocol.h"
 
-@class FIRNetwork, NSMutableArray, NSMutableDictionary, NSString, NSURL;
+@class GULNetwork, NSMutableArray, NSMutableDictionary, NSString, NSURL;
 @protocol FIRClearcutLoggerDelegate, OS_dispatch_queue;
 
-@interface FIRClearcutLogger : NSObject <FIRNetworkReachabilityDelegate>
+@interface FIRClearcutLogger : NSObject <GULNetworkReachabilityDelegate>
 {
     NSObject<OS_dispatch_queue> *_queue;
     // Error parsing type: AQ, name: _backgroundTaskId
@@ -28,13 +28,13 @@
     NSString *_logDirectory;
     NSMutableDictionary *_accounts;
     long long _sendDelayMillis;
-    FIRNetwork *_network;
+    GULNetwork *_network;
     NSMutableArray *_pendingRequests;
 }
 
 + (id)sharedInstance;
 @property(readonly, copy, nonatomic) NSMutableArray *pendingRequests; // @synthesize pendingRequests=_pendingRequests;
-@property(retain, nonatomic) FIRNetwork *network; // @synthesize network=_network;
+@property(retain, nonatomic) GULNetwork *network; // @synthesize network=_network;
 @property(nonatomic) _Bool sendScheduled; // @synthesize sendScheduled=_sendScheduled;
 @property(nonatomic) int uploadRetriesRemaining; // @synthesize uploadRetriesRemaining=_uploadRetriesRemaining;
 @property(nonatomic) long long sendDelayMillis; // @synthesize sendDelayMillis=_sendDelayMillis;

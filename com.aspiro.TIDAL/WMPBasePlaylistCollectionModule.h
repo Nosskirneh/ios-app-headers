@@ -14,11 +14,13 @@
 
 @interface WMPBasePlaylistCollectionModule : UIViewController <WMPCollectionStyle, WMPModule>
 {
+    _Bool _isLoadedFromNavigation;
     _Bool _isFullScreen;
     _Bool _scrollEnabled;
     _Bool _scrollsHorizontally;
     _Bool _sortingEnabled;
     _Bool _canCollapse;
+    _Bool _canCreateNewPlaylist;
     long long _cellType;
     WMPPlaylistCollectionViewController *_playlistsCollectionModule;
     WMPPlaylistService *_playlistService;
@@ -33,6 +35,7 @@
     double _heightConstraint;
 }
 
+@property(nonatomic) _Bool canCreateNewPlaylist; // @synthesize canCreateNewPlaylist=_canCreateNewPlaylist;
 @property(nonatomic) double heightConstraint; // @synthesize heightConstraint=_heightConstraint;
 @property(nonatomic) double horizontalUnits; // @synthesize horizontalUnits=_horizontalUnits;
 @property(nonatomic) double heightUnits; // @synthesize heightUnits=_heightUnits;
@@ -42,6 +45,7 @@
 @property(nonatomic) _Bool scrollEnabled; // @synthesize scrollEnabled=_scrollEnabled;
 @property(nonatomic) _Bool isFullScreen; // @synthesize isFullScreen=_isFullScreen;
 @property(retain, nonatomic) NSArray *items; // @synthesize items=_items;
+@property(nonatomic) _Bool isLoadedFromNavigation; // @synthesize isLoadedFromNavigation=_isLoadedFromNavigation;
 @property(copy, nonatomic) NSDictionary *eventMetadata; // @synthesize eventMetadata=_eventMetadata;
 @property(retain, nonatomic) id itemId; // @synthesize itemId=_itemId;
 @property(nonatomic) long long collectionStyleType; // @synthesize collectionStyleType=_collectionStyleType;
@@ -53,6 +57,8 @@
 - (void).cxx_destruct;
 - (void)moduleDidInvalidateConstraints:(id)arg1;
 - (void)callModuleDelegateWithState:(long long)arg1;
+- (void)configureHorizontalUnits;
+- (void)setupPlaylistCollectionViewController;
 - (void)dealloc;
 - (void)viewDidLoad;
 

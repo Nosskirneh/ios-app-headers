@@ -4,18 +4,15 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
-@class NSSet, NSString, SwrveReceiptProvider, UIColor;
+@class NSSet, NSString, UIColor;
 @protocol SwrvePushResponseDelegate;
 
 @interface ImmutableSwrveConfig : NSObject
 {
     _Bool prefersIAMStatusBarHidden;
-    _Bool useHttpsForEventServer;
-    _Bool useHttpsForContentServer;
     _Bool autoDownloadCampaignsAndResources;
-    _Bool talkEnabled;
     _Bool autoSendEventsOnResume;
     _Bool autoSaveEventsOnResign;
     _Bool pushEnabled;
@@ -23,31 +20,13 @@
     _Bool abTestDetailsEnabled;
     int orientation;
     int httpTimeoutSeconds;
-    int maxConcurrentDownloads;
-    int selectedStack;
+    int stack;
     NSString *userId;
     NSString *eventsServer;
     NSString *contentServer;
     NSString *language;
-    NSString *eventCacheFile;
-    NSString *eventCacheSecondaryFile;
-    NSString *eventCacheSignatureFile;
-    NSString *locationCampaignCacheFile;
-    NSString *locationCampaignCacheSecondaryFile;
-    NSString *locationCampaignCacheSignatureFile;
-    NSString *locationCampaignCacheSignatureSecondaryFile;
-    NSString *userResourcesCacheFile;
-    NSString *userResourcesCacheSecondaryFile;
-    NSString *userResourcesCacheSignatureFile;
-    NSString *userResourcesCacheSignatureSecondaryFile;
-    NSString *userResourcesDiffCacheFile;
-    NSString *userResourcesDiffCacheSignatureFile;
-    NSString *installTimeCacheFile;
-    NSString *installTimeCacheSecondaryFile;
     NSString *appVersion;
-    SwrveReceiptProvider *receiptProvider;
-    UIColor *defaultBackgroundColor;
-    UIColor *conversationLightBoxColor;
+    UIColor *inAppMessageBackgroundColor;
     double newSessionInterval;
     CDUnknownBlockType resourcesUpdatedCallback;
     NSSet *pushNotificationEvents;
@@ -59,7 +38,7 @@
 }
 
 @property(nonatomic) _Bool abTestDetailsEnabled; // @synthesize abTestDetailsEnabled;
-@property(readonly, nonatomic) int selectedStack; // @synthesize selectedStack;
+@property(readonly, nonatomic) int stack; // @synthesize stack;
 @property(readonly, nonatomic) long long autoShowMessagesMaxDelay; // @synthesize autoShowMessagesMaxDelay;
 @property(readonly, nonatomic) NSString *appGroupIdentifier; // @synthesize appGroupIdentifier;
 @property(readonly, nonatomic) id <SwrvePushResponseDelegate> pushResponseDelegate; // @synthesize pushResponseDelegate;
@@ -72,39 +51,18 @@
 @property(readonly, nonatomic) _Bool autoSendEventsOnResume; // @synthesize autoSendEventsOnResume;
 @property(readonly, nonatomic) CDUnknownBlockType resourcesUpdatedCallback; // @synthesize resourcesUpdatedCallback;
 @property(readonly, nonatomic) double newSessionInterval; // @synthesize newSessionInterval;
-@property(readonly, nonatomic) UIColor *conversationLightBoxColor; // @synthesize conversationLightBoxColor;
-@property(readonly, nonatomic) UIColor *defaultBackgroundColor; // @synthesize defaultBackgroundColor;
-@property(readonly, nonatomic) _Bool talkEnabled; // @synthesize talkEnabled;
+@property(readonly, nonatomic) UIColor *inAppMessageBackgroundColor; // @synthesize inAppMessageBackgroundColor;
 @property(readonly, nonatomic) _Bool autoDownloadCampaignsAndResources; // @synthesize autoDownloadCampaignsAndResources;
-@property(readonly, nonatomic) int maxConcurrentDownloads; // @synthesize maxConcurrentDownloads;
-@property(readonly, nonatomic) SwrveReceiptProvider *receiptProvider; // @synthesize receiptProvider;
 @property(readonly, nonatomic) NSString *appVersion; // @synthesize appVersion;
-@property(readonly, nonatomic) NSString *installTimeCacheSecondaryFile; // @synthesize installTimeCacheSecondaryFile;
-@property(readonly, nonatomic) NSString *installTimeCacheFile; // @synthesize installTimeCacheFile;
-@property(readonly, nonatomic) NSString *userResourcesDiffCacheSignatureFile; // @synthesize userResourcesDiffCacheSignatureFile;
-@property(readonly, nonatomic) NSString *userResourcesDiffCacheFile; // @synthesize userResourcesDiffCacheFile;
-@property(readonly, nonatomic) NSString *userResourcesCacheSignatureSecondaryFile; // @synthesize userResourcesCacheSignatureSecondaryFile;
-@property(readonly, nonatomic) NSString *userResourcesCacheSignatureFile; // @synthesize userResourcesCacheSignatureFile;
-@property(readonly, nonatomic) NSString *userResourcesCacheSecondaryFile; // @synthesize userResourcesCacheSecondaryFile;
-@property(readonly, nonatomic) NSString *userResourcesCacheFile; // @synthesize userResourcesCacheFile;
-@property(readonly, nonatomic) NSString *locationCampaignCacheSignatureSecondaryFile; // @synthesize locationCampaignCacheSignatureSecondaryFile;
-@property(readonly, nonatomic) NSString *locationCampaignCacheSignatureFile; // @synthesize locationCampaignCacheSignatureFile;
-@property(readonly, nonatomic) NSString *locationCampaignCacheSecondaryFile; // @synthesize locationCampaignCacheSecondaryFile;
-@property(readonly, nonatomic) NSString *locationCampaignCacheFile; // @synthesize locationCampaignCacheFile;
-@property(readonly, nonatomic) NSString *eventCacheSignatureFile; // @synthesize eventCacheSignatureFile;
-@property(readonly, nonatomic) NSString *eventCacheSecondaryFile; // @synthesize eventCacheSecondaryFile;
-@property(readonly, nonatomic) NSString *eventCacheFile; // @synthesize eventCacheFile;
 @property(readonly, nonatomic) NSString *language; // @synthesize language;
-@property(readonly, nonatomic) _Bool useHttpsForContentServer; // @synthesize useHttpsForContentServer;
 @property(readonly, nonatomic) NSString *contentServer; // @synthesize contentServer;
-@property(readonly, nonatomic) _Bool useHttpsForEventServer; // @synthesize useHttpsForEventServer;
 @property(readonly, nonatomic) NSString *eventsServer; // @synthesize eventsServer;
 @property(readonly, nonatomic) int httpTimeoutSeconds; // @synthesize httpTimeoutSeconds;
 @property(readonly, nonatomic) _Bool prefersIAMStatusBarHidden; // @synthesize prefersIAMStatusBarHidden;
 @property(readonly, nonatomic) int orientation; // @synthesize orientation;
 @property(readonly, nonatomic) NSString *userId; // @synthesize userId;
 - (void).cxx_destruct;
-- (id)initWithSwrveConfig:(id)arg1;
+- (id)initWithMutableConfig:(id)arg1;
 
 @end
 

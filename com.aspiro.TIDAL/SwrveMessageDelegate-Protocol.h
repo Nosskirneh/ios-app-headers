@@ -6,18 +6,18 @@
 
 #import "NSObject-Protocol.h"
 
-@class NSDictionary, NSString, SwrveConversation, SwrveMessage, SwrveMessageViewController;
+@class NSDictionary, NSString, SwrveConversation, SwrveMessage, SwrveMessageViewController, UIViewController;
 
 @protocol SwrveMessageDelegate <NSObject>
 
 @optional
 - (void)beginHideMessageAnimation:(SwrveMessageViewController *)arg1;
 - (void)beginShowMessageAnimation:(SwrveMessageViewController *)arg1;
-- (void)messageWillBeHidden:(SwrveMessageViewController *)arg1;
-- (void)messageWillBeShown:(SwrveMessageViewController *)arg1;
+- (void)messageWillBeHidden:(UIViewController *)arg1;
+- (void)messageWillBeShown:(UIViewController *)arg1;
 - (void)showConversation:(SwrveConversation *)arg1;
 - (void)showMessage:(SwrveMessage *)arg1;
-- (SwrveConversation *)getConversationForEvent:(NSString *)arg1 withPayload:(NSDictionary *)arg2;
-- (SwrveMessage *)findMessageForEvent:(NSString *)arg1 withPayload:(NSDictionary *)arg2;
+- (SwrveConversation *)conversationForEvent:(NSString *)arg1 withPayload:(NSDictionary *)arg2;
+- (SwrveMessage *)messageForEvent:(NSString *)arg1 withPayload:(NSDictionary *)arg2;
 @end
 

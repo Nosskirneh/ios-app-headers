@@ -4,7 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 @class NSArray, NSString, UIColor;
 
@@ -23,9 +23,8 @@
 
 + (id)createButton:(id)arg1 forController:(id)arg2 forMessage:(id)arg3;
 + (id)createImage:(id)arg1;
-+ (float)getFontSizeFrom:(id)arg1;
-+ (struct CGSize)getSizeFrom:(id)arg1;
-+ (struct CGPoint)getCenterFrom:(id)arg1;
++ (struct CGSize)sizeFromImageData:(id)arg1;
++ (struct CGPoint)centerFromImageData:(id)arg1;
 @property(retain, nonatomic) UIColor *backgroundColor; // @synthesize backgroundColor;
 @property(nonatomic) int orientation; // @synthesize orientation;
 @property(retain, nonatomic) NSString *language; // @synthesize language;

@@ -19,16 +19,12 @@
     UIView *_separatorLine;
     UILabel *_playlistNumberOfTracksLabel;
     UILabel *_playlistAuthorLabel;
-    UIView *_firstTrailingShadowView;
-    UIView *_secondTrailingShadowView;
     NSLayoutConstraint *_separatorLineHeightConstraint;
     id _itemId;
 }
 
 @property(retain, nonatomic) id itemId; // @synthesize itemId=_itemId;
 @property(retain, nonatomic) NSLayoutConstraint *separatorLineHeightConstraint; // @synthesize separatorLineHeightConstraint=_separatorLineHeightConstraint;
-@property(retain, nonatomic) UIView *secondTrailingShadowView; // @synthesize secondTrailingShadowView=_secondTrailingShadowView;
-@property(retain, nonatomic) UIView *firstTrailingShadowView; // @synthesize firstTrailingShadowView=_firstTrailingShadowView;
 @property(retain, nonatomic) UILabel *playlistAuthorLabel; // @synthesize playlistAuthorLabel=_playlistAuthorLabel;
 @property(retain, nonatomic) UILabel *playlistNumberOfTracksLabel; // @synthesize playlistNumberOfTracksLabel=_playlistNumberOfTracksLabel;
 @property(retain, nonatomic) UIView *separatorLine; // @synthesize separatorLine=_separatorLine;
@@ -56,6 +52,7 @@
 @property(nonatomic) double heightUnits;
 @property(nonatomic) double horizontalUnits;
 @property(nonatomic) _Bool isFullScreen;
+@property(nonatomic) _Bool isLoadedFromNavigation;
 @property(nonatomic) __weak id <WMPModuleDelegate> moduleDelegate;
 @property(retain, nonatomic) NSString *moduleTag;
 @property(retain, nonatomic) UIView *noConnectionView;

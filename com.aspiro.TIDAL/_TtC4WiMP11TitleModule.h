@@ -6,7 +6,7 @@
 
 #import <UIKit/UIViewController.h>
 
-@class NSDictionary, UIImageView;
+@class NSDictionary;
 
 @interface _TtC4WiMP11TitleModule : UIViewController
 {
@@ -17,20 +17,13 @@
     // Error parsing type: , name: optionsBarContainer
     // Error parsing type: , name: coverTopConstraint
     // Error parsing type: , name: blurredImageTopConstraint
-    // Error parsing type: , name: coverPayload.storage
-    // Error parsing type: , name: optionsBar.storage
 }
 
 - (CDUnknownBlockType).cxx_destruct;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;
-- (void)updateHeightIn:(id)arg1;
-@property(nonatomic, retain) UIViewController *optionsBar;
-@property(nonatomic, retain) UIViewController *coverPayload;
-@property(nonatomic, readonly) double optionsHeight;
-@property(nonatomic, readonly) double coverHeight;
+@property(nonatomic, readonly) UIViewController *optionsBar;
 - (void)viewDidLoad;
-@property(nonatomic, retain) UIImageView *backgroundImageView; // @synthesize backgroundImageView;
 @property(nonatomic) double heightConstraint;
 @property(nonatomic, copy) id itemId; // @synthesize itemId;
 @property(nonatomic, copy) NSDictionary *eventMetadata; // @synthesize eventMetadata;

@@ -6,17 +6,19 @@
 
 #import "WMPCollectionViewController.h"
 
-@class NSString, WMPImageService;
+@class NSDictionary, NSString, WMPImageService;
 
 @interface WMPArtistCollectionViewController : WMPCollectionViewController
 {
     long long _cellType;
     NSString *_cellId;
+    NSDictionary *_eventMetadata;
     WMPImageService *_imageService;
 }
 
 + (id)getInstance;
 @property(retain, nonatomic) WMPImageService *imageService; // @synthesize imageService=_imageService;
+@property(copy, nonatomic) NSDictionary *eventMetadata; // @synthesize eventMetadata=_eventMetadata;
 @property(retain, nonatomic) NSString *cellId; // @synthesize cellId=_cellId;
 @property(nonatomic) long long cellType; // @synthesize cellType=_cellType;
 - (void).cxx_destruct;
@@ -30,7 +32,9 @@
 - (void)configureWithCellType:(long long)arg1;
 - (double)otherContentHeight;
 - (double)artworkRatio;
+- (void)viewDidAppear:(_Bool)arg1;
 - (id)initWithCoder:(id)arg1;
+- (void)reportContentClickEventWithContentPlacement:(long long)arg1 contentId:(id)arg2 eventMetadata:(id)arg3;
 
 @end
 

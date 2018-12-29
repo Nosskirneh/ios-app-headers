@@ -4,9 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
-
-@class NSMutableArray, _TtC4WiMP11SonosHeader, _TtC4WiMP13SonosBaseBody;
+#import <objc/NSObject.h>
 
 @interface _TtC4WiMP16SonosBaseMessage : NSObject
 {
@@ -16,10 +14,6 @@
 - (CDUnknownBlockType).cxx_destruct;
 - (void)setValue:(id)arg1 forUndefinedKey:(id)arg2;
 - (id)init;
-@property(nonatomic, retain) _TtC4WiMP13SonosBaseBody *body;
-@property(nonatomic, retain) _TtC4WiMP11SonosHeader *header;
-@property(nonatomic, retain) NSMutableArray *components; // @synthesize components;
-- (id)serialize;
 
 @end
 

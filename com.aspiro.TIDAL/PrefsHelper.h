@@ -4,7 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 @class NSDictionary, NSUserDefaults;
 
@@ -17,9 +17,7 @@
 
 + (id)sharedHelper;
 - (void).cxx_destruct;
-- (void)applicationDidBecomeActive:(id)arg1;
-- (void)updateDateForKey:(id)arg1;
-- (id)lastUpdateForKey:(id)arg1;
+- (void)increaseAppLaunchCount;
 - (long long)appLaunchCount;
 - (id)getBasicSubscriptionSkipTimesArray;
 - (void)setBasicSubscriptionSkipTimesArray:(id)arg1;

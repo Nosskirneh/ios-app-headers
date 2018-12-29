@@ -4,26 +4,19 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
-
-@class _TtC4WiMP18DynamicSceneLoader;
+#import <objc/NSObject.h>
 
 @interface _TtC4WiMP14CarPlayManager : NSObject
 {
     // Error parsing type: , name: tree
-    // Error parsing type: , name: sceneLoader
-    // Error parsing type: , name: sceneLoaderCompletion
+    // Error parsing type: , name: loadingQueue
 }
 
-+ (struct CGSize)preferredPlaylistArtworkSize;
 + (void)setShared:(id)arg1;
 + (id)shared;
 - (CDUnknownBlockType).cxx_destruct;
 - (id)init;
 - (void)setup;
-@property(nonatomic, retain) _TtC4WiMP18DynamicSceneLoader *sceneLoader; // @synthesize sceneLoader;
-@property(nonatomic, readonly) _Bool userIsLoggedOut;
-- (void)noDataLoaded;
 
 @end
 

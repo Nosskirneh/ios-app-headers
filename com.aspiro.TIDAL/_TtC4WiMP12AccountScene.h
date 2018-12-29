@@ -8,8 +8,6 @@
 
 #import "WMPImagePickerDelegate-Protocol.h"
 
-@class NSDictionary, NSNumber, UITableView, WMPCoreListener, WMPImagePickerHelper, WMPUserService, _TtC4WiMP15TableConfigurer, _TtC4WiMP22AccountTableHeaderView;
-
 @interface _TtC4WiMP12AccountScene : WMPAbstractScene <WMPImagePickerDelegate>
 {
     // Error parsing type: , name: accountInfo
@@ -30,28 +28,8 @@
 - (void)viewDidAppear:(_Bool)arg1;
 - (void)viewWillAppear:(_Bool)arg1;
 - (void)viewDidLoad;
-@property(nonatomic, retain) _TtC4WiMP22AccountTableHeaderView *tableHeaderView;
-@property(nonatomic, retain) UITableView *tableView;
-@property(nonatomic, retain) _TtC4WiMP15TableConfigurer *tableConfigurer;
-@property(nonatomic) struct UIEdgeInsets originalContentInset; // @synthesize originalContentInset;
-@property(nonatomic, readonly) NSNumber *userId; // @synthesize userId;
-@property(nonatomic, readonly) WMPUserService *userService; // @synthesize userService;
-@property(nonatomic, retain) WMPImagePickerHelper *imagePicker; // @synthesize imagePicker;
-@property(nonatomic, retain) WMPCoreListener *coreListener; // @synthesize coreListener;
-@property(nonatomic, copy) NSDictionary *accountInfo; // @synthesize accountInfo;
-- (void)refreshConnectSectionIn:(id)arg1 with:(id)arg2;
-- (void)refreshInfoSectionWith:(id)arg1;
-- (void)reloadInfoSectionIn:(id)arg1;
 - (void)viewTapped:(id)arg1;
 - (void)errorEmailTapped:(id)arg1;
-- (void)navigateToPasswordSettings;
-- (void)navigateToLastFmSettings;
-- (void)navigateToFacebookSettings;
-- (void)navigateToGenderSettings;
-- (void)showLogoutDialog;
-- (void)showInAppPurchaseDialogOrNavigateToItunes;
-- (void)didTapImageView;
-@property(nonatomic, readonly) long long authorizationStatus;
 - (void)imagePickerDidFinishPickingMediaWithInfo:(id)arg1;
 
 @end

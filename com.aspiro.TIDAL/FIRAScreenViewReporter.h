@@ -4,41 +4,13 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import "APMScreenViewReporter.h"
 
-@class FIRAScreen, UIViewController;
-@protocol OS_dispatch_queue;
-
-@interface FIRAScreenViewReporter : NSObject
+@interface FIRAScreenViewReporter : APMScreenViewReporter
 {
-    UIViewController *_currentViewController;
-    FIRAScreen *_currentScreen;
-    FIRAScreen *_previousScreen;
-    _Bool _allowScreenParameters;
-    _Bool _allowPostScreenDidChangeNotification;
-    _Bool _allowScreenViewEvent;
-    _Bool _isAppActive;
-    long long _currentScreenInstanceID;
-    NSObject<OS_dispatch_queue> *_queue;
 }
 
-+ (void)notCalled;
 + (id)sharedInstance;
-- (void).cxx_destruct;
-- (void)handleApplicationWillResignActive:(id)arg1;
-- (void)handleApplicationDidBecomeActive:(id)arg1;
-- (void)handleWindowDidResign:(id)arg1;
-- (void)logViewScreenEventWithPreviousScreen:(id)arg1 newScreen:(id)arg2;
-- (void)postScreenDidChangeNotificationWithPreviousScreen:(id)arg1 newScreen:(id)arg2;
-- (void)setCurrentViewController:(id)arg1;
-- (void)viewControllerDidDisappear:(id)arg1;
-- (void)viewControllerDidAppear:(id)arg1;
-- (id)screenParameters;
-- (void)setScreenName:(id)arg1 screenClass:(id)arg2;
-- (void)getScreenName:(id *)arg1 screenClass:(id *)arg2;
-- (_Bool)isAppActive;
-- (void)dealloc;
-- (id)init;
 
 @end
 

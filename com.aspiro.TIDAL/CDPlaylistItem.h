@@ -6,7 +6,7 @@
 
 #import <CoreData/NSManagedObject.h>
 
-@class CDCut, CDPlaylist, CDTrack, CDVideo, NSNumber;
+@class CDCut, CDPlaylist, CDTrack, CDVideo, NSNumber, NSString;
 
 @interface CDPlaylistItem : NSManagedObject
 {
@@ -27,6 +27,7 @@
 @property(retain, nonatomic) NSNumber *order; // @dynamic order;
 @property(retain, nonatomic) CDPlaylist *playlist; // @dynamic playlist;
 @property(retain, nonatomic) CDTrack *track; // @dynamic track;
+@property(retain, nonatomic) NSString *uuid; // @dynamic uuid;
 @property(retain, nonatomic) CDVideo *video; // @dynamic video;
 
 @end

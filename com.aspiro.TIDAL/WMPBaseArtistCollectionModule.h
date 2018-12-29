@@ -14,6 +14,7 @@
 
 @interface WMPBaseArtistCollectionModule : UIViewController <WMPModule, WMPCollectionStyle>
 {
+    _Bool _isLoadedFromNavigation;
     _Bool _isFullScreen;
     _Bool _scrollEnabled;
     _Bool _scrollsHorizontally;
@@ -21,6 +22,7 @@
     _Bool _canCollapse;
     WMPArtistCollectionViewController *_artistCollectionViewController;
     long long _cellType;
+    NSDictionary *_eventMetadata;
     WMPArtistService *_artistService;
     id <WMPModuleDelegate> _moduleDelegate;
     NSString *_moduleTag;
@@ -46,6 +48,8 @@
 @property(retain, nonatomic) NSString *moduleTag; // @synthesize moduleTag=_moduleTag;
 @property(nonatomic) __weak id <WMPModuleDelegate> moduleDelegate; // @synthesize moduleDelegate=_moduleDelegate;
 @property(retain, nonatomic) WMPArtistService *artistService; // @synthesize artistService=_artistService;
+@property(nonatomic) _Bool isLoadedFromNavigation; // @synthesize isLoadedFromNavigation=_isLoadedFromNavigation;
+@property(copy, nonatomic) NSDictionary *eventMetadata; // @synthesize eventMetadata=_eventMetadata;
 @property(nonatomic) long long cellType; // @synthesize cellType=_cellType;
 @property(retain, nonatomic) WMPArtistCollectionViewController *artistCollectionViewController; // @synthesize artistCollectionViewController=_artistCollectionViewController;
 - (void).cxx_destruct;
@@ -59,7 +63,6 @@
 @property(nonatomic) _Bool contentLoadFinished;
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
-@property(copy, nonatomic) NSDictionary *eventMetadata;
 @property(nonatomic) _Bool hasDetails;
 @property(readonly) unsigned long long hash;
 @property(retain, nonatomic) NSString *header;

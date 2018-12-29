@@ -4,15 +4,15 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 #import "FBSDKGraphErrorRecoveryProcessorDelegate-Protocol.h"
-#import "FBSDKURLConnectionDelegate-Protocol.h"
+#import "NSURLSessionDataDelegate-Protocol.h"
 
-@class FBSDKGraphErrorRecoveryProcessor, FBSDKGraphRequestMetadata, FBSDKLogger, FBSDKURLConnection, NSHTTPURLResponse, NSMutableArray, NSOperationQueue, NSString;
+@class FBSDKGraphErrorRecoveryProcessor, FBSDKGraphRequestMetadata, FBSDKLogger, FBSDKURLSessionTask, NSHTTPURLResponse, NSMutableArray, NSOperationQueue, NSString, NSURLSession;
 @protocol FBSDKGraphRequestConnectionDelegate;
 
-@interface FBSDKGraphRequestConnection : NSObject <FBSDKURLConnectionDelegate, FBSDKGraphErrorRecoveryProcessorDelegate>
+@interface FBSDKGraphRequestConnection : NSObject <NSURLSessionDataDelegate, FBSDKGraphErrorRecoveryProcessorDelegate>
 {
     NSString *_overrideVersionPart;
     unsigned long long _expectingResults;
@@ -22,7 +22,8 @@
     id <FBSDKGraphRequestConnectionDelegate> _delegate;
     double _timeout;
     NSHTTPURLResponse *_URLResponse;
-    FBSDKURLConnection *_connection;
+    NSURLSession *_session;
+    FBSDKURLSessionTask *_task;
     NSMutableArray *_requests;
     unsigned long long _state;
     FBSDKLogger *_logger;
@@ -35,14 +36,17 @@
 @property(retain, nonatomic) FBSDKLogger *logger; // @synthesize logger=_logger;
 @property(nonatomic) unsigned long long state; // @synthesize state=_state;
 @property(retain, nonatomic) NSMutableArray *requests; // @synthesize requests=_requests;
-@property(retain, nonatomic) FBSDKURLConnection *connection; // @synthesize connection=_connection;
+@property(retain, nonatomic) FBSDKURLSessionTask *task; // @synthesize task=_task;
+@property(retain, nonatomic) NSURLSession *session; // @synthesize session=_session;
 @property(readonly, retain, nonatomic) NSHTTPURLResponse *URLResponse; // @synthesize URLResponse=_URLResponse;
 @property(nonatomic) double timeout; // @synthesize timeout=_timeout;
-@property(nonatomic) id <FBSDKGraphRequestConnectionDelegate> delegate; // @synthesize delegate=_delegate;
+@property(nonatomic) __weak id <FBSDKGraphRequestConnectionDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
 @property(readonly, copy) NSString *description;
 - (void)processorDidAttemptRecovery:(id)arg1 didRecover:(_Bool)arg2 error:(id)arg3;
-- (void)facebookURLConnection:(id)arg1 didSendBodyData:(long long)arg2 totalBytesWritten:(long long)arg3 totalBytesExpectedToWrite:(long long)arg4;
+- (void)URLSession:(id)arg1 task:(id)arg2 didSendBodyData:(long long)arg3 totalBytesSent:(long long)arg4 totalBytesExpectedToSend:(long long)arg5;
+- (void)cleanUpSession;
+- (id)defaultSession;
 - (void)registerTokenToOmitFromLog:(id)arg1;
 - (id)accessTokenWithRequest:(id)arg1;
 - (void)logRequest:(id)arg1 bodyLength:(unsigned long long)arg2 bodyLogger:(id)arg3 attachmentLogger:(id)arg4;
@@ -53,7 +57,7 @@
 - (void)completeWithResults:(id)arg1 networkError:(id)arg2;
 - (id)parseJSONOrOtherwise:(id)arg1 error:(id *)arg2;
 - (id)parseJSONResponse:(id)arg1 error:(id *)arg2 statusCode:(long long)arg3;
-- (void)completeFBSDKURLConnectionWithResponse:(id)arg1 data:(id)arg2 networkError:(id)arg3;
+- (void)completeFBSDKURLSessionWithResponse:(id)arg1 data:(id)arg2 networkError:(id)arg3;
 - (id)urlStringForSingleRequest:(id)arg1 forBatch:(_Bool)arg2;
 - (id)requestWithBatch:(id)arg1 timeout:(double)arg2;
 - (void)_validateFieldsParamForGetRequests:(id)arg1;

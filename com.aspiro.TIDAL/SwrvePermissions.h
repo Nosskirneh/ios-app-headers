@@ -4,7 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 @interface SwrvePermissions : NSObject
 {
@@ -15,15 +15,6 @@
 + (void)updatePushNotificationSettingsStatus:(id)arg1 andSDK:(id)arg2;
 + (unsigned long long)checkPushNotificationsWithSDK:(id)arg1;
 + (id)pushNotificationsRequest;
-+ (void)requestCamera:(id)arg1;
-+ (unsigned long long)checkCamera;
-+ (id)cameraRequest;
-+ (void)requestLocationWhenInUse:(id)arg1;
-+ (unsigned long long)checkLocationWhenInUse;
-+ (id)locationWhenInUseRequest;
-+ (void)requestLocationAlways:(id)arg1;
-+ (unsigned long long)checkLocationAlways;
-+ (id)locationAlwaysRequest;
 + (void)compareStatusAndQueueEvent:(id)arg1 lastStatus:(id)arg2 currentStatus:(id)arg3 withSDK:(id)arg4;
 + (void)checkPermissionNameAndAddFilters:(id)arg1 to:(id)arg2 withCurrentStatus:(id)arg3;
 + (_Bool)didWeAskForPushPermissionsAlready;

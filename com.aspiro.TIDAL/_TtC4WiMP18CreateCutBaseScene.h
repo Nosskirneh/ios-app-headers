@@ -6,7 +6,7 @@
 
 #import <UIKit/UIViewController.h>
 
-@class AVPlayer, NSLayoutConstraint, NSTimer, UIActivityIndicatorView, UIButton, UIColor, UIImage, UIImageView, UILabel, UIScrollView, UIView, _TtC4WiMP13TidalWaveform, _TtC4WiMP31ScrollableWaveformContainerView;
+@class NSLayoutConstraint, UIActivityIndicatorView, UIButton, UIImageView, UILabel, UIView, _TtC4WiMP31ScrollableWaveformContainerView;
 
 @interface _TtC4WiMP18CreateCutBaseScene : UIViewController
 {
@@ -44,71 +44,25 @@
     // Error parsing type: , name: elapsedTime
     // Error parsing type: , name: isSeeking
     // Error parsing type: , name: shouldStopPlayingWhenDraggingWaveForm
-    // Error parsing type: , name: statusObservationContext
-    // Error parsing type: , name: rateObservationContext
-    // Error parsing type: , name: bufferEmptyObservationContext
-    // Error parsing type: , name: playbackLikelyToKeepUpObservationContext
-    // Error parsing type: , name: kPlayerStatusKey
-    // Error parsing type: , name: kPlayerRateKey
-    // Error parsing type: , name: kPlaybackBufferEmpty
-    // Error parsing type: , name: kPlaybackLikelyToKeepUp
     // Error parsing type: , name: trackLoadedSuccessfully
     // Error parsing type: , name: waveformLoadedSuccessfully
+    // Error parsing type: , name: observers
 }
 
 - (CDUnknownBlockType).cxx_destruct;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;
-- (_Bool)timeEqualsToTrackLengthWithTime:(CDStruct_198678f7)arg1;
-- (void)pauseMainPlayerIfPlaying;
-- (double)positionForTime:(CDStruct_198678f7)arg1;
-- (CDStruct_198678f7)elapsedTimeForScrollPosition:(double)arg1;
-- (CDStruct_198678f7)elapsedTimeForCurrentScrollPosition;
-- (void)updatePlayButtonElapsedTimeLabelWithTime:(CDStruct_198678f7)arg1;
-- (void)updatePlayButtonElapsedTimeLabel;
-- (void)updateTopElapsedTimeLabelWithTime:(CDStruct_198678f7)arg1;
-- (void)updateTopElapsedTimeLabel;
-- (void)updateElapsedTimeLabelsWithTime:(CDStruct_198678f7)arg1;
-- (void)updateElapsedTimeForScrollPosition:(double)arg1;
-- (_Bool)shouldShowDiscardAlert;
-- (void)showDiscardAlert;
-- (void)dismissScene;
-- (void)removePlayerObserver;
-- (void)trackFailedToLoad:(id)arg1;
 - (void)handlePlaybackStalledNotification:(id)arg1;
-- (void)handleReadyToPlayStatus;
-- (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
-- (void)stopPlayback;
-- (_Bool)isPlaying;
-- (void)seekToTime:(CDStruct_198678f7)arg1;
-- (void)moveScrollableWaveformTo:(double)arg1;
 - (void)didPanOverviewWaveform:(id)arg1;
 - (void)didTapOverviewWaveform:(id)arg1;
-- (void)highlightVisibleAreaInOverviewWaveform;
-- (_Bool)isPageLoaded;
-- (void)pageLoadingEnded;
-- (void)configureAndDrawWaveformsWithIsFlatWaveForms:(_Bool)arg1;
-- (void)configureAndDrawWaveforms;
-- (void)initializeWaveforms;
-- (void)setBackgroundImageForAlbum:(id)arg1;
 @property(nonatomic, readonly) _Bool prefersStatusBarHidden;
-- (void)setHighlightedStateForButton:(id)arg1;
-- (void)configureCommonButtons;
-- (void)showPauseIcon;
-- (void)showPlayIcon;
-- (void)configureIcons;
-- (void)adjustElapsedTimeLabelTopConstraint:(_Bool)arg1;
 - (void)viewWillTransitionToSize:(struct CGSize)arg1 withTransitionCoordinator:(id)arg2;
-- (void)stopActivityIndicator;
-- (void)startActivityIndicator;
-- (void)seekFromCurrentTimeWithSecondsToSeek:(double)arg1;
 - (void)seekBackwards;
 - (void)seekForward;
 - (void)rewindButtonLongPress:(id)arg1;
 - (void)rewindButtonTap:(id)arg1;
 - (void)forwardButtonLongPress:(id)arg1;
 - (void)forwardButtonTap:(id)arg1;
-- (void)addSeekButtonsGestures;
 - (void)playerItemDidReachEnd;
 - (void)applicationDidBecomeActiveNotification:(id)arg1;
 - (void)applicationWillResignActiveNotification:(id)arg1;
@@ -117,20 +71,6 @@
 - (void)dealloc;
 - (void)viewWillAppear:(_Bool)arg1;
 - (void)viewDidLoad;
-@property(nonatomic) _Bool waveformLoadedSuccessfully; // @synthesize waveformLoadedSuccessfully;
-@property(nonatomic) _Bool trackLoadedSuccessfully; // @synthesize trackLoadedSuccessfully;
-@property(nonatomic) _Bool shouldStopPlayingWhenDraggingWaveForm; // @synthesize shouldStopPlayingWhenDraggingWaveForm;
-@property(nonatomic) _Bool isSeeking; // @synthesize isSeeking;
-@property(nonatomic, retain) id elapsedTimeObserver; // @synthesize elapsedTimeObserver;
-@property(nonatomic, retain) AVPlayer *player; // @synthesize player;
-@property(nonatomic, retain) UIImage *backgroundImage; // @synthesize backgroundImage;
-@property(nonatomic, readonly) UIColor *highlightColor; // @synthesize highlightColor;
-@property(nonatomic) _Bool didStopPlayingOnSelectedEndTime; // @synthesize didStopPlayingOnSelectedEndTime;
-@property(nonatomic, retain) NSTimer *longPressTimer; // @synthesize longPressTimer;
-@property(nonatomic, readonly) double kTapSeekInSeconds; // @synthesize kTapSeekInSeconds;
-@property(nonatomic, readonly) UIScrollView *scrollableWaveformView; // @synthesize scrollableWaveformView;
-@property(nonatomic, retain) _TtC4WiMP13TidalWaveform *scrollableWaveform; // @synthesize scrollableWaveform;
-@property(nonatomic, readonly) _TtC4WiMP13TidalWaveform *overviewWaveform; // @synthesize overviewWaveform;
 @property(nonatomic) __weak UIActivityIndicatorView *activityIndicator; // @synthesize activityIndicator;
 @property(nonatomic) __weak NSLayoutConstraint *scrollableWaveformHeightConstraint; // @synthesize scrollableWaveformHeightConstraint;
 @property(nonatomic) __weak NSLayoutConstraint *elapsedTimeLabelTopConstraint; // @synthesize elapsedTimeLabelTopConstraint;

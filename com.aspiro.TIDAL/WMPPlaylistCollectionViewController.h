@@ -10,6 +10,7 @@
 
 @interface WMPPlaylistCollectionViewController : WMPCollectionViewController
 {
+    _Bool _canCreateNewPlaylist;
     long long _collectionStyleType;
     long long _cellType;
     NSString *_cellId;
@@ -19,6 +20,7 @@
 }
 
 + (id)getInstance;
+@property(nonatomic) _Bool canCreateNewPlaylist; // @synthesize canCreateNewPlaylist=_canCreateNewPlaylist;
 @property(copy, nonatomic) NSDictionary *eventMetadata; // @synthesize eventMetadata=_eventMetadata;
 @property(retain, nonatomic) WMPArtistService *artistService; // @synthesize artistService=_artistService;
 @property(retain, nonatomic) WMPImageService *imageService; // @synthesize imageService=_imageService;
@@ -32,18 +34,23 @@
 - (void)didPressMoreButton:(id)arg1;
 - (void)configureWithItemId:(id)arg1 entityName:(id)arg2 predicate:(id)arg3 sortAndRangeParameters:(id)arg4;
 - (void)configureWithItemId:(id)arg1 entityName:(id)arg2 sortAndRangeParameters:(id)arg3 cellType:(long long)arg4;
+- (void)createPlaylistFetchedResultsController;
+- (unsigned long long)numberOfFilterByAllLoadedItems;
+- (void)configureNavigationBar;
 - (void)configureWithCellType:(long long)arg1;
 - (double)getRowHeight;
 - (double)otherContentHeight;
 - (double)artworkRatio;
 - (void)configureColors;
+- (void)viewDidAppear:(_Bool)arg1;
+- (void)viewWillAppear:(_Bool)arg1;
 - (id)initWithCoder:(id)arg1;
-- (id)playlistFromManagedObject:(id)arg1;
 - (id)playlistAt:(id)arg1;
-- (id)authorSubtitleForAuthor:(id)arg1 normalSubtitle:(id)arg2;
-- (id)playlistSubtitleForCellId:(id)arg1 audioCount:(id)arg2 videoCount:(id)arg3;
 - (void)collectionView:(id)arg1 didSelectItemAtIndexPath:(id)arg2;
 - (id)collectionView:(id)arg1 cellForItemAtIndexPath:(id)arg2;
+- (void)createBarButtons;
+- (void)cancelButtonPressed:(id)arg1;
+- (void)okButtonPressed:(id)arg1;
 
 @end
 

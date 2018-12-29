@@ -42,7 +42,7 @@
 @property(nonatomic) _Bool shouldAutoPlay; // @synthesize shouldAutoPlay=_shouldAutoPlay;
 @property(readonly, nonatomic) TWTRVideoMetaData *videoEntity; // @synthesize videoEntity=_videoEntity;
 - (void).cxx_destruct;
-- (double)timeIntervalFromTime:(CDStruct_198678f7)arg1;
+- (double)timeIntervalFromTime:(CDStruct_1b6d18a9)arg1;
 @property(readonly, nonatomic) double videoDuration;
 - (double)elapsedTime;
 - (void)seekToPosition:(double)arg1;

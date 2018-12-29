@@ -6,18 +6,20 @@
 
 #import <UIKit/UITextField.h>
 
-@class NSString;
+@class NSString, UIDatePicker;
 
 @interface _TtC4WiMP20PlaceHolderTextField : UITextField
 {
     // Error parsing type: , name: leftMargin
     // Error parsing type: , name: placeholderTextChangedAnimationDuration
+    // Error parsing type: , name: datePicker
     // Error parsing type: , name: placeHolderLabel.storage
 }
 
 - (CDUnknownBlockType).cxx_destruct;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithFrame:(struct CGRect)arg1;
+- (void)setupDatePicker;
 - (void)textChanged;
 - (void)drawRect:(struct CGRect)arg1;
 - (void)drawPlaceholderInRect:(struct CGRect)arg1;
@@ -26,8 +28,7 @@
 - (void)awakeFromNib;
 - (void)dealloc;
 @property(nonatomic, copy) NSString *text;
-@property(nonatomic, readonly) double placeholderTextChangedAnimationDuration; // @synthesize placeholderTextChangedAnimationDuration;
-@property(nonatomic, readonly) double leftMargin; // @synthesize leftMargin;
+@property(nonatomic, retain) UIDatePicker *datePicker; // @synthesize datePicker;
 
 @end
 

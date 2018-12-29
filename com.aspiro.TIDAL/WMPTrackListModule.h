@@ -8,13 +8,13 @@
 
 #import "_TtP4WiMP22FetchedResultsDelegate_-Protocol.h"
 
-@class NSArray, NSNumber, NSString, WMPTitleModule;
+@class NSNumber, NSString, WMPTitleModule;
 @protocol ItemListModuleDataSource, WMPTrackListModuleConfig, WMPTrackListModuleDelegate;
 
 @interface WMPTrackListModule : WMPBaseTableViewController <_TtP4WiMP22FetchedResultsDelegate_>
 {
     _Bool _headerShouldHideOptionButton;
-    NSArray *_lightweightItems;
+    _Bool _hideHeaderView;
     NSString *_loadMorePath;
     NSNumber *_highlightedTrackId;
     long long _moduleType;
@@ -32,24 +32,24 @@
 @property(retain, nonatomic) id <WMPTrackListModuleConfig> config; // @synthesize config=_config;
 @property(nonatomic) long long moduleFormat; // @synthesize moduleFormat=_moduleFormat;
 @property(retain, nonatomic) WMPTitleModule *titleModule; // @synthesize titleModule=_titleModule;
+@property(nonatomic) _Bool hideHeaderView; // @synthesize hideHeaderView=_hideHeaderView;
 @property(nonatomic) _Bool headerShouldHideOptionButton; // @synthesize headerShouldHideOptionButton=_headerShouldHideOptionButton;
 @property(nonatomic) __weak id <WMPTrackListModuleDelegate> delegate; // @synthesize delegate=_delegate;
 @property(nonatomic) long long moduleType; // @synthesize moduleType=_moduleType;
 @property(retain, nonatomic) NSNumber *highlightedTrackId; // @synthesize highlightedTrackId=_highlightedTrackId;
 @property(retain, nonatomic) NSString *loadMorePath; // @synthesize loadMorePath=_loadMorePath;
-@property(retain, nonatomic) NSArray *lightweightItems; // @synthesize lightweightItems=_lightweightItems;
 - (void).cxx_destruct;
+- (void)configureSortingMenuButton;
 - (void)noConnectionViewDidReceiveTap;
 - (void)hideNoConnectionView;
 - (void)showNoConnectionView;
 - (void)showNoContentView;
-- (_Bool)handleNonDownloadedMediaItem:(id)arg1;
-- (void)handleNonStreamReadyMediaItem:(id)arg1;
 - (id)backgroundForNumberOfRows:(long long)arg1;
 - (void)notifyDelegateWithUpdatedHighlightedAtIndexPath:(id)arg1;
 - (void)highlightChosenTrack;
 - (void)loadMoreTracks;
 - (void)refreshContentWithCompletion:(CDUnknownBlockType)arg1;
+- (unsigned long long)fetchedItemsCount;
 - (void)didUpdateCut:(id)arg1;
 - (void)didChangeTrack:(id)arg1;
 - (void)dealloc;
@@ -72,25 +72,23 @@
 - (void)showArtist:(id)arg1;
 - (double)heightConstraint;
 - (void)updateConstraintsAndContent;
+- (void)configureNavigationBar;
 - (void)configurationDidChangeSortingOptions:(id)arg1;
 - (void)configureForModuleType:(long long)arg1;
 - (void)configureWithLightweightItems:(id)arg1;
-- (unsigned long long)fetchedItemsCount;
+- (void)configureTableFooter;
+- (void)configureTableHeader;
+- (void)configureTableInsetAndOffset;
+- (void)configureTableView;
 - (void)viewDidLayoutSubviews;
 - (void)viewWillDisappear:(_Bool)arg1;
 - (void)viewDidAppear:(_Bool)arg1;
 - (void)viewWillAppear:(_Bool)arg1;
-- (void)didRotateFromInterfaceOrientation:(long long)arg1;
-- (void)willRotateToInterfaceOrientation:(long long)arg1 duration:(double)arg2;
-- (void)configureTableFooter;
-- (void)configureTableHeader;
+- (void)viewWillTransitionToSize:(struct CGSize)arg1 withTransitionCoordinator:(id)arg2;
 - (void)viewDidLoad;
 - (void)tagTapForAnalyticsWithModuleType:(long long)arg1 itemId:(id)arg2;
 - (void)showArtistForItemAt:(id)arg1;
 - (void)tableView:(id)arg1 didSelectRowAtIndexPath:(id)arg2;
-@property(nonatomic, readonly) _Bool isUsingLightweightItems;
-- (void)presentContextMenuForManagedObjectAt:(id)arg1 with:(struct CGRect)arg2;
-- (void)presentContextMenuForLightweightItemAt:(id)arg1 with:(struct CGRect)arg2;
 - (void)presentContextMenuFromButton:(id)arg1 inTableView:(id)arg2;
 
 @end

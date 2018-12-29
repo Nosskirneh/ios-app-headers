@@ -6,11 +6,12 @@
 
 #import <UIKit/UIViewController.h>
 
-@class UIView;
+@class NSLayoutConstraint, UIView;
 
 @interface _TtC4WiMP27TitleModulePlaylistCoverArt : UIViewController
 {
     // Error parsing type: , name: coverArtView
+    // Error parsing type: , name: coverArtTopConstraint
     // Error parsing type: , name: playlist
 }
 
@@ -19,6 +20,7 @@
 - (id)initWithCoder:(id)arg1;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;
 - (void)viewDidLoad;
+@property(nonatomic) __weak NSLayoutConstraint *coverArtTopConstraint; // @synthesize coverArtTopConstraint;
 @property(nonatomic) __weak UIView *coverArtView; // @synthesize coverArtView;
 
 @end

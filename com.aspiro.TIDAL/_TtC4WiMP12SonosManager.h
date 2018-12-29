@@ -4,9 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
-
-@class _TtC4WiMP20SonosGroupConnection;
+#import <objc/NSObject.h>
 
 @interface _TtC4WiMP12SonosManager : NSObject
 {
@@ -22,19 +20,15 @@
     // Error parsing type: , name: switchingGroups
     // Error parsing type: , name: disconnectReason
     // Error parsing type: , name: reconnectingToPreviousGroup
-    // Error parsing type: , name: reconnectToGroupId
+    // Error parsing type: , name: reconnectToGroup
+    // Error parsing type: , name: isPlaybackControlReady
     // Error parsing type: , name: currentState
 }
 
-+ (id)TokenExpiredNotification;
-+ (id)VersionUpdateNotification;
-+ (id)DisconnectedNotification;
-+ (id)GroupUpdateNotification;
-+ (id)shared;
 - (CDUnknownBlockType).cxx_destruct;
+- (void)applicationWillEnterForeground;
 - (void)applicationDidEnterBackground;
 - (id)init;
-@property(nonatomic, retain) _TtC4WiMP20SonosGroupConnection *groupConnection; // @synthesize groupConnection;
 
 @end
 

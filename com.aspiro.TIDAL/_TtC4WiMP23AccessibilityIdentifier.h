@@ -4,7 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 @interface _TtC4WiMP23AccessibilityIdentifier : NSObject
 {
@@ -56,6 +56,7 @@
 + (id)searchButton;
 + (id)exploreButton;
 + (id)homeButton;
++ (id)enterDateOfBirthTextField;
 + (id)enterPasswordTextField;
 + (id)reEnterUsernameTextField;
 + (id)enterUsernameTextField;

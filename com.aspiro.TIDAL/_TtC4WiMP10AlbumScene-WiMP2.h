@@ -7,6 +7,8 @@
 #import "_TtC4WiMP10AlbumScene.h"
 
 @interface _TtC4WiMP10AlbumScene (WiMP2)
-- (void)scrollViewDidEndDragging:(id)arg1 willDecelerate:(_Bool)arg2;
+- (void)didPressAddToOfflineWithAction:(long long)arg1;
+- (void)didPressAddToFavorites;
+- (void)didPressAlbumInfoTrackCredits;
 @end
 

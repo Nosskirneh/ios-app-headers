@@ -10,8 +10,5 @@
 {
 }
 
-- (id)initWithTableView:(id)arg1;
-- (void)update:(id)arg1;
-
 @end
 

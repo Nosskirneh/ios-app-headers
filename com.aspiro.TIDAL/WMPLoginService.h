@@ -4,7 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 @class NSNumber, NSString;
 @protocol WMPLoginServiceDelegate;
@@ -35,14 +35,13 @@
 - (void)userFailedToLogin;
 - (void)userLoggedIn;
 - (void)fetchPurchases;
-- (void)startDownloadManager;
-- (void)startUserServices;
+- (void)startUserServicesWithUserIsChanged:(_Bool)arg1;
 - (void)showDeletingOfflineContentWarning;
 - (void)logoutUser;
 - (void)verifyUserIdentifier:(id)arg1;
 - (void)updateLoginUsingJSONObject:(id)arg1;
 - (void)updateLoginWithUsername:(id)arg1 withPassword:(id)arg2 usingJSONObject:(id)arg3;
-- (void)finalizeLogin;
+- (void)finalizeLoginWithUserIsChanged:(_Bool)arg1;
 - (void)changeUserAndFinalizeLogin;
 - (void)refreshCurrentSession;
 - (void)invalidateBackendSession;

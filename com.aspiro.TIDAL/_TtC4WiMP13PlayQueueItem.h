@@ -4,7 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 @class NSString;
 
@@ -28,19 +28,13 @@
     // Error parsing type: , name: version
     // Error parsing type: , name: audioQuality
     // Error parsing type: , name: authenticationToken
+    // Error parsing type: , name: uuidOfItemInPlaylist
 }
 
 + (id)playQueueItemFromMediaQueueItem:(id)arg1;
 - (CDUnknownBlockType).cxx_destruct;
 - (id)init;
-@property(nonatomic, readonly) NSString *debugDescription;
-- (id)copyItem;
-- (id)modifiedVersionText;
-- (id)titleWithVersionInfo;
-- (id)mediaItemInContext:(id)arg1;
-- (id)dictionaryForEntity:(long long)arg1;
-- (void)encodeWithCoder:(id)arg1;
-- (id)initWithCoder:(id)arg1;
+@property(nonatomic, copy) NSString *uuidOfItemInPlaylist; // @synthesize uuidOfItemInPlaylist;
 @property(nonatomic, copy) NSString *authenticationToken; // @synthesize authenticationToken;
 @property(nonatomic, copy) NSString *audioQuality; // @synthesize audioQuality;
 @property(nonatomic, copy) NSString *version; // @synthesize version;

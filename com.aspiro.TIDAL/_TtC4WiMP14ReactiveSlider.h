@@ -13,10 +13,8 @@
 
 - (CDUnknownBlockType).cxx_destruct;
 - (void)triggerAction;
-- (void)addTargets;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithFrame:(struct CGRect)arg1;
-@property(nonatomic, copy) CDUnknownBlockType callback; // @synthesize callback;
 
 @end
 

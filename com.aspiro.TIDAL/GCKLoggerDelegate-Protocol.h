@@ -12,6 +12,6 @@
 
 @optional
 - (void)logMessage:(NSString *)arg1 fromFunction:(NSString *)arg2;
-- (void)logFromFunction:(const char *)arg1 message:(NSString *)arg2;
+- (void)logMessage:(NSString *)arg1 atLevel:(long long)arg2 fromFunction:(NSString *)arg3 location:(NSString *)arg4;
 @end
 

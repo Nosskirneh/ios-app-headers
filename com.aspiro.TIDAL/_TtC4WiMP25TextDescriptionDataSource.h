@@ -15,10 +15,7 @@
 }
 
 - (CDUnknownBlockType).cxx_destruct;
-- (id)initWithTableView:(id)arg1;
 - (void)linkLabelDidTapLink:(id)arg1;
-- (void)reload;
-@property(nonatomic, copy) CDUnknownBlockType tappedUrlHandler; // @synthesize tappedUrlHandler;
 
 @end
 

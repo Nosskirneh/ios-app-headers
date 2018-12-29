@@ -6,8 +6,6 @@
 
 #import <UIKit/UIViewController.h>
 
-@protocol WMPModule;
-
 @interface _TtC4WiMP15ContainerModule : UIViewController
 {
     // Error parsing type: , name: moduleContentInsets
@@ -26,8 +24,6 @@
     // Error parsing type: , name: headerText
 }
 
-+ (struct UIEdgeInsets)compactContentInsets;
-+ (struct UIEdgeInsets)defaultContentInsets;
 - (CDUnknownBlockType).cxx_destruct;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;
 - (void)dealloc;
@@ -35,7 +31,6 @@
 - (id)initWithCoder:(id)arg1;
 - (id)initWithHeaderText:(id)arg1 detailButtonTitle:(id)arg2 detailButtonCallback:(CDUnknownBlockType)arg3;
 @property(nonatomic) _Bool headerHidden; // @synthesize headerHidden;
-@property(nonatomic, retain) id <WMPModule> module; // @synthesize module;
 @property(nonatomic) struct UIEdgeInsets moduleContentInsets; // @synthesize moduleContentInsets;
 
 @end

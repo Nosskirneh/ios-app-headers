@@ -4,13 +4,13 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 @interface DirectoryHelper : NSObject
 {
 }
 
-+ (double)spaceRequiredForDurationWithSelectedBitRate:(double)arg1 forQuality:(long long)arg2;
++ (double)kBRequiredForTrackWithDuration:(double)arg1 forQuality:(long long)arg2;
 + (double)freeDiskSpace;
 + (_Bool)isEnoughFreeDiskSpaceForTrackWithDuration:(double)arg1 soundQuality:(long long)arg2 requiredFreeSpaceInKb:(double)arg3;
 + (id)audioFileExtensionForCodec:(long long)arg1;

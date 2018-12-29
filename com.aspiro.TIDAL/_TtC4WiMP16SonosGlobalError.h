@@ -6,8 +6,6 @@
 
 #import "_TtC4WiMP13SonosBaseBody.h"
 
-@class NSString;
-
 @interface _TtC4WiMP16SonosGlobalError : _TtC4WiMP13SonosBaseBody
 {
     // Error parsing type: , name: errorCode
@@ -16,9 +14,6 @@
 
 - (CDUnknownBlockType).cxx_destruct;
 - (id)init;
-- (id)initWithErrorCode:(id)arg1 reason:(id)arg2;
-@property(nonatomic, copy) NSString *reason; // @synthesize reason;
-@property(nonatomic, copy) NSString *errorCode; // @synthesize errorCode;
 
 @end
 

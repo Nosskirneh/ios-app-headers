@@ -83,6 +83,7 @@
 @property(nonatomic) double heightUnits;
 @property(nonatomic) double horizontalUnits;
 @property(nonatomic) _Bool isFullScreen;
+@property(nonatomic) _Bool isLoadedFromNavigation;
 @property(nonatomic) __weak id <WMPModuleDelegate> moduleDelegate;
 @property(retain, nonatomic) NSString *moduleTag;
 @property(retain, nonatomic) UIView *noConnectionView;

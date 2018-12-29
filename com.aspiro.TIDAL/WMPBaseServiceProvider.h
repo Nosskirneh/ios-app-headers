@@ -4,24 +4,26 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 @class WMPJSONParser;
+@protocol OS_dispatch_queue;
 
 @interface WMPBaseServiceProvider : NSObject
 {
     WMPJSONParser *_dataParser;
+    NSObject<OS_dispatch_queue> *_workQueue;
 }
 
-+ (void)handleURLRequest:(id)arg1 data:(id)arg2 error:(id)arg3 completionHandler:(CDUnknownBlockType)arg4;
+@property(retain, nonatomic) NSObject<OS_dispatch_queue> *workQueue; // @synthesize workQueue=_workQueue;
 @property(retain, nonatomic) WMPJSONParser *dataParser; // @synthesize dataParser=_dataParser;
 - (void).cxx_destruct;
 - (void)fetchDataArrayWithUrlString:(id)arg1 completion:(CDUnknownBlockType)arg2 errorBlock:(CDUnknownBlockType)arg3;
 - (void)fetchDataArrayWithUrlString:(id)arg1 completion:(CDUnknownBlockType)arg2;
 - (void)fetchDataWithUrlString:(id)arg1 completion:(CDUnknownBlockType)arg2 errorBlock:(CDUnknownBlockType)arg3;
 - (void)fetchDataWithUrlString:(id)arg1 completion:(CDUnknownBlockType)arg2;
+- (void)beginBackgroundTask:(CDUnknownBlockType)arg1;
 - (id)init;
-- (id)newErrorFromCode:(long long)arg1 errorMessage:(id)arg2;
 - (void)fetchDataArray:(id)arg1 completion:(CDUnknownBlockType)arg2;
 
 @end

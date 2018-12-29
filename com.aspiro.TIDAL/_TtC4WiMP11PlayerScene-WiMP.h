@@ -8,8 +8,5 @@
 
 @interface _TtC4WiMP11PlayerScene (WiMP)
 - (void)videoPinchGesture:(id)arg1;
-- (void)configureVideo;
-- (void)unsetVideoPlayerLayer;
-- (void)setCurrentVideoPlayerLayer;
 @end
 

@@ -4,7 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 #import "NSCopying-Protocol.h"
 #import "NSSecureCoding-Protocol.h"
@@ -33,11 +33,11 @@
 + (void)cacheProfile:(id)arg1;
 @property(readonly, nonatomic) NSDate *refreshDate; // @synthesize refreshDate=_refreshDate;
 @property(readonly, nonatomic) NSURL *linkURL; // @synthesize linkURL=_linkURL;
-@property(readonly, nonatomic) NSString *name; // @synthesize name=_name;
-@property(readonly, nonatomic) NSString *lastName; // @synthesize lastName=_lastName;
-@property(readonly, nonatomic) NSString *middleName; // @synthesize middleName=_middleName;
-@property(readonly, nonatomic) NSString *firstName; // @synthesize firstName=_firstName;
-@property(readonly, nonatomic) NSString *userID; // @synthesize userID=_userID;
+@property(readonly, copy, nonatomic) NSString *name; // @synthesize name=_name;
+@property(readonly, copy, nonatomic) NSString *lastName; // @synthesize lastName=_lastName;
+@property(readonly, copy, nonatomic) NSString *middleName; // @synthesize middleName=_middleName;
+@property(readonly, copy, nonatomic) NSString *firstName; // @synthesize firstName=_firstName;
+@property(readonly, copy, nonatomic) NSString *userID; // @synthesize userID=_userID;
 - (void).cxx_destruct;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;

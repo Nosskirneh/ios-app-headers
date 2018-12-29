@@ -6,8 +6,6 @@
 
 #import "_TtC4WiMP13SonosBaseBody.h"
 
-@class NSDictionary, NSString;
-
 @interface _TtCCC4WiMP13SonosPlayback13PlaybackError17PlaybackErrorBody : _TtC4WiMP13SonosBaseBody
 {
     // Error parsing type: , name: errorCode
@@ -21,11 +19,6 @@
 - (CDUnknownBlockType).cxx_destruct;
 - (void)setValue:(id)arg1 forUndefinedKey:(id)arg2;
 - (id)init;
-@property(nonatomic, copy) NSString *queueVersion; // @synthesize queueVersion;
-@property(nonatomic, retain) NSDictionary *httpHeaders; // @synthesize httpHeaders;
-@property(nonatomic, copy) NSString *itemId; // @synthesize itemId;
-@property(nonatomic, copy) NSString *reason; // @synthesize reason;
-@property(nonatomic, copy) NSString *errorCode; // @synthesize errorCode;
 
 @end
 

@@ -4,7 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 @class FABIcon, NSDictionary, NSString;
 
@@ -12,7 +12,6 @@
 {
     NSDictionary *_architectureUUIDMap;
     NSString *_installID;
-    FABIcon *_icon;
     NSString *_bundleIdentifier;
     NSString *_instanceIdentifier;
     CDStruct_e24ffa00 _builtSDK;
@@ -23,12 +22,12 @@
 @property(readonly, nonatomic) CDStruct_e24ffa00 builtSDK; // @synthesize builtSDK=_builtSDK;
 @property(copy, nonatomic) NSString *instanceIdentifier; // @synthesize instanceIdentifier=_instanceIdentifier;
 @property(readonly, nonatomic) NSString *bundleIdentifier; // @synthesize bundleIdentifier=_bundleIdentifier;
-@property(readonly, nonatomic) FABIcon *icon; // @synthesize icon=_icon;
 @property(readonly, nonatomic) NSString *installID; // @synthesize installID=_installID;
 @property(copy, nonatomic) NSDictionary *architectureUUIDMap; // @synthesize architectureUUIDMap=_architectureUUIDMap;
 - (void).cxx_destruct;
 - (_Bool)computeInstanceIdentifier;
 - (_Bool)computeExecutableInfo;
+@property(readonly, nonatomic) FABIcon *icon;
 @property(readonly, nonatomic) NSString *minimumSDKString;
 @property(readonly, nonatomic) NSString *builtSDKString;
 - (id)initWithInstallID:(id)arg1;

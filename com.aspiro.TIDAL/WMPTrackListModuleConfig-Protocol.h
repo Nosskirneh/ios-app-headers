@@ -15,8 +15,8 @@
 - (NSObject<WMPMediaItem> *)mediaItemFromManagedObject:(NSManagedObject *)arg1;
 - (NSString *)noContentMessage;
 - (NSString *)cellReuseIdentifierForManagedObject:(NSManagedObject *)arg1;
-- (id)initWithIdentifier:(id)arg1;
 - (NSFetchedResultsController *)fetchedResultsControllerForDelegate:(id <NSFetchedResultsControllerDelegate>)arg1;
+- (id)initWithIdentifier:(id)arg1;
 
 @optional
 @property(nonatomic) unsigned long long displayedItemsCount;

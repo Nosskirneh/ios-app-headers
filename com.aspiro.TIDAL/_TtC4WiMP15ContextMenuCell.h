@@ -16,11 +16,9 @@
     // Error parsing type: , name: leadingTitleConstraint
 }
 
-+ (id)reuseIdentifier;
 - (CDUnknownBlockType).cxx_destruct;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithStyle:(long long)arg1 reuseIdentifier:(id)arg2;
-- (void)configureCellWithAction:(id)arg1;
 - (void)awakeFromNib;
 @property(nonatomic, retain) NSLayoutConstraint *leadingTitleConstraint; // @synthesize leadingTitleConstraint;
 @property(nonatomic) __weak UILabel *titleLabel; // @synthesize titleLabel;

@@ -8,8 +8,8 @@
 
 @interface _TtC4WiMP27TitleModuleArtistOptionsBar (WiMP)
 - (void)didTapFavoriteButton:(id)arg1;
+- (void)didTapMixesButton:(id)arg1;
 - (void)didTapPlayButtonWithSender:(id)arg1;
 - (void)didTapShufflePlayButtonWithSender:(id)arg1;
-- (void)didTapContextMenuButtonWithSender:(id)arg1;
 @end
 

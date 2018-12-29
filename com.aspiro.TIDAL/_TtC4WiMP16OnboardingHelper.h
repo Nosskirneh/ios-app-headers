@@ -4,9 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
-
-@class NSDictionary, NSString, NSUserDefaults, WMPUser;
+#import <objc/NSObject.h>
 
 @interface _TtC4WiMP16OnboardingHelper : NSObject
 {
@@ -24,22 +22,10 @@
 + (id)shared;
 - (CDUnknownBlockType).cxx_destruct;
 - (id)init;
-- (_Bool)onboardingPropertyExistsLocallyWithKey:(id)arg1;
-- (void)addOnboardingPropertyWithKey:(id)arg1;
-- (_Bool)shouldShowOnboardingPropertyWithKey:(id)arg1;
 - (void)obtainOnboarding;
 - (void)handleOnboardingForMyCollectionWithFavoriteType:(long long)arg1;
 - (void)handleOnboardingForModule:(id)arg1;
 - (void)handleOnboardingWithType:(long long)arg1;
-@property(nonatomic, readonly) double defaultVerticalOffset; // @synthesize defaultVerticalOffset;
-@property(nonatomic, readonly) double slideOpenPanelAnimationDuration; // @synthesize slideOpenPanelAnimationDuration;
-@property(nonatomic, readonly) double slideOpenPanelAnimationDelay; // @synthesize slideOpenPanelAnimationDelay;
-@property(nonatomic, readonly) double defaultDelayDuration; // @synthesize defaultDelayDuration;
-@property(nonatomic) _Bool isPresentingTooltip; // @synthesize isPresentingTooltip;
-@property(nonatomic, copy) NSDictionary *onboardingDictionary; // @synthesize onboardingDictionary;
-@property(nonatomic, readonly) NSString *kOnboardingPersistedDataKey; // @synthesize kOnboardingPersistedDataKey;
-@property(nonatomic, readonly) NSUserDefaults *userDefaults; // @synthesize userDefaults;
-@property(nonatomic, readonly) WMPUser *user; // @synthesize user;
 
 @end
 

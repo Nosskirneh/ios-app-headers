@@ -4,7 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 @class NSString;
 
@@ -18,8 +18,6 @@
 - (CDUnknownBlockType).cxx_destruct;
 - (id)init;
 - (void)setValue:(id)arg1 forUndefinedKey:(id)arg2;
-- (id)initWithName:(id)arg1 id:(id)arg2 imageUrl:(id)arg3;
-@property(nonatomic, copy) NSString *imageUrl; // @synthesize imageUrl;
 @property(nonatomic, copy) NSString *id; // @synthesize id;
 @property(nonatomic, copy) NSString *name; // @synthesize name;
 

@@ -4,9 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
-
-@class NSString;
+#import <objc/NSObject.h>
 
 @interface _TtC4WiMP18SonosTrackMetadata : NSObject
 {
@@ -24,14 +22,6 @@
 - (CDUnknownBlockType).cxx_destruct;
 - (id)init;
 - (void)setValue:(id)arg1 forUndefinedKey:(id)arg2;
-@property(nonatomic, copy) NSString *contentType; // @synthesize contentType;
-@property(nonatomic, copy) NSString *trackUrl; // @synthesize trackUrl;
-@property(nonatomic, copy) NSString *imageUrl; // @synthesize imageUrl;
-@property(nonatomic, copy) NSString *albumArtist; // @synthesize albumArtist;
-@property(nonatomic, copy) NSString *album; // @synthesize album;
-@property(nonatomic, copy) NSString *artist; // @synthesize artist;
-@property(nonatomic, copy) NSString *title; // @synthesize title;
-@property(nonatomic, copy) NSString *itemId; // @synthesize itemId;
 
 @end
 

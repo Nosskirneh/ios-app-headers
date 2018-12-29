@@ -23,7 +23,6 @@
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;
 - (void)dealloc;
 - (void)handleSameTabDidTap;
-- (void)viewWillDisappear:(_Bool)arg1;
 - (void)viewWillAppear:(_Bool)arg1;
 - (void)viewDidLoad;
 

@@ -12,6 +12,7 @@
 
 @interface WMPInformationCarouselViewController : WMPCarouselModule <WMPCarouselModuleDataSource>
 {
+    NSArray *_carouselPageIds;
     NSArray *_icons;
     NSArray *_headers;
     NSArray *_descriptions;
@@ -21,6 +22,7 @@
 @property(retain, nonatomic) NSArray *descriptions; // @synthesize descriptions=_descriptions;
 @property(retain, nonatomic) NSArray *headers; // @synthesize headers=_headers;
 @property(retain, nonatomic) NSArray *icons; // @synthesize icons=_icons;
+@property(copy, nonatomic) NSArray *carouselPageIds; // @synthesize carouselPageIds=_carouselPageIds;
 - (void).cxx_destruct;
 - (void)carousel:(id)arg1 configureView:(id)arg2 forIndex:(unsigned long long)arg3;
 - (unsigned long long)numberOfPagesInCarousel:(id)arg1;

@@ -19,7 +19,7 @@
     id <FBSDKWebDialogViewDelegate> _delegate;
 }
 
-@property(nonatomic) id <FBSDKWebDialogViewDelegate> delegate; // @synthesize delegate=_delegate;
+@property(nonatomic) __weak id <FBSDKWebDialogViewDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
 - (void)webViewDidFinishLoad:(id)arg1;
 - (_Bool)webView:(id)arg1 shouldStartLoadWithRequest:(id)arg2 navigationType:(long long)arg3;

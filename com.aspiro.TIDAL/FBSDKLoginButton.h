@@ -37,7 +37,7 @@
 - (id)_longLogInTitle;
 - (id)_logOutTitle;
 - (void)_buttonPressed:(id)arg1;
-- (void)_acessTokenDidChangeNotification:(id)arg1;
+- (void)_accessTokenDidChangeNotification:(id)arg1;
 - (void)configureButton;
 - (id)impressionTrackingIdentifier;
 - (id)impressionTrackingEventName;
@@ -45,7 +45,11 @@
 - (void)actionSheet:(id)arg1 didDismissWithButtonIndex:(long long)arg2;
 - (struct CGSize)sizeThatFits:(struct CGSize)arg1;
 - (void)layoutSubviews;
+- (struct CGRect)titleRectForContentRect:(struct CGRect)arg1;
+- (struct CGRect)imageRectForContentRect:(struct CGRect)arg1;
 - (void)didMoveToWindow;
+- (id)backgroundColor;
+- (id)defaultFont;
 @property(nonatomic) unsigned long long loginBehavior;
 @property(nonatomic) unsigned long long defaultAudience;
 - (void)dealloc;

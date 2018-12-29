@@ -19,7 +19,6 @@
 - (CDUnknownBlockType).cxx_destruct;
 - (void)setValue:(id)arg1 forUndefinedKey:(id)arg2;
 - (id)init;
-@property(nonatomic, copy) NSString *customData; // @synthesize customData;
 @property(nonatomic, copy) NSString *sessionId; // @synthesize sessionId;
 @property(nonatomic, copy) NSString *sessionState; // @synthesize sessionState;
 

@@ -7,7 +7,7 @@
 #import "_TtC4WiMP20SonosGroupConnection.h"
 
 @interface _TtC4WiMP20SonosGroupConnection (WiMP)
-- (_Bool)isCloudQueueLoaded;
-- (id)getSessionId;
+- (void)onPongTimeout;
+- (void)sendPing;
 @end
 

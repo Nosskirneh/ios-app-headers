@@ -15,7 +15,6 @@
 - (id)initWithFrame:(struct CGRect)arg1;
 - (void)drawTextInRect:(struct CGRect)arg1;
 - (struct CGRect)textRectForBounds:(struct CGRect)arg1 limitedToNumberOfLines:(long long)arg2;
-@property(nonatomic) double offset; // @synthesize offset;
 
 @end
 

@@ -4,9 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
-
-@class NSString;
+#import <objc/NSObject.h>
 
 @interface _TtC4WiMP20SonosGroupConnection : NSObject
 {
@@ -32,14 +30,8 @@
 }
 
 - (CDUnknownBlockType).cxx_destruct;
-- (id)initWith:(id)arg1;
 - (id)init;
 - (void)dealloc;
-@property(nonatomic) long long connectionState; // @synthesize connectionState;
-@property(nonatomic, copy) NSString *queueVersion; // @synthesize queueVersion;
-@property(nonatomic, copy) NSString *itemId; // @synthesize itemId;
-@property(nonatomic) long long playbackState; // @synthesize playbackState;
-@property(nonatomic) _Bool isReconnect; // @synthesize isReconnect;
 
 @end
 

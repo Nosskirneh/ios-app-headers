@@ -20,8 +20,6 @@
 - (CDUnknownBlockType).cxx_destruct;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithFrame:(struct CGRect)arg1;
-- (void)drawBottomBorder:(struct CGContext *)arg1 width:(double)arg2 height:(double)arg3;
-- (void)drawTopBorder:(struct CGContext *)arg1 width:(double)arg2;
 - (void)drawRect:(struct CGRect)arg1;
 - (void)drawTextInRect:(struct CGRect)arg1;
 @property(nonatomic) struct UIEdgeInsets margins; // @synthesize margins;

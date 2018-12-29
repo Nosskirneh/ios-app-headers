@@ -6,8 +6,6 @@
 
 #import <UIKit/UIView.h>
 
-@class CALayer, NSArray;
-
 @interface _TtC4WiMP13TidalWaveform : UIView
 {
     // Error parsing type: , name: type
@@ -31,35 +29,9 @@
     // Error parsing type: , name: delegate
 }
 
-+ (id)flatWaveformSamples;
 - (CDUnknownBlockType).cxx_destruct;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithFrame:(struct CGRect)arg1;
-- (void)drawFadeOutIndicatorWithLengthInSeconds:(double)arg1;
-- (void)drawFadeInIndicatorWithLengthInSeconds:(double)arg1;
-- (void)markWithEndPosition:(double)arg1;
-- (void)markWithStartPosition:(double)arg1;
-- (void)removeActiveAreaHighlighting;
-- (void)highlightActiveArea:(double)arg1 end:(double)arg2;
-- (void)draw:(id)arg1 sampleDurationInMs:(long long)arg2 maxValue:(long long)arg3;
-@property(nonatomic) double trackLengthInSeconds; // @synthesize trackLengthInSeconds;
-@property(nonatomic, readonly) double fadeIndicatorOffset; // @synthesize fadeIndicatorOffset;
-@property(nonatomic, readonly) double fadeIndicatorHeight; // @synthesize fadeIndicatorHeight;
-@property(nonatomic, retain) CALayer *fadeOutIndicator; // @synthesize fadeOutIndicator;
-@property(nonatomic, retain) CALayer *fadeInIndicator; // @synthesize fadeInIndicator;
-@property(nonatomic, retain) CALayer *endPositionShaderLayer; // @synthesize endPositionShaderLayer;
-@property(nonatomic, retain) CALayer *startPositionShaderLayer; // @synthesize startPositionShaderLayer;
-@property(nonatomic, retain) CALayer *activeAreaShaderLayer; // @synthesize activeAreaShaderLayer;
-@property(nonatomic, readonly) double scrollableWaveformBaselineOffset; // @synthesize scrollableWaveformBaselineOffset;
-@property(nonatomic) double xPosition; // @synthesize xPosition;
-@property(nonatomic, readonly) double horizontalPadding; // @synthesize horizontalPadding;
-@property(nonatomic, readonly) double paddingTop; // @synthesize paddingTop;
-@property(nonatomic, readonly) double separatorWidth; // @synthesize separatorWidth;
-@property(nonatomic) double barWidth; // @synthesize barWidth;
-@property(nonatomic, readonly) double waveformWidth;
-@property(nonatomic) long long availableBarsCount; // @synthesize availableBarsCount;
-@property(nonatomic) long long sampleDurationInMs; // @synthesize sampleDurationInMs;
-@property(nonatomic, copy) NSArray *samples; // @synthesize samples;
 
 @end
 

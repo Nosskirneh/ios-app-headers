@@ -4,7 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 @interface _TtC4WiMP21AppIcon3DTouchService : NSObject
 {
@@ -13,9 +13,6 @@
 + (id)sharedInstance;
 - (CDUnknownBlockType).cxx_destruct;
 - (_Bool)handleQuickAction:(id)arg1;
-- (void)removeCustomShortcutItem;
-- (_Bool)isItemAddedAsCustomShortcut:(id)arg1 itemType:(long long)arg2;
-- (void)addCustomShortcutItem:(id)arg1 itemType:(long long)arg2 itemTitle:(id)arg3 itemSubtitle:(id)arg4;
 - (void)resetDynamicShortcutItems;
 - (void)createShortcutItems;
 - (void)playQueueDidChanged:(id)arg1;

@@ -10,11 +10,8 @@
 {
 }
 
-- (id)initWithTableView:(id)arg1;
 - (double)tableView:(id)arg1 heightForHeaderInSection:(long long)arg2;
 - (id)tableView:(id)arg1 viewForHeaderInSection:(long long)arg2;
-- (void)updateTrackCredits:(id)arg1;
-- (void)update:(id)arg1;
 
 @end
 

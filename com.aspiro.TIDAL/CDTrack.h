@@ -16,10 +16,10 @@
     NSString *imageResourceId;
 }
 
-+ (id)insertNewObjectIntoContext:(id)arg1;
-+ (id)entityName;
 + (id)tracksForIds:(id)arg1 managedObjectContext:(id)arg2;
 + (id)newOrExistingManagedObject:(id)arg1 inManagedObjectContext:(id)arg2;
++ (id)insertNewObjectIntoContext:(id)arg1;
++ (id)entityName;
 @property(retain, nonatomic) NSString *imageResourceId; // @synthesize imageResourceId;
 @property(retain, nonatomic) NSString *title; // @synthesize title;
 - (void).cxx_destruct;
@@ -52,14 +52,14 @@
 - (id)trackTitleWithVersionInfo;
 - (id)modifiedVersionText;
 - (void)willSave;
+- (_Bool)ifExistsInCategory:(id)arg1 updateOrder:(id)arg2;
+- (_Bool)existsInCategory:(id)arg1;
 - (id)shareURL;
 - (long long)purchasedSoundQuality;
 - (_Bool)isPurchased;
 - (id)artistIds;
 - (id)sortedArtists;
 - (id)dictionaryForEntity;
-- (_Bool)ifExistsInCategory:(id)arg1 updateOrder:(id)arg2;
-- (_Bool)existsInCategory:(id)arg1;
 
 // Remaining properties
 @property(retain, nonatomic) NSString *adURL; // @dynamic adURL;

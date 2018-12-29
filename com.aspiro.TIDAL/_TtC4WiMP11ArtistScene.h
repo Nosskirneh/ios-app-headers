@@ -6,8 +6,6 @@
 
 #import "WMPAbstractScene.h"
 
-@class _TtC4WiMP18DynamicSceneLoader;
-
 @interface _TtC4WiMP11ArtistScene : WMPAbstractScene
 {
     // Error parsing type: , name: artistId
@@ -18,14 +16,12 @@
     // Error parsing type: , name: dynamicSceneBuilder.storage
 }
 
-+ (id)screenName;
 - (CDUnknownBlockType).cxx_destruct;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;
 - (void)viewDidAppear:(_Bool)arg1;
 - (void)viewDidLoad;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithArtistId:(id)arg1;
-@property(nonatomic, retain) _TtC4WiMP18DynamicSceneLoader *dynamicSceneLoader;
 
 @end
 

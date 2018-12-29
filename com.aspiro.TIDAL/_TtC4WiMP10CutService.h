@@ -4,9 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
-
-@class _TtC4WiMP18CutServiceProvider;
+#import <objc/NSObject.h>
 
 @interface _TtC4WiMP10CutService : NSObject
 {
@@ -14,14 +12,9 @@
 }
 
 - (CDUnknownBlockType).cxx_destruct;
-- (void)obtainWaveformForTrack:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
-- (void)renameCut:(id)arg1 name:(id)arg2 completionHandler:(CDUnknownBlockType)arg3;
 - (void)updateCut:(id)arg1 name:(id)arg2 startTime:(unsigned long long)arg3 endTime:(unsigned long long)arg4 fadeInDuration:(unsigned long long)arg5 fadeOutDuration:(unsigned long long)arg6 speed:(long long)arg7 completionHandler:(CDUnknownBlockType)arg8;
 - (void)obtainCut:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
-- (void)createNewCutFromTrack:(id)arg1 name:(id)arg2 startTime:(unsigned long long)arg3 endTime:(unsigned long long)arg4 fadeInDuration:(unsigned long long)arg5 fadeOutDuration:(unsigned long long)arg6 speed:(long long)arg7 completionHandler:(CDUnknownBlockType)arg8;
-- (id)initWithProvider:(id)arg1;
 - (id)init;
-@property(nonatomic, readonly) _TtC4WiMP18CutServiceProvider *provider; // @synthesize provider;
 
 @end
 

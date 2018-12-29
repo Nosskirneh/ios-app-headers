@@ -4,9 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
-
-@class NSDate, NSString, NSURL;
+#import <objc/NSObject.h>
 
 @interface _TtC4WiMP12FacebookPost : NSObject
 {
@@ -27,17 +25,6 @@
 - (CDUnknownBlockType).cxx_destruct;
 - (id)init;
 - (id)init:(id)arg1 userName:(id)arg2 userPictureURL:(id)arg3;
-@property(nonatomic, readonly) _Bool hasText;
-@property(nonatomic, readonly) NSURL *videoLink; // @synthesize videoLink;
-@property(nonatomic, readonly) NSURL *userPictureURL; // @synthesize userPictureURL;
-@property(nonatomic, readonly) NSString *userName; // @synthesize userName;
-@property(nonatomic, readonly) NSURL *pictureURL; // @synthesize pictureURL;
-@property(nonatomic, readonly) NSString *descriptionText; // @synthesize descriptionText;
-@property(nonatomic, readonly) NSString *story; // @synthesize story;
-@property(nonatomic, readonly) NSDate *createdTime; // @synthesize createdTime;
-@property(nonatomic, readonly) NSString *message; // @synthesize message;
-@property(nonatomic, readonly) NSURL *link; // @synthesize link;
-@property(nonatomic, readonly) NSString *postId; // @synthesize postId;
 
 @end
 

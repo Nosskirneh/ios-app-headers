@@ -25,6 +25,7 @@
 @property(retain, nonatomic) NSString *header; // @synthesize header=_header;
 - (void).cxx_destruct;
 - (void)viewDidTap:(id)arg1;
+- (void)removeViewMoreButton;
 - (void)awakeFromNib;
 
 @end

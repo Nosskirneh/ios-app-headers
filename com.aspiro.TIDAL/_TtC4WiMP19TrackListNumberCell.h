@@ -19,12 +19,14 @@
     // Error parsing type: , name: contextMenuButton
     // Error parsing type: , name: subtitleLeftToVideoIconConstraint
     // Error parsing type: , name: subtitleLeftToEditedIconConstraint
+    // Error parsing type: , name: trackTitleLeadingConstraint
 }
 
 - (CDUnknownBlockType).cxx_destruct;
 - (void)awakeFromNib;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithStyle:(long long)arg1 reuseIdentifier:(id)arg2;
+@property(nonatomic) __weak NSLayoutConstraint *trackTitleLeadingConstraint; // @synthesize trackTitleLeadingConstraint;
 @property(nonatomic, retain) NSLayoutConstraint *subtitleLeftToEditedIconConstraint; // @synthesize subtitleLeftToEditedIconConstraint;
 @property(nonatomic, retain) NSLayoutConstraint *subtitleLeftToVideoIconConstraint; // @synthesize subtitleLeftToVideoIconConstraint;
 @property(nonatomic, retain) _TtC4WiMP14ReactiveButton *contextMenuButton; // @synthesize contextMenuButton;

@@ -15,6 +15,7 @@
 
 @interface WMPCollectionViewController : UICollectionViewController <NSFetchedResultsControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 {
+    _Bool _isLoadedFromNavigation;
     _Bool _sortingEnabled;
     _Bool _isFullScreen;
     _Bool _scrollEnabled;
@@ -36,9 +37,11 @@
     UIImage *_noContentIcon;
     NSString *_footerText;
     struct UIEdgeInsets _edgeInsets;
+    struct UIEdgeInsets _paddingForInsets;
 }
 
 + (struct CGSize)cellSizeInCollectionViewWithWidth:(double)arg1 edgeInsets:(struct UIEdgeInsets)arg2 interItemSpacing:(double)arg3 artworkSizeRatio:(double)arg4 otherContentHeight:(double)arg5 numberOfHorizontalCells:(unsigned long long)arg6 horizontalScrollInset:(double)arg7;
+@property(nonatomic) struct UIEdgeInsets paddingForInsets; // @synthesize paddingForInsets=_paddingForInsets;
 @property(nonatomic) struct UIEdgeInsets edgeInsets; // @synthesize edgeInsets=_edgeInsets;
 @property(nonatomic) _Bool canLoadMoreContent; // @synthesize canLoadMoreContent=_canLoadMoreContent;
 @property(retain, nonatomic) NSString *footerText; // @synthesize footerText=_footerText;
@@ -59,14 +62,18 @@
 @property(retain, nonatomic) NSPredicate *predicate; // @synthesize predicate=_predicate;
 @property(retain, nonatomic) NSString *entityName; // @synthesize entityName=_entityName;
 @property(retain, nonatomic) NSNumber *itemId; // @synthesize itemId=_itemId;
+@property(nonatomic) _Bool isLoadedFromNavigation; // @synthesize isLoadedFromNavigation=_isLoadedFromNavigation;
 @property(nonatomic) __weak id <WMPModule> module; // @synthesize module=_module;
 - (void).cxx_destruct;
 - (double)otherContentHeight;
 - (double)artworkRatio;
-- (void)createSortingMenu;
+- (void)configureNavigationBar;
 - (id)noContentViewWithMessage:(id)arg1 forItemCount:(long long)arg2;
-- (void)sortAndReload;
 - (void)reloadCollectionViewData;
+- (id)addFilterActionsTo:(id)arg1;
+- (id)addSortActionsTo:(id)arg1;
+- (void)presentSortingMenu;
+- (void)sortAndReload;
 - (double)getRowHeight;
 - (double)getCalculatedHeightUnits;
 - (unsigned long long)numberOfLoadedItems;
@@ -84,6 +91,9 @@
 - (void)addItems:(id)arg1;
 - (void)configureWithItemId:(id)arg1 entityName:(id)arg2 sortAndRangeParameters:(id)arg3;
 - (void)configureColors;
+- (void)configureEdgeInsets;
+- (void)setupCollectionView;
+- (void)updateEdgeInsets:(struct UIEdgeInsets)arg1;
 - (struct UIEdgeInsets)getEdgeInsets;
 - (void)dealloc;
 - (void)viewDidLayoutSubviews;

@@ -6,7 +6,7 @@
 
 #import <UIKit/UIViewController.h>
 
-@class NSArray, NSIndexPath, NSLayoutConstraint, NSString, UILabel, UITableView, UIView, _TtC4WiMP15ContextMenuCell, _TtC4WiMP17ContextDataSource;
+@class NSArray, NSIndexPath, NSLayoutConstraint, NSString, UILabel, UITableView, UIView;
 @protocol _TtP4WiMP24ContextMenuSceneDelegate_;
 
 @interface _TtC4WiMP16ContextMenuScene : UIViewController
@@ -16,6 +16,7 @@
     // Error parsing type: , name: extendedTopOffset
     // Error parsing type: , name: kAnimateDuration
     // Error parsing type: , name: previousScrollOffset
+    // Error parsing type: , name: kTableViewTopPadding
     // Error parsing type: , name: sceneType
     // Error parsing type: , name: dataSource
     // Error parsing type: , name: itemId
@@ -48,7 +49,6 @@
     // Error parsing type: , name: initialDataSource
 }
 
-+ (id)getInstanceWithType:(long long)arg1 itemId:(id)arg2;
 + (id)getNavigationInstanceWithType:(long long)arg1 itemId:(id)arg2;
 - (CDUnknownBlockType).cxx_destruct;
 - (id)initWithCoder:(id)arg1;
@@ -65,8 +65,8 @@
 - (void)externalSetupWithContextDataSource:(id)arg1;
 - (void)viewWillTransitionToSize:(struct CGSize)arg1 withTransitionCoordinator:(id)arg2;
 - (void)dealloc;
+- (void)viewWillDisappear:(_Bool)arg1;
 - (void)viewDidLoad;
-@property(nonatomic, retain) _TtC4WiMP17ContextDataSource *initialDataSource; // @synthesize initialDataSource;
 @property(nonatomic, retain) NSLayoutConstraint *headerRatioConstraint; // @synthesize headerRatioConstraint;
 @property(nonatomic, retain) NSLayoutConstraint *tableViewHeightConstraint; // @synthesize tableViewHeightConstraint;
 @property(nonatomic, retain) NSLayoutConstraint *extendedFooterViewHeightConstraint; // @synthesize extendedFooterViewHeightConstraint;
@@ -82,18 +82,13 @@
 @property(nonatomic) __weak UIView *footerView; // @synthesize footerView;
 @property(nonatomic) __weak UIView *extendedFooterContainer; // @synthesize extendedFooterContainer;
 @property(nonatomic) __weak UITableView *tableView; // @synthesize tableView;
-@property(nonatomic, retain) _TtC4WiMP15ContextMenuCell *addToPlaylistCell; // @synthesize addToPlaylistCell;
 @property(nonatomic) __weak id <_TtP4WiMP24ContextMenuSceneDelegate_> delegate; // @synthesize delegate;
-@property(nonatomic, copy) NSArray *filterParameters; // @synthesize filterParameters;
-@property(nonatomic, copy) NSArray *sortParameters; // @synthesize sortParameters;
 @property(nonatomic, copy) NSArray *artistIds; // @synthesize artistIds;
 @property(nonatomic, copy) NSArray *artistNames; // @synthesize artistNames;
 @property(nonatomic, retain) UIView *shareView; // @synthesize shareView;
 @property(nonatomic) struct CGRect shareRect; // @synthesize shareRect;
 @property(nonatomic, copy) NSIndexPath *indexPath; // @synthesize indexPath;
 @property(nonatomic, copy) NSString *forPlaylistUuid; // @synthesize forPlaylistUuid;
-@property(nonatomic, retain) id itemId; // @synthesize itemId;
-@property(nonatomic, retain) _TtC4WiMP17ContextDataSource *dataSource; // @synthesize dataSource;
 
 @end
 

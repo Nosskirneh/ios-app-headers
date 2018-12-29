@@ -6,7 +6,7 @@
 
 #import "_TtC4WiMP18CreateCutBaseScene.h"
 
-@class NSString, UIButton, UILabel, UIView, _TtC4WiMP14BorderedButton, _TtC4WiMP8Snackbar;
+@class UIButton, UILabel, UIView, _TtC4WiMP14BorderedButton;
 
 @interface _TtC4WiMP18CreateCutEditScene : _TtC4WiMP18CreateCutBaseScene
 {
@@ -28,15 +28,10 @@
 }
 
 + (id)getInstanceWithMode:(long long)arg1 itemUuid:(id)arg2 playlistUuid:(id)arg3 position:(long long)arg4;
-+ (id)storyboardName;
 - (CDUnknownBlockType).cxx_destruct;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;
-- (CDStruct_198678f7)elapsedTimeForScrollPosition:(double)arg1;
 - (void)playerItemDidReachEnd;
-- (void)trackFailedToLoad:(id)arg1;
-- (_Bool)shouldShowDiscardAlert;
-- (void)dismissScene;
 - (void)dismissSceneWithSender:(id)arg1;
 - (void)presentEffectsSceneWithSender:(id)arg1;
 - (void)didTapSetEndButtonWithSender:(id)arg1;
@@ -45,18 +40,8 @@
 - (void)didTapSkipToEndButton:(id)arg1;
 - (void)didTapSkipToStartButton:(id)arg1;
 - (void)didDoubleTapSkipToStartButton:(id)arg1;
-- (void)seekFromCurrentTimeWithSecondsToSeek:(double)arg1;
-- (void)showPauseIcon;
-- (void)configureIcons;
-- (void)pageLoadingEnded;
 - (void)viewWillAppear:(_Bool)arg1;
 - (void)viewDidLoad;
-@property(nonatomic) _Bool pageDidFinishPresentingContent; // @synthesize pageDidFinishPresentingContent;
-@property(nonatomic, copy) NSString *itemUuid; // @synthesize itemUuid;
-@property(nonatomic, readonly) double kMinimumCutLengthInSeconds; // @synthesize kMinimumCutLengthInSeconds;
-@property(nonatomic, copy) NSString *playlistUuid; // @synthesize playlistUuid;
-@property(nonatomic, retain) _TtC4WiMP8Snackbar *maxCutLengthSnackbar; // @synthesize maxCutLengthSnackbar;
-@property(nonatomic, readonly) double kMaxCutLengthInSeconds; // @synthesize kMaxCutLengthInSeconds;
 @property(nonatomic) __weak UIView *loadingView; // @synthesize loadingView;
 @property(nonatomic) __weak UIButton *nextButton; // @synthesize nextButton;
 @property(nonatomic) __weak UIButton *discardButton; // @synthesize discardButton;

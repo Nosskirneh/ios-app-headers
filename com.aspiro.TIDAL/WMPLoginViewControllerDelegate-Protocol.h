@@ -9,7 +9,7 @@
 @class NSString, TWTRSession, WMPLoginViewController;
 
 @protocol WMPLoginViewControllerDelegate <NSObject>
-- (void)userDidLoggedIn;
+- (void)userDidLogIn;
 - (void)loginWithTwitterSession:(TWTRSession *)arg1;
 - (void)loginViewControllerloginWithFacebook:(WMPLoginViewController *)arg1;
 - (void)loginViewController:(WMPLoginViewController *)arg1 simpleLoginWithUsername:(NSString *)arg2 andPassword:(NSString *)arg3;

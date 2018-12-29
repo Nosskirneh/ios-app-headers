@@ -12,19 +12,16 @@
 {
     // Error parsing type: , name: delegate
     // Error parsing type: , name: artist
-    // Error parsing type: , name: coverPayload.storage
-    // Error parsing type: , name: optionsBar.storage
+    // Error parsing type: , name: headerInfo
+    // Error parsing type: , name: privateCoverPayloadInstance.storage
+    // Error parsing type: , name: privateOptionsBarInstance.storage
 }
 
 - (CDUnknownBlockType).cxx_destruct;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;
 - (_Bool)isOnboardingSupported:(long long)arg1;
 - (void)adjustImageViewSizeForVerticalScrollOffset:(double)arg1;
-@property(nonatomic, retain) UIViewController *optionsBar;
-@property(nonatomic, retain) UIViewController *coverPayload;
-@property(nonatomic, readonly) double optionsHeight;
-@property(nonatomic, readonly) double coverHeight;
-- (void)fetchArtistImage;
+@property(nonatomic, readonly) UIViewController *optionsBar;
 - (void)viewDidLoad;
 - (id)initWithCoder:(id)arg1;
 

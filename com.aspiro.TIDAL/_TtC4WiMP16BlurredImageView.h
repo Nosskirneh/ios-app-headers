@@ -6,8 +6,6 @@
 
 #import <UIKit/UIView.h>
 
-@class UIImage;
-
 @interface _TtC4WiMP16BlurredImageView : UIView
 {
     // Error parsing type: , name: image
@@ -19,7 +17,6 @@
 - (void)awakeFromNib;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithFrame:(struct CGRect)arg1;
-@property(nonatomic, retain) UIImage *image; // @synthesize image;
 
 @end
 

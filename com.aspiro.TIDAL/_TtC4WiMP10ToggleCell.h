@@ -6,21 +6,20 @@
 
 #import "_TtC4WiMP13TableViewCell.h"
 
-@class _TtC4WiMP14ReactiveToggle;
-
 @interface _TtC4WiMP10ToggleCell : _TtC4WiMP13TableViewCell
 {
     // Error parsing type: , name: verticalStackView.storage
     // Error parsing type: , name: horizontalStackView.storage
     // Error parsing type: , name: titleLabel.storage
     // Error parsing type: , name: descriptionLabel.storage
+    // Error parsing type: , name: verticalStackViewTopConstraint
+    // Error parsing type: , name: verticalStackViewBottomConstraint
     // Error parsing type: , name: toggle.storage
 }
 
 - (CDUnknownBlockType).cxx_destruct;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithStyle:(long long)arg1 reuseIdentifier:(id)arg2;
-@property(nonatomic, retain) _TtC4WiMP14ReactiveToggle *toggle;
 
 @end
 

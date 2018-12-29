@@ -8,10 +8,14 @@
 
 @interface _TtC4WiMP6Tabbar : UITabBar
 {
+    // Error parsing type: , name: buttonFrames
+    // Error parsing type: , name: size
 }
 
+- (CDUnknownBlockType).cxx_destruct;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithFrame:(struct CGRect)arg1;
+- (void)layoutSubviews;
 - (void)drawRect:(struct CGRect)arg1;
 
 @end

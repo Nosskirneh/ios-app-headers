@@ -20,7 +20,6 @@
 - (id)initWithCoder:(id)arg1;
 - (id)initWithFrame:(struct CGRect)arg1;
 - (void)prepareForReuse;
-- (void)configureWith:(id)arg1;
 - (void)awakeFromNib;
 @property(nonatomic) __weak UILabel *playlistAuthorLabel; // @synthesize playlistAuthorLabel;
 @property(nonatomic) __weak UILabel *playlistNameLabel; // @synthesize playlistNameLabel;

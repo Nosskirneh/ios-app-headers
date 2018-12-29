@@ -6,7 +6,7 @@
 
 #import <UIKit/UITableViewCell.h>
 
-@class NSLayoutConstraint, UIButton, UIColor, UIImageView, UILabel;
+@class NSLayoutConstraint, UIButton, UIImageView, UILabel;
 
 @interface _TtC4WiMP18PlayQueueTableCell : UITableViewCell
 {
@@ -25,16 +25,12 @@
     // Error parsing type: , name: highlightColor
 }
 
-+ (id)cellIdentifier;
 - (CDUnknownBlockType).cxx_destruct;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithStyle:(long long)arg1 reuseIdentifier:(id)arg2;
 - (void)deleteAction:(id)arg1;
-- (void)configureWithItem:(id)arg1 isCurrent:(_Bool)arg2 isVideo:(_Bool)arg3 indexPath:(id)arg4 position:(long long)arg5;
 - (void)setHighlighted:(_Bool)arg1 animated:(_Bool)arg2;
 - (void)awakeFromNib;
-@property(nonatomic, retain) UIColor *highlightColor; // @synthesize highlightColor;
-@property(nonatomic, copy) CDUnknownBlockType didTapDelete; // @synthesize didTapDelete;
 @property(nonatomic) __weak UIImageView *typeIcon; // @synthesize typeIcon;
 @property(nonatomic) __weak NSLayoutConstraint *titleLeftConstraint; // @synthesize titleLeftConstraint;
 @property(nonatomic) __weak UIImageView *iconImageView; // @synthesize iconImageView;

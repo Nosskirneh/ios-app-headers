@@ -4,7 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 @class WMPTrackServiceDAL;
 
@@ -29,7 +29,7 @@
 - (void)obtainTopTracksByArtistId:(id)arg1 sortAndRangeParameters:(id)arg2;
 - (void)obtainTrackByTrackUuid:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
 - (void)obtainTrackByTrackId:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
-- (void)obtainTrackRadioListByTrackId:(id)arg1 isAudioPlaying:(_Bool)arg2 completionBlock:(CDUnknownBlockType)arg3;
+- (void)obtainTrackRadioListByTrackId:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
 - (void)obtainTrackRadioListByArtistId:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
 - (id)getTrackByUuid:(id)arg1;
 - (id)getTrackById:(id)arg1;

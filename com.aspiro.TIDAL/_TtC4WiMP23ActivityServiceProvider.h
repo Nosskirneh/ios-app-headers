@@ -6,8 +6,6 @@
 
 #import "WMPBaseServiceProvider.h"
 
-@class NSString;
-
 @interface _TtC4WiMP23ActivityServiceProvider : WMPBaseServiceProvider
 {
     // Error parsing type: , name: countryCode
@@ -15,10 +13,6 @@
 
 - (CDUnknownBlockType).cxx_destruct;
 - (id)init;
-- (id)urlForActivityWithUserId:(id)arg1 sortAndRangeParameters:(id)arg2;
-- (void)fetchActivityByUserId:(id)arg1 sortAndRangeParameters:(id)arg2 completionHandler:(CDUnknownBlockType)arg3;
-- (id)initWithCountryCode:(id)arg1;
-@property(nonatomic, readonly) NSString *countryCode; // @synthesize countryCode;
 
 @end
 

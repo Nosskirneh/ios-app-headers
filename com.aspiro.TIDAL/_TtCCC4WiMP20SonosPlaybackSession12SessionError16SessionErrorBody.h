@@ -15,7 +15,6 @@
 }
 
 - (CDUnknownBlockType).cxx_destruct;
-- (id)initWithErrorCode:(id)arg1 reason:(id)arg2;
 - (id)init;
 @property(nonatomic, copy) NSString *reason; // @synthesize reason;
 @property(nonatomic, copy) NSString *errorCode; // @synthesize errorCode;

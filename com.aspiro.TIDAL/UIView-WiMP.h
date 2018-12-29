@@ -7,6 +7,7 @@
 #import <UIKit/UIView.h>
 
 @interface UIView (WiMP)
-- (void)shake;
+- (void)insertSubviewWithView:(id)arg1 at:(long long)arg2 constraintsInsets:(struct UIEdgeInsets)arg3;
+- (void)addSubviewWithView:(id)arg1 constraintsInsets:(struct UIEdgeInsets)arg2;
 @end
 

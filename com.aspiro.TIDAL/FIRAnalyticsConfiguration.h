@@ -4,13 +4,14 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 @interface FIRAnalyticsConfiguration : NSObject
 {
 }
 
 + (id)sharedInstance;
+- (void)setAnalyticsCollectionEnabled:(_Bool)arg1 persistSetting:(_Bool)arg2;
 - (void)setAnalyticsCollectionEnabled:(_Bool)arg1;
 - (void)setSessionTimeoutInterval:(double)arg1;
 - (void)setMinimumSessionInterval:(double)arg1;

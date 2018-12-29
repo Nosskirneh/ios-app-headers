@@ -20,7 +20,6 @@
 - (struct CGRect)placeholderRectForBounds:(struct CGRect)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithText:(id)arg1 placeholder:(id)arg2 type:(long long)arg3;
-@property(nonatomic, readonly) long long type; // @synthesize type;
 
 @end
 

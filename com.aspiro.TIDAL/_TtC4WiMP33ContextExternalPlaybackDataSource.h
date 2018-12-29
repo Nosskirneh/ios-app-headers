@@ -11,7 +11,6 @@
 }
 
 - (void)externalPlaybackDiscovery;
-- (void)configureHeaderWithItemId:(id)arg1 toView:(id)arg2 owner:(id)arg3;
 - (id)init;
 
 @end

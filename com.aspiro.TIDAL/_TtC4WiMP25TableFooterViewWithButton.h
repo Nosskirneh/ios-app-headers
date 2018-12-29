@@ -6,8 +6,6 @@
 
 #import <UIKit/UIView.h>
 
-@class UIButton;
-
 @interface _TtC4WiMP25TableFooterViewWithButton : UIView
 {
     // Error parsing type: , name: buttonTapHandler
@@ -17,8 +15,6 @@
 - (CDUnknownBlockType).cxx_destruct;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithFrame:(struct CGRect)arg1;
-@property(nonatomic, retain) UIButton *button;
-@property(nonatomic, copy) CDUnknownBlockType buttonTapHandler; // @synthesize buttonTapHandler;
 
 @end
 

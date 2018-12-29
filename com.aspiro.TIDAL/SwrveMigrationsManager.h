@@ -4,15 +4,41 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
+
+@class ImmutableSwrveConfig, NSString;
 
 @interface SwrveMigrationsManager : NSObject
 {
+    NSString *cacheVersionFilePath;
+    ImmutableSwrveConfig *config;
 }
 
-+ (_Bool)isProtectedItemAtPath:(id)arg1;
-+ (void)migrateFileProtectionAtPath:(id)arg1;
-+ (void)migrateOldCacheFile:(id)arg1 withNewPath:(id)arg2;
+@property(retain, nonatomic) ImmutableSwrveConfig *config; // @synthesize config;
+@property(retain, nonatomic) NSString *cacheVersionFilePath; // @synthesize cacheVersionFilePath;
+- (void).cxx_destruct;
+- (void)migrate_1_ApplicationSupportFilesForUserId:(id)arg1 andFileName:(id)arg2;
+- (void)migrate_1_ApplicationSupportFiles:(id)arg1;
+- (void)migrate_1_SeqNumWithUserId:(id)arg1;
+- (void)migrate_1_InstallFileWithUserId:(id)arg1;
+- (void)migrate1;
+- (_Bool)isProtectedItemAtPath:(id)arg1;
+- (void)migrateFileProtectionAtPath:(id)arg1;
+- (void)migrateOldCacheFile:(id)arg1 withNewPath:(id)arg2;
+- (void)migrate_0_CampaignsFromOldPath:(id)arg1 toNewPath:(id)arg2;
+- (void)migrate_0_SettingsFromOldPath:(id)arg1 toNewPath:(id)arg2;
+- (void)migrate_0_UsersResourcesDiffFileFromOldPath:(id)arg1 toNewPath:(id)arg2;
+- (void)migrate_0_UserResourcesFileFromOldPath:(id)arg1 toNewPath:(id)arg2;
+- (void)migrate_0_LocationFileFromOldPath:(id)arg1 toNewPath:(id)arg2;
+- (void)migrate_0_InstallTimeFileOldPath:(id)arg1 toNewPath:(id)arg2;
+- (void)migrate_0_EventFileFromOldPath:(id)arg1 toNewPath:(id)arg2;
+- (void)migrate_0_deviceId;
+- (void)migrate0;
+- (void)migrateFromVersion:(int)arg1;
+- (void)setCurrentCacheVersion:(int)arg1;
+- (int)getCurrentCacheVersion;
+- (void)checkMigrations;
+- (id)initWithConfig:(id)arg1;
 
 @end
 

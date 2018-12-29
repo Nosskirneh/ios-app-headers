@@ -6,7 +6,7 @@
 
 #import <UIKit/UIViewController.h>
 
-@class SwrveMessage, SwrveMessageFormat;
+@class SwrveMessage, SwrveMessageFormat, UIButton, UIFocusGuide;
 
 @interface SwrveMessageViewController : UIViewController
 {
@@ -17,8 +17,15 @@
     SwrveMessageFormat *current_format;
     double viewportWidth;
     double viewportHeight;
+    UIFocusGuide *focusGuide1;
+    UIFocusGuide *focusGuide2;
+    UIButton *tvOSFocusForSelection;
 }
 
++ (id)buttonsInView:(id)arg1;
+@property(retain, nonatomic) UIButton *tvOSFocusForSelection; // @synthesize tvOSFocusForSelection;
+@property(retain, nonatomic) UIFocusGuide *focusGuide2; // @synthesize focusGuide2;
+@property(retain, nonatomic) UIFocusGuide *focusGuide1; // @synthesize focusGuide1;
 @property(nonatomic) _Bool prefersIAMStatusBarHidden; // @synthesize prefersIAMStatusBarHidden;
 @property(nonatomic) double viewportHeight; // @synthesize viewportHeight;
 @property(nonatomic) double viewportWidth; // @synthesize viewportWidth;
@@ -28,6 +35,9 @@
 @property(copy, nonatomic) CDUnknownBlockType block; // @synthesize block;
 - (void).cxx_destruct;
 - (void)viewWillDisappear:(_Bool)arg1;
+- (id)nextFocusableButtonWithCurrentFocusedView:(id)arg1;
+- (void)setupFocusGuide:(id)arg1;
+- (void)didUpdateFocusInContext:(id)arg1 withAnimationCoordinator:(id)arg2;
 - (_Bool)shouldAutorotate;
 - (unsigned long long)supportedInterfaceOrientations;
 - (void)displayForViewportOfSize:(struct CGSize)arg1;
@@ -35,9 +45,11 @@
 - (_Bool)prefersStatusBarHidden;
 - (void)onButtonPressed:(id)arg1;
 - (void)addViewForOrientation:(long long)arg1;
+- (void)refreshViewForPlatform;
 - (void)removeAllViews;
 - (void)updateBounds;
 - (void)viewDidAppear:(_Bool)arg1;
+- (void)buttonSelected;
 - (void)viewWillAppear:(_Bool)arg1;
 
 @end

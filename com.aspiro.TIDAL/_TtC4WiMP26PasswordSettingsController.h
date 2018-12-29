@@ -6,8 +6,6 @@
 
 #import "WMPAbstractScene.h"
 
-@class NSString, UITapGestureRecognizer, WMPLoginService;
-
 @interface _TtC4WiMP26PasswordSettingsController : WMPAbstractScene
 {
     // Error parsing type: , name: loginService
@@ -24,11 +22,6 @@
 - (id)initWithCoder:(id)arg1;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;
 - (void)viewDidLoad;
-@property(nonatomic, retain) UITapGestureRecognizer *tapRecognizer; // @synthesize tapRecognizer;
-@property(nonatomic, copy) NSString *repeatPassword; // @synthesize repeatPassword;
-@property(nonatomic, copy) NSString *newPassword; // @synthesize newPassword;
-@property(nonatomic, copy) NSString *currentPassword; // @synthesize currentPassword;
-@property(nonatomic, readonly) WMPLoginService *loginService; // @synthesize loginService;
 
 @end
 

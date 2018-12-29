@@ -6,7 +6,7 @@
 
 #import "WMPAbstractScene.h"
 
-@class NSLayoutConstraint, UILabel, UIView, WMPReorderTableView;
+@class UILabel, UIView, WMPReorderTableView;
 
 @interface _TtC4WiMP14PlayQueueScene : WMPAbstractScene
 {
@@ -18,11 +18,9 @@
     // Error parsing type: , name: basicUserView
     // Error parsing type: , name: basicUserMessageTitleLabel
     // Error parsing type: , name: basicUserMessageInfoLabel
-    // Error parsing type: , name: tableTopConstraint
     // Error parsing type: , name: tableHeaderView
 }
 
-+ (id)getInstance;
 - (CDUnknownBlockType).cxx_destruct;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;
@@ -30,7 +28,6 @@
 - (double)getOverlayViewHeight;
 - (void)viewDidLoad;
 - (void)dealloc;
-@property(nonatomic) __weak NSLayoutConstraint *tableTopConstraint; // @synthesize tableTopConstraint;
 @property(nonatomic) __weak UILabel *basicUserMessageInfoLabel; // @synthesize basicUserMessageInfoLabel;
 @property(nonatomic) __weak UILabel *basicUserMessageTitleLabel; // @synthesize basicUserMessageTitleLabel;
 @property(nonatomic) __weak UIView *basicUserView; // @synthesize basicUserView;

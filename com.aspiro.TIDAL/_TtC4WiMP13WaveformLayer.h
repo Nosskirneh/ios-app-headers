@@ -6,8 +6,6 @@
 
 #import <QuartzCore/CALayer.h>
 
-@class NSArray, UIColor;
-
 @interface _TtC4WiMP13WaveformLayer : CALayer
 {
     // Error parsing type: , name: samples
@@ -26,14 +24,6 @@
 - (id)init;
 - (void)drawInContext:(struct CGContext *)arg1;
 - (id)initWithCoder:(id)arg1;
-@property(nonatomic, readonly) double kPaddingTop; // @synthesize kPaddingTop;
-@property(nonatomic, readonly) double kMinBarValue; // @synthesize kMinBarValue;
-@property(nonatomic, readonly) long long maxValue; // @synthesize maxValue;
-@property(nonatomic, readonly) double separatorWidth; // @synthesize separatorWidth;
-@property(nonatomic, readonly) double barWidth; // @synthesize barWidth;
-@property(nonatomic, readonly) double startDrawingPosition; // @synthesize startDrawingPosition;
-@property(nonatomic, readonly) UIColor *color; // @synthesize color;
-@property(nonatomic, readonly) NSArray *samples; // @synthesize samples;
 
 @end
 

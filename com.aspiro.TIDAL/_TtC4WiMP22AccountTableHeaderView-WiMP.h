@@ -7,8 +7,6 @@
 #import "_TtC4WiMP22AccountTableHeaderView.h"
 
 @interface _TtC4WiMP22AccountTableHeaderView (WiMP)
-- (void)adjustImageViewSizeFor:(double)arg1;
-- (void)setBlurredBackgroundImage:(id)arg1;
-- (void)configureImageView:(CDUnknownBlockType)arg1;
+- (void)didTapImageView:(id)arg1;
 @end
 

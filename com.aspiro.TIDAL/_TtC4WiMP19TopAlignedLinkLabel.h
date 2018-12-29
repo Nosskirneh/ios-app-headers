@@ -14,8 +14,6 @@
 - (id)initWithCoder:(id)arg1;
 - (void)drawTextInRect:(struct CGRect)arg1;
 - (struct CGRect)textRectForBounds:(struct CGRect)arg1 limitedToNumberOfLines:(long long)arg2;
-@property(nonatomic, readonly) struct CGPoint glyphsPosition;
-@property(nonatomic) double offset; // @synthesize offset;
 
 @end
 

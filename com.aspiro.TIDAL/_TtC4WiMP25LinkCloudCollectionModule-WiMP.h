@@ -7,6 +7,8 @@
 #import "_TtC4WiMP25LinkCloudCollectionModule.h"
 
 @interface _TtC4WiMP25LinkCloudCollectionModule (WiMP)
-- (void)didPressLinkWithPath:(id)arg1 cell:(id)arg2;
+- (id)collectionView:(id)arg1 cellForItemAtIndexPath:(id)arg2;
+- (long long)collectionView:(id)arg1 numberOfItemsInSection:(long long)arg2;
+- (long long)numberOfSectionsInCollectionView:(id)arg1;
 @end
 

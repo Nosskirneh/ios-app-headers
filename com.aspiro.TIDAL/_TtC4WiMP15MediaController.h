@@ -4,9 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
-
-@class _TtC4WiMP26RemoteCommandCenterManager;
+#import <objc/NSObject.h>
 
 @interface _TtC4WiMP15MediaController : NSObject
 {
@@ -21,10 +19,7 @@
 
 + (id)sharedInstance;
 - (CDUnknownBlockType).cxx_destruct;
-- (void)updateNowPlayingInfoElapsedTime;
-- (void)setNowPlayingInfo:(id)arg1;
-- (id)createNowPlayingInfo:(id)arg1;
-- (void)setNowPlayingInfoForCurrentItem;
+- (void)handlePlaybackRewindToBeginningNotification;
 - (void)handleUpdateNowPlayingNotification;
 - (_Bool)isPaused;
 - (_Bool)isPlaying;
@@ -37,15 +32,10 @@
 - (void)pause;
 - (void)play;
 - (long long)getCurrentOutput;
-- (void)switchToMediaController:(id)arg1;
 - (void)remotePlayStopped:(long long)arg1;
 - (void)startPlayOutput:(long long)arg1;
-- (void)savePlayerAndQueueState;
 - (void)dealloc;
 - (id)init;
-@property(nonatomic, readonly) _TtC4WiMP26RemoteCommandCenterManager *remoteCommandCenter; // @synthesize remoteCommandCenter;
-@property(nonatomic) double lastElapsedTime; // @synthesize lastElapsedTime;
-@property(nonatomic) _Bool wasPlaying; // @synthesize wasPlaying;
 
 @end
 

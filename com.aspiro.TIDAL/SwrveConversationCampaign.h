@@ -4,11 +4,11 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import "SwrveBaseCampaign.h"
+#import "SwrveCampaign.h"
 
 @class NSArray, SwrveConversation, SwrveMessageController;
 
-@interface SwrveConversationCampaign : SwrveBaseCampaign
+@interface SwrveConversationCampaign : SwrveCampaign
 {
     SwrveMessageController *controller;
     SwrveConversation *conversation;
@@ -21,8 +21,8 @@
 - (void).cxx_destruct;
 - (_Bool)assetsReady:(id)arg1;
 - (_Bool)supportsOrientation:(long long)arg1;
-- (id)getConversationForEvent:(id)arg1 withPayload:(id)arg2 withAssets:(id)arg3 atTime:(id)arg4 withReasons:(id)arg5;
-- (id)getConversationForEvent:(id)arg1 withAssets:(id)arg2 atTime:(id)arg3;
+- (id)conversationForEvent:(id)arg1 withPayload:(id)arg2 withAssets:(id)arg3 atTime:(id)arg4 withReasons:(id)arg5;
+- (id)conversationForEvent:(id)arg1 withAssets:(id)arg2 atTime:(id)arg3;
 - (_Bool)hasConversationForEvent:(id)arg1 withPayload:(id)arg2;
 - (_Bool)hasConversationForEvent:(id)arg1;
 - (void)conversationDismissed:(id)arg1;

@@ -4,7 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 @class NSArray, NSDictionary;
 
@@ -18,12 +18,11 @@
 - (void).cxx_destruct;
 - (id)abTestDetails;
 - (void)setABTestDetailsFromDictionary:(id)arg1;
-- (_Bool)getAttributeAsBool:(id)arg1 ofResource:(id)arg2 withDefault:(_Bool)arg3;
-- (float)getAttributeAsFloat:(id)arg1 ofResource:(id)arg2 withDefault:(float)arg3;
-- (int)getAttributeAsInt:(id)arg1 ofResource:(id)arg2 withDefault:(int)arg3;
-- (id)getAttributeAsString:(id)arg1 ofResource:(id)arg2 withDefault:(id)arg3;
-- (id)getResource:(id)arg1;
-- (id)getResources;
+- (_Bool)attributeAsBool:(id)arg1 fromResourceWithId:(id)arg2 withDefault:(_Bool)arg3;
+- (float)attributeAsFloat:(id)arg1 fromResourceWithId:(id)arg2 withDefault:(float)arg3;
+- (int)attributeAsInt:(id)arg1 fromResourceWithId:(id)arg2 withDefault:(int)arg3;
+- (id)attributeAsString:(id)arg1 fromResourceWithId:(id)arg2 withDefault:(id)arg3;
+- (id)resourceWithId:(id)arg1;
 - (void)setResourcesFromArray:(id)arg1;
 - (id)init;
 

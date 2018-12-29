@@ -4,11 +4,9 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 #import "GCDAsyncUdpSocketDelegate-Protocol.h"
-
-@class NSArray;
 
 @interface _TtC4WiMP19SonosGroupDiscovery : NSObject <GCDAsyncUdpSocketDelegate>
 {
@@ -29,7 +27,6 @@
     // Error parsing type: , name: active
 }
 
-+ (id)shared;
 - (CDUnknownBlockType).cxx_destruct;
 - (void)removeExpiredGroups;
 - (void)removeVolatileGroups;
@@ -38,11 +35,7 @@
 - (void)reachabilityChanged;
 - (void)applicationWillResignActive;
 - (void)applicationDidBecomeActive;
-- (void)enableActiveSearch:(_Bool)arg1 startImmediately:(_Bool)arg2;
-- (void)stop;
-- (void)start;
 - (id)init;
-@property(nonatomic, readonly) NSArray *discoveredGroups;
 
 @end
 

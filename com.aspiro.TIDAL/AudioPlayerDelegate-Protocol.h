@@ -9,12 +9,14 @@
 @class NSError;
 
 @protocol AudioPlayerDelegate <NSObject>
-- (void)crossfadeDidFinish;
 - (void)replayCurrentTrackInNormal;
 - (double)timeElapsed;
 - (void)audioPlayerIsFullyBuffered;
 - (void)audioPlayerDidFailWithError:(NSError *)arg1;
 - (void)audioPlayerDidUpdateElapsedTime:(double)arg1;
 - (void)audioPlayerDidLostNetworkConnection;
+
+@optional
+- (void)crossfadeDidFinish;
 @end
 

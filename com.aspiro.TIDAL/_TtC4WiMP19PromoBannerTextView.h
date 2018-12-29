@@ -6,8 +6,6 @@
 
 #import <UIKit/UIView.h>
 
-@class UILabel;
-
 @interface _TtC4WiMP19PromoBannerTextView : UIView
 {
     // Error parsing type: , name: headerLabel.storage
@@ -18,9 +16,6 @@
 - (CDUnknownBlockType).cxx_destruct;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithFrame:(struct CGRect)arg1;
-@property(nonatomic, retain) UILabel *infoLabel;
-@property(nonatomic, retain) UILabel *subHeaderLabel;
-@property(nonatomic, retain) UILabel *headerLabel;
 
 @end
 

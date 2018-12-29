@@ -4,7 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 #import "NSURLConnectionDataDelegate-Protocol.h"
 
@@ -28,7 +28,7 @@
 @property(copy, nonatomic) CDUnknownBlockType handler; // @synthesize handler=_handler;
 @property(retain, nonatomic) NSMutableData *data; // @synthesize data=_data;
 @property(retain, nonatomic) NSURLConnection *connection; // @synthesize connection=_connection;
-@property(nonatomic) id <FBSDKURLConnectionDelegate> delegate; // @synthesize delegate=_delegate;
+@property(nonatomic) __weak id <FBSDKURLConnectionDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
 - (void)setDelegateQueue:(id)arg1;
 - (void)start;

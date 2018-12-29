@@ -7,7 +7,6 @@
 #import "_TtC4WiMP11ArtistScene.h"
 
 @interface _TtC4WiMP11ArtistScene (WiMP)
-- (void)reloadDynamicPageSilently;
-- (void)noDataLoaded;
+- (void)didPressAddToFavorites;
 @end
 

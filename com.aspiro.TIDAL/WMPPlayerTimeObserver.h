@@ -4,7 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 @class AVPlayer;
 
@@ -19,7 +19,7 @@
 - (void).cxx_destruct;
 - (void)removeTimeObserver;
 - (void)dealloc;
-- (void)addPeriodicTimeObserverForPlayer:(id)arg1 usingTimescale:(CDStruct_198678f7)arg2 usingBlock:(CDUnknownBlockType)arg3;
+- (void)addPeriodicTimeObserverForPlayer:(id)arg1 usingTimescale:(CDStruct_1b6d18a9)arg2 usingBlock:(CDUnknownBlockType)arg3;
 
 @end
 

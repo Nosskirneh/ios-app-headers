@@ -4,36 +4,21 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
-
-@class SSOAuthToken, SSSubscriberInfo;
+#import <objc/NSObject.h>
 
 @interface _TtC4WiMP13SprintService : NSObject
 {
-    // Error parsing type: , name: sprint
-    // Error parsing type: , name: boostMobile
-    // Error parsing type: , name: virginMobile
-    // Error parsing type: , name: sprintPrepaid
+    // Error parsing type: , name: bundleSocs
     // Error parsing type: , name: clientCredentialsToken
     // Error parsing type: , name: subscriberInfo
-    // Error parsing type: , name: productIdTable
 }
 
-+ (id)sprintErrorFromCode:(long long)arg1 userInfo:(id)arg2;
-+ (id)sprintErrorFromCode:(long long)arg1 errorMessage:(id)arg2;
-+ (_Bool)priceQuoteHasServicePlan:(id)arg1;
 + (id)sharedInstance;
-+ (id)mso;
-+ (id)productId;
-+ (id)clientSecret;
-+ (id)clientId;
-+ (void)logErrorWithError:(id)arg1;
-+ (void)logEventWithAction:(id)arg1;
 - (CDUnknownBlockType).cxx_destruct;
-- (void)isSprintUserWithCompletionHandler:(CDUnknownBlockType)arg1;
 - (id)init;
-@property(nonatomic, retain) SSSubscriberInfo *subscriberInfo; // @synthesize subscriberInfo;
-@property(nonatomic, retain) SSOAuthToken *clientCredentialsToken; // @synthesize clientCredentialsToken;
+- (void)hasBundleWithCompletionHandler:(CDUnknownBlockType)arg1;
+- (void)hasBundleOrTrialWithCompletionHandler:(CDUnknownBlockType)arg1;
+- (_Bool)isSprintCustomer;
 
 @end
 

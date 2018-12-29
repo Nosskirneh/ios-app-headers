@@ -4,7 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 @interface WMPImageService : NSObject
 {
@@ -51,14 +51,15 @@
 - (void)setImageForUIImageView:(id)arg1 forResourceUUID:(id)arg2 resourceSize:(struct CGSize)arg3 success:(CDUnknownBlockType)arg4 failure:(CDUnknownBlockType)arg5;
 - (void)setImageForUIImageView:(id)arg1 forResourceUUID:(id)arg2 resourceWidth:(id)arg3 resourceHeight:(id)arg4 success:(CDUnknownBlockType)arg5 failure:(CDUnknownBlockType)arg6;
 - (void)setImageForUIImageView:(id)arg1 forResourceUUID:(id)arg2 resourceWidth:(id)arg3 resourceHeight:(id)arg4 placeholderImage:(id)arg5 success:(CDUnknownBlockType)arg6 failure:(CDUnknownBlockType)arg7;
-- (_Bool)imageForUuidIsOffline:(id)arg1 size:(unsigned long long)arg2;
+- (_Bool)imageForUuidIsOffline:(id)arg1 imageResourceId:(id)arg2 size:(unsigned long long)arg3;
+- (_Bool)isSquareImageSize:(unsigned long long)arg1;
 - (id)fixedPlaylistArtUrl:(id)arg1 forSize:(unsigned long long)arg2;
 - (id)getDefaultPlaylistImageForSize:(unsigned long long)arg1;
-- (id)offlinePathForUuid:(id)arg1 size:(unsigned long long)arg2;
+- (id)offlinePrefixPathForUuid:(id)arg1 directory:(id *)arg2;
+- (id)offlinePathForUuid:(id)arg1 imageResourceId:(id)arg2 size:(unsigned long long)arg3;
 - (id)urlPathForUuid:(id)arg1 withImageResourceId:(id)arg2;
 - (id)imageForPlaylistUuid:(id)arg1 withImageResourceId:(id)arg2 size:(unsigned long long)arg3;
-- (void)setImageForUIImageView:(id)arg1 forPlaylistUuid:(id)arg2 withImageResourceId:(id)arg3 size:(unsigned long long)arg4 checkOfflineFirst:(_Bool)arg5 success:(CDUnknownBlockType)arg6 failure:(CDUnknownBlockType)arg7;
-- (void)setImageForUIImageView:(id)arg1 forPlaylistUuid:(id)arg2 withImageResourceId:(id)arg3 size:(unsigned long long)arg4 success:(CDUnknownBlockType)arg5 failure:(CDUnknownBlockType)arg6;
+- (void)setImageForUIImageView:(id)arg1 forPlaylistUuid:(id)arg2 withImageResourceId:(id)arg3 size:(unsigned long long)arg4 checkOfflineFirst:(_Bool)arg5 isProfilePlaylist:(_Bool)arg6 success:(CDUnknownBlockType)arg7 failure:(CDUnknownBlockType)arg8;
 - (void)removeOfflineImageForPLaylistUuid:(id)arg1;
 - (void)offlinePlaylistImageForId:(id)arg1 withImageResourceId:(id)arg2 size:(unsigned long long)arg3;
 

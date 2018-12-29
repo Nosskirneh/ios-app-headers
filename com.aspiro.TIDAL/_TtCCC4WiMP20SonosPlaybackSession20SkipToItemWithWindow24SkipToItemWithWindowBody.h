@@ -6,8 +6,6 @@
 
 #import "_TtC4WiMP13SonosBaseBody.h"
 
-@class NSString, _TtC4WiMP20SonosQueueItemWindow;
-
 @interface _TtCCC4WiMP20SonosPlaybackSession20SkipToItemWithWindow24SkipToItemWithWindowBody : _TtC4WiMP13SonosBaseBody
 {
     // Error parsing type: , name: itemId
@@ -17,11 +15,8 @@
 }
 
 - (CDUnknownBlockType).cxx_destruct;
-- (id)getParameterTypes;
 - (void)setValue:(id)arg1 forUndefinedKey:(id)arg2;
 - (id)init;
-@property(nonatomic, retain) _TtC4WiMP20SonosQueueItemWindow *window; // @synthesize window;
-@property(nonatomic, copy) NSString *itemId; // @synthesize itemId;
 
 @end
 

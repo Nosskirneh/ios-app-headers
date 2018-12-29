@@ -19,7 +19,7 @@
 @property(retain, nonatomic) NSString *description; // @synthesize description;
 @property(retain, nonatomic) NSArray *values; // @synthesize values;
 - (void).cxx_destruct;
-- (id)fetchStandardCell:(id)arg1 forRow:(unsigned long long)arg2;
+- (id)fetchStandardCellForRow:(unsigned long long)arg1;
 - (id)fetchDescriptionCell:(id)arg1;
 - (double)heightForRow:(unsigned long long)arg1 inTableView:(id)arg2;
 - (unsigned long long)numberOfRowsNeeded;

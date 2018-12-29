@@ -12,9 +12,7 @@
 {
 }
 
-+ (id)entityName;
 - (id)initWithEntity:(id)arg1 insertIntoManagedObjectContext:(id)arg2;
-- (id)serialize;
 
 // Remaining properties
 @property(nonatomic, retain) NSData *attributes; // @dynamic attributes;

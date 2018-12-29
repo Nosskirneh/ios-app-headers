@@ -6,8 +6,6 @@
 
 #import <UIKit/UIView.h>
 
-@class UIColor;
-
 @interface _TtC4WiMP20ProgressIndicatorPie : UIView
 {
     // Error parsing type: , name: fillColor
@@ -19,8 +17,6 @@
 - (id)initWithFrame:(struct CGRect)arg1;
 - (void)drawRect:(struct CGRect)arg1;
 - (void)layoutSubviews;
-@property(nonatomic) float progress; // @synthesize progress;
-@property(nonatomic, retain) UIColor *fillColor; // @synthesize fillColor;
 
 @end
 

@@ -17,13 +17,9 @@
 }
 
 - (CDUnknownBlockType).cxx_destruct;
-- (void)addTarget:(id)arg1 action:(SEL)arg2 for:(unsigned long long)arg3;
-- (void)setButtonWithAlignment:(long long)arg1;
-- (void)setCurrentButtonWithType:(long long)arg1;
 - (void)dealloc;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithFrame:(struct CGRect)arg1;
-@property(nonatomic, retain) UIView *currentButtonView; // @synthesize currentButtonView;
 
 @end
 

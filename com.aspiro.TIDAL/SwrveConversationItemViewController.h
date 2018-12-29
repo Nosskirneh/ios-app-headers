@@ -33,7 +33,7 @@
 }
 
 + (_Bool)hasUnknownContentAtoms:(id)arg1;
-+ (_Bool)showConversation:(id)arg1 withItemController:(id)arg2 withEventHandler:(id)arg3 inWindow:(id)arg4;
++ (_Bool)showConversation:(id)arg1 withItemController:(id)arg2 withEventHandler:(id)arg3 inWindow:(id)arg4 withMessageDelegate:(id)arg5;
 + (id)initFromStoryboard;
 @property(nonatomic) float contentHeight; // @synthesize contentHeight;
 @property(retain, nonatomic) NSLayoutConstraint *contentTableViewTop; // @synthesize contentTableViewTop;

@@ -4,12 +4,12 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 #import "NSStreamDelegate-Protocol.h"
 #import "NSURLSessionDownloadDelegate-Protocol.h"
 
-@class NSError, NSManagedObjectID, NSNumber, NSPort, NSString, NSURLSession;
+@class NSDate, NSError, NSManagedObjectID, NSNumber, NSPort, NSString, NSURLSession, NSURLSessionDownloadTask;
 @protocol OS_dispatch_queue, WMPDownloadTaskDelegate;
 
 @interface WMPDownloadTask : NSObject <NSStreamDelegate, NSURLSessionDownloadDelegate>
@@ -35,10 +35,16 @@
     long long _type;
     NSNumber *_itemId;
     NSString *_uuid;
+    NSDate *_startDate;
+    NSString *_sessionId;
+    NSURLSessionDownloadTask *_downloadTask;
 }
 
 + (id)machineName;
 + (id)userAgent;
+@property(retain, nonatomic) NSURLSessionDownloadTask *downloadTask; // @synthesize downloadTask=_downloadTask;
+@property(retain, nonatomic) NSString *sessionId; // @synthesize sessionId=_sessionId;
+@property(retain, nonatomic) NSDate *startDate; // @synthesize startDate=_startDate;
 @property(retain, nonatomic) NSString *uuid; // @synthesize uuid=_uuid;
 @property(retain, nonatomic) NSNumber *itemId; // @synthesize itemId=_itemId;
 @property(nonatomic) long long type; // @synthesize type=_type;
@@ -64,10 +70,13 @@
 - (id)getTempPathCommon;
 - (id)getTempPath;
 - (void)updateProgress:(unsigned long long)arg1;
+- (void)URLSession:(id)arg1 task:(id)arg2 didCompleteWithError:(id)arg3;
 - (void)URLSession:(id)arg1 didBecomeInvalidWithError:(id)arg2;
 - (void)URLSession:(id)arg1 downloadTask:(id)arg2 didFinishDownloadingToURL:(id)arg3;
 - (void)URLSession:(id)arg1 downloadTask:(id)arg2 didWriteData:(long long)arg3 totalBytesWritten:(long long)arg4 totalBytesExpectedToWrite:(long long)arg5;
+- (void)resumeDownloadFromErrorOrFinish:(id)arg1;
 - (void)finish;
+- (void)generateAndReportStatistic;
 - (_Bool)isAlreadyDownloaded;
 - (void)downloadFrom:(id)arg1;
 - (void)cancel;
@@ -78,6 +87,8 @@
 - (id)initWithCutUuid:(id)arg1 albumId:(id)arg2 withImageResourceId:(id)arg3 withQuality:(long long)arg4 objectID:(id)arg5;
 - (id)initWithTrackUuid:(id)arg1 albumId:(id)arg2 withImageResourceId:(id)arg3 withQuality:(long long)arg4 objectID:(id)arg5;
 - (id)init;
+- (void)reportDownloadStatisticsWithPlaybackSessionId:(id)arg1 requests:(id)arg2;
+- (void)reportStartStreamingDownloadWithPlaybackSessionId:(id)arg1;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

@@ -15,7 +15,6 @@
 
 - (CDUnknownBlockType).cxx_destruct;
 - (void)applicationDidBecomeActive:(id)arg1;
-- (void)resumePlayback;
 - (void)dealloc;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithFrame:(struct CGRect)arg1;

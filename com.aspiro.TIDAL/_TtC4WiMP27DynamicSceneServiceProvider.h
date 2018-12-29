@@ -14,9 +14,6 @@
 
 - (CDUnknownBlockType).cxx_destruct;
 - (id)init;
-- (void)fetchMoreFrom:(id)arg1 limit:(long long)arg2 offset:(long long)arg3 completionHandler:(CDUnknownBlockType)arg4;
-- (void)fetchSceneWithId:(id)arg1 parameters:(id)arg2 completionHandler:(CDUnknownBlockType)arg3;
-- (id)initWithCountryCode:(id)arg1;
 
 @end
 

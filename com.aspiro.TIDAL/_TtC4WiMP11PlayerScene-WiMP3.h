@@ -7,14 +7,6 @@
 #import "_TtC4WiMP11PlayerScene.h"
 
 @interface _TtC4WiMP11PlayerScene (WiMP3)
-- (void)playPreviousItem;
-- (void)playNextItem;
-- (void)seekToTime:(double)arg1;
-- (void)didPressRepeatButton;
-- (void)didPressShuffleButton;
-- (void)didPressVideoQualitiesButton;
-- (void)didPressNextButton;
-- (void)didPressBackButton;
-- (void)didPressPlayButton;
+- (_Bool)gestureRecognizer:(id)arg1 shouldRecognizeSimultaneouslyWithGestureRecognizer:(id)arg2;
 @end
 

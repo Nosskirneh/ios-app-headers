@@ -18,9 +18,9 @@
     // Error parsing type: , name: position
     // Error parsing type: , name: buttons
     // Error parsing type: , name: window
+    // Error parsing type: , name: type
 }
 
-+ (_Bool)isPresentedInKeyWindow;
 - (CDUnknownBlockType).cxx_destruct;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;
 - (void)dismissViewControllerAnimated:(_Bool)arg1 completion:(CDUnknownBlockType)arg2;

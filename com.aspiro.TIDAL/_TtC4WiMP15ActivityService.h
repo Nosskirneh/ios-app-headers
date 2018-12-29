@@ -4,9 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
-
-@class _TtC4WiMP23ActivityServiceProvider;
+#import <objc/NSObject.h>
 
 @interface _TtC4WiMP15ActivityService : NSObject
 {
@@ -15,10 +13,7 @@
 }
 
 - (CDUnknownBlockType).cxx_destruct;
-- (id)parseActivityItemFromJson:(id)arg1 context:(id)arg2;
-- (void)obtainActivityByUserId:(id)arg1 sortAndRangeParameters:(id)arg2 completionHandler:(CDUnknownBlockType)arg3;
 - (id)init;
-@property(nonatomic, readonly) _TtC4WiMP23ActivityServiceProvider *provider; // @synthesize provider;
 
 @end
 

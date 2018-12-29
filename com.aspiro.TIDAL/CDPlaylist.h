@@ -24,8 +24,6 @@
 - (void)willSave;
 - (id)shareURL;
 - (_Bool)isOfflineInManagedObjectContext:(id)arg1;
-@property(nonatomic, readonly) _Bool isArtistPlaylist;
-@property(nonatomic, readonly) NSNumber *userId;
 
 // Remaining properties
 @property(retain, nonatomic) NSSet *categories; // @dynamic categories;
@@ -52,6 +50,7 @@
 @property(retain, nonatomic) NSNumber *searchReceivedOrder; // @dynamic searchReceivedOrder;
 @property(retain, nonatomic) CDSearchResult *searchResult; // @dynamic searchResult;
 @property(retain, nonatomic) NSString *searchTerm; // @dynamic searchTerm;
+@property(retain, nonatomic) NSString *squareImageResourceId; // @dynamic squareImageResourceId;
 @property(retain, nonatomic) NSNumber *tracksCount; // @dynamic tracksCount;
 @property(retain, nonatomic) NSString *uppercaseFirstLetterOfName; // @dynamic uppercaseFirstLetterOfName;
 @property(retain, nonatomic) NSString *uuid; // @dynamic uuid;

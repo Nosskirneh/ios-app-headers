@@ -8,63 +8,78 @@
 
 #import "UITextFieldDelegate-Protocol.h"
 #import "UITextViewDelegate-Protocol.h"
+#import "_TtP4WiMP32TermsAndConditionsDialogDelegate_-Protocol.h"
 
-@class NSString, UIActivityIndicatorView, UIButton, UILabel, UIScrollView, UITextView, WMPLoginService, _TtC4WiMP20PlaceHolderTextField;
+@class NSDictionary, NSString, UIActivityIndicatorView, UIButton, UILabel, UIScrollView, UITextView, WMPLoginService, _TtC4WiMP20PlaceHolderTextField;
 @protocol WMPLoginServiceDelegate;
 
-@interface WMPNativeSignupModule : UIViewController <UITextFieldDelegate, UITextViewDelegate>
+@interface WMPNativeSignupModule : UIViewController <UITextFieldDelegate, UITextViewDelegate, _TtP4WiMP32TermsAndConditionsDialogDelegate_>
 {
+    _Bool _didAcceptTermsAndConditions;
     id <WMPLoginServiceDelegate> _delegate;
     UIScrollView *_scrollView;
     _TtC4WiMP20PlaceHolderTextField *_emailTextField;
     _TtC4WiMP20PlaceHolderTextField *_reEmailTextField;
     _TtC4WiMP20PlaceHolderTextField *_passwordTextField;
+    _TtC4WiMP20PlaceHolderTextField *_datePickerTextField;
     UITextView *_termsTextView;
     UILabel *_orLabel;
     UIButton *_signupWithFacebookButton;
     UIButton *_signupWithEmailButton;
     UIActivityIndicatorView *_activityIndicatorView;
     WMPLoginService *_loginService;
+    long long _signupType;
+    NSDictionary *_eventMetadata;
 }
 
 + (id)getInstance;
+@property(copy, nonatomic) NSDictionary *eventMetadata; // @synthesize eventMetadata=_eventMetadata;
+@property(nonatomic) long long signupType; // @synthesize signupType=_signupType;
+@property(nonatomic) _Bool didAcceptTermsAndConditions; // @synthesize didAcceptTermsAndConditions=_didAcceptTermsAndConditions;
 @property(retain, nonatomic) WMPLoginService *loginService; // @synthesize loginService=_loginService;
 @property(retain, nonatomic) UIActivityIndicatorView *activityIndicatorView; // @synthesize activityIndicatorView=_activityIndicatorView;
 @property(retain, nonatomic) UIButton *signupWithEmailButton; // @synthesize signupWithEmailButton=_signupWithEmailButton;
 @property(retain, nonatomic) UIButton *signupWithFacebookButton; // @synthesize signupWithFacebookButton=_signupWithFacebookButton;
 @property(retain, nonatomic) UILabel *orLabel; // @synthesize orLabel=_orLabel;
 @property(retain, nonatomic) UITextView *termsTextView; // @synthesize termsTextView=_termsTextView;
+@property(retain, nonatomic) _TtC4WiMP20PlaceHolderTextField *datePickerTextField; // @synthesize datePickerTextField=_datePickerTextField;
 @property(retain, nonatomic) _TtC4WiMP20PlaceHolderTextField *passwordTextField; // @synthesize passwordTextField=_passwordTextField;
 @property(retain, nonatomic) _TtC4WiMP20PlaceHolderTextField *reEmailTextField; // @synthesize reEmailTextField=_reEmailTextField;
 @property(retain, nonatomic) _TtC4WiMP20PlaceHolderTextField *emailTextField; // @synthesize emailTextField=_emailTextField;
 @property(retain, nonatomic) UIScrollView *scrollView; // @synthesize scrollView=_scrollView;
 @property(nonatomic) __weak id <WMPLoginServiceDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
+- (void)setupAccessibilityIdentifiers;
+- (void)configureActivityIndicatorView;
+- (void)configureScrollView;
+- (void)setupTermsTextView;
 - (void)setupLocalizableStrings;
 - (void)setupViews;
 - (void)textFieldDidChange:(id)arg1;
 - (void)addTextFieldEventObservers;
 - (_Bool)hasAnyErrorsInTextFields;
+- (void)errorDateClicked:(id)arg1;
 - (void)errorReEmailClicked:(id)arg1;
 - (void)errorEmailClicked:(id)arg1;
 - (void)errorPasswordClicked:(id)arg1;
 - (void)textFieldDidEndEditing:(id)arg1;
 - (_Bool)textFieldShouldReturn:(id)arg1;
-- (_Bool)textView:(id)arg1 shouldInteractWithURL:(id)arg2 inRange:(struct _NSRange)arg3;
+- (_Bool)textView:(id)arg1 shouldInteractWithURL:(id)arg2 inRange:(struct _NSRange)arg3 interaction:(long long)arg4;
+- (void)showNetworkErrorIfPossible:(id)arg1;
+- (void)loginWithParsedResult:(id)arg1;
 - (void)resetSignupButtons;
 - (void)addActivityViewToButton:(id)arg1;
+- (void)showTermsAndConditionsDialog;
 - (void)signUpWithEmailAction:(id)arg1;
 - (void)signUpWithFacebookAction:(id)arg1;
 - (void)didPressCancelButton:(id)arg1;
 - (void)keyboardWillHide:(id)arg1;
 - (void)keyboardWillShow:(id)arg1;
-- (void)showNetworkErrorIfPossible:(id)arg1;
-- (void)loginWithParsedResult:(id)arg1;
-- (void)setupTermsTextView;
+- (void)didTapAcceptButton;
+- (void)dealloc;
 - (void)viewWillLayoutSubviews;
 - (void)viewWillDisappear:(_Bool)arg1;
 - (void)viewWillAppear:(_Bool)arg1;
-- (void)dealloc;
 - (void)viewDidLoad;
 
 // Remaining properties

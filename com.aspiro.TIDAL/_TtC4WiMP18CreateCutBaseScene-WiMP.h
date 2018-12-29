@@ -7,7 +7,6 @@
 #import "_TtC4WiMP18CreateCutBaseScene.h"
 
 @interface _TtC4WiMP18CreateCutBaseScene (WiMP)
-- (void)scrollViewContentOffsetDidChange;
 - (void)scrollViewDidEndDragging:(id)arg1 willDecelerate:(_Bool)arg2;
 - (void)scrollViewDidEndDecelerating:(id)arg1;
 - (void)scrollViewWillBeginDragging:(id)arg1;

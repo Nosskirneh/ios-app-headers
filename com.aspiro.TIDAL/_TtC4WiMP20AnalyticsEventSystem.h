@@ -4,7 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 @interface _TtC4WiMP20AnalyticsEventSystem : NSObject
 {
@@ -12,8 +12,8 @@
 
 + (void)setupWithProvider:(id)arg1;
 + (void)setupWithApiToken:(id)arg1;
-+ (void)reportProgress:(id)arg1;
-+ (void)reportViewAllClickWithEventMetadata:(id)arg1 contentId:(id)arg2;
++ (void)reportFling:(id)arg1;
++ (void)reportDisplayPage:(id)arg1;
 - (id)init;
 
 @end

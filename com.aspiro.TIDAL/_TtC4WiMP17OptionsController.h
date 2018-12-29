@@ -6,10 +6,10 @@
 
 #import "WMPAbstractScene.h"
 
-@class NSString;
-
 @interface _TtC4WiMP17OptionsController : WMPAbstractScene
 {
+    // Error parsing type: , name: pageTitle
+    // Error parsing type: , name: kExtraFooterPadding
     // Error parsing type: , name: sections
     // Error parsing type: , name: footerText
     // Error parsing type: , name: footerHeight
@@ -21,10 +21,9 @@
 - (CDUnknownBlockType).cxx_destruct;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;
 @property(nonatomic, readonly) _Bool shouldAutorotate;
+- (void)viewWillAppear:(_Bool)arg1;
 - (void)viewDidLoad;
 - (id)initWithCoder:(id)arg1;
-@property(nonatomic, readonly) double footerHeight; // @synthesize footerHeight;
-@property(nonatomic, copy) NSString *footerText; // @synthesize footerText;
 
 @end
 

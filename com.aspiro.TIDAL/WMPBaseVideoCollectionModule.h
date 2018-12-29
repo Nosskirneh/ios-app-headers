@@ -57,6 +57,7 @@
 @property(nonatomic) _Bool hasDetails;
 @property(readonly) unsigned long long hash;
 @property(retain, nonatomic) NSString *header;
+@property(nonatomic) _Bool isLoadedFromNavigation;
 @property(retain, nonatomic) UIView *noConnectionView;
 @property(nonatomic) _Bool sortingEnabled;
 @property(readonly) Class superclass;

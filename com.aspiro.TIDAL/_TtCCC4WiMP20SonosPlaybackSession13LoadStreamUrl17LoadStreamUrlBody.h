@@ -6,8 +6,6 @@
 
 #import "_TtC4WiMP13SonosBaseBody.h"
 
-@class NSString, _TtC4WiMP14SonosContainer;
-
 @interface _TtCCC4WiMP20SonosPlaybackSession13LoadStreamUrl17LoadStreamUrlBody : _TtC4WiMP13SonosBaseBody
 {
     // Error parsing type: , name: streamUrl
@@ -16,11 +14,8 @@
 }
 
 - (CDUnknownBlockType).cxx_destruct;
-- (id)getParameterTypes;
 - (void)setValue:(id)arg1 forUndefinedKey:(id)arg2;
 - (id)init;
-@property(nonatomic, retain) _TtC4WiMP14SonosContainer *stationMetadata; // @synthesize stationMetadata;
-@property(nonatomic, copy) NSString *streamUrl; // @synthesize streamUrl;
 
 @end
 

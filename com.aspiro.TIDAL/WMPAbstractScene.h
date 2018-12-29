@@ -9,17 +9,21 @@
 #import "WMPModule-Protocol.h"
 #import "WMPModuleDelegate-Protocol.h"
 
-@class NSArray, NSDictionary, NSLayoutConstraint, NSMutableSet, NSString, UIImageView, UIScrollView, UITapGestureRecognizer, UIView, WMPProgressAnimator, _TtC4WiMP12GradientView;
+@class NSArray, NSDictionary, NSLayoutConstraint, NSMutableSet, NSString, UIImageView, UILabel, UIScrollView, UITapGestureRecognizer, UIView, WMPProgressAnimator, _TtC4WiMP12GradientView;
 @protocol WMPModuleDelegate, WMPTitleModuleProtocol;
 
 @interface WMPAbstractScene : UIViewController <WMPModuleDelegate, WMPModule>
 {
+    _Bool _isLoadedFromNavigation;
     _Bool _shouldFadeHeaderWithScroll;
     _Bool _shouldHideTopGradientView;
+    _Bool _viewIsVisible;
     id _itemId;
+    NSDictionary *_eventMetadata;
     long long _sceneBackgroundImageType;
     UIImageView *_backgroundImageView;
     id <WMPTitleModuleProtocol> _titleModule;
+    NSString *_moduleTag;
     NSString *_headerDetailed;
     NSMutableSet *_mandatoryModulesToLoad;
     NSArray *_moduleContainers;
@@ -30,18 +34,23 @@
     UIView *_noContentView;
     UITapGestureRecognizer *_noConnectionViewTapRecognizer;
     NSLayoutConstraint *_titleModuleTopConstraint;
+    UILabel *_fadingTitleLabel;
     _TtC4WiMP12GradientView *_overlayView;
     _TtC4WiMP12GradientView *_topGradientView;
     double _navBarFadeInStartPoint;
     double _navBarFadeInEndPoint;
+    NSString *_sceneTitle;
     struct CGSize _sceneSize;
 }
 
+@property(retain, nonatomic) NSString *sceneTitle; // @synthesize sceneTitle=_sceneTitle;
 @property(nonatomic) double navBarFadeInEndPoint; // @synthesize navBarFadeInEndPoint=_navBarFadeInEndPoint;
 @property(nonatomic) double navBarFadeInStartPoint; // @synthesize navBarFadeInStartPoint=_navBarFadeInStartPoint;
 @property(retain, nonatomic) _TtC4WiMP12GradientView *topGradientView; // @synthesize topGradientView=_topGradientView;
 @property(retain, nonatomic) _TtC4WiMP12GradientView *overlayView; // @synthesize overlayView=_overlayView;
+@property(retain, nonatomic) UILabel *fadingTitleLabel; // @synthesize fadingTitleLabel=_fadingTitleLabel;
 @property(retain, nonatomic) NSLayoutConstraint *titleModuleTopConstraint; // @synthesize titleModuleTopConstraint=_titleModuleTopConstraint;
+@property(nonatomic) _Bool viewIsVisible; // @synthesize viewIsVisible=_viewIsVisible;
 @property(nonatomic) _Bool shouldHideTopGradientView; // @synthesize shouldHideTopGradientView=_shouldHideTopGradientView;
 @property(nonatomic) _Bool shouldFadeHeaderWithScroll; // @synthesize shouldFadeHeaderWithScroll=_shouldFadeHeaderWithScroll;
 @property(retain, nonatomic) UITapGestureRecognizer *noConnectionViewTapRecognizer; // @synthesize noConnectionViewTapRecognizer=_noConnectionViewTapRecognizer;
@@ -53,16 +62,26 @@
 @property(copy, nonatomic) NSArray *moduleContainers; // @synthesize moduleContainers=_moduleContainers;
 @property(retain, nonatomic) NSMutableSet *mandatoryModulesToLoad; // @synthesize mandatoryModulesToLoad=_mandatoryModulesToLoad;
 @property(retain, nonatomic) NSString *headerDetailed; // @synthesize headerDetailed=_headerDetailed;
+@property(retain, nonatomic) NSString *moduleTag; // @synthesize moduleTag=_moduleTag;
 @property(retain, nonatomic) id <WMPTitleModuleProtocol> titleModule; // @synthesize titleModule=_titleModule;
 @property(retain, nonatomic) UIImageView *backgroundImageView; // @synthesize backgroundImageView=_backgroundImageView;
 @property(nonatomic) struct CGSize sceneSize; // @synthesize sceneSize=_sceneSize;
 @property(nonatomic) long long sceneBackgroundImageType; // @synthesize sceneBackgroundImageType=_sceneBackgroundImageType;
+@property(nonatomic) _Bool isLoadedFromNavigation; // @synthesize isLoadedFromNavigation=_isLoadedFromNavigation;
+@property(copy, nonatomic) NSDictionary *eventMetadata; // @synthesize eventMetadata=_eventMetadata;
 @property(retain, nonatomic) id itemId; // @synthesize itemId=_itemId;
 - (void).cxx_destruct;
 - (double)getPlayerModuleMinimumHeight;
 - (double)getTabBarWithBottomLayoutGuideHeight;
+- (void)setupFadingTitleLabelWithTitle:(id)arg1;
+- (void)removeFadingTitle;
+- (void)removeFadingTitleTextIfNecessary;
+- (void)updateFadingHeaderTitle;
+- (void)setFadingTitle:(id)arg1;
+- (void)setTitle:(id)arg1;
 - (void)removeOverlayView;
 - (double)getOverlayViewHeight;
+- (void)bringGradientToFront;
 - (void)addOverlayView;
 - (void)addTopGradientView;
 - (void)setOverlayAlpha:(double)arg1;
@@ -84,6 +103,7 @@
 - (void)hideNoConnectionView;
 - (id)contentNotAvailableMessage;
 - (void)showNoContentView;
+- (id)createNoContentView;
 - (void)showNoConnectionViewInView:(id)arg1;
 - (void)showNoConnectionView;
 - (void)showContent;
@@ -93,7 +113,9 @@
 - (_Bool)prefersStatusBarHidden;
 - (long long)preferredStatusBarStyle;
 - (void)didRotateFromInterfaceOrientation:(long long)arg1;
-- (void)setTitle:(id)arg1;
+- (void)viewDidDisappear:(_Bool)arg1;
+- (void)viewWillDisappear:(_Bool)arg1;
+- (void)viewDidAppear:(_Bool)arg1;
 - (void)viewWillAppear:(_Bool)arg1;
 - (void)viewDidLoad;
 - (void)configureWithItemId:(id)arg1;
@@ -105,7 +127,6 @@
 @property(nonatomic) _Bool contentLoadFinished;
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
-@property(copy, nonatomic) NSDictionary *eventMetadata;
 @property(nonatomic) _Bool hasDetails;
 @property(readonly) unsigned long long hash;
 @property(retain, nonatomic) NSString *header;
@@ -114,7 +135,6 @@
 @property(nonatomic) double horizontalUnits;
 @property(nonatomic) _Bool isFullScreen;
 @property(nonatomic) __weak id <WMPModuleDelegate> moduleDelegate;
-@property(retain, nonatomic) NSString *moduleTag;
 @property(nonatomic) _Bool scrollEnabled;
 @property(nonatomic) _Bool sortingEnabled;
 @property(readonly) Class superclass;

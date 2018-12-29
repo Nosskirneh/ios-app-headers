@@ -6,39 +6,56 @@
 
 #import <UIKit/UIViewController.h>
 
-@class NSString, UILabel, UITextView, _TtC4WiMP19RoundedCornerButton;
+@class NSString, UIButton, UILabel, UITextView, _TtC4WiMP19RoundedCornerButton;
 @protocol WMPLoginServiceDelegate;
 
 @interface _TtC4WiMP18SprintSignupModule : UIViewController
 {
     // Error parsing type: , name: tidalTermsScheme
     // Error parsing type: , name: termsTextView
-    // Error parsing type: , name: welcomeLabel
-    // Error parsing type: , name: offerLabel
+    // Error parsing type: , name: headerLabel
+    // Error parsing type: , name: ingressLabel
+    // Error parsing type: , name: offerTitleLabel
+    // Error parsing type: , name: offerTtextLabel
     // Error parsing type: , name: continueButton
+    // Error parsing type: , name: closeButton
     // Error parsing type: , name: delegate
     // Error parsing type: , name: loginService
     // Error parsing type: , name: activityIndicator
     // Error parsing type: , name: activeButton
+    // Error parsing type: , name: isUpdateSubscription
     // Error parsing type: , name: subscriberId
+    // Error parsing type: , name: socId
     // Error parsing type: , name: productId
+    // Error parsing type: , name: offerHeader
+    // Error parsing type: , name: offerTitle
+    // Error parsing type: , name: offerIngress
+    // Error parsing type: , name: offerText
 }
 
 + (id)getInstance;
-+ (id)storyboardName;
 - (CDUnknownBlockType).cxx_destruct;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;
 - (void)didPressContinueButton:(id)arg1;
+- (void)didPressCloseButton:(id)arg1;
 - (void)viewDidLoad;
+@property(nonatomic, copy) NSString *offerText; // @synthesize offerText;
+@property(nonatomic, copy) NSString *offerIngress; // @synthesize offerIngress;
+@property(nonatomic, copy) NSString *offerTitle; // @synthesize offerTitle;
+@property(nonatomic, copy) NSString *offerHeader; // @synthesize offerHeader;
 @property(nonatomic, copy) NSString *productId; // @synthesize productId;
+@property(nonatomic, copy) NSString *socId; // @synthesize socId;
 @property(nonatomic, copy) NSString *subscriberId; // @synthesize subscriberId;
+@property(nonatomic) _Bool isUpdateSubscription; // @synthesize isUpdateSubscription;
 @property(nonatomic) __weak id <WMPLoginServiceDelegate> delegate; // @synthesize delegate;
+@property(nonatomic) __weak UIButton *closeButton; // @synthesize closeButton;
 @property(nonatomic) __weak _TtC4WiMP19RoundedCornerButton *continueButton; // @synthesize continueButton;
-@property(nonatomic) __weak UILabel *offerLabel; // @synthesize offerLabel;
-@property(nonatomic) __weak UILabel *welcomeLabel; // @synthesize welcomeLabel;
+@property(nonatomic) __weak UILabel *offerTtextLabel; // @synthesize offerTtextLabel;
+@property(nonatomic) __weak UILabel *offerTitleLabel; // @synthesize offerTitleLabel;
+@property(nonatomic) __weak UILabel *ingressLabel; // @synthesize ingressLabel;
+@property(nonatomic) __weak UILabel *headerLabel; // @synthesize headerLabel;
 @property(nonatomic) __weak UITextView *termsTextView; // @synthesize termsTextView;
-@property(nonatomic, readonly) NSString *tidalTermsScheme; // @synthesize tidalTermsScheme;
 
 @end
 

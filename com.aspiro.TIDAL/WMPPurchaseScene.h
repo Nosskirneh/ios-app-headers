@@ -10,7 +10,7 @@
 #import "UITableViewDelegate-Protocol.h"
 #import "UITextViewDelegate-Protocol.h"
 
-@class NSArray, NSLayoutConstraint, NSString, SKProduct, UIActivityIndicatorView, UIScrollView, UITableView, UITextView, WMPLoginService, WMPMessageService, WMPPurchaseService, _TtC4WiMP19RoundedCornerButton;
+@class NSArray, NSDictionary, NSLayoutConstraint, NSString, SKProduct, UIActivityIndicatorView, UIScrollView, UITableView, UITextView, WMPLoginService, WMPMessageService, WMPPurchaseService, _TtC4WiMP19RoundedCornerButton;
 
 @interface WMPPurchaseScene : UIViewController <UITextViewDelegate, UITableViewDelegate, UITableViewDataSource>
 {
@@ -20,6 +20,7 @@
     SKProduct *_hifiSubscription;
     SKProduct *_premiumSubscription;
     NSArray *_products;
+    NSDictionary *_eventMetadata;
     UITextView *_legalWarningTextView;
     NSLayoutConstraint *_legalTextViewHeightConstraint;
     NSLayoutConstraint *_productTableViewHeightConstraint;
@@ -45,6 +46,7 @@
 @property(retain, nonatomic) NSLayoutConstraint *productTableViewHeightConstraint; // @synthesize productTableViewHeightConstraint=_productTableViewHeightConstraint;
 @property(retain, nonatomic) NSLayoutConstraint *legalTextViewHeightConstraint; // @synthesize legalTextViewHeightConstraint=_legalTextViewHeightConstraint;
 @property(nonatomic) __weak UITextView *legalWarningTextView; // @synthesize legalWarningTextView=_legalWarningTextView;
+@property(copy, nonatomic) NSDictionary *eventMetadata; // @synthesize eventMetadata=_eventMetadata;
 @property(retain, nonatomic) NSArray *products; // @synthesize products=_products;
 @property(retain, nonatomic) SKProduct *premiumSubscription; // @synthesize premiumSubscription=_premiumSubscription;
 @property(retain, nonatomic) SKProduct *hifiSubscription; // @synthesize hifiSubscription=_hifiSubscription;
@@ -54,7 +56,7 @@
 - (void).cxx_destruct;
 - (void)setupNavigationbar;
 - (void)setupViews;
-- (_Bool)textView:(id)arg1 shouldInteractWithURL:(id)arg2 inRange:(struct _NSRange)arg3;
+- (_Bool)textView:(id)arg1 shouldInteractWithURL:(id)arg2 inRange:(struct _NSRange)arg3 interaction:(long long)arg4;
 - (long long)tableView:(id)arg1 numberOfRowsInSection:(long long)arg2;
 - (id)tableView:(id)arg1 cellForRowAtIndexPath:(id)arg2;
 - (void)closeView:(id)arg1;
@@ -72,6 +74,7 @@
 - (void)stopObserving;
 - (void)startObserving;
 - (void)dealloc;
+- (void)viewWillAppear:(_Bool)arg1;
 - (void)viewDidLoad;
 
 // Remaining properties

@@ -4,25 +4,36 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
-@class FBSDKAppEventsState, FBSDKServerConfiguration, NSString, NSTimer;
+@class FBSDKAppEventsState, FBSDKEventBindingManager, FBSDKServerConfiguration, NSString;
+@protocol OS_dispatch_source;
 
 @interface FBSDKAppEvents : NSObject
 {
     _Bool _explicitEventsLoggedYet;
-    NSTimer *_flushTimer;
-    NSTimer *_attributionIDRecheckTimer;
     FBSDKServerConfiguration *_serverConfiguration;
     FBSDKAppEventsState *_appEventsState;
+    FBSDKEventBindingManager *_eventBindingManager;
+    NSString *_userID;
     _Bool _disableTimer;
     unsigned long long _flushBehavior;
     NSString *_pushNotificationsDeviceTokenString;
+    NSObject<OS_dispatch_source> *_flushTimer;
+    NSObject<OS_dispatch_source> *_attributionIDRecheckTimer;
 }
 
 + (id)requestForCustomAudienceThirdPartyIDWithAccessToken:(id)arg1;
 + (id)singleton;
 + (void)logImplicitEvent:(id)arg1 valueToSum:(id)arg2 parameters:(id)arg3 accessToken:(id)arg4;
++ (void)augmentHybridWKWebView:(id)arg1;
++ (void)updateUserProperties:(id)arg1 handler:(CDUnknownBlockType)arg2;
++ (void)clearUserData;
++ (id)getUserData;
++ (void)setUserData:(id)arg1;
++ (id)userID;
++ (void)clearUserID;
++ (void)setUserID:(id)arg1;
 + (void)flush;
 + (void)setLoggingOverrideAppID:(id)arg1;
 + (id)loggingOverrideAppID;
@@ -30,6 +41,7 @@
 + (unsigned long long)flushBehavior;
 + (void)setPushNotificationsDeviceToken:(id)arg1;
 + (void)activateApp;
++ (void)logProductItem:(id)arg1 availability:(unsigned long long)arg2 condition:(unsigned long long)arg3 description:(id)arg4 imageLink:(id)arg5 link:(id)arg6 title:(id)arg7 priceAmount:(double)arg8 currency:(id)arg9 gtin:(id)arg10 mpn:(id)arg11 brand:(id)arg12 parameters:(id)arg13;
 + (void)logPushNotificationOpen:(id)arg1 action:(id)arg2;
 + (void)logPushNotificationOpen:(id)arg1;
 + (void)logPurchase:(double)arg1 currency:(id)arg2 parameters:(id)arg3 accessToken:(id)arg4;
@@ -41,6 +53,8 @@
 + (void)logEvent:(id)arg1 valueToSum:(double)arg2;
 + (void)logEvent:(id)arg1;
 + (void)initialize;
+@property(retain, nonatomic) NSObject<OS_dispatch_source> *attributionIDRecheckTimer; // @synthesize attributionIDRecheckTimer=_attributionIDRecheckTimer;
+@property(retain, nonatomic) NSObject<OS_dispatch_source> *flushTimer; // @synthesize flushTimer=_flushTimer;
 @property(copy, nonatomic) NSString *pushNotificationsDeviceTokenString; // @synthesize pushNotificationsDeviceTokenString=_pushNotificationsDeviceTokenString;
 @property(nonatomic) _Bool disableTimer; // @synthesize disableTimer=_disableTimer;
 @property(nonatomic) unsigned long long flushBehavior; // @synthesize flushBehavior=_flushBehavior;
@@ -54,10 +68,12 @@
 - (void)checkPersistedEvents;
 - (void)instanceLogEvent:(id)arg1 valueToSum:(id)arg2 parameters:(id)arg3 isImplicitlyLogged:(_Bool)arg4 accessToken:(id)arg5;
 - (void)fetchServerConfiguration:(CDUnknownBlockType)arg1;
+- (void)enableCodelessEvents;
 - (void)publishInstall;
 - (id)appID;
 - (void)flushForReason:(unsigned long long)arg1;
 - (void)dealloc;
+- (void)registerNotifications;
 - (id)init;
 
 @end

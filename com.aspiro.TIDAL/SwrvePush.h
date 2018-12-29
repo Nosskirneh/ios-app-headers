@@ -4,7 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 #import "UNUserNotificationCenterDelegate-Protocol.h"
 
@@ -36,6 +36,7 @@
 - (void)userNotificationCenter:(id)arg1 didReceiveNotificationResponse:(id)arg2 withCompletionHandler:(CDUnknownBlockType)arg3;
 - (void)userNotificationCenter:(id)arg1 willPresentNotification:(id)arg2 withCompletionHandler:(CDUnknownBlockType)arg3;
 - (void)handlePushDeeplinkString:(id)arg1;
+- (_Bool)didReceiveRemoteNotification:(id)arg1 withBackgroundCompletionHandler:(CDUnknownBlockType)arg2;
 - (void)pushNotificationResponseReceived:(id)arg1 withUserInfo:(id)arg2;
 - (void)pushNotificationReceived:(id)arg1;
 - (void)deswizzlePushMethods;

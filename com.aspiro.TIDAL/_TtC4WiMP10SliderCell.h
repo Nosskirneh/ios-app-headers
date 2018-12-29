@@ -6,8 +6,6 @@
 
 #import "_TtC4WiMP13TableViewCell.h"
 
-@class NSString, UILabel, _TtC4WiMP14ReactiveSlider;
-
 @interface _TtC4WiMP10SliderCell : _TtC4WiMP13TableViewCell
 {
     // Error parsing type: , name: sliderOffString
@@ -21,11 +19,6 @@
 - (CDUnknownBlockType).cxx_destruct;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithStyle:(long long)arg1 reuseIdentifier:(id)arg2;
-@property(nonatomic, retain) _TtC4WiMP14ReactiveSlider *slider;
-@property(nonatomic, retain) UILabel *descriptionLabel;
-@property(nonatomic) float sliderValue; // @synthesize sliderValue;
-@property(nonatomic, copy) CDUnknownBlockType sliderValueFormatter; // @synthesize sliderValueFormatter;
-@property(nonatomic, copy) NSString *sliderOffString; // @synthesize sliderOffString;
 
 @end
 

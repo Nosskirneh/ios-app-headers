@@ -6,8 +6,6 @@
 
 #import "_TtC4WiMP13SonosBaseBody.h"
 
-@class NSString;
-
 @interface _TtCCC4WiMP20SonosPlaybackSession4Seek8SeekBody : _TtC4WiMP13SonosBaseBody
 {
     // Error parsing type: , name: itemId
@@ -17,7 +15,6 @@
 - (CDUnknownBlockType).cxx_destruct;
 - (void)setValue:(id)arg1 forUndefinedKey:(id)arg2;
 - (id)init;
-@property(nonatomic, copy) NSString *itemId; // @synthesize itemId;
 
 @end
 

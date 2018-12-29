@@ -35,8 +35,6 @@
 - (void)viewDidLoad;
 - (id)initWithCoder:(id)arg1;
 - (void)playLightItemsAt:(id)arg1;
-- (id)videoFromManagedObject:(id)arg1;
-- (id)videoAt:(id)arg1;
 - (void)navigateToArtistAt:(id)arg1;
 - (void)contextMenuAt:(id)arg1 tapLocation:(struct CGRect)arg2 view:(id)arg3;
 - (id)collectionView:(id)arg1 cellForItemAtIndexPath:(id)arg2;

@@ -7,8 +7,6 @@
 #import "_TtC4WiMP15NowPlayingScene.h"
 
 @interface _TtC4WiMP15NowPlayingScene (WiMP5)
-- (void)orientationDidChange:(id)arg1;
-- (void)closePlayerToNavigate:(id)arg1;
-- (void)queuePositionDidChange:(id)arg1;
+- (void)hideControlsTimeoff;
 @end
 

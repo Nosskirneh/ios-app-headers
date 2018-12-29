@@ -7,7 +7,6 @@
 #import "_TtC4WiMP16DynamicSceneView.h"
 
 @interface _TtC4WiMP16DynamicSceneView (WiMP1)
-- (void)reloadSilently;
-- (void)updateTopModuleEdgeInsets;
+- (void)scrollViewDidEndDragging:(id)arg1 willDecelerate:(_Bool)arg2;
 @end
 

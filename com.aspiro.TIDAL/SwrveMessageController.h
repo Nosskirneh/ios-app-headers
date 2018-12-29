@@ -4,13 +4,13 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 #import "CAAnimationDelegate-Protocol.h"
 #import "SwrveMessageDelegate-Protocol.h"
 #import "SwrveMessageEventHandler-Protocol.h"
 
-@class CATransition, NSArray, NSDate, NSFileManager, NSMutableArray, NSMutableDictionary, NSSet, NSString, Swrve, SwrveAssetsManager, SwrveConversationItemViewController, SwrveSignatureProtectedFile, SwrveTalkQA, UIColor, UIWindow;
+@class CATransition, NSArray, NSDate, NSFileManager, NSMutableArray, NSMutableDictionary, NSSet, NSString, Swrve, SwrveAssetsManager, SwrveConversationItemViewController, SwrveQAUser, SwrveSignatureProtectedFile, UIColor, UIWindow;
 @protocol SwrveMessageDelegate;
 
 @interface SwrveMessageController : NSObject <SwrveMessageDelegate, SwrveMessageEventHandler, CAAnimationDelegate>
@@ -24,17 +24,14 @@
     int orientation;
     NSString *server;
     NSString *apiKey;
-    NSString *campaignCache;
-    NSString *campaignCacheSignature;
     SwrveSignatureProtectedFile *campaignFile;
     NSFileManager *manager;
-    NSString *settingsPath;
+    NSString *campaignsStateFilePath;
     NSDate *initialisedTime;
     NSDate *showMessagesAfterLaunch;
     NSDate *showMessagesAfterDelay;
     long long messagesLeftToShow;
     UIColor *inAppMessageBackgroundColor;
-    UIColor *conversationLightboxColor;
     NSArray *campaigns;
     NSMutableDictionary *campaignsState;
     SwrveAssetsManager *assetsManager;
@@ -46,7 +43,7 @@
     UIWindow *inAppMessageWindow;
     UIWindow *conversationWindow;
     NSString *inAppMessageAction;
-    SwrveTalkQA *qaUser;
+    SwrveQAUser *qaUser;
     Swrve *analyticsSDK;
     double minDelayBetweenMessage;
     id <SwrveMessageDelegate> showMessageDelegate;
@@ -55,12 +52,13 @@
     CATransition *showMessageTransition;
     CATransition *hideMessageTransition;
     SwrveConversationItemViewController *swrveConversationItemViewController;
+    NSMutableArray *conversationsMessageQueue;
 }
 
 + (id)shuffled:(id)arg1;
-+ (id)getTimeFormatted:(id)arg1;
-+ (void)migrateOldCacheFile:(id)arg1 withNewPath:(id)arg2;
++ (id)formattedTime:(id)arg1;
 + (void)initialize;
+@property(retain, nonatomic) NSMutableArray *conversationsMessageQueue; // @synthesize conversationsMessageQueue;
 @property(nonatomic) _Bool prefersIAMStatusBarHidden; // @synthesize prefersIAMStatusBarHidden;
 @property(retain, nonatomic) SwrveConversationItemViewController *swrveConversationItemViewController; // @synthesize swrveConversationItemViewController;
 @property(retain, nonatomic) CATransition *hideMessageTransition; // @synthesize hideMessageTransition;
@@ -71,7 +69,7 @@
 @property double minDelayBetweenMessage; // @synthesize minDelayBetweenMessage;
 @property(retain, nonatomic) Swrve *analyticsSDK; // @synthesize analyticsSDK;
 @property(nonatomic) _Bool autoShowMessagesEnabled; // @synthesize autoShowMessagesEnabled;
-@property(retain, nonatomic) SwrveTalkQA *qaUser; // @synthesize qaUser;
+@property(retain, nonatomic) SwrveQAUser *qaUser; // @synthesize qaUser;
 @property(nonatomic) int orientation; // @synthesize orientation;
 @property(nonatomic) int device_height; // @synthesize device_height;
 @property(nonatomic) int device_width; // @synthesize device_width;
@@ -88,53 +86,50 @@
 @property(retain, nonatomic) SwrveAssetsManager *assetsManager; // @synthesize assetsManager;
 @property(retain, nonatomic) NSMutableDictionary *campaignsState; // @synthesize campaignsState;
 @property(retain, nonatomic) NSArray *campaigns; // @synthesize campaigns;
-@property(retain, nonatomic) UIColor *conversationLightboxColor; // @synthesize conversationLightboxColor;
 @property(retain, nonatomic) UIColor *inAppMessageBackgroundColor; // @synthesize inAppMessageBackgroundColor;
 @property long long messagesLeftToShow; // @synthesize messagesLeftToShow;
 @property(retain, nonatomic) NSDate *showMessagesAfterDelay; // @synthesize showMessagesAfterDelay;
 @property(retain, nonatomic) NSDate *showMessagesAfterLaunch; // @synthesize showMessagesAfterLaunch;
 @property(retain, nonatomic) NSDate *initialisedTime; // @synthesize initialisedTime;
-@property(retain, nonatomic) NSString *settingsPath; // @synthesize settingsPath;
+@property(retain, nonatomic) NSString *campaignsStateFilePath; // @synthesize campaignsStateFilePath;
 @property(retain, nonatomic) NSFileManager *manager; // @synthesize manager;
 @property(retain, nonatomic) SwrveSignatureProtectedFile *campaignFile; // @synthesize campaignFile;
-@property(retain, nonatomic) NSString *campaignCacheSignature; // @synthesize campaignCacheSignature;
-@property(retain, nonatomic) NSString *campaignCache; // @synthesize campaignCache;
 @property(retain, nonatomic) NSString *apiKey; // @synthesize apiKey;
 @property(retain, nonatomic) NSString *server; // @synthesize server;
 - (void).cxx_destruct;
+- (void)pushNotificationReceived:(id)arg1;
+- (void)deviceTokenUpdated;
 - (void)removeMessageCenterCampaign:(id)arg1;
 - (_Bool)showMessageCenterCampaign:(id)arg1;
 - (id)messageCenterCampaignsThatSupportOrientation:(long long)arg1;
 - (id)messageCenterCampaigns;
-- (id)getCampaignQueryString;
+- (id)campaignQueryString;
 - (id)orientationName;
 - (_Bool)isQaUser;
-- (_Bool)didReceiveRemoteNotification:(id)arg1 withBackgroundCompletionHandler:(CDUnknownBlockType)arg2;
-- (void)silentPushReceived:(id)arg1 withCompletionHandler:(CDUnknownBlockType)arg2;
-- (void)pushNotificationReceived:(id)arg1 atApplicationState:(long long)arg2;
-- (void)pushNotificationReceived:(id)arg1;
-- (void)setDeviceToken:(id)arg1;
 - (_Bool)eventRaised:(id)arg1;
 - (void)userPressedButton:(int)arg1 action:(id)arg2;
 - (void)beginHideMessageAnimation:(id)arg1;
 - (void)beginShowMessageAnimation:(id)arg1;
 - (void)dismissMessageWindow;
 - (void)showMessageWindow:(id)arg1;
+- (void)handleNextConversation:(id)arg1;
 - (void)conversationClosed;
 - (void)cleanupConversationUI;
+- (void)showConversation:(id)arg1 queue:(_Bool)arg2;
 - (void)showConversation:(id)arg1;
+- (void)showMessage:(id)arg1 queue:(_Bool)arg2;
 - (void)showMessage:(id)arg1;
-- (id)getEventName:(id)arg1;
-- (id)getAppStoreURLForGame:(long long)arg1;
+- (id)eventName:(id)arg1;
+- (id)appStoreURLForAppId:(long long)arg1;
 - (void)buttonWasPressedByUser:(id)arg1;
 - (void)conversationWasShownToUser:(id)arg1;
 - (void)messageWasShownToUser:(id)arg1;
 - (void)setMessageMinDelayThrottle;
 - (void)noMessagesWereShown:(id)arg1 withReason:(id)arg2;
-- (id)getConversationForEvent:(id)arg1;
-- (id)getConversationForEvent:(id)arg1 withPayload:(id)arg2;
-- (id)getMessageForEvent:(id)arg1;
-- (id)findMessageForEvent:(id)arg1 withPayload:(id)arg2;
+- (id)conversationForEvent:(id)arg1;
+- (id)conversationForEvent:(id)arg1 withPayload:(id)arg2;
+- (id)messageForEvent:(id)arg1;
+- (id)messageForEvent:(id)arg1 withPayload:(id)arg2;
 - (_Bool)checkGlobalRules:(id)arg1;
 - (_Bool)hasShowTooManyMessagesAlready;
 - (_Bool)isTooSoonToShowMessageAfterDelay:(id)arg1;
@@ -143,14 +138,17 @@
 - (void)appDidBecomeActive;
 - (void)updateCdnPaths:(id)arg1;
 - (void)updateCampaigns:(id)arg1;
-- (id)getCurrentlySupportedDeviceFilters;
+- (id)currentlySupportedDeviceFilters;
+- (_Bool)filtersOk:(id)arg1;
 - (id)supportsDeviceFilters:(id)arg1;
 - (_Bool)canSupportDeviceFilter:(id)arg1;
 - (void)writeToCampaignCache:(id)arg1;
 - (void)initCampaignsFromCacheFile;
+- (void)saveCampaignsStateToDefaults;
+- (void)saveCampaignsStateToFile;
 - (void)saveCampaignsState;
+- (void)campaignsStateFromDefaults:(id)arg1;
 - (void)campaignsStateFromDisk:(id)arg1;
-- (void)migrateAndSetFileLocations;
 - (id)initWithSwrve:(id)arg1;
 
 // Remaining properties

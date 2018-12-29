@@ -6,7 +6,7 @@
 
 #import "_TtC4WiMP35ConfigurableCellTableViewController.h"
 
-@class NSURL, UIView, _TtC4WiMP16BlurredImageView;
+@class UIView, _TtC4WiMP16BlurredImageView;
 
 @interface _TtC4WiMP24ArtistFacebookFeedModule : _TtC4WiMP35ConfigurableCellTableViewController
 {
@@ -31,10 +31,8 @@
 - (void)showNoContentView;
 - (void)viewDidLayoutSubviews;
 - (void)viewDidLoad;
-@property(nonatomic, copy) NSURL *profileUrl; // @synthesize profileUrl;
 @property(nonatomic) __weak UIView *artistHeaderViewContainer; // @synthesize artistHeaderViewContainer;
 @property(nonatomic) __weak _TtC4WiMP16BlurredImageView *tableHeaderView; // @synthesize tableHeaderView;
-@property(nonatomic) long long showItemsCount; // @synthesize showItemsCount;
 
 @end
 

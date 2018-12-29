@@ -4,7 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 @class NSArray, NSNumber, NSString, WMPFilterParameter, WMPSortParameter;
 
@@ -22,15 +22,17 @@
 @property(retain, nonatomic) NSString *cacheKey; // @synthesize cacheKey=_cacheKey;
 @property(retain, nonatomic) NSNumber *offset; // @synthesize offset=_offset;
 @property(retain, nonatomic) NSNumber *limit; // @synthesize limit=_limit;
-@property(retain, nonatomic) WMPFilterParameter *currentFilterParameter; // @synthesize currentFilterParameter=_currentFilterParameter;
-@property(retain, nonatomic) NSArray *filterParameters; // @synthesize filterParameters=_filterParameters;
-@property(retain, nonatomic) WMPSortParameter *currentSortParameter; // @synthesize currentSortParameter=_currentSortParameter;
-@property(retain, nonatomic) NSArray *sortParameters; // @synthesize sortParameters=_sortParameters;
+@property(readonly, nonatomic) WMPFilterParameter *currentFilterParameter; // @synthesize currentFilterParameter=_currentFilterParameter;
+@property(readonly, nonatomic) NSArray *filterParameters; // @synthesize filterParameters=_filterParameters;
+@property(readonly, nonatomic) WMPSortParameter *currentSortParameter; // @synthesize currentSortParameter=_currentSortParameter;
+@property(readonly, nonatomic) NSArray *sortParameters; // @synthesize sortParameters=_sortParameters;
 - (void).cxx_destruct;
 - (id)description;
 - (id)parameterString;
 - (id)predicate;
 - (id)sortDescriptors;
+- (void)setCurrentFilterParameter:(id)arg1;
+- (void)setCurrentSortParameter:(id)arg1;
 - (id)initWithLimit:(id)arg1 offset:(id)arg2 sortType:(long long)arg3 sortDirection:(long long)arg4;
 - (id)initWithLimit:(id)arg1 offset:(id)arg2 sortType:(long long)arg3;
 - (id)initWithLimit:(id)arg1 sortType:(long long)arg2 sortDirection:(long long)arg3;

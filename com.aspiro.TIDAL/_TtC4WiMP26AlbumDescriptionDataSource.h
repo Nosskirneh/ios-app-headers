@@ -8,16 +8,16 @@
 
 @interface _TtC4WiMP26AlbumDescriptionDataSource : _TtC4WiMP21DescriptionDataSource
 {
-    // Error parsing type: , name: tappedArtistHandler
+    // Error parsing type: , name: tappedLinkHandler
+    // Error parsing type: , name: tappedDescriptionHandler
+    // Error parsing type: , name: hasTappedLink
 }
 
 - (CDUnknownBlockType).cxx_destruct;
 - (void)linkLabelDidTapLink:(id)arg1;
+- (void)tableView:(id)arg1 didSelectRowAtIndexPath:(id)arg2;
 - (id)tableView:(id)arg1 viewForHeaderInSection:(long long)arg2;
 - (double)tableView:(id)arg1 heightForHeaderInSection:(long long)arg2;
-- (void)update:(id)arg1;
-- (id)initWithTableView:(id)arg1;
-@property(nonatomic, copy) CDUnknownBlockType tappedArtistHandler; // @synthesize tappedArtistHandler;
 
 @end
 

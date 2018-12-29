@@ -4,9 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
-
-@class _TtC4WiMP10VolumeView;
+#import <objc/NSObject.h>
 
 @interface _TtC4WiMP23ExternalPlaybackService : NSObject
 {
@@ -17,17 +15,11 @@
 
 + (id)shared;
 - (CDUnknownBlockType).cxx_destruct;
-- (void)cancel;
-- (void)prepareToDisplayList;
 - (void)preventRemoteReconnection;
 - (_Bool)isConnectedToExternalPlayback;
-- (_Bool)isConnectingToExternalPlayback;
-- (_Bool)isConnectedToBluetoothDevice;
-- (long long)currectConnectedDeviceType;
 - (void)startDeviceScanner;
 - (void)dealloc;
 - (id)init;
-@property(nonatomic, retain) _TtC4WiMP10VolumeView *volumeView; // @synthesize volumeView;
 
 @end
 

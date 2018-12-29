@@ -17,7 +17,6 @@
 - (void)touchesBegan:(id)arg1 withEvent:(id)arg2;
 - (void)reset;
 - (id)initWithTarget:(id)arg1 action:(SEL)arg2;
-@property(nonatomic) double recognizedForce; // @synthesize recognizedForce;
 
 @end
 

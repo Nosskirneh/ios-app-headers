@@ -4,14 +4,15 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 #import "WMPTrackListModuleConfig-Protocol.h"
+#import "_TtP4WiMP27PlayQueueSourceCellDelegate_-Protocol.h"
 
 @class CDPlaylist, NSArray, NSMutableDictionary, NSString, WMPPlaylistService, WMPSortAndRangeParameters, _TtC4WiMP15ProgressService;
 @protocol WMPModuleDelegate;
 
-@interface WMPTrackListModulePlaylistConfig : NSObject <WMPTrackListModuleConfig>
+@interface WMPTrackListModulePlaylistConfig : NSObject <_TtP4WiMP27PlayQueueSourceCellDelegate_, WMPTrackListModuleConfig>
 {
     id <WMPModuleDelegate> _moduleDelegate;
     NSString *_moduleTag;
@@ -30,6 +31,7 @@
 @property(retain, nonatomic) NSString *moduleTag; // @synthesize moduleTag=_moduleTag;
 @property(nonatomic) __weak id <WMPModuleDelegate> moduleDelegate; // @synthesize moduleDelegate=_moduleDelegate;
 - (void).cxx_destruct;
+@property(readonly, nonatomic) _Bool isCurrentPlayQueueSource;
 - (void)loadPlaylistIfNeeded;
 - (void)loadProgressFromCoreData;
 - (void)configureNumberCell:(id)arg1 indexPath:(id)arg2 forItem:(id)arg3;
@@ -46,9 +48,10 @@
 - (long long)itemTypeFromManagedObject:(id)arg1;
 - (id)cellReuseIdentifierForManagedObject:(id)arg1;
 - (long long)type;
+- (double)cellHeight;
 - (id)fetchedResultsControllerForDelegate:(id)arg1;
 - (void)loadMoreDataFromItemIndex:(long long)arg1 completion:(CDUnknownBlockType)arg2;
-- (double)cellHeight;
+- (void)loadContent;
 - (id)initWithIdentifier:(id)arg1;
 - (id)init;
 

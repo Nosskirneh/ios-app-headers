@@ -18,12 +18,9 @@
 - (CDUnknownBlockType).cxx_destruct;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithFrame:(struct CGRect)arg1;
-- (void)tapRecognizerDidRecognize:(id)arg1;
 - (void)longRecognizerDidRecognize:(id)arg1;
 - (void)forceRecognizerDidRecognize:(id)arg1;
 - (void)traitCollectionDidChange:(id)arg1;
-@property(nonatomic, copy) CDUnknownBlockType tapCallback; // @synthesize tapCallback;
-@property(nonatomic, copy) CDUnknownBlockType forceCallback; // @synthesize forceCallback;
 
 @end
 

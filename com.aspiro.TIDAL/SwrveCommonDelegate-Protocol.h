@@ -6,9 +6,12 @@
 
 #import "NSObject-Protocol.h"
 
-@class NSData, NSDictionary, NSMutableDictionary, NSSet, NSString;
+@class NSData, NSDictionary, NSMutableDictionary, NSNumber, NSSet, NSString;
 
 @protocol SwrveCommonDelegate <NSObject>
+@property(readonly) NSNumber *deviceId;
+@property(readonly) NSString *eventsServer;
+@property(readonly) NSString *apiKey;
 @property(readonly) NSString *deviceToken;
 @property(readonly) NSDictionary *deviceInfo;
 @property(readonly) NSString *userID;
@@ -23,6 +26,6 @@
 - (_Bool)processPermissionRequest:(NSString *)arg1;
 - (int)userUpdate:(NSDictionary *)arg1;
 - (int)eventInternal:(NSString *)arg1 payload:(NSDictionary *)arg2 triggerCallback:(_Bool)arg3;
-- (NSData *)getCampaignData:(int)arg1;
+- (NSData *)campaignData:(int)arg1;
 @end
 

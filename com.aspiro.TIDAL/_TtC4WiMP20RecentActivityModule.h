@@ -6,8 +6,6 @@
 
 #import <UIKit/UIViewController.h>
 
-@class NSArray;
-
 @interface _TtC4WiMP20RecentActivityModule : UIViewController
 {
     // Error parsing type: , name: itemId
@@ -23,8 +21,6 @@
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;
 - (void)viewWillAppear:(_Bool)arg1;
 - (void)viewDidLoad;
-@property(nonatomic) _Bool isHidden; // @synthesize isHidden;
-@property(nonatomic, copy) NSArray *activityItems; // @synthesize activityItems;
 - (void)refreshData;
 @property(nonatomic) double heightConstraint;
 @property(nonatomic, copy) id itemId; // @synthesize itemId;

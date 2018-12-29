@@ -14,12 +14,14 @@
 
 @interface WMPBaseTableViewController : UITableViewController <WMPModule, WMPModuleDelegate>
 {
+    _Bool _isLoadedFromNavigation;
     _Bool _isFullScreen;
     _Bool _canCollapse;
     _Bool _scrollEnabled;
     _Bool _sortingEnabled;
     _Bool _contentLoadFinished;
     id _itemId;
+    NSDictionary *_eventMetadata;
     NSString *_header;
     double _heightUnits;
     double _horizontalUnits;
@@ -45,6 +47,8 @@
 @property(nonatomic) double heightUnits; // @synthesize heightUnits=_heightUnits;
 @property(retain, nonatomic) NSString *header; // @synthesize header=_header;
 @property(nonatomic) _Bool isFullScreen; // @synthesize isFullScreen=_isFullScreen;
+@property(nonatomic) _Bool isLoadedFromNavigation; // @synthesize isLoadedFromNavigation=_isLoadedFromNavigation;
+@property(copy, nonatomic) NSDictionary *eventMetadata; // @synthesize eventMetadata=_eventMetadata;
 @property(retain, nonatomic) id itemId; // @synthesize itemId=_itemId;
 - (void).cxx_destruct;
 - (void)callModuleDelegateWithState:(long long)arg1;
@@ -61,7 +65,6 @@
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
-@property(copy, nonatomic) NSDictionary *eventMetadata;
 @property(nonatomic) _Bool hasDetails;
 @property(readonly) unsigned long long hash;
 @property(readonly) Class superclass;

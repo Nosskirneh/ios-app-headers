@@ -11,7 +11,7 @@
 - (void)didTapPlayButtonWithSender:(id)arg1;
 - (void)didTapShufflePlayButtonWithSender:(id)arg1;
 - (void)didTapFavoriteButton:(id)arg1;
-- (void)didTapContextMenuButtonWithSender:(id)arg1;
+- (void)didTapInfoButton:(id)arg1;
 - (void)didTapArtistLabel:(id)arg1;
 - (void)didTapAlbumLabel:(id)arg1;
 @end

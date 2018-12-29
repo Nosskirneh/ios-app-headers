@@ -4,7 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 @interface WMPSearchServiceSuggestionsConverter : NSObject
 {
@@ -24,7 +24,7 @@
 + (id)convertArtistsUsingJSONObject:(id)arg1;
 + (id)convertAlbumsUsingJSONObject:(id)arg1;
 + (id)convertTopHitsUsingJSONObject:(id)arg1;
-+ (id)convertSuggestionsUsingJSONObject:(id)arg1;
++ (id)convertSuggestionsUsingJSONObject:(id)arg1 requestedTypes:(id)arg2;
 
 @end
 

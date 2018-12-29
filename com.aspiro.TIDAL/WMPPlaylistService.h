@@ -4,7 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 @class WMPPlaylistServiceDAL;
 
@@ -29,9 +29,9 @@
 - (void)replaceItemAtIndex:(id)arg1 inPlaylist:(id)arg2 withItemWithUuid:(id)arg3;
 - (void)addPlaylistWithUuid:(id)arg1 toNewPlaylistWithTitle:(id)arg2 description:(id)arg3;
 - (void)addPlaylistItemUuids:(id)arg1 toNewPlaylistWithTitle:(id)arg2 description:(id)arg3;
-- (void)obtainItemsByUuid:(id)arg1 sortAndRangeParameters:(id)arg2 completionBlock:(CDUnknownBlockType)arg3 errorBlock:(CDUnknownBlockType)arg4;
 - (void)obtainItemsByUuid:(id)arg1 sortAndRangeParameters:(id)arg2 completionBlock:(CDUnknownBlockType)arg3;
 - (void)obtainItemsByUuid:(id)arg1 sortAndRangeParameters:(id)arg2;
+- (void)obtainAllItemsByUuid:(id)arg1 startOffset:(long long)arg2 completionBlock:(CDUnknownBlockType)arg3;
 - (void)obtainAllItemsByUuid:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
 - (void)obtainUserPlaylists:(id)arg1 sortAndRangeParameters:(id)arg2 completion:(CDUnknownBlockType)arg3;
 - (void)obtainUserPlaylists:(id)arg1 sortAndRangeParameters:(id)arg2;

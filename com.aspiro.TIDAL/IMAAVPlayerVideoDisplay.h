@@ -4,7 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 #import "IMAAdPlayerViewDelegate-Protocol.h"
 #import "IMAVideoDisplay-Protocol.h"
@@ -31,7 +31,7 @@
     double _bufferedMediaTime;
 }
 
-+ (double)secondsWithCMTime:(CDStruct_198678f7)arg1;
++ (double)secondsWithCMTime:(CDStruct_1b6d18a9)arg1;
 @property(nonatomic, getter=isPausedDueToBuffering) _Bool pausedDueToBuffering; // @synthesize pausedDueToBuffering=_pausedDueToBuffering;
 @property(nonatomic) _Bool shouldResumeAdPlayback; // @synthesize shouldResumeAdPlayback=_shouldResumeAdPlayback;
 @property(nonatomic) double bufferedMediaTime; // @synthesize bufferedMediaTime=_bufferedMediaTime;

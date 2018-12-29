@@ -6,8 +6,6 @@
 
 #import <UIKit/UIImageView.h>
 
-@class CABasicAnimation, NSString;
-
 @interface _TtC4WiMP17SpinningImageView : UIImageView
 {
     // Error parsing type: , name: kFullRotationDuration
@@ -18,15 +16,9 @@
 - (CDUnknownBlockType).cxx_destruct;
 - (id)initWithImage:(id)arg1 highlightedImage:(id)arg2;
 - (id)initWithImage:(id)arg1;
-- (void)resetSpinning;
-- (void)pauseSpinning;
-- (void)startSpinning;
 - (void)dealloc;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithFrame:(struct CGRect)arg1;
-@property(nonatomic, retain) CABasicAnimation *rotation; // @synthesize rotation;
-@property(nonatomic, readonly) NSString *kSpinningKey; // @synthesize kSpinningKey;
-@property(nonatomic, readonly) double kFullRotationDuration; // @synthesize kFullRotationDuration;
 
 @end
 

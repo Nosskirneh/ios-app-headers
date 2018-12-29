@@ -10,7 +10,6 @@
 {
 }
 
-- (void)configureButton;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithFrame:(struct CGRect)arg1;
 

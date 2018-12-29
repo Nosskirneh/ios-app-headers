@@ -4,15 +4,17 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
-@class NSMutableDictionary, NSURL;
+@class NSDictionary, NSMutableDictionary, NSURL;
 @protocol OS_dispatch_queue;
 
 @interface CLSUserDefaults : NSObject
 {
+    _Bool _synchronizeWroteToDisk;
     NSURL *_directoryURL;
     NSURL *_fileURL;
+    NSDictionary *_persistedDataDictionary;
     NSMutableDictionary *_dataDictionary;
     NSObject<OS_dispatch_queue> *_serialDictionaryQueue;
     NSObject<OS_dispatch_queue> *_synchronizationQueue;
@@ -22,8 +24,10 @@
 @property(readonly, nonatomic) NSObject<OS_dispatch_queue> *synchronizationQueue; // @synthesize synchronizationQueue=_synchronizationQueue;
 @property(readonly, nonatomic) NSObject<OS_dispatch_queue> *serialDictionaryQueue; // @synthesize serialDictionaryQueue=_serialDictionaryQueue;
 @property(readonly, copy, nonatomic) NSMutableDictionary *dataDictionary; // @synthesize dataDictionary=_dataDictionary;
+@property(readonly, copy, nonatomic) NSDictionary *persistedDataDictionary; // @synthesize persistedDataDictionary=_persistedDataDictionary;
 @property(readonly, copy, nonatomic) NSURL *fileURL; // @synthesize fileURL=_fileURL;
 @property(readonly, copy, nonatomic) NSURL *directoryURL; // @synthesize directoryURL=_directoryURL;
+@property(nonatomic) _Bool synchronizeWroteToDisk; // @synthesize synchronizeWroteToDisk=_synchronizeWroteToDisk;
 - (void).cxx_destruct;
 - (id)objectForKeyByMigratingFromNSUserDefaults:(id)arg1;
 - (void)migrateFromNSUserDefaults:(id)arg1;

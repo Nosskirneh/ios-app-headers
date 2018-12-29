@@ -7,6 +7,7 @@
 #import <UIKit/UIFont.h>
 
 @interface UIFont (WiMP)
++ (id)black14;
 + (id)demiBold76;
 + (id)demiBold57;
 + (id)demiBold48;
@@ -22,6 +23,7 @@
 + (id)demiBold14;
 + (id)demiBold12;
 + (id)demiBold10;
++ (id)demiBold8;
 + (id)medium36;
 + (id)medium35;
 + (id)medium30;

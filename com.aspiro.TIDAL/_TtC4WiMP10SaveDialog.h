@@ -6,7 +6,7 @@
 
 #import <UIKit/UIViewController.h>
 
-@class NSLayoutConstraint, NSString, UILabel, UITextField, UITextView, UIView;
+@class NSLayoutConstraint, UIButton, UILabel, UITextField, UITextView, UIView;
 
 @interface _TtC4WiMP10SaveDialog : UIViewController
 {
@@ -15,6 +15,8 @@
     // Error parsing type: , name: previewView
     // Error parsing type: , name: dialogTitleLabel
     // Error parsing type: , name: saveTitleTextField
+    // Error parsing type: , name: saveButton
+    // Error parsing type: , name: cancelButton
     // Error parsing type: , name: topViewHeightConstraint
     // Error parsing type: , name: topViewToTopLayoutGuideConstraint
     // Error parsing type: , name: kMaxNumberOfLines
@@ -25,8 +27,6 @@
     // Error parsing type: , name: saveTitle
 }
 
-+ (id)getInstance;
-+ (id)storyboardName;
 - (CDUnknownBlockType).cxx_destruct;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;
@@ -39,13 +39,10 @@
 - (void)textFieldDidChange:(id)arg1;
 - (void)viewDidLayoutSubviews;
 - (void)viewDidLoad;
-@property(nonatomic, copy) NSString *saveTitle; // @synthesize saveTitle;
-@property(nonatomic, copy) NSString *itemTitle; // @synthesize itemTitle;
-@property(nonatomic, copy) NSString *placeholder; // @synthesize placeholder;
-@property(nonatomic, copy) CDUnknownBlockType completionHandler; // @synthesize completionHandler;
-@property(nonatomic, readonly) long long kMaxNumberOfLines; // @synthesize kMaxNumberOfLines;
 @property(nonatomic) __weak NSLayoutConstraint *topViewToTopLayoutGuideConstraint; // @synthesize topViewToTopLayoutGuideConstraint;
 @property(nonatomic) __weak NSLayoutConstraint *topViewHeightConstraint; // @synthesize topViewHeightConstraint;
+@property(nonatomic) __weak UIButton *cancelButton; // @synthesize cancelButton;
+@property(nonatomic) __weak UIButton *saveButton; // @synthesize saveButton;
 @property(nonatomic) __weak UITextField *saveTitleTextField; // @synthesize saveTitleTextField;
 @property(nonatomic) __weak UILabel *dialogTitleLabel; // @synthesize dialogTitleLabel;
 @property(nonatomic) __weak UITextView *previewView; // @synthesize previewView;

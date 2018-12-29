@@ -14,11 +14,9 @@
     // Error parsing type: , name: externalButtonTrailing
 }
 
-+ (id)reuseIdentifier;
 - (CDUnknownBlockType).cxx_destruct;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithStyle:(long long)arg1 reuseIdentifier:(id)arg2;
-- (void)configureCellWithAction:(id)arg1;
 - (void)awakeFromNib;
 @property(nonatomic, retain) NSLayoutConstraint *externalButtonTrailing; // @synthesize externalButtonTrailing;
 @property(nonatomic) __weak _TtC4WiMP14ReactiveButton *externalActionButton; // @synthesize externalActionButton;

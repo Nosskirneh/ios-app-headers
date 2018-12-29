@@ -12,6 +12,7 @@
 {
     long long _moduleType;
     NSManagedObject *_object;
+    UIViewController *_coverArtController;
     _TtC4WiMP21TitleModuleOptionsBar *_optionsBar;
     NSLayoutConstraint *_coverArtTopConstraint;
     NSLayoutConstraint *_blurredImageTopConstraint;
@@ -19,12 +20,10 @@
     UIView *_optionsContainer;
     NSLayoutConstraint *_optionsBarTopConstraint;
     UIImageView *_backgroundImageView;
-    UIViewController *_coverArtController;
     _TtC4WiMP12GradientView *_artistGradientView;
 }
 
 @property(retain, nonatomic) _TtC4WiMP12GradientView *artistGradientView; // @synthesize artistGradientView=_artistGradientView;
-@property(retain, nonatomic) UIViewController *coverArtController; // @synthesize coverArtController=_coverArtController;
 @property(retain, nonatomic) UIImageView *backgroundImageView; // @synthesize backgroundImageView=_backgroundImageView;
 @property(retain, nonatomic) NSLayoutConstraint *optionsBarTopConstraint; // @synthesize optionsBarTopConstraint=_optionsBarTopConstraint;
 @property(retain, nonatomic) UIView *optionsContainer; // @synthesize optionsContainer=_optionsContainer;
@@ -32,6 +31,7 @@
 @property(retain, nonatomic) NSLayoutConstraint *blurredImageTopConstraint; // @synthesize blurredImageTopConstraint=_blurredImageTopConstraint;
 @property(retain, nonatomic) NSLayoutConstraint *coverArtTopConstraint; // @synthesize coverArtTopConstraint=_coverArtTopConstraint;
 @property(retain, nonatomic) _TtC4WiMP21TitleModuleOptionsBar *optionsBar; // @synthesize optionsBar=_optionsBar;
+@property(retain, nonatomic) UIViewController *coverArtController; // @synthesize coverArtController=_coverArtController;
 @property(retain, nonatomic) NSManagedObject *object; // @synthesize object=_object;
 @property(nonatomic) long long moduleType; // @synthesize moduleType=_moduleType;
 - (void).cxx_destruct;

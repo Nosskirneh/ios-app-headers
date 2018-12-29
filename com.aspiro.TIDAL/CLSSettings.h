@@ -4,7 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 @class NSDictionary, NSNumber, NSString;
 
@@ -25,6 +25,7 @@
 @property(readonly, nonatomic) unsigned int maxCustomExceptions;
 @property(readonly, nonatomic) unsigned int logBufferSize;
 @property(readonly, nonatomic) unsigned int errorLogBufferSize;
+@property(readonly, nonatomic) _Bool firebaseCrashlyticsEnabled;
 @property(readonly, nonatomic) _Bool userPromptEnabled;
 @property(readonly, nonatomic) _Bool crashReportingEnabled;
 @property(readonly, nonatomic) _Bool customExceptionsEnabled;

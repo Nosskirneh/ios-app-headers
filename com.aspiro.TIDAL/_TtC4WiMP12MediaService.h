@@ -4,18 +4,18 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
-@class _TtC4WiMP20MediaServiceProvider;
+@class NSString;
 
 @interface _TtC4WiMP12MediaService : NSObject
 {
+    // Error parsing type: , name: playbackSessionId
     // Error parsing type: , name: provider
 }
 
-+ (void)showSprintDialogIfNecessaryFor:(id)arg1;
 - (CDUnknownBlockType).cxx_destruct;
-- (void)obtainUrlForItemWithItemUuid:(id)arg1 itemType:(long long)arg2 originatingPlaylistUuid:(id)arg3 urlType:(long long)arg4 quality:(id)arg5 completionHandler:(CDUnknownBlockType)arg6;
+- (void)obtainTrackPrivilegesUrlForUuid:(id)arg1 originatingPlaylist:(id)arg2 quality:(long long)arg3 completionHandler:(CDUnknownBlockType)arg4;
 - (void)obtainAudioCacheUrlForUuid:(id)arg1 type:(long long)arg2 originatingPlaylist:(id)arg3 quality:(long long)arg4 completionHandler:(CDUnknownBlockType)arg5;
 - (void)obtainVideoOfflineUrlForUuid:(id)arg1 originatingPlaylist:(id)arg2 quality:(long long)arg3 completionHandler:(CDUnknownBlockType)arg4;
 - (void)obtainVideoPlayUrlForUuid:(id)arg1 originatingPlaylist:(id)arg2 completionHandler:(CDUnknownBlockType)arg3;
@@ -23,9 +23,8 @@
 - (void)obtainCutPlayUrlForUuid:(id)arg1 originatingPlaylist:(id)arg2 quality:(long long)arg3 completionHandler:(CDUnknownBlockType)arg4;
 - (void)obtainTrackOfflineUrlForUuid:(id)arg1 originatingPlaylist:(id)arg2 quality:(long long)arg3 completionHandler:(CDUnknownBlockType)arg4;
 - (void)obtainTrackPlayUrlForUuid:(id)arg1 originatingPlaylist:(id)arg2 quality:(long long)arg3 completionHandler:(CDUnknownBlockType)arg4;
-- (id)initWithProvider:(id)arg1;
 - (id)init;
-@property(nonatomic, readonly) _TtC4WiMP20MediaServiceProvider *provider; // @synthesize provider;
+@property(nonatomic, copy) NSString *playbackSessionId; // @synthesize playbackSessionId;
 
 @end
 

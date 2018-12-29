@@ -19,7 +19,6 @@
 - (id)init;
 @property(nonatomic, retain) UIColor *tintColor;
 - (void)barbuttonItemPressed:(id)arg1;
-- (id)initWithImage:(id)arg1 actionHandler:(CDUnknownBlockType)arg2;
 
 @end
 

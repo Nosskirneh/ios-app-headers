@@ -4,32 +4,37 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
-#import "SwrveSignatureErrorListener-Protocol.h"
+#import "SwrveSignatureErrorDelegate-Protocol.h"
 
 @class NSString, NSURL;
-@protocol SwrveSignatureErrorListener;
+@protocol SwrveSignatureErrorDelegate;
 
-@interface SwrveSignatureProtectedFile : NSObject <SwrveSignatureErrorListener>
+@interface SwrveSignatureProtectedFile : NSObject <SwrveSignatureErrorDelegate>
 {
     NSURL *filename;
     NSURL *signatureFilename;
     NSString *key;
-    id <SwrveSignatureErrorListener> signatureErrorListener;
+    id <SwrveSignatureErrorDelegate> signatureErrorDelegate;
 }
 
-@property(retain) id <SwrveSignatureErrorListener> signatureErrorListener; // @synthesize signatureErrorListener;
+@property(retain) id <SwrveSignatureErrorDelegate> signatureErrorDelegate; // @synthesize signatureErrorDelegate;
 @property(readonly) NSString *key; // @synthesize key;
 @property(retain) NSURL *signatureFilename; // @synthesize signatureFilename;
 @property(retain) NSURL *filename; // @synthesize filename;
 - (void).cxx_destruct;
 - (void)signatureError:(id)arg1;
 - (id)createHMACWithMD5:(id)arg1;
+- (id)readWithRespectToPlatform;
+- (id)readFromDefaults;
 - (id)readFromFile;
+- (void)writeWithRespectToPlatform:(id)arg1;
+- (void)writeToDefaults:(id)arg1;
 - (void)writeToFile:(id)arg1;
-- (id)initFile:(id)arg1 signatureFilename:(id)arg2 usingKey:(id)arg3 signatureErrorListener:(id)arg4;
+- (id)initFile:(id)arg1 signatureFilename:(id)arg2 usingKey:(id)arg3 signatureErrorDelegate:(id)arg4;
 - (id)initFile:(id)arg1 signatureFilename:(id)arg2 usingKey:(id)arg3;
+- (id)protectedFileType:(int)arg1 userID:(id)arg2 signatureKey:(id)arg3 errorDelegate:(id)arg4;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

@@ -4,11 +4,13 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
+
+#import "UIViewControllerAnimatedTransitioning-Protocol.h"
 
 @class NSString, UIView;
 
-@interface TWTRMediaAnimatedTranisitioningPresenter : NSObject
+@interface TWTRMediaAnimatedTranisitioningPresenter : NSObject <UIViewControllerAnimatedTransitioning>
 {
     UIView *_transitionView;
     CDUnknownBlockType _completionBlock;

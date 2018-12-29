@@ -26,6 +26,11 @@
 @property(retain, nonatomic) UIApplicationShortcutItem *shortcutItem; // @synthesize shortcutItem=_shortcutItem;
 @property(retain, nonatomic) UIWindow *window; // @synthesize window=_window;
 - (void).cxx_destruct;
+- (void)accessoryDidDisconnect:(id)arg1;
+- (void)accessoryDidConnect:(id)arg1;
+- (_Bool)checkIfString:(id)arg1 matchesRegexArray:(id)arg2;
+- (void)startSDLManagerAfterConditionCheck;
+- (void)startFordSDLManager;
 @property(readonly, copy, nonatomic) NSString *clientId;
 @property(readonly, copy, nonatomic) NSString *clientVersion;
 @property(readonly, copy, nonatomic) NSString *userId;

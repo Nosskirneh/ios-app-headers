@@ -7,6 +7,11 @@
 #import "_TtC4WiMP23ExternalPlaybackService.h"
 
 @interface _TtC4WiMP23ExternalPlaybackService (WiMP1)
-- (void)sonosVolumeChangedTo:(float)arg1;
+- (void)handleAirplayRouteChange:(id)arg1;
+- (void)wirelessRouteActive:(id)arg1;
+- (void)handleSonosDisconnected:(id)arg1;
+- (void)sonosStateUpdated:(id)arg1;
+- (void)handleCastDisonnected:(id)arg1;
+- (void)castStateUpdated:(id)arg1;
 @end
 

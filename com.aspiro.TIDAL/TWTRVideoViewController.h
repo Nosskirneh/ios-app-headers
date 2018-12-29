@@ -8,10 +8,11 @@
 
 #import "TWTRVideoPlayerScribeDelegate-Protocol.h"
 #import "UIGestureRecognizerDelegate-Protocol.h"
+#import "UIViewControllerTransitioningDelegate-Protocol.h"
 
 @class NSString, TWTRTweet, TWTRTweetMediaEntity, TWTRVideoControlsView, TWTRVideoControlsViewSynchronizer, TWTRVideoPlayerView, UIButton, UIImage, UINavigationBar, UIView;
 
-@interface TWTRVideoViewController : UIViewController <UIGestureRecognizerDelegate, TWTRVideoPlayerScribeDelegate>
+@interface TWTRVideoViewController : UIViewController <UIViewControllerTransitioningDelegate, UIGestureRecognizerDelegate, TWTRVideoPlayerScribeDelegate>
 {
     TWTRTweet *_tweet;
     TWTRTweetMediaEntity *_mediaEntity;

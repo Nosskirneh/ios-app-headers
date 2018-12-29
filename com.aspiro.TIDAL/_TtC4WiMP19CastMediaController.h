@@ -8,16 +8,17 @@
 
 @interface _TtC4WiMP19CastMediaController : SwiftObject
 {
+    // Error parsing type: , name: mediaClient
 }
 
 - (_Bool)isPaused;
 - (_Bool)isPlaying;
-- (void)beginScrubbing;
 - (double)timeElapsed;
+- (void)beginScrubbing;
 - (void)seekToTime:(double)arg1;
-- (void)stop;
 - (void)playPreviousItem;
 - (void)playNextItem;
+- (void)stop;
 - (void)pause;
 - (void)play;
 

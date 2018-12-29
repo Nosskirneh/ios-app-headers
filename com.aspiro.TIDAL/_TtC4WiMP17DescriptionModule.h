@@ -6,9 +6,6 @@
 
 #import <UIKit/UITableViewController.h>
 
-@class NSString, WMPAlbumService, WMPArtistService, WMPCoreListener, WMPCoreService, WMPPlaylistService, WMPTrackService, WMPVideoService, _TtC4WiMP10CutService, _TtC4WiMP21DescriptionDataSource;
-@protocol WMPDescriptionModuleDelegate;
-
 @interface _TtC4WiMP17DescriptionModule : UITableViewController
 {
     // Error parsing type: , name: tapOutsideRecognizer
@@ -22,6 +19,7 @@
     // Error parsing type: , name: dataSource
     // Error parsing type: , name: entityFilter
     // Error parsing type: , name: coreListener
+    // Error parsing type: , name: contentSizeObserver
     // Error parsing type: , name: moduleType
     // Error parsing type: , name: mediaItemInfoDelegate
     // Error parsing type: , name: itemId
@@ -29,29 +27,11 @@
 }
 
 + (id)getInstance:(long long)arg1 id:(id)arg2;
-+ (id)getInstanceWithType:(long long)arg1;
-+ (id)storyboardName;
 - (CDUnknownBlockType).cxx_destruct;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;
 - (id)initWithStyle:(long long)arg1;
 - (void)viewWillTransitionToSize:(struct CGSize)arg1 withTransitionCoordinator:(id)arg2;
-- (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
-- (void)setupCoreListener;
-- (void)setupNowPlayingDataSourceForVideoWithUuid:(id)arg1;
-- (void)setupNowPlayingDataSourceForCutWithUuid:(id)arg1;
-- (void)setupNowPlayingDataSourceForTrackWithUuid:(id)arg1;
-- (void)setupNowPlayingDataSource;
-- (void)setupVideoDataSource;
-- (void)setupTextDataSource;
-- (void)setupTrackCutDataSource;
-- (void)setupTrackDataSource;
-- (void)setupArtistDataSource;
-- (void)setupPlaylistDataSource;
-- (void)setupAlbumDataSource;
-- (void)setupDataSource;
-- (void)removeTapOutsideRecognizer;
-- (id)itemFromCurrentFilter;
 - (void)didUpdateObject:(id)arg1;
 - (_Bool)gestureRecognizer:(id)arg1 shouldRecognizeSimultaneouslyWithGestureRecognizer:(id)arg2;
 - (void)tapBehindDetected:(id)arg1;
@@ -62,19 +42,6 @@
 - (void)viewDidAppear:(_Bool)arg1;
 - (void)viewWillAppear:(_Bool)arg1;
 - (void)viewDidLoad;
-- (void)dealloc;
-@property(nonatomic, copy) NSString *headerTitle; // @synthesize headerTitle;
-@property(nonatomic, retain) id itemId; // @synthesize itemId;
-@property(nonatomic) __weak id <WMPDescriptionModuleDelegate> mediaItemInfoDelegate; // @synthesize mediaItemInfoDelegate;
-@property(nonatomic, retain) WMPCoreListener *coreListener; // @synthesize coreListener;
-@property(nonatomic, retain) _TtC4WiMP21DescriptionDataSource *dataSource; // @synthesize dataSource;
-@property(nonatomic, readonly) WMPCoreService *coreService; // @synthesize coreService;
-@property(nonatomic, readonly) WMPPlaylistService *playlistService; // @synthesize playlistService;
-@property(nonatomic, readonly) WMPVideoService *videoService; // @synthesize videoService;
-@property(nonatomic, readonly) _TtC4WiMP10CutService *cutService; // @synthesize cutService;
-@property(nonatomic, readonly) WMPTrackService *trackService; // @synthesize trackService;
-@property(nonatomic, readonly) WMPArtistService *artistService; // @synthesize artistService;
-@property(nonatomic, readonly) WMPAlbumService *albumService; // @synthesize albumService;
 
 @end
 

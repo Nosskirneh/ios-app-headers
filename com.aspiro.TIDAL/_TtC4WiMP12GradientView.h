@@ -18,7 +18,6 @@
 - (void)drawRect:(struct CGRect)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithFrame:(struct CGRect)arg1 colors:(id)arg2 numberLocations:(id)arg3;
-- (id)initWithFrame:(struct CGRect)arg1 colors:(id)arg2 locations:(id)arg3;
 
 @end
 

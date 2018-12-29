@@ -4,7 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 @class NSArray, NSMutableArray, NSString;
 
@@ -44,8 +44,10 @@
 - (void)appendSearchWithResults:(id)arg1;
 - (_Bool)shouldShowSearchHistoryForSection:(long long)arg1;
 - (id)stringFromValues:(id)arg1 section:(long long)arg2;
+- (id)searchModuleIdForSection:(long long)arg1;
 - (id)titleForContentType:(long long)arg1;
 - (id)titleForHeaderInSection:(long long)arg1;
+- (id)searchModuleIdDictionary;
 - (id)searchTypeDictionary;
 - (id)itemForRowAtIndexPath:(id)arg1;
 - (long long)totalSuggestionsCountForSection:(long long)arg1;

@@ -26,6 +26,7 @@
 @property(nonatomic) double horizontalUnits;
 @property(nonatomic) double heightUnits;
 @property(retain, nonatomic) NSString *header;
+@property(nonatomic) _Bool isLoadedFromNavigation;
 @property(nonatomic) _Bool isFullScreen;
 @property(copy, nonatomic) NSDictionary *eventMetadata;
 - (void)refreshData;

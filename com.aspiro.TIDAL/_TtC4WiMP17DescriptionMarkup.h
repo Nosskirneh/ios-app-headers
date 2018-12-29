@@ -9,8 +9,9 @@
 @interface _TtC4WiMP17DescriptionMarkup : SwiftObject
 {
     // Error parsing type: , name: linkParser
-    // Error parsing type: , name: globalAttributes
-    // Error parsing type: , name: linkAttributes
+    // Error parsing type: , name: paragraphStyle
+    // Error parsing type: , name: globalAttributes.storage
+    // Error parsing type: , name: linkAttributes.storage
 }
 
 @end

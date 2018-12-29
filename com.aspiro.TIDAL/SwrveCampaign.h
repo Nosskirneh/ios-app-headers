@@ -4,28 +4,56 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import "SwrveBaseCampaign.h"
+#import <objc/NSObject.h>
 
-@class NSArray;
+@class NSDate, NSMutableSet, NSString, SwrveCampaignState;
 
-@interface SwrveCampaign : SwrveBaseCampaign
+@interface SwrveCampaign : NSObject
 {
-    NSArray *messages;
+    _Bool randomOrder;
+    _Bool messageCenter;
+    unsigned long long ID;
+    unsigned long long maxImpressions;
+    double minDelayBetweenMsgs;
+    SwrveCampaignState *state;
+    NSDate *showMsgsAfterLaunch;
+    NSString *name;
+    NSDate *dateStart;
+    NSDate *dateEnd;
+    NSMutableSet *triggers;
+    NSDate *initialisedTime;
+    NSString *subject;
 }
 
-@property(retain) NSArray *messages; // @synthesize messages;
+@property(retain, nonatomic) NSString *subject; // @synthesize subject;
+@property _Bool messageCenter; // @synthesize messageCenter;
+@property _Bool randomOrder; // @synthesize randomOrder;
+@property(retain, nonatomic) NSDate *initialisedTime; // @synthesize initialisedTime;
+@property(retain, nonatomic) NSMutableSet *triggers; // @synthesize triggers;
+@property(retain, nonatomic) NSDate *dateEnd; // @synthesize dateEnd;
+@property(retain, nonatomic) NSDate *dateStart; // @synthesize dateStart;
+@property(retain, nonatomic) NSString *name; // @synthesize name;
+@property(retain, nonatomic) NSDate *showMsgsAfterLaunch; // @synthesize showMsgsAfterLaunch;
+@property(retain) SwrveCampaignState *state; // @synthesize state;
+@property double minDelayBetweenMsgs; // @synthesize minDelayBetweenMsgs;
+@property unsigned long long maxImpressions; // @synthesize maxImpressions;
+@property unsigned long long ID; // @synthesize ID;
 - (void).cxx_destruct;
+- (id)stateDictionary;
 - (_Bool)assetsReady:(id)arg1;
 - (_Bool)supportsOrientation:(long long)arg1;
-- (id)getMessageForEvent:(id)arg1 withPayload:(id)arg2 withAssets:(id)arg3 atTime:(id)arg4 withReasons:(id)arg5;
-- (id)getMessageForEvent:(id)arg1 withAssets:(id)arg2 atTime:(id)arg3;
-- (_Bool)hasMessageForEvent:(id)arg1 withPayload:(id)arg2;
-- (_Bool)hasMessageForEvent:(id)arg1;
-- (void)messageDismissed:(id)arg1;
-- (void)messageWasShownToUser:(id)arg1 at:(id)arg2;
-- (void)messageWasShownToUser:(id)arg1;
-- (void)addAssetsToQueue:(id)arg1;
-- (id)initAtTime:(id)arg1 fromDictionary:(id)arg2 withAssetsQueue:(id)arg3 forController:(id)arg4;
+- (_Bool)canTriggerWithEvent:(id)arg1 andPayload:(id)arg2;
+- (_Bool)checkCampaignRulesForEvent:(id)arg1 atTime:(id)arg2 withReasons:(id)arg3;
+- (_Bool)isActive:(id)arg1 withReasons:(id)arg2;
+- (void)logAndAddReason:(id)arg1 withReasons:(id)arg2;
+- (_Bool)isTooSoonToShowMessageAfterDelay:(id)arg1;
+- (_Bool)isTooSoonToShowMessageAfterLaunch:(id)arg1;
+- (void)loadTriggersFrom:(id)arg1;
+- (void)loadRulesFrom:(id)arg1;
+- (void)loadDatesFrom:(id)arg1;
+- (void)wasShownToUserAt:(id)arg1;
+- (void)setMessageMinDelayThrottle:(id)arg1;
+- (id)initAtTime:(id)arg1 fromDictionary:(id)arg2;
 
 @end
 

@@ -7,8 +7,6 @@
 #import "_TtC4WiMP25LinkCloudCollectionModule.h"
 
 @interface _TtC4WiMP25LinkCloudCollectionModule (WiMP1)
-- (id)collectionView:(id)arg1 cellForItemAtIndexPath:(id)arg2;
-- (long long)collectionView:(id)arg1 numberOfItemsInSection:(long long)arg2;
-- (long long)numberOfSectionsInCollectionView:(id)arg1;
+- (struct CGSize)collectionView:(id)arg1 layout:(id)arg2 sizeForItemAtIndexPath:(id)arg3;
 @end
 

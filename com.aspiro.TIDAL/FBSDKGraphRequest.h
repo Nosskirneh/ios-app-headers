@@ -4,7 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 @class NSMutableDictionary, NSString;
 
@@ -19,6 +19,7 @@
 }
 
 + (id)preprocessParams:(id)arg1;
++ (id)serializeURL:(id)arg1 params:(id)arg2 httpMethod:(id)arg3 forBatch:(_Bool)arg4;
 + (id)serializeURL:(id)arg1 params:(id)arg2 httpMethod:(id)arg3;
 + (id)serializeURL:(id)arg1 params:(id)arg2;
 + (_Bool)isAttachment:(id)arg1;

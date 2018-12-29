@@ -4,7 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 #import "NSCopying-Protocol.h"
 #import "NSSecureCoding-Protocol.h"
@@ -28,6 +28,7 @@
 - (_Bool)isCompatibleWithTokenString:(id)arg1 appID:(id)arg2;
 - (_Bool)isCompatibleWithAppEventsState:(id)arg1;
 - (_Bool)areAllEventsImplicit;
+- (id)extractReceiptData;
 - (void)addEvent:(id)arg1 isImplicit:(_Bool)arg2;
 - (void)addEventsFromAppEventState:(id)arg1;
 @property(readonly, copy) NSArray *events;

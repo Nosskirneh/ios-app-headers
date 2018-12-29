@@ -4,7 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 @interface _TtC4WiMP16SpotlightService : NSObject
 {
@@ -12,8 +12,6 @@
     // Error parsing type: , name: searchIndex
 }
 
-+ (long long)errorCodeDataError;
-+ (long long)errorCodeIndexing;
 - (CDUnknownBlockType).cxx_destruct;
 - (id)tagPublicActivityForVideo:(id)arg1;
 - (id)tagPublicActivityForPlaylist:(id)arg1;
@@ -28,9 +26,9 @@
 - (void)addTrackIdsToIndex:(id)arg1 callback:(CDUnknownBlockType)arg2;
 - (void)addAlbumIdsToIndex:(id)arg1 callback:(CDUnknownBlockType)arg2;
 - (void)addArtistIdsToIndex:(id)arg1 callback:(CDUnknownBlockType)arg2;
+- (id)appURLFrom:(id)arg1;
 - (id)extractURLFromUserActivity:(id)arg1;
 - (id)init;
-- (id)initWithIndex:(id)arg1 imageService:(id)arg2;
 
 @end
 

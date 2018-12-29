@@ -8,13 +8,11 @@
 
 @interface _TtC4WiMP25MediaListModuleFooterView : UIView
 {
+    // Error parsing type: , name: albumInfoFooterView
+    // Error parsing type: , name: footerLabelHeight
     // Error parsing type: , name: label.storage
 }
 
-+ (id)font;
-+ (double)lineHeight;
-+ (double)horizontalMargins;
-+ (double)topMargin;
 - (CDUnknownBlockType).cxx_destruct;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithFrame:(struct CGRect)arg1;

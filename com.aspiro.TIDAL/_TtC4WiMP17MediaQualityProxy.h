@@ -4,7 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <Foundation/NSObject.h>
+#import <objc/NSObject.h>
 
 @interface _TtC4WiMP17MediaQualityProxy : NSObject
 {
@@ -18,11 +18,6 @@
 - (long long)objCVideoQuality;
 - (long long)objCCodec;
 - (long long)objCAudioQuality;
-- (id)queryParam;
-- (id)initWithQualityForTrackCut:(long long)arg1;
-- (id)initWithQualityForTrack:(long long)arg1;
-- (id)initWithQualityForVideo:(long long)arg1;
-@property(nonatomic, readonly) long long itemType; // @synthesize itemType;
 
 @end
 

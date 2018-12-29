@@ -6,8 +6,7 @@
 
 #import <UIKit/UIView.h>
 
-@class MPVolumeView, UISlider, WMPSlider;
-@protocol _TtP4WiMP18VolumeViewDelegate_;
+@class MPVolumeView, WMPSlider;
 
 @interface _TtC4WiMP10VolumeView : UIView
 {
@@ -25,14 +24,10 @@
 - (void)sliderValueChanged:(id)arg1;
 - (id)initWithFrame:(struct CGRect)arg1;
 - (id)initWithCoder:(id)arg1;
-@property(nonatomic, retain) UISlider *hardwareVolumeSlider; // @synthesize hardwareVolumeSlider;
 @property(nonatomic, retain) MPVolumeView *mpVolumeView; // @synthesize mpVolumeView;
 @property(nonatomic, retain) WMPSlider *slider; // @synthesize slider;
 @property(nonatomic, retain) UIView *separatorView; // @synthesize separatorView;
 @property(nonatomic, retain) UIView *view; // @synthesize view;
-@property(nonatomic, readonly) float kAudioDeviceVolumeStep; // @synthesize kAudioDeviceVolumeStep;
-@property(nonatomic, readonly) float kVideoDeviceVolumeStep; // @synthesize kVideoDeviceVolumeStep;
-@property(nonatomic) __weak id <_TtP4WiMP18VolumeViewDelegate_> delegate; // @synthesize delegate;
 
 @end
 

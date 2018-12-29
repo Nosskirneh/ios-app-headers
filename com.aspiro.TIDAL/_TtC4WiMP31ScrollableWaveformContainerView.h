@@ -6,8 +6,6 @@
 
 #import <UIKit/UIView.h>
 
-@class CALayer;
-
 @interface _TtC4WiMP31ScrollableWaveformContainerView : UIView
 {
     // Error parsing type: , name: indicator
@@ -17,7 +15,6 @@
 - (id)initWithCoder:(id)arg1;
 - (id)initWithFrame:(struct CGRect)arg1;
 - (void)drawRect:(struct CGRect)arg1;
-@property(nonatomic, retain) CALayer *indicator; // @synthesize indicator;
 
 @end
 

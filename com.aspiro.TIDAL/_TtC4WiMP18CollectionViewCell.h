@@ -6,18 +6,14 @@
 
 #import <UIKit/UICollectionViewCell.h>
 
-@class _TtC4WiMP14ForceClickView;
-
 @interface _TtC4WiMP18CollectionViewCell : UICollectionViewCell
 {
     // Error parsing type: , name: clicker.storage
 }
 
-+ (id)cellIdentifier;
 - (CDUnknownBlockType).cxx_destruct;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithFrame:(struct CGRect)arg1;
-@property(nonatomic, retain) _TtC4WiMP14ForceClickView *clicker;
 
 @end
 

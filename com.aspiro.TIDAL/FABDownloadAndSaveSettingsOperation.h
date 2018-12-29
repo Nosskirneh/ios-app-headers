@@ -18,12 +18,10 @@
     NSString *_settingsDirectoryPath;
     NSString *_settingsFilePath;
     NSString *_installIdentifier;
-    NSString *_advertisingToken;
     FABNetworkClient *_networkClient;
 }
 
 @property(readonly, nonatomic) __weak FABNetworkClient *networkClient; // @synthesize networkClient=_networkClient;
-@property(readonly, nonatomic) NSString *advertisingToken; // @synthesize advertisingToken=_advertisingToken;
 @property(readonly, nonatomic) NSString *installIdentifier; // @synthesize installIdentifier=_installIdentifier;
 @property(readonly, nonatomic) NSString *settingsFilePath; // @synthesize settingsFilePath=_settingsFilePath;
 @property(readonly, nonatomic) NSString *settingsDirectoryPath; // @synthesize settingsDirectoryPath=_settingsDirectoryPath;
@@ -34,7 +32,7 @@
 - (void).cxx_destruct;
 - (void)main;
 - (id)mutableRequestWithDefaultHTTPHeaderFieldsAndTimeoutForURL:(id)arg1;
-- (id)initWithAPIKey:(id)arg1 delegate:(id)arg2 settingsURL:(id)arg3 settingsDirectoryPath:(id)arg4 settingsFilePath:(id)arg5 fileManager:(id)arg6 installIdentifier:(id)arg7 advertisingToken:(id)arg8 networkClient:(id)arg9;
+- (id)initWithAPIKey:(id)arg1 delegate:(id)arg2 settingsURL:(id)arg3 settingsDirectoryPath:(id)arg4 settingsFilePath:(id)arg5 fileManager:(id)arg6 installIdentifier:(id)arg7 networkClient:(id)arg8;
 - (id)initWithAPIKey:(id)arg1;
 
 @end

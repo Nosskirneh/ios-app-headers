@@ -6,7 +6,7 @@
 
 #import "_TtC4WiMP21TitleModuleOptionsBar.h"
 
-@class MarqueeLabel, UIButton, UILabel, UISwitch;
+@class MarqueeLabel, UIButton, UILabel, UISwitch, UIView;
 
 @interface _TtC4WiMP26TitleModuleAlbumOptionsBar : _TtC4WiMP21TitleModuleOptionsBar
 {
@@ -14,10 +14,14 @@
     // Error parsing type: , name: artistNameLabel
     // Error parsing type: , name: offlineLabel
     // Error parsing type: , name: favoriteButton
-    // Error parsing type: , name: contextMenuButton
+    // Error parsing type: , name: infoCreditsButton
     // Error parsing type: , name: offlineSwitch
+    // Error parsing type: , name: playAndShuffleView
+    // Error parsing type: , name: offlineView
+    // Error parsing type: , name: screenName
     // Error parsing type: , name: dataProvider
     // Error parsing type: , name: album
+    // Error parsing type: , name: infoCreditsPresenter
 }
 
 - (CDUnknownBlockType).cxx_destruct;
@@ -25,8 +29,10 @@
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;
 - (void)updateUI;
 - (void)viewDidLoad;
+@property(nonatomic) __weak UIView *offlineView; // @synthesize offlineView;
+@property(nonatomic) __weak UIView *playAndShuffleView; // @synthesize playAndShuffleView;
 @property(nonatomic) __weak UISwitch *offlineSwitch; // @synthesize offlineSwitch;
-@property(nonatomic) __weak UIButton *contextMenuButton; // @synthesize contextMenuButton;
+@property(nonatomic) __weak UIButton *infoCreditsButton; // @synthesize infoCreditsButton;
 @property(nonatomic) __weak UIButton *favoriteButton; // @synthesize favoriteButton;
 @property(nonatomic) __weak UILabel *offlineLabel; // @synthesize offlineLabel;
 @property(nonatomic) __weak UILabel *artistNameLabel; // @synthesize artistNameLabel;

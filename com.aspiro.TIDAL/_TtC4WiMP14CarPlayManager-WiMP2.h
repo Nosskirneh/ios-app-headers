@@ -6,7 +6,9 @@
 
 #import "_TtC4WiMP14CarPlayManager.h"
 
-@interface _TtC4WiMP14CarPlayManager (WiMP2)
-- (void)setupTabs;
+#import "MPPlayableContentDelegate-Protocol.h"
+
+@interface _TtC4WiMP14CarPlayManager (WiMP2) <MPPlayableContentDelegate>
+- (void)playableContentManager:(id)arg1 initiatePlaybackOfContentItemAtIndexPath:(id)arg2 completionHandler:(CDUnknownBlockType)arg3;
 @end
 

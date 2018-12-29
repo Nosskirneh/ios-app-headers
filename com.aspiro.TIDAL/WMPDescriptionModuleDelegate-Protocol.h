@@ -7,6 +7,6 @@
 #import "NSObject-Protocol.h"
 
 @protocol WMPDescriptionModuleDelegate <NSObject>
-- (void)descriptionModuleContentHeightDidChange:(float)arg1;
+- (void)descriptionModuleContentHeightDidChange:(double)arg1;
 @end
 
