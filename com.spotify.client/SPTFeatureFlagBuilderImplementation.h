@@ -63,6 +63,17 @@
 - (CDUnknownBlockType)provideAbbaSignalMapper;
 - (id)buildAbbaSignal;
 - (id)buildUnderlyingSignal;
+- (id)swift_withDefaultState:(long long)arg1;
+- (id)swift_withDependencies:(id)arg1;
+- (id)swift_withBaseSignal:(id)arg1;
+- (id)swift_withSettingsPageTitle:(id)arg1 settingsItemTitle:(id)arg2 settingsItemDescription:(id)arg3 requiresRestart:(_Bool)arg4;
+- (id)swift_withLocalSettingsKey:(id)arg1;
+- (id)swift_withProductStateKey:(id)arg1 signalMapper:(CDUnknownBlockType)arg2;
+- (id)swift_withProductStateKey:(id)arg1 enabledValue:(id)arg2 disabledValue:(id)arg3;
+- (id)swift_withProductStateKey:(id)arg1;
+- (id)swift_withAbbaKey:(id)arg1 signalMapper:(CDUnknownBlockType)arg2;
+- (id)swift_withAbbaKey:(id)arg1 enabledValue:(id)arg2 disabledValue:(id)arg3;
+- (id)swift_withAbbaKey:(id)arg1;
 - (id)buildSignal;
 - (void)validateParameters;
 - (id)initWithFeatureFlagFactory:(id)arg1 featureSettingsItemFactory:(id)arg2;

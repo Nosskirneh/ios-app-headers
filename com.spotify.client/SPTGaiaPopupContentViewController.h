@@ -6,11 +6,11 @@
 
 #import <UIKit/UIViewController.h>
 
-@class SPTGaiaDevice, SPTGaiaDeviceAppearanceMapping, SPTGaiaPopupContentView, SPTTheme;
+@class SPTGaiaConnectDevice, SPTGaiaDeviceAppearanceMapping, SPTGaiaPopupContentView, SPTTheme;
 
 @interface SPTGaiaPopupContentViewController : UIViewController
 {
-    SPTGaiaDevice *_device;
+    SPTGaiaConnectDevice *_device;
     long long _type;
     SPTGaiaPopupContentView *_contentView;
     SPTTheme *_theme;
@@ -21,7 +21,7 @@
 @property(retain, nonatomic) SPTTheme *theme; // @synthesize theme=_theme;
 @property(retain, nonatomic) SPTGaiaPopupContentView *contentView; // @synthesize contentView=_contentView;
 @property(nonatomic) long long type; // @synthesize type=_type;
-@property(retain, nonatomic) SPTGaiaDevice *device; // @synthesize device=_device;
+@property(retain, nonatomic) SPTGaiaConnectDevice *device; // @synthesize device=_device;
 - (void).cxx_destruct;
 - (id)deviceNameForPopupType:(long long)arg1;
 - (void)loadView;

@@ -11,7 +11,7 @@
 #import "SPTThemableView-Protocol.h"
 
 @class NSString, NSURL, SPTNowPlayingBarPageModel, SPTTheme, UILabel;
-@protocol SPTThemableViewLayoutDelegate;
+@protocol SPTNowPlayingTestManager, SPTThemableViewLayoutDelegate;
 
 @interface SPTNowPlayingBarPageView : SPPageView <SPTNowPlayingBarPageModelDelegate, SPTPlayerTrackScrollPageView, SPTThemableView>
 {
@@ -21,6 +21,7 @@
     NSString *_subtitle;
     NSURL *_imageURL;
     id <SPTThemableViewLayoutDelegate> _layoutDelegate;
+    id <SPTNowPlayingTestManager> _testManager;
     SPTNowPlayingBarPageModel *_model;
     SPTTheme *_theme;
     UILabel *_topLabel;
@@ -32,6 +33,7 @@
 @property(retain, nonatomic) UILabel *topLabel; // @synthesize topLabel=_topLabel;
 @property(retain, nonatomic) SPTTheme *theme; // @synthesize theme=_theme;
 @property(retain, nonatomic) SPTNowPlayingBarPageModel *model; // @synthesize model=_model;
+@property(readonly, nonatomic) id <SPTNowPlayingTestManager> testManager; // @synthesize testManager=_testManager;
 @property(readonly, nonatomic) struct CGRect coverArtAreaBounds; // @synthesize coverArtAreaBounds=_coverArtAreaBounds;
 @property(nonatomic, getter=isCoverArtHidden) _Bool coverArtHidden; // @synthesize coverArtHidden=_coverArtHidden;
 @property(nonatomic) __weak id <SPTThemableViewLayoutDelegate> layoutDelegate; // @synthesize layoutDelegate=_layoutDelegate;
@@ -47,10 +49,10 @@
 - (id)topLabelText;
 - (id)verboseTopLabelText;
 - (void)layoutSubviews;
-- (void)nowPlayingBarPageModelDidChangeRemoteDevicesVisible:(id)arg1;
+- (void)nowPlayingBarPageModelDidChangeRemoteDevicesViewVisibility:(id)arg1;
 - (void)applyThemeLayout;
 - (void)dealloc;
-- (id)initWithFrame:(struct CGRect)arg1 reuseIdentifier:(id)arg2 model:(id)arg3 theme:(id)arg4;
+- (id)initWithFrame:(struct CGRect)arg1 reuseIdentifier:(id)arg2 model:(id)arg3 theme:(id)arg4 testManager:(id)arg5;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

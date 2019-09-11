@@ -11,7 +11,7 @@
 #import "SPTScannablesDataSourceDelegate-Protocol.h"
 
 @class NSDate, NSString, NSURL, UIImage;
-@protocol SPTImageLoader, SPTImageLoaderRemoteCallback, SPTImageLoaderRequest, SPTImageLoaderRequestDelegate, SPTScannable, SPTScannablesDataSource;
+@protocol SPTImageLoader, SPTImageLoaderRemoteCallback, SPTImageLoaderRequestDelegate, SPTScannable, SPTScannablesDataSource;
 
 @interface SPTScannablesImageLoaderRequest : NSObject <SPTImageLoaderDelegate, SPTScannablesDataSourceDelegate, SPTImageLoaderRequest>
 {
@@ -29,11 +29,9 @@
     UIImage *_entityImage;
     id <SPTImageLoader> _imageLoader;
     id <SPTScannablesDataSource> _dataSource;
-    id <SPTImageLoaderRequest> _imageLoaderRequest;
     struct CGSize _requestedSize;
 }
 
-@property(retain, nonatomic) id <SPTImageLoaderRequest> imageLoaderRequest; // @synthesize imageLoaderRequest=_imageLoaderRequest;
 @property(retain, nonatomic) id <SPTScannablesDataSource> dataSource; // @synthesize dataSource=_dataSource;
 @property(retain, nonatomic) id <SPTImageLoader> imageLoader; // @synthesize imageLoader=_imageLoader;
 @property(retain, nonatomic) UIImage *entityImage; // @synthesize entityImage=_entityImage;
@@ -56,7 +54,6 @@
 - (void)imageLoader:(id)arg1 didFailToLoadImageForURL:(id)arg2 error:(id)arg3 context:(id)arg4;
 - (void)imageLoader:(id)arg1 didLoadImage:(id)arg2 forURL:(id)arg3 loadTime:(double)arg4 context:(id)arg5;
 - (void)cancel;
-- (_Bool)shouldRequestImage;
 - (void)load;
 - (id)initWithURL:(id)arg1 imageLoader:(id)arg2 scannablesDataSource:(id)arg3 requestedSize:(struct CGSize)arg4 allowsUpscaling:(_Bool)arg5 context:(id)arg6 callback:(id)arg7 delegate:(id)arg8;
 

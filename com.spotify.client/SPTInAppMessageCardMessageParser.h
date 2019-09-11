@@ -10,6 +10,7 @@
 {
 }
 
+- (id)clickActionFromDictionary:(id)arg1;
 - (id)modelObjectFromJSONData:(id)arg1 error:(out id *)arg2;
 
 @end

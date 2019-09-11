@@ -6,7 +6,10 @@
 
 #import "NSObject-Protocol.h"
 
+@class NSArray;
+
 @protocol SPTExternalIntegrationContentRequestOptions <NSObject>
+@property(readonly, nonatomic) NSArray *debugLogTags;
 @property(readonly, nonatomic) unsigned long long limit;
 @end
 

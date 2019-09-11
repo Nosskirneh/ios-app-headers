@@ -7,7 +7,7 @@
 #import "NSObject-Protocol.h"
 
 @protocol SPTSlateContentUnitDelegate <NSObject>
-- (void)showDismissLabel:(_Bool)arg1;
-- (void)hideDismissLabel:(_Bool)arg1;
+- (void)showDismissButton:(_Bool)arg1;
+- (void)hideDismissButton:(_Bool)arg1;
 @end
 

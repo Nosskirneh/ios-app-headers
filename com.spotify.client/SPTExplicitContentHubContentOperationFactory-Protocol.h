@@ -6,9 +6,9 @@
 
 #import "NSObject-Protocol.h"
 
-@protocol EXP_HUBContentOperation, EXP_SPTHubComponentModelURIResolver;
+@protocol HUBContentOperation, SPTHubComponentModelURIResolver;
 
 @protocol SPTExplicitContentHubContentOperationFactory <NSObject>
-- (id <EXP_HUBContentOperation>)createPlaybackDisablingContentOperationWithComponentModelURIResolver:(id <EXP_SPTHubComponentModelURIResolver>)arg1;
+- (id <HUBContentOperation>)createPlaybackDisablingContentOperationWithComponentModelURIResolver:(id <SPTHubComponentModelURIResolver>)arg1;
 @end
 

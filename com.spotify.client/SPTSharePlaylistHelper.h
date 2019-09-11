@@ -6,12 +6,10 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTFeatureFlagSignalObserver-Protocol.h"
-
 @class NSString;
 @protocol SPTFeatureFlagFactory, SPTFeatureFlagSignal, SPTPlaylistURIResolver, SPTShareTestManager;
 
-@interface SPTSharePlaylistHelper : NSObject <SPTFeatureFlagSignalObserver>
+@interface SPTSharePlaylistHelper : NSObject
 {
     _Bool _allowV2Sharing;
     id <SPTPlaylistURIResolver> _playlistURIResolver;

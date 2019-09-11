@@ -7,10 +7,9 @@
 #import "SPTService-Protocol.h"
 
 @class NSString;
-@protocol SPTClientSettings, SPTFeatureSettingsItemFactory, SPTSettingsDataSource, SPTSettingsUpsellDelegate, SettingsRegistry;
+@protocol SPTClientSettings, SPTFeatureSettingsItemFactory, SPTSettingsDataSource, SettingsRegistry;
 
 @protocol SPTSettingsFeature <SPTService>
-@property(nonatomic) __weak id <SPTSettingsUpsellDelegate> upsellDelegate;
 - (id <SPTClientSettings>)provideClientSettings;
 - (id <SPTSettingsDataSource>)provideSettingsDataSourceForServiceIdentifier:(NSString *)arg1;
 - (id <SPTFeatureSettingsItemFactory>)provideFeatureSettingsItemFactoryForServiceIdentifier:(NSString *)arg1;

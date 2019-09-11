@@ -7,13 +7,12 @@
 #import <UIKit/UIViewController.h>
 
 #import "SPTNowPlayingContainedViewController-Protocol.h"
-#import "SPTNowPlayingContainerIdleMonitorObserver-Protocol.h"
 #import "SPTNowPlayingNavigationBarModelObserver-Protocol.h"
 
 @class NSString, SPTNowPlayingNavigationBarViewV2, SPTTheme;
 @protocol SPTNowPlayingAuxiliaryActionsHandler, SPTNowPlayingContainingViewController, SPTNowPlayingNavigationBarModel;
 
-@interface SPTNowPlayingNavigationBarUnitViewController : UIViewController <SPTNowPlayingNavigationBarModelObserver, SPTNowPlayingContainerIdleMonitorObserver, SPTNowPlayingContainedViewController>
+@interface SPTNowPlayingNavigationBarUnitViewController : UIViewController <SPTNowPlayingNavigationBarModelObserver, SPTNowPlayingContainedViewController>
 {
     id <SPTNowPlayingNavigationBarModel> _model;
     id <SPTNowPlayingAuxiliaryActionsHandler> _auxiliaryActionsHandler;
@@ -25,8 +24,6 @@
 @property(readonly, nonatomic) id <SPTNowPlayingNavigationBarModel> model; // @synthesize model=_model;
 - (void).cxx_destruct;
 - (void)rightButtonPressed:(id)arg1;
-- (void)idlePeriodDidEnd;
-- (void)idlePeriodDidBegin;
 - (void)navigationBarModelStateDidChange:(id)arg1;
 - (double)viewControllerPriority;
 - (unsigned long long)leadingEdge;

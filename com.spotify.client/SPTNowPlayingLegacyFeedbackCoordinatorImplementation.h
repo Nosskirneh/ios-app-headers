@@ -9,7 +9,7 @@
 #import "SPTNowPlayingLegacyFeedbackCoordinator-Protocol.h"
 
 @class NSString, SPTNowPlayingLegacyDailyMixFeedbackHandlerImplementation, SPTNowPlayingLegacyFormatListFeedbackHandlerImplementation, SPTNowPlayingLegacyRadioFeedbackHandlerImplementation;
-@protocol SPTCollectionPlatformConfiguration, SPTContextMenuPresenterFactory, SPTDailyMixFeedbackUIModel, SPTFeedbackViewModel, SPTFormatListPlatformRemoteControlPolicyFactory, SPTFreeTierEducationSnackBarPresenter, SPTNowPlayingRemoteControlPolicy, SPTPSXTestManager;
+@protocol SPTCollectionPlatformConfiguration, SPTContextMenuPresenterFactory, SPTDailyMixFeedbackUIModel, SPTFeedbackViewModel, SPTFormatListPlatformRemoteControlPolicyFactory, SPTNowPlayingRemoteControlPolicy, SPTPSXTestManager, SPTRadioRemoteConfigProperties, SPTSnackbarConditionalPresenter;
 
 @interface SPTNowPlayingLegacyFeedbackCoordinatorImplementation : NSObject <SPTNowPlayingLegacyFeedbackCoordinator>
 {
@@ -22,14 +22,16 @@
     id <SPTNowPlayingRemoteControlPolicy> _formatListRemoteControlPolicy;
     id <SPTFeedbackViewModel> _feedbackViewModel;
     id <SPTPSXTestManager> _psxTestManager;
+    id <SPTRadioRemoteConfigProperties> _radioRemoteConfigProperties;
     id <SPTCollectionPlatformConfiguration> _collectionConfiguration;
     SPTNowPlayingLegacyFormatListFeedbackHandlerImplementation *_formatListFeedbackHandler;
-    id <SPTFreeTierEducationSnackBarPresenter> _snackBarPresenter;
+    id <SPTSnackbarConditionalPresenter> _snackBarPresenter;
 }
 
-@property(retain, nonatomic) id <SPTFreeTierEducationSnackBarPresenter> snackBarPresenter; // @synthesize snackBarPresenter=_snackBarPresenter;
+@property(retain, nonatomic) id <SPTSnackbarConditionalPresenter> snackBarPresenter; // @synthesize snackBarPresenter=_snackBarPresenter;
 @property(retain, nonatomic) SPTNowPlayingLegacyFormatListFeedbackHandlerImplementation *formatListFeedbackHandler; // @synthesize formatListFeedbackHandler=_formatListFeedbackHandler;
 @property(retain, nonatomic) id <SPTCollectionPlatformConfiguration> collectionConfiguration; // @synthesize collectionConfiguration=_collectionConfiguration;
+@property(retain, nonatomic) id <SPTRadioRemoteConfigProperties> radioRemoteConfigProperties; // @synthesize radioRemoteConfigProperties=_radioRemoteConfigProperties;
 @property(nonatomic) __weak id <SPTPSXTestManager> psxTestManager; // @synthesize psxTestManager=_psxTestManager;
 @property(retain, nonatomic) id <SPTFeedbackViewModel> feedbackViewModel; // @synthesize feedbackViewModel=_feedbackViewModel;
 @property(retain, nonatomic) id <SPTNowPlayingRemoteControlPolicy> formatListRemoteControlPolicy; // @synthesize formatListRemoteControlPolicy=_formatListRemoteControlPolicy;
@@ -43,7 +45,7 @@
 @property(readonly, nonatomic) SPTNowPlayingLegacyDailyMixFeedbackHandlerImplementation *dailyMixFeedbackHandler; // @synthesize dailyMixFeedbackHandler=_dailyMixFeedbackHandler;
 - (_Bool)isFormatListFeedbackState:(id)arg1;
 - (id)feedbackHandlerForPlayerState:(id)arg1 containingViewController:(id)arg2;
-- (id)initWithContextMenuPresenterFactory:(id)arg1 dailyMixFeedbackModel:(id)arg2 radioRemoteControlPolicy:(id)arg3 formatListPlatformRemoteControlPolicyFactory:(id)arg4 feedbackViewModel:(id)arg5 psxTestManager:(id)arg6 snackBarPresenter:(id)arg7 collectionConfiguration:(id)arg8;
+- (id)initWithContextMenuPresenterFactory:(id)arg1 dailyMixFeedbackModel:(id)arg2 radioRemoteControlPolicy:(id)arg3 formatListPlatformRemoteControlPolicyFactory:(id)arg4 feedbackViewModel:(id)arg5 psxTestManager:(id)arg6 radioRemoteConfigProperties:(id)arg7 snackBarPresenter:(id)arg8 collectionConfiguration:(id)arg9;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

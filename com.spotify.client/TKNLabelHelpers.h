@@ -10,6 +10,10 @@
 {
 }
 
++ (id)stringAttributesForLabel:(id)arg1;
++ (id)stringAttributesForDefaultLabel;
++ (struct CGSize)systemLayoutSizeForView:(id)arg1 fittingSize:(struct CGSize)arg2 withHorizontalFittingPriority:(float)arg3 verticalFittingPriority:(float)arg4;
++ (struct CGSize)systemLayoutSizeForView:(id)arg1 fittingSize:(struct CGSize)arg2;
 + (void)updateStyle:(id)arg1 forLabel:(id)arg2 withAccessibilityScale:(double)arg3;
 + (void)applyStyle:(id)arg1 toLabel:(id)arg2 withAccessibilityScale:(double)arg3 useDynamicTypeMonitor:(_Bool)arg4;
 + (void)applyStyle:(id)arg1 toLabel:(id)arg2 withAccessibilityScale:(double)arg3;

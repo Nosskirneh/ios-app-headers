@@ -15,10 +15,12 @@
     _Bool _adjustsFontSizeToFitWidth;
     long long _maximumNumberOfLines;
     double _minimumScaleFactor;
+    long long _textAlignment;
     long long _baselineAdjustment;
 }
 
 @property(nonatomic) long long baselineAdjustment; // @synthesize baselineAdjustment=_baselineAdjustment;
+@property(nonatomic) long long textAlignment; // @synthesize textAlignment=_textAlignment;
 @property(nonatomic) _Bool adjustsFontSizeToFitWidth; // @synthesize adjustsFontSizeToFitWidth=_adjustsFontSizeToFitWidth;
 @property(nonatomic) double minimumScaleFactor; // @synthesize minimumScaleFactor=_minimumScaleFactor;
 @property(nonatomic) long long maximumNumberOfLines; // @synthesize maximumNumberOfLines=_maximumNumberOfLines;

@@ -8,18 +8,18 @@
 
 #import "SPTCrashReporterViewLoadMonitoringService-Protocol.h"
 
-@class NSString, SPTAllocationContext, SPTCrashReporterViewLoadMonitoringServiceTransport;
+@class NSString, SPTAllocationContext, SPTCrashReporterViewLoggerObserver;
 @protocol SPTCrashReporterService, SPTPerformanceMetricsService;
 
 @interface SPTCrashReporterViewLoadMonitoringServiceImplementation : NSObject <SPTCrashReporterViewLoadMonitoringService>
 {
     id <SPTCrashReporterService> _crashReporterService;
     id <SPTPerformanceMetricsService> _performanceMetricsService;
-    SPTCrashReporterViewLoadMonitoringServiceTransport *_transport;
+    SPTCrashReporterViewLoggerObserver *_observer;
 }
 
 + (id)serviceIdentifier;
-@property(retain, nonatomic) SPTCrashReporterViewLoadMonitoringServiceTransport *transport; // @synthesize transport=_transport;
+@property(retain, nonatomic) SPTCrashReporterViewLoggerObserver *observer; // @synthesize observer=_observer;
 @property(nonatomic) __weak id <SPTPerformanceMetricsService> performanceMetricsService; // @synthesize performanceMetricsService=_performanceMetricsService;
 @property(nonatomic) __weak id <SPTCrashReporterService> crashReporterService; // @synthesize crashReporterService=_crashReporterService;
 - (void).cxx_destruct;

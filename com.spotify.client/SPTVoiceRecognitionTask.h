@@ -9,25 +9,27 @@
 #import "SPTVoiceAudioRecorderDelegate-Protocol.h"
 #import "SPTVoiceSpeechRecognitionDataLoaderDelegate-Protocol.h"
 
-@class NSString, SPTVoiceSpeechRecognitionDataLoader;
+@class NSString, SPTVoiceSpeechRecognitionDataLoader, SPTVoiceTestManagerImplementation;
 @protocol SPTVoiceAudioRecorder, SPTVoiceRecognitionTaskDelegate;
 
 @interface SPTVoiceRecognitionTask : NSObject <SPTVoiceAudioRecorderDelegate, SPTVoiceSpeechRecognitionDataLoaderDelegate>
 {
     id <SPTVoiceRecognitionTaskDelegate> _delegate;
     unsigned long long _state;
+    SPTVoiceTestManagerImplementation *_testManager;
     id <SPTVoiceAudioRecorder> _audioRecorder;
     SPTVoiceSpeechRecognitionDataLoader *_speechRecognitionDataLoader;
 }
 
 @property(readonly, nonatomic) SPTVoiceSpeechRecognitionDataLoader *speechRecognitionDataLoader; // @synthesize speechRecognitionDataLoader=_speechRecognitionDataLoader;
 @property(readonly, nonatomic) id <SPTVoiceAudioRecorder> audioRecorder; // @synthesize audioRecorder=_audioRecorder;
+@property(retain, nonatomic) SPTVoiceTestManagerImplementation *testManager; // @synthesize testManager=_testManager;
 @property(readonly, nonatomic) unsigned long long state; // @synthesize state=_state;
 @property(nonatomic) __weak id <SPTVoiceRecognitionTaskDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
 - (void)audioRecorder:(id)arg1 didChangeMeanAudioLevel:(float)arg2 peakLevel:(float)arg3;
 - (void)audioRecorder:(id)arg1 didFailWithError:(id)arg2;
-- (void)audioRecorder:(id)arg1 didRecordAudioChunk:(void *)arg2 ofSize:(unsigned int)arg3;
+- (void)audioRecorder:(id)arg1 didRecordAudioChunk:(short **)arg2 ofSize:(unsigned int)arg3;
 - (void)audioRecorderDidStartRecording:(id)arg1;
 - (void)speechRecognitionDataLoaderDidSendFirstAudioData:(id)arg1;
 - (void)speechRecognitionDataLoader:(id)arg1 didFailWithError:(id)arg2;
@@ -43,10 +45,11 @@
 - (void)stopRecordingIfNecessary;
 - (void)startRecording;
 - (void)teardown;
+- (void)firstUtteranceTimedOut;
 - (void)cancel;
 - (void)start;
 - (void)dealloc;
-- (id)initWithSpeechRecognitionDataLoader:(id)arg1 audioRecorder:(id)arg2;
+- (id)initWithSpeechRecognitionDataLoader:(id)arg1 audioRecorder:(id)arg2 testManager:(id)arg3;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

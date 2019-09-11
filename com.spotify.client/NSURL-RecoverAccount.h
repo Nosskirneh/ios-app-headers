@@ -7,9 +7,8 @@
 #import <Foundation/NSURL.h>
 
 @interface NSURL (RecoverAccount)
-+ (id)emailSettingsEndpoint;
-+ (id)spt_updateEmailURL;
-+ (id)spt_collectEmailSettingsURL;
-+ (id)spt_resetPasswordURL;
++ (id)spt_setPasswordURLFromVersion:(id)arg1;
++ (id)spt_setPasswordURLV2;
++ (id)spt_setPasswordURLV1;
 @end
 

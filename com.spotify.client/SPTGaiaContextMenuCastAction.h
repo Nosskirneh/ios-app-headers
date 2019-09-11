@@ -13,8 +13,8 @@
 + (id)featureIdentifier;
 + (id)featureTitle;
 - (id)logEventVersion;
-- (id)incarnationForDevice:(id)arg1;
-- (id)init;
+- (id)incarnationForDevice;
+- (id)initWithConnectManager:(id)arg1;
 
 @end
 

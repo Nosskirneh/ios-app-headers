@@ -9,15 +9,18 @@
 #import "SPTVideoSubtitleFactory-Protocol.h"
 
 @class NSString;
+@protocol SPTVideoSubtitle;
 
 @interface SPTVideoSubtitleFactoryImpl : NSObject <SPTVideoSubtitleFactory>
 {
+    id <SPTVideoSubtitle> _offSubtitle;
 }
 
-+ (id)offSubtitle;
-- (id)createSubtitleWithLangtag:(id)arg1 closedCaption:(_Bool)arg2;
-- (id)createSubtitleWithLangtag:(id)arg1;
-- (id)offSubtitle;
+@property(retain, nonatomic) id <SPTVideoSubtitle> offSubtitle; // @synthesize offSubtitle=_offSubtitle;
+- (void).cxx_destruct;
+- (id)createSubtitleWithLanguageTag:(id)arg1 closedCaption:(_Bool)arg2;
+- (id)createSubtitleWithLanguageTag:(id)arg1;
+- (id)init;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

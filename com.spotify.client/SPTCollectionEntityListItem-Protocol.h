@@ -10,7 +10,6 @@
 
 @protocol SPTCollectionEntityListItem <NSObject>
 @property(readonly, nonatomic) NSURL *offlineURL;
-@property(readonly, nonatomic) NSURL *previewURL;
 @property(readonly, copy, nonatomic) NSString *loggingContext;
 @property(readonly, nonatomic) unsigned long long contentType;
 @property(readonly, copy, nonatomic) NSURL *trackURL;

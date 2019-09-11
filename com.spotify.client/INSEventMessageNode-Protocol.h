@@ -6,9 +6,10 @@
 
 #import "NSObject-Protocol.h"
 
-@class NSString;
+@class NSNumber, NSString;
 
 @protocol INSEventMessageNode <NSObject>
+@property(readonly, nonatomic) NSNumber *authenticated;
 @property(readonly, nonatomic) long long sequenceNumber;
 @property(readonly, copy, nonatomic) NSString *name;
 @end

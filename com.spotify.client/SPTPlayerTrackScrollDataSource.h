@@ -10,8 +10,8 @@
 #import "SPStepScrollViewDelegate-Protocol.h"
 #import "SPTNowPlayingTrackMetadataQueueObserver-Protocol.h"
 
-@class NSString, NSURL, SPStepScrollView, SPTNowPlayingBarModel;
-@protocol SPTPlayerTrackScrollDataSourceDelegate, SPTPlayerTrackScrollViewOffsetDelegate, SPTUpsellManager;
+@class NSString, NSURL, SPStepScrollView, SPTNowPlayingBarModel, SPTNowPlayingSkipLimitReachedMessageRequester;
+@protocol SPTPlayerTrackScrollDataSourceDelegate, SPTPlayerTrackScrollViewOffsetDelegate;
 
 @interface SPTPlayerTrackScrollDataSource : NSObject <SPTNowPlayingTrackMetadataQueueObserver, SPStepScrollViewDataSource, SPStepScrollViewDelegate>
 {
@@ -22,10 +22,10 @@
     NSString *_currentUID;
     NSURL *_currentContext;
     SPTNowPlayingBarModel *_nowPlayingModel;
-    id <SPTUpsellManager> _upsellManager;
+    SPTNowPlayingSkipLimitReachedMessageRequester *_skipLimitReachedMessageRequester;
 }
 
-@property(nonatomic) __weak id <SPTUpsellManager> upsellManager; // @synthesize upsellManager=_upsellManager;
+@property(readonly, nonatomic) SPTNowPlayingSkipLimitReachedMessageRequester *skipLimitReachedMessageRequester; // @synthesize skipLimitReachedMessageRequester=_skipLimitReachedMessageRequester;
 @property(retain, nonatomic) SPTNowPlayingBarModel *nowPlayingModel; // @synthesize nowPlayingModel=_nowPlayingModel;
 @property(retain, nonatomic) NSURL *currentContext; // @synthesize currentContext=_currentContext;
 @property(retain, nonatomic) NSString *currentUID; // @synthesize currentUID=_currentUID;
@@ -46,7 +46,7 @@
 - (void)contextTracksChanged;
 - (void)hibernate;
 - (void)awken;
-- (id)initWithStepScrollView:(id)arg1 nowPlayingModel:(id)arg2 upsellManager:(id)arg3;
+- (id)initWithStepScrollView:(id)arg1 nowPlayingModel:(id)arg2 skipLimitReachedMessageRequester:(id)arg3;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

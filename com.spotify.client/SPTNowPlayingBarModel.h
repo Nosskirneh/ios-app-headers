@@ -9,8 +9,8 @@
 #import "SPTNowPlayingTrackMetadataQueueObserver-Protocol.h"
 #import "SPTPlayerObserver-Protocol.h"
 
-@class NSString, NSURL, SPTNowPlayingModel, SPTNowPlayingTrackMetadataQueue, SPTPlayerState, SPTPlayerTrack, SPTStatefulPlayer;
-@protocol SPTNowPlayingBarModelDelegate, SPTPlayer;
+@class NSString, NSURL, SPTNowPlayingModel, SPTNowPlayingTrackMetadataQueue, SPTObserverManager, SPTPlayerState, SPTPlayerTrack, SPTStatefulPlayer;
+@protocol SPTPlayer;
 
 @interface SPTNowPlayingBarModel : NSObject <SPTPlayerObserver, SPTNowPlayingTrackMetadataQueueObserver>
 {
@@ -18,7 +18,6 @@
     _Bool _skippingToNextTrackAllowed;
     _Bool _peekingAtNextTrackAllowed;
     _Bool _playing;
-    id <SPTNowPlayingBarModelDelegate> _delegate;
     SPTNowPlayingTrackMetadataQueue *_trackMetadataQueue;
     SPTPlayerTrack *_displayedMetadata;
     SPTPlayerTrack *_playingMetadata;
@@ -28,8 +27,10 @@
     SPTStatefulPlayer *_statefulPlayer;
     SPTNowPlayingModel *_nowPlayingModel;
     NSURL *_currentTrackURL;
+    SPTObserverManager *_observerManager;
 }
 
+@property(readonly, nonatomic) SPTObserverManager *observerManager; // @synthesize observerManager=_observerManager;
 @property(retain, nonatomic) NSURL *currentTrackURL; // @synthesize currentTrackURL=_currentTrackURL;
 @property(retain, nonatomic) SPTNowPlayingModel *nowPlayingModel; // @synthesize nowPlayingModel=_nowPlayingModel;
 @property(retain, nonatomic) SPTStatefulPlayer *statefulPlayer; // @synthesize statefulPlayer=_statefulPlayer;
@@ -43,12 +44,12 @@
 @property(retain, nonatomic) SPTPlayerTrack *playingMetadata; // @synthesize playingMetadata=_playingMetadata;
 @property(retain, nonatomic) SPTPlayerTrack *displayedMetadata; // @synthesize displayedMetadata=_displayedMetadata;
 @property(retain, nonatomic) SPTNowPlayingTrackMetadataQueue *trackMetadataQueue; // @synthesize trackMetadataQueue=_trackMetadataQueue;
-@property(nonatomic) __weak id <SPTNowPlayingBarModelDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
+- (void)removeObserver:(id)arg1;
+- (void)addObserver:(id)arg1;
 - (void)player:(id)arg1 stateDidChange:(id)arg2;
 - (void)trackMetadataQueue:(id)arg1 didMoveToRelativeTrack:(id)arg2;
 - (void)metadataChanged;
-- (id)subtitle;
 @property(readonly, nonatomic) long long numberOfNextSkips;
 @property(readonly, nonatomic) long long numberOfPreviousSkips;
 - (void)skipToPreviousTrack;

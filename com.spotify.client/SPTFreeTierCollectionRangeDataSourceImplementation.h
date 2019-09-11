@@ -9,31 +9,41 @@
 #import "SPTFreeTierCollectionRangeDataLoaderDelegate-Protocol.h"
 #import "SPTFreeTierCollectionRangeDataSource-Protocol.h"
 
-@class NSArray, NSString;
-@protocol SPTFreeTierCollectionRangeDataLoader, SPTFreeTierCollectionRangeDataSourceDelegate, SPTSortingFilteringSortRule;
+@class NSArray, NSString, NSTimer;
+@protocol SPTFreeTierCollectionRangeDataLoader, SPTFreeTierCollectionRangeDataSourceDelegate;
 
 @interface SPTFreeTierCollectionRangeDataSourceImplementation : NSObject <SPTFreeTierCollectionRangeDataLoaderDelegate, SPTFreeTierCollectionRangeDataSource>
 {
+    _Bool _requestInProgress;
+    _Bool _forceReload;
     id <SPTFreeTierCollectionRangeDataSourceDelegate> delegate;
     id <SPTFreeTierCollectionRangeDataLoader> _dataLoader;
     long long _itemsPerPage;
+    unsigned long long _totalNumberOfItemsAtLastUpdate;
     NSArray *_items;
     long long _thresholdItemOffset;
-    id <SPTSortingFilteringSortRule> _sortRule;
+    NSArray *_sortRules;
     NSArray *_filterRules;
     NSString *_textFilter;
+    NSTimer *_updateTimer;
+    struct _NSRange _requestedRange;
     struct _NSRange _currentRange;
     struct _NSRange _itemsRange;
 }
 
 + (id)defaultRangedDataSourceWithDataLoader:(id)arg1;
+@property(nonatomic) _Bool forceReload; // @synthesize forceReload=_forceReload;
+@property(retain, nonatomic) NSTimer *updateTimer; // @synthesize updateTimer=_updateTimer;
 @property(copy, nonatomic) NSString *textFilter; // @synthesize textFilter=_textFilter;
 @property(retain, nonatomic) NSArray *filterRules; // @synthesize filterRules=_filterRules;
-@property(retain, nonatomic) id <SPTSortingFilteringSortRule> sortRule; // @synthesize sortRule=_sortRule;
+@property(retain, nonatomic) NSArray *sortRules; // @synthesize sortRules=_sortRules;
 @property(nonatomic) long long thresholdItemOffset; // @synthesize thresholdItemOffset=_thresholdItemOffset;
 @property(retain, nonatomic) NSArray *items; // @synthesize items=_items;
 @property(nonatomic) struct _NSRange itemsRange; // @synthesize itemsRange=_itemsRange;
+@property(nonatomic) unsigned long long totalNumberOfItemsAtLastUpdate; // @synthesize totalNumberOfItemsAtLastUpdate=_totalNumberOfItemsAtLastUpdate;
 @property(nonatomic) struct _NSRange currentRange; // @synthesize currentRange=_currentRange;
+@property(nonatomic) _Bool requestInProgress; // @synthesize requestInProgress=_requestInProgress;
+@property(nonatomic) struct _NSRange requestedRange; // @synthesize requestedRange=_requestedRange;
 @property(nonatomic) long long itemsPerPage; // @synthesize itemsPerPage=_itemsPerPage;
 @property(retain, nonatomic) id <SPTFreeTierCollectionRangeDataLoader> dataLoader; // @synthesize dataLoader=_dataLoader;
 @property(nonatomic) __weak id <SPTFreeTierCollectionRangeDataSourceDelegate> delegate; // @synthesize delegate;
@@ -44,8 +54,10 @@
 - (_Bool)isThresholdHitTopForIndexPath:(id)arg1;
 - (void)updateDataLoaderRangeForIndexPath:(id)arg1;
 - (id)itemAtIndexPath:(id)arg1;
-- (long long)totalNumberOfItems;
-- (void)loadWithSortRule:(id)arg1 filterRules:(id)arg2 textFilter:(id)arg3;
+- (void)willDisplayItemAIndex:(long long)arg1;
+@property(readonly, nonatomic) NSArray *sectionIndices;
+@property(readonly, nonatomic) long long totalNumberOfItems;
+- (void)loadWithSortRules:(id)arg1 filterRules:(id)arg2 textFilter:(id)arg3;
 - (id)initWithDataLoader:(id)arg1 itemsPerPage:(long long)arg2 threshold:(double)arg3;
 
 // Remaining properties

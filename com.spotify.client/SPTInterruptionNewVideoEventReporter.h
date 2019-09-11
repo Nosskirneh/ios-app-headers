@@ -9,48 +9,40 @@
 #import "SPTVideoEventObserver-Protocol.h"
 
 @class NSString;
-@protocol SPTAdEventLogger, SPTResolver, SPTVideoPlaybackIdentity;
+@protocol OS_dispatch_queue, SPTAdsBaseCosmosBridge, SPTVideoPlaybackIdentity, SPTVideoPlaybackTimeObservable;
 
 @interface SPTInterruptionNewVideoEventReporter : NSObject <SPTVideoEventObserver>
 {
-    _Bool _shouldFireVideoEvents;
-    _Bool _didProcessVideoFinishEvent;
-    _Bool _didRequestFireVideoEventsFlag;
     _Bool _started;
-    id <SPTAdEventLogger> _eventLogger;
-    id <SPTResolver> _resolver;
+    id <SPTAdsBaseCosmosBridge> _cosmosBridge;
     id <SPTVideoPlaybackIdentity> _currentIdentity;
+    id <SPTVideoPlaybackTimeObservable> _timeObservable;
     double _trackDuration;
     unsigned long long _quartilesPlayed;
 }
 
 + (_Bool)isSASInterruption:(id)arg1;
 @property(nonatomic) _Bool started; // @synthesize started=_started;
-@property(nonatomic) _Bool didRequestFireVideoEventsFlag; // @synthesize didRequestFireVideoEventsFlag=_didRequestFireVideoEventsFlag;
-@property(nonatomic) _Bool didProcessVideoFinishEvent; // @synthesize didProcessVideoFinishEvent=_didProcessVideoFinishEvent;
-@property(nonatomic) _Bool shouldFireVideoEvents; // @synthesize shouldFireVideoEvents=_shouldFireVideoEvents;
 @property(nonatomic) unsigned long long quartilesPlayed; // @synthesize quartilesPlayed=_quartilesPlayed;
 @property(nonatomic) double trackDuration; // @synthesize trackDuration=_trackDuration;
+@property(nonatomic) __weak id <SPTVideoPlaybackTimeObservable> timeObservable; // @synthesize timeObservable=_timeObservable;
 @property(retain, nonatomic) id <SPTVideoPlaybackIdentity> currentIdentity; // @synthesize currentIdentity=_currentIdentity;
-@property(readonly, nonatomic) id <SPTResolver> resolver; // @synthesize resolver=_resolver;
-@property(readonly, nonatomic) id <SPTAdEventLogger> eventLogger; // @synthesize eventLogger=_eventLogger;
+@property(readonly, nonatomic) id <SPTAdsBaseCosmosBridge> cosmosBridge; // @synthesize cosmosBridge=_cosmosBridge;
 - (void).cxx_destruct;
 - (void)logCompleteEvent;
-- (void)requestFireVideoEventsFlagValue;
-- (void)cleanupAfterInterruptionFinish;
-- (void)subcribeToFeatureFlagChanges;
-- (void)subscribeToVideoPlayerEvents;
 - (id)eventData;
 - (void)logEvent:(id)arg1;
 - (_Bool)shouldFireImpressionOnEnd;
-- (void)videoPlaybackDidEndAtPosition:(double)arg1 withEndReason:(long long)arg2;
-- (void)videoPlaybackReadyAtPosition:(double)arg1 duration:(double)arg2 playWhenReady:(_Bool)arg3;
-- (void)videoPlaybackDidCreateSessionWithIdentity:(id)arg1 timeObservable:(id)arg2 inBackground:(_Bool)arg3;
-- (id)initWithEventLogger:(id)arg1 resolver:(id)arg2;
+- (void)didEndPlaybackWithReason:(long long)arg1 atPosition:(double)arg2 timestamp:(double)arg3;
+- (void)didChangeDuration:(double)arg1 timestamp:(double)arg2;
+- (void)didBecomeReadyAtPosition:(double)arg1 timestamp:(double)arg2;
+- (void)didCreatePlaybackInBackground:(_Bool)arg1 timestamp:(double)arg2;
+- (id)initWithCosmosBridge:(id)arg1 identity:(id)arg2 timeObservable:(id)arg3;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
+@property(readonly, nonatomic) NSObject<OS_dispatch_queue> *dispatchQueue;
 @property(readonly) unsigned long long hash;
 @property(readonly) Class superclass;
 

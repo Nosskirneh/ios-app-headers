@@ -6,16 +6,21 @@
 
 #import "NSObject-Protocol.h"
 
-@class NSString, SPTLoginCredentials, SPTLoginOptions, SPTSerializableCredentials;
-@protocol SPTCoreLoginControllerDelegate;
+@class NSString, SPTLoginCredentials, SPTLoginIdentifier, SPTLoginOptions, SPTLoginParentChild, SPTSerializableCredentials;
+@protocol SPTCoreLoginControllerDelegate, SPTCoreLoginIdentifierControllerDelegate;
 
 @protocol SPTCoreLoginController <NSObject>
+@property(nonatomic) __weak id <SPTCoreLoginIdentifierControllerDelegate> loginIdentifierControllerDelegate;
 @property(nonatomic) __weak id <SPTCoreLoginControllerDelegate> loginControllerDelegate;
 - (void)eraseOfflineUser:(NSString *)arg1;
 - (void)forgetStoredCredentials;
 - (_Bool)hasStoredCredentials;
 - (SPTSerializableCredentials *)serializableCredentialsAndCanonicalUsername:(id *)arg1;
 - (SPTLoginCredentials *)storedCredentialsAndCanonicalUsername:(id *)arg1;
+- (void)loginWithParentChild:(SPTLoginParentChild *)arg1 options:(SPTLoginOptions *)arg2;
 - (void)loginWithCredentials:(SPTLoginCredentials *)arg1 options:(SPTLoginOptions *)arg2;
+- (void)requestNewChallenge;
+- (void)respondToIdentityLoginChallengeWithCode:(NSString *)arg1;
+- (void)loginWithIdentifier:(SPTLoginIdentifier *)arg1;
 @end
 

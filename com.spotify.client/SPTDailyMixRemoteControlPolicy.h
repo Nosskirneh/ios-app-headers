@@ -8,32 +8,31 @@
 
 #import "SPTDailyMixFeedbackUIModelObserver-Protocol.h"
 #import "SPTNowPlayingRemoteControlPolicy-Protocol.h"
-#import "SPTPlayerObserver-Protocol.h"
 
 @class NSArray, NSString, SPTObserverManager, SPTPlayerState;
-@protocol SPTDailyMixFeedbackUIModel, SPTPlayer;
+@protocol SPTDailyMixFeedbackUIModel, SPTDailyMixPlayerProxy;
 
-@interface SPTDailyMixRemoteControlPolicy : NSObject <SPTDailyMixFeedbackUIModelObserver, SPTPlayerObserver, SPTNowPlayingRemoteControlPolicy>
+@interface SPTDailyMixRemoteControlPolicy : NSObject <SPTDailyMixFeedbackUIModelObserver, SPTNowPlayingRemoteControlPolicy>
 {
     _Bool _banTimerEnabled;
-    SPTPlayerState *_playerState;
+    id <SPTDailyMixPlayerProxy> _playerProxy;
     id <SPTDailyMixFeedbackUIModel> _feedbackModel;
-    id <SPTPlayer> _player;
     SPTObserverManager *_observerManager;
 }
 
 @property(nonatomic, getter=isBanTimerEnabled) _Bool banTimerEnabled; // @synthesize banTimerEnabled=_banTimerEnabled;
 @property(readonly, nonatomic) SPTObserverManager *observerManager; // @synthesize observerManager=_observerManager;
-@property(retain, nonatomic) id <SPTPlayer> player; // @synthesize player=_player;
 @property(readonly, nonatomic) __weak id <SPTDailyMixFeedbackUIModel> feedbackModel; // @synthesize feedbackModel=_feedbackModel;
-@property(retain, nonatomic) SPTPlayerState *playerState; // @synthesize playerState=_playerState;
+@property(readonly, nonatomic) __weak id <SPTDailyMixPlayerProxy> playerProxy; // @synthesize playerProxy=_playerProxy;
 - (void).cxx_destruct;
-- (void)player:(id)arg1 stateDidChange:(id)arg2;
+@property(retain, nonatomic) SPTPlayerState *playerState;
 - (void)notifyObserversThatPolicyDidChange;
 - (void)removeRemoteControlStateUpdateObserver:(id)arg1;
 - (void)addRemoteControlStateUpdateObserver:(id)arg1;
 - (void)bookmarkButtonPressedWithCompletion:(CDUnknownBlockType)arg1;
 @property(readonly, nonatomic) NSString *localizedTitleForBookmarkCommand;
+@property(readonly, nonatomic) _Bool shouldPlaybackSpeedControlBeEnabled;
+@property(readonly, nonatomic) _Bool shouldPlaybackSpeedControlBeAvailable;
 @property(readonly, nonatomic) _Bool shouldBookmarkCommandBeEnabled;
 @property(readonly, nonatomic) _Bool shouldBookmarkCommandBeAvailable;
 - (void)dislikeButtonPressedWithCompletion:(CDUnknownBlockType)arg1 identifier:(id)arg2;
@@ -52,6 +51,7 @@
 @property(readonly, nonatomic) _Bool shouldLikeCommandBeSelected;
 @property(readonly, nonatomic) _Bool shouldLikeCommandBeEnabled;
 @property(readonly, nonatomic) _Bool shouldLikeCommandBeAvailable;
+@property(readonly, nonatomic) _Bool shouldPauseCommandBeEnabled;
 @property(readonly, nonatomic) _Bool shouldChangePlaybackPositionCommandBeEnabled;
 @property(readonly, nonatomic) _Bool shouldChangePlaybackPositionCommandBeAvailable;
 @property(readonly, nonatomic) _Bool shouldSeekBackwardCommandBeEnabled;
@@ -72,7 +72,7 @@
 @property(readonly, nonatomic) _Bool shouldNextTrackCommandBeAvailable;
 - (void)dailyMixFeedbackUIModelDidChange:(id)arg1;
 - (void)dealloc;
-- (id)initWithPlayer:(id)arg1 dailyMixFeedbackModel:(id)arg2;
+- (id)initWithPlayerProxy:(id)arg1 dailyMixFeedbackModel:(id)arg2;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

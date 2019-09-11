@@ -6,11 +6,10 @@
 
 #import "SPTService-Protocol.h"
 
-@class NSString;
-@protocol SPTFeatureFlagSignal, SPTFreeTierTooltipPresenter;
+@class NSURL;
+@protocol SPTFreeTierTooltipConditionalPresenter;
 
 @protocol SPTFreeTierTooltipService <SPTService>
-- (id <SPTFeatureFlagSignal>)provideFreeTierTooltipServiceEnabledSignal;
-- (id <SPTFreeTierTooltipPresenter>)provideTooltipPresenterForService:(NSString *)arg1;
+- (id <SPTFreeTierTooltipConditionalPresenter>)provideTooltipPresenterForViewURI:(NSURL *)arg1;
 @end
 

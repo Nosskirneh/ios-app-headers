@@ -7,10 +7,6 @@
 #import "NSObject-Protocol.h"
 
 @protocol SPTPSXTestManager <NSObject>
-@property(readonly, nonatomic, getter=isReleaseRadarPSXEnabled) _Bool releaseRadarPSXEnabled;
-@property(readonly, nonatomic, getter=isRecsplanationEnabled) _Bool recsplanationEnabled;
-@property(readonly, nonatomic, getter=isMadeForHubEnabled) _Bool madeForHubEnabled;
-@property(readonly, nonatomic, getter=isMadeForAttributionEnabled) _Bool madeForAttributionEnabled;
 @property(readonly, nonatomic, getter=isCopyDiscoverWeeklyEnabled) _Bool copyDiscoverWeeklyEnabled;
 @property(readonly, nonatomic, getter=isFeedbackEnabled) _Bool feedbackEnabled;
 @property(readonly, nonatomic, getter=isPersonalisedSetsUIEnabled) _Bool personalisedSetsUIEnabled;

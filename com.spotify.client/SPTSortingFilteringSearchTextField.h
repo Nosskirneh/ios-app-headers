@@ -25,6 +25,8 @@
 - (void)updateRightViewButton;
 - (void)setText:(id)arg1;
 - (void)clearText:(id)arg1;
+- (struct CGRect)rightViewRectForBounds:(struct CGRect)arg1;
+- (struct CGRect)leftViewRectForBounds:(struct CGRect)arg1;
 - (void)glue_applyStyle:(id)arg1;
 - (id)initWithFrame:(struct CGRect)arg1;
 

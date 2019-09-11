@@ -42,6 +42,11 @@
 - (id)provideFeatureSettingsItem;
 - (CDUnknownBlockType)provideMultipleChoiceSignalMapperForKey:(id)arg1;
 - (void)validateParameters;
+- (id)swift_withSettingsPageTitle:(id)arg1 settingsItemTitle:(id)arg2 settingsItemDescription:(id)arg3 optionDisplayNames:(id)arg4 requiresRestart:(_Bool)arg5;
+- (id)swift_withOptions:(id)arg1;
+- (id)swift_withLocalSettingsKey:(id)arg1;
+- (id)swift_withDefaultValue:(id)arg1;
+- (id)swift_withAbbaKey:(id)arg1;
 - (id)buildSignals;
 - (id)initWithFeatureFlagFactory:(id)arg1 featureSettingsItemFactory:(id)arg2;
 

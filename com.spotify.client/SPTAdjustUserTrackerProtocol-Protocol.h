@@ -7,21 +7,11 @@
 #import "SPTThirdPartyAppTracker-Protocol.h"
 #import "SPTThirdPartyUserTracker-Protocol.h"
 
-@class NSString;
+@class NSDictionary, NSString;
 
 @protocol SPTAdjustUserTrackerProtocol <SPTThirdPartyUserTracker, SPTThirdPartyAppTracker>
-- (void)operationWithIdentifier:(NSString *)arg1 didFinishWithDuration:(double)arg2;
-- (void)userDidAuthenticateFromScreen:(long long)arg1;
-- (void)userAccountRecoveryCompleted:(_Bool)arg1;
-- (void)accountRecoveryLinkParsed;
-- (void)didFailToFetchFeatureFlags;
-- (void)didReceiveFeatureFlags:(NSString *)arg1 fromCache:(_Bool)arg2;
-- (void)willRequestFeatureFlags;
-- (void)trackKeychainEventWithIdentifier:(long long)arg1;
-- (void)userExperiencedError:(long long)arg1 onScreen:(long long)arg2;
-- (void)userExperiencedError:(long long)arg1 onField:(long long)arg2 onScreen:(long long)arg3;
-- (void)userInteractedWithField:(long long)arg1 onScreen:(long long)arg2;
-- (void)userClickedButton:(long long)arg1 onScreen:(long long)arg2;
-- (void)userDidSeeScreen:(long long)arg1;
+- (void)regenerateSessionID;
+- (void)trackGenericEventWithName:(NSString *)arg1 dataParameters:(NSDictionary *)arg2;
+- (void)trackEventWithToken:(NSString *)arg1 dataParameters:(NSDictionary *)arg2;
 @end
 

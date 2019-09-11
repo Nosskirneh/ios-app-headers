@@ -31,9 +31,11 @@
 - (void)dataLoader:(id)arg1 didReceiveErrorResponse:(id)arg2;
 - (void)dataLoader:(id)arg1 didReceiveSuccessfulResponse:(id)arg2;
 - (void)cancelRequest;
+- (void)performRequestForURL:(id)arg1;
+- (void)requestScannableWithFormat:(unsigned long long)arg1 backgroundColor:(id)arg2 barColor:(unsigned long long)arg3 pixelWidth:(unsigned long long)arg4 uri:(id)arg5;
 - (void)requestOnlyScannableForURL:(id)arg1 imageSize:(struct CGSize)arg2;
 - (void)requestScannableForURL:(id)arg1 imageSize:(struct CGSize)arg2;
-- (void)requestURLForScannableID:(struct NSNumber *)arg1;
+- (void)requestURLForScannableID:(struct NSString *)arg1;
 - (id)initWithDataLoader:(id)arg1;
 
 // Remaining properties

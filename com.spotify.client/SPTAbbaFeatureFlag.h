@@ -6,13 +6,12 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTFeatureFlagSignalObserver-Protocol.h"
 #import "SPTLegacyFeatureFlag-Protocol.h"
 
 @class NSString, SPTObserverManager;
 @protocol SPTFeatureFlagFactory, SPTFeatureFlagSignal;
 
-@interface SPTAbbaFeatureFlag : NSObject <SPTFeatureFlagSignalObserver, SPTLegacyFeatureFlag>
+@interface SPTAbbaFeatureFlag : NSObject <SPTLegacyFeatureFlag>
 {
     _Bool _enabledByDefault;
     NSString *_featureFlagKey;

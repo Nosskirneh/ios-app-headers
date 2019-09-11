@@ -6,27 +6,25 @@
 
 #import <UIKit/UIView.h>
 
-#import "SPTAdOverlayContentUnitView-Protocol.h"
+#import "SPTAdsMobileOverlayContentView-Protocol.h"
 
-@class GLUEGradientView, NSString, SPTLayoutConstraintBuilder, SPTTheme, UIImageView;
+@class GLUEButton, GLUEGradientView, NSString, SPTAdsPromotedContentImageView, SPTTheme;
 
-@interface SPTAdOverlayBaseContentView : UIView <SPTAdOverlayContentUnitView>
+@interface SPTAdOverlayBaseContentView : UIView <SPTAdsMobileOverlayContentView>
 {
-    SPTLayoutConstraintBuilder *_layout;
+    SPTAdsPromotedContentImageView *_contentImageView;
+    GLUEButton *_actionButton;
     SPTTheme *_theme;
-    UIImageView *_backgroundImageView;
     GLUEGradientView *_gradientOverlayView;
 }
 
 @property(readonly, nonatomic) GLUEGradientView *gradientOverlayView; // @synthesize gradientOverlayView=_gradientOverlayView;
-@property(readonly, nonatomic) UIImageView *backgroundImageView; // @synthesize backgroundImageView=_backgroundImageView;
 @property(readonly, nonatomic) SPTTheme *theme; // @synthesize theme=_theme;
+@property(readonly, nonatomic) GLUEButton *actionButton; // @synthesize actionButton=_actionButton;
+@property(readonly, nonatomic) SPTAdsPromotedContentImageView *contentImageView; // @synthesize contentImageView=_contentImageView;
 - (void).cxx_destruct;
-- (void)setBackgroundImage:(id)arg1;
-- (void)setBackgroundColor:(id)arg1;
-- (void)updateConstraints;
-- (void)willMoveToSuperview:(id)arg1;
-- (id)initWithTheme:(id)arg1;
+- (void)addConstraints;
+- (id)initWithTheme:(id)arg1 glueImageLoader:(id)arg2;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

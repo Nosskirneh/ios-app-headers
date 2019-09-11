@@ -14,7 +14,8 @@
 {
 }
 
-- (void)fetchRootItemURIsWithAccessorySessionID:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
+- (id)createRootForURI:(id)arg1 withTitle:(id)arg2 withIcon:(long long)arg3;
+- (id)fetchRootContentWithAccessorySessionID:(id)arg1 contentController:(id)arg2 options:(id)arg3;
 @property(readonly, nonatomic) __weak NSArray *rootItemURIs;
 
 // Remaining properties

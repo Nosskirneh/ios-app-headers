@@ -9,9 +9,8 @@
 @class SPTNowPlayingScrollViewModel, SPTPlayerTrack;
 
 @protocol SPTNowPlayingScrollViewModelDelegate <NSObject>
-- (void)nowPlayingScrollViewModelDidHideBanner:(SPTNowPlayingScrollViewModel *)arg1;
-- (void)nowPlayingScrollViewModelDidChangeComponentProviders:(SPTNowPlayingScrollViewModel *)arg1;
-- (void)nowPlayingScrollViewModelDidLoadFirstComponentProvider:(SPTNowPlayingScrollViewModel *)arg1 forTrack:(SPTPlayerTrack *)arg2;
-- (void)nowPlayingScrollViewModel:(SPTNowPlayingScrollViewModel *)arg1 didMoveToRelativeTrack:(SPTPlayerTrack *)arg2;
+- (void)nowPlayingScrollViewModelDidChangeScrollEnabledStatus:(SPTNowPlayingScrollViewModel *)arg1;
+- (void)nowPlayingScrollViewModelDidChangeBannerStatus:(SPTNowPlayingScrollViewModel *)arg1;
+- (void)nowPlayingScrollViewModel:(SPTNowPlayingScrollViewModel *)arg1 didMoveToRelativeTrack:(SPTPlayerTrack *)arg2 withDifferentProviders:(_Bool)arg3;
 @end
 

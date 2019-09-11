@@ -6,15 +6,17 @@
 
 #import "SettingsSection.h"
 
-@class SPTSettingsTableViewCell;
+@class SPTEqualizerLogger, SPTSettingsTableViewCell;
 @protocol SPTLinkDispatcher;
 
 @interface SPTEqualizerSettingsSection : SettingsSection
 {
     SPTSettingsTableViewCell *_cell;
     id <SPTLinkDispatcher> _linkDispatcher;
+    SPTEqualizerLogger *_equalizerLogger;
 }
 
+@property(retain, nonatomic) SPTEqualizerLogger *equalizerLogger; // @synthesize equalizerLogger=_equalizerLogger;
 @property(retain, nonatomic) id <SPTLinkDispatcher> linkDispatcher; // @synthesize linkDispatcher=_linkDispatcher;
 @property(retain, nonatomic) SPTSettingsTableViewCell *cell; // @synthesize cell=_cell;
 - (void).cxx_destruct;
@@ -22,7 +24,7 @@
 - (id)cellForRow:(long long)arg1;
 - (long long)numberOfRows;
 - (unsigned long long)categoryPosition;
-- (id)initWithSettingsViewController:(id)arg1 linkDispatcher:(id)arg2;
+- (id)initWithSettingsViewController:(id)arg1 linkDispatcher:(id)arg2 equalizerLogger:(id)arg3;
 
 @end
 

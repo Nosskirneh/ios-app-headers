@@ -6,7 +6,7 @@
 
 #import "SPTBannerView.h"
 
-@class SPTLayoutConstraintBuilder, SPTTheme, UIButton, UIImageView, UILabel, UITapGestureRecognizer, UIView;
+@class NSArray, SPTTheme, UIButton, UIImageView, UILabel, UITapGestureRecognizer, UIView;
 
 @interface SPTGoogleMapsBannerView : SPTBannerView
 {
@@ -17,10 +17,10 @@
     UILabel *_mapsSubLabel;
     UIButton *_mapsCloseButton;
     SPTTheme *_theme;
-    SPTLayoutConstraintBuilder *_layoutBuilder;
+    NSArray *_layoutConstraints;
 }
 
-@property(readonly, nonatomic) SPTLayoutConstraintBuilder *layoutBuilder; // @synthesize layoutBuilder=_layoutBuilder;
+@property(readonly, copy, nonatomic) NSArray *layoutConstraints; // @synthesize layoutConstraints=_layoutConstraints;
 @property(readonly, nonatomic) SPTTheme *theme; // @synthesize theme=_theme;
 @property(readonly, nonatomic) UIButton *mapsCloseButton; // @synthesize mapsCloseButton=_mapsCloseButton;
 @property(readonly, nonatomic) UILabel *mapsSubLabel; // @synthesize mapsSubLabel=_mapsSubLabel;

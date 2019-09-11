@@ -7,21 +7,23 @@
 #import <objc/NSObject.h>
 
 @class SPTFeedImageLoaderManager;
+@protocol SPTFeedTableViewCellActionTarget><SPTFeedCreatorViewDelegate><UICollectionViewDelegate><UICollectionViewDataSource;
 
 @interface SPTFeedTableViewCellConfigurator : NSObject
 {
     SPTFeedImageLoaderManager *_imageLoaderManager;
-    id _actionTarget;
+    id <SPTFeedTableViewCellActionTarget><SPTFeedCreatorViewDelegate><UICollectionViewDelegate><UICollectionViewDataSource> _actionTarget;
 }
 
-@property(nonatomic) __weak id actionTarget; // @synthesize actionTarget=_actionTarget;
+@property(nonatomic) __weak id <SPTFeedTableViewCellActionTarget><SPTFeedCreatorViewDelegate><UICollectionViewDelegate><UICollectionViewDataSource> actionTarget; // @synthesize actionTarget=_actionTarget;
 @property(retain, nonatomic) SPTFeedImageLoaderManager *imageLoaderManager; // @synthesize imageLoaderManager=_imageLoaderManager;
 - (void).cxx_destruct;
-- (id)attributedCreatorTitleString:(id)arg1;
+- (id)attributedCreatorTitleString:(id)arg1 updateText:(id)arg2;
+- (void)styleAttributedString:(id)arg1 creatorNames:(id)arg2 updateText:(id)arg3;
 - (void)loadImagesForCell:(id)arg1 entity:(id)arg2;
+- (void)setupCellPlayButton:(id)arg1 entityColor:(id)arg2 indexPath:(id)arg3;
 - (id)configureCarouselCell:(id)arg1 indexPath:(id)arg2 titleLabelText:(id)arg3;
-- (id)configureMultipleTrackCell:(id)arg1 indexPath:(id)arg2 entityColor:(id)arg3 entityTitleText:(id)arg4 entitySubtitleText:(id)arg5 creators:(id)arg6 creatorUpdateText:(id)arg7 timeStamp:(id)arg8;
-- (id)configureSingleTrackCell:(id)arg1 tableView:(id)arg2 indexPath:(id)arg3 entityColor:(id)arg4 creators:(id)arg5 creatorUpdateText:(id)arg6 timeStamp:(id)arg7 trackTitleText:(id)arg8 trackSubtitleText:(id)arg9;
+- (id)configureFeedItemCell:(id)arg1 indexPath:(id)arg2 entityColor:(id)arg3 entityTitleText:(id)arg4 entitySubtitleText:(id)arg5 creators:(id)arg6 creatorUpdateText:(id)arg7 timeStamp:(id)arg8 audioPreviewModel:(id)arg9;
 - (id)configureRecommendationsCell:(id)arg1 indexPath:(id)arg2 tableView:(id)arg3;
 - (id)configurePodcastCell:(id)arg1 indexPath:(id)arg2 tableView:(id)arg3;
 - (id)configureAlbumCell:(id)arg1 indexPath:(id)arg2 tableView:(id)arg3;

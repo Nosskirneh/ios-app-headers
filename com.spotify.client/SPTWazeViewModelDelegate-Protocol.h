@@ -9,6 +9,7 @@
 @class SPTWazeViewModel;
 
 @protocol SPTWazeViewModelDelegate <NSObject>
+- (void)viewModelDidReceiveWazeDeepLink:(SPTWazeViewModel *)arg1;
 - (void)viewModel:(SPTWazeViewModel *)arg1 didUpdateState:(long long)arg2;
 @end
 

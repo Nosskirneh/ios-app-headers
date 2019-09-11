@@ -6,29 +6,29 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTAdRegistryObserver-Protocol.h"
+#import "SPTAdsBaseRegistryObserver-Protocol.h"
 
-@class NSString, SPTAdEntity, SPTAdRegistry, UIButton;
-@protocol GLUEImageLoader, SPTContainerUIService, SPTLinkDispatcher;
+@class NSString, UIButton;
+@protocol GLUEImageLoader, SPTAdsBaseEntity, SPTAdsBaseRegistry, SPTContainerUIService, SPTLinkDispatcher;
 
-@interface SPTAdRegistryInformationManager : NSObject <SPTAdRegistryObserver>
+@interface SPTAdRegistryInformationManager : NSObject <SPTAdsBaseRegistryObserver>
 {
     _Bool _queueButtonVisible;
-    SPTAdRegistry *_registry;
+    id <SPTAdsBaseRegistry> _registry;
     id <SPTContainerUIService> _containerUIService;
     id <GLUEImageLoader> _glueImageLoader;
     id <SPTLinkDispatcher> _linkDispatcher;
-    SPTAdEntity *_currentEntity;
+    id <SPTAdsBaseEntity> _currentEntity;
     UIButton *_logAdButton;
 }
 
 @property(nonatomic, getter=isQueueButtonVisible) _Bool queueButtonVisible; // @synthesize queueButtonVisible=_queueButtonVisible;
 @property(retain, nonatomic) UIButton *logAdButton; // @synthesize logAdButton=_logAdButton;
-@property(nonatomic) __weak SPTAdEntity *currentEntity; // @synthesize currentEntity=_currentEntity;
+@property(nonatomic) __weak id <SPTAdsBaseEntity> currentEntity; // @synthesize currentEntity=_currentEntity;
 @property(nonatomic) __weak id <SPTLinkDispatcher> linkDispatcher; // @synthesize linkDispatcher=_linkDispatcher;
 @property(readonly, nonatomic) id <GLUEImageLoader> glueImageLoader; // @synthesize glueImageLoader=_glueImageLoader;
 @property(nonatomic) __weak id <SPTContainerUIService> containerUIService; // @synthesize containerUIService=_containerUIService;
-@property(readonly, nonatomic) __weak SPTAdRegistry *registry; // @synthesize registry=_registry;
+@property(readonly, nonatomic) __weak id <SPTAdsBaseRegistry> registry; // @synthesize registry=_registry;
 - (void).cxx_destruct;
 - (id)windowToPresentFrom;
 - (void)didTapInformationButton;

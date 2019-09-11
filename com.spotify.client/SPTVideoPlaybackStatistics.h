@@ -9,6 +9,7 @@
 @interface SPTVideoPlaybackStatistics : NSObject
 {
     long long _msPlayed;
+    long long _msPlayedNominal;
     long long _msPlayedBackground;
     long long _msPlayedFullscreen;
     long long _msPlayedSubtitles;
@@ -53,6 +54,7 @@
 @property(readonly, nonatomic) long long msPlayedSubtitles; // @synthesize msPlayedSubtitles=_msPlayedSubtitles;
 @property(readonly, nonatomic) long long msPlayedFullscreen; // @synthesize msPlayedFullscreen=_msPlayedFullscreen;
 @property(readonly, nonatomic) long long msPlayedBackground; // @synthesize msPlayedBackground=_msPlayedBackground;
+@property(readonly, nonatomic) long long msPlayedNominal; // @synthesize msPlayedNominal=_msPlayedNominal;
 @property(readonly, nonatomic) long long msPlayed; // @synthesize msPlayed=_msPlayed;
 - (double)calculateMaxContinous:(id)arg1;
 - (id)orderByStartPosition:(id)arg1;

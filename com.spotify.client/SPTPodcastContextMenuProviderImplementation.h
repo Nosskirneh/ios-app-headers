@@ -22,8 +22,8 @@
 @property(retain, nonatomic) SPTShowContextMenuController *contextMenuController; // @synthesize contextMenuController=_contextMenuController;
 @property(nonatomic) __weak id <SPTShowEntityService> showEntityService; // @synthesize showEntityService=_showEntityService;
 - (void).cxx_destruct;
+- (id)provideShowContextMenuControllerOptions;
 - (void)presentContextMenuForEpisodeURI:(id)arg1 withMetadata:(id)arg2 sourceContextURI:(id)arg3 inViewController:(id)arg4 senderView:(id)arg5 options:(id)arg6;
-- (void)presentContextMenuForEpisodeURI:(id)arg1 withMetadata:(id)arg2 sourceContextURI:(id)arg3 inViewController:(id)arg4 senderView:(id)arg5;
 - (id)initWithShowEntityService:(id)arg1 contextMenuController:(id)arg2 contextMenuDelegate:(id)arg3;
 
 // Remaining properties

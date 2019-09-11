@@ -10,7 +10,7 @@
 
 @interface SPTAccesspointResolver : NSObject
 {
-    struct unique_ptr<spotify::accesspoint_resolve::ApResolver, std::__1::default_delete<spotify::accesspoint_resolve::ApResolver>> _ap_resolver;
+    struct unique_ptr<spotify::xresolve::Resolver, std::__1::default_delete<spotify::xresolve::Resolver>> _resolver;
     id <SPTAccesspointResolverDelegate> _delegate;
 }
 

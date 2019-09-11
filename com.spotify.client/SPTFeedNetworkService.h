@@ -8,19 +8,25 @@
 
 #import "SPTDataLoaderDelegate-Protocol.h"
 
-@class NSString, NSURL, SPTDataLoader, SPTFeedHeartBeatRefreshStore;
+@class NSString, NSURL, SPTDataLoader, SPTFeedHeartBeatRefreshStore, SPTFeedPlaybackStatusManager;
+@protocol SPTFeedFeatureFlags;
 
 @interface SPTFeedNetworkService : NSObject <SPTDataLoaderDelegate>
 {
     SPTFeedHeartBeatRefreshStore *_heartBeatRefreshStore;
     SPTDataLoader *_dataLoader;
     NSURL *_feedNextPageURL;
+    id <SPTFeedFeatureFlags> _feedFeatureFlags;
+    SPTFeedPlaybackStatusManager *_playbackStatusManager;
 }
 
+@property(readonly, nonatomic) SPTFeedPlaybackStatusManager *playbackStatusManager; // @synthesize playbackStatusManager=_playbackStatusManager;
+@property(retain, nonatomic) id <SPTFeedFeatureFlags> feedFeatureFlags; // @synthesize feedFeatureFlags=_feedFeatureFlags;
 @property(retain, nonatomic) NSURL *feedNextPageURL; // @synthesize feedNextPageURL=_feedNextPageURL;
 @property(retain, nonatomic) SPTDataLoader *dataLoader; // @synthesize dataLoader=_dataLoader;
 @property(retain, nonatomic) SPTFeedHeartBeatRefreshStore *heartBeatRefreshStore; // @synthesize heartBeatRefreshStore=_heartBeatRefreshStore;
 - (void).cxx_destruct;
+- (id)pathComponents;
 - (id)constructURLWithLimit:(id)arg1 filter:(id)arg2;
 - (id)entityForDictionary:(id)arg1;
 - (id)parseResponseDictionary:(id)arg1;
@@ -30,7 +36,7 @@
 - (void)fetchMostRecentFeedItemOnQueue:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
 - (void)fetchFeedNextPageOnQueue:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
 - (void)fetchFeedDataOnQueue:(id)arg1 filter:(id)arg2 completionBlock:(CDUnknownBlockType)arg3;
-- (id)initWithDataLoader:(id)arg1 heartBeatRefreshStore:(id)arg2;
+- (id)initWithDataLoader:(id)arg1 heartBeatRefreshStore:(id)arg2 feedFeatureFlags:(id)arg3 playbackStatusManager:(id)arg4;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

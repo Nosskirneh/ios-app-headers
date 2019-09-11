@@ -95,7 +95,9 @@
 - (void)configureViewForFilteringMode:(_Bool)arg1 animated:(_Bool)arg2;
 - (void)updateFriendsCount:(unsigned long long)arg1;
 - (void)showInfoView:(_Bool)arg1;
-- (void)showOfflineView:(_Bool)arg1;
+- (void)showErrorView;
+- (void)showOfflineView;
+- (void)showConnectToFacebookView;
 - (void)updateNUXInfoView;
 - (void)changeVisibilityOfFriendsTableHeaderView;
 - (void)applyViewLayoutWithSize:(struct CGSize)arg1;

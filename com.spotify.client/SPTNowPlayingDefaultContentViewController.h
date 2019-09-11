@@ -6,75 +6,72 @@
 
 #import <UIKit/UIViewController.h>
 
-#import "SPTCarouselBackgroundBlurDelegate-Protocol.h"
+#import "SPTNowPlayingCarouselBackgroundBlurDelegate-Protocol.h"
 #import "SPTNowPlayingCarouselContentProviderRegistryImplementationDelegate-Protocol.h"
 #import "SPTNowPlayingContainerIdleMonitorObserver-Protocol.h"
+#import "SPTNowPlayingContainerIdleMonitorReceiving-Protocol.h"
 #import "SPTNowPlayingContentViewController-Protocol.h"
 #import "SPTNowPlayingContentViewDataSource-Protocol.h"
 #import "SPTNowPlayingContentViewDelegate-Protocol.h"
 #import "SPTPlayerObserver-Protocol.h"
 #import "UIGestureRecognizerDelegate-Protocol.h"
 
-@class NSArray, NSString, SPTCarouselBackgroundBlurController, SPTCarouselBlurBackgroundView, SPTLayoutConstraintBuilder, SPTNowPlayingBackgroundGradientView, SPTNowPlayingCarouselContentProviderRegistryImplementation, SPTNowPlayingContentCornersView, SPTNowPlayingContentView, SPTNowPlayingContentViewModel, SPTNowPlayingLogger, SPTNowPlayingModel, SPTNowPlayingShowsFormatOverlayView, SPTTheme;
-@protocol SPTAdsManager, SPTImageLoaderFactory, SPTNowPlayingContentViewControllerDelegate, SPTNowPlayingTestManager, SPTNowPlayingVideoManager, SPTPlayer, SPTUpsellManager, SPTVideoSurfaceManager;
+@class NSString, SPTNowPlayingCarouselBackgroundBlurController, SPTNowPlayingCarouselContentProviderRegistryImplementation, SPTNowPlayingContainerIdleMonitor, SPTNowPlayingContentView, SPTNowPlayingContentViewModel, SPTNowPlayingLogger, SPTNowPlayingModel, SPTNowPlayingShowsFormatOverlayView, SPTNowPlayingSkipLimitReachedMessageRequester, SPTObserverManager, SPTTheme, SPTVideoSurfaceFactory;
+@protocol SPTAdsManager, SPTImageLoaderFactory, SPTNowPlayingContentViewControllerObserver, SPTNowPlayingTestManager, SPTNowPlayingVideoManager, SPTPlayer, SPTVideoSurfaceManager;
 
-@interface SPTNowPlayingDefaultContentViewController : UIViewController <SPTNowPlayingContainerIdleMonitorObserver, SPTCarouselBackgroundBlurDelegate, SPTPlayerObserver, UIGestureRecognizerDelegate, SPTNowPlayingContentViewDataSource, SPTNowPlayingCarouselContentProviderRegistryImplementationDelegate, SPTNowPlayingContentViewDelegate, SPTNowPlayingContentViewController>
+@interface SPTNowPlayingDefaultContentViewController : UIViewController <SPTNowPlayingContainerIdleMonitorObserver, SPTNowPlayingCarouselBackgroundBlurDelegate, SPTPlayerObserver, UIGestureRecognizerDelegate, SPTNowPlayingContentViewDataSource, SPTNowPlayingCarouselContentProviderRegistryImplementationDelegate, SPTNowPlayingContentViewDelegate, SPTNowPlayingContentViewController, SPTNowPlayingContainerIdleMonitorReceiving>
 {
     _Bool _shouldOverrideVideoAppearance;
-    _Bool _isIdle;
     _Bool _useLargeArtwork;
-    SPTCarouselBackgroundBlurController *blurController;
-    id <SPTNowPlayingContentViewControllerDelegate> _delegate;
+    SPTNowPlayingCarouselBackgroundBlurController *blurController;
+    id <SPTNowPlayingContentViewControllerObserver> _delegate;
     SPTNowPlayingModel *_model;
     SPTTheme *_theme;
+    SPTObserverManager *_observerManager;
     SPTNowPlayingShowsFormatOverlayView *_overlayView;
     SPTNowPlayingContentView *_contentView;
     SPTNowPlayingLogger *_logger;
     SPTNowPlayingContentViewModel *_contentViewModel;
     id <SPTImageLoaderFactory> _imageLoaderFactory;
     id <SPTVideoSurfaceManager> _videoSurfaceManager;
+    SPTVideoSurfaceFactory *_surfaceFactory;
     id <SPTNowPlayingVideoManager> _nowPlayingVideoManager;
     id <SPTNowPlayingTestManager> _testManager;
-    id <SPTUpsellManager> _upsellManager;
+    SPTNowPlayingSkipLimitReachedMessageRequester *_skipLimitReachedMessageRequester;
     SPTNowPlayingCarouselContentProviderRegistryImplementation *_carouselRegistry;
     id <SPTAdsManager> _adsManager;
-    SPTCarouselBlurBackgroundView *_backgroundView;
-    SPTNowPlayingBackgroundGradientView *_backgroundGradientView;
-    SPTNowPlayingContentCornersView *_contentCornersView;
-    SPTLayoutConstraintBuilder *_layout;
-    NSArray *_extraLayoutConstraints;
+    SPTNowPlayingContainerIdleMonitor *_idleMonitor;
     UIViewController *_contentDecorationViewController;
     id <SPTPlayer> _player;
     struct CGRect _emptyFrame;
 }
 
 @property(readonly, nonatomic) _Bool useLargeArtwork; // @synthesize useLargeArtwork=_useLargeArtwork;
-@property(nonatomic) _Bool isIdle; // @synthesize isIdle=_isIdle;
 @property(nonatomic) _Bool shouldOverrideVideoAppearance; // @synthesize shouldOverrideVideoAppearance=_shouldOverrideVideoAppearance;
 @property(nonatomic) struct CGRect emptyFrame; // @synthesize emptyFrame=_emptyFrame;
 @property(readonly, nonatomic) id <SPTPlayer> player; // @synthesize player=_player;
 @property(retain, nonatomic) UIViewController *contentDecorationViewController; // @synthesize contentDecorationViewController=_contentDecorationViewController;
-@property(retain, nonatomic) NSArray *extraLayoutConstraints; // @synthesize extraLayoutConstraints=_extraLayoutConstraints;
-@property(retain, nonatomic) SPTLayoutConstraintBuilder *layout; // @synthesize layout=_layout;
-@property(retain, nonatomic) SPTNowPlayingContentCornersView *contentCornersView; // @synthesize contentCornersView=_contentCornersView;
-@property(retain, nonatomic) SPTNowPlayingBackgroundGradientView *backgroundGradientView; // @synthesize backgroundGradientView=_backgroundGradientView;
-@property(retain, nonatomic) SPTCarouselBlurBackgroundView *backgroundView; // @synthesize backgroundView=_backgroundView;
+@property(retain, nonatomic) SPTNowPlayingContainerIdleMonitor *idleMonitor; // @synthesize idleMonitor=_idleMonitor;
 @property(readonly, nonatomic) __weak id <SPTAdsManager> adsManager; // @synthesize adsManager=_adsManager;
 @property(retain, nonatomic) SPTNowPlayingCarouselContentProviderRegistryImplementation *carouselRegistry; // @synthesize carouselRegistry=_carouselRegistry;
-@property(readonly, nonatomic) __weak id <SPTUpsellManager> upsellManager; // @synthesize upsellManager=_upsellManager;
+@property(readonly, nonatomic) SPTNowPlayingSkipLimitReachedMessageRequester *skipLimitReachedMessageRequester; // @synthesize skipLimitReachedMessageRequester=_skipLimitReachedMessageRequester;
 @property(readonly, nonatomic) id <SPTNowPlayingTestManager> testManager; // @synthesize testManager=_testManager;
 @property(readonly, nonatomic) id <SPTNowPlayingVideoManager> nowPlayingVideoManager; // @synthesize nowPlayingVideoManager=_nowPlayingVideoManager;
+@property(readonly, nonatomic) SPTVideoSurfaceFactory *surfaceFactory; // @synthesize surfaceFactory=_surfaceFactory;
 @property(readonly, nonatomic) id <SPTVideoSurfaceManager> videoSurfaceManager; // @synthesize videoSurfaceManager=_videoSurfaceManager;
 @property(readonly, nonatomic) id <SPTImageLoaderFactory> imageLoaderFactory; // @synthesize imageLoaderFactory=_imageLoaderFactory;
 @property(retain, nonatomic) SPTNowPlayingContentViewModel *contentViewModel; // @synthesize contentViewModel=_contentViewModel;
 @property(readonly, nonatomic) SPTNowPlayingLogger *logger; // @synthesize logger=_logger;
 @property(retain, nonatomic) SPTNowPlayingContentView *contentView; // @synthesize contentView=_contentView;
 @property(retain, nonatomic) SPTNowPlayingShowsFormatOverlayView *overlayView; // @synthesize overlayView=_overlayView;
+@property(readonly, nonatomic) SPTObserverManager *observerManager; // @synthesize observerManager=_observerManager;
 @property(readonly, nonatomic) SPTTheme *theme; // @synthesize theme=_theme;
 @property(readonly, nonatomic) SPTNowPlayingModel *model; // @synthesize model=_model;
-@property(nonatomic) __weak id <SPTNowPlayingContentViewControllerDelegate> delegate; // @synthesize delegate=_delegate;
-@property(retain, nonatomic) SPTCarouselBackgroundBlurController *blurController; // @synthesize blurController;
+@property(nonatomic) __weak id <SPTNowPlayingContentViewControllerObserver> delegate; // @synthesize delegate=_delegate;
+@property(retain, nonatomic) SPTNowPlayingCarouselBackgroundBlurController *blurController; // @synthesize blurController;
 - (void).cxx_destruct;
+- (void)viewWillTransitionToSize:(struct CGSize)arg1 withTransitionCoordinator:(id)arg2;
+- (void)forceDisplayControls;
 - (void)contentViewDidReloadData:(id)arg1;
 - (void)carouselRegistry:(id)arg1 didRefreshContentProviderFactory:(id)arg2;
 - (id)createCell;
@@ -88,7 +85,8 @@
 - (void)idlePeriodDidEnd;
 - (void)idlePeriodDidBegin;
 - (void)contentViewTapped:(id)arg1;
-- (void)updateViewConstraints;
+- (void)refreshOverlayVisibility;
+- (_Bool)isShowingOverlayForCurrentPage;
 @property(readonly, nonatomic) _Bool shouldTrackIdlePeriodChanges;
 - (_Bool)shouldShowOverlayForPage:(long long)arg1;
 - (void)viewDidDisappear:(_Bool)arg1;
@@ -96,14 +94,17 @@
 - (void)viewWillAppear:(_Bool)arg1;
 - (void)viewDidAppear:(_Bool)arg1;
 - (void)viewDidLoad;
+- (void)removeObserver:(id)arg1;
+- (void)addObserver:(id)arg1;
 - (void)dealloc;
-- (id)initWithModel:(id)arg1 imageLoaderFactory:(id)arg2 theme:(id)arg3 logger:(id)arg4 videoSurfaceManager:(id)arg5 nowPlayingVideoManager:(id)arg6 testManager:(id)arg7 upsellManager:(id)arg8 carouselRegistry:(id)arg9 player:(id)arg10 adsManager:(id)arg11;
+- (id)initWithModel:(id)arg1 imageLoaderFactory:(id)arg2 theme:(id)arg3 logger:(id)arg4 videoSurfaceManager:(id)arg5 surfaceFactory:(id)arg6 nowPlayingVideoManager:(id)arg7 testManager:(id)arg8 skipLimitReachedMessageRequester:(id)arg9 carouselRegistry:(id)arg10 player:(id)arg11 adsManager:(id)arg12;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
 @property(readonly) unsigned long long hash;
 @property(readonly) Class superclass;
+@property(nonatomic) struct UIEdgeInsets windowedContentInsets;
 
 @end
 

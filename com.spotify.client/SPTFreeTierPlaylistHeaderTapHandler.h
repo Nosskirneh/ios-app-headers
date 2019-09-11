@@ -6,20 +6,15 @@
 
 #import <objc/NSObject.h>
 
-@class SPTUIBlurView, UIImageView;
+@class UIImageView;
 
 @interface SPTFreeTierPlaylistHeaderTapHandler : NSObject
 {
     UIImageView *_imageView;
-    SPTUIBlurView *_overlayView;
-    UIImageView *_overlayImageView;
 }
 
-@property(retain, nonatomic) UIImageView *overlayImageView; // @synthesize overlayImageView=_overlayImageView;
-@property(retain, nonatomic) SPTUIBlurView *overlayView; // @synthesize overlayView=_overlayView;
 @property(nonatomic) __weak UIImageView *imageView; // @synthesize imageView=_imageView;
 - (void).cxx_destruct;
-- (void)overlayViewDismissedWithRecognizer:(id)arg1;
 - (void)imageViewTapped;
 - (id)initWithImageView:(id)arg1;
 

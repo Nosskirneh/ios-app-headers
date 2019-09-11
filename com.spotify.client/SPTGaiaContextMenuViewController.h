@@ -35,7 +35,6 @@
 - (void)presentViewController:(id)arg1 forAction:(id)arg2;
 - (_Bool)contextMenuView:(id)arg1 shouldBeDismissedAfterPerformingAction:(id)arg2;
 - (void)dismissContextMenuView:(id)arg1 dismissalStyle:(long long)arg2 completion:(CDUnknownBlockType)arg3;
-- (void)viewDidAppear:(_Bool)arg1;
 - (void)loadView;
 - (id)initWithContextMenuModel:(id)arg1 logger:(id)arg2 modalPresentationController:(id)arg3;
 

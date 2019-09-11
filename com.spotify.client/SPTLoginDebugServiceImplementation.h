@@ -6,15 +6,17 @@
 
 #import <objc/NSObject.h>
 
+#import "SPTLoginAccountSwitcher-Protocol.h"
 #import "SPTService-Protocol.h"
 
 @class NSString, SPTAllocationContext;
 
-@interface SPTLoginDebugServiceImplementation : NSObject <SPTService>
+@interface SPTLoginDebugServiceImplementation : NSObject <SPTLoginAccountSwitcher, SPTService>
 {
 }
 
 + (id)serviceIdentifier;
+- (void)switchToUser:(id)arg1 password:(id)arg2;
 - (void)configureWithServices:(id)arg1;
 
 // Remaining properties

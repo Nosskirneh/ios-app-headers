@@ -6,13 +6,12 @@
 
 #import "NSObject-Protocol.h"
 
-@protocol SPTContentEngagementOptionsModeController, SPTDrivingModeController, SPTNowPlayingMode, SPTNowPlayingModeResolverObserver;
+@protocol SPTDrivingModeController, SPTNowPlayingMode, SPTNowPlayingModeResolverObserver;
 
 @protocol SPTNowPlayingModeResolver <NSObject>
 @property(readonly, nonatomic) id <SPTNowPlayingMode> mode;
 - (void)removeObserver:(id <SPTNowPlayingModeResolverObserver>)arg1;
 - (void)addObserver:(id <SPTNowPlayingModeResolverObserver>)arg1;
-- (void)updateCEOModeController:(id <SPTContentEngagementOptionsModeController>)arg1;
 - (void)updateDrivingModeController:(id <SPTDrivingModeController>)arg1;
 @end
 

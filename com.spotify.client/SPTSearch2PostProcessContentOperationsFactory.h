@@ -9,11 +9,11 @@
 #import "SPTSearch2ContentOperationsFactory-Protocol.h"
 
 @class NSString;
-@protocol EXP_SPTHubContentOperationFactory, SPTExplicitContentHubContentOperationFactory, SPTOnDemandService, SPTSearch2UserTierProviding;
+@protocol SPTExplicitContentHubContentOperationFactory, SPTHubContentOperationFactory, SPTOnDemandService, SPTSearch2UserTierProviding;
 
 @interface SPTSearch2PostProcessContentOperationsFactory : NSObject <SPTSearch2ContentOperationsFactory>
 {
-    id <EXP_SPTHubContentOperationFactory> _hubContentOperationFactory;
+    id <SPTHubContentOperationFactory> _hubContentOperationFactory;
     id <SPTExplicitContentHubContentOperationFactory> _explicitContentContentOperationFactory;
     id <SPTOnDemandService> _onDemandService;
     id <SPTSearch2UserTierProviding> _userTierProvider;
@@ -22,7 +22,7 @@
 @property(readonly, nonatomic) id <SPTSearch2UserTierProviding> userTierProvider; // @synthesize userTierProvider=_userTierProvider;
 @property(readonly, nonatomic) __weak id <SPTOnDemandService> onDemandService; // @synthesize onDemandService=_onDemandService;
 @property(readonly, nonatomic) id <SPTExplicitContentHubContentOperationFactory> explicitContentContentOperationFactory; // @synthesize explicitContentContentOperationFactory=_explicitContentContentOperationFactory;
-@property(readonly, nonatomic) id <EXP_SPTHubContentOperationFactory> hubContentOperationFactory; // @synthesize hubContentOperationFactory=_hubContentOperationFactory;
+@property(readonly, nonatomic) id <SPTHubContentOperationFactory> hubContentOperationFactory; // @synthesize hubContentOperationFactory=_hubContentOperationFactory;
 - (void).cxx_destruct;
 - (id)makePlaybackDisablingContentOperation;
 - (id)makePlaybackHighlightContentOperation;

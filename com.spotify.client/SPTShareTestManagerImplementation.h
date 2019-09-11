@@ -6,18 +6,15 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTFeatureFlagSignalObserver-Protocol.h"
 #import "SPTShareTestManager-Protocol.h"
 
 @class NSString;
 @protocol SPTFeatureFlagFactory, SPTFeatureFlagSignal;
 
-@interface SPTShareTestManagerImplementation : NSObject <SPTFeatureFlagSignalObserver, SPTShareTestManager>
+@interface SPTShareTestManagerImplementation : NSObject <SPTShareTestManager>
 {
     _Bool _isScreenshotsEnabled;
     _Bool _isSnapchatEnabled;
-    _Bool _isSnapchatDisclaimerEnabled;
-    _Bool _isSnapchatPlaylistEnabled;
     _Bool _isBrowselinkIdEnabled;
     _Bool _isScreenshotBannerTypeControl;
     _Bool _isScreenshotBannerTypeBlueCloseEnabled;
@@ -30,11 +27,12 @@
     _Bool _isInstagramStoriesPodcastEnabled;
     _Bool _isFacebookStoriesEnabled;
     _Bool _isFacebookStoriesPodcastEnabled;
+    _Bool _isFacebookStoriesAllAssetsEnabled;
+    _Bool _isTikTokSharingEnabled;
+    _Bool _isDragDropSharingEnabled;
     id <SPTFeatureFlagFactory> _featureFlagFactory;
     id <SPTFeatureFlagSignal> _screenshotsEnabledSignal;
     id <SPTFeatureFlagSignal> _snapchatEnabledSignal;
-    id <SPTFeatureFlagSignal> _snapchatDisclaimerEnabledSignal;
-    id <SPTFeatureFlagSignal> _snapchatPlaylistEnabledSignal;
     id <SPTFeatureFlagSignal> _browselinkIdEnabledSignal;
     id <SPTFeatureFlagSignal> _screenshotBannerTypeControlSignal;
     id <SPTFeatureFlagSignal> _screenshotBannerTypeBlueCloseSignal;
@@ -47,8 +45,14 @@
     id <SPTFeatureFlagSignal> _instagramStoriesPodcastEnabledSignal;
     id <SPTFeatureFlagSignal> _facebookStoriesEnabledSignal;
     id <SPTFeatureFlagSignal> _facebookStoriesPodcastEnabledSignal;
+    id <SPTFeatureFlagSignal> _facebookStoriesAllAssetsEnabledSignal;
+    id <SPTFeatureFlagSignal> _tikTokSharingEnabledSignal;
+    id <SPTFeatureFlagSignal> _dragDropSharingEnabledSignal;
 }
 
+@property(nonatomic) _Bool isDragDropSharingEnabled; // @synthesize isDragDropSharingEnabled=_isDragDropSharingEnabled;
+@property(nonatomic) _Bool isTikTokSharingEnabled; // @synthesize isTikTokSharingEnabled=_isTikTokSharingEnabled;
+@property(nonatomic) _Bool isFacebookStoriesAllAssetsEnabled; // @synthesize isFacebookStoriesAllAssetsEnabled=_isFacebookStoriesAllAssetsEnabled;
 @property(nonatomic) _Bool isFacebookStoriesPodcastEnabled; // @synthesize isFacebookStoriesPodcastEnabled=_isFacebookStoriesPodcastEnabled;
 @property(nonatomic) _Bool isFacebookStoriesEnabled; // @synthesize isFacebookStoriesEnabled=_isFacebookStoriesEnabled;
 @property(nonatomic) _Bool isInstagramStoriesPodcastEnabled; // @synthesize isInstagramStoriesPodcastEnabled=_isInstagramStoriesPodcastEnabled;
@@ -61,10 +65,11 @@
 @property(nonatomic) _Bool isScreenshotBannerTypeBlueCloseEnabled; // @synthesize isScreenshotBannerTypeBlueCloseEnabled=_isScreenshotBannerTypeBlueCloseEnabled;
 @property(nonatomic) _Bool isScreenshotBannerTypeControl; // @synthesize isScreenshotBannerTypeControl=_isScreenshotBannerTypeControl;
 @property(nonatomic) _Bool isBrowselinkIdEnabled; // @synthesize isBrowselinkIdEnabled=_isBrowselinkIdEnabled;
-@property(nonatomic) _Bool isSnapchatPlaylistEnabled; // @synthesize isSnapchatPlaylistEnabled=_isSnapchatPlaylistEnabled;
-@property(nonatomic) _Bool isSnapchatDisclaimerEnabled; // @synthesize isSnapchatDisclaimerEnabled=_isSnapchatDisclaimerEnabled;
 @property(nonatomic) _Bool isSnapchatEnabled; // @synthesize isSnapchatEnabled=_isSnapchatEnabled;
 @property(nonatomic) _Bool isScreenshotsEnabled; // @synthesize isScreenshotsEnabled=_isScreenshotsEnabled;
+@property(retain, nonatomic) id <SPTFeatureFlagSignal> dragDropSharingEnabledSignal; // @synthesize dragDropSharingEnabledSignal=_dragDropSharingEnabledSignal;
+@property(retain, nonatomic) id <SPTFeatureFlagSignal> tikTokSharingEnabledSignal; // @synthesize tikTokSharingEnabledSignal=_tikTokSharingEnabledSignal;
+@property(retain, nonatomic) id <SPTFeatureFlagSignal> facebookStoriesAllAssetsEnabledSignal; // @synthesize facebookStoriesAllAssetsEnabledSignal=_facebookStoriesAllAssetsEnabledSignal;
 @property(retain, nonatomic) id <SPTFeatureFlagSignal> facebookStoriesPodcastEnabledSignal; // @synthesize facebookStoriesPodcastEnabledSignal=_facebookStoriesPodcastEnabledSignal;
 @property(retain, nonatomic) id <SPTFeatureFlagSignal> facebookStoriesEnabledSignal; // @synthesize facebookStoriesEnabledSignal=_facebookStoriesEnabledSignal;
 @property(retain, nonatomic) id <SPTFeatureFlagSignal> instagramStoriesPodcastEnabledSignal; // @synthesize instagramStoriesPodcastEnabledSignal=_instagramStoriesPodcastEnabledSignal;
@@ -77,8 +82,6 @@
 @property(retain, nonatomic) id <SPTFeatureFlagSignal> screenshotBannerTypeBlueCloseSignal; // @synthesize screenshotBannerTypeBlueCloseSignal=_screenshotBannerTypeBlueCloseSignal;
 @property(retain, nonatomic) id <SPTFeatureFlagSignal> screenshotBannerTypeControlSignal; // @synthesize screenshotBannerTypeControlSignal=_screenshotBannerTypeControlSignal;
 @property(retain, nonatomic) id <SPTFeatureFlagSignal> browselinkIdEnabledSignal; // @synthesize browselinkIdEnabledSignal=_browselinkIdEnabledSignal;
-@property(retain, nonatomic) id <SPTFeatureFlagSignal> snapchatPlaylistEnabledSignal; // @synthesize snapchatPlaylistEnabledSignal=_snapchatPlaylistEnabledSignal;
-@property(retain, nonatomic) id <SPTFeatureFlagSignal> snapchatDisclaimerEnabledSignal; // @synthesize snapchatDisclaimerEnabledSignal=_snapchatDisclaimerEnabledSignal;
 @property(retain, nonatomic) id <SPTFeatureFlagSignal> snapchatEnabledSignal; // @synthesize snapchatEnabledSignal=_snapchatEnabledSignal;
 @property(retain, nonatomic) id <SPTFeatureFlagSignal> screenshotsEnabledSignal; // @synthesize screenshotsEnabledSignal=_screenshotsEnabledSignal;
 @property(readonly, nonatomic) id <SPTFeatureFlagFactory> featureFlagFactory; // @synthesize featureFlagFactory=_featureFlagFactory;

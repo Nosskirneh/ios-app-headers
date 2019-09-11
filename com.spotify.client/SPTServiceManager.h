@@ -8,7 +8,7 @@
 
 #import "SPTServiceProvider-Protocol.h"
 
-@class NSArray, NSMutableArray, NSMutableDictionary, NSOperation, NSOperationQueue, NSString;
+@class NSArray, NSMutableDictionary, NSOperation, NSString;
 @protocol SPTServiceInstanceInteractor, SPTServiceManagerDelegate;
 
 @interface SPTServiceManager : NSObject <SPTServiceProvider>
@@ -19,32 +19,28 @@
     NSArray *_enabledServices;
     long long _state;
     NSString *_scope;
-    NSOperationQueue *_operationQueue;
-    NSMutableDictionary *_operations;
     NSMutableDictionary *_services;
-    NSMutableArray *_serviceLoadOrder;
+    NSArray *_serviceLoadOrder;
     NSString *_currentlyConfiguringService;
     id <SPTServiceInstanceInteractor> _instanceInteractor;
 }
 
 @property(readonly, copy, nonatomic) id <SPTServiceInstanceInteractor> instanceInteractor; // @synthesize instanceInteractor=_instanceInteractor;
 @property(retain, nonatomic) NSString *currentlyConfiguringService; // @synthesize currentlyConfiguringService=_currentlyConfiguringService;
-@property(retain, nonatomic) NSMutableArray *serviceLoadOrder; // @synthesize serviceLoadOrder=_serviceLoadOrder;
+@property(retain, nonatomic) NSArray *serviceLoadOrder; // @synthesize serviceLoadOrder=_serviceLoadOrder;
 @property(readonly, nonatomic) NSMutableDictionary *services; // @synthesize services=_services;
-@property(retain, nonatomic) NSMutableDictionary *operations; // @synthesize operations=_operations;
-@property(retain, nonatomic) NSOperationQueue *operationQueue; // @synthesize operationQueue=_operationQueue;
 @property(readonly, copy, nonatomic) NSString *scope; // @synthesize scope=_scope;
 @property(nonatomic) long long state; // @synthesize state=_state;
 @property(copy, nonatomic) NSArray *enabledServices; // @synthesize enabledServices=_enabledServices;
 @property(nonatomic) __weak id <SPTServiceManagerDelegate> delegate; // @synthesize delegate=_delegate;
 @property(retain, nonatomic) SPTServiceManager *parent; // @synthesize parent=_parent;
-@property(retain, nonatomic) NSOperation *lastLoadOperation; // @synthesize lastLoadOperation=_lastLoadOperation;
+@property(readonly, nonatomic) NSOperation *lastLoadOperation; // @synthesize lastLoadOperation=_lastLoadOperation;
 - (void).cxx_destruct;
 - (_Bool)canProvideServiceWithIdentifier:(id)arg1;
 - (id)provideOptionalServiceForIdentifier:(id)arg1;
 - (id)provideServiceForIdentifier:(id)arg1;
 - (void)unloadServices;
-- (void)loadServicesWithCompletion:(CDUnknownBlockType)arg1;
+- (void)loadServices;
 - (id)serviceWithIdentifier:(id)arg1;
 - (void)tellServicesToUnload;
 - (void)tellServicesToLoad:(id)arg1;

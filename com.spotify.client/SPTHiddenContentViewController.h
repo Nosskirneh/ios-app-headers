@@ -10,7 +10,6 @@
 #import "SPTHiddenContentArtistCellDelegate-Protocol.h"
 #import "SPTHiddenContentTrackCellDelegate-Protocol.h"
 #import "SPTHiddenContentViewModelDelegate-Protocol.h"
-#import "SPTNavigationControllerNavigationBarState-Protocol.h"
 #import "SPTPageController-Protocol.h"
 #import "UITableViewDataSource-Protocol.h"
 #import "UITableViewDelegate-Protocol.h"
@@ -18,7 +17,7 @@
 @class GLUEEmptyStateView, GLUELabel, NSString, NSURL, SPTHiddenContentArtistCellConfigurator, SPTHiddenContentCountedLabel, SPTHiddenContentTrackCellConfigurator, SPTSegmentedControl, UITableView;
 @protocol GLUETheme, SPTHiddenContentViewModel, SPTLogCenter, SPTPageContainer;
 
-@interface SPTHiddenContentViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, SPContentInsetViewController, SPTNavigationControllerNavigationBarState, SPTHiddenContentTrackCellDelegate, SPTHiddenContentArtistCellDelegate, SPTPageController, SPTHiddenContentViewModelDelegate>
+@interface SPTHiddenContentViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, SPContentInsetViewController, SPTHiddenContentTrackCellDelegate, SPTHiddenContentArtistCellDelegate, SPTPageController, SPTHiddenContentViewModelDelegate>
 {
     id <SPTHiddenContentViewModel> _viewModel;
     id <GLUETheme> _theme;
@@ -66,9 +65,6 @@
 - (void)hiddenContentTrackCellPreviewTapped:(id)arg1;
 - (void)logTapOnArtistAtIndex:(long long)arg1;
 - (void)logTapOnTrackAtIndex:(long long)arg1;
-- (_Bool)prefersBlurEffect;
-- (id)preferredNavigationBarBackgroundColor;
-- (unsigned long long)preferredNavigationBarState;
 - (void)selectTabAtIndex:(long long)arg1;
 - (void)tabControlChanged:(id)arg1;
 - (void)addConstraints;

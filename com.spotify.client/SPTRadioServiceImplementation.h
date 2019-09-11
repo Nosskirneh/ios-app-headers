@@ -6,48 +6,41 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTAbbaFeatureFlagsObserver-Protocol.h"
 #import "SPTRadioService-Protocol.h"
 #import "SPTService-Protocol.h"
+#import "SPTURISubtypeHandler-Protocol.h"
 
 @class NSString, SPTAllocationContext, SPTInfinitePlaybackManager, SPTPersistentCache, SPTRadioHubManager, SPTRadioLogger, SPTRadioPlaybackService, SPTRadioStationsService;
-@protocol CollectionFeature, CosmosFeature, EXP_SPTHubFrameworkService, GaiaFeature, NSObject, SPContextMenuFeature, SPTAbbaFeatureFlags, SPTAbbaService, SPTCollectionLogger, SPTCollectionPlatformService, SPTContainerService, SPTContainerUIService, SPTCoreService, SPTCrashReporterService, SPTDailyMixManager, SPTDailyMixTestManager, SPTDataSaverService, SPTExplicitContentService, SPTFeatureFlaggingService, SPTFreeTierService, SPTGLUEService, SPTLocalSettings, SPTNavigationFeature, SPTNetworkService, SPTNowPlayingRemoteControlPolicy, SPTPerformanceMetricsService, SPTPlayer, SPTPlayerFeature, SPTRadioManager, SPTRadioTestManager, SPTRecentlyPlayedService, SPTSearchService, SPTSessionService, SPTSettingsFeature, SPTShelfService, SPTURIDispatchService, SPTVoiceService, UpsellFeature;
+@protocol CosmosFeature, GaiaFeature, NSObject, SPContextMenuFeature, SPTAbbaService, SPTCollectionLogger, SPTContainerService, SPTContainerUIService, SPTCoreService, SPTDataSaverService, SPTExplicitContentService, SPTFeatureFlaggingService, SPTFreeTierService, SPTGLUEService, SPTHubFrameworkService, SPTLocalSettings, SPTNavigationFeature, SPTNetworkService, SPTNowPlayingRemoteControlPolicy, SPTPerformanceMetricsService, SPTPlayer, SPTPlayerFeature, SPTRadioManager, SPTRadioRemoteConfigService, SPTRadioTestManager, SPTRecentlyPlayedService, SPTSessionService, SPTSettingsFeature, SPTShelfService, SPTURIDispatchService, SPTVoiceService;
 
-@interface SPTRadioServiceImplementation : NSObject <SPTAbbaFeatureFlagsObserver, SPTService, SPTRadioService>
+@interface SPTRadioServiceImplementation : NSObject <SPTService, SPTRadioService, SPTURISubtypeHandler>
 {
-    _Bool _isCollectionContentListRegistered;
+    _Bool _radioRegisteredWithRecentlyPlayed;
     id <SPTAbbaService> _abbaService;
     id <SPTSessionService> _clientSessionService;
-    id <CollectionFeature> _collection;
-    id <SPTCollectionPlatformService> _collectionPlatformService;
     id <SPTContainerService> _containerService;
     id <SPTContainerUIService> _containerUIService;
-    id <SPContextMenuFeature> _contextMenu;
+    id <SPContextMenuFeature> _contextMenuFeature;
     id <SPTCoreService> _coreService;
     id <CosmosFeature> _cosmosService;
-    id <SPTCrashReporterService> _crashReporterService;
     id <SPTDataSaverService> _dataSaverService;
     id <SPTExplicitContentService> _explicitContentService;
     id <SPTFeatureFlaggingService> _featureFlaggingService;
     id <SPTFreeTierService> _freeTierService;
     id <GaiaFeature> _gaiaFeature;
     id <SPTGLUEService> _glueService;
-    id <EXP_SPTHubFrameworkService> _hubFrameworkService;
+    id <SPTHubFrameworkService> _hubFrameworkService;
     id <SPTNavigationFeature> _navigationService;
     id <SPTNetworkService> _networkFeature;
     id <SPTPerformanceMetricsService> _performanceMetricsService;
-    id <SPTPlayerFeature> _playback;
+    id <SPTPlayerFeature> _playbackFeature;
+    id <SPTRadioRemoteConfigService> _radioRemoteConfigService;
     id <SPTRecentlyPlayedService> _recentlyPlayedService;
-    id <SPTSearchService> _search;
-    id <SPTSettingsFeature> _settings;
+    id <SPTSettingsFeature> _settingsFeature;
     id <SPTShelfService> _shelfService;
-    id <UpsellFeature> _upsellFeature;
     id <SPTURIDispatchService> _uriDispatchService;
     id <SPTVoiceService> _voiceService;
     id <NSObject> _clearPersistentCacheOnLogoutToken;
-    id <SPTDailyMixManager> _dailyMixManager;
-    id <SPTDailyMixTestManager> _dailyMixTestManager;
-    id <SPTAbbaFeatureFlags> _featureFlags;
     SPTRadioHubManager *_hubManager;
     SPTInfinitePlaybackManager *_infinitePlaybackManager;
     id <SPTCollectionLogger> _logger;
@@ -73,67 +66,53 @@
 @property(retain, nonatomic) id <SPTLocalSettings> localSettings; // @synthesize localSettings=_localSettings;
 @property(retain, nonatomic) SPTRadioLogger *loggingService; // @synthesize loggingService=_loggingService;
 @property(retain, nonatomic) id <SPTCollectionLogger> logger; // @synthesize logger=_logger;
-@property(nonatomic) _Bool isCollectionContentListRegistered; // @synthesize isCollectionContentListRegistered=_isCollectionContentListRegistered;
+@property(nonatomic, getter=isRadioRegisteredWithRecentlyPlayed) _Bool radioRegisteredWithRecentlyPlayed; // @synthesize radioRegisteredWithRecentlyPlayed=_radioRegisteredWithRecentlyPlayed;
 @property(retain, nonatomic) SPTInfinitePlaybackManager *infinitePlaybackManager; // @synthesize infinitePlaybackManager=_infinitePlaybackManager;
 @property(retain, nonatomic) SPTRadioHubManager *hubManager; // @synthesize hubManager=_hubManager;
-@property(retain, nonatomic) id <SPTAbbaFeatureFlags> featureFlags; // @synthesize featureFlags=_featureFlags;
-@property(nonatomic) __weak id <SPTDailyMixTestManager> dailyMixTestManager; // @synthesize dailyMixTestManager=_dailyMixTestManager;
-@property(nonatomic) __weak id <SPTDailyMixManager> dailyMixManager; // @synthesize dailyMixManager=_dailyMixManager;
 @property(nonatomic) __weak id <NSObject> clearPersistentCacheOnLogoutToken; // @synthesize clearPersistentCacheOnLogoutToken=_clearPersistentCacheOnLogoutToken;
 @property(nonatomic) __weak id <SPTVoiceService> voiceService; // @synthesize voiceService=_voiceService;
 @property(nonatomic) __weak id <SPTURIDispatchService> uriDispatchService; // @synthesize uriDispatchService=_uriDispatchService;
-@property(nonatomic) __weak id <UpsellFeature> upsellFeature; // @synthesize upsellFeature=_upsellFeature;
 @property(nonatomic) __weak id <SPTShelfService> shelfService; // @synthesize shelfService=_shelfService;
-@property(nonatomic) __weak id <SPTSettingsFeature> settings; // @synthesize settings=_settings;
-@property(nonatomic) __weak id <SPTSearchService> search; // @synthesize search=_search;
+@property(nonatomic) __weak id <SPTSettingsFeature> settingsFeature; // @synthesize settingsFeature=_settingsFeature;
 @property(nonatomic) __weak id <SPTRecentlyPlayedService> recentlyPlayedService; // @synthesize recentlyPlayedService=_recentlyPlayedService;
-@property(nonatomic) __weak id <SPTPlayerFeature> playback; // @synthesize playback=_playback;
+@property(nonatomic) __weak id <SPTRadioRemoteConfigService> radioRemoteConfigService; // @synthesize radioRemoteConfigService=_radioRemoteConfigService;
+@property(nonatomic) __weak id <SPTPlayerFeature> playbackFeature; // @synthesize playbackFeature=_playbackFeature;
 @property(nonatomic) __weak id <SPTPerformanceMetricsService> performanceMetricsService; // @synthesize performanceMetricsService=_performanceMetricsService;
 @property(nonatomic) __weak id <SPTNetworkService> networkFeature; // @synthesize networkFeature=_networkFeature;
 @property(nonatomic) __weak id <SPTNavigationFeature> navigationService; // @synthesize navigationService=_navigationService;
-@property(nonatomic) __weak id <EXP_SPTHubFrameworkService> hubFrameworkService; // @synthesize hubFrameworkService=_hubFrameworkService;
+@property(nonatomic) __weak id <SPTHubFrameworkService> hubFrameworkService; // @synthesize hubFrameworkService=_hubFrameworkService;
 @property(nonatomic) __weak id <SPTGLUEService> glueService; // @synthesize glueService=_glueService;
 @property(nonatomic) __weak id <GaiaFeature> gaiaFeature; // @synthesize gaiaFeature=_gaiaFeature;
 @property(nonatomic) __weak id <SPTFreeTierService> freeTierService; // @synthesize freeTierService=_freeTierService;
 @property(nonatomic) __weak id <SPTFeatureFlaggingService> featureFlaggingService; // @synthesize featureFlaggingService=_featureFlaggingService;
 @property(nonatomic) __weak id <SPTExplicitContentService> explicitContentService; // @synthesize explicitContentService=_explicitContentService;
 @property(nonatomic) __weak id <SPTDataSaverService> dataSaverService; // @synthesize dataSaverService=_dataSaverService;
-@property(nonatomic) __weak id <SPTCrashReporterService> crashReporterService; // @synthesize crashReporterService=_crashReporterService;
 @property(nonatomic) __weak id <CosmosFeature> cosmosService; // @synthesize cosmosService=_cosmosService;
 @property(nonatomic) __weak id <SPTCoreService> coreService; // @synthesize coreService=_coreService;
-@property(nonatomic) __weak id <SPContextMenuFeature> contextMenu; // @synthesize contextMenu=_contextMenu;
+@property(nonatomic) __weak id <SPContextMenuFeature> contextMenuFeature; // @synthesize contextMenuFeature=_contextMenuFeature;
 @property(nonatomic) __weak id <SPTContainerUIService> containerUIService; // @synthesize containerUIService=_containerUIService;
 @property(nonatomic) __weak id <SPTContainerService> containerService; // @synthesize containerService=_containerService;
-@property(nonatomic) __weak id <SPTCollectionPlatformService> collectionPlatformService; // @synthesize collectionPlatformService=_collectionPlatformService;
-@property(nonatomic) __weak id <CollectionFeature> collection; // @synthesize collection=_collection;
 @property(nonatomic) __weak id <SPTSessionService> clientSessionService; // @synthesize clientSessionService=_clientSessionService;
 @property(nonatomic) __weak id <SPTAbbaService> abbaService; // @synthesize abbaService=_abbaService;
 - (void).cxx_destruct;
+- (long long)URISubtypeHandlerOpenURI:(id)arg1 context:(id)arg2;
+- (_Bool)URISubtypeHandlerCanHandleURI:(id)arg1;
 - (id)provideInfinitePlaybackSettingsSection:(id)arg1;
 - (void)registerInfinitePlaybackSettingsSection;
 - (id)provideRadioHubViewControllerWithURI:(id)arg1 context:(id)arg2;
-- (void)registerDailyMixTestManager:(id)arg1;
-- (void)registerDailyMixManager:(id)arg1;
 - (id)radioContextMenuTask:(id)arg1 logContext:(id)arg2 sourceURL:(id)arg3;
 - (id)provideFormatListMapper;
 - (id)provideCollectionLogger;
 - (id)provideRadioTestManager;
 - (id)providePersistentCache;
 - (id)provideRadioRemoteControlPolicy;
-- (void)featureFlagsDidChange:(id)arg1;
-- (void)registerRadioWithCollection;
+- (void)registerRadioWithRecentlyPlayed;
 - (id)providePlayerWithReferrer:(id)arg1;
 - (id)providePlayer;
 - (id)providePlaybackService;
 - (id)provideStationsService;
 - (id)provideRadioManager;
 - (id)provideCosmosResolver;
-- (id)provideCreateStationHubsCommandHandler;
-- (id)makeSearchURLProviderForEntityType:(id)arg1 limit:(unsigned long long)arg2;
-- (id)makeSearchDrillDownURLProviderForEntityType:(id)arg1;
-- (id)makeSearchRootURLProvider;
-- (id)provideCreateStationSearchViewControllerForURI:(id)arg1 context:(id)arg2;
-- (id)provideStationsInCollectionViewController:(id)arg1;
 - (id)provideStationViewController:(id)arg1 context:(id)arg2;
 - (id)provideRadioLoggingService;
 - (id)radioStationViewModelForURL:(id)arg1;

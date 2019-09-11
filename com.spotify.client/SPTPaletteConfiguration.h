@@ -8,11 +8,11 @@
 
 #import "NSCopying-Protocol.h"
 
-@class NSMutableArray, NSMutableSet;
+@class NSMutableArray, NSMutableOrderedSet;
 
 @interface SPTPaletteConfiguration : NSObject <NSCopying>
 {
-    NSMutableSet *_targets;
+    NSMutableOrderedSet *_targets;
     unsigned long long _maxColorCount;
     NSMutableArray *_filters;
 }
@@ -21,7 +21,7 @@
 + (id)defaultConfiguration;
 @property(readonly, nonatomic) NSMutableArray *filters; // @synthesize filters=_filters;
 @property(nonatomic) unsigned long long maxColorCount; // @synthesize maxColorCount=_maxColorCount;
-@property(readonly, nonatomic) NSMutableSet *targets; // @synthesize targets=_targets;
+@property(readonly, nonatomic) NSMutableOrderedSet *targets; // @synthesize targets=_targets;
 - (void).cxx_destruct;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)initWithTargets:(id)arg1 maxColorCount:(unsigned long long)arg2 filters:(id)arg3;

@@ -6,20 +6,22 @@
 
 #import "SettingsSection.h"
 
-@class SettingsSwitchTableViewCell;
+@class SPTNowPlayingLogger, SettingsSwitchTableViewCell;
 
 @interface SPTNowPlayingFeedbackSoundsSettingsSection : SettingsSection
 {
     SettingsSwitchTableViewCell *_feedbackSoundCell;
+    SPTNowPlayingLogger *_nowPlayingLogger;
 }
 
+@property(readonly, nonatomic) SPTNowPlayingLogger *nowPlayingLogger; // @synthesize nowPlayingLogger=_nowPlayingLogger;
 @property(retain, nonatomic) SettingsSwitchTableViewCell *feedbackSoundCell; // @synthesize feedbackSoundCell=_feedbackSoundCell;
 - (void).cxx_destruct;
 - (void)feedbackSwitchChanged:(id)arg1;
 - (id)cellForRow:(long long)arg1;
 - (long long)numberOfRows;
 - (unsigned long long)categoryPosition;
-- (id)initWithSettingsViewController:(id)arg1;
+- (id)initWithSettingsViewController:(id)arg1 nowPlayingLogger:(id)arg2;
 
 @end
 

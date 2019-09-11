@@ -6,29 +6,23 @@
 
 #import <UIKit/UIView.h>
 
-@class GLUEAccessoryIconView, SPTLayoutConstraintBuilder, UIButton, UIColor, UILabel;
+@class GLUEAccessoryIconView, NSArray, UIButton, UILabel;
 @protocol GLUETheme;
 
 @interface SPTFeedSeeMoreView : UIView
 {
-    UILabel *_trackCountLabel;
     UILabel *_titleLabel;
     UIButton *_actionButton;
-    UIColor *_trackCountBackgroundColor;
     id <GLUETheme> _theme;
-    SPTLayoutConstraintBuilder *_layout;
-    UIView *_trackCountContainerView;
+    NSArray *_layoutConstraints;
     GLUEAccessoryIconView *_accessoryIconView;
 }
 
 @property(retain, nonatomic) GLUEAccessoryIconView *accessoryIconView; // @synthesize accessoryIconView=_accessoryIconView;
-@property(retain, nonatomic) UIView *trackCountContainerView; // @synthesize trackCountContainerView=_trackCountContainerView;
-@property(retain, nonatomic) SPTLayoutConstraintBuilder *layout; // @synthesize layout=_layout;
+@property(copy, nonatomic) NSArray *layoutConstraints; // @synthesize layoutConstraints=_layoutConstraints;
 @property(retain, nonatomic) id <GLUETheme> theme; // @synthesize theme=_theme;
-@property(retain, nonatomic) UIColor *trackCountBackgroundColor; // @synthesize trackCountBackgroundColor=_trackCountBackgroundColor;
 @property(retain, nonatomic) UIButton *actionButton; // @synthesize actionButton=_actionButton;
 @property(retain, nonatomic) UILabel *titleLabel; // @synthesize titleLabel=_titleLabel;
-@property(retain, nonatomic) UILabel *trackCountLabel; // @synthesize trackCountLabel=_trackCountLabel;
 - (void).cxx_destruct;
 - (void)updateConstraints;
 - (void)addViewConstraints;

@@ -6,19 +6,19 @@
 
 #import "HUBSerializable-Protocol.h"
 
-@class HUBIdentifier, NSArray, NSDictionary, NSIndexPath, NSString;
+@class HUBIdentifier, NSArray, NSDictionary, NSString;
 @protocol HUBComponentImageData, HUBComponentModel, HUBComponentTarget, HUBIcon;
 
 @protocol HUBComponentModel <HUBSerializable>
-@property(readonly, nonatomic) NSIndexPath *indexPath;
-@property(readonly, nonatomic) NSArray *children;
+@property(readonly, copy, nonatomic) NSArray *children;
 @property(readonly, nonatomic) __weak id <HUBComponentModel> parent;
-@property(readonly, nonatomic) NSDictionary *customData;
-@property(readonly, nonatomic) NSDictionary *loggingData;
-@property(readonly, nonatomic) NSDictionary *metadata;
+@property(readonly, copy, nonatomic) NSDictionary *customData;
+@property(readonly, copy, nonatomic) NSDictionary *loggingData;
+@property(readonly, copy, nonatomic) NSDictionary *metadata;
+@property(readonly, copy, nonatomic) NSDictionary *events;
 @property(readonly, nonatomic) id <HUBComponentTarget> target;
 @property(readonly, nonatomic) id <HUBIcon> icon;
-@property(readonly, nonatomic) NSDictionary *customImageData;
+@property(readonly, copy, nonatomic) NSDictionary *customImageData;
 @property(readonly, nonatomic) id <HUBComponentImageData> backgroundImageData;
 @property(readonly, nonatomic) id <HUBComponentImageData> mainImageData;
 @property(readonly, copy, nonatomic) NSString *descriptionText;

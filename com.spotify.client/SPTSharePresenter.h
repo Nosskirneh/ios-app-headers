@@ -6,13 +6,12 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTShareHandlerAncillaryViewControllerDelegate-Protocol.h"
 #import "SPTShareViewControllerDelegate-Protocol.h"
 
 @class NSString, SPTProgressView, SPTShareContainerViewController, SPTShareDataProvider, SPTShareHandlerFactory, SPTShareLocalSettingsManager, SPTShareScreenshotObserverManager, SPTShareViewController, SPTShareViewModel;
 @protocol SPTAlertController, SPTShareDeeplinkHandler;
 
-@interface SPTSharePresenter : NSObject <SPTShareViewControllerDelegate, SPTShareHandlerAncillaryViewControllerDelegate>
+@interface SPTSharePresenter : NSObject <SPTShareViewControllerDelegate>
 {
     SPTShareContainerViewController *_containerViewController;
     SPTShareViewController *_shareViewController;
@@ -50,7 +49,6 @@
 - (void)handleMessagesDestination:(id)arg1 shareViewController:(id)arg2;
 - (void)handleSnapchatDestination:(id)arg1 shareViewController:(id)arg2;
 - (void)handleIGStoriesDestionation:(id)arg1 shareViewController:(id)arg2;
-- (void)didDismissAncillaryViewController:(id)arg1 withShareDestinationId:(long long)arg2;
 - (void)shareViewControllerDidAppear:(id)arg1;
 - (void)shareViewController:(id)arg1 didSelectShareDestination:(id)arg2 fromFrame:(struct CGRect)arg3;
 - (void)presentViewController:(id)arg1;

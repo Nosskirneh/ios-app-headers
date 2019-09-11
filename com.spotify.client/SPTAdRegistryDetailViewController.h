@@ -6,20 +6,20 @@
 
 #import "SPTableViewController.h"
 
-@class SPTAdEntity, SPTEntityTableHeaderView;
-@protocol GLUEImageLoader, GLUETheme, SPTContainerUIService;
+@class SPTEntityTableHeaderView;
+@protocol GLUEImageLoader, GLUETheme, SPTAdsBaseEntity, SPTContainerUIService;
 
 @interface SPTAdRegistryDetailViewController : SPTableViewController
 {
     id <SPTContainerUIService> _containerUIService;
     id <GLUEImageLoader> _glueImageLoader;
     id <GLUETheme> _glueTheme;
-    SPTAdEntity *_entity;
+    id <SPTAdsBaseEntity> _entity;
     SPTEntityTableHeaderView *_headerView;
 }
 
 @property(retain, nonatomic) SPTEntityTableHeaderView *headerView; // @synthesize headerView=_headerView;
-@property(nonatomic) __weak SPTAdEntity *entity; // @synthesize entity=_entity;
+@property(nonatomic) __weak id <SPTAdsBaseEntity> entity; // @synthesize entity=_entity;
 @property(retain, nonatomic) id <GLUETheme> glueTheme; // @synthesize glueTheme=_glueTheme;
 @property(readonly, nonatomic) id <GLUEImageLoader> glueImageLoader; // @synthesize glueImageLoader=_glueImageLoader;
 @property(nonatomic) __weak id <SPTContainerUIService> containerUIService; // @synthesize containerUIService=_containerUIService;

@@ -15,6 +15,7 @@
 {
     id <SPTSortingFilteringFilterBarStyle> _filterBarStyle;
     double _height;
+    double _filterContentHeight;
     GLUELabelStyle *_titleStyle;
     GLUELabelStyle *_collapsedTitleStyle;
     UIColor *_backgroundColor;
@@ -31,6 +32,7 @@
 @property(copy, nonatomic) UIColor *backgroundColor; // @synthesize backgroundColor=_backgroundColor;
 @property(copy, nonatomic) GLUELabelStyle *collapsedTitleStyle; // @synthesize collapsedTitleStyle=_collapsedTitleStyle;
 @property(copy, nonatomic) GLUELabelStyle *titleStyle; // @synthesize titleStyle=_titleStyle;
+@property(nonatomic) double filterContentHeight; // @synthesize filterContentHeight=_filterContentHeight;
 @property(nonatomic) double height; // @synthesize height=_height;
 @property(copy, nonatomic) id <SPTSortingFilteringFilterBarStyle> filterBarStyle; // @synthesize filterBarStyle=_filterBarStyle;
 - (void).cxx_destruct;

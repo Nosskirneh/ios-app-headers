@@ -57,8 +57,8 @@
 - (void)runStateTransitionHandlerWithOldState:(long long)arg1 newState:(long long)arg2;
 - (void)dismissSelf;
 - (void)viewDidLoad;
-- (void)loadContentContainerWithLayoutBuilder:(id)arg1;
-- (void)loadTitleContainerWithLayoutBuilder:(id)arg1;
+- (void)loadContentContainerWithConstraints:(id)arg1;
+- (void)loadTitleContainerWithConstraints:(id)arg1;
 - (void)loadPopupView;
 @property(readonly, nonatomic) UIView *popupView;
 - (id)labelForTitle;

@@ -32,11 +32,9 @@
 @property(readonly, nonatomic) id <SPTPageContainer> pageContainer; // @synthesize pageContainer=_pageContainer;
 @property(nonatomic) __weak id <SPTInstrumentationPageContainerPageStreamDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
-- (void)reportUninstrumentedHub:(id)arg1;
 - (id)pageNameForController:(id)arg1;
 - (id)navigationRootIdentifierForController:(id)arg1;
 - (id)childStreamForCurrentController:(id)arg1 pageView:(id)arg2 navigationRoot:(id)arg3;
-- (_Bool)pageControllerIsUninstrumentedLegacyPageController:(id)arg1;
 - (id)newPageView;
 - (id)pageViewForCurrentState;
 - (void)currentPageViewControllerDidChange:(id)arg1;

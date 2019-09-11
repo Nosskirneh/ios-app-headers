@@ -7,6 +7,8 @@
 #import <UIKit/UIImage.h>
 
 @interface UIImage (SPTFreeTierTasteOnboardingAdditions)
++ (id)spt_freeTierTasteOnboardingBadgeWithCircleSize:(struct CGSize)arg1 circleColor:(id)arg2 circleLineWidth:(double)arg3 backgroundColor:(id)arg4 iconImage:(id)arg5 iconSize:(struct CGSize)arg6 iconColor:(id)arg7 iconOffset:(struct CGPoint)arg8;
 + (id)spt_freeTierTasteOnboardingSearchBarImageWithColor:(id)arg1 height:(double)arg2 radius:(double)arg3;
+- (id)spt_freeTierTasteOnboardingIconWithSize:(struct CGSize)arg1 color:(id)arg2;
 @end
 

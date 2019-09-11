@@ -11,7 +11,6 @@
 
 @protocol SPTPodcastYourLibraryEpisodesViewModelDelegate <NSObject>
 - (void)collectionEpisodesViewModelDidUpdatePlaybackRestrictions:(id <SPTPodcastYourLibraryEpisodesViewModel>)arg1;
-- (void)viewModelDidUpdatePlayingEpisode:(id <SPTPodcastYourLibraryEpisodesViewModel>)arg1;
 - (void)viewModel:(id <SPTPodcastYourLibraryEpisodesViewModel>)arg1 episodesDidFinishLoadingWithError:(NSError *)arg2;
 @end
 

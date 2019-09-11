@@ -7,11 +7,12 @@
 #import <Foundation/NSURL.h>
 
 @interface NSURL (SPTFreeTierTasteOnboardingAdditions)
-+ (id)spt_freeTierTasteQueryParameters;
-+ (id)spt_freeTierTasteOnboardingCurateURL:(id)arg1;
-+ (id)spt_freeTierTasteOnboardingSearchURL:(id)arg1;
-+ (id)spt_freeTierTasteOnboardingRelatedURL:(id)arg1;
-+ (id)spt_freeTierTasteOnboardingQuestionnaireURL;
++ (id)spt_freeTierTasteOnboardingConvertHermesURIToHttp:(id)arg1 timestamp:(id)arg2;
++ (id)spt_freeTierTasteOnboardingLoadMoreSearchResultsURI:(id)arg1 timestamp:(id)arg2;
++ (id)spt_freeTierTasteOnboardingCurateURL:(id)arg1 sessionId:(id)arg2;
++ (id)spt_freeTierTasteOnboardingSearchURL:(id)arg1 searchSessionId:(id)arg2 sessionId:(id)arg3 timestamp:(id)arg4;
++ (id)spt_freeTierTasteOnboardingRelatedURL:(id)arg1 sessionId:(id)arg2;
++ (id)spt_freeTierTasteOnboardingQuestionnaireURL:(id)arg1 sessionId:(id)arg2;
 + (id)spt_freeTierTasteOnboardingSkipDialogURI;
 + (id)spt_freeTierTasteOnboardingUpdateTasteViewURI;
 + (id)spt_freeTierTasteOnboardingArtistSearchViewURI;

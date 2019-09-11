@@ -10,7 +10,7 @@
 #import "SPTService-Protocol.h"
 
 @class NSString, SPTAllocationContext, SPTPushNotificationActionRegistryImplementation, SPTPushNotificationController;
-@protocol SPTContainerService, SPTContainerUIService, SPTCoreService, SPTNetworkService, SPTURIDispatchService;
+@protocol SPTApplicationScopeFeatureFlagSignalService, SPTContainerService, SPTContainerUIService, SPTCoreService, SPTFeatureFlagSignal, SPTNetworkService, SPTURIDispatchService;
 
 @interface SPTPushNotificationsServiceImplementation : NSObject <SPTService, SPTPushNotificationsService>
 {
@@ -21,9 +21,13 @@
     id <SPTContainerUIService> _containerUIService;
     id <SPTNetworkService> _networkService;
     id <SPTURIDispatchService> _URIDispatchService;
+    id <SPTApplicationScopeFeatureFlagSignalService> _featureFlagSignalService;
+    id <SPTFeatureFlagSignal> _pushMessagingFeatureFlagSignal;
 }
 
 + (id)serviceIdentifier;
+@property(retain, nonatomic) id <SPTFeatureFlagSignal> pushMessagingFeatureFlagSignal; // @synthesize pushMessagingFeatureFlagSignal=_pushMessagingFeatureFlagSignal;
+@property(nonatomic) __weak id <SPTApplicationScopeFeatureFlagSignalService> featureFlagSignalService; // @synthesize featureFlagSignalService=_featureFlagSignalService;
 @property(nonatomic) __weak id <SPTURIDispatchService> URIDispatchService; // @synthesize URIDispatchService=_URIDispatchService;
 @property(nonatomic) __weak id <SPTNetworkService> networkService; // @synthesize networkService=_networkService;
 @property(nonatomic) __weak id <SPTContainerUIService> containerUIService; // @synthesize containerUIService=_containerUIService;
@@ -32,6 +36,9 @@
 @property(retain, nonatomic) SPTPushNotificationController *pushNotificationsController; // @synthesize pushNotificationsController=_pushNotificationsController;
 @property(nonatomic) __weak id <SPTCoreService> coreService; // @synthesize coreService=_coreService;
 - (void).cxx_destruct;
+- (void)featureFlagSignal:(id)arg1 hasAssumedState:(long long)arg2;
+- (void)unloadPushNotificationController;
+- (void)loadPushNotificationController;
 - (void)unload;
 - (void)load;
 - (void)configureWithServices:(id)arg1;

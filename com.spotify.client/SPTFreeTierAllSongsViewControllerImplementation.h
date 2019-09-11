@@ -19,7 +19,6 @@
 
 @interface SPTFreeTierAllSongsViewControllerImplementation : UIViewController <UITableViewDataSource, UITableViewDelegate, SPContentInsetViewController, SPTNavigationControllerNavigationBarState, SPTFreeTierAllSongsCellConfiguratorDelegate, SPTPageController, SPTFreeTierAllSongsViewModelDelegate>
 {
-    _Bool _updateDialogVisible;
     _Bool _contextMenuToBePresented;
     SPTTableView *_tableView;
     SPTFreeTierAllSongsViewModel *_viewModel;
@@ -32,7 +31,6 @@
 }
 
 @property(nonatomic, getter=isContextMenuToBePresented) _Bool contextMenuToBePresented; // @synthesize contextMenuToBePresented=_contextMenuToBePresented;
-@property(nonatomic) _Bool updateDialogVisible; // @synthesize updateDialogVisible=_updateDialogVisible;
 @property(retain, nonatomic) SPTEntityHeaderViewController *headerContainerViewController; // @synthesize headerContainerViewController=_headerContainerViewController;
 @property(retain, nonatomic) SPTFreeTierAllSongsHeaderViewController *allSongsHeaderViewController; // @synthesize allSongsHeaderViewController=_allSongsHeaderViewController;
 @property(retain, nonatomic) SPTFreeTierAllSongsTheme *theme; // @synthesize theme=_theme;

@@ -8,32 +8,37 @@
 
 #import "SPTNowPlayingMode-Protocol.h"
 
-@class NSString, UIViewController;
-@protocol SPTDrivingModeViewControllerFactory, SPTNowPlayingContainedViewController, SPTNowPlayingModeLayoutDelegate;
+@class NSMutableDictionary, NSString, SPTDrivingModeSession;
+@protocol SPTDrivingModeViewControllerFactory, SPTNowPlayingModeLayoutDelegate;
 
 @interface SPTDrivingNowPlayingMode : NSObject <SPTNowPlayingMode>
 {
     id <SPTNowPlayingModeLayoutDelegate> _layoutDelegate;
-    id <SPTDrivingModeViewControllerFactory> _factory;
-    UIViewController<SPTNowPlayingContainedViewController> *_navigationBarUnitViewController;
-    UIViewController<SPTNowPlayingContainedViewController> *_informationUnitViewController;
-    UIViewController<SPTNowPlayingContainedViewController> *_durationUnitViewController;
-    UIViewController<SPTNowPlayingContainedViewController> *_headUnitViewController;
-    UIViewController<SPTNowPlayingContainedViewController> *_footerUnitViewController;
-    UIViewController<SPTNowPlayingContainedViewController> *_queueHeadUnitViewController;
+    unsigned long long _headUnit;
+    NSMutableDictionary *_viewControllerCache;
+    id <SPTDrivingModeViewControllerFactory> _viewControllerFactory;
+    SPTDrivingModeSession *_session;
+    NSString *_identifier;
 }
 
-@property(retain, nonatomic) UIViewController<SPTNowPlayingContainedViewController> *queueHeadUnitViewController; // @synthesize queueHeadUnitViewController=_queueHeadUnitViewController;
-@property(retain, nonatomic) UIViewController<SPTNowPlayingContainedViewController> *footerUnitViewController; // @synthesize footerUnitViewController=_footerUnitViewController;
-@property(retain, nonatomic) UIViewController<SPTNowPlayingContainedViewController> *headUnitViewController; // @synthesize headUnitViewController=_headUnitViewController;
-@property(retain, nonatomic) UIViewController<SPTNowPlayingContainedViewController> *durationUnitViewController; // @synthesize durationUnitViewController=_durationUnitViewController;
-@property(retain, nonatomic) UIViewController<SPTNowPlayingContainedViewController> *informationUnitViewController; // @synthesize informationUnitViewController=_informationUnitViewController;
-@property(retain, nonatomic) UIViewController<SPTNowPlayingContainedViewController> *navigationBarUnitViewController; // @synthesize navigationBarUnitViewController=_navigationBarUnitViewController;
-@property(readonly, nonatomic) __weak id <SPTDrivingModeViewControllerFactory> factory; // @synthesize factory=_factory;
+@property(readonly, nonatomic) NSString *identifier; // @synthesize identifier=_identifier;
+@property(readonly, nonatomic) SPTDrivingModeSession *session; // @synthesize session=_session;
+@property(readonly, nonatomic) id <SPTDrivingModeViewControllerFactory> viewControllerFactory; // @synthesize viewControllerFactory=_viewControllerFactory;
+@property(readonly, nonatomic) NSMutableDictionary *viewControllerCache; // @synthesize viewControllerCache=_viewControllerCache;
+@property(readonly, nonatomic) unsigned long long headUnit; // @synthesize headUnit=_headUnit;
 @property(nonatomic) __weak id <SPTNowPlayingModeLayoutDelegate> layoutDelegate; // @synthesize layoutDelegate=_layoutDelegate;
 - (void).cxx_destruct;
-- (id)identifier;
-- (id)initWithViewControllerFactory:(id)arg1;
+- (_Bool)canBeResized;
+- (_Bool)requiresContentViewDisabled;
+- (_Bool)requiresScrollDisabled;
+- (id)queueHeadUnitViewController;
+- (id)footerUnitViewController;
+- (id)headUnitViewController;
+- (id)durationUnitViewController;
+- (id)informationUnitViewController;
+- (id)navigationBarUnitViewController;
+- (id)getViewControllerForUnit:(unsigned long long)arg1;
+- (id)initWithIdentifier:(id)arg1 headUnit:(unsigned long long)arg2 viewControllerCache:(id)arg3 viewControllerFactory:(id)arg4 session:(id)arg5;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

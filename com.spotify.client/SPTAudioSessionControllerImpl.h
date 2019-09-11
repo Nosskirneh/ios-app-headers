@@ -9,45 +9,40 @@
 #import "SPTAudioDriverControllerObserver-Protocol.h"
 #import "SPTAudioDriverObserver-Protocol.h"
 #import "SPTAudioSessionController-Protocol.h"
-#import "SPTFeatureFlagSignalObserver-Protocol.h"
 #import "SPTPlayerObserver-Protocol.h"
 
 @class AVAudioSession, NSString, SPTObserverManager, SPTPlayerState;
-@protocol SPTAudioDriverController, SPTAudioSessionControllerDelegate, SPTAutoLockOverrideToken, SPTFeatureFlagSignal, SPTPlayer;
+@protocol SPTAudioDriverController, SPTAudioSessionControllerDelegate, SPTFeatureFlagSignal, SPTPlayer;
 
-@interface SPTAudioSessionControllerImpl : NSObject <SPTPlayerObserver, SPTAudioDriverControllerObserver, SPTAudioDriverObserver, SPTFeatureFlagSignalObserver, SPTAudioSessionController>
+@interface SPTAudioSessionControllerImpl : NSObject <SPTPlayerObserver, SPTAudioDriverControllerObserver, SPTAudioDriverObserver, SPTAudioSessionController>
 {
     _Bool _active;
     _Bool _interrupted;
     _Bool _shouldResumePlaybackAfterInterruption;
-    _Bool _autoLockDisabled;
     _Bool _avFoundationDriverEnabled;
     id <SPTAudioSessionControllerDelegate> _delegate;
     id <SPTPlayer> _player;
     id <SPTAudioDriverController> _audioDriverController;
     CDUnknownBlockType _isLocalPlaybackEnabled;
     AVAudioSession *_audioSession;
+    CDUnknownBlockType _audioSessionModeResolver;
     long long _lockActiveCount;
     SPTPlayerState *_lastPlayerState;
     unsigned long long _backgroundTaskIdentifier;
-    id <SPTAutoLockOverrideToken> _autoLockOverride;
     SPTObserverManager *_observerManager;
-    id <SPTFeatureFlagSignal> _autoLockOverrideDisabledSignal;
     id <SPTFeatureFlagSignal> _avFoundationDriverEnabledSignal;
 }
 
 @property(nonatomic, getter=isAVFoundationDriverEnabled) _Bool avFoundationDriverEnabled; // @synthesize avFoundationDriverEnabled=_avFoundationDriverEnabled;
-@property(nonatomic, getter=isAutoLockDisabled) _Bool autoLockDisabled; // @synthesize autoLockDisabled=_autoLockDisabled;
 @property(retain, nonatomic) id <SPTFeatureFlagSignal> avFoundationDriverEnabledSignal; // @synthesize avFoundationDriverEnabledSignal=_avFoundationDriverEnabledSignal;
-@property(retain, nonatomic) id <SPTFeatureFlagSignal> autoLockOverrideDisabledSignal; // @synthesize autoLockOverrideDisabledSignal=_autoLockOverrideDisabledSignal;
 @property(retain, nonatomic) SPTObserverManager *observerManager; // @synthesize observerManager=_observerManager;
 @property _Bool shouldResumePlaybackAfterInterruption; // @synthesize shouldResumePlaybackAfterInterruption=_shouldResumePlaybackAfterInterruption;
 @property _Bool interrupted; // @synthesize interrupted=_interrupted;
-@property(retain) id <SPTAutoLockOverrideToken> autoLockOverride; // @synthesize autoLockOverride=_autoLockOverride;
 @property unsigned long long backgroundTaskIdentifier; // @synthesize backgroundTaskIdentifier=_backgroundTaskIdentifier;
 @property(getter=isActive) _Bool active; // @synthesize active=_active;
 @property(retain) SPTPlayerState *lastPlayerState; // @synthesize lastPlayerState=_lastPlayerState;
 @property long long lockActiveCount; // @synthesize lockActiveCount=_lockActiveCount;
+@property(copy, nonatomic) CDUnknownBlockType audioSessionModeResolver; // @synthesize audioSessionModeResolver=_audioSessionModeResolver;
 @property(retain, nonatomic) AVAudioSession *audioSession; // @synthesize audioSession=_audioSession;
 @property(copy) CDUnknownBlockType isLocalPlaybackEnabled; // @synthesize isLocalPlaybackEnabled=_isLocalPlaybackEnabled;
 @property(retain, nonatomic) id <SPTAudioDriverController> audioDriverController; // @synthesize audioDriverController=_audioDriverController;
@@ -61,18 +56,19 @@
 - (void)audioSessionInterruptionNotification:(id)arg1;
 - (void)audioSessionRouteChangeNotification:(id)arg1;
 - (void)player:(id)arg1 stateDidChange:(id)arg2;
+- (void)audioDriverDidReset:(id)arg1;
 - (void)audioDriverWillStartRunning:(id)arg1;
 - (void)audioDriverDidStopRunning:(id)arg1;
 - (void)audioDriverDidStartRunning:(id)arg1;
 - (void)audioDriverController:(id)arg1 didRemoveAudioDriver:(id)arg2;
 - (void)audioDriverController:(id)arg1 didAddAudioDriver:(id)arg2;
 - (void)deactivate;
+- (id)audioSessionModeForPlayerState:(id)arg1;
 - (_Bool)configureAudioSessionCategories:(id *)arg1;
 - (_Bool)internalActivateAudioSession:(id *)arg1;
 - (_Bool)activate:(id *)arg1;
 - (void)updateState;
 - (_Bool)audioSessionDelegateAllowsModifyingAudioSession;
-- (_Bool)routeDescription:(id)arg1 matchesPortType:(id)arg2;
 - (_Bool)hasActiveAudioDriver;
 - (void)setAudioDriversSuspended:(_Bool)arg1;
 - (void)unlockActiveAudioSession:(id)arg1;
@@ -81,10 +77,9 @@
 - (id)activateAudioSession;
 - (void)invalidate;
 - (void)signalHasReceivedAVFoundationDriverEnabledState:(long long)arg1;
-- (void)signalHasReceivedAutoLockOverrideDisabledState:(long long)arg1;
 - (void)featureFlagSignal:(id)arg1 hasAssumedState:(long long)arg2;
 - (void)dealloc;
-- (id)initWithPlayer:(id)arg1 audioDriverController:(id)arg2 isLocalPlaybackEnabled:(CDUnknownBlockType)arg3 audioSession:(id)arg4 featureFlagFactory:(id)arg5;
+- (id)initWithPlayer:(id)arg1 audioDriverController:(id)arg2 isLocalPlaybackEnabled:(CDUnknownBlockType)arg3 audioSession:(id)arg4 featureFlagFactory:(id)arg5 audioSessionModeResolver:(CDUnknownBlockType)arg6;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

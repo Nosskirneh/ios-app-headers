@@ -12,21 +12,27 @@
 @protocol SPTFreeTierCollectionModelItemEntity, SPTFreeTierCollectionSongsModelDelegate, SPTFreeTierRecommendationsTrackModelEntity, SPTPlayer;
 
 @protocol SPTFreeTierCollectionSongsModel <NSObject, SPTSortingFilteringFilterableModel, SPTSortingFilteringSortableModel>
+@property(readonly, nonatomic) long long dataGroupType;
 @property(readonly, nonatomic) unsigned long long offlineAvailability;
 @property(readonly, nonatomic) unsigned long long numberRecommendedItems;
+@property(readonly, nonatomic) unsigned long long numberSections;
 @property(readonly, nonatomic) unsigned long long numberItems;
 @property(readonly, nonatomic, getter=isOfflineSyncAvailable) _Bool offlineSyncAvailable;
 @property(readonly, nonatomic, getter=isPreviewsAvailable) _Bool previewsAvailable;
 @property(readonly, nonatomic, getter=isLoaded) _Bool loaded;
 @property(nonatomic) __weak id <SPTFreeTierCollectionSongsModelDelegate> delegate;
+- (void)willDisplayItemAtLocation:(long long)arg1;
 - (void)removeObserverForTrackStateWithTrackURL:(NSURL *)arg1;
 - (void)addObserverForTrackStateWithTrackURL:(NSURL *)arg1 inCollection:(_Bool)arg2 completionHandler:(void (^)(_Bool))arg3;
 - (void)changeTrackURL:(NSURL *)arg1 likeState:(_Bool)arg2;
 - (void)changeTrackURL:(NSURL *)arg1 banState:(_Bool)arg2;
 - (void)setAvailableOffline:(_Bool)arg1;
 - (_Bool)isPlaybackRestrictedForItemURL:(NSURL *)arg1 itemExplicit:(_Bool)arg2 playbackPrevented:(_Bool)arg3;
+- (void)deleteRecommendedItemAtIndex:(unsigned long long)arg1;
+- (unsigned long long)globalIndexFromIndex:(unsigned long long)arg1 inSection:(unsigned long long)arg2;
 - (id <SPTFreeTierRecommendationsTrackModelEntity>)recommendedItemAtIndex:(unsigned long long)arg1;
-- (id <SPTFreeTierCollectionModelItemEntity>)itemAtIndex:(unsigned long long)arg1;
+- (id <SPTFreeTierCollectionModelItemEntity>)itemAtIndex:(unsigned long long)arg1 inSection:(unsigned long long)arg2;
+- (unsigned long long)numberItemsInSection:(unsigned long long)arg1;
 - (void)playTrackEntity:(id <SPTFreeTierCollectionModelItemEntity>)arg1 andPlayOrigin:(SPTPlayOrigin *)arg2;
 - (void)shufflePlayWithPlayOrigin:(SPTPlayOrigin *)arg1 fallbackPlayer:(id <SPTPlayer>)arg2;
 - (void)loadModel;

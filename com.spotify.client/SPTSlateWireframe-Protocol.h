@@ -7,8 +7,10 @@
 #import "NSObject-Protocol.h"
 
 @class SPTSlateViewController;
+@protocol SPTSlateWireframeCustomPresentationDelegate;
 
 @protocol SPTSlateWireframe <NSObject>
+@property(nonatomic) __weak id <SPTSlateWireframeCustomPresentationDelegate> delegate;
 - (void)dismissSlateViewController:(SPTSlateViewController *)arg1 animated:(_Bool)arg2 completion:(void (^)(void))arg3;
 - (void)presentSlateViewController:(SPTSlateViewController *)arg1 animated:(_Bool)arg2;
 @end

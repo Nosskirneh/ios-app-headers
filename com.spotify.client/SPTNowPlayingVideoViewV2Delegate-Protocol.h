@@ -6,13 +6,13 @@
 
 #import "NSObject-Protocol.h"
 
-@class SPTNowPlayingVideoViewV2;
+@class SPTNowPlayingVideoView;
 
 @protocol SPTNowPlayingVideoViewV2Delegate <NSObject>
 
 @optional
-- (void)videoViewSurfaceDidDetach:(SPTNowPlayingVideoViewV2 *)arg1;
-- (void)videoViewSurfaceDidAttach:(SPTNowPlayingVideoViewV2 *)arg1;
-- (void)videoView:(SPTNowPlayingVideoViewV2 *)arg1 didChangeControlsVisibility:(_Bool)arg2;
+- (void)videoViewSurfaceDidDetach:(SPTNowPlayingVideoView *)arg1;
+- (void)videoViewSurfaceDidAttach:(SPTNowPlayingVideoView *)arg1;
+- (void)videoView:(SPTNowPlayingVideoView *)arg1 didChangeControlsVisibility:(_Bool)arg2;
 @end
 

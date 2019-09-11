@@ -9,17 +9,19 @@
 #import "SPTReportContentService-Protocol.h"
 
 @class NSString, SPTAllocationContext, SPTReportContentReporter;
-@protocol SPContextMenuFeature, SPTNetworkService;
+@protocol SPContextMenuFeature, SPTModerationService, SPTNetworkService;
 
 @interface SPTReportContentServiceImplementation : NSObject <SPTReportContentService>
 {
     id <SPContextMenuFeature> _contextMenuService;
     id <SPTNetworkService> _networkService;
+    id <SPTModerationService> _moderationService;
     SPTReportContentReporter *_reporter;
 }
 
 + (id)serviceIdentifier;
 @property(retain, nonatomic) SPTReportContentReporter *reporter; // @synthesize reporter=_reporter;
+@property(nonatomic) __weak id <SPTModerationService> moderationService; // @synthesize moderationService=_moderationService;
 @property(nonatomic) __weak id <SPTNetworkService> networkService; // @synthesize networkService=_networkService;
 @property(nonatomic) __weak id <SPContextMenuFeature> contextMenuService; // @synthesize contextMenuService=_contextMenuService;
 - (void).cxx_destruct;

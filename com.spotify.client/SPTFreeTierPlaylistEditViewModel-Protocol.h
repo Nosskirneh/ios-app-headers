@@ -11,6 +11,7 @@
 
 @protocol SPTFreeTierPlaylistEditViewModel <NSObject>
 @property(readonly, nonatomic) _Bool renameEnabled;
+@property(readonly, nonatomic, getter=isAddToPlaylistForAudioEpisodesEnabled) _Bool addToPlaylistForAudioEpisodesEnabled;
 @property(readonly, nonatomic) _Bool editAnnotationEnabled;
 @property(copy, nonatomic) NSString *editedDescription;
 @property(readonly, copy, nonatomic) NSString *originalDescription;

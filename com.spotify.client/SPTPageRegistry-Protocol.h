@@ -15,7 +15,6 @@
 - (UIViewController<SPTPageController> *)pageForURI:(NSURL *)arg1 linkDispatcher:(id <SPTLinkDispatcher>)arg2 referrerIdentifier:(NSString *)arg3;
 - (id <SPTPageRegistrationToken>)registerPageSelector:(SEL)arg1 target:(id)arg2 predicate:(_Bool (^)(NSURL *))arg3 completion:(void (^)(UIViewController *, NSURL *, NSDictionary *))arg4;
 - (id <SPTPageRegistrationToken>)registerPageSelector:(SEL)arg1 target:(id)arg2 predicate:(_Bool (^)(NSURL *))arg3;
-- (void)unregisterFeaturePages;
 - (void)removeObserver:(id <SPTPageRegistryObserver>)arg1;
 - (void)addObserver:(id <SPTPageRegistryObserver>)arg1;
 @end

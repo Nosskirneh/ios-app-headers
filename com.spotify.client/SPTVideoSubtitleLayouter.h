@@ -6,15 +6,24 @@
 
 #import <objc/NSObject.h>
 
+@class SPTVideoPlayerSource;
+@protocol SPTVideoPlayerConfiguration;
+
 @interface SPTVideoSubtitleLayouter : NSObject
 {
+    SPTVideoPlayerSource *_playerSource;
+    id <SPTVideoPlayerConfiguration> _playerConfiguration;
 }
 
-+ (void)updateAvPlayerItem:(id)arg1 withSubtitleWidthPercentage:(double)arg2 fontPercentage:(double)arg3;
-+ (struct CGRect)adjustedDisplayViewFrameWithSurface:(id)arg1 videoAspectRatio:(double)arg2;
-+ (double)fontSizeForVideoSize:(struct CGSize)arg1;
-+ (struct CGSize)estimatedVideoSizeWithSurface:(id)arg1 videoAspectRatio:(double)arg2;
-+ (void)layoutSubtitleWithSurface:(id)arg1 videoAspectRatio:(double)arg2 avPlayerItem:(id)arg3;
+@property(retain, nonatomic) id <SPTVideoPlayerConfiguration> playerConfiguration; // @synthesize playerConfiguration=_playerConfiguration;
+@property(retain, nonatomic) SPTVideoPlayerSource *playerSource; // @synthesize playerSource=_playerSource;
+- (void).cxx_destruct;
+- (void)updateAvPlayerItem:(id)arg1 withSubtitleWidthPercentage:(double)arg2 fontPercentage:(double)arg3;
+- (struct CGRect)adjustedDisplayViewFrameWithSurface:(id)arg1 videoAspectRatio:(double)arg2;
+- (double)fontSizeForVideoSize:(struct CGSize)arg1;
+- (struct CGSize)estimatedVideoSizeWithSurface:(id)arg1 videoAspectRatio:(double)arg2;
+- (void)layoutSubtitleWithSurface:(id)arg1;
+- (id)initWithPlayerSource:(id)arg1 playerConfiguration:(id)arg2;
 
 @end
 

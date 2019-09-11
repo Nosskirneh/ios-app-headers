@@ -8,8 +8,8 @@
 
 #import "SPTService-Protocol.h"
 
-@class NSString, SPTAllocationContext, SPTCrashReporterUserTracker;
-@protocol SPTCrashReporterService, SPTFeatureFlagSignal, SPTFreeTierService, SPTNetworkService, SPTSessionService, SPTUserTrackingService;
+@class NSString, SPTAllocationContext, SPTClientReporterUserTracker, SPTCrashReporterUserTracker, SPTDeviceReporterUserTracker, SPTEmbeddedProvisionReporterUserTracker;
+@protocol SPTCrashReporterService, SPTEventSenderService, SPTFeatureFlagSignal, SPTFreeTierService, SPTNetworkService, SPTSessionService, SPTUserTrackingService;
 
 @interface SPTSessionUserTrackingServiceImplementation : NSObject <SPTService>
 {
@@ -18,13 +18,21 @@
     id <SPTCrashReporterService> _crashReporterService;
     id <SPTFreeTierService> _freeTierService;
     id <SPTUserTrackingService> _userTrackingService;
+    id <SPTEventSenderService> _eventSenderService;
     SPTCrashReporterUserTracker *_crashReporterUserTracker;
     id <SPTFeatureFlagSignal> _freeTierFeatureFlagSignal;
+    SPTClientReporterUserTracker *_clientReporterUserTracker;
+    SPTDeviceReporterUserTracker *_deviceReporterUserTracker;
+    SPTEmbeddedProvisionReporterUserTracker *_embeddedProvisionReporterUserTracker;
 }
 
 + (id)serviceIdentifier;
+@property(retain, nonatomic) SPTEmbeddedProvisionReporterUserTracker *embeddedProvisionReporterUserTracker; // @synthesize embeddedProvisionReporterUserTracker=_embeddedProvisionReporterUserTracker;
+@property(retain, nonatomic) SPTDeviceReporterUserTracker *deviceReporterUserTracker; // @synthesize deviceReporterUserTracker=_deviceReporterUserTracker;
+@property(retain, nonatomic) SPTClientReporterUserTracker *clientReporterUserTracker; // @synthesize clientReporterUserTracker=_clientReporterUserTracker;
 @property(retain, nonatomic) id <SPTFeatureFlagSignal> freeTierFeatureFlagSignal; // @synthesize freeTierFeatureFlagSignal=_freeTierFeatureFlagSignal;
 @property(retain, nonatomic) SPTCrashReporterUserTracker *crashReporterUserTracker; // @synthesize crashReporterUserTracker=_crashReporterUserTracker;
+@property(nonatomic) __weak id <SPTEventSenderService> eventSenderService; // @synthesize eventSenderService=_eventSenderService;
 @property(nonatomic) __weak id <SPTUserTrackingService> userTrackingService; // @synthesize userTrackingService=_userTrackingService;
 @property(nonatomic) __weak id <SPTFreeTierService> freeTierService; // @synthesize freeTierService=_freeTierService;
 @property(nonatomic) __weak id <SPTCrashReporterService> crashReporterService; // @synthesize crashReporterService=_crashReporterService;

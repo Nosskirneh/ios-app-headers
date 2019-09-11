@@ -6,35 +6,46 @@
 
 #import <UIKit/UIView.h>
 
-@class AVPlayer, FBKVOController;
-@protocol SPTVideoDisplayViewDelegate;
+#import "SPTVideoApplicationStateObserver-Protocol.h"
 
-@interface SPTVideoDisplayView : UIView
+@class AVPlayer, NSString, SPTVideoApplicationStateObservable, SPTVideoPlayerSource;
+@protocol SPTKVOController, SPTVideoDisplayViewDelegate;
+
+@interface SPTVideoDisplayView : UIView <SPTVideoApplicationStateObserver>
 {
-    _Bool _enabled;
-    _Bool _playbackReady;
+    _Bool _videoDisabled;
     id <SPTVideoDisplayViewDelegate> _delegate;
-    FBKVOController *_kvoController;
+    SPTVideoPlayerSource *_playerSource;
+    SPTVideoApplicationStateObservable *_appStateObservable;
+    id <SPTKVOController> _kvoController;
     struct CGRect _videoRect;
 }
 
 + (Class)layerClass;
-@property(nonatomic) _Bool playbackReady; // @synthesize playbackReady=_playbackReady;
-@property(retain, nonatomic) FBKVOController *kvoController; // @synthesize kvoController=_kvoController;
+@property(retain, nonatomic) id <SPTKVOController> kvoController; // @synthesize kvoController=_kvoController;
+@property(retain, nonatomic) SPTVideoApplicationStateObservable *appStateObservable; // @synthesize appStateObservable=_appStateObservable;
+@property(nonatomic) __weak SPTVideoPlayerSource *playerSource; // @synthesize playerSource=_playerSource;
 @property(nonatomic) __weak id <SPTVideoDisplayViewDelegate> delegate; // @synthesize delegate=_delegate;
 @property(nonatomic) struct CGRect videoRect; // @synthesize videoRect=_videoRect;
-@property(nonatomic, getter=isEnabled) _Bool enabled; // @synthesize enabled=_enabled;
+@property(nonatomic, getter=isVideoDisabled) _Bool videoDisabled; // @synthesize videoDisabled=_videoDisabled;
 - (void).cxx_destruct;
-- (id)description;
+@property(readonly, copy) NSString *description;
 - (id)playerLayer;
 @property(nonatomic) long long gravity;
 - (void)setGravity:(long long)arg1 animated:(_Bool)arg2;
 @property(retain, nonatomic) AVPlayer *player;
-@property(nonatomic, getter=isAttached) _Bool attached;
+- (void)updateRenderingVisability;
+- (void)willResignActive;
+- (void)didBecomeActive;
+- (void)didChangeBackgroundState:(_Bool)arg1;
 - (void)refreshVideoRect;
-- (void)refreshAttachment;
 - (void)dealloc;
-- (id)initWithFrame:(struct CGRect)arg1;
+- (id)initWithPlayerSource:(id)arg1 kvoControllerFactory:(id)arg2 appStateObservable:(id)arg3;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

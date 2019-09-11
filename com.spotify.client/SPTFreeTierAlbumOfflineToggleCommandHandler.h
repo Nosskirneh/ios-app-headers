@@ -6,11 +6,11 @@
 
 #import <objc/NSObject.h>
 
-#import "EXP_HUBCommandHandler-Protocol.h"
+#import "HUBCommandHandler-Protocol.h"
 
 @class SPTFreeTierAlbumOfflineModel;
 
-@interface SPTFreeTierAlbumOfflineToggleCommandHandler : NSObject <EXP_HUBCommandHandler>
+@interface SPTFreeTierAlbumOfflineToggleCommandHandler : NSObject <HUBCommandHandler>
 {
     SPTFreeTierAlbumOfflineModel *_albumOfflineModel;
 }

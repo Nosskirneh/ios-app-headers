@@ -6,7 +6,10 @@
 
 #import <UIKit/UIViewController.h>
 
+@class UIPopoverPresentationController;
+
 @interface UIViewController (SPTShareUtility)
+@property(readonly, nonatomic, getter=spt_share_currentPopoverPresentationController) UIPopoverPresentationController *currentPopoverPresentationController;
 @property(readonly, nonatomic, getter=spt_share_isPresentedInPopover) _Bool presentedInPopover;
 @end
 

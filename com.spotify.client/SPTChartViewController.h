@@ -22,8 +22,8 @@
 #import "UITableViewDataSource-Protocol.h"
 #import "UITableViewDelegate-Protocol.h"
 
-@class GLUEButton, NSString, NSURL, SPTChartLogger, SPTChartMetadataView, SPTChartViewModel, SPTEntityTableHeaderView, SPTInfoView, SPTNetworkConnectivityController, SPTProgressView, SPTTableView, SPTTableViewOfflineSwitchCell, UIBarButtonItem;
-@protocol GLUETheme, SPContextMenuFeature, SPTBarButtonItemManager, SPTChartEntityDataSource, SPTCollectionPlatformTestManager, SPTContextMenuOptions, SPTContextMenuPresenter, SPTExplicitContentAccessManager, SPTFormatListPlatformManager, SPTImageLoader, SPTModalPresentationController, SPTPageContainer, SPTProductState, SPTShelves, SPTUpsellManager;
+@class GLUEButton, GLUEEntityRowStyle, NSString, NSURL, SPTChartLogger, SPTChartMetadataView, SPTChartViewModel, SPTEntityTableHeaderView, SPTInfoView, SPTNetworkConnectivityController, SPTProgressView, SPTTableView, SPTTableViewOfflineSwitchCell;
+@protocol GLUETheme, SPContextMenuFeature, SPTBarButtonItemManager, SPTChartEntityDataSource, SPTCollectionPlatformTestManager, SPTContextMenuOptions, SPTContextMenuPresenter, SPTExplicitContentAccessManager, SPTFormatListPlatformManager, SPTImageLoader, SPTModalPresentationController, SPTPageContainer, SPTProductState, SPTShelves;
 
 @interface SPTChartViewController : UIViewController <SPContentInsetViewController, UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate, SPTImageLoaderDelegate, SPTNavigationControllerNavigationBarState, SPTChartEntityDataSourceDelegate, SPTChartViewModelPlayerDelegate, SPViewController, SPTProductStateObserver, SPTOfflineSwitchDelegate, SPTFormatListPlatformManagerOfflineDelegate, SPTBarButtonItemManagerObserver, SPTExplicitContentEnabledStateObserver, SPTPageController>
 {
@@ -38,7 +38,6 @@
     SPTEntityTableHeaderView *_entityHeaderView;
     id <SPTImageLoader> _imageLoader;
     GLUEButton *_followButton;
-    UIBarButtonItem *_likeBarButtonItem;
     id <SPTChartEntityDataSource> _entityDataSource;
     id <SPContextMenuFeature> _contextMenuFeature;
     id <SPTContextMenuPresenter> _contextMenuPresenter;
@@ -48,18 +47,18 @@
     SPTTableViewOfflineSwitchCell *_offlineSwitchCell;
     SPTNetworkConnectivityController *_networkConnectivityController;
     id <SPTFormatListPlatformManager> _formatListPlatformManager;
-    id <SPTUpsellManager> _upsellManager;
     id <SPTCollectionPlatformTestManager> _collectionTestManager;
     id <SPTModalPresentationController> _modalPresentationController;
     id <SPTExplicitContentAccessManager> _explicitContentAccessManager;
     id <GLUETheme> _theme;
+    GLUEEntityRowStyle *_trackRowStyle;
 }
 
+@property(readonly, nonatomic) GLUEEntityRowStyle *trackRowStyle; // @synthesize trackRowStyle=_trackRowStyle;
 @property(readonly, nonatomic) id <GLUETheme> theme; // @synthesize theme=_theme;
 @property(readonly, nonatomic) id <SPTExplicitContentAccessManager> explicitContentAccessManager; // @synthesize explicitContentAccessManager=_explicitContentAccessManager;
 @property(retain, nonatomic) id <SPTModalPresentationController> modalPresentationController; // @synthesize modalPresentationController=_modalPresentationController;
 @property(readonly, nonatomic) __weak id <SPTCollectionPlatformTestManager> collectionTestManager; // @synthesize collectionTestManager=_collectionTestManager;
-@property(readonly, nonatomic) __weak id <SPTUpsellManager> upsellManager; // @synthesize upsellManager=_upsellManager;
 @property(readonly, nonatomic) id <SPTFormatListPlatformManager> formatListPlatformManager; // @synthesize formatListPlatformManager=_formatListPlatformManager;
 @property(readonly, nonatomic) SPTNetworkConnectivityController *networkConnectivityController; // @synthesize networkConnectivityController=_networkConnectivityController;
 @property(retain, nonatomic) SPTTableViewOfflineSwitchCell *offlineSwitchCell; // @synthesize offlineSwitchCell=_offlineSwitchCell;
@@ -69,7 +68,6 @@
 @property(retain, nonatomic) id <SPTContextMenuPresenter> contextMenuPresenter; // @synthesize contextMenuPresenter=_contextMenuPresenter;
 @property(nonatomic) __weak id <SPContextMenuFeature> contextMenuFeature; // @synthesize contextMenuFeature=_contextMenuFeature;
 @property(retain, nonatomic) id <SPTChartEntityDataSource> entityDataSource; // @synthesize entityDataSource=_entityDataSource;
-@property(retain, nonatomic) UIBarButtonItem *likeBarButtonItem; // @synthesize likeBarButtonItem=_likeBarButtonItem;
 @property(retain, nonatomic) GLUEButton *followButton; // @synthesize followButton=_followButton;
 @property(retain, nonatomic) id <SPTImageLoader> imageLoader; // @synthesize imageLoader=_imageLoader;
 @property(retain, nonatomic) SPTEntityTableHeaderView *entityHeaderView; // @synthesize entityHeaderView=_entityHeaderView;
@@ -106,7 +104,6 @@
 - (void)tableViewCellContextMenuButtonTapped:(id)arg1;
 - (void)tableView:(id)arg1 didSelectRowAtIndexPath:(id)arg2;
 - (id)tableView:(id)arg1 willSelectRowAtIndexPath:(id)arg2;
-- (id)trackRowStyle;
 - (void)setupTrailingAccessoryForCell:(id)arg1 indexPath:(id)arg2;
 - (void)configureMultipleAccessoriesViewForCell:(id)arg1 status:(long long)arg2 accessoryLabelType:(long long)arg3;
 - (id)contentViewForCell:(id)arg1;
@@ -132,7 +129,7 @@
 - (void)setupView;
 - (void)viewWillAppear:(_Bool)arg1;
 - (void)viewDidLoad;
-- (id)initWithURL:(id)arg1 productState:(id)arg2 logCenter:(id)arg3 viewModel:(id)arg4 contextMenuFeature:(id)arg5 entityDataSource:(id)arg6 shelves:(id)arg7 imageLoader:(id)arg8 barButtonItemManager:(id)arg9 networkConnectivityController:(id)arg10 formatListPlatformManager:(id)arg11 upsellManager:(id)arg12 collectionTestManager:(id)arg13 modalPresentationController:(id)arg14 explicitContentAccessManager:(id)arg15;
+- (id)initWithURL:(id)arg1 productState:(id)arg2 logCenter:(id)arg3 viewModel:(id)arg4 contextMenuFeature:(id)arg5 entityDataSource:(id)arg6 shelves:(id)arg7 imageLoader:(id)arg8 barButtonItemManager:(id)arg9 networkConnectivityController:(id)arg10 formatListPlatformManager:(id)arg11 collectionTestManager:(id)arg12 modalPresentationController:(id)arg13 explicitContentAccessManager:(id)arg14;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

@@ -18,7 +18,6 @@
 
 @interface SPTIAPControllerImplementation : NSObject <SPTIAPProductRequestDelegate, SPTIAPPurchaseRequestDelegate, SPTIAPRestoredTransactionsObserverDelegate, SPTIAPControllerRetryManagerDelegate, SPTIAPController, SPSessionObserver>
 {
-    _Bool _disableBetaBuildPurchases;
     SPTIAPSimulationSettings *_simulationSettings;
     SPTIAPRestoredTransactionsObserver *_transactionObserver;
     SPTDataLoaderFactory *_dataLoaderFactory;
@@ -36,7 +35,6 @@
 
 @property(nonatomic) __weak SPSession *session; // @synthesize session=_session;
 @property(retain, nonatomic) NSMapTable *unresolvedTransactionErrorMap; // @synthesize unresolvedTransactionErrorMap=_unresolvedTransactionErrorMap;
-@property(nonatomic) _Bool disableBetaBuildPurchases; // @synthesize disableBetaBuildPurchases=_disableBetaBuildPurchases;
 @property(retain, nonatomic) SPTIAPControllerRetryManager *transactionRetryManager; // @synthesize transactionRetryManager=_transactionRetryManager;
 @property(retain, nonatomic) NSHashTable *observers; // @synthesize observers=_observers;
 @property(copy, nonatomic) NSArray *availableProducts; // @synthesize availableProducts=_availableProducts;
@@ -63,7 +61,6 @@
 - (void)productRequestDidStart:(id)arg1;
 - (void)retryManager:(id)arg1 willRetryAtDate:(id)arg2;
 - (void)retryManagerWantsYouToRetry:(id)arg1;
-- (void)disablePurchasesForBetaBuilds;
 - (void)removeObserver:(id)arg1;
 - (void)addObserver:(id)arg1;
 - (id)createPurchaseRequestWithPayment:(id)arg1;

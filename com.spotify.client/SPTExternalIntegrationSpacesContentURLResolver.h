@@ -6,12 +6,9 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTHubRemoteContentURLResolver-Protocol.h"
-
-@class NSString;
 @protocol SPTProductState;
 
-@interface SPTExternalIntegrationSpacesContentURLResolver : NSObject <SPTHubRemoteContentURLResolver>
+@interface SPTExternalIntegrationSpacesContentURLResolver : NSObject
 {
     id <SPTProductState> _productState;
 }
@@ -22,15 +19,8 @@
 - (id)remoteHubContentURLForEndpointPath:(id)arg1 queryParameters:(id)arg2 forExternalData:(_Bool)arg3 includeDynamicComponents:(_Bool)arg4;
 - (id)remoteHubContentURLWithoutDynamicComponentsForViewURI:(id)arg1;
 - (id)remoteHubContentURLForEndpointPath:(id)arg1 queryParameters:(id)arg2 forExternalData:(_Bool)arg3;
-- (id)remoteHubContentURLForEndpointPath:(id)arg1 forExternalData:(_Bool)arg2;
 - (id)remoteHubContentURLForViewURI:(id)arg1;
 - (id)initWithProductState:(id)arg1;
-
-// Remaining properties
-@property(readonly, copy) NSString *debugDescription;
-@property(readonly, copy) NSString *description;
-@property(readonly) unsigned long long hash;
-@property(readonly) Class superclass;
 
 @end
 

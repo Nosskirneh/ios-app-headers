@@ -9,6 +9,7 @@
 @protocol SPTDrivingStateDetector;
 
 @protocol SPTDrivingStateDetectionService <SPTService>
+- (id <SPTDrivingStateDetector>)provideMotionAndOrAccessoryDetector;
 - (id <SPTDrivingStateDetector>)provideDrivingDetector;
 @end
 

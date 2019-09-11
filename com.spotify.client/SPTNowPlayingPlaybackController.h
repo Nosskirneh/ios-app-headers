@@ -37,6 +37,8 @@
 @property(readonly, nonatomic, getter=isShuffling) _Bool shuffling;
 - (void)seekBackwardBySeconds:(double)arg1;
 - (void)seekForwardBySeconds:(double)arg1;
+- (void)skipToPreviousWhileDragging:(_Bool)arg1 times:(unsigned long long)arg2;
+- (void)skipToNextWhileDragging:(_Bool)arg1 times:(unsigned long long)arg2;
 - (void)skipToPreviousWhileDragging:(_Bool)arg1;
 - (void)skipToNextWhileDragging:(_Bool)arg1;
 - (_Bool)disallowSkippingToPreviousTrackWhileDragging:(_Bool)arg1;

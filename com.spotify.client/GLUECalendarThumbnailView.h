@@ -9,13 +9,13 @@
 #import "GLUEStyleable-Protocol.h"
 #import "SPTConcertsEntityRowAdornment-Protocol.h"
 
-@class GLUECalendarThumbnailViewStyle, GLUELabel, NSString, SPTLayoutConstraintBuilder;
+@class GLUECalendarThumbnailViewStyle, GLUELabel, NSArray, NSString;
 
 @interface GLUECalendarThumbnailView : UIView <SPTConcertsEntityRowAdornment, GLUEStyleable>
 {
     GLUELabel *_calendarMonthLabel;
     GLUELabel *_calendarDayLabel;
-    SPTLayoutConstraintBuilder *_layout;
+    NSArray *_layoutConstraints;
     GLUECalendarThumbnailViewStyle *_style;
     UIView *_monthLabelContainerView;
     UIView *_dayLabelContainerView;
@@ -24,7 +24,7 @@
 @property(readonly, nonatomic) UIView *dayLabelContainerView; // @synthesize dayLabelContainerView=_dayLabelContainerView;
 @property(readonly, nonatomic) UIView *monthLabelContainerView; // @synthesize monthLabelContainerView=_monthLabelContainerView;
 @property(retain, nonatomic) GLUECalendarThumbnailViewStyle *style; // @synthesize style=_style;
-@property(retain, nonatomic) SPTLayoutConstraintBuilder *layout; // @synthesize layout=_layout;
+@property(copy, nonatomic) NSArray *layoutConstraints; // @synthesize layoutConstraints=_layoutConstraints;
 @property(readonly, copy, nonatomic) GLUELabel *calendarDayLabel; // @synthesize calendarDayLabel=_calendarDayLabel;
 @property(readonly, copy, nonatomic) GLUELabel *calendarMonthLabel; // @synthesize calendarMonthLabel=_calendarMonthLabel;
 - (void).cxx_destruct;

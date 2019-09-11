@@ -7,52 +7,62 @@
 #import <objc/NSObject.h>
 
 #import "SPTBannerPresentationObserver-Protocol.h"
+#import "SPTNowPlayingModeResolverObserver-Protocol.h"
 #import "SPTNowPlayingModelObserver-Protocol.h"
-#import "SPTNowPlayingScrollDataSourceDelegate-Protocol.h"
 
-@class NSString, NSURL, SPTNowPlayingModel, SPTNowPlayingScrollLogger, UIImage;
-@protocol SPTNowPlayingScrollDataSource_Internal, SPTNowPlayingScrollViewModelDelegate;
+@class NSMutableSet, NSString, NSURL, SPTNowPlayingModel, SPTNowPlayingScrollLogger, SPTPlayerTrack, UIImage;
+@protocol SPTNowPlayingModeResolver, SPTNowPlayingScrollDataSource_Internal, SPTNowPlayingScrollViewModelDelegate;
 
-@interface SPTNowPlayingScrollViewModel : NSObject <SPTNowPlayingModelObserver, SPTNowPlayingScrollDataSourceDelegate, SPTBannerPresentationObserver>
+@interface SPTNowPlayingScrollViewModel : NSObject <SPTNowPlayingModelObserver, SPTNowPlayingModeResolverObserver, SPTBannerPresentationObserver>
 {
-    _Bool _isBannerVisible;
+    _Bool _requireScrollDisabled;
     _Bool _hasSentSwipeInteractionForCurrentTrack;
+    _Bool _hasSentPageImpressionForCurrentTrack;
+    _Bool _bannerPresented;
     id <SPTNowPlayingScrollViewModelDelegate> _delegate;
     SPTNowPlayingModel *_nowPlayingModel;
     id <SPTNowPlayingScrollDataSource_Internal> _dataSource;
+    id <SPTNowPlayingModeResolver> _modeResolver;
     SPTNowPlayingScrollLogger *_logger;
     NSURL *_currentCoverImageURL;
     UIImage *_currentCoverImage;
+    NSMutableSet *_componentsFullyShown;
 }
 
+@property(nonatomic) _Bool bannerPresented; // @synthesize bannerPresented=_bannerPresented;
+@property(retain, nonatomic) NSMutableSet *componentsFullyShown; // @synthesize componentsFullyShown=_componentsFullyShown;
+@property(nonatomic) _Bool hasSentPageImpressionForCurrentTrack; // @synthesize hasSentPageImpressionForCurrentTrack=_hasSentPageImpressionForCurrentTrack;
 @property(nonatomic) _Bool hasSentSwipeInteractionForCurrentTrack; // @synthesize hasSentSwipeInteractionForCurrentTrack=_hasSentSwipeInteractionForCurrentTrack;
-@property(nonatomic) _Bool isBannerVisible; // @synthesize isBannerVisible=_isBannerVisible;
 @property(retain, nonatomic) UIImage *currentCoverImage; // @synthesize currentCoverImage=_currentCoverImage;
 @property(retain, nonatomic) NSURL *currentCoverImageURL; // @synthesize currentCoverImageURL=_currentCoverImageURL;
 @property(readonly, nonatomic) SPTNowPlayingScrollLogger *logger; // @synthesize logger=_logger;
+@property(readonly, nonatomic) id <SPTNowPlayingModeResolver> modeResolver; // @synthesize modeResolver=_modeResolver;
 @property(readonly, nonatomic) id <SPTNowPlayingScrollDataSource_Internal> dataSource; // @synthesize dataSource=_dataSource;
+@property(nonatomic) _Bool requireScrollDisabled; // @synthesize requireScrollDisabled=_requireScrollDisabled;
 @property(readonly, nonatomic) SPTNowPlayingModel *nowPlayingModel; // @synthesize nowPlayingModel=_nowPlayingModel;
 @property(nonatomic) __weak id <SPTNowPlayingScrollViewModelDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
+- (void)modeResolver:(id)arg1 didChangeToMode:(id)arg2 fromMode:(id)arg3;
+- (void)resetInstrumentationStatus;
 - (void)didDismissBannerFromManager:(id)arg1;
 - (void)willPresentBannerFromManager:(id)arg1;
-- (void)dataSourceDidChangeProviders:(id)arg1;
-- (void)dataSourceDidLoadFirstProvider:(id)arg1 forTrack:(id)arg2;
-- (void)resetInstrumentationStatus;
-- (void)resetVisibleComponentProviders;
+- (void)updateScrollComponents;
 - (void)nowPlayingModel:(id)arg1 didMoveToRelativeTrack:(id)arg2;
 - (void)nowPlayingModelDidUpdateMetadata:(id)arg1;
-- (void)scrollViewDidBeginDragging;
+- (void)scrollViewWillBeginDragging;
 - (void)scrollShownForCurrentTrack;
-- (void)componentHiddenAtIndex:(unsigned long long)arg1;
-- (void)componentShownAtIndex:(unsigned long long)arg1;
+- (void)componentWasFullyShownAtIndex:(unsigned long long)arg1;
 - (_Bool)isCurrentTrackVideo;
-- (void)setComponentProviderAtIndex:(unsigned long long)arg1 visible:(_Bool)arg2;
 - (id)componentProviderAtIndex:(unsigned long long)arg1;
 - (unsigned long long)numberOfComponentProviders;
 - (_Bool)hasComponentProviders;
+@property(readonly, nonatomic) SPTPlayerTrack *track;
+@property(readonly, nonatomic) _Bool modeCanBeResized;
+@property(readonly, nonatomic) _Bool scrollEnabled;
 - (void)dealloc;
-- (id)initWithDataSource:(id)arg1 nowPlayingModel:(id)arg2 logger:(id)arg3 bannerPresentationManager:(id)arg4;
+- (void)viewWillDisappear;
+- (void)viewWillAppear;
+- (id)initWithDataSource:(id)arg1 nowPlayingModel:(id)arg2 modeResolver:(id)arg3 logger:(id)arg4 bannerPresentationManager:(id)arg5;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

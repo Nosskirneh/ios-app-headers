@@ -13,10 +13,10 @@
 
 @interface SPTDataSaverServiceImplementation : NSObject <SPTDataSaverService>
 {
-    id <SPTSettingsFeature> _settings;
+    id <SPTSettingsFeature> _settingsFeature;
     id <SPTCoreService> _coreService;
     id <SPTSessionService> _clientSessionService;
-    id <SPTFeatureFlaggingService> _featureFlaggingSevice;
+    id <SPTFeatureFlaggingService> _featureFlaggingService;
     id <SPTContainerService> _containerService;
     id <SPTLocalSettings> _localSettings;
     id <SPTPreferences> _corePreferences;
@@ -32,12 +32,11 @@
 @property(retain, nonatomic) id <SPTPreferences> corePreferences; // @synthesize corePreferences=_corePreferences;
 @property(retain, nonatomic) id <SPTLocalSettings> localSettings; // @synthesize localSettings=_localSettings;
 @property(nonatomic) __weak id <SPTContainerService> containerService; // @synthesize containerService=_containerService;
-@property(nonatomic) __weak id <SPTFeatureFlaggingService> featureFlaggingSevice; // @synthesize featureFlaggingSevice=_featureFlaggingSevice;
+@property(nonatomic) __weak id <SPTFeatureFlaggingService> featureFlaggingService; // @synthesize featureFlaggingService=_featureFlaggingService;
 @property(nonatomic) __weak id <SPTSessionService> clientSessionService; // @synthesize clientSessionService=_clientSessionService;
 @property(nonatomic) __weak id <SPTCoreService> coreService; // @synthesize coreService=_coreService;
-@property(nonatomic) __weak id <SPTSettingsFeature> settings; // @synthesize settings=_settings;
+@property(nonatomic) __weak id <SPTSettingsFeature> settingsFeature; // @synthesize settingsFeature=_settingsFeature;
 - (void).cxx_destruct;
-- (id)provideTestManager;
 - (void)setupInitialSettings:(_Bool)arg1;
 - (id)provideDataSaverActivatedSignal;
 @property(readonly, nonatomic, getter=isDataSaverEnabled) _Bool dataSaverEnabled;

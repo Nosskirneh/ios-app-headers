@@ -32,7 +32,6 @@
 - (id)URI;
 - (id)representationImage;
 - (_Bool)shouldShowPlaceholderView;
-- (void)notifyDelegateOfFailure;
 - (void)setImage:(id)arg1;
 - (void)setImageURL:(id)arg1 image:(id)arg2 imageSize:(struct CGSize)arg3;
 - (id)initWithImageLoader:(id)arg1;

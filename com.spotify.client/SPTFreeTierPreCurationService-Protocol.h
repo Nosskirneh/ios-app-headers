@@ -7,9 +7,10 @@
 #import "SPTService-Protocol.h"
 
 @class SPTFreeTierPreCurationTheme;
-@protocol SPTFreeTierPreCurationTestManager;
+@protocol SPTFreeTierPreCurationTestManager, SPTFreeTierPreCurationUIFactory;
 
 @protocol SPTFreeTierPreCurationService <SPTService>
+- (id <SPTFreeTierPreCurationUIFactory>)provideUIFactory;
 - (SPTFreeTierPreCurationTheme *)provideTheme;
 - (id <SPTFreeTierPreCurationTestManager>)provideTestManager;
 @end

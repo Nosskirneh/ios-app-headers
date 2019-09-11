@@ -6,39 +6,29 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTGeniusNowPlayingViewControllerDelegate-Protocol.h"
 #import "SPTNowPlayingScrollProvider-Protocol.h"
 
-@class NSString, SPTGeniusNowPlayingViewController, SPTGeniusNowPlayingViewControllerFactory;
-@protocol SPTNowPlayingScrollProviderDelegate;
+@class NSString, SPTGeniusCardsViewController, SPTGeniusService;
 
-@interface SPTGeniusScrollProvider : NSObject <SPTGeniusNowPlayingViewControllerDelegate, SPTNowPlayingScrollProvider>
+@interface SPTGeniusScrollProvider : NSObject <SPTNowPlayingScrollProvider>
 {
-    id <SPTNowPlayingScrollProviderDelegate> _delegate;
-    SPTGeniusNowPlayingViewControllerFactory *_geniusViewControllerFactory;
-    SPTGeniusNowPlayingViewController *_geniusViewController;
+    SPTGeniusService *_geniusService;
+    SPTGeniusCardsViewController *_cardsViewController;
 }
 
-@property(retain, nonatomic) SPTGeniusNowPlayingViewController *geniusViewController; // @synthesize geniusViewController=_geniusViewController;
-@property(readonly, nonatomic) SPTGeniusNowPlayingViewControllerFactory *geniusViewControllerFactory; // @synthesize geniusViewControllerFactory=_geniusViewControllerFactory;
-@property(nonatomic) __weak id <SPTNowPlayingScrollProviderDelegate> delegate; // @synthesize delegate=_delegate;
+@property(readonly, nonatomic) SPTGeniusCardsViewController *cardsViewController; // @synthesize cardsViewController=_cardsViewController;
+@property(readonly, nonatomic) SPTGeniusService *geniusService; // @synthesize geniusService=_geniusService;
 - (void).cxx_destruct;
-- (id)provideGeniusViewController;
-- (void)geniusNowPlayingViewControllerDidBecomeDisabled:(id)arg1;
-- (void)geniusNowPlayingViewControllerDidBecomeEnabled:(id)arg1;
-- (void)geniusNowPlayingViewControllerDidFinishLoading:(id)arg1 forTrack:(id)arg2;
+- (id)componentViewForTrack:(id)arg1;
+- (void)loadContentForTrack:(id)arg1;
+- (_Bool)isEnabledForTrack:(id)arg1;
 - (id)identifier;
-- (void)updateWithTrack:(id)arg1 imageURL:(id)arg2;
-- (id)provideContent;
-- (void)didBecomeActive:(_Bool)arg1;
-@property(readonly, nonatomic, getter=isEnabled) _Bool enabled;
-- (id)initWithGeniusViewControllerFactory:(id)arg1;
+- (id)initWithGeniusService:(id)arg1 cardsViewController:(id)arg2;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
 @property(readonly) unsigned long long hash;
-@property(readonly, nonatomic) double preferredContentHeight;
 @property(readonly) Class superclass;
 
 @end

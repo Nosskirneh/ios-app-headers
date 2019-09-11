@@ -12,7 +12,7 @@
 #import "SPTSignupFacebookConfirmationViewModelDelegate-Protocol.h"
 #import "SPTSignupTermsAndPolicyViewModelDelegate-Protocol.h"
 
-@class NSError, NSString, NSURL, SPTSignupFacebookConfirmationView, SPTSignupFacebookConfirmationViewModel;
+@class NSError, NSString, NSURL, SPTLoginTheme, SPTSignupFacebookConfirmationView, SPTSignupFacebookConfirmationViewModel;
 @protocol SPTPageContainer;
 
 @interface SPTSignupFacebookConfirmationViewController : UIViewController <SPTNavigationControllerNavigationBarState, SPTSignupFacebookConfirmationViewModelDelegate, SPTSignupTermsAndPolicyViewModelDelegate, SPTPageController, SPTLoginViewControllerProtocol>
@@ -20,28 +20,30 @@
     _Bool performLogout;
     _Bool forgetUserAfterLogout;
     NSError *error;
+    SPTLoginTheme *_theme;
     SPTSignupFacebookConfirmationViewModel *_viewModel;
 }
 
 @property(retain, nonatomic) SPTSignupFacebookConfirmationViewModel *viewModel; // @synthesize viewModel=_viewModel;
+@property(retain, nonatomic) SPTLoginTheme *theme; // @synthesize theme=_theme;
 @property(copy, nonatomic) NSError *error; // @synthesize error;
 @property(nonatomic) _Bool forgetUserAfterLogout; // @synthesize forgetUserAfterLogout;
 @property(nonatomic) _Bool performLogout; // @synthesize performLogout;
 - (void).cxx_destruct;
 - (void)userDidAcceptAllLicences:(id)arg1;
-@property(readonly, nonatomic) long long presentingControllerAdjustIdentifier;
+@property(readonly, nonatomic) NSString *presentingControllerAdjustIdentifier;
 @property(readonly, nonatomic) UIViewController *presentingController;
 - (void)createUserRequestDidFinishWithError:(id)arg1;
 - (void)createUserRequestDidStart;
 @property(readonly, nonatomic, getter=spt_pageIdentifier) NSString *pageIdentifier;
 @property(readonly, nonatomic, getter=spt_pageURI) NSURL *pageURI;
 - (unsigned long long)preferredNavigationBarState;
-- (void)userDidTouchUpInsideLoginButton:(id)arg1;
-- (void)userDidTouchUpInsideCreateButton:(id)arg1;
+- (void)loginButtonTapped:(id)arg1;
+- (void)createButtonTapped:(id)arg1;
 - (double)minTermsViewVisibilityOffset;
 - (void)viewDidAppear:(_Bool)arg1;
 - (void)loadView;
-- (id)initWithViewModel:(id)arg1;
+- (id)initWithTheme:(id)arg1 viewModel:(id)arg2;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

@@ -16,6 +16,7 @@
     _Bool _container;
     _Bool _availableOffline;
     _Bool _explicitContent;
+    float _playbackProgress;
     NSString *_title;
     NSString *_subtitle;
     NSURL *_URI;
@@ -29,6 +30,7 @@
     NSArray *_children;
 }
 
+@property(readonly, nonatomic) float playbackProgress; // @synthesize playbackProgress=_playbackProgress;
 @property(readonly, nonatomic) NSArray *children; // @synthesize children=_children;
 @property(readonly, nonatomic, getter=isExplicitContent) _Bool explicitContent; // @synthesize explicitContent=_explicitContent;
 @property(readonly, nonatomic, getter=isAvailableOffline) _Bool availableOffline; // @synthesize availableOffline=_availableOffline;
@@ -45,7 +47,7 @@
 @property(readonly, copy, nonatomic) NSString *title; // @synthesize title=_title;
 - (void).cxx_destruct;
 - (id)initWithChildren:(id)arg1 title:(id)arg2 subtitle:(id)arg3 URI:(id)arg4 viewURI:(id)arg5 imageURI:(id)arg6 placeholderIcon:(long long)arg7 availableOffline:(_Bool)arg8;
-- (id)initWithTitle:(id)arg1 subtitle:(id)arg2 URI:(id)arg3 viewURI:(id)arg4 imageURI:(id)arg5 placeholderIcon:(long long)arg6 container:(_Bool)arg7 emptyContainerDescription:(id)arg8 contextURI:(id)arg9 skipToTrack:(id)arg10 requestOptions:(id)arg11 availableOffline:(_Bool)arg12 explicitContent:(_Bool)arg13;
+- (id)initWithTitle:(id)arg1 subtitle:(id)arg2 URI:(id)arg3 viewURI:(id)arg4 imageURI:(id)arg5 placeholderIcon:(long long)arg6 container:(_Bool)arg7 emptyContainerDescription:(id)arg8 children:(id)arg9 contextURI:(id)arg10 skipToTrack:(id)arg11 requestOptions:(id)arg12 availableOffline:(_Bool)arg13 explicitContent:(_Bool)arg14 playbackProgress:(float)arg15;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

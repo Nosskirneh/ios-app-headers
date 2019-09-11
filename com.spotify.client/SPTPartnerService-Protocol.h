@@ -6,9 +6,11 @@
 
 #import "SPTService-Protocol.h"
 
-@protocol SPTPartnerPermissionManager;
+@protocol SPTPartnerIntegrationRegistry, SPTPartnerLogger, SPTPartnerTestManager;
 
 @protocol SPTPartnerService <SPTService>
-- (id <SPTPartnerPermissionManager>)providePartnerPermissionManager;
+- (id <SPTPartnerLogger>)provideLogger;
+- (id <SPTPartnerTestManager>)provideTestManager;
+- (id <SPTPartnerIntegrationRegistry>)providePartnerIntegrationRegistry;
 @end
 

@@ -6,35 +6,37 @@
 
 #import <objc/NSObject.h>
 
-@class SPTAuthenticationHandlerLogger, SPTLoginDialogController, SPTLoginErrorDecorator, SPTLoginPerformanceLogging;
-@protocol SPTLoginStateController, SPTMetaViewController, SPTSessionServicesLoader;
+@class SPTAuthenticationHandlerLogger, SPTLogin5TestManager, SPTLoginDelayedSignupAccountSwitcher, SPTLoginErrorDecorator, SPTLoginMainViewLoader, SPTLoginPerformanceLogging;
+@protocol SPTLoginStateController;
 
 @interface SPTAuthenticationHandler : NSObject
 {
-    id <SPTMetaViewController> _metaViewController;
     id <SPTLoginStateController> _loginStateController;
-    id <SPTSessionServicesLoader> _sessionServicesLoader;
-    SPTLoginDialogController *_alertController;
     SPTAuthenticationHandlerLogger *_logger;
     SPTLoginErrorDecorator *_errorDecorator;
     SPTLoginPerformanceLogging *_performanceLogging;
+    SPTLoginMainViewLoader *_mainViewLoader;
+    SPTLoginDelayedSignupAccountSwitcher *_accountSwitcher;
+    SPTLogin5TestManager *_testManager;
 }
 
+@property(readonly, nonatomic) SPTLogin5TestManager *testManager; // @synthesize testManager=_testManager;
+@property(readonly, nonatomic) SPTLoginDelayedSignupAccountSwitcher *accountSwitcher; // @synthesize accountSwitcher=_accountSwitcher;
+@property(readonly, nonatomic) SPTLoginMainViewLoader *mainViewLoader; // @synthesize mainViewLoader=_mainViewLoader;
 @property(readonly, nonatomic) SPTLoginPerformanceLogging *performanceLogging; // @synthesize performanceLogging=_performanceLogging;
 @property(readonly, nonatomic) SPTLoginErrorDecorator *errorDecorator; // @synthesize errorDecorator=_errorDecorator;
 @property(readonly, nonatomic) SPTAuthenticationHandlerLogger *logger; // @synthesize logger=_logger;
-@property(readonly, nonatomic) SPTLoginDialogController *alertController; // @synthesize alertController=_alertController;
-@property(readonly, nonatomic) id <SPTSessionServicesLoader> sessionServicesLoader; // @synthesize sessionServicesLoader=_sessionServicesLoader;
 @property(readonly, nonatomic) id <SPTLoginStateController> loginStateController; // @synthesize loginStateController=_loginStateController;
-@property(readonly, nonatomic) id <SPTMetaViewController> metaViewController; // @synthesize metaViewController=_metaViewController;
 - (void).cxx_destruct;
-- (void)handleAuthenticationError:(id)arg1;
-- (void)presentMainScreen:(CDUnknownBlockType)arg1;
-- (void)loadServicesAndPresentMainScreenWithCompletion:(CDUnknownBlockType)arg1;
+- (id)provideLoginOptionsForCredentials:(id)arg1;
+- (void)didLoginWithPhoneNumber;
+- (void)switchAccountWithCredentials:(id)arg1 fromScreen:(unsigned long long)arg2 completionBlock:(CDUnknownBlockType)arg3;
+- (void)handleAuthenticationResultWithError:(id)arg1 fromScreen:(unsigned long long)arg2 completion:(CDUnknownBlockType)arg3;
 - (void)authenticateAndLoginWithURI:(id)arg1 context:(id)arg2 completion:(CDUnknownBlockType)arg3;
 - (void)authenticateWithCredentials:(id)arg1 userDidSignUp:(_Bool)arg2 completion:(CDUnknownBlockType)arg3;
 - (void)authenticateAndLoginWithCredentials:(id)arg1 fromScreen:(unsigned long long)arg2 completionBlock:(CDUnknownBlockType)arg3;
-- (id)initWithMetaViewController:(id)arg1 loginStateController:(id)arg2 sessionServicesLoader:(id)arg3 alertController:(id)arg4 logger:(id)arg5 errorDecorator:(id)arg6 performanceLogging:(id)arg7;
+- (void)authenticateAndLoginWithOneTimeToken:(id)arg1 fromScreen:(unsigned long long)arg2 completion:(CDUnknownBlockType)arg3;
+- (id)initWithLoginStateController:(id)arg1 logger:(id)arg2 errorDecorator:(id)arg3 performanceLogging:(id)arg4 mainViewLoader:(id)arg5 accountSwitcher:(id)arg6 testManager:(id)arg7;
 
 @end
 

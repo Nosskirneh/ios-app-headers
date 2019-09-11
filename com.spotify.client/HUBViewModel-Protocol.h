@@ -6,16 +6,17 @@
 
 #import "HUBSerializable-Protocol.h"
 
-@class NSArray, NSDate, NSDictionary, NSString, UINavigationItem;
-@protocol HUBComponentModel;
+@class NSArray, NSDate, NSDictionary, NSString;
+@protocol HUBComponentModel, HUBViewModelBuilder;
 
 @protocol HUBViewModel <HUBSerializable>
-@property(readonly, nonatomic) NSDate *buildDate;
-@property(readonly, nonatomic) NSDictionary *customData;
-@property(readonly, nonatomic) NSArray *overlayComponentModels;
-@property(readonly, nonatomic) NSArray *bodyComponentModels;
+@property(readonly, copy, nonatomic) NSDate *buildDate;
+@property(readonly, copy, nonatomic) NSDictionary *customData;
+@property(readonly, copy, nonatomic) NSArray *overlayComponentModels;
+@property(readonly, copy, nonatomic) NSArray *bodyComponentModels;
 @property(readonly, nonatomic) id <HUBComponentModel> headerComponentModel;
-@property(readonly, copy, nonatomic) UINavigationItem *navigationItem;
+@property(readonly, copy, nonatomic) NSString *navigationBarTitle;
 @property(readonly, copy, nonatomic) NSString *identifier;
+- (id <HUBViewModelBuilder>)createBuilder;
 @end
 

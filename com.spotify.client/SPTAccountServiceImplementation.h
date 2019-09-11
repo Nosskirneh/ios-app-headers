@@ -9,7 +9,7 @@
 #import "SPTAccountService-Protocol.h"
 #import "SPTExternalLinkControllerCampaignDelegate-Protocol.h"
 
-@class NSString, SPTAccountAutoTrialStateManagerImplementation, SPTAccountCurrentProductMonitor, SPTAccountExternalLinkController, SPTAccountProductActivationUserFeedbackController, SPTAllocationContext;
+@class NSString, SPTAccountCurrentProductMonitor, SPTAccountExternalLinkController, SPTAccountProductActivationUserFeedbackController, SPTAllocationContext;
 @protocol InAppPurchaseFeature, SPTAccountProductActivationController, SPTAccountProductInformationController, SPTAccountTrialService, SPTContainerService, SPTSessionService, SPTSettingsFeature, SPTURIDispatchService, SPTWebViewFeature;
 
 @interface SPTAccountServiceImplementation : NSObject <SPTExternalLinkControllerCampaignDelegate, SPTAccountService>
@@ -25,13 +25,11 @@
     id <SPTAccountProductActivationController> _productActivationController;
     SPTAccountCurrentProductMonitor *_currentProductMonitor;
     SPTAccountProductActivationUserFeedbackController *_productActivationUserFeedbackController;
-    SPTAccountAutoTrialStateManagerImplementation *_autoTrialStateManager;
     SPTAccountExternalLinkController *_externalLinkController;
 }
 
 + (id)serviceIdentifier;
 @property(retain, nonatomic) SPTAccountExternalLinkController *externalLinkController; // @synthesize externalLinkController=_externalLinkController;
-@property(retain, nonatomic) SPTAccountAutoTrialStateManagerImplementation *autoTrialStateManager; // @synthesize autoTrialStateManager=_autoTrialStateManager;
 @property(retain, nonatomic) SPTAccountProductActivationUserFeedbackController *productActivationUserFeedbackController; // @synthesize productActivationUserFeedbackController=_productActivationUserFeedbackController;
 @property(retain, nonatomic) SPTAccountCurrentProductMonitor *currentProductMonitor; // @synthesize currentProductMonitor=_currentProductMonitor;
 @property(retain, nonatomic) id <SPTAccountProductActivationController> productActivationController; // @synthesize productActivationController=_productActivationController;
@@ -50,7 +48,6 @@
 - (id)provideCampaignViewController:(id)arg1;
 - (void)loadProductActivationUserFeedbackController;
 - (id)provideAccountSettingsSection:(id)arg1;
-- (id)provideAutoTrialStateManager;
 - (id)provideProductActivationController;
 - (id)provideProductInformationController;
 - (id)provideCurrentProductMonitor;

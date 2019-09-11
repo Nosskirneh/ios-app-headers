@@ -30,6 +30,7 @@
 @property(readonly, nonatomic, getter=isContextResumeEnabled) _Bool contextResumeEnabled;
 - (_Bool)isPrerollFeatureEnabled;
 - (_Bool)isMidrollFeatureEnabled;
+- (_Bool)shouldSendPatchForDisabledReasons:(_Bool)arg1 onSlot:(id)arg2 reason:(id)arg3;
 - (_Bool)removeDisabledReason:(id)arg1 forSlot:(id)arg2;
 - (_Bool)addDisabledReason:(id)arg1 forSlot:(id)arg2;
 - (id)disabledReasonsForSlot:(id)arg1;

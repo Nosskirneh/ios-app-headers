@@ -7,27 +7,27 @@
 #import <objc/NSObject.h>
 
 #import "SPTDataLoaderDelegate-Protocol.h"
-#import "SPTSignupDataLoader-Protocol.h"
 
 @class NSString, SPTDataLoader;
-@protocol SPTSignupDataLoaderDelegate;
+@protocol SPTLoginRecoverAccountDataLoaderDelegate;
 
-@interface SPTLoginRecoverAccountDataLoader : NSObject <SPTDataLoaderDelegate, SPTSignupDataLoader>
+@interface SPTLoginRecoverAccountDataLoader : NSObject <SPTDataLoaderDelegate>
 {
-    id <SPTSignupDataLoaderDelegate> delegate;
+    id <SPTLoginRecoverAccountDataLoaderDelegate> delegate;
     SPTDataLoader *_dataLoader;
 }
 
 @property(retain, nonatomic) SPTDataLoader *dataLoader; // @synthesize dataLoader=_dataLoader;
-@property(nonatomic) __weak id <SPTSignupDataLoaderDelegate> delegate; // @synthesize delegate;
+@property(nonatomic) __weak id <SPTLoginRecoverAccountDataLoaderDelegate> delegate; // @synthesize delegate;
 - (void).cxx_destruct;
 - (void)dataLoader:(id)arg1 didReceiveErrorResponse:(id)arg2;
 - (void)dataLoader:(id)arg1 didReceiveSuccessfulResponse:(id)arg2;
+- (id)buildServiceURL;
+- (id)templateNameFromTemplate:(unsigned long long)arg1;
 - (_Bool)hasOngoingRequests;
 - (void)cancelRequest;
 - (void)performRequestForEmailOrUsername:(id)arg1 template:(id)arg2;
-- (void)requestLoginLinkForEmailOrUsername:(id)arg1;
-- (void)performRequestForEmailOrUsername:(id)arg1;
+- (void)requestLoginLinkForEmailOrUsername:(id)arg1 withTemplate:(unsigned long long)arg2;
 - (void)dealloc;
 - (id)initWithDataLoader:(id)arg1;
 

@@ -7,9 +7,9 @@
 #import "NSObject-Protocol.h"
 
 @class NSString;
-@protocol SPTSearch2Context;
+@protocol SPTSearchPlatformContext;
 
 @protocol SPTSearch2ContextProvider <NSObject>
-- (id <SPTSearch2Context>)provideContextForQuery:(NSString *)arg1 autoCompleteRequestID:(NSString *)arg2;
+- (id <SPTSearchPlatformContext>)provideContextForQuery:(NSString *)arg1 autoCompleteRequestID:(NSString *)arg2;
 @end
 

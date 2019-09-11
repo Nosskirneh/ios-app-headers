@@ -26,7 +26,7 @@
 - (void)layoutSubviews;
 - (double)shadowOpacity;
 - (void)enableGradient:(_Bool)arg1 animated:(_Bool)arg2;
-- (id)initWithSurfaceManager:(id)arg1;
+- (id)initWithSurfaceManager:(id)arg1 surfaceFactory:(id)arg2;
 
 @end
 

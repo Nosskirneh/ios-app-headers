@@ -6,14 +6,19 @@
 
 #import "NSObject-Protocol.h"
 
-@class SPTCarouselBackgroundBlurController, UIViewController;
-@protocol SPTNowPlayingContentViewControllerDelegate;
+@class SPTNowPlayingCarouselBackgroundBlurController, UIViewController;
+@protocol SPTNowPlayingContentViewControllerObserver;
 
 @protocol SPTNowPlayingContentViewController <NSObject>
-@property(retain, nonatomic) SPTCarouselBackgroundBlurController *blurController;
+@property(retain, nonatomic) SPTNowPlayingCarouselBackgroundBlurController *blurController;
 @property(readonly, nonatomic) _Bool shouldTrackIdlePeriodChanges;
-@property(nonatomic) __weak id <SPTNowPlayingContentViewControllerDelegate> delegate;
+- (_Bool)isShowingOverlayForCurrentPage;
 - (void)setContentDecorationViewController:(UIViewController *)arg1;
+- (void)removeObserver:(id <SPTNowPlayingContentViewControllerObserver>)arg1;
+- (void)addObserver:(id <SPTNowPlayingContentViewControllerObserver>)arg1;
+
+@optional
+@property(nonatomic) struct UIEdgeInsets windowedContentInsets;
 - (void)updateWithEmptyFrame:(struct CGRect)arg1;
 @end
 

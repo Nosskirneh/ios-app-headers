@@ -6,7 +6,34 @@
 
 #import <UIKit/UIView.h>
 
+@class UILayoutGuide;
+
 @interface UIView (GLUEConstraints)
++ (_Bool)isReadableContentGuideEnabled;
++ (double)glue_maxViewWidthForReadableContentGuide;
 + (id)glue_newForConstraints;
+@property(readonly, nonatomic) struct UIEdgeInsets glue_layoutMarginsForReadableContentGuide;
+- (id)glue_constrainHorizontallyWithinReadableContentGuideForContainer:(id)arg1 withMargin:(double)arg2 activate:(_Bool)arg3 fallback:(_Bool)arg4;
+- (id)glue_constrainHorizontallyWithinReadableContentGuideForContainer:(id)arg1 withMargin:(double)arg2 activate:(_Bool)arg3;
+- (id)glue_constrainHorizontallyWithinReadableContentGuideForContainer:(id)arg1 activate:(_Bool)arg2;
+- (id)glue_constrainHorizontallyWithinReadableContentGuideForContainer:(id)arg1;
+- (id)glue_constrainHorizontallyWithinContainer:(id)arg1 withMargin:(double)arg2 activate:(_Bool)arg3;
+- (id)glue_constrainHorizontallyWithinContainer:(id)arg1 withMargin:(double)arg2;
+- (id)glue_constrainHorizontallyWithinContainer:(id)arg1 activate:(_Bool)arg2;
+- (id)glue_constrainHorizontallyWithinContainer:(id)arg1;
+- (id)glue_constrainWithinReadableContentGuideForContainer:(id)arg1 withInsets:(struct UIEdgeInsets)arg2 activate:(_Bool)arg3 fallback:(_Bool)arg4;
+- (id)glue_constrainWithinReadableContentGuideForContainer:(id)arg1 withInsets:(struct UIEdgeInsets)arg2 activate:(_Bool)arg3;
+- (id)glue_constrainWithinReadableContentGuideForContainer:(id)arg1 activate:(_Bool)arg2;
+- (id)glue_constrainWithinReadableContentGuideForContainer:(id)arg1;
+- (id)glue_constrainWithinContainer:(id)arg1 withInsets:(struct UIEdgeInsets)arg2 activate:(_Bool)arg3;
+- (id)glue_constrainWithinContainer:(id)arg1 withInsets:(struct UIEdgeInsets)arg2;
+- (id)glue_constrainWithinContainer:(id)arg1 withMargin:(double)arg2 activate:(_Bool)arg3;
+- (id)glue_constrainWithinContainer:(id)arg1 withMargin:(double)arg2;
+- (id)glue_constrainWithinContainer:(id)arg1 activate:(_Bool)arg2;
+- (id)glue_constrainWithinContainer:(id)arg1;
+@property(readonly, nonatomic) UILayoutGuide *glue_readableContentGuide;
+- (id)glue_readableContentGuide_internal;
+- (id)glue_readableContentGuide_fallback;
+@property(readonly, nonatomic, getter=glue_compatibleSafeGuide) UILayoutGuide *compatibleSafeGuide;
 @end
 

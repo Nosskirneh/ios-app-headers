@@ -24,17 +24,17 @@
 }
 
 + (id)messageWithSessionId:(id)arg1 clientId:(id)arg2 integrationType:(id)arg3 transportType:(id)arg4 playbackId:(id)arg5 eventType:(id)arg6 category:(id)arg7 company:(id)arg8 model:(id)arg9 name:(id)arg10 version:(id)arg11;
-@property(retain, nonatomic) NSString *versionValue; // @synthesize versionValue=_versionValue;
-@property(retain, nonatomic) NSString *nameValue; // @synthesize nameValue=_nameValue;
-@property(retain, nonatomic) NSString *modelValue; // @synthesize modelValue=_modelValue;
-@property(retain, nonatomic) NSString *companyValue; // @synthesize companyValue=_companyValue;
-@property(retain, nonatomic) NSString *categoryValue; // @synthesize categoryValue=_categoryValue;
-@property(retain, nonatomic) NSString *eventTypeValue; // @synthesize eventTypeValue=_eventTypeValue;
-@property(retain, nonatomic) NSData *playbackIdValue; // @synthesize playbackIdValue=_playbackIdValue;
-@property(retain, nonatomic) NSString *transportTypeValue; // @synthesize transportTypeValue=_transportTypeValue;
-@property(retain, nonatomic) NSString *integrationTypeValue; // @synthesize integrationTypeValue=_integrationTypeValue;
-@property(retain, nonatomic) NSString *clientIdValue; // @synthesize clientIdValue=_clientIdValue;
-@property(retain, nonatomic) NSString *sessionIdValue; // @synthesize sessionIdValue=_sessionIdValue;
+@property(copy, nonatomic) NSString *versionValue; // @synthesize versionValue=_versionValue;
+@property(copy, nonatomic) NSString *nameValue; // @synthesize nameValue=_nameValue;
+@property(copy, nonatomic) NSString *modelValue; // @synthesize modelValue=_modelValue;
+@property(copy, nonatomic) NSString *companyValue; // @synthesize companyValue=_companyValue;
+@property(copy, nonatomic) NSString *categoryValue; // @synthesize categoryValue=_categoryValue;
+@property(copy, nonatomic) NSString *eventTypeValue; // @synthesize eventTypeValue=_eventTypeValue;
+@property(copy, nonatomic) NSData *playbackIdValue; // @synthesize playbackIdValue=_playbackIdValue;
+@property(copy, nonatomic) NSString *transportTypeValue; // @synthesize transportTypeValue=_transportTypeValue;
+@property(copy, nonatomic) NSString *integrationTypeValue; // @synthesize integrationTypeValue=_integrationTypeValue;
+@property(copy, nonatomic) NSString *clientIdValue; // @synthesize clientIdValue=_clientIdValue;
+@property(copy, nonatomic) NSString *sessionIdValue; // @synthesize sessionIdValue=_sessionIdValue;
 - (void).cxx_destruct;
 - (_Bool)isEqual:(id)arg1;
 - (unsigned long long)hash;

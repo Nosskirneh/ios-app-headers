@@ -8,16 +8,16 @@
 
 #import "GLUEEntityRow-Protocol.h"
 
-@class GLUEEntityRowView, NSDictionary, NSString, UIView;
+@class GLUEEntityRowView, NSArray, NSString, UIView;
 @protocol GLUEEntityRowContent;
 
 @interface SPTFreeTierPreCurationChunkyRowTableViewCell : UITableViewCell <GLUEEntityRow>
 {
     GLUEEntityRowView *_rowView;
-    NSDictionary *_rowConstraints;
+    NSArray *_rowConstraints;
 }
 
-@property(readonly, nonatomic) NSDictionary *rowConstraints; // @synthesize rowConstraints=_rowConstraints;
+@property(readonly, nonatomic) NSArray *rowConstraints; // @synthesize rowConstraints=_rowConstraints;
 @property(readonly, nonatomic) GLUEEntityRowView *rowView; // @synthesize rowView=_rowView;
 - (void).cxx_destruct;
 - (void)glue_applyStyle:(id)arg1;

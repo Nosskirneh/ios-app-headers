@@ -4,36 +4,33 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <UIKit/UITableViewCell.h>
+#import "SPTPodcastSectionTableViewCell.h"
 
-@class GLUEStatefulView, NSArray, NSIndexPath, NSString, NSURL, SPTLayoutConstraintBuilder, SPTPodcastEpisodeContentViewStyle, SPTTheme, UIView;
-@protocol GLUEImageLoader, SPTPodcastEpisodeTableViewCellDelegate, SPTPodcastEpisodeView;
+@class GLUEStatefulView, NSArray, NSIndexPath, NSString, NSURL, SPTPodcastEpisodeContentViewStyle, SPTTheme, UIView;
+@protocol GLUEImageLoader, SPTPodcastEpisodeCellActionTarget, SPTPodcastEpisodeView;
 
-@interface SPTPodcastEpisodeTableViewCell : UITableViewCell
+@interface SPTPodcastEpisodeTableViewCell : SPTPodcastSectionTableViewCell
 {
     _Bool _disabled;
     _Bool _shouldTruncateDescription;
     NSURL *_imageURL;
-    UIView *_editingMainActionView;
-    id <SPTPodcastEpisodeTableViewCellDelegate> _delegate;
+    id <SPTPodcastEpisodeCellActionTarget> _target;
     SPTPodcastEpisodeContentViewStyle *_contentViewStyle;
     NSIndexPath *_indexPath;
     GLUEStatefulView<SPTPodcastEpisodeView> *_episodeView;
-    SPTLayoutConstraintBuilder *_layout;
     SPTTheme *_catTheme;
 }
 
 @property(retain, nonatomic) SPTTheme *catTheme; // @synthesize catTheme=_catTheme;
-@property(retain, nonatomic) SPTLayoutConstraintBuilder *layout; // @synthesize layout=_layout;
 @property(retain, nonatomic) GLUEStatefulView<SPTPodcastEpisodeView> *episodeView; // @synthesize episodeView=_episodeView;
 @property(nonatomic) _Bool shouldTruncateDescription; // @synthesize shouldTruncateDescription=_shouldTruncateDescription;
 @property(retain, nonatomic) NSIndexPath *indexPath; // @synthesize indexPath=_indexPath;
 @property(retain, nonatomic) SPTPodcastEpisodeContentViewStyle *contentViewStyle; // @synthesize contentViewStyle=_contentViewStyle;
-@property(nonatomic) __weak id <SPTPodcastEpisodeTableViewCellDelegate> delegate; // @synthesize delegate=_delegate;
+@property(nonatomic) __weak id <SPTPodcastEpisodeCellActionTarget> target; // @synthesize target=_target;
 @property(nonatomic, getter=isDisabled) _Bool disabled; // @synthesize disabled=_disabled;
-@property(retain, nonatomic) UIView *editingMainActionView; // @synthesize editingMainActionView=_editingMainActionView;
 @property(retain, nonatomic) NSURL *imageURL; // @synthesize imageURL=_imageURL;
 - (void).cxx_destruct;
+- (void)updatewithViewModel:(id)arg1 atIndexPath:(id)arg2;
 - (void)addTapGestureRecognizerForView:(id)arg1 withSelector:(SEL)arg2;
 - (void)didTapHeader;
 - (void)didTapDescriptionText;
@@ -46,12 +43,14 @@
 @property(retain, nonatomic) UIView *mainActionView;
 @property(retain, nonatomic) id <GLUEImageLoader> imageLoader;
 @property(copy, nonatomic) NSString *episodeDescription;
+@property(nonatomic, getter=isExplicit) _Bool explicit;
 @property(nonatomic) double listeningProgress;
 @property(copy, nonatomic) NSString *statusLabel;
 @property(copy, nonatomic) NSString *subtitle;
 @property(copy, nonatomic) NSString *title;
-@property(nonatomic) long long episodeOfflineSyncStatus;
 - (void)prepareForReuse;
+- (void)updateColorsWithCellState:(long long)arg1;
+- (id)providePlaceholderImage;
 - (void)setupLayoutWithTheme:(id)arg1;
 - (void)setupEpisodeViewWithTheme:(id)arg1;
 - (id)initWithStyle:(long long)arg1 reuseIdentifier:(id)arg2;

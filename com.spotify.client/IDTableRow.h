@@ -16,6 +16,7 @@
 + (id)new;
 + (id)rowWithColumns:(unsigned long long)arg1;
 - (void).cxx_destruct;
+- (id)BMW_etchObject;
 - (_Bool)isEqualToTableRow:(id)arg1;
 - (_Bool)isEqual:(id)arg1;
 - (unsigned long long)hash;

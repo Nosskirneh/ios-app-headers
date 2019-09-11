@@ -19,7 +19,7 @@
 - (void).cxx_destruct;
 - (void)updateAdModeWithAdEntity:(id)arg1;
 - (id)getNPVAdMode;
-- (id)initWithNowPlayingManager:(id)arg1 adManager:(id)arg2 playerObserver:(id)arg3 animationView:(id)arg4 theme:(id)arg5;
+- (id)initWithNowPlayingManager:(id)arg1 adManager:(id)arg2 playerObserver:(id)arg3 feedbackModel:(id)arg4 featureChecker:(id)arg5 animationView:(id)arg6 theme:(id)arg7 linkDispatcher:(id)arg8 cosmosBridge:(id)arg9;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

@@ -6,37 +6,36 @@
 
 #import <UIKit/UIViewController.h>
 
-#import "SPTNowPlayingAdPlayerObserver-Protocol.h"
+#import "SPTAdPlayerObserver-Protocol.h"
 #import "SPTNowPlayingAdUnitViewController-Protocol.h"
 
-@class GLUEGradientView, NSString, SPTNowPlayingAdPlayerObservable, SPTTheme, UIButton;
+@class GLUEGradientView, NSString, SPTAdPlayerObservable, SPTTheme, UIButton;
 @protocol SPTAdsManager, SPTNowPlayingVideoControlsVisibilityDelegate;
 
-@interface SPTNowPlayingVideoAdContentDecorationViewController : UIViewController <SPTNowPlayingAdPlayerObserver, SPTNowPlayingAdUnitViewController>
+@interface SPTNowPlayingVideoAdContentDecorationViewController : UIViewController <SPTAdPlayerObserver, SPTNowPlayingAdUnitViewController>
 {
     _Bool _skippable;
-    _Bool _verticalVideo;
     id <SPTNowPlayingVideoControlsVisibilityDelegate> _visibilityDelegate;
     id <SPTAdsManager> _adsManager;
     SPTTheme *_theme;
     UIButton *_videoPlaybackButton;
-    SPTNowPlayingAdPlayerObservable *_observable;
+    SPTAdPlayerObservable *_observable;
     GLUEGradientView *_gradientView;
     double _animationDuration;
 }
 
 @property(nonatomic) double animationDuration; // @synthesize animationDuration=_animationDuration;
 @property(retain, nonatomic) GLUEGradientView *gradientView; // @synthesize gradientView=_gradientView;
-@property(nonatomic) _Bool verticalVideo; // @synthesize verticalVideo=_verticalVideo;
 @property(nonatomic) _Bool skippable; // @synthesize skippable=_skippable;
-@property(readonly, nonatomic) SPTNowPlayingAdPlayerObservable *observable; // @synthesize observable=_observable;
+@property(readonly, nonatomic) SPTAdPlayerObservable *observable; // @synthesize observable=_observable;
 @property(readonly, nonatomic) UIButton *videoPlaybackButton; // @synthesize videoPlaybackButton=_videoPlaybackButton;
 @property(readonly, nonatomic) SPTTheme *theme; // @synthesize theme=_theme;
 @property(readonly, nonatomic) id <SPTAdsManager> adsManager; // @synthesize adsManager=_adsManager;
 @property(nonatomic) __weak id <SPTNowPlayingVideoControlsVisibilityDelegate> visibilityDelegate; // @synthesize visibilityDelegate=_visibilityDelegate;
 - (void).cxx_destruct;
-- (void)nowPlayingAdStateDidChangeToTrack:(struct SPTNowPlayingTrack)arg1;
+- (void)adPlayerStateDidChangeToTrack:(struct SPTNowPlayingTrack)arg1;
 - (void)reloadViewControllerWithAdEntity:(id)arg1;
+- (id)playPauseButtonAccessiblityLabel;
 - (void)updatePlaybackIcon;
 - (void)setShowsVideoControls:(_Bool)arg1 animated:(_Bool)arg2;
 - (void)didTapVideoView:(id)arg1;

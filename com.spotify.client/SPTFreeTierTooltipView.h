@@ -8,8 +8,7 @@
 
 #import "GLUEStyleable-Protocol.h"
 
-@class CAShapeLayer, NSLayoutConstraint, NSString;
-@protocol SPTFreeTierTooltipStyle;
+@class CAShapeLayer, NSLayoutConstraint, NSString, SPTFreeTierTooltipStyle;
 
 @interface SPTFreeTierTooltipView : UIView <GLUEStyleable>
 {
@@ -17,7 +16,7 @@
     NSLayoutConstraint *_trailingConstraint;
     NSLayoutConstraint *_topConstraint;
     NSLayoutConstraint *_bottomConstraint;
-    id <SPTFreeTierTooltipStyle> _style;
+    SPTFreeTierTooltipStyle *_style;
     UIView *_containerView;
     UIView *_contentView;
     CAShapeLayer *_arrowLayer;
@@ -30,7 +29,7 @@
 @property(retain, nonatomic) CAShapeLayer *arrowLayer; // @synthesize arrowLayer=_arrowLayer;
 @property(retain, nonatomic) UIView *contentView; // @synthesize contentView=_contentView;
 @property(retain, nonatomic) UIView *containerView; // @synthesize containerView=_containerView;
-@property(retain, nonatomic) id <SPTFreeTierTooltipStyle> style; // @synthesize style=_style;
+@property(retain, nonatomic) SPTFreeTierTooltipStyle *style; // @synthesize style=_style;
 @property(retain, nonatomic) NSLayoutConstraint *bottomConstraint; // @synthesize bottomConstraint=_bottomConstraint;
 @property(retain, nonatomic) NSLayoutConstraint *topConstraint; // @synthesize topConstraint=_topConstraint;
 @property(retain, nonatomic) NSLayoutConstraint *trailingConstraint; // @synthesize trailingConstraint=_trailingConstraint;

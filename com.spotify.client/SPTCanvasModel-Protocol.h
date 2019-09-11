@@ -17,5 +17,6 @@
 @property(readonly, copy, nonatomic) NSString *contentId;
 @property(readonly, copy, nonatomic) NSURL *contentURL;
 @property(readonly, copy, nonatomic) NSString *canvasId;
+@property(readonly, copy, nonatomic) NSURL *canvasURI;
 @end
 

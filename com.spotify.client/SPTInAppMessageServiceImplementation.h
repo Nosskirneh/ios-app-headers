@@ -6,16 +6,16 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTInAppMessageFeatureFlagChecksObserver-Protocol.h"
 #import "SPTInAppMessageService-Protocol.h"
 
-@class NSString, SPCore, SPTAllocationContext, SPTInAppMessageActionFactory, SPTInAppMessageActionsRegistryImplementation, SPTInAppMessageBannerMessageController, SPTInAppMessageBannerMessagePriorityDecider, SPTInAppMessageCardMessageController, SPTInAppMessageFeatureFlagChecks, SPTInAppMessageMessageRequesterImplementation, SPTInAppMessageNoteMessageController, SPTInAppMessageNoteMessagePriorityDecider, SPTInAppMessageNowPlayingManagerRegistryImplementation, SPTInAppMessageSettingsPageBuilder, SPTInAppMessageTriggerConfigurationsController, SPTInAppMessageTriggerEngine, SPTInAppMessageTriggerListController, SPTInAppMessageTriggerMessagePriorityDecider;
-@protocol FollowFeature, SPTAccountService, SPTBannerFeature, SPTCollectionPlatformService, SPTContainerService, SPTContainerUIService, SPTCoreService, SPTExternalIntegrationDriverDistractionService, SPTFeatureFlagSignal, SPTFeatureFlaggingService, SPTFreeTierEducationService, SPTFreeTierService, SPTInAppMessageNotePresentationManager, SPTInstrumentationService, SPTLocalSettings, SPTNetworkService, SPTOnDemandService, SPTPlayerFeature, SPTPlaylistPlatformService, SPTPodcastFeature, SPTSessionService, SPTSettingsFeature, SPTTooltipService, SPTURIDispatchService, SlateFeature;
+@class NSString, SPCore, SPTAllocationContext, SPTInAppMessageActionFactory, SPTInAppMessageActionsRegistryImplementation, SPTInAppMessageBannerMessageController, SPTInAppMessageBannerMessagePriorityDecider, SPTInAppMessageCardMessageController, SPTInAppMessageCardMessagePriorityDecider, SPTInAppMessageFeatureFlagChecks, SPTInAppMessageMessageRequesterImplementation, SPTInAppMessageNoteMessageController, SPTInAppMessageNoteMessagePriorityDecider, SPTInAppMessageNowPlayingManagerRegistryImplementation, SPTInAppMessagePreviewBannerMessageController, SPTInAppMessagePreviewCardMessageController, SPTInAppMessagePreviewFlowManager, SPTInAppMessagePreviewNoteMessageController, SPTInAppMessagePreviewViewModel, SPTInAppMessageSettingsPageBuilder, SPTInAppMessageTriggerConfigurationsController, SPTInAppMessageTriggerEngine, SPTInAppMessageTriggerListController;
+@protocol FollowFeature, SPContextMenuFeature, SPTAccountService, SPTBannerFeature, SPTCollectionPlatformService, SPTContainerService, SPTContainerUIService, SPTCoreService, SPTCrashReporterService, SPTExternalIntegrationDriverDistractionService, SPTFeatureFlagSignal, SPTFeatureFlaggingService, SPTFreeTierService, SPTFreeTierTooltipService, SPTInAppMessageNotePresentationManager, SPTInstrumentationService, SPTLocalSettings, SPTNetworkService, SPTOnDemandService, SPTPlayerFeature, SPTPlaylistPlatformService, SPTPodcastFeature, SPTSessionService, SPTSettingsFeature, SPTSnackbarService, SPTTooltipService, SPTURIDispatchService, SlateFeature;
 
-@interface SPTInAppMessageServiceImplementation : NSObject <SPTInAppMessageFeatureFlagChecksObserver, SPTInAppMessageService>
+@interface SPTInAppMessageServiceImplementation : NSObject <SPTInAppMessageService>
 {
-    _Bool _loadedControllers;
     _Bool _addedPlayerObserver;
+    _Bool _previewViewModelObservingPlayer;
+    _Bool _addedPageViewObserver;
     id <SPTSessionService> _clientSessionService;
     id <SPTCoreService> _coreService;
     id <SPTNetworkService> _networkFeature;
@@ -37,11 +37,14 @@
     id <SPTPodcastFeature> _podcastFeature;
     id <SPTOnDemandService> _onDemandService;
     id <SPTTooltipService> _tooltipService;
-    id <SPTFreeTierEducationService> _freeTierEducationService;
+    id <SPTFreeTierTooltipService> _freeTierTooltipService;
+    id <SPTSnackbarService> _snackbarService;
+    id <SPContextMenuFeature> _contextMenuFeature;
+    id <SPTCrashReporterService> _crashReporterService;
     SPTInAppMessageTriggerConfigurationsController *_triggerConfigurationsController;
     SPTInAppMessageTriggerListController *_triggerListController;
     SPTInAppMessageTriggerEngine *_triggerEngine;
-    SPTInAppMessageTriggerMessagePriorityDecider *_triggerMessagePriorityDecider;
+    SPTInAppMessageCardMessagePriorityDecider *_cardMessagePriorityDecider;
     SPTInAppMessageBannerMessagePriorityDecider *_bannerMessagePriorityDecider;
     SPTInAppMessageNoteMessagePriorityDecider *_noteMessagePriorityDecider;
     SPTInAppMessageCardMessageController *_cardMessageController;
@@ -51,6 +54,11 @@
     SPTInAppMessageMessageRequesterImplementation *_messageRequester;
     SPTInAppMessageNowPlayingManagerRegistryImplementation *_nowPlayingManagerRegistry;
     SPTInAppMessageActionsRegistryImplementation *_actionsRegistry;
+    SPTInAppMessagePreviewFlowManager *_previewFlowManager;
+    SPTInAppMessagePreviewViewModel *_previewViewModel;
+    SPTInAppMessagePreviewCardMessageController *_previewCardMessageController;
+    SPTInAppMessagePreviewBannerMessageController *_previewBannerMessageController;
+    SPTInAppMessagePreviewNoteMessageController *_previewNoteMessageController;
     id <SPTLocalSettings> _localSettings;
     SPTInAppMessageFeatureFlagChecks *_featureFlagChecker;
     SPCore *_core;
@@ -64,10 +72,16 @@
 @property(retain, nonatomic) SPTInAppMessageActionFactory *actionFactory; // @synthesize actionFactory=_actionFactory;
 @property(retain, nonatomic) SPTInAppMessageSettingsPageBuilder *settingsPageBuilder; // @synthesize settingsPageBuilder=_settingsPageBuilder;
 @property(nonatomic) __weak SPCore *core; // @synthesize core=_core;
+@property(nonatomic) _Bool addedPageViewObserver; // @synthesize addedPageViewObserver=_addedPageViewObserver;
+@property(nonatomic) _Bool previewViewModelObservingPlayer; // @synthesize previewViewModelObservingPlayer=_previewViewModelObservingPlayer;
 @property(nonatomic) _Bool addedPlayerObserver; // @synthesize addedPlayerObserver=_addedPlayerObserver;
-@property(nonatomic) _Bool loadedControllers; // @synthesize loadedControllers=_loadedControllers;
 @property(retain, nonatomic) SPTInAppMessageFeatureFlagChecks *featureFlagChecker; // @synthesize featureFlagChecker=_featureFlagChecker;
 @property(retain, nonatomic) id <SPTLocalSettings> localSettings; // @synthesize localSettings=_localSettings;
+@property(retain, nonatomic) SPTInAppMessagePreviewNoteMessageController *previewNoteMessageController; // @synthesize previewNoteMessageController=_previewNoteMessageController;
+@property(retain, nonatomic) SPTInAppMessagePreviewBannerMessageController *previewBannerMessageController; // @synthesize previewBannerMessageController=_previewBannerMessageController;
+@property(retain, nonatomic) SPTInAppMessagePreviewCardMessageController *previewCardMessageController; // @synthesize previewCardMessageController=_previewCardMessageController;
+@property(retain, nonatomic) SPTInAppMessagePreviewViewModel *previewViewModel; // @synthesize previewViewModel=_previewViewModel;
+@property(retain, nonatomic) SPTInAppMessagePreviewFlowManager *previewFlowManager; // @synthesize previewFlowManager=_previewFlowManager;
 @property(retain, nonatomic) SPTInAppMessageActionsRegistryImplementation *actionsRegistry; // @synthesize actionsRegistry=_actionsRegistry;
 @property(retain, nonatomic) SPTInAppMessageNowPlayingManagerRegistryImplementation *nowPlayingManagerRegistry; // @synthesize nowPlayingManagerRegistry=_nowPlayingManagerRegistry;
 @property(retain, nonatomic) SPTInAppMessageMessageRequesterImplementation *messageRequester; // @synthesize messageRequester=_messageRequester;
@@ -77,11 +91,14 @@
 @property(retain, nonatomic) SPTInAppMessageCardMessageController *cardMessageController; // @synthesize cardMessageController=_cardMessageController;
 @property(retain, nonatomic) SPTInAppMessageNoteMessagePriorityDecider *noteMessagePriorityDecider; // @synthesize noteMessagePriorityDecider=_noteMessagePriorityDecider;
 @property(retain, nonatomic) SPTInAppMessageBannerMessagePriorityDecider *bannerMessagePriorityDecider; // @synthesize bannerMessagePriorityDecider=_bannerMessagePriorityDecider;
-@property(retain, nonatomic) SPTInAppMessageTriggerMessagePriorityDecider *triggerMessagePriorityDecider; // @synthesize triggerMessagePriorityDecider=_triggerMessagePriorityDecider;
+@property(retain, nonatomic) SPTInAppMessageCardMessagePriorityDecider *cardMessagePriorityDecider; // @synthesize cardMessagePriorityDecider=_cardMessagePriorityDecider;
 @property(retain, nonatomic) SPTInAppMessageTriggerEngine *triggerEngine; // @synthesize triggerEngine=_triggerEngine;
 @property(retain, nonatomic) SPTInAppMessageTriggerListController *triggerListController; // @synthesize triggerListController=_triggerListController;
 @property(retain, nonatomic) SPTInAppMessageTriggerConfigurationsController *triggerConfigurationsController; // @synthesize triggerConfigurationsController=_triggerConfigurationsController;
-@property(nonatomic) __weak id <SPTFreeTierEducationService> freeTierEducationService; // @synthesize freeTierEducationService=_freeTierEducationService;
+@property(nonatomic) __weak id <SPTCrashReporterService> crashReporterService; // @synthesize crashReporterService=_crashReporterService;
+@property(nonatomic) __weak id <SPContextMenuFeature> contextMenuFeature; // @synthesize contextMenuFeature=_contextMenuFeature;
+@property(nonatomic) __weak id <SPTSnackbarService> snackbarService; // @synthesize snackbarService=_snackbarService;
+@property(nonatomic) __weak id <SPTFreeTierTooltipService> freeTierTooltipService; // @synthesize freeTierTooltipService=_freeTierTooltipService;
 @property(nonatomic) __weak id <SPTTooltipService> tooltipService; // @synthesize tooltipService=_tooltipService;
 @property(nonatomic) __weak id <SPTOnDemandService> onDemandService; // @synthesize onDemandService=_onDemandService;
 @property(nonatomic) __weak id <SPTPodcastFeature> podcastFeature; // @synthesize podcastFeature=_podcastFeature;
@@ -104,20 +121,21 @@
 @property(nonatomic) __weak id <SPTCoreService> coreService; // @synthesize coreService=_coreService;
 @property(nonatomic) __weak id <SPTSessionService> clientSessionService; // @synthesize clientSessionService=_clientSessionService;
 - (void).cxx_destruct;
-- (void)inAppMessageFeatureFlagsDidChange:(id)arg1 forFlagSignal:(id)arg2;
 - (id)provideNotePresentationManager;
-- (id)provideTestManager;
 - (id)provideActionsRegistry;
 - (id)provideNowPlayingManagerRegistry;
 - (id)provideMessageRequester;
 - (id)provideFeatureFlagChecker;
 - (id)createActionFactory;
 - (id)createCardMessageController;
+- (void)setupPreviewFlow;
+- (id)createPreviewFlowManager;
+- (id)createPreviewViewModel;
 - (id)createNoteMessageController;
 - (id)createBannerMessageController;
 - (id)createNoteMessagePriorityDecider;
 - (id)createBannerMessagePriorityDecider;
-- (id)createTriggerMessagePriorityDecider;
+- (id)createCardMessagePriorityDecider;
 - (id)createTriggerEngine;
 - (id)createTriggerListController;
 - (id)createTriggerConfigurationsController;
@@ -126,6 +144,7 @@
 - (void)connectDelegates;
 - (void)unloadControllers;
 - (void)loadControllers;
+- (void)setupFeatureComponents;
 - (void)unregisterTriggerHTTPHost;
 - (void)registerTriggerHTTPHost;
 - (void)removeNFTTransitionKey;

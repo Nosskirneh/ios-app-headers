@@ -16,7 +16,9 @@
     GLUETrackAccessoryLabelStyle *_style;
 }
 
++ (long long)trackAccessoryLabelTypeFromExplicit:(_Bool)arg1 premium:(_Bool)arg2 prefersLongType:(_Bool)arg3;
 + (long long)trackAccessoryLabelTypeFromExplicit:(_Bool)arg1 premium:(_Bool)arg2;
++ (id)explicitLongLabel;
 + (id)explicitLabel;
 + (id)premiumLabel;
 @property(retain, nonatomic) GLUETrackAccessoryLabelStyle *style; // @synthesize style=_style;

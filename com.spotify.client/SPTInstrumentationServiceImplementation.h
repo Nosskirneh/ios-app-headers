@@ -12,7 +12,7 @@
 #import "SPTInstrumentationServicePrivate-Protocol.h"
 
 @class NSHashTable, NSString, SPTAllocationContext, SPTInstrumentationAppFocusStateMonitor, SPTInstrumentationInteractionItemIDGenerator, SPTInstrumentationNavigationObserver, SPTInstrumentationPageStreamFactory, SPTInstrumentationPageStreamObserver, SPTInstrumentationStackedPageStream, SPTInstrumentationTransports;
-@protocol SPTAbbaFeatureFlags, SPTAbbaService, SPTContainerService, SPTDebugService, SPTInstrumentationInteractionMediator, SPTInstrumentationRemotePlayingHandler, SPTInstrumentationServiceMessagingHandler, SPTLoginService, SPTNavigationFeature, SPTPlayerFeature;
+@protocol SPTAbbaFeatureFlags, SPTAbbaService, SPTContainerService, SPTDebugService, SPTEventSenderService, SPTInstrumentationInteractionMediator, SPTInstrumentationRemotePlayingHandler, SPTInstrumentationServiceMessagingHandler, SPTLoginService, SPTNavigationFeature, SPTPlayerFeature;
 
 @interface SPTInstrumentationServiceImplementation : NSObject <SPTInstrumentationServiceMessagingHandler, SPTAbbaFeatureFlagsObserver, SPTInstrumentationInteractionMediatorProvider, SPTInstrumentationServicePrivate>
 {
@@ -25,6 +25,7 @@
     id <SPTAbbaService> _abbaService;
     id <SPTDebugService> _debugService;
     id <SPTNavigationFeature> _navigationService;
+    id <SPTEventSenderService> _eventSenderService;
     id <SPTAbbaFeatureFlags> _abbaFeatureFlags;
     SPTInstrumentationTransports *_transports;
     SPTInstrumentationPageStreamObserver *_pageViewObserver;
@@ -49,6 +50,7 @@
 @property(retain, nonatomic) SPTInstrumentationPageStreamObserver *pageViewObserver; // @synthesize pageViewObserver=_pageViewObserver;
 @property(retain, nonatomic) SPTInstrumentationTransports *transports; // @synthesize transports=_transports;
 @property(retain, nonatomic) id <SPTAbbaFeatureFlags> abbaFeatureFlags; // @synthesize abbaFeatureFlags=_abbaFeatureFlags;
+@property(nonatomic) __weak id <SPTEventSenderService> eventSenderService; // @synthesize eventSenderService=_eventSenderService;
 @property(nonatomic) __weak id <SPTNavigationFeature> navigationService; // @synthesize navigationService=_navigationService;
 @property(nonatomic) __weak id <SPTDebugService> debugService; // @synthesize debugService=_debugService;
 @property(nonatomic) __weak id <SPTAbbaService> abbaService; // @synthesize abbaService=_abbaService;
@@ -61,13 +63,13 @@
 - (void)featureFlagsDidChange:(id)arg1;
 - (id)provideInteractionMediator;
 - (void)instrumentationServiceObservedUninstrumentedPage:(id)arg1;
-- (void)instrumentationServiceObservedUninstrumentedLegacyHubWithTitle:(id)arg1;
 - (void)removeCurrentPageViewObserver:(id)arg1;
 - (void)addCurrentPageViewObserver:(id)arg1;
 - (id)provideIntentMapper;
 - (id)provideIDMapper;
 - (id)provideModalPresentationMonitor;
 - (id)provideTransportRegistry;
+- (_Bool)dualSendingEnabled;
 - (_Bool)interactionFeatureEnabled;
 - (void)configureInteractionMediator;
 - (void)configurePageViewObserverWithClock:(id)arg1;

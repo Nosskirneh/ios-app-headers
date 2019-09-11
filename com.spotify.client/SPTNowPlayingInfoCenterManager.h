@@ -13,16 +13,14 @@
 #import "SPTNowPlayingTrackPositionObserver-Protocol.h"
 #import "SPTPlaybackQueueInitializer-Protocol.h"
 
-@class MPMediaItemArtwork, MPNowPlayingInfoCenter, NSHashTable, NSString, NSURL, SPTNowPlayingPlaybackController, SPTNowPlayingTrackMetadataQueue, UIImage;
-@protocol SPTGaiaDeviceStateManager, SPTGaiaLockScreenControlsStateProvider, SPTImageLoader, SPTLocalSettings, SPTPlayer;
+@class MPMediaItemArtwork, MPNowPlayingInfoCenter, NSHashTable, NSString, NSURL, SPTNowPlayingPlaybackController, SPTNowPlayingTrackMetadataQueue;
+@protocol SPTGaiaConnectAPI, SPTGaiaLockScreenControlsStateProvider, SPTImageLoader, SPTPlayer;
 
 @interface SPTNowPlayingInfoCenterManager : NSObject <SPTImageLoaderDelegate, SPTNowPlayingTrackMetadataQueueObserver, SPTNowPlayingTrackPositionObserver, SPTGaiaLockScreenControlsStateObserver, SPTNowPlayingInfoCenterManagerProtocol, SPTPlaybackQueueInitializer>
 {
-    UIImage *_currentLockScreenImage;
     SPTNowPlayingPlaybackController *_playbackController;
     SPTNowPlayingTrackMetadataQueue *_trackMetadataQueue;
-    id <SPTGaiaDeviceStateManager> _deviceStateManager;
-    id <SPTLocalSettings> _localSettings;
+    id <SPTGaiaConnectAPI> _connectManager;
     MPNowPlayingInfoCenter *_infoCenter;
     id <SPTImageLoader> _imageLoader;
     id <SPTGaiaLockScreenControlsStateProvider> _lockScreenControlsStateProvider;
@@ -41,11 +39,9 @@
 @property(readonly, nonatomic) id <SPTGaiaLockScreenControlsStateProvider> lockScreenControlsStateProvider; // @synthesize lockScreenControlsStateProvider=_lockScreenControlsStateProvider;
 @property(readonly, nonatomic) id <SPTImageLoader> imageLoader; // @synthesize imageLoader=_imageLoader;
 @property(readonly, nonatomic) MPNowPlayingInfoCenter *infoCenter; // @synthesize infoCenter=_infoCenter;
-@property(readonly, nonatomic) id <SPTLocalSettings> localSettings; // @synthesize localSettings=_localSettings;
-@property(readonly, nonatomic) id <SPTGaiaDeviceStateManager> deviceStateManager; // @synthesize deviceStateManager=_deviceStateManager;
+@property(readonly, nonatomic) id <SPTGaiaConnectAPI> connectManager; // @synthesize connectManager=_connectManager;
 @property(readonly, nonatomic) SPTNowPlayingTrackMetadataQueue *trackMetadataQueue; // @synthesize trackMetadataQueue=_trackMetadataQueue;
 @property(readonly, nonatomic) SPTNowPlayingPlaybackController *playbackController; // @synthesize playbackController=_playbackController;
-@property(retain, nonatomic) UIImage *currentLockScreenImage; // @synthesize currentLockScreenImage=_currentLockScreenImage;
 - (void).cxx_destruct;
 - (void)lockScreenControlsEnabledChanged:(_Bool)arg1;
 - (void)initializePlaybackQueueWithCompletionHandler:(CDUnknownBlockType)arg1;
@@ -63,10 +59,11 @@
 - (void)imageLoader:(id)arg1 didLoadImage:(id)arg2 forURL:(id)arg3 loadTime:(double)arg4 context:(id)arg5;
 - (void)setLoadedImage:(id)arg1 forURL:(id)arg2 playerTrack:(id)arg3 playerState:(id)arg4;
 - (void)setImageWithURL:(id)arg1;
+- (void)updateArtworkWithImage:(id)arg1;
 - (void)setImage:(id)arg1 withURL:(id)arg2;
 - (id)placeholderImage;
 - (void)dealloc;
-- (id)initWithPlaybackController:(id)arg1 trackMetadataQueue:(id)arg2 gaiaDeviceStateManager:(id)arg3 localSettings:(id)arg4 infoCenter:(id)arg5 imageLoader:(id)arg6 lockScreenControlsStateProvider:(id)arg7 player:(id)arg8;
+- (id)initWithPlaybackController:(id)arg1 trackMetadataQueue:(id)arg2 connectManager:(id)arg3 infoCenter:(id)arg4 imageLoader:(id)arg5 lockScreenControlsStateProvider:(id)arg6 player:(id)arg7;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

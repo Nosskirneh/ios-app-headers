@@ -6,11 +6,10 @@
 
 #import "NSObject-Protocol.h"
 
-@class UIViewController;
 @protocol SPTWebViewControllerDelegate;
 
 @protocol SPTWebViewController <NSObject>
 @property(nonatomic) __weak id <SPTWebViewControllerDelegate> delegate;
-- (void)presentFromViewController:(UIViewController *)arg1 animated:(_Bool)arg2;
+- (void)presentViewControllerAnimated:(_Bool)arg1;
 @end
 

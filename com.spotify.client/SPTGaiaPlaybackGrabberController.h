@@ -6,38 +6,41 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTGaiaDeviceStateManagerObserver-Protocol.h"
+#import "SPTGaiaConnectManagerObserver-Protocol.h"
 
-@class GaiaMessageBarController, NSArray, NSString, SPTGaiaDeviceManager, UIApplication;
-@protocol SPTGaiaLockScreenControlsStateProvider, SPTPlayer;
+@class GaiaMessageBarController, NSArray, NSString, UIApplication;
+@protocol SPTGaiaConnectManager, SPTGaiaLockScreenControlsStateProvider, SPTPlayer;
 
-@interface SPTGaiaPlaybackGrabberController : NSObject <SPTGaiaDeviceStateManagerObserver>
+@interface SPTGaiaPlaybackGrabberController : NSObject <SPTGaiaConnectManagerObserver>
 {
     id <SPTPlayer> _player;
-    SPTGaiaDeviceManager *_deviceManager;
     GaiaMessageBarController *_messageBarController;
     NSArray *_grabbingRouteTypes;
     double _lastApplicationActivationTimestamp;
     id <SPTGaiaLockScreenControlsStateProvider> _lockScreenControlsStateProvider;
     UIApplication *_application;
+    id <SPTGaiaConnectManager> _connectManager;
 }
 
+@property(retain, nonatomic) id <SPTGaiaConnectManager> connectManager; // @synthesize connectManager=_connectManager;
 @property(retain, nonatomic) UIApplication *application; // @synthesize application=_application;
 @property(retain, nonatomic) id <SPTGaiaLockScreenControlsStateProvider> lockScreenControlsStateProvider; // @synthesize lockScreenControlsStateProvider=_lockScreenControlsStateProvider;
 @property(nonatomic) double lastApplicationActivationTimestamp; // @synthesize lastApplicationActivationTimestamp=_lastApplicationActivationTimestamp;
-@property(retain, nonatomic) NSArray *grabbingRouteTypes; // @synthesize grabbingRouteTypes=_grabbingRouteTypes;
+@property(copy, nonatomic) NSArray *grabbingRouteTypes; // @synthesize grabbingRouteTypes=_grabbingRouteTypes;
 @property(retain, nonatomic) GaiaMessageBarController *messageBarController; // @synthesize messageBarController=_messageBarController;
-@property(retain, nonatomic) SPTGaiaDeviceManager *deviceManager; // @synthesize deviceManager=_deviceManager;
 @property(nonatomic) __weak id <SPTPlayer> player; // @synthesize player=_player;
 - (void).cxx_destruct;
 - (void)grabPlayback;
+- (_Bool)activeDeviceIsCar;
+- (_Bool)activeDeviceExists;
 - (void)respondToApplicationDidBecomeActive;
 - (_Bool)currentAudioRouteShouldGrabPlayback:(id *)arg1;
 - (void)applicationDidBecomeActiveNotification:(id)arg1;
 - (void)audioRouteChangedNotification:(id)arg1;
-- (void)deviceStateManager:(id)arg1 activeDeviceDidChange:(id)arg2;
+- (void)updateActiveDeviceGrabberIfNeeded;
+- (void)connectManager:(id)arg1 activeDeviceDidChange:(id)arg2;
 - (void)dealloc;
-- (id)initWithLockScreenControlsStateProvider:(id)arg1 deviceManager:(id)arg2 messageBarController:(id)arg3 player:(id)arg4 application:(id)arg5;
+- (id)initWithLockScreenControlsStateProvider:(id)arg1 messageBarController:(id)arg2 player:(id)arg3 application:(id)arg4 connectManager:(id)arg5;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

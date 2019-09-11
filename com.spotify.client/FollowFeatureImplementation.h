@@ -9,7 +9,7 @@
 #import "FollowFeature-Protocol.h"
 #import "SPTService-Protocol.h"
 
-@class FollowModel, NSString, SPTAllocationContext, SPTFollowDataProvider, SPTFollowFeatureLoggerImplementation, SPTFollowModelMessageManager;
+@class FollowModel, NSString, SPTAllocationContext, SPTFollowArtistCollectionStateManager, SPTFollowDataProvider, SPTFollowFeatureLoggerImplementation, SPTFollowModelMessageManager;
 @protocol SPContextMenuFeature, SPTCollectionPlatformService, SPTContainerService, SPTFollowModelFactory, SPTNetworkService, SPTSessionService;
 
 @interface FollowFeatureImplementation : NSObject <SPTService, FollowFeature>
@@ -23,6 +23,7 @@
     SPTFollowDataProvider *_followDataProvider;
     SPTFollowModelMessageManager *_messageManager;
     SPTFollowFeatureLoggerImplementation *_followLogger;
+    SPTFollowArtistCollectionStateManager *_followArtistStateManager;
     FollowModel *_lastFollowArtistTaskModel;
     FollowModel *_lastBanArtistTaskModel;
 }
@@ -30,6 +31,7 @@
 + (id)serviceIdentifier;
 @property(retain, nonatomic) FollowModel *lastBanArtistTaskModel; // @synthesize lastBanArtistTaskModel=_lastBanArtistTaskModel;
 @property(retain, nonatomic) FollowModel *lastFollowArtistTaskModel; // @synthesize lastFollowArtistTaskModel=_lastFollowArtistTaskModel;
+@property(retain, nonatomic) SPTFollowArtistCollectionStateManager *followArtistStateManager; // @synthesize followArtistStateManager=_followArtistStateManager;
 @property(retain, nonatomic) SPTFollowFeatureLoggerImplementation *followLogger; // @synthesize followLogger=_followLogger;
 @property(retain, nonatomic) SPTFollowModelMessageManager *messageManager; // @synthesize messageManager=_messageManager;
 @property(retain, nonatomic) SPTFollowDataProvider *followDataProvider; // @synthesize followDataProvider=_followDataProvider;

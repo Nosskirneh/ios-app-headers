@@ -40,6 +40,8 @@
 - (id)provideDataLoaderFactory;
 - (void)clientDidLogout;
 - (void)setHermesTransport:(id)arg1 productState:(id)arg2;
+- (id)dataLoaderServiceConfiguration;
+- (void)dealloc;
 - (id)initWithNetworkConnectivityController:(id)arg1 startupTracer:(id)arg2 core:(id)arg3;
 
 // Remaining properties

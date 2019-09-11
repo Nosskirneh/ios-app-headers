@@ -6,14 +6,13 @@
 
 #import "NSObject-Protocol.h"
 
-@class NSNumber;
 @protocol SPTFollowShelfItem;
 
 @protocol SPTFeedViewModelDelegate <NSObject>
 - (void)feedShouldRefetchData;
 - (void)playerStateOutOfFeedBoundaries;
-- (void)playerSkippedTrackForTableViewCellIndex:(NSNumber *)arg1 collectionViewCellIndex:(NSNumber *)arg2;
-- (void)playerPaused:(_Bool)arg1 tableViewCellIndex:(NSNumber *)arg2 collectionViewCellIndex:(NSNumber *)arg3;
+- (void)playerSkippedTrackForTableViewCellIndex:(unsigned long long)arg1;
+- (void)playerPaused:(_Bool)arg1 tableViewCellIndex:(unsigned long long)arg2;
 - (void)followItemDidUpdate:(id <SPTFollowShelfItem>)arg1 atIndex:(unsigned long long)arg2;
 @end
 

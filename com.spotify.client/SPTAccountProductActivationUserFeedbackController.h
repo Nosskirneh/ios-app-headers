@@ -9,16 +9,14 @@
 #import "SPTAccountProductActivationObserver-Protocol.h"
 
 @class NSString, SPTAccountProductStateMonitorController;
-@protocol SPTAccountAutoTrialStateManager, SPTAccountProductActivationController;
+@protocol SPTAccountProductActivationController;
 
 @interface SPTAccountProductActivationUserFeedbackController : NSObject <SPTAccountProductActivationObserver>
 {
     id <SPTAccountProductActivationController> _productActivationController;
     SPTAccountProductStateMonitorController *_productStateMonitorController;
-    id <SPTAccountAutoTrialStateManager> _autoTrialStateManager;
 }
 
-@property(retain, nonatomic) id <SPTAccountAutoTrialStateManager> autoTrialStateManager; // @synthesize autoTrialStateManager=_autoTrialStateManager;
 @property(retain, nonatomic) SPTAccountProductStateMonitorController *productStateMonitorController; // @synthesize productStateMonitorController=_productStateMonitorController;
 @property(retain, nonatomic) id <SPTAccountProductActivationController> productActivationController; // @synthesize productActivationController=_productActivationController;
 - (void).cxx_destruct;
@@ -29,7 +27,7 @@
 - (void)stopProvidingUserFeedbackAutomatically;
 - (void)startProvidingUserFeedbackAutomatically;
 - (void)dealloc;
-- (id)initWithProductActivationController:(id)arg1 productStateMonitorController:(id)arg2 autoTrialStateManager:(id)arg3;
+- (id)initWithProductActivationController:(id)arg1 productStateMonitorController:(id)arg2;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

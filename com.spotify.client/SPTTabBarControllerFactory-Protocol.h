@@ -6,11 +6,11 @@
 
 #import "NSObject-Protocol.h"
 
-@class SPTTabBarContainerViewController;
-@protocol SPTLogCenter;
+@class UIViewController;
+@protocol SPTLogCenter, SPTTabBarContainer;
 
 @protocol SPTTabBarControllerFactory <NSObject>
-- (SPTTabBarContainerViewController *)createTabBarContainerWithTabBarController:(struct UIViewController *)arg1;
+- (UIViewController<SPTTabBarContainer> *)createTabBarContainerWithTabBarController:(struct UIViewController *)arg1 logCenter:(id <SPTLogCenter>)arg2;
 - (struct UIViewController *)createTabBarControllerWithLogCenter:(id <SPTLogCenter>)arg1;
 @end
 

@@ -16,6 +16,8 @@
 - (_Bool)slateShouldOnlyDismissOnFooterTap:(id <SPTSlate>)arg1;
 - (_Bool)slateShouldDismissContainer:(id <SPTSlate>)arg1;
 - (_Bool)slateShouldDismiss:(id <SPTSlate>)arg1;
+- (long long)iconForAccessoryButtonInSlate:(id <SPTSlate>)arg1;
+- (_Bool)shouldShowAccessoryButtonForSlate:(id <SPTSlate>)arg1;
 - (NSString *)dismissTextForSlate:(id <SPTSlate>)arg1;
 - (NSString *)titleForSlate:(id <SPTSlate>)arg1;
 @end

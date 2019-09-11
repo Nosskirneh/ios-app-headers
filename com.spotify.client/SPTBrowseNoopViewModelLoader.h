@@ -6,16 +6,16 @@
 
 #import <objc/NSObject.h>
 
-#import "EXP_HUBViewModelLoader-Protocol.h"
+#import "HUBViewModelLoader-Protocol.h"
 
-@protocol EXP_HUBViewModelLoaderDelegate;
+@protocol HUBViewModelLoaderDelegate;
 
-@interface SPTBrowseNoopViewModelLoader : NSObject <EXP_HUBViewModelLoader>
+@interface SPTBrowseNoopViewModelLoader : NSObject <HUBViewModelLoader>
 {
-    id <EXP_HUBViewModelLoaderDelegate> _delegate;
+    id <HUBViewModelLoaderDelegate> _delegate;
 }
 
-@property(nonatomic) __weak id <EXP_HUBViewModelLoaderDelegate> delegate; // @synthesize delegate=_delegate;
+@property(nonatomic) __weak id <HUBViewModelLoaderDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
 - (void)loadViewModel;
 @property(readonly, nonatomic) _Bool isLoading;

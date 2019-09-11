@@ -12,7 +12,7 @@
 #import "UICollectionViewDelegate-Protocol.h"
 #import "UICollectionViewDelegateFlowLayout-Protocol.h"
 
-@class GLUEButton, NSLayoutConstraint, NSString, NSURL, SPTFeedOnboardingViewModel, SPTInfoView, SPTLayoutConstraintBuilder, SPTProgressView, UICollectionView;
+@class GLUEButton, NSArray, NSLayoutConstraint, NSString, NSURL, SPTFeedOnboardingViewModel, SPTInfoView, SPTProgressView, UICollectionView;
 @protocol GLUEImageLoader, GLUETheme, SPTFeedOnboardingViewControllerDelegate, SPTPageContainer;
 
 @interface SPTFeedOnboardingViewController : UIViewController <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, SPTFeedOnboardingViewModelDelegate, SPTPageController>
@@ -20,7 +20,7 @@
     id <SPTFeedOnboardingViewControllerDelegate> _delegate;
     id <GLUETheme> _theme;
     id <GLUEImageLoader> _imageLoader;
-    SPTLayoutConstraintBuilder *_layout;
+    NSArray *_layoutConstraints;
     SPTFeedOnboardingViewModel *_viewModel;
     unsigned long long _followingCount;
     UICollectionView *_collectionView;
@@ -37,7 +37,7 @@
 @property(retain, nonatomic) UICollectionView *collectionView; // @synthesize collectionView=_collectionView;
 @property(nonatomic) unsigned long long followingCount; // @synthesize followingCount=_followingCount;
 @property(retain, nonatomic) SPTFeedOnboardingViewModel *viewModel; // @synthesize viewModel=_viewModel;
-@property(retain, nonatomic) SPTLayoutConstraintBuilder *layout; // @synthesize layout=_layout;
+@property(copy, nonatomic) NSArray *layoutConstraints; // @synthesize layoutConstraints=_layoutConstraints;
 @property(retain, nonatomic) id <GLUEImageLoader> imageLoader; // @synthesize imageLoader=_imageLoader;
 @property(retain, nonatomic) id <GLUETheme> theme; // @synthesize theme=_theme;
 @property(readonly, nonatomic) __weak id <SPTFeedOnboardingViewControllerDelegate> delegate; // @synthesize delegate=_delegate;

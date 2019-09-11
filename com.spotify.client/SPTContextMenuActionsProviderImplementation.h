@@ -7,12 +7,11 @@
 #import <objc/NSObject.h>
 
 #import "SPTContextMenuActionsProvider-Protocol.h"
-#import "SPTFeatureFlagSignalObserver-Protocol.h"
 
 @class NSString;
 @protocol SPContextMenuActionsFactory, SPTContributingArtistsService, SPTFeatureFlagSignal, SPTUIPresentationService;
 
-@interface SPTContextMenuActionsProviderImplementation : NSObject <SPTFeatureFlagSignalObserver, SPTContextMenuActionsProvider>
+@interface SPTContextMenuActionsProviderImplementation : NSObject <SPTContextMenuActionsProvider>
 {
     _Bool _freeTierEnabled;
     id <SPContextMenuActionsFactory> _actionsFactory;
@@ -31,16 +30,12 @@
 - (id)actionsDictionaryForTrackURL:(id)arg1 name:(id)arg2 metadata:(id)arg3 playable:(_Bool)arg4 imageURL:(id)arg5 artists:(id)arg6 albumName:(id)arg7 albumURL:(id)arg8 viewURL:(id)arg9 logContext:(id)arg10 contextSourceURL:(id)arg11;
 - (id)generateCorrectTaskArrayWithTaskOrder:(id)arg1 actionDictionary:(id)arg2;
 - (id)actionsForTrackURL:(id)arg1 name:(id)arg2 metadata:(id)arg3 playable:(_Bool)arg4 imageURL:(id)arg5 artists:(id)arg6 albumName:(id)arg7 albumURL:(id)arg8 viewURL:(id)arg9 logContext:(id)arg10 contextSourceURL:(id)arg11;
-- (id)actionForURI:(id)arg1 logContext:(id)arg2 title:(id)arg3 imageURL:(id)arg4 actionIdentifier:(id)arg5;
 - (id)actionForURIs:(id)arg1 logContext:(id)arg2 sourceURL:(id)arg3 containerURL:(id)arg4 playlistName:(id)arg5 actionIdentifier:(id)arg6 contextSourceURL:(id)arg7;
 - (id)actionForURI:(id)arg1 logContext:(id)arg2 sourceURL:(id)arg3 tracks:(id)arg4 actionIdentifier:(id)arg5;
 - (id)actionForURI:(id)arg1 logContext:(id)arg2 sourceURL:(id)arg3 itemName:(id)arg4 creatorName:(id)arg5 sourceName:(id)arg6 imageURL:(id)arg7 clipboardLinkTitle:(id)arg8 actionIdentifier:(id)arg9;
 - (id)actionForURI:(id)arg1 logContext:(id)arg2 sourceURL:(id)arg3 contextURL:(id)arg4 actionIdentifier:(id)arg5;
 - (id)actionForURI:(id)arg1 logContext:(id)arg2 sourceURL:(id)arg3 actionIdentifier:(id)arg4;
-- (id)actionForURIs:(id)arg1 logContext:(id)arg2 sourceURL:(id)arg3 actionIdentifier:(id)arg4 title:(id)arg5 albumTitle:(id)arg6 artistTitle:(id)arg7 imageURL:(id)arg8 clipboardLinkTitle:(id)arg9 tracks:(id)arg10 containerEntityURL:(id)arg11;
-- (id)followArtist:(id)arg1 logContext:(id)arg2;
 - (id)offlineSync:(id)arg1 isOffline:(_Bool)arg2 collectionPlatform:(id)arg3 collectionOptions:(id)arg4 logContext:(id)arg5;
-- (id)setArtistPickToURI:(id)arg1 logContext:(id)arg2;
 - (id)viewAlbumWithAlbumURL:(id)arg1 logContext:(id)arg2;
 - (id)viewArtists:(id)arg1 logContext:(id)arg2;
 - (id)viewArtistWithURL:(id)arg1 logContext:(id)arg2;

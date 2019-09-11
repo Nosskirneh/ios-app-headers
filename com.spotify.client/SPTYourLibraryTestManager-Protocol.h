@@ -6,10 +6,14 @@
 
 #import "NSObject-Protocol.h"
 
+@class NSString;
 @protocol SPTFeatureFlagSignal;
 
 @protocol SPTYourLibraryTestManager <NSObject>
-@property(readonly, nonatomic, getter=isDoubleTabYourLibraryEnabled) _Bool doubleTabyourLibraryEnabled;
-@property(readonly, nonatomic) id <SPTFeatureFlagSignal> doubleTabyourLibraryEnabledSignal;
+@property(readonly, nonatomic) NSString *persistActiveTabRawValue;
+@property(readonly, nonatomic, getter=isPersistActiveTabEnabled) _Bool persistActiveTabEnabled;
+@property(readonly, nonatomic) id <SPTFeatureFlagSignal> persistActiveTabEnabledSignal;
+@property(readonly, nonatomic, getter=isDoubleTabYourLibraryEnabled) _Bool doubleTabYourLibraryEnabled;
+@property(readonly, nonatomic) id <SPTFeatureFlagSignal> doubleTabYourLibraryEnabledSignal;
 @end
 

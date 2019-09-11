@@ -25,7 +25,7 @@
     id <SPTCollectionPlatformTestManager> _collectionTestManager;
     id <SPTLinkDispatcher> _linkDispatcher;
     NSArray *_sectionedArtists;
-    NSArray *_sections;
+    NSArray *_sectionIndices;
     unsigned long long _numberOfArtists;
     unsigned long long _unfilteredLength;
     id <SPTCollectionPlatformDataLoaderRequestToken> _artistsSubscription;
@@ -42,7 +42,7 @@
 @property(retain, nonatomic) id <SPTCollectionPlatformDataLoaderRequestToken> artistsSubscription; // @synthesize artistsSubscription=_artistsSubscription;
 @property(nonatomic) unsigned long long unfilteredLength; // @synthesize unfilteredLength=_unfilteredLength;
 @property(nonatomic) unsigned long long numberOfArtists; // @synthesize numberOfArtists=_numberOfArtists;
-@property(retain, nonatomic) NSArray *sections; // @synthesize sections=_sections;
+@property(retain, nonatomic) NSArray *sectionIndices; // @synthesize sectionIndices=_sectionIndices;
 @property(retain, nonatomic) NSArray *sectionedArtists; // @synthesize sectionedArtists=_sectionedArtists;
 @property(retain, nonatomic) id <SPTLinkDispatcher> linkDispatcher; // @synthesize linkDispatcher=_linkDispatcher;
 @property(nonatomic) __weak id <SPTCollectionPlatformTestManager> collectionTestManager; // @synthesize collectionTestManager=_collectionTestManager;

@@ -9,6 +9,7 @@
 @class SPTSlatePrivateViewController;
 
 @protocol SPTSlatePrivateViewControllerDelegate <NSObject>
+- (void)accessoryButtonDidTap:(SPTSlatePrivateViewController *)arg1;
 - (void)backgroundViewDidTap:(SPTSlatePrivateViewController *)arg1;
 @end
 

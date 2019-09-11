@@ -15,6 +15,7 @@
 - (void)logTabSelectedAtIndex:(unsigned long long)arg1 withPageURI:(NSString *)arg2;
 - (void)logDownloadInteractionSource:(NSURL *)arg1 downloadURI:(NSURL *)arg2 elementType:(unsigned long long)arg3 requestedDownload:(_Bool)arg4;
 - (void)logAlertOnPageURI:(NSURL *)arg1 alertId:(NSString *)arg2;
+- (void)logNewSaveState:(_Bool)arg1 pageURI:(NSURL *)arg2 targetURL:(NSURL *)arg3;
 - (void)logButtonInteractionOnPageURI:(NSURL *)arg1 buttonId:(NSString *)arg2 targetURL:(NSURL *)arg3 intent:(NSString *)arg4;
 - (void)logEditModeChangedOnPageURI:(NSURL *)arg1 editMode:(_Bool)arg2;
 - (void)logListItemInteraction:(NSString *)arg1 onPageURI:(NSURL *)arg2 flatIndex:(unsigned long long)arg3 targetURL:(NSURL *)arg4;

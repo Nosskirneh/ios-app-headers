@@ -6,7 +6,10 @@
 
 #import "NSObject-Protocol.h"
 
+@class NSLayoutConstraint;
+
 @protocol SPTGaiaDevicePickerHeader <NSObject>
+@property(readonly, nonatomic) NSLayoutConstraint *topMarginConstraint;
 @property(nonatomic) long long themeStyle;
 @property(nonatomic) unsigned long long state;
 @end

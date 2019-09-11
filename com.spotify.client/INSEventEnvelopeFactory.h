@@ -6,12 +6,30 @@
 
 #import <objc/NSObject.h>
 
-@interface INSEventEnvelopeFactory : NSObject
+#import "INSEventEnvelopeFactoryProtocol-Protocol.h"
+
+@class INSContextRegistry, NSString;
+@protocol INSSequenceNumberGeneratorProtocol;
+
+@interface INSEventEnvelopeFactory : NSObject <INSEventEnvelopeFactoryProtocol>
 {
+    INSContextRegistry *_contextRegistry;
+    id <INSSequenceNumberGeneratorProtocol> _sequenceNumberGenerator;
 }
 
-+ (id)envelopeForMessage:(id)arg1 name:(id)arg2;
-+ (id)envelopeForMessage:(id)arg1;
++ (id)envelopeForEntity:(id)arg1;
+@property(retain, nonatomic) id <INSSequenceNumberGeneratorProtocol> sequenceNumberGenerator; // @synthesize sequenceNumberGenerator=_sequenceNumberGenerator;
+@property(retain, nonatomic) INSContextRegistry *contextRegistry; // @synthesize contextRegistry=_contextRegistry;
+- (void).cxx_destruct;
+- (id)messageFragmentForMessage:(id)arg1;
+- (id)envelopeForMessage:(id)arg1;
+- (id)initWithContextRegistry:(id)arg1 sequenceNumberGenerator:(id)arg2;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

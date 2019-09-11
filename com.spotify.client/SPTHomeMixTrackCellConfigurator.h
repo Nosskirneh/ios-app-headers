@@ -11,6 +11,7 @@
 
 @interface SPTHomeMixTrackCellConfigurator : NSObject
 {
+    _Bool _facepileDetailEnabled;
     id <GLUEImageLoader> _glueImageLoader;
     SPTHomeMixGlueTheme *_theme;
     id <SPTHomeMixTrackCellDelegate> _cellDelegate;
@@ -21,6 +22,7 @@
 + (id)actionViewStyleFromTheme:(id)arg1;
 @property(readonly, nonatomic) SPTHomeMixFamilyPileConfigurator *pileConfigurator; // @synthesize pileConfigurator=_pileConfigurator;
 @property(readonly, nonatomic) GLUEEntityRowStyle *trackRowStyle; // @synthesize trackRowStyle=_trackRowStyle;
+@property(nonatomic, getter=isFacepileDetailEnabled) _Bool facepileDetailEnabled; // @synthesize facepileDetailEnabled=_facepileDetailEnabled;
 @property(readonly, nonatomic) __weak id <SPTHomeMixTrackCellDelegate> cellDelegate; // @synthesize cellDelegate=_cellDelegate;
 @property(readonly, nonatomic) SPTHomeMixGlueTheme *theme; // @synthesize theme=_theme;
 @property(readonly, nonatomic) id <GLUEImageLoader> glueImageLoader; // @synthesize glueImageLoader=_glueImageLoader;
@@ -31,7 +33,8 @@
 - (void)setUpMultipleAccessoriesViewForCell:(id)arg1 trackViewModel:(id)arg2;
 - (void)setUpContentViewForCell:(id)arg1;
 - (void)configureCell:(id)arg1 withTrackViewModel:(id)arg2;
-- (id)initWithImageLoader:(id)arg1 theme:(id)arg2 cellDelegate:(id)arg3;
+@property(readonly, nonatomic) double cellHeight;
+- (id)initWithImageLoader:(id)arg1 theme:(id)arg2 cellDelegate:(id)arg3 facepileDetailEnabled:(_Bool)arg4;
 
 @end
 

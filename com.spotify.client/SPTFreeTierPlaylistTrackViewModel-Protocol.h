@@ -6,23 +6,34 @@
 
 #import "NSObject-Protocol.h"
 
-@class NSArray, NSString, NSURL, UIColor;
+@class NSArray, NSDate, NSDictionary, NSString, NSURL, UIColor;
 
 @protocol SPTFreeTierPlaylistTrackViewModel <NSObject>
+@property(readonly, copy, nonatomic) NSDictionary *formatListAttributes;
+@property(readonly, nonatomic) double duration;
+@property(readonly, nonatomic) _Bool isPlayed;
+@property(readonly, nonatomic) double timeLeft;
+@property(readonly, nonatomic) NSDate *publishDate;
+@property(readonly, copy, nonatomic) NSString *publisherName;
+@property(readonly, nonatomic, getter=isImageEnabled) _Bool imageEnabled;
 @property(readonly, nonatomic) long long offlineSyncStatus;
 @property(readonly, nonatomic) _Bool showCollectionQuickActions;
+@property(readonly, nonatomic) NSString *freeformDescription;
+@property(readonly, nonatomic) NSURL *videoThumbnailURL;
+@property(readonly, nonatomic, getter=isEpisode) _Bool episode;
+@property(readonly, nonatomic, getter=isVideo) _Bool video;
 @property(readonly, nonatomic, getter=isBanned) _Bool banned;
 @property(readonly, nonatomic, getter=isLiked) _Bool liked;
 @property(readonly, nonatomic, getter=isEnabled) _Bool enabled;
 @property(readonly, nonatomic, getter=isActive) _Bool active;
 @property(readonly, nonatomic, getter=isRatedExplicit) _Bool ratedExplicit;
 @property(readonly, nonatomic, getter=isPremiumOnly) _Bool premiumOnly;
-@property(readonly, nonatomic) NSArray *artists;
+@property(readonly, copy, nonatomic) NSArray *artists;
 @property(readonly, nonatomic) UIColor *contextMenuIconColor;
 @property(readonly, nonatomic) long long contextMenuIcon;
-@property(readonly, nonatomic) NSString *previewID;
+@property(readonly, copy, nonatomic) NSString *previewID;
 @property(readonly, nonatomic) NSURL *albumURL;
-@property(readonly, nonatomic) NSString *albumName;
+@property(readonly, copy, nonatomic) NSString *albumName;
 @property(readonly, nonatomic) NSURL *imageURL;
 @property(readonly, nonatomic) NSURL *URL;
 @property(readonly, copy, nonatomic) NSString *subtitle;

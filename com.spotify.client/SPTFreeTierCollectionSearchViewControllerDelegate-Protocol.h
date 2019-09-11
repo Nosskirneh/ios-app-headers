@@ -9,6 +9,7 @@
 @class NSString, SPTFreeTierCollectionSearchViewController;
 
 @protocol SPTFreeTierCollectionSearchViewControllerDelegate <NSObject>
+- (void)searchViewController:(SPTFreeTierCollectionSearchViewController *)arg1 removedFilterAtIndex:(long long)arg2;
 - (void)searchViewControllerDidCancel:(SPTFreeTierCollectionSearchViewController *)arg1;
 - (void)searchViewController:(SPTFreeTierCollectionSearchViewController *)arg1 textDidChange:(NSString *)arg2;
 @end

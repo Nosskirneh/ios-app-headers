@@ -9,6 +9,7 @@
 @protocol SPTOnboardingFlowCoordinator;
 
 @protocol SPTLanguageOnboardingService <SPTService>
+@property(readonly, nonatomic) _Bool hasCompletedLanguageOnboarding;
 @property(readonly, nonatomic, getter=isLanguageOnboardingEnabled) _Bool languageOnboardingEnabled;
 - (id <SPTOnboardingFlowCoordinator>)provideCoordinator;
 @end

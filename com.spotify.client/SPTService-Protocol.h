@@ -14,9 +14,8 @@
 - (void)configureWithServices:(id <SPTServiceProvider>)arg1;
 
 @optional
-@property(retain, nonatomic) SPTAllocationContext *allocationContext;
-- (void)backgroundLoad;
 - (void)load;
 - (void)unload;
+@property(retain, nonatomic) SPTAllocationContext *allocationContext;
 @end
 

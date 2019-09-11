@@ -61,9 +61,10 @@
 - (void)setNavigationBarHidden:(_Bool)arg1;
 - (void)setupBlurEffectView;
 - (void)setupBlurEffectContainerView;
+- (void)setNavigationBarAlpha:(double)arg1;
+- (void)handleViewControllerShown:(id)arg1;
 - (void)updateNavigationBarState:(unsigned long long)arg1 withTransitionCoordinator:(id)arg2 backgroundColor:(id)arg3 useBlurEffect:(_Bool)arg4 operation:(long long)arg5 resetCurrentTransitionOperation:(_Bool)arg6;
 - (void)updateNavigationBarStateFromViewController:(id)arg1 useTransitionCoordinator:(_Bool)arg2 operation:(long long)arg3;
-- (void)customBackButtonPop;
 - (_Bool)gestureRecognizerShouldBegin:(id)arg1;
 - (id)navigationController:(id)arg1 interactionControllerForAnimationController:(id)arg2;
 - (id)navigationController:(id)arg1 animationControllerForOperation:(long long)arg2 fromViewController:(id)arg3 toViewController:(id)arg4;

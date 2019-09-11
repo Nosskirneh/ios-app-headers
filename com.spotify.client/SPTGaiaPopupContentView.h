@@ -29,7 +29,7 @@
 @property(retain, nonatomic) UIImage *deviceImage; // @synthesize deviceImage=_deviceImage;
 @property(nonatomic) __weak id <SPTThemableViewLayoutDelegate> layoutDelegate; // @synthesize layoutDelegate=_layoutDelegate;
 - (void).cxx_destruct;
-@property(retain, nonatomic) NSString *deviceName;
+@property(copy, nonatomic) NSString *deviceName;
 - (void)updateConstraints;
 - (void)applyThemeLayout;
 - (void)dealloc;

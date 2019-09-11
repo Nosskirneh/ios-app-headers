@@ -11,7 +11,7 @@
 #import "SPTInstrumentationCurrentPageViewObserver-Protocol.h"
 #import "SPTPlayerObserver-Protocol.h"
 
-@class NSArray, NSDictionary, NSMutableDictionary, NSString;
+@class NSArray, NSMutableDictionary, NSString, SPTInAppMessageFeatureFlagChecks;
 @protocol SPTExternalIntegrationDriverDistractionController, SPTInAppMessageTriggerEngineDelegate;
 
 @interface SPTInAppMessageTriggerEngine : NSObject <SPTInAppMessageTriggerListControllerDelegate, SPTInstrumentationCurrentPageViewObserver, SPTPlayerObserver, SPTInAppMessageMessageRequesterDelegate>
@@ -20,16 +20,20 @@
     id <SPTInAppMessageTriggerEngineDelegate> _delegate;
     NSMutableDictionary *_triggerRegularExpressionCache;
     id <SPTExternalIntegrationDriverDistractionController> _driverDistractionController;
+    SPTInAppMessageFeatureFlagChecks *_featureFlagChecker;
     NSString *_matchingNavigationPattern;
     NSString *_matchingTrackPattern;
+    NSString *_matchingClientEventPattern;
     NSString *_previousPageURI;
-    NSDictionary *_cancelationInfo;
+    NSString *_previousPageName;
 }
 
-@property(copy, nonatomic) NSDictionary *cancelationInfo; // @synthesize cancelationInfo=_cancelationInfo;
+@property(copy, nonatomic) NSString *previousPageName; // @synthesize previousPageName=_previousPageName;
 @property(copy, nonatomic) NSString *previousPageURI; // @synthesize previousPageURI=_previousPageURI;
+@property(copy, nonatomic) NSString *matchingClientEventPattern; // @synthesize matchingClientEventPattern=_matchingClientEventPattern;
 @property(copy, nonatomic) NSString *matchingTrackPattern; // @synthesize matchingTrackPattern=_matchingTrackPattern;
 @property(copy, nonatomic) NSString *matchingNavigationPattern; // @synthesize matchingNavigationPattern=_matchingNavigationPattern;
+@property(retain, nonatomic) SPTInAppMessageFeatureFlagChecks *featureFlagChecker; // @synthesize featureFlagChecker=_featureFlagChecker;
 @property(retain, nonatomic) id <SPTExternalIntegrationDriverDistractionController> driverDistractionController; // @synthesize driverDistractionController=_driverDistractionController;
 @property(retain, nonatomic) NSMutableDictionary *triggerRegularExpressionCache; // @synthesize triggerRegularExpressionCache=_triggerRegularExpressionCache;
 @property(nonatomic) __weak id <SPTInAppMessageTriggerEngineDelegate> delegate; // @synthesize delegate=_delegate;
@@ -37,15 +41,16 @@
 - (void).cxx_destruct;
 - (id)getClientEventPatternForMessageRequest:(id)arg1;
 - (id)getURIForPageView:(id)arg1;
+- (void)compareMatchedPatternWithCurrentClientEventPattern:(id)arg1;
 - (void)compareMatchedPatternWithCurrentTrackURI:(id)arg1;
 - (void)compareMatchedPatternWithCurrentPageURI:(id)arg1;
 - (void)messageRequester:(id)arg1 didRecieveMessageRequest:(id)arg2;
 - (void)player:(id)arg1 stateDidChange:(id)arg2 fromState:(id)arg3;
 - (void)currentPageViewUpdated:(id)arg1;
-- (id)getMatchingTriggersForURI:(id)arg1 triggerType:(long long)arg2;
-- (void)performPatternMatchingForURI:(id)arg1 triggerType:(long long)arg2;
+- (id)getMatchingTriggersForURI:(id)arg1 triggerType:(id)arg2;
+- (void)performPatternMatchingForURI:(id)arg1 triggerType:(id)arg2;
 - (void)triggerListController:(id)arg1 didFetchActiveTriggers:(id)arg2;
-- (id)initWithDriverDistractionController:(id)arg1;
+- (id)initWithDriverDistractionController:(id)arg1 featureFlagChecker:(id)arg2;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

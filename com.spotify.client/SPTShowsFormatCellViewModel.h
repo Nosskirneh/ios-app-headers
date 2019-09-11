@@ -14,7 +14,6 @@
     _Bool _disabled;
     _Bool _explicit;
     _Bool _showQuickActions;
-    _Bool _showTapToPlay;
     NSString *_title;
     NSString *_subtitle;
     long long _status;
@@ -35,7 +34,6 @@
 @property(copy, nonatomic) CDUnknownBlockType banQuickAction; // @synthesize banQuickAction=_banQuickAction;
 @property(copy, nonatomic) CDUnknownBlockType likeQuickAction; // @synthesize likeQuickAction=_likeQuickAction;
 @property(copy, nonatomic) CDUnknownBlockType showContextMenu; // @synthesize showContextMenu=_showContextMenu;
-@property(nonatomic) _Bool showTapToPlay; // @synthesize showTapToPlay=_showTapToPlay;
 @property(retain, nonatomic) SPTFreeTierPreCurationQuickActionViewStyle *quickActionViewStyle; // @synthesize quickActionViewStyle=_quickActionViewStyle;
 @property(retain, nonatomic) GLUETrackMultipleAccessoriesViewStyle *trackMultipleAccessoriesStyle; // @synthesize trackMultipleAccessoriesStyle=_trackMultipleAccessoriesStyle;
 @property(retain, nonatomic) GLUEAccessoryIconButtonStyle *contextMenuAccessoryButtonStyle; // @synthesize contextMenuAccessoryButtonStyle=_contextMenuAccessoryButtonStyle;

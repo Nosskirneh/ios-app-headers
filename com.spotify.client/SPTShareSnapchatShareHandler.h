@@ -6,29 +6,35 @@
 
 #import <objc/NSObject.h>
 
+#import "SPTDataLoaderDelegate-Protocol.h"
 #import "SPTShareHandler-Protocol.h"
-#import "SPTShareHandlerAncillaryViewControllerProvider-Protocol.h"
 
-@class NSString, SPTExternalDeeplinksFetcher, SPTShareData, SPTShareLogger;
+@class NSString, SPTDataLoader, SPTShareData, SPTShareLogger;
 @protocol SPTShareDeeplinkHandler;
 
-@interface SPTShareSnapchatShareHandler : NSObject <SPTShareHandler, SPTShareHandlerAncillaryViewControllerProvider>
+@interface SPTShareSnapchatShareHandler : NSObject <SPTShareHandler, SPTDataLoaderDelegate>
 {
+    _Bool _isRequesting;
     SPTShareLogger *_shareLogger;
-    SPTExternalDeeplinksFetcher *_externalDeeplinksFetcher;
+    SPTDataLoader *_dataLoader;
     id <SPTShareDeeplinkHandler> _deeplinkHandler;
     SPTShareData *_shareData;
 }
 
+@property(nonatomic) _Bool isRequesting; // @synthesize isRequesting=_isRequesting;
 @property(retain, nonatomic) SPTShareData *shareData; // @synthesize shareData=_shareData;
 @property(retain, nonatomic) id <SPTShareDeeplinkHandler> deeplinkHandler; // @synthesize deeplinkHandler=_deeplinkHandler;
-@property(retain, nonatomic) SPTExternalDeeplinksFetcher *externalDeeplinksFetcher; // @synthesize externalDeeplinksFetcher=_externalDeeplinksFetcher;
+@property(retain, nonatomic) SPTDataLoader *dataLoader; // @synthesize dataLoader=_dataLoader;
 @property(retain, nonatomic) SPTShareLogger *shareLogger; // @synthesize shareLogger=_shareLogger;
 - (void).cxx_destruct;
 - (id)createAlertModel;
-- (id)provideAncillaryViewControllerWithDelegate:(id)arg1;
+- (void)dataLoader:(id)arg1 didReceiveErrorResponse:(id)arg2;
+- (void)dataLoader:(id)arg1 didReceiveSuccessfulResponse:(id)arg2;
+- (void)downloadArtworkForEntityURI:(id)arg1 completion:(CDUnknownBlockType)arg2;
+- (void)handleSuccess:(id)arg1 browseLinkURL:(id)arg2;
+- (id)shareAssetForURL:(id)arg1;
 - (void)shareWithData:(id)arg1 shareDestination:(id)arg2 sharePresenter:(id)arg3 completion:(CDUnknownBlockType)arg4;
-- (id)initWithShareLogger:(id)arg1 externalDeeplinksFetcher:(id)arg2 deeplinkHandler:(id)arg3;
+- (id)initWithShareLogger:(id)arg1 dataLoader:(id)arg2 deeplinkHandler:(id)arg3;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

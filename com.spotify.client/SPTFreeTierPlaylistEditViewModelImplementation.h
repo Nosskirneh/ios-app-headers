@@ -7,12 +7,12 @@
 #import <objc/NSObject.h>
 
 #import "SPTFreeTierPlaylistEditViewModel-Protocol.h"
-#import "SPTFreeTierPlaylistModelDelegate-Protocol.h"
+#import "SPTFreeTierPlaylistModelObserver-Protocol.h"
 
 @class NSMutableArray, NSString, NSURL;
-@protocol SPTCollectionPlatformConfiguration, SPTFreeTierPlaylistEditViewModelDelegate, SPTFreeTierPlaylistModel, SPTFreeTierPlaylistTestManager;
+@protocol SPTCollectionPlatformConfiguration, SPTFreeTierPlaylistEditViewModelDelegate, SPTFreeTierPlaylistModel, SPTFreeTierPlaylistTestManager, SPTPodcastTestManager, SPTVISREFFlagsService;
 
-@interface SPTFreeTierPlaylistEditViewModelImplementation : NSObject <SPTFreeTierPlaylistEditViewModel, SPTFreeTierPlaylistModelDelegate>
+@interface SPTFreeTierPlaylistEditViewModelImplementation : NSObject <SPTFreeTierPlaylistEditViewModel, SPTFreeTierPlaylistModelObserver>
 {
     _Bool _renameEnabled;
     _Bool _hasBeenSaved;
@@ -28,8 +28,12 @@
     NSURL *_playlistImageURL;
     NSMutableArray *_trackReorders;
     NSMutableArray *_trackDeletions;
+    id <SPTVISREFFlagsService> _visualRefreshService;
+    id <SPTPodcastTestManager> _podcastTestManager;
 }
 
+@property(nonatomic) __weak id <SPTPodcastTestManager> podcastTestManager; // @synthesize podcastTestManager=_podcastTestManager;
+@property(nonatomic) __weak id <SPTVISREFFlagsService> visualRefreshService; // @synthesize visualRefreshService=_visualRefreshService;
 @property(nonatomic) _Bool hasBeenSaved; // @synthesize hasBeenSaved=_hasBeenSaved;
 @property(retain, nonatomic) NSMutableArray *trackDeletions; // @synthesize trackDeletions=_trackDeletions;
 @property(retain, nonatomic) NSMutableArray *trackReorders; // @synthesize trackReorders=_trackReorders;
@@ -45,6 +49,8 @@
 @property(copy, nonatomic) NSString *originalPlaylistName; // @synthesize originalPlaylistName=_originalPlaylistName;
 @property(nonatomic) __weak id <SPTFreeTierPlaylistEditViewModelDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
+- (void)freeTierPlaylistModel:(id)arg1 initialFollowCount:(unsigned long long)arg2;
+- (void)freeTierPlaylistModel:(id)arg1 error:(id)arg2;
 - (void)freeTierPlaylistModel:(id)arg1 playlistModelEntityDidChange:(id)arg2;
 - (void)saveMovesWithCompletion:(CDUnknownBlockType)arg1;
 - (void)saveWithCompletion:(CDUnknownBlockType)arg1;
@@ -53,11 +59,12 @@
 - (void)handleError:(id)arg1 withContext:(id)arg2;
 - (void)viewDidLoad;
 - (id)trackViewModelAtIndexPath:(id)arg1;
+@property(readonly, nonatomic, getter=isAddToPlaylistForAudioEpisodesEnabled) _Bool addToPlaylistForAudioEpisodesEnabled;
 @property(readonly, nonatomic) _Bool editAnnotationEnabled;
 @property(readonly, nonatomic) _Bool reorderEnabled;
 @property(readonly, nonatomic) unsigned long long countOfTracks;
 @property(readonly, nonatomic) NSURL *playlistURL;
-- (id)initWithPlaylistModel:(id)arg1 collectionConfiguration:(id)arg2 testManager:(id)arg3;
+- (id)initWithPlaylistModel:(id)arg1 collectionConfiguration:(id)arg2 testManager:(id)arg3 visualRefreshService:(id)arg4 podcastTestManager:(id)arg5;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

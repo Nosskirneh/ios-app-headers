@@ -7,24 +7,23 @@
 #import <objc/NSObject.h>
 
 @class SPTFeedViewModel;
-@protocol GLUEImageLoader, GLUETheme;
+@protocol GLUEImageLoader, GLUETheme, SPTFeedCollectionViewCellActionTarget><SPTFeedSuggestedArtistViewDelegate;
 
 @interface SPTFeedCollectionViewCellConfigurator : NSObject
 {
     id <GLUEImageLoader> _imageLoader;
     id <GLUETheme> _theme;
     SPTFeedViewModel *_viewModel;
-    id _actionTarget;
+    id <SPTFeedCollectionViewCellActionTarget><SPTFeedSuggestedArtistViewDelegate> _actionTarget;
 }
 
-@property(nonatomic) __weak id actionTarget; // @synthesize actionTarget=_actionTarget;
+@property(nonatomic) __weak id <SPTFeedCollectionViewCellActionTarget><SPTFeedSuggestedArtistViewDelegate> actionTarget; // @synthesize actionTarget=_actionTarget;
 @property(retain, nonatomic) SPTFeedViewModel *viewModel; // @synthesize viewModel=_viewModel;
 @property(retain, nonatomic) id <GLUETheme> theme; // @synthesize theme=_theme;
 @property(retain, nonatomic) id <GLUEImageLoader> imageLoader; // @synthesize imageLoader=_imageLoader;
 - (void).cxx_destruct;
 - (void)setImage:(id)arg1 toImageView:(id)arg2 animated:(_Bool)arg3;
 - (id)configureTrackCellForFollowRecommendations:(id)arg1 itemIndexPath:(id)arg2 collectionView:(id)arg3;
-- (id)configureTrackCellForAlbum:(id)arg1 tableViewCellIndexPath:(id)arg2 itemIndexPath:(id)arg3 collectionView:(id)arg4;
 - (id)configureCellForEntity:(id)arg1 tableViewCellIndexPath:(id)arg2 itemIndexPath:(id)arg3 collectionView:(id)arg4 actionTarget:(id)arg5;
 - (id)initWithImageLoader:(id)arg1 viewModel:(id)arg2;
 

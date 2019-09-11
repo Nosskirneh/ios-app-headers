@@ -6,23 +6,23 @@
 
 #import <objc/NSObject.h>
 
-#import "EXP_HUBContentOperation-Protocol.h"
+#import "HUBContentOperation-Protocol.h"
 #import "SPTDataLoaderDelegate-Protocol.h"
 #import "SPTNetworkConnectivityControllerObserver-Protocol.h"
 
 @class NSError, NSString, SPTDataLoader, SPTNetworkConnectivityController, SPTPersistentCache;
-@protocol EXP_HUBContentOperationDelegate, EXP_HUBViewModelBuilder, EXP_SPTHubRemoteContentOperationURLResolver;
+@protocol HUBContentOperationDelegate, HUBViewModelBuilder, SPTHubRemoteContentOperationURLResolver;
 
-@interface SPTPremiumDestinationCachedRemoteContentOperation : NSObject <SPTDataLoaderDelegate, SPTNetworkConnectivityControllerObserver, EXP_HUBContentOperation>
+@interface SPTPremiumDestinationCachedRemoteContentOperation : NSObject <SPTDataLoaderDelegate, SPTNetworkConnectivityControllerObserver, HUBContentOperation>
 {
     _Bool _observing;
-    id <EXP_HUBContentOperationDelegate> _delegate;
+    id <HUBContentOperationDelegate> _delegate;
     SPTDataLoader *_dataLoader;
     SPTNetworkConnectivityController *_networkConnectivityController;
     SPTPersistentCache *_persistentCache;
-    id <EXP_SPTHubRemoteContentOperationURLResolver> _contentURLResolver;
+    id <SPTHubRemoteContentOperationURLResolver> _contentURLResolver;
     NSString *_sourceIdentifier;
-    id <EXP_HUBViewModelBuilder> _viewModelBuilder;
+    id <HUBViewModelBuilder> _viewModelBuilder;
     NSError *_previousError;
     NSString *_contentCacheKey;
 }
@@ -30,13 +30,13 @@
 @property(nonatomic, getter=isObserving) _Bool observing; // @synthesize observing=_observing;
 @property(copy, nonatomic) NSString *contentCacheKey; // @synthesize contentCacheKey=_contentCacheKey;
 @property(retain, nonatomic) NSError *previousError; // @synthesize previousError=_previousError;
-@property(retain, nonatomic) id <EXP_HUBViewModelBuilder> viewModelBuilder; // @synthesize viewModelBuilder=_viewModelBuilder;
+@property(retain, nonatomic) id <HUBViewModelBuilder> viewModelBuilder; // @synthesize viewModelBuilder=_viewModelBuilder;
 @property(readonly, copy, nonatomic) NSString *sourceIdentifier; // @synthesize sourceIdentifier=_sourceIdentifier;
-@property(readonly, nonatomic) id <EXP_SPTHubRemoteContentOperationURLResolver> contentURLResolver; // @synthesize contentURLResolver=_contentURLResolver;
+@property(readonly, nonatomic) id <SPTHubRemoteContentOperationURLResolver> contentURLResolver; // @synthesize contentURLResolver=_contentURLResolver;
 @property(readonly, nonatomic) SPTPersistentCache *persistentCache; // @synthesize persistentCache=_persistentCache;
 @property(readonly, nonatomic) SPTNetworkConnectivityController *networkConnectivityController; // @synthesize networkConnectivityController=_networkConnectivityController;
 @property(readonly, nonatomic) SPTDataLoader *dataLoader; // @synthesize dataLoader=_dataLoader;
-@property(nonatomic) __weak id <EXP_HUBContentOperationDelegate> delegate; // @synthesize delegate=_delegate;
+@property(nonatomic) __weak id <HUBContentOperationDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
 - (void)finishAfterPerformingOperation:(_Bool)arg1;
 - (void)processResponseBody:(id)arg1 willSucceed:(CDUnknownBlockType)arg2;

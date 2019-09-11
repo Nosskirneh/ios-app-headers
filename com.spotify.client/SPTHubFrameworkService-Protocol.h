@@ -6,14 +6,10 @@
 
 #import "SPTService-Protocol.h"
 
-@protocol HUBActionRegistry, HUBComponentRegistry, HUBContentOperationFactory, SPTHUBCustomUtilityIdentifierRegistry, SPTHubFeatureRegistry, SPTHubRemoteContentURLResolver, SPTHubViewControllerFactory;
+@protocol SPTHubsEventFactory, SPTHubsRendererFactory;
 
 @protocol SPTHubFrameworkService <SPTService>
-- (id <HUBContentOperationFactory>)createRemoteContentOperationFactoryWithURLResolver:(id <SPTHubRemoteContentURLResolver>)arg1;
-- (id <SPTHubViewControllerFactory>)provideViewControllerFactory;
-- (id <SPTHUBCustomUtilityIdentifierRegistry>)provideHubCustomUtilityIdentifierRegistry;
-- (id <HUBActionRegistry>)provideActionRegistry;
-- (id <HUBComponentRegistry>)provideComponentRegistry;
-- (id <SPTHubFeatureRegistry>)provideFeatureRegistry;
+- (id <SPTHubsEventFactory>)provideHubsEventFactory;
+- (id <SPTHubsRendererFactory>)provideHubsRendererFactory;
 @end
 

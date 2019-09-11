@@ -14,21 +14,21 @@
 {
     double _height;
     GLUELabelStyle *_normalLabelStyle;
+    GLUELabelStyle *_highlightedLabelStyle;
     GLUELabelStyle *_selectedLabelStyle;
     double _labelMargins;
     UIColor *_indicatorColor;
     double _indicatorHeight;
     double _indicatorMargin;
-    double _bottomMargin;
 }
 
-@property(nonatomic) double bottomMargin; // @synthesize bottomMargin=_bottomMargin;
 @property(nonatomic) double indicatorMargin; // @synthesize indicatorMargin=_indicatorMargin;
 @property(nonatomic) double indicatorHeight; // @synthesize indicatorHeight=_indicatorHeight;
 @property(retain, nonatomic) UIColor *indicatorColor; // @synthesize indicatorColor=_indicatorColor;
 @property(nonatomic) double labelMargins; // @synthesize labelMargins=_labelMargins;
-@property(retain, nonatomic) GLUELabelStyle *selectedLabelStyle; // @synthesize selectedLabelStyle=_selectedLabelStyle;
-@property(retain, nonatomic) GLUELabelStyle *normalLabelStyle; // @synthesize normalLabelStyle=_normalLabelStyle;
+@property(copy, nonatomic) GLUELabelStyle *selectedLabelStyle; // @synthesize selectedLabelStyle=_selectedLabelStyle;
+@property(copy, nonatomic) GLUELabelStyle *highlightedLabelStyle; // @synthesize highlightedLabelStyle=_highlightedLabelStyle;
+@property(copy, nonatomic) GLUELabelStyle *normalLabelStyle; // @synthesize normalLabelStyle=_normalLabelStyle;
 @property(nonatomic) double height; // @synthesize height=_height;
 - (void).cxx_destruct;
 - (id)copyWithZone:(struct _NSZone *)arg1;

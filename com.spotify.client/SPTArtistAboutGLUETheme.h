@@ -10,12 +10,19 @@
 {
 }
 
+- (id)gradientStyle;
+- (id)verifiedCheckStyle;
+- (id)disclosureIconStyle;
 - (id)imageGalleryViewStyle;
+- (id)largeBiographyViewStyle;
 - (id)biographyViewStyle;
+- (id)largeGlobalChartPositionViewStyle;
+- (id)artistAboutLargePreviewMonthlyListenersLabelStyle;
 - (id)globalChartPositionViewStyle;
 - (id)monthlyListenersCountLabelStyle;
 - (id)monthlyListenersViewStyle;
 - (id)aboutPreviewMonthlyListenersViewStyle;
+- (id)largeAboutPreviewViewStyle;
 - (id)aboutPreviewViewStyle;
 
 @end

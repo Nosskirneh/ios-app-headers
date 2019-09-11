@@ -7,6 +7,9 @@
 #import "NSObject-Protocol.h"
 
 @protocol SPTFreeTierPreCurationTestManager <NSObject>
+@property(readonly, nonatomic, getter=isCompanionArtWorkForQuickActionEnabled) _Bool companionArtWorkForQuickActionEnabled;
+@property(readonly, nonatomic, getter=isActiveQuickActionsOnlyEnabled) _Bool activeQuickActionsOnlyEnabled;
+@property(readonly, nonatomic, getter=isSimplifiedQuickActionsEnabled) _Bool simplifiedQuickActionsEnabled;
 @property(readonly, nonatomic, getter=isPreCurationOnDemandEnabled) _Bool preCurationOnDemandEnabled;
 @property(readonly, nonatomic, getter=isPreCurationSkipDialogEnabled) _Bool preCurationSkipDialogEnabled;
 @property(readonly, nonatomic, getter=isPreCurationAllSongsEnabled) _Bool preCurationAllSongsEnabled;

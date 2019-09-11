@@ -24,6 +24,7 @@
 @property(readonly, nonatomic) NSMutableArray *messages; // @synthesize messages=_messages;
 @property(retain) NSString *anonymousToken; // @synthesize anonymousToken=_anonymousToken;
 - (void).cxx_destruct;
+- (_Bool)applyExtraValidationForAudioOutputRouteMessage:(id)arg1;
 - (_Bool)sendMessageWithSequenceNumber:(id)arg1 messageName:(id)arg2;
 - (_Bool)updateMessageWithSequenceNumber:(id)arg1 messageName:(id)arg2 message:(id)arg3;
 - (id)createMessage:(id)arg1;

@@ -8,7 +8,7 @@
 
 #import "SPTThemableView-Protocol.h"
 
-@class NSString, SPTExternalIntegrationDriverDistractionLockscreenDismissalView, SPTExternalIntegrationDriverDistractionLockscreenLogotypesView, SPTLayoutConstraintBuilder, UIStackView;
+@class NSArray, NSString, SPTExternalIntegrationDriverDistractionLockscreenDismissalView, SPTExternalIntegrationDriverDistractionLockscreenLogotypesView, UIStackView;
 @protocol SPTThemableViewLayoutDelegate;
 
 @interface SPTExternalIntegrationDriverDistractionLockscreenView : UIView <SPTThemableView>
@@ -17,10 +17,10 @@
     SPTExternalIntegrationDriverDistractionLockscreenLogotypesView *_logotypesView;
     SPTExternalIntegrationDriverDistractionLockscreenDismissalView *_dismissalView;
     UIStackView *_containerView;
-    SPTLayoutConstraintBuilder *_layout;
+    NSArray *_layoutConstraints;
 }
 
-@property(retain, nonatomic) SPTLayoutConstraintBuilder *layout; // @synthesize layout=_layout;
+@property(copy, nonatomic) NSArray *layoutConstraints; // @synthesize layoutConstraints=_layoutConstraints;
 @property(readonly, nonatomic) UIStackView *containerView; // @synthesize containerView=_containerView;
 @property(readonly, nonatomic) SPTExternalIntegrationDriverDistractionLockscreenDismissalView *dismissalView; // @synthesize dismissalView=_dismissalView;
 @property(readonly, nonatomic) SPTExternalIntegrationDriverDistractionLockscreenLogotypesView *logotypesView; // @synthesize logotypesView=_logotypesView;

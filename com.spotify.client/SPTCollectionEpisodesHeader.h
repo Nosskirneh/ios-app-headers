@@ -7,16 +7,13 @@
 #import <objc/NSObject.h>
 
 @class NSArray, NSMutableArray, NSString;
-@protocol SPTPodcastTestManager;
 
 @interface SPTCollectionEpisodesHeader : NSObject
 {
     NSString *_title;
     NSMutableArray *_headerEpisodes;
-    id <SPTPodcastTestManager> _testManager;
 }
 
-@property(retain, nonatomic) id <SPTPodcastTestManager> testManager; // @synthesize testManager=_testManager;
 @property(retain, nonatomic) NSMutableArray *headerEpisodes; // @synthesize headerEpisodes=_headerEpisodes;
 @property(retain, nonatomic) NSString *title; // @synthesize title=_title;
 - (void).cxx_destruct;

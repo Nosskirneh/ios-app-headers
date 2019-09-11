@@ -6,15 +6,12 @@
 
 #import "SPTService-Protocol.h"
 
-@protocol EXP_SPTRecentlyPlayedHubContentOperation, SPTCollectionEntityList, SPTRecentlyPlayedEntityList, SPTRecentlyPlayedShortcutItemsProvider;
+@protocol SPTRecentlyPlayedList, SPTRecentlyPlayedShortcutItemsProvider;
 
 @protocol SPTRecentlyPlayedService <SPTService>
 - (id <SPTRecentlyPlayedShortcutItemsProvider>)provideShortcutItemsProvider;
-- (id <EXP_SPTRecentlyPlayedHubContentOperation>)provideRecentlyPlayedHubContentOperationWithFilterPredicate:(_Bool (^)(id <SPTRecentlyPlayedItem>))arg1;
-- (id <EXP_SPTRecentlyPlayedHubContentOperation>)provideRecentlyPlayedHubContentOperationWithoutSongs;
-- (id <EXP_SPTRecentlyPlayedHubContentOperation>)provideRecentlyPlayedHubContentOperation;
 - (void)registerOptionalContentType:(unsigned long long)arg1;
-- (id <SPTRecentlyPlayedEntityList>)provideRecentlyPlayedEntityListWithoutSongs;
-- (id <SPTCollectionEntityList>)provideRecentlyPlayedEntityList;
+- (id <SPTRecentlyPlayedList>)provideRecentlyPlayedListWithoutSongs;
+- (id <SPTRecentlyPlayedList>)provideRecentlyPlayedList;
 @end
 

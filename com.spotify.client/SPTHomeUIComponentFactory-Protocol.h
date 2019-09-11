@@ -6,11 +6,11 @@
 
 #import "NSObject-Protocol.h"
 
-@class EXP_HUBComponentRegistry, NSDictionary;
+@class HUBComponentRegistry, NSDictionary;
 
 @protocol SPTHomeUIComponentFactory <NSObject>
-- (void)unregisterHomeComponentsFromComponentRegistry:(EXP_HUBComponentRegistry *)arg1;
-- (void)registerHomeComponentsToComponentRegistry:(EXP_HUBComponentRegistry *)arg1;
+- (void)unregisterHomeComponentsFromComponentRegistry:(HUBComponentRegistry *)arg1;
+- (void)registerHomeComponentsToComponentRegistry:(HUBComponentRegistry *)arg1;
 - (NSDictionary *)provideHomeHubComponents;
 @end
 

@@ -8,7 +8,7 @@
 
 #import "SPTThemableView-Protocol.h"
 
-@class GLUEButton, GLUEGradientView, NSString, SPTLayoutConstraintBuilder, UILabel;
+@class GLUEButton, GLUEGradientView, NSArray, NSString, UILabel;
 @protocol GLUETheme, SPTThemableViewLayoutDelegate;
 
 @interface SPTAccountUpsellHeaderView : UIView <SPTThemableView>
@@ -19,13 +19,13 @@
     GLUEButton *_buyButton;
     UIView *_contentView;
     GLUEGradientView *_backgroundGradientView;
-    SPTLayoutConstraintBuilder *_layout;
+    NSArray *_layout;
     id <GLUETheme> _glueTheme;
 }
 
 + (_Bool)requiresConstraintBasedLayout;
 @property(retain, nonatomic) id <GLUETheme> glueTheme; // @synthesize glueTheme=_glueTheme;
-@property(retain, nonatomic) SPTLayoutConstraintBuilder *layout; // @synthesize layout=_layout;
+@property(copy, nonatomic) NSArray *layout; // @synthesize layout=_layout;
 @property(readonly, nonatomic) GLUEGradientView *backgroundGradientView; // @synthesize backgroundGradientView=_backgroundGradientView;
 @property(retain, nonatomic) UIView *contentView; // @synthesize contentView=_contentView;
 @property(readonly, nonatomic) GLUEButton *buyButton; // @synthesize buyButton=_buyButton;

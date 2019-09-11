@@ -17,9 +17,9 @@
 }
 
 @property(nonatomic) long long index; // @synthesize index=_index;
-@property(retain, nonatomic) NSString *secret; // @synthesize secret=_secret;
-@property(retain, nonatomic) NSString *value; // @synthesize value=_value;
-@property(retain, nonatomic) NSString *key; // @synthesize key=_key;
+@property(copy, nonatomic) NSString *secret; // @synthesize secret=_secret;
+@property(copy, nonatomic) NSString *value; // @synthesize value=_value;
+@property(copy, nonatomic) NSString *key; // @synthesize key=_key;
 - (void).cxx_destruct;
 - (long long)compareUsingSecretAndThenIndex:(id)arg1;
 - (long long)compareKey:(id)arg1;

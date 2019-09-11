@@ -23,6 +23,7 @@
     double _inputFieldLabelTopMargin;
     double _inputFieldTopMargin;
     double _errorLabelTopMargin;
+    double _errorLabelMinHeight;
     double _sendButtonTopMargin;
     double _horizontalEdgeMargin;
     double _inputFieldHeight;
@@ -37,6 +38,7 @@
 @property(nonatomic) double inputFieldHeight; // @synthesize inputFieldHeight=_inputFieldHeight;
 @property(nonatomic) double horizontalEdgeMargin; // @synthesize horizontalEdgeMargin=_horizontalEdgeMargin;
 @property(nonatomic) double sendButtonTopMargin; // @synthesize sendButtonTopMargin=_sendButtonTopMargin;
+@property(nonatomic) double errorLabelMinHeight; // @synthesize errorLabelMinHeight=_errorLabelMinHeight;
 @property(nonatomic) double errorLabelTopMargin; // @synthesize errorLabelTopMargin=_errorLabelTopMargin;
 @property(nonatomic) double inputFieldTopMargin; // @synthesize inputFieldTopMargin=_inputFieldTopMargin;
 @property(nonatomic) double inputFieldLabelTopMargin; // @synthesize inputFieldLabelTopMargin=_inputFieldLabelTopMargin;

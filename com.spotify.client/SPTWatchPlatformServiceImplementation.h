@@ -9,8 +9,8 @@
 #import "SPTWatchPlatformService-Protocol.h"
 #import "SPTWatchPlatformTestManagerObserver-Protocol.h"
 
-@class NSArray, NSDictionary, NSString, SPTAllocationContext, SPTWatchPlatformLogging, SPTWatchPlatformTestManager;
-@protocol GaiaFeature, SPTAccessoryManagerService, SPTCollectionPlatformService, SPTContainerService, SPTExternalIntegrationPlatformService, SPTFeatureFlaggingService, SPTGLUEService, SPTPlayerFeature, SPTPodcastFeature, SPTRecentlyPlayedService, SPTSessionService;
+@class NSArray, NSDictionary, NSString, SPTAllocationContext, SPTWatchPlatformLogging, SPTWatchPlatformOfflineManagerImplementation, SPTWatchPlatformTestManager;
+@protocol GaiaFeature, SPTAccessoryManagerService, SPTCollectionPlatformService, SPTContainerService, SPTExternalIntegrationPlatformService, SPTFeatureFlaggingService, SPTGLUEService, SPTPodcastFeature, SPTRadioService, SPTRecentlyPlayedService, SPTRemoteConfigurationService, SPTSessionService;
 
 @interface SPTWatchPlatformServiceImplementation : NSObject <SPTWatchPlatformTestManagerObserver, SPTWatchPlatformService>
 {
@@ -19,14 +19,16 @@
     id <SPTContainerService> _containerService;
     id <SPTFeatureFlaggingService> _featureFlaggingService;
     id <GaiaFeature> _gaiaFeature;
-    id <SPTPlayerFeature> _playerFeature;
     id <SPTPodcastFeature> _podcastFeature;
     id <SPTRecentlyPlayedService> _recentlyPlayedService;
     id <SPTGLUEService> _glueService;
+    id <SPTRadioService> _radioService;
     id <SPTSessionService> _sessionService;
     id <SPTExternalIntegrationPlatformService> _externalIntegrationPlatformService;
+    id <SPTRemoteConfigurationService> _remoteConfigurationService;
     SPTWatchPlatformLogging *_logger;
     SPTWatchPlatformTestManager *_testManager;
+    SPTWatchPlatformOfflineManagerImplementation *_offlineManager;
     NSDictionary *_requestHandlers;
     NSArray *_publishers;
 }
@@ -34,14 +36,16 @@
 + (id)serviceIdentifier;
 @property(retain, nonatomic) NSArray *publishers; // @synthesize publishers=_publishers;
 @property(retain, nonatomic) NSDictionary *requestHandlers; // @synthesize requestHandlers=_requestHandlers;
+@property(retain, nonatomic) SPTWatchPlatformOfflineManagerImplementation *offlineManager; // @synthesize offlineManager=_offlineManager;
 @property(retain, nonatomic) SPTWatchPlatformTestManager *testManager; // @synthesize testManager=_testManager;
 @property(retain, nonatomic) SPTWatchPlatformLogging *logger; // @synthesize logger=_logger;
+@property(nonatomic) __weak id <SPTRemoteConfigurationService> remoteConfigurationService; // @synthesize remoteConfigurationService=_remoteConfigurationService;
 @property(nonatomic) __weak id <SPTExternalIntegrationPlatformService> externalIntegrationPlatformService; // @synthesize externalIntegrationPlatformService=_externalIntegrationPlatformService;
 @property(nonatomic) __weak id <SPTSessionService> sessionService; // @synthesize sessionService=_sessionService;
+@property(nonatomic) __weak id <SPTRadioService> radioService; // @synthesize radioService=_radioService;
 @property(nonatomic) __weak id <SPTGLUEService> glueService; // @synthesize glueService=_glueService;
 @property(nonatomic) __weak id <SPTRecentlyPlayedService> recentlyPlayedService; // @synthesize recentlyPlayedService=_recentlyPlayedService;
 @property(nonatomic) __weak id <SPTPodcastFeature> podcastFeature; // @synthesize podcastFeature=_podcastFeature;
-@property(nonatomic) __weak id <SPTPlayerFeature> playerFeature; // @synthesize playerFeature=_playerFeature;
 @property(nonatomic) __weak id <GaiaFeature> gaiaFeature; // @synthesize gaiaFeature=_gaiaFeature;
 @property(nonatomic) __weak id <SPTFeatureFlaggingService> featureFlaggingService; // @synthesize featureFlaggingService=_featureFlaggingService;
 @property(nonatomic) __weak id <SPTContainerService> containerService; // @synthesize containerService=_containerService;
@@ -51,6 +55,7 @@
 - (id)watchConnectivityManager;
 - (void)testManager:(id)arg1 didUpdateWatchIntegrationEnabledState:(_Bool)arg2;
 - (void)testManager:(id)arg1 didUpdateWatchAccessoryLoggingEnabledState:(_Bool)arg2;
+- (id)provideOfflineManager;
 - (void)disableIntegration;
 - (void)enableIntegration;
 - (void)disableLogging;

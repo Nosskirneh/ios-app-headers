@@ -6,20 +6,39 @@
 
 #import "SPTFreeTierCollectionFilterableViewModel-Protocol.h"
 
-@class NSIndexPath, NSString;
+@class NSArray, NSIndexPath, NSString;
 @protocol SPTFreeTierCollectionEntityViewModelDelegate, SPTFreeTierCollectionItemViewModel;
 
 @protocol SPTFreeTierCollectionEntityViewModel <SPTFreeTierCollectionFilterableViewModel>
-@property(readonly, nonatomic, getter=isCompactMode) _Bool compactMode;
+@property(readonly, nonatomic) unsigned long long trailingAccessoryType;
+@property(readonly, nonatomic, getter=isSnackBarsUsedForMessaging) _Bool snackBarsUsedForMessaging;
+@property(readonly, nonatomic) NSArray *sectionIndexTitles;
+@property(readonly, copy, nonatomic) NSString *searchPlaceholderText;
 @property(readonly, copy, nonatomic) NSString *title;
 @property(nonatomic) __weak id <SPTFreeTierCollectionEntityViewModelDelegate> delegate;
 @property(readonly, nonatomic, getter=isEmpty) _Bool empty;
 @property(readonly, nonatomic, getter=isLoaded) _Bool loaded;
+- (void)updateModalMode:(_Bool)arg1;
+- (void)logSectionIndexSelected;
 - (void)logFilterSortInteractionType:(unsigned long long)arg1;
+- (void)performItemActionAtIndexPath:(NSIndexPath *)arg1;
 - (void)itemSelectedAtIndexPath:(NSIndexPath *)arg1;
 - (id <SPTFreeTierCollectionItemViewModel>)itemAtIndexPath:(NSIndexPath *)arg1;
 - (_Bool)showSeparatorForSection:(long long)arg1;
+- (_Bool)toggleCollapseForSection:(long long)arg1;
+- (_Bool)collapsableSection:(long long)arg1;
+- (_Bool)collapsedSection:(long long)arg1;
+- (_Bool)showHeaderForSection:(long long)arg1;
+- (NSString *)subtitleForSection:(long long)arg1;
+- (NSString *)titleForSection:(long long)arg1;
+- (void)willDisplayItemAtLocation:(long long)arg1;
+- (long long)locationForSectionIndex:(long long)arg1;
 - (long long)numberOfRowsInSections:(long long)arg1;
+- (void)viewWillAppear;
 - (void)loadViewModel;
+
+@optional
+- (void)didScrollToTop;
+- (void)willScrollToTop;
 @end
 

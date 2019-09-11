@@ -12,16 +12,18 @@
 {
     NSString *_html;
     NSString *_identifier;
+    NSString *_uuid;
     NSURL *_impressionURL;
     NSDictionary *_clickActions;
 }
 
 @property(readonly, copy, nonatomic) NSDictionary *clickActions; // @synthesize clickActions=_clickActions;
 @property(readonly, copy, nonatomic) NSURL *impressionURL; // @synthesize impressionURL=_impressionURL;
+@property(readonly, copy, nonatomic) NSString *uuid; // @synthesize uuid=_uuid;
 @property(readonly, copy, nonatomic) NSString *identifier; // @synthesize identifier=_identifier;
 @property(readonly, copy, nonatomic) NSString *html; // @synthesize html=_html;
 - (void).cxx_destruct;
-- (id)initWithHTML:(id)arg1 identifier:(id)arg2 impressionURL:(id)arg3 clickActions:(id)arg4;
+- (id)initWithHTML:(id)arg1 identifier:(id)arg2 uuid:(id)arg3 impressionURL:(id)arg4 clickActions:(id)arg5;
 
 @end
 

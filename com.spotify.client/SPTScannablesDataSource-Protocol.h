@@ -6,14 +6,15 @@
 
 #import "NSObject-Protocol.h"
 
-@class NSURL;
+@class NSURL, UIColor;
 @protocol SPTScannablesDataSourceDelegate;
 
 @protocol SPTScannablesDataSource <NSObject>
 @property(nonatomic) __weak id <SPTScannablesDataSourceDelegate> delegate;
 - (void)cancelRequest;
+- (void)requestScannableWithFormat:(unsigned long long)arg1 backgroundColor:(UIColor *)arg2 barColor:(unsigned long long)arg3 pixelWidth:(unsigned long long)arg4 uri:(NSURL *)arg5;
 - (void)requestOnlyScannableForURL:(NSURL *)arg1 imageSize:(struct CGSize)arg2;
 - (void)requestScannableForURL:(NSURL *)arg1 imageSize:(struct CGSize)arg2;
-- (void)requestURLForScannableID:(struct NSNumber *)arg1;
+- (void)requestURLForScannableID:(struct NSString *)arg1;
 @end
 

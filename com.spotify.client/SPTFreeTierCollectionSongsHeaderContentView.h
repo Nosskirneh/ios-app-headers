@@ -18,10 +18,12 @@
     UIView<SPTSortingFilteringFilterBar> *_filterBar;
     id <SPTSortingFilteringUIFactory> _sortingFilteringUIFactory;
     SPTFreeTierCollectionSongsHeaderContentViewStyle *_style;
+    NSString *_searchPlaceholder;
     GLUELabel *_titleLabel;
     GLUELabel *_collapsedTitleLabel;
     UIView *_contentView;
     UIView *_backgroundContentView;
+    UIView *_filterBarContentView;
     GLUEGradientView *_backgroundGradientView;
     GLUEHeaderBackgroundView *_backgroundOverlayView;
     double _minimumHeight;
@@ -31,8 +33,12 @@
     NSLayoutConstraint *_backgroundContentBottomConstraint;
     NSLayoutConstraint *_filterBarBottomConstraint;
     NSLayoutConstraint *_filterBarHeightConstraint;
+    NSLayoutConstraint *_filterBarContentHeightConstraint;
+    NSLayoutConstraint *_heightConstraint;
 }
 
+@property(retain, nonatomic) NSLayoutConstraint *heightConstraint; // @synthesize heightConstraint=_heightConstraint;
+@property(retain, nonatomic) NSLayoutConstraint *filterBarContentHeightConstraint; // @synthesize filterBarContentHeightConstraint=_filterBarContentHeightConstraint;
 @property(retain, nonatomic) NSLayoutConstraint *filterBarHeightConstraint; // @synthesize filterBarHeightConstraint=_filterBarHeightConstraint;
 @property(retain, nonatomic) NSLayoutConstraint *filterBarBottomConstraint; // @synthesize filterBarBottomConstraint=_filterBarBottomConstraint;
 @property(retain, nonatomic) NSLayoutConstraint *backgroundContentBottomConstraint; // @synthesize backgroundContentBottomConstraint=_backgroundContentBottomConstraint;
@@ -42,10 +48,12 @@
 @property(nonatomic) double minimumHeight; // @synthesize minimumHeight=_minimumHeight;
 @property(retain, nonatomic) GLUEHeaderBackgroundView *backgroundOverlayView; // @synthesize backgroundOverlayView=_backgroundOverlayView;
 @property(retain, nonatomic) GLUEGradientView *backgroundGradientView; // @synthesize backgroundGradientView=_backgroundGradientView;
+@property(retain, nonatomic) UIView *filterBarContentView; // @synthesize filterBarContentView=_filterBarContentView;
 @property(retain, nonatomic) UIView *backgroundContentView; // @synthesize backgroundContentView=_backgroundContentView;
 @property(retain, nonatomic) UIView *contentView; // @synthesize contentView=_contentView;
 @property(retain, nonatomic) GLUELabel *collapsedTitleLabel; // @synthesize collapsedTitleLabel=_collapsedTitleLabel;
 @property(retain, nonatomic) GLUELabel *titleLabel; // @synthesize titleLabel=_titleLabel;
+@property(readonly, copy, nonatomic) NSString *searchPlaceholder; // @synthesize searchPlaceholder=_searchPlaceholder;
 @property(copy, nonatomic) SPTFreeTierCollectionSongsHeaderContentViewStyle *style; // @synthesize style=_style;
 @property(retain, nonatomic) id <SPTSortingFilteringUIFactory> sortingFilteringUIFactory; // @synthesize sortingFilteringUIFactory=_sortingFilteringUIFactory;
 @property(retain, nonatomic) UIView<SPTSortingFilteringFilterBar> *filterBar; // @synthesize filterBar=_filterBar;
@@ -56,12 +64,14 @@
 - (double)additionalContentOffset;
 - (void)updateOffset:(double)arg1;
 - (void)updateVisibleRect:(struct CGRect)arg1 minimumHeight:(double)arg2;
+- (void)updateFrame;
 @property(readonly, nonatomic) double snapOffset;
 - (void)setupConstraints;
 - (void)setupFilterBar;
 - (void)initializeInterface;
+@property(readonly, nonatomic) double preferredUnCollapsedHeight;
 @property(copy, nonatomic) NSString *title;
-- (id)initWithFrame:(struct CGRect)arg1 sortingFilteringUIFactory:(id)arg2;
+- (id)initWithFrame:(struct CGRect)arg1 sortingFilteringUIFactory:(id)arg2 searchPlaceholder:(id)arg3;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

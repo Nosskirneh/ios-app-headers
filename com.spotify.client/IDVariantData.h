@@ -12,6 +12,7 @@
     int _variantType;
 }
 
++ (id)variantWithObject:(id)arg1;
 + (id)variantWithDictionary:(id)arg1;
 + (id)variantWithArray:(id)arg1;
 + (id)variantWithImageData:(id)arg1;
@@ -26,10 +27,10 @@
 + (id)variantWithBoolean:(_Bool)arg1;
 + (id)emptyImageVariant;
 + (id)emptyStringVariant;
-+ (id)variantWithEtchObject:(shared_ptr_cdcbacd5)arg1;
 + (id)stringFromVariantType:(int)arg1;
 @property(readonly) int type; // @synthesize type=_variantType;
 - (void).cxx_destruct;
+- (id)BMW_etchObject;
 - (_Bool)isEqualToVariantData:(id)arg1;
 - (_Bool)isEqual:(id)arg1;
 - (id)description;
@@ -60,8 +61,7 @@
 - (id)initWithFloat:(float)arg1;
 - (id)initWithInteger:(long long)arg1;
 - (id)initWithBoolean:(_Bool)arg1;
-- (shared_ptr_cdcbacd5)etchObject;
-- (id)initWithEtchObject:(shared_ptr_cdcbacd5)arg1;
+- (id)initWithObject:(id)arg1;
 - (void)validateVariantType:(int)arg1;
 
 @end

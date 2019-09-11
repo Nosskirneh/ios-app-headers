@@ -6,31 +6,33 @@
 
 #import <UIKit/UIViewController.h>
 
-#import "SPTNowPlayingAdPlayerObserver-Protocol.h"
+#import "SPTAdPlayerObserver-Protocol.h"
 #import "SPTNowPlayingAdUnitViewController-Protocol.h"
 #import "SPTNowPlayingContainedViewController-Protocol.h"
 
-@class NSString, SPTNowPlayingAdPlayerObservable, SPTTheme, UIProgressView;
+@class NSString, SPTAdPlayerObservable, SPTTheme, UIProgressView;
 @protocol SPTNowPlayingContainingViewController, SPTNowPlayingVideoControlsVisibilityDelegate;
 
-@interface SPTNowPlayingVideoAdDurationUnitViewController : UIViewController <SPTNowPlayingAdPlayerObserver, SPTNowPlayingContainedViewController, SPTNowPlayingAdUnitViewController>
+@interface SPTNowPlayingVideoAdDurationUnitViewController : UIViewController <SPTAdPlayerObserver, SPTNowPlayingContainedViewController, SPTNowPlayingAdUnitViewController>
 {
     id <SPTNowPlayingVideoControlsVisibilityDelegate> _visibilityDelegate;
     UIProgressView *_durationProgressView;
     SPTTheme *_theme;
-    SPTNowPlayingAdPlayerObservable *_observer;
+    SPTAdPlayerObservable *_observer;
     double _animationDuration;
     double _safeAreaBottomMargin;
 }
 
 @property(nonatomic) double safeAreaBottomMargin; // @synthesize safeAreaBottomMargin=_safeAreaBottomMargin;
 @property(nonatomic) double animationDuration; // @synthesize animationDuration=_animationDuration;
-@property(readonly, nonatomic) SPTNowPlayingAdPlayerObservable *observer; // @synthesize observer=_observer;
+@property(readonly, nonatomic) SPTAdPlayerObservable *observer; // @synthesize observer=_observer;
 @property(readonly, nonatomic) SPTTheme *theme; // @synthesize theme=_theme;
 @property(retain, nonatomic) UIProgressView *durationProgressView; // @synthesize durationProgressView=_durationProgressView;
 @property(nonatomic) __weak id <SPTNowPlayingVideoControlsVisibilityDelegate> visibilityDelegate; // @synthesize visibilityDelegate=_visibilityDelegate;
 - (void).cxx_destruct;
-- (void)nowPlayingAdDisplayLinkFiredWithTrack:(struct SPTNowPlayingTrack)arg1;
+- (id)timeIntervalToAccessibilityString:(double)arg1;
+- (id)durationAccessibilityValue;
+- (void)adPlayerDisplayLinkFiredWithTrack:(struct SPTNowPlayingTrack)arg1;
 - (void)didTapVideoView:(id)arg1;
 - (void)setShowsVideoControls:(_Bool)arg1 animated:(_Bool)arg2;
 - (void)reloadViewControllerWithAdEntity:(id)arg1;

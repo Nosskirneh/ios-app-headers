@@ -7,31 +7,29 @@
 #import <objc/NSObject.h>
 
 @class SPTFreeTierEntityContextMenuButton, UIButton;
-@protocol SPTBarButtonItemManager, SPTFreeTierAddToCollectionButton, SPTFreeTierEntityContextMenuButtonViewModel, SPTFreeTierEntityHeartBanButtonViewModel;
+@protocol SPTBarButtonItemManager, SPTFreeTierAddToCollectionButton, SPTFreeTierEntityContextMenuButtonViewModel, SPTFreeTierEntityFeedbackButtonViewModel;
 
 @interface SPTFreeTierEntityNavigationDecorator : NSObject
 {
-    _Bool _useFollowButton;
     SPTFreeTierEntityContextMenuButton *_contextMenuButton;
     id <SPTFreeTierEntityContextMenuButtonViewModel> _contextMenuButtonViewModel;
     UIButton<SPTFreeTierAddToCollectionButton> *_addToCollectionButton;
     id <SPTBarButtonItemManager> _barButtonItemManager;
-    id <SPTFreeTierEntityHeartBanButtonViewModel> _heartBanButtonViewModel;
+    id <SPTFreeTierEntityFeedbackButtonViewModel> _feedbackButtonViewModel;
     double _addToCollectionButtonAlpha;
 }
 
 @property(nonatomic) double addToCollectionButtonAlpha; // @synthesize addToCollectionButtonAlpha=_addToCollectionButtonAlpha;
-@property(nonatomic) _Bool useFollowButton; // @synthesize useFollowButton=_useFollowButton;
-@property(retain, nonatomic) id <SPTFreeTierEntityHeartBanButtonViewModel> heartBanButtonViewModel; // @synthesize heartBanButtonViewModel=_heartBanButtonViewModel;
+@property(retain, nonatomic) id <SPTFreeTierEntityFeedbackButtonViewModel> feedbackButtonViewModel; // @synthesize feedbackButtonViewModel=_feedbackButtonViewModel;
 @property(retain, nonatomic) id <SPTBarButtonItemManager> barButtonItemManager; // @synthesize barButtonItemManager=_barButtonItemManager;
 @property(retain, nonatomic) UIButton<SPTFreeTierAddToCollectionButton> *addToCollectionButton; // @synthesize addToCollectionButton=_addToCollectionButton;
 @property(retain, nonatomic) id <SPTFreeTierEntityContextMenuButtonViewModel> contextMenuButtonViewModel; // @synthesize contextMenuButtonViewModel=_contextMenuButtonViewModel;
 @property(retain, nonatomic) SPTFreeTierEntityContextMenuButton *contextMenuButton; // @synthesize contextMenuButton=_contextMenuButton;
 - (void).cxx_destruct;
-- (id)createItemsWithHeartBanButtonViewModel:(id)arg1 contextMenuButtonViewModel:(id)arg2 useFollowButton:(_Bool)arg3;
+- (id)createItemsWithFeedbackButtonViewModel:(id)arg1 contextMenuButtonViewModel:(id)arg2;
 - (void)updateNavigationItemDecoratorAlpha:(double)arg1;
 - (void)decoratePageController:(id)arg1;
-- (id)initWithBarButtonItemManager:(id)arg1 heartBanButtonViewModel:(id)arg2 contextMenuButtonViewModel:(id)arg3 useFollowButton:(_Bool)arg4;
+- (id)initWithBarButtonItemManager:(id)arg1 feedbackButtonViewModel:(id)arg2 contextMenuButtonViewModel:(id)arg3;
 
 @end
 

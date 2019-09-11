@@ -31,7 +31,7 @@
 @property(readonly, nonatomic) UIColor *subtitleIconColour; // @synthesize subtitleIconColour=_subtitleIconColour;
 @property(readonly, nonatomic) UIColor *mainIconColour; // @synthesize mainIconColour=_mainIconColour;
 @property(retain, nonatomic) SPTGaiaDevicePickerGLUETheme *theme; // @synthesize theme=_theme;
-@property(retain, nonatomic) NSString *subtitle; // @synthesize subtitle=_subtitle;
+@property(copy, nonatomic) NSString *subtitle; // @synthesize subtitle=_subtitle;
 @property(nonatomic) __weak id <SPTGaiaDevicePickerCellDelegate> delegate; // @synthesize delegate=_delegate;
 @property(nonatomic) _Bool subtitleUsesSecondaryDisplayStyle; // @synthesize subtitleUsesSecondaryDisplayStyle=_subtitleUsesSecondaryDisplayStyle;
 @property(nonatomic) _Bool usesSecondaryDisplayStyle; // @synthesize usesSecondaryDisplayStyle=_usesSecondaryDisplayStyle;
@@ -46,7 +46,7 @@
 - (void)prepareForReuse;
 - (id)accessoryView;
 - (void)setAccessoryView:(id)arg1;
-@property(retain, nonatomic) NSString *title;
+@property(copy, nonatomic) NSString *title;
 - (void)updateSubtitleLabelContent;
 - (id)accessibilityElements;
 - (void)applyThemeLayout;

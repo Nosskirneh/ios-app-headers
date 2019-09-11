@@ -6,22 +6,22 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTCollectionEntityListObserver-Protocol.h"
+#import "SPTRecentlyPlayedListObserver-Protocol.h"
 #import "SPTWatchPlatformPublisher-Protocol.h"
 
 @class NSString;
-@protocol SPTRecentlyPlayedEntityList, SPTWatchConnectivityPubSubMessageQueue;
+@protocol SPTRecentlyPlayedList, SPTWatchConnectivityPubSubMessageQueue;
 
-@interface SPTWatchPlatformRecentlyPlayedItemsPublisher : NSObject <SPTCollectionEntityListObserver, SPTWatchPlatformPublisher>
+@interface SPTWatchPlatformRecentlyPlayedItemsPublisher : NSObject <SPTRecentlyPlayedListObserver, SPTWatchPlatformPublisher>
 {
     id <SPTWatchConnectivityPubSubMessageQueue> _pubSubMessageQueue;
-    id <SPTRecentlyPlayedEntityList> _recentlyPlayedEntityList;
+    id <SPTRecentlyPlayedList> _recentlyPlayedEntityList;
 }
 
-@property(readonly, nonatomic) __weak id <SPTRecentlyPlayedEntityList> recentlyPlayedEntityList; // @synthesize recentlyPlayedEntityList=_recentlyPlayedEntityList;
+@property(readonly, nonatomic) __weak id <SPTRecentlyPlayedList> recentlyPlayedEntityList; // @synthesize recentlyPlayedEntityList=_recentlyPlayedEntityList;
 @property(readonly, nonatomic) __weak id <SPTWatchConnectivityPubSubMessageQueue> pubSubMessageQueue; // @synthesize pubSubMessageQueue=_pubSubMessageQueue;
 - (void).cxx_destruct;
-- (void)entityListDidReload:(id)arg1;
+- (void)recentlyPlayedListDidReload:(id)arg1;
 - (void)startPublishing;
 - (void)handlePublisherEvent:(long long)arg1;
 - (void)publishRecentlyPlayedItems;

@@ -15,7 +15,7 @@
 #import "SPTPageController-Protocol.h"
 #import "SPTProductStateObserver-Protocol.h"
 
-@class GLUEButton, NSString, NSURL, SPTCollectionEmptyEntityFooterView, SPTEntityTableHeaderView, SPTInfoView, SPTNetworkConnectivityController, SPTProgressView, SPTTableViewOfflineSwitchCell;
+@class GLUEButton, GLUEEntityRowStyle, NSString, NSURL, SPTCollectionEmptyEntityFooterView, SPTEntityTableHeaderView, SPTInfoView, SPTNetworkConnectivityController, SPTProgressView, SPTTableViewOfflineSwitchCell;
 @protocol GLUETheme, SPTAbbaFeatureFlags, SPTBarButtonItemManager, SPTCollectionArtistModel, SPTCollectionLogger, SPTCollectionPlatformTestManager, SPTContextMenuPresenter, SPTExplicitContentAccessManager, SPTImageLoader, SPTModalPresentationController, SPTPageContainer, SPTProductState, SPTShelves;
 
 @interface SPTCollectionArtistViewController : SPTableViewController <SPTImageLoaderDelegate, SPTNavigationControllerNavigationBarState, SPTProductStateObserver, SPTOfflineSwitchDelegate, SPTBarButtonItemManagerObserver, SPTExplicitContentEnabledStateObserver, SPTCollectionArtistModelDelegate, SPTPageController>
@@ -40,10 +40,12 @@
     id <SPTCollectionPlatformTestManager> _collectionTestManager;
     id <SPTModalPresentationController> _modalPresentationController;
     id <GLUETheme> _theme;
+    GLUEEntityRowStyle *_trackRowStyle;
     id <SPTExplicitContentAccessManager> _explicitContentAccessManager;
 }
 
 @property(readonly, nonatomic) id <SPTExplicitContentAccessManager> explicitContentAccessManager; // @synthesize explicitContentAccessManager=_explicitContentAccessManager;
+@property(readonly, nonatomic) GLUEEntityRowStyle *trackRowStyle; // @synthesize trackRowStyle=_trackRowStyle;
 @property(readonly, nonatomic) id <GLUETheme> theme; // @synthesize theme=_theme;
 @property(retain, nonatomic) id <SPTModalPresentationController> modalPresentationController; // @synthesize modalPresentationController=_modalPresentationController;
 @property(readonly, nonatomic) __weak id <SPTCollectionPlatformTestManager> collectionTestManager; // @synthesize collectionTestManager=_collectionTestManager;
@@ -110,7 +112,6 @@
 - (void)artistModelDidUpdate:(id)arg1;
 - (void)scrollViewDidScroll:(id)arg1;
 - (void)configureMultipleAccessoriesViewForCell:(id)arg1 status:(long long)arg2 accessoryLabelType:(long long)arg3;
-- (id)trackRowStyle;
 - (void)setupTrailingAccessoryForCell:(id)arg1 indexPath:(id)arg2;
 - (id)contentViewForCell:(id)arg1;
 - (void)configureTrackCell:(id)arg1 withItem:(id)arg2;

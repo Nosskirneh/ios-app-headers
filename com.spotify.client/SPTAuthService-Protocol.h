@@ -6,12 +6,9 @@
 
 #import "SPTService-Protocol.h"
 
-@class NSString, NSURL;
-@protocol SPTAuthServiceObserver;
+@protocol SPTAuthController;
 
 @protocol SPTAuthService <SPTService>
-- (void)removeAuthServiceObserver:(id <SPTAuthServiceObserver>)arg1;
-- (void)addAuthServiceObserver:(id <SPTAuthServiceObserver>)arg1;
-- (void)authenticateWithURL:(NSURL *)arg1 sourceApplication:(NSString *)arg2;
+- (id <SPTAuthController>)provideAuthController;
 @end
 

@@ -7,6 +7,7 @@
 #import <Foundation/NSData.h>
 
 @interface NSData (BMWAppKit)
+- (id)id_MD5;
 - (id)SHA1StringRepresentation;
 @end
 

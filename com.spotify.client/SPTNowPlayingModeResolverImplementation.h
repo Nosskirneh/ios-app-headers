@@ -11,17 +11,16 @@
 #import "SPTPlayerObserver-Protocol.h"
 
 @class NSArray, NSString, SPTObserverManager, SPTPlayerState;
-@protocol SPTContentEngagementOptionsModeController, SPTDrivingModeController, SPTNowPlayingMode, SPTNowPlayingModesRegistry, SPTNowPlayingTestManager, SPTOnDemandSet, SPTPSXTestManager, SPTPlayer;
+@protocol SPTDrivingModeController, SPTNowPlayingMode, SPTNowPlayingModesRegistry, SPTNowPlayingTestManager, SPTOnDemandSet, SPTPlayer, SPTRadioRemoteConfigProperties;
 
 @interface SPTNowPlayingModeResolverImplementation : NSObject <SPTPlayerObserver, SPTDrivingModeControllerDelegate, SPTNowPlayingModeResolver>
 {
     id <SPTNowPlayingModesRegistry> _modesRegistry;
     id <SPTPlayer> _player;
     id <SPTNowPlayingTestManager> _testManager;
+    id <SPTRadioRemoteConfigProperties> _radioRemoteConfigProperties;
     id <SPTOnDemandSet> _onDemandSet;
-    id <SPTPSXTestManager> _psxTestManager;
     id <SPTDrivingModeController> _drivingModeController;
-    id <SPTContentEngagementOptionsModeController> _ceoModeController;
     SPTPlayerState *_playerState;
     id <SPTNowPlayingMode> _mode;
     NSArray *_modes;
@@ -32,23 +31,22 @@
 @property(readonly, nonatomic) NSArray *modes; // @synthesize modes=_modes;
 @property(retain, nonatomic) id <SPTNowPlayingMode> mode; // @synthesize mode=_mode;
 @property(retain, nonatomic) SPTPlayerState *playerState; // @synthesize playerState=_playerState;
-@property(retain, nonatomic) id <SPTContentEngagementOptionsModeController> ceoModeController; // @synthesize ceoModeController=_ceoModeController;
 @property(retain, nonatomic) id <SPTDrivingModeController> drivingModeController; // @synthesize drivingModeController=_drivingModeController;
-@property(readonly, nonatomic) id <SPTPSXTestManager> psxTestManager; // @synthesize psxTestManager=_psxTestManager;
 @property(readonly, nonatomic) id <SPTOnDemandSet> onDemandSet; // @synthesize onDemandSet=_onDemandSet;
+@property(readonly, nonatomic) id <SPTRadioRemoteConfigProperties> radioRemoteConfigProperties; // @synthesize radioRemoteConfigProperties=_radioRemoteConfigProperties;
 @property(readonly, nonatomic) id <SPTNowPlayingTestManager> testManager; // @synthesize testManager=_testManager;
 @property(readonly, nonatomic) id <SPTPlayer> player; // @synthesize player=_player;
 @property(readonly, nonatomic) id <SPTNowPlayingModesRegistry> modesRegistry; // @synthesize modesRegistry=_modesRegistry;
 - (void).cxx_destruct;
 - (void)player:(id)arg1 stateDidChange:(id)arg2;
 - (void)drivingModeController:(id)arg1 didChangeDrivingModeEnabledState:(_Bool)arg2;
+- (id)mapModeToDrivingMode:(id)arg1;
 - (void)resolveMode;
 - (_Bool)isFreeUserAndNotOnDemand:(id)arg1;
 - (_Bool)isPersonalisedSet:(id)arg1;
 - (void)removeObserver:(id)arg1;
 - (void)addObserver:(id)arg1;
-- (id)initWithModesRegistry:(id)arg1 player:(id)arg2 nowPlayingTestManager:(id)arg3 onDemandSet:(id)arg4 psxTestManager:(id)arg5;
-- (void)updateCEOModeController:(id)arg1;
+- (id)initWithModesRegistry:(id)arg1 player:(id)arg2 nowPlayingTestManager:(id)arg3 radioRemoteConfigProperties:(id)arg4 onDemandSet:(id)arg5;
 - (void)updateDrivingModeController:(id)arg1;
 
 // Remaining properties

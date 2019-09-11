@@ -11,6 +11,7 @@
 @protocol SPTBarInteractiveTransitionParticipant <NSObject>
 
 @optional
+- (_Bool)shouldShowBar;
 - (UIView *)backgroundViewForBarTransition:(SPTBarOverlayPresentationTransition *)arg1;
 - (NSArray *)replacementViewsForBarTransition:(SPTBarOverlayPresentationTransition *)arg1;
 @end

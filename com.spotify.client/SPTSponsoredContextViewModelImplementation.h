@@ -11,7 +11,7 @@
 #import "SPTSponsoredContextViewModel-Protocol.h"
 
 @class NSString, NSURL, SPTDataLoader, SPTSponsoredContextEntityData, SPTSponsoredContextManager, UIImage;
-@protocol SPTAdEventLogger, SPTAdsManager, SPTImageLoader, SPTLinkDispatcher, SPTSponsoredContextViewModelDelegate;
+@protocol SPTAdsBaseCosmosBridge, SPTAdsManager, SPTImageLoader, SPTLinkDispatcher, SPTSponsoredContextViewModelDelegate;
 
 @interface SPTSponsoredContextViewModelImplementation : NSObject <SPTImageLoaderDelegate, SPTSponsoredContextManagerDelegate, SPTSponsoredContextViewModel>
 {
@@ -21,7 +21,7 @@
     UIImage *_sponsoredImage;
     NSURL *_sponsoredContext;
     SPTSponsoredContextEntityData *_entityData;
-    id <SPTAdEventLogger> _adEventLogger;
+    id <SPTAdsBaseCosmosBridge> _cosmosBridge;
     SPTDataLoader *_dataLoader;
     SPTSponsoredContextManager *_sponsoredContextManager;
     id <SPTLinkDispatcher> _linkDispatcher;
@@ -30,7 +30,7 @@
 @property(retain, nonatomic) id <SPTLinkDispatcher> linkDispatcher; // @synthesize linkDispatcher=_linkDispatcher;
 @property(retain, nonatomic) SPTSponsoredContextManager *sponsoredContextManager; // @synthesize sponsoredContextManager=_sponsoredContextManager;
 @property(retain, nonatomic) SPTDataLoader *dataLoader; // @synthesize dataLoader=_dataLoader;
-@property(retain, nonatomic) id <SPTAdEventLogger> adEventLogger; // @synthesize adEventLogger=_adEventLogger;
+@property(retain, nonatomic) id <SPTAdsBaseCosmosBridge> cosmosBridge; // @synthesize cosmosBridge=_cosmosBridge;
 @property(retain, nonatomic) SPTSponsoredContextEntityData *entityData; // @synthesize entityData=_entityData;
 @property(retain, nonatomic) NSURL *sponsoredContext; // @synthesize sponsoredContext=_sponsoredContext;
 @property(retain, nonatomic) UIImage *sponsoredImage; // @synthesize sponsoredImage=_sponsoredImage;
@@ -46,9 +46,10 @@
 @property(readonly, nonatomic) NSString *sponsoredContextAccessibilityHint;
 @property(readonly, nonatomic) NSString *sponsoredContextAccessibilityLabel;
 @property(readonly, nonatomic) NSString *sponsoredMessage;
+- (id)eventData;
 - (void)sponsoredContextTapped:(id)arg1;
 - (void)sponsoredContextInFocus:(_Bool)arg1;
-- (id)initWithContext:(id)arg1 sponsoredContextManager:(id)arg2 adsManager:(id)arg3 imageLoader:(id)arg4 adEventLogger:(id)arg5 dataLoader:(id)arg6 linkDispatcher:(id)arg7;
+- (id)initWithContext:(id)arg1 sponsoredContextManager:(id)arg2 adsManager:(id)arg3 imageLoader:(id)arg4 cosmosBridge:(id)arg5 dataLoader:(id)arg6 linkDispatcher:(id)arg7;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

@@ -7,10 +7,10 @@
 #import <CoreData/NSManagedObject.h>
 
 @interface NSManagedObject (Instruments)
-+ (id)ins_createEntityInContext:(id)arg1;
-+ (unsigned long long)ins_countInContext:(id)arg1 predicate:(id)arg2 error:(id *)arg3;
-+ (id)ins_executeFetchRequest:(id)arg1 inContext:(id)arg2 error:(id *)arg3;
-+ (id)ins_entityDescriptionForContext:(id)arg1;
++ (id)ins_createEntityWithStore:(id)arg1;
++ (unsigned long long)ins_countInStore:(id)arg1 predicate:(id)arg2 error:(id *)arg3;
++ (id)ins_executeFetchRequest:(id)arg1 withStore:(id)arg2 error:(id *)arg3;
++ (id)ins_entityDescriptionWithStore:(id)arg1;
 + (id)ins_entityName;
 @end
 

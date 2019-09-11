@@ -6,12 +6,11 @@
 
 #import "SPTService-Protocol.h"
 
-@protocol SPTPlaylistModel, SPTPlaylistPlatformPlaylistDataLoader, SPTPlaylistPlatformPlaylistSynchroniser, SPTPlaylistURIResolver, SPTResolver;
+@protocol SPTPlaylistModel, SPTPlaylistPlatformPlaylistDataLoader, SPTPlaylistPlatformPlaylistSynchroniser, SPTPlaylistURIResolver;
 
 @protocol SPTPlaylistPlatformService <SPTService>
 - (id <SPTPlaylistURIResolver>)providePlaylistURIResolver;
 - (id <SPTPlaylistPlatformPlaylistSynchroniser>)providePlaylistSynchroniser;
-- (id <SPTResolver>)provideResolverPlaylist;
 - (id <SPTPlaylistPlatformPlaylistDataLoader>)providePlaylistPlatformDataLoader;
 - (id <SPTPlaylistModel>)providePlaylistModel;
 @end

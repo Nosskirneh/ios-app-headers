@@ -10,20 +10,27 @@
 #import "SPTService-Protocol.h"
 
 @class NSString, SPTAllocationContext, SPTPushTokenBackendIntegrator;
-@protocol SPTNetworkService, SPTPushTokenUserTrackerService;
+@protocol SPTFeatureFlagSignal, SPTNetworkService, SPTPushMessagingABBAService, SPTPushTokenUserTrackerService;
 
 @interface SPTPushTokenBackendServiceImplementation : NSObject <SPTService, SPTPushTokenBackendService>
 {
     id <SPTNetworkService> _networkFeature;
     id <SPTPushTokenUserTrackerService> _pushTokenUserTrackerService;
     SPTPushTokenBackendIntegrator *_pushTokenBackendIntegrator;
+    id <SPTPushMessagingABBAService> _pushMessagingABBAService;
+    id <SPTFeatureFlagSignal> _pushMessagingFeatureFlagSignal;
 }
 
 + (id)serviceIdentifier;
+@property(retain, nonatomic) id <SPTFeatureFlagSignal> pushMessagingFeatureFlagSignal; // @synthesize pushMessagingFeatureFlagSignal=_pushMessagingFeatureFlagSignal;
+@property(nonatomic) __weak id <SPTPushMessagingABBAService> pushMessagingABBAService; // @synthesize pushMessagingABBAService=_pushMessagingABBAService;
 @property(retain, nonatomic) SPTPushTokenBackendIntegrator *pushTokenBackendIntegrator; // @synthesize pushTokenBackendIntegrator=_pushTokenBackendIntegrator;
 @property(nonatomic) __weak id <SPTPushTokenUserTrackerService> pushTokenUserTrackerService; // @synthesize pushTokenUserTrackerService=_pushTokenUserTrackerService;
 @property(nonatomic) __weak id <SPTNetworkService> networkFeature; // @synthesize networkFeature=_networkFeature;
 - (void).cxx_destruct;
+- (void)featureFlagSignal:(id)arg1 hasAssumedState:(long long)arg2;
+- (void)unloadBackendIntegrator;
+- (void)loadBackendIntegrator;
 - (void)unload;
 - (void)load;
 - (void)configureWithServices:(id)arg1;

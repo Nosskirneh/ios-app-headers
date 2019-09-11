@@ -7,40 +7,40 @@
 #import <objc/NSObject.h>
 
 #import "SPTAudioSessionControllerObserver-Protocol.h"
-#import "SPTGaiaDeviceStateManagerObserver-Protocol.h"
+#import "SPTGaiaConnectManagerObserver-Protocol.h"
 #import "SPTGaiaLockScreenControlsStateObserver-Protocol.h"
 #import "SPTPlayerObserver-Protocol.h"
 #import "SpotifyApplicationRemoteControlObserver-Protocol.h"
 
-@class NSNotificationCenter, NSString, SPTAudioSessionActivator, SPTGaiaDeviceManager, SPTGaiaLogger;
-@protocol SPTAudioSessionController, SPTGaiaLockScreenControlsStateProvider, SPTGaiaSilentAudioObserveProtocol, SPTGaiaSilentAudioPlayer, SPTGaiaSilentAudioPlayerProvider, SPTPlayer;
+@class NSNotificationCenter, NSString, SPTAudioSessionActivator, SPTGaiaLogger;
+@protocol SPTAudioSessionController, SPTGaiaConnectManager, SPTGaiaLockScreenControlsStateProvider, SPTGaiaSilentAudioObserveProtocol, SPTGaiaSilentAudioPlayer, SPTGaiaSilentAudioPlayerProvider, SPTPlayer;
 
-@interface GaiaLocalAudioSessionController : NSObject <SPTGaiaDeviceStateManagerObserver, SPTPlayerObserver, SpotifyApplicationRemoteControlObserver, SPTGaiaLockScreenControlsStateObserver, SPTAudioSessionControllerObserver>
+@interface GaiaLocalAudioSessionController : NSObject <SPTPlayerObserver, SpotifyApplicationRemoteControlObserver, SPTGaiaLockScreenControlsStateObserver, SPTAudioSessionControllerObserver, SPTGaiaConnectManagerObserver>
 {
     _Bool _remoteDisabled;
     _Bool _lockScreenControlTakenOver;
     id <SPTGaiaSilentAudioObserveProtocol> _delegate;
     id <SPTAudioSessionController> _audioSessionController;
-    SPTGaiaDeviceManager *_deviceManager;
-    NSNotificationCenter *_notificationCenter;
-    SPTAudioSessionActivator *_audioSessionActivator;
+    id <SPTGaiaConnectManager> _connectManager;
     id <SPTPlayer> _player;
     id <SPTGaiaLockScreenControlsStateProvider> _lockScreenControlsStateProvider;
+    NSNotificationCenter *_notificationCenter;
     SPTGaiaLogger *_logger;
     id <SPTGaiaSilentAudioPlayerProvider> _silentAudioPlayerProvider;
+    SPTAudioSessionActivator *_audioSessionActivator;
     id <SPTGaiaSilentAudioPlayer> _silentAudioPlayer;
 }
 
 @property(nonatomic) _Bool lockScreenControlTakenOver; // @synthesize lockScreenControlTakenOver=_lockScreenControlTakenOver;
+@property(nonatomic) _Bool remoteDisabled; // @synthesize remoteDisabled=_remoteDisabled;
 @property(retain, nonatomic) id <SPTGaiaSilentAudioPlayer> silentAudioPlayer; // @synthesize silentAudioPlayer=_silentAudioPlayer;
+@property(retain, nonatomic) SPTAudioSessionActivator *audioSessionActivator; // @synthesize audioSessionActivator=_audioSessionActivator;
 @property(retain, nonatomic) id <SPTGaiaSilentAudioPlayerProvider> silentAudioPlayerProvider; // @synthesize silentAudioPlayerProvider=_silentAudioPlayerProvider;
 @property(retain, nonatomic) SPTGaiaLogger *logger; // @synthesize logger=_logger;
+@property(retain, nonatomic) NSNotificationCenter *notificationCenter; // @synthesize notificationCenter=_notificationCenter;
 @property(retain, nonatomic) id <SPTGaiaLockScreenControlsStateProvider> lockScreenControlsStateProvider; // @synthesize lockScreenControlsStateProvider=_lockScreenControlsStateProvider;
 @property(retain, nonatomic) id <SPTPlayer> player; // @synthesize player=_player;
-@property(nonatomic) _Bool remoteDisabled; // @synthesize remoteDisabled=_remoteDisabled;
-@property(retain, nonatomic) SPTAudioSessionActivator *audioSessionActivator; // @synthesize audioSessionActivator=_audioSessionActivator;
-@property(retain, nonatomic) NSNotificationCenter *notificationCenter; // @synthesize notificationCenter=_notificationCenter;
-@property(nonatomic) __weak SPTGaiaDeviceManager *deviceManager; // @synthesize deviceManager=_deviceManager;
+@property(retain, nonatomic) id <SPTGaiaConnectManager> connectManager; // @synthesize connectManager=_connectManager;
 @property(nonatomic) __weak id <SPTAudioSessionController> audioSessionController; // @synthesize audioSessionController=_audioSessionController;
 @property(nonatomic) __weak id <SPTGaiaSilentAudioObserveProtocol> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
@@ -49,18 +49,19 @@
 - (_Bool)lockScreenControlIsAvailable;
 - (void)lockScreenControlsEnabledChanged:(_Bool)arg1;
 - (void)remoteControlEventOfSubtypeOccurred:(long long)arg1;
+- (_Bool)activeDeviceExists;
 - (void)audioSessionInterruptionNotification:(id)arg1;
 - (void)audioSessionRouteChanged:(id)arg1;
 - (void)teardownSessionListeners;
 - (void)setupSessionListeners;
 - (void)updateCurrentDevice;
-- (void)deviceStateManager:(id)arg1 activeDeviceDidChange:(id)arg2;
+- (void)connectManager:(id)arg1 activeDeviceDidChange:(id)arg2;
 - (void)applicationWillResignActiveNotification;
 - (void)applicationDidBecomeActive;
 - (void)updateCurrentDeviceAndPlayerState;
 - (void)player:(id)arg1 stateDidChange:(id)arg2 fromState:(id)arg3;
 - (void)dealloc;
-- (id)initWithAudioSessionController:(id)arg1 deviceManager:(id)arg2 player:(id)arg3 lockScreenControlsStateProvider:(id)arg4 notificationCenter:(id)arg5 logger:(id)arg6 silentAudioPlayerProvider:(id)arg7;
+- (id)initWithAudioSessionController:(id)arg1 connectManager:(id)arg2 player:(id)arg3 lockScreenControlsStateProvider:(id)arg4 notificationCenter:(id)arg5 logger:(id)arg6 silentAudioPlayerProvider:(id)arg7;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

@@ -6,12 +6,9 @@
 
 #import "IDService.h"
 
-#import "IDEtchSessionSdsDelegate-Protocol.h"
-
-@class NSString;
 @protocol IDSpeechDialogServiceDelegate;
 
-@interface IDSpeechDialogService : IDService <IDEtchSessionSdsDelegate>
+@interface IDSpeechDialogService : IDService
 {
     id <IDSpeechDialogServiceDelegate> _delegate;
 }
@@ -26,12 +23,6 @@
 - (void)registerGlobalIntentWithIdentifier:(long long)arg1 appName:(id)arg2 completionHandler:(CDUnknownBlockType)arg3;
 - (void)controlDialogWithCommand:(unsigned long long)arg1 dialogToken:(long long)arg2 parameters:(id)arg3 completionHandler:(CDUnknownBlockType)arg4;
 - (void)takeOverDialogWithDialogToken:(long long)arg1 completionHandler:(CDUnknownBlockType)arg2;
-
-// Remaining properties
-@property(readonly, copy) NSString *debugDescription;
-@property(readonly, copy) NSString *description;
-@property(readonly) unsigned long long hash;
-@property(readonly) Class superclass;
 
 @end
 

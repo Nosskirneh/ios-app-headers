@@ -8,6 +8,7 @@
 
 @interface NSURL (LanguageOnboarding)
 + (id)spt_languageOnboardingErrorDialogURI;
++ (id)spt_languageOnboardingSettingsErrorDialogURI;
 + (id)spt_languageOnboardingSettingsViewURI;
 + (id)spt_languageOnboardingViewURI;
 @end

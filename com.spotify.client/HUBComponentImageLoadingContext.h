@@ -6,22 +6,23 @@
 
 #import <objc/NSObject.h>
 
-@class HUBComponentWrapper, NSString;
+@class HUBComponentView, NSString;
+@protocol HUBComponentViewWithImageHandling;
 
 @interface HUBComponentImageLoadingContext : NSObject
 {
     long long _imageType;
     NSString *_imageIdentifier;
-    HUBComponentWrapper *_wrapper;
+    HUBComponentView<HUBComponentViewWithImageHandling> *_componentView;
     double _timestamp;
 }
 
 @property(readonly, nonatomic) double timestamp; // @synthesize timestamp=_timestamp;
-@property(readonly, nonatomic) __weak HUBComponentWrapper *wrapper; // @synthesize wrapper=_wrapper;
+@property(readonly, nonatomic) __weak HUBComponentView<HUBComponentViewWithImageHandling> *componentView; // @synthesize componentView=_componentView;
 @property(readonly, copy, nonatomic) NSString *imageIdentifier; // @synthesize imageIdentifier=_imageIdentifier;
 @property(readonly, nonatomic) long long imageType; // @synthesize imageType=_imageType;
 - (void).cxx_destruct;
-- (id)initWithImageType:(long long)arg1 imageIdentifier:(id)arg2 wrapper:(id)arg3 timestamp:(double)arg4;
+- (id)initWithImageType:(long long)arg1 imageIdentifier:(id)arg2 componentView:(id)arg3 timestamp:(double)arg4;
 
 @end
 

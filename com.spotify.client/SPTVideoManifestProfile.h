@@ -17,7 +17,6 @@
     NSString *_videoCodec;
     NSString *_audioCodec;
     unsigned long long _maxBitrate;
-    unsigned long long _avgBitrate;
     NSString *_mimeType;
     SPTVideoFairplayEncryptionAttributes *_fairplayEncryptionAttributes;
     struct CGSize _videoSize;
@@ -26,7 +25,6 @@
 @property(readonly, nonatomic) SPTVideoFairplayEncryptionAttributes *fairplayEncryptionAttributes; // @synthesize fairplayEncryptionAttributes=_fairplayEncryptionAttributes;
 @property(readonly, nonatomic) struct CGSize videoSize; // @synthesize videoSize=_videoSize;
 @property(readonly, nonatomic) NSString *mimeType; // @synthesize mimeType=_mimeType;
-@property(readonly, nonatomic) unsigned long long avgBitrate; // @synthesize avgBitrate=_avgBitrate;
 @property(readonly, nonatomic) unsigned long long maxBitrate; // @synthesize maxBitrate=_maxBitrate;
 @property(readonly, nonatomic) NSString *audioCodec; // @synthesize audioCodec=_audioCodec;
 @property(readonly, nonatomic) NSString *videoCodec; // @synthesize videoCodec=_videoCodec;
@@ -35,7 +33,7 @@
 @property(readonly, nonatomic) unsigned long long streamingProtocol; // @synthesize streamingProtocol=_streamingProtocol;
 @property(readonly, nonatomic) unsigned long long profileId; // @synthesize profileId=_profileId;
 - (void).cxx_destruct;
-- (id)initWithDictionary:(id)arg1 encryptionAttributes:(id)arg2;
+- (id)initWithProfileId:(unsigned long long)arg1 streamingProtocol:(unsigned long long)arg2 segmentType:(unsigned long long)arg3 fairplayEncryptionAttributes:(id)arg4 fileType:(id)arg5 videoCodec:(id)arg6 audioCodec:(id)arg7 maxBitrate:(unsigned long long)arg8 mimeType:(id)arg9 videoSize:(struct CGSize)arg10;
 
 @end
 

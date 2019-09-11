@@ -13,6 +13,7 @@
 + (unsigned long long)playbackSpeedForPlayerState:(id)arg1;
 + (long long)thumbStateForPlayerState:(id)arg1 withRadioController:(id)arg2;
 + (id)sectionTitleStringForSectionKey:(id)arg1;
++ (id)constructCrossfadeStatePayloadWithPreferences:(id)arg1;
 + (id)constructSessionStatePayloadWithSession:(id)arg1 networkConnectivityController:(id)arg2;
 + (id)repeatPayloadFromPlayerState:(id)arg1;
 + (id)playbackOptionsPayloadFromPlayerState:(id)arg1;

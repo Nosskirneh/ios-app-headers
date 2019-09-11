@@ -15,6 +15,7 @@
     GLUEAccessoryIconButtonStyle *_contextMenuButtonStyle;
     GLUEAccessoryIconButtonStyle *_likeButtonStyle;
     GLUEAccessoryIconButtonStyle *_banButtonStyle;
+    long long _contextMenuButtonIcon;
     long long _likeButtonIcon;
     long long _banButtonIcon;
     double _rightMargin;
@@ -23,6 +24,7 @@
 @property(nonatomic) double rightMargin; // @synthesize rightMargin=_rightMargin;
 @property(nonatomic) long long banButtonIcon; // @synthesize banButtonIcon=_banButtonIcon;
 @property(nonatomic) long long likeButtonIcon; // @synthesize likeButtonIcon=_likeButtonIcon;
+@property(nonatomic) long long contextMenuButtonIcon; // @synthesize contextMenuButtonIcon=_contextMenuButtonIcon;
 @property(copy, nonatomic) GLUEAccessoryIconButtonStyle *banButtonStyle; // @synthesize banButtonStyle=_banButtonStyle;
 @property(copy, nonatomic) GLUEAccessoryIconButtonStyle *likeButtonStyle; // @synthesize likeButtonStyle=_likeButtonStyle;
 @property(copy, nonatomic) GLUEAccessoryIconButtonStyle *contextMenuButtonStyle; // @synthesize contextMenuButtonStyle=_contextMenuButtonStyle;

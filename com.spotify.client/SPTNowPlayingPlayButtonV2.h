@@ -28,7 +28,6 @@
 @property(retain, nonatomic) UIColor *fillColor; // @synthesize fillColor;
 @property(nonatomic, getter=isFilled) _Bool filled; // @synthesize filled;
 - (void).cxx_destruct;
-- (id)accessibilityIdentifier;
 - (unsigned long long)accessibilityTraits;
 - (id)accessibilityLabel;
 - (_Bool)pointInside:(struct CGPoint)arg1 withEvent:(id)arg2;

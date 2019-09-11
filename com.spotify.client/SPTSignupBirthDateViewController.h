@@ -13,7 +13,7 @@
 #import "SPTSignupPickerContainerViewDelegate-Protocol.h"
 #import "UITextFieldDelegate-Protocol.h"
 
-@class NSError, NSString, NSURL, SPTSignupAnimatedTransitioning, SPTSignupBirthDateViewModel, SPTSignupPickerContainerView, SPTSignupSingleInputFieldView;
+@class NSError, NSString, NSURL, SPTLoginTheme, SPTSignupAnimatedTransitioning, SPTSignupBirthDateViewModel, SPTSignupPickerContainerView, SPTSignupSingleInputFieldView;
 @protocol SPTPageContainer;
 
 @interface SPTSignupBirthDateViewController : UIViewController <SPTNavigationControllerNavigationBarState, SPTSignupPickerContainerViewDelegate, UITextFieldDelegate, SPTSignupBirthDateViewModelDelegate, SPTPageController, SPTLoginViewControllerProtocol>
@@ -24,8 +24,10 @@
     SPTSignupBirthDateViewModel *_viewModel;
     SPTSignupPickerContainerView *_datePickerView;
     SPTSignupAnimatedTransitioning *_animatedTransitioning;
+    SPTLoginTheme *_theme;
 }
 
+@property(retain, nonatomic) SPTLoginTheme *theme; // @synthesize theme=_theme;
 @property(retain, nonatomic) SPTSignupAnimatedTransitioning *animatedTransitioning; // @synthesize animatedTransitioning=_animatedTransitioning;
 @property(retain, nonatomic) SPTSignupPickerContainerView *datePickerView; // @synthesize datePickerView=_datePickerView;
 @property(retain, nonatomic) SPTSignupBirthDateViewModel *viewModel; // @synthesize viewModel=_viewModel;
@@ -40,7 +42,7 @@
 - (void)viewModel:(id)arg1 didFinishValidationWithError:(id)arg2;
 - (void)textFieldDidBeginEditing:(id)arg1;
 - (void)pickerViewDidComplete:(id)arg1;
-- (void)userDidTouchUpInsideNextButton:(id)arg1;
+- (void)nextButtonTapped:(id)arg1;
 - (void)userDidChangePickerViewValue:(id)arg1;
 - (id)textFromDate:(id)arg1;
 - (void)setTextFieldText;
@@ -51,7 +53,7 @@
 - (void)viewDidAppear:(_Bool)arg1;
 - (void)viewDidLoad;
 - (void)loadView;
-- (id)initWithViewModel:(id)arg1;
+- (id)initWithTheme:(id)arg1 viewModel:(id)arg2;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

@@ -6,12 +6,13 @@
 
 #import <UIKit/UIViewController.h>
 
-@class SPTSidebarItem;
+@protocol SPTTabBarItem;
 
 @interface UIViewController (SPTSidebarItem)
 - (_Bool)shouldHideTabBarTitles;
 - (void)updateTabBarItemForSidebarItem:(id)arg1;
 - (void)spt_updateSidebarItem;
-@property(retain, nonatomic) SPTSidebarItem *spt_sidebarItem;
+- (void)spt_setSidebarItem:(id)arg1;
+@property(readonly, nonatomic) id <SPTTabBarItem> spt_sidebarItem;
 @end
 

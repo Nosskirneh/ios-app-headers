@@ -7,6 +7,7 @@
 #import "NSObject-Protocol.h"
 
 @class NSArray, NSDictionary, NSString;
+@protocol SPTMultipleChoiceFeatureFlagBuilder;
 
 @protocol SPTMultipleChoiceFeatureFlagBuilder <NSObject>
 @property(copy, nonatomic) NSString *defaultValue;
@@ -18,6 +19,11 @@
 @property(copy, nonatomic) NSString *settingsPageTitle;
 @property(copy, nonatomic) NSString *localSettingsKey;
 @property(copy, nonatomic) NSString *abbaKey;
+- (id <SPTMultipleChoiceFeatureFlagBuilder>)swift_withSettingsPageTitle:(NSString *)arg1 settingsItemTitle:(NSString *)arg2 settingsItemDescription:(NSString *)arg3 optionDisplayNames:(NSDictionary *)arg4 requiresRestart:(_Bool)arg5;
+- (id <SPTMultipleChoiceFeatureFlagBuilder>)swift_withDefaultValue:(NSString *)arg1;
+- (id <SPTMultipleChoiceFeatureFlagBuilder>)swift_withOptions:(NSArray *)arg1;
+- (id <SPTMultipleChoiceFeatureFlagBuilder>)swift_withLocalSettingsKey:(NSString *)arg1;
+- (id <SPTMultipleChoiceFeatureFlagBuilder>)swift_withAbbaKey:(NSString *)arg1;
 - (NSDictionary *)buildSignals;
 @end
 

@@ -24,6 +24,7 @@
 @property(readonly, nonatomic) id <SPTAudioPreviewModelFactory> audioPreviewModelFactory; // @synthesize audioPreviewModelFactory=_audioPreviewModelFactory;
 @property(nonatomic) __weak id <SPTAssistedCurationCardCellConfiguratorDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
+- (struct CGPoint)locationInCollectionForButton:(id)arg1;
 - (id)indexPathForButton:(id)arg1;
 - (id)indexPathForCell:(id)arg1;
 - (void)audioPreviewButtonSelected:(id)arg1;

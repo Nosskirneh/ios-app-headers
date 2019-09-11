@@ -6,12 +6,10 @@
 
 #import <UIKit/UIView.h>
 
-#import "SPTEntityHeaderContentController-Protocol.h"
+@class NSLayoutConstraint, SPTFreeTierPlaylistHeaderViewStyle, UILayoutGuide;
+@protocol SPTFreeTierPlaylistHeaderContent, UILayoutSupport;
 
-@class NSLayoutConstraint, NSString, SPTFreeTierPlaylistHeaderViewStyle;
-@protocol SPTFreeTierPlaylistHeaderContent;
-
-@interface SPTFreeTierPlaylistHeaderView : UIView <SPTEntityHeaderContentController>
+@interface SPTFreeTierPlaylistHeaderView : UIView
 {
     _Bool _showSearchBar;
     _Bool _filterBarReadyForInteraction;
@@ -26,8 +24,14 @@
     UIView *_filterSearchBar;
     double _heightOfHalfAccessoryView;
     SPTFreeTierPlaylistHeaderViewStyle *_style;
+    double _safeAreaMinY;
+    UILayoutGuide *_parentLayoutGuide;
+    id <UILayoutSupport> _legacyLayoutSupport;
 }
 
+@property(retain, nonatomic) id <UILayoutSupport> legacyLayoutSupport; // @synthesize legacyLayoutSupport=_legacyLayoutSupport;
+@property(retain, nonatomic) UILayoutGuide *parentLayoutGuide; // @synthesize parentLayoutGuide=_parentLayoutGuide;
+@property(nonatomic) double safeAreaMinY; // @synthesize safeAreaMinY=_safeAreaMinY;
 @property(retain, nonatomic) SPTFreeTierPlaylistHeaderViewStyle *style; // @synthesize style=_style;
 @property(nonatomic) double heightOfHalfAccessoryView; // @synthesize heightOfHalfAccessoryView=_heightOfHalfAccessoryView;
 @property(nonatomic) _Bool filterBarReadyForInteraction; // @synthesize filterBarReadyForInteraction=_filterBarReadyForInteraction;
@@ -43,25 +47,22 @@
 @property(nonatomic) _Bool showSearchBar; // @synthesize showSearchBar=_showSearchBar;
 - (void).cxx_destruct;
 - (void)glue_applyStyle:(id)arg1;
-- (void)entityHeaderViewController:(id)arg1 didUpdateVisibleRect:(struct CGRect)arg2;
+- (void)entityHeaderViewController:(id)arg1 didUpdateVisibleRect:(struct CGRect)arg2 isDragging:(_Bool)arg3;
 - (void)entityHeaderViewController:(id)arg1 didUpdateBounceOffsets:(struct UIEdgeInsets)arg2;
 - (double)entityHeaderViewControllerMinimumHeight:(id)arg1;
-@property(readonly, nonatomic) double additionalHeightNeededForSearchBar;
+@property(readonly, nonatomic) double additionalHeightUsedForSearchBar;
+- (double)additionalHeightNeededForSearchBar;
 - (void)updateAccessoryHeight:(double)arg1;
 - (double)minimumHeight;
 - (void)updateConstraints;
+- (void)layoutSubviews;
 - (void)viewDidAppear;
 - (void)addOrRemoveSearchBarFromViewHierarchy;
 - (void)setupSearchIfNeeded;
 - (void)setContentView:(id)arg1;
 - (void)setBackgroundView:(id)arg1;
+- (void)configureWithParentLayoutGuide:(id)arg1 legacyLayoutSupport:(id)arg2;
 - (id)initWithBackgroundView:(id)arg1 contentView:(id)arg2 navigationTitleView:(id)arg3 filterSearchBar:(id)arg4 headerViewStyle:(id)arg5;
-
-// Remaining properties
-@property(readonly, copy) NSString *debugDescription;
-@property(readonly, copy) NSString *description;
-@property(readonly) unsigned long long hash;
-@property(readonly) Class superclass;
 
 @end
 

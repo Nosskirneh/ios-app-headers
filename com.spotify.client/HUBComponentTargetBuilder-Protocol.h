@@ -6,14 +6,15 @@
 
 #import "HUBJSONCompatibleBuilder-Protocol.h"
 
-@class NSDictionary, NSMutableOrderedSet, NSString, NSURL;
-@protocol HUBViewModelBuilder;
+@class NSMutableDictionary, NSMutableOrderedSet, NSString, NSURL;
+@protocol HUBComponentTarget, HUBViewModelBuilder;
 
 @protocol HUBComponentTargetBuilder <HUBJSONCompatibleBuilder>
-@property(copy, nonatomic) NSDictionary *customData;
+@property(readonly, nonatomic) NSMutableDictionary *customData;
 @property(readonly, nonatomic) NSMutableOrderedSet *actionIdentifiers;
 @property(readonly, nonatomic) id <HUBViewModelBuilder> initialViewModelBuilder;
 @property(copy, nonatomic) NSURL *URI;
 - (void)addActionWithNamespace:(NSString *)arg1 name:(NSString *)arg2;
+- (id <HUBComponentTarget>)build;
 @end
 

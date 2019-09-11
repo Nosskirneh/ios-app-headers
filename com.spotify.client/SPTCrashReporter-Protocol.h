@@ -7,11 +7,9 @@
 #import "NSObject-Protocol.h"
 
 @class NSArray, NSError, NSString, NSURL;
-@protocol SPTCrashReporterBackgroundUploader;
 
 @protocol SPTCrashReporter <NSObject>
 - (void)recordCustomExceptionName:(NSString *)arg1 reason:(NSString *)arg2 callStack:(NSArray *)arg3;
-- (id <SPTCrashReporterBackgroundUploader>)crashUploader;
 - (NSURL *)lastCrashURL;
 - (NSString *)lastCrashIdentifier;
 - (void)userDidEnterAuthenticationFlow;

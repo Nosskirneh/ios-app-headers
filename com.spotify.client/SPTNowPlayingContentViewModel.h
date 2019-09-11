@@ -9,12 +9,11 @@
 #import "SPTNowPlayingTrackMetadataQueueObserver-Protocol.h"
 #import "SPTNowPlayingTrackPositionObserver-Protocol.h"
 
-@class NSString, NSURL, SPTNowPlayingLogger, SPTNowPlayingModel, SPTNowPlayingPlaybackController, SPTNowPlayingTrackMetadataQueue;
-@protocol SPTNowPlayingContentViewModelDelegate, SPTUpsellManager;
+@class NSString, NSURL, SPTNowPlayingLogger, SPTNowPlayingModel, SPTNowPlayingPlaybackController, SPTNowPlayingSkipLimitReachedMessageRequester, SPTNowPlayingTrackMetadataQueue;
+@protocol SPTNowPlayingContentViewModelDelegate;
 
 @interface SPTNowPlayingContentViewModel : NSObject <SPTNowPlayingTrackMetadataQueueObserver, SPTNowPlayingTrackPositionObserver>
 {
-    NSURL *_stagedContextImageURL;
     NSURL *_currentContextURI;
     id <SPTNowPlayingContentViewModelDelegate> _delegate;
     SPTNowPlayingTrackMetadataQueue *_trackMetadataQueue;
@@ -23,14 +22,14 @@
     SPTNowPlayingPlaybackController *_playbackController;
     SPTNowPlayingModel *_nowPlayingModel;
     SPTNowPlayingLogger *_logger;
-    id <SPTUpsellManager> _upsellManager;
+    SPTNowPlayingSkipLimitReachedMessageRequester *_skipLimitReachedMessageRequester;
     NSURL *_trackMetadataContextURI;
     NSURL *_trackMetadataTrackURI;
 }
 
 @property(copy, nonatomic) NSURL *trackMetadataTrackURI; // @synthesize trackMetadataTrackURI=_trackMetadataTrackURI;
 @property(copy, nonatomic) NSURL *trackMetadataContextURI; // @synthesize trackMetadataContextURI=_trackMetadataContextURI;
-@property(readonly, nonatomic) id <SPTUpsellManager> upsellManager; // @synthesize upsellManager=_upsellManager;
+@property(readonly, nonatomic) SPTNowPlayingSkipLimitReachedMessageRequester *skipLimitReachedMessageRequester; // @synthesize skipLimitReachedMessageRequester=_skipLimitReachedMessageRequester;
 @property(readonly, nonatomic) SPTNowPlayingLogger *logger; // @synthesize logger=_logger;
 @property(readonly, nonatomic) SPTNowPlayingModel *nowPlayingModel; // @synthesize nowPlayingModel=_nowPlayingModel;
 @property(readonly, nonatomic) SPTNowPlayingPlaybackController *playbackController; // @synthesize playbackController=_playbackController;
@@ -39,15 +38,12 @@
 @property(readonly, nonatomic) SPTNowPlayingTrackMetadataQueue *trackMetadataQueue; // @synthesize trackMetadataQueue=_trackMetadataQueue;
 @property(nonatomic) __weak id <SPTNowPlayingContentViewModelDelegate> delegate; // @synthesize delegate=_delegate;
 @property(retain, nonatomic) NSURL *currentContextURI; // @synthesize currentContextURI=_currentContextURI;
-@property(retain, nonatomic) NSURL *stagedContextImageURL; // @synthesize stagedContextImageURL=_stagedContextImageURL;
 - (void).cxx_destruct;
 - (void)nowPlayingTrackPositionDidChange:(id)arg1;
 - (void)trackMetadataQueueDidFinishUpdating:(id)arg1;
-- (void)trackMetadataQueue:(id)arg1 didStageContextImageURL:(id)arg2;
 - (void)trackMetadataQueue:(id)arg1 didMoveToRelativeTrack:(id)arg2;
 - (void)requestAnimation:(unsigned long long)arg1;
 - (_Bool)currentContextCorrespondsToTrackAtRelativePage:(long long)arg1;
-- (_Bool)shouldDisplayStagedContext;
 - (void)dragToRight;
 - (void)attemptDragToLeft;
 - (void)dragToLeft;
@@ -62,7 +58,7 @@
 - (_Bool)canScrollToRelativePage:(long long)arg1;
 - (_Bool)canScroll;
 - (void)dealloc;
-- (id)initWithMetadataQueue:(id)arg1 playbackController:(id)arg2 nowPlayingModel:(id)arg3 logger:(id)arg4 upsellManager:(id)arg5;
+- (id)initWithMetadataQueue:(id)arg1 playbackController:(id)arg2 nowPlayingModel:(id)arg3 logger:(id)arg4 skipLimitReachedMessageRequester:(id)arg5;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

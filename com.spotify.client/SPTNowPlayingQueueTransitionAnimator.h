@@ -12,7 +12,6 @@
 {
     _Bool _isPresenting;
     UIViewController *_parentViewController;
-    UIViewController *_backgroundViewController;
     UIViewController *_playerViewController;
     UIViewController *_queueViewController;
     UIView *_animatingCoverArtView;
@@ -22,7 +21,6 @@
 @property(nonatomic) _Bool isPresenting; // @synthesize isPresenting=_isPresenting;
 @property(nonatomic) __weak UIViewController *queueViewController; // @synthesize queueViewController=_queueViewController;
 @property(nonatomic) __weak UIViewController *playerViewController; // @synthesize playerViewController=_playerViewController;
-@property(nonatomic) __weak UIViewController *backgroundViewController; // @synthesize backgroundViewController=_backgroundViewController;
 @property(nonatomic) __weak UIViewController *parentViewController; // @synthesize parentViewController=_parentViewController;
 - (void).cxx_destruct;
 - (struct CGRect)queueCoverArtFrame;
@@ -38,7 +36,7 @@
 - (void)animate:(CDUnknownBlockType)arg1 duration:(double)arg2 completion:(CDUnknownBlockType)arg3;
 - (void)startShowsFormatAnimationWithDuration:(double)arg1 completion:(CDUnknownBlockType)arg2;
 - (void)startAnimationWithDuration:(double)arg1 completion:(CDUnknownBlockType)arg2;
-- (id)initWithPresenting:(_Bool)arg1 parentViewController:(id)arg2 backgroundViewController:(id)arg3 playerViewController:(id)arg4 queueViewController:(id)arg5;
+- (id)initWithPresenting:(_Bool)arg1 parentViewController:(id)arg2 playerViewController:(id)arg3 queueViewController:(id)arg4;
 
 @end
 

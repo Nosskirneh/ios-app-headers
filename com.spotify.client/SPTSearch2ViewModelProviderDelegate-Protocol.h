@@ -6,10 +6,10 @@
 
 #import "NSObject-Protocol.h"
 
-@protocol EXP_HUBViewModel, SPTSearch2ViewModelProvider;
+@protocol HUBViewModel, SPTSearch2ViewModelProvider;
 
 @protocol SPTSearch2ViewModelProviderDelegate <NSObject>
-- (void)viewModelProvider:(id <SPTSearch2ViewModelProvider>)arg1 didUpdateViewModelFrom:(id <EXP_HUBViewModel>)arg2;
+- (void)viewModelProvider:(id <SPTSearch2ViewModelProvider>)arg1 didUpdateViewModelFrom:(id <HUBViewModel>)arg2;
 
 @optional
 - (void)viewModelProvider:(id <SPTSearch2ViewModelProvider>)arg1 didUpdateStateFrom:(unsigned long long)arg2;

@@ -20,8 +20,10 @@
     double _verticalSpacing;
     double _horizontalMargin;
     double _openEmailButtonTopMargin;
+    double _lowerLabelTopMargin;
 }
 
+@property(nonatomic) double lowerLabelTopMargin; // @synthesize lowerLabelTopMargin=_lowerLabelTopMargin;
 @property(nonatomic) double openEmailButtonTopMargin; // @synthesize openEmailButtonTopMargin=_openEmailButtonTopMargin;
 @property(nonatomic) double horizontalMargin; // @synthesize horizontalMargin=_horizontalMargin;
 @property(nonatomic) double verticalSpacing; // @synthesize verticalSpacing=_verticalSpacing;

@@ -9,50 +9,74 @@
 #import "SPTEntityHeaderContentController-Protocol.h"
 #import "SPTHomeMixHeaderViewModelDelegate-Protocol.h"
 
-@class GLUELabel, NSString, NSURL, SPTHomeMixGlueTheme, SPTHomeMixHeaderActionButton, SPTHomeMixHeaderContentView;
-@protocol GLUEImageLoader, SPTHomeMixHeaderContentViewControllerDelegate, SPTHomeMixHeaderViewModel, SPTLogCenter;
+@class GLUELabel, NSString, NSURL, SPTEntityHeaderViewController, SPTHomeMixGlueTheme, SPTHomeMixHeaderActionBarAuxView, SPTHomeMixHeaderContentView, SPTHomeMixHeaderViewModel, UIButton, UILayoutGuide, UIView;
+@protocol GLUEImageLoader, SPTFreeTierTooltipConditionalPresenter;
 
 @interface SPTHomeMixHeaderContentViewController : UIViewController <SPTHomeMixHeaderViewModelDelegate, SPTEntityHeaderContentController>
 {
-    id <SPTHomeMixHeaderContentViewControllerDelegate> _delegate;
     SPTHomeMixGlueTheme *_theme;
     id <GLUEImageLoader> _glueImageLoader;
-    id <SPTLogCenter> _logCenter;
-    SPTHomeMixHeaderActionButton *_playButton;
+    UILayoutGuide *_parentSafeAreaLayoutGuide;
+    id <SPTFreeTierTooltipConditionalPresenter> _toolTipPresenter;
+    UIViewController *_mainContentViewController;
     GLUELabel *_navigationTitleView;
-    id <SPTHomeMixHeaderViewModel> _currentViewModel;
+    SPTEntityHeaderViewController *_entityHeaderViewController;
+    UIView *_supplementaryView;
+    UIButton *_mainActionButton;
+    SPTHomeMixHeaderActionBarAuxView *_chillAuxView;
+    SPTHomeMixHeaderActionBarAuxView *_upbeatAuxView;
+    SPTHomeMixHeaderViewModel *_headerViewModel;
     NSURL *_currentlyDisplayImageURL;
 }
 
-+ (id)defaultPlayActionButtonForTheme:(id)arg1;
-+ (id)defaultHeaderBackgroundGradientStyleForTheme:(id)arg1;
-+ (id)defaultHeaderImageStyleForTheme:(id)arg1;
-+ (id)defaultHeaderStyleForTheme:(id)arg1;
 @property(retain, nonatomic) NSURL *currentlyDisplayImageURL; // @synthesize currentlyDisplayImageURL=_currentlyDisplayImageURL;
-@property(retain, nonatomic) id <SPTHomeMixHeaderViewModel> currentViewModel; // @synthesize currentViewModel=_currentViewModel;
+@property(retain, nonatomic) SPTHomeMixHeaderViewModel *headerViewModel; // @synthesize headerViewModel=_headerViewModel;
+@property(nonatomic) __weak SPTHomeMixHeaderActionBarAuxView *upbeatAuxView; // @synthesize upbeatAuxView=_upbeatAuxView;
+@property(nonatomic) __weak SPTHomeMixHeaderActionBarAuxView *chillAuxView; // @synthesize chillAuxView=_chillAuxView;
+@property(nonatomic) __weak UIButton *mainActionButton; // @synthesize mainActionButton=_mainActionButton;
+@property(retain, nonatomic) UIView *supplementaryView; // @synthesize supplementaryView=_supplementaryView;
+@property(nonatomic) __weak SPTEntityHeaderViewController *entityHeaderViewController; // @synthesize entityHeaderViewController=_entityHeaderViewController;
 @property(retain, nonatomic) GLUELabel *navigationTitleView; // @synthesize navigationTitleView=_navigationTitleView;
-@property(retain, nonatomic) SPTHomeMixHeaderActionButton *playButton; // @synthesize playButton=_playButton;
-@property(readonly, nonatomic) id <SPTLogCenter> logCenter; // @synthesize logCenter=_logCenter;
+@property(readonly, nonatomic) __weak UIViewController *mainContentViewController; // @synthesize mainContentViewController=_mainContentViewController;
+@property(readonly, nonatomic) id <SPTFreeTierTooltipConditionalPresenter> toolTipPresenter; // @synthesize toolTipPresenter=_toolTipPresenter;
+@property(readonly, nonatomic) UILayoutGuide *parentSafeAreaLayoutGuide; // @synthesize parentSafeAreaLayoutGuide=_parentSafeAreaLayoutGuide;
 @property(readonly, nonatomic) id <GLUEImageLoader> glueImageLoader; // @synthesize glueImageLoader=_glueImageLoader;
 @property(readonly, nonatomic) SPTHomeMixGlueTheme *theme; // @synthesize theme=_theme;
-@property(nonatomic) __weak id <SPTHomeMixHeaderContentViewControllerDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
-- (void)modifyPlayButtonAccessibilityIfNeeded;
-- (void)headerViewModel:(id)arg1 didUpdateActionButtonSelectedState:(_Bool)arg2;
-- (void)updateImageIfChanged:(id)arg1;
+- (void)setupForReJoin;
+- (void)setupForTasteOnboarding;
+- (id)playButton;
+- (id)actionBar;
+- (void)setupForPlayback;
+- (id)reJoinMixButton;
+- (id)startTOButton;
+- (void)updateButtons;
+- (void)updateImageIfChanged:(id)arg1 accessibilityLabel:(id)arg2;
+- (void)updateHeaderContentView:(id)arg1;
+- (void)updateNavigationTitleView:(id)arg1;
+- (void)presentText:(id)arg1 fromView:(id)arg2;
+- (void)headerViewModel:(id)arg1 shouldShowMoodChangedTooltip:(unsigned long long)arg2;
+- (void)handleUpbeatButtonTapped:(id)arg1;
+- (void)handleChillButtonTapped:(id)arg1;
+- (void)handleJoinButtonTapped:(id)arg1;
+- (void)handleStartButtonTapped:(id)arg1;
 - (void)handlePlayButtonTapped:(id)arg1;
 - (id)supplementaryViewForEntityHeaderViewController:(id)arg1;
 - (double)entityHeaderViewControllerMinimumHeight:(id)arg1;
 - (double)minimumHeightOfHeaderView;
+- (void)entityHeaderViewController:(id)arg1 didAttachToScrollView:(id)arg2 inViewController:(id)arg3;
 - (void)entityHeaderViewController:(id)arg1 didUpdateBounceOffsets:(struct UIEdgeInsets)arg2;
 - (void)entityHeaderViewController:(id)arg1 didReachMinimumHeight:(_Bool)arg2;
 - (void)entityHeaderViewController:(id)arg1 didUpdateVisibleRect:(struct CGRect)arg2;
+- (void)headerViewModelShouldResetJoinButton:(id)arg1;
+- (void)headerViewModel:(id)arg1 didChangeToDisplayMode:(unsigned long long)arg2;
+- (void)headerViewModelDidRequestButtonRefresh:(id)arg1;
+- (void)configureUI;
+- (void)trackViewDidBeginDragging;
 - (void)digestHeaderViewModel:(id)arg1;
 - (void)viewDidLoad;
-- (void)setupNavigationTitleLabel;
 - (void)loadView;
-- (void)setupPlayButton;
-- (id)initWithTheme:(id)arg1 glueImageLoader:(id)arg2 logCenter:(id)arg3;
+- (id)initWithTheme:(id)arg1 glueImageLoader:(id)arg2 parentSafeAreaLayoutGuide:(id)arg3 toolTipPresenter:(id)arg4 mainContentViewController:(id)arg5;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

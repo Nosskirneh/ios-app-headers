@@ -7,8 +7,7 @@
 #import "NSObject-Protocol.h"
 
 @protocol SPTFeedFeatureFlags <NSObject>
-@property(readonly, nonatomic, getter=isFeedPlayerContextEnabled) _Bool isFeedPlayerContextEnabled;
-@property(readonly, nonatomic) long long feedIcon;
+@property(readonly, nonatomic, getter=isAlgorithmicEndpointEnabled) _Bool algorithmicEndpointEnabled;
 @property(readonly, nonatomic, getter=isCollectionFeedEnabledEmployeesOnly) _Bool collectionFeedEnabledEmployeesOnly;
 @property(readonly, nonatomic, getter=isHomeFeedButtonEnabledEmployeesOnly) _Bool homeFeedButtonEnabledEmployeesOnly;
 @property(readonly, nonatomic, getter=isFeedFilterFeatureEnabled) _Bool isFeedFilterFeatureEnabled;

@@ -6,31 +6,35 @@
 
 #import <objc/NSObject.h>
 
-@class SPTCastReceiverAppIDManager, SPTFeatureSettingsItem, SPTGaiaDeviceManager, SPTGaiaFeatureFlagsManager, SPTGaiaSavedDeviceManager;
-@protocol SPTFeatureSettingsItemFactory;
+@class SPTCastReceiverAppIDManager, SPTFeatureSettingsItem, SPTGaiaConnectQAManager, SPTGaiaFeatureFlagsManager, SPTGaiaHomeDeviceManager;
+@protocol SPTAlertInterface, SPTFeatureSettingsItemFactory, SPTGaiaConnectManager;
 
 @interface SPTGaiaFeatureSettingsManager : NSObject
 {
     SPTGaiaFeatureFlagsManager *_featureFlagsManager;
-    SPTGaiaDeviceManager *_deviceManager;
-    SPTGaiaSavedDeviceManager *_savedDeviceManager;
+    SPTGaiaHomeDeviceManager *_savedDeviceManager;
     id <SPTFeatureSettingsItemFactory> _featureSettingsItemFactory;
     SPTFeatureSettingsItem *_customAppIDItem;
     SPTCastReceiverAppIDManager *_receiverAppManager;
+    id <SPTGaiaConnectManager> _connectManager;
+    SPTGaiaConnectQAManager *_connectQAManager;
+    id <SPTAlertInterface> _alertInterface;
 }
 
+@property(retain, nonatomic) id <SPTAlertInterface> alertInterface; // @synthesize alertInterface=_alertInterface;
+@property(retain, nonatomic) SPTGaiaConnectQAManager *connectQAManager; // @synthesize connectQAManager=_connectQAManager;
+@property(retain, nonatomic) id <SPTGaiaConnectManager> connectManager; // @synthesize connectManager=_connectManager;
 @property(retain, nonatomic) SPTCastReceiverAppIDManager *receiverAppManager; // @synthesize receiverAppManager=_receiverAppManager;
 @property(retain, nonatomic) SPTFeatureSettingsItem *customAppIDItem; // @synthesize customAppIDItem=_customAppIDItem;
 @property(readonly, nonatomic) id <SPTFeatureSettingsItemFactory> featureSettingsItemFactory; // @synthesize featureSettingsItemFactory=_featureSettingsItemFactory;
-@property(retain, nonatomic) SPTGaiaSavedDeviceManager *savedDeviceManager; // @synthesize savedDeviceManager=_savedDeviceManager;
-@property(retain, nonatomic) SPTGaiaDeviceManager *deviceManager; // @synthesize deviceManager=_deviceManager;
+@property(retain, nonatomic) SPTGaiaHomeDeviceManager *savedDeviceManager; // @synthesize savedDeviceManager=_savedDeviceManager;
 @property(retain, nonatomic) SPTGaiaFeatureFlagsManager *featureFlagsManager; // @synthesize featureFlagsManager=_featureFlagsManager;
 - (void).cxx_destruct;
 - (id)customAppIdItem;
+- (void)showClearNewlyDiscoveredErrorAlert:(id)arg1;
 - (void)showCustomReceiverAlert;
 - (id)customReceiverAppIdSelectionItem;
 - (id)castMultipleChoiceItem;
-- (id)pickerSortingSettingsItem;
 - (id)resetDiscoveredDevicesItem;
 - (id)homeDeviceMenuItem;
 - (id)pickerContextMenuItem;
@@ -41,7 +45,7 @@
 - (id)castReceiverAppIDs;
 - (void)createCastSettingsPage;
 - (void)createGaiaFeatureSettingsPage;
-- (id)initWithFeatureFlagsManager:(id)arg1 deviceManager:(id)arg2 savedDeviceManager:(id)arg3 featureSettingsItemFactory:(id)arg4 receiverAppManager:(id)arg5;
+- (id)initWithFeatureFlagsManager:(id)arg1 savedDeviceManager:(id)arg2 featureSettingsItemFactory:(id)arg3 receiverAppManager:(id)arg4 connectManager:(id)arg5 connectQAManager:(id)arg6 alertInterface:(id)arg7;
 
 @end
 

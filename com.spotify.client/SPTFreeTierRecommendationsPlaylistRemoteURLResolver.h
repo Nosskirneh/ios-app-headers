@@ -6,12 +6,12 @@
 
 #import <objc/NSObject.h>
 
-#import "EXP_SPTHubRemoteContentOperationURLResolver-Protocol.h"
+#import "SPTHubRemoteContentOperationURLResolver-Protocol.h"
 
 @class NSString, NSURL;
 @protocol SPTProductState;
 
-@interface SPTFreeTierRecommendationsPlaylistRemoteURLResolver : NSObject <EXP_SPTHubRemoteContentOperationURLResolver>
+@interface SPTFreeTierRecommendationsPlaylistRemoteURLResolver : NSObject <SPTHubRemoteContentOperationURLResolver>
 {
     NSURL *_playlistURL;
     id <SPTProductState> _productState;

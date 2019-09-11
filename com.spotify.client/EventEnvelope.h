@@ -13,7 +13,6 @@
 }
 
 + (id)descriptor;
-- (id)ins_messageEntityInStore:(id)arg1;
 - (id)ins_messageId;
 
 // Remaining properties

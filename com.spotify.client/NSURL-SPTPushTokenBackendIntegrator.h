@@ -8,6 +8,7 @@
 
 @interface NSURL (SPTPushTokenBackendIntegrator)
 + (id)spt_trackEventAPIURL;
++ (id)spt_newRegisterTokenAPIURL;
 + (id)spt_registerTokenAPIURL;
 @end
 

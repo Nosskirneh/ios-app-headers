@@ -6,7 +6,7 @@
 
 #import "NSObject-Protocol.h"
 
-@class NSObject, NSString, NSURL, SPTAddToQueueOptions, SPTPauseOptions, SPTPlayOptions, SPTPlayOrigin, SPTPlayerContext, SPTPlayerQueue, SPTPlayerState, SPTPlayerTrack, SPTSeekOptions, SPTSkipOptions, SPTask;
+@class NSObject, NSString, NSURL, SPTAddToQueueOptions, SPTPauseOptions, SPTPlayOptions, SPTPlayOrigin, SPTPlayerContext, SPTPlayerOptionOverrides, SPTPlayerQueue, SPTPlayerState, SPTPlayerTrack, SPTSeekOptions, SPTSkipOptions, SPTask;
 @protocol OS_dispatch_queue, SPTPlayerObserver, SPTPlayerPlay, SPTPlayerQueueObserver, SPTPlayerStagedContextObserver;
 
 @protocol SPTPlayer <NSObject>
@@ -29,6 +29,7 @@
 - (SPTask *)updateWithContext:(SPTPlayerContext *)arg1;
 - (SPTask *)seekTo:(double)arg1 options:(SPTSeekOptions *)arg2;
 - (SPTask *)seekTo:(double)arg1;
+- (SPTask *)setOptions:(SPTPlayerOptionOverrides *)arg1;
 - (SPTask *)setRepeatingTrack:(_Bool)arg1;
 - (SPTask *)setRepeatingContext:(_Bool)arg1;
 - (SPTask *)setShufflingContext:(_Bool)arg1;

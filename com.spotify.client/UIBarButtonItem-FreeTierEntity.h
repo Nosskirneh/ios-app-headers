@@ -7,6 +7,6 @@
 #import <UIKit/UIBarButtonItem.h>
 
 @interface UIBarButtonItem (FreeTierEntity)
-+ (id)createItemsWithHeartBanButtonViewModel:(id)arg1 contextMenuButtonViewModel:(id)arg2 useFollowButton:(_Bool)arg3;
++ (id)createItemsWithFeedbackButtonViewModel:(id)arg1 contextMenuButtonViewModel:(id)arg2 useFollowButton:(_Bool)arg3;
 @end
 

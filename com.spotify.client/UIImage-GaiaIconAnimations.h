@@ -7,6 +7,7 @@
 #import <UIKit/UIImage.h>
 
 @interface UIImage (GaiaIconAnimations)
++ (id)spt_chromecastIconAnimationImageWithSize:(struct CGSize)arg1 foregroundColor:(id)arg2 backgroundColor:(id)arg3 duration:(double)arg4;
 + (id)spt_chromecastIconAnimationImageWithSize:(struct CGSize)arg1 theme:(id)arg2;
 @end
 

@@ -8,12 +8,13 @@
 
 #import "SPTPodcastEpisodeView-Protocol.h"
 
-@class GLUEImageView, GLUELabel, NSArray, NSLayoutConstraint, NSMutableArray, NSString, SPTLayoutConstraintBuilder, SPTTheme, UIControl, UILabel, UIProgressView, UIView;
+@class GLUEImageView, GLUELabel, GLUETrackAccessoryLabel, NSArray, NSLayoutConstraint, NSMutableArray, NSString, SPTTheme, UIControl, UILabel, UIProgressView, UIStackView, UIView;
 @protocol GLUEImageLoader;
 
 @interface SPTPodcastEpisodePlayNowView : GLUEStatefulView <SPTPodcastEpisodeView>
 {
     _Bool _editing;
+    _Bool _explicit;
     _Bool shouldTruncateDescription;
     UILabel *_statusLabel;
     UILabel *_titleLabel;
@@ -24,27 +25,30 @@
     NSArray *_secondaryActionViewsRight;
     GLUEImageView *_imageView;
     UIProgressView *_progressView;
-    long long episodeOfflineSyncStatus;
     UIControl *_playControl;
+    GLUETrackAccessoryLabel *_accessoryLabel;
     SPTTheme *_theme;
-    SPTLayoutConstraintBuilder *_layoutBuilder;
+    NSArray *_layoutConstraints;
     NSLayoutConstraint *_progressViewHeightConstraint;
     NSMutableArray *_mainActionViewConstraints;
     UIView *_upperContainerView;
     UIView *_mainActionContainerView;
-    UIView *_headerTextContainerView;
+    UIView *_headerContainerView;
+    UIStackView *_subheaderContainerView;
 }
 
-@property(retain, nonatomic) UIView *headerTextContainerView; // @synthesize headerTextContainerView=_headerTextContainerView;
+@property(retain, nonatomic) UIStackView *subheaderContainerView; // @synthesize subheaderContainerView=_subheaderContainerView;
+@property(retain, nonatomic) UIView *headerContainerView; // @synthesize headerContainerView=_headerContainerView;
 @property(retain, nonatomic) UIView *mainActionContainerView; // @synthesize mainActionContainerView=_mainActionContainerView;
 @property(retain, nonatomic) UIView *upperContainerView; // @synthesize upperContainerView=_upperContainerView;
 @property(retain, nonatomic) NSMutableArray *mainActionViewConstraints; // @synthesize mainActionViewConstraints=_mainActionViewConstraints;
 @property(retain, nonatomic) NSLayoutConstraint *progressViewHeightConstraint; // @synthesize progressViewHeightConstraint=_progressViewHeightConstraint;
-@property(retain, nonatomic) SPTLayoutConstraintBuilder *layoutBuilder; // @synthesize layoutBuilder=_layoutBuilder;
+@property(copy, nonatomic) NSArray *layoutConstraints; // @synthesize layoutConstraints=_layoutConstraints;
 @property(retain, nonatomic) SPTTheme *theme; // @synthesize theme=_theme;
 @property(nonatomic) _Bool shouldTruncateDescription; // @synthesize shouldTruncateDescription;
+@property(readonly, nonatomic) GLUETrackAccessoryLabel *accessoryLabel; // @synthesize accessoryLabel=_accessoryLabel;
+@property(nonatomic, getter=isExplicit) _Bool explicit; // @synthesize explicit=_explicit;
 @property(retain, nonatomic) UIControl *playControl; // @synthesize playControl=_playControl;
-@property(nonatomic) long long episodeOfflineSyncStatus; // @synthesize episodeOfflineSyncStatus;
 @property(readonly, nonatomic) UIProgressView *progressView; // @synthesize progressView=_progressView;
 @property(readonly, nonatomic) GLUEImageView *imageView; // @synthesize imageView=_imageView;
 @property(retain, nonatomic) NSArray *secondaryActionViewsRight; // @synthesize secondaryActionViewsRight=_secondaryActionViewsRight;

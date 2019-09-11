@@ -14,18 +14,26 @@
 {
     GLUEImageStyle *_imageViewStyle;
     GLUELabelStyle *_nameLabelStyle;
+    GLUELabelStyle *_subtitleLabelStyle;
     UIImage *_placeholderImage;
     double _imageLeadingMargin;
     double _imageToNameLabelMargin;
     UIColor *_selectedBackgroundColor;
+    double _nameToSubtitlePadding;
+    double _highlightedContentViewAlpha;
+    double _defaultContentViewAlpha;
     struct CGSize _imageSize;
 }
 
+@property(nonatomic) double defaultContentViewAlpha; // @synthesize defaultContentViewAlpha=_defaultContentViewAlpha;
+@property(nonatomic) double highlightedContentViewAlpha; // @synthesize highlightedContentViewAlpha=_highlightedContentViewAlpha;
+@property(nonatomic) double nameToSubtitlePadding; // @synthesize nameToSubtitlePadding=_nameToSubtitlePadding;
 @property(retain, nonatomic) UIColor *selectedBackgroundColor; // @synthesize selectedBackgroundColor=_selectedBackgroundColor;
 @property(nonatomic) double imageToNameLabelMargin; // @synthesize imageToNameLabelMargin=_imageToNameLabelMargin;
 @property(nonatomic) double imageLeadingMargin; // @synthesize imageLeadingMargin=_imageLeadingMargin;
 @property(nonatomic) struct CGSize imageSize; // @synthesize imageSize=_imageSize;
 @property(retain, nonatomic) UIImage *placeholderImage; // @synthesize placeholderImage=_placeholderImage;
+@property(copy, nonatomic) GLUELabelStyle *subtitleLabelStyle; // @synthesize subtitleLabelStyle=_subtitleLabelStyle;
 @property(copy, nonatomic) GLUELabelStyle *nameLabelStyle; // @synthesize nameLabelStyle=_nameLabelStyle;
 @property(copy, nonatomic) GLUEImageStyle *imageViewStyle; // @synthesize imageViewStyle=_imageViewStyle;
 - (void).cxx_destruct;

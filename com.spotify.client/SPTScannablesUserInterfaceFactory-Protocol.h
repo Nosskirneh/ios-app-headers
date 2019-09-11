@@ -11,7 +11,7 @@
 
 @protocol SPTScannablesUserInterfaceFactory <NSObject>
 - (UIImageView *)createScannableImageViewForEntityURL:(NSURL *)arg1;
-- (UIViewController *)provideScanViewContoller;
+- (UIViewController *)provideScanViewControllerWithSourceIdentifier:(NSString *)arg1;
 - (UIView<SPTContextMenuHeader> *)createContextMenuViewHeaderWithTitle:(NSString *)arg1 subtitle:(NSString *)arg2 entityURL:(NSURL *)arg3 imageURL:(NSURL *)arg4 fallbackHeader:(UIView<SPTContextMenuHeader> *)arg5;
 @end
 

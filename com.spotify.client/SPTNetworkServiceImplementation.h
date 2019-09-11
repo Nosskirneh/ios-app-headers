@@ -39,6 +39,7 @@
 - (id)provideNetworkConnectivityController;
 - (id)provideHTTPService;
 - (id)provideDataLoaderService;
+- (id)provideVideoAssetLoaderWithHTTPMaximumConnectionsPerHost:(long long)arg1 timeoutIntervalForRequest:(double)arg2 timeoutIntervalForResource:(double)arg3;
 - (id)provideVideoAssetLoader;
 - (id)provideImageLoaderService;
 - (id)provideImageLoaderServiceManager;

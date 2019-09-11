@@ -22,7 +22,6 @@
 @property(nonatomic) __weak id <SPTThemableViewLayoutDelegate> layoutDelegate; // @synthesize layoutDelegate=_layoutDelegate;
 - (void).cxx_destruct;
 - (void)applyThemeLayout;
-- (void)removeBackgroundViewHack;
 - (void)layoutSubviews;
 - (void)didMoveToSuperview;
 - (id)textFieldInView:(id)arg1;

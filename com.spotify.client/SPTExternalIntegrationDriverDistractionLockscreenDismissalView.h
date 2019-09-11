@@ -8,7 +8,7 @@
 
 #import "SPTThemableView-Protocol.h"
 
-@class NSString, SPTLayoutConstraintBuilder, UIButton, UILabel;
+@class NSArray, NSString, UIButton, UILabel;
 @protocol SPTThemableViewLayoutDelegate;
 
 @interface SPTExternalIntegrationDriverDistractionLockscreenDismissalView : UIView <SPTThemableView>
@@ -17,10 +17,10 @@
     UIButton *_dismissButton;
     UILabel *_warningLabel;
     UILabel *_warningTitleLabel;
-    SPTLayoutConstraintBuilder *_layout;
+    NSArray *_layoutConstraints;
 }
 
-@property(retain, nonatomic) SPTLayoutConstraintBuilder *layout; // @synthesize layout=_layout;
+@property(copy, nonatomic) NSArray *layoutConstraints; // @synthesize layoutConstraints=_layoutConstraints;
 @property(readonly, nonatomic) UILabel *warningTitleLabel; // @synthesize warningTitleLabel=_warningTitleLabel;
 @property(readonly, nonatomic) UILabel *warningLabel; // @synthesize warningLabel=_warningLabel;
 @property(readonly, nonatomic) UIButton *dismissButton; // @synthesize dismissButton=_dismissButton;

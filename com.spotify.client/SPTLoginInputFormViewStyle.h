@@ -8,12 +8,11 @@
 
 #import "GLUEStyle-Protocol.h"
 
-@class GLUELabelStyle, NSString, SPTLoginTextFieldStyle, SPTUnderlinedLabelStyle;
+@class GLUELabelStyle, NSString, SPTLoginTextFieldStyle;
 
 @interface SPTLoginInputFormViewStyle : NSObject <GLUEStyle>
 {
     GLUELabelStyle *_titleLabelStyle;
-    SPTUnderlinedLabelStyle *_extraTitleLabelStyle;
     GLUELabelStyle *_disclosureLabelStyle;
     SPTLoginTextFieldStyle *_inputFieldStyle;
     double _inputFieldHeight;
@@ -28,7 +27,6 @@
 @property(nonatomic) double inputFieldHeight; // @synthesize inputFieldHeight=_inputFieldHeight;
 @property(copy, nonatomic) SPTLoginTextFieldStyle *inputFieldStyle; // @synthesize inputFieldStyle=_inputFieldStyle;
 @property(copy, nonatomic) GLUELabelStyle *disclosureLabelStyle; // @synthesize disclosureLabelStyle=_disclosureLabelStyle;
-@property(copy, nonatomic) SPTUnderlinedLabelStyle *extraTitleLabelStyle; // @synthesize extraTitleLabelStyle=_extraTitleLabelStyle;
 @property(copy, nonatomic) GLUELabelStyle *titleLabelStyle; // @synthesize titleLabelStyle=_titleLabelStyle;
 - (void).cxx_destruct;
 - (id)copyWithZone:(struct _NSZone *)arg1;

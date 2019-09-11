@@ -16,6 +16,7 @@
 - (SPTHTTPService *)provideHTTPService;
 - (SPTDataLoaderService *)provideDataLoaderService;
 - (SPTImageLoaderServiceManager *)provideImageLoaderServiceManager;
+- (id <SPTVideoURLAssetLoader>)provideVideoAssetLoaderWithHTTPMaximumConnectionsPerHost:(long long)arg1 timeoutIntervalForRequest:(double)arg2 timeoutIntervalForResource:(double)arg3;
 - (id <SPTVideoURLAssetLoader>)provideVideoAssetLoader;
 - (SPTImageLoaderService *)provideImageLoaderService;
 - (SPTNetworkConnectivityController *)provideNetworkConnectivityController;

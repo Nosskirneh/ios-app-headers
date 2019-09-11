@@ -7,7 +7,7 @@
 #import <QuartzCore/CADisplayLink.h>
 
 @interface CADisplayLink (SPTBlocks)
-+ (id)spt_scheduledDisplayLinkWithDuration:(double)arg1 block:(CDUnknownBlockType)arg2;
-+ (id)spt_displayLinkWithBlock:(CDUnknownBlockType)arg1;
++ (id)search_scheduledDisplayLinkWithDuration:(double)arg1 block:(CDUnknownBlockType)arg2;
++ (id)search_displayLinkWithBlock:(CDUnknownBlockType)arg1;
 @end
 

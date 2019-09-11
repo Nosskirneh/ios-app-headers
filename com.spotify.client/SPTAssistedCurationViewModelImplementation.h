@@ -10,7 +10,7 @@
 #import "SPTAssistedCurationViewModel-Protocol.h"
 
 @class NSMutableArray, NSMutableSet, NSString, NSURL;
-@protocol SPTAssistedCurationAddTrackHandler, SPTAssistedCurationCardsSortMechanism, SPTAssistedCurationModel, SPTAssistedCurationViewModelDelegate, SPTAudioPreviewModelFactory, SPTAudioPreviewPlayer, SPTExplicitContentAccessManager, SPTFreeTierEducationSnackBarPresenter;
+@protocol SPTAssistedCurationAddTrackHandler, SPTAssistedCurationCardsSortMechanism, SPTAssistedCurationModel, SPTAssistedCurationUITestManager, SPTAssistedCurationViewModelDelegate, SPTAudioPreviewModelFactory, SPTAudioPreviewPlayer, SPTExplicitContentAccessManager, SPTSnackbarConditionalPresenter;
 
 @interface SPTAssistedCurationViewModelImplementation : NSObject <SPTAssistedCurationViewModel, SPTAssistedCurationModelDelegate>
 {
@@ -22,12 +22,14 @@
     NSMutableSet *_waitForProviderIdentifiers;
     id <SPTAudioPreviewModelFactory> _audioPreviewModelFactory;
     id <SPTAudioPreviewPlayer> _audioPreviewPlayer;
-    id <SPTFreeTierEducationSnackBarPresenter> _educationPresenter;
+    id <SPTSnackbarConditionalPresenter> _snackbarPresenter;
     id <SPTExplicitContentAccessManager> _explicitContentAccessManager;
+    id <SPTAssistedCurationUITestManager> _testManager;
 }
 
+@property(readonly, nonatomic) id <SPTAssistedCurationUITestManager> testManager; // @synthesize testManager=_testManager;
 @property(readonly, nonatomic) id <SPTExplicitContentAccessManager> explicitContentAccessManager; // @synthesize explicitContentAccessManager=_explicitContentAccessManager;
-@property(readonly, nonatomic) id <SPTFreeTierEducationSnackBarPresenter> educationPresenter; // @synthesize educationPresenter=_educationPresenter;
+@property(readonly, nonatomic) id <SPTSnackbarConditionalPresenter> snackbarPresenter; // @synthesize snackbarPresenter=_snackbarPresenter;
 @property(readonly, nonatomic) id <SPTAudioPreviewPlayer> audioPreviewPlayer; // @synthesize audioPreviewPlayer=_audioPreviewPlayer;
 @property(readonly, nonatomic) id <SPTAudioPreviewModelFactory> audioPreviewModelFactory; // @synthesize audioPreviewModelFactory=_audioPreviewModelFactory;
 @property(retain, nonatomic) NSMutableSet *waitForProviderIdentifiers; // @synthesize waitForProviderIdentifiers=_waitForProviderIdentifiers;
@@ -45,7 +47,7 @@
 - (void)assistedCurationModel:(id)arg1 removedCard:(id)arg2;
 - (void)assistedCurationModel:(id)arg1 newCards:(id)arg2;
 - (void)assistedCurationModel:(id)arg1 noCardsAvailableFromCardProvider:(id)arg2;
-- (void)presentSnackBarWithMessage:(id)arg1;
+- (void)presentMessage:(id)arg1;
 - (void)verifyWaitingForProviderIdentifier:(id)arg1;
 @property(readonly, nonatomic, getter=isLoaded) _Bool loaded;
 @property(readonly, nonatomic) NSURL *playlistURI;
@@ -53,7 +55,7 @@
 - (void)viewDidLoad;
 @property(readonly, nonatomic) unsigned long long numberOfCards;
 - (id)cardViewModelAtIndex:(unsigned long long)arg1;
-- (id)initWithAssistedCurationModel:(id)arg1 addTrackHandler:(id)arg2 sortMechanism:(id)arg3 waitForCardProviders:(id)arg4 audioPreviewPlayer:(id)arg5 audioPreviewModelFactory:(id)arg6 educationPresenter:(id)arg7 explicitContentAccessManager:(id)arg8;
+- (id)initWithAssistedCurationModel:(id)arg1 addTrackHandler:(id)arg2 sortMechanism:(id)arg3 waitForCardProviders:(id)arg4 audioPreviewPlayer:(id)arg5 audioPreviewModelFactory:(id)arg6 snackbarPresenter:(id)arg7 explicitContentAccessManager:(id)arg8 testManager:(id)arg9;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

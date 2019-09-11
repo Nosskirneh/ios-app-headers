@@ -6,7 +6,7 @@
 
 #import "SPAction.h"
 
-@class NSString, NSURL, SPSession;
+@class NSString, NSURL;
 @protocol SPTShareFeature;
 
 @interface SPTShareAction : SPAction
@@ -20,12 +20,10 @@
     NSString *_shareDescription;
     unsigned long long _shareType;
     NSString *_clipboardLinkTitle;
-    SPSession *_session;
     id <SPTShareFeature> _shareFeature;
 }
 
 @property(nonatomic) __weak id <SPTShareFeature> shareFeature; // @synthesize shareFeature=_shareFeature;
-@property(nonatomic) __weak SPSession *session; // @synthesize session=_session;
 @property(retain, nonatomic) NSString *clipboardLinkTitle; // @synthesize clipboardLinkTitle=_clipboardLinkTitle;
 @property(nonatomic) unsigned long long shareType; // @synthesize shareType=_shareType;
 @property(retain, nonatomic) NSString *shareDescription; // @synthesize shareDescription=_shareDescription;
@@ -41,7 +39,7 @@
 - (id)logEventName;
 - (long long)icon;
 - (id)title;
-- (id)initWithItemURL:(id)arg1 itemName:(id)arg2 creatorName:(id)arg3 sourceName:(id)arg4 imageURL:(id)arg5 sourceUrl:(id)arg6 shareType:(unsigned long long)arg7 clipboardLinkTitle:(id)arg8 session:(id)arg9 shareFeature:(id)arg10 logContext:(id)arg11;
+- (id)initWithItemURL:(id)arg1 itemName:(id)arg2 creatorName:(id)arg3 sourceName:(id)arg4 imageURL:(id)arg5 sourceUrl:(id)arg6 shareType:(unsigned long long)arg7 clipboardLinkTitle:(id)arg8 shareFeature:(id)arg9 logContext:(id)arg10;
 
 @end
 

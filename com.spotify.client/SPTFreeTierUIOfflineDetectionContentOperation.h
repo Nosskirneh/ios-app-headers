@@ -6,22 +6,22 @@
 
 #import <objc/NSObject.h>
 
-#import "EXP_HUBContentOperation-Protocol.h"
+#import "HUBContentOperation-Protocol.h"
 #import "SPTNetworkConnectivityControllerObserver-Protocol.h"
 
 @class NSString, SPTNetworkConnectivityController;
-@protocol EXP_HUBContentOperationDelegate;
+@protocol HUBContentOperationDelegate;
 
-@interface SPTFreeTierUIOfflineDetectionContentOperation : NSObject <SPTNetworkConnectivityControllerObserver, EXP_HUBContentOperation>
+@interface SPTFreeTierUIOfflineDetectionContentOperation : NSObject <SPTNetworkConnectivityControllerObserver, HUBContentOperation>
 {
     _Bool _observing;
-    id <EXP_HUBContentOperationDelegate> _delegate;
+    id <HUBContentOperationDelegate> _delegate;
     SPTNetworkConnectivityController *_networkConnectivityController;
 }
 
 @property(nonatomic, getter=isObserving) _Bool observing; // @synthesize observing=_observing;
 @property(readonly, nonatomic) SPTNetworkConnectivityController *networkConnectivityController; // @synthesize networkConnectivityController=_networkConnectivityController;
-@property(nonatomic) __weak id <EXP_HUBContentOperationDelegate> delegate; // @synthesize delegate=_delegate;
+@property(nonatomic) __weak id <HUBContentOperationDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
 - (void)networkConnectivityController:(id)arg1 didChangeConnectionType:(long long)arg2 oldConnectionType:(long long)arg3;
 - (void)performForViewModelBuilder:(id)arg1 previousError:(id)arg2;

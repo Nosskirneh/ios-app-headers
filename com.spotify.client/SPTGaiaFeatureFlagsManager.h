@@ -9,40 +9,42 @@
 #import "SPTAbbaFeatureFlagsObserver-Protocol.h"
 #import "SPTGaiaDevicePickerContextMenuFlagsProvider-Protocol.h"
 #import "SPTGaiaDevicePickerFlagsProvider-Protocol.h"
-#import "SPTGaiaEducationTooltipsFlagsProvider-Protocol.h"
 #import "SPTGaiaHomeDeviceFlagsProvider-Protocol.h"
 #import "SPTGaiaLockScreenPlayerFlagsProvider-Protocol.h"
 
-@class NSHashTable, NSString;
-@protocol SPTAbbaFeatureFlags, SPTLocalSettings;
+@class NSString, SPTObserverManager;
+@protocol SPTAbbaFeatureFlags, SPTGaiaConnectManager, SPTLocalSettings;
 
-@interface SPTGaiaFeatureFlagsManager : NSObject <SPTAbbaFeatureFlagsObserver, SPTGaiaDevicePickerContextMenuFlagsProvider, SPTGaiaHomeDeviceFlagsProvider, SPTGaiaLockScreenPlayerFlagsProvider, SPTGaiaDevicePickerFlagsProvider, SPTGaiaEducationTooltipsFlagsProvider>
+@interface SPTGaiaFeatureFlagsManager : NSObject <SPTAbbaFeatureFlagsObserver, SPTGaiaDevicePickerContextMenuFlagsProvider, SPTGaiaHomeDeviceFlagsProvider, SPTGaiaLockScreenPlayerFlagsProvider, SPTGaiaDevicePickerFlagsProvider>
 {
+    _Bool _lockScreenPlayerFeatureCurrentFlagState;
     id <SPTAbbaFeatureFlags> _featureFlags;
     id <SPTLocalSettings> _localSettings;
-    NSHashTable *_lockScreenPlayerFlagsObservers;
+    id <SPTGaiaConnectManager> _connectManager;
+    SPTObserverManager *_lockScreenPlayerFlagsObservers;
 }
 
-@property(retain, nonatomic) NSHashTable *lockScreenPlayerFlagsObservers; // @synthesize lockScreenPlayerFlagsObservers=_lockScreenPlayerFlagsObservers;
+@property(nonatomic) _Bool lockScreenPlayerFeatureCurrentFlagState; // @synthesize lockScreenPlayerFeatureCurrentFlagState=_lockScreenPlayerFeatureCurrentFlagState;
+@property(retain, nonatomic) SPTObserverManager *lockScreenPlayerFlagsObservers; // @synthesize lockScreenPlayerFlagsObservers=_lockScreenPlayerFlagsObservers;
+@property(retain, nonatomic) id <SPTGaiaConnectManager> connectManager; // @synthesize connectManager=_connectManager;
 @property(retain, nonatomic) id <SPTLocalSettings> localSettings; // @synthesize localSettings=_localSettings;
 @property(retain, nonatomic) id <SPTAbbaFeatureFlags> featureFlags; // @synthesize featureFlags=_featureFlags;
 - (void).cxx_destruct;
-- (_Bool)tooltipOnTrackPagesEnabled;
-- (_Bool)tooltipOnPlaylistPagesEnabled;
 - (_Bool)freeTierEducationPickerDesignEnabled;
-- (id)sortingMethodSettingsKey;
-- (long long)sortingMethod;
 - (void)removeLockScreenPlayerFlagsObserver:(id)arg1;
 - (void)addLockScreenPlayerFlagsObserver:(id)arg1;
 - (_Bool)lockScreenPlayerFeatureEnabled;
+- (_Bool)updatedLockScreenPlayerFeatureEnabledFromFeatureFlags;
 - (id)homeDeviceLocalForcedSettingsKey;
+- (_Bool)homeDeviceAutomaticTransferEnabled;
 - (_Bool)homeDeviceFeatureEnabled;
 - (id)abbaSupportedContextMenuFeatureClasses;
 - (id)devicePickerContextMenuFeatureFlagDisabledValue;
 - (id)devicePickerContextMenuFeatureFlagEnabledValue;
 - (_Bool)contextMenuEnabled:(id)arg1;
 - (void)featureFlagsDidChange:(id)arg1;
-- (id)initWithFeatureFlags:(id)arg1 localSettings:(id)arg2;
+- (void)dealloc;
+- (id)initWithFeatureFlags:(id)arg1 localSettings:(id)arg2 connectManager:(id)arg3;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

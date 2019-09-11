@@ -18,7 +18,7 @@
 #import "UITableViewDelegate-Protocol.h"
 
 @class NSString, NSURL, SPTCollectionBannerView, SPTCollectionOverviewNavigationModel, SPTCollectionProgressBarBanner, UITableView;
-@protocol GLUETheme, SPTCollectionBarButtonManager, SPTCollectionLogger, SPTCollectionTableViewControllerProtocol, SPTLinkDispatcher, SPTOfflineSyncModel, SPTPageContainer;
+@protocol GLUETheme, SPTCollectionLogger, SPTCollectionTableViewControllerProtocol, SPTLinkDispatcher, SPTOfflineSyncModel, SPTPageContainer;
 
 @interface SPTCollectionOverviewViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, SPObjectRepresentation, SPTOfflineSyncModelDelegate, SPContentInsetViewController, SPTCollectionBannerViewDelegate, SPTCollectionOverviewNavigationListDelegate, SPTScrollToTopViewController, SPViewController, SPTPageController>
 {
@@ -31,12 +31,10 @@
     id <SPTCollectionLogger> _logger;
     SPTCollectionOverviewNavigationModel *_model;
     id <SPTLinkDispatcher> _linkDispatcher;
-    id <SPTCollectionBarButtonManager> _collectionBarButtonManager;
     id <GLUETheme> _theme;
 }
 
 @property(readonly, nonatomic) id <GLUETheme> theme; // @synthesize theme=_theme;
-@property(retain, nonatomic) id <SPTCollectionBarButtonManager> collectionBarButtonManager; // @synthesize collectionBarButtonManager=_collectionBarButtonManager;
 @property(retain, nonatomic) id <SPTLinkDispatcher> linkDispatcher; // @synthesize linkDispatcher=_linkDispatcher;
 @property(retain, nonatomic) SPTCollectionOverviewNavigationModel *model; // @synthesize model=_model;
 @property(retain, nonatomic) id <SPTCollectionLogger> logger; // @synthesize logger=_logger;
@@ -75,7 +73,7 @@
 - (void)viewDidAppear:(_Bool)arg1;
 - (void)viewWillAppear:(_Bool)arg1;
 - (void)viewDidLoad;
-- (id)initWithCollectionTableViewController:(id)arg1 offlineSyncModel:(id)arg2 collectionLogger:(id)arg3 model:(id)arg4 collectionTestManager:(id)arg5 linkDispatcher:(id)arg6 collectionBarButtonManager:(id)arg7;
+- (id)initWithCollectionTableViewController:(id)arg1 offlineSyncModel:(id)arg2 collectionLogger:(id)arg3 model:(id)arg4 collectionTestManager:(id)arg5 linkDispatcher:(id)arg6;
 
 // Remaining properties
 @property(nonatomic) _Bool automaticallyAdjustsScrollViewInsets;

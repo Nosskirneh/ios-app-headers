@@ -11,7 +11,7 @@
 #import "SPTProductStateObserver-Protocol.h"
 
 @class Adjust, NSString, NSUserDefaults;
-@protocol SPTProductState;
+@protocol SPTLogCenter, SPTProductState;
 
 @interface SPTAdjustUserTracker : NSObject <SPTProductStateObserver, AdjustDelegate, SPTAdjustUserTrackerProtocol>
 {
@@ -20,49 +20,44 @@
     Adjust *_adjust;
     NSString *_trackerUserID;
     NSUserDefaults *_userDefaults;
+    id <SPTLogCenter> _logCenter;
+    NSString *_sessionID;
 }
 
-+ (id)trackerWithDeviceID:(id)arg1;
++ (id)trackerWithDeviceID:(id)arg1 logCenter:(id)arg2;
+@property(copy, nonatomic) NSString *sessionID; // @synthesize sessionID=_sessionID;
+@property(retain, nonatomic) id <SPTLogCenter> logCenter; // @synthesize logCenter=_logCenter;
 @property(retain, nonatomic) NSUserDefaults *userDefaults; // @synthesize userDefaults=_userDefaults;
 @property(retain, nonatomic) NSString *trackerUserID; // @synthesize trackerUserID=_trackerUserID;
 @property(retain, nonatomic) Adjust *adjust; // @synthesize adjust=_adjust;
 @property(readonly, copy, nonatomic) NSString *deviceID; // @synthesize deviceID=_deviceID;
 @property(nonatomic) __weak id <SPTProductState> productState; // @synthesize productState=_productState;
 - (void).cxx_destruct;
+- (_Bool)adjustDeeplinkResponse:(id)arg1;
 - (void)adjustSessionTrackingFailed:(id)arg1;
 - (void)adjustSessionTrackingSucceeded:(id)arg1;
 - (void)adjustEventTrackingFailed:(id)arg1;
 - (void)adjustEventTrackingSucceeded:(id)arg1;
 - (void)productState:(id)arg1 stateDidChange:(id)arg2;
+- (void)logPreAuthSession;
 - (id)getAdjustValueFromUserDefaults;
 - (void)setUserDefaultsValue:(id)arg1;
+- (id)stringWithParameters:(id)arg1;
+- (void)trackGenericEventWithName:(id)arg1 dataParameters:(id)arg2;
 - (void)trackEventWithToken:(id)arg1 dataParameters:(id)arg2;
 - (void)trackEventWithToken:(id)arg1;
 - (id)urlForTrackingWithURL:(id)arg1;
 - (void)setOfflineMode:(_Bool)arg1;
 - (void)trackAppWillOpenURL:(id)arg1;
 - (void)trackAppDidLaunch;
-- (void)operationWithIdentifier:(id)arg1 didFinishWithDuration:(double)arg2;
-- (void)userDidAuthenticateFromScreen:(long long)arg1;
 - (void)userDidLogout;
 - (void)userDidLoginWithProductState:(id)arg1;
-- (void)userDidRegister;
-- (void)userAccountRecoveryCompleted:(_Bool)arg1;
-- (void)accountRecoveryLinkParsed;
-- (void)userDidSeeScreen:(long long)arg1;
-- (void)trackKeychainEventWithIdentifier:(long long)arg1;
-- (void)didFailToFetchFeatureFlags;
-- (void)didReceiveFeatureFlags:(id)arg1 fromCache:(_Bool)arg2;
-- (void)willRequestFeatureFlags;
-- (void)userExperiencedError:(long long)arg1 onField:(long long)arg2 onScreen:(long long)arg3;
-- (void)userExperiencedError:(long long)arg1 onScreen:(long long)arg2;
-- (void)userInteractedWithField:(long long)arg1 onScreen:(long long)arg2;
-- (void)userClickedButton:(long long)arg1 onScreen:(long long)arg2;
+- (void)regenerateSessionID;
 - (void)accessPointDidAuthenticateUser;
 - (void)initialize;
 @property(readonly, nonatomic, getter=shouldEnableUserTracker) _Bool enableUserTracker;
 - (void)dealloc;
-- (id)initWithDeviceID:(id)arg1 adjustInstance:(id)arg2 defaults:(id)arg3;
+- (id)initWithDeviceID:(id)arg1 adjustInstance:(id)arg2 defaults:(id)arg3 logCenter:(id)arg4;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

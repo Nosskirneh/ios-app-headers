@@ -6,7 +6,7 @@
 
 #import "SettingsSection.h"
 
-@class NSString, SPSession, SPTAccesspointWebTokenRequest;
+@class NSString, SPSession, SPTAccesspointWebTokenRequest, SPTAdsLogger;
 @protocol SPTLinkDispatcher;
 
 @interface SPTAdPartnersPreferencesSettingsSection : SettingsSection
@@ -15,8 +15,10 @@
     SPTAccesspointWebTokenRequest *_webAccessTokenRequest;
     NSString *_adPartnerPreferenceURLWithToken;
     id <SPTLinkDispatcher> _linkDispatcher;
+    SPTAdsLogger *_adsLogger;
 }
 
+@property(retain, nonatomic) SPTAdsLogger *adsLogger; // @synthesize adsLogger=_adsLogger;
 @property(retain, nonatomic) id <SPTLinkDispatcher> linkDispatcher; // @synthesize linkDispatcher=_linkDispatcher;
 @property(retain, nonatomic) NSString *adPartnerPreferenceURLWithToken; // @synthesize adPartnerPreferenceURLWithToken=_adPartnerPreferenceURLWithToken;
 @property(retain, nonatomic) SPTAccesspointWebTokenRequest *webAccessTokenRequest; // @synthesize webAccessTokenRequest=_webAccessTokenRequest;
@@ -28,7 +30,7 @@
 - (id)cellForRow:(long long)arg1;
 - (long long)numberOfRows;
 - (unsigned long long)categoryPosition;
-- (id)initWithSettingsViewController:(id)arg1 session:(id)arg2 linkDispatcher:(id)arg3;
+- (id)initWithSettingsViewController:(id)arg1 session:(id)arg2 linkDispatcher:(id)arg3 adsLogger:(id)arg4;
 
 @end
 

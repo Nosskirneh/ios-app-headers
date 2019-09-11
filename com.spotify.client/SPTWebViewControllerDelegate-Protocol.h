@@ -12,6 +12,10 @@
 @protocol SPTWebViewControllerDelegate <NSObject>
 
 @optional
+- (void)webViewController:(id <SPTWebViewController>)arg1 didFailProvisionalNavigation:(unsigned long long)arg2 withError:(NSError *)arg3;
+- (void)webViewController:(id <SPTWebViewController>)arg1 didFailNavigation:(unsigned long long)arg2 withError:(NSError *)arg3;
+- (void)webViewController:(id <SPTWebViewController>)arg1 didFinishNavigation:(unsigned long long)arg2;
+- (void)webViewController:(id <SPTWebViewController>)arg1 didStartProvisionalNavigation:(unsigned long long)arg2;
 - (NSArray *)webViewControllerShareActivityItems;
 - (void)webViewController:(id <SPTWebViewController>)arg1 didFailAuthenticationWithError:(NSError *)arg2;
 - (_Bool)webViewController:(id <SPTWebViewController>)arg1 shouldAllowRequest:(NSURLRequest *)arg2 navigationType:(long long)arg3;

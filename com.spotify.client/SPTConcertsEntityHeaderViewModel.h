@@ -7,13 +7,12 @@
 #import <objc/NSObject.h>
 
 #import "GLUEThemeObserver-Protocol.h"
-#import "SFSafariViewControllerDelegate-Protocol.h"
 #import "SPTImageLoaderDelegate-Protocol.h"
 
 @class NSCache, NSString, SPTConcertsArtist, SPTConcertsDateFormatter, SPTConcertsEntity, UIColor, UIImage;
 @protocol GLUETheme, SPTConcertsEntityHeaderViewModelDelegate, SPTContainerUIService, SPTImageLoader, SPTImageLoaderRequest, SPTLinkDispatcher;
 
-@interface SPTConcertsEntityHeaderViewModel : NSObject <GLUEThemeObserver, SPTImageLoaderDelegate, SFSafariViewControllerDelegate>
+@interface SPTConcertsEntityHeaderViewModel : NSObject <GLUEThemeObserver, SPTImageLoaderDelegate>
 {
     id <SPTConcertsEntityHeaderViewModelDelegate> _delegate;
     id <GLUETheme> _theme;

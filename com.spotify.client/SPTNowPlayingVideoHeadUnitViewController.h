@@ -8,28 +8,25 @@
 
 #import "SPTNowPlayingAuxiliaryActionsHandlerObserver-Protocol.h"
 #import "SPTNowPlayingContainedViewController-Protocol.h"
-#import "SPTNowPlayingContainerIdleMonitorObserver-Protocol.h"
 #import "SPTNowPlayingModelObserver-Protocol.h"
 #import "SPTNowPlayingPlaybackActionsHandlerObserver-Protocol.h"
 
-@class NSString, SPTNowPlayingHeadUnitViewV2, SPTNowPlayingModel, SPTNowPlayingPlaybackActionsHandler, SPTTheme;
-@protocol SPTNowPlayingAuxiliaryActionsHandler, SPTNowPlayingContainingViewController;
+@class NSString, SPTNowPlayingHeadUnitView, SPTNowPlayingModel, SPTTheme;
+@protocol SPTNowPlayingAuxiliaryActionsHandler, SPTNowPlayingContainingViewController, SPTNowPlayingPlaybackActionsHandler;
 
-@interface SPTNowPlayingVideoHeadUnitViewController : UIViewController <SPTNowPlayingModelObserver, SPTNowPlayingPlaybackActionsHandlerObserver, SPTNowPlayingAuxiliaryActionsHandlerObserver, SPTNowPlayingContainerIdleMonitorObserver, SPTNowPlayingContainedViewController>
+@interface SPTNowPlayingVideoHeadUnitViewController : UIViewController <SPTNowPlayingModelObserver, SPTNowPlayingPlaybackActionsHandlerObserver, SPTNowPlayingAuxiliaryActionsHandlerObserver, SPTNowPlayingContainedViewController>
 {
     SPTNowPlayingModel *_model;
-    SPTNowPlayingPlaybackActionsHandler *_playbackActionsHandler;
+    id <SPTNowPlayingPlaybackActionsHandler> _playbackActionsHandler;
     id <SPTNowPlayingAuxiliaryActionsHandler> _auxiliaryActionsHandler;
     SPTTheme *_theme;
 }
 
 @property(retain, nonatomic) SPTTheme *theme; // @synthesize theme=_theme;
 @property(readonly, nonatomic) id <SPTNowPlayingAuxiliaryActionsHandler> auxiliaryActionsHandler; // @synthesize auxiliaryActionsHandler=_auxiliaryActionsHandler;
-@property(readonly, nonatomic) SPTNowPlayingPlaybackActionsHandler *playbackActionsHandler; // @synthesize playbackActionsHandler=_playbackActionsHandler;
+@property(readonly, nonatomic) id <SPTNowPlayingPlaybackActionsHandler> playbackActionsHandler; // @synthesize playbackActionsHandler=_playbackActionsHandler;
 @property(readonly, nonatomic) SPTNowPlayingModel *model; // @synthesize model=_model;
 - (void).cxx_destruct;
-- (void)idlePeriodDidEnd;
-- (void)idlePeriodDidBegin;
 - (void)playbackActionsHandlerDidPlayPause:(id)arg1;
 - (void)nowPlayingModel:(id)arg1 didMoveToRelativeTrack:(id)arg2;
 - (void)updateUI;
@@ -52,7 +49,7 @@
 @property(readonly, copy) NSString *description;
 @property(readonly) unsigned long long hash;
 @property(readonly) Class superclass;
-@property(retain, nonatomic) SPTNowPlayingHeadUnitViewV2 *view; // @dynamic view;
+@property(retain, nonatomic) SPTNowPlayingHeadUnitView *view; // @dynamic view;
 
 @end
 

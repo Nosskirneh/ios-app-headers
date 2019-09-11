@@ -11,6 +11,7 @@
 - (void)spt_each:(CDUnknownBlockType)arg1;
 - (id)spt_any:(CDUnknownBlockType)arg1;
 - (id)spt_filter:(CDUnknownBlockType)arg1;
+- (id)spt_compactMap:(CDUnknownBlockType)arg1;
 - (id)spt_map:(CDUnknownBlockType)arg1;
 @end
 

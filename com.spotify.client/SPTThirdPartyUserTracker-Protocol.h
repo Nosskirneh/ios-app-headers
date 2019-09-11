@@ -10,13 +10,17 @@
 @protocol SPTProductState;
 
 @protocol SPTThirdPartyUserTracker <NSObject>
-@property(readonly, nonatomic, getter=shouldEnableUserTracker) _Bool enableUserTracker;
-@property(readonly, nonatomic) NSString *trackerUserID;
 - (void)userDidLoginWithProductState:(id <SPTProductState>)arg1;
+- (_Bool)shouldEnableUserTracker;
+@property(nonatomic, readonly) NSString *trackerUserID;
 
 @optional
+- (void)userDidReconnect;
 - (void)userDidRegister;
 - (void)userWillLogout;
 - (void)userDidLogout;
+
+// Remaining properties
+@property(nonatomic, readonly) _Bool enableUserTracker;
 @end
 

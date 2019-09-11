@@ -6,12 +6,15 @@
 
 #import <objc/NSObject.h>
 
+#import "BMWEOCSessionDataSource-Protocol.h"
+#import "BMWRemotingSessionDelegate-Protocol.h"
+#import "IDA4APacketReader-Protocol.h"
 #import "IDMessagingServiceSubscriber-Protocol.h"
 
-@class IDA4AProxyInfo, IDAppManifest, IDApplicationManagementService, IDAudioService, IDBackgroundTask, IDCdsService, IDEtchSession, IDHmiService, IDMapService, IDPiaService, IDSpeechDialogService, IDTranslations, IDTtsService, IDVehicleInfo, IDVoiceRecorderService, IDWidgetHmiService, NSOperationQueue, NSString, NSUndoManager;
+@class BMWRemotingSession, IDA4AProxyInfo, IDAppManifest, IDApplicationManagementService, IDAudioService, IDBackgroundTask, IDCdsService, IDHmiService, IDMapService, IDPiaService, IDSpeechDialogService, IDTranslations, IDTtsService, IDVehicleInfo, IDVoiceRecorderService, IDWidgetHmiService, NSLock, NSOperationQueue, NSString, NSUndoManager;
 @protocol IDApplicationDataSource, IDApplicationDelegate, IDHmiProvider;
 
-@interface IDApplication : NSObject <IDMessagingServiceSubscriber>
+@interface IDApplication : NSObject <BMWEOCSessionDataSource, BMWRemotingSessionDelegate, IDA4APacketReader, IDMessagingServiceSubscriber>
 {
     _Bool _connected;
     IDHmiService *_hmiService;
@@ -26,14 +29,16 @@
     id <IDHmiProvider> _hmiProvider;
     IDVehicleInfo *_vehicleInfo;
     IDTranslations *_hmiTextTranslations;
+    NSLock *_stateLock;
     IDBackgroundTask *_backgroundTask;
     IDA4AProxyInfo *_proxyInfo;
     NSUndoManager *_undoManager;
+    unsigned long long _connectionId;
     IDPiaService *_piaService;
     IDApplicationManagementService *_applicationManagementService;
     IDAppManifest *_manifest;
     NSOperationQueue *_appQueue;
-    IDEtchSession *_etchSession;
+    BMWRemotingSession *_etchSession;
     IDWidgetHmiService *_widgetHmiService;
     NSOperationQueue *_delegateQueue;
     long long _rhmiVersion;
@@ -43,14 +48,16 @@
 @property long long rhmiVersion; // @synthesize rhmiVersion=_rhmiVersion;
 @property(retain) NSOperationQueue *delegateQueue; // @synthesize delegateQueue=_delegateQueue;
 @property(retain) IDWidgetHmiService *widgetHmiService; // @synthesize widgetHmiService=_widgetHmiService;
-@property(retain) IDEtchSession *etchSession; // @synthesize etchSession=_etchSession;
+@property(retain) BMWRemotingSession *etchSession; // @synthesize etchSession=_etchSession;
 @property(readonly) NSOperationQueue *appQueue; // @synthesize appQueue=_appQueue;
 @property(readonly) IDAppManifest *manifest; // @synthesize manifest=_manifest;
 @property(retain) IDApplicationManagementService *applicationManagementService; // @synthesize applicationManagementService=_applicationManagementService;
 @property(retain) IDPiaService *piaService; // @synthesize piaService=_piaService;
+@property unsigned long long connectionId; // @synthesize connectionId=_connectionId;
 @property(retain) NSUndoManager *undoManager; // @synthesize undoManager=_undoManager;
 @property(retain) IDA4AProxyInfo *proxyInfo; // @synthesize proxyInfo=_proxyInfo;
 @property(retain) IDBackgroundTask *backgroundTask; // @synthesize backgroundTask=_backgroundTask;
+@property(retain) NSLock *stateLock; // @synthesize stateLock=_stateLock;
 @property(retain) IDTranslations *hmiTextTranslations; // @synthesize hmiTextTranslations=_hmiTextTranslations;
 @property(retain) IDVehicleInfo *vehicleInfo; // @synthesize vehicleInfo=_vehicleInfo;
 @property(readonly) id <IDHmiProvider> hmiProvider; // @synthesize hmiProvider=_hmiProvider;
@@ -65,6 +72,41 @@
 @property(retain) IDHmiService *hmiService; // @synthesize hmiService=_hmiService;
 @property(getter=isConnected) _Bool connected; // @synthesize connected=_connected;
 - (void).cxx_destruct;
+- (void)readA4APacket:(id)arg1;
+- (void)vrs_onEventHandle:(id)arg1 event:(id)arg2 seq:(id)arg3 data:(id)arg4;
+- (void)voice_sessionStateChangedHandle:(id)arg1 state:(id)arg2;
+- (void)ver_getVersion;
+- (void)vds_diagnosticHandlerHandle:(id)arg1 type:(id)arg2 data:(id)arg3;
+- (void)sds_onDialogEventHandle:(id)arg1 result:(id)arg2 parameters:(id)arg3;
+- (void)rhmi_onHmiEventHandle:(id)arg1 ident:(id)arg2 componentId:(id)arg3 eventId:(id)arg4 args:(id)arg5;
+- (void)rhmi_onActionEventHandle:(id)arg1 ident:(id)arg2 actionId:(id)arg3 args:(id)arg4;
+- (void)rcs_playbackEventHandle:(id)arg1 state:(id)arg2;
+- (void)rcs_muteEventHandle:(id)arg1 mute:(id)arg2;
+- (void)rcs_lockEventHandle:(id)arg1 event:(id)arg2;
+- (void)rcs_headphoneEventHandle:(id)arg1 headphoneEnabled:(id)arg2;
+- (void)rcs_entSourceEventHandle:(id)arg1 entId:(id)arg2;
+- (void)rcs_entPlaylistEventHandle:(id)arg1 index:(id)arg2 count:(id)arg3 titles:(id)arg4;
+- (void)rcs_entListEventHandle:(id)arg1 entId:(id)arg2 entName:(id)arg3 playable:(id)arg4 upnp:(id)arg5;
+- (void)rcs_controlHandle:(id)arg1 accelOn:(id)arg2 reset:(id)arg3;
+- (void)pia_onEventHandle:(id)arg1 event:(id)arg2 data:(id)arg3;
+- (void)map_onEventHandle:(id)arg1 transferId:(id)arg2 event:(id)arg3;
+- (void)map_abortImportHandle:(id)arg1 transferId:(id)arg2 reason:(id)arg3;
+- (void)diag_perf_onewayData:(id)arg1;
+- (void)cds_onPropertyChangedEventHandle:(id)arg1 ident:(id)arg2 propertyName:(id)arg3 propertyValue:(id)arg4;
+- (void)cds_onPropertyChangedBinaryEventHandle:(id)arg1 ident:(id)arg2 propertyName:(id)arg3 propertyValue:(id)arg4 propertyBinaryValue:(id)arg5;
+- (void)av_requestPlayerStateHandle:(id)arg1 connectionType:(id)arg2 playerState:(id)arg3;
+- (void)av_multimediaButtonEventHandle:(id)arg1 event:(id)arg2;
+- (void)av_connectionGrantedHandle:(id)arg1 connectionType:(id)arg2;
+- (void)av_connectionDeniedHandle:(id)arg1 connectionType:(id)arg2;
+- (void)av_connectionDeactivatedHandle:(id)arg1 connectionType:(id)arg2;
+- (void)am_onAppEventHandle:(id)arg1 ident:(id)arg2 appId:(id)arg3 event:(id)arg4;
+- (void)didStartSession:(id)arg1;
+- (_Bool)maySendMessage;
+- (void)writeData:(id)arg1;
+- (id)receiveMessage:(id)arg1;
+- (void)eventOccured:(id)arg1;
+- (void)stop;
+- (void)errorDetected:(id)arg1;
 - (_Bool)shouldRegisterForApplicationLaunch;
 - (long long)rhmiVersionToStartApplication;
 - (_Bool)hasApplicationSupportForRhmiVersion:(long long)arg1;

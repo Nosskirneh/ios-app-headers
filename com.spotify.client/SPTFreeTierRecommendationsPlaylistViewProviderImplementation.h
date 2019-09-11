@@ -9,11 +9,11 @@
 #import "SPTFreeTierRecommendationsPlaylistViewProvider-Protocol.h"
 
 @class NSString;
-@protocol EXP_SPTHubsRendererFactory, SPTHugsFactory, SPTOnDemandService, SPTProductState;
+@protocol SPTHubsRendererFactory, SPTHugsFactory, SPTOnDemandService, SPTProductState;
 
 @interface SPTFreeTierRecommendationsPlaylistViewProviderImplementation : NSObject <SPTFreeTierRecommendationsPlaylistViewProvider>
 {
-    id <EXP_SPTHubsRendererFactory> _hubsRendererFactory;
+    id <SPTHubsRendererFactory> _hubsRendererFactory;
     id <SPTHugsFactory> _hugsFactory;
     id <SPTOnDemandService> _onDemandService;
     id <SPTProductState> _productState;
@@ -22,7 +22,7 @@
 @property(retain, nonatomic) id <SPTProductState> productState; // @synthesize productState=_productState;
 @property(nonatomic) __weak id <SPTOnDemandService> onDemandService; // @synthesize onDemandService=_onDemandService;
 @property(readonly, nonatomic) id <SPTHugsFactory> hugsFactory; // @synthesize hugsFactory=_hugsFactory;
-@property(readonly, nonatomic) id <EXP_SPTHubsRendererFactory> hubsRendererFactory; // @synthesize hubsRendererFactory=_hubsRendererFactory;
+@property(readonly, nonatomic) id <SPTHubsRendererFactory> hubsRendererFactory; // @synthesize hubsRendererFactory=_hubsRendererFactory;
 - (void).cxx_destruct;
 - (id)recommendedPlaylistFooterForURL:(id)arg1 withContext:(id)arg2;
 - (id)providePlaylistHubManager;

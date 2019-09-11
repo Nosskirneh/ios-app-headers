@@ -8,22 +8,20 @@
 
 #import "HUBComponent-Protocol.h"
 
-@class NSSet, UIView;
+@class NSSet;
+@protocol HUGSStyleOverrider;
 
 @interface HUGSNavigationRowComponent : HUGSThemableComponent <HUBComponent>
 {
-    UIView *_view;
+    id <HUGSStyleOverrider> _styleOverrider;
 }
 
-@property(retain, nonatomic) UIView *view; // @synthesize view=_view;
+@property(readonly, nonatomic) id <HUGSStyleOverrider> styleOverrider; // @synthesize styleOverrider=_styleOverrider;
 - (void).cxx_destruct;
-- (void)applyThemeLayout;
-- (id)styleForModel:(id)arg1;
-- (void)prepareViewForReuse;
 - (struct CGSize)preferredViewSizeForDisplayingModel:(id)arg1 containerViewSize:(struct CGSize)arg2;
-- (void)configureViewWithModel:(id)arg1 containerViewSize:(struct CGSize)arg2;
-- (void)loadView;
-@property(readonly, nonatomic) NSSet *layoutTraits;
+- (id)createViewWithFrame:(struct CGRect)arg1;
+@property(readonly, copy, nonatomic) NSSet *layoutTraits;
+- (id)initWithTheme:(id)arg1 styleOverrider:(id)arg2;
 
 @end
 

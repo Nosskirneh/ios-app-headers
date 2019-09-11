@@ -9,7 +9,7 @@
 #import "SPTService-Protocol.h"
 
 @class NSString, RootSettingsViewController, SPTAllocationContext;
-@protocol CosmosFeature, GaiaFeature, SPTAbbaFeatureFlags, SPTAbbaService, SPTBannerFeature, SPTContainerService, SPTContainerUIService, SPTCoreService, SPTDataSaverService, SPTExplicitContentService, SPTLanguageOnboardingService, SPTLoginService, SPTNavigationFeature, SPTSessionService, SPTSettingsFeature, SPTURIDispatchService;
+@protocol CosmosFeature, GaiaFeature, SPTAbbaFeatureFlags, SPTAbbaService, SPTContainerService, SPTContainerUIService, SPTCoreService, SPTDataSaverService, SPTExplicitContentService, SPTLanguageOnboardingService, SPTLoginService, SPTNavigationFeature, SPTSessionService, SPTSettingsFeature, SPTURIDispatchService;
 
 @interface SPTSettingsUIFeatureImplementation : NSObject <SPTService>
 {
@@ -18,10 +18,9 @@
     id <SPTSessionService> _clientSessionService;
     id <SPTCoreService> _coreService;
     id <SPTLoginService> _loginService;
-    id <GaiaFeature> _gaia;
-    id <CosmosFeature> _cosmos;
-    id <SPTAbbaService> _abba;
-    id <SPTBannerFeature> _banner;
+    id <GaiaFeature> _gaiaFeature;
+    id <CosmosFeature> _cosmosFeature;
+    id <SPTAbbaService> _abbaService;
     id <SPTSettingsFeature> _settingsFeature;
     id <SPTNavigationFeature> _navigationFeature;
     id <SPTDataSaverService> _dataSaverService;
@@ -41,10 +40,9 @@
 @property(nonatomic) __weak id <SPTDataSaverService> dataSaverService; // @synthesize dataSaverService=_dataSaverService;
 @property(nonatomic) __weak id <SPTNavigationFeature> navigationFeature; // @synthesize navigationFeature=_navigationFeature;
 @property(nonatomic) __weak id <SPTSettingsFeature> settingsFeature; // @synthesize settingsFeature=_settingsFeature;
-@property(nonatomic) __weak id <SPTBannerFeature> banner; // @synthesize banner=_banner;
-@property(nonatomic) __weak id <SPTAbbaService> abba; // @synthesize abba=_abba;
-@property(nonatomic) __weak id <CosmosFeature> cosmos; // @synthesize cosmos=_cosmos;
-@property(nonatomic) __weak id <GaiaFeature> gaia; // @synthesize gaia=_gaia;
+@property(nonatomic) __weak id <SPTAbbaService> abbaService; // @synthesize abbaService=_abbaService;
+@property(nonatomic) __weak id <CosmosFeature> cosmosFeature; // @synthesize cosmosFeature=_cosmosFeature;
+@property(nonatomic) __weak id <GaiaFeature> gaiaFeature; // @synthesize gaiaFeature=_gaiaFeature;
 @property(nonatomic) __weak id <SPTLoginService> loginService; // @synthesize loginService=_loginService;
 @property(nonatomic) __weak id <SPTCoreService> coreService; // @synthesize coreService=_coreService;
 @property(nonatomic) __weak id <SPTSessionService> clientSessionService; // @synthesize clientSessionService=_clientSessionService;

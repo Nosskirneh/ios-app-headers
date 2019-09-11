@@ -14,12 +14,14 @@
 #import "SPTNavigationControllerNavigationBarState-Protocol.h"
 #import "SPTPageController-Protocol.h"
 
-@class NSString, NSURL, SPTArtistAboutBiographyView, SPTArtistAboutGLUETheme, SPTArtistAboutImageGalleryViewController, SPTArtistAboutLogger, SPTArtistAboutMonthlyListenersView, SPTArtistAboutViewModel, SPTInfoView, SPTProgressView, UIStackView;
+@class NSString, NSURL, SPTArtistAboutBiographyView, SPTArtistAboutContextMenuViewModel, SPTArtistAboutGLUETheme, SPTArtistAboutImageGalleryViewController, SPTArtistAboutLogger, SPTArtistAboutMonthlyListenersView, SPTArtistAboutStateProvider, SPTArtistAboutViewModel, SPTInfoView, SPTProgressView, UIStackView;
 @protocol GLUEImageLoader, SPTLinkDispatcher, SPTPageContainer, SPTViewLogger;
 
 @interface SPTArtistAboutViewController : UIViewController <SPTArtistAboutViewModelDelegate, SPTArtistAboutBiographyViewDelegate, GLUEThemeObserver, SPTNavigationControllerNavigationBarState, SPContentInsetViewController, SPObjectRepresentation, SPTPageController>
 {
     SPTArtistAboutViewModel *_viewModel;
+    SPTArtistAboutContextMenuViewModel *_contextMenuViewModel;
+    SPTArtistAboutStateProvider *_stateProvider;
     id <GLUEImageLoader> _glueImageLoader;
     id <SPTViewLogger> _viewLogger;
     SPTArtistAboutLogger *_logger;
@@ -46,11 +48,14 @@
 @property(retain, nonatomic) SPTArtistAboutLogger *logger; // @synthesize logger=_logger;
 @property(retain, nonatomic) id <SPTViewLogger> viewLogger; // @synthesize viewLogger=_viewLogger;
 @property(retain, nonatomic) id <GLUEImageLoader> glueImageLoader; // @synthesize glueImageLoader=_glueImageLoader;
+@property(retain, nonatomic) SPTArtistAboutStateProvider *stateProvider; // @synthesize stateProvider=_stateProvider;
+@property(retain, nonatomic) SPTArtistAboutContextMenuViewModel *contextMenuViewModel; // @synthesize contextMenuViewModel=_contextMenuViewModel;
 @property(retain, nonatomic) SPTArtistAboutViewModel *viewModel; // @synthesize viewModel=_viewModel;
 - (void).cxx_destruct;
 @property(readonly, nonatomic, getter=spt_pageURI) NSURL *pageURI;
 @property(readonly, nonatomic, getter=spt_pageIdentifier) NSString *pageIdentifier;
 - (id)URI;
+- (void)rightButtonPressed:(id)arg1;
 - (void)sp_updateContentInsets;
 - (unsigned long long)preferredNavigationBarState;
 - (void)externalLinkTapped:(id)arg1;
@@ -73,7 +78,7 @@
 - (void)viewDidLoad;
 - (void)loadView;
 - (void)dealloc;
-- (id)initWithViewModel:(id)arg1 glueImageLoader:(id)arg2 theme:(id)arg3 viewLogger:(id)arg4 logger:(id)arg5 linkDispatcher:(id)arg6;
+- (id)initWithViewModel:(id)arg1 contextMenuViewModel:(id)arg2 stateProvider:(id)arg3 glueImageLoader:(id)arg4 theme:(id)arg5 viewLogger:(id)arg6 logger:(id)arg7 linkDispatcher:(id)arg8;
 
 // Remaining properties
 @property(nonatomic) _Bool automaticallyAdjustsScrollViewInsets;

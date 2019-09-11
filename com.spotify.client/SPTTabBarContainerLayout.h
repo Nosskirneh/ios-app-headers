@@ -6,21 +6,21 @@
 
 #import <objc/NSObject.h>
 
-@class NSLayoutConstraint, SPTLayoutConstraintBuilder, SPTTheme, UIView;
+@class NSArray, NSLayoutConstraint, SPTTheme, UIView;
 
 @interface SPTTabBarContainerLayout : NSObject
 {
     UIView *_headerView;
     UIView *_tabView;
     NSLayoutConstraint *_headerTopConstraint;
-    SPTLayoutConstraintBuilder *_layout;
+    NSArray *_layoutConstraints;
     UIView *_view;
     SPTTheme *_theme;
 }
 
 @property(readonly, nonatomic) SPTTheme *theme; // @synthesize theme=_theme;
 @property(retain, nonatomic) UIView *view; // @synthesize view=_view;
-@property(retain, nonatomic) SPTLayoutConstraintBuilder *layout; // @synthesize layout=_layout;
+@property(copy, nonatomic) NSArray *layoutConstraints; // @synthesize layoutConstraints=_layoutConstraints;
 @property(retain, nonatomic) NSLayoutConstraint *headerTopConstraint; // @synthesize headerTopConstraint=_headerTopConstraint;
 @property(retain, nonatomic) UIView *tabView; // @synthesize tabView=_tabView;
 @property(retain, nonatomic) UIView *headerView; // @synthesize headerView=_headerView;

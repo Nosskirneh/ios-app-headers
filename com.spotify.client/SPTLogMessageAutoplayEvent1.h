@@ -29,8 +29,8 @@
 @property(nonatomic) long long activeConnectionTypeValue; // @synthesize activeConnectionTypeValue=_activeConnectionTypeValue;
 @property(nonatomic) long long forcedOfflineValue; // @synthesize forcedOfflineValue=_forcedOfflineValue;
 @property(nonatomic) long long offlineValue; // @synthesize offlineValue=_offlineValue;
-@property(retain, nonatomic) NSString *seedEntityValue; // @synthesize seedEntityValue=_seedEntityValue;
-@property(retain, nonatomic) NSString *typeValue; // @synthesize typeValue=_typeValue;
+@property(copy, nonatomic) NSString *seedEntityValue; // @synthesize seedEntityValue=_seedEntityValue;
+@property(copy, nonatomic) NSString *typeValue; // @synthesize typeValue=_typeValue;
 - (void).cxx_destruct;
 - (_Bool)isEqual:(id)arg1;
 - (unsigned long long)hash;

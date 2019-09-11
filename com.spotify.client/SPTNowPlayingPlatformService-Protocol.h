@@ -6,14 +6,16 @@
 
 #import "SPTService-Protocol.h"
 
-@protocol SPTNowPlayingContentProviderRegistries, SPTNowPlayingFeedbackObservable, SPTNowPlayingModeResolver, SPTNowPlayingModeViewControllerRegistry, SPTNowPlayingModesRegistry, SPTNowPlayingRemoteControlEventControllerRegistry, SPTNowPlayingRemoteControlPolicyRegistry, SPTNowPlayingShowsFormatOverriderRegistry, SPTNowPlayingTestManager;
+@protocol SPTNowPlayingContentLayerResolver, SPTNowPlayingContentProviderRegistries, SPTNowPlayingModeResolver, SPTNowPlayingModeViewControllerRegistry, SPTNowPlayingModesRegistry, SPTNowPlayingRemoteControlEventControllerRegistry, SPTNowPlayingRemoteControlPolicyRegistry, SPTNowPlayingScrollDataSource, SPTNowPlayingShowsFormatOverriderRegistry, SPTNowPlayingTestManager;
 
 @protocol SPTNowPlayingPlatformService <SPTService>
-- (id <SPTNowPlayingFeedbackObservable>)provideFeedbackObservable;
+- (id <SPTNowPlayingContentLayerResolver>)provideContentLayerResolver;
+- (id <SPTNowPlayingScrollDataSource>)provideScrollDataSource;
 - (id <SPTNowPlayingRemoteControlEventControllerRegistry>)provideRemoteControlEventControllerRegistry;
 - (id <SPTNowPlayingContentProviderRegistries>)provideContentProviderRegistries;
 - (id <SPTNowPlayingShowsFormatOverriderRegistry>)provideShowsFormatOverriderRegistry;
 - (id <SPTNowPlayingRemoteControlPolicyRegistry>)provideRemoteControlPolicyRegistry;
+- (id <SPTNowPlayingModeViewControllerRegistry>)provideSideBarViewControllerRegistry;
 - (id <SPTNowPlayingModeViewControllerRegistry>)provideModeViewControllerRegistry;
 - (id <SPTNowPlayingModesRegistry>)provideModesRegistry;
 - (id <SPTNowPlayingModeResolver>)provideModeResolver;

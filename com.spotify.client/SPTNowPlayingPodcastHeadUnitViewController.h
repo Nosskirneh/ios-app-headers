@@ -4,46 +4,59 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import "SPTNowPlayingBaseHeadUnitViewController.h"
+#import <UIKit/UIViewController.h>
 
+#import "SPTNowPlayingAuxiliaryActionsHandlerObserver-Protocol.h"
+#import "SPTNowPlayingContainedViewController-Protocol.h"
 #import "SPTNowPlayingModelObserver-Protocol.h"
+#import "SPTNowPlayingPlaybackActionsHandlerObserver-Protocol.h"
 
-@class NSString, SPTNowPlayingBaseHeadUnitController, SPTNowPlayingLogger, SPTNowPlayingModel, SPTNowPlayingPodcastHeadUnitView;
-@protocol SPTQueueLogger, SPTUpsellManager;
+@class NSString, SPTNowPlayingHeadUnitView, SPTNowPlayingModel, SPTTheme;
+@protocol SPTNowPlayingAuxiliaryActionsHandler, SPTNowPlayingContainingViewController, SPTNowPlayingPlaybackActionsHandler, SPTPodcastSpeedControlManager;
 
-@interface SPTNowPlayingPodcastHeadUnitViewController : SPTNowPlayingBaseHeadUnitViewController <SPTNowPlayingModelObserver>
+@interface SPTNowPlayingPodcastHeadUnitViewController : UIViewController <SPTNowPlayingModelObserver, SPTNowPlayingPlaybackActionsHandlerObserver, SPTNowPlayingAuxiliaryActionsHandlerObserver, SPTNowPlayingContainedViewController>
 {
     SPTNowPlayingModel *_model;
-    SPTNowPlayingBaseHeadUnitController *_headUnitController;
-    SPTNowPlayingLogger *_logger;
-    id <SPTQueueLogger> _queueLogger;
-    id <SPTUpsellManager> _upsellManager;
+    id <SPTNowPlayingPlaybackActionsHandler> _playbackActionsHandler;
+    id <SPTNowPlayingAuxiliaryActionsHandler> _auxiliaryActionsHandler;
+    SPTTheme *_theme;
+    id <SPTPodcastSpeedControlManager> _speedControlManager;
 }
 
-@property(nonatomic) __weak id <SPTUpsellManager> upsellManager; // @synthesize upsellManager=_upsellManager;
-@property(retain, nonatomic) id <SPTQueueLogger> queueLogger; // @synthesize queueLogger=_queueLogger;
-@property(retain, nonatomic) SPTNowPlayingLogger *logger; // @synthesize logger=_logger;
-@property(retain, nonatomic) SPTNowPlayingBaseHeadUnitController *headUnitController; // @synthesize headUnitController=_headUnitController;
-@property(retain, nonatomic) SPTNowPlayingModel *model; // @synthesize model=_model;
+@property(readonly, nonatomic) id <SPTPodcastSpeedControlManager> speedControlManager; // @synthesize speedControlManager=_speedControlManager;
+@property(retain, nonatomic) SPTTheme *theme; // @synthesize theme=_theme;
+@property(readonly, nonatomic) id <SPTNowPlayingAuxiliaryActionsHandler> auxiliaryActionsHandler; // @synthesize auxiliaryActionsHandler=_auxiliaryActionsHandler;
+@property(readonly, nonatomic) id <SPTNowPlayingPlaybackActionsHandler> playbackActionsHandler; // @synthesize playbackActionsHandler=_playbackActionsHandler;
+@property(readonly, nonatomic) SPTNowPlayingModel *model; // @synthesize model=_model;
 - (void).cxx_destruct;
-- (id)provideRemoteControlPolicy;
+- (void)auxiliaryActionsHandlerSleepTimerDidUpdateState:(id)arg1;
+- (void)auxiliaryActionsHandlerSleepTimer:(id)arg1 timeWasUpdated:(double)arg2;
+- (void)auxiliaryActionsHandlerDidChangePodcastSpeed:(id)arg1;
+- (void)playbackActionsHandlerDidPlayPause:(id)arg1;
 - (void)nowPlayingModel:(id)arg1 didMoveToRelativeTrack:(id)arg2;
+- (void)updateUI;
 - (void)nowPlayingModelDidUpdateMetadata:(id)arg1;
-- (void)needUpdateUI;
-- (void)skip15SecForwardButtonTouchedUpInside:(id)arg1;
-- (void)skip15SecBackwardButtonTouchedUpInside:(id)arg1;
+- (void)presentSleepTimer:(id)arg1;
+- (void)presentSpeedControlMenu:(id)arg1;
+- (void)updateSpeedControlButton;
+- (void)updateSeekButtons;
+- (void)updatePlayPauseButton;
+- (id)speedControlButton;
+- (double)viewControllerPriority;
+- (unsigned long long)leadingEdge;
+- (struct CGSize)preferredContentSize;
+- (void)viewWillDisappear:(_Bool)arg1;
 - (void)viewWillAppear:(_Bool)arg1;
-- (void)viewDidLoad;
 - (void)loadView;
-- (void)dealloc;
-- (id)initWithModel:(id)arg1 theme:(id)arg2 logger:(id)arg3 queueLogger:(id)arg4 upsellManager:(id)arg5;
+- (id)initWithModel:(id)arg1 playbackActionsHandler:(id)arg2 auxiliaryActionsHandler:(id)arg3 speedControlManager:(id)arg4 theme:(id)arg5;
 
 // Remaining properties
+@property(nonatomic) __weak UIViewController<SPTNowPlayingContainingViewController> *container;
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
 @property(readonly) unsigned long long hash;
 @property(readonly) Class superclass;
-@property(retain, nonatomic) SPTNowPlayingPodcastHeadUnitView *view; // @dynamic view;
+@property(retain, nonatomic) SPTNowPlayingHeadUnitView *view; // @dynamic view;
 
 @end
 

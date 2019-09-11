@@ -6,16 +6,16 @@
 
 #import "SPTVideoBaseTracker.h"
 
-@class NSDictionary, NSString, SPSession, SPTNetworkConnectivityController, SPTVideoPlayRange;
-@protocol SPTLogCenter, SPTVideoPlaybackIdentity;
+@class NSString, SPTVideoPlayRange;
+@protocol SPTEndVideoMessageIdentity, SPTVideoLogger, SPTVideoLoggerDataProvider, SPTVideoPlaybackIdentity, SPTVideoPlaybackTimeObservable;
 
 @interface SPTEndVideoLogger : SPTVideoBaseTracker
 {
     _Bool _paused;
-    id <SPTLogCenter> _logCenter;
-    SPSession *_loginSession;
-    SPTNetworkConnectivityController *_networkConnectivityController;
-    NSDictionary *_pendingMessageID;
+    id <SPTVideoLogger> _logger;
+    id <SPTVideoLoggerDataProvider> _videoLoggerDataProvider;
+    id <SPTVideoPlaybackTimeObservable> _timeObservable;
+    id <SPTEndVideoMessageIdentity> _messageIdentity;
     id <SPTVideoPlaybackIdentity> _nextIdentity;
     long long _endEventReason;
     NSString *_connectionTypeStart;
@@ -29,34 +29,33 @@
 @property(nonatomic) _Bool paused; // @synthesize paused=_paused;
 @property(nonatomic) long long endEventReason; // @synthesize endEventReason=_endEventReason;
 @property(retain, nonatomic) id <SPTVideoPlaybackIdentity> nextIdentity; // @synthesize nextIdentity=_nextIdentity;
-@property(retain, nonatomic) NSDictionary *pendingMessageID; // @synthesize pendingMessageID=_pendingMessageID;
-@property(retain, nonatomic) SPTNetworkConnectivityController *networkConnectivityController; // @synthesize networkConnectivityController=_networkConnectivityController;
-@property(nonatomic) __weak SPSession *loginSession; // @synthesize loginSession=_loginSession;
-@property(retain, nonatomic) id <SPTLogCenter> logCenter; // @synthesize logCenter=_logCenter;
+@property(retain, nonatomic) id <SPTEndVideoMessageIdentity> messageIdentity; // @synthesize messageIdentity=_messageIdentity;
+@property(nonatomic) __weak id <SPTVideoPlaybackTimeObservable> timeObservable; // @synthesize timeObservable=_timeObservable;
+@property(retain, nonatomic) id <SPTVideoLoggerDataProvider> videoLoggerDataProvider; // @synthesize videoLoggerDataProvider=_videoLoggerDataProvider;
+@property(retain, nonatomic) id <SPTVideoLogger> logger; // @synthesize logger=_logger;
 - (void).cxx_destruct;
 - (long long)timeWeightedBitrate;
+- (id)keySystem;
 - (id)audioCodec;
 - (id)videoCodec;
 - (_Bool)isSystemInitialized;
 - (_Bool)incognitoMode;
 - (id)streamingRule;
 - (id)reasonEnd;
-- (_Bool)shuffle;
 - (id)reasonStartForIdentity:(id)arg1;
 - (id)reasonStart;
-- (id)sequenceID;
-- (id)sequenceNumber;
 - (void)updatePendingMessageWithStatistics:(id)arg1;
 - (void)updatePendingMessageAtPosition:(double)arg1;
 - (void)updatePendingMessage;
 - (void)sendMessage;
-- (void)videoPlaybackDidEndAtPosition:(double)arg1 withEndReason:(long long)arg2;
-- (void)videoPlaybackRateDidChangeTo:(double)arg1 atPosition:(double)arg2;
-- (void)videoPlaybackReadyAtPosition:(double)arg1 duration:(double)arg2 playWhenReady:(_Bool)arg3;
-- (void)videoPlaybackWillEndWithNextPlaybackIdentity:(id)arg1;
-- (void)videoPlaybackDidCreateSessionWithIdentity:(id)arg1 timeObservable:(id)arg2 inBackground:(_Bool)arg3;
+- (void)didEndPlaybackWithReason:(long long)arg1 atPosition:(double)arg2 timestamp:(double)arg3;
+- (void)didResumeWithTimestamp:(double)arg1;
+- (void)didPauseAtPosition:(double)arg1 timestamp:(double)arg2;
+- (void)didBecomeReadyAtPosition:(double)arg1 timestamp:(double)arg2;
+- (void)willEndPlaybackWithNextIdentity:(id)arg1 timestamp:(double)arg2;
+- (void)didCreatePlaybackInBackground:(_Bool)arg1 timestamp:(double)arg2;
 - (void)dealloc;
-- (id)initWithLogCenter:(id)arg1 loginSession:(id)arg2 networkConnectivityController:(id)arg3;
+- (id)initWithLogger:(id)arg1 videoLoggerDataProvider:(id)arg2 identity:(id)arg3 timeObservable:(id)arg4 paused:(_Bool)arg5;
 
 @end
 

@@ -9,27 +9,27 @@
 #import "SPTLoginFormViewLoggerProtocol-Protocol.h"
 
 @class NSString, SPTLoginErrorLogger;
-@protocol SPTAdjustUserTrackerProtocol;
+@protocol SPTLoginLogger;
 
 @interface SPTLoginSplitEmailSignupViewLogger : NSObject <SPTLoginFormViewLoggerProtocol>
 {
-    id <SPTAdjustUserTrackerProtocol> _adjustTracker;
-    long long _screenIdentifier;
-    long long _fieldIdentifier;
+    id <SPTLoginLogger> _logger;
+    NSString *_screenIdentifier;
+    NSString *_fieldIdentifier;
     SPTLoginErrorLogger *_errorLogger;
 }
 
 @property(retain, nonatomic) SPTLoginErrorLogger *errorLogger; // @synthesize errorLogger=_errorLogger;
-@property(nonatomic) long long fieldIdentifier; // @synthesize fieldIdentifier=_fieldIdentifier;
-@property(nonatomic) long long screenIdentifier; // @synthesize screenIdentifier=_screenIdentifier;
-@property(retain, nonatomic) id <SPTAdjustUserTrackerProtocol> adjustTracker; // @synthesize adjustTracker=_adjustTracker;
+@property(copy, nonatomic) NSString *fieldIdentifier; // @synthesize fieldIdentifier=_fieldIdentifier;
+@property(copy, nonatomic) NSString *screenIdentifier; // @synthesize screenIdentifier=_screenIdentifier;
+@property(retain, nonatomic) id <SPTLoginLogger> logger; // @synthesize logger=_logger;
 - (void).cxx_destruct;
 - (void)logUserDidTapSubmitButton;
 - (void)logUserDidSeeView;
 - (void)logUserDidInteractWithField:(id)arg1;
 - (void)logErrorWithCode:(unsigned long long)arg1 fieldIdentifier:(id)arg2;
-- (long long)adjustIdentifierForFieldWithStringIdentifier:(id)arg1;
-- (id)initWithAdjustTracker:(id)arg1 screenIdentifier:(long long)arg2 fieldIdentifier:(long long)arg3;
+- (id)adjustIdentifierForFieldWithStringIdentifier:(id)arg1;
+- (id)initWithLogger:(id)arg1 screenIdentifier:(id)arg2 fieldIdentifier:(id)arg3;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

@@ -10,13 +10,14 @@
 #import "SPTService-Protocol.h"
 
 @class NSMutableArray, NSString, SPTAllocationContext, SPTDataLoaderFactory, SPTExternalIntegrationSpacesContentFactory, SPTExternalIntegrationSpacesContentURLResolver, SPTPersistentCache;
-@protocol SPTExternalIntegrationContentService, SPTExternalIntegrationTestManagerService, SPTNetworkService, SPTSessionService;
+@protocol SPTExternalIntegrationContentService, SPTExternalIntegrationPlaybackService, SPTExternalIntegrationTestManagerService, SPTNetworkService, SPTSessionService;
 
 @interface SPTExternalIntegrationSpacesContentProviderService : NSObject <SPTService, SPTExternalIntegrationContentProvider>
 {
     SPTPersistentCache *_persistentCache;
     id <SPTSessionService> _clientSessionService;
     id <SPTExternalIntegrationContentService> _contentService;
+    id <SPTExternalIntegrationPlaybackService> _playbackService;
     id <SPTNetworkService> _networkService;
     id <SPTExternalIntegrationTestManagerService> _testManagerService;
     NSMutableArray *_activeRequests;
@@ -32,12 +33,14 @@
 @property(readonly, nonatomic) NSMutableArray *activeRequests; // @synthesize activeRequests=_activeRequests;
 @property(readonly, nonatomic) __weak id <SPTExternalIntegrationTestManagerService> testManagerService; // @synthesize testManagerService=_testManagerService;
 @property(readonly, nonatomic) __weak id <SPTNetworkService> networkService; // @synthesize networkService=_networkService;
+@property(readonly, nonatomic) __weak id <SPTExternalIntegrationPlaybackService> playbackService; // @synthesize playbackService=_playbackService;
 @property(readonly, nonatomic) __weak id <SPTExternalIntegrationContentService> contentService; // @synthesize contentService=_contentService;
 @property(readonly, nonatomic) __weak id <SPTSessionService> clientSessionService; // @synthesize clientSessionService=_clientSessionService;
 - (void).cxx_destruct;
 - (id)errorForRequestError:(id)arg1;
 - (id)persistentCacheOptions;
 @property(readonly, nonatomic) SPTPersistentCache *persistentCache; // @synthesize persistentCache=_persistentCache;
+- (id)createPlaceholderContentItemForURI:(id)arg1;
 - (void)resolveChildContentOfParentWithURI:(id)arg1 options:(id)arg2 withCompletionHandler:(CDUnknownBlockType)arg3;
 - (long long)priorityForChildContentOfParentWithURI:(id)arg1;
 - (void)resolveContentWithURI:(id)arg1 options:(id)arg2 withCompletionHandler:(CDUnknownBlockType)arg3;

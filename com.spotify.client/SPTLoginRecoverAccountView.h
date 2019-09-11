@@ -31,6 +31,7 @@
     NSLayoutConstraint *_inputFieldLabelEdgeMargin;
     NSLayoutConstraint *_inputFieldTopMargin;
     NSLayoutConstraint *_errorLabelTopMargin;
+    NSLayoutConstraint *_errorLabelMinHeight;
     NSLayoutConstraint *_sendButtonTopMargin;
     NSLayoutConstraint *_inputFieldHorizontalMargin;
     NSLayoutConstraint *_inputFieldHeight;
@@ -43,6 +44,7 @@
 @property(retain, nonatomic) NSLayoutConstraint *inputFieldHeight; // @synthesize inputFieldHeight=_inputFieldHeight;
 @property(retain, nonatomic) NSLayoutConstraint *inputFieldHorizontalMargin; // @synthesize inputFieldHorizontalMargin=_inputFieldHorizontalMargin;
 @property(retain, nonatomic) NSLayoutConstraint *sendButtonTopMargin; // @synthesize sendButtonTopMargin=_sendButtonTopMargin;
+@property(retain, nonatomic) NSLayoutConstraint *errorLabelMinHeight; // @synthesize errorLabelMinHeight=_errorLabelMinHeight;
 @property(retain, nonatomic) NSLayoutConstraint *errorLabelTopMargin; // @synthesize errorLabelTopMargin=_errorLabelTopMargin;
 @property(retain, nonatomic) NSLayoutConstraint *inputFieldTopMargin; // @synthesize inputFieldTopMargin=_inputFieldTopMargin;
 @property(retain, nonatomic) NSLayoutConstraint *inputFieldLabelEdgeMargin; // @synthesize inputFieldLabelEdgeMargin=_inputFieldLabelEdgeMargin;

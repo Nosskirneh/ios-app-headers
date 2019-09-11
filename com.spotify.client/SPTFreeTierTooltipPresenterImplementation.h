@@ -14,7 +14,7 @@
 {
     _Bool _tooltipPresented;
     SPTFreeTierTooltipTheme *_theme;
-    NSLayoutConstraint *_verticalAlgnmentConstraint;
+    NSLayoutConstraint *_verticalAlignmentConstraint;
     NSTimer *_presentationTimer;
     SPTFreeTierTooltipView *_currentTooltipView;
     UITapGestureRecognizer *_tapRecognizer;
@@ -24,14 +24,16 @@
 @property(retain, nonatomic) UITapGestureRecognizer *tapRecognizer; // @synthesize tapRecognizer=_tapRecognizer;
 @property(retain, nonatomic) SPTFreeTierTooltipView *currentTooltipView; // @synthesize currentTooltipView=_currentTooltipView;
 @property(retain, nonatomic) NSTimer *presentationTimer; // @synthesize presentationTimer=_presentationTimer;
-@property(retain, nonatomic) NSLayoutConstraint *verticalAlgnmentConstraint; // @synthesize verticalAlgnmentConstraint=_verticalAlgnmentConstraint;
+@property(retain, nonatomic) NSLayoutConstraint *verticalAlignmentConstraint; // @synthesize verticalAlignmentConstraint=_verticalAlignmentConstraint;
 @property(retain, nonatomic) SPTFreeTierTooltipTheme *theme; // @synthesize theme=_theme;
 - (void).cxx_destruct;
 - (void)userDidTapTooltipView:(id)arg1;
+- (_Bool)canFitTooltip:(id)arg1 inContainer:(id)arg2;
 - (double)timeIntervalForDuration:(long long)arg1;
 - (double)verticalMarginForArrowDirection:(unsigned long long)arg1 anchorRect:(struct CGRect)arg2 tooltip:(id)arg3 inContainerView:(id)arg4;
 - (unsigned long long)arrowDirectionWithAnchorRect:(struct CGRect)arg1 tooltip:(id)arg2 inContainerView:(id)arg3;
 - (id)defaultContentViewWithText:(id)arg1;
+- (void)skipTooltipPresentation;
 - (void)hideTooltipWithCompletionBlock:(CDUnknownBlockType)arg1;
 - (void)presentationDidFinish:(id)arg1;
 - (void)showTooltipWithContentView:(id)arg1 fromRect:(struct CGRect)arg2 inView:(id)arg3 permittedArrowDirections:(unsigned long long)arg4 duration:(long long)arg5;

@@ -7,6 +7,7 @@
 #import <Foundation/NSURL.h>
 
 @interface NSURL (SPTNormalize)
+- (id)canonicalURIforPartnerAccountsURI:(id)arg1;
 - (id)canonicalURIForAccountsURI:(id)arg1;
 - (_Bool)isSupportedAccountsURI:(id)arg1;
 - (_Bool)isSupportedPlayURIPath:(id)arg1;

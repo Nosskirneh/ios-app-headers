@@ -6,17 +6,17 @@
 
 #import <objc/NSObject.h>
 
-#import "EXP_HUBCommandHandler-Protocol.h"
+#import "HUBCommandHandler-Protocol.h"
 
-@protocol EXP_SPTHubInteractionLogger, SPTLinkDispatcher;
+@protocol SPTHubInteractionLogger, SPTLinkDispatcher;
 
-@interface SPTFreeTierTrackAddToPlaylistCommandHandler : NSObject <EXP_HUBCommandHandler>
+@interface SPTFreeTierTrackAddToPlaylistCommandHandler : NSObject <HUBCommandHandler>
 {
     id <SPTLinkDispatcher> _linkDispatcher;
-    id <EXP_SPTHubInteractionLogger> _logger;
+    id <SPTHubInteractionLogger> _logger;
 }
 
-@property(readonly, nonatomic) id <EXP_SPTHubInteractionLogger> logger; // @synthesize logger=_logger;
+@property(readonly, nonatomic) id <SPTHubInteractionLogger> logger; // @synthesize logger=_logger;
 @property(readonly, nonatomic) id <SPTLinkDispatcher> linkDispatcher; // @synthesize linkDispatcher=_linkDispatcher;
 - (void).cxx_destruct;
 - (void)handleCommand:(id)arg1 event:(id)arg2;

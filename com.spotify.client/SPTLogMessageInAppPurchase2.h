@@ -17,10 +17,10 @@
 }
 
 + (id)messageWithDomain:(id)arg1 event:(id)arg2 jsonData:(id)arg3 context:(id)arg4;
-@property(retain, nonatomic) NSString *contextValue; // @synthesize contextValue=_contextValue;
-@property(retain, nonatomic) NSString *jsonDataValue; // @synthesize jsonDataValue=_jsonDataValue;
-@property(retain, nonatomic) NSString *eventValue; // @synthesize eventValue=_eventValue;
-@property(retain, nonatomic) NSString *domainValue; // @synthesize domainValue=_domainValue;
+@property(copy, nonatomic) NSString *contextValue; // @synthesize contextValue=_contextValue;
+@property(copy, nonatomic) NSString *jsonDataValue; // @synthesize jsonDataValue=_jsonDataValue;
+@property(copy, nonatomic) NSString *eventValue; // @synthesize eventValue=_eventValue;
+@property(copy, nonatomic) NSString *domainValue; // @synthesize domainValue=_domainValue;
 - (void).cxx_destruct;
 - (_Bool)isEqual:(id)arg1;
 - (unsigned long long)hash;

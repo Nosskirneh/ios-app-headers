@@ -44,8 +44,8 @@
 - (id)provideFeatureFlagWithName:(id)arg1 enabledGroup:(id)arg2 localSettings:(id)arg3;
 - (id)provideFeatureFlags;
 - (void)stopObservingFeatureFlags;
+- (void)awaitValidFlags;
 - (void)unload;
-- (void)backgroundLoad;
 - (void)load;
 - (void)configureWithServices:(id)arg1;
 

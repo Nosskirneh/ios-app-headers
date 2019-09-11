@@ -6,34 +6,21 @@
 
 #import <objc/NSObject.h>
 
-@class NSNotificationCenter, SPTNowPlayingContentUnitProvider, SPTNowPlayingContentViewProvider, SPTNowPlayingDeviceOrientationManager, SPTNowPlayingDurationUnitProvider, SPTNowPlayingFooterUnitProvider, SPTNowPlayingHeadUnitProvider, SPTNowPlayingInformationUnitProvider, SPTNowPlayingLogger, SPTNowPlayingModel, SPTNowPlayingNavigationBarButtonsUnitProvider, SPTNowPlayingOpenGLManager, SPTNowPlayingShowsFormatDecorationUnitProvider, SPTTheme, UIViewController;
-@protocol SPTAdsManager, SPTLinkDispatcher, SPTNowPlayingManager, SPTNowPlayingModeResolver, SPTNowPlayingNavigationBarModel, SPTNowPlayingTestManager, SPTNowPlayingTitleViewPresenter, SPTNowPlayingTitleViewPresenterRegistry, SPTPlayer, SPTQueueInteractor, SPTQueueLogger, SPTQueueService, SPTQueueViewControllerDelegate, SPTShareFeature, SPTSleepTimerController;
+@class NSNotificationCenter, SPTNowPlayingContentViewProvider, SPTNowPlayingLogger, SPTNowPlayingModel, SPTTheme, UIViewController;
+@protocol SPTLinkDispatcher, SPTNowPlayingManager, SPTNowPlayingModeResolver, SPTNowPlayingNavigationBarModel, SPTNowPlayingTitleViewPresenter, SPTNowPlayingTitleViewPresenterRegistry, SPTPlayer, SPTQueueInteractor, SPTQueueLogger, SPTQueueService, SPTQueueViewControllerDelegate, SPTShareFeature;
 
 @interface SPTNowPlayingViewControllerFactory : NSObject
 {
-    SPTNowPlayingHeadUnitProvider *_nowPlayingViewHeadUnitProvider;
-    SPTNowPlayingContentUnitProvider *_nowPlayingViewContentUnitProvider;
-    SPTNowPlayingInformationUnitProvider *_nowPlayingViewInformationUnitProvider;
-    SPTNowPlayingDurationUnitProvider *_nowPlayingViewDurationUnitProvider;
-    SPTNowPlayingFooterUnitProvider *_nowPlayingViewFooterUnitProvider;
     id <SPTNowPlayingManager> _nowPlayingManager;
     SPTNowPlayingModel *_nowPlayingModel;
     id <SPTNowPlayingNavigationBarModel> _navigationBarModel;
     SPTNowPlayingLogger *_logger;
     id <SPTQueueLogger> _queueLogger;
-    id <SPTNowPlayingTestManager> _testManager;
     id <SPTNowPlayingTitleViewPresenterRegistry> _titleViewPresenterRegistry;
-    SPTNowPlayingDeviceOrientationManager *_deviceOrientationManager;
-    SPTNowPlayingShowsFormatDecorationUnitProvider *_showsFormatDecorationUnitProvider;
-    SPTNowPlayingNavigationBarButtonsUnitProvider *_navigationBarButtonsUnitProvider;
-    SPTNowPlayingOpenGLManager *_openGLManager;
     id <SPTNowPlayingModeResolver> _modeResolver;
     SPTNowPlayingContentViewProvider *_contentViewProvider;
     id <SPTNowPlayingTitleViewPresenter> _podcastTitleViewPresenter;
-    id <SPTSleepTimerController> _sleepTimerController;
     id <SPTLinkDispatcher> _linkDispatcher;
-    SPTNowPlayingHeadUnitProvider *_queueHeadUnitProvider;
-    SPTNowPlayingNavigationBarButtonsUnitProvider *_queueNavigationBarButtonsUnitProvider;
     id <SPTQueueViewControllerDelegate> _queueViewControllerDelegate;
     id <SPTQueueService> _queueService;
     UIViewController *_queueNavigationBarViewController;
@@ -42,10 +29,8 @@
     SPTTheme *_theme;
     id <SPTShareFeature> _shareFeature;
     id <SPTQueueInteractor> _queueInteractor;
-    id <SPTAdsManager> _adsManager;
 }
 
-@property(readonly, nonatomic) id <SPTAdsManager> adsManager; // @synthesize adsManager=_adsManager;
 @property(readonly, nonatomic) id <SPTQueueInteractor> queueInteractor; // @synthesize queueInteractor=_queueInteractor;
 @property(readonly, nonatomic) __weak id <SPTShareFeature> shareFeature; // @synthesize shareFeature=_shareFeature;
 @property(readonly, nonatomic) SPTTheme *theme; // @synthesize theme=_theme;
@@ -54,37 +39,21 @@
 @property(readonly, nonatomic) UIViewController *queueNavigationBarViewController; // @synthesize queueNavigationBarViewController=_queueNavigationBarViewController;
 @property(readonly, nonatomic) __weak id <SPTQueueService> queueService; // @synthesize queueService=_queueService;
 @property(readonly, nonatomic) __weak id <SPTQueueViewControllerDelegate> queueViewControllerDelegate; // @synthesize queueViewControllerDelegate=_queueViewControllerDelegate;
-@property(readonly, nonatomic) SPTNowPlayingNavigationBarButtonsUnitProvider *queueNavigationBarButtonsUnitProvider; // @synthesize queueNavigationBarButtonsUnitProvider=_queueNavigationBarButtonsUnitProvider;
-@property(readonly, nonatomic) SPTNowPlayingHeadUnitProvider *queueHeadUnitProvider; // @synthesize queueHeadUnitProvider=_queueHeadUnitProvider;
 @property(readonly, nonatomic) id <SPTLinkDispatcher> linkDispatcher; // @synthesize linkDispatcher=_linkDispatcher;
-@property(readonly, nonatomic) id <SPTSleepTimerController> sleepTimerController; // @synthesize sleepTimerController=_sleepTimerController;
 @property(readonly, nonatomic) id <SPTNowPlayingTitleViewPresenter> podcastTitleViewPresenter; // @synthesize podcastTitleViewPresenter=_podcastTitleViewPresenter;
 @property(readonly, nonatomic) SPTNowPlayingContentViewProvider *contentViewProvider; // @synthesize contentViewProvider=_contentViewProvider;
 @property(readonly, nonatomic) id <SPTNowPlayingModeResolver> modeResolver; // @synthesize modeResolver=_modeResolver;
-@property(readonly, nonatomic) SPTNowPlayingOpenGLManager *openGLManager; // @synthesize openGLManager=_openGLManager;
-@property(readonly, nonatomic) SPTNowPlayingNavigationBarButtonsUnitProvider *navigationBarButtonsUnitProvider; // @synthesize navigationBarButtonsUnitProvider=_navigationBarButtonsUnitProvider;
-@property(readonly, nonatomic) SPTNowPlayingShowsFormatDecorationUnitProvider *showsFormatDecorationUnitProvider; // @synthesize showsFormatDecorationUnitProvider=_showsFormatDecorationUnitProvider;
-@property(readonly, nonatomic) SPTNowPlayingDeviceOrientationManager *deviceOrientationManager; // @synthesize deviceOrientationManager=_deviceOrientationManager;
 @property(readonly, nonatomic) id <SPTNowPlayingTitleViewPresenterRegistry> titleViewPresenterRegistry; // @synthesize titleViewPresenterRegistry=_titleViewPresenterRegistry;
-@property(readonly, nonatomic) id <SPTNowPlayingTestManager> testManager; // @synthesize testManager=_testManager;
 @property(readonly, nonatomic) id <SPTQueueLogger> queueLogger; // @synthesize queueLogger=_queueLogger;
 @property(readonly, nonatomic) SPTNowPlayingLogger *logger; // @synthesize logger=_logger;
 @property(readonly, nonatomic) id <SPTNowPlayingNavigationBarModel> navigationBarModel; // @synthesize navigationBarModel=_navigationBarModel;
 @property(readonly, nonatomic) SPTNowPlayingModel *nowPlayingModel; // @synthesize nowPlayingModel=_nowPlayingModel;
 @property(readonly, nonatomic) id <SPTNowPlayingManager> nowPlayingManager; // @synthesize nowPlayingManager=_nowPlayingManager;
-@property(readonly, nonatomic) SPTNowPlayingFooterUnitProvider *nowPlayingViewFooterUnitProvider; // @synthesize nowPlayingViewFooterUnitProvider=_nowPlayingViewFooterUnitProvider;
-@property(readonly, nonatomic) SPTNowPlayingDurationUnitProvider *nowPlayingViewDurationUnitProvider; // @synthesize nowPlayingViewDurationUnitProvider=_nowPlayingViewDurationUnitProvider;
-@property(readonly, nonatomic) SPTNowPlayingInformationUnitProvider *nowPlayingViewInformationUnitProvider; // @synthesize nowPlayingViewInformationUnitProvider=_nowPlayingViewInformationUnitProvider;
-@property(readonly, nonatomic) SPTNowPlayingContentUnitProvider *nowPlayingViewContentUnitProvider; // @synthesize nowPlayingViewContentUnitProvider=_nowPlayingViewContentUnitProvider;
-@property(readonly, nonatomic) SPTNowPlayingHeadUnitProvider *nowPlayingViewHeadUnitProvider; // @synthesize nowPlayingViewHeadUnitProvider=_nowPlayingViewHeadUnitProvider;
 - (void).cxx_destruct;
 - (id)provideTitleViewPresenterRegistry;
-- (id)provideNavigationBarUnitProvider;
 - (id)createQueueViewController;
-- (id)createNowPlayingViewControllerV2;
-- (id)createNowPlayingViewControllerV1;
 - (id)createNowPlayingViewController;
-- (id)initWithNowPlayingModel:(id)arg1 navigationBarModel:(id)arg2 nowPlayingViewHeadUnitProvider:(id)arg3 nowPlayingViewContentUnitProvider:(id)arg4 nowPlayingViewInformationUnitProvider:(id)arg5 nowPlayingViewDurationUnitProvider:(id)arg6 nowPlayingViewFooterUnitProvider:(id)arg7 showsFormatDecorationUnitProvider:(id)arg8 navigationBarButtonsUnitProvider:(id)arg9 queueHeadUnitProvider:(id)arg10 queueNavigationBarButtonsUnitProvider:(id)arg11 queueNavigationBarViewController:(id)arg12 queueViewControllerDelegate:(id)arg13 deviceOrientationManager:(id)arg14 openGLManager:(id)arg15 player:(id)arg16 notificationCenter:(id)arg17 testManager:(id)arg18 adsManager:(id)arg19 nowPlayingManager:(id)arg20 theme:(id)arg21 logger:(id)arg22 queueLogger:(id)arg23 shareFeature:(id)arg24 queueService:(id)arg25 queueInteractor:(id)arg26 modeResolver:(id)arg27 contentViewProvider:(id)arg28 podcastTitleViewPresenter:(id)arg29 sleepTimerController:(id)arg30 linkDispatcher:(id)arg31;
+- (id)initWithNowPlayingModel:(id)arg1 navigationBarModel:(id)arg2 queueNavigationBarViewController:(id)arg3 queueViewControllerDelegate:(id)arg4 player:(id)arg5 notificationCenter:(id)arg6 nowPlayingManager:(id)arg7 theme:(id)arg8 logger:(id)arg9 queueLogger:(id)arg10 shareFeature:(id)arg11 queueService:(id)arg12 queueInteractor:(id)arg13 modeResolver:(id)arg14 contentViewProvider:(id)arg15 podcastTitleViewPresenter:(id)arg16 linkDispatcher:(id)arg17;
 
 @end
 

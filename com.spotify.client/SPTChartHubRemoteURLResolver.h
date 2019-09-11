@@ -6,11 +6,11 @@
 
 #import <objc/NSObject.h>
 
-#import "EXP_SPTHubRemoteContentOperationURLResolver-Protocol.h"
+#import "SPTHubRemoteContentOperationURLResolver-Protocol.h"
 
 @class NSString, NSURL;
 
-@interface SPTChartHubRemoteURLResolver : NSObject <EXP_SPTHubRemoteContentOperationURLResolver>
+@interface SPTChartHubRemoteURLResolver : NSObject <SPTHubRemoteContentOperationURLResolver>
 {
     NSURL *_chartURI;
 }

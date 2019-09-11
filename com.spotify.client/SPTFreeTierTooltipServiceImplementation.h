@@ -6,34 +6,26 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTFeatureFlagSignalObserver-Protocol.h"
 #import "SPTFreeTierTooltipService-Protocol.h"
 
 @class NSString, SPTAllocationContext, SPTFreeTierTooltipPresenterImplementation;
-@protocol SPTFeatureFlagSignal, SPTFeatureFlaggingService, SPTGLUEService, SPTTooltipService;
+@protocol SPTFreeTierUIService, SPTGLUEService;
 
-@interface SPTFreeTierTooltipServiceImplementation : NSObject <SPTFeatureFlagSignalObserver, SPTFreeTierTooltipService>
+@interface SPTFreeTierTooltipServiceImplementation : NSObject <SPTFreeTierTooltipService>
 {
     SPTFreeTierTooltipPresenterImplementation *_presenter;
     id <SPTGLUEService> _glueService;
-    id <SPTTooltipService> _tooltipService;
-    id <SPTFeatureFlaggingService> _featureFlaggingService;
-    id <SPTFeatureFlagSignal> _tooltipSeviceEnabledSignal;
+    id <SPTFreeTierUIService> _freeTierUIService;
 }
 
 + (id)serviceIdentifier;
-@property(retain, nonatomic) id <SPTFeatureFlagSignal> tooltipSeviceEnabledSignal; // @synthesize tooltipSeviceEnabledSignal=_tooltipSeviceEnabledSignal;
-@property(nonatomic) __weak id <SPTFeatureFlaggingService> featureFlaggingService; // @synthesize featureFlaggingService=_featureFlaggingService;
-@property(nonatomic) __weak id <SPTTooltipService> tooltipService; // @synthesize tooltipService=_tooltipService;
+@property(nonatomic) __weak id <SPTFreeTierUIService> freeTierUIService; // @synthesize freeTierUIService=_freeTierUIService;
 @property(nonatomic) __weak id <SPTGLUEService> glueService; // @synthesize glueService=_glueService;
 @property(retain, nonatomic) SPTFreeTierTooltipPresenterImplementation *presenter; // @synthesize presenter=_presenter;
 - (void).cxx_destruct;
-- (void)featureFlagSignal:(id)arg1 hasAssumedState:(long long)arg2;
-- (id)provideFreeTierTooltipServiceEnabledSignal;
+- (id)provideTooltipPresenterForViewURI:(id)arg1;
 - (id)provideTooltipPresenter;
-- (id)provideTooltipPresenterForService:(id)arg1;
-- (void)disableTooltipService;
-- (void)enableTooltipService;
+- (void)unload;
 - (void)load;
 - (void)configureWithServices:(id)arg1;
 

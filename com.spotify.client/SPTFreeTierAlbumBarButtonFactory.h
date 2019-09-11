@@ -6,12 +6,13 @@
 
 #import <objc/NSObject.h>
 
-@protocol SPTCollectionPlatform, SPTCollectionPlatformConfiguration, SPTContextMenuActionsProvider, SPTContextMenuPresenterFactory, SPTLogCenter;
+@protocol SPTCollectionPlatform, SPTCollectionPlatformConfiguration, SPTCollectionPlatformTestManager, SPTContextMenuActionsProvider, SPTContextMenuPresenterFactory, SPTLogCenter;
 
 @interface SPTFreeTierAlbumBarButtonFactory : NSObject
 {
     id <SPTCollectionPlatformConfiguration> _collectionConfiguration;
     id <SPTCollectionPlatform> _collectionPlatform;
+    id <SPTCollectionPlatformTestManager> _collectionTestManager;
     id <SPTContextMenuPresenterFactory> _contextMenuPresenterFactory;
     id <SPTContextMenuActionsProvider> _contextMenuActionFactory;
     id <SPTLogCenter> _logCenter;
@@ -20,12 +21,13 @@
 @property(readonly, nonatomic) id <SPTLogCenter> logCenter; // @synthesize logCenter=_logCenter;
 @property(readonly, nonatomic) id <SPTContextMenuActionsProvider> contextMenuActionFactory; // @synthesize contextMenuActionFactory=_contextMenuActionFactory;
 @property(readonly, nonatomic) id <SPTContextMenuPresenterFactory> contextMenuPresenterFactory; // @synthesize contextMenuPresenterFactory=_contextMenuPresenterFactory;
+@property(readonly, nonatomic) id <SPTCollectionPlatformTestManager> collectionTestManager; // @synthesize collectionTestManager=_collectionTestManager;
 @property(readonly, nonatomic) id <SPTCollectionPlatform> collectionPlatform; // @synthesize collectionPlatform=_collectionPlatform;
 @property(readonly, nonatomic) id <SPTCollectionPlatformConfiguration> collectionConfiguration; // @synthesize collectionConfiguration=_collectionConfiguration;
 - (void).cxx_destruct;
 - (id)createContextMenuButtonViewModelForViewURI:(id)arg1 albumViewModel:(id)arg2;
-- (id)createHeartBanButtonViewModelForViewURI:(id)arg1;
-- (id)initWithCollectionConfiguration:(id)arg1 collectionPlatform:(id)arg2 contextMenuPresenterFactory:(id)arg3 contextMenuActionFactory:(id)arg4 logCenter:(id)arg5;
+- (id)createFeedbackButtonViewModelForViewURI:(id)arg1;
+- (id)initWithCollectionConfiguration:(id)arg1 collectionPlatform:(id)arg2 collectionTestManager:(id)arg3 contextMenuPresenterFactory:(id)arg4 contextMenuActionFactory:(id)arg5 logCenter:(id)arg6;
 
 @end
 

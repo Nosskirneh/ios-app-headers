@@ -6,20 +6,20 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTGaiaDeviceStateManagerObserver-Protocol.h"
+#import "SPTGaiaConnectObserver-Protocol.h"
 #import "SPTPlayerObserver-Protocol.h"
 #import "SPTSleepTimerController-Protocol.h"
 #import "SPTTimerDelegate-Protocol.h"
 
-@class NSHashTable, NSString, SPTGaiaDeviceManager, SPTTimer;
-@protocol SPTAlertController, SPTLogCenter, SPTPlayer;
+@class NSHashTable, NSString, SPTTimer;
+@protocol SPTAlertController, SPTGaiaConnectAPI, SPTLogCenter, SPTPlayer;
 
-@interface SPTSleepTimerControllerImpl : NSObject <SPTTimerDelegate, SPTGaiaDeviceStateManagerObserver, SPTPlayerObserver, SPTSleepTimerController>
+@interface SPTSleepTimerControllerImpl : NSObject <SPTTimerDelegate, SPTGaiaConnectObserver, SPTPlayerObserver, SPTSleepTimerController>
 {
     _Bool _endAfterEpisode;
     SPTTimer *_sleepTimer;
     id <SPTPlayer> _player;
-    SPTGaiaDeviceManager *_gaiaDeviceManager;
+    id <SPTGaiaConnectAPI> _connectManager;
     NSHashTable *_timeObservers;
     NSHashTable *_eventObservers;
     id <SPTAlertController> _alertController;
@@ -30,7 +30,7 @@
 @property(retain, nonatomic) id <SPTAlertController> alertController; // @synthesize alertController=_alertController;
 @property(retain, nonatomic) NSHashTable *eventObservers; // @synthesize eventObservers=_eventObservers;
 @property(retain, nonatomic) NSHashTable *timeObservers; // @synthesize timeObservers=_timeObservers;
-@property(nonatomic) __weak SPTGaiaDeviceManager *gaiaDeviceManager; // @synthesize gaiaDeviceManager=_gaiaDeviceManager;
+@property(retain, nonatomic) id <SPTGaiaConnectAPI> connectManager; // @synthesize connectManager=_connectManager;
 @property(retain, nonatomic) id <SPTPlayer> player; // @synthesize player=_player;
 @property(retain, nonatomic) SPTTimer *sleepTimer; // @synthesize sleepTimer=_sleepTimer;
 @property(nonatomic, getter=shouldEndAfterEpisode) _Bool endAfterEpisode; // @synthesize endAfterEpisode=_endAfterEpisode;
@@ -46,7 +46,7 @@
 - (void)showSleepTimerUnavailableWithConnectAlert;
 - (void)disableConnect;
 - (void)showConfirmationSleepTimerSetDialog;
-- (void)deviceStateManager:(id)arg1 activeDeviceDidChange:(id)arg2;
+- (void)connectActiveDeviceDidChange:(id)arg1;
 - (void)timerDidCancel:(id)arg1;
 - (void)timerDidEnd:(id)arg1;
 - (void)timerDidStart:(id)arg1;
@@ -63,7 +63,7 @@
 - (double)timeRemaining;
 - (id)defaultFormattedTime;
 - (void)dealloc;
-- (id)initWithPlayer:(id)arg1 gaiaDeviceManager:(id)arg2 alertController:(id)arg3 logCenter:(id)arg4;
+- (id)initWithPlayer:(id)arg1 connectManager:(id)arg2 alertController:(id)arg3 logCenter:(id)arg4;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

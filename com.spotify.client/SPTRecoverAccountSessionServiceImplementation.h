@@ -9,42 +9,33 @@
 #import "SPTRecoverAccountURIHandlerObserver-Protocol.h"
 #import "SPTService-Protocol.h"
 
-@class NSString, SPTAllocationContext, SPTRecoverAccountCollectEmailManager, SPTRecoverAccountCoordinator, SPTRecoverAccountTestManager;
-@protocol SPTContainerService, SPTFeatureFlaggingService, SPTGLUEService, SPTNetworkService, SPTPreSignupExperimentationService, SPTRecoverAccountService, SPTSessionService, SPTUserTrackingService, SlateFeature;
+@class NSString, SPTAllocationContext, SPTRecoverAccountCoordinator;
+@protocol SPTBannerFeature, SPTContainerService, SPTGLUEService, SPTLoginLoggingService, SPTNetworkService, SPTRecoverAccountService, SPTUIPresentationService;
 
 @interface SPTRecoverAccountSessionServiceImplementation : NSObject <SPTRecoverAccountURIHandlerObserver, SPTService>
 {
-    id <SlateFeature> _slateFeature;
     id <SPTGLUEService> _glueService;
     id <SPTRecoverAccountService> _recoverAccountService;
     id <SPTNetworkService> _networkService;
-    id <SPTFeatureFlaggingService> _featureFlaggingService;
-    id <SPTUserTrackingService> _userTrackingService;
     id <SPTContainerService> _containerService;
-    id <SPTSessionService> _sessionService;
-    id <SPTPreSignupExperimentationService> _experimentationService;
-    SPTRecoverAccountCollectEmailManager *_collectEmailManager;
+    id <SPTLoginLoggingService> _loggerService;
+    id <SPTBannerFeature> _bannerService;
+    id <SPTUIPresentationService> _uiPresentationService;
     SPTRecoverAccountCoordinator *_coordinator;
-    SPTRecoverAccountTestManager *_testManager;
 }
 
 + (id)serviceIdentifier;
-@property(retain, nonatomic) SPTRecoverAccountTestManager *testManager; // @synthesize testManager=_testManager;
 @property(retain, nonatomic) SPTRecoverAccountCoordinator *coordinator; // @synthesize coordinator=_coordinator;
-@property(retain, nonatomic) SPTRecoverAccountCollectEmailManager *collectEmailManager; // @synthesize collectEmailManager=_collectEmailManager;
-@property(nonatomic) __weak id <SPTPreSignupExperimentationService> experimentationService; // @synthesize experimentationService=_experimentationService;
-@property(nonatomic) __weak id <SPTSessionService> sessionService; // @synthesize sessionService=_sessionService;
+@property(nonatomic) __weak id <SPTUIPresentationService> uiPresentationService; // @synthesize uiPresentationService=_uiPresentationService;
+@property(nonatomic) __weak id <SPTBannerFeature> bannerService; // @synthesize bannerService=_bannerService;
+@property(nonatomic) __weak id <SPTLoginLoggingService> loggerService; // @synthesize loggerService=_loggerService;
 @property(nonatomic) __weak id <SPTContainerService> containerService; // @synthesize containerService=_containerService;
-@property(nonatomic) __weak id <SPTUserTrackingService> userTrackingService; // @synthesize userTrackingService=_userTrackingService;
-@property(nonatomic) __weak id <SPTFeatureFlaggingService> featureFlaggingService; // @synthesize featureFlaggingService=_featureFlaggingService;
 @property(nonatomic) __weak id <SPTNetworkService> networkService; // @synthesize networkService=_networkService;
 @property(nonatomic) __weak id <SPTRecoverAccountService> recoverAccountService; // @synthesize recoverAccountService=_recoverAccountService;
 @property(nonatomic) __weak id <SPTGLUEService> glueService; // @synthesize glueService=_glueService;
-@property(nonatomic) __weak id <SlateFeature> slateFeature; // @synthesize slateFeature=_slateFeature;
 - (void).cxx_destruct;
-- (void)setupCollectEmailManager;
 - (void)setupRecoverAccountFlowCoordinator;
-- (void)URIHandlerDidFinishLoggingIn:(id)arg1;
+- (void)URIHandler:(id)arg1 didFinishLoggingInWithURI:(id)arg2;
 - (void)unload;
 - (void)load;
 - (void)configureWithServices:(id)arg1;

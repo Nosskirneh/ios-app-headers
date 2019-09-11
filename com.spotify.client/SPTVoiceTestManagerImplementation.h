@@ -6,21 +6,20 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTFeatureFlagSignalObserver-Protocol.h"
 #import "SPTVoiceLanguageSupportDataSourceDelegate-Protocol.h"
 #import "SPTVoiceTestManager-Protocol.h"
 
 @class NSString, SPTObserverManager, SPTVoiceLanguageSupportDataSource;
 @protocol SPTFeatureFlagFactory, SPTFeatureFlagSignal, SPTFeatureSettingsItemFactory, SPTLocalSettings, SPTVoiceTestManagerSettingsDelegate;
 
-@interface SPTVoiceTestManagerImplementation : NSObject <SPTFeatureFlagSignalObserver, SPTVoiceLanguageSupportDataSourceDelegate, SPTVoiceTestManager>
+@interface SPTVoiceTestManagerImplementation : NSObject <SPTVoiceLanguageSupportDataSourceDelegate, SPTVoiceTestManager>
 {
     _Bool _freeTierEnabled;
     _Bool _serviceEnabled;
     _Bool _voiceSearchEnabled;
     _Bool _voiceSearchProductStateValue;
-    _Bool _showVoiceSearchEntryInHome;
     _Bool _onlyTranscriptionFeedbackEnabled;
+    _Bool _usingAVAudioEngineEnabled;
     id <SPTVoiceTestManagerSettingsDelegate> _settingsDelegate;
     id <SPTLocalSettings> _localSettings;
     id <SPTFeatureSettingsItemFactory> _featureSettingsItemFactory;
@@ -29,21 +28,19 @@
     id <SPTFeatureFlagSignal> _voiceSearchFlagSignal;
     id <SPTFeatureFlagSignal> _voiceProductStateFlagSignal;
     id <SPTFeatureFlagSignal> _freeTierEnabledSignal;
-    id <SPTFeatureFlagSignal> _voiceTestOnHomeSignal;
-    id <SPTFeatureFlagSignal> _onlyTranscriptionFeedbackSignal;
+    id <SPTFeatureFlagSignal> _audioEngineSignal;
     SPTVoiceLanguageSupportDataSource *_languageSupportDataSource;
     SPTObserverManager *_observerManager;
 }
 
+@property(nonatomic) _Bool usingAVAudioEngineEnabled; // @synthesize usingAVAudioEngineEnabled=_usingAVAudioEngineEnabled;
 @property(nonatomic) _Bool onlyTranscriptionFeedbackEnabled; // @synthesize onlyTranscriptionFeedbackEnabled=_onlyTranscriptionFeedbackEnabled;
-@property(nonatomic) _Bool showVoiceSearchEntryInHome; // @synthesize showVoiceSearchEntryInHome=_showVoiceSearchEntryInHome;
 @property(nonatomic) _Bool voiceSearchProductStateValue; // @synthesize voiceSearchProductStateValue=_voiceSearchProductStateValue;
 @property(nonatomic) _Bool voiceSearchEnabled; // @synthesize voiceSearchEnabled=_voiceSearchEnabled;
 @property(nonatomic) _Bool serviceEnabled; // @synthesize serviceEnabled=_serviceEnabled;
 @property(readonly, nonatomic) SPTObserverManager *observerManager; // @synthesize observerManager=_observerManager;
 @property(retain, nonatomic) SPTVoiceLanguageSupportDataSource *languageSupportDataSource; // @synthesize languageSupportDataSource=_languageSupportDataSource;
-@property(retain, nonatomic) id <SPTFeatureFlagSignal> onlyTranscriptionFeedbackSignal; // @synthesize onlyTranscriptionFeedbackSignal=_onlyTranscriptionFeedbackSignal;
-@property(retain, nonatomic) id <SPTFeatureFlagSignal> voiceTestOnHomeSignal; // @synthesize voiceTestOnHomeSignal=_voiceTestOnHomeSignal;
+@property(retain, nonatomic) id <SPTFeatureFlagSignal> audioEngineSignal; // @synthesize audioEngineSignal=_audioEngineSignal;
 @property(retain, nonatomic) id <SPTFeatureFlagSignal> freeTierEnabledSignal; // @synthesize freeTierEnabledSignal=_freeTierEnabledSignal;
 @property(retain, nonatomic) id <SPTFeatureFlagSignal> voiceProductStateFlagSignal; // @synthesize voiceProductStateFlagSignal=_voiceProductStateFlagSignal;
 @property(retain, nonatomic) id <SPTFeatureFlagSignal> voiceSearchFlagSignal; // @synthesize voiceSearchFlagSignal=_voiceSearchFlagSignal;
@@ -67,17 +64,15 @@
 - (void)handleVoiceSearchFeatureEnabledStateChanged:(_Bool)arg1;
 - (void)handleFeatureEnabledStateChanged:(_Bool)arg1;
 - (void)teardownFeatureFlagHandling;
-- (void)setupVoiceFeedbackSignals;
-- (void)setupVoiceTestOnHomeSignal;
+- (void)setupAudioEngineSignal;
 - (void)setupFeatureEnablementSignals;
 - (void)setupFeatureFlags;
 - (void)removeObserver:(id)arg1;
 - (void)addObserver:(id)arg1;
 @property(readonly, nonatomic) _Bool shouldSaveAudio;
 @property(readonly, nonatomic, getter=selectedLanguage) NSString *selectedLanguage;
-@property(readonly, nonatomic, getter=serviceEndpoint) unsigned long long serviceEndpoint;
-- (_Bool)isOnlyTranscriptionFeedbackEnabled;
-- (_Bool)shouldShowVoiceSearchEntryInHome;
+@property(nonatomic) unsigned long long serviceEndpoint;
+- (_Bool)shouldUseAVAudioEngine;
 - (_Bool)isFloatingMicrophoneEnabled;
 - (_Bool)isVoiceSearchEnabled;
 - (_Bool)isVoiceServiceEnabled;

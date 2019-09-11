@@ -11,6 +11,7 @@
 @protocol SPTSlateDelegate <NSObject>
 
 @optional
+- (void)slateAccessoryButtonDidTap:(id <SPTSlate>)arg1;
 - (void)slateDidDismiss:(id <SPTSlate>)arg1;
 - (void)slateWillDismiss:(id <SPTSlate>)arg1;
 - (void)slateSwiped:(id <SPTSlate>)arg1;

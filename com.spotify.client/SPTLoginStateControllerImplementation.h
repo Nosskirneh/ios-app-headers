@@ -9,8 +9,8 @@
 #import "SPTCoreLoginControllerDelegate-Protocol.h"
 #import "SPTLoginStateController-Protocol.h"
 
-@class NSError, NSString, SPCore, SPFacebookSSO, SPTHTTPService, SPTImageLoaderServiceManager, SPTLoginDeferredDispatcher, SPTLoginDialogController, SPTLoginErrorDecorator, SPTLoginForcedOfflineWarningLogger, SPTLoginUIDispatchController, SPTNetworkConnectivityController, SPTSessionObserver, SPTStartupTracer;
-@protocol SPTAlertController, SPTCrashReporter, SPTFacebookSDK, SPTLinkDispatcher, SPTLogCenter, SPTLoginKeychainManager, SPTMetaViewController, SPTSessionServicesLoader, SPTStateController;
+@class NSError, NSString, SPCore, SPTHTTPService, SPTImageLoaderServiceManager, SPTLoginDeferredDispatcher, SPTLoginDialogController, SPTLoginErrorDecorator, SPTNetworkConnectivityController, SPTSessionObserver, SPTStartupTracer;
+@protocol SPTAlertController, SPTCrashReporter, SPTLinkDispatcher, SPTLogCenter, SPTLoginKeychainManager, SPTLoginLogger, SPTMetaViewController, SPTStateController;
 
 @interface SPTLoginStateControllerImplementation : NSObject <SPTCoreLoginControllerDelegate, SPTLoginStateController>
 {
@@ -25,37 +25,29 @@
     SPTStartupTracer *_startupTracer;
     CDUnknownBlockType _loginDoneBlock;
     SPTSessionObserver *_sessionObserver;
-    id <SPTFacebookSDK> _facebookSDK;
     id <SPTStateController> _stateController;
     id <SPTMetaViewController> _metaviewController;
     CDUnknownBlockType _containerLogoutHandler;
     id <SPTLoginKeychainManager> _keychainManager;
     id <SPTAlertController> _alertController;
-    id <SPTSessionServicesLoader> _sessionServicesLoader;
     SPTLoginDeferredDispatcher *_deferredErrorDispatcher;
     id <SPTLinkDispatcher> _linkDispatcher;
     SPTLoginDialogController *_errorDialogController;
     SPTLoginErrorDecorator *_errorDecorator;
-    SPFacebookSSO *_facebookSSO;
-    SPTLoginForcedOfflineWarningLogger *_offlineWarningLogger;
-    SPTLoginUIDispatchController *_uiDispatchController;
+    id <SPTLoginLogger> _loginLogger;
 }
 
 @property(nonatomic) _Bool userDidSignUp; // @synthesize userDidSignUp=_userDidSignUp;
-@property(readonly, nonatomic) SPTLoginUIDispatchController *uiDispatchController; // @synthesize uiDispatchController=_uiDispatchController;
-@property(readonly, nonatomic) SPTLoginForcedOfflineWarningLogger *offlineWarningLogger; // @synthesize offlineWarningLogger=_offlineWarningLogger;
-@property(retain, nonatomic) SPFacebookSSO *facebookSSO; // @synthesize facebookSSO=_facebookSSO;
+@property(retain, nonatomic) id <SPTLoginLogger> loginLogger; // @synthesize loginLogger=_loginLogger;
 @property(retain, nonatomic) SPTLoginErrorDecorator *errorDecorator; // @synthesize errorDecorator=_errorDecorator;
 @property(retain, nonatomic) SPTLoginDialogController *errorDialogController; // @synthesize errorDialogController=_errorDialogController;
 @property(retain, nonatomic) id <SPTLinkDispatcher> linkDispatcher; // @synthesize linkDispatcher=_linkDispatcher;
 @property(retain, nonatomic) SPTLoginDeferredDispatcher *deferredErrorDispatcher; // @synthesize deferredErrorDispatcher=_deferredErrorDispatcher;
-@property(retain, nonatomic) id <SPTSessionServicesLoader> sessionServicesLoader; // @synthesize sessionServicesLoader=_sessionServicesLoader;
 @property(retain, nonatomic) id <SPTAlertController> alertController; // @synthesize alertController=_alertController;
 @property(retain, nonatomic) id <SPTLoginKeychainManager> keychainManager; // @synthesize keychainManager=_keychainManager;
 @property(readonly, nonatomic) CDUnknownBlockType containerLogoutHandler; // @synthesize containerLogoutHandler=_containerLogoutHandler;
 @property(retain, nonatomic) id <SPTMetaViewController> metaviewController; // @synthesize metaviewController=_metaviewController;
 @property(retain, nonatomic) id <SPTStateController> stateController; // @synthesize stateController=_stateController;
-@property(readonly, nonatomic) id <SPTFacebookSDK> facebookSDK; // @synthesize facebookSDK=_facebookSDK;
 @property(retain, nonatomic) SPTSessionObserver *sessionObserver; // @synthesize sessionObserver=_sessionObserver;
 @property(copy, nonatomic) CDUnknownBlockType loginDoneBlock; // @synthesize loginDoneBlock=_loginDoneBlock;
 @property(nonatomic) __weak SPTStartupTracer *startupTracer; // @synthesize startupTracer=_startupTracer;
@@ -71,13 +63,13 @@
 - (void)sessionObserverDidReceiveAutoUpdate;
 - (void)showAutoUpdateAlert;
 - (void)reportLoginDoneWithError:(id)arg1;
+- (void)reloginWithCredentials:(id)arg1 options:(id)arg2 completionHandler:(CDUnknownBlockType)arg3;
 - (void)reloginWithCompletionHandler:(CDUnknownBlockType)arg1;
 - (void)logoutForgetUser:(_Bool)arg1;
-- (void)loginWithFacebookUserInfo:(id)arg1 completion:(CDUnknownBlockType)arg2;
-- (void)loginWithFacebookSSOWithCompletion:(CDUnknownBlockType)arg1;
 - (void)loginWithCredentials:(id)arg1 options:(id)arg2 completion:(CDUnknownBlockType)arg3;
 - (void)loginWithCredentials:(id)arg1 options:(id)arg2 userDidSignUp:(_Bool)arg3 completion:(CDUnknownBlockType)arg4;
 - (void)loginWithStoredCredentials:(id)arg1 options:(id)arg2 completion:(CDUnknownBlockType)arg3;
+- (void)loginWithOneTimeToken:(id)arg1 userDidSignUp:(_Bool)arg2 completion:(CDUnknownBlockType)arg3;
 - (void)notifyServicesOnLoginWithCore:(id)arg1 logCenter:(id)arg2;
 - (void)presentCoreReloginError:(id)arg1;
 - (id)core:(id)arg1 localizedDescriptionForLoginErrorCode:(int)arg2;
@@ -86,13 +78,17 @@
 - (void)coreDidRelogin:(id)arg1 withError:(id)arg2 isPermanent:(_Bool)arg3;
 - (void)core:(id)arg1 failedLoginWithError:(id)arg2;
 - (void)coreDidLogin:(id)arg1;
-- (_Bool)shouldTeardownUIForLogout;
+- (id)currentCredentials;
+- (void)didLogin;
+@property(readonly, nonatomic, getter=isLoggedIn) _Bool loggedIn;
 - (void)prepareForShutdown;
 @property(nonatomic) _Bool allowErrorDispatch;
-- (id)initWithCore:(id)arg1 facebookSDK:(id)arg2 logCenter:(id)arg3 crashReporter:(id)arg4 startupTracer:(id)arg5 stateController:(id)arg6 containerLogoutHandler:(CDUnknownBlockType)arg7 httpService:(id)arg8 imageLoaderServiceManager:(id)arg9 keychainManager:(id)arg10 networkConnectivityController:(id)arg11 metaViewController:(id)arg12 alertController:(id)arg13 sessionServicesLoader:(id)arg14 deferredErrorDispatcher:(id)arg15 linkDispatcher:(id)arg16 errorDialogController:(id)arg17 errorDecorator:(id)arg18 offlineWarningLogger:(id)arg19;
+- (id)initWithCore:(id)arg1 logCenter:(id)arg2 crashReporter:(id)arg3 startupTracer:(id)arg4 stateController:(id)arg5 containerLogoutHandler:(CDUnknownBlockType)arg6 httpService:(id)arg7 imageLoaderServiceManager:(id)arg8 keychainManager:(id)arg9 networkConnectivityController:(id)arg10 metaViewController:(id)arg11 alertController:(id)arg12 deferredErrorDispatcher:(id)arg13 linkDispatcher:(id)arg14 errorDialogController:(id)arg15 errorDecorator:(id)arg16 loginLogger:(id)arg17;
 - (id)sessionStateAwaiter;
 - (id)waitForLoginCompletion;
 - (id)waitForLogoutCompletion;
+- (id)taskedLoginWithStoredCredentials;
+- (id)taskedReloginWithCredentials:(id)arg1 options:(id)arg2;
 - (id)taskedRelogin;
 - (id)taskedLogoutForgetUser:(_Bool)arg1;
 - (id)taskedLoginWithCredentials:(id)arg1 options:(id)arg2;

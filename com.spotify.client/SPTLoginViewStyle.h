@@ -8,38 +8,32 @@
 
 #import "GLUEStyle-Protocol.h"
 
-@class GLUEButtonStyle, GLUEGradientStyle, GLUELabelStyle, NSString, SPTLoginInputAccessoryViewStyle, SPTLoginInputFormViewStyle;
+@class GLUEButtonStyle, GLUEGradientStyle, GLUELabelStyle, NSString, SPTLoginInputFormViewStyle;
 
 @interface SPTLoginViewStyle : NSObject <GLUEStyle>
 {
     GLUELabelStyle *_titleLabelStyle;
     SPTLoginInputFormViewStyle *_inputFormStyle;
-    GLUELabelStyle *_forgotPasswordLabelStyle;
     double _titleTopMargin;
     double _inputFormTopMargin;
-    double _forgotPasswordLabelTopMargin;
-    double _forgotPasswordLabelBottomMargin;
-    double _forgotPasswordLabelHorizontalMargin;
-    GLUEGradientStyle *_backgroundGradientStyle;
-    double _horizontalMargin;
-    GLUEButtonStyle *_loginButtonStyle;
     double _loginButtonTopMargin;
-    SPTLoginInputAccessoryViewStyle *_inputAccessoryViewStyle;
-    double _inputAccessoryViewStyleHeight;
+    double _loginWithoutPasswordTopMargin;
+    double _loginWithoutPasswordBottomMargin;
+    GLUEGradientStyle *_backgroundGradientStyle;
+    GLUEButtonStyle *_loginButtonStyle;
+    GLUEButtonStyle *_loginWithoutPasswordButtonStyle;
+    double _horizontalMargin;
 }
 
-@property(nonatomic) double inputAccessoryViewStyleHeight; // @synthesize inputAccessoryViewStyleHeight=_inputAccessoryViewStyleHeight;
-@property(copy, nonatomic) SPTLoginInputAccessoryViewStyle *inputAccessoryViewStyle; // @synthesize inputAccessoryViewStyle=_inputAccessoryViewStyle;
-@property(nonatomic) double loginButtonTopMargin; // @synthesize loginButtonTopMargin=_loginButtonTopMargin;
-@property(copy, nonatomic) GLUEButtonStyle *loginButtonStyle; // @synthesize loginButtonStyle=_loginButtonStyle;
 @property(nonatomic) double horizontalMargin; // @synthesize horizontalMargin=_horizontalMargin;
+@property(copy, nonatomic) GLUEButtonStyle *loginWithoutPasswordButtonStyle; // @synthesize loginWithoutPasswordButtonStyle=_loginWithoutPasswordButtonStyle;
+@property(copy, nonatomic) GLUEButtonStyle *loginButtonStyle; // @synthesize loginButtonStyle=_loginButtonStyle;
 @property(copy, nonatomic) GLUEGradientStyle *backgroundGradientStyle; // @synthesize backgroundGradientStyle=_backgroundGradientStyle;
-@property(nonatomic) double forgotPasswordLabelHorizontalMargin; // @synthesize forgotPasswordLabelHorizontalMargin=_forgotPasswordLabelHorizontalMargin;
-@property(nonatomic) double forgotPasswordLabelBottomMargin; // @synthesize forgotPasswordLabelBottomMargin=_forgotPasswordLabelBottomMargin;
-@property(nonatomic) double forgotPasswordLabelTopMargin; // @synthesize forgotPasswordLabelTopMargin=_forgotPasswordLabelTopMargin;
+@property(nonatomic) double loginWithoutPasswordBottomMargin; // @synthesize loginWithoutPasswordBottomMargin=_loginWithoutPasswordBottomMargin;
+@property(nonatomic) double loginWithoutPasswordTopMargin; // @synthesize loginWithoutPasswordTopMargin=_loginWithoutPasswordTopMargin;
+@property(nonatomic) double loginButtonTopMargin; // @synthesize loginButtonTopMargin=_loginButtonTopMargin;
 @property(nonatomic) double inputFormTopMargin; // @synthesize inputFormTopMargin=_inputFormTopMargin;
 @property(nonatomic) double titleTopMargin; // @synthesize titleTopMargin=_titleTopMargin;
-@property(copy, nonatomic) GLUELabelStyle *forgotPasswordLabelStyle; // @synthesize forgotPasswordLabelStyle=_forgotPasswordLabelStyle;
 @property(copy, nonatomic) SPTLoginInputFormViewStyle *inputFormStyle; // @synthesize inputFormStyle=_inputFormStyle;
 @property(copy, nonatomic) GLUELabelStyle *titleLabelStyle; // @synthesize titleLabelStyle=_titleLabelStyle;
 - (void).cxx_destruct;

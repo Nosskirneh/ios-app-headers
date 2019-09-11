@@ -9,28 +9,40 @@
 #import "SPTYourLibraryModelObserver-Protocol.h"
 #import "SPTYourLibraryViewModel-Protocol.h"
 
-@class NSArray, NSMutableArray, NSMutableDictionary, NSString;
-@protocol SPTPageCreationContext, SPTYourLibraryModel, SPTYourLibraryViewModelDelegate;
+@class NSArray, NSMutableArray, NSMutableDictionary, NSString, NSURL, SPTObserverManager;
+@protocol SPTPageCreationContext, SPTYourLibraryModel;
 
 @interface SPTYourLibraryViewModelImplementation : NSObject <SPTYourLibraryModelObserver, SPTYourLibraryViewModel>
 {
-    id <SPTYourLibraryViewModelDelegate> delegate;
+    _Bool _loaded;
+    SPTObserverManager *_observers;
     id <SPTYourLibraryModel> _model;
     id <SPTPageCreationContext> _pageCreationContext;
     NSMutableArray *_sections;
     NSMutableDictionary *_viewControllers;
     NSArray *_groupData;
+    NSURL *_pendingStateRestoreURI;
 }
 
+@property(nonatomic, getter=isLoaded) _Bool loaded; // @synthesize loaded=_loaded;
+@property(retain, nonatomic) NSURL *pendingStateRestoreURI; // @synthesize pendingStateRestoreURI=_pendingStateRestoreURI;
 @property(copy, nonatomic) NSArray *groupData; // @synthesize groupData=_groupData;
 @property(retain, nonatomic) NSMutableDictionary *viewControllers; // @synthesize viewControllers=_viewControllers;
 @property(retain, nonatomic) NSMutableArray *sections; // @synthesize sections=_sections;
 @property(retain, nonatomic) id <SPTPageCreationContext> pageCreationContext; // @synthesize pageCreationContext=_pageCreationContext;
 @property(retain, nonatomic) id <SPTYourLibraryModel> model; // @synthesize model=_model;
-@property(nonatomic) __weak id <SPTYourLibraryViewModelDelegate> delegate; // @synthesize delegate;
+@property(readonly, nonatomic) SPTObserverManager *observers; // @synthesize observers=_observers;
 - (void).cxx_destruct;
+- (void)removeObserver:(id)arg1;
+- (void)addObserver:(id)arg1;
+- (void)notifyObserversNavigateToGroup:(unsigned long long)arg1 index:(unsigned long long)arg2;
+- (void)notifyObserversModelUpdateWithActiveGroupIndex:(unsigned long long)arg1 pageIndex:(unsigned long long)arg2;
+- (void)notifiyObserversModelUpdated;
+- (void)saveLastVisitedPageURI:(id)arg1;
+- (void)stateRestoreToLastVisitedURI;
 - (void)load;
 - (void)yourLibraryModel:(id)arg1 didUpdatePageProviders:(id)arg2 groupData:(id)arg3;
+- (_Bool)stateRestoreToURI:(id)arg1;
 - (id)pageViewControllerAtIndexPath:(id)arg1;
 - (id)groupTitleForSection:(unsigned long long)arg1;
 - (id)pageTitleAtIndexPath:(id)arg1;

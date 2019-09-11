@@ -6,11 +6,10 @@
 
 #import "NSObject-Protocol.h"
 
-@class SPTPodcastRequest;
-@protocol SPTPodcastDataLoaderRequestToken;
+@protocol SPTPodcastDataLoaderRequestToken, SPTPodcastRequest;
 
 @protocol SPTPodcastDataLoader <NSObject>
-- (id <SPTPodcastDataLoaderRequestToken>)makeCancelablePodcastRequest:(SPTPodcastRequest *)arg1 onSuccess:(void (^)(NSData *))arg2 onError:(void (^)(NSError *))arg3;
-- (void)makePodcastRequest:(SPTPodcastRequest *)arg1 onSuccess:(void (^)(NSData *))arg2 onError:(void (^)(NSError *))arg3;
+- (id <SPTPodcastDataLoaderRequestToken>)makeCancelablePodcastRequest:(id <SPTPodcastRequest>)arg1 onSuccess:(void (^)(NSData *))arg2 onError:(void (^)(NSError *))arg3;
+- (void)makePodcastRequest:(id <SPTPodcastRequest>)arg1 onSuccess:(void (^)(NSData *))arg2 onError:(void (^)(NSError *))arg3;
 @end
 

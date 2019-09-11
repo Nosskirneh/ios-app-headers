@@ -40,8 +40,10 @@
 - (void)setAlbumIsOfflined:(_Bool)arg1;
 - (void)isAlbumComplete:(CDUnknownBlockType)arg1;
 - (_Bool)albumIsOffline;
+@property(readonly, nonatomic) unsigned long long releaseYear;
 @property(readonly, nonatomic) NSURL *artistURL;
-@property(readonly, nonatomic) NSString *artistName;
+@property(readonly, nonatomic) NSString *mainArtistName;
+@property(readonly, nonatomic) NSString *artistNames;
 @property(readonly, nonatomic) NSURL *coverArtLink;
 @property(readonly, nonatomic) NSString *albumName;
 - (void)loadWithCompletion:(CDUnknownBlockType)arg1;

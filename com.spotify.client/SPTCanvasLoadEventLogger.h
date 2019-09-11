@@ -6,23 +6,26 @@
 
 #import <objc/NSObject.h>
 
+@class NSString;
 @protocol SPTLogCenter;
 
 @interface SPTCanvasLoadEventLogger : NSObject
 {
     id <SPTLogCenter> _logCenter;
+    NSString *_contentLayerId;
 }
 
+@property(readonly, copy, nonatomic) NSString *contentLayerId; // @synthesize contentLayerId=_contentLayerId;
 @property(readonly, nonatomic) id <SPTLogCenter> logCenter; // @synthesize logCenter=_logCenter;
 - (void).cxx_destruct;
-- (void)streamingFailedWithCanvasId:(id)arg1 entityUri:(id)arg2 reason:(id)arg3 details:(id)arg4;
-- (void)streamingWasCancelledWithCanvasId:(id)arg1 entityUri:(id)arg2 reason:(id)arg3 details:(id)arg4;
+- (void)streamingFailedWithCanvasId:(id)arg1 entityUri:(id)arg2 error:(id)arg3;
 - (void)streamingDidStartWithCanvasId:(id)arg1 entityUri:(id)arg2;
-- (void)downloadDidFinishWithCanvasId:(id)arg1 entityUri:(id)arg2 reason:(id)arg3 details:(id)arg4;
-- (void)downloadDidFinishWithCanvasId:(id)arg1 entityUri:(id)arg2;
+- (void)streamingWillStartWithCanvasId:(id)arg1 entityUri:(id)arg2;
+- (void)downloadDidFinishWithErrorForCanvasWithId:(id)arg1 entityUri:(id)arg2 error:(id)arg3;
+- (void)downloadDidFinishForCanvasWithId:(id)arg1 entityUri:(id)arg2;
 - (void)downloadDidStartWithCanvasId:(id)arg1 entityUri:(id)arg2;
-- (void)logMessageWithCanvasId:(id)arg1 entityUri:(id)arg2 event:(id)arg3 errorReason:(id)arg4 errorDetail:(id)arg5;
-- (id)initWithLogCenter:(id)arg1;
+- (void)logMessageWithCanvasId:(id)arg1 entityUri:(id)arg2 event:(id)arg3 reason:(id)arg4 detail:(id)arg5;
+- (id)initWithLogCenter:(id)arg1 contentLayerId:(id)arg2;
 
 @end
 

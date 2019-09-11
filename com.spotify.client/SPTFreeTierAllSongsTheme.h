@@ -6,7 +6,7 @@
 
 #import "GLUEThemeBase.h"
 
-@class GLUEEntityRowStyle, SPTFreeTierAllSongsHeaderContentViewStyle, SPTFreeTierAllSongsUpdateViewStyle, SPTFreeTierPreCurationChunkyRowStyle, SPTFreeTierPreCurationQuickActionViewStyle, SPTFreeTierPreCurationTheme;
+@class SPTFreeTierAllSongsHeaderContentViewStyle, SPTFreeTierPreCurationChunkyRowStyle, SPTFreeTierPreCurationTheme;
 
 @interface SPTFreeTierAllSongsTheme : GLUEThemeBase
 {
@@ -15,18 +15,10 @@
 
 @property(readonly, nonatomic) SPTFreeTierPreCurationTheme *preCurationTheme; // @synthesize preCurationTheme=_preCurationTheme;
 - (void).cxx_destruct;
-@property(readonly, copy, nonatomic) SPTFreeTierAllSongsUpdateViewStyle *updateViewControllerStyle;
-@property(readonly, copy, nonatomic) SPTFreeTierPreCurationQuickActionViewStyle *likedAndBannedQuickActionViewStyle;
-@property(readonly, copy, nonatomic) SPTFreeTierPreCurationQuickActionViewStyle *likedQuickActionViewStyle;
-@property(readonly, copy, nonatomic) SPTFreeTierPreCurationQuickActionViewStyle *banQuickActionViewStyle;
-@property(readonly, copy, nonatomic) SPTFreeTierPreCurationQuickActionViewStyle *defaultQuickActionViewStyle;
-@property(readonly, copy, nonatomic) SPTFreeTierPreCurationQuickActionViewStyle *defaultQuickActionAddBanViewStyle;
 @property(readonly, copy, nonatomic) SPTFreeTierPreCurationChunkyRowStyle *bannedChunkyRowTrackStyle;
 @property(readonly, copy, nonatomic) SPTFreeTierAllSongsHeaderContentViewStyle *headerContentViewWithSubtitleStyle;
 @property(readonly, copy, nonatomic) SPTFreeTierAllSongsHeaderContentViewStyle *headerContentViewWithActionStyle;
-@property(readonly, copy, nonatomic) GLUEEntityRowStyle *bannedTrackRowStyle;
 @property(readonly, copy, nonatomic) SPTFreeTierPreCurationChunkyRowStyle *defaultChunkyRowTrackStyle;
-@property(readonly, copy, nonatomic) GLUEEntityRowStyle *defaultTrackRowStyle;
 - (id)initWithParentTheme:(id)arg1 andPreCurationTheme:(id)arg2;
 
 @end

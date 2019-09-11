@@ -25,7 +25,6 @@
 @property(readonly, nonatomic, getter=spt_pageURI) NSURL *pageURI;
 - (void)updateTasteViewModelDidComplete:(id)arg1;
 - (void)viewWillDisappear:(_Bool)arg1;
-- (void)viewDidAppear:(_Bool)arg1;
 - (void)viewWillAppear:(_Bool)arg1;
 - (void)viewDidLoad;
 - (void)loadView;

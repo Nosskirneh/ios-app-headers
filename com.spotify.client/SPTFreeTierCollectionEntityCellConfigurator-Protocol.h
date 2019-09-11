@@ -6,12 +6,14 @@
 
 #import "NSObject-Protocol.h"
 
-@class GLUEEntityRowTableViewCell;
-@protocol GLUEStyle, SPTFreeTierCollectionItemViewModel;
+@class GLUEEntityRowTableViewCell, NSIndexPath, UIView;
+@protocol SPTFreeTierCollectionEntityCellConfiguratorDelegate, SPTFreeTierCollectionEntityViewModel, SPTFreeTierCollectionItemViewModel;
 
 @protocol SPTFreeTierCollectionEntityCellConfigurator <NSObject>
 @property(readonly, nonatomic) double preferredCellHeight;
-- (void)updateStyle:(id <GLUEStyle>)arg1;
-- (void)configureCell:(GLUEEntityRowTableViewCell *)arg1 withViewModel:(id <SPTFreeTierCollectionItemViewModel>)arg2;
+@property(nonatomic) __weak id <SPTFreeTierCollectionEntityCellConfiguratorDelegate> delegate;
+- (double)heightForHeaderInSection:(long long)arg1 withViewModel:(id <SPTFreeTierCollectionEntityViewModel>)arg2;
+- (UIView *)headerForSection:(unsigned long long)arg1 withViewModel:(id <SPTFreeTierCollectionEntityViewModel>)arg2 andTrailingMargin:(double)arg3;
+- (void)configureCell:(GLUEEntityRowTableViewCell *)arg1 withViewModel:(id <SPTFreeTierCollectionItemViewModel>)arg2 atIndexPath:(NSIndexPath *)arg3;
 @end
 

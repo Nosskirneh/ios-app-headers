@@ -22,7 +22,7 @@
 - (void).cxx_destruct;
 - (id)inAppPurchaseModel;
 - (void)addItem:(id)arg1;
-- (void)createItems:(id)arg1 newStackEnabled:(_Bool)arg2 alertController:(id)arg3;
+- (void)createItems:(id)arg1 alertController:(id)arg2;
 - (void)updateAvailableProductsIfNeeded;
 - (id)initWithIAPController:(id)arg1 legacyController:(id)arg2 featureFlags:(id)arg3 featureSettingsItemFactory:(id)arg4 alertController:(id)arg5;
 

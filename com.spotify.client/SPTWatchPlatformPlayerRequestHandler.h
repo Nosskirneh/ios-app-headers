@@ -10,19 +10,19 @@
 #import "SPTWatchConnectivityRequestHandler-Protocol.h"
 
 @class NSString, SPTWatchConnectivityDataLoader, SPTaskCompletionSource;
-@protocol SPTExternalIntegrationPlaybackController, SPTGaiaVolumeControllerInterface, SPTStateController;
+@protocol SPTExternalIntegrationPlaybackController, SPTGaiaVolumeControllerInterface, SPTUICompletionNotifier;
 
 @interface SPTWatchPlatformPlayerRequestHandler : NSObject <SPTExternalIntegrationPlaybackControllerObserver, SPTWatchConnectivityRequestHandler>
 {
     SPTWatchConnectivityDataLoader *_dataLoader;
     id <SPTExternalIntegrationPlaybackController> _playbackController;
     id <SPTGaiaVolumeControllerInterface> _volumeController;
-    id <SPTStateController> _stateController;
+    id <SPTUICompletionNotifier> _UICompletionNotifier;
     SPTaskCompletionSource *_awaitPlayerReadyTaskFactory;
 }
 
 @property(retain, nonatomic) SPTaskCompletionSource *awaitPlayerReadyTaskFactory; // @synthesize awaitPlayerReadyTaskFactory=_awaitPlayerReadyTaskFactory;
-@property(readonly, nonatomic) __weak id <SPTStateController> stateController; // @synthesize stateController=_stateController;
+@property(readonly, nonatomic) __weak id <SPTUICompletionNotifier> UICompletionNotifier; // @synthesize UICompletionNotifier=_UICompletionNotifier;
 @property(readonly, nonatomic) id <SPTGaiaVolumeControllerInterface> volumeController; // @synthesize volumeController=_volumeController;
 @property(readonly, nonatomic) __weak id <SPTExternalIntegrationPlaybackController> playbackController; // @synthesize playbackController=_playbackController;
 @property(readonly, nonatomic) SPTWatchConnectivityDataLoader *dataLoader; // @synthesize dataLoader=_dataLoader;
@@ -33,7 +33,7 @@
 - (void)externalIntegrationPlaybackController:(id)arg1 didReceiveNewPlayerState:(id)arg2 oldPlayerState:(id)arg3;
 - (void)sendCompletionResponseForRequest:(id)arg1 body:(id)arg2 error:(id)arg3;
 - (void)startHandlingRequests;
-- (id)initWithDataLoader:(id)arg1 playbackController:(id)arg2 volumeController:(id)arg3 stateController:(id)arg4;
+- (id)initWithDataLoader:(id)arg1 playbackController:(id)arg2 volumeController:(id)arg3 UICompletionNotifier:(id)arg4;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

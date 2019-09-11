@@ -9,10 +9,8 @@
 @class NSString;
 
 @protocol SPTComScoreAnalyticsManager <NSObject>
-- (NSString *)userTargeting;
 - (void)userTargetingUpdated:(NSString *)arg1;
 - (void)playbackEnded;
 - (void)playbackStarted;
-- (void)startComScoreManager;
 @end
 

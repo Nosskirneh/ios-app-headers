@@ -6,20 +6,22 @@
 
 #import <objc/NSObject.h>
 
-#import "EXP_HUBComponentLayoutManager-Protocol.h"
+#import "HUBComponentLayoutManager-Protocol.h"
 
 @class SPTPremiumDestinationGLUETheme;
-@protocol EXP_HUBComponentLayoutManager;
+@protocol HUBComponentLayoutManager;
 
-@interface SPTPremiumDestinationComponentLayoutManager : NSObject <EXP_HUBComponentLayoutManager>
+@interface SPTPremiumDestinationComponentLayoutManager : NSObject <HUBComponentLayoutManager>
 {
-    id <EXP_HUBComponentLayoutManager> _hugsLayoutManager;
+    id <HUBComponentLayoutManager> _hugsLayoutManager;
     SPTPremiumDestinationGLUETheme *_theme;
 }
 
 @property(retain, nonatomic) SPTPremiumDestinationGLUETheme *theme; // @synthesize theme=_theme;
-@property(retain, nonatomic) id <EXP_HUBComponentLayoutManager> hugsLayoutManager; // @synthesize hugsLayoutManager=_hugsLayoutManager;
+@property(retain, nonatomic) id <HUBComponentLayoutManager> hugsLayoutManager; // @synthesize hugsLayoutManager=_hugsLayoutManager;
 - (void).cxx_destruct;
+- (double)containerMaxWidthForComponentWithLayoutTraits:(id)arg1;
+- (unsigned long long)containerAlignmentForComponentWithLayoutTraits:(id)arg1;
 - (double)horizontalOffsetForComponentsWithLayoutTraits:(id)arg1 firstComponentLeadingHorizontalOffset:(double)arg2 lastComponentTrailingHorizontalOffset:(double)arg3;
 - (double)verticalMarginForComponentWithLayoutTraits:(id)arg1 precedingComponentLayoutTraits:(id)arg2;
 - (double)horizontalMarginForComponentWithLayoutTraits:(id)arg1 precedingComponentLayoutTraits:(id)arg2;

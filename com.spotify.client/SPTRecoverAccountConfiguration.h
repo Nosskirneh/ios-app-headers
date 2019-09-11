@@ -7,20 +7,23 @@
 #import <objc/NSObject.h>
 
 @class SPTDataLoaderFactory, SPTLoginTheme, SPTRecoverAccountLoggerFactory;
+@protocol SPTModalPresentationController;
 
 @interface SPTRecoverAccountConfiguration : NSObject
 {
     SPTLoginTheme *_theme;
     SPTRecoverAccountLoggerFactory *_loggerFactory;
+    id <SPTModalPresentationController> _presentationController;
     SPTDataLoaderFactory *_dataLoaderFactory;
 }
 
 @property(readonly, nonatomic) SPTDataLoaderFactory *dataLoaderFactory; // @synthesize dataLoaderFactory=_dataLoaderFactory;
+@property(readonly, nonatomic) id <SPTModalPresentationController> presentationController; // @synthesize presentationController=_presentationController;
 @property(readonly, nonatomic) SPTRecoverAccountLoggerFactory *loggerFactory; // @synthesize loggerFactory=_loggerFactory;
 @property(readonly, nonatomic) SPTLoginTheme *theme; // @synthesize theme=_theme;
 - (void).cxx_destruct;
 - (id)provideDataLoader;
-- (id)initWithTheme:(id)arg1 dataLoaderFactory:(id)arg2 loggerFactory:(id)arg3;
+- (id)initWithTheme:(id)arg1 dataLoaderFactory:(id)arg2 loggerFactory:(id)arg3 presentationController:(id)arg4;
 
 @end
 

@@ -6,34 +6,25 @@
 
 #import <UIKit/UIViewController.h>
 
-#import "HUBActionPerformer-Protocol.h"
+@class HUBComponentRegistry, HUBContainerView;
+@protocol HUBComponentEventHandler, HUBComponentLayoutManager, HUBImageLoaderFactory;
 
-@class HUBContainerView, NSString, NSURL;
-@protocol HUBViewControllerDelegate, HUBViewModel;
-
-@interface HUBViewController : UIViewController <HUBActionPerformer>
+@interface HUBViewController : UIViewController
 {
-    id <HUBViewControllerDelegate> _delegate;
-    NSString *_featureIdentifier;
-    NSURL *_viewURI;
-    id <HUBViewModel> _viewModel;
+    HUBComponentRegistry *_componentRegistry;
+    id <HUBComponentLayoutManager> _componentLayoutManager;
+    id <HUBImageLoaderFactory> _imageLoaderFactory;
+    id <HUBComponentEventHandler> _componentEventHandler;
 }
 
-@property(readonly, nonatomic) id <HUBViewModel> viewModel; // @synthesize viewModel=_viewModel;
-@property(readonly, copy, nonatomic) NSURL *viewURI; // @synthesize viewURI=_viewURI;
-@property(readonly, copy, nonatomic) NSString *featureIdentifier; // @synthesize featureIdentifier=_featureIdentifier;
-@property(nonatomic) __weak id <HUBViewControllerDelegate> delegate; // @synthesize delegate=_delegate;
+@property(retain, nonatomic) id <HUBComponentEventHandler> componentEventHandler; // @synthesize componentEventHandler=_componentEventHandler;
+@property(readonly, nonatomic) id <HUBImageLoaderFactory> imageLoaderFactory; // @synthesize imageLoaderFactory=_imageLoaderFactory;
+@property(readonly, nonatomic) id <HUBComponentLayoutManager> componentLayoutManager; // @synthesize componentLayoutManager=_componentLayoutManager;
+@property(readonly, nonatomic) HUBComponentRegistry *componentRegistry; // @synthesize componentRegistry=_componentRegistry;
 - (void).cxx_destruct;
-- (_Bool)performActionWithIdentifier:(id)arg1 customData:(id)arg2;
-- (void)cancelComponentSelection;
-- (_Bool)selectComponentWithModel:(id)arg1 customData:(id)arg2;
-- (void)reload;
-- (void)scrollToComponentOfType:(unsigned long long)arg1 indexPath:(id)arg2 scrollPosition:(unsigned long long)arg3 animated:(_Bool)arg4 completion:(CDUnknownBlockType)arg5;
-- (void)scrollToContentOffset:(struct CGPoint)arg1 animated:(_Bool)arg2;
-- (unsigned long long)indexOfBodyComponentAtPoint:(struct CGPoint)arg1;
-- (struct CGRect)frameForBodyComponentAtIndex:(unsigned long long)arg1;
-- (id)visibleViewForComponentOfType:(unsigned long long)arg1 indexPath:(id)arg2;
-- (id)visibleComponentViewsForComponentType:(unsigned long long)arg1;
+- (void)viewWillTransitionToSize:(struct CGSize)arg1 withTransitionCoordinator:(id)arg2;
+- (void)loadView;
+- (id)initWithComponentRegistry:(id)arg1 componentLayoutManager:(id)arg2 imageLoaderFactory:(id)arg3 commandHandler:(id)arg4;
 
 // Remaining properties
 @property(retain, nonatomic) HUBContainerView *view; // @dynamic view;

@@ -6,14 +6,16 @@
 
 #import "NSObject-Protocol.h"
 
-@class EXP_HUBComponentRegistry;
-@protocol EXP_HUBComponentFallbackHandler, EXP_HUBComponentLayoutManager, EXP_HUBIconImageResolver, EXP_HUGSStyleOverrider, EXP_SPTHubComponentModelURIResolver;
+@class HUBComponentRegistry;
+@protocol HUBComponentFallbackHandler, HUBComponentLayoutManager, HUBIconImageResolver, HUGSStyleOverrider, SPTHubComponentModelURIResolver;
 
 @protocol SPTHugsFactory <NSObject>
-- (id <EXP_HUBComponentFallbackHandler>)provideComponentFallbackHandler;
-- (id <EXP_HUBComponentLayoutManager>)provideComponentLayoutManager;
-- (id <EXP_HUBIconImageResolver>)provideIconImageResolver;
-- (id <EXP_HUGSStyleOverrider>)createStyleOverriderWithComponentModelURIResolver:(id <EXP_SPTHubComponentModelURIResolver>)arg1;
-- (EXP_HUBComponentRegistry *)createComponentRegistryWithComponentModelURIResolver:(id <EXP_SPTHubComponentModelURIResolver>)arg1;
+- (id <HUBComponentFallbackHandler>)provideSimpleComponentFallbackHandler;
+- (id <HUBComponentFallbackHandler>)provideComponentFallbackHandler;
+- (id <HUBComponentLayoutManager>)provideComponentLayoutManager;
+- (id <HUBIconImageResolver>)provideIconImageResolver;
+- (id <HUGSStyleOverrider>)createStyleOverriderWithComponentModelURIResolver:(id <SPTHubComponentModelURIResolver>)arg1;
+- (HUBComponentRegistry *)createComponentRegistryWithComponentModelURIResolver:(id <SPTHubComponentModelURIResolver>)arg1 fallbackHandler:(id <HUBComponentFallbackHandler>)arg2;
+- (HUBComponentRegistry *)createComponentRegistryWithComponentModelURIResolver:(id <SPTHubComponentModelURIResolver>)arg1;
 @end
 

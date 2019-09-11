@@ -11,6 +11,7 @@
 + (id)spt_fetchUploadFormForRejectedCreative;
 + (id)spt_rejectCreativeWithID:(id)arg1 usingDevEnabled:(_Bool)arg2;
 + (id)spt_approveCreativeWithID:(id)arg1 usingDevEnabled:(_Bool)arg2;
++ (id)spt_urlForFetchingLocales:(_Bool)arg1;
 + (id)spt_urlForFetchingCreativesUsingDevEnabled:(_Bool)arg1 withCampaignID:(id)arg2 status:(long long)arg3 type:(id)arg4 andLocale:(id)arg5;
 @end
 

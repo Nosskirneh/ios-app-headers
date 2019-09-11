@@ -9,12 +9,13 @@
 #import "GLUEStyleable-Protocol.h"
 #import "SPContentInsetViewController-Protocol.h"
 #import "SPTFreeTierCollectionSearchViewControllerDelegate-Protocol.h"
+#import "SPTSortingFilteringClearFiltersControlDelegate-Protocol.h"
 #import "UITextFieldDelegate-Protocol.h"
 
-@class NSString, SPTFreeTierCollectionFilterBarViewControllerStyle, SPTFreeTierCollectionSearchViewController, UITableView, UIView;
+@class NSArray, NSLayoutConstraint, NSString, SPTFreeTierCollectionFilterBarViewControllerStyle, SPTFreeTierCollectionSearchViewController, UITableView, UIView;
 @protocol SPTFreeTierCollectionFilterBarViewControllerDelegate, SPTSortingFilteringFilterBar, SPTSortingFilteringUIFactory;
 
-@interface SPTFreeTierCollectionFilterBarViewController : UIViewController <SPTFreeTierCollectionSearchViewControllerDelegate, SPContentInsetViewController, UITextFieldDelegate, GLUEStyleable>
+@interface SPTFreeTierCollectionFilterBarViewController : UIViewController <SPTFreeTierCollectionSearchViewControllerDelegate, SPContentInsetViewController, UITextFieldDelegate, SPTSortingFilteringClearFiltersControlDelegate, GLUEStyleable>
 {
     _Bool _disableContextMenu;
     id <SPTFreeTierCollectionFilterBarViewControllerDelegate> _delegate;
@@ -26,8 +27,14 @@
     SPTFreeTierCollectionFilterBarViewControllerStyle *_style;
     NSString *_placeholderString;
     id <SPTSortingFilteringUIFactory> _sortingFilteringUIFactory;
+    NSLayoutConstraint *_heightConstraint;
+    NSArray *_filterTitles;
+    NSArray *_currentLayoutConstraints;
 }
 
+@property(copy, nonatomic) NSArray *currentLayoutConstraints; // @synthesize currentLayoutConstraints=_currentLayoutConstraints;
+@property(copy, nonatomic) NSArray *filterTitles; // @synthesize filterTitles=_filterTitles;
+@property(retain, nonatomic) NSLayoutConstraint *heightConstraint; // @synthesize heightConstraint=_heightConstraint;
 @property(retain, nonatomic) id <SPTSortingFilteringUIFactory> sortingFilteringUIFactory; // @synthesize sortingFilteringUIFactory=_sortingFilteringUIFactory;
 @property(copy, nonatomic) NSString *placeholderString; // @synthesize placeholderString=_placeholderString;
 @property(copy, nonatomic) SPTFreeTierCollectionFilterBarViewControllerStyle *style; // @synthesize style=_style;
@@ -39,12 +46,19 @@
 @property(nonatomic) _Bool disableContextMenu; // @synthesize disableContextMenu=_disableContextMenu;
 @property(nonatomic) __weak id <SPTFreeTierCollectionFilterBarViewControllerDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
+- (void)clearFiltersControl:(id)arg1 didSelectFilterRuleAtIndex:(long long)arg2;
 - (void)sp_updateContentInsets;
+- (void)snapAtTopAnimated:(_Bool)arg1;
+- (void)updateBottomInsetsForShortListIfNeeded;
+- (void)contentSizeChanged;
 - (void)snapTableViewToFilterBarAtTop:(id)arg1;
+- (void)insertFiltersWithTitles:(id)arg1;
 - (void)cancel;
+- (void)searchViewController:(id)arg1 removedFilterAtIndex:(long long)arg2;
 - (void)searchViewController:(id)arg1 textDidChange:(id)arg2;
 - (void)searchViewControllerDidCancel:(id)arg1;
 - (_Bool)textFieldShouldBeginEditing:(id)arg1;
+- (void)updateViewConstraints;
 @property(readonly, nonatomic, getter=isActive) _Bool active;
 - (void)endSearching;
 - (void)startSearching;

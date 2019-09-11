@@ -4,31 +4,22 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import "EXP_SPTHubViewController.h"
+#import "SPTHubViewController.h"
 
-#import "EXP_HUBViewContentOffsetObserver-Protocol.h"
+@class SPTFreeTierTrackContextMenuButtonViewModel, SPTFreeTierTrackFeedbackButtonViewModel;
 
-@class SPTFreeTierTrackContextMenuButtonViewModel, SPTFreeTierTrackHeartBanButtonViewModel;
-@protocol SPTGaiaUserInterfaceContextObserver;
-
-@interface SPTFreeTierTrackViewController : EXP_SPTHubViewController <EXP_HUBViewContentOffsetObserver>
+@interface SPTFreeTierTrackViewController : SPTHubViewController
 {
-    SPTFreeTierTrackHeartBanButtonViewModel *_heartBanButtonViewModel;
+    SPTFreeTierTrackFeedbackButtonViewModel *_feedbackButtonViewModel;
     SPTFreeTierTrackContextMenuButtonViewModel *_contextMenuButtonViewModel;
-    id <SPTGaiaUserInterfaceContextObserver> _gaiaObserverService;
 }
 
-@property(readonly, nonatomic) id <SPTGaiaUserInterfaceContextObserver> gaiaObserverService; // @synthesize gaiaObserverService=_gaiaObserverService;
 @property(readonly, nonatomic) SPTFreeTierTrackContextMenuButtonViewModel *contextMenuButtonViewModel; // @synthesize contextMenuButtonViewModel=_contextMenuButtonViewModel;
-@property(readonly, nonatomic) SPTFreeTierTrackHeartBanButtonViewModel *heartBanButtonViewModel; // @synthesize heartBanButtonViewModel=_heartBanButtonViewModel;
+@property(readonly, nonatomic) SPTFreeTierTrackFeedbackButtonViewModel *feedbackButtonViewModel; // @synthesize feedbackButtonViewModel=_feedbackButtonViewModel;
 - (void).cxx_destruct;
-- (void)hubView:(id)arg1 contentOffsetDidChange:(struct CGPoint)arg2;
-- (void)notifyGaiaThatPageIsPresented;
-- (void)dealloc;
-- (void)viewDidLoad;
 - (void)viewModelDidLoad:(id)arg1;
 - (void)setupNavigationItems;
-- (id)initWithTheme:(id)arg1 pageIdentifier:(id)arg2 pageURI:(id)arg3 componentRegistry:(id)arg4 componentLayoutManager:(id)arg5 imageLoaderFactory:(id)arg6 commandHandler:(id)arg7 viewModelProvider:(id)arg8 impressionLogger:(id)arg9 loadingLogger:(id)arg10 heartBanButtonViewModel:(id)arg11 contextMenuButtonViewModel:(id)arg12 gaiaObserverService:(id)arg13;
+- (id)initWithTheme:(id)arg1 pageIdentifier:(id)arg2 pageURI:(id)arg3 componentRegistry:(id)arg4 componentLayoutManager:(id)arg5 imageLoaderFactory:(id)arg6 commandHandler:(id)arg7 viewModelProvider:(id)arg8 impressionLogger:(id)arg9 loadingLogger:(id)arg10 feedbackButtonViewModel:(id)arg11 contextMenuButtonViewModel:(id)arg12 shareDragDelegateFactory:(id)arg13;
 
 @end
 

@@ -6,26 +6,45 @@
 
 #import <objc/NSObject.h>
 
-@class NSArray, SPTFreeTierTasteOnboardingTheme;
-@protocol SPTFreeTierTasteOnboardingUpdateTasteViewModelDelegate;
+#import "SPTFreeTierTasteOnboardingCurationObserver-Protocol.h"
 
-@interface SPTFreeTierTasteOnboardingUpdateTasteViewModel : NSObject
+@class NSArray, NSString, SPTFreeTierTasteOnboardingCurator, SPTFreeTierTasteOnboardingTheme;
+@protocol SPTFreeTierTasteOnboardingTestManager, SPTFreeTierTasteOnboardingUpdateTasteViewModelDelegate, SPTViewLogger;
+
+@interface SPTFreeTierTasteOnboardingUpdateTasteViewModel : NSObject <SPTFreeTierTasteOnboardingCurationObserver>
 {
     _Bool _repeatVisit;
     id <SPTFreeTierTasteOnboardingUpdateTasteViewModelDelegate> _delegate;
     NSArray *_selectedArtistURIs;
     SPTFreeTierTasteOnboardingTheme *_theme;
+    SPTFreeTierTasteOnboardingCurator *_curator;
+    id <SPTFreeTierTasteOnboardingTestManager> _testManager;
+    id <SPTViewLogger> _viewLogger;
+    unsigned long long _minCompleteTime;
 }
 
+@property(nonatomic) unsigned long long minCompleteTime; // @synthesize minCompleteTime=_minCompleteTime;
+@property(readonly, nonatomic) id <SPTViewLogger> viewLogger; // @synthesize viewLogger=_viewLogger;
+@property(readonly, nonatomic) id <SPTFreeTierTasteOnboardingTestManager> testManager; // @synthesize testManager=_testManager;
+@property(readonly, nonatomic) SPTFreeTierTasteOnboardingCurator *curator; // @synthesize curator=_curator;
 @property(readonly, nonatomic) SPTFreeTierTasteOnboardingTheme *theme; // @synthesize theme=_theme;
 @property(copy, nonatomic) NSArray *selectedArtistURIs; // @synthesize selectedArtistURIs=_selectedArtistURIs;
 @property(nonatomic, getter=isRepeatVisit) _Bool repeatVisit; // @synthesize repeatVisit=_repeatVisit;
 @property(nonatomic) __weak id <SPTFreeTierTasteOnboardingUpdateTasteViewModelDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
+- (void)tasteOnboardingDidFinishCurating:(id)arg1;
+- (void)completeUpdateTasteAt:(unsigned long long)arg1;
 - (void)startUpdate;
 - (id)messageText;
 - (id)viewStyle;
-- (id)initWithTheme:(id)arg1;
+- (void)dealloc;
+- (id)initWithTheme:(id)arg1 curator:(id)arg2 testManager:(id)arg3 viewLogger:(id)arg4;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

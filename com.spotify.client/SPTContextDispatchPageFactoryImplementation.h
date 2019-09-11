@@ -22,7 +22,7 @@
 - (void).cxx_destruct;
 - (id)offlinePageForURI:(id)arg1;
 - (id)errorPageForError:(unsigned long long)arg1 URI:(id)arg2;
-- (id)pageForURI:(id)arg1 referrer:(id)arg2;
+- (id)pageForURI:(id)arg1 queryParameters:(id)arg2 referrer:(id)arg3;
 - (id)initWithPageRegistry:(id)arg1 linkDispatcher:(id)arg2;
 
 // Remaining properties

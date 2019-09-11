@@ -6,14 +6,16 @@
 
 #import "NSObject-Protocol.h"
 
-@protocol SPTFormatListPlatformRegistration;
+@protocol SPTFormatListPlatformPlaylistRegistration, SPTFormatListPlatformRegistration;
 
 @protocol SPTFormatListPlatformRegistry <NSObject>
 - (void)unregisterFallbackHandler;
 - (void)unregisterHandlers;
 - (void)unregisterFallbackHandler:(id <SPTFormatListPlatformRegistration>)arg1;
+- (void)unregisterPlaylistHandler:(id <SPTFormatListPlatformPlaylistRegistration>)arg1;
 - (void)unregisterHandler:(id <SPTFormatListPlatformRegistration>)arg1;
 - (id <SPTFormatListPlatformRegistration>)registerFallbackHandler:(UIViewController<SPTPageController> * (^)(NSURL *, NSString *, id <SPTPageCreationContext>))arg1;
+- (id <SPTFormatListPlatformPlaylistRegistration>)registerPlaylistHandler:(UIViewController<SPTPageController> * (^)(NSURL *, id <SPTPageCreationContext>))arg1 predicate:(_Bool (^)(NSURL *))arg2;
 - (id <SPTFormatListPlatformRegistration>)registerHandler:(UIViewController<SPTPageController> * (^)(NSURL *, NSString *, id <SPTPageCreationContext>))arg1 predicate:(_Bool (^)(NSString *, NSDictionary *, NSURL *))arg2;
 @end
 

@@ -8,7 +8,7 @@
 
 #import "SPTThemableView-Protocol.h"
 
-@class NSDictionary, NSString, NSURL, SPTLayoutConstraintBuilder, SPTNowPlayingMarqueeLabel, SPTTheme, UILabel, UIView;
+@class NSArray, NSDictionary, NSString, NSURL, SPTNowPlayingMarqueeLabel, SPTTheme, UILabel, UIView;
 @protocol SPTNowPlayingTitleViewPresenterRegistry, SPTThemableViewLayoutDelegate;
 
 @interface SPTNowPlayingNavigationBarTitleView : UIControl <SPTThemableView>
@@ -17,7 +17,7 @@
     id <SPTThemableViewLayoutDelegate> _layoutDelegate;
     UILabel *_entityDescriptionLabel;
     SPTNowPlayingMarqueeLabel *_entityNameLabel;
-    SPTLayoutConstraintBuilder *_layout;
+    NSArray *_layoutConstraints;
     UIView *_invisibleCenteringView;
     SPTTheme *_theme;
     UILabel *_seperatorLabel;
@@ -32,7 +32,7 @@
 @property(retain, nonatomic) UILabel *seperatorLabel; // @synthesize seperatorLabel=_seperatorLabel;
 @property(retain, nonatomic) SPTTheme *theme; // @synthesize theme=_theme;
 @property(retain, nonatomic) UIView *invisibleCenteringView; // @synthesize invisibleCenteringView=_invisibleCenteringView;
-@property(retain, nonatomic) SPTLayoutConstraintBuilder *layout; // @synthesize layout=_layout;
+@property(copy, nonatomic) NSArray *layoutConstraints; // @synthesize layoutConstraints=_layoutConstraints;
 @property(nonatomic) _Bool useLandscapeLayout; // @synthesize useLandscapeLayout=_useLandscapeLayout;
 @property(retain, nonatomic) SPTNowPlayingMarqueeLabel *entityNameLabel; // @synthesize entityNameLabel=_entityNameLabel;
 @property(retain, nonatomic) UILabel *entityDescriptionLabel; // @synthesize entityDescriptionLabel=_entityDescriptionLabel;

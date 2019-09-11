@@ -6,11 +6,11 @@
 
 #import <objc/NSObject.h>
 
-#import "EXP_HUBCommandHandler-Protocol.h"
+#import "HUBCommandHandler-Protocol.h"
 
 @protocol SPTAssistedCurationAddTrackHandler;
 
-@interface SPTAssistedCurationAddToPlaylistCommandHandler : NSObject <EXP_HUBCommandHandler>
+@interface SPTAssistedCurationAddToPlaylistCommandHandler : NSObject <HUBCommandHandler>
 {
     id <SPTAssistedCurationAddTrackHandler> _addTrackHandler;
 }

@@ -6,10 +6,11 @@
 
 #import "NSObject-Protocol.h"
 
-@class NSURL, SPTAuthViewController;
+@class NSURL;
+@protocol SPTAuthViewController;
 
 @protocol SPTAuthViewControllerDelegate <NSObject>
-- (void)authViewControllerUserDidCancel:(SPTAuthViewController *)arg1;
-- (void)authViewController:(SPTAuthViewController *)arg1 didFinishWithResponseURL:(NSURL *)arg2;
+- (void)authViewControllerUserDidCancel:(id <SPTAuthViewController>)arg1;
+- (void)authViewController:(id <SPTAuthViewController>)arg1 didFinishWithResponseURL:(NSURL *)arg2;
 @end
 

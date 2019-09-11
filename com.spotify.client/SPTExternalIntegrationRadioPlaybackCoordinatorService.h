@@ -9,18 +9,18 @@
 #import "SPTExternalIntegrationPlaybackCoordinator-Protocol.h"
 #import "SPTService-Protocol.h"
 
-@class NSString, SPTAllocationContext;
-@protocol SPTExternalIntegrationPlaybackService, SPTRadioManager, SPTRadioService;
+@class NSString, SPTAllocationContext, SPTRadioPlaybackService;
+@protocol SPTExternalIntegrationPlaybackService, SPTRadioService;
 
 @interface SPTExternalIntegrationRadioPlaybackCoordinatorService : NSObject <SPTService, SPTExternalIntegrationPlaybackCoordinator>
 {
     id <SPTExternalIntegrationPlaybackService> _playbackService;
     id <SPTRadioService> _radioService;
-    id <SPTRadioManager> _radioManager;
+    SPTRadioPlaybackService *_radioPlaybackService;
 }
 
 + (id)serviceIdentifier;
-@property(readonly, nonatomic) id <SPTRadioManager> radioManager; // @synthesize radioManager=_radioManager;
+@property(readonly, nonatomic) __weak SPTRadioPlaybackService *radioPlaybackService; // @synthesize radioPlaybackService=_radioPlaybackService;
 @property(readonly, nonatomic) __weak id <SPTRadioService> radioService; // @synthesize radioService=_radioService;
 @property(readonly, nonatomic) __weak id <SPTExternalIntegrationPlaybackService> playbackService; // @synthesize playbackService=_playbackService;
 - (void).cxx_destruct;

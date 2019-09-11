@@ -14,7 +14,7 @@
 #import "UITableViewDelegate-Protocol.h"
 #import "UITextFieldDelegate-Protocol.h"
 
-@class GLUEButton, GLUELabel, NSArray, NSMutableArray, NSString, NSURL, SPTInAppMessageQAToolViewModel, SPTLayoutConstraintBuilder, UIPickerView, UIScrollView, UISegmentedControl, UITableView, UITextField, UIView;
+@class GLUELabel, NSArray, NSMutableArray, NSString, NSURL, SPTInAppMessageQAToolViewModel, UIPickerView, UIScrollView, UITableView, UITextField, UIView;
 @protocol GLUETheme, SPTPageContainer;
 
 @interface SPTInAppMessageQAToolViewController : SPViewController <SPTPageController, UITextFieldDelegate, UIPickerViewDataSource, UIPickerViewDelegate, UITableViewDataSource, UITableViewDelegate, SPTInAppMessageQAToolViewModelDelegate>
@@ -22,34 +22,32 @@
     SPTInAppMessageQAToolViewModel *_viewModel;
     NSMutableArray *_triggerMessages;
     UITextField *_campaignIdTextField;
-    GLUELabel *_reviewStatusHeaderLabel;
     GLUELabel *_localeHeaderLabel;
-    UISegmentedControl *_reviewStatusSegmentedControl;
     UIPickerView *_pickerView;
-    GLUEButton *_fetchCreativesButton;
     id <GLUETheme> _theme;
-    SPTLayoutConstraintBuilder *_layout;
+    NSArray *_layoutConstraints;
     NSArray *_locales;
-    UITableView *_campaignFormatTableView;
+    UITableView *_campaignDetailsTableView;
     NSArray *_campaignFormats;
     NSString *_selectedFormat;
     UIScrollView *_scrollView;
     UIView *_contentView;
+    NSArray *_reviewStatus;
+    NSString *_selectedReviewStatus;
 }
 
+@property(copy, nonatomic) NSString *selectedReviewStatus; // @synthesize selectedReviewStatus=_selectedReviewStatus;
+@property(copy, nonatomic) NSArray *reviewStatus; // @synthesize reviewStatus=_reviewStatus;
 @property(retain, nonatomic) UIView *contentView; // @synthesize contentView=_contentView;
 @property(retain, nonatomic) UIScrollView *scrollView; // @synthesize scrollView=_scrollView;
 @property(copy, nonatomic) NSString *selectedFormat; // @synthesize selectedFormat=_selectedFormat;
 @property(copy, nonatomic) NSArray *campaignFormats; // @synthesize campaignFormats=_campaignFormats;
-@property(retain, nonatomic) UITableView *campaignFormatTableView; // @synthesize campaignFormatTableView=_campaignFormatTableView;
+@property(retain, nonatomic) UITableView *campaignDetailsTableView; // @synthesize campaignDetailsTableView=_campaignDetailsTableView;
 @property(copy, nonatomic) NSArray *locales; // @synthesize locales=_locales;
-@property(retain, nonatomic) SPTLayoutConstraintBuilder *layout; // @synthesize layout=_layout;
+@property(copy, nonatomic) NSArray *layoutConstraints; // @synthesize layoutConstraints=_layoutConstraints;
 @property(retain, nonatomic) id <GLUETheme> theme; // @synthesize theme=_theme;
-@property(retain, nonatomic) GLUEButton *fetchCreativesButton; // @synthesize fetchCreativesButton=_fetchCreativesButton;
 @property(retain, nonatomic) UIPickerView *pickerView; // @synthesize pickerView=_pickerView;
-@property(retain, nonatomic) UISegmentedControl *reviewStatusSegmentedControl; // @synthesize reviewStatusSegmentedControl=_reviewStatusSegmentedControl;
 @property(retain, nonatomic) GLUELabel *localeHeaderLabel; // @synthesize localeHeaderLabel=_localeHeaderLabel;
-@property(retain, nonatomic) GLUELabel *reviewStatusHeaderLabel; // @synthesize reviewStatusHeaderLabel=_reviewStatusHeaderLabel;
 @property(retain, nonatomic) UITextField *campaignIdTextField; // @synthesize campaignIdTextField=_campaignIdTextField;
 @property(retain, nonatomic) NSMutableArray *triggerMessages; // @synthesize triggerMessages=_triggerMessages;
 @property(retain, nonatomic) SPTInAppMessageQAToolViewModel *viewModel; // @synthesize viewModel=_viewModel;
@@ -66,19 +64,21 @@
 - (id)pickerView:(id)arg1 titleForRow:(long long)arg2 forComponent:(long long)arg3;
 - (long long)pickerView:(id)arg1 numberOfRowsInComponent:(long long)arg2;
 - (long long)numberOfComponentsInPickerView:(id)arg1;
+- (void)useLocaleList:(id)arg1;
+- (void)useHardCodedLocaleList;
 - (void)dismissMessagePresentationViewController:(id)arg1;
 - (void)presentMessagePresentationViewController:(id)arg1;
 - (double)topInset;
-- (id)createLayoutConstraints;
+- (void)createLayoutConstraints;
 - (void)addConstraintsIfNeeded;
+- (void)doneButtonPressed;
 - (void)fetchCreativesPressed;
-- (void)setupFetchCreativesButton;
 - (void)setupLocaleSection;
-- (void)setupSegmentedControlSection;
-- (void)setupCampaignFormatSection;
+- (void)setupCampaignDetailsSection;
 - (void)setupCampaignTextField;
 - (void)setupContentView;
 - (void)setupScrollView;
+- (void)setupReviewStatusArray;
 - (void)setupCampaignFormatsArray;
 - (void)setupLocalesArray;
 - (void)viewDidLoad;

@@ -6,19 +6,19 @@
 
 #import <objc/NSObject.h>
 
-#import "EXP_HUBContentOperation-Protocol.h"
+#import "HUBContentOperation-Protocol.h"
 
 @class NSString;
-@protocol EXP_HUBContentOperationDelegate;
+@protocol HUBContentOperationDelegate;
 
-@interface SPTPodcastRecommendationsSectionTitleContentOperation : NSObject <EXP_HUBContentOperation>
+@interface SPTPodcastRecommendationsSectionTitleContentOperation : NSObject <HUBContentOperation>
 {
-    id <EXP_HUBContentOperationDelegate> _delegate;
+    id <HUBContentOperationDelegate> _delegate;
     NSString *_title;
 }
 
 @property(readonly, nonatomic) NSString *title; // @synthesize title=_title;
-@property(nonatomic) __weak id <EXP_HUBContentOperationDelegate> delegate; // @synthesize delegate=_delegate;
+@property(nonatomic) __weak id <HUBContentOperationDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
 - (void)performForViewModelBuilder:(id)arg1 previousError:(id)arg2;
 - (id)initWithTitle:(id)arg1;

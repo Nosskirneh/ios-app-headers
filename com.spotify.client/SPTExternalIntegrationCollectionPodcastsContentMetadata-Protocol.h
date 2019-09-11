@@ -4,12 +4,8 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import "SPTCollectionPlatformFieldName-Protocol.h"
-#import "SPTCollectionPlatformFieldPodcastCovers-Protocol.h"
-#import "SPTCollectionPlatformFieldPodcastMediaType-Protocol.h"
-#import "SPTCollectionPlatformFieldPodcastPublisher-Protocol.h"
-#import "SPTCollectionPlatformFieldURL-Protocol.h"
+#import "SPTCollectionPlatformPodcastMetadataFields-Protocol.h"
 
-@protocol SPTExternalIntegrationCollectionPodcastsContentMetadata <SPTCollectionPlatformFieldName, SPTCollectionPlatformFieldURL, SPTCollectionPlatformFieldPodcastCovers, SPTCollectionPlatformFieldPodcastMediaType, SPTCollectionPlatformFieldPodcastPublisher>
+@protocol SPTExternalIntegrationCollectionPodcastsContentMetadata <SPTCollectionPlatformPodcastMetadataFields>
 @end
 

@@ -6,16 +6,15 @@
 
 #import <Foundation/NSOperation.h>
 
-@class NSArray, NSData, NSDictionary, NSError, NSString;
+@class INSResponse, NSArray, NSError, NSString;
 @protocol INSLogger, INSMessageOperationDelegate, INSTransport;
 
 @interface INSMessageOperation : NSOperation
 {
+    _Bool _authenticate;
     NSArray *_envelopes;
-    long long _responseCode;
-    NSDictionary *_responseHeaders;
-    NSData *_responseBody;
-    NSError *_responseError;
+    INSResponse *_response;
+    NSError *_parseError;
     id <INSMessageOperationDelegate> _delegate;
     id <INSTransport> _transport;
     id <INSLogger> _logger;
@@ -23,17 +22,17 @@
 }
 
 @property(retain, nonatomic) NSString *path; // @synthesize path=_path;
+@property(nonatomic) _Bool authenticate; // @synthesize authenticate=_authenticate;
 @property(retain, nonatomic) id <INSLogger> logger; // @synthesize logger=_logger;
 @property(retain, nonatomic) id <INSTransport> transport; // @synthesize transport=_transport;
 @property(nonatomic) __weak id <INSMessageOperationDelegate> delegate; // @synthesize delegate=_delegate;
-@property(retain, nonatomic) NSError *responseError; // @synthesize responseError=_responseError;
-@property(retain, nonatomic) NSData *responseBody; // @synthesize responseBody=_responseBody;
-@property(retain, nonatomic) NSDictionary *responseHeaders; // @synthesize responseHeaders=_responseHeaders;
-@property(nonatomic) long long responseCode; // @synthesize responseCode=_responseCode;
+@property(retain, nonatomic) NSError *parseError; // @synthesize parseError=_parseError;
+@property(retain, nonatomic) INSResponse *response; // @synthesize response=_response;
 @property(retain, nonatomic) NSArray *envelopes; // @synthesize envelopes=_envelopes;
 - (void).cxx_destruct;
+- (void)validate;
 - (void)main;
-- (id)initWithTransport:(id)arg1 logger:(id)arg2 path:(id)arg3 envelopes:(id)arg4 delegate:(id)arg5;
+- (id)initWithTransport:(id)arg1 logger:(id)arg2 path:(id)arg3 authenticate:(_Bool)arg4 envelopes:(id)arg5 delegate:(id)arg6;
 
 @end
 

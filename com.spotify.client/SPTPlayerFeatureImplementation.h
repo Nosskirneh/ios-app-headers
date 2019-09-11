@@ -8,7 +8,7 @@
 
 #import "SPTPlayerFeature-Protocol.h"
 
-@class NSString, SPTAllocationContext, SPTAudioSessionControllerImpl, SPTPlaybackErrorPicker, SPTPlaybackStateRestorer, SPTPlaybackStateStoreController, SPTPlaybackStateTimer, SPTPlayerSubscription;
+@class NSString, SPTAllocationContext, SPTAudioSessionControllerImpl, SPTPlaybackErrorPicker, SPTPlayerSubscription;
 @protocol CosmosFeature, SPTContainerService, SPTContainerUIService, SPTCoreService, SPTDebugService, SPTFeatureFlaggingService, SPTNetworkService, SPTPlaybackErrorDialogs, SPTPlayer, SPTPlayerLocalObservers, SPTResolver, SPTSessionService, SPTSettingsFeature;
 
 @interface SPTPlayerFeatureImplementation : NSObject <SPTPlayerFeature>
@@ -27,9 +27,6 @@
     id <SPTPlayerLocalObservers> _localObservers;
     SPTAudioSessionControllerImpl *_audioSessionController;
     SPTPlaybackErrorPicker *_playbackErrorPicker;
-    SPTPlaybackStateRestorer *_stateRestorer;
-    SPTPlaybackStateTimer *_stateTimer;
-    SPTPlaybackStateStoreController *_stateStoreController;
     id <SPTPlayer> _observationPlayer;
     id <SPTPlaybackErrorDialogs> _playbackErrorDialogs;
     id <SPTResolver> _resolver;
@@ -51,11 +48,7 @@
 - (id)resolver;
 - (void)loadLazily;
 - (void)loadTAUtilities;
-- (void)loadStateStoreController;
-- (void)loadStateTimer;
 - (id)providePlaybackErrorDialogs;
-- (id)providePlaybackRepresentation;
-- (void)loadStateRestorer;
 - (void)loadAudioSessionController;
 - (id)cosmosRouter;
 - (long long)offlineState;

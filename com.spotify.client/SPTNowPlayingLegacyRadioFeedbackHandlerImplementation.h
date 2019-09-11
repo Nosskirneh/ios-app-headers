@@ -24,11 +24,12 @@
 - (void).cxx_destruct;
 - (void)hideImprovingStationProgressViewWithError:(id)arg1;
 - (void)showImprovingStationProgressView;
-- (void)radioFeedbackButtonTouchedUpInsideWithPositiveFeedback:(_Bool)arg1 andCompletionBlock:(CDUnknownBlockType)arg2;
+- (void)radioFeedbackButtonTouchedUpInsideWithPositiveFeedback:(_Bool)arg1 withConfirmation:(_Bool)arg2 andCompletionBlock:(CDUnknownBlockType)arg3;
 - (_Bool)currentTrackHasPositiveFeedback;
 - (_Bool)currentTrackHasNegativeFeedback;
-- (void)handleNegativeFeedbackActionForArtist:(id)arg1 trackName:(id)arg2 albumImageURL:(id)arg3 actionControl:(id)arg4 completion:(CDUnknownBlockType)arg5;
-- (void)handlePositiveFeedbackAction:(id)arg1;
+- (void)handleNegativeFeedbackActionForTrackWithConfirmation:(_Bool)arg1 completion:(CDUnknownBlockType)arg2;
+- (void)handleNegativeFeedbackActionForArtist:(id)arg1 trackName:(id)arg2 albumImageURL:(id)arg3 actionControl:(id)arg4 withConfirmation:(_Bool)arg5 completion:(CDUnknownBlockType)arg6;
+- (void)handlePositiveFeedbackAction:(id)arg1 withConfirmation:(_Bool)arg2;
 - (id)initWithRemoteControlPolicy:(id)arg1;
 
 // Remaining properties

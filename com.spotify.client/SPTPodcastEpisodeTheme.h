@@ -10,6 +10,7 @@
 {
 }
 
+- (id)episodeViewControllerStyle;
 - (id)descriptionCellStyle;
 - (id)backgroundOverlayStyle;
 - (id)headerContentViewStyle;

@@ -6,13 +6,15 @@
 
 #import <objc/NSObject.h>
 
-@protocol SPTOfflineManager;
+@protocol SPTExternalIntegrationPlaybackController, SPTOfflineManager;
 
 @interface SPTExternalIntegrationSpacesContentFactory : NSObject
 {
     id <SPTOfflineManager> _offlineManager;
+    id <SPTExternalIntegrationPlaybackController> _playbackController;
 }
 
+@property(readonly, nonatomic) __weak id <SPTExternalIntegrationPlaybackController> playbackController; // @synthesize playbackController=_playbackController;
 @property(readonly, nonatomic) __weak id <SPTOfflineManager> offlineManager; // @synthesize offlineManager=_offlineManager;
 - (void).cxx_destruct;
 - (_Bool)isSpacesBlockTrack:(id)arg1;
@@ -30,7 +32,7 @@
 - (id)contentListFromSpacesList:(id)arg1 URI:(id)arg2 flattenBlocks:(_Bool)arg3 withTestManager:(id)arg4;
 - (id)createPlaceholderSpacesContentForURI:(id)arg1;
 - (id)createSpacesContentForURI:(id)arg1 fromSpacesList:(id)arg2 withTestManager:(id)arg3;
-- (id)initWithOfflineManager:(id)arg1;
+- (id)initWithOfflineManager:(id)arg1 playbackController:(id)arg2;
 
 @end
 

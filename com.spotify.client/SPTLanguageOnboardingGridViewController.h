@@ -6,27 +6,29 @@
 
 #import <UIKit/UIViewController.h>
 
-#import "SPTLanguageOnboardingGridViewModelDelegate-Protocol.h"
+#import "SPTLanguageOnboardingViewModelDelegate-Protocol.h"
 #import "SPTPageController-Protocol.h"
 #import "UICollectionViewDataSource-Protocol.h"
 #import "UICollectionViewDelegateFlowLayout-Protocol.h"
 
-@class NSString, NSURL, SPTLanguageOnboardingContainerView, SPTLanguageOnboardingGridViewModel, SPTLanguageOnboardingTheme, SPTPopupManager;
+@class NSString, NSURL, SPTLanguageOnboardingContainerView, SPTLanguageOnboardingTheme, SPTLanguageOnboardingViewModel, SPTPopupDialog, SPTPopupManager;
 @protocol GLUEImageLoader, SPTLanguageOnboardingGridViewControllerDelegate, SPTPageContainer;
 
-@interface SPTLanguageOnboardingGridViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, SPTLanguageOnboardingGridViewModelDelegate, SPTPageController>
+@interface SPTLanguageOnboardingGridViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, SPTLanguageOnboardingViewModelDelegate, SPTPageController>
 {
     SPTPopupManager *_popupManager;
-    SPTLanguageOnboardingGridViewModel *_viewModel;
+    SPTLanguageOnboardingViewModel *_viewModel;
     SPTLanguageOnboardingTheme *_theme;
     id <GLUEImageLoader> _imageLoader;
     id <SPTLanguageOnboardingGridViewControllerDelegate> _delegate;
+    SPTPopupDialog *_dialog;
 }
 
+@property(retain, nonatomic) SPTPopupDialog *dialog; // @synthesize dialog=_dialog;
 @property(nonatomic) __weak id <SPTLanguageOnboardingGridViewControllerDelegate> delegate; // @synthesize delegate=_delegate;
 @property(readonly, nonatomic) id <GLUEImageLoader> imageLoader; // @synthesize imageLoader=_imageLoader;
 @property(readonly, nonatomic) SPTLanguageOnboardingTheme *theme; // @synthesize theme=_theme;
-@property(readonly, nonatomic) SPTLanguageOnboardingGridViewModel *viewModel; // @synthesize viewModel=_viewModel;
+@property(readonly, nonatomic) SPTLanguageOnboardingViewModel *viewModel; // @synthesize viewModel=_viewModel;
 @property(readonly, nonatomic) SPTPopupManager *popupManager; // @synthesize popupManager=_popupManager;
 - (void).cxx_destruct;
 - (void)handleFinish;
@@ -35,13 +37,12 @@
 - (void)updateSelectedLanguages;
 - (void)presentErrorDialogWithRetryHandler:(CDUnknownBlockType)arg1 cancelHandler:(CDUnknownBlockType)arg2;
 - (void)setContainerViewState:(long long)arg1;
-- (void)viewModel:(id)arg1 didReachRequiredSelectedNumberOfLanguages:(_Bool)arg2;
 - (void)viewModelDidUpdateSelectedLanguages:(id)arg1;
 - (void)viewModelDidFetchLanguages:(id)arg1;
 - (void)viewModel:(id)arg1 isOffline:(_Bool)arg2;
+- (void)refreshState;
 - (void)viewModel:(id)arg1 didDeselectLanguageAtIndex:(unsigned long long)arg2;
 - (void)viewModel:(id)arg1 didSelectLanguageAtIndex:(unsigned long long)arg2;
-- (void)viewModel:(id)arg1 didStartLoading:(_Bool)arg2;
 - (void)viewModel:(id)arg1 didFailToUpdateSelectedLanguages:(id)arg2;
 - (void)viewModel:(id)arg1 didFailFetchingLanguages:(id)arg2;
 - (void)scrollViewDidScroll:(id)arg1;

@@ -6,12 +6,10 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTFeatureFlagSignalObserver-Protocol.h"
-
 @class NSString, SPTObserverManager;
 @protocol SPTFeatureFlagFactory, SPTFeatureFlagSignal, SPTFeatureSettingsItemFactory, SPTLocalSettings;
 
-@interface SPTFollowShelfTestManager : NSObject <SPTFeatureFlagSignalObserver>
+@interface SPTFollowShelfTestManager : NSObject
 {
     _Bool _followShelfUserEnabled;
     _Bool _releaseRadarPSXUserEnabled;

@@ -6,7 +6,7 @@
 
 #import <objc/NSObject.h>
 
-@class EAAccessory, EAAccessoryManager;
+@class EAAccessory, EAAccessoryManager, NSLock;
 
 @interface IDExternalAccessorySelector : NSObject
 {
@@ -14,9 +14,11 @@
     EAAccessoryManager *_eaAccessoryManager;
     id _accessoryDidConnectNotificationObserver;
     id _accessoryDidDisconnectNotificationObserver;
+    NSLock *_accessorySelectLock;
 }
 
 + (id)sharedInstance;
+@property(retain) NSLock *accessorySelectLock; // @synthesize accessorySelectLock=_accessorySelectLock;
 @property(retain, nonatomic) id accessoryDidDisconnectNotificationObserver; // @synthesize accessoryDidDisconnectNotificationObserver=_accessoryDidDisconnectNotificationObserver;
 @property(retain, nonatomic) id accessoryDidConnectNotificationObserver; // @synthesize accessoryDidConnectNotificationObserver=_accessoryDidConnectNotificationObserver;
 @property(retain) EAAccessoryManager *eaAccessoryManager; // @synthesize eaAccessoryManager=_eaAccessoryManager;
@@ -28,7 +30,7 @@
 - (id)sessionForSelectedExternalAccessoryWithProtocol:(id)arg1;
 - (_Bool)selectedAccessoryHasMultisessionSupport;
 - (id)selectValidExternalAccessory;
-- (void)selectAccessory:(id)arg1;
+- (void)selectAccessory;
 - (id)selectedExternalAccessory;
 - (void)notifyAccessoryDidDisappear;
 - (void)notifyAccessoryDidAppear;

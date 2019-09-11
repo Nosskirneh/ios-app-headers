@@ -14,18 +14,22 @@
 @interface SPTFormatListPlatformRegistryImplementation : NSObject <SPTFormatListPlatformRegistry>
 {
     NSMutableArray *_registrations;
+    NSMutableArray *_playlistRegistrations;
     id <SPTFormatListPlatformRegistration> _fallbackHandler;
 }
 
 @property(retain, nonatomic) id <SPTFormatListPlatformRegistration> fallbackHandler; // @synthesize fallbackHandler=_fallbackHandler;
+@property(readonly, nonatomic) NSMutableArray *playlistRegistrations; // @synthesize playlistRegistrations=_playlistRegistrations;
 @property(readonly, nonatomic) NSMutableArray *registrations; // @synthesize registrations=_registrations;
 - (void).cxx_destruct;
 - (id)viewControllerForURL:(id)arg1 formatListType:(id)arg2 formatListAttributes:(id)arg3 context:(id)arg4;
 - (void)unregisterFallbackHandler;
 - (void)unregisterHandlers;
 - (void)unregisterFallbackHandler:(id)arg1;
+- (void)unregisterPlaylistHandler:(id)arg1;
 - (void)unregisterHandler:(id)arg1;
 - (id)registerFallbackHandler:(CDUnknownBlockType)arg1;
+- (id)registerPlaylistHandler:(CDUnknownBlockType)arg1 predicate:(CDUnknownBlockType)arg2;
 - (id)registerHandler:(CDUnknownBlockType)arg1 predicate:(CDUnknownBlockType)arg2;
 - (id)init;
 

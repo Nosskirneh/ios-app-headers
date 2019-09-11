@@ -17,8 +17,12 @@
     _Bool _hasOwnPlaylists;
     NSArray *_items;
     id <SPTFreeTierCollectionPlaylistModelItemEntity> _favoriteEntity;
+    NSArray *_sectionIndexes;
+    NSArray *_sectionTitles;
 }
 
+@property(copy, nonatomic) NSArray *sectionTitles; // @synthesize sectionTitles=_sectionTitles;
+@property(copy, nonatomic) NSArray *sectionIndexes; // @synthesize sectionIndexes=_sectionIndexes;
 @property(nonatomic) _Bool hasOwnPlaylists; // @synthesize hasOwnPlaylists=_hasOwnPlaylists;
 @property(retain, nonatomic) id <SPTFreeTierCollectionPlaylistModelItemEntity> favoriteEntity; // @synthesize favoriteEntity=_favoriteEntity;
 @property(retain, nonatomic) NSArray *items; // @synthesize items=_items;

@@ -13,10 +13,10 @@
 
 @interface SPTCoreURLSessionDataDelegate : NSObject <NSURLSessionDelegate, NSURLSessionTaskDelegate>
 {
-    weak_ptr_a31af7f1 _session;
+    weak_ptr_746914f4 _connectionFactory;
 }
 
-@property(readonly, nonatomic) weak_ptr_a31af7f1 session; // @synthesize session=_session;
+@property(readonly, nonatomic) weak_ptr_746914f4 connectionFactory; // @synthesize connectionFactory=_connectionFactory;
 - (id).cxx_construct;
 - (void).cxx_destruct;
 - (void)URLSession:(id)arg1 task:(id)arg2 needNewBodyStream:(CDUnknownBlockType)arg3;
@@ -27,7 +27,7 @@
 - (void)URLSession:(id)arg1 dataTask:(id)arg2 didReceiveData:(id)arg3;
 - (void)URLSession:(id)arg1 dataTask:(id)arg2 didBecomeDownloadTask:(id)arg3;
 - (void)URLSession:(id)arg1 dataTask:(id)arg2 didReceiveResponse:(id)arg3 completionHandler:(CDUnknownBlockType)arg4;
-- (id)initWithSessionManager:(shared_ptr_d8673b2f)arg1;
+- (id)initWithConnectionFactory:(shared_ptr_04bee604)arg1;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

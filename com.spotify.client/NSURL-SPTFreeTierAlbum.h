@@ -9,8 +9,11 @@
 @class NSString;
 
 @interface NSURL (SPTFreeTierAlbum)
-+ (id)spt_freeTierAlbumContentURLForAlbumIdentifier:(id)arg1;
++ (id)spt_freeTierAlbumContentURLForAlbumIdentifier:(id)arg1 podcastEnabled:(_Bool)arg2 videoEnabled:(_Bool)arg3 onDemandTrialEnabled:(_Bool)arg4;
+- (id)spt_albumID;
+- (id)spt_freeTierCollectionAlbumRedirectURI;
 @property(readonly, nonatomic) NSString *spt_freeTierAlbumIdentifier;
+@property(readonly, nonatomic) _Bool spt_isFreeTierCollectionAlbumViewURI;
 @property(readonly, nonatomic) _Bool spt_isFreeTierAlbumViewURI;
 @end
 

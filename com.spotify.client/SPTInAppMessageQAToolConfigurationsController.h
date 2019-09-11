@@ -25,7 +25,7 @@
 @property(nonatomic) __weak id <SPTInAppMessageQAToolConfigurationsControllerDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
 - (id)deserializeData:(id)arg1;
-- (void)handleFetchedCreativesData:(id)arg1;
+- (void)handleFetchedData:(id)arg1;
 - (void)handleSuccessfulResponse:(id)arg1;
 - (void)handleErrorResponse:(id)arg1;
 - (void)dataLoader:(id)arg1 didReceiveErrorResponse:(id)arg2;
@@ -34,6 +34,7 @@
 - (void)approveCreativeWithID:(id)arg1;
 - (long long)backendRequestTypeFromFormatType:(id)arg1;
 - (_Bool)fetchMessageCreativesForCampaignWithID:(id)arg1 status:(long long)arg2 type:(id)arg3 andLocale:(id)arg4;
+- (void)fetchLocales;
 - (id)initWithDataLoader:(id)arg1 localSettings:(id)arg2;
 
 // Remaining properties

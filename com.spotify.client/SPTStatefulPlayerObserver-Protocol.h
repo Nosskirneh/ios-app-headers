@@ -13,5 +13,10 @@
 - (void)playerDidUpdatePlaybackControls:(SPTStatefulPlayer *)arg1;
 - (void)playerDidUpdateTrackPosition:(SPTStatefulPlayer *)arg1;
 - (void)player:(SPTStatefulPlayer *)arg1 didMoveToRelativeTrack:(NSNumber *)arg2;
+
+@optional
+- (void)playerDidSynchronizeQueue:(SPTStatefulPlayer *)arg1;
+- (void)playerPreviousTrackDidChange:(SPTStatefulPlayer *)arg1;
+- (void)playerNextTrackDidChange:(SPTStatefulPlayer *)arg1;
 @end
 

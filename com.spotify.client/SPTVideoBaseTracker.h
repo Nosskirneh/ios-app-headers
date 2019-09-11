@@ -8,8 +8,8 @@
 
 #import "SPTVideoEventObserver-Protocol.h"
 
-@class NSMutableArray, NSString, SPTVideoBufferEvent, SPTVideoFormatEvent, SPTVideoPlayRange, SPTVideoPlayRangeState;
-@protocol SPTVideoPlaybackIdentity;
+@class NSMutableArray, NSString, SPTAudioFormatEvent, SPTVideoBufferEvent, SPTVideoFormatEvent, SPTVideoPlayRange, SPTVideoPlayRangeState;
+@protocol OS_dispatch_queue, SPTVideoPlaybackIdentity;
 
 @interface SPTVideoBaseTracker : NSObject <SPTVideoEventObserver>
 {
@@ -18,14 +18,16 @@
     _Bool _messageSent;
     _Bool _seekOngoing;
     id <SPTVideoPlaybackIdentity> _identity;
+    SPTVideoPlayRangeState *_currentPlayRangeState;
     NSMutableArray *_playedRanges;
     double _duration;
-    NSString *_exitReason;
-    NSMutableArray *_formatEvents;
+    NSMutableArray *_videoFormatEvents;
+    NSMutableArray *_audioFormatEvents;
+    double _startBitrate;
     long long _bytesDownloaded;
-    SPTVideoPlayRangeState *_currentPlayRangeState;
     SPTVideoBufferEvent *_currentBufferEvent;
-    SPTVideoFormatEvent *_currentFormatEvent;
+    SPTVideoFormatEvent *_currentVideoFormatEvent;
+    SPTAudioFormatEvent *_currentAudioFormatEvent;
     SPTVideoPlayRange *_startTimeRange;
     SPTVideoPlayRange *_manifestLoadTimeRange;
     SPTVideoPlayRange *_encryptionLoadTimeRange;
@@ -39,55 +41,61 @@
 @property(retain, nonatomic) SPTVideoPlayRange *encryptionLoadTimeRange; // @synthesize encryptionLoadTimeRange=_encryptionLoadTimeRange;
 @property(retain, nonatomic) SPTVideoPlayRange *manifestLoadTimeRange; // @synthesize manifestLoadTimeRange=_manifestLoadTimeRange;
 @property(retain, nonatomic) SPTVideoPlayRange *startTimeRange; // @synthesize startTimeRange=_startTimeRange;
-@property(retain, nonatomic) SPTVideoFormatEvent *currentFormatEvent; // @synthesize currentFormatEvent=_currentFormatEvent;
+@property(retain, nonatomic) SPTAudioFormatEvent *currentAudioFormatEvent; // @synthesize currentAudioFormatEvent=_currentAudioFormatEvent;
+@property(retain, nonatomic) SPTVideoFormatEvent *currentVideoFormatEvent; // @synthesize currentVideoFormatEvent=_currentVideoFormatEvent;
 @property(retain, nonatomic) SPTVideoBufferEvent *currentBufferEvent; // @synthesize currentBufferEvent=_currentBufferEvent;
-@property(retain, nonatomic) SPTVideoPlayRangeState *currentPlayRangeState; // @synthesize currentPlayRangeState=_currentPlayRangeState;
 @property(nonatomic) _Bool messageSent; // @synthesize messageSent=_messageSent;
 @property(nonatomic) long long bytesDownloaded; // @synthesize bytesDownloaded=_bytesDownloaded;
-@property(retain, nonatomic) NSMutableArray *formatEvents; // @synthesize formatEvents=_formatEvents;
-@property(copy, nonatomic) NSString *exitReason; // @synthesize exitReason=_exitReason;
+@property(readonly, nonatomic) double startBitrate; // @synthesize startBitrate=_startBitrate;
+@property(retain, nonatomic) NSMutableArray *audioFormatEvents; // @synthesize audioFormatEvents=_audioFormatEvents;
+@property(retain, nonatomic) NSMutableArray *videoFormatEvents; // @synthesize videoFormatEvents=_videoFormatEvents;
 @property(nonatomic) double duration; // @synthesize duration=_duration;
 @property(retain, nonatomic) NSMutableArray *playedRanges; // @synthesize playedRanges=_playedRanges;
+@property(retain, nonatomic) SPTVideoPlayRangeState *currentPlayRangeState; // @synthesize currentPlayRangeState=_currentPlayRangeState;
 @property(retain, nonatomic) id <SPTVideoPlaybackIdentity> identity; // @synthesize identity=_identity;
 - (void).cxx_destruct;
-- (double)now;
 - (long long)currentDeviceOrientation;
-- (id)exitReasonFromEndReasonCode:(long long)arg1;
-- (void)endCurrentFormatEventAtPosition:(double)arg1;
-- (void)startNewFormatEvent:(id)arg1 atPosition:(double)arg2;
-- (void)endCurrentBufferEvent;
-- (void)startNewBufferEventWithType:(long long)arg1;
+- (void)endCurrentAudioFormatEventAtPosition:(double)arg1;
+- (void)endCurrentVideoFormatEventAtPosition:(double)arg1;
+- (void)startNewAudioFormatEvent:(id)arg1 atPosition:(double)arg2;
+- (void)startNewVideoFormatEvent:(id)arg1 atPosition:(double)arg2;
+- (void)endCurrentBufferEventWithTimestamp:(double)arg1;
+- (void)startNewBufferEventWithType:(long long)arg1 timestamp:(double)arg2;
 - (void)endCurrentPlayRangeAtPosition:(double)arg1 andStartNextRangeAtPosition:(double)arg2;
 - (void)endCurrentPlayRangeAtPosition:(double)arg1;
-- (void)videoPlaybackSubtitleDidChange:(id)arg1 atPosition:(double)arg2;
-- (void)videoPlaybackDidDropVideoFrames:(unsigned long long)arg1;
-- (void)videoPlaybackDidTransferBytes:(long long)arg1 bitrate:(double)arg2;
-- (void)videoPlaybackFormatDidChange:(id)arg1 atPosition:(double)arg2;
-- (void)videoPlaybackSurfaceDidChange:(id)arg1 atPosition:(double)arg2;
-- (void)videoPlaybackBackgroundStateDidChange:(double)arg1 backgrounded:(_Bool)arg2;
-- (void)videoPlaybackDidFailWithRecoverableError:(id)arg1 atPosition:(double)arg2;
-- (void)videoPlaybackDidFailWithError:(id)arg1 atPosition:(double)arg2;
-- (void)videoPlaybackDidEndAtPosition:(double)arg1 withEndReason:(long long)arg2;
-- (void)videoPlaybackWillSeekToPosition:(double)arg1 fromPosition:(double)arg2;
-- (void)videoPlaybackRateDidChangeTo:(double)arg1 atPosition:(double)arg2;
-- (void)videoPlaybackReadyAtPosition:(double)arg1 duration:(double)arg2 playWhenReady:(_Bool)arg3;
-- (void)videoPlaybackDidStartBuffering:(double)arg1;
-- (void)videoPlaybackDidLoadDRMSession;
-- (void)videoPlaybackWillLoadDRMSession;
-- (void)videoPlaybackDidLoadManifest;
-- (void)videoPlaybackWillLoadManifest;
-- (void)videoPlaybackWillEndWithNextPlaybackIdentity:(id)arg1;
-- (void)videoPlaybackDidCreateSessionWithIdentity:(id)arg1 timeObservable:(id)arg2 inBackground:(_Bool)arg3;
-@property(readonly, nonatomic) double startBitrate;
-@property(readonly, copy, nonatomic) NSString *encryptionType;
+- (void)didChangeSubtitle:(id)arg1 atPosition:(double)arg2 timestamp:(double)arg3;
+- (void)didDropVideoFrames:(unsigned long long)arg1 timestamp:(double)arg2;
+- (void)didTransferBytes:(long long)arg1 forBitrate:(double)arg2 withElapsedTime:(double)arg3 timestamp:(double)arg4;
+- (void)didChangeAudioFormat:(id)arg1 atPosition:(double)arg2 timestamp:(double)arg3;
+- (void)didChangeVideoFormat:(id)arg1 atPosition:(double)arg2 timestamp:(double)arg3;
+- (void)didChangeSurface:(id)arg1 atPosition:(double)arg2 timestamp:(double)arg3;
+- (void)didChangeBackgroundState:(_Bool)arg1 atPosition:(double)arg2 timestamp:(double)arg3;
+- (void)didFailWithRecoverableError:(id)arg1 atPosition:(double)arg2 timestamp:(double)arg3;
+- (void)didFailWithFatalError:(id)arg1 atPosition:(double)arg2 timestamp:(double)arg3;
+- (void)didEndPlaybackWithReason:(long long)arg1 atPosition:(double)arg2 timestamp:(double)arg3;
+- (void)willSeekToPosition:(double)arg1 fromPosition:(double)arg2 timestamp:(double)arg3;
+- (void)didChangePlaybackSpeed:(float)arg1 atPosition:(double)arg2 timestamp:(double)arg3;
+- (void)didResumeWithTimestamp:(double)arg1;
+- (void)didPauseAtPosition:(double)arg1 timestamp:(double)arg2;
+- (void)didChangeDuration:(double)arg1 timestamp:(double)arg2;
+- (void)didBecomeReadyAtPosition:(double)arg1 timestamp:(double)arg2;
+- (void)didStartBufferingAtPosition:(double)arg1 timestamp:(double)arg2;
+- (void)didLoadEncriptionKeyOfType:(long long)arg1 timestamp:(double)arg2;
+- (void)willLoadEncryptionKeyWithTimestamp:(double)arg1;
+- (void)didLoadManifestWithTimestamp:(double)arg1;
+- (void)willLoadManifestWithTimestamp:(double)arg1;
+- (void)willEndPlaybackWithNextIdentity:(id)arg1 timestamp:(double)arg2;
+- (void)didCreatePlaybackInBackground:(_Bool)arg1 timestamp:(double)arg2;
+@property(readonly, nonatomic) _Bool isEncrypted;
 - (id)calculatePlaybackStatisticsWithPlayedRanges:(id)arg1;
 - (id)calculatePlaybackStatisticsAtPosition:(double)arg1;
 - (id)calculatePlaybackStatistics;
-- (id)init;
+- (id)initWithIdentity:(id)arg1;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
+@property(readonly, nonatomic) NSObject<OS_dispatch_queue> *dispatchQueue;
 @property(readonly) unsigned long long hash;
 @property(readonly) Class superclass;
 

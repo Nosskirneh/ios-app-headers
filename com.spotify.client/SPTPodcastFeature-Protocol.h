@@ -6,18 +6,22 @@
 
 #import "SPTService-Protocol.h"
 
-@class SPTPodcastPreferences;
-@protocol SPTHubLocalContentProvider, SPTHubViewHandler, SPTLinkDispatcher, SPTNowPlayingTitleViewPresenter, SPTPodcastContextMenuProvider, SPTPodcastIconProvider, SPTPodcastSpeedControlManager, SPTPodcastTestManager, SPTPodmarksManager, SPTShowEntityService;
+@class NSString, NSURL, SPTPodcastPreferences;
+@protocol SPTLinkDispatcher, SPTNowPlayingTitleViewPresenter, SPTPodcastContextMenuProvider, SPTPodcastDataLoader, SPTPodcastEpisodeCellConfigurator, SPTPodcastEpisodeFactory, SPTPodcastFactory, SPTPodcastLogger, SPTPodcastPlayer, SPTPodcastRequestFactory, SPTPodcastSpeedControlManager, SPTPodcastTestManager, SPTPodcastUnfinishedItemsProvider, SPTShowEntityService;
 
 @protocol SPTPodcastFeature <SPTService>
+- (id <SPTPodcastEpisodeCellConfigurator>)provideEpisodeCellConfigurator;
+- (id <SPTPodcastUnfinishedItemsProvider>)provideUnfinishedItemsProvider;
+- (id <SPTPodcastPlayer>)providePodcastPlayerWithViewURI:(NSURL *)arg1 featureIdentifier:(NSString *)arg2 referrerIdentifier:(NSString *)arg3;
+- (id <SPTPodcastLogger>)providePodcastLogger;
+- (id <SPTPodcastEpisodeFactory>)providePodcastEpisodeFactory;
+- (id <SPTPodcastFactory>)providePodcastFactory;
+- (id <SPTPodcastDataLoader>)providePodcastDataLoader;
+- (id <SPTPodcastRequestFactory>)providePodcastRequestFactory;
 - (id <SPTNowPlayingTitleViewPresenter>)providePodcastNowPlayingTitlePresenter;
 - (SPTPodcastPreferences *)providePodcastPreferences;
-- (id <SPTPodmarksManager>)providePodmarksManager;
-- (id <SPTPodcastIconProvider>)provideIconProvider;
 - (id <SPTPodcastSpeedControlManager>)providePodcastSpeedControlManager;
 - (id <SPTPodcastTestManager>)provideTestManager;
-- (id <SPTHubViewHandler>)provideHubViewHandler;
-- (id <SPTHubLocalContentProvider>)provideHubLocalContentProvider;
 - (id <SPTShowEntityService>)provideShowEntityService;
 - (id <SPTPodcastContextMenuProvider>)provideDefaultContextMenuProvider;
 - (id <SPTPodcastContextMenuProvider>)provideContextMenuProviderWithLinkDispatcher:(id <SPTLinkDispatcher>)arg1;

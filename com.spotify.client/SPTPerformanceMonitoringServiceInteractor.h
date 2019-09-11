@@ -20,8 +20,6 @@
 @property(readonly, nonatomic) SPTDefaultServiceInstanceInteractor *defaultInteractor; // @synthesize defaultInteractor=_defaultInteractor;
 - (void).cxx_destruct;
 - (void)unloadService:(id)arg1 scope:(id)arg2;
-- (void)backgroundLoadService:(id)arg1 scope:(id)arg2;
-- (_Bool)canBackgroundLoadService:(id)arg1 scope:(id)arg2;
 - (void)loadService:(id)arg1 scope:(id)arg2;
 - (void)configureService:(id)arg1 scope:(id)arg2 serviceProvider:(id)arg3;
 - (id)instantiateServiceClass:(Class)arg1 scope:(id)arg2;

@@ -6,11 +6,10 @@
 
 #import "NSObject-Protocol.h"
 
-@class UIView;
-@protocol SPTHomeMixTrackViewModel;
+@class SPTHomeMixTrackViewModel, UIView;
 
 @protocol SPTHomeMixTrackCellDelegate <NSObject>
-- (void)homeMixTrackCellFacePileTapped:(id <SPTHomeMixTrackViewModel>)arg1 fromView:(UIView *)arg2;
-- (void)homeMixTrackCellContextMenuTapped:(id <SPTHomeMixTrackViewModel>)arg1 fromView:(UIView *)arg2;
+- (void)homeMixTrackCellFacePileTapped:(SPTHomeMixTrackViewModel *)arg1 fromView:(UIView *)arg2;
+- (void)homeMixTrackCellContextMenuTapped:(SPTHomeMixTrackViewModel *)arg1 fromView:(UIView *)arg2;
 @end
 

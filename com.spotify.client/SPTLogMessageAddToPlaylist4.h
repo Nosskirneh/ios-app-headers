@@ -24,17 +24,17 @@
 }
 
 + (id)messageWithIntent:(id)arg1 itemUri:(id)arg2 numberItems:(id)arg3 section:(id)arg4 source:(id)arg5 sourceAction:(id)arg6 playlistIndex:(long long)arg7 playlistUri:(id)arg8 totalNumberPlaylists:(long long)arg9 time:(long long)arg10 contextSource:(id)arg11;
-@property(retain, nonatomic) NSString *contextSourceValue; // @synthesize contextSourceValue=_contextSourceValue;
+@property(copy, nonatomic) NSString *contextSourceValue; // @synthesize contextSourceValue=_contextSourceValue;
 @property(nonatomic) long long timeValue; // @synthesize timeValue=_timeValue;
 @property(nonatomic) long long totalNumberPlaylistsValue; // @synthesize totalNumberPlaylistsValue=_totalNumberPlaylistsValue;
-@property(retain, nonatomic) NSString *playlistUriValue; // @synthesize playlistUriValue=_playlistUriValue;
+@property(copy, nonatomic) NSString *playlistUriValue; // @synthesize playlistUriValue=_playlistUriValue;
 @property(nonatomic) long long playlistIndexValue; // @synthesize playlistIndexValue=_playlistIndexValue;
-@property(retain, nonatomic) NSString *sourceActionValue; // @synthesize sourceActionValue=_sourceActionValue;
-@property(retain, nonatomic) NSString *sourceValue; // @synthesize sourceValue=_sourceValue;
-@property(retain, nonatomic) NSString *sectionValue; // @synthesize sectionValue=_sectionValue;
-@property(retain, nonatomic) NSString *numberItemsValue; // @synthesize numberItemsValue=_numberItemsValue;
-@property(retain, nonatomic) NSString *itemUriValue; // @synthesize itemUriValue=_itemUriValue;
-@property(retain, nonatomic) NSString *intentValue; // @synthesize intentValue=_intentValue;
+@property(copy, nonatomic) NSString *sourceActionValue; // @synthesize sourceActionValue=_sourceActionValue;
+@property(copy, nonatomic) NSString *sourceValue; // @synthesize sourceValue=_sourceValue;
+@property(copy, nonatomic) NSString *sectionValue; // @synthesize sectionValue=_sectionValue;
+@property(copy, nonatomic) NSString *numberItemsValue; // @synthesize numberItemsValue=_numberItemsValue;
+@property(copy, nonatomic) NSString *itemUriValue; // @synthesize itemUriValue=_itemUriValue;
+@property(copy, nonatomic) NSString *intentValue; // @synthesize intentValue=_intentValue;
 - (void).cxx_destruct;
 - (_Bool)isEqual:(id)arg1;
 - (unsigned long long)hash;

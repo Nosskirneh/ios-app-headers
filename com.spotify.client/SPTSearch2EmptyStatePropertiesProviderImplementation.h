@@ -18,7 +18,7 @@
 @property(readonly, nonatomic) _Bool offlineSearchEnabled; // @synthesize offlineSearchEnabled=_offlineSearchEnabled;
 - (id)truncateString:(id)arg1 toMaxLength:(unsigned long long)arg2;
 - (id)noResultsBodyForConnectivityState:(unsigned long long)arg1;
-- (id)noResultsTitleForConnectivityState:(unsigned long long)arg1 query:(id)arg2;
+- (id)noResultsTitleForQuery:(id)arg1;
 - (id)noResultsEmptyStatePropertiesForQuery:(id)arg1 connectivityState:(unsigned long long)arg2;
 - (id)initialEmptyStatePropertiesForConnectivityState:(unsigned long long)arg1;
 - (id)initWithOfflineSearchEnabled:(_Bool)arg1;

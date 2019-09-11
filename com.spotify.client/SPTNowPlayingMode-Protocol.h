@@ -20,6 +20,9 @@
 - (NSString *)identifier;
 
 @optional
+- (_Bool)canBeResized;
+- (_Bool)requiresContentViewDisabled;
+- (_Bool)requiresScrollDisabled;
 - (UIViewController *)contentDecorationViewController;
 @end
 

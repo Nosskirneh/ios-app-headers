@@ -6,15 +6,17 @@
 
 #import "NSObject-Protocol.h"
 
-@class NSError, NSString, NSURL;
+@class NSString, NSURL, NSUUID;
 
 @protocol SPTViewLogger <NSObject>
+@property(readonly, nonatomic) NSUUID *uuid;
 @property(readonly) long long state;
-- (void)logViewLoadingCancelledWithPageIdentifier:(NSString *)arg1;
-- (void)logViewDataDidFailToLoadWithError:(NSError *)arg1 pageIdentifier:(NSString *)arg2;
+@property(readonly, copy, nonatomic) NSString *pageIdentifier;
+- (void)logViewLoadingCancelledWithPageIdentifier:(NSString *)arg1 dataSource:(long long)arg2;
+- (void)logViewDataDidFailToLoadWithPageIdentifier:(NSString *)arg1 dataSource:(long long)arg2;
 - (void)logImageLoadingEndedForImageWithURI:(NSURL *)arg1;
 - (void)logImageLoadingStartedForImageWithURI:(NSURL *)arg1;
-- (void)logViewDataDidLoadWithPageIdentifier:(NSString *)arg1;
-- (void)logViewLoadingStartedWithPageIdentifier:(NSString *)arg1;
+- (void)logViewDataDidLoadWithPageIdentifier:(NSString *)arg1 dataSource:(long long)arg2;
+- (void)logViewLoadingStartedWithPageIdentifier:(NSString *)arg1 reason:(long long)arg2;
 @end
 

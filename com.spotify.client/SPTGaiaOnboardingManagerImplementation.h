@@ -6,34 +6,33 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTGaiaDeviceStateManagerObserver-Protocol.h"
+#import "SPTGaiaConnectManagerObserver-Protocol.h"
 
-@class NSString, SPTGaiaAirplayManager, SPTGaiaDevice, SPTGaiaDeviceAppearanceMapping, SPTGaiaDeviceManager, SPTGaiaOnboardingPopupController;
-@protocol SPTGaiaEducationTooltipsManager;
+@class NSString, SPTGaiaConnectDevice, SPTGaiaDeviceAppearanceMapping, SPTGaiaOnboardingPopupController;
+@protocol SPTGaiaConnectManager, SPTGaiaWirelessRoutesAPI;
 
-@interface SPTGaiaOnboardingManagerImplementation : NSObject <SPTGaiaDeviceStateManagerObserver>
+@interface SPTGaiaOnboardingManagerImplementation : NSObject <SPTGaiaConnectManagerObserver>
 {
-    SPTGaiaDevice *_newlyDiscoveredDevice;
-    SPTGaiaDeviceManager *_deviceManager;
-    SPTGaiaAirplayManager *_airplayManager;
+    SPTGaiaConnectDevice *_newlyDiscoveredDevice;
+    id <SPTGaiaWirelessRoutesAPI> _wirelessRoutesManager;
     SPTGaiaOnboardingPopupController *_popupController;
     SPTGaiaDeviceAppearanceMapping *_iconMapper;
-    id <SPTGaiaEducationTooltipsManager> _tooltipsManager;
+    id <SPTGaiaConnectManager> _connectManager;
 }
 
-@property(readonly, nonatomic) id <SPTGaiaEducationTooltipsManager> tooltipsManager; // @synthesize tooltipsManager=_tooltipsManager;
+@property(readonly, nonatomic) id <SPTGaiaConnectManager> connectManager; // @synthesize connectManager=_connectManager;
 @property(readonly, nonatomic) SPTGaiaDeviceAppearanceMapping *iconMapper; // @synthesize iconMapper=_iconMapper;
 @property(readonly, nonatomic) SPTGaiaOnboardingPopupController *popupController; // @synthesize popupController=_popupController;
-@property(readonly, nonatomic) SPTGaiaAirplayManager *airplayManager; // @synthesize airplayManager=_airplayManager;
-@property(readonly, nonatomic) SPTGaiaDeviceManager *deviceManager; // @synthesize deviceManager=_deviceManager;
-@property(retain, nonatomic) SPTGaiaDevice *newlyDiscoveredDevice; // @synthesize newlyDiscoveredDevice=_newlyDiscoveredDevice;
+@property(readonly, nonatomic) id <SPTGaiaWirelessRoutesAPI> wirelessRoutesManager; // @synthesize wirelessRoutesManager=_wirelessRoutesManager;
+@property(retain, nonatomic) SPTGaiaConnectDevice *newlyDiscoveredDevice; // @synthesize newlyDiscoveredDevice=_newlyDiscoveredDevice;
 - (void).cxx_destruct;
 - (_Bool)isBlockedForTA;
+- (void)activateDevice:(id)arg1 withCompletion:(CDUnknownBlockType)arg2;
+- (void)notifyOnboardingOfDevice:(id)arg1 didComplete:(_Bool)arg2;
 - (void)presentPopupOnboardingWithCompletion:(CDUnknownBlockType)arg1;
-- (void)deviceStateManager:(id)arg1 onboardDevice:(id)arg2 enabled:(_Bool)arg3;
-- (id)onboardingDevice;
+- (void)connectManager:(id)arg1 deviceRequiringOnboardingDidChange:(id)arg2;
 - (void)dealloc;
-- (id)initWithDeviceManager:(id)arg1 airplayManager:(id)arg2 popupController:(id)arg3 deviceIconMapper:(id)arg4 tooltipsManager:(id)arg5;
+- (id)initWithWirelessRoutesManager:(id)arg1 popupController:(id)arg2 deviceIconMapper:(id)arg3 connectManager:(id)arg4;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

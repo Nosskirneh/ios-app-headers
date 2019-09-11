@@ -6,40 +6,45 @@
 
 #import <UIKit/UITableViewCell.h>
 
-@class GLUELabel, GLUETrackAccessoryLabel, NSLayoutConstraint, NSString, SPTPodcastEpisodeDescriptionTextView, UIStackView;
-@protocol SPTLinkDispatcher, SPTPodcastEpisodeDescriptionTableViewCellDelegate;
+#import "UITextViewDelegate-Protocol.h"
 
-@interface SPTPodcastEpisodeDescriptionTableViewCell : UITableViewCell
+@class GLUELabel, NSLayoutConstraint, NSString, NSURL, SPTPodcastEpisodeDescriptionTextView, UIStackView;
+@protocol SPTPodcastEpisodeDescriptionTableViewCellDelegate;
+
+@interface SPTPodcastEpisodeDescriptionTableViewCell : UITableViewCell <UITextViewDelegate>
 {
     id <SPTPodcastEpisodeDescriptionTableViewCellDelegate> _delegate;
     UIStackView *_contentStack;
     NSLayoutConstraint *_topEdgeConstraint;
-    NSLayoutConstraint *_leftEdgeConstraint;
-    NSLayoutConstraint *_rightEdgeConstraint;
+    NSLayoutConstraint *_leadingEdgeConstraint;
+    NSLayoutConstraint *_trailingEdgeConstraint;
     NSLayoutConstraint *_bottomEdgeConstraint;
     SPTPodcastEpisodeDescriptionTextView *_descriptionTextView;
     GLUELabel *_metadataLabel;
-    GLUETrackAccessoryLabel *_accessoryLabel;
-    id <SPTLinkDispatcher> _linkDispatcher;
 }
 
-@property(retain, nonatomic) id <SPTLinkDispatcher> linkDispatcher; // @synthesize linkDispatcher=_linkDispatcher;
-@property(retain, nonatomic) GLUETrackAccessoryLabel *accessoryLabel; // @synthesize accessoryLabel=_accessoryLabel;
 @property(retain, nonatomic) GLUELabel *metadataLabel; // @synthesize metadataLabel=_metadataLabel;
 @property(retain, nonatomic) SPTPodcastEpisodeDescriptionTextView *descriptionTextView; // @synthesize descriptionTextView=_descriptionTextView;
 @property(retain, nonatomic) NSLayoutConstraint *bottomEdgeConstraint; // @synthesize bottomEdgeConstraint=_bottomEdgeConstraint;
-@property(retain, nonatomic) NSLayoutConstraint *rightEdgeConstraint; // @synthesize rightEdgeConstraint=_rightEdgeConstraint;
-@property(retain, nonatomic) NSLayoutConstraint *leftEdgeConstraint; // @synthesize leftEdgeConstraint=_leftEdgeConstraint;
+@property(retain, nonatomic) NSLayoutConstraint *trailingEdgeConstraint; // @synthesize trailingEdgeConstraint=_trailingEdgeConstraint;
+@property(retain, nonatomic) NSLayoutConstraint *leadingEdgeConstraint; // @synthesize leadingEdgeConstraint=_leadingEdgeConstraint;
 @property(retain, nonatomic) NSLayoutConstraint *topEdgeConstraint; // @synthesize topEdgeConstraint=_topEdgeConstraint;
 @property(retain, nonatomic) UIStackView *contentStack; // @synthesize contentStack=_contentStack;
 @property(nonatomic) __weak id <SPTPodcastEpisodeDescriptionTableViewCellDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
-- (void)didTap:(id)arg1;
-@property(nonatomic) _Bool isExplicit;
-@property(retain, nonatomic) NSString *episodeMetadata;
-@property(retain, nonatomic) NSString *episodeDescription;
+- (_Bool)textView:(id)arg1 shouldInteractWithURL:(id)arg2 inRange:(struct _NSRange)arg3 interaction:(long long)arg4;
+@property(nonatomic) double episodeDuration;
+@property(copy, nonatomic) NSURL *episodeURL;
+@property(copy, nonatomic) NSString *episodeMetadata;
+@property(copy, nonatomic) NSString *episodeDescription;
 - (void)glue_applyStyle:(id)arg1;
-- (id)initWithStyle:(long long)arg1 reuseIdentifier:(id)arg2 linkDispatcher:(id)arg3;
+- (id)initWithStyle:(long long)arg1 reuseIdentifier:(id)arg2;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

@@ -48,16 +48,15 @@
 - (_Bool)isPlayingPreviewForIndexPath:(id)arg1;
 - (unsigned long long)trackFeedbackTypeForIndexPath:(id)arg1;
 - (id)trackIdentifierForIndexPath:(id)arg1;
+- (void)trackContextMenuDataForIndexPath:(id)arg1 completion:(CDUnknownBlockType)arg2;
 - (id)trackURIForIndexPath:(id)arg1;
 - (_Bool)isTrackPreviewEnabledAtIndexPath:(id)arg1;
-- (_Bool)isTrackQuickActionsEnabledAtIndexPath:(id)arg1;
 - (_Bool)isTrackPlaybackRestrictedForIndexPath:(id)arg1;
 - (_Bool)isTrackPremiumOnlyForIndexPath:(id)arg1;
 - (_Bool)isTrackExplicitForIndexPath:(id)arg1;
 - (_Bool)isTrackEnabledForIndexPath:(id)arg1;
 - (_Bool)isSongBannedForIndexPath:(id)arg1;
 - (_Bool)isSongLikedForIndexPath:(id)arg1;
-- (id)artistsForIndexPath:(id)arg1;
 - (id)albumNameForIndexPath:(id)arg1;
 - (id)imageURLForIndexPath:(id)arg1;
 - (id)subtitleAccessoryViewForIndexPath:(id)arg1;
@@ -77,11 +76,8 @@
 - (void)stopAudioPreviewViewPlayer;
 - (void)loadModel;
 - (void)dealloc;
-@property(readonly, nonatomic, getter=isPreCurationEnabled) _Bool preCurationEnabled;
 @property(readonly, nonatomic) id <SPTFreeTierAllSongsHeaderEntityViewModel> headerEntityViewModel;
 @property(readonly, nonatomic) _Bool hasHeader;
-@property(readonly, nonatomic) NSString *updateDialogMessageForAllSongs;
-@property(readonly, nonatomic) _Bool shouldDisplayUpdateDialogForAllSongs;
 - (id)initWithDataSource:(id)arg1 audioPreviewPlayer:(id)arg2 collectionPlatform:(id)arg3 viewLogger:(id)arg4 logCenter:(id)arg5 explicitContentAccessManager:(id)arg6 preCurationTestManager:(id)arg7 viewURI:(id)arg8;
 
 // Remaining properties

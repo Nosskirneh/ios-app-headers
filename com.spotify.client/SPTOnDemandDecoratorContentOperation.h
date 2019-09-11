@@ -6,24 +6,28 @@
 
 #import <objc/NSObject.h>
 
-#import "EXP_HUBContentOperation-Protocol.h"
+#import "HUBContentOperation-Protocol.h"
 
-@protocol EXP_HUBContentOperationDelegate, SPTOnDemandSet;
+@class SPTOnDemandSetTestManager;
+@protocol HUBContentOperationDelegate, SPTOnDemandSet;
 
-@interface SPTOnDemandDecoratorContentOperation : NSObject <EXP_HUBContentOperation>
+@interface SPTOnDemandDecoratorContentOperation : NSObject <HUBContentOperation>
 {
-    id <EXP_HUBContentOperationDelegate> _delegate;
+    id <HUBContentOperationDelegate> _delegate;
     id <SPTOnDemandSet> _onDemandSet;
+    SPTOnDemandSetTestManager *_testManager;
 }
 
+@property(retain, nonatomic) SPTOnDemandSetTestManager *testManager; // @synthesize testManager=_testManager;
 @property(retain, nonatomic) id <SPTOnDemandSet> onDemandSet; // @synthesize onDemandSet=_onDemandSet;
-@property(nonatomic) __weak id <EXP_HUBContentOperationDelegate> delegate; // @synthesize delegate=_delegate;
+@property(nonatomic) __weak id <HUBContentOperationDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
+- (_Bool)isOnDemandURL:(id)arg1;
 - (_Bool)isGlueHeaderComponentModelBuilder:(id)arg1;
 - (void)recursivelyDecorateComponentModelBuilders:(id)arg1;
 - (void)decorateHeaderComponentModelBuilder:(id)arg1;
 - (void)performForViewModelBuilder:(id)arg1 previousError:(id)arg2;
-- (id)initWithOnDemandSet:(id)arg1;
+- (id)initWithOnDemandSet:(id)arg1 testManager:(id)arg2;
 
 @end
 

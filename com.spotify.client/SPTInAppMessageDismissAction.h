@@ -6,15 +6,15 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTInAppMessageAction-Protocol.h"
+#import "SPTInAppMessageActionHandler-Protocol.h"
 
 @class NSString;
 
-@interface SPTInAppMessageDismissAction : NSObject <SPTInAppMessageAction>
+@interface SPTInAppMessageDismissAction : NSObject <SPTInAppMessageActionHandler>
 {
 }
 
-- (void)perform;
+- (void)executeActionWithURL:(id)arg1;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

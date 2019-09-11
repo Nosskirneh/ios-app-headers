@@ -6,46 +6,47 @@
 
 #import <UIKit/UIViewController.h>
 
-#import "EXP_HUBViewComponentDelegate-Protocol.h"
-#import "EXP_HUBViewContentOffsetObserver-Protocol.h"
-#import "EXP_SPTHubViewModelProviderDelegate-Protocol.h"
+#import "HUBViewComponentDelegate-Protocol.h"
+#import "HUBViewContentOffsetObserver-Protocol.h"
 #import "SPTFreeTierFindHeaderViewDelegate-Protocol.h"
 #import "SPTFreeTierFindViewController-Protocol.h"
+#import "SPTFreeTierFindViewModelProviderObserver-Protocol.h"
 #import "SPTOfflineModeStateObserver-Protocol.h"
 #import "SPTPageController-Protocol.h"
+#import "SPTVoiceTestManagerObserver-Protocol.h"
 #import "SPViewController-Protocol.h"
 #import "UIScrollViewDelegate-Protocol.h"
 
-@class EXP_HUBContainerView, EXP_SPTHubViewModelProvider, GLUEEmptyStateView, NSLayoutConstraint, NSString, NSURL, SPTFreeTierFindHeaderView, SPTFreeTierFindLogger;
-@protocol GLUETheme, SPTFreeTierFindViewControllerDelegate, SPTOfflineModeState, SPTPageContainer, SPTVoiceTestManager;
+@class HUBContainerView, NSLayoutConstraint, NSString, NSURL, SPTFreeTierFindHeaderView, SPTFreeTierFindLogger, UIView;
+@protocol GLUETheme, SPTFreeTierFindViewControllerDelegate, SPTFreeTierFindViewModelProvider, SPTOfflineModeState, SPTPageContainer, SPTVoiceTestManager;
 
-@interface SPTFreeTierFindViewControllerImplementation : UIViewController <SPTFreeTierFindHeaderViewDelegate, UIScrollViewDelegate, EXP_SPTHubViewModelProviderDelegate, EXP_HUBViewComponentDelegate, EXP_HUBViewContentOffsetObserver, SPTOfflineModeStateObserver, SPViewController, SPTFreeTierFindViewController, SPTPageController>
+@interface SPTFreeTierFindViewControllerImplementation : UIViewController <SPTFreeTierFindHeaderViewDelegate, UIScrollViewDelegate, SPTFreeTierFindViewModelProviderObserver, HUBViewComponentDelegate, HUBViewContentOffsetObserver, SPTOfflineModeStateObserver, SPViewController, SPTVoiceTestManagerObserver, SPTFreeTierFindViewController, SPTPageController>
 {
-    _Bool _nftExperience;
-    _Bool _isVoiceEnabled;
+    _Bool _initialViewModelLoaded;
     id <SPTFreeTierFindViewControllerDelegate> _delegate;
     id <GLUETheme> _theme;
-    EXP_HUBContainerView *_hubContainerView;
-    EXP_SPTHubViewModelProvider *_viewModelProvider;
+    HUBContainerView *_hubContainerView;
+    id <SPTFreeTierFindViewModelProvider> _viewModelProvider;
     id <SPTVoiceTestManager> _voiceTestmanager;
     SPTFreeTierFindHeaderView *_findHeaderView;
+    UIView *_statusBarBackgroundView;
     SPTFreeTierFindLogger *_logger;
     id <SPTOfflineModeState> _offlineModeState;
-    GLUEEmptyStateView *_offlineStateView;
     NSLayoutConstraint *_headerHeightConstraint;
     struct UIEdgeInsets _insets;
+    struct CGRect _lastKnownHubContainerViewFrame;
 }
 
-@property(nonatomic) _Bool isVoiceEnabled; // @synthesize isVoiceEnabled=_isVoiceEnabled;
-@property(readonly, nonatomic) _Bool nftExperience; // @synthesize nftExperience=_nftExperience;
+@property(nonatomic) struct CGRect lastKnownHubContainerViewFrame; // @synthesize lastKnownHubContainerViewFrame=_lastKnownHubContainerViewFrame;
+@property(nonatomic, getter=isInitialViewModelLoaded) _Bool initialViewModelLoaded; // @synthesize initialViewModelLoaded=_initialViewModelLoaded;
 @property(retain, nonatomic) NSLayoutConstraint *headerHeightConstraint; // @synthesize headerHeightConstraint=_headerHeightConstraint;
-@property(retain, nonatomic) GLUEEmptyStateView *offlineStateView; // @synthesize offlineStateView=_offlineStateView;
 @property(readonly, nonatomic) id <SPTOfflineModeState> offlineModeState; // @synthesize offlineModeState=_offlineModeState;
 @property(readonly, nonatomic) SPTFreeTierFindLogger *logger; // @synthesize logger=_logger;
+@property(retain, nonatomic) UIView *statusBarBackgroundView; // @synthesize statusBarBackgroundView=_statusBarBackgroundView;
 @property(retain, nonatomic) SPTFreeTierFindHeaderView *findHeaderView; // @synthesize findHeaderView=_findHeaderView;
 @property(readonly, nonatomic) id <SPTVoiceTestManager> voiceTestmanager; // @synthesize voiceTestmanager=_voiceTestmanager;
-@property(readonly, nonatomic) EXP_SPTHubViewModelProvider *viewModelProvider; // @synthesize viewModelProvider=_viewModelProvider;
-@property(readonly, nonatomic) EXP_HUBContainerView *hubContainerView; // @synthesize hubContainerView=_hubContainerView;
+@property(readonly, nonatomic) id <SPTFreeTierFindViewModelProvider> viewModelProvider; // @synthesize viewModelProvider=_viewModelProvider;
+@property(readonly, nonatomic) HUBContainerView *hubContainerView; // @synthesize hubContainerView=_hubContainerView;
 @property(readonly, nonatomic) id <GLUETheme> theme; // @synthesize theme=_theme;
 @property(nonatomic) __weak id <SPTFreeTierFindViewControllerDelegate> delegate; // @synthesize delegate=_delegate;
 @property(nonatomic) struct UIEdgeInsets insets; // @synthesize insets=_insets;
@@ -53,26 +54,33 @@
 @property(readonly, nonatomic, getter=spt_pageURI) NSURL *pageURI;
 @property(readonly, nonatomic, getter=spt_pageIdentifier) NSString *pageIdentifier;
 @property(readonly, nonatomic) NSURL *URI;
+- (void)updateMicrophoneButtonVisibility;
+- (void)updateSubviewsInsets;
+- (struct CGRect)statusBarFrame;
+- (double)headerViewMinimumHeight;
+- (double)headerViewHeight;
+- (void)updateWithViewModel:(id)arg1;
 - (void)loadViewModel;
-- (void)loadViewModelOrUpdateHeaderView;
-- (void)loadViewModelOrShowOfflineView;
-- (void)loadViewModelOrUpdateView;
+- (void)updateHeaderView;
+- (void)testManager:(id)arg1 didChangeVoiceSearchEnabledState:(_Bool)arg2;
 - (void)offlineModeState:(id)arg1 updated:(_Bool)arg2;
 - (void)spt_scrollToTop;
 - (void)hubView:(id)arg1 contentOffsetDidChange:(struct CGPoint)arg2;
 - (void)hubView:(id)arg1 componentViewDidDisappear:(id)arg2;
 - (void)hubView:(id)arg1 componentViewWillAppear:(id)arg2;
-- (void)viewModelDidLoad:(id)arg1;
-- (void)didTapMicrophoneButtonInHeaderView:(id)arg1 sender:(id)arg2;
+- (void)viewModelProvider:(id)arg1 didUpdateFromViewModel:(id)arg2 toViewModel:(id)arg3;
+- (void)didTapMicrophoneButtonInHeaderView:(id)arg1;
 - (void)didTapSearchButtonInHeaderView:(id)arg1;
 - (void)configureBrowseHubView;
 - (void)configureHeaderView;
 - (void)addConstraints;
+- (void)viewWillTransitionToSize:(struct CGSize)arg1 withTransitionCoordinator:(id)arg2;
+- (void)viewDidLayoutSubviews;
 - (void)viewWillDisappear:(_Bool)arg1;
 - (void)viewDidAppear:(_Bool)arg1;
 - (void)viewWillAppear:(_Bool)arg1;
 - (void)viewDidLoad;
-- (id)initWithTheme:(id)arg1 hubContainerView:(id)arg2 logger:(id)arg3 viewModelProvider:(id)arg4 offlineModeState:(id)arg5 nftExperience:(_Bool)arg6 voiceTestManager:(id)arg7;
+- (id)initWithTheme:(id)arg1 hubContainerView:(id)arg2 logger:(id)arg3 viewModelProvider:(id)arg4 offlineModeState:(id)arg5 voiceTestManager:(id)arg6;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

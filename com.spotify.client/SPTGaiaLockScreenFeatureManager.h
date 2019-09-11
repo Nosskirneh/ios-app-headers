@@ -10,22 +10,23 @@
 #import "SPTGaiaLockScreenPlayerFlagsObserver-Protocol.h"
 #import "SPTGaiaSettingsObserver-Protocol.h"
 
-@class NSHashTable, NSString;
+@class NSString, SPTObserverManager;
 @protocol SPTGaiaLockScreenPlayerFlagsProvider, SPTGaiaSettingsProvider;
 
 @interface SPTGaiaLockScreenFeatureManager : NSObject <SPTGaiaSettingsObserver, SPTGaiaLockScreenPlayerFlagsObserver, SPTGaiaLockScreenControlsStateProvider>
 {
     id <SPTGaiaLockScreenPlayerFlagsProvider> _lockScreenFlagsProvider;
     id <SPTGaiaSettingsProvider> _settingsProvider;
-    NSHashTable *_observers;
+    SPTObserverManager *_observers;
 }
 
-@property(retain, nonatomic) NSHashTable *observers; // @synthesize observers=_observers;
-@property(retain, nonatomic) id <SPTGaiaSettingsProvider> settingsProvider; // @synthesize settingsProvider=_settingsProvider;
-@property(retain, nonatomic) id <SPTGaiaLockScreenPlayerFlagsProvider> lockScreenFlagsProvider; // @synthesize lockScreenFlagsProvider=_lockScreenFlagsProvider;
+@property(readonly, nonatomic) SPTObserverManager *observers; // @synthesize observers=_observers;
+@property(readonly, nonatomic) id <SPTGaiaSettingsProvider> settingsProvider; // @synthesize settingsProvider=_settingsProvider;
+@property(readonly, nonatomic) id <SPTGaiaLockScreenPlayerFlagsProvider> lockScreenFlagsProvider; // @synthesize lockScreenFlagsProvider=_lockScreenFlagsProvider;
 - (void).cxx_destruct;
 - (void)updateObservers;
 - (void)lockScreenControlsFlagChanged:(_Bool)arg1;
+- (void)localDevicesOnlySettingsChanged:(_Bool)arg1;
 - (void)lockScreenControlsSettingsChanged:(_Bool)arg1;
 - (void)removeObserver:(id)arg1;
 - (void)addObserver:(id)arg1;

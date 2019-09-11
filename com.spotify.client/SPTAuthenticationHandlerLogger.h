@@ -6,18 +6,20 @@
 
 #import <objc/NSObject.h>
 
-@protocol SPTAdjustUserTrackerProtocol;
+@protocol SPTLoginLogger;
 
 @interface SPTAuthenticationHandlerLogger : NSObject
 {
-    id <SPTAdjustUserTrackerProtocol> _adjustTracker;
+    id <SPTLoginLogger> _logger;
 }
 
-@property(retain, nonatomic) id <SPTAdjustUserTrackerProtocol> adjustTracker; // @synthesize adjustTracker=_adjustTracker;
+@property(retain, nonatomic) id <SPTLoginLogger> logger; // @synthesize logger=_logger;
 - (void).cxx_destruct;
+- (id)screenIdentifierFromScreen:(unsigned long long)arg1;
+- (void)logGuestUserDidAuthFromScreen:(unsigned long long)arg1;
 - (void)logUserDidAuthFromScreen:(unsigned long long)arg1;
 - (void)logUserDidSignup;
-- (id)initWithAdjustTracker:(id)arg1;
+- (id)initWithLogger:(id)arg1;
 
 @end
 

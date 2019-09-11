@@ -22,12 +22,6 @@
 
 + (id)contextWithFormatListModel:(id)arg1;
 + (id)contextWithPlaylistURI:(id)arg1;
-+ (id)playerTracksFromEntityList:(id)arg1;
-+ (id)contextMetadataForEntityList:(id)arg1 requiresShuffle:(_Bool)arg2;
-+ (id)spt_shuffleContextWithEntityList:(id)arg1;
-+ (id)spt_contextWithEntityList:(id)arg1 optInTrack:(id)arg2 optInTrackIndex:(long long)arg3;
-+ (id)spt_contextWithEntityList:(id)arg1 startTrack:(id)arg2;
-+ (id)spt_contextWithEntityList:(id)arg1;
 + (id)contextWithDictionary:(id)arg1;
 + (id)contextWithPageURL:(id)arg1;
 + (id)contextWithTracks:(id)arg1;

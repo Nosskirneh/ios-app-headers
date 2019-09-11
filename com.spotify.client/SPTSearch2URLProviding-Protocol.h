@@ -7,8 +7,11 @@
 #import "NSObject-Protocol.h"
 
 @class NSString, NSURL;
+@protocol SPTSearch2URLProviding;
 
 @protocol SPTSearch2URLProviding <NSObject>
+@property(readonly, nonatomic) unsigned long long responseFormat;
+@property(readonly, nonatomic) id <SPTSearch2URLProviding> nextPageURLProvider;
 - (NSURL *)urlForQuery:(NSString *)arg1;
 @end
 

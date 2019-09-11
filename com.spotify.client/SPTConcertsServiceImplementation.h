@@ -9,7 +9,7 @@
 #import "SPTConcertsService-Protocol.h"
 
 @class NSSet, NSString, SPTAllocationContext, SPTConcertsDateFormatter, SPTConcertsLocalDataManager;
-@protocol EXP_SPTHubFrameworkService, SPContextMenuFeature, SPTContainerService, SPTContainerUIService, SPTCoreService, SPTGLUEService, SPTLocalSettings, SPTNavigationFeature, SPTNetworkService, SPTPerformanceMetricsService, SPTSessionService, SPTSettingsFeature, SPTURIDispatchService;
+@protocol SPContextMenuFeature, SPTContainerService, SPTContainerUIService, SPTCoreService, SPTGLUEService, SPTHubFrameworkService, SPTLocalSettings, SPTNavigationFeature, SPTNetworkService, SPTPerformanceMetricsService, SPTSessionService, SPTSettingsFeature, SPTURIDispatchService;
 
 @interface SPTConcertsServiceImplementation : NSObject <SPTConcertsService>
 {
@@ -20,7 +20,7 @@
     id <SPTSettingsFeature> _settingsFeature;
     id <SPTGLUEService> _glueService;
     id <SPTContainerService> _containerService;
-    id <EXP_SPTHubFrameworkService> _hubsRendererService;
+    id <SPTHubFrameworkService> _hubsRendererService;
     id <SPContextMenuFeature> _contextMenuFeature;
     id <SPTNavigationFeature> _navigationService;
     id <SPTContainerUIService> _containerUIService;
@@ -40,7 +40,7 @@
 @property(nonatomic) __weak id <SPTContainerUIService> containerUIService; // @synthesize containerUIService=_containerUIService;
 @property(nonatomic) __weak id <SPTNavigationFeature> navigationService; // @synthesize navigationService=_navigationService;
 @property(nonatomic) __weak id <SPContextMenuFeature> contextMenuFeature; // @synthesize contextMenuFeature=_contextMenuFeature;
-@property(nonatomic) __weak id <EXP_SPTHubFrameworkService> hubsRendererService; // @synthesize hubsRendererService=_hubsRendererService;
+@property(nonatomic) __weak id <SPTHubFrameworkService> hubsRendererService; // @synthesize hubsRendererService=_hubsRendererService;
 @property(nonatomic) __weak id <SPTContainerService> containerService; // @synthesize containerService=_containerService;
 @property(nonatomic) __weak id <SPTGLUEService> glueService; // @synthesize glueService=_glueService;
 @property(nonatomic) __weak id <SPTSettingsFeature> settingsFeature; // @synthesize settingsFeature=_settingsFeature;
@@ -56,7 +56,6 @@
 - (id)provideConcertsLocationSearchVC;
 - (id)provideConcertsVCForURI:(id)arg1 context:(id)arg2;
 @property(readonly, nonatomic) SPTConcertsDateFormatter *dateFormatterProvider; // @synthesize dateFormatterProvider=_dateFormatterProvider;
-- (void)loadTheme;
 - (void)unregisterPages;
 - (void)registerPages;
 - (void)unloadLocalDataManager;

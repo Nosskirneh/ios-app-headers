@@ -6,20 +6,19 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTFeatureFlagSignalObserver-Protocol.h"
 #import "SPTFollowShelfService-Protocol.h"
 #import "SPTFollowShelfTestManagerObserver-Protocol.h"
 
 @class NSString, SPTAllocationContext, SPTFollowShelfTestManager, SPTFollowShelfViewModel;
 @protocol FollowFeature, SPTContainerService, SPTFeatureFlagSignal, SPTFeatureFlaggingService, SPTGLUEService, SPTSessionService, SPTSettingsFeature, SPTURIDispatchService;
 
-@interface SPTFollowShelfServiceImplementation : NSObject <SPTFollowShelfTestManagerObserver, SPTFeatureFlagSignalObserver, SPTFollowShelfService>
+@interface SPTFollowShelfServiceImplementation : NSObject <SPTFollowShelfTestManagerObserver, SPTFollowShelfService>
 {
     id <SPTContainerService> _containerService;
     id <SPTFeatureFlaggingService> _featureFlaggingService;
     id <SPTGLUEService> _glueService;
     id <SPTURIDispatchService> _URIDispatchService;
-    id <SPTSettingsFeature> _settings;
+    id <SPTSettingsFeature> _settingsFeature;
     SPTFollowShelfTestManager *_testManager;
     id <SPTSessionService> _clientSessionService;
     id <FollowFeature> _followFeature;
@@ -33,7 +32,7 @@
 @property(nonatomic) __weak id <FollowFeature> followFeature; // @synthesize followFeature=_followFeature;
 @property(nonatomic) __weak id <SPTSessionService> clientSessionService; // @synthesize clientSessionService=_clientSessionService;
 @property(retain, nonatomic) SPTFollowShelfTestManager *testManager; // @synthesize testManager=_testManager;
-@property(nonatomic) __weak id <SPTSettingsFeature> settings; // @synthesize settings=_settings;
+@property(nonatomic) __weak id <SPTSettingsFeature> settingsFeature; // @synthesize settingsFeature=_settingsFeature;
 @property(nonatomic) __weak id <SPTURIDispatchService> URIDispatchService; // @synthesize URIDispatchService=_URIDispatchService;
 @property(nonatomic) __weak id <SPTGLUEService> glueService; // @synthesize glueService=_glueService;
 @property(nonatomic) __weak id <SPTFeatureFlaggingService> featureFlaggingService; // @synthesize featureFlaggingService=_featureFlaggingService;

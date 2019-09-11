@@ -66,14 +66,13 @@
 - (void)productActivationController:(id)arg1 didFinishActivatingProduct:(long long)arg2;
 - (void)productActivationController:(id)arg1 didStartActivatingProduct:(long long)arg2;
 - (void)showLoginFailureErrorView;
-- (void)openTrialStartedURL;
 - (void)handleResult:(long long)arg1;
 - (void)callTransitionaryUI;
 - (id)provideUpsellContentArrayForFreeUser:(_Bool)arg1;
 - (void)logPremiumDestinationDialogImpression;
 - (void)getPremiumAction;
 - (void)updateInformation;
-- (_Bool)shouldShowPlayAnySongUpsellContent;
+- (_Bool)isNotIndiaExperience;
 - (_Bool)shouldShowContentForFreeUser;
 - (void)deactivate;
 - (void)activate;

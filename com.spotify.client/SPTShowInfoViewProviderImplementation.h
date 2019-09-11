@@ -25,9 +25,9 @@
 - (id)createLinkButtonWithViewURI:(id)arg1 browseButtonTitle:(id)arg2 mediaType:(unsigned long long)arg3;
 - (void)setupEmptyCollectionInfoView:(id)arg1 title:(id)arg2 text:(id)arg3 icon:(long long)arg4 browseButtonTitle:(id)arg5 emptyViewURI:(id)arg6 mediaType:(unsigned long long)arg7;
 - (void)setupEmptyCollectionInfoView:(id)arg1 title:(id)arg2 text:(id)arg3 icon:(long long)arg4;
-- (id)showInfoViewForEmptyViewURI:(id)arg1 standAlonePage:(_Bool)arg2 size:(struct CGSize)arg3;
-- (id)showInfoViewForEmptyViewURI:(id)arg1 size:(struct CGSize)arg2;
-- (id)showInfoViewForEmptyViewURI:(id)arg1 mediaType:(unsigned long long)arg2 size:(struct CGSize)arg3;
+- (id)showInfoViewForURI:(id)arg1 standAlonePage:(_Bool)arg2;
+- (id)provideInfoViewForURI:(id)arg1;
+- (id)provideInfoViewForURI:(id)arg1 mediaType:(unsigned long long)arg2;
 - (id)initWithStringProvider:(id)arg1 linkDispatcher:(id)arg2;
 
 // Remaining properties

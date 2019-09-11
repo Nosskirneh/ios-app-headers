@@ -17,8 +17,8 @@
     id <SPTLinkDispatcher> _linkDispatcher;
 }
 
-@property(retain, nonatomic) id <SPTLinkDispatcher> linkDispatcher; // @synthesize linkDispatcher=_linkDispatcher;
-@property(retain, nonatomic) id <SPTNavigationConfiguration> navigationConfiguration; // @synthesize navigationConfiguration=_navigationConfiguration;
+@property(readonly, nonatomic) id <SPTLinkDispatcher> linkDispatcher; // @synthesize linkDispatcher=_linkDispatcher;
+@property(readonly, nonatomic) id <SPTNavigationConfiguration> navigationConfiguration; // @synthesize navigationConfiguration=_navigationConfiguration;
 - (void).cxx_destruct;
 - (void)navigateToURI:(id)arg1;
 - (void)navigateToBrowse;

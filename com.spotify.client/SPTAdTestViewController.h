@@ -7,50 +7,58 @@
 #import <UIKit/UITableViewController.h>
 
 #import "SPTPageController-Protocol.h"
+#import "UIPickerViewDataSource-Protocol.h"
+#import "UIPickerViewDelegate-Protocol.h"
 #import "UITableViewDataSource-Protocol.h"
 #import "UITableViewDelegate-Protocol.h"
 #import "UITextFieldDelegate-Protocol.h"
 
-@class GLUETableViewCellStyle, NSArray, NSString, NSURL, SPTAdCosmosBridge, SPTAdGlobalSettingsController, SPTAdMobileOverlayController, SPTAdRegistryInformationManager, SPTAdTestingHandler, SPTAdsViewModel, SPTPlayerMftCanPlayChecker, SPTTableView, SettingsTextFieldTableViewCell;
-@protocol SPTAdEventLogger, SPTContainerUIService, SPTPageContainer;
+@class GLUETableViewCellStyle, NSArray, NSString, NSURL, SPTAdMobileOverlayController, SPTAdRegistryInformationManager, SPTAdTestingHandler, SPTAdsViewModel, SPTPlayerMftCanPlayChecker, SPTTableView, SettingsTextFieldTableViewCell;
+@protocol SPTAdsBaseCosmosBridge, SPTAdsBaseGlobalSettingsController, SPTContainerUIService, SPTPageContainer;
 
-@interface SPTAdTestViewController : UITableViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, SPTPageController>
+@interface SPTAdTestViewController : UITableViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, UIPickerViewDataSource, UIPickerViewDelegate, SPTPageController>
 {
     _Bool _forcedFocusState;
-    SPTAdCosmosBridge *_cosmosBridge;
+    id <SPTAdsBaseCosmosBridge> _cosmosBridge;
     SPTAdTestingHandler *_adTestingHandler;
     SPTAdsViewModel *_adsViewModel;
     NSArray *_data;
     NSArray *_adUserIds;
     SettingsTextFieldTableViewCell *_textFieldCell;
-    SPTAdGlobalSettingsController *_adSettingsController;
+    id <SPTAdsBaseGlobalSettingsController> _adSettingsController;
     SPTAdMobileOverlayController *_mobileOverlayController;
     SPTPlayerMftCanPlayChecker *_mftCanPlayChecker;
     id <SPTContainerUIService> _containerUIService;
     SPTAdRegistryInformationManager *_adInformationManager;
-    id <SPTAdEventLogger> _adEventLogger;
     GLUETableViewCellStyle *_cellStyle;
+    SettingsTextFieldTableViewCell *_countryTextFieldCell;
+    NSArray *_overrideCountries;
 }
 
+@property(retain, nonatomic) NSArray *overrideCountries; // @synthesize overrideCountries=_overrideCountries;
+@property(retain, nonatomic) SettingsTextFieldTableViewCell *countryTextFieldCell; // @synthesize countryTextFieldCell=_countryTextFieldCell;
 @property(nonatomic) _Bool forcedFocusState; // @synthesize forcedFocusState=_forcedFocusState;
 @property(retain, nonatomic) GLUETableViewCellStyle *cellStyle; // @synthesize cellStyle=_cellStyle;
-@property(readonly, nonatomic) __weak id <SPTAdEventLogger> adEventLogger; // @synthesize adEventLogger=_adEventLogger;
 @property(retain, nonatomic) SPTAdRegistryInformationManager *adInformationManager; // @synthesize adInformationManager=_adInformationManager;
 @property(nonatomic) __weak id <SPTContainerUIService> containerUIService; // @synthesize containerUIService=_containerUIService;
 @property(readonly, nonatomic) SPTPlayerMftCanPlayChecker *mftCanPlayChecker; // @synthesize mftCanPlayChecker=_mftCanPlayChecker;
 @property(nonatomic) __weak SPTAdMobileOverlayController *mobileOverlayController; // @synthesize mobileOverlayController=_mobileOverlayController;
-@property(retain, nonatomic) SPTAdGlobalSettingsController *adSettingsController; // @synthesize adSettingsController=_adSettingsController;
+@property(retain, nonatomic) id <SPTAdsBaseGlobalSettingsController> adSettingsController; // @synthesize adSettingsController=_adSettingsController;
 @property(retain, nonatomic) SettingsTextFieldTableViewCell *textFieldCell; // @synthesize textFieldCell=_textFieldCell;
 @property(retain, nonatomic) NSArray *adUserIds; // @synthesize adUserIds=_adUserIds;
 @property(retain, nonatomic) NSArray *data; // @synthesize data=_data;
 @property(nonatomic) __weak SPTAdsViewModel *adsViewModel; // @synthesize adsViewModel=_adsViewModel;
 @property(retain, nonatomic) SPTAdTestingHandler *adTestingHandler; // @synthesize adTestingHandler=_adTestingHandler;
-@property(nonatomic) __weak SPTAdCosmosBridge *cosmosBridge; // @synthesize cosmosBridge=_cosmosBridge;
+@property(nonatomic) __weak id <SPTAdsBaseCosmosBridge> cosmosBridge; // @synthesize cosmosBridge=_cosmosBridge;
 - (void).cxx_destruct;
 @property(readonly, nonatomic, getter=spt_pageURI) NSURL *pageURI;
 @property(readonly, nonatomic, getter=spt_pageIdentifier) NSString *pageIdentifier;
 - (id)URI;
 - (void)handleTestingToolResponse:(_Bool)arg1;
+- (void)pickerView:(id)arg1 didSelectRow:(long long)arg2 inComponent:(long long)arg3;
+- (id)pickerView:(id)arg1 titleForRow:(long long)arg2 forComponent:(long long)arg3;
+- (long long)pickerView:(id)arg1 numberOfRowsInComponent:(long long)arg2;
+- (long long)numberOfComponentsInPickerView:(id)arg1;
 - (void)textFieldDidEndEditing:(id)arg1;
 - (_Bool)textFieldShouldReturn:(id)arg1;
 - (void)tableView:(id)arg1 didSelectRowAtIndexPath:(id)arg2;
@@ -58,14 +66,16 @@
 - (id)tableView:(id)arg1 cellForRowAtIndexPath:(id)arg2;
 - (long long)numberOfSectionsInTableView:(id)arg1;
 - (long long)tableView:(id)arg1 numberOfRowsInSection:(long long)arg2;
+- (id)windowToPresentFrom;
 - (void)updateAdUserID;
 - (void)overrideAdUserId:(id)arg1;
+- (void)showAlertWithMessage:(id)arg1 andTitle:(id)arg2;
 - (void)showAlertBillboardDidDisplay:(_Bool)arg1;
 - (void)showAlertPrerollDidPlay:(_Bool)arg1;
 - (void)viewDidLoad;
 - (void)setFocusValueTargeting:(_Bool)arg1;
 - (void)dealloc;
-- (id)initWithCosmosBridge:(id)arg1 testingHandler:(id)arg2 adsViewModel:(id)arg3 adSettingsController:(id)arg4 mobileOverlayController:(id)arg5 debugUIPresenter:(id)arg6 mftRules:(id)arg7 linkDispatcher:(id)arg8 containerService:(id)arg9 adInformationManager:(id)arg10 adEventLogger:(id)arg11 cellStyle:(id)arg12;
+- (id)initWithCosmosBridge:(id)arg1 testingHandler:(id)arg2 adsViewModel:(id)arg3 adSettingsController:(id)arg4 mobileOverlayController:(id)arg5 debugUIPresenter:(id)arg6 mftRules:(id)arg7 linkDispatcher:(id)arg8 containerService:(id)arg9 adInformationManager:(id)arg10 cellStyle:(id)arg11;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

@@ -9,15 +9,10 @@
 @class NSDictionary, NSString, NSURL;
 
 @protocol SPTVideoPlaybackIdentity <NSObject>
-- (NSDictionary *)metadata;
-- (_Bool)playWhenReady;
-- (double)initialPosition;
-- (NSURL *)audioTrackURI;
-- (NSURL *)mediaURL;
-- (NSString *)manifestID;
-- (_Bool)isAd;
-- (_Bool)isRoyaltyVideo;
-- (_Bool)isBackgroundable;
-- (NSString *)sessionID;
+@property(readonly, nonatomic) NSDictionary *metadata;
+@property(readonly, nonatomic) NSURL *mediaURL;
+@property(readonly, nonatomic, getter=isRoyaltyMedia) _Bool royaltyMedia;
+@property(readonly, nonatomic, getter=isAudioOnlyAllowed) _Bool audioOnlyAllowed;
+@property(readonly, nonatomic) NSString *sessionID;
 @end
 

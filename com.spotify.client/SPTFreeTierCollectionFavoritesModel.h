@@ -36,7 +36,10 @@
 @property(retain, nonatomic) id <SPTLocalSettings> localSettings; // @synthesize localSettings=_localSettings;
 @property(nonatomic) __weak id <SPTFreeTierCollectionFavoriteMixModelDelegate> delegate; // @synthesize delegate;
 - (void).cxx_destruct;
+- (void)loadStoredSongCount;
+- (void)updateStoredSongCount:(unsigned long long)arg1 offlineStatus:(unsigned long long)arg2;
 - (void)handleFailedFavoriteSongsRequest:(id)arg1;
+- (void)updateWithSongCount:(unsigned long long)arg1 offlineStatus:(unsigned long long)arg2;
 - (void)handleSuccessfulFavoriteSongsRequest:(id)arg1;
 - (void)loadFavoriteSongsModel;
 - (void)updateModel;

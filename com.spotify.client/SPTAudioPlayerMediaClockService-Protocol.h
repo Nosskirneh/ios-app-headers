@@ -6,10 +6,9 @@
 
 #import "SPTService-Protocol.h"
 
-@class NSURL;
-@protocol SPTAudioPlayerMediaClock;
+@protocol SPTAudioPlayerMediaClock, SPTVideoPlaybackIdentity;
 
 @protocol SPTAudioPlayerMediaClockService <SPTService>
-- (id <SPTAudioPlayerMediaClock>)audioPlayerMediaClockForTrackURI:(NSURL *)arg1;
+- (id <SPTAudioPlayerMediaClock>)audioPlayerMediaClockForPlaybackIdentity:(id <SPTVideoPlaybackIdentity>)arg1;
 @end
 

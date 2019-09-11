@@ -6,17 +6,16 @@
 
 #import "SPTBarInteractiveTransitionParticipant-Protocol.h"
 
-@class SPBarViewController;
+@class SPBarViewController, UIScrollView;
 
 @protocol SPTBarOverlayViewController <SPTBarInteractiveTransitionParticipant>
 
 @optional
+- (UIScrollView *)scrollViewForBarTransition;
 - (void)overlayWillDismissInteractively;
 - (void)overlayWillPresentInteractively;
 - (_Bool)barViewControllerInteractiveTransitionEnabled:(SPBarViewController *)arg1;
 - (void)overlayWasShown;
-- (void)overlayWillBeShown;
 - (void)overlayWasHidden;
-- (void)overlayWillHide;
 @end
 

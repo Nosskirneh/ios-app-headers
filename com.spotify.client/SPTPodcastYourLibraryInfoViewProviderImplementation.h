@@ -9,7 +9,7 @@
 #import "SPTShowInfoViewProvider-Protocol.h"
 
 @class NSString;
-@protocol GLUETheme, SPTLinkDispatcher, SPTMetaViewController, SPTNavigationRouter;
+@protocol GLUETheme, SPTLinkDispatcher, SPTMetaViewController, SPTNavigationRouter, SPTPodcastLogger, SPTPodcastTestManager;
 
 @interface SPTPodcastYourLibraryInfoViewProviderImplementation : NSObject <SPTShowInfoViewProvider>
 {
@@ -17,16 +17,22 @@
     id <SPTMetaViewController> _metaViewController;
     id <SPTNavigationRouter> _navigationRouter;
     id <GLUETheme> _theme;
+    id <SPTPodcastLogger> _podcastLogger;
+    id <SPTPodcastTestManager> _testManager;
 }
 
+@property(retain, nonatomic) id <SPTPodcastTestManager> testManager; // @synthesize testManager=_testManager;
+@property(retain, nonatomic) id <SPTPodcastLogger> podcastLogger; // @synthesize podcastLogger=_podcastLogger;
 @property(retain, nonatomic) id <GLUETheme> theme; // @synthesize theme=_theme;
 @property(nonatomic) __weak id <SPTNavigationRouter> navigationRouter; // @synthesize navigationRouter=_navigationRouter;
 @property(nonatomic) __weak id <SPTMetaViewController> metaViewController; // @synthesize metaViewController=_metaViewController;
 @property(nonatomic) __weak id <SPTLinkDispatcher> linkDispatcher; // @synthesize linkDispatcher=_linkDispatcher;
 - (void).cxx_destruct;
-- (id)showInfoViewForEmptyViewURI:(id)arg1 mediaType:(unsigned long long)arg2 size:(struct CGSize)arg3;
-- (id)showInfoViewForEmptyViewURI:(id)arg1 size:(struct CGSize)arg2;
-- (id)initWithTheme:(id)arg1 linkDispatcher:(id)arg2 metaViewController:(id)arg3 navigationRouter:(id)arg4;
+- (_Bool)calculateShowFollowButtonType;
+- (id)provideInfoViewWithError:(id)arg1 target:(id)arg2;
+- (id)provideInfoViewForURI:(id)arg1 mediaType:(unsigned long long)arg2;
+- (id)provideInfoViewForURI:(id)arg1;
+- (id)initWithTheme:(id)arg1 linkDispatcher:(id)arg2 metaViewController:(id)arg3 navigationRouter:(id)arg4 podcastLogger:(id)arg5 testManager:(id)arg6;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

@@ -6,21 +6,23 @@
 
 #import <objc/NSObject.h>
 
-@class OnePasswordExtension, SPTLoginDialogController;
+@class OnePasswordExtension, SPTLoginDialogController, SPTLoginErrorDialogLogger;
 
 @interface SPTLoginOnePasswordHandler : NSObject
 {
     OnePasswordExtension *_onePasswordExtension;
-    SPTLoginDialogController *_alertController;
+    SPTLoginDialogController *_dialogController;
+    SPTLoginErrorDialogLogger *_dialogLogger;
 }
 
-@property(readonly, nonatomic) SPTLoginDialogController *alertController; // @synthesize alertController=_alertController;
+@property(readonly, nonatomic) SPTLoginErrorDialogLogger *dialogLogger; // @synthesize dialogLogger=_dialogLogger;
+@property(readonly, nonatomic) SPTLoginDialogController *dialogController; // @synthesize dialogController=_dialogController;
 @property(readonly, nonatomic) OnePasswordExtension *onePasswordExtension; // @synthesize onePasswordExtension=_onePasswordExtension;
 - (void).cxx_destruct;
 - (void)handleError:(id)arg1;
 - (void)getLoginDetailsWithViewController:(id)arg1 sender:(id)arg2 onSuccess:(CDUnknownBlockType)arg3;
 - (_Bool)isOnePasswordLoginAvailable;
-- (id)initWithOnePasswordExtension:(id)arg1 alertController:(id)arg2;
+- (id)initWithOnePasswordExtension:(id)arg1 dialogController:(id)arg2 dialogLogger:(id)arg3;
 
 @end
 

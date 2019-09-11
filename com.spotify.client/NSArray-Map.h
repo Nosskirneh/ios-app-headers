@@ -7,6 +7,6 @@
 #import <Foundation/NSArray.h>
 
 @interface NSArray (Map)
-- (id)ins_map:(CDUnknownBlockType)arg1;
+- (id)ins_flattenMap:(CDUnknownBlockType)arg1;
 @end
 

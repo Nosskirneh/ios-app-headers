@@ -28,6 +28,8 @@
 - (void).cxx_destruct;
 - (void)performActionWithURI:(id)arg1 currentAccessory:(id)arg2 completionHandler:(CDUnknownBlockType)arg3;
 - (_Bool)canPerformActionWithURI:(id)arg1;
+- (void)handlePullContextIntentFromAction:(id)arg1 currentAccessory:(id)arg2 completionHandler:(CDUnknownBlockType)arg3;
+- (void)handlePlayIntentFromAction:(id)arg1 currentAccessory:(id)arg2 completionHandler:(CDUnknownBlockType)arg3;
 - (void)performAction:(id)arg1 currentAccessory:(id)arg2 completionHandler:(CDUnknownBlockType)arg3;
 - (void)unload;
 - (void)load;

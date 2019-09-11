@@ -23,9 +23,11 @@
     IDExternalAccessorySelector *_externalAccessorySelector;
     IDBackgroundTask *_backgroundTask;
     NSDate *_lastStartOfWaitingForSetupExternalAccessorySession;
+    unsigned long long _lastUsedAccessoryConnectionId;
 }
 
 + (id)new;
+@property unsigned long long lastUsedAccessoryConnectionId; // @synthesize lastUsedAccessoryConnectionId=_lastUsedAccessoryConnectionId;
 @property(retain) NSDate *lastStartOfWaitingForSetupExternalAccessorySession; // @synthesize lastStartOfWaitingForSetupExternalAccessorySession=_lastStartOfWaitingForSetupExternalAccessorySession;
 @property(retain) IDBackgroundTask *backgroundTask; // @synthesize backgroundTask=_backgroundTask;
 @property(readonly) IDExternalAccessorySelector *externalAccessorySelector; // @synthesize externalAccessorySelector=_externalAccessorySelector;

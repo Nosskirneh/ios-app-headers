@@ -4,11 +4,11 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import "EXP_HUBComponentView.h"
+#import "HUBComponentView.h"
 
 @class GLUELabel, SPTPremiumDestinationGLUETheme, SPTPremiumDestinationOfferTitleStyle;
 
-@interface SPTPremiumDestinationOfferTitleComponentView : EXP_HUBComponentView
+@interface SPTPremiumDestinationOfferTitleComponentView : HUBComponentView
 {
     SPTPremiumDestinationGLUETheme *_theme;
     SPTPremiumDestinationOfferTitleStyle *_style;

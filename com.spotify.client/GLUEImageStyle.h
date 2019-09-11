@@ -12,6 +12,7 @@
 
 @interface GLUEImageStyle : NSObject <GLUEDebuggableStyle>
 {
+    _Bool _clipsToBounds;
     NSString *_debugName;
     long long _mask;
     long long _imageViewContentMode;
@@ -19,6 +20,7 @@
 }
 
 @property(nonatomic) struct CGSize size; // @synthesize size=_size;
+@property(nonatomic) _Bool clipsToBounds; // @synthesize clipsToBounds=_clipsToBounds;
 @property(nonatomic) long long imageViewContentMode; // @synthesize imageViewContentMode=_imageViewContentMode;
 @property(nonatomic) long long mask; // @synthesize mask=_mask;
 @property(copy, nonatomic) NSString *debugName; // @synthesize debugName=_debugName;

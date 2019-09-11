@@ -7,9 +7,10 @@
 #import "NSObject-Protocol.h"
 
 @class NSURL;
-@protocol SPTExternalIntegrationContentRequestOptions;
+@protocol SPTExternalIntegrationContent, SPTExternalIntegrationContentRequestOptions;
 
 @protocol SPTExternalIntegrationContentProvider <NSObject>
+- (id <SPTExternalIntegrationContent>)createPlaceholderContentItemForURI:(NSURL *)arg1;
 - (void)resolveChildContentOfParentWithURI:(NSURL *)arg1 options:(id <SPTExternalIntegrationContentRequestOptions>)arg2 withCompletionHandler:(void (^)(NSArray *, NSError *))arg3;
 - (long long)priorityForChildContentOfParentWithURI:(NSURL *)arg1;
 - (void)resolveContentWithURI:(NSURL *)arg1 options:(id <SPTExternalIntegrationContentRequestOptions>)arg2 withCompletionHandler:(void (^)(id <SPTExternalIntegrationContent>, NSError *))arg3;

@@ -7,13 +7,6 @@
 #import "NSObject-Protocol.h"
 
 @protocol SPTFreeTierTestManager <NSObject>
-- (_Bool)followTasteOnboardingTextEnabled;
-- (_Bool)followTasteOnboardingIconEnabled;
-- (_Bool)heartsFollowEnabled;
-- (_Bool)followInArtistEntityHeaderEnabled;
-- (_Bool)consolidatedAlbumEnabled;
-- (_Bool)consolidatedArtistEnabled;
-- (_Bool)heartsInEntityHeadersEnabled;
-- (_Bool)heartsInTracksEnabled;
+- (_Bool)isProductStateNPT;
 @end
 

@@ -6,19 +6,16 @@
 
 #import "NSObject-Protocol.h"
 
-@class NSString, NSURL, SPTPlayerTrack, UIView;
-@protocol SPTNowPlayingScrollProviderDelegate;
+@class NSString, SPTPlayerTrack, UIView;
 
 @protocol SPTNowPlayingScrollProvider <NSObject>
-@property(readonly, nonatomic, getter=isEnabled) _Bool enabled;
-@property(nonatomic) __weak id <SPTNowPlayingScrollProviderDelegate> delegate;
-- (UIView *)provideContent;
-- (void)updateWithTrack:(SPTPlayerTrack *)arg1 imageURL:(NSURL *)arg2;
+- (UIView *)componentViewForTrack:(SPTPlayerTrack *)arg1;
+- (void)loadContentForTrack:(SPTPlayerTrack *)arg1;
+- (_Bool)isEnabledForTrack:(SPTPlayerTrack *)arg1;
 - (NSString *)identifier;
 
 @optional
-@property(readonly, nonatomic) double preferredContentHeight;
-- (void)didBecomeVisible:(_Bool)arg1;
-- (void)didBecomeActive:(_Bool)arg1;
+- (void)didBecomeFullyShownForTrack:(SPTPlayerTrack *)arg1;
+- (double)preferredContentHeightForWidth:(double)arg1;
 @end
 

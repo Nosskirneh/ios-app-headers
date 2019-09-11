@@ -7,17 +7,12 @@
 #import "NSCopying-Protocol.h"
 #import "NSObject-Protocol.h"
 
-@class NSDictionary, NSString, NSURL;
+@class NSDictionary, NSURL;
 
 @protocol SPTVideoPlaybackRequest <NSCopying, NSObject>
-@property(copy, nonatomic) NSDictionary *metadata;
-@property(nonatomic) _Bool playWhenReady;
-@property(nonatomic) double initialPosition;
-@property(copy, nonatomic, getter=audioTrackURI) NSURL *syncWithAudioTrackURI;
-@property(copy, nonatomic) NSURL *mediaURL;
-@property(retain, nonatomic) NSString *manifestID;
-@property(nonatomic) _Bool isAd;
-- (_Bool)isRoyaltyVideo;
-- (_Bool)isBackgroundable;
+@property(readonly, nonatomic, getter=isRoyaltyMedia) _Bool royaltyMedia;
+@property(readonly, nonatomic, getter=isAudioOnlyAllowed) _Bool audioOnlyAllowed;
+@property(readonly, nonatomic) NSDictionary *metadata;
+@property(readonly, nonatomic) NSURL *mediaURL;
 @end
 

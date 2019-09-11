@@ -10,13 +10,6 @@
 @property(nonatomic, getter=isUserOnFreeProduct) _Bool userOnFreeProduct;
 @property(nonatomic, getter=isContextMenuPlaylistRadioHidden) _Bool contextMenuPlaylistRadioHidden;
 @property(nonatomic, getter=isRadioContextMenuUsingFormatListLinks) _Bool radioContextMenuUsingFormatListLinks;
-@property(nonatomic, getter=isStationsFollowButtonHidden) _Bool stationsFollowButtonHidden;
-@property(nonatomic, getter=isStationsLibrarySectionHidden) _Bool stationsLibrarySectionHidden;
-@property(nonatomic, getter=isStationsSearchHidden) _Bool stationsSearchHidden;
-@property(nonatomic, getter=isRadioSearchHidden) _Bool radioSearchHidden;
-@property(nonatomic) unsigned long long radioSearchBarButtonFlagState;
-@property(readonly, nonatomic, getter=isSearchAutocompleteEnabled) _Bool searchAutocompleteEnabled;
-@property(readonly, nonatomic, getter=isHeartsInEntityHeadersEnabled) _Bool heartsInEntityHeadersEnabled;
 @property(readonly, nonatomic, getter=isRadioURITransitionEnabled) _Bool radioURITransitionEnabled;
 @property(readonly, nonatomic, getter=isInfinitePlaybackEnabled) _Bool infinitePlaybackEnabled;
 @property(readonly, nonatomic, getter=isEnabled) _Bool enabled;

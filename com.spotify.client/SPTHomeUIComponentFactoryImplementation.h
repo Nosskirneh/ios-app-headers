@@ -8,24 +8,34 @@
 
 #import "SPTHomeUIComponentFactory-Protocol.h"
 
-@class NSString;
-@protocol GLUETheme, SPTFeatureFlagSignal, SPTVideoFeature;
+@class NSString, SPTHomeUILogger;
+@protocol GLUETheme, SPTPlayer;
 
 @interface SPTHomeUIComponentFactoryImplementation : NSObject <SPTHomeUIComponentFactory>
 {
     id <GLUETheme> _theme;
-    id <SPTVideoFeature> _videoService;
-    id <SPTFeatureFlagSignal> _dataSaverFlagSignal;
+    id <SPTPlayer> _player;
+    SPTHomeUILogger *_logger;
 }
 
-@property(retain, nonatomic) id <SPTFeatureFlagSignal> dataSaverFlagSignal; // @synthesize dataSaverFlagSignal=_dataSaverFlagSignal;
-@property(readonly, nonatomic) __weak id <SPTVideoFeature> videoService; // @synthesize videoService=_videoService;
+@property(readonly, nonatomic) SPTHomeUILogger *logger; // @synthesize logger=_logger;
+@property(readonly, nonatomic) __weak id <SPTPlayer> player; // @synthesize player=_player;
 @property(readonly, nonatomic) id <GLUETheme> theme; // @synthesize theme=_theme;
 - (void).cxx_destruct;
+- (id)createHabitsComponent;
+- (id)createQuickPlayCardComponent;
+- (id)createQuickPlayComponent;
+- (id)createSectionHeaderComponent;
+- (id)createRowLargeComponent;
+- (id)createPromoV2Component;
+- (id)createPromoComponent;
+- (id)createCarouselComponent;
+- (id)createLargeCardComponent;
+- (id)createSmallCardComponent;
 - (void)unregisterHomeComponentsFromComponentRegistry:(id)arg1;
 - (void)registerHomeComponentsToComponentRegistry:(id)arg1;
 - (id)provideHomeHubComponents;
-- (id)initWithTheme:(id)arg1 videoService:(id)arg2 dataSaverFlagSignal:(id)arg3;
+- (id)initWithTheme:(id)arg1 player:(id)arg2 logger:(id)arg3;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

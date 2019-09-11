@@ -6,26 +6,36 @@
 
 #import <objc/NSObject.h>
 
-#import "EXP_HUBContentOperation-Protocol.h"
+#import "HUBContentOperation-Protocol.h"
+#import "SPTHomeCacheRenderDelegate-Protocol.h"
 
-@protocol EXP_HUBContentOperationDelegate;
+@class NSString;
+@protocol HUBContentOperationDelegate;
 
-@interface SPTHomeErrorHandlingContentOperation : NSObject <EXP_HUBContentOperation>
+@interface SPTHomeErrorHandlingContentOperation : NSObject <HUBContentOperation, SPTHomeCacheRenderDelegate>
 {
-    _Bool _didEmitNonErrorViewModel;
-    id <EXP_HUBContentOperationDelegate> _delegate;
+    _Bool _cacheContentHasRendered;
+    id <HUBContentOperationDelegate> _delegate;
     CDUnknownBlockType _errorPredicate;
 }
 
+@property(nonatomic) _Bool cacheContentHasRendered; // @synthesize cacheContentHasRendered=_cacheContentHasRendered;
 @property(readonly, copy, nonatomic) CDUnknownBlockType errorPredicate; // @synthesize errorPredicate=_errorPredicate;
-@property(nonatomic) _Bool didEmitNonErrorViewModel; // @synthesize didEmitNonErrorViewModel=_didEmitNonErrorViewModel;
-@property(nonatomic) __weak id <EXP_HUBContentOperationDelegate> delegate; // @synthesize delegate=_delegate;
+@property(nonatomic) __weak id <HUBContentOperationDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
 - (void)configureOverlayForServerError:(id)arg1;
 - (void)configureOverlayForOfflineError:(id)arg1;
 - (void)addOverlayForError:(id)arg1 toViewModelBuilder:(id)arg2;
 - (void)performForViewModelBuilder:(id)arg1 previousError:(id)arg2;
+- (void)viewController:(id)arg1 failedToLoadCacheWithError:(id)arg2;
+- (void)viewControllerDidRenderCache:(id)arg1;
 - (id)initWithErrorPredicate:(CDUnknownBlockType)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

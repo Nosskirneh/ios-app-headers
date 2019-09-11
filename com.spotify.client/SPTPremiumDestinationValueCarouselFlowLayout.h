@@ -10,6 +10,7 @@
 {
 }
 
+- (_Bool)flipsHorizontallyInOppositeLayoutDirection;
 - (double)flickVelocity;
 - (struct CGPoint)targetContentOffsetForProposedContentOffset:(struct CGPoint)arg1 withScrollingVelocity:(struct CGPoint)arg2;
 - (double)pageWidth;

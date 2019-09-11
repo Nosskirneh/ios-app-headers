@@ -7,17 +7,16 @@
 #import <objc/NSObject.h>
 
 #import "SPTAccountProductActivationObserver-Protocol.h"
-#import "SPTInAppMessageAction-Protocol.h"
+#import "SPTInAppMessageActionHandler-Protocol.h"
 
 @class NSString, SPTPopupManager;
-@protocol SPTAccountProductActivationController, SPTLinkDispatcher, SPTUIModeTransitionCoordinator, SPTUIModeTransitionToken;
+@protocol SPTAccountProductActivationController, SPTUIModeTransitionCoordinator, SPTUIModeTransitionToken;
 
-@interface SPTInAppMessageTrialAction : NSObject <SPTAccountProductActivationObserver, SPTInAppMessageAction>
+@interface SPTInAppMessageTrialAction : NSObject <SPTAccountProductActivationObserver, SPTInAppMessageActionHandler>
 {
     _Bool _freeTierEnabled;
     id <SPTUIModeTransitionCoordinator> _transitionCoordinator;
     id <SPTAccountProductActivationController> _productActivationController;
-    id <SPTLinkDispatcher> _linkDispatcher;
     SPTPopupManager *_popupManager;
     id <SPTUIModeTransitionToken> _transitionToken;
 }
@@ -25,18 +24,16 @@
 @property(nonatomic) _Bool freeTierEnabled; // @synthesize freeTierEnabled=_freeTierEnabled;
 @property(retain, nonatomic) id <SPTUIModeTransitionToken> transitionToken; // @synthesize transitionToken=_transitionToken;
 @property(retain, nonatomic) SPTPopupManager *popupManager; // @synthesize popupManager=_popupManager;
-@property(retain, nonatomic) id <SPTLinkDispatcher> linkDispatcher; // @synthesize linkDispatcher=_linkDispatcher;
 @property(retain, nonatomic) id <SPTAccountProductActivationController> productActivationController; // @synthesize productActivationController=_productActivationController;
 @property(retain, nonatomic) id <SPTUIModeTransitionCoordinator> transitionCoordinator; // @synthesize transitionCoordinator=_transitionCoordinator;
 - (void).cxx_destruct;
 - (void)productActivationController:(id)arg1 didFailActivatingProduct:(long long)arg2 error:(id)arg3;
-- (void)openTrialStartedURL;
 - (void)showLoginFailureErrorView;
 - (void)handleResult:(long long)arg1;
 - (void)callTransitionaryUI;
-- (void)perform;
+- (void)executeActionWithURL:(id)arg1;
 - (void)dealloc;
-- (id)initWithProductActivationController:(id)arg1 linkDispatcher:(id)arg2 transitionCoordinator:(id)arg3 popupManager:(id)arg4 freeTierEnabled:(_Bool)arg5;
+- (id)initWithProductActivationController:(id)arg1 transitionCoordinator:(id)arg2 popupManager:(id)arg3 freeTierEnabled:(_Bool)arg4;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

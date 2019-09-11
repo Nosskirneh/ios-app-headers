@@ -6,9 +6,9 @@
 
 #import "NSObject-Protocol.h"
 
-@protocol EXP_HUBComponent;
+@protocol HUBComponent;
 
 @protocol SPTArtistAboutHubComponentFactory <NSObject>
-- (id <EXP_HUBComponent>)createBiographyComponent;
+- (id <HUBComponent>)createBiographyComponent;
 @end
 

@@ -9,19 +9,19 @@
 #import "GLUEReusable-Protocol.h"
 #import "GLUEStyleable-Protocol.h"
 
-@class GLUECardDetailsStyle, GLUELabel, NSLayoutConstraint, NSString, SPTLayoutConstraintBuilder;
+@class GLUECardDetailsStyle, GLUELabel, NSArray, NSLayoutConstraint, NSString;
 
 @interface GLUECardDetailsView : UIView <GLUEStyleable, GLUEReusable>
 {
     GLUELabel *_titleLabel;
     GLUELabel *_subtitleLabel;
     GLUECardDetailsStyle *_style;
-    SPTLayoutConstraintBuilder *_layout;
+    NSArray *_layoutConstraints;
     NSLayoutConstraint *_subtitleHeightConstraint;
 }
 
 @property(retain, nonatomic) NSLayoutConstraint *subtitleHeightConstraint; // @synthesize subtitleHeightConstraint=_subtitleHeightConstraint;
-@property(retain, nonatomic) SPTLayoutConstraintBuilder *layout; // @synthesize layout=_layout;
+@property(copy, nonatomic) NSArray *layoutConstraints; // @synthesize layoutConstraints=_layoutConstraints;
 @property(copy, nonatomic) GLUECardDetailsStyle *style; // @synthesize style=_style;
 @property(readonly, nonatomic) GLUELabel *subtitleLabel; // @synthesize subtitleLabel=_subtitleLabel;
 @property(readonly, nonatomic) GLUELabel *titleLabel; // @synthesize titleLabel=_titleLabel;

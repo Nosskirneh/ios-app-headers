@@ -18,11 +18,11 @@
 }
 
 + (id)messageWithSessionId:(id)arg1 userIntent:(id)arg2 entityUri:(id)arg3 contextUri:(id)arg4 playbackId:(id)arg5;
-@property(retain, nonatomic) NSString *playbackIdValue; // @synthesize playbackIdValue=_playbackIdValue;
-@property(retain, nonatomic) NSString *contextUriValue; // @synthesize contextUriValue=_contextUriValue;
-@property(retain, nonatomic) NSString *entityUriValue; // @synthesize entityUriValue=_entityUriValue;
-@property(retain, nonatomic) NSString *userIntentValue; // @synthesize userIntentValue=_userIntentValue;
-@property(retain, nonatomic) NSString *sessionIdValue; // @synthesize sessionIdValue=_sessionIdValue;
+@property(copy, nonatomic) NSString *playbackIdValue; // @synthesize playbackIdValue=_playbackIdValue;
+@property(copy, nonatomic) NSString *contextUriValue; // @synthesize contextUriValue=_contextUriValue;
+@property(copy, nonatomic) NSString *entityUriValue; // @synthesize entityUriValue=_entityUriValue;
+@property(copy, nonatomic) NSString *userIntentValue; // @synthesize userIntentValue=_userIntentValue;
+@property(copy, nonatomic) NSString *sessionIdValue; // @synthesize sessionIdValue=_sessionIdValue;
 - (void).cxx_destruct;
 - (_Bool)isEqual:(id)arg1;
 - (unsigned long long)hash;

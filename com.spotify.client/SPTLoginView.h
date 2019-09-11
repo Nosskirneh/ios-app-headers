@@ -8,14 +8,14 @@
 
 #import "GLUEStyleable-Protocol.h"
 
-@class GLUEGradientStyle, GLUEGradientView, GLUELabel, NSLayoutConstraint, NSString, SPTActionButton, SPTLoginFormScrollView, SPTLoginInputFormView, SPTLoginLoadingActionButton, UIView;
+@class GLUEButton, GLUEGradientStyle, GLUEGradientView, GLUELabel, NSLayoutConstraint, NSString, SPTActionButton, SPTLoginFormScrollView, SPTLoginInputFormView, SPTLoginLoadingActionButton, UIView;
 
 @interface SPTLoginView : SPTLoginLoadingView <GLUEStyleable>
 {
     SPTLoginLoadingActionButton *_submitButton;
     GLUELabel *_titleLabel;
     SPTLoginInputFormView *_formView;
-    GLUELabel *_forgotPasswordLabel;
+    GLUEButton *_loginWithoutPasswordButton;
     UIView *_contentView;
     SPTLoginFormScrollView *_scrollView;
     GLUEGradientView *_backgroundGradientView;
@@ -23,16 +23,14 @@
     NSLayoutConstraint *_titleLabelTopMargin;
     NSLayoutConstraint *_formViewTopMargin;
     NSLayoutConstraint *_formViewHorizontalMargin;
-    NSLayoutConstraint *_forgotPasswordLabelTopMargin;
-    NSLayoutConstraint *_forgotPasswordLabelBottomMargin;
-    NSLayoutConstraint *_forgotPasswordLabelWidth;
     NSLayoutConstraint *_loginButtonTopMargin;
+    NSLayoutConstraint *_loginWithoutPasswordButtonTopMargin;
+    NSLayoutConstraint *_loginWithoutPasswordButtonBottomMargin;
 }
 
+@property(retain, nonatomic) NSLayoutConstraint *loginWithoutPasswordButtonBottomMargin; // @synthesize loginWithoutPasswordButtonBottomMargin=_loginWithoutPasswordButtonBottomMargin;
+@property(retain, nonatomic) NSLayoutConstraint *loginWithoutPasswordButtonTopMargin; // @synthesize loginWithoutPasswordButtonTopMargin=_loginWithoutPasswordButtonTopMargin;
 @property(retain, nonatomic) NSLayoutConstraint *loginButtonTopMargin; // @synthesize loginButtonTopMargin=_loginButtonTopMargin;
-@property(retain, nonatomic) NSLayoutConstraint *forgotPasswordLabelWidth; // @synthesize forgotPasswordLabelWidth=_forgotPasswordLabelWidth;
-@property(retain, nonatomic) NSLayoutConstraint *forgotPasswordLabelBottomMargin; // @synthesize forgotPasswordLabelBottomMargin=_forgotPasswordLabelBottomMargin;
-@property(retain, nonatomic) NSLayoutConstraint *forgotPasswordLabelTopMargin; // @synthesize forgotPasswordLabelTopMargin=_forgotPasswordLabelTopMargin;
 @property(retain, nonatomic) NSLayoutConstraint *formViewHorizontalMargin; // @synthesize formViewHorizontalMargin=_formViewHorizontalMargin;
 @property(retain, nonatomic) NSLayoutConstraint *formViewTopMargin; // @synthesize formViewTopMargin=_formViewTopMargin;
 @property(retain, nonatomic) NSLayoutConstraint *titleLabelTopMargin; // @synthesize titleLabelTopMargin=_titleLabelTopMargin;
@@ -40,7 +38,7 @@
 @property(retain, nonatomic) GLUEGradientView *backgroundGradientView; // @synthesize backgroundGradientView=_backgroundGradientView;
 @property(retain, nonatomic) SPTLoginFormScrollView *scrollView; // @synthesize scrollView=_scrollView;
 @property(retain, nonatomic) UIView *contentView; // @synthesize contentView=_contentView;
-@property(readonly, nonatomic) GLUELabel *forgotPasswordLabel; // @synthesize forgotPasswordLabel=_forgotPasswordLabel;
+@property(readonly, nonatomic) GLUEButton *loginWithoutPasswordButton; // @synthesize loginWithoutPasswordButton=_loginWithoutPasswordButton;
 @property(readonly, nonatomic) SPTLoginInputFormView *formView; // @synthesize formView=_formView;
 @property(readonly, nonatomic) GLUELabel *titleLabel; // @synthesize titleLabel=_titleLabel;
 - (id)submitButton;

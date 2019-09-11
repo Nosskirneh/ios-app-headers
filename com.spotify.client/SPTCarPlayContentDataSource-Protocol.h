@@ -7,9 +7,10 @@
 #import "NSObject-Protocol.h"
 
 @class NSArray, NSString;
+@protocol SPTExternalIntegrationContentController, SPTExternalIntegrationContentRequestOptions;
 
 @protocol SPTCarPlayContentDataSource <NSObject>
 @property(readonly, nonatomic) __weak NSArray *rootItemURIs;
-- (void)fetchRootItemURIsWithAccessorySessionID:(NSString *)arg1 completionHandler:(void (^)(NSArray *))arg2;
+- (NSArray *)fetchRootContentWithAccessorySessionID:(NSString *)arg1 contentController:(id <SPTExternalIntegrationContentController>)arg2 options:(id <SPTExternalIntegrationContentRequestOptions>)arg3;
 @end
 

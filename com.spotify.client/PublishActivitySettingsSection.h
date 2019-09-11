@@ -9,7 +9,7 @@
 #import "SPTIncognitoModeHandlerObserver-Protocol.h"
 #import "SPTProductStateObserver-Protocol.h"
 
-@class NSString, SPTIncognitoModeHandler, SettingsSwitchTableViewCell;
+@class NSString, SPTIncognitoModeHandler, SPTSettingsLogger, SettingsSwitchTableViewCell;
 @protocol SPTProductState;
 
 @interface PublishActivitySettingsSection : SettingsSection <SPTIncognitoModeHandlerObserver, SPTProductStateObserver>
@@ -17,8 +17,10 @@
     SettingsSwitchTableViewCell *_cell;
     id <SPTProductState> _productState;
     SPTIncognitoModeHandler *_incognitoModeHandler;
+    SPTSettingsLogger *_logger;
 }
 
+@property(retain, nonatomic) SPTSettingsLogger *logger; // @synthesize logger=_logger;
 @property(readonly, nonatomic) __weak SPTIncognitoModeHandler *incognitoModeHandler; // @synthesize incognitoModeHandler=_incognitoModeHandler;
 @property(readonly, nonatomic) id <SPTProductState> productState; // @synthesize productState=_productState;
 @property(readonly, nonatomic) SettingsSwitchTableViewCell *cell; // @synthesize cell=_cell;
@@ -33,7 +35,7 @@
 - (id)cellForRow:(long long)arg1;
 - (long long)numberOfRows;
 - (unsigned long long)categoryPosition;
-- (id)initWithSettingsViewController:(id)arg1 productState:(id)arg2 incognitoModeHandler:(id)arg3;
+- (id)initWithSettingsViewController:(id)arg1 productState:(id)arg2 incognitoModeHandler:(id)arg3 logger:(id)arg4;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

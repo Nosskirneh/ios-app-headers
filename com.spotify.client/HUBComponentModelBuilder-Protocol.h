@@ -6,13 +6,14 @@
 
 #import "HUBJSONCompatibleBuilder-Protocol.h"
 
-@class NSArray, NSDictionary, NSNumber, NSString, NSURL, UIImage;
-@protocol HUBComponentImageDataBuilder, HUBComponentModelBuilder, HUBComponentTargetBuilder;
+@class NSArray, NSMutableDictionary, NSNumber, NSString, NSURL, UIImage;
+@protocol HUBCommandModelBuilder, HUBComponentImageDataBuilder, HUBComponentModel, HUBComponentModelBuilder, HUBComponentTargetBuilder;
 
 @protocol HUBComponentModelBuilder <HUBJSONCompatibleBuilder>
-@property(retain, nonatomic) NSDictionary *customData;
-@property(retain, nonatomic) NSDictionary *loggingData;
-@property(retain, nonatomic) NSDictionary *metadata;
+@property(readonly, nonatomic) NSMutableDictionary *customData;
+@property(readonly, nonatomic) NSMutableDictionary *loggingData;
+@property(readonly, nonatomic) NSMutableDictionary *metadata;
+@property(readonly, nonatomic) _Bool targetBuilderExists;
 @property(readonly, nonatomic) id <HUBComponentTargetBuilder> targetBuilder;
 @property(copy, nonatomic) NSString *iconIdentifier;
 @property(retain, nonatomic) UIImage *backgroundImage;
@@ -39,5 +40,8 @@
 - (NSArray *)allChildBuilders;
 - (id <HUBComponentImageDataBuilder>)builderForCustomImageDataWithIdentifier:(NSString *)arg1;
 - (_Bool)builderExistsForCustomImageDataWithIdentifier:(NSString *)arg1;
+- (id <HUBCommandModelBuilder>)commandModelBuilderForEventWithName:(NSString *)arg1;
+- (_Bool)builderExistsForEventWithName:(NSString *)arg1;
+- (id <HUBComponentModel>)buildForIndex:(unsigned long long)arg1 parent:(id <HUBComponentModel>)arg2;
 @end
 

@@ -19,12 +19,12 @@
 }
 
 + (id)messageWithInteractionId:(id)arg1 itemId:(id)arg2 type:(id)arg3 intent:(id)arg4 pageIdentifier:(id)arg5 pageUri:(id)arg6;
-@property(retain, nonatomic) NSString *pageUriValue; // @synthesize pageUriValue=_pageUriValue;
-@property(retain, nonatomic) NSString *pageIdentifierValue; // @synthesize pageIdentifierValue=_pageIdentifierValue;
-@property(retain, nonatomic) NSString *intentValue; // @synthesize intentValue=_intentValue;
-@property(retain, nonatomic) NSString *typeValue; // @synthesize typeValue=_typeValue;
-@property(retain, nonatomic) NSString *itemIdValue; // @synthesize itemIdValue=_itemIdValue;
-@property(retain, nonatomic) NSString *interactionIdValue; // @synthesize interactionIdValue=_interactionIdValue;
+@property(copy, nonatomic) NSString *pageUriValue; // @synthesize pageUriValue=_pageUriValue;
+@property(copy, nonatomic) NSString *pageIdentifierValue; // @synthesize pageIdentifierValue=_pageIdentifierValue;
+@property(copy, nonatomic) NSString *intentValue; // @synthesize intentValue=_intentValue;
+@property(copy, nonatomic) NSString *typeValue; // @synthesize typeValue=_typeValue;
+@property(copy, nonatomic) NSString *itemIdValue; // @synthesize itemIdValue=_itemIdValue;
+@property(copy, nonatomic) NSString *interactionIdValue; // @synthesize interactionIdValue=_interactionIdValue;
 - (void).cxx_destruct;
 - (_Bool)isEqual:(id)arg1;
 - (unsigned long long)hash;

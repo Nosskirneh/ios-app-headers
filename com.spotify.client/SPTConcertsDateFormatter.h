@@ -17,6 +17,7 @@
 - (void).cxx_destruct;
 - (id)fullCacheKeyForBaseKey:(id)arg1 locale:(id)arg2 timeZone:(id)arg3;
 - (id)dateFormatterForCacheKey:(id)arg1 creator:(CDUnknownBlockType)arg2;
+- (id)dateFormatterWithTemplate:(id)arg1 locale:(id)arg2 timeZone:(id)arg3;
 - (id)concertRowMetadataDateFormatter;
 - (id)subtitleDateRangeDateFormatter;
 - (id)subtitleSingleDateDateFormatter;

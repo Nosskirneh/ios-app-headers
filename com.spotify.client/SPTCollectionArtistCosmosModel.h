@@ -13,7 +13,7 @@
 #import "SPTPlayerObserver-Protocol.h"
 
 @class FollowModel, NSArray, NSString, NSURL, SPTCollectionContextMenuComponentFactory, SPTCollectionCurrentlyPlayingIndex, SPTCollectionPlatformFetchOptions, SPTPlayOrigin;
-@protocol FollowFeature, SPTClientSettings, SPTCollectionArtistCosmosMetadataFields, SPTCollectionArtistModelDelegate, SPTCollectionPlatform, SPTCollectionPlatformDataLoaderRequestToken, SPTOfflineModeState, SPTPlayer, SPTProductState, SPTUpsellManager;
+@protocol FollowFeature, SPTClientSettings, SPTCollectionArtistCosmosMetadataFields, SPTCollectionArtistModelDelegate, SPTCollectionPlatform, SPTCollectionPlatformDataLoaderRequestToken, SPTOfflineModeState, SPTPlayer, SPTProductState;
 
 @interface SPTCollectionArtistCosmosModel : NSObject <SPTCollectionSongItemPlaying, SPTPlayerObserver, SPTOfflineModeStateObserver, FollowModelObserver, SPTCollectionArtistModel>
 {
@@ -28,6 +28,7 @@
     SPTCollectionPlatformFetchOptions *_fetchOptions;
     id <SPTOfflineModeState> _offlineNotifier;
     id <SPTCollectionPlatformDataLoaderRequestToken> _viewSubscription;
+    id <SPTCollectionPlatformDataLoaderRequestToken> _trackSubscription;
     FollowModel *_followModel;
     NSURL *_collectionArtistURL;
     NSArray *_songItems;
@@ -36,10 +37,8 @@
     NSArray *_tracks;
     id <FollowFeature> _followFeature;
     id <SPTProductState> _productState;
-    id <SPTUpsellManager> _upsellManager;
 }
 
-@property(readonly, nonatomic) __weak id <SPTUpsellManager> upsellManager; // @synthesize upsellManager=_upsellManager;
 @property(retain, nonatomic) id <SPTProductState> productState; // @synthesize productState=_productState;
 @property(readonly, nonatomic) __weak id <FollowFeature> followFeature; // @synthesize followFeature=_followFeature;
 @property(retain, nonatomic) NSArray *tracks; // @synthesize tracks=_tracks;
@@ -49,6 +48,7 @@
 @property(nonatomic) _Bool loaded; // @synthesize loaded=_loaded;
 @property(retain, nonatomic) NSURL *collectionArtistURL; // @synthesize collectionArtistURL=_collectionArtistURL;
 @property(retain, nonatomic) FollowModel *followModel; // @synthesize followModel=_followModel;
+@property(retain, nonatomic) id <SPTCollectionPlatformDataLoaderRequestToken> trackSubscription; // @synthesize trackSubscription=_trackSubscription;
 @property(retain, nonatomic) id <SPTCollectionPlatformDataLoaderRequestToken> viewSubscription; // @synthesize viewSubscription=_viewSubscription;
 @property(retain, nonatomic) id <SPTOfflineModeState> offlineNotifier; // @synthesize offlineNotifier=_offlineNotifier;
 @property(retain, nonatomic) SPTCollectionPlatformFetchOptions *fetchOptions; // @synthesize fetchOptions=_fetchOptions;
@@ -90,7 +90,7 @@
 - (unsigned long long)count;
 - (void)load;
 - (void)dealloc;
-- (id)initWithCollectionArtistURL:(id)arg1 collectionPlatform:(id)arg2 player:(id)arg3 playOrigin:(id)arg4 clientSettings:(id)arg5 followFeature:(id)arg6 upsellManager:(id)arg7 productState:(id)arg8 contextMenuComponentFactory:(id)arg9 offlineNotifier:(id)arg10;
+- (id)initWithCollectionArtistURL:(id)arg1 collectionPlatform:(id)arg2 player:(id)arg3 playOrigin:(id)arg4 clientSettings:(id)arg5 followFeature:(id)arg6 productState:(id)arg7 contextMenuComponentFactory:(id)arg8 offlineNotifier:(id)arg9;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

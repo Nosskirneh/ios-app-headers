@@ -10,7 +10,7 @@
 #import "SPTService-Protocol.h"
 
 @class NSString, SPTAllocationContext, SPTChartFeatureTestManager, SPTChartHubManager;
-@protocol CosmosFeature, EXP_SPTHubFrameworkService, SPContextMenuFeature, SPTCollectionPlatformService, SPTContainerService, SPTCoreService, SPTExplicitContentService, SPTFormatListPlatformService, SPTFreeTierAllSongsService, SPTFreeTierRecommendationsService, SPTFreeTierService, SPTGLUEService, SPTNavigationFeature, SPTNetworkService, SPTOnDemandService, SPTPlayerFeature, SPTSessionService, SPTShelfService, SPTUIPresentationService, SPTURIDispatchService, UpsellFeature;
+@protocol CosmosFeature, SPContextMenuFeature, SPTCollectionPlatformService, SPTContainerService, SPTCoreService, SPTExplicitContentService, SPTFormatListPlatformService, SPTFreeTierAllSongsService, SPTFreeTierRecommendationsService, SPTFreeTierService, SPTGLUEService, SPTHubFrameworkService, SPTNavigationFeature, SPTNetworkService, SPTOnDemandService, SPTPlayerFeature, SPTSessionService, SPTShelfService, SPTUIPresentationService, SPTURIDispatchService;
 
 @interface SPTChartFeatureImplementation : NSObject <SPTService, SPTChartFeature>
 {
@@ -25,11 +25,10 @@
     id <SPContextMenuFeature> _contextMenuFeature;
     id <SPTFormatListPlatformService> _formatListPlatformService;
     id <SPTFreeTierService> _freeTierService;
-    id <UpsellFeature> _upsellService;
     id <SPTUIPresentationService> _UIPresentationService;
     id <SPTShelfService> _shelfService;
     id <SPTGLUEService> _glueService;
-    id <EXP_SPTHubFrameworkService> _hubFrameworkService;
+    id <SPTHubFrameworkService> _hubFrameworkService;
     id <SPTFreeTierAllSongsService> _freeTierAllSongsService;
     id <SPTFreeTierRecommendationsService> _freeTierRecommendationsService;
     id <SPTExplicitContentService> _explicitContentService;
@@ -47,11 +46,10 @@
 @property(nonatomic) __weak id <SPTExplicitContentService> explicitContentService; // @synthesize explicitContentService=_explicitContentService;
 @property(nonatomic) __weak id <SPTFreeTierRecommendationsService> freeTierRecommendationsService; // @synthesize freeTierRecommendationsService=_freeTierRecommendationsService;
 @property(nonatomic) __weak id <SPTFreeTierAllSongsService> freeTierAllSongsService; // @synthesize freeTierAllSongsService=_freeTierAllSongsService;
-@property(nonatomic) __weak id <EXP_SPTHubFrameworkService> hubFrameworkService; // @synthesize hubFrameworkService=_hubFrameworkService;
+@property(nonatomic) __weak id <SPTHubFrameworkService> hubFrameworkService; // @synthesize hubFrameworkService=_hubFrameworkService;
 @property(nonatomic) __weak id <SPTGLUEService> glueService; // @synthesize glueService=_glueService;
 @property(nonatomic) __weak id <SPTShelfService> shelfService; // @synthesize shelfService=_shelfService;
 @property(nonatomic) __weak id <SPTUIPresentationService> UIPresentationService; // @synthesize UIPresentationService=_UIPresentationService;
-@property(nonatomic) __weak id <UpsellFeature> upsellService; // @synthesize upsellService=_upsellService;
 @property(nonatomic) __weak id <SPTFreeTierService> freeTierService; // @synthesize freeTierService=_freeTierService;
 @property(nonatomic) __weak id <SPTFormatListPlatformService> formatListPlatformService; // @synthesize formatListPlatformService=_formatListPlatformService;
 @property(nonatomic) __weak id <SPContextMenuFeature> contextMenuFeature; // @synthesize contextMenuFeature=_contextMenuFeature;

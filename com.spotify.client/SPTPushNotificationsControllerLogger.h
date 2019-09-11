@@ -15,6 +15,8 @@
 
 @property(retain, nonatomic) id <SPTLogCenter> logCenter; // @synthesize logCenter=_logCenter;
 - (void).cxx_destruct;
+- (void)reportDeliveredLogEvents;
+- (void)logNotificationDeliveredWithDictionary:(id)arg1;
 - (void)logNotificationOpenedWithMessage:(id)arg1;
 - (void)logNotificationInteractionWithURLString:(id)arg1;
 - (void)logDidFailToRegisterRemoteNotificationsError:(id)arg1;

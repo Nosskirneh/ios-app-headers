@@ -6,21 +6,19 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTAdRegistryObserver-Protocol.h"
+#import "SPTAdsBaseRegistryObserver-Protocol.h"
 #import "SPTVideoPlaybackEventObserver-Protocol.h"
 
-@class NSString, SPTAdRegistry;
-@protocol SPTAdEventLogger, SPTResolver, SPTVideoPlaybackIdentity;
+@class NSString;
+@protocol SPTAdsBaseCosmosBridge, SPTAdsBaseRegistry, SPTResolver, SPTVideoPlaybackIdentity;
 
-@interface SPTAdVideoEventReporter : NSObject <SPTAdRegistryObserver, SPTVideoPlaybackEventObserver>
+@interface SPTAdVideoEventReporter : NSObject <SPTAdsBaseRegistryObserver, SPTVideoPlaybackEventObserver>
 {
     _Bool _firedOnThreshold;
     _Bool _shouldFireImpressionOnStart;
-    _Bool _shouldFireVideoEvents;
-    _Bool _didRequestFireVideoEventsFlag;
-    id <SPTAdEventLogger> _eventLogger;
+    id <SPTAdsBaseCosmosBridge> _cosmosBridge;
     id <SPTResolver> _resolver;
-    SPTAdRegistry *_registry;
+    id <SPTAdsBaseRegistry> _registry;
     double _trackDuration;
     unsigned long long _quartilesPlayed;
     id <SPTVideoPlaybackIdentity> _currentIdentity;
@@ -28,22 +26,19 @@
 }
 
 @property(nonatomic) CDStruct_1b6d18a9 currentTime; // @synthesize currentTime=_currentTime;
-@property(nonatomic) _Bool didRequestFireVideoEventsFlag; // @synthesize didRequestFireVideoEventsFlag=_didRequestFireVideoEventsFlag;
 @property(retain, nonatomic) id <SPTVideoPlaybackIdentity> currentIdentity; // @synthesize currentIdentity=_currentIdentity;
-@property(nonatomic) _Bool shouldFireVideoEvents; // @synthesize shouldFireVideoEvents=_shouldFireVideoEvents;
 @property(nonatomic) _Bool shouldFireImpressionOnStart; // @synthesize shouldFireImpressionOnStart=_shouldFireImpressionOnStart;
 @property(nonatomic) unsigned long long quartilesPlayed; // @synthesize quartilesPlayed=_quartilesPlayed;
 @property(nonatomic) double trackDuration; // @synthesize trackDuration=_trackDuration;
 @property(nonatomic) _Bool firedOnThreshold; // @synthesize firedOnThreshold=_firedOnThreshold;
-@property(readonly, nonatomic) SPTAdRegistry *registry; // @synthesize registry=_registry;
+@property(readonly, nonatomic) id <SPTAdsBaseRegistry> registry; // @synthesize registry=_registry;
 @property(readonly, nonatomic) id <SPTResolver> resolver; // @synthesize resolver=_resolver;
-@property(readonly, nonatomic) id <SPTAdEventLogger> eventLogger; // @synthesize eventLogger=_eventLogger;
+@property(readonly, nonatomic) id <SPTAdsBaseCosmosBridge> cosmosBridge; // @synthesize cosmosBridge=_cosmosBridge;
 - (void).cxx_destruct;
+- (_Bool)isAd:(id)arg1;
 - (void)logCompleteEventForAdID:(id)arg1 eventData:(id)arg2 time:(CDStruct_1b6d18a9)arg3;
 - (id)adIdForIdentity:(id)arg1;
-- (void)requestFireVideoEventsFlagValue;
 - (void)cleanupAfterAdFinish;
-- (void)subcribeToFeatureFlagChanges;
 - (void)logErrorAndTerminatedEventWithAdID:(id)arg1 eventData:(id)arg2 time:(CDStruct_1b6d18a9)arg3;
 - (void)processVideoPlayerEvent:(id)arg1;
 - (void)subscribeToVideoPlayerEvents;
@@ -59,7 +54,7 @@
 - (void)playback:(id)arg1 didPlayToTime:(CDStruct_1b6d18a9)arg2;
 - (void)playbackDidStartForIdentity:(id)arg1;
 - (void)dealloc;
-- (id)initWithEventLogger:(id)arg1 registry:(id)arg2 resolver:(id)arg3;
+- (id)initWithCosmosBridge:(id)arg1 registry:(id)arg2 resolver:(id)arg3;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

@@ -4,18 +4,32 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <objc/NSObject.h>
+#import "SPTLoginTestManager.h"
 
-@protocol SPTPreSignupExperimentationFeatureFlagsLoader;
-
-@interface SPTLoginNoContentWelcomeTestManager : NSObject
+@interface SPTLoginNoContentWelcomeTestManager : SPTLoginTestManager
 {
-    id <SPTPreSignupExperimentationFeatureFlagsLoader> _featureFlagsLoader;
 }
 
-@property(readonly, nonatomic) id <SPTPreSignupExperimentationFeatureFlagsLoader> featureFlagsLoader; // @synthesize featureFlagsLoader=_featureFlagsLoader;
-- (void).cxx_destruct;
-- (_Bool)isFlagEnabled:(id)arg1;
+@property(readonly, nonatomic, getter=isPodcastSecondCopyEnabled) _Bool podcastSecondCopyEnabled;
+@property(readonly, nonatomic, getter=isPodcastFirstCopyEnabled) _Bool podcastFirstCopyEnabled;
+@property(readonly, nonatomic, getter=isDataSavingSecondCopyEnabled) _Bool dataSavingSecondCopyEnabled;
+@property(readonly, nonatomic, getter=isDataSavingFirstCopyEnabled) _Bool dataSavingFirstCopyEnabled;
+@property(readonly, nonatomic, getter=isEasyPlaylistSecondCopyEnabled) _Bool easyPlaylistSecondCopyEnabled;
+@property(readonly, nonatomic, getter=isEasyPlaylistFirstCopyEnabled) _Bool easyPlaylistFirstCopyEnabled;
+@property(readonly, nonatomic, getter=isLocalContentSecondCopyEnabled) _Bool localContentSecondCopyEnabled;
+@property(readonly, nonatomic, getter=isLocalContentFirstCopyEnabled) _Bool localContentFirstCopyEnabled;
+@property(readonly, nonatomic, getter=isPersonalizedContentSecondCopyEnabled) _Bool personalizedContentSecondCopyEnabled;
+@property(readonly, nonatomic, getter=isPersonalizedContentFirstCopyEnabled) _Bool personalizedContentFirstCopyEnabled;
+@property(readonly, nonatomic, getter=isEditorialPlaylistSecondCopyEnabled) _Bool editorialPlaylistSecondCopyEnabled;
+@property(readonly, nonatomic, getter=isEditorialPlaylistFirstCopyEnabled) _Bool editorialPlaylistFirstCopyEnabled;
+@property(readonly, nonatomic, getter=isNewTrendingMusicSecondCopyEnabled) _Bool newTrendingMusicSecondCopyEnabled;
+@property(readonly, nonatomic, getter=isNewTrendingMusicFirstCopyEnabled) _Bool newTrendingMusicFirstCopyEnabled;
+@property(readonly, nonatomic, getter=isCatalogueSizeSecondCopyEnabled) _Bool catalogueSizeSecondCopyEnabled;
+@property(readonly, nonatomic, getter=isCatalogueSizeFirstCopyEnabled) _Bool catalogueSizeFirstCopyEnabled;
+@property(readonly, nonatomic, getter=isFreeTierSecondCopyEnabled) _Bool freeTierSecondCopyEnabled;
+@property(readonly, nonatomic, getter=isFreeTierFirstCopyEnabled) _Bool freeTierFirstCopyEnabled;
+@property(readonly, nonatomic, getter=isPersonalizedExperienceSecondCopyEnabled) _Bool personalizedExperienceSecondCopyEnabled;
+@property(readonly, nonatomic, getter=isPersonalizedExperienceFirstCopyEnabled) _Bool personalizedExperienceFirstCopyEnabled;
 @property(readonly, nonatomic, getter=isStreamMillionsOfSongsFreeCopyEnabled) _Bool streamMillionsOfSongsFreeCopyEnabled;
 @property(readonly, nonatomic, getter=isMusicTailoredToYourTasteCopyEnabled) _Bool musicTailoredToYourTasteCopyEnabled;
 @property(readonly, nonatomic, getter=isMillionsOfSongsFreeForeverCopyEnabled) _Bool millionsOfSongsFreeForeverCopyEnabled;
@@ -28,8 +42,6 @@
 @property(readonly, nonatomic, getter=isAllAudioInOnePlaceCopyEnabled) _Bool allAudioInOnePlaceCopyEnabled;
 @property(readonly, nonatomic, getter=isFreeAndAlwaysWillBeCopyEnabled) _Bool freeAndAlwaysWillBeCopyEnabled;
 @property(readonly, nonatomic, getter=isNoCopyEnabled) _Bool startScreenNoCopyEnabled;
-@property(readonly, nonatomic, getter=isExperimentEnabled) _Bool experimentEnabled;
-- (id)initWithFeatureFlagsLoader:(id)arg1;
 
 @end
 

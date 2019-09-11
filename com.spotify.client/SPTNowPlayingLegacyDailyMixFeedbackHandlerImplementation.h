@@ -9,7 +9,7 @@
 #import "SPTNowPlayingLegacyFeedbackHandler-Protocol.h"
 
 @class NSString, SPTNowPlayingLegacyFeedbackContextMenuPresenter, UIViewController;
-@protocol SPTCollectionPlatformConfiguration, SPTContextMenuPresenterFactory, SPTDailyMixFeedbackUIModel, SPTFreeTierEducationSnackBarPresenter;
+@protocol SPTCollectionPlatformConfiguration, SPTContextMenuPresenterFactory, SPTDailyMixFeedbackUIModel, SPTSnackbarConditionalPresenter;
 
 @interface SPTNowPlayingLegacyDailyMixFeedbackHandlerImplementation : NSObject <SPTNowPlayingLegacyFeedbackHandler>
 {
@@ -17,26 +17,25 @@
     id <SPTDailyMixFeedbackUIModel> _feedbackModel;
     id <SPTContextMenuPresenterFactory> _contextMenuPresenterFactory;
     SPTNowPlayingLegacyFeedbackContextMenuPresenter *_presenter;
-    id <SPTFreeTierEducationSnackBarPresenter> _snackBarPresenter;
+    id <SPTSnackbarConditionalPresenter> _snackBarPresenter;
     id <SPTCollectionPlatformConfiguration> _collectionConfiguration;
 }
 
 @property(retain, nonatomic) id <SPTCollectionPlatformConfiguration> collectionConfiguration; // @synthesize collectionConfiguration=_collectionConfiguration;
-@property(retain, nonatomic) id <SPTFreeTierEducationSnackBarPresenter> snackBarPresenter; // @synthesize snackBarPresenter=_snackBarPresenter;
+@property(retain, nonatomic) id <SPTSnackbarConditionalPresenter> snackBarPresenter; // @synthesize snackBarPresenter=_snackBarPresenter;
 @property(retain, nonatomic) SPTNowPlayingLegacyFeedbackContextMenuPresenter *presenter; // @synthesize presenter=_presenter;
 @property(retain, nonatomic) id <SPTContextMenuPresenterFactory> contextMenuPresenterFactory; // @synthesize contextMenuPresenterFactory=_contextMenuPresenterFactory;
 @property(retain, nonatomic) id <SPTDailyMixFeedbackUIModel> feedbackModel; // @synthesize feedbackModel=_feedbackModel;
 @property(nonatomic) __weak UIViewController *containingViewController; // @synthesize containingViewController=_containingViewController;
 - (void).cxx_destruct;
-- (id)banActionsWithCompletionBlock:(CDUnknownBlockType)arg1;
-- (void)presentSnackBarForUnheart;
-- (void)presentSnackBarForHeart;
-- (void)undoBan;
-- (void)presentSnackBarForBanWithMessage:(id)arg1;
+- (void)presentSnackBarForAction:(unsigned long long)arg1;
+- (void)performFeedbackAction:(unsigned long long)arg1 withConfirmation:(_Bool)arg2 completionBlock:(CDUnknownBlockType)arg3;
+- (id)banActionsWithConfirmation:(_Bool)arg1 completionBlock:(CDUnknownBlockType)arg2;
 - (_Bool)currentTrackHasPositiveFeedback;
 - (_Bool)currentTrackHasNegativeFeedback;
-- (void)handlePositiveFeedbackAction:(id)arg1;
-- (void)handleNegativeFeedbackActionForArtist:(id)arg1 trackName:(id)arg2 albumImageURL:(id)arg3 actionControl:(id)arg4 completion:(CDUnknownBlockType)arg5;
+- (void)handlePositiveFeedbackAction:(id)arg1 withConfirmation:(_Bool)arg2;
+- (void)handleNegativeFeedbackActionForTrackWithConfirmation:(_Bool)arg1 completion:(CDUnknownBlockType)arg2;
+- (void)handleNegativeFeedbackActionForArtist:(id)arg1 trackName:(id)arg2 albumImageURL:(id)arg3 actionControl:(id)arg4 withConfirmation:(_Bool)arg5 completion:(CDUnknownBlockType)arg6;
 - (id)initWithDailyMixFeedbackUIModel:(id)arg1 contextMenuPresenterFactory:(id)arg2 snackBarPresenter:(id)arg3 collectionConfiguration:(id)arg4;
 
 // Remaining properties

@@ -8,12 +8,21 @@
 
 #import "SPTNowPlayingMode-Protocol.h"
 
-@class NSString, UIViewController;
-@protocol SPTNowPlayingContainedViewController, SPTNowPlayingModeLayoutDelegate;
+@class NSString, SPTAdFeatureFlagChecks, SPTAdNowPlayingFeedbackModel, SPTAdNowPlayingManager, SPTAdPlayerObservable, SPTTheme, UIView, UIViewController;
+@protocol SPTAdsBaseCosmosBridge, SPTAdsManager, SPTLinkDispatcher, SPTNowPlayingContainedViewController, SPTNowPlayingModeLayoutDelegate;
 
 @interface SPTNowPlayingAudioAdMode : NSObject <SPTNowPlayingMode>
 {
     id <SPTNowPlayingModeLayoutDelegate> _layoutDelegate;
+    SPTAdNowPlayingManager *_nowPlayingManager;
+    id <SPTAdsManager> _adsManager;
+    SPTAdPlayerObservable *_playerObserver;
+    SPTAdNowPlayingFeedbackModel *_feedbackModel;
+    SPTAdFeatureFlagChecks *_featureChecker;
+    UIView *_animationView;
+    SPTTheme *_theme;
+    id <SPTLinkDispatcher> _linkDispatcher;
+    id <SPTAdsBaseCosmosBridge> _cosmosBridge;
     UIViewController<SPTNowPlayingContainedViewController> *_navigationBarViewController;
     UIViewController<SPTNowPlayingContainedViewController> *_informationViewController;
     UIViewController<SPTNowPlayingContainedViewController> *_durationViewController;
@@ -28,8 +37,18 @@
 @property(retain, nonatomic) UIViewController<SPTNowPlayingContainedViewController> *durationViewController; // @synthesize durationViewController=_durationViewController;
 @property(retain, nonatomic) UIViewController<SPTNowPlayingContainedViewController> *informationViewController; // @synthesize informationViewController=_informationViewController;
 @property(retain, nonatomic) UIViewController<SPTNowPlayingContainedViewController> *navigationBarViewController; // @synthesize navigationBarViewController=_navigationBarViewController;
+@property(nonatomic) __weak id <SPTAdsBaseCosmosBridge> cosmosBridge; // @synthesize cosmosBridge=_cosmosBridge;
+@property(retain, nonatomic) id <SPTLinkDispatcher> linkDispatcher; // @synthesize linkDispatcher=_linkDispatcher;
+@property(retain, nonatomic) SPTTheme *theme; // @synthesize theme=_theme;
+@property(retain, nonatomic) UIView *animationView; // @synthesize animationView=_animationView;
+@property(retain, nonatomic) SPTAdFeatureFlagChecks *featureChecker; // @synthesize featureChecker=_featureChecker;
+@property(retain, nonatomic) SPTAdNowPlayingFeedbackModel *feedbackModel; // @synthesize feedbackModel=_feedbackModel;
+@property(retain, nonatomic) SPTAdPlayerObservable *playerObserver; // @synthesize playerObserver=_playerObserver;
+@property(retain, nonatomic) id <SPTAdsManager> adsManager; // @synthesize adsManager=_adsManager;
+@property(retain, nonatomic) SPTAdNowPlayingManager *nowPlayingManager; // @synthesize nowPlayingManager=_nowPlayingManager;
 @property(nonatomic) __weak id <SPTNowPlayingModeLayoutDelegate> layoutDelegate; // @synthesize layoutDelegate=_layoutDelegate;
 - (void).cxx_destruct;
+- (_Bool)requiresScrollDisabled;
 - (id)queueHeadUnitViewController;
 - (id)footerUnitViewController;
 - (id)headUnitViewController;
@@ -37,7 +56,7 @@
 - (id)informationUnitViewController;
 - (id)navigationBarUnitViewController;
 - (id)identifier;
-- (id)initWithNavigationBarViewController:(id)arg1 informationUnitViewController:(id)arg2 durationUnitViewController:(id)arg3 headUnitViewController:(id)arg4 footerUnitViewController:(id)arg5 queueHeadUnitViewController:(id)arg6;
+- (id)initWithNowPlayingManager:(id)arg1 adManager:(id)arg2 playerObserver:(id)arg3 feedbackModel:(id)arg4 featureChecker:(id)arg5 animationView:(id)arg6 theme:(id)arg7 linkDispatcher:(id)arg8 cosmosBridge:(id)arg9;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

@@ -6,14 +6,13 @@
 
 #import "NSObject-Protocol.h"
 
-@class NSArray, UIView;
-@protocol SPTVideoSurface;
+@protocol SPTVideoPlaybackIdentity, SPTVideoSurface, SPTVideoSurfaceManagerObserver;
 
 @protocol SPTVideoSurfaceManager <NSObject>
-@property(readonly, nonatomic, getter=isPlaying) _Bool playing;
-@property(readonly, nonatomic) NSArray *attachedSurfaces;
-@property(readonly, nonatomic, getter=isAnySurfaceAttached) _Bool anySurfaceAttached;
-- (UIView<SPTVideoSurface> *)createSurfaceFullscreen;
-- (UIView<SPTVideoSurface> *)createSurface;
+- (id <SPTVideoSurface>)activeSurfaceForPlaybackIdentity:(id <SPTVideoPlaybackIdentity>)arg1;
+- (void)removeObserver:(id <SPTVideoSurfaceManagerObserver>)arg1;
+- (void)addObserver:(id <SPTVideoSurfaceManagerObserver>)arg1;
+- (void)removeSurface:(id <SPTVideoSurface>)arg1;
+- (void)addSurface:(id <SPTVideoSurface>)arg1;
 @end
 

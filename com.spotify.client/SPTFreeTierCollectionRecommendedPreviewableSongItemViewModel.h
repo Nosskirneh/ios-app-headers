@@ -13,7 +13,6 @@
 
 @interface SPTFreeTierCollectionRecommendedPreviewableSongItemViewModel : NSObject <SPTFreeTierCollectionPreviewableItemViewModel>
 {
-    _Bool _hideBanQuickAction;
     _Bool showOverlayMask;
     _Bool _banned;
     _Bool _offline;
@@ -28,8 +27,8 @@
 @property(retain, nonatomic) id <SPTFreeTierRecommendationsTrackModelEntity> recommendedTrack; // @synthesize recommendedTrack=_recommendedTrack;
 @property(nonatomic, getter=isBanned) _Bool banned; // @synthesize banned=_banned;
 @property(readonly, nonatomic) _Bool showOverlayMask; // @synthesize showOverlayMask;
-@property(readonly, nonatomic) _Bool hideBanQuickAction; // @synthesize hideBanQuickAction=_hideBanQuickAction;
 - (void).cxx_destruct;
+@property(readonly, nonatomic, getter=isQuickActionsEnabled) _Bool quickActionsEnabled;
 @property(readonly, nonatomic, getter=isFolder) _Bool folder;
 @property(readonly, nonatomic, getter=isPremiumOnly) _Bool premiumOnly;
 @property(readonly, nonatomic, getter=isExplicit) _Bool explicit;

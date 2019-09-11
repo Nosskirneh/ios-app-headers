@@ -6,23 +6,25 @@
 
 #import <objc/NSObject.h>
 
-@class EXP_HUBComponentRegistry;
-@protocol EXP_HUGSStyleOverrider, GLUETheme;
+@class HUBComponentRegistry;
+@protocol GLUETheme, SPTAudioPreviewModelFactory, SPTAudioPreviewUIFactory;
 
 @interface SPTSearchHubsRegistration : NSObject
 {
     id <GLUETheme> _theme;
-    id <EXP_HUGSStyleOverrider> _styleOverrider;
-    EXP_HUBComponentRegistry *_componentRegistry;
+    HUBComponentRegistry *_componentRegistry;
+    id <SPTAudioPreviewModelFactory> _audioPreviewModelFactory;
+    id <SPTAudioPreviewUIFactory> _audioPreviewUIFactory;
 }
 
-@property(readonly, nonatomic) EXP_HUBComponentRegistry *componentRegistry; // @synthesize componentRegistry=_componentRegistry;
-@property(readonly, nonatomic) id <EXP_HUGSStyleOverrider> styleOverrider; // @synthesize styleOverrider=_styleOverrider;
+@property(readonly, nonatomic) id <SPTAudioPreviewUIFactory> audioPreviewUIFactory; // @synthesize audioPreviewUIFactory=_audioPreviewUIFactory;
+@property(readonly, nonatomic) id <SPTAudioPreviewModelFactory> audioPreviewModelFactory; // @synthesize audioPreviewModelFactory=_audioPreviewModelFactory;
+@property(readonly, nonatomic) HUBComponentRegistry *componentRegistry; // @synthesize componentRegistry=_componentRegistry;
 @property(readonly, nonatomic) id <GLUETheme> theme; // @synthesize theme=_theme;
 - (void).cxx_destruct;
 - (void)unregisterSearchComponents;
 - (void)registerSearchComponents;
-- (id)initWithTheme:(id)arg1 styleOverrider:(id)arg2 componentRegistry:(id)arg3;
+- (id)initWithTheme:(id)arg1 componentRegistry:(id)arg2 audioPreviewModelFactory:(id)arg3 audioPreviewUIFactory:(id)arg4;
 
 @end
 

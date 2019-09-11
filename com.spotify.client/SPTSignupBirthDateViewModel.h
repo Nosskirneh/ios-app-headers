@@ -6,25 +6,21 @@
 
 #import <objc/NSObject.h>
 
-@class SPTLoginSplitEmailSignupViewLogger, SPTLoginTheme, SPTSignupAgeFieldValidator, SPTSignupUserInfoModel;
-@protocol SPTLoginNavigationCoordinator, SPTNavigationRouter, SPTSignupBirthDateViewModelDelegate;
+@class SPTLoginSplitEmailSignupViewLogger, SPTSignupAgeFieldValidator, SPTSignupUserInfoModel;
+@protocol SPTNavigationRouter, SPTSignupBirthDateViewModelDelegate;
 
 @interface SPTSignupBirthDateViewModel : NSObject
 {
     id <SPTSignupBirthDateViewModelDelegate> _delegate;
     SPTLoginSplitEmailSignupViewLogger *_logger;
-    SPTLoginTheme *_theme;
     SPTSignupAgeFieldValidator *_ageValidator;
     SPTSignupUserInfoModel *_userInfoModel;
     id <SPTNavigationRouter> _navigationRouter;
-    id <SPTLoginNavigationCoordinator> _navigationCoordinator;
 }
 
-@property(retain, nonatomic) id <SPTLoginNavigationCoordinator> navigationCoordinator; // @synthesize navigationCoordinator=_navigationCoordinator;
 @property(retain, nonatomic) id <SPTNavigationRouter> navigationRouter; // @synthesize navigationRouter=_navigationRouter;
 @property(retain, nonatomic) SPTSignupUserInfoModel *userInfoModel; // @synthesize userInfoModel=_userInfoModel;
 @property(readonly, nonatomic) SPTSignupAgeFieldValidator *ageValidator; // @synthesize ageValidator=_ageValidator;
-@property(readonly, nonatomic) SPTLoginTheme *theme; // @synthesize theme=_theme;
 @property(readonly, nonatomic) SPTLoginSplitEmailSignupViewLogger *logger; // @synthesize logger=_logger;
 @property(nonatomic) __weak id <SPTSignupBirthDateViewModelDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
@@ -33,16 +29,14 @@
 - (void)userDidDismissPickerViewWithValue:(id)arg1 shouldValidate:(_Bool)arg2;
 - (void)userDidChangePickerViewWithValue:(id)arg1;
 - (void)userDidTapNextButtonWithValue:(id)arg1;
-- (id)pickerStyle;
 - (id)previouslySelectedDate;
 - (id)initialBirthDate;
 - (id)minimumBirthDate;
 - (id)maximumBirthDate;
-- (id)viewStyle;
 - (id)nextButtonText;
 - (id)fieldTitleLabelText;
 - (id)titleLabelText;
-- (id)initWithTheme:(id)arg1 ageValidator:(id)arg2 userInfoModel:(id)arg3 logger:(id)arg4 navigationRouter:(id)arg5 navigationCoordinator:(id)arg6;
+- (id)initWithAgeValidator:(id)arg1 userInfoModel:(id)arg2 logger:(id)arg3 navigationRouter:(id)arg4;
 
 @end
 

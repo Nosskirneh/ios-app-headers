@@ -7,11 +7,11 @@
 #import "NSObject-Protocol.h"
 
 @class NSString;
-@protocol EXP_HUBViewModel, SPTSearch2ViewModelProviderDelegate;
+@protocol HUBViewModel, SPTSearch2ViewModelProviderDelegate;
 
 @protocol SPTSearch2ViewModelProvider <NSObject>
 @property(readonly, nonatomic) unsigned long long state;
-@property(readonly, nonatomic) id <EXP_HUBViewModel> viewModel;
+@property(readonly, nonatomic) id <HUBViewModel> viewModel;
 @property(nonatomic) __weak id <SPTSearch2ViewModelProviderDelegate> delegate;
 - (void)loadNextPage;
 - (void)loadForQuery:(NSString *)arg1 autoCompleteRequestID:(NSString *)arg2;

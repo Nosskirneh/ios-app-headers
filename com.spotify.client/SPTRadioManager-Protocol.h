@@ -14,10 +14,8 @@
 - (void)addRadioObserver:(id <SPTRadioObserver>)arg1;
 - (long long)feedbackForTrackURL:(NSURL *)arg1;
 - (void)radioThumbTrackURL:(NSURL *)arg1 isUp:(_Bool)arg2 completion:(void (^)(_Bool, NSError *))arg3;
-- (void)startRadioStationWithSeedURL:(NSURL *)arg1 startedFromElement:(NSString *)arg2 completion:(void (^)(_Bool, NSError *))arg3;
-- (_Bool)startRadioStationWithSeedURL:(NSURL *)arg1 startedFromElement:(NSString *)arg2;
-- (void)fetchUserSavedStations:(void (^)(NSArray *, NSError *))arg1;
-- (void)fetchGenreRadioStations:(void (^)(NSArray *, NSError *))arg1;
+- (void)startRadioStationWithSeedURL:(NSURL *)arg1 startedFromElement:(NSString *)arg2 referrerIdentifier:(NSString *)arg3 completion:(void (^)(_Bool, NSError *))arg4;
+- (_Bool)startRadioStationWithSeedURL:(NSURL *)arg1 startedFromElement:(NSString *)arg2 referrerIdentifier:(NSString *)arg3;
 - (NSString *)playbackDescriptionForURL:(NSURL *)arg1;
 @end
 

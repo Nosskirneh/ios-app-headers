@@ -6,21 +6,21 @@
 
 #import <objc/NSObject.h>
 
-#import "EXP_HUBContentOperation-Protocol.h"
+#import "HUBContentOperation-Protocol.h"
 
 @class NSMutableArray, SPTFreeTierAlbumOfflineModel;
-@protocol EXP_HUBContentOperationDelegate;
+@protocol HUBContentOperationDelegate;
 
-@interface SPTFreeTierAlbumOfflineAlbumRenderContentOperation : NSObject <EXP_HUBContentOperation>
+@interface SPTFreeTierAlbumOfflineAlbumRenderContentOperation : NSObject <HUBContentOperation>
 {
-    id <EXP_HUBContentOperationDelegate> delegate;
+    id <HUBContentOperationDelegate> delegate;
     SPTFreeTierAlbumOfflineModel *_albumOfflineModel;
     NSMutableArray *_contextTracks;
 }
 
 @property(retain, nonatomic) NSMutableArray *contextTracks; // @synthesize contextTracks=_contextTracks;
 @property(readonly, nonatomic) SPTFreeTierAlbumOfflineModel *albumOfflineModel; // @synthesize albumOfflineModel=_albumOfflineModel;
-@property(nonatomic) __weak id <EXP_HUBContentOperationDelegate> delegate; // @synthesize delegate;
+@property(nonatomic) __weak id <HUBContentOperationDelegate> delegate; // @synthesize delegate;
 - (void).cxx_destruct;
 - (void)addAlbumToViewModelBuilder:(id)arg1;
 - (id)createPlayer;

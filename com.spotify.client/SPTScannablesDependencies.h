@@ -7,7 +7,7 @@
 #import <objc/NSObject.h>
 
 @class SPTScannablesLogger, SpotifyApplication, UIDevice;
-@protocol GLUETheme, SPTImageLoaderFactory, SPTLinkDispatcher, SPTScannablesTestManager;
+@protocol GLUETheme, SPTAlertInterface, SPTImageLoaderFactory, SPTLinkDispatcher, SPTScannablesTestManager;
 
 @interface SPTScannablesDependencies : NSObject
 {
@@ -18,8 +18,10 @@
     SPTScannablesLogger *_logger;
     id <SPTScannablesTestManager> _testManager;
     id <SPTImageLoaderFactory> _imageLoaderFactory;
+    id <SPTAlertInterface> _alertInterface;
 }
 
+@property(nonatomic) __weak id <SPTAlertInterface> alertInterface; // @synthesize alertInterface=_alertInterface;
 @property(nonatomic) __weak id <SPTImageLoaderFactory> imageLoaderFactory; // @synthesize imageLoaderFactory=_imageLoaderFactory;
 @property(retain, nonatomic) id <SPTScannablesTestManager> testManager; // @synthesize testManager=_testManager;
 @property(retain, nonatomic) SPTScannablesLogger *logger; // @synthesize logger=_logger;
@@ -29,7 +31,7 @@
 @property(retain, nonatomic) SpotifyApplication *spotifyApplication; // @synthesize spotifyApplication=_spotifyApplication;
 - (void).cxx_destruct;
 - (void)clear;
-- (id)initWithSpotifyApplication:(id)arg1 linkDispatcher:(id)arg2 device:(id)arg3 theme:(id)arg4 testManager:(id)arg5 logger:(id)arg6 imageLoaderFactory:(id)arg7;
+- (id)initWithSpotifyApplication:(id)arg1 linkDispatcher:(id)arg2 device:(id)arg3 theme:(id)arg4 testManager:(id)arg5 logger:(id)arg6 imageLoaderFactory:(id)arg7 alertInterface:(id)arg8;
 
 @end
 

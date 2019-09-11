@@ -9,6 +9,6 @@
 @class SPTNowPlayingBarPageModel;
 
 @protocol SPTNowPlayingBarPageModelDelegate <NSObject>
-- (void)nowPlayingBarPageModelDidChangeRemoteDevicesVisible:(SPTNowPlayingBarPageModel *)arg1;
+- (void)nowPlayingBarPageModelDidChangeRemoteDevicesViewVisibility:(SPTNowPlayingBarPageModel *)arg1;
 @end
 

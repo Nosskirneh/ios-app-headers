@@ -6,34 +6,33 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTGaiaDeviceStateManagerObserver-Protocol.h"
+#import "SPTGaiaConnectObserver-Protocol.h"
 
 @class NSString;
-@protocol SPTExternalIntegrationDebugLog, SPTGaiaDeviceStateManager, SPTLogCenter, SPTPlayer;
+@protocol SPTExternalIntegrationDebugLog, SPTGaiaConnectAPI, SPTLogCenter, SPTPlayer;
 
-@interface SPTAccessoryManagerLogging : NSObject <SPTGaiaDeviceStateManagerObserver>
+@interface SPTAccessoryManagerLogging : NSObject <SPTGaiaConnectObserver>
 {
     id <SPTLogCenter> _logCenter;
-    id <SPTGaiaDeviceStateManager> _gaiaDeviceStateManager;
+    id <SPTGaiaConnectAPI> _connectManager;
     id <SPTPlayer> _player;
     id <SPTExternalIntegrationDebugLog> _debugLog;
 }
 
 @property(retain, nonatomic) id <SPTExternalIntegrationDebugLog> debugLog; // @synthesize debugLog=_debugLog;
 @property(retain, nonatomic) id <SPTPlayer> player; // @synthesize player=_player;
-@property(retain, nonatomic) id <SPTGaiaDeviceStateManager> gaiaDeviceStateManager; // @synthesize gaiaDeviceStateManager=_gaiaDeviceStateManager;
+@property(retain, nonatomic) id <SPTGaiaConnectAPI> connectManager; // @synthesize connectManager=_connectManager;
 @property(readonly, nonatomic) id <SPTLogCenter> logCenter; // @synthesize logCenter=_logCenter;
 - (void).cxx_destruct;
-- (void)deviceStateManager:(id)arg1 activeDeviceDidChange:(id)arg2;
+- (void)connectActiveDeviceDidChange:(id)arg1;
 - (void)logStreamEndedForPlaybackID:(id)arg1 withAccessory:(id)arg2;
 - (id)stringFromAudioRoutePortType:(id)arg1;
 - (void)logAudioRoute:(id)arg1 withPlaybackId:(id)arg2;
 - (void)logAudioRoute:(id)arg1;
 - (void)logCurrentAudioRoute;
 - (void)logCategorizedAccessory:(id)arg1 isConnected:(_Bool)arg2;
-- (void)logRawAccessory:(id)arg1 isConnected:(_Bool)arg2;
 - (void)unload;
-- (void)loadWithGaiaDeviceStateManager:(id)arg1 player:(id)arg2;
+- (void)loadWithConnectManager:(id)arg1 player:(id)arg2;
 - (void)dealloc;
 - (void)performInitialLogging;
 - (id)initWithLogCenter:(id)arg1 debugLog:(id)arg2;

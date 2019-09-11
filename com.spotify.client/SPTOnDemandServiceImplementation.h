@@ -8,7 +8,7 @@
 
 #import "SPTOnDemandService-Protocol.h"
 
-@class NSString, SPTAllocationContext, SPTOnDemandSetImplementation, SPTPersistentCache;
+@class NSString, SPTAllocationContext, SPTOnDemandSetImplementation, SPTOnDemandSetTestManager, SPTPersistentCache;
 @protocol SPTFeatureFlaggingService;
 
 @interface SPTOnDemandServiceImplementation : NSObject <SPTOnDemandService>
@@ -16,14 +16,15 @@
     id <SPTFeatureFlaggingService> _featureFlaggingService;
     SPTOnDemandSetImplementation *_onDemandSet;
     SPTPersistentCache *_persistentCache;
+    SPTOnDemandSetTestManager *_testManager;
 }
 
 + (id)serviceIdentifier;
+@property(retain, nonatomic) SPTOnDemandSetTestManager *testManager; // @synthesize testManager=_testManager;
 @property(retain, nonatomic) SPTPersistentCache *persistentCache; // @synthesize persistentCache=_persistentCache;
 @property(retain, nonatomic) SPTOnDemandSetImplementation *onDemandSet; // @synthesize onDemandSet=_onDemandSet;
 @property(nonatomic) __weak id <SPTFeatureFlaggingService> featureFlaggingService; // @synthesize featureFlaggingService=_featureFlaggingService;
 - (void).cxx_destruct;
-- (id)provideOnDemandCeramicViewDecorator;
 - (id)provideOnDemandCardAccessibilityContentOperation;
 - (id)provideOnDemandReloadContentOperation;
 - (id)provideOnDemandDecoratorContentOperation;

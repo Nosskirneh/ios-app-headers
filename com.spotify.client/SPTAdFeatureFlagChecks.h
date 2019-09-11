@@ -10,17 +10,15 @@
 #import "SPTLocalSettingsObserver-Protocol.h"
 #import "SPTProductStateObserver-Protocol.h"
 
-@class NSArray, NSMutableDictionary, NSNumber, NSString, SPTObserverManager;
-@protocol SPTAbbaFeatureFlags, SPTCrashReporter, SPTLegacyFeatureFlag, SPTLocalSettings, SPTProductState;
+@class NSArray, NSMutableDictionary, NSString, SPTObserverManager;
+@protocol SPTAbbaFeatureFlags, SPTLegacyFeatureFlag, SPTLocalSettings, SPTProductState;
 
 @interface SPTAdFeatureFlagChecks : NSObject <SPTProductStateObserver, SPTLocalSettingsObserver, SPTAbbaFeatureFlagsObserver>
 {
     id <SPTLegacyFeatureFlag> _autoDeviceStateManagerFlag;
-    id <SPTLegacyFeatureFlag> _sponsoredSessionV2Flag;
     id <SPTLegacyFeatureFlag> _adPartnersPreferences;
     id <SPTProductState> _productState;
     id <SPTLocalSettings> _localSettings;
-    id <SPTCrashReporter> _crashReporter;
     id <SPTAbbaFeatureFlags> _abbaFeatureFlags;
     SPTObserverManager *_observerManager;
     NSArray *_observedFeatureFlagsKeys;
@@ -28,10 +26,8 @@
     NSArray *_observedProductStateKeys;
     NSMutableDictionary *_observedLocalSettings;
     NSMutableDictionary *_observedFeatureFlags;
-    NSNumber *_newNowPlayingViewEnabledStartupValue;
 }
 
-@property(retain, nonatomic) NSNumber *newNowPlayingViewEnabledStartupValue; // @synthesize newNowPlayingViewEnabledStartupValue=_newNowPlayingViewEnabledStartupValue;
 @property(retain, nonatomic) NSMutableDictionary *observedFeatureFlags; // @synthesize observedFeatureFlags=_observedFeatureFlags;
 @property(readonly, nonatomic) NSMutableDictionary *observedLocalSettings; // @synthesize observedLocalSettings=_observedLocalSettings;
 @property(readonly, nonatomic) NSArray *observedProductStateKeys; // @synthesize observedProductStateKeys=_observedProductStateKeys;
@@ -39,11 +35,9 @@
 @property(readonly, nonatomic) NSArray *observedFeatureFlagsKeys; // @synthesize observedFeatureFlagsKeys=_observedFeatureFlagsKeys;
 @property(readonly, nonatomic) SPTObserverManager *observerManager; // @synthesize observerManager=_observerManager;
 @property(retain, nonatomic) id <SPTAbbaFeatureFlags> abbaFeatureFlags; // @synthesize abbaFeatureFlags=_abbaFeatureFlags;
-@property(readonly, nonatomic) id <SPTCrashReporter> crashReporter; // @synthesize crashReporter=_crashReporter;
 @property(readonly, nonatomic) __weak id <SPTLocalSettings> localSettings; // @synthesize localSettings=_localSettings;
 @property(readonly, nonatomic) id <SPTProductState> productState; // @synthesize productState=_productState;
 @property(readonly, nonatomic) id <SPTLegacyFeatureFlag> adPartnersPreferences; // @synthesize adPartnersPreferences=_adPartnersPreferences;
-@property(readonly, nonatomic) id <SPTLegacyFeatureFlag> sponsoredSessionV2Flag; // @synthesize sponsoredSessionV2Flag=_sponsoredSessionV2Flag;
 @property(readonly, nonatomic) id <SPTLegacyFeatureFlag> autoDeviceStateManagerFlag; // @synthesize autoDeviceStateManagerFlag=_autoDeviceStateManagerFlag;
 - (void).cxx_destruct;
 - (void)notifyObserversOfLoad;
@@ -53,26 +47,21 @@
 - (void)featureFlagsDidChange:(id)arg1;
 - (void)removeObserver:(id)arg1;
 - (void)addObserver:(id)arg1;
-- (_Bool)isNewNowPlayingViewEnabledOnFree;
-- (_Bool)isNewNowPlayingViewEnabledOnPremium;
-@property(readonly, nonatomic, getter=isNewNowPlayingViewEnabled) _Bool newNowPlayingViewEnabled;
+@property(readonly, nonatomic, getter=isLeaveBehindTopBannerEnabled) _Bool leaveBehindTopBannerEnabled;
+@property(readonly, nonatomic, getter=isLeaveBehindCompanionBannerEnabled) _Bool leaveBehindCompanionBannerEnabled;
+@property(readonly, nonatomic, getter=isInAppBrowserEnabled) _Bool inAppBrowserEnabled;
+@property(readonly, nonatomic, getter=isMarqueeEnabled) _Bool marqueeEnabled;
+@property(readonly, nonatomic, getter=isAdFeedbackEnabled) _Bool adFeedbackEnabled;
 @property(readonly, nonatomic, getter=isNewVideoEventsEnabled) _Bool newVideoEventsEnabled;
+@property(readonly, nonatomic, getter=isAudioAdClick2PlayCoreQueuingEnabled) _Bool audioAdClick2PlayCoreQueuingEnabled;
 @property(readonly, nonatomic, getter=isAudioAdClick2PlayQueuingEnabled) _Bool audioAdClick2PlayQueuingEnabled;
-@property(readonly, nonatomic, getter=isRemovePlayerObserverSlateDismissalEnabled) _Bool removePlayerObserverSlateDismissalEnabled;
-@property(readonly, nonatomic, getter=isFlashpointMobileScreensaverEnabled) _Bool flashpointMobileScreensaverEnabled;
-@property(readonly, nonatomic, getter=isComScoreEnabled) _Bool comScoreEnabled;
-@property(readonly, nonatomic, getter=isMovementLoggingEnabled) _Bool movementLoggingEnabled;
 @property(readonly, nonatomic, getter=isContextResumeEnabled) _Bool contextResumeEnabled;
-@property(readonly, nonatomic, getter=isRefocusAutoOptInEnabled) _Bool refocusAutoOptInEnabled;
-@property(readonly, nonatomic, getter=isSponsoredSessionsV2Enabled) _Bool sponsoredSessionsV2Enabled;
-@property(readonly, nonatomic, getter=isSponsoredPlaylistEnabled) _Bool sponsoredPlaylistEnabled;
-@property(readonly, nonatomic, getter=isMVTOv2Enabled) _Bool mvtoV2Enabled;
-@property(readonly, nonatomic, getter=isPrerollVideoEnabled) _Bool prerollVideoEnabled;
 @property(readonly, nonatomic, getter=isPrerollEnabled) _Bool prerollEnabled;
+@property(readonly, nonatomic, getter=isMobiusVoiceEnabled) _Bool mobiusVoiceEnabled;
+@property(readonly, nonatomic, getter=isVoiceEnabled) _Bool voiceEnabled;
 @property(readonly, nonatomic, getter=isCosmosWatchNowEnabled) _Bool cosmosWatchNowEnabled;
-@property(readonly, nonatomic, getter=isAdsEnabled) _Bool adsEnabled;
 - (void)dealloc;
-- (id)initWithProductState:(id)arg1 localSetting:(id)arg2 crashReporter:(id)arg3 abbaService:(id)arg4;
+- (id)initWithProductState:(id)arg1 localSetting:(id)arg2 abbaService:(id)arg3;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

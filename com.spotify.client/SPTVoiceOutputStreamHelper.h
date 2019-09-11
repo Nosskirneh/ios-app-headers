@@ -30,7 +30,7 @@
 - (void)writeDataToStream;
 - (void)closeStream;
 - (void)openStream;
-- (void)writeData:(const char *)arg1 maxLength:(unsigned long long)arg2;
+- (void)writeData:(short **)arg1 maxLength:(unsigned long long)arg2;
 - (void)writeData:(id)arg1;
 - (id)initWithOutputStream:(id)arg1;
 

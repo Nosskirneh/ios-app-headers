@@ -15,6 +15,7 @@
 
 @property(readonly, nonatomic) id <SPTLogCenter> logCenter; // @synthesize logCenter=_logCenter;
 - (void).cxx_destruct;
+- (id)settingsLogger;
 - (id)onboardingLogger;
 - (id)initWithLogCenter:(id)arg1;
 

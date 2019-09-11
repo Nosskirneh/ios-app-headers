@@ -19,8 +19,8 @@
 @property(readonly, nonatomic) UILabel *leftLabel; // @synthesize leftLabel=_leftLabel;
 @property(readonly, nonatomic) SPTSliderWithLabel *slider; // @synthesize slider=_slider;
 - (void).cxx_destruct;
-- (void)layoutSubviews;
 - (void)applyThemeLayout;
+- (void)setupConstraints;
 - (id)initWithStyle:(long long)arg1 reuseIdentifier:(id)arg2 animationView:(id)arg3;
 
 @end

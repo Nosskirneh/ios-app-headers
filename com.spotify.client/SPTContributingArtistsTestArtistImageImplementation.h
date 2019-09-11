@@ -6,11 +6,11 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTArtistImage-Protocol.h"
+#import "SPTFreeTierArtistImage-Protocol.h"
 
 @class NSString, NSURL;
 
-@interface SPTContributingArtistsTestArtistImageImplementation : NSObject <SPTArtistImage>
+@interface SPTContributingArtistsTestArtistImageImplementation : NSObject <SPTFreeTierArtistImage>
 {
     NSURL *_URL;
 }

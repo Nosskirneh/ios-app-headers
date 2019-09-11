@@ -6,8 +6,8 @@
 
 #import <UIKit/UIViewController.h>
 
-#import "SPTFreeTierCollectionDeactivateFiltersFooterDelegate-Protocol.h"
-#import "SPTFreeTierCollectionEntityPage-Protocol.h"
+#import "SPContentInsetViewController-Protocol.h"
+#import "SPTFreeTierCollectionEntityCellConfiguratorDelegate-Protocol.h"
 #import "SPTFreeTierCollectionEntityViewModelDelegate-Protocol.h"
 #import "SPTFreeTierCollectionFilterBarViewControllerDelegate-Protocol.h"
 #import "SPTPageController-Protocol.h"
@@ -17,14 +17,11 @@
 #import "UITableViewDataSource-Protocol.h"
 #import "UITableViewDelegate-Protocol.h"
 
-@class NSLayoutConstraint, NSString, NSURL, SPTFreeTierCollectionEmptyView, SPTFreeTierCollectionFilterBarViewController, SPTFreeTierCollectionGLUETheme, SPTProgressView, SPTTableView;
-@protocol GLUEImageLoader, SPTFreeTierCollectionEntityCellConfigurator, SPTFreeTierCollectionEntityPageDelegate, SPTFreeTierCollectionEntityPageScrollToTopDelegate, SPTFreeTierCollectionEntityViewModel, SPTPageContainer, SPTSortingFilteringUIFactory, SPTYourLibraryPageDelegate;
+@class NSString, NSURL, SPTFreeTierCollectionEmptyView, SPTFreeTierCollectionFilterBarViewController, SPTFreeTierCollectionGLUETheme, SPTProgressView, SPTTableView;
+@protocol GLUEImageLoader, SPTFreeTierCollectionEntityCellConfigurator, SPTFreeTierCollectionEntityViewModel, SPTPageContainer, SPTShareDragDelegateFactory, SPTSnackbarConditionalPresenter, SPTSortingFilteringUIFactory, SPTViewLogger, SPTYourLibraryPageDelegate, UITableViewDragDelegate;
 
-@interface SPTFreeTierCollectionEntityViewController : UIViewController <SPTFreeTierCollectionFilterBarViewControllerDelegate, SPTFreeTierCollectionDeactivateFiltersFooterDelegate, UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate, SPTFreeTierCollectionEntityPage, SPTYourLibraryPage, SPTFreeTierCollectionEntityViewModelDelegate, SPTScrollToTopViewController, SPTPageController>
+@interface SPTFreeTierCollectionEntityViewController : UIViewController <SPTFreeTierCollectionFilterBarViewControllerDelegate, SPTFreeTierCollectionEntityCellConfiguratorDelegate, SPContentInsetViewController, UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate, SPTYourLibraryPage, SPTFreeTierCollectionEntityViewModelDelegate, SPTScrollToTopViewController, SPTPageController>
 {
-    id <SPTFreeTierCollectionEntityPageDelegate> _delegate;
-    NSString *_logContext;
-    id <SPTFreeTierCollectionEntityPageScrollToTopDelegate> _scrollDelegate;
     id <SPTYourLibraryPageDelegate> pageDelegate;
     SPTTableView *_tableView;
     SPTProgressView *_progressView;
@@ -35,14 +32,24 @@
     id <GLUEImageLoader> _imageLoader;
     SPTFreeTierCollectionGLUETheme *_theme;
     CDUnknownBlockType _styleFactoryBlock;
-    NSLayoutConstraint *_bottomConstraint;
     SPTFreeTierCollectionFilterBarViewController *_filterBar;
+    NSString *_pageIdentifier;
+    NSURL *_pageURI;
     id <SPTSortingFilteringUIFactory> _sortingFilteringUIFactory;
+    id <SPTViewLogger> _viewLogger;
+    id <SPTSnackbarConditionalPresenter> _snackbarPresenter;
+    id <SPTShareDragDelegateFactory> _shareDragDelegateFactory;
+    id <UITableViewDragDelegate> _dragDelegateHolder;
 }
 
+@property(retain, nonatomic) id <UITableViewDragDelegate> dragDelegateHolder; // @synthesize dragDelegateHolder=_dragDelegateHolder;
+@property(retain, nonatomic) id <SPTShareDragDelegateFactory> shareDragDelegateFactory; // @synthesize shareDragDelegateFactory=_shareDragDelegateFactory;
+@property(retain, nonatomic) id <SPTSnackbarConditionalPresenter> snackbarPresenter; // @synthesize snackbarPresenter=_snackbarPresenter;
+@property(readonly, nonatomic) id <SPTViewLogger> viewLogger; // @synthesize viewLogger=_viewLogger;
 @property(retain, nonatomic) id <SPTSortingFilteringUIFactory> sortingFilteringUIFactory; // @synthesize sortingFilteringUIFactory=_sortingFilteringUIFactory;
+@property(retain, nonatomic, getter=spt_pageURI) NSURL *pageURI; // @synthesize pageURI=_pageURI;
+@property(copy, nonatomic, getter=spt_pageIdentifier) NSString *pageIdentifier; // @synthesize pageIdentifier=_pageIdentifier;
 @property(retain, nonatomic) SPTFreeTierCollectionFilterBarViewController *filterBar; // @synthesize filterBar=_filterBar;
-@property(retain, nonatomic) NSLayoutConstraint *bottomConstraint; // @synthesize bottomConstraint=_bottomConstraint;
 @property(copy, nonatomic) CDUnknownBlockType styleFactoryBlock; // @synthesize styleFactoryBlock=_styleFactoryBlock;
 @property(retain, nonatomic) SPTFreeTierCollectionGLUETheme *theme; // @synthesize theme=_theme;
 @property(retain, nonatomic) id <GLUEImageLoader> imageLoader; // @synthesize imageLoader=_imageLoader;
@@ -53,25 +60,23 @@
 @property(retain, nonatomic) SPTProgressView *progressView; // @synthesize progressView=_progressView;
 @property(retain, nonatomic) SPTTableView *tableView; // @synthesize tableView=_tableView;
 @property(nonatomic) __weak id <SPTYourLibraryPageDelegate> pageDelegate; // @synthesize pageDelegate;
-@property(nonatomic) __weak id <SPTFreeTierCollectionEntityPageScrollToTopDelegate> scrollDelegate; // @synthesize scrollDelegate=_scrollDelegate;
-@property(readonly, nonatomic) NSString *logContext; // @synthesize logContext=_logContext;
-@property(nonatomic) __weak id <SPTFreeTierCollectionEntityPageDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
-@property(readonly, nonatomic, getter=spt_pageIdentifier) NSString *pageIdentifier;
-@property(readonly, nonatomic, getter=spt_pageURI) NSURL *pageURI;
-- (void)spt_scrollToTop;
+@property(readonly, nonatomic) double offscreenContentHeight;
 - (void)layoutGuideChanged;
+- (void)entityCellConfigurator:(id)arg1 performActionWithViewModel:(id)arg2 atIndexPath:(id)arg3;
+- (void)entityViewModel:(id)arg1 collapseSection:(long long)arg2 withCompletion:(CDUnknownBlockType)arg3;
+- (void)entityViewModel:(id)arg1 expandSection:(long long)arg2;
+- (void)entityViewModel:(id)arg1 showDisabledItemMessage:(id)arg2;
 - (void)entityViewModel:(id)arg1 error:(id)arg2;
 - (void)entityViewModelDidUpdate:(id)arg1;
-- (void)freeTierFilterSearchBarTextDidEndEditing:(id)arg1;
+- (void)fadeOutVisisbleRowsInSection:(long long)arg1;
+- (void)freeTierFilterSearchBar:(id)arg1 didSelectFilterRuleAtIndex:(long long)arg2;
 - (void)freeTierFilterSearchBarTextWillEndEditing:(id)arg1;
-- (void)freeTierFilterSearchBarTextDidBeginEditing:(id)arg1;
 - (void)freeTierFilterSearchBarTextWillBeginEditing:(id)arg1;
 - (void)freeTierFilterSearchBarContextButtonTapped:(id)arg1;
 - (void)freeTierFilterSearchBar:(id)arg1 textDidChange:(id)arg2;
-- (void)deactivateFiltersWithFiltersFooter:(id)arg1;
 - (void)handleFilterBar;
-- (void)handleDeactivateFilterFooter;
+- (void)didScrollToTop;
 - (void)handleEmptyView;
 - (void)handleViewModelUpdate;
 - (void)tableView:(id)arg1 didSelectRowAtIndexPath:(id)arg2;
@@ -81,18 +86,28 @@
 - (double)tableView:(id)arg1 heightForRowAtIndexPath:(id)arg2;
 - (id)tableView:(id)arg1 viewForFooterInSection:(long long)arg2;
 - (id)tableView:(id)arg1 viewForHeaderInSection:(long long)arg2;
+- (void)scrollViewDidEndScrollingAnimation:(id)arg1;
+- (void)scrollViewDidScrollToTop:(id)arg1;
+- (_Bool)scrollViewShouldScrollToTop:(id)arg1;
 - (void)scrollViewDidEndDragging:(id)arg1 willDecelerate:(_Bool)arg2;
 - (void)scrollViewDidEndDecelerating:(id)arg1;
 - (void)scrollViewDidScroll:(id)arg1;
+@property(nonatomic) _Bool automaticallyAdjustsScrollViewInsets;
+- (void)sp_updateContentInsets;
+- (void)spt_scrollToTop;
+- (long long)tableView:(id)arg1 sectionForSectionIndexTitle:(id)arg2 atIndex:(long long)arg3;
+- (id)sectionIndexTitlesForTableView:(id)arg1;
 - (long long)numberOfSectionsInTableView:(id)arg1;
 - (long long)tableView:(id)arg1 numberOfRowsInSection:(long long)arg2;
 - (id)tableView:(id)arg1 cellForRowAtIndexPath:(id)arg2;
 - (void)applyThemeLayout;
+- (void)setupCellConfigurator;
 - (void)hideProgressViewWithError:(id)arg1;
 - (void)setupConstraints;
 - (void)initializeInterface;
+- (void)viewWillAppear:(_Bool)arg1;
 - (void)viewDidLoad;
-- (id)initWithViewModel:(id)arg1 imageLoader:(id)arg2 theme:(id)arg3 styleFactoryBlock:(CDUnknownBlockType)arg4 emptyView:(id)arg5 logContext:(id)arg6 sortingFilterUIFactory:(id)arg7;
+- (id)initWithViewModel:(id)arg1 imageLoader:(id)arg2 theme:(id)arg3 styleFactoryBlock:(CDUnknownBlockType)arg4 emptyView:(id)arg5 logContext:(id)arg6 viewLogger:(id)arg7 pageIdentifier:(id)arg8 pageURI:(id)arg9 sortingFilterUIFactory:(id)arg10 snackbarPresenter:(id)arg11 shareDragDelegateFactory:(id)arg12;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

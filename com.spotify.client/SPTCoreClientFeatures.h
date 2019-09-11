@@ -9,7 +9,7 @@
 #import "SPSessionObserver-Protocol.h"
 #import "SPTIncognitoModeHandlerObserver-Protocol.h"
 
-@class NSString, SPCore, SPSession, SPTApplicationStateTracker, SPTAudioVolumeControl, SPTEntityService, SPTGaiaDeviceManagerFactory, SPTHermesController, SPTIncognitoModeHandler, SPTLogger, SPTOfflineManager, SPTPlayTokenHandler, SPTPlayerMftCanPlayChecker, SPTPlayerProxyContextPlayer, SPTPlayerRestorable, SPTRouterFactory, SPTSocialManager, SPTUserFactory;
+@class NSString, SPCore, SPSession, SPTApplicationStateTracker, SPTAudioVolumeControl, SPTEntityService, SPTHermesController, SPTIncognitoModeHandler, SPTLogger, SPTOfflineManager, SPTPlayerMftCanPlayChecker, SPTPlayerProxyContextPlayer, SPTRouterFactory, SPTSocialManager, SPTUserFactory;
 @protocol SPTAsyncScheduler, SPTResolver;
 
 @interface SPTCoreClientFeatures : NSObject <SPTIncognitoModeHandlerObserver, SPSessionObserver>
@@ -21,15 +21,12 @@
     SPTEntityService *_entityService;
     SPTHermesController *_hermes;
     SPTAudioVolumeControl *_audioVolumeControl;
-    SPTPlayTokenHandler *_playTokenHandler;
     SPTPlayerMftCanPlayChecker *_mftCanPlayChecker;
-    SPTPlayerRestorable *_restorable;
     SPTPlayerProxyContextPlayer *_proxyContextPlayer;
     SPTSocialManager *_socialManager;
     SPTUserFactory *_userFactory;
     SPTOfflineManager *_offlineManager;
     SPTIncognitoModeHandler *_incognitoModeHandler;
-    SPTGaiaDeviceManagerFactory *_gaiaDeviceManagerFactory;
     SPCore *_core;
     SPSession *_session;
     id <SPTAsyncScheduler> _scheduler;
@@ -41,15 +38,12 @@
 @property(nonatomic) __weak id <SPTAsyncScheduler> scheduler; // @synthesize scheduler=_scheduler;
 @property(readonly, nonatomic) __weak SPSession *session; // @synthesize session=_session;
 @property(nonatomic) __weak SPCore *core; // @synthesize core=_core;
-@property(retain, nonatomic) SPTGaiaDeviceManagerFactory *gaiaDeviceManagerFactory; // @synthesize gaiaDeviceManagerFactory=_gaiaDeviceManagerFactory;
 @property(retain, nonatomic) SPTIncognitoModeHandler *incognitoModeHandler; // @synthesize incognitoModeHandler=_incognitoModeHandler;
 @property(retain, nonatomic) SPTOfflineManager *offlineManager; // @synthesize offlineManager=_offlineManager;
 @property(retain, nonatomic) SPTUserFactory *userFactory; // @synthesize userFactory=_userFactory;
 @property(retain, nonatomic) SPTSocialManager *socialManager; // @synthesize socialManager=_socialManager;
 @property(retain, nonatomic) SPTPlayerProxyContextPlayer *proxyContextPlayer; // @synthesize proxyContextPlayer=_proxyContextPlayer;
-@property(retain, nonatomic) SPTPlayerRestorable *restorable; // @synthesize restorable=_restorable;
 @property(retain, nonatomic) SPTPlayerMftCanPlayChecker *mftCanPlayChecker; // @synthesize mftCanPlayChecker=_mftCanPlayChecker;
-@property(retain, nonatomic) SPTPlayTokenHandler *playTokenHandler; // @synthesize playTokenHandler=_playTokenHandler;
 @property(retain, nonatomic) SPTAudioVolumeControl *audioVolumeControl; // @synthesize audioVolumeControl=_audioVolumeControl;
 @property(retain, nonatomic) SPTHermesController *hermes; // @synthesize hermes=_hermes;
 @property(retain, nonatomic) SPTEntityService *entityService; // @synthesize entityService=_entityService;

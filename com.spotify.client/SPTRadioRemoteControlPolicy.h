@@ -56,6 +56,8 @@
 - (void)likeButtonPressedWithCompletion:(CDUnknownBlockType)arg1 identifier:(id)arg2;
 @property(readonly, nonatomic) NSString *localizedTitleForLikeCommand;
 - (void)shuffleButtonPressedWithShuffleType:(long long)arg1;
+@property(readonly, nonatomic) _Bool shouldPlaybackSpeedControlBeEnabled;
+@property(readonly, nonatomic) _Bool shouldPlaybackSpeedControlBeAvailable;
 @property(readonly, nonatomic) _Bool shouldShuffleCommandBeEnabled;
 @property(readonly, nonatomic) _Bool shouldShuffleCommandBeAvailable;
 - (void)repeatButtonPressedWithRepeatType:(long long)arg1;
@@ -64,6 +66,7 @@
 @property(readonly, nonatomic) _Bool shouldLikeCommandBeSelected;
 @property(readonly, nonatomic) _Bool shouldLikeCommandBeEnabled;
 @property(readonly, nonatomic) _Bool shouldLikeCommandBeAvailable;
+@property(readonly, nonatomic) _Bool shouldPauseCommandBeEnabled;
 @property(readonly, nonatomic) _Bool shouldChangePlaybackPositionCommandBeEnabled;
 @property(readonly, nonatomic) _Bool shouldChangePlaybackPositionCommandBeAvailable;
 @property(readonly, nonatomic) _Bool shouldSeekBackwardCommandBeEnabled;

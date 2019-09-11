@@ -17,7 +17,6 @@
 + (id)messageFromRawMessage:(id)arg1 error:(id *)arg2;
 + (_Bool)rawMessageFormatIsValid:(id)arg1;
 - (_Bool)populateWithRawMessage:(id)arg1 error:(id *)arg2;
-- (_Bool)validateMessageAndReturnFailureReason:(id *)arg1;
 - (id)initWithRawMessage:(id)arg1 error:(id *)arg2;
 @property(readonly, nonatomic) NSArray *rawMessage;
 @property(readonly, copy, nonatomic) NSString *jsonRepresentation;

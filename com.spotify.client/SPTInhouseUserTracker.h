@@ -6,30 +6,24 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTThirdPartyAppTracker-Protocol.h"
 #import "SPTThirdPartyUserTracker-Protocol.h"
 
-@class NSNumber, NSString;
+@class NSString;
 @protocol SPTLogCenter;
 
-@interface SPTInhouseUserTracker : NSObject <SPTThirdPartyUserTracker, SPTThirdPartyAppTracker>
+@interface SPTInhouseUserTracker : NSObject <SPTThirdPartyUserTracker>
 {
     _Bool _enableUserTracker;
     NSString *_trackerUserID;
     id <SPTLogCenter> _logCenter;
     NSString *_deviceID;
-    NSNumber *_lastSecondsFromUTC;
 }
 
-@property(retain, nonatomic) NSNumber *lastSecondsFromUTC; // @synthesize lastSecondsFromUTC=_lastSecondsFromUTC;
 @property(readonly, copy, nonatomic) NSString *deviceID; // @synthesize deviceID=_deviceID;
 @property(readonly, nonatomic) id <SPTLogCenter> logCenter; // @synthesize logCenter=_logCenter;
 @property(readonly, nonatomic) NSString *trackerUserID; // @synthesize trackerUserID=_trackerUserID;
 @property(readonly, nonatomic, getter=shouldEnableUserTracker) _Bool enableUserTracker; // @synthesize enableUserTracker=_enableUserTracker;
 - (void).cxx_destruct;
-- (void)setOfflineMode:(_Bool)arg1;
-- (void)trackAppWillOpenURL:(id)arg1;
-- (void)trackAppDidLaunch;
 - (void)userDidLoginWithProductState:(id)arg1;
 - (id)initWithLogCenter:(id)arg1 deviceID:(id)arg2;
 

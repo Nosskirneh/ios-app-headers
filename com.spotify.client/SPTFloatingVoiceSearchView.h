@@ -31,7 +31,6 @@
 - (_Bool)showingVoiceElement;
 - (void)microphoneButtonPressed:(id)arg1;
 - (void)setupLayout;
-- (void)didMoveToSuperview;
 - (void)setupViews;
 - (id)initWithFrame:(struct CGRect)arg1;
 

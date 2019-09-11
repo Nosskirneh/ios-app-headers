@@ -6,9 +6,12 @@
 
 #import "SPTService-Protocol.h"
 
+@class NSData;
 @protocol SPTBrowseUIComponentFactory;
 
 @protocol SPTBrowseUIService <SPTService>
+@property(readonly, nonatomic) CDUnknownBlockType cardsTransformer;
 @property(readonly, nonatomic) id <SPTBrowseUIComponentFactory> componentFactory;
+- (NSData *)provideBrowseMockHubData;
 @end
 

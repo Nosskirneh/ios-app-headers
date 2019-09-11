@@ -20,6 +20,8 @@
     _Bool _isLocalTrack;
     _Bool _isPremiumOnly;
     _Bool _isBackgroundable;
+    _Bool _isEpisode;
+    _Bool _isPlayed;
     NSString *_name;
     NSURL *_URL;
     NSString *_rowId;
@@ -39,8 +41,18 @@
     NSString *_ownerName;
     NSString *_previewID;
     NSDictionary *_displayCovers;
+    NSString *_publisherName;
+    NSDate *_publishDate;
+    double _duration;
+    double _timeLeft;
 }
 
+@property(nonatomic) _Bool isPlayed; // @synthesize isPlayed=_isPlayed;
+@property(nonatomic) double timeLeft; // @synthesize timeLeft=_timeLeft;
+@property(nonatomic) double duration; // @synthesize duration=_duration;
+@property(nonatomic) _Bool isEpisode; // @synthesize isEpisode=_isEpisode;
+@property(retain, nonatomic) NSDate *publishDate; // @synthesize publishDate=_publishDate;
+@property(copy, nonatomic) NSString *publisherName; // @synthesize publisherName=_publisherName;
 @property(retain, nonatomic) NSDictionary *displayCovers; // @synthesize displayCovers=_displayCovers;
 @property(copy, nonatomic) NSString *previewID; // @synthesize previewID=_previewID;
 @property(copy, nonatomic) NSString *ownerName; // @synthesize ownerName=_ownerName;

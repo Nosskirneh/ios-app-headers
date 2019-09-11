@@ -20,10 +20,13 @@
 - (_Bool)isTimerActivated;
 - (id)contextMenuTitle;
 - (id)immediateTask:(id)arg1;
-- (id)viewSleepTimerOptionsWithViewController:(id)arg1 senderView:(id)arg2 contextMenuPresenter:(id)arg3 logContext:(id)arg4;
+- (id)viewSleepTimerOptionsWithViewController:(id)arg1 senderView:(id)arg2 contextMenuPresenter:(id)arg3 logContext:(id)arg4 isPodcastContext:(_Bool)arg5;
 - (id)sleepTimerTaskWithTitle:(id)arg1 action:(CDUnknownBlockType)arg2;
 - (id)sleepTimerTaskWithTitle:(id)arg1 minutes:(double)arg2;
-- (id)allActions;
+- (id)allActionsForTracks;
+- (id)allActionsForPodcasts;
+- (id)timerCancelTask;
+- (id)allTimerActions;
 - (id)initWithSleepTimerController:(id)arg1;
 
 // Remaining properties

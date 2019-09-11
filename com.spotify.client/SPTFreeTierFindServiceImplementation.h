@@ -8,14 +8,17 @@
 
 #import "SPTFreeTierFindService-Protocol.h"
 
-@class NSString, SPTAllocationContext, SPTFreeTierFindHubManager, SPTFreeTierFindTestManager;
-@protocol EXP_SPTHubFrameworkService, SPTBrowseUIService, SPTContainerService, SPTFreeTierService, SPTGLUEService, SPTNavigationFeature, SPTPerformanceMetricsService, SPTPodcastFeature, SPTPodcastFindService, SPTScannablesService, SPTSearchService, SPTSessionService, SPTVoiceService;
+@class NSString, SPTAllocationContext, SPTFreeTierFindHubManager, SPTFreeTierFindTestManager, SPTPersistentCache;
+@protocol SPTBrowseUIService, SPTContainerService, SPTContainerUIService, SPTFeatureFlaggingService, SPTFreeTierService, SPTGLUEService, SPTHubFrameworkService, SPTNavigationFeature, SPTNetworkService, SPTPerformanceMetricsService, SPTPodcastFeature, SPTScannablesService, SPTSearchPlatformService, SPTSearchService, SPTSessionService, SPTVoiceService;
 
 @interface SPTFreeTierFindServiceImplementation : NSObject <SPTFreeTierFindService>
 {
+    SPTPersistentCache *_persistentCache;
     id <SPTContainerService> _containerService;
-    id <EXP_SPTHubFrameworkService> _hubService;
+    id <SPTContainerUIService> _containerUIService;
+    id <SPTHubFrameworkService> _hubService;
     id <SPTGLUEService> _glueService;
+    id <SPTSearchPlatformService> _searchPlatformService;
     id <SPTSearchService> _searchService;
     id <SPTSessionService> _clientSessionService;
     id <SPTScannablesService> _scannableService;
@@ -24,8 +27,9 @@
     id <SPTPerformanceMetricsService> _performanceMetricsService;
     id <SPTNavigationFeature> _navigationService;
     id <SPTVoiceService> _voiceService;
-    id <SPTPodcastFindService> _podcastFindService;
     id <SPTBrowseUIService> _browseUIService;
+    id <SPTNetworkService> _networkService;
+    id <SPTFeatureFlaggingService> _featureFlaggingService;
     SPTFreeTierFindHubManager *_hubManager;
     SPTFreeTierFindTestManager *_testManager;
 }
@@ -33,8 +37,9 @@
 + (id)serviceIdentifier;
 @property(retain, nonatomic) SPTFreeTierFindTestManager *testManager; // @synthesize testManager=_testManager;
 @property(retain, nonatomic) SPTFreeTierFindHubManager *hubManager; // @synthesize hubManager=_hubManager;
+@property(nonatomic) __weak id <SPTFeatureFlaggingService> featureFlaggingService; // @synthesize featureFlaggingService=_featureFlaggingService;
+@property(nonatomic) __weak id <SPTNetworkService> networkService; // @synthesize networkService=_networkService;
 @property(nonatomic) __weak id <SPTBrowseUIService> browseUIService; // @synthesize browseUIService=_browseUIService;
-@property(nonatomic) __weak id <SPTPodcastFindService> podcastFindService; // @synthesize podcastFindService=_podcastFindService;
 @property(nonatomic) __weak id <SPTVoiceService> voiceService; // @synthesize voiceService=_voiceService;
 @property(nonatomic) __weak id <SPTNavigationFeature> navigationService; // @synthesize navigationService=_navigationService;
 @property(nonatomic) __weak id <SPTPerformanceMetricsService> performanceMetricsService; // @synthesize performanceMetricsService=_performanceMetricsService;
@@ -43,15 +48,22 @@
 @property(nonatomic) __weak id <SPTScannablesService> scannableService; // @synthesize scannableService=_scannableService;
 @property(nonatomic) __weak id <SPTSessionService> clientSessionService; // @synthesize clientSessionService=_clientSessionService;
 @property(nonatomic) __weak id <SPTSearchService> searchService; // @synthesize searchService=_searchService;
+@property(nonatomic) __weak id <SPTSearchPlatformService> searchPlatformService; // @synthesize searchPlatformService=_searchPlatformService;
 @property(nonatomic) __weak id <SPTGLUEService> glueService; // @synthesize glueService=_glueService;
-@property(nonatomic) __weak id <EXP_SPTHubFrameworkService> hubService; // @synthesize hubService=_hubService;
+@property(nonatomic) __weak id <SPTHubFrameworkService> hubService; // @synthesize hubService=_hubService;
+@property(nonatomic) __weak id <SPTContainerUIService> containerUIService; // @synthesize containerUIService=_containerUIService;
 @property(nonatomic) __weak id <SPTContainerService> containerService; // @synthesize containerService=_containerService;
 - (void).cxx_destruct;
+- (id)makeViewModelProviderForURL:(id)arg1;
+- (id)makeURLResolver;
+- (id)makeViewModelBuilderFactory;
 - (id)provideLoggerWithUrl:(id)arg1 context:(id)arg2;
 - (id)provideNFTFindViewController:(id)arg1 context:(id)arg2;
 - (void)setupHubManager;
 - (void)setupTestManager;
 - (void)setupPageRegistry;
+@property(readonly, nonatomic) SPTPersistentCache *persistentCache; // @synthesize persistentCache=_persistentCache;
+- (void)unload;
 - (void)load;
 - (void)configureWithServices:(id)arg1;
 

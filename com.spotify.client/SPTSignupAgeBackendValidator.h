@@ -4,34 +4,13 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <objc/NSObject.h>
+#import "SPTSignupBackendValidator.h"
 
-#import "SPTSignupFieldValidator-Protocol.h"
-
-@class NSCalendar, NSString, SPTDataLoader, SPTSignupRequestProvider, SPTSignupResponseProcessor;
-
-@interface SPTSignupAgeBackendValidator : NSObject <SPTSignupFieldValidator>
+@interface SPTSignupAgeBackendValidator : SPTSignupBackendValidator
 {
-    SPTDataLoader *_dataLoader;
-    SPTSignupResponseProcessor *_responseProcessor;
-    NSCalendar *_calendar;
-    SPTSignupRequestProvider *_requestProvider;
 }
 
-@property(retain, nonatomic) SPTSignupRequestProvider *requestProvider; // @synthesize requestProvider=_requestProvider;
-@property(retain, nonatomic) NSCalendar *calendar; // @synthesize calendar=_calendar;
-@property(retain, nonatomic) SPTSignupResponseProcessor *responseProcessor; // @synthesize responseProcessor=_responseProcessor;
-@property(retain, nonatomic) SPTDataLoader *dataLoader; // @synthesize dataLoader=_dataLoader;
-- (void).cxx_destruct;
-- (void)validateObject:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
-- (void)performValidationRequestWithBirthday:(id)arg1;
-- (id)initWithDataLoader:(id)arg1 responseProcessor:(id)arg2 requestProvider:(id)arg3;
-
-// Remaining properties
-@property(readonly, copy) NSString *debugDescription;
-@property(readonly, copy) NSString *description;
-@property(readonly) unsigned long long hash;
-@property(readonly) Class superclass;
+- (id)validationRequestFromObject:(id)arg1 requestProvider:(id)arg2;
 
 @end
 

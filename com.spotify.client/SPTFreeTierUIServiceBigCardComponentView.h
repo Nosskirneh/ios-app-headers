@@ -4,22 +4,22 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import "EXP_HUBComponentView.h"
+#import "HUBComponentView.h"
 
-#import "EXP_HUBComponentViewWithEvents-Protocol.h"
-#import "EXP_HUBComponentViewWithImageHandling-Protocol.h"
+#import "HUBComponentViewWithEvents-Protocol.h"
+#import "HUBComponentViewWithImageHandling-Protocol.h"
 #import "UIGestureRecognizerDelegate-Protocol.h"
 
-@class EXP_HUBComponentEvent, GLUEEntityCardView, GLUELabel, NSString, UILongPressGestureRecognizer, UITapGestureRecognizer;
-@protocol EXP_HUBComponentEventHandler, GLUETheme;
+@class GLUEEntityCardView, GLUELabel, HUBComponentEvent, NSString, UILongPressGestureRecognizer, UITapGestureRecognizer;
+@protocol GLUETheme, HUBComponentEventHandler;
 
-@interface SPTFreeTierUIServiceBigCardComponentView : EXP_HUBComponentView <UIGestureRecognizerDelegate, EXP_HUBComponentViewWithEvents, EXP_HUBComponentViewWithImageHandling>
+@interface SPTFreeTierUIServiceBigCardComponentView : HUBComponentView <UIGestureRecognizerDelegate, HUBComponentViewWithEvents, HUBComponentViewWithImageHandling>
 {
-    id <EXP_HUBComponentEventHandler> eventHandler;
+    id <HUBComponentEventHandler> eventHandler;
     id <GLUETheme> _theme;
     GLUEEntityCardView *_cardView;
     GLUELabel *_titleLabel;
-    EXP_HUBComponentEvent *_tapEvent;
+    HUBComponentEvent *_tapEvent;
     UILongPressGestureRecognizer *_highlightGestureRecognizer;
     UITapGestureRecognizer *_selectionGestureRecognizer;
 }
@@ -30,17 +30,17 @@
 + (double)heightForViewFromImageHeight:(double)arg1 labelHeight:(double)arg2;
 + (struct CGSize)sizeForContainerViewSize:(struct CGSize)arg1 model:(id)arg2 theme:(id)arg3 style:(id)arg4;
 + (struct CGSize)sizeForContainerViewSize:(struct CGSize)arg1 model:(id)arg2 theme:(id)arg3;
++ (id)attributedTitleFromModel:(id)arg1 withStyle:(id)arg2;
 @property(retain, nonatomic) UITapGestureRecognizer *selectionGestureRecognizer; // @synthesize selectionGestureRecognizer=_selectionGestureRecognizer;
 @property(retain, nonatomic) UILongPressGestureRecognizer *highlightGestureRecognizer; // @synthesize highlightGestureRecognizer=_highlightGestureRecognizer;
-@property(retain, nonatomic) EXP_HUBComponentEvent *tapEvent; // @synthesize tapEvent=_tapEvent;
+@property(retain, nonatomic) HUBComponentEvent *tapEvent; // @synthesize tapEvent=_tapEvent;
 @property(retain, nonatomic) GLUELabel *titleLabel; // @synthesize titleLabel=_titleLabel;
 @property(retain, nonatomic) GLUEEntityCardView *cardView; // @synthesize cardView=_cardView;
 @property(retain, nonatomic) id <GLUETheme> theme; // @synthesize theme=_theme;
-@property(retain, nonatomic) id <EXP_HUBComponentEventHandler> eventHandler; // @synthesize eventHandler;
+@property(retain, nonatomic) id <HUBComponentEventHandler> eventHandler; // @synthesize eventHandler;
 - (void).cxx_destruct;
 - (void)sendTapEvent;
 - (void)setupGestureRecognizers;
-- (void)configureViewWithModel:(id)arg1 labelStyle:(id)arg2;
 - (void)setUpConstraints;
 - (struct CGSize)preferredSizeForImagePlaceholder;
 - (void)highlightGestureRecognizerChangedState:(id)arg1;

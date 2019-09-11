@@ -6,10 +6,14 @@
 
 #import "NSObject-Protocol.h"
 
-@class NSURL, UIView;
+@class NSError, NSURL, UIView;
+@protocol SPTShowInfoViewProviderTarget;
 
 @protocol SPTShowInfoViewProvider <NSObject>
-- (UIView *)showInfoViewForEmptyViewURI:(NSURL *)arg1 mediaType:(unsigned long long)arg2 size:(struct CGSize)arg3;
-- (UIView *)showInfoViewForEmptyViewURI:(NSURL *)arg1 size:(struct CGSize)arg2;
+- (UIView *)provideInfoViewForURI:(NSURL *)arg1;
+
+@optional
+- (UIView *)provideInfoViewWithError:(NSError *)arg1 target:(id <SPTShowInfoViewProviderTarget>)arg2;
+- (UIView *)provideInfoViewForURI:(NSURL *)arg1 mediaType:(unsigned long long)arg2;
 @end
 

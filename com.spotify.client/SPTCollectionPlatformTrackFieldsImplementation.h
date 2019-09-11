@@ -27,6 +27,7 @@
     NSArray *_artists;
     NSString *_albumName;
     NSString *_albumArtistName;
+    NSURL *_albumArtistURL;
     NSURL *_albumURL;
     NSDictionary *_albumCovers;
     unsigned long long _offlineState;
@@ -44,6 +45,7 @@
 @property(nonatomic) unsigned long long offlineState; // @synthesize offlineState=_offlineState;
 @property(retain, nonatomic) NSDictionary *albumCovers; // @synthesize albumCovers=_albumCovers;
 @property(retain, nonatomic) NSURL *albumURL; // @synthesize albumURL=_albumURL;
+@property(retain, nonatomic) NSURL *albumArtistURL; // @synthesize albumArtistURL=_albumArtistURL;
 @property(copy, nonatomic) NSString *albumArtistName; // @synthesize albumArtistName=_albumArtistName;
 @property(copy, nonatomic) NSString *albumName; // @synthesize albumName=_albumName;
 @property(retain, nonatomic) NSArray *artists; // @synthesize artists=_artists;

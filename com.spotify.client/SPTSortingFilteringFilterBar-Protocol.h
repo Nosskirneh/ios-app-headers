@@ -6,15 +6,18 @@
 
 #import "GLUEStyleable-Protocol.h"
 
-@class UIControl, UITextField;
-@protocol SPTSortingFilteringFilterBarStyle;
+@class NSArray, UIControl, UITextField, UIView;
+@protocol SPTSortingFilteringClearFiltersControl, SPTSortingFilteringFilterBarStyle;
 
 @protocol SPTSortingFilteringFilterBar <GLUEStyleable>
 @property(nonatomic) _Bool backgroundViewHidden;
 @property(nonatomic) _Bool contextMenuButtonDisabled;
+@property(readonly, nonatomic) double textInputFilterBarHeight;
 @property(readonly, nonatomic) double filterBarHeight;
+@property(readonly, nonatomic) UIView<SPTSortingFilteringClearFiltersControl> *clearFiltersControl;
 @property(readonly, nonatomic) UIControl *contextMenuButton;
 @property(readonly, nonatomic) UITextField *searchField;
+- (void)insertFiltersWithTitles:(NSArray *)arg1;
 - (void)glue_applyStyle:(id <SPTSortingFilteringFilterBarStyle>)arg1;
 @end
 

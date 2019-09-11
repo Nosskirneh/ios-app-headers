@@ -6,7 +6,7 @@
 
 #import <objc/NSObject.h>
 
-@class SPTShareData, SPTSharePlaylistHelper;
+@class SPTShareData, SPTSharePlaylistHelper, SPTShareTrackHelper;
 @protocol SPTPlayer, SPTShareDataProviderDelegate, SPTShareEntityData;
 
 @interface SPTShareDataProvider : NSObject
@@ -15,17 +15,20 @@
     id <SPTShareEntityData> _entityData;
     id <SPTPlayer> _player;
     SPTSharePlaylistHelper *_sharePlaylistHelper;
+    SPTShareTrackHelper *_shareTrackHelper;
     SPTShareData *_shareData;
 }
 
 @property(retain, nonatomic) SPTShareData *shareData; // @synthesize shareData=_shareData;
+@property(readonly, nonatomic) SPTShareTrackHelper *shareTrackHelper; // @synthesize shareTrackHelper=_shareTrackHelper;
 @property(readonly, nonatomic) SPTSharePlaylistHelper *sharePlaylistHelper; // @synthesize sharePlaylistHelper=_sharePlaylistHelper;
 @property(readonly, nonatomic) id <SPTPlayer> player; // @synthesize player=_player;
 @property(readonly, nonatomic) id <SPTShareEntityData> entityData; // @synthesize entityData=_entityData;
 @property(nonatomic) __weak id <SPTShareDataProviderDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
+- (void)handleNormalizeCallback:(id)arg1;
 - (void)fetchData;
-- (id)initWithEntityData:(id)arg1 player:(id)arg2 sharePlaylistHelper:(id)arg3;
+- (id)initWithEntityData:(id)arg1 player:(id)arg2 sharePlaylistHelper:(id)arg3 shareTrackHelper:(id)arg4;
 
 @end
 

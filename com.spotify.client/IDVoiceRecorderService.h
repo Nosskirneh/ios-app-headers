@@ -6,12 +6,10 @@
 
 #import "IDService.h"
 
-#import "IDEtchSessionVoiceRecorderDelegate-Protocol.h"
-
-@class IDHmiService, NSMutableDictionary, NSString;
+@class IDHmiService, NSMutableDictionary;
 @protocol IDVoiceRecorderServiceDataSource, IDVoiceRecorderServiceDelegate;
 
-@interface IDVoiceRecorderService : IDService <IDEtchSessionVoiceRecorderDelegate>
+@interface IDVoiceRecorderService : IDService
 {
     id <IDVoiceRecorderServiceDataSource> _dataSource;
     id <IDVoiceRecorderServiceDelegate> _delegate;
@@ -42,12 +40,6 @@
 - (_Bool)disposeWithError:(id *)arg1;
 - (id)initWithEtchSession:(id)arg1 handle:(long long)arg2;
 - (id)initWithEtchSession:(id)arg1 handle:(unsigned long long)arg2 hmiService:(id)arg3;
-
-// Remaining properties
-@property(readonly, copy) NSString *debugDescription;
-@property(readonly, copy) NSString *description;
-@property(readonly) unsigned long long hash;
-@property(readonly) Class superclass;
 
 @end
 

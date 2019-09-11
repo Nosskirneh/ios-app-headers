@@ -7,27 +7,30 @@
 #import <objc/NSObject.h>
 
 @class NSString, NSURL;
-@protocol SPTLogCenter, SPTOnDemandSet, SPTViewLogger;
+@protocol SPTEventSender, SPTLogCenter, SPTOnDemandSet, SPTViewLogger;
 
 @interface SPTFreeTierPlaylistLogger : NSObject
 {
+    NSString *_featureId;
     NSString *_playlistViewPageIdentifier;
     id <SPTLogCenter> _logCenter;
     id <SPTViewLogger> _viewLogger;
+    id <SPTEventSender> _eventSender;
     NSURL *_pageURL;
     id <SPTOnDemandSet> _onDemandSet;
-    NSString *_featureId;
 }
 
-@property(copy, nonatomic) NSString *featureId; // @synthesize featureId=_featureId;
-@property(retain, nonatomic) id <SPTOnDemandSet> onDemandSet; // @synthesize onDemandSet=_onDemandSet;
-@property(retain, nonatomic) NSURL *pageURL; // @synthesize pageURL=_pageURL;
-@property(retain, nonatomic) id <SPTViewLogger> viewLogger; // @synthesize viewLogger=_viewLogger;
-@property(retain, nonatomic) id <SPTLogCenter> logCenter; // @synthesize logCenter=_logCenter;
+@property(readonly, nonatomic) id <SPTOnDemandSet> onDemandSet; // @synthesize onDemandSet=_onDemandSet;
+@property(readonly, nonatomic) NSURL *pageURL; // @synthesize pageURL=_pageURL;
+@property(readonly, nonatomic) id <SPTEventSender> eventSender; // @synthesize eventSender=_eventSender;
+@property(readonly, nonatomic) id <SPTViewLogger> viewLogger; // @synthesize viewLogger=_viewLogger;
+@property(readonly, nonatomic) id <SPTLogCenter> logCenter; // @synthesize logCenter=_logCenter;
 @property(copy, nonatomic) NSString *playlistViewPageIdentifier; // @synthesize playlistViewPageIdentifier=_playlistViewPageIdentifier;
+@property(copy, nonatomic) NSString *featureId; // @synthesize featureId=_featureId;
 - (void).cxx_destruct;
-- (void)logUIInteractionWithSectionId:(id)arg1 itemIndex:(long long)arg2 targetURI:(id)arg3 interactionType:(id)arg4 userIntent:(id)arg5;
+- (void)logUIInteractionWithSectionId:(id)arg1 itemIndex:(long long)arg2 targetURI:(id)arg3 interactionType:(id)arg4 userIntent:(id)arg5 action:(id)arg6;
 - (void)logUIInteractionWithSectionId:(id)arg1 targetURI:(id)arg2 userIntent:(id)arg3;
+- (void)logScrollPerformanceWithDuration:(double)arg1 smallFrameDropCount:(double)arg2 largeFrameDropCount:(double)arg3;
 - (void)logSortingIdentifier:(id)arg1 index:(unsigned long long)arg2;
 - (void)logSortFilterPickerCanceled;
 - (void)logHeaderViewSlideToPage:(long long)arg1;
@@ -46,17 +49,16 @@
 - (void)logTrackCloudSelected:(_Bool)arg1;
 - (void)logAllSongsAddSongsSelected;
 - (void)logBrowseButtonClicked;
-- (void)logEditButtonClicked;
 - (void)logAddSongsSelectedOnEmptyPlaylist:(_Bool)arg1;
 - (void)logShuffleBadgeSelected;
 - (void)logPlayButtonStartPlaying:(_Bool)arg1;
 - (void)logHeaderContextMenuButton;
 - (void)logHeartButtonSelected:(_Bool)arg1;
-- (void)logViewDidFailToLoadWithError:(id)arg1 pageIdentifier:(id)arg2;
+- (void)logViewDidFailToLoadWithPageIdentifier:(id)arg1;
 - (void)logViewLoadingCancelledWithPageIdentifier:(id)arg1;
 - (void)logViewDidLoadWithPageIdentifier:(id)arg1;
 - (void)logViewLoadingStartedWithPageIdentifier:(id)arg1;
-- (id)initWithLogCenter:(id)arg1 viewLogger:(id)arg2 pageURL:(id)arg3 onDemandSet:(id)arg4;
+- (id)initWithLogCenter:(id)arg1 viewLogger:(id)arg2 eventSender:(id)arg3 pageURL:(id)arg4 onDemandSet:(id)arg5;
 
 @end
 

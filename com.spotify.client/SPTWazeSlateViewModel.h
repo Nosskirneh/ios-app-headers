@@ -16,23 +16,21 @@
     NSString *_titleText;
     NSString *_descriptionText;
     NSString *_acceptButtonTitle;
-    UIImage *_logoImage;
-    UIImage *_backgroundImage;
     NSURL *_viewURI;
     id <SPTWazeSlateViewModelDelegate> _delegate;
 }
 
 @property(nonatomic) __weak id <SPTWazeSlateViewModelDelegate> delegate; // @synthesize delegate=_delegate;
 @property(readonly, nonatomic) NSURL *viewURI; // @synthesize viewURI=_viewURI;
-@property(readonly, nonatomic) UIImage *backgroundImage; // @synthesize backgroundImage=_backgroundImage;
-@property(readonly, nonatomic) UIImage *logoImage; // @synthesize logoImage=_logoImage;
 @property(readonly, nonatomic) NSString *acceptButtonTitle; // @synthesize acceptButtonTitle=_acceptButtonTitle;
 @property(readonly, nonatomic) NSString *descriptionText; // @synthesize descriptionText=_descriptionText;
 @property(readonly, nonatomic) NSString *titleText; // @synthesize titleText=_titleText;
 - (void).cxx_destruct;
 - (void)slateDidDismiss:(id)arg1;
 - (void)didTapAcceptButton;
-- (id)initWithTitleText:(id)arg1 descriptionText:(id)arg2 acceptButtonTitle:(id)arg3 logoImage:(id)arg4 backgroundImage:(id)arg5 viewURI:(id)arg6;
+@property(readonly, nonatomic) UIImage *backgroundImage;
+@property(readonly, nonatomic) UIImage *logoImage;
+- (id)initWithTitleText:(id)arg1 descriptionText:(id)arg2 acceptButtonTitle:(id)arg3 viewURI:(id)arg4;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

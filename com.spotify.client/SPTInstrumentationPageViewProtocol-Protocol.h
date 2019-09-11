@@ -9,6 +9,7 @@
 @class NSString, NSURL;
 
 @protocol SPTInstrumentationPageViewProtocol <NSObject>
+@property(readonly, nonatomic) NSString *pageName;
 @property(readonly, nonatomic) NSURL *pageURI;
 @property(readonly, nonatomic) NSString *pageIdentifier;
 @end

@@ -61,6 +61,7 @@
 - (void)startSessionIfAudioRouteIsCarPlay;
 - (void)unload;
 - (void)disable;
+- (void)disableAndApplyRestrictedDataSource;
 - (void)setupLoggedInDataSource;
 - (void)tearDownRemoteControlEventController;
 - (void)enable;

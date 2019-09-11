@@ -8,29 +8,28 @@
 
 #import "SPBarTransitableViewController-Protocol.h"
 #import "SPForegroundObserverDelegate-Protocol.h"
-#import "SPTNowPlayingBarModelDelegate-Protocol.h"
+#import "SPTNowPlayingBarModelObserver-Protocol.h"
 #import "SPTNowPlayingBarViewControllerObservable-Protocol.h"
 #import "SPTPlayerTrackScrollDataSourceDelegate-Protocol.h"
 #import "SPTPlayerTrackScrollViewOffsetDelegate-Protocol.h"
 
-@class NSString, NSTimer, SPForegroundObserver, SPTNowPlayingBarContentProviderRegistryImplementation, SPTNowPlayingBarContentView, SPTNowPlayingBarModel, SPTNowPlayingLogger, SPTObserverManager, SPTPlayerTrackScrollDataSource, SPTTheme, UIView, UIViewController;
-@protocol NSObject, SPTGaiaDevicesAvailableView, SPTGaiaManager, SPTNowPlayingManager, SPTUpsellManager, SPTVideoSurfaceManager;
+@class NSString, SPForegroundObserver, SPTNowPlayingBarContentView, SPTNowPlayingBarModel, SPTNowPlayingLogger, SPTNowPlayingSkipLimitReachedMessageRequester, SPTObserverManager, SPTPlayerTrackScrollDataSource, SPTTheme, UIView;
+@protocol NSObject, SPTGaiaConnectAPI, SPTGaiaDevicePickerPresenter, SPTGaiaDevicesAvailableView, SPTNowPlayingManager, SPTNowPlayingTestManager;
 
-@interface SPTNowPlayingBarViewController : SPViewController <SPBarTransitableViewController, SPForegroundObserverDelegate, SPTPlayerTrackScrollDataSourceDelegate, SPTPlayerTrackScrollViewOffsetDelegate, SPTNowPlayingBarModelDelegate, SPTNowPlayingBarViewControllerObservable>
+@interface SPTNowPlayingBarViewController : SPViewController <SPBarTransitableViewController, SPForegroundObserverDelegate, SPTPlayerTrackScrollDataSourceDelegate, SPTPlayerTrackScrollViewOffsetDelegate, SPTNowPlayingBarModelObserver, SPTNowPlayingBarViewControllerObservable>
 {
     _Bool _barShown;
+    _Bool _revealTriggeredByTap;
     SPTNowPlayingBarModel *_nowPlayingModel;
-    id <SPTUpsellManager> _upsellManager;
-    id <SPTVideoSurfaceManager> _videoSurfaceManager;
-    id <SPTGaiaManager> _gaiaManager;
+    SPTNowPlayingSkipLimitReachedMessageRequester *_skipLimitReachedMessageRequester;
+    id <SPTGaiaConnectAPI> _connectManager;
+    id <SPTGaiaDevicePickerPresenter> _devicePickerPresenter;
     SPTTheme *_theme;
     UIView<SPTGaiaDevicesAvailableView> *_devicesAvailableView;
-    SPTNowPlayingBarContentProviderRegistryImplementation *_barContentProviderRegistry;
+    id <SPTNowPlayingTestManager> _testManager;
     SPTNowPlayingBarContentView *_contentView;
     SPTPlayerTrackScrollDataSource *_playerTrackScrollDataSource;
     SPForegroundObserver *_foregroundObserver;
-    UIViewController *_informationViewController;
-    NSTimer *_informationViewTimeoutTimer;
     SPTNowPlayingLogger *_logger;
     id <SPTNowPlayingManager> _nowPlayingManager;
     id <NSObject> _SPTBarObserverObject;
@@ -40,6 +39,7 @@
     SPTObserverManager *_observerManager;
 }
 
+@property(nonatomic) _Bool revealTriggeredByTap; // @synthesize revealTriggeredByTap=_revealTriggeredByTap;
 @property(nonatomic) _Bool barShown; // @synthesize barShown=_barShown;
 @property(readonly, nonatomic) SPTObserverManager *observerManager; // @synthesize observerManager=_observerManager;
 @property(retain, nonatomic) id <NSObject> SPTOverlayObserverObject; // @synthesize SPTOverlayObserverObject=_SPTOverlayObserverObject;
@@ -48,22 +48,19 @@
 @property(retain, nonatomic) id <NSObject> SPTBarObserverObject; // @synthesize SPTBarObserverObject=_SPTBarObserverObject;
 @property(retain, nonatomic) id <SPTNowPlayingManager> nowPlayingManager; // @synthesize nowPlayingManager=_nowPlayingManager;
 @property(retain, nonatomic) SPTNowPlayingLogger *logger; // @synthesize logger=_logger;
-@property(nonatomic) __weak NSTimer *informationViewTimeoutTimer; // @synthesize informationViewTimeoutTimer=_informationViewTimeoutTimer;
-@property(retain, nonatomic) UIViewController *informationViewController; // @synthesize informationViewController=_informationViewController;
 @property(retain, nonatomic) SPForegroundObserver *foregroundObserver; // @synthesize foregroundObserver=_foregroundObserver;
 @property(retain, nonatomic) SPTPlayerTrackScrollDataSource *playerTrackScrollDataSource; // @synthesize playerTrackScrollDataSource=_playerTrackScrollDataSource;
 @property(retain, nonatomic) SPTNowPlayingBarContentView *contentView; // @synthesize contentView=_contentView;
-@property(retain, nonatomic) SPTNowPlayingBarContentProviderRegistryImplementation *barContentProviderRegistry; // @synthesize barContentProviderRegistry=_barContentProviderRegistry;
+@property(readonly, nonatomic) id <SPTNowPlayingTestManager> testManager; // @synthesize testManager=_testManager;
 @property(retain, nonatomic) UIView<SPTGaiaDevicesAvailableView> *devicesAvailableView; // @synthesize devicesAvailableView=_devicesAvailableView;
 @property(retain, nonatomic) SPTTheme *theme; // @synthesize theme=_theme;
-@property(retain, nonatomic) id <SPTGaiaManager> gaiaManager; // @synthesize gaiaManager=_gaiaManager;
-@property(retain, nonatomic) id <SPTVideoSurfaceManager> videoSurfaceManager; // @synthesize videoSurfaceManager=_videoSurfaceManager;
-@property(nonatomic) __weak id <SPTUpsellManager> upsellManager; // @synthesize upsellManager=_upsellManager;
+@property(retain, nonatomic) id <SPTGaiaDevicePickerPresenter> devicePickerPresenter; // @synthesize devicePickerPresenter=_devicePickerPresenter;
+@property(retain, nonatomic) id <SPTGaiaConnectAPI> connectManager; // @synthesize connectManager=_connectManager;
+@property(readonly, nonatomic) SPTNowPlayingSkipLimitReachedMessageRequester *skipLimitReachedMessageRequester; // @synthesize skipLimitReachedMessageRequester=_skipLimitReachedMessageRequester;
 @property(retain, nonatomic) SPTNowPlayingBarModel *nowPlayingModel; // @synthesize nowPlayingModel=_nowPlayingModel;
 - (void).cxx_destruct;
 - (void)playerTrackScrollView:(id)arg1 scrolledToRelativeIndex:(long long)arg2;
 - (void)playerTrackScrollViewChangedOffset:(id)arg1;
-- (void)informationViewControllerTimedOut:(id)arg1;
 - (void)nowPlayingBarModelDidUpdateTrackMetaData:(id)arg1;
 - (void)nowPlayingBarModelDidUpdatePlayingState:(id)arg1;
 - (void)foregroundObserverDidHibernate:(id)arg1;
@@ -73,23 +70,19 @@
 - (void)playPause;
 - (void)removeNowPlayingBarViewControllerObserver:(id)arg1;
 - (void)addNowPlayingBarViewControllerObserver:(id)arg1;
-- (id)leftAccessoryProviderForCurrentTrack;
-- (id)contentProviderForCurrentTrack;
-- (void)updateBarContentProviderWithCurrentTrack;
-- (id)currentPlayerTrack;
+- (void)overlayWillBeShown:(id)arg1;
 - (void)handleTapGesture:(id)arg1;
 - (void)viewDidDisappear:(_Bool)arg1;
 - (void)viewWillDisappear:(_Bool)arg1;
 - (void)viewDidAppear:(_Bool)arg1;
 - (void)viewWillAppear:(_Bool)arg1;
 - (void)viewDidLoad;
-- (void)loadView;
 - (void)removeSPBarObserversIfObserving;
-- (void)setupSPBarObsrerversIfNotObserving;
+- (void)setupSPBarObserversIfNotObserving;
 - (void)sp_setBarTransitionProgress:(float)arg1;
 - (id)URI;
 - (void)dealloc;
-- (id)initWithPlayingModel:(id)arg1 logger:(id)arg2 upsellManager:(id)arg3 videoSurfaceManager:(id)arg4 nowPlayingManager:(id)arg5 gaiaManager:(id)arg6 theme:(id)arg7 devicesAvailableView:(id)arg8 barContentProviderRegistry:(id)arg9;
+- (id)initWithPlayingModel:(id)arg1 logger:(id)arg2 skipLimitReachedMessageRequester:(id)arg3 nowPlayingManager:(id)arg4 theme:(id)arg5 connectManager:(id)arg6 devicePickerPresenter:(id)arg7 devicesAvailableView:(id)arg8 testManager:(id)arg9;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

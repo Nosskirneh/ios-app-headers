@@ -6,16 +6,16 @@
 
 #import <objc/NSObject.h>
 
-#import "EXP_HUBContentOperation-Protocol.h"
+#import "HUBContentOperation-Protocol.h"
 
-@protocol EXP_HUBContentOperationDelegate;
+@protocol HUBContentOperationDelegate;
 
-@interface SPTAssistedCurationSearchResultDrillDownContentOperation : NSObject <EXP_HUBContentOperation>
+@interface SPTAssistedCurationSearchResultDrillDownContentOperation : NSObject <HUBContentOperation>
 {
-    id <EXP_HUBContentOperationDelegate> _delegate;
+    id <HUBContentOperationDelegate> _delegate;
 }
 
-@property(nonatomic) __weak id <EXP_HUBContentOperationDelegate> delegate; // @synthesize delegate=_delegate;
+@property(nonatomic) __weak id <HUBContentOperationDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
 - (id)addAssistedCurationEntityPrefixToSeeMoreURI:(id)arg1;
 - (id)addAssistedCurationEntityPrefixToEntityURI:(id)arg1;

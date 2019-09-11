@@ -8,7 +8,7 @@
 
 #import "SPTVideoPlaybackIdentity-Protocol.h"
 
-@class NSString;
+@class NSDictionary, NSString, NSURL;
 @protocol SPTVideoPlaybackRequest;
 
 @interface SPTVideoPlaybackIdentityImpl : NSObject <SPTVideoPlaybackIdentity>
@@ -18,21 +18,16 @@
 }
 
 @property(copy, nonatomic) id <SPTVideoPlaybackRequest> request; // @synthesize request=_request;
-@property(retain, nonatomic) NSString *sessionID; // @synthesize sessionID=_sessionID;
+@property(copy, nonatomic) NSString *sessionID; // @synthesize sessionID=_sessionID;
 - (void).cxx_destruct;
 @property(readonly, copy) NSString *debugDescription;
 - (_Bool)isEqual:(id)arg1;
 @property(readonly) unsigned long long hash;
-- (id)metadata;
-- (_Bool)playWhenReady;
-- (double)initialPosition;
-- (id)audioTrackURI;
-- (id)mediaURL;
-- (id)manifestID;
-- (_Bool)isAd;
-- (_Bool)isRoyaltyVideo;
-- (_Bool)isBackgroundable;
-- (id)initWithRequest:(id)arg1;
+@property(readonly, nonatomic) NSDictionary *metadata;
+@property(readonly, nonatomic) NSURL *mediaURL;
+@property(readonly, nonatomic, getter=isRoyaltyMedia) _Bool royaltyMedia;
+@property(readonly, nonatomic, getter=isAudioOnlyAllowed) _Bool audioOnlyAllowed;
+- (id)initWithSessionID:(id)arg1 request:(id)arg2;
 
 // Remaining properties
 @property(readonly, copy) NSString *description;

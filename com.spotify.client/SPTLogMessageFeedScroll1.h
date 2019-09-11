@@ -17,10 +17,10 @@
 }
 
 + (id)messageWithSessionId:(id)arg1 userIntent:(id)arg2 indexPath:(long long)arg3 visibleEntityUris:(id)arg4;
-@property(retain, nonatomic) NSArray *visibleEntityUrisValue; // @synthesize visibleEntityUrisValue=_visibleEntityUrisValue;
+@property(copy, nonatomic) NSArray *visibleEntityUrisValue; // @synthesize visibleEntityUrisValue=_visibleEntityUrisValue;
 @property(nonatomic) long long indexPathValue; // @synthesize indexPathValue=_indexPathValue;
-@property(retain, nonatomic) NSString *userIntentValue; // @synthesize userIntentValue=_userIntentValue;
-@property(retain, nonatomic) NSString *sessionIdValue; // @synthesize sessionIdValue=_sessionIdValue;
+@property(copy, nonatomic) NSString *userIntentValue; // @synthesize userIntentValue=_userIntentValue;
+@property(copy, nonatomic) NSString *sessionIdValue; // @synthesize sessionIdValue=_sessionIdValue;
 - (void).cxx_destruct;
 - (_Bool)isEqual:(id)arg1;
 - (unsigned long long)hash;

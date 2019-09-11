@@ -19,7 +19,7 @@
 - (void).cxx_destruct;
 - (id)description;
 - (void)completeOperation;
-- (void)handleMapServiceEvent:(unsigned long long)arg1 transferId:(long long)arg2;
+- (void)handleMapServiceEvent:(id)arg1 transferId:(long long)arg2;
 - (void)asyncMain;
 - (id)initWithEtchSession:(id)arg1 mapServiceHandle:(long long)arg2;
 - (id)initWithEtchSession:(id)arg1 mapServiceHandle:(long long)arg2 completionHandler:(CDUnknownBlockType)arg3;

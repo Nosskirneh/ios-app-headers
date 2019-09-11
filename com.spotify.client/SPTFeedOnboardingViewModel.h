@@ -24,7 +24,7 @@
 }
 
 @property(retain, nonatomic) SPTFeedFollowHandler *followHandler; // @synthesize followHandler=_followHandler;
-@property(retain, nonatomic) NSArray *items; // @synthesize items=_items;
+@property(copy, nonatomic) NSArray *items; // @synthesize items=_items;
 @property(retain, nonatomic) SPTFeedFollowRecommendationsNetworkService *followNetworkService; // @synthesize followNetworkService=_followNetworkService;
 @property(retain, nonatomic) id <SPTOfflineModeState> offlineModeState; // @synthesize offlineModeState=_offlineModeState;
 @property(nonatomic) __weak id <SPTFeedOnboardingViewModelDelegate> delegate; // @synthesize delegate=_delegate;

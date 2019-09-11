@@ -6,13 +6,10 @@
 
 #import "GLUECardCollectionViewCell.h"
 
-#import "SPTCeramicCollectionViewCellProtocol-Protocol.h"
-#import "SPTCeramicCollectionViewCellWithAttributedTitle-Protocol.h"
+@class UIView;
+@protocol GLUEEntityCard;
 
-@class NSAttributedString, NSString, SPTActionButton, UIView;
-@protocol GLUEEntityCard, SPTThemableViewLayoutDelegate;
-
-@interface GLUEEntityCardCollectionViewCell : GLUECardCollectionViewCell <SPTCeramicCollectionViewCellProtocol, SPTCeramicCollectionViewCellWithAttributedTitle>
+@interface GLUEEntityCardCollectionViewCell : GLUECardCollectionViewCell
 {
     UIView<GLUEEntityCard> *_entityCardView;
 }
@@ -21,31 +18,6 @@
 - (void).cxx_destruct;
 - (void)prepareForReuse;
 - (void)loadCardView;
-@property(retain, nonatomic) NSAttributedString *attributedTitle;
-@property(nonatomic) __weak id <SPTThemableViewLayoutDelegate> layoutDelegate;
-- (void)applyThemeLayout;
-@property(readonly, nonatomic) struct CGSize imageViewSize;
-- (void)setImage:(id)arg1 animated:(_Bool)arg2;
-- (void)setImage:(id)arg1;
-@property(retain, nonatomic) UIView *accessoryView;
-- (void)populateWithCeramicItem:(id)arg1 order:(struct SPTCeramicItemOrder)arg2;
-- (id)prepareEntityCardStyleForItem:(id)arg1 entityCardView:(id)arg2;
-- (void)extractSubtitleTextAndStyleFromItem:(id)arg1 imageDecoration:(long long)arg2 theme:(id)arg3 callback:(CDUnknownBlockType)arg4;
-- (long long)imageDecorationFromItem:(id)arg1;
-- (long long)imageMaskFromItem:(id)arg1;
-- (long long)decorationFromSPTImageDecoration:(long long)arg1;
-- (long long)imageMaskFromSPTImageStyle:(long long)arg1;
-@property(readonly, nonatomic) unsigned long long cellType;
-
-// Remaining properties
-@property(readonly, nonatomic) SPTActionButton *actionButton;
-@property(readonly, nonatomic) struct CGSize backgroundImageViewSize;
-@property(readonly, copy) NSString *debugDescription;
-@property(readonly, copy) NSString *description;
-@property(readonly) unsigned long long hash;
-@property(retain, nonatomic) UIView *prefixView;
-@property(readonly) Class superclass;
-@property(retain, nonatomic) UIView *touchPreviewView;
 
 @end
 

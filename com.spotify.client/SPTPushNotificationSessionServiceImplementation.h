@@ -6,14 +6,13 @@
 
 #import <objc/NSObject.h>
 
-#import "MessageBarControllerObserver-Protocol.h"
 #import "SPTPushNotificationSessionService-Protocol.h"
 #import "SPTThirdPartyUserTracker-Protocol.h"
 
 @class NSString, SPTAllocationContext, SPTPushNotificationsAppRegistrar;
-@protocol SPTContainerUIService, SPTPushNotificationsService, SPTThirdPartyTrackerBroadcaster, SPTUserTrackingService;
+@protocol SPTContainerUIService, SPTFeatureFlagSignal, SPTPushMessagingABBAService, SPTPushNotificationsService, SPTThirdPartyTrackerBroadcaster, SPTUserTrackingService;
 
-@interface SPTPushNotificationSessionServiceImplementation : NSObject <SPTThirdPartyUserTracker, MessageBarControllerObserver, SPTPushNotificationSessionService>
+@interface SPTPushNotificationSessionServiceImplementation : NSObject <SPTThirdPartyUserTracker, SPTPushNotificationSessionService>
 {
     _Bool _enableUserTracker;
     NSString *_trackerUserID;
@@ -21,11 +20,15 @@
     id <SPTUserTrackingService> _trackingService;
     id <SPTPushNotificationsService> _pushNotificationService;
     id <SPTThirdPartyTrackerBroadcaster> _broadcaster;
+    id <SPTPushMessagingABBAService> _pushMessagingABBAService;
     SPTPushNotificationsAppRegistrar *_appRegistrar;
+    id <SPTFeatureFlagSignal> _pushMessagingFeatureFlagSignal;
 }
 
 + (id)serviceIdentifier;
+@property(retain, nonatomic) id <SPTFeatureFlagSignal> pushMessagingFeatureFlagSignal; // @synthesize pushMessagingFeatureFlagSignal=_pushMessagingFeatureFlagSignal;
 @property(retain, nonatomic) SPTPushNotificationsAppRegistrar *appRegistrar; // @synthesize appRegistrar=_appRegistrar;
+@property(nonatomic) __weak id <SPTPushMessagingABBAService> pushMessagingABBAService; // @synthesize pushMessagingABBAService=_pushMessagingABBAService;
 @property(nonatomic) __weak id <SPTThirdPartyTrackerBroadcaster> broadcaster; // @synthesize broadcaster=_broadcaster;
 @property(nonatomic) __weak id <SPTPushNotificationsService> pushNotificationService; // @synthesize pushNotificationService=_pushNotificationService;
 @property(nonatomic) __weak id <SPTUserTrackingService> trackingService; // @synthesize trackingService=_trackingService;
@@ -33,10 +36,13 @@
 @property(readonly, nonatomic, getter=shouldEnableUserTracker) _Bool enableUserTracker; // @synthesize enableUserTracker=_enableUserTracker;
 @property(readonly, nonatomic) NSString *trackerUserID; // @synthesize trackerUserID=_trackerUserID;
 - (void).cxx_destruct;
+- (void)featureFlagSignal:(id)arg1 hasAssumedState:(long long)arg2;
 - (void)userWillLogout;
 - (void)userDidLoginWithProductState:(id)arg1;
 - (void)messageBarController:(id)arg1 didChangeToContentViewController:(id)arg2;
 - (id)provideUserNotificationsRegistrar;
+- (void)unloadRegistar;
+- (void)loadRegistar;
 - (void)unload;
 - (void)load;
 - (void)configureWithServices:(id)arg1;

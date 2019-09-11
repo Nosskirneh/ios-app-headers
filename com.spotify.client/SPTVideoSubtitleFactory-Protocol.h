@@ -10,8 +10,8 @@
 @protocol SPTVideoSubtitle;
 
 @protocol SPTVideoSubtitleFactory <NSObject>
-- (id <SPTVideoSubtitle>)createSubtitleWithLangtag:(NSString *)arg1 closedCaption:(_Bool)arg2;
-- (id <SPTVideoSubtitle>)createSubtitleWithLangtag:(NSString *)arg1;
-- (id <SPTVideoSubtitle>)offSubtitle;
+@property(readonly, nonatomic) id <SPTVideoSubtitle> offSubtitle;
+- (id <SPTVideoSubtitle>)createSubtitleWithLanguageTag:(NSString *)arg1 closedCaption:(_Bool)arg2;
+- (id <SPTVideoSubtitle>)createSubtitleWithLanguageTag:(NSString *)arg1;
 @end
 

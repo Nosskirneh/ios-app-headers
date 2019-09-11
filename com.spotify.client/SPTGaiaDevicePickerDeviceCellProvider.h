@@ -8,13 +8,13 @@
 
 #import "SPTGaiaDevicePickerCellProvider-Protocol.h"
 
-@class NSString, SPTCastManager, SPTGaiaDevice, SPTGaiaDeviceAppearanceMapping, SPTGaiaDevicePickerAppearanceManager, SPTPlayerState;
+@class NSString, SPTCastManager, SPTGaiaConnectDevice, SPTGaiaDeviceAppearanceMapping, SPTGaiaDevicePickerAppearanceManager, SPTPlayerState;
 @protocol SPTGaiaActiveDeviceProvider, SPTGaiaContextMenuModelProvider;
 
 @interface SPTGaiaDevicePickerDeviceCellProvider : NSObject <SPTGaiaDevicePickerCellProvider>
 {
     _Bool _playbackRestricted;
-    SPTGaiaDevice *_device;
+    SPTGaiaConnectDevice *_device;
     id <SPTGaiaContextMenuModelProvider> _contextMenuModelProvider;
     id <SPTGaiaActiveDeviceProvider> _activeDeviceProvider;
     SPTPlayerState *_playerState;
@@ -34,13 +34,14 @@
 @property(readonly, nonatomic) SPTPlayerState *playerState; // @synthesize playerState=_playerState;
 @property(readonly, nonatomic) id <SPTGaiaActiveDeviceProvider> activeDeviceProvider; // @synthesize activeDeviceProvider=_activeDeviceProvider;
 @property(readonly, nonatomic) id <SPTGaiaContextMenuModelProvider> contextMenuModelProvider; // @synthesize contextMenuModelProvider=_contextMenuModelProvider;
-@property(readonly, nonatomic) SPTGaiaDevice *device; // @synthesize device=_device;
+@property(readonly, nonatomic) SPTGaiaConnectDevice *device; // @synthesize device=_device;
 - (void).cxx_destruct;
 - (void)setTargetForContextMenuAction:(id)arg1 action:(SEL)arg2;
 - (id)cellForTableView:(id)arg1 atIndexPath:(id)arg2;
 - (long long)accessoryIcon;
 - (long long)icon;
 - (_Bool)shouldDisplayDeviceAsShuffleOnly;
+- (_Bool)isDeviceCast;
 - (id)subtitle;
 - (id)title;
 - (id)deviceDisplayName;

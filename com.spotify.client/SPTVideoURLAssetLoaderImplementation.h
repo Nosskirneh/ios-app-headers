@@ -8,28 +8,36 @@
 
 #import "SPTVideoURLAssetLoader-Protocol.h"
 
-@class NSString, SPTNetworkConnectivityController, SPTRequestAccounting;
+@class NSString, NSURLSession, SPTNetworkConnectivityController, SPTRequestAccounting;
 
 @interface SPTVideoURLAssetLoaderImplementation : NSObject <SPTVideoURLAssetLoader>
 {
     SPTNetworkConnectivityController *_networkConnectivityController;
     SPTRequestAccounting *_requestAccountant;
     NSString *_serviceIdentifier;
+    NSURLSession *_urlSession;
 }
 
+@property(readonly, nonatomic) NSURLSession *urlSession; // @synthesize urlSession=_urlSession;
 @property(readonly, nonatomic) NSString *serviceIdentifier; // @synthesize serviceIdentifier=_serviceIdentifier;
 @property(readonly, nonatomic) SPTRequestAccounting *requestAccountant; // @synthesize requestAccountant=_requestAccountant;
 @property(readonly, nonatomic) SPTNetworkConnectivityController *networkConnectivityController; // @synthesize networkConnectivityController=_networkConnectivityController;
 - (void).cxx_destruct;
 - (void)prepareAssetWithURL:(id)arg1 completion:(CDUnknownBlockType)arg2;
 - (void)downloadAssetWithURL:(id)arg1 completion:(CDUnknownBlockType)arg2;
+- (void)accountRequestForAssetURL:(id)arg1 withLocation:(id)arg2 timeTaken:(double)arg3;
 - (unsigned long long)sizeOfFileAtURL:(id)arg1;
-- (void)moveFileAtLocation:(id)arg1 toLocation:(id)arg2;
+- (id)moveFileAtLocation:(id)arg1 toLocation:(id)arg2;
 - (_Bool)hasLocalAssetForURL:(id)arg1;
 - (id)localURLForAssetURL:(id)arg1;
+- (id)notOnWifiError;
+- (id)invalidAssetURLError;
+- (id)invalidLocalAssetURLError;
+- (id)failedToLoadAssetFromDiskError;
 - (void)loadAssetWithURL:(id)arg1 onlyOnWifi:(_Bool)arg2 completion:(CDUnknownBlockType)arg3;
 - (void)cancelLoadAssetWithURL:(id)arg1;
 - (id)initWithNetworkConnectivityController:(id)arg1 requestAccountant:(id)arg2 serviceIdentifier:(id)arg3;
+- (id)initWithNetworkConnectivityController:(id)arg1 requestAccountant:(id)arg2 serviceIdentifier:(id)arg3 HTTPMaximumConnectionsPerHost:(long long)arg4 timeoutIntervalForRequest:(double)arg5 timeoutIntervalForResource:(double)arg6;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

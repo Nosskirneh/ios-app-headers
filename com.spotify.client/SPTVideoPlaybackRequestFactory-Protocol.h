@@ -6,9 +6,11 @@
 
 #import "NSObject-Protocol.h"
 
+@class NSDictionary, NSString, NSURL;
 @protocol SPTVideoPlaybackRequest;
 
 @protocol SPTVideoPlaybackRequestFactory <NSObject>
-- (id <SPTVideoPlaybackRequest>)createPlaybackRequestWithRoyaltyVideo:(_Bool)arg1 backgroundable:(_Bool)arg2;
+- (id <SPTVideoPlaybackRequest>)createPlaybackRequestWithMediaURL:(NSURL *)arg1 metadata:(NSDictionary *)arg2 royaltyMedia:(_Bool)arg3 audioOnlyAllowed:(_Bool)arg4;
+- (id <SPTVideoPlaybackRequest>)createPlaybackRequestWithManifestID:(NSString *)arg1 metadata:(NSDictionary *)arg2 royaltyMedia:(_Bool)arg3 audioOnlyAllowed:(_Bool)arg4;
 @end
 

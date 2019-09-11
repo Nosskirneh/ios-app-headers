@@ -15,7 +15,7 @@
     LOTBezierPath *_localPath;
     _Bool _rootNodeHasUpdate;
     LOTNumberInterpolator *_opacityInterpolator;
-    LOTTransformInterpolator *_transformInterolator;
+    LOTTransformInterpolator *_transformInterpolator;
     CALayer *_containerLayer;
 }
 

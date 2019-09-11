@@ -11,19 +11,21 @@
 @interface SPTHomeUICardStyle : GLUEStatefulStyle
 {
     SPTHomeUILabelStyle *_titleLabelStyle;
+    SPTHomeUILabelStyle *_subtitleLabelStyle;
     GLUEImageStyle *_imageStyle;
-    struct UIEdgeInsets _titleInsets;
 }
 
++ (id)makeSubtitleLabelStyleWithTheme:(id)arg1 type:(unsigned long long)arg2;
 + (id)makeTitleLabelStyleWithTheme:(id)arg1 type:(unsigned long long)arg2;
 + (id)makeUIStatesToStylesWithTheme:(id)arg1;
-+ (id)defaultStyleWithTheme:(id)arg1 type:(unsigned long long)arg2;
-@property(nonatomic) struct UIEdgeInsets titleInsets; // @synthesize titleInsets=_titleInsets;
++ (long long)maxLinesToDistributeBetween:(id)arg1 asDeterminedBy:(id)arg2;
++ (id)defaultStyleWithTheme:(id)arg1 type:(unsigned long long)arg2 model:(id)arg3;
 @property(copy, nonatomic) GLUEImageStyle *imageStyle; // @synthesize imageStyle=_imageStyle;
+@property(copy, nonatomic) SPTHomeUILabelStyle *subtitleLabelStyle; // @synthesize subtitleLabelStyle=_subtitleLabelStyle;
 @property(copy, nonatomic) SPTHomeUILabelStyle *titleLabelStyle; // @synthesize titleLabelStyle=_titleLabelStyle;
 - (void).cxx_destruct;
 - (id)copyWithZone:(struct _NSZone *)arg1;
-- (id)initWithUIStatesToStyles:(id)arg1 titleLabelStyle:(id)arg2 imageStyle:(id)arg3 titleInsets:(struct UIEdgeInsets)arg4;
+- (id)initWithUIStatesToStyles:(id)arg1 titleLabelStyle:(id)arg2 subtitleLabelStyle:(id)arg3 imageStyle:(id)arg4;
 
 @end
 

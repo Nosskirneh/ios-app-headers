@@ -10,20 +10,23 @@
 #import "SPTService-Protocol.h"
 
 @class NSString, SPTAllocationContext, SPTExternalIntegrationPodcastContentFactory;
-@protocol SPTExternalIntegrationContentService, SPTPodcastFeature;
+@protocol SPTExternalIntegrationContentService, SPTPodcastFeature, SPTPodcastUIService;
 
 @interface SPTExternalIntegrationPodcastContentProviderService : NSObject <SPTService, SPTExternalIntegrationContentProvider>
 {
     id <SPTExternalIntegrationContentService> _contentService;
     id <SPTPodcastFeature> _podcastService;
+    id <SPTPodcastUIService> _podcastUIService;
     SPTExternalIntegrationPodcastContentFactory *_contentFactory;
 }
 
 + (id)serviceIdentifier;
 @property(readonly, nonatomic) SPTExternalIntegrationPodcastContentFactory *contentFactory; // @synthesize contentFactory=_contentFactory;
+@property(readonly, nonatomic) __weak id <SPTPodcastUIService> podcastUIService; // @synthesize podcastUIService=_podcastUIService;
 @property(readonly, nonatomic) __weak id <SPTPodcastFeature> podcastService; // @synthesize podcastService=_podcastService;
 @property(readonly, nonatomic) __weak id <SPTExternalIntegrationContentService> contentService; // @synthesize contentService=_contentService;
 - (void).cxx_destruct;
+- (id)createPlaceholderContentItemForURI:(id)arg1;
 - (void)resolveChildContentOfParentWithURI:(id)arg1 options:(id)arg2 withCompletionHandler:(CDUnknownBlockType)arg3;
 - (long long)priorityForChildContentOfParentWithURI:(id)arg1;
 - (void)resolveContentWithURI:(id)arg1 options:(id)arg2 withCompletionHandler:(CDUnknownBlockType)arg3;

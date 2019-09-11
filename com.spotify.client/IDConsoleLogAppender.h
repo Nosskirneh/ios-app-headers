@@ -8,14 +8,17 @@
 
 #import "IDLogAppender-Protocol.h"
 
-@class NSString;
+@class NSDateFormatter, NSString;
 
 @interface IDConsoleLogAppender : NSObject <IDLogAppender>
 {
     unsigned long long _maximumLogLevel;
+    NSDateFormatter *_dateFormatter;
 }
 
+@property(retain, nonatomic) NSDateFormatter *dateFormatter; // @synthesize dateFormatter=_dateFormatter;
 @property unsigned long long maximumLogLevel; // @synthesize maximumLogLevel=_maximumLogLevel;
+- (void).cxx_destruct;
 - (void)appendLoggerEvent:(id)arg1;
 - (id)init;
 

@@ -10,20 +10,19 @@
 #import "SPTExternalIntegrationCollectionControllerObserver-Protocol.h"
 #import "SPTExternalIntegrationPlaybackControllerObserver-Protocol.h"
 #import "SPTExternalIntegrationRadioControllerObserver-Protocol.h"
-#import "SPTGaiaDeviceStateManagerObserver-Protocol.h"
-#import "SPTPlayTokenHandlerObserver-Protocol.h"
+#import "SPTGaiaConnectObserver-Protocol.h"
 #import "SPTProductStateObserver-Protocol.h"
 
 @class NSString, SPSession, SPTNetworkConnectivityController;
-@protocol SPTAppProtocolSubscriptionDelegate, SPTExternalIntegrationPlatform, SPTGaiaDeviceStateManager, SPTProductState;
+@protocol SPTAppProtocolSubscriptionDelegate, SPTExternalIntegrationPlatform, SPTGaiaConnectAPI, SPTProductState;
 
-@interface SPTAppProtocolSubscription : NSObject <SPSessionObserver, SPTPlayTokenHandlerObserver, SPTExternalIntegrationPlaybackControllerObserver, SPTExternalIntegrationCollectionControllerObserver, SPTExternalIntegrationRadioControllerObserver, SPTProductStateObserver, SPTGaiaDeviceStateManagerObserver>
+@interface SPTAppProtocolSubscription : NSObject <SPSessionObserver, SPTExternalIntegrationPlaybackControllerObserver, SPTExternalIntegrationCollectionControllerObserver, SPTExternalIntegrationRadioControllerObserver, SPTProductStateObserver, SPTGaiaConnectObserver>
 {
     id <SPTExternalIntegrationPlatform> _externalIntegrationPlatform;
     NSString *_topic;
     SPSession *_currentSession;
     id <SPTProductState> _productState;
-    id <SPTGaiaDeviceStateManager> _gaiaDeviceStateManager;
+    id <SPTGaiaConnectAPI> _connectManager;
     unsigned long long _subscriptionID;
     id <SPTAppProtocolSubscriptionDelegate> _delegate;
     SPTNetworkConnectivityController *_connectivityController;
@@ -32,7 +31,7 @@
 @property(readonly, nonatomic) SPTNetworkConnectivityController *connectivityController; // @synthesize connectivityController=_connectivityController;
 @property(nonatomic) __weak id <SPTAppProtocolSubscriptionDelegate> delegate; // @synthesize delegate=_delegate;
 @property(nonatomic) unsigned long long subscriptionID; // @synthesize subscriptionID=_subscriptionID;
-@property(nonatomic) __weak id <SPTGaiaDeviceStateManager> gaiaDeviceStateManager; // @synthesize gaiaDeviceStateManager=_gaiaDeviceStateManager;
+@property(nonatomic) __weak id <SPTGaiaConnectAPI> connectManager; // @synthesize connectManager=_connectManager;
 @property(nonatomic) __weak id <SPTProductState> productState; // @synthesize productState=_productState;
 @property(nonatomic) __weak SPSession *currentSession; // @synthesize currentSession=_currentSession;
 @property(retain, nonatomic) NSString *topic; // @synthesize topic=_topic;
@@ -62,9 +61,7 @@
 - (void)externalIntegrationRadioController:(id)arg1 didRecieveNewThumbStateForCurrentTrack:(_Bool)arg2;
 - (void)externalIntegrationCollectionController:(id)arg1 didReceiveNewCollectionStateForCurrentTrack:(_Bool)arg2;
 - (void)externalIntegrationPlaybackController:(id)arg1 didReceiveNewPlayerState:(id)arg2 oldPlayerState:(id)arg3;
-- (void)deviceStateManager:(id)arg1 activeDeviceDidChange:(id)arg2;
-- (void)deviceStateManager:(id)arg1 playingRemotelyDidChange:(_Bool)arg2;
-- (void)playTokenHandler:(id)arg1 tokenLostError:(id)arg2;
+- (void)connectActiveDeviceDidChange:(id)arg1;
 - (void)handleSessionChanged:(id)arg1;
 - (void)sessionLoginModeChanged:(id)arg1;
 - (void)session:(id)arg1 temporaryConnectionError:(id)arg2;
@@ -75,7 +72,7 @@
 - (void)startObservingConnectionType;
 - (void)invalidate;
 - (void)dealloc;
-- (id)initWithTopic:(id)arg1 externalIntegrationPlatform:(id)arg2 currentSession:(id)arg3 productState:(id)arg4 networkConnectivityController:(id)arg5 gaiaDeviceStateManager:(id)arg6;
+- (id)initWithTopic:(id)arg1 externalIntegrationPlatform:(id)arg2 currentSession:(id)arg3 productState:(id)arg4 networkConnectivityController:(id)arg5 connectManager:(id)arg6;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

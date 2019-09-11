@@ -6,33 +6,38 @@
 
 #import "SPTNowPlayingBaseUnitProvider.h"
 
-@class SPTNowPlayingModel, SPTTheme, UIViewController;
-@protocol SPTNowPlayingAuxiliaryActionsHandler, SPTNowPlayingFeedbackObservable, SPTNowPlayingManager, SPTNowPlayingTestManager;
+@class SPTNowPlayingBarModel, SPTNowPlayingLogger, SPTNowPlayingModel, SPTTheme, UIViewController;
+@protocol SPTGLUEImageLoaderFactory, SPTNowPlayingAuxiliaryActionsHandler, SPTNowPlayingManager, SPTNowPlayingTestManager;
 
 @interface SPTNowPlayingBarLeftAccessoryUnitProvider : SPTNowPlayingBaseUnitProvider
 {
     id <SPTNowPlayingManager> _nowPlayingManager;
     SPTTheme *_theme;
-    UIViewController *_leftAccessoryViewController;
     id <SPTNowPlayingTestManager> _testManager;
+    UIViewController *_leftAccessoryViewController;
     SPTNowPlayingModel *_nowPlayingModel;
-    id <SPTNowPlayingFeedbackObservable> _feedbackObservable;
     id <SPTNowPlayingAuxiliaryActionsHandler> _auxiliaryActionsHandler;
+    SPTNowPlayingLogger *_logger;
+    id <SPTGLUEImageLoaderFactory> _imageLoaderFactory;
+    SPTNowPlayingBarModel *_nowPlayingBarModel;
 }
 
+@property(readonly, nonatomic) SPTNowPlayingBarModel *nowPlayingBarModel; // @synthesize nowPlayingBarModel=_nowPlayingBarModel;
+@property(readonly, nonatomic) id <SPTGLUEImageLoaderFactory> imageLoaderFactory; // @synthesize imageLoaderFactory=_imageLoaderFactory;
+@property(readonly, nonatomic) SPTNowPlayingLogger *logger; // @synthesize logger=_logger;
 @property(readonly, nonatomic) id <SPTNowPlayingAuxiliaryActionsHandler> auxiliaryActionsHandler; // @synthesize auxiliaryActionsHandler=_auxiliaryActionsHandler;
-@property(retain, nonatomic) id <SPTNowPlayingFeedbackObservable> feedbackObservable; // @synthesize feedbackObservable=_feedbackObservable;
 @property(retain, nonatomic) SPTNowPlayingModel *nowPlayingModel; // @synthesize nowPlayingModel=_nowPlayingModel;
-@property(retain, nonatomic) id <SPTNowPlayingTestManager> testManager; // @synthesize testManager=_testManager;
 @property(retain, nonatomic) UIViewController *leftAccessoryViewController; // @synthesize leftAccessoryViewController=_leftAccessoryViewController;
+@property(readonly, nonatomic) id <SPTNowPlayingTestManager> testManager; // @synthesize testManager=_testManager;
 @property(readonly, nonatomic) SPTTheme *theme; // @synthesize theme=_theme;
 @property(readonly, nonatomic) id <SPTNowPlayingManager> nowPlayingManager; // @synthesize nowPlayingManager=_nowPlayingManager;
 - (void).cxx_destruct;
 - (void)processPlayerStateChange:(id)arg1 toggleMode:(unsigned long long)arg2;
+- (void)createCoverArtImageUnit;
 - (void)createHeartUnit;
 - (void)createOpenUnit;
 - (void)createEmptyUnit;
-- (id)initWithPlayer:(id)arg1 nowPlayingManager:(id)arg2 theme:(id)arg3 testManager:(id)arg4 nowPlayingModel:(id)arg5 feedbackObservable:(id)arg6 auxiliaryActionsHandler:(id)arg7;
+- (id)initWithPlayer:(id)arg1 nowPlayingManager:(id)arg2 theme:(id)arg3 nowPlayingModel:(id)arg4 auxiliaryActionsHandler:(id)arg5 logger:(id)arg6 testManager:(id)arg7 imageLoaderFactory:(id)arg8 nowPlayingBarModel:(id)arg9;
 
 @end
 

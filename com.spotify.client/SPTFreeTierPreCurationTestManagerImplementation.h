@@ -6,38 +6,38 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTFeatureFlagSignalObserver-Protocol.h"
 #import "SPTFreeTierPreCurationTestManager-Protocol.h"
 
-@class NSString;
+@class NSDictionary, NSString;
 @protocol SPTFeatureFlagFactory, SPTFeatureFlagSignal;
 
-@interface SPTFreeTierPreCurationTestManagerImplementation : NSObject <SPTFeatureFlagSignalObserver, SPTFreeTierPreCurationTestManager>
+@interface SPTFreeTierPreCurationTestManagerImplementation : NSObject <SPTFreeTierPreCurationTestManager>
 {
-    _Bool _preCurationAllSongsEnabled;
-    _Bool _preCurationSkipDialogEnabled;
-    _Bool _preCurationOnDemandEnabled;
+    _Bool preCurationSkipDialogEnabled;
+    _Bool _quickActionsEnabled;
+    _Bool _quickActionsActiveEnabled;
+    _Bool _quickActionsActiveAndAlbumArtEnabled;
     id <SPTFeatureFlagFactory> _featureFlagFactory;
     id <SPTFeatureFlagSignal> _freeTierEnabledSignal;
-    id <SPTFeatureFlagSignal> _localBansEnabledSignal;
-    id <SPTFeatureFlagSignal> _preCurationAllSongsEnabledSignal;
-    id <SPTFeatureFlagSignal> _preCurationSkipDialogEnabledSignal;
-    id <SPTFeatureFlagSignal> _preCurationOnDemandEnabledSignal;
+    NSDictionary *_quickActionSignals;
 }
 
-@property(nonatomic, getter=isPreCurationOnDemandEnabled) _Bool preCurationOnDemandEnabled; // @synthesize preCurationOnDemandEnabled=_preCurationOnDemandEnabled;
-@property(nonatomic, getter=isPreCurationSkipDialogEnabled) _Bool preCurationSkipDialogEnabled; // @synthesize preCurationSkipDialogEnabled=_preCurationSkipDialogEnabled;
-@property(nonatomic, getter=isPreCurationAllSongsEnabled) _Bool preCurationAllSongsEnabled; // @synthesize preCurationAllSongsEnabled=_preCurationAllSongsEnabled;
-@property(retain, nonatomic) id <SPTFeatureFlagSignal> preCurationOnDemandEnabledSignal; // @synthesize preCurationOnDemandEnabledSignal=_preCurationOnDemandEnabledSignal;
-@property(retain, nonatomic) id <SPTFeatureFlagSignal> preCurationSkipDialogEnabledSignal; // @synthesize preCurationSkipDialogEnabledSignal=_preCurationSkipDialogEnabledSignal;
-@property(retain, nonatomic) id <SPTFeatureFlagSignal> preCurationAllSongsEnabledSignal; // @synthesize preCurationAllSongsEnabledSignal=_preCurationAllSongsEnabledSignal;
-@property(readonly, nonatomic) __weak id <SPTFeatureFlagSignal> localBansEnabledSignal; // @synthesize localBansEnabledSignal=_localBansEnabledSignal;
+@property(nonatomic, getter=isQuickActionsActiveAndAlbumArtEnabled) _Bool quickActionsActiveAndAlbumArtEnabled; // @synthesize quickActionsActiveAndAlbumArtEnabled=_quickActionsActiveAndAlbumArtEnabled;
+@property(nonatomic, getter=isQuickActionsActiveEnabled) _Bool quickActionsActiveEnabled; // @synthesize quickActionsActiveEnabled=_quickActionsActiveEnabled;
+@property(nonatomic, getter=isQuickActionsEnabled) _Bool quickActionsEnabled; // @synthesize quickActionsEnabled=_quickActionsEnabled;
+@property(copy, nonatomic) NSDictionary *quickActionSignals; // @synthesize quickActionSignals=_quickActionSignals;
 @property(readonly, nonatomic) __weak id <SPTFeatureFlagSignal> freeTierEnabledSignal; // @synthesize freeTierEnabledSignal=_freeTierEnabledSignal;
 @property(readonly, nonatomic) id <SPTFeatureFlagFactory> featureFlagFactory; // @synthesize featureFlagFactory=_featureFlagFactory;
+@property(readonly, nonatomic, getter=isPreCurationSkipDialogEnabled) _Bool preCurationSkipDialogEnabled; // @synthesize preCurationSkipDialogEnabled;
 - (void).cxx_destruct;
 - (void)featureFlagSignal:(id)arg1 hasAssumedState:(long long)arg2;
-- (void)setupPreCurationFlags;
-- (id)initWithFeatureFlagFactory:(id)arg1 freeTierEnabledSignal:(id)arg2 localBansEnabledSignal:(id)arg3;
+@property(readonly, nonatomic, getter=isCompanionArtWorkForQuickActionEnabled) _Bool companionArtWorkForQuickActionEnabled;
+@property(readonly, nonatomic, getter=isActiveQuickActionsOnlyEnabled) _Bool activeQuickActionsOnlyEnabled;
+@property(readonly, nonatomic, getter=isPreCurationOnDemandEnabled) _Bool preCurationOnDemandEnabled;
+@property(readonly, nonatomic, getter=isPreCurationAllSongsEnabled) _Bool preCurationAllSongsEnabled;
+@property(readonly, nonatomic, getter=isSimplifiedQuickActionsEnabled) _Bool simplifiedQuickActionsEnabled;
+- (void)setupSimplifiedQuickActionsSignal;
+- (id)initWithFeatureFlagFactory:(id)arg1 freeTierEnabledSignal:(id)arg2;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

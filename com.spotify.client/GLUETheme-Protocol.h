@@ -25,7 +25,6 @@
 - (GLUEPressedAnimatorStyle *)pressedAnimatorDefaultStyle;
 - (GLUEHeaderBackgroundStyle *)headerBackgroundStyle;
 - (GLUETrackCloudStyle *)trackCloudStyleWithNumberOfLines:(unsigned long long)arg1 showOnlyTrackNames:(_Bool)arg2 showNumberedList:(_Bool)arg3;
-- (GLUETrackCloudStyle *)defaultTrackCloudStyle;
 - (GLUEEntityCardStyle *)cardStyleWithImageMask:(_Bool)arg1 imageDecoration:(_Bool)arg2 titleStyleDescription:(_Bool)arg3 subtitleStyleMetadata:(_Bool)arg4;
 - (GLUEEntityCardStyle *)radioGenreCardStyle;
 - (GLUEEntityCardStyle *)radioArtistCardStyle;
@@ -65,7 +64,6 @@
 - (GLUEEntityRowStyle *)videoRowStyleWithTransparentBackground:(_Bool)arg1 subtitleStyleMetadata:(_Bool)arg2 shouldAddTrailingMargin:(_Bool)arg3;
 - (GLUEEntityRowStyle *)entityRowVideoStyle;
 - (GLUEEntityRowStyle *)entityRowEpisodeStyle;
-- (GLUEEntityRowStyle *)entityRowMFTTrackStyle;
 - (GLUEEntityRowStyle *)entityRowTrackStyle;
 - (GLUEEntityRowStyle *)entityRowShowStyle;
 - (GLUEEntityRowStyle *)entityRowConcertStyle;
@@ -86,9 +84,7 @@
 - (GLUECollectionViewStyle *)defaultCollectionViewStyle;
 - (GLUETableViewCellStyle *)defaultTableViewCellStyle;
 - (GLUETableViewStyle *)defaultTableViewStyle;
-- (GLUELabelStyle *)metadataRowSubtitleLabelStyle;
 - (GLUELabelStyle *)defaultRowSubtitleLabelStyle;
-- (GLUELabelStyle *)metadataCardSubtitleLabelStyle;
 - (GLUELabelStyle *)defaultCardSubtitleLabelStyle;
 - (GLUELabelStyle *)sectionHeaderLabelStyle;
 - (GLUELabelStyle *)buttonSmallLabelStyle;

@@ -4,11 +4,11 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-@class NSError, NSURL;
-@protocol HUBContentOperationDelegate, HUBFeatureInfo, HUBViewModelBuilder;
+@class NSError;
+@protocol HUBContentOperationDelegate, HUBViewModelBuilder;
 
 @protocol HUBContentOperation
 @property(nonatomic) __weak id <HUBContentOperationDelegate> delegate;
-- (void)performForViewURI:(NSURL *)arg1 featureInfo:(id <HUBFeatureInfo>)arg2 connectivityState:(unsigned long long)arg3 viewModelBuilder:(id <HUBViewModelBuilder>)arg4 previousError:(NSError *)arg5;
+- (void)performForViewModelBuilder:(id <HUBViewModelBuilder>)arg1 previousError:(NSError *)arg2;
 @end
 

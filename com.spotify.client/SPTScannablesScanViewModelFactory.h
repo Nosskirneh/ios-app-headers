@@ -7,24 +7,22 @@
 #import <objc/NSObject.h>
 
 @class SPTDataLoaderFactory, SPTScannablesDependencies;
-@protocol SPTAlertController, SPTScannablesRegistry;
+@protocol SPTScannablesRegistry;
 
 @interface SPTScannablesScanViewModelFactory : NSObject
 {
     id <SPTScannablesRegistry> _registry;
-    id <SPTAlertController> _alertController;
     SPTDataLoaderFactory *_dataLoaderFactory;
     SPTScannablesDependencies *_dependencies;
 }
 
 @property(retain, nonatomic) SPTScannablesDependencies *dependencies; // @synthesize dependencies=_dependencies;
 @property(retain, nonatomic) SPTDataLoaderFactory *dataLoaderFactory; // @synthesize dataLoaderFactory=_dataLoaderFactory;
-@property(retain, nonatomic) id <SPTAlertController> alertController; // @synthesize alertController=_alertController;
 @property(retain, nonatomic) id <SPTScannablesRegistry> registry; // @synthesize registry=_registry;
 - (void).cxx_destruct;
 - (id)createDefaultScannablesScanViewModelDelegateWithViewController:(id)arg1 imagePickerController:(id)arg2;
-- (id)createScannablesScanViewModel;
-- (id)initWithRegistry:(id)arg1 dataLoaderFactory:(id)arg2 dependencies:(id)arg3 alertController:(id)arg4;
+- (id)createScannablesScanViewModelWithSourceIdentifier:(id)arg1;
+- (id)initWithRegistry:(id)arg1 dataLoaderFactory:(id)arg2 dependencies:(id)arg3;
 
 @end
 

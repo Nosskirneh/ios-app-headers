@@ -8,32 +8,41 @@
 
 #import "SPTFreeTierCollectionEntityCellConfigurator-Protocol.h"
 
-@class NSString, SPTFreeTierCollectionEntityRowStyle, SPTFreeTierCollectionGLUETheme, SPTFreeTierCollectionOverlayImageViewStyle;
-@protocol GLUEImageLoader;
+@class NSString, SPTFreeTierCollectionCollapsableHeaderStyle, SPTFreeTierCollectionEntityRowStyle, SPTFreeTierCollectionGLUETheme, SPTFreeTierCollectionOverlayImageViewStyle;
+@protocol GLUEImageLoader, SPTFreeTierCollectionEntityCellConfiguratorDelegate;
 
 @interface SPTFreeTierCollectionEntityCellConfiguratorImplementation : NSObject <SPTFreeTierCollectionEntityCellConfigurator>
 {
+    id <SPTFreeTierCollectionEntityCellConfiguratorDelegate> _delegate;
     id <GLUEImageLoader> _glueImageLoader;
     SPTFreeTierCollectionEntityRowStyle *_style;
     SPTFreeTierCollectionEntityRowStyle *_iconOverlayItemstyle;
     SPTFreeTierCollectionOverlayImageViewStyle *_solidOverlayImageViewStyle;
+    SPTFreeTierCollectionCollapsableHeaderStyle *_entitySectionHeaderStyle;
     SPTFreeTierCollectionGLUETheme *_theme;
+    unsigned long long _trailingAccessoryType;
 }
 
+@property(readonly, nonatomic) unsigned long long trailingAccessoryType; // @synthesize trailingAccessoryType=_trailingAccessoryType;
 @property(readonly, nonatomic) SPTFreeTierCollectionGLUETheme *theme; // @synthesize theme=_theme;
+@property(readonly, nonatomic) SPTFreeTierCollectionCollapsableHeaderStyle *entitySectionHeaderStyle; // @synthesize entitySectionHeaderStyle=_entitySectionHeaderStyle;
 @property(retain, nonatomic) SPTFreeTierCollectionOverlayImageViewStyle *solidOverlayImageViewStyle; // @synthesize solidOverlayImageViewStyle=_solidOverlayImageViewStyle;
 @property(retain, nonatomic) SPTFreeTierCollectionEntityRowStyle *iconOverlayItemstyle; // @synthesize iconOverlayItemstyle=_iconOverlayItemstyle;
 @property(retain, nonatomic) SPTFreeTierCollectionEntityRowStyle *style; // @synthesize style=_style;
 @property(retain, nonatomic) id <GLUEImageLoader> glueImageLoader; // @synthesize glueImageLoader=_glueImageLoader;
+@property(nonatomic) __weak id <SPTFreeTierCollectionEntityCellConfiguratorDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
+- (id)createQuickActionButton;
 - (void)setupIconOverlayLeadingAccessoryForCell:(id)arg1 withViewModel:(id)arg2;
 - (void)setupLeadingAccessoryForCell:(id)arg1 withViewModel:(id)arg2;
+- (void)setupQuickActionsTrailingAccessoryForCell:(id)arg1 withViewModel:(id)arg2 atIndexPath:(id)arg3;
 - (void)setupTrailingAccessoryForCell:(id)arg1 withViewModel:(id)arg2;
 - (void)setupContentViewForCell:(id)arg1;
-- (void)updateStyle:(id)arg1;
-- (void)configureCell:(id)arg1 withViewModel:(id)arg2;
+- (double)heightForHeaderInSection:(long long)arg1 withViewModel:(id)arg2;
+- (id)headerForSection:(unsigned long long)arg1 withViewModel:(id)arg2 andTrailingMargin:(double)arg3;
+- (void)configureCell:(id)arg1 withViewModel:(id)arg2 atIndexPath:(id)arg3;
 @property(readonly, nonatomic) double preferredCellHeight;
-- (id)initWithImageLoader:(id)arg1 style:(id)arg2 theme:(id)arg3;
+- (id)initWithImageLoader:(id)arg1 style:(id)arg2 theme:(id)arg3 trailingAccessoryType:(unsigned long long)arg4;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

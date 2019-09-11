@@ -21,10 +21,13 @@
 + (double)kerningFromLetterSpacing:(double)arg1 withFront:(id)arg2;
 + (double)lineHeightMultipleFromLineHeight:(double)arg1 withFont:(id)arg2;
 + (double)valueFromRange:(CDStruct_b9b47a9c)arg1 withScale:(double)arg2;
++ (id)fontFromTypeStyle:(id)arg1 withAccessibilityScale:(double)arg2;
 + (id)paragraphStyleFromStyle:(id)arg1 withAccessibilityScale:(double)arg2 andFont:(id)arg3;
 + (id)stringAttributesForStyle:(id)arg1 withAccessibilityScale:(double)arg2;
 + (id)attributedStringFromText:(id)arg1 withStyle:(id)arg2 andAccessibilityScale:(double)arg3;
++ (id)mergeParagraphStyle:(id)arg1 withParagraphStyle:(id)arg2;
 + (id)mergedStringAttributes:(id)arg1;
++ (id)diff:(id)arg1 with:(id)arg2;
 + (id)typeStyleWithFont:(id)arg1 fontSizeRange:(CDStruct_b9b47a9c)arg2 lineHeightRange:(CDStruct_b9b47a9c)arg3 trackingRange:(CDStruct_b9b47a9c)arg4 upperCaseLayout:(_Bool)arg5;
 @property(nonatomic) _Bool upperCaseLayout; // @synthesize upperCaseLayout=_upperCaseLayout;
 @property(nonatomic) CDStruct_b9b47a9c lineHeightRange; // @synthesize lineHeightRange=_lineHeightRange;

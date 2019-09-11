@@ -6,13 +6,13 @@
 
 #import <objc/NSObject.h>
 
-#import "EXP_HUBCommandHandler-Protocol.h"
+#import "HUBCommandHandler-Protocol.h"
 #import "SPTContextMenuPresenterDelegate-Protocol.h"
 
 @class NSMutableSet, NSString, NSURL;
-@protocol EXP_SPTHubInteractionLogger, SPTContextMenuOptions, SPTContextMenuOptionsFactory, SPTContextMenuPresenterFactory, SPTPodcastContextMenuProvider;
+@protocol SPTContextMenuOptions, SPTContextMenuOptionsFactory, SPTContextMenuPresenterFactory, SPTHubInteractionLogger, SPTPodcastContextMenuProvider;
 
-@interface SPTSearch2ContextMenuCommandHandler : NSObject <SPTContextMenuPresenterDelegate, EXP_HUBCommandHandler>
+@interface SPTSearch2ContextMenuCommandHandler : NSObject <SPTContextMenuPresenterDelegate, HUBCommandHandler>
 {
     id <SPTContextMenuOptions> _contextMenuOptions;
     NSURL *_viewURI;
@@ -21,12 +21,12 @@
     id <SPTContextMenuOptionsFactory> _contextMenuOptionsFactory;
     id <SPTContextMenuPresenterFactory> _contextMenuPresenterFactory;
     id <SPTPodcastContextMenuProvider> _podcastContextMenuProvider;
-    id <EXP_SPTHubInteractionLogger> _interactionLogger;
+    id <SPTHubInteractionLogger> _interactionLogger;
     NSMutableSet *_presentedContextMenuPresenters;
 }
 
 @property(readonly, nonatomic) NSMutableSet *presentedContextMenuPresenters; // @synthesize presentedContextMenuPresenters=_presentedContextMenuPresenters;
-@property(readonly, nonatomic) id <EXP_SPTHubInteractionLogger> interactionLogger; // @synthesize interactionLogger=_interactionLogger;
+@property(readonly, nonatomic) id <SPTHubInteractionLogger> interactionLogger; // @synthesize interactionLogger=_interactionLogger;
 @property(readonly, nonatomic) id <SPTPodcastContextMenuProvider> podcastContextMenuProvider; // @synthesize podcastContextMenuProvider=_podcastContextMenuProvider;
 @property(readonly, nonatomic) id <SPTContextMenuPresenterFactory> contextMenuPresenterFactory; // @synthesize contextMenuPresenterFactory=_contextMenuPresenterFactory;
 @property(readonly, nonatomic) id <SPTContextMenuOptionsFactory> contextMenuOptionsFactory; // @synthesize contextMenuOptionsFactory=_contextMenuOptionsFactory;

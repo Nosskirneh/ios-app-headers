@@ -6,8 +6,8 @@
 
 #import <objc/NSObject.h>
 
-@class NSString, NSTimer, SPTLoginSplitEmailSignupViewLogger, SPTLoginTheme, SPTPopupManager, SPTSignupDisplayNameSuggestionDataLoader, SPTSignupEmailFieldValidator, SPTSignupUserInfoModel;
-@protocol SPTLoginNavigationCoordinator, SPTNavigationRouter, SPTSignupEmailViewModelDelegate;
+@class NSString, NSTimer, SPTLoginDialogController, SPTLoginEmailAlreadyExistsDialogLogger, SPTLoginSplitEmailSignupViewLogger, SPTSignupDisplayNameSuggestionDataLoader, SPTSignupEmailFieldValidator, SPTSignupUserInfoModel;
+@protocol SPTNavigationRouter, SPTSignupEmailViewModelDelegate;
 
 @interface SPTSignupEmailViewModel : NSObject
 {
@@ -16,23 +16,21 @@
     id <SPTSignupEmailViewModelDelegate> _delegate;
     SPTSignupUserInfoModel *_userInfoModel;
     SPTSignupEmailFieldValidator *_fieldValidator;
-    SPTLoginTheme *_theme;
     NSTimer *_timer;
-    SPTPopupManager *_popupManager;
+    SPTLoginDialogController *_dialogController;
+    SPTLoginEmailAlreadyExistsDialogLogger *_dialogLogger;
     id <SPTNavigationRouter> _navigationRouter;
-    id <SPTLoginNavigationCoordinator> _navigationCoordinator;
     SPTSignupDisplayNameSuggestionDataLoader *_displayNameDataLoader;
     NSString *_lastValidEmail;
 }
 
 @property(copy, nonatomic) NSString *lastValidEmail; // @synthesize lastValidEmail=_lastValidEmail;
 @property(retain, nonatomic) SPTSignupDisplayNameSuggestionDataLoader *displayNameDataLoader; // @synthesize displayNameDataLoader=_displayNameDataLoader;
-@property(retain, nonatomic) id <SPTLoginNavigationCoordinator> navigationCoordinator; // @synthesize navigationCoordinator=_navigationCoordinator;
 @property(retain, nonatomic) id <SPTNavigationRouter> navigationRouter; // @synthesize navigationRouter=_navigationRouter;
-@property(retain, nonatomic) SPTPopupManager *popupManager; // @synthesize popupManager=_popupManager;
+@property(retain, nonatomic) SPTLoginEmailAlreadyExistsDialogLogger *dialogLogger; // @synthesize dialogLogger=_dialogLogger;
+@property(retain, nonatomic) SPTLoginDialogController *dialogController; // @synthesize dialogController=_dialogController;
 @property(retain, nonatomic) NSTimer *timer; // @synthesize timer=_timer;
 @property(nonatomic, getter=isFullValidationEnabled) _Bool fullValidationEnabled; // @synthesize fullValidationEnabled=_fullValidationEnabled;
-@property(retain, nonatomic) SPTLoginTheme *theme; // @synthesize theme=_theme;
 @property(retain, nonatomic) SPTSignupEmailFieldValidator *fieldValidator; // @synthesize fieldValidator=_fieldValidator;
 @property(retain, nonatomic) SPTSignupUserInfoModel *userInfoModel; // @synthesize userInfoModel=_userInfoModel;
 @property(nonatomic) __weak id <SPTSignupEmailViewModelDelegate> delegate; // @synthesize delegate=_delegate;
@@ -47,12 +45,11 @@
 - (void)resetTimer;
 - (void)timerDidFire:(id)arg1;
 - (void)validateEmail:(id)arg1 withCompletionBlock:(CDUnknownBlockType)arg2;
-- (id)viewStyle;
 - (id)nextButtonText;
 - (id)fieldDisclosureLabelText;
 - (id)fieldTitleLabelText;
 - (id)titleLabelText;
-- (id)initWithLogger:(id)arg1 userInfoModel:(id)arg2 fieldValidator:(id)arg3 displayNameDataLoader:(id)arg4 theme:(id)arg5 popupManager:(id)arg6 navigationRouter:(id)arg7 navigationCoordinator:(id)arg8;
+- (id)initWithLogger:(id)arg1 userInfoModel:(id)arg2 fieldValidator:(id)arg3 displayNameDataLoader:(id)arg4 dialogController:(id)arg5 dialogLogger:(id)arg6 navigationRouter:(id)arg7;
 
 @end
 

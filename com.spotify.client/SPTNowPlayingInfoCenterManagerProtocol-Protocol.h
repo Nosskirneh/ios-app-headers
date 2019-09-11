@@ -6,11 +6,9 @@
 
 #import "NSObject-Protocol.h"
 
-@class UIImage;
 @protocol SPTNowPlayingInfoCenterArtworkDecorator;
 
 @protocol SPTNowPlayingInfoCenterManagerProtocol <NSObject>
-@property(retain, nonatomic) UIImage *currentLockScreenImage;
 - (void)removeNowPlayingInfoCenterArtworkDecorator:(id <SPTNowPlayingInfoCenterArtworkDecorator>)arg1;
 - (void)addNowPlayingInfoCenterArtworkDecorator:(id <SPTNowPlayingInfoCenterArtworkDecorator>)arg1;
 @end

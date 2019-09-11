@@ -6,9 +6,9 @@
 
 #import "NSObject-Protocol.h"
 
-@protocol EXP_HUBViewModelBuilder;
+@protocol HUBViewModelBuilder;
 
 @protocol SPTBrowseViewModelBuilderProvider <NSObject>
-- (id <EXP_HUBViewModelBuilder>)makeViewModelBuilder;
+- (id <HUBViewModelBuilder>)makeViewModelBuilder;
 @end
 

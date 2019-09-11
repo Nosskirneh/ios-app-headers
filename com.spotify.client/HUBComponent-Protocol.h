@@ -4,15 +4,12 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-@class NSSet, UIView;
+@class HUBComponentView, NSSet;
 @protocol HUBComponentModel;
 
 @protocol HUBComponent
-@property(retain, nonatomic) UIView *view;
-@property(readonly, nonatomic) NSSet *layoutTraits;
-- (void)configureViewWithModel:(id <HUBComponentModel>)arg1 containerViewSize:(struct CGSize)arg2;
-- (void)prepareViewForReuse;
+@property(readonly, copy, nonatomic) NSSet *layoutTraits;
 - (struct CGSize)preferredViewSizeForDisplayingModel:(id <HUBComponentModel>)arg1 containerViewSize:(struct CGSize)arg2;
-- (void)loadView;
+- (HUBComponentView *)createViewWithFrame:(struct CGRect)arg1;
 @end
 

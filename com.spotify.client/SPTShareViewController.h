@@ -11,7 +11,7 @@
 #import "UITableViewDataSource-Protocol.h"
 #import "UITableViewDelegate-Protocol.h"
 
-@class GLUELabel, NSLayoutConstraint, NSString, SPTLayoutConstraintBuilder, SPTShareDataProvider, SPTShareItemView, SPTShareLogger, SPTShareScreenshotObserverManager, SPTShareViewModel, UIButton, UITableView, UIView;
+@class GLUELabel, NSArray, NSLayoutConstraint, NSString, SPTShareDataProvider, SPTShareItemView, SPTShareLogger, SPTShareScreenshotObserverManager, SPTShareViewModel, UIButton, UITableView, UIView;
 @protocol GLUETheme, SPTImageLoader, SPTShareViewControllerDelegate;
 
 @interface SPTShareViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, SPTImageLoaderDelegate, SPTShareViewControllerProtocol>
@@ -25,7 +25,7 @@
     SPTShareScreenshotObserverManager *_screenshotObserverManager;
     id <SPTImageLoader> _imageLoader;
     id <GLUETheme> _theme;
-    SPTLayoutConstraintBuilder *_layout;
+    NSArray *_layoutConstraints;
     SPTShareItemView *_shareItemView;
     UIView *_navBarView;
     UIView *_mainContainerView;
@@ -47,7 +47,7 @@
 @property(retain, nonatomic) UIView *mainContainerView; // @synthesize mainContainerView=_mainContainerView;
 @property(retain, nonatomic) UIView *navBarView; // @synthesize navBarView=_navBarView;
 @property(retain, nonatomic) SPTShareItemView *shareItemView; // @synthesize shareItemView=_shareItemView;
-@property(retain, nonatomic) SPTLayoutConstraintBuilder *layout; // @synthesize layout=_layout;
+@property(copy, nonatomic) NSArray *layoutConstraints; // @synthesize layoutConstraints=_layoutConstraints;
 @property(retain, nonatomic) id <GLUETheme> theme; // @synthesize theme=_theme;
 @property(retain, nonatomic) id <SPTImageLoader> imageLoader; // @synthesize imageLoader=_imageLoader;
 @property(nonatomic) _Bool isInPopover; // @synthesize isInPopover=_isInPopover;
@@ -65,6 +65,7 @@
 - (long long)tableView:(id)arg1 numberOfRowsInSection:(long long)arg2;
 - (void)updateViewConstraints;
 - (void)addViewConstraints;
+- (double)topSafeAreaInset;
 - (void)dismissShareViewControllerAnimations:(CDUnknownBlockType)arg1;
 - (void)dismissShareViewController:(CDUnknownBlockType)arg1;
 - (void)private_dismissShareViewController;

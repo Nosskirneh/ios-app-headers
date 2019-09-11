@@ -20,7 +20,7 @@
 #import "UITableViewDelegate-Protocol.h"
 
 @class GLUEButton, GLUEEntityRowStyle, NSString, NSURL, SPSession, SPTCollectionFilterSearchBar, SPTInfoView, SPTPlaylistCreateNewPlaylistController, SPTPlaylistGLUETheme, SPTSyncProgressView, SPTTableView, UIBarButtonItem, UITableView, UIView;
-@protocol GLUEImageLoader, GLUETheme, SPTAlertController, SPTCollectionLogger, SPTCollectionPlatformTestManager, SPTLinkDispatcher, SPTLocalSettings, SPTNUXModifying, SPTOfflineManager, SPTOfflineModeState, SPTPageContainer, SPTPlaylistFolderViewModel, SPTPlaylistModel, SPTPlaylistRootFolderViewControllerDelegate, SPTProfileUserData, SPTUpsellManager;
+@protocol GLUEImageLoader, GLUETheme, SPTAlertController, SPTCollectionLogger, SPTCollectionPlatformTestManager, SPTLinkDispatcher, SPTLocalSettings, SPTNUXModifying, SPTOfflineManager, SPTOfflineModeState, SPTPageContainer, SPTPlaylistFolderViewModel, SPTPlaylistModel, SPTPlaylistRootFolderViewControllerDelegate;
 
 @interface SPTPlaylistFolderViewController : UIViewController <SPContentInsetViewController, SPTCollectionFilterSearchBarDelegate, SPTSwipeableTableViewCellDelegate, SPTOfflineModeStateObserver, SPSessionObserver, SPTNavigationControllerNavigationBarState, UITableViewDelegate, UITableViewDataSource, SPTPlaylistFolderViewModelDelegate, SPTPlaylistCreateNewPlaylistControllerDelegate, SPTPlaylistRootFolderViewController, SPTPageController>
 {
@@ -55,8 +55,6 @@
     id <SPTCollectionPlatformTestManager> _collectionTestManager;
     id <SPTPlaylistFolderViewModel> _viewModel;
     SPTPlaylistGLUETheme *_playlistGLUETheme;
-    id <SPTProfileUserData> _currentUserData;
-    id <SPTUpsellManager> _upsellManager;
     id <SPTAlertController> _alertController;
     id <SPTLinkDispatcher> _linkDispatcher;
     id <GLUETheme> _theme;
@@ -68,8 +66,6 @@
 @property(readonly, nonatomic) id <GLUETheme> theme; // @synthesize theme=_theme;
 @property(readonly, nonatomic) id <SPTLinkDispatcher> linkDispatcher; // @synthesize linkDispatcher=_linkDispatcher;
 @property(retain, nonatomic) id <SPTAlertController> alertController; // @synthesize alertController=_alertController;
-@property(retain, nonatomic) id <SPTUpsellManager> upsellManager; // @synthesize upsellManager=_upsellManager;
-@property(retain, nonatomic) id <SPTProfileUserData> currentUserData; // @synthesize currentUserData=_currentUserData;
 @property(retain, nonatomic) SPTPlaylistGLUETheme *playlistGLUETheme; // @synthesize playlistGLUETheme=_playlistGLUETheme;
 @property(retain, nonatomic) id <SPTPlaylistFolderViewModel> viewModel; // @synthesize viewModel=_viewModel;
 @property(nonatomic) __weak id <SPTCollectionPlatformTestManager> collectionTestManager; // @synthesize collectionTestManager=_collectionTestManager;
@@ -103,6 +99,7 @@
 @property(nonatomic) __weak id <SPTPlaylistRootFolderViewControllerDelegate> viewControllerDelegate; // @synthesize viewControllerDelegate=_viewControllerDelegate;
 - (id)title;
 - (void).cxx_destruct;
+- (void)presentEducationPopup;
 @property(readonly, nonatomic, getter=spt_pageURI) NSURL *pageURI;
 @property(readonly, nonatomic, getter=spt_pageIdentifier) NSString *pageIdentifier;
 - (id)spt_referrerIdentifier;
@@ -175,7 +172,7 @@
 - (void)setTitle:(id)arg1;
 - (void)dealloc;
 - (void)sessionLoginModeChanged:(id)arg1;
-- (id)initWithSession:(id)arg1 offlineManager:(id)arg2 viewModel:(id)arg3 localSettings:(id)arg4 glueImageLoader:(id)arg5 offlineModeNotifier:(id)arg6 logger:(id)arg7 playlistModel:(id)arg8 NUXModifier:(id)arg9 collectionTestManager:(id)arg10 playlistGLUETheme:(id)arg11 currentUserData:(id)arg12 upsellManager:(id)arg13 alertController:(id)arg14 linkDispatcher:(id)arg15;
+- (id)initWithSession:(id)arg1 offlineManager:(id)arg2 viewModel:(id)arg3 localSettings:(id)arg4 glueImageLoader:(id)arg5 offlineModeNotifier:(id)arg6 logger:(id)arg7 playlistModel:(id)arg8 NUXModifier:(id)arg9 collectionTestManager:(id)arg10 playlistGLUETheme:(id)arg11 alertController:(id)arg12 linkDispatcher:(id)arg13;
 
 // Remaining properties
 @property(nonatomic) _Bool automaticallyAdjustsScrollViewInsets;

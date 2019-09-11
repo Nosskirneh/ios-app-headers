@@ -6,26 +6,26 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTGaiaDeviceStateManagerObserver-Protocol.h"
+#import "SPTGaiaConnectObserver-Protocol.h"
 #import "SPTWatchPlatformPublisher-Protocol.h"
 
-@class NSString, SPTGaiaDeviceManager;
-@protocol SPTWatchConnectivityPubSubMessageQueue;
+@class NSString;
+@protocol SPTGaiaConnectAPI, SPTWatchConnectivityPubSubMessageQueue;
 
-@interface SPTWatchPlatformConnectStatePublisher : NSObject <SPTGaiaDeviceStateManagerObserver, SPTWatchPlatformPublisher>
+@interface SPTWatchPlatformConnectStatePublisher : NSObject <SPTGaiaConnectObserver, SPTWatchPlatformPublisher>
 {
     id <SPTWatchConnectivityPubSubMessageQueue> _pubSubMessageQueue;
-    SPTGaiaDeviceManager *_gaiaDeviceManager;
+    id <SPTGaiaConnectAPI> _connectManager;
 }
 
-@property(readonly, nonatomic) __weak SPTGaiaDeviceManager *gaiaDeviceManager; // @synthesize gaiaDeviceManager=_gaiaDeviceManager;
+@property(readonly, nonatomic) __weak id <SPTGaiaConnectAPI> connectManager; // @synthesize connectManager=_connectManager;
 @property(readonly, nonatomic) __weak id <SPTWatchConnectivityPubSubMessageQueue> pubSubMessageQueue; // @synthesize pubSubMessageQueue=_pubSubMessageQueue;
 - (void).cxx_destruct;
-- (void)deviceStateManager:(id)arg1 activeDeviceDidChange:(id)arg2;
-- (void)deviceStateManager:(id)arg1 availableDevicesDidChange:(id)arg2;
+- (void)connectActiveDeviceDidChange:(id)arg1;
+- (void)connectAvailableDevicesDidChange:(id)arg1;
 - (void)handlePublisherEvent:(long long)arg1;
 - (void)publishState;
-- (id)initWithPubSubMessageQueue:(id)arg1 gaiaDeviceManager:(id)arg2;
+- (id)initWithPubSubMessageQueue:(id)arg1 connectManager:(id)arg2;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

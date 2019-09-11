@@ -8,13 +8,38 @@
 
 #import "SPTSocialListeningUserInterfaceFactory-Protocol.h"
 
-@class NSString;
+@class NSString, SPTSocialListeningDialogPresenter, SPTSocialListeningGLUETheme, SPTSocialListeningLoggerImplementation, SPTSocialListeningModelImplementation;
+@protocol GLUEImageLoader, SPTContainerUIService, SPTLinkDispatcher, SPTOfflineModeState, SPTScannablesUserInterfaceFactory, SPTShareFeature, SPTSocialListeningTestManager;
 
 @interface SPTSocialListeningUserInterfaceFactoryImplementation : NSObject <SPTSocialListeningUserInterfaceFactory>
 {
+    SPTSocialListeningGLUETheme *_theme;
+    SPTSocialListeningModelImplementation *_model;
+    SPTSocialListeningLoggerImplementation *_logger;
+    SPTSocialListeningDialogPresenter *_dialogPresenter;
+    id <GLUEImageLoader> _imageLoader;
+    id <SPTLinkDispatcher> _linkDispatcher;
+    id <SPTSocialListeningTestManager> _testManager;
+    id <SPTScannablesUserInterfaceFactory> _scannablesUserInterfaceFactory;
+    id <SPTContainerUIService> _containerUIService;
+    id <SPTOfflineModeState> _offlineModeState;
+    id <SPTShareFeature> _shareFeature;
 }
 
-- (id)createSocialListeningCard;
+@property(nonatomic) __weak id <SPTShareFeature> shareFeature; // @synthesize shareFeature=_shareFeature;
+@property(nonatomic) __weak id <SPTOfflineModeState> offlineModeState; // @synthesize offlineModeState=_offlineModeState;
+@property(nonatomic) __weak id <SPTContainerUIService> containerUIService; // @synthesize containerUIService=_containerUIService;
+@property(nonatomic) __weak id <SPTScannablesUserInterfaceFactory> scannablesUserInterfaceFactory; // @synthesize scannablesUserInterfaceFactory=_scannablesUserInterfaceFactory;
+@property(readonly, nonatomic) id <SPTSocialListeningTestManager> testManager; // @synthesize testManager=_testManager;
+@property(readonly, nonatomic) id <SPTLinkDispatcher> linkDispatcher; // @synthesize linkDispatcher=_linkDispatcher;
+@property(readonly, nonatomic) id <GLUEImageLoader> imageLoader; // @synthesize imageLoader=_imageLoader;
+@property(readonly, nonatomic) SPTSocialListeningDialogPresenter *dialogPresenter; // @synthesize dialogPresenter=_dialogPresenter;
+@property(readonly, nonatomic) SPTSocialListeningLoggerImplementation *logger; // @synthesize logger=_logger;
+@property(readonly, nonatomic) SPTSocialListeningModelImplementation *model; // @synthesize model=_model;
+@property(readonly, nonatomic) SPTSocialListeningGLUETheme *theme; // @synthesize theme=_theme;
+- (void).cxx_destruct;
+- (id)createSocialListeningSessionView;
+- (id)initWithTheme:(id)arg1 scannablesUserInterfaceFactory:(id)arg2 containerUIService:(id)arg3 offlineModeState:(id)arg4 shareFeature:(id)arg5 model:(id)arg6 logger:(id)arg7 dialogPresenter:(id)arg8 imageLoader:(id)arg9 linkDispatcher:(id)arg10 testManager:(id)arg11;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

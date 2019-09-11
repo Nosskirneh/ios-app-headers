@@ -23,6 +23,7 @@
 - (void)decorateRequest:(id)arg1 withIdentifier:(id)arg2;
 - (void)dataLoader:(id)arg1 didReceiveErrorResponse:(id)arg2;
 - (void)dataLoader:(id)arg1 didReceiveSuccessfulResponse:(id)arg2;
+- (_Bool)isLoading;
 - (void)cancelAllLoads;
 - (void)updateSelectedLanguages:(id)arg1;
 - (void)fetchSelectedLanguages;

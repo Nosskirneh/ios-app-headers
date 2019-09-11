@@ -7,22 +7,22 @@
 #import <objc/NSObject.h>
 
 @class NSMutableDictionary;
-@protocol SPTAdjustUserTrackerProtocol;
+@protocol SPTLoginLogger;
 
 @interface SPTLoginPerformanceLogging : NSObject
 {
     NSMutableDictionary *_operationsSignposts;
-    id <SPTAdjustUserTrackerProtocol> _adjustTracker;
+    id <SPTLoginLogger> _logger;
 }
 
-@property(retain, nonatomic) id <SPTAdjustUserTrackerProtocol> adjustTracker; // @synthesize adjustTracker=_adjustTracker;
+@property(retain, nonatomic) id <SPTLoginLogger> logger; // @synthesize logger=_logger;
 @property(retain, nonatomic) NSMutableDictionary *operationsSignposts; // @synthesize operationsSignposts=_operationsSignposts;
 - (void).cxx_destruct;
 - (double)operationDurationWithId:(id)arg1;
 - (void)trackEndingOfOperationWithId:(id)arg1;
 - (void)trackBeginningOfOperationWithId:(id)arg1;
 - (void)signpostWithType:(unsigned long long)arg1 operationId:(id)arg2;
-- (id)initWithAdjustTracker:(id)arg1;
+- (id)initWithLogger:(id)arg1;
 
 @end
 

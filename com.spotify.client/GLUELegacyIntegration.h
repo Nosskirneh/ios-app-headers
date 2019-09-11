@@ -23,6 +23,8 @@
 - (void).cxx_destruct;
 - (void)enableModernFeatures;
 - (void)resetRolloutStatuses;
+@property _Bool leftAlignedTrackCloudEnabled;
+@property _Bool leftAlignedSectionHeadersEnabled;
 @property _Bool motionEnabled;
 - (id)initWithTheme:(id)arg1;
 

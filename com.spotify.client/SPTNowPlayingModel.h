@@ -10,7 +10,7 @@
 #import "SPTPlayerObserver-Protocol.h"
 #import "SPTPlayerStagedContextObserver-Protocol.h"
 
-@class NSHashTable, NSString, SPTNowPlayingAuxiliaryActionsModel, SPTNowPlayingEntityDecorationController, SPTNowPlayingPlaybackController, SPTNowPlayingQueueMetadataModel, SPTNowPlayingTrackMetadataQueue, SPTNowPlayingTrackPosition, SPTPlayerTrack, SPTStatefulPlayer;
+@class NSString, SPTNowPlayingAuxiliaryActionsModel, SPTNowPlayingEntityDecorationController, SPTNowPlayingPlaybackController, SPTNowPlayingQueueMetadataModel, SPTNowPlayingTrackMetadataQueue, SPTNowPlayingTrackPosition, SPTObserverManager, SPTPlayerTrack, SPTStatefulPlayer;
 @protocol SPTCollectionPlatformTestManager, SPTNowPlayingModelDelegate, SPTPlayer;
 
 @interface SPTNowPlayingModel : NSObject <SPTNowPlayingTrackMetadataQueueObserver, SPTPlayerObserver, SPTPlayerStagedContextObserver>
@@ -24,14 +24,14 @@
     SPTNowPlayingEntityDecorationController *_entityDecorationController;
     SPTNowPlayingQueueMetadataModel *_queueMetadataModel;
     id <SPTPlayer> _player;
-    NSHashTable *_observers;
+    SPTObserverManager *_observerManager;
     SPTStatefulPlayer *_statefulPlayer;
     id <SPTCollectionPlatformTestManager> _collectionTestManager;
 }
 
 @property(nonatomic) __weak id <SPTCollectionPlatformTestManager> collectionTestManager; // @synthesize collectionTestManager=_collectionTestManager;
 @property(retain, nonatomic) SPTStatefulPlayer *statefulPlayer; // @synthesize statefulPlayer=_statefulPlayer;
-@property(retain, nonatomic) NSHashTable *observers; // @synthesize observers=_observers;
+@property(readonly, nonatomic) SPTObserverManager *observerManager; // @synthesize observerManager=_observerManager;
 @property(retain, nonatomic) id <SPTPlayer> player; // @synthesize player=_player;
 @property(retain, nonatomic) SPTNowPlayingQueueMetadataModel *queueMetadataModel; // @synthesize queueMetadataModel=_queueMetadataModel;
 @property(retain, nonatomic) SPTNowPlayingEntityDecorationController *entityDecorationController; // @synthesize entityDecorationController=_entityDecorationController;
@@ -44,9 +44,11 @@
 - (void).cxx_destruct;
 - (void)player:(id)arg1 didStageContext:(id)arg2;
 - (void)player:(id)arg1 stateDidChange:(id)arg2 fromState:(id)arg3;
+- (void)trackMetadataQueueDidSynchronizeQueue:(id)arg1;
+- (void)trackMetadataQueuePreviousTrackDidChange:(id)arg1;
+- (void)trackMetadataQueueNextTrackDidChange:(id)arg1;
 - (void)trackMetadataQueue:(id)arg1 didMoveToRelativeTrack:(id)arg2;
 - (void)updateWithPlayerState:(id)arg1;
-- (void)notifyObserversUsingBlock:(CDUnknownBlockType)arg1;
 - (unsigned long long)preferredToggleMode;
 - (void)setCurrentToggleMode:(unsigned long long)arg1 animated:(_Bool)arg2;
 - (void)toggleModeAnimated:(_Bool)arg1;
@@ -56,7 +58,7 @@
 - (void)addObserver:(id)arg1;
 @property(readonly, nonatomic) SPTPlayerTrack *displayedMetadata;
 - (void)dealloc;
-- (id)initWithPlayer:(id)arg1 collection:(id)arg2 collectionPlatform:(id)arg3 playlistDataLoader:(id)arg4 radioManager:(id)arg5 adsManager:(id)arg6 nowPlayingService:(id)arg7 productState:(id)arg8 queueService:(id)arg9 testManager:(id)arg10 dailyMixTestManager:(id)arg11 collectionTestManager:(id)arg12 statefulPlayer:(id)arg13 trackMetadataQueue:(id)arg14;
+- (id)initWithPlayer:(id)arg1 collectionPlatform:(id)arg2 playlistDataLoader:(id)arg3 radioManager:(id)arg4 adsManager:(id)arg5 nowPlayingService:(id)arg6 productState:(id)arg7 queueService:(id)arg8 testManager:(id)arg9 collectionTestManager:(id)arg10 statefulPlayer:(id)arg11 trackMetadataQueue:(id)arg12;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

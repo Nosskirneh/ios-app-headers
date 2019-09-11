@@ -6,61 +6,27 @@
 
 #import "HUGSThemableComponent.h"
 
-#import "HUBComponentViewObserver-Protocol.h"
+#import "HUBComponent-Protocol.h"
 #import "HUBComponentWithChildren-Protocol.h"
-#import "HUBComponentWithRestorableUIState-Protocol.h"
-#import "HUBComponentWithScrolling-Protocol.h"
-#import "UICollectionViewDataSource-Protocol.h"
-#import "UICollectionViewDelegateFlowLayout-Protocol.h"
 
-@class NSSet, NSString, NSValue, UICollectionView, UIView;
-@protocol HUBComponentChildDelegate, HUBComponentModel;
+@class NSSet;
+@protocol HUBComponentChildDelegate;
 
-@interface HUGS2CarouselComponent : HUGSThemableComponent <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, HUBComponentWithChildren, HUBComponentViewObserver, HUBComponentWithRestorableUIState, HUBComponentWithScrolling>
+@interface HUGS2CarouselComponent : HUGSThemableComponent <HUBComponent, HUBComponentWithChildren>
 {
-    UIView *_view;
     id <HUBComponentChildDelegate> _childDelegate;
-    UICollectionView *_collectionView;
-    id <HUBComponentModel> _model;
-    NSValue *_itemSizeValue;
-    CDUnknownBlockType _pendingScrollAnimationCallback;
+    Class _collectionViewClass;
 }
 
-@property(copy, nonatomic) CDUnknownBlockType pendingScrollAnimationCallback; // @synthesize pendingScrollAnimationCallback=_pendingScrollAnimationCallback;
-@property(retain, nonatomic) NSValue *itemSizeValue; // @synthesize itemSizeValue=_itemSizeValue;
-@property(retain, nonatomic) id <HUBComponentModel> model; // @synthesize model=_model;
-@property(retain, nonatomic) UICollectionView *collectionView; // @synthesize collectionView=_collectionView;
+@property(readonly, nonatomic) Class collectionViewClass; // @synthesize collectionViewClass=_collectionViewClass;
 @property(nonatomic) __weak id <HUBComponentChildDelegate> childDelegate; // @synthesize childDelegate=_childDelegate;
-@property(retain, nonatomic) UIView *view; // @synthesize view=_view;
 - (void).cxx_destruct;
-- (void)applyThemeLayout;
-- (struct UIEdgeInsets)sectionInsetsForModel:(id)arg1;
-- (struct CGSize)calculateChildItemSizeToSatisfyDesignRules:(struct CGSize)arg1 containerViewSize:(struct CGSize)arg2;
-- (void)calculateItemSizeForModel:(id)arg1 containerViewSize:(struct CGSize)arg2;
-- (id)cellReuseIdentifier;
-- (void)scrollViewDidEndScrollingAnimation:(id)arg1;
-- (void)collectionView:(id)arg1 didEndDisplayingCell:(id)arg2 forItemAtIndexPath:(id)arg3;
-- (void)collectionView:(id)arg1 willDisplayCell:(id)arg2 forItemAtIndexPath:(id)arg3;
-- (struct CGSize)collectionView:(id)arg1 layout:(id)arg2 sizeForItemAtIndexPath:(id)arg3;
-- (struct UIEdgeInsets)collectionView:(id)arg1 layout:(id)arg2 insetForSectionAtIndex:(long long)arg3;
-- (id)collectionView:(id)arg1 cellForItemAtIndexPath:(id)arg2;
-- (long long)collectionView:(id)arg1 numberOfItemsInSection:(long long)arg2;
-- (void)scrollToComponentAtIndex:(unsigned long long)arg1 scrollPosition:(unsigned long long)arg2 animated:(_Bool)arg3 completion:(CDUnknownBlockType)arg4;
-- (void)restoreUIState:(id)arg1;
-- (id)currentUIState;
-- (void)viewWillAppear;
-- (void)viewDidResize;
-- (void)configureViewWithModel:(id)arg1 containerViewSize:(struct CGSize)arg2;
-- (void)prepareViewForReuse;
+- (struct CGSize)calculateFirstChildSizeForModel:(id)arg1 containerViewSize:(struct CGSize)arg2;
 - (struct CGSize)preferredViewSizeForDisplayingModel:(id)arg1 containerViewSize:(struct CGSize)arg2;
-- (void)loadView;
-@property(readonly, nonatomic) NSSet *layoutTraits;
-
-// Remaining properties
-@property(readonly, copy) NSString *debugDescription;
-@property(readonly, copy) NSString *description;
-@property(readonly) unsigned long long hash;
-@property(readonly) Class superclass;
+- (id)createViewWithFrame:(struct CGRect)arg1;
+@property(readonly, copy, nonatomic) NSSet *layoutTraits;
+- (id)initWithTheme:(id)arg1 collectionViewClass:(Class)arg2;
+- (id)initWithTheme:(id)arg1;
 
 @end
 

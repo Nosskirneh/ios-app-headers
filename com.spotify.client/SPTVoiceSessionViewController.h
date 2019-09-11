@@ -41,7 +41,6 @@
 - (void)sessionViewModelWillStartListening:(id)arg1;
 - (void)showViewController:(id)arg1 animated:(_Bool)arg2;
 - (void)viewDidDisappear:(_Bool)arg1;
-- (void)viewDidAppear:(_Bool)arg1;
 - (void)viewWillAppear:(_Bool)arg1;
 - (void)viewDidLoad;
 - (id)initWithViewModel:(id)arg1 glueImageLoader:(id)arg2;

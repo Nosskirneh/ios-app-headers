@@ -24,8 +24,8 @@
 @property(readonly, nonatomic) UIStackView *labelsContainer; // @synthesize labelsContainer=_labelsContainer;
 - (void).cxx_destruct;
 - (void)updateStatsWithTotalSpaceMb:(long long)arg1 freeSpaceMb:(long long)arg2 appDataSizeMb:(long long)arg3 downloadsSizeMb:(long long)arg4;
-- (void)layoutSubviews;
 - (id)createLabel;
+- (id)bulletIcon;
 - (id)createIconWithColor:(id)arg1;
 - (id)initWithStyle:(long long)arg1 reuseIdentifier:(id)arg2;
 

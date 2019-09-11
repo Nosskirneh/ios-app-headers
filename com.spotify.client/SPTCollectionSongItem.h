@@ -51,7 +51,6 @@
 @property(readonly, nonatomic, getter=isRatedExplicit) _Bool ratedExplicit; // @synthesize ratedExplicit=_ratedExplicit;
 - (void).cxx_destruct;
 @property(readonly, copy, nonatomic) NSString *loggingContext;
-@property(readonly, nonatomic) NSURL *previewURL;
 @property(readonly, nonatomic, getter=isEnabled) _Bool enabled;
 - (void)action;
 - (id)initWithEntityURL:(id)arg1 trackURL:(id)arg2 trackName:(id)arg3 imageURL:(id)arg4 artistName:(id)arg5 artistURL:(id)arg6 albumName:(id)arg7 albumURL:(id)arg8 isPremiumOnly:(_Bool)arg9 isRatedExplicit:(_Bool)arg10 isLocalFile:(_Bool)arg11 subtitleType:(unsigned long long)arg12;

@@ -6,14 +6,14 @@
 
 #import "FABNetworkOperation.h"
 
-@class FABApplicationIdentiferModel, FABNetworkClient, NSDictionary, NSError, NSString;
+@class FABApplicationIdentifierModel, FABNetworkClient, NSDictionary, NSError, NSString;
 @protocol FABOnboardingOperationDelegate;
 
 @interface FABOnboardingOperation : FABNetworkOperation
 {
     _Bool _shouldCreate;
     NSError *_error;
-    FABApplicationIdentiferModel *_appIdentifierModel;
+    FABApplicationIdentifierModel *_appIdentifierModel;
     NSString *_appEndpoint;
     id <FABOnboardingOperationDelegate> _delegate;
     FABNetworkClient *_networkClient;
@@ -24,7 +24,7 @@
 @property(readonly, nonatomic) __weak FABNetworkClient *networkClient; // @synthesize networkClient=_networkClient;
 @property(readonly, nonatomic) id <FABOnboardingOperationDelegate> delegate; // @synthesize delegate=_delegate;
 @property(readonly, nonatomic) NSString *appEndpoint; // @synthesize appEndpoint=_appEndpoint;
-@property(readonly, nonatomic) FABApplicationIdentiferModel *appIdentifierModel; // @synthesize appIdentifierModel=_appIdentifierModel;
+@property(readonly, nonatomic) FABApplicationIdentifierModel *appIdentifierModel; // @synthesize appIdentifierModel=_appIdentifierModel;
 @property(nonatomic) _Bool shouldCreate; // @synthesize shouldCreate=_shouldCreate;
 @property(readonly, nonatomic) NSError *error; // @synthesize error=_error;
 - (void).cxx_destruct;

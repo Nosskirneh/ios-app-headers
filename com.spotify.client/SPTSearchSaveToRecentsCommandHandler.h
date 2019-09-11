@@ -6,16 +6,16 @@
 
 #import <objc/NSObject.h>
 
-#import "EXP_HUBCommandHandler-Protocol.h"
+#import "HUBCommandHandler-Protocol.h"
 
-@protocol SPTSearchFancyRecentsDataSource;
+@protocol SPTSearchRecentsDataSource;
 
-@interface SPTSearchSaveToRecentsCommandHandler : NSObject <EXP_HUBCommandHandler>
+@interface SPTSearchSaveToRecentsCommandHandler : NSObject <HUBCommandHandler>
 {
-    id <SPTSearchFancyRecentsDataSource> _recentsDataSource;
+    id <SPTSearchRecentsDataSource> _recentsDataSource;
 }
 
-@property(readonly, nonatomic) id <SPTSearchFancyRecentsDataSource> recentsDataSource; // @synthesize recentsDataSource=_recentsDataSource;
+@property(readonly, nonatomic) id <SPTSearchRecentsDataSource> recentsDataSource; // @synthesize recentsDataSource=_recentsDataSource;
 - (void).cxx_destruct;
 - (_Bool)shouldTrackURIInRecents:(id)arg1 componentModel:(id)arg2;
 - (void)updateRecentsDataSourceIfNeededForCommandModel:(id)arg1 componentModel:(id)arg2;

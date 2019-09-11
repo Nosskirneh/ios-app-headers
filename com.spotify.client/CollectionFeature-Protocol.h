@@ -7,12 +7,11 @@
 #import "NSObject-Protocol.h"
 
 @class NSString, NSURL;
-@protocol SPTCollectionBarButtonManager, SPTFeatureFlagSignal;
+@protocol SPTFeatureFlagSignal;
 
 @protocol CollectionFeature <NSObject>
 @property(nonatomic, getter=isLocalFilesImportEnabled) _Bool localFilesImportEnabled;
 - (id <SPTFeatureFlagSignal>)provideLegacyCollectionFeatureEnabledSignal;
-- (id <SPTCollectionBarButtonManager>)provideCollectionBarButtonManager;
 - (void)unregisterCollectionContentListWithTitle:(NSString *)arg1 URL:(NSURL *)arg2;
 - (void)registerCollectionContentListWithTitle:(NSString *)arg1 icon:(long long)arg2 URL:(NSURL *)arg3 order:(unsigned long long)arg4;
 @end

@@ -9,7 +9,7 @@
 #import "SPTCollectionEntityListOfflineSupportedItem-Protocol.h"
 
 @class NSArray, NSDate, NSString, NSURL;
-@protocol SPTCollectionPlatformDataLoader, SPTCollectionPlatformDataLoaderRequestToken, SPTCollectionPlatformTestManager, SPTFreeTierTestManager, SPTLinkDispatcher, SPTOfflineManager, SPTOfflineModeState, SPTProductState;
+@protocol SPTCollectionPlatformDataLoader, SPTCollectionPlatformDataLoaderRequestToken, SPTCollectionPlatformTestManager, SPTLinkDispatcher, SPTOfflineManager, SPTOfflineModeState, SPTProductState;
 
 @interface SPTCollectionAlbumEntityListItem : NSObject <SPTCollectionEntityListOfflineSupportedItem>
 {
@@ -24,7 +24,6 @@
     NSURL *_previewURL;
     NSString *_username;
     id <SPTCollectionPlatformTestManager> _collectionTestManager;
-    id <SPTFreeTierTestManager> _freeTierTestManager;
     id <SPTProductState> _productState;
     id <SPTOfflineModeState> _offlineNotifier;
     id <SPTOfflineManager> _offlineManager;
@@ -41,7 +40,6 @@
 @property(nonatomic) __weak id <SPTOfflineManager> offlineManager; // @synthesize offlineManager=_offlineManager;
 @property(nonatomic) __weak id <SPTOfflineModeState> offlineNotifier; // @synthesize offlineNotifier=_offlineNotifier;
 @property(nonatomic) __weak id <SPTProductState> productState; // @synthesize productState=_productState;
-@property(nonatomic) __weak id <SPTFreeTierTestManager> freeTierTestManager; // @synthesize freeTierTestManager=_freeTierTestManager;
 @property(nonatomic) __weak id <SPTCollectionPlatformTestManager> collectionTestManager; // @synthesize collectionTestManager=_collectionTestManager;
 @property(copy, nonatomic) NSString *username; // @synthesize username=_username;
 @property(retain, nonatomic) NSURL *previewURL; // @synthesize previewURL=_previewURL;
@@ -55,10 +53,9 @@
 @property(readonly, nonatomic) id <SPTCollectionPlatformDataLoader> dataLoader; // @synthesize dataLoader=_dataLoader;
 - (void).cxx_destruct;
 @property(readonly, copy, nonatomic) NSString *loggingContext;
-- (_Bool)shouldUseCollectionAlbum;
 - (void)action;
 @property(readonly, nonatomic) NSURL *offlineURL;
-- (id)initWithDataLoader:(id)arg1 title:(id)arg2 subtitle:(id)arg3 entityURL:(id)arg4 imageURL:(id)arg5 username:(id)arg6 offlineStatus:(long long)arg7 productState:(id)arg8 offlineNotifier:(id)arg9 collectionTestManager:(id)arg10 freeTierTestManager:(id)arg11 offlineManager:(id)arg12 linkDispatcher:(id)arg13;
+- (id)initWithDataLoader:(id)arg1 title:(id)arg2 subtitle:(id)arg3 entityURL:(id)arg4 imageURL:(id)arg5 username:(id)arg6 offlineStatus:(long long)arg7 productState:(id)arg8 offlineNotifier:(id)arg9 collectionTestManager:(id)arg10 offlineManager:(id)arg11 linkDispatcher:(id)arg12;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

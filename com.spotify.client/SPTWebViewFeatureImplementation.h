@@ -7,26 +7,26 @@
 #import <objc/NSObject.h>
 
 #import "SPTService-Protocol.h"
-#import "SPTWebViewFeature-Protocol.h"
 
 @class NSString, SPTAllocationContext, SPTWebViewFactoryImplementation;
-@protocol SPTCoreService, SPTURIDispatchService;
+@protocol SPTCoreService, SPTUIPresentationService, SPTURIDispatchService;
 
-@interface SPTWebViewFeatureImplementation : NSObject <SPTService, SPTWebViewFeature>
+@interface SPTWebViewFeatureImplementation : NSObject <SPTService>
 {
     id <SPTCoreService> _coreService;
     id <SPTURIDispatchService> _URIDispatchService;
+    id <SPTUIPresentationService> _presentationService;
     SPTWebViewFactoryImplementation *_webViewFactory;
 }
 
 + (id)serviceIdentifier;
 @property(retain, nonatomic) SPTWebViewFactoryImplementation *webViewFactory; // @synthesize webViewFactory=_webViewFactory;
+@property(nonatomic) __weak id <SPTUIPresentationService> presentationService; // @synthesize presentationService=_presentationService;
 @property(nonatomic) __weak id <SPTURIDispatchService> URIDispatchService; // @synthesize URIDispatchService=_URIDispatchService;
 @property(nonatomic) __weak id <SPTCoreService> coreService; // @synthesize coreService=_coreService;
 - (void).cxx_destruct;
 - (id)provideWebViewFactory;
 - (void)unload;
-- (void)load;
 - (void)configureWithServices:(id)arg1;
 
 // Remaining properties

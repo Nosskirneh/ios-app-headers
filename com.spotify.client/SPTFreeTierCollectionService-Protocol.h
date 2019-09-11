@@ -7,12 +7,12 @@
 #import "SPTService-Protocol.h"
 
 @class NSURL;
-@protocol SPTFreeTierCollectionEntityModel, SPTFreeTierCollectionPlaylistsModel, SPTFreeTierCollectionSongsModel, SPTFreeTierCollectionTestManager;
+@protocol SPTFreeTierCollectionEntityModel, SPTFreeTierCollectionPlaylistsModel, SPTFreeTierCollectionSongsModel, SPTFreeTierCollectionTestManager, SPTSortingFilteringSortRule;
 
 @protocol SPTFreeTierCollectionService <SPTService>
+- (id <SPTSortingFilteringSortRule>)providePlaylistSortRules;
 - (id <SPTFreeTierCollectionTestManager>)provideTestManager;
 - (id <SPTFreeTierCollectionSongsModel>)provideSongsEntityModel;
-- (id <SPTFreeTierCollectionEntityModel>)providePodcastsEntityModel;
 - (id <SPTFreeTierCollectionEntityModel>)provideArtistsEntityModel;
 - (id <SPTFreeTierCollectionEntityModel>)provideAlbumsEntityModel;
 - (id <SPTFreeTierCollectionPlaylistsModel>)providePlaylistsModel:(NSURL *)arg1;

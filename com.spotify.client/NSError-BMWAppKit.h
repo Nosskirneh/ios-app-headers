@@ -10,5 +10,6 @@
 + (id)applicationErrorWithDescription:(id)arg1 underlyingError:(id)arg2;
 + (id)errorWithFrameworkCode:(long long)arg1 description:(id)arg2 underlyingError:(id)arg3;
 + (id)errorWithFrameworkCode:(long long)arg1 description:(id)arg2;
+- (_Bool)containsEtchErrorTypeEtchException;
 @end
 

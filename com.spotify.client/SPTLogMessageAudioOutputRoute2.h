@@ -16,9 +16,9 @@
 }
 
 + (id)messageWithPlaybackId:(id)arg1 audioOutputRoute:(id)arg2 audioOutputName:(id)arg3;
-@property(retain, nonatomic) NSString *audioOutputNameValue; // @synthesize audioOutputNameValue=_audioOutputNameValue;
-@property(retain, nonatomic) NSArray *audioOutputRouteValue; // @synthesize audioOutputRouteValue=_audioOutputRouteValue;
-@property(retain, nonatomic) NSData *playbackIdValue; // @synthesize playbackIdValue=_playbackIdValue;
+@property(copy, nonatomic) NSString *audioOutputNameValue; // @synthesize audioOutputNameValue=_audioOutputNameValue;
+@property(copy, nonatomic) NSArray *audioOutputRouteValue; // @synthesize audioOutputRouteValue=_audioOutputRouteValue;
+@property(copy, nonatomic) NSData *playbackIdValue; // @synthesize playbackIdValue=_playbackIdValue;
 - (void).cxx_destruct;
 - (_Bool)isEqual:(id)arg1;
 - (unsigned long long)hash;

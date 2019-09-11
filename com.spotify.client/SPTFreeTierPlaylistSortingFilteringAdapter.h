@@ -10,8 +10,8 @@
 #import "SPTSortingFilteringFilterableModel-Protocol.h"
 #import "SPTSortingFilteringSortableModel-Protocol.h"
 
-@class NSArray, NSString;
-@protocol SPTFreeTierPlaylistSortingFilteringDelegate, SPTSortingFilteringPreferences, SPTSortingFilteringSortRule;
+@class NSArray, NSString, NSURL;
+@protocol SPTCollectionSortingEntityManager, SPTFreeTierPlaylistSortingFilteringDelegate, SPTSortingFilteringPreferences, SPTSortingFilteringSortRule;
 
 @interface SPTFreeTierPlaylistSortingFilteringAdapter : NSObject <SPTFreeTierPlaylistSortingFiltering, SPTSortingFilteringFilterableModel, SPTSortingFilteringSortableModel>
 {
@@ -21,8 +21,12 @@
     NSString *_textFilter;
     NSArray *_availableSortRules;
     id <SPTSortingFilteringPreferences> _sortingFilteringPreferences;
+    NSURL *_playlistURL;
+    id <SPTCollectionSortingEntityManager> _sortingEntityManager;
 }
 
+@property(readonly, nonatomic) id <SPTCollectionSortingEntityManager> sortingEntityManager; // @synthesize sortingEntityManager=_sortingEntityManager;
+@property(readonly, nonatomic) NSURL *playlistURL; // @synthesize playlistURL=_playlistURL;
 @property(readonly, nonatomic) id <SPTSortingFilteringPreferences> sortingFilteringPreferences; // @synthesize sortingFilteringPreferences=_sortingFilteringPreferences;
 @property(nonatomic, getter=isSorted) _Bool sorted; // @synthesize sorted=_sorted;
 @property(copy, nonatomic) NSString *textFilter; // @synthesize textFilter=_textFilter;
@@ -30,9 +34,11 @@
 @property(nonatomic) __weak id <SPTFreeTierPlaylistSortingFilteringDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
 - (id)recentlyAddedSortRule;
+- (id)albumSortRule;
 - (id)artistSortRule;
 - (id)titleSortRule;
 - (id)unsortedSortRule;
+- (void)removeFilterAtIndex:(long long)arg1;
 - (void)resetFilters;
 - (void)loadSavedSettings;
 - (void)applySortingAndFilteringToFetchOptions:(id)arg1;
@@ -40,7 +46,7 @@
 @property(readonly, copy, nonatomic) NSArray *availableSortRules; // @synthesize availableSortRules=_availableSortRules;
 @property(copy, nonatomic) NSArray *activeFilters;
 @property(readonly, nonatomic) NSArray *availableFilters;
-- (id)initWithSortingFilteringPreferences:(id)arg1;
+- (id)initWithSortingFilteringPreferences:(id)arg1 playlistURL:(id)arg2 sortingEntityManager:(id)arg3;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

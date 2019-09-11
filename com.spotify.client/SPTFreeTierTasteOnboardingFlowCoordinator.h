@@ -11,7 +11,7 @@
 #import "SPTMetaViewControllerRootViewPresenter-Protocol.h"
 #import "SPTOnboardingFlowCoordinator-Protocol.h"
 
-@class NSString, SPTFreeTierTasteOnboardingFlowConfiguration, UINavigationController;
+@class NSString, SPTFreeTierTasteOnboardingFlowConfiguration, SPTFreeTierTasteOnboardingPresentationConfiguration, UINavigationController;
 @protocol SPTOnboardingServiceFlowStateReporter;
 
 @interface SPTFreeTierTasteOnboardingFlowCoordinator : NSObject <SPTFreeTierTasteOnboardingArtistPickerViewControllerDelegate, SPTFreeTierTasteOnboardingUpdateTasteViewControllerDelegate, SPTMetaViewControllerRootViewPresenter, SPTOnboardingFlowCoordinator>
@@ -35,6 +35,7 @@
 - (void)updateTasteViewControllerDidComplete:(id)arg1;
 - (void)artistPickerViewController:(id)arg1 didComplete:(_Bool)arg2 withSelectedArtistURIs:(id)arg3;
 - (void)startOnboardingFlow;
+- (_Bool)podcastOnboardingScheduled;
 - (id)viewControllerForState:(unsigned long long)arg1 withSeedURIs:(id)arg2;
 - (void)confirmDismiss;
 - (void)confirmDismissCancelTapped;
@@ -42,9 +43,8 @@
 - (id)provideUpdateTasteViewControllerWithSelectedArtistsURIs:(id)arg1;
 - (id)provideArtistPickerViewController;
 - (id)provideNavigationControllerWithRootViewController:(id)arg1;
-@property(readonly, nonatomic) _Bool showsTasteOnboardingFirstTimeFlowAsBridgeView;
-- (_Bool)showsTasteOnboardingFirstTimeFlow;
-- (void)dismiss;
+@property(readonly, nonatomic) SPTFreeTierTasteOnboardingPresentationConfiguration *presentationConfiguration;
+- (void)dismissForSkip:(_Bool)arg1;
 - (void)presentAsPresentationMode:(unsigned long long)arg1 inState:(unsigned long long)arg2 withSeedURIs:(id)arg3;
 - (void)presentAsPresentationMode:(unsigned long long)arg1 inState:(unsigned long long)arg2;
 - (void)dealloc;

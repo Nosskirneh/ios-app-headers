@@ -7,11 +7,12 @@
 #import "NSObject-Protocol.h"
 
 @class NSArray, NSString;
-@protocol SPTFreeTierCollectionRangeDataLoaderDelegate, SPTSortingFilteringSortRule;
+@protocol SPTFreeTierCollectionRangeDataLoaderDelegate;
 
 @protocol SPTFreeTierCollectionRangeDataLoader <NSObject>
+@property(readonly, nonatomic) NSArray *sectionIndices;
 @property(readonly, nonatomic) unsigned long long totalNumberOfItems;
 @property(nonatomic) __weak id <SPTFreeTierCollectionRangeDataLoaderDelegate> rangeDataLoaderDelegate;
-- (void)loadItemsForRange:(struct _NSRange)arg1 sortRule:(id <SPTSortingFilteringSortRule>)arg2 filterRules:(NSArray *)arg3 textFilter:(NSString *)arg4;
+- (void)loadItemsForRange:(struct _NSRange)arg1 sortRules:(NSArray *)arg2 filterRules:(NSArray *)arg3 textFilter:(NSString *)arg4;
 @end
 

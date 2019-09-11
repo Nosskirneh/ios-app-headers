@@ -28,12 +28,13 @@
 - (_Bool)validateHelloMessageAndReturnFailureReason:(id *)arg1;
 @property(readonly, nonatomic) NSArray *rawMessage;
 @property(readonly, nonatomic) long long messageType;
+@property(readonly, nonatomic) NSString *redirectUri;
+@property(readonly, nonatomic) NSString *bundleId;
 @property(readonly, copy, nonatomic) NSString *token;
 @property(readonly, copy, nonatomic) NSString *authID;
 @property(readonly, nonatomic) NSArray *authMethods;
 @property(readonly, nonatomic) NSDictionary *info;
 @property(readonly, nonatomic) NSDictionary *roles;
-- (id)initWithRealm:(id)arg1 details:(id)arg2;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

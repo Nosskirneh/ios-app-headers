@@ -8,26 +8,26 @@
 
 #import "SPTPodcastRecommendationsHubViewProvider-Protocol.h"
 
-@class EXP_HUBComponentDefaults, NSString, NSURL, SPTPodcastRecommendationsContentOperationsFactory;
-@protocol EXP_SPTHubCommandHandlerFactory, EXP_SPTHubsRendererFactory, SPTHugsFactory;
+@class HUBComponentDefaults, NSString, NSURL, SPTPodcastRecommendationsContentOperationsFactory;
+@protocol SPTHubCommandHandlerFactory, SPTHubsRendererFactory, SPTHugsFactory;
 
 @interface SPTPodcastRecommendationsHubManager : NSObject <SPTPodcastRecommendationsHubViewProvider>
 {
     NSString *_serviceIdentifier;
     NSURL *_URL;
     NSString *_referrerIdentifier;
-    id <EXP_SPTHubsRendererFactory> _hubsRendererFactory;
+    id <SPTHubsRendererFactory> _hubsRendererFactory;
     id <SPTHugsFactory> _hugsFactory;
     SPTPodcastRecommendationsContentOperationsFactory *_contentOperationsFactory;
-    EXP_HUBComponentDefaults *_componentDefaults;
-    id <EXP_SPTHubCommandHandlerFactory> _commandHandlerFactory;
+    HUBComponentDefaults *_componentDefaults;
+    id <SPTHubCommandHandlerFactory> _commandHandlerFactory;
 }
 
-@property(readonly, nonatomic) id <EXP_SPTHubCommandHandlerFactory> commandHandlerFactory; // @synthesize commandHandlerFactory=_commandHandlerFactory;
-@property(readonly, nonatomic) EXP_HUBComponentDefaults *componentDefaults; // @synthesize componentDefaults=_componentDefaults;
+@property(readonly, nonatomic) id <SPTHubCommandHandlerFactory> commandHandlerFactory; // @synthesize commandHandlerFactory=_commandHandlerFactory;
+@property(readonly, nonatomic) HUBComponentDefaults *componentDefaults; // @synthesize componentDefaults=_componentDefaults;
 @property(readonly, nonatomic) SPTPodcastRecommendationsContentOperationsFactory *contentOperationsFactory; // @synthesize contentOperationsFactory=_contentOperationsFactory;
 @property(readonly, nonatomic) id <SPTHugsFactory> hugsFactory; // @synthesize hugsFactory=_hugsFactory;
-@property(readonly, nonatomic) id <EXP_SPTHubsRendererFactory> hubsRendererFactory; // @synthesize hubsRendererFactory=_hubsRendererFactory;
+@property(readonly, nonatomic) id <SPTHubsRendererFactory> hubsRendererFactory; // @synthesize hubsRendererFactory=_hubsRendererFactory;
 @property(readonly, nonatomic) NSString *referrerIdentifier; // @synthesize referrerIdentifier=_referrerIdentifier;
 @property(readonly, nonatomic) NSURL *URL; // @synthesize URL=_URL;
 @property(readonly, nonatomic) NSString *serviceIdentifier; // @synthesize serviceIdentifier=_serviceIdentifier;

@@ -11,13 +11,12 @@
 #import "UIApplicationDelegate-Protocol.h"
 #import "UNUserNotificationCenterDelegate-Protocol.h"
 
-@class NSMutableDictionary, NSString, SPTAppLogModel, SPTApplicationDelegateLogger, SPTCommandLineProcessor, SPTCookieStorageManager, SPTDebugLogService, SPTPlayModeMonitor, SPTServiceOrchestrator, SPTStartupTracer, SPTURLCacheManager, StateController, UIWindow;
-@protocol SPTCrashReporter, SPTLinkDispatcher, SPTLogCenter, SPTMetaViewController, SPTNavigationRouter, SPTThirdPartyTrackerBroadcaster, SPTUserActivityController;
+@class NSMutableDictionary, NSString, SPTAppLogModel, SPTApplicationDelegateLogger, SPTCommandLineProcessor, SPTCookieStorageManager, SPTDebugLogService, SPTPerfTracingSignpostObserver, SPTPlayModeMonitor, SPTServiceOrchestrator, SPTStartupTracer, SPTURLCacheManager, StateController, UIWindow;
+@protocol SPTCrashReporter, SPTLinkDispatcher, SPTLogCenter, SPTMetaViewController, SPTNavigationRouter, SPTReminderHandlerService, SPTThirdPartyTrackerBroadcaster, SPTUserActivityController;
 
 @interface SpotifyAppDelegate : NSObject <SPTServiceOrchestratorDelegate, UNUserNotificationCenterDelegate, SPTSessionServicesLoader, UIApplicationDelegate>
 {
     UIWindow *_window;
-    id <SPTMetaViewController> _metaViewController;
     id <SPTNavigationRouter> _navigationRouter;
     id <SPTCrashReporter> _crashReporter;
     id <SPTUserActivityController> _userActivityController;
@@ -29,7 +28,10 @@
     SPTURLCacheManager *_urlCacheManager;
     SPTCookieStorageManager *_cookieStorageManager;
     SPTCommandLineProcessor *_commandLineProcessor;
+    id <SPTMetaViewController> _metaViewController;
     NSMutableDictionary *_deferredBlocks;
+    id <SPTReminderHandlerService> _reminderHandlerService;
+    SPTPerfTracingSignpostObserver *_perfTracingObserver;
     SPTServiceOrchestrator *_serviceOrchestrator;
     SPTDebugLogService *_debugLogService;
     SPTAppLogModel *_appLogModel;
@@ -43,7 +45,10 @@
 @property(retain, nonatomic) SPTAppLogModel *appLogModel; // @synthesize appLogModel=_appLogModel;
 @property(retain, nonatomic) SPTDebugLogService *debugLogService; // @synthesize debugLogService=_debugLogService;
 @property(retain, nonatomic) SPTServiceOrchestrator *serviceOrchestrator; // @synthesize serviceOrchestrator=_serviceOrchestrator;
+@property(retain, nonatomic) SPTPerfTracingSignpostObserver *perfTracingObserver; // @synthesize perfTracingObserver=_perfTracingObserver;
+@property(nonatomic) __weak id <SPTReminderHandlerService> reminderHandlerService; // @synthesize reminderHandlerService=_reminderHandlerService;
 @property(retain, nonatomic) NSMutableDictionary *deferredBlocks; // @synthesize deferredBlocks=_deferredBlocks;
+@property(retain, nonatomic) id <SPTMetaViewController> metaViewController; // @synthesize metaViewController=_metaViewController;
 @property(retain, nonatomic) SPTCommandLineProcessor *commandLineProcessor; // @synthesize commandLineProcessor=_commandLineProcessor;
 @property(retain, nonatomic) SPTCookieStorageManager *cookieStorageManager; // @synthesize cookieStorageManager=_cookieStorageManager;
 @property(retain, nonatomic) SPTURLCacheManager *urlCacheManager; // @synthesize urlCacheManager=_urlCacheManager;
@@ -55,10 +60,9 @@
 @property(retain, nonatomic) id <SPTUserActivityController> userActivityController; // @synthesize userActivityController=_userActivityController;
 @property(retain, nonatomic) id <SPTCrashReporter> crashReporter; // @synthesize crashReporter=_crashReporter;
 @property(readonly, nonatomic) id <SPTNavigationRouter> navigationRouter; // @synthesize navigationRouter=_navigationRouter;
-@property(readonly, nonatomic) id <SPTMetaViewController> metaViewController; // @synthesize metaViewController=_metaViewController;
 @property(retain, nonatomic) UIWindow *window; // @synthesize window=_window;
 - (void).cxx_destruct;
-- (void)loadSessionScopesWithCompletion:(CDUnknownBlockType)arg1;
+- (void)loadSessionScopeServices;
 - (void)serviceOrchestrator:(id)arg1 didUnloadServicesForScope:(id)arg2;
 - (void)serviceOrchestrator:(id)arg1 willUnloadServicesForScope:(id)arg2;
 - (void)serviceOrchestrator:(id)arg1 didLoadServicesForScope:(id)arg2;
@@ -68,25 +72,24 @@
 - (void)runDeferredBlocksForScope:(id)arg1;
 - (id)optionalServiceForIdentifier:(id)arg1 inScope:(id)arg2;
 - (id)serviceForIdentifier:(id)arg1 inScope:(id)arg2;
-- (void)applyThemeAppearance;
 - (void)save;
 - (id)debugController;
 - (void)userWillLogOut;
+- (void)applyThemeAppearance;
 - (void)setupTheme;
 - (void)removePlainTextFBToken;
 - (void)performVersionMigrations;
 - (void)setupAndShowMainWindow;
-- (void)showLaunchScreen;
 - (void)startReceivingRemoteControlEvents;
 - (_Bool)handleLaunchOptions:(id)arg1;
 - (void)addCrashReporterHooks;
 - (void)setupInstanceVariables;
+- (void)configureTracing;
 - (void)setupColdStartTracking;
 - (void)setupLoggingServicesWithLogDispatcher:(id)arg1;
 - (void)userNotificationCenter:(id)arg1 didReceiveNotificationResponse:(id)arg2 withCompletionHandler:(CDUnknownBlockType)arg3;
 - (void)userNotificationCenter:(id)arg1 willPresentNotification:(id)arg2 withCompletionHandler:(CDUnknownBlockType)arg3;
 - (unsigned long long)application:(id)arg1 supportedInterfaceOrientationsForWindow:(id)arg2;
-- (void)application:(id)arg1 handleEventsForBackgroundURLSession:(id)arg2 completionHandler:(CDUnknownBlockType)arg3;
 - (void)application:(id)arg1 performFetchWithCompletionHandler:(CDUnknownBlockType)arg2;
 - (void)application:(id)arg1 performActionForShortcutItem:(id)arg2 completionHandler:(CDUnknownBlockType)arg3;
 - (void)application:(id)arg1 willChangeStatusBarOrientation:(long long)arg2 duration:(double)arg3;
@@ -97,7 +100,6 @@
 - (_Bool)application:(id)arg1 openURL:(id)arg2 options:(id)arg3;
 - (void)application:(id)arg1 didFailToRegisterForRemoteNotificationsWithError:(id)arg2;
 - (void)application:(id)arg1 didRegisterForRemoteNotificationsWithDeviceToken:(id)arg2;
-- (void)application:(id)arg1 didReceiveRemoteNotification:(id)arg2;
 - (_Bool)application:(id)arg1 didFinishLaunchingWithOptions:(id)arg2;
 - (void)application:(id)arg1 handleIntent:(id)arg2 completionHandler:(CDUnknownBlockType)arg3;
 - (void)handleIntent:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;

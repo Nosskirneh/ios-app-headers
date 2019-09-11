@@ -4,15 +4,15 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import "EXP_HUBComponentView.h"
+#import "HUBComponentView.h"
 
-@class GLUELabel, SPTPremiumDestinationGLUETheme, SPTPremiumDestinationOfferTitlePricePeriodStyle, UIView;
+@class GLUELabel, SPTPremiumDestinationGLUETheme, SPTPremiumDestinationOfferTitlePricePeriodStyle, UILayoutGuide;
 
-@interface SPTPremiumDestinationOfferTitlePricePeriodComponentView : EXP_HUBComponentView
+@interface SPTPremiumDestinationOfferTitlePricePeriodComponentView : HUBComponentView
 {
     SPTPremiumDestinationGLUETheme *_theme;
     SPTPremiumDestinationOfferTitlePricePeriodStyle *_style;
-    UIView *_accessoryView;
+    UILayoutGuide *_layoutGuide;
     GLUELabel *_titleLabel;
     GLUELabel *_subtitleLabel;
     GLUELabel *_accessoryLabel;
@@ -23,7 +23,7 @@
 @property(retain, nonatomic) GLUELabel *accessoryLabel; // @synthesize accessoryLabel=_accessoryLabel;
 @property(retain, nonatomic) GLUELabel *subtitleLabel; // @synthesize subtitleLabel=_subtitleLabel;
 @property(retain, nonatomic) GLUELabel *titleLabel; // @synthesize titleLabel=_titleLabel;
-@property(retain, nonatomic) UIView *accessoryView; // @synthesize accessoryView=_accessoryView;
+@property(retain, nonatomic) UILayoutGuide *layoutGuide; // @synthesize layoutGuide=_layoutGuide;
 @property(retain, nonatomic) SPTPremiumDestinationOfferTitlePricePeriodStyle *style; // @synthesize style=_style;
 @property(retain, nonatomic) SPTPremiumDestinationGLUETheme *theme; // @synthesize theme=_theme;
 - (void).cxx_destruct;

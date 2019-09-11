@@ -6,14 +6,11 @@
 
 #import <UIKit/UIViewController.h>
 
-#import "SPTImageLoaderDelegate-Protocol.h"
 #import "SPTNavigationControllerNavigationBarState-Protocol.h"
-#import "SPTNavigationControllerTransitioning-Protocol.h"
 #import "SPTPageController-Protocol.h"
-#import "SPTPodcastEpisodeTableViewCellDelegate-Protocol.h"
+#import "SPTPodcastFilterHeaderViewTarget-Protocol.h"
 #import "SPTPodcastHeaderDescriptionViewDelegate-Protocol.h"
 #import "SPTPodcastTestManagerObserver-Protocol.h"
-#import "SPTPodcastVideoViewControllerTransitionDelegate-Protocol.h"
 #import "SPTPodcastViewModelDelegate-Protocol.h"
 #import "SPTShareableContext-Protocol.h"
 #import "SPTShowContextMenuControllerDelegate-Protocol.h"
@@ -21,97 +18,67 @@
 #import "UITableViewDataSource-Protocol.h"
 #import "UITableViewDelegate-Protocol.h"
 
-@class GLUEButton, NSLayoutConstraint, NSString, NSURL, SPTCollectionToolbarHeaderView, SPTEntityTableHeaderView, SPTFreeTierEntityNavigationDecorator, SPTInfoView, SPTPodcastHeaderDescriptionView, SPTPodcastLogger, SPTPodcastVideoPlayerView, SPTPodcastVideoViewControllerTransition, SPTPodcastViewModel, SPTProgressView, SPTShowContextMenuController, SPTTableView, SPTTheme, UIBarButtonItem, UIImage, UIView;
-@protocol GLUEImageLoader, GLUETheme, SPTCollectionLogger, SPTCollectionPlatformTestManager, SPTImageLoader, SPTLinkDispatcher, SPTPageContainer, SPTPodcastContextMenuProvider, SPTPodcastEpisodeCellConfigurator, SPTPodcastTestManager, SPTShareFeature, SPTVideoSurfaceManager;
+@class NSString, NSURL, SPTEntityTableHeaderView, SPTFreeTierEntityNavigationDecorator, SPTInfoView, SPTPodcastEpisodeCellActionHandler, SPTPodcastFilterHeaderView, SPTPodcastHeaderProvider, SPTPodcastViewModel, SPTProgressView, SPTShowContextMenuController, SPTTableView, SPTTheme;
+@protocol GLUEImageLoader, GLUETheme, SPTCollectionLogger, SPTCollectionPlatformTestManager, SPTLinkDispatcher, SPTPageContainer, SPTPodcastContextMenuProvider, SPTPodcastEpisodeCellConfigurator, SPTPodcastLogger, SPTPodcastTestManager, SPTShareFeature, SPTUIPresentationService;
 
-@interface SPTPodcastViewController : UIViewController <SPTNavigationControllerNavigationBarState, SPTPodcastViewModelDelegate, SPTImageLoaderDelegate, SPTShowContextMenuControllerDelegate, SPTPodcastVideoViewControllerTransitionDelegate, SPTShareableContext, SPTPodcastHeaderDescriptionViewDelegate, SPTPodcastTestManagerObserver, SPTPodcastEpisodeTableViewCellDelegate, UITableViewDelegate, UITableViewDataSource, SPTNavigationControllerTransitioning, SPTPageController, SPViewController>
+@interface SPTPodcastViewController : UIViewController <SPTNavigationControllerNavigationBarState, SPTPodcastViewModelDelegate, SPTShowContextMenuControllerDelegate, SPTShareableContext, SPTPodcastHeaderDescriptionViewDelegate, SPTPodcastTestManagerObserver, SPTPodcastFilterHeaderViewTarget, UITableViewDelegate, UITableViewDataSource, SPTPageController, SPViewController>
 {
-    _Bool _enteredEditMode;
-    _Bool _isAudioMode;
-    _Bool _isVideoMode;
     _Bool _dataLoaded;
     _Bool _firstTimeShowing;
     SPTPodcastViewModel *_viewModel;
-    id <SPTImageLoader> _imageLoader;
-    id <GLUEImageLoader> _glueImageLoader;
-    id <SPTShareFeature> _shareFeature;
-    id <SPTLinkDispatcher> _linkDispatcher;
+    CDUnknownBlockType _contextResponseHandler;
     SPTFreeTierEntityNavigationDecorator *_navigationItemDecorator;
-    id <SPTVideoSurfaceManager> _surfaceManager;
-    SPTPodcastLogger *_logger;
-    id <SPTCollectionLogger> _collectionLogger;
+    id <GLUEImageLoader> _glueImageLoader;
+    id <SPTPodcastContextMenuProvider> _podcastContextMenuProvider;
     SPTShowContextMenuController *_showContextMenuController;
     id <SPTPodcastEpisodeCellConfigurator> _cellConfigurator;
-    id <SPTCollectionPlatformTestManager> _collectionTestManager;
-    id <SPTPodcastTestManager> _podcastTestManager;
-    id <SPTPodcastContextMenuProvider> _podcastContextMenuProvider;
-    SPTEntityTableHeaderView *_headerView;
-    GLUEButton *_headerFollowButton;
-    UIView *_filterHeader;
-    SPTPodcastHeaderDescriptionView *_headerDescriptionView;
-    UIBarButtonItem *_filterButton;
-    NSString *_audioCellIdentifier;
-    SPTCollectionToolbarHeaderView *_toolbarSectionHeader;
+    SPTPodcastEpisodeCellActionHandler *_cellActionHandler;
     SPTTableView *_tableView;
-    UIImage *_headerImage;
-    UIImage *_videoPlayingHeaderImage;
-    NSLayoutConstraint *_videoViewHeightConstraint;
-    NSLayoutConstraint *_tableViewBottomConstraint;
     SPTProgressView *_progressView;
-    SPTPodcastVideoPlayerView *_videoPlayerView;
     SPTInfoView *_infoView;
-    CDUnknownBlockType _contextResponseHandler;
-    SPTPodcastVideoViewControllerTransition *_videoTransition;
+    SPTPodcastHeaderProvider *_podcastHeaderProvider;
+    SPTEntityTableHeaderView *_headerView;
+    SPTPodcastFilterHeaderView *_filterHeader;
     id <GLUETheme> _legacyTheme;
     SPTTheme *_theme;
-    struct CGPoint _filterHeaderOrigin;
-    struct CGRect _filterHeaderFrame;
+    id <SPTShareFeature> _shareFeature;
+    id <SPTLinkDispatcher> _linkDispatcher;
+    id <SPTCollectionPlatformTestManager> _collectionTestManager;
+    id <SPTPodcastTestManager> _podcastTestManager;
+    id <SPTUIPresentationService> _presentationService;
+    id <SPTPodcastLogger> _logger;
+    id <SPTCollectionLogger> _collectionLogger;
+    NSURL *_firstRowImpressionEpisode;
 }
 
+@property(copy, nonatomic) NSURL *firstRowImpressionEpisode; // @synthesize firstRowImpressionEpisode=_firstRowImpressionEpisode;
 @property(nonatomic) _Bool firstTimeShowing; // @synthesize firstTimeShowing=_firstTimeShowing;
 @property(nonatomic, getter=isDataLoaded) _Bool dataLoaded; // @synthesize dataLoaded=_dataLoaded;
-@property(nonatomic) _Bool isVideoMode; // @synthesize isVideoMode=_isVideoMode;
-@property(nonatomic) _Bool isAudioMode; // @synthesize isAudioMode=_isAudioMode;
-@property(nonatomic) _Bool enteredEditMode; // @synthesize enteredEditMode=_enteredEditMode;
+@property(retain, nonatomic) id <SPTCollectionLogger> collectionLogger; // @synthesize collectionLogger=_collectionLogger;
+@property(retain, nonatomic) id <SPTPodcastLogger> logger; // @synthesize logger=_logger;
+@property(nonatomic) __weak id <SPTUIPresentationService> presentationService; // @synthesize presentationService=_presentationService;
+@property(nonatomic) __weak id <SPTPodcastTestManager> podcastTestManager; // @synthesize podcastTestManager=_podcastTestManager;
+@property(nonatomic) __weak id <SPTCollectionPlatformTestManager> collectionTestManager; // @synthesize collectionTestManager=_collectionTestManager;
+@property(nonatomic) __weak id <SPTLinkDispatcher> linkDispatcher; // @synthesize linkDispatcher=_linkDispatcher;
+@property(nonatomic) __weak id <SPTShareFeature> shareFeature; // @synthesize shareFeature=_shareFeature;
 @property(retain, nonatomic) SPTTheme *theme; // @synthesize theme=_theme;
 @property(retain, nonatomic) id <GLUETheme> legacyTheme; // @synthesize legacyTheme=_legacyTheme;
-@property(retain, nonatomic) SPTPodcastVideoViewControllerTransition *videoTransition; // @synthesize videoTransition=_videoTransition;
-@property(copy, nonatomic) CDUnknownBlockType contextResponseHandler; // @synthesize contextResponseHandler=_contextResponseHandler;
-@property(retain, nonatomic) SPTInfoView *infoView; // @synthesize infoView=_infoView;
-@property(retain, nonatomic) SPTPodcastVideoPlayerView *videoPlayerView; // @synthesize videoPlayerView=_videoPlayerView;
-@property(retain, nonatomic) SPTProgressView *progressView; // @synthesize progressView=_progressView;
-@property(retain, nonatomic) NSLayoutConstraint *tableViewBottomConstraint; // @synthesize tableViewBottomConstraint=_tableViewBottomConstraint;
-@property(retain, nonatomic) NSLayoutConstraint *videoViewHeightConstraint; // @synthesize videoViewHeightConstraint=_videoViewHeightConstraint;
-@property(retain, nonatomic) UIImage *videoPlayingHeaderImage; // @synthesize videoPlayingHeaderImage=_videoPlayingHeaderImage;
-@property(retain, nonatomic) UIImage *headerImage; // @synthesize headerImage=_headerImage;
-@property(retain, nonatomic) SPTTableView *tableView; // @synthesize tableView=_tableView;
-@property(retain, nonatomic) SPTCollectionToolbarHeaderView *toolbarSectionHeader; // @synthesize toolbarSectionHeader=_toolbarSectionHeader;
-@property(retain, nonatomic) NSString *audioCellIdentifier; // @synthesize audioCellIdentifier=_audioCellIdentifier;
-@property(retain, nonatomic) UIBarButtonItem *filterButton; // @synthesize filterButton=_filterButton;
-@property(retain, nonatomic) SPTPodcastHeaderDescriptionView *headerDescriptionView; // @synthesize headerDescriptionView=_headerDescriptionView;
-@property(retain, nonatomic) UIView *filterHeader; // @synthesize filterHeader=_filterHeader;
-@property(nonatomic) struct CGRect filterHeaderFrame; // @synthesize filterHeaderFrame=_filterHeaderFrame;
-@property(nonatomic) struct CGPoint filterHeaderOrigin; // @synthesize filterHeaderOrigin=_filterHeaderOrigin;
-@property(retain, nonatomic) GLUEButton *headerFollowButton; // @synthesize headerFollowButton=_headerFollowButton;
+@property(retain, nonatomic) SPTPodcastFilterHeaderView *filterHeader; // @synthesize filterHeader=_filterHeader;
 @property(retain, nonatomic) SPTEntityTableHeaderView *headerView; // @synthesize headerView=_headerView;
-@property(retain, nonatomic) id <SPTPodcastContextMenuProvider> podcastContextMenuProvider; // @synthesize podcastContextMenuProvider=_podcastContextMenuProvider;
-@property(retain, nonatomic) id <SPTPodcastTestManager> podcastTestManager; // @synthesize podcastTestManager=_podcastTestManager;
-@property(nonatomic) __weak id <SPTCollectionPlatformTestManager> collectionTestManager; // @synthesize collectionTestManager=_collectionTestManager;
+@property(retain, nonatomic) SPTPodcastHeaderProvider *podcastHeaderProvider; // @synthesize podcastHeaderProvider=_podcastHeaderProvider;
+@property(retain, nonatomic) SPTInfoView *infoView; // @synthesize infoView=_infoView;
+@property(retain, nonatomic) SPTProgressView *progressView; // @synthesize progressView=_progressView;
+@property(retain, nonatomic) SPTTableView *tableView; // @synthesize tableView=_tableView;
+@property(retain, nonatomic) SPTPodcastEpisodeCellActionHandler *cellActionHandler; // @synthesize cellActionHandler=_cellActionHandler;
 @property(retain, nonatomic) id <SPTPodcastEpisodeCellConfigurator> cellConfigurator; // @synthesize cellConfigurator=_cellConfigurator;
 @property(retain, nonatomic) SPTShowContextMenuController *showContextMenuController; // @synthesize showContextMenuController=_showContextMenuController;
-@property(retain, nonatomic) id <SPTCollectionLogger> collectionLogger; // @synthesize collectionLogger=_collectionLogger;
-@property(retain, nonatomic) SPTPodcastLogger *logger; // @synthesize logger=_logger;
-@property(retain, nonatomic) id <SPTVideoSurfaceManager> surfaceManager; // @synthesize surfaceManager=_surfaceManager;
-@property(retain, nonatomic) SPTFreeTierEntityNavigationDecorator *navigationItemDecorator; // @synthesize navigationItemDecorator=_navigationItemDecorator;
-@property(retain, nonatomic) id <SPTLinkDispatcher> linkDispatcher; // @synthesize linkDispatcher=_linkDispatcher;
-@property(nonatomic) __weak id <SPTShareFeature> shareFeature; // @synthesize shareFeature=_shareFeature;
+@property(retain, nonatomic) id <SPTPodcastContextMenuProvider> podcastContextMenuProvider; // @synthesize podcastContextMenuProvider=_podcastContextMenuProvider;
 @property(retain, nonatomic) id <GLUEImageLoader> glueImageLoader; // @synthesize glueImageLoader=_glueImageLoader;
-@property(retain, nonatomic) id <SPTImageLoader> imageLoader; // @synthesize imageLoader=_imageLoader;
+@property(retain, nonatomic) SPTFreeTierEntityNavigationDecorator *navigationItemDecorator; // @synthesize navigationItemDecorator=_navigationItemDecorator;
+@property(copy, nonatomic) CDUnknownBlockType contextResponseHandler; // @synthesize contextResponseHandler=_contextResponseHandler;
 @property(retain, nonatomic) SPTPodcastViewModel *viewModel; // @synthesize viewModel=_viewModel;
 - (void).cxx_destruct;
-- (void)logItemSelectedAtIndexPath:(id)arg1;
-- (void)didSelectHeaderForCell:(id)arg1;
-- (void)didSelectDescriptionForCell:(id)arg1;
+- (void)logImpressionForCellAtIndexPath:(id)arg1;
 - (void)podcastTestManagerDidUpdate:(id)arg1;
 - (void)playURIInContext:(id)arg1;
 - (void)evaluatePendingContextResponseHandlerWithViewModel:(id)arg1;
@@ -119,18 +86,8 @@
 @property(readonly, nonatomic, getter=spt_pageURI) NSURL *pageURI;
 @property(readonly, nonatomic, getter=spt_pageIdentifier) NSString *pageIdentifier;
 - (void)didTapPodcastDescriptionTextOnLabel:(id)arg1;
-- (void)podcastVideoViewControllerTransitionDidFinish:(id)arg1;
-- (id)navigationController:(id)arg1 animationControllerForPopOperationToViewController:(id)arg2;
-- (id)navigationController:(id)arg1 animationControllerForPushOperationFromViewController:(id)arg2;
-- (void)setupTrailingAccessoryForCell:(id)arg1 indexPath:(id)arg2;
-- (void)setupLeadingAccessoryForCell:(id)arg1 forEpisode:(id)arg2;
-- (void)setupContentViewForCell:(id)arg1;
-- (void)configureVideoCell:(id)arg1 atIndexPath:(id)arg2;
 - (id)configurePodcastCell:(id)arg1 atIndexPath:(id)arg2;
-- (void)setEditing:(_Bool)arg1;
-- (void)editOfflinedEpisodesForShow:(id)arg1;
-- (void)followShow:(id)arg1 follow:(_Bool)arg2;
-- (void)imageLoader:(id)arg1 didLoadImage:(id)arg2 forURL:(id)arg3 loadTime:(double)arg4 context:(id)arg5;
+- (void)showContextMenuController:(id)arg1 didUpdateFollowedState:(_Bool)arg2 forShow:(id)arg3;
 @property(readonly, nonatomic) NSURL *URI;
 - (void)podcastViewModelDidUpdatePlaybackRestrictions:(id)arg1;
 - (double)expectedContentHeightForTableView;
@@ -142,37 +99,19 @@
 - (void)showInfoViewWithError:(id)arg1;
 - (void)viewModelFinishedLoadingWithoutPlayerStateChange:(id)arg1;
 - (void)viewModel:(id)arg1 podcastDidFinishLoadingWithError:(id)arg2;
-- (void)presentAlertVideoNotAvailable;
-- (_Bool)isMediaTypeSupported:(unsigned long long)arg1;
 - (_Bool)automaticallyAdjustsScrollViewInsets;
 - (void)sp_updateContentInsets;
 - (unsigned long long)preferredNavigationBarState;
-- (void)scrollViewDidScrollInVideoMode:(id)arg1;
 - (void)scrollViewDidScroll:(id)arg1;
-- (struct CGRect)videoPlayerInitialFrame;
-- (void)updateVideoViewAnimated:(_Bool)arg1;
-- (void)setupVideoView;
-- (void)hideVideoPlayerView;
-- (void)showVideoPlayerViewAnimated:(_Bool)arg1;
-- (void)videoSurfaceTapped:(id)arg1;
-- (void)updateHeaderViewImage;
 - (void)collapseHeaderViewOnEnteringViewIfFollowed;
-- (void)updateHeaderFollowButton;
-- (void)updateHeaderView;
-- (id)headerMetadataText;
-- (void)setupHeaderFollowButton;
-- (void)setupDescriptionPage;
-- (void)setupHeaderView;
+- (void)updateHeaderViewImage;
+- (void)updatePodcastHeader;
+- (void)setupPodcastHeaders;
 - (void)filterAction:(id)arg1;
-- (void)enableFilterHeader;
-- (void)setupFilterHeader;
 - (void)followButtonTapped:(id)arg1;
+- (void)ensureCorrectTableViewSubviewOrder;
 - (void)reloadActiveRow;
-- (double)tableViewEstimatedRowHeight;
 - (void)setupTableView;
-- (long long)tableView:(id)arg1 indentationLevelForRowAtIndexPath:(id)arg2;
-- (_Bool)tableView:(id)arg1 shouldIndentWhileEditingRowAtIndexPath:(id)arg2;
-- (long long)tableView:(id)arg1 editingStyleForRowAtIndexPath:(id)arg2;
 - (void)tableView:(id)arg1 didSelectRowAtIndexPath:(id)arg2;
 - (void)tableView:(id)arg1 willDisplayCell:(id)arg2 forRowAtIndexPath:(id)arg3;
 - (id)tableView:(id)arg1 cellForRowAtIndexPath:(id)arg2;
@@ -180,26 +119,15 @@
 - (double)tableView:(id)arg1 heightForRowAtIndexPath:(id)arg2;
 - (double)tableView:(id)arg1 heightForFooterInSection:(long long)arg2;
 - (id)tableView:(id)arg1 viewForFooterInSection:(long long)arg2;
-- (double)completionRatioForEpisode:(id)arg1;
-- (id)playStateViewForVideo:(id)arg1;
-- (void)playButtonTapped:(id)arg1;
-- (_Bool)isIPad;
-- (void)shareButtonTapped:(id)arg1;
-- (void)offlineAccessoryButtonTapped:(id)arg1;
-- (void)cellContextMenuTapped:(id)arg1;
 - (void)invokeHeaderContextMenu:(id)arg1;
 - (void)invokeContextMenu:(id)arg1 withEpisode:(id)arg2 atIndexPath:(id)arg3;
 - (void)updateBarButtons;
-- (void)editDoneButtonTapped;
-- (void)updateFilterHeaderFrameForRotation:(struct CGSize)arg1;
-- (void)viewWillTransitionToSize:(struct CGSize)arg1 withTransitionCoordinator:(id)arg2;
-- (void)setEditing:(_Bool)arg1 animated:(_Bool)arg2;
-- (void)setTitle:(id)arg1;
+- (void)setupBarButtons;
 - (void)setupConstraints;
 - (void)viewWillAppear:(_Bool)arg1;
 - (void)viewDidLoad;
 - (void)dealloc;
-- (id)initWithPodcastViewModel:(id)arg1 imageLoader:(id)arg2 glueImageLoader:(id)arg3 surfaceManager:(id)arg4 logger:(id)arg5 collectionLogger:(id)arg6 showContextMenuController:(id)arg7 episodeCellConfigurator:(id)arg8 collectionTestManager:(id)arg9 podcastTestManager:(id)arg10 podcastContextMenuProvider:(id)arg11 shareFeature:(id)arg12 linkDispatcher:(id)arg13 navigationDecorator:(id)arg14;
+- (id)initWithPodcastViewModel:(id)arg1 glueImageLoader:(id)arg2 logger:(id)arg3 collectionLogger:(id)arg4 showContextMenuController:(id)arg5 episodeCellConfigurator:(id)arg6 collectionTestManager:(id)arg7 podcastTestManager:(id)arg8 podcastContextMenuProvider:(id)arg9 shareFeature:(id)arg10 linkDispatcher:(id)arg11 navigationDecorator:(id)arg12 cellActionHandler:(id)arg13 presentationService:(id)arg14;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

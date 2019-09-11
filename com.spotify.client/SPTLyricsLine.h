@@ -6,17 +6,20 @@
 
 #import <objc/NSObject.h>
 
-@class NSString;
+@class NSArray, NSString;
 
 @interface SPTLyricsLine : NSObject
 {
     NSString *_text;
     double _startTime;
+    NSArray *_syllables;
 }
 
+@property(readonly, nonatomic) NSArray *syllables; // @synthesize syllables=_syllables;
 @property(readonly, nonatomic) double startTime; // @synthesize startTime=_startTime;
 @property(readonly, copy, nonatomic) NSString *text; // @synthesize text=_text;
 - (void).cxx_destruct;
+- (id)syllableAtIndex:(unsigned long long)arg1;
 - (id)initWithDictionary:(id)arg1;
 
 @end

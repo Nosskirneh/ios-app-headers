@@ -31,11 +31,12 @@
 @property(retain, nonatomic) SPTSlatePrivateViewController *currentSlateViewController; // @synthesize currentSlateViewController=_currentSlateViewController;
 - (void).cxx_destruct;
 - (void)immediatelyPresentSlate:(id)arg1 animated:(_Bool)arg2;
+- (void)accessoryButtonDidTap:(id)arg1;
 - (void)backgroundViewDidTap:(id)arg1;
 - (_Bool)slateViewControllerShouldDismissOnSwipe:(id)arg1;
 - (void)slateViewControllerSwiped:(id)arg1;
-- (void)showDismissLabel:(_Bool)arg1;
-- (void)hideDismissLabel:(_Bool)arg1;
+- (void)showDismissButton:(_Bool)arg1;
+- (void)hideDismissButton:(_Bool)arg1;
 - (void)slateDismissed:(id)arg1 animated:(_Bool)arg2;
 - (void)dismissSlate:(id)arg1 animated:(_Bool)arg2;
 - (void)presentSlate:(id)arg1 animated:(_Bool)arg2;

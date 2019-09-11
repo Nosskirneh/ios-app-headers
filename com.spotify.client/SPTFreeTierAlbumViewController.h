@@ -4,31 +4,39 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import "EXP_SPTHubViewController.h"
+#import "SPTHubViewController.h"
 
 #import "SPTShareableContext-Protocol.h"
 #import "SPViewController-Protocol.h"
 
-@class NSString, NSURL, SPTFreeTierAlbumContextMenuButtonViewModel, SPTFreeTierAlbumHeartBanButtonViewModel;
+@class NSString, NSURL, SPTFreeTierAlbumContextMenuButtonViewModel, SPTFreeTierAlbumFeedbackButtonViewModel, SPTProgressView, VISREFIntegrationManager;
 @protocol SPTPlayer;
 
-@interface SPTFreeTierAlbumViewController : EXP_SPTHubViewController <SPTShareableContext, SPViewController>
+@interface SPTFreeTierAlbumViewController : SPTHubViewController <SPTShareableContext, SPViewController>
 {
-    SPTFreeTierAlbumHeartBanButtonViewModel *_heartBanButtonViewModel;
+    SPTFreeTierAlbumFeedbackButtonViewModel *_feedbackButtonViewModel;
     SPTFreeTierAlbumContextMenuButtonViewModel *_contextMenuButtonViewModel;
     id <SPTPlayer> _player;
+    SPTProgressView *_progressView;
+    VISREFIntegrationManager *_visualRefreshIntegrationManager;
 }
 
+@property(retain, nonatomic) VISREFIntegrationManager *visualRefreshIntegrationManager; // @synthesize visualRefreshIntegrationManager=_visualRefreshIntegrationManager;
+@property(retain, nonatomic) SPTProgressView *progressView; // @synthesize progressView=_progressView;
 @property(readonly, nonatomic) id <SPTPlayer> player; // @synthesize player=_player;
 @property(readonly, nonatomic) SPTFreeTierAlbumContextMenuButtonViewModel *contextMenuButtonViewModel; // @synthesize contextMenuButtonViewModel=_contextMenuButtonViewModel;
-@property(readonly, nonatomic) SPTFreeTierAlbumHeartBanButtonViewModel *heartBanButtonViewModel; // @synthesize heartBanButtonViewModel=_heartBanButtonViewModel;
+@property(readonly, nonatomic) SPTFreeTierAlbumFeedbackButtonViewModel *feedbackButtonViewModel; // @synthesize feedbackButtonViewModel=_feedbackButtonViewModel;
 - (void).cxx_destruct;
+- (void)hubView:(id)arg1 componentViewWillAppear:(id)arg2;
 - (void)playURIInContext:(id)arg1;
 - (void)determineIfContextContainsURI:(id)arg1 responseHandler:(CDUnknownBlockType)arg2;
 @property(readonly, nonatomic) NSURL *URI;
+- (void)viewDidDisappear:(_Bool)arg1;
+- (void)viewDidAppear:(_Bool)arg1;
+- (void)viewWillAppear:(_Bool)arg1;
 - (void)viewModelDidLoad:(id)arg1;
 - (void)setupNavigationItems;
-- (id)initWithTheme:(id)arg1 pageIdentifier:(id)arg2 pageURI:(id)arg3 componentRegistry:(id)arg4 componentLayoutManager:(id)arg5 imageLoaderFactory:(id)arg6 commandHandler:(id)arg7 viewModelProvider:(id)arg8 impressionLogger:(id)arg9 loadingLogger:(id)arg10 heartBanButtonViewModel:(id)arg11 contextMenuButtonViewModel:(id)arg12 player:(id)arg13;
+- (id)initWithTheme:(id)arg1 pageIdentifier:(id)arg2 pageURI:(id)arg3 componentRegistry:(id)arg4 componentLayoutManager:(id)arg5 imageLoaderFactory:(id)arg6 commandHandler:(id)arg7 viewModelProvider:(id)arg8 impressionLogger:(id)arg9 loadingLogger:(id)arg10 feedbackButtonViewModel:(id)arg11 contextMenuButtonViewModel:(id)arg12 player:(id)arg13 visualRefreshIntegrationManager:(id)arg14 shareDragDelegateFactory:(id)arg15;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

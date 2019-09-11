@@ -83,9 +83,13 @@
 - (void)playToProgress:(double)arg1 withCompletion:(CDUnknownBlockType)arg2;
 - (void)playWithCompletion:(CDUnknownBlockType)arg1;
 - (void)play;
+- (void)setAnimationFromJSON:(id)arg1 inBundle:(id)arg2;
 - (void)setAnimationFromJSON:(id)arg1;
+- (void)setAnimationNamed:(id)arg1 inBundle:(id)arg2;
 - (void)setAnimationNamed:(id)arg1;
 - (void)_callCompletionIfNecessary:(_Bool)arg1;
+- (void)_handleWillEnterForeground;
+- (void)_handleWillEnterBackground;
 - (void)_handleWindowChanges:(_Bool)arg1;
 - (_Bool)_isSpeedNegative;
 - (id)_frameForProgress:(double)arg1;
@@ -93,6 +97,7 @@
 - (void)_removeCurrentAnimationIfNecessary;
 - (void)_restoreState;
 - (void)_setupWithSceneModel:(id)arg1;
+- (void)dealloc;
 - (void)_commonInit;
 - (void)_initializeAnimationContainer;
 - (id)initWithCoder:(id)arg1;

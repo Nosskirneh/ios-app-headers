@@ -6,13 +6,9 @@
 
 #import "NSObject-Protocol.h"
 
-@protocol SPTFeatureFlagSignal, SPTHomeTestManagerObserver;
-
 @protocol SPTHomeTestManager <NSObject>
-@property(readonly, nonatomic) id <SPTFeatureFlagSignal> newExperienceHomeEnabledSignal;
-@property(readonly, nonatomic, getter=isBadgeTestEnabled) _Bool badgeTestEnabled;
-@property(readonly, nonatomic) unsigned long long mode;
-- (void)removeObserver:(id <SPTHomeTestManagerObserver>)arg1;
-- (void)addObserver:(id <SPTHomeTestManagerObserver>)arg1;
+@property(readonly, nonatomic, getter=isConsolidatedRecentlyPlayedEnabled) _Bool consolidatedRecentlyPlayedEnabled;
+@property(readonly, nonatomic, getter=isQuickPlayEnabled) _Bool quickPlayEnabled;
+@property(readonly, nonatomic, getter=isProductStateNPT) _Bool productStateNPT;
 @end
 

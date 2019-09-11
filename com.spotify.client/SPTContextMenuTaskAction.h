@@ -7,11 +7,12 @@
 #import <objc/NSObject.h>
 
 #import "SPTContextMenuAction-Protocol.h"
+#import "SPTDismissContextMenuAction-Protocol.h"
 
 @class NSString, SPAction, SPTask;
 @protocol SPTContextMenuTaskActionDelegate;
 
-@interface SPTContextMenuTaskAction : NSObject <SPTContextMenuAction>
+@interface SPTContextMenuTaskAction : NSObject <SPTContextMenuAction, SPTDismissContextMenuAction>
 {
     _Bool _valid;
     _Bool _waitingForUpdates;
@@ -30,6 +31,7 @@
 @property(nonatomic) __weak id senderObject; // @synthesize senderObject=_senderObject;
 @property(retain, nonatomic) SPTask *task; // @synthesize task=_task;
 - (void).cxx_destruct;
+- (_Bool)shouldDismissContextMenuBeforePerformingAction;
 - (id)performAction;
 - (id)logEventName;
 - (_Bool)isDisabled;

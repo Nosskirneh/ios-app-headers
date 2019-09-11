@@ -6,10 +6,10 @@
 
 #import "SPTService-Protocol.h"
 
-@protocol SPTSleepTimerContextMenuActionsProvider, SPTSleepTimerController;
+@protocol SPTContextMenuPresenter, SPTSleepTimerContextMenuActionsProvider, SPTSleepTimerController;
 
 @protocol SPTSleepTimerService <SPTService>
-- (_Bool)isSleepTimerEnabled;
+- (id <SPTContextMenuPresenter>)provideSleepTimerContextMenuPresenterForPodcast:(_Bool)arg1;
 - (id <SPTSleepTimerContextMenuActionsProvider>)provideSleepTimerContextMenuActionsProvider;
 - (id <SPTSleepTimerController>)provideSleepTimerController;
 @end

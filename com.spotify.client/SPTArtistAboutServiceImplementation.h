@@ -9,16 +9,19 @@
 #import "SPTArtistAboutService-Protocol.h"
 
 @class NSString, SPTAllocationContext, SPTArtistAboutGLUETheme, SPTArtistAboutHubComponentFactoryImplementation;
-@protocol SPTContainerService, SPTCoreService, SPTGLUEService, SPTNetworkService, SPTPerformanceMetricsService, SPTURIDispatchService;
+@protocol SPContextMenuFeature, SPTContainerService, SPTCoreService, SPTFeatureFlaggingService, SPTGLUEService, SPTModerationService, SPTNetworkService, SPTPerformanceMetricsService, SPTURIDispatchService;
 
 @interface SPTArtistAboutServiceImplementation : NSObject <SPTArtistAboutService>
 {
     id <SPTContainerService> _containerService;
     id <SPTCoreService> _coreService;
+    id <SPTFeatureFlaggingService> _featureFlaggingService;
     id <SPTGLUEService> _glueService;
     id <SPTNetworkService> _networkService;
     id <SPTPerformanceMetricsService> _performanceMetricsService;
     id <SPTURIDispatchService> _uriDispatchService;
+    id <SPContextMenuFeature> _contextMenuService;
+    id <SPTModerationService> _moderationService;
     SPTArtistAboutGLUETheme *_glueTheme;
     SPTArtistAboutHubComponentFactoryImplementation *_hubComponentFactory;
 }
@@ -26,10 +29,13 @@
 + (id)serviceIdentifier;
 @property(retain, nonatomic) SPTArtistAboutHubComponentFactoryImplementation *hubComponentFactory; // @synthesize hubComponentFactory=_hubComponentFactory;
 @property(retain, nonatomic) SPTArtistAboutGLUETheme *glueTheme; // @synthesize glueTheme=_glueTheme;
+@property(nonatomic) __weak id <SPTModerationService> moderationService; // @synthesize moderationService=_moderationService;
+@property(nonatomic) __weak id <SPContextMenuFeature> contextMenuService; // @synthesize contextMenuService=_contextMenuService;
 @property(nonatomic) __weak id <SPTURIDispatchService> uriDispatchService; // @synthesize uriDispatchService=_uriDispatchService;
 @property(nonatomic) __weak id <SPTPerformanceMetricsService> performanceMetricsService; // @synthesize performanceMetricsService=_performanceMetricsService;
 @property(nonatomic) __weak id <SPTNetworkService> networkService; // @synthesize networkService=_networkService;
 @property(nonatomic) __weak id <SPTGLUEService> glueService; // @synthesize glueService=_glueService;
+@property(nonatomic) __weak id <SPTFeatureFlaggingService> featureFlaggingService; // @synthesize featureFlaggingService=_featureFlaggingService;
 @property(nonatomic) __weak id <SPTCoreService> coreService; // @synthesize coreService=_coreService;
 @property(nonatomic) __weak id <SPTContainerService> containerService; // @synthesize containerService=_containerService;
 - (void).cxx_destruct;

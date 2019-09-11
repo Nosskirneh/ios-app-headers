@@ -6,13 +6,13 @@
 
 #import "SPTPlaylistFolderViewController.h"
 
-#import "SPTContextMenuContentViewController-Protocol.h"
 #import "SPTMetaViewControllerPresentable-Protocol.h"
+#import "SPTPlaylistDismissableViewController-Protocol.h"
 
 @class GLUEButtonStyle, NSArray, NSString, NSURL, SPSession, SPTPlaylistCreateNewPlaylistController, SPTPlaylistGLUETheme, SPTPlaylistLogger, SPTPlaylistTestManager, SPTTableView;
-@protocol GLUEImageLoader, GLUETheme, PlaylistFeature, SPTAlertController, SPTContextMenuContentViewControllerDelegate, SPTFreeTierEducationSnackBarPresenter, SPTLocalSettings, SPTOfflineManager, SPTOfflineModeState, SPTPlaylistModel, SPTProductState;
+@protocol GLUEImageLoader, GLUETheme, PlaylistFeature, SPTAlertController, SPTContextMenuContentViewControllerDelegate, SPTLocalSettings, SPTOfflineManager, SPTOfflineModeState, SPTPlaylistModel, SPTProductState, SPTSnackbarConditionalPresenter;
 
-@interface SPTPlaylistAddToPlaylistViewController : SPTPlaylistFolderViewController <SPTMetaViewControllerPresentable, SPTContextMenuContentViewController>
+@interface SPTPlaylistAddToPlaylistViewController : SPTPlaylistFolderViewController <SPTMetaViewControllerPresentable, SPTPlaylistDismissableViewController>
 {
     _Bool _isAdding;
     _Bool _added;
@@ -39,7 +39,7 @@
     id <SPTLocalSettings> _localSettings;
     SPTPlaylistTestManager *_playlistTestManager;
     id <SPTAlertController> _alertController;
-    id <SPTFreeTierEducationSnackBarPresenter> _snackbarEducationPresenter;
+    id <SPTSnackbarConditionalPresenter> _snackbarPresenter;
     GLUEButtonStyle *_newPlaylistButtonStyle;
     double _newPlaylistHeaderHeight;
     id <GLUETheme> _theme;
@@ -48,7 +48,7 @@
 @property(readonly, nonatomic) id <GLUETheme> theme; // @synthesize theme=_theme;
 @property(nonatomic) double newPlaylistHeaderHeight; // @synthesize newPlaylistHeaderHeight=_newPlaylistHeaderHeight;
 @property(retain, nonatomic) GLUEButtonStyle *newPlaylistButtonStyle; // @synthesize newPlaylistButtonStyle=_newPlaylistButtonStyle;
-@property(retain, nonatomic) id <SPTFreeTierEducationSnackBarPresenter> snackbarEducationPresenter; // @synthesize snackbarEducationPresenter=_snackbarEducationPresenter;
+@property(retain, nonatomic) id <SPTSnackbarConditionalPresenter> snackbarPresenter; // @synthesize snackbarPresenter=_snackbarPresenter;
 @property(retain, nonatomic) id <SPTAlertController> alertController; // @synthesize alertController=_alertController;
 @property(retain, nonatomic) SPTPlaylistTestManager *playlistTestManager; // @synthesize playlistTestManager=_playlistTestManager;
 @property(retain, nonatomic) id <SPTLocalSettings> localSettings; // @synthesize localSettings=_localSettings;
@@ -97,7 +97,7 @@
 - (void)viewDidLoad;
 - (void)viewDidAppear:(_Bool)arg1;
 - (void)dealloc;
-- (id)initWithSession:(id)arg1 offlineManager:(id)arg2 viewModel:(id)arg3 tracksToAdd:(id)arg4 addEntityURL:(id)arg5 defaultPlaylistName:(id)arg6 glueImageLoader:(id)arg7 productState:(id)arg8 offlineModeNotifier:(id)arg9 collectionLogger:(id)arg10 logger:(id)arg11 logContext:(id)arg12 playlistModel:(id)arg13 localSettings:(id)arg14 playlistFeature:(id)arg15 sourceURL:(id)arg16 contextSourceURL:(id)arg17 playlistGLUETheme:(id)arg18 currentUserData:(id)arg19 playlistTestManager:(id)arg20 alertController:(id)arg21 snackbarEducationPresenter:(id)arg22 linkDispatcher:(id)arg23;
+- (id)initWithSession:(id)arg1 offlineManager:(id)arg2 viewModel:(id)arg3 tracksToAdd:(id)arg4 addEntityURL:(id)arg5 defaultPlaylistName:(id)arg6 glueImageLoader:(id)arg7 productState:(id)arg8 offlineModeNotifier:(id)arg9 collectionLogger:(id)arg10 logger:(id)arg11 logContext:(id)arg12 playlistModel:(id)arg13 localSettings:(id)arg14 playlistFeature:(id)arg15 sourceURL:(id)arg16 contextSourceURL:(id)arg17 playlistGLUETheme:(id)arg18 playlistTestManager:(id)arg19 alertController:(id)arg20 snackbarPresenter:(id)arg21 linkDispatcher:(id)arg22;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

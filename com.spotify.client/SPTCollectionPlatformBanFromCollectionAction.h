@@ -15,6 +15,7 @@
     id <SPTCollectionPlatform> _collectionPlatform;
     id <SPTCollectionPlatformTestManager> _collectionTestManager;
     id <SPTCollectionLogger> _collectionLogger;
+    unsigned long long _banActionType;
     NSURL *_link;
     NSURL *_sourceURL;
     NSURL *_contextURL;
@@ -23,6 +24,7 @@
 @property(copy, nonatomic) NSURL *contextURL; // @synthesize contextURL=_contextURL;
 @property(copy, nonatomic) NSURL *sourceURL; // @synthesize sourceURL=_sourceURL;
 @property(retain, nonatomic) NSURL *link; // @synthesize link=_link;
+@property(nonatomic) unsigned long long banActionType; // @synthesize banActionType=_banActionType;
 @property(readonly, nonatomic) _Bool wasBanned; // @synthesize wasBanned=_wasBanned;
 @property(retain, nonatomic) id <SPTCollectionLogger> collectionLogger; // @synthesize collectionLogger=_collectionLogger;
 @property(nonatomic) __weak id <SPTCollectionPlatformTestManager> collectionTestManager; // @synthesize collectionTestManager=_collectionTestManager;

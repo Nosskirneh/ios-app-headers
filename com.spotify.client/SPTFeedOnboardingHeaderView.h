@@ -6,18 +6,18 @@
 
 #import <UIKit/UICollectionReusableView.h>
 
-@class SPTLayoutConstraintBuilder, UILabel, UIView;
+@class NSArray, UILabel, UIView;
 
 @interface SPTFeedOnboardingHeaderView : UICollectionReusableView
 {
     UILabel *_titleLabel;
     UILabel *_subtitleLabel;
-    SPTLayoutConstraintBuilder *_layout;
+    NSArray *_layoutConstraints;
     UIView *_container;
 }
 
 @property(retain, nonatomic) UIView *container; // @synthesize container=_container;
-@property(retain, nonatomic) SPTLayoutConstraintBuilder *layout; // @synthesize layout=_layout;
+@property(copy, nonatomic) NSArray *layoutConstraints; // @synthesize layoutConstraints=_layoutConstraints;
 @property(readonly, nonatomic) UILabel *subtitleLabel; // @synthesize subtitleLabel=_subtitleLabel;
 @property(readonly, nonatomic) UILabel *titleLabel; // @synthesize titleLabel=_titleLabel;
 - (void).cxx_destruct;

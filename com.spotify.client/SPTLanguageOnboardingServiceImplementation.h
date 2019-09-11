@@ -6,57 +6,61 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTFeatureFlagSignalObserver-Protocol.h"
 #import "SPTLanguageOnboardingService-Protocol.h"
 #import "SPTURISubtypeHandler-Protocol.h"
 
 @class NSString, SPTAllocationContext, SPTLanguageOnboardingDataLoader, SPTLanguageOnboardingFlowCoordinator, SPTLanguageOnboardingTestManagerImplementation;
-@protocol SPTContainerService, SPTFeatureFlagSignal, SPTFeatureFlaggingService, SPTFreeTierService, SPTGLUEService, SPTNetworkService, SPTSettingsFeature, SPTUIPresentationService, SPTURIDispatchService;
+@protocol SPTContainerService, SPTFeatureFlaggingService, SPTGLUEService, SPTLanguageOnboardingUserDefaultsController, SPTNetworkService, SPTPageRegistrationToken, SPTSessionService, SPTSettingsFeature, SPTUIPresentationService, SPTURIDispatchService;
 
-@interface SPTLanguageOnboardingServiceImplementation : NSObject <SPTFeatureFlagSignalObserver, SPTURISubtypeHandler, SPTLanguageOnboardingService>
+@interface SPTLanguageOnboardingServiceImplementation : NSObject <SPTURISubtypeHandler, SPTLanguageOnboardingService>
 {
     id <SPTContainerService> _containerService;
-    id <SPTFreeTierService> _freeTierService;
     id <SPTFeatureFlaggingService> _featureFlaggingService;
     id <SPTSettingsFeature> _settingsService;
     id <SPTUIPresentationService> _uiPresentationService;
     id <SPTNetworkService> _networkService;
     id <SPTGLUEService> _glueService;
     id <SPTURIDispatchService> _uriDispatchService;
-    id <SPTFeatureFlagSignal> _freeTierSignal;
+    id <SPTSessionService> _clientSessionService;
+    id <SPTLanguageOnboardingUserDefaultsController> _userDefaultsController;
     SPTLanguageOnboardingTestManagerImplementation *_testManager;
     SPTLanguageOnboardingFlowCoordinator *_flowCoordinator;
     SPTLanguageOnboardingDataLoader *_languageOnboardingDataLoader;
+    id <SPTPageRegistrationToken> _featurePageToken;
 }
 
 + (id)serviceIdentifier;
+@property(retain, nonatomic) id <SPTPageRegistrationToken> featurePageToken; // @synthesize featurePageToken=_featurePageToken;
 @property(retain, nonatomic) SPTLanguageOnboardingDataLoader *languageOnboardingDataLoader; // @synthesize languageOnboardingDataLoader=_languageOnboardingDataLoader;
 @property(retain, nonatomic) SPTLanguageOnboardingFlowCoordinator *flowCoordinator; // @synthesize flowCoordinator=_flowCoordinator;
 @property(retain, nonatomic) SPTLanguageOnboardingTestManagerImplementation *testManager; // @synthesize testManager=_testManager;
-@property(retain, nonatomic) id <SPTFeatureFlagSignal> freeTierSignal; // @synthesize freeTierSignal=_freeTierSignal;
+@property(retain, nonatomic) id <SPTLanguageOnboardingUserDefaultsController> userDefaultsController; // @synthesize userDefaultsController=_userDefaultsController;
+@property(nonatomic) __weak id <SPTSessionService> clientSessionService; // @synthesize clientSessionService=_clientSessionService;
 @property(nonatomic) __weak id <SPTURIDispatchService> uriDispatchService; // @synthesize uriDispatchService=_uriDispatchService;
 @property(nonatomic) __weak id <SPTGLUEService> glueService; // @synthesize glueService=_glueService;
 @property(nonatomic) __weak id <SPTNetworkService> networkService; // @synthesize networkService=_networkService;
 @property(nonatomic) __weak id <SPTUIPresentationService> uiPresentationService; // @synthesize uiPresentationService=_uiPresentationService;
 @property(nonatomic) __weak id <SPTSettingsFeature> settingsService; // @synthesize settingsService=_settingsService;
 @property(nonatomic) __weak id <SPTFeatureFlaggingService> featureFlaggingService; // @synthesize featureFlaggingService=_featureFlaggingService;
-@property(nonatomic) __weak id <SPTFreeTierService> freeTierService; // @synthesize freeTierService=_freeTierService;
 @property(nonatomic) __weak id <SPTContainerService> containerService; // @synthesize containerService=_containerService;
 - (void).cxx_destruct;
-- (void)featureFlagSignal:(id)arg1 hasAssumedState:(long long)arg2;
+- (id)provideLanguageSettingsViewController;
 - (long long)URISubtypeHandlerOpenURI:(id)arg1 context:(id)arg2;
 - (_Bool)URISubtypeHandlerCanHandleURI:(id)arg1;
+- (void)unregisterPages;
+- (void)registerPages;
 - (void)unregisterLinkHandler;
 - (void)registerLinkHandler;
-- (id)provideLanguageSettingSection:(id)arg1;
-- (void)setupLanguageSettings;
 - (void)setupFlowCoordinator;
 - (void)setupDataLoader;
 - (void)setupTestManager;
 - (void)disableFeature;
+- (void)setupUserDefaultsController;
 - (void)enableFeature;
 - (id)provideCoordinator;
+@property(readonly, nonatomic) _Bool hasCompletedLanguageOnboarding;
 @property(readonly, nonatomic, getter=isLanguageOnboardingEnabled) _Bool languageOnboardingEnabled;
+- (id)provideTheme;
 - (void)unload;
 - (void)load;
 - (void)configureWithServices:(id)arg1;

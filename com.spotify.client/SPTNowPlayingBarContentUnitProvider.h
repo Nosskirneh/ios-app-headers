@@ -6,37 +6,37 @@
 
 #import "SPTNowPlayingBaseUnitProvider.h"
 
-@class SPTNowPlayingBarContentProviderRegistryImplementation, SPTNowPlayingBarModel, SPTNowPlayingLogger, SPTTheme;
-@protocol GaiaFeature, SPTGaiaDevicesAvailableViewProvider, SPTGaiaManager, SPTNowPlayingManager, SPTUpsellManager, SPTVideoSurfaceManager;
+@class SPTNowPlayingBarModel, SPTNowPlayingLogger, SPTNowPlayingSkipLimitReachedMessageRequester, SPTTheme;
+@protocol SPTConnectAccessButtonTestManager, SPTGaiaConnectAPI, SPTGaiaDevicePickerPresenter, SPTGaiaDevicesAvailableViewProvider, SPTNowPlayingManager, SPTNowPlayingTestManager;
 
 @interface SPTNowPlayingBarContentUnitProvider : SPTNowPlayingBaseUnitProvider
 {
-    id <GaiaFeature> _gaia;
     id <SPTNowPlayingManager> _nowPlayingManager;
     SPTNowPlayingBarModel *_model;
     SPTNowPlayingLogger *_logger;
-    id <SPTUpsellManager> _upsellManager;
-    id <SPTVideoSurfaceManager> _videoSurfaceManager;
-    id <SPTGaiaManager> _gaiaManager;
+    SPTNowPlayingSkipLimitReachedMessageRequester *_skipLimitReachedMessageRequester;
     SPTTheme *_theme;
-    SPTNowPlayingBarContentProviderRegistryImplementation *_barContentProviderRegistry;
+    id <SPTGaiaConnectAPI> _connectManager;
+    id <SPTGaiaDevicePickerPresenter> _devicePickerPresenter;
+    id <SPTConnectAccessButtonTestManager> _connectAccessButtonTestManager;
     id <SPTGaiaDevicesAvailableViewProvider> _devicesAvailableViewProvider;
+    id <SPTNowPlayingTestManager> _testManager;
 }
 
+@property(readonly, nonatomic) id <SPTNowPlayingTestManager> testManager; // @synthesize testManager=_testManager;
 @property(retain, nonatomic) id <SPTGaiaDevicesAvailableViewProvider> devicesAvailableViewProvider; // @synthesize devicesAvailableViewProvider=_devicesAvailableViewProvider;
-@property(readonly, nonatomic) SPTNowPlayingBarContentProviderRegistryImplementation *barContentProviderRegistry; // @synthesize barContentProviderRegistry=_barContentProviderRegistry;
+@property(readonly, nonatomic) id <SPTConnectAccessButtonTestManager> connectAccessButtonTestManager; // @synthesize connectAccessButtonTestManager=_connectAccessButtonTestManager;
+@property(readonly, nonatomic) id <SPTGaiaDevicePickerPresenter> devicePickerPresenter; // @synthesize devicePickerPresenter=_devicePickerPresenter;
+@property(readonly, nonatomic) id <SPTGaiaConnectAPI> connectManager; // @synthesize connectManager=_connectManager;
 @property(readonly, nonatomic) SPTTheme *theme; // @synthesize theme=_theme;
-@property(readonly, nonatomic) id <SPTGaiaManager> gaiaManager; // @synthesize gaiaManager=_gaiaManager;
-@property(readonly, nonatomic) id <SPTVideoSurfaceManager> videoSurfaceManager; // @synthesize videoSurfaceManager=_videoSurfaceManager;
-@property(readonly, nonatomic) id <SPTUpsellManager> upsellManager; // @synthesize upsellManager=_upsellManager;
+@property(readonly, nonatomic) SPTNowPlayingSkipLimitReachedMessageRequester *skipLimitReachedMessageRequester; // @synthesize skipLimitReachedMessageRequester=_skipLimitReachedMessageRequester;
 @property(readonly, nonatomic) SPTNowPlayingLogger *logger; // @synthesize logger=_logger;
 @property(readonly, nonatomic) SPTNowPlayingBarModel *model; // @synthesize model=_model;
 @property(readonly, nonatomic) __weak id <SPTNowPlayingManager> nowPlayingManager; // @synthesize nowPlayingManager=_nowPlayingManager;
-@property(readonly, nonatomic) __weak id <GaiaFeature> gaia; // @synthesize gaia=_gaia;
 - (void).cxx_destruct;
-- (void)createChromecastContentUnit;
+- (id)provideDevicesAvailableView;
 - (void)createMusicContentUnit;
-- (id)initWithPlayer:(id)arg1 gaiaManager:(id)arg2 model:(id)arg3 gaia:(id)arg4 logger:(id)arg5 upsellManager:(id)arg6 nowPlayingManager:(id)arg7 videoSurfaceManager:(id)arg8 theme:(id)arg9 devicesAvailableViewProvider:(id)arg10 barContentProviderRegistry:(id)arg11;
+- (id)initWithPlayer:(id)arg1 model:(id)arg2 logger:(id)arg3 skipLimitReachedMessageRequester:(id)arg4 nowPlayingManager:(id)arg5 theme:(id)arg6 connectManager:(id)arg7 devicePickerPresenter:(id)arg8 connectAccessButtonTestManager:(id)arg9 devicesAvailableViewProvider:(id)arg10 testManager:(id)arg11;
 - (void)processPlayerStateChange:(id)arg1 toggleMode:(unsigned long long)arg2;
 
 @end

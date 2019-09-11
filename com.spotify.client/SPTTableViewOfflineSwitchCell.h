@@ -9,7 +9,7 @@
 #import "SPTThemableViewLayoutDelegate-Protocol.h"
 #import "SPTViewOfflineSwitchDelegate-Protocol.h"
 
-@class GLUETableViewCellStyle, NSString, SPTLayoutConstraintBuilder, SPTNetworkConnectivityController, SPTViewOfflineSwitch;
+@class GLUETableViewCellStyle, NSArray, NSString, SPTNetworkConnectivityController, SPTViewOfflineSwitch;
 @protocol SPTModalPresentationController, SPTOfflineSwitchDelegate, SPTProductState;
 
 @interface SPTTableViewOfflineSwitchCell : UITableViewCell <SPTThemableViewLayoutDelegate, SPTViewOfflineSwitchDelegate>
@@ -21,10 +21,10 @@
     id <SPTProductState> _productState;
     id <SPTModalPresentationController> _modalPresentationController;
     GLUETableViewCellStyle *_tableViewCellStyle;
-    SPTLayoutConstraintBuilder *_layoutConstraintBuilder;
+    NSArray *_layoutConstraints;
 }
 
-@property(retain, nonatomic) SPTLayoutConstraintBuilder *layoutConstraintBuilder; // @synthesize layoutConstraintBuilder=_layoutConstraintBuilder;
+@property(copy, nonatomic) NSArray *layoutConstraints; // @synthesize layoutConstraints=_layoutConstraints;
 @property(retain, nonatomic) GLUETableViewCellStyle *tableViewCellStyle; // @synthesize tableViewCellStyle=_tableViewCellStyle;
 @property(retain, nonatomic) id <SPTModalPresentationController> modalPresentationController; // @synthesize modalPresentationController=_modalPresentationController;
 @property(retain, nonatomic) id <SPTProductState> productState; // @synthesize productState=_productState;
@@ -37,6 +37,7 @@
 - (void)offlineSwitchViewDidChangeState:(id)arg1 isOn:(_Bool)arg2;
 - (void)configureAutoLayouts;
 - (void)layoutSubviews;
+- (void)setCustomTitle:(id)arg1 forAvailability:(unsigned long long)arg2;
 - (void)reload;
 @property(nonatomic, getter=isOn) _Bool on;
 @property(nonatomic, getter=isEnabled) _Bool enabled;

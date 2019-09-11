@@ -6,24 +6,17 @@
 
 #import "SPTVideoResourceLoader-Protocol.h"
 
-@class NSNumber, NSString, NSURL, SPTVideoManifest, SPTVideoManifestProfile, SPTask;
+@class NSURL, SPTVideoManifest, SPTVideoManifestProfile;
 @protocol SPTVideoResourceLoaderInternalDelegate;
 
 @protocol SPTVideoResourceLoaderInternal <SPTVideoResourceLoader>
 @property(nonatomic) __weak id <SPTVideoResourceLoaderInternalDelegate> delegate;
-@property(nonatomic) _Bool offline;
-@property(nonatomic) _Bool appIsBackgrounded;
-@property(readonly, nonatomic) _Bool backgroundPlayPlusEnabled;
+@property(nonatomic) unsigned long long connectionMode;
 @property(readonly, nonatomic) NSURL *lastCDN;
-@property(readonly, nonatomic) double keyLatency;
-@property(readonly, nonatomic) NSString *keySystem;
-@property(readonly, nonatomic) NSNumber *initialManifestLatency;
 @property(readonly, nonatomic) SPTVideoManifest *manifest;
-@property(readonly, nonatomic) NSString *playbackID;
-@property(readonly, nonatomic) NSString *videoSourceID;
 @property(nonatomic) _Bool shouldHandleLoadingRequests;
 - (SPTVideoManifestProfile *)videoProfileForURL:(NSURL *)arg1;
 - (SPTVideoManifestProfile *)selectedAudioProfile;
-- (SPTask *)prepareResourceTask;
+- (void)prepareManifestResource:(void (^)(NSError *))arg1;
 @end
 

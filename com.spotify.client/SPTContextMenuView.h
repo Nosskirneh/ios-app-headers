@@ -10,19 +10,21 @@
 #import "UITableViewDataSource-Protocol.h"
 #import "UITableViewDelegate-Protocol.h"
 
-@class GLUEEntityRowStyle, NSString, SPTContextMenuMaskView, SPTContextMenuViewCancelButton, SPTTableView, SPTUIBlurView, UIPanGestureRecognizer, UITapGestureRecognizer;
+@class GLUEEntityRowStyle, NSString, SPTContextMenuMaskView, SPTContextMenuViewCloseButton, SPTTableView, SPTUIBlurView, UIPanGestureRecognizer, UITapGestureRecognizer;
 @protocol GLUETheme, SPTContextMenuViewDataSource, SPTContextMenuViewDelegate, SPTContextMenuViewInteractionTarget;
 
 @interface SPTContextMenuView : UIView <UITableViewDataSource, UITableViewDelegate, UIGestureRecognizerDelegate>
 {
     _Bool _shouldShowShadowMask;
+    _Bool _shouldShowCloseButton;
+    _Bool _shouldAllowInteractiveDismissGesture;
     _Bool _animating;
     _Bool _interactionRunning;
     _Bool _underlyingBlurViewUpdated;
     id <SPTContextMenuViewDataSource> _dataSource;
     id <SPTContextMenuViewDelegate> _delegate;
     long long _presentationStyle;
-    SPTContextMenuViewCancelButton *_cancelButton;
+    SPTContextMenuViewCloseButton *_closeButton;
     SPTUIBlurView *_blurView;
     UIView *_containerView;
     UIView *_accessoryContainerView;
@@ -51,8 +53,10 @@
 @property(retain, nonatomic) UIView *containerView; // @synthesize containerView=_containerView;
 @property(retain, nonatomic) SPTUIBlurView *blurView; // @synthesize blurView=_blurView;
 @property(nonatomic, getter=isAnimating) _Bool animating; // @synthesize animating=_animating;
+@property(nonatomic) _Bool shouldAllowInteractiveDismissGesture; // @synthesize shouldAllowInteractiveDismissGesture=_shouldAllowInteractiveDismissGesture;
+@property(nonatomic) _Bool shouldShowCloseButton; // @synthesize shouldShowCloseButton=_shouldShowCloseButton;
 @property(nonatomic) _Bool shouldShowShadowMask; // @synthesize shouldShowShadowMask=_shouldShowShadowMask;
-@property(retain, nonatomic) SPTContextMenuViewCancelButton *cancelButton; // @synthesize cancelButton=_cancelButton;
+@property(retain, nonatomic) SPTContextMenuViewCloseButton *closeButton; // @synthesize closeButton=_closeButton;
 @property(nonatomic) long long presentationStyle; // @synthesize presentationStyle=_presentationStyle;
 @property(nonatomic) __weak id <SPTContextMenuViewDelegate> delegate; // @synthesize delegate=_delegate;
 @property(nonatomic) __weak id <SPTContextMenuViewDataSource> dataSource; // @synthesize dataSource=_dataSource;
@@ -75,12 +79,14 @@
 - (void)setupLeadingAccessoryForCell:(id)arg1 image:(id)arg2 customImageStyle:(id)arg3;
 - (void)setupLeadingAccessoryForCell:(id)arg1 imageURL:(id)arg2 placeholderImage:(id)arg3 indexPath:(id)arg4 customImageStyle:(id)arg5;
 - (id)contentViewForCell:(id)arg1;
+- (_Bool)shouldAllowMultilineTitleForHeaderInSection:(long long)arg1;
 - (id)viewForHeaderInSection:(long long)arg1;
+- (id)attributedTitleForHeaderInSection:(unsigned long long)arg1;
 - (id)titleForHeaderInSection:(long long)arg1;
 - (double)bottomLeadingEdgeContentOffset;
 - (double)defaultContentOffset;
 - (double)contentOffset;
-- (struct CGRect)frameForCancelButton;
+- (struct CGRect)frameForCloseButton;
 - (struct CGRect)frameForAccessoryContainerView:(_Bool)arg1;
 - (struct CGRect)frameForContainerView:(_Bool)arg1;
 - (void)layoutSubviews;
@@ -88,7 +94,7 @@
 - (void)tapGestureRecognizerDidTap:(id)arg1;
 - (void)panGestureRecognizerDidPan:(id)arg1;
 - (_Bool)gestureRecognizerShouldBegin:(id)arg1;
-- (void)cancelButtonAction:(id)arg1;
+- (void)closeButtonAction:(id)arg1;
 - (void)willMoveToSuperview:(id)arg1;
 - (id)initWithInteractionTarget:(id)arg1;
 

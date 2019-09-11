@@ -6,11 +6,13 @@
 
 #import "NSObject-Protocol.h"
 
-@protocol SPTNowPlayingAuxiliaryActionsHandler;
+@protocol SPTNowPlayingAuxiliaryActionsHandler, SPTSleepTimerController;
 
 @protocol SPTNowPlayingAuxiliaryActionsHandlerObserver <NSObject>
 
 @optional
+- (void)auxiliaryActionsHandlerSleepTimer:(id <SPTSleepTimerController>)arg1 timeWasUpdated:(double)arg2;
+- (void)auxiliaryActionsHandlerSleepTimerDidUpdateState:(id <SPTSleepTimerController>)arg1;
 - (void)auxiliaryActionsHandlerDidChangePodcastSpeed:(id <SPTNowPlayingAuxiliaryActionsHandler>)arg1;
 - (void)auxiliaryActionsHandlerDidToggleCollectionState:(id <SPTNowPlayingAuxiliaryActionsHandler>)arg1;
 @end

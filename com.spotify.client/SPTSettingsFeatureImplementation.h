@@ -6,14 +6,11 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTSettingsFeature-Protocol.h"
-
 @class NSMapTable, NSString, SPTAllocationContext, SettingsRegistryImplementation;
-@protocol SPTAbbaService, SPTClientSettings, SPTContainerService, SPTCoreService, SPTSessionService, SPTSettingsUpsellDelegate, SPTURIDispatchService;
+@protocol SPTAbbaService, SPTClientSettings, SPTContainerService, SPTCoreService, SPTSessionService, SPTURIDispatchService;
 
-@interface SPTSettingsFeatureImplementation : NSObject <SPTSettingsFeature>
+@interface SPTSettingsFeatureImplementation : NSObject
 {
-    id <SPTSettingsUpsellDelegate> _upsellDelegate;
     id <SPTAbbaService> _abbaService;
     id <SPTSessionService> _clientSessionService;
     id <SPTCoreService> _coreService;
@@ -33,7 +30,6 @@
 @property(nonatomic) __weak id <SPTCoreService> coreService; // @synthesize coreService=_coreService;
 @property(nonatomic) __weak id <SPTSessionService> clientSessionService; // @synthesize clientSessionService=_clientSessionService;
 @property(nonatomic) __weak id <SPTAbbaService> abbaService; // @synthesize abbaService=_abbaService;
-@property(nonatomic) __weak id <SPTSettingsUpsellDelegate> upsellDelegate; // @synthesize upsellDelegate=_upsellDelegate;
 - (void).cxx_destruct;
 - (id)provideSettingsStructure;
 - (id)provideClientSettings;

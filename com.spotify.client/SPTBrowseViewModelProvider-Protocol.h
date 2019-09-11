@@ -6,11 +6,11 @@
 
 #import "NSObject-Protocol.h"
 
-@protocol EXP_HUBViewModel, SPTBrowseViewModelProviderObserver;
+@protocol HUBViewModel, SPTBrowseViewModelProviderObserver;
 
 @protocol SPTBrowseViewModelProvider <NSObject>
 @property(readonly, nonatomic) unsigned long long state;
-@property(readonly, nonatomic) id <EXP_HUBViewModel> viewModel;
+@property(readonly, nonatomic) id <HUBViewModel> viewModel;
 - (void)loadNextPage;
 - (void)refresh;
 - (void)reload;

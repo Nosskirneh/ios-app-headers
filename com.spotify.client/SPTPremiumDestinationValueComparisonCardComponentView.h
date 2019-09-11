@@ -4,28 +4,28 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import "EXP_HUBComponentView.h"
+#import "HUBComponentView.h"
 
-#import "EXP_HUBComponentViewWithChildren-Protocol.h"
+#import "HUBComponentViewWithChildren-Protocol.h"
 
 @class NSArray, SPTPremiumDestinationGLUETheme, UIView;
-@protocol EXP_HUBComponentViewChildDelegate;
+@protocol HUBComponentViewChildDelegate;
 
-@interface SPTPremiumDestinationValueComparisonCardComponentView : EXP_HUBComponentView <EXP_HUBComponentViewWithChildren>
+@interface SPTPremiumDestinationValueComparisonCardComponentView : HUBComponentView <HUBComponentViewWithChildren>
 {
-    id <EXP_HUBComponentViewChildDelegate> _childDelegate;
+    id <HUBComponentViewChildDelegate> _childDelegate;
     SPTPremiumDestinationGLUETheme *_theme;
     NSArray *_childComponentViews;
     UIView *_contentView;
 }
 
-+ (struct CGRect)layoutRectForComponentView:(id)arg1 fromPreviousComponentView:(id)arg2;
 + (struct CGSize)sizeForContainerViewSize:(struct CGSize)arg1 model:(id)arg2 theme:(id)arg3;
 @property(retain, nonatomic) UIView *contentView; // @synthesize contentView=_contentView;
 @property(retain, nonatomic) NSArray *childComponentViews; // @synthesize childComponentViews=_childComponentViews;
 @property(retain, nonatomic) SPTPremiumDestinationGLUETheme *theme; // @synthesize theme=_theme;
-@property(nonatomic) __weak id <EXP_HUBComponentViewChildDelegate> childDelegate; // @synthesize childDelegate=_childDelegate;
+@property(nonatomic) __weak id <HUBComponentViewChildDelegate> childDelegate; // @synthesize childDelegate=_childDelegate;
 - (void).cxx_destruct;
+- (id)constraintsForChildComponentView:(id)arg1 previousComponentView:(id)arg2 size:(struct CGSize)arg3;
 - (void)removeChildComponentViews:(id)arg1;
 - (void)setupChildComponentsForModel:(id)arg1;
 - (void)prepareForReuse;

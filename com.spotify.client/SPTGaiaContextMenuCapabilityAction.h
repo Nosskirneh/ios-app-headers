@@ -8,13 +8,13 @@
 
 #import "SPTGaiaContextMenuAction-Protocol.h"
 
-@class NSDictionary, NSString, SPTGaiaDevice, UIApplication, UIImage;
+@class NSDictionary, NSString, SPTGaiaConnectDevice, UIApplication, UIImage;
 @protocol GLUEImageLoader, SPTGaiaContextMenuActionDelegate, SPTLinkDispatcher;
 
 @interface SPTGaiaContextMenuCapabilityAction : NSObject <SPTGaiaContextMenuAction>
 {
     _Bool _validCapability;
-    SPTGaiaDevice *_device;
+    SPTGaiaConnectDevice *_connectDevice;
     id <SPTGaiaContextMenuActionDelegate> _delegate;
     NSDictionary *_capability;
     id <GLUEImageLoader> _imageLoader;
@@ -32,7 +32,7 @@
 @property(nonatomic) _Bool validCapability; // @synthesize validCapability=_validCapability;
 @property(copy, nonatomic) NSDictionary *capability; // @synthesize capability=_capability;
 @property(nonatomic) __weak id <SPTGaiaContextMenuActionDelegate> delegate; // @synthesize delegate=_delegate;
-@property(retain, nonatomic) SPTGaiaDevice *device; // @synthesize device=_device;
+@property(retain, nonatomic) SPTGaiaConnectDevice *connectDevice; // @synthesize connectDevice=_connectDevice;
 - (void).cxx_destruct;
 @property(readonly, nonatomic) _Bool supportsAutomaticFiltering;
 - (void)logHitEventWithFallback:(_Bool)arg1;

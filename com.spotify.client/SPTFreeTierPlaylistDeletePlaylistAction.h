@@ -9,17 +9,17 @@
 #import "SPTContextMenuAction-Protocol.h"
 
 @class NSString;
-@protocol SPTAlertController;
+@protocol SPTAlertInterface;
 
 @interface SPTFreeTierPlaylistDeletePlaylistAction : SPTContextMenuTaskAction <SPTContextMenuAction>
 {
     unsigned long long _numberOfTracks;
-    id <SPTAlertController> _alertController;
+    id <SPTAlertInterface> _alertInterface;
     CDUnknownBlockType _completion;
 }
 
 @property(copy, nonatomic) CDUnknownBlockType completion; // @synthesize completion=_completion;
-@property(retain, nonatomic) id <SPTAlertController> alertController; // @synthesize alertController=_alertController;
+@property(retain, nonatomic) id <SPTAlertInterface> alertInterface; // @synthesize alertInterface=_alertInterface;
 @property(nonatomic) unsigned long long numberOfTracks; // @synthesize numberOfTracks=_numberOfTracks;
 - (void).cxx_destruct;
 - (void)cancel;
@@ -28,7 +28,7 @@
 - (id)logUserIntent;
 - (long long)icon;
 - (id)title;
-- (id)initWithNumberOfTracks:(unsigned long long)arg1 alertController:(id)arg2 completion:(CDUnknownBlockType)arg3;
+- (id)initWithNumberOfTracks:(unsigned long long)arg1 alertInterface:(id)arg2 completion:(CDUnknownBlockType)arg3;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

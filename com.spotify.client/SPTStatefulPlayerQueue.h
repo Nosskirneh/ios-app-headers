@@ -6,28 +6,30 @@
 
 #import <objc/NSObject.h>
 
-@class NSHashTable, SPTPlayerState, SPTPlayerTrack;
+@class SPTObserverManager, SPTPlayerState, SPTPlayerTrack;
 @protocol SPTPlayer;
 
 @interface SPTStatefulPlayerQueue : NSObject
 {
     SPTPlayerState *_playerState;
-    NSHashTable *_observers;
+    SPTObserverManager *_observerManager;
     id <SPTPlayer> _player;
     long long _playerQueueOffset;
 }
 
 @property(nonatomic) long long playerQueueOffset; // @synthesize playerQueueOffset=_playerQueueOffset;
 @property(retain, nonatomic) id <SPTPlayer> player; // @synthesize player=_player;
-@property(retain, nonatomic) NSHashTable *observers; // @synthesize observers=_observers;
+@property(readonly, nonatomic) SPTObserverManager *observerManager; // @synthesize observerManager=_observerManager;
 @property(retain, nonatomic) SPTPlayerState *playerState; // @synthesize playerState=_playerState;
 - (void).cxx_destruct;
 - (void)resynchronizeQueue;
 - (_Bool)verifyAndHandleSkipToRelativeIndex:(id)arg1;
-- (void)predictSkipToRelativeIndex:(id)arg1;
+- (void)expectSkipToRelativeIndex:(id)arg1;
 - (_Bool)isExpectingPlayerSkips;
 - (id)performQueueOffsettingBy:(id)arg1 fromLocalChange:(_Bool)arg2;
 - (void)offsetQueueBy:(id)arg1 fromLocalChange:(_Bool)arg2;
+- (_Bool)previousTrackHasChangedForPlayerState:(id)arg1 givenOldPlayerState:(id)arg2 withRelativeSkipIndex:(unsigned long long)arg3;
+- (_Bool)nextTrackHasChangedForPlayerState:(id)arg1 givenOldPlayerState:(id)arg2 withRelativeSkipIndex:(unsigned long long)arg3;
 - (id)relativeTrackIndexForPlayerState:(id)arg1 givenPlayerState:(id)arg2;
 - (_Bool)isTrack:(id)arg1 equalToTrack:(id)arg2;
 - (id)keyForTrackInContext:(id)arg1;
@@ -36,8 +38,12 @@
 - (void)updateQueueWithPlayerState:(id)arg1 fromOldPlayerState:(id)arg2;
 - (_Bool)disallowPeekingAtRelativeIndex:(long long)arg1;
 - (_Bool)disallowSkippingToRelativeIndex:(long long)arg1;
+- (long long)numberOfPreviousTracks;
+- (long long)numberOfNextTracks;
 - (id)queuedTrackAtRelativeIndex:(long long)arg1;
+- (void)skipToPreviousTrackTimes:(long long)arg1;
 - (void)skipToPreviousTrack;
+- (void)skipToNextTrackTimes:(long long)arg1;
 - (void)skipToNextTrack;
 @property(readonly, nonatomic, getter=isQueueInSync) _Bool queueInSync;
 @property(readonly, nonatomic) SPTPlayerTrack *playingTrack;

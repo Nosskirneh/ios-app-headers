@@ -9,28 +9,26 @@
 #import "SPTDrivingMotionManagerDelegate-Protocol.h"
 #import "SPTDrivingStateDetector-Protocol.h"
 
-@class NSArray, NSNotificationCenter, NSString, NSTimer, SPTDrivingMotionDetectionLoader, SPTDrivingMotionManager, SPTDrivingState, SPTObserverManager;
+@class NSMutableArray, NSNotificationCenter, NSString, NSTimer, SPTDrivingMotionDetectionLoader, SPTDrivingMotionManager, SPTDrivingState, SPTObserverManager;
 @protocol SPTDrivingMotionBasedStateDetectorDelegate;
 
 @interface SPTDrivingMotionBasedStateDetector : NSObject <SPTDrivingMotionManagerDelegate, SPTDrivingStateDetector>
 {
     _Bool _observing;
-    _Bool _triggeredManually;
     id <SPTDrivingMotionBasedStateDetectorDelegate> _delegate;
     SPTDrivingMotionManager *_motionManager;
     SPTDrivingMotionDetectionLoader *_dataLoader;
     NSNotificationCenter *_notificationCenter;
     double _recordingDelay;
     SPTObserverManager *_observerProxy;
-    SPTDrivingState *_state;
-    NSArray *_pendingRecordingResults;
+    SPTDrivingState *_currentState;
     NSTimer *_delayedRecordingTimer;
+    NSMutableArray *_sensorsResults;
 }
 
+@property(retain, nonatomic) NSMutableArray *sensorsResults; // @synthesize sensorsResults=_sensorsResults;
 @property(retain, nonatomic) NSTimer *delayedRecordingTimer; // @synthesize delayedRecordingTimer=_delayedRecordingTimer;
-@property(nonatomic, getter=isTriggeredManually) _Bool triggeredManually; // @synthesize triggeredManually=_triggeredManually;
-@property(retain, nonatomic) NSArray *pendingRecordingResults; // @synthesize pendingRecordingResults=_pendingRecordingResults;
-@property(retain, nonatomic) SPTDrivingState *state; // @synthesize state=_state;
+@property(retain, nonatomic) SPTDrivingState *currentState; // @synthesize currentState=_currentState;
 @property(nonatomic, getter=isObserving) _Bool observing; // @synthesize observing=_observing;
 @property(readonly, nonatomic) SPTObserverManager *observerProxy; // @synthesize observerProxy=_observerProxy;
 @property(readonly, nonatomic) double recordingDelay; // @synthesize recordingDelay=_recordingDelay;
@@ -39,17 +37,23 @@
 @property(readonly, nonatomic) SPTDrivingMotionManager *motionManager; // @synthesize motionManager=_motionManager;
 @property(nonatomic) __weak id <SPTDrivingMotionBasedStateDetectorDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
-- (void)motionManager:(id)arg1 didFinishBatchRecordingWithResults:(id)arg2;
+- (void)motionManagerDidFinishProcessingAllRequestedBatches:(id)arg1;
+- (void)motionManager:(id)arg1 didFinishBatchRecordingWithResult:(id)arg2;
 - (void)predictDrivingStateForMotionData:(id)arg1;
 - (void)startRecordingSensorData;
-- (void)delayedRecordingTimerFired;
+- (_Bool)audioSourceChangedFromAUXLineoutToIrrelevantWithNewPort:(id)arg1 oldPort:(id)arg2;
+- (_Bool)audioSourceChangedFromIrrelevantToAUXLineoutWithNewPort:(id)arg1 oldPort:(id)arg2;
+- (_Bool)isAudioSourceAUXLineoutWithPort:(id)arg1;
+- (id)getOldOutputPortFromNotification:(id)arg1;
+- (void)stopRecording;
+- (void)configureDelayedRecording;
 - (void)audioRouteChanged:(id)arg1;
 - (void)updateWithState:(id)arg1;
-@property(readonly, nonatomic) SPTDrivingState *currentState;
 - (void)removeObserver:(id)arg1;
 - (void)addObserver:(id)arg1;
 - (void)endObservingDrivingState;
 - (void)beginObservingDrivingState;
+- (void)stopSamplingSensorsManually;
 - (void)startSamplingSensorsManually;
 - (id)initWithMotionManager:(id)arg1 dataLoader:(id)arg2 notificationCenter:(id)arg3 recordingDelay:(double)arg4;
 

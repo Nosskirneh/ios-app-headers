@@ -6,7 +6,7 @@
 
 #import "GPBMessage.h"
 
-@class GPBInt32Array;
+@class GPBInt64Array, NSString;
 
 @interface SPTRemoteConfiguration_ConfigurationApplied : GPBMessage
 {
@@ -15,8 +15,10 @@
 + (id)descriptor;
 
 // Remaining properties
+@property(copy, nonatomic) NSString *configurationAssignmentId; // @dynamic configurationAssignmentId;
+@property(nonatomic) int fetchType; // @dynamic fetchType;
 @property(nonatomic) long long lastRcsFetchTime; // @dynamic lastRcsFetchTime;
-@property(retain, nonatomic) GPBInt32Array *policyGroupIdsArray; // @dynamic policyGroupIdsArray;
+@property(retain, nonatomic) GPBInt64Array *policyGroupIdsArray; // @dynamic policyGroupIdsArray;
 @property(readonly, nonatomic) unsigned long long policyGroupIdsArray_Count; // @dynamic policyGroupIdsArray_Count;
 
 @end

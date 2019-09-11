@@ -6,32 +6,17 @@
 
 #import "HUGSThemableComponent.h"
 
-#import "HUBComponentWithChildren-Protocol.h"
-#import "HUBComponentWithImageHandling-Protocol.h"
+#import "HUBComponent-Protocol.h"
 
-@class NSSet, UIView;
-@protocol HUBComponentChildDelegate, HUBComponentModel;
+@class NSSet;
 
-@interface HUGSInfoViewComponent : HUGSThemableComponent <HUBComponentWithImageHandling, HUBComponentWithChildren>
+@interface HUGSInfoViewComponent : HUGSThemableComponent <HUBComponent>
 {
-    UIView *_view;
-    id <HUBComponentChildDelegate> _childDelegate;
-    id <HUBComponentModel> _buttonModel;
 }
 
-@property(retain, nonatomic) id <HUBComponentModel> buttonModel; // @synthesize buttonModel=_buttonModel;
-@property(nonatomic) __weak id <HUBComponentChildDelegate> childDelegate; // @synthesize childDelegate=_childDelegate;
-@property(retain, nonatomic) UIView *view; // @synthesize view=_view;
-- (void).cxx_destruct;
-- (void)handleInteractionWithButton;
-- (void)updateViewForLoadedImage:(id)arg1 fromData:(id)arg2 model:(id)arg3 animated:(_Bool)arg4;
-- (struct CGSize)preferredSizeForImageFromData:(id)arg1 model:(id)arg2 containerViewSize:(struct CGSize)arg3;
-- (void)configureViewWithModel:(id)arg1 containerViewSize:(struct CGSize)arg2;
-- (void)prepareViewForReuse;
-- (void)updateViewAfterResize;
 - (struct CGSize)preferredViewSizeForDisplayingModel:(id)arg1 containerViewSize:(struct CGSize)arg2;
-- (void)loadView;
-@property(readonly, nonatomic) NSSet *layoutTraits;
+- (id)createViewWithFrame:(struct CGRect)arg1;
+@property(readonly, copy, nonatomic) NSSet *layoutTraits;
 
 @end
 

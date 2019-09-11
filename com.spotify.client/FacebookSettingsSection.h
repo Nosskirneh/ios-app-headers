@@ -8,7 +8,7 @@
 
 #import "SPTSocialManagerObserver-Protocol.h"
 
-@class NSString, SPCore, SPTSettingsTableViewCell, UIActivityIndicatorView;
+@class NSString, SPCore, SPTSettingsLogger, SPTSettingsTableViewCell, UIActivityIndicatorView;
 @protocol SPTPreferences;
 
 @interface FacebookSettingsSection : SettingsSection <SPTSocialManagerObserver>
@@ -17,8 +17,10 @@
     UIActivityIndicatorView *_facebookConnectingActivityIndicator;
     id <SPTPreferences> _preferences;
     SPCore *_core;
+    SPTSettingsLogger *_logger;
 }
 
+@property(retain, nonatomic) SPTSettingsLogger *logger; // @synthesize logger=_logger;
 @property(readonly, nonatomic) __weak SPCore *core; // @synthesize core=_core;
 @property(readonly, nonatomic) id <SPTPreferences> preferences; // @synthesize preferences=_preferences;
 @property(retain, nonatomic) UIActivityIndicatorView *facebookConnectingActivityIndicator; // @synthesize facebookConnectingActivityIndicator=_facebookConnectingActivityIndicator;
@@ -36,7 +38,7 @@
 - (long long)numberOfRows;
 - (unsigned long long)categoryPosition;
 - (void)dealloc;
-- (id)initWithSettingsViewController:(id)arg1 preferences:(id)arg2 core:(id)arg3;
+- (id)initWithSettingsViewController:(id)arg1 preferences:(id)arg2 core:(id)arg3 logger:(id)arg4;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

@@ -6,13 +6,15 @@
 
 #import "NSObject-Protocol.h"
 
-@class NSNumber, NSURL, SPTNowPlayingTrackMetadataQueue;
+@class NSNumber, SPTNowPlayingTrackMetadataQueue;
 
 @protocol SPTNowPlayingTrackMetadataQueueObserver <NSObject>
 
 @optional
+- (void)trackMetadataQueueDidSynchronizeQueue:(SPTNowPlayingTrackMetadataQueue *)arg1;
+- (void)trackMetadataQueuePreviousTrackDidChange:(SPTNowPlayingTrackMetadataQueue *)arg1;
+- (void)trackMetadataQueueNextTrackDidChange:(SPTNowPlayingTrackMetadataQueue *)arg1;
 - (void)trackMetadataQueueWillSkipToNextTrack:(SPTNowPlayingTrackMetadataQueue *)arg1;
-- (void)trackMetadataQueue:(SPTNowPlayingTrackMetadataQueue *)arg1 didStageContextImageURL:(NSURL *)arg2;
 - (void)trackMetadataQueueDidFinishUpdating:(SPTNowPlayingTrackMetadataQueue *)arg1;
 - (void)trackMetadataQueue:(SPTNowPlayingTrackMetadataQueue *)arg1 didMoveToRelativeTrack:(NSNumber *)arg2;
 @end

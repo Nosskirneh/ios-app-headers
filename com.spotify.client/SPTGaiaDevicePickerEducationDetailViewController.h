@@ -8,7 +8,7 @@
 
 #import "SPTPageController-Protocol.h"
 
-@class GLUEButton, NSMutableArray, NSString, NSURL, SPTGaiaEducationDetailModel, SPTGaiaLogger, SPTLayoutConstraintBuilder, UIImageView, UIScrollView, UIView;
+@class GLUEButton, NSMutableArray, NSString, NSURL, SPTGaiaEducationDetailModel, SPTGaiaLogger, UIImageView, UIScrollView, UIView;
 @protocol GLUETheme, SPTGaiaDevicePickerDeviceSpecificConfigurationProvider, SPTPageContainer;
 
 @interface SPTGaiaDevicePickerEducationDetailViewController : UIViewController <SPTPageController>
@@ -17,7 +17,7 @@
     UIScrollView *_scrollView;
     UIView *_containerView;
     UIImageView *_headerImageView;
-    SPTLayoutConstraintBuilder *_builder;
+    NSMutableArray *_layoutConstraints;
     id <GLUETheme> _theme;
     NSMutableArray *_stepLabels;
     GLUEButton *_doneButton;
@@ -30,7 +30,7 @@
 @property(retain, nonatomic) GLUEButton *doneButton; // @synthesize doneButton=_doneButton;
 @property(retain, nonatomic) NSMutableArray *stepLabels; // @synthesize stepLabels=_stepLabels;
 @property(retain, nonatomic) id <GLUETheme> theme; // @synthesize theme=_theme;
-@property(retain, nonatomic) SPTLayoutConstraintBuilder *builder; // @synthesize builder=_builder;
+@property(retain, nonatomic) NSMutableArray *layoutConstraints; // @synthesize layoutConstraints=_layoutConstraints;
 @property(retain, nonatomic) UIImageView *headerImageView; // @synthesize headerImageView=_headerImageView;
 @property(retain, nonatomic) UIView *containerView; // @synthesize containerView=_containerView;
 @property(retain, nonatomic) UIScrollView *scrollView; // @synthesize scrollView=_scrollView;

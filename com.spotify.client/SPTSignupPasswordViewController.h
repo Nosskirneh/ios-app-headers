@@ -9,21 +9,23 @@
 #import "SPTLoginViewControllerProtocol-Protocol.h"
 #import "SPTNavigationControllerNavigationBarState-Protocol.h"
 #import "SPTPageController-Protocol.h"
-#import "SPTSignupPasswordViewModelDelegate-Protocol.h"
+#import "SPTSignupPasswordFieldValidationViewModelDelegate-Protocol.h"
 #import "UITextFieldDelegate-Protocol.h"
 
-@class NSError, NSString, NSURL, SPTSignupAnimatedTransitioning, SPTSignupPasswordViewModel, SPTSignupSingleInputFieldView;
+@class NSError, NSString, NSURL, SPTLoginTheme, SPTSignupAnimatedTransitioning, SPTSignupPasswordViewModel, SPTSignupSingleInputFieldView;
 @protocol SPTPageContainer;
 
-@interface SPTSignupPasswordViewController : UIViewController <SPTNavigationControllerNavigationBarState, UITextFieldDelegate, SPTSignupPasswordViewModelDelegate, SPTPageController, SPTLoginViewControllerProtocol>
+@interface SPTSignupPasswordViewController : UIViewController <SPTNavigationControllerNavigationBarState, UITextFieldDelegate, SPTSignupPasswordFieldValidationViewModelDelegate, SPTPageController, SPTLoginViewControllerProtocol>
 {
     _Bool performLogout;
     _Bool forgetUserAfterLogout;
     NSError *error;
     SPTSignupPasswordViewModel *_viewModel;
     SPTSignupAnimatedTransitioning *_animatedTransitioning;
+    SPTLoginTheme *_theme;
 }
 
+@property(retain, nonatomic) SPTLoginTheme *theme; // @synthesize theme=_theme;
 @property(retain, nonatomic) SPTSignupAnimatedTransitioning *animatedTransitioning; // @synthesize animatedTransitioning=_animatedTransitioning;
 @property(retain, nonatomic) SPTSignupPasswordViewModel *viewModel; // @synthesize viewModel=_viewModel;
 @property(copy, nonatomic) NSError *error; // @synthesize error;
@@ -46,7 +48,7 @@
 - (void)viewDidAppear:(_Bool)arg1;
 - (void)viewDidLoad;
 - (void)loadView;
-- (id)initWithViewModel:(id)arg1;
+- (id)initWithTheme:(id)arg1 viewModel:(id)arg2;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

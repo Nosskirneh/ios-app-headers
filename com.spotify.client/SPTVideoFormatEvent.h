@@ -4,17 +4,25 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import "SPTVideoPlayRange.h"
+#import <objc/NSObject.h>
 
 @protocol SPTVideoFormat;
 
-@interface SPTVideoFormatEvent : SPTVideoPlayRange
+@interface SPTVideoFormatEvent : NSObject
 {
     id <SPTVideoFormat> _format;
+    double _position;
+    double _length;
 }
 
-@property(retain, nonatomic) id <SPTVideoFormat> format; // @synthesize format=_format;
+@property(nonatomic) double length; // @synthesize length=_length;
+@property(nonatomic) double position; // @synthesize position=_position;
+@property(readonly, nonatomic) id <SPTVideoFormat> format; // @synthesize format=_format;
 - (void).cxx_destruct;
+- (id)copyWithZone:(struct _NSZone *)arg1;
+- (id)copyWithNewStartPosition:(double)arg1 format:(id)arg2;
+- (void)endAtPosition:(double)arg1;
+- (id)initWithStartPosition:(double)arg1 format:(id)arg2;
 
 @end
 

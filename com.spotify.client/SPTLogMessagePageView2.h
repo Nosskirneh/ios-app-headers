@@ -18,11 +18,11 @@
 }
 
 + (id)messageWithType:(id)arg1 timestamp:(long long)arg2 page:(id)arg3 entityUri:(id)arg4 navigationalRoot:(id)arg5;
-@property(retain, nonatomic) NSString *navigationalRootValue; // @synthesize navigationalRootValue=_navigationalRootValue;
-@property(retain, nonatomic) NSString *entityUriValue; // @synthesize entityUriValue=_entityUriValue;
-@property(retain, nonatomic) NSString *pageValue; // @synthesize pageValue=_pageValue;
+@property(copy, nonatomic) NSString *navigationalRootValue; // @synthesize navigationalRootValue=_navigationalRootValue;
+@property(copy, nonatomic) NSString *entityUriValue; // @synthesize entityUriValue=_entityUriValue;
+@property(copy, nonatomic) NSString *pageValue; // @synthesize pageValue=_pageValue;
 @property(nonatomic) long long timestampValue; // @synthesize timestampValue=_timestampValue;
-@property(retain, nonatomic) NSString *typeValue; // @synthesize typeValue=_typeValue;
+@property(copy, nonatomic) NSString *typeValue; // @synthesize typeValue=_typeValue;
 - (void).cxx_destruct;
 - (_Bool)isEqual:(id)arg1;
 - (unsigned long long)hash;

@@ -6,33 +6,25 @@
 
 #import <objc/NSObject.h>
 
-@class SPTLoginMagicLinkTestManager, SPTLoginTheme, SPTPopupManager;
-@protocol SPTLoginRecoverAccountHelpControllerDelegate, SPTLoginRecoverAccountHelpPopupLoggerProtocol, SPTNavigationRouter;
+@class SPTLoginDialogController;
+@protocol SPTLoginRecoverAccountHelpControllerDelegate, SPTLoginRecoverAccountHelpPopupLoggerProtocol;
 
 @interface SPTLoginRecoverAccountHelpController : NSObject
 {
     id <SPTLoginRecoverAccountHelpControllerDelegate> _delegate;
-    SPTLoginTheme *_theme;
-    SPTPopupManager *_popupManager;
-    id <SPTNavigationRouter> _navigationRouter;
+    SPTLoginDialogController *_dialogController;
     id <SPTLoginRecoverAccountHelpPopupLoggerProtocol> _logger;
     unsigned long long _retryCount;
-    SPTLoginMagicLinkTestManager *_magicLinkTestManager;
 }
 
-@property(retain, nonatomic) SPTLoginMagicLinkTestManager *magicLinkTestManager; // @synthesize magicLinkTestManager=_magicLinkTestManager;
 @property(nonatomic) unsigned long long retryCount; // @synthesize retryCount=_retryCount;
 @property(retain, nonatomic) id <SPTLoginRecoverAccountHelpPopupLoggerProtocol> logger; // @synthesize logger=_logger;
-@property(retain, nonatomic) id <SPTNavigationRouter> navigationRouter; // @synthesize navigationRouter=_navigationRouter;
-@property(retain, nonatomic) SPTPopupManager *popupManager; // @synthesize popupManager=_popupManager;
-@property(retain, nonatomic) SPTLoginTheme *theme; // @synthesize theme=_theme;
+@property(retain, nonatomic) SPTLoginDialogController *dialogController; // @synthesize dialogController=_dialogController;
 @property(nonatomic) __weak id <SPTLoginRecoverAccountHelpControllerDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
 - (void)presentGetHelpPopupWithEmailIfNeeded:(id)arg1;
-- (void)presentForgotPasswordViewWithEmail:(id)arg1;
 - (void)presentRequestLinkHelpPopupWithEmail:(id)arg1;
-- (void)presentGetHelpPopupWithEmail:(id)arg1;
-- (id)initWithTheme:(id)arg1 popupManager:(id)arg2 navigationRouter:(id)arg3 logger:(id)arg4 magicLinkTestManager:(id)arg5;
+- (id)initWithDialogController:(id)arg1 logger:(id)arg2;
 
 @end
 

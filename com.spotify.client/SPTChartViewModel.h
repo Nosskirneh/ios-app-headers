@@ -15,7 +15,6 @@
 {
     _Bool _currentChartBeingPlayed;
     _Bool _usingNewFormatsUI;
-    _Bool _heartsInEntityHeadersEnabled;
     _Bool _playlistHasLoaded;
     NSIndexPath *_indexPathForTrackCurrentlyPlaying;
     NSURL *_URIForTrackCurrentlyPlayed;
@@ -37,7 +36,6 @@
 @property(retain, nonatomic) NSURL *currentPlayerStateOriginURL; // @synthesize currentPlayerStateOriginURL=_currentPlayerStateOriginURL;
 @property(retain, nonatomic) id <SPTExplicitContentAccessManager> explicitContentAccessManager; // @synthesize explicitContentAccessManager=_explicitContentAccessManager;
 @property(retain, nonatomic) id <SPTOfflineModeState> offlineModeState; // @synthesize offlineModeState=_offlineModeState;
-@property(nonatomic, getter=isHeartsInEntityHeadersEnabled) _Bool heartsInEntityHeadersEnabled; // @synthesize heartsInEntityHeadersEnabled=_heartsInEntityHeadersEnabled;
 @property(readonly, nonatomic, getter=isUsingNewFormatsUI) _Bool usingNewFormatsUI; // @synthesize usingNewFormatsUI=_usingNewFormatsUI;
 @property(retain, nonatomic) SPTChart *chart; // @synthesize chart=_chart;
 @property(nonatomic) __weak id <SPTChartViewModelPlayerDelegate> playerDelegate; // @synthesize playerDelegate=_playerDelegate;
@@ -74,7 +72,7 @@
 @property(readonly, nonatomic, getter=isUserOffline) _Bool userOffline;
 - (void)playTrackAtIndexPath:(id)arg1;
 - (void)playContextShuffled:(_Bool)arg1 didUserTapTrackRow:(_Bool)arg2;
-- (id)initWithPlayer:(id)arg1 offlineModeState:(id)arg2 explicitContentAccessManager:(id)arg3 heartsInEntityHeadersEnabled:(_Bool)arg4 URL:(id)arg5;
+- (id)initWithPlayer:(id)arg1 offlineModeState:(id)arg2 explicitContentAccessManager:(id)arg3 URL:(id)arg4;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

@@ -6,13 +6,12 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTFeatureFlagSignalObserver-Protocol.h"
 #import "SPTService-Protocol.h"
 
-@class NSString, SPTAllocationContext, SPTPlaybackPreferencesObserver;
-@protocol CosmosFeature, SPTAbbaFeatureFlags, SPTAbbaService, SPTBannerFeature, SPTContainerService, SPTContainerUIService, SPTCoreService, SPTDataSaverService, SPTDebugService, SPTFeatureFlagSignal, SPTFreeTierService, SPTNetworkService, SPTSessionService, SPTSettingsDataSource, SPTSettingsFeature, SPTURIDispatchService, SPTVoiceService;
+@class NSString, SPTAllocationContext, SPTPlaybackPreferencesObserver, SPTSettingsLogger;
+@protocol CosmosFeature, ProfileFeature, SPTAbbaFeatureFlags, SPTAbbaService, SPTBannerFeature, SPTContainerService, SPTContainerUIService, SPTCoreService, SPTDataSaverService, SPTDebugService, SPTFeatureFlagSignal, SPTFreeTierService, SPTInAppMessageService, SPTLoginService, SPTNetworkService, SPTSessionService, SPTSettingsDataSource, SPTSettingsFeature, SPTURIDispatchService, SPTVoiceService;
 
-@interface SPTBuiltInSettingsFeatureImplementation : NSObject <SPTFeatureFlagSignalObserver, SPTService>
+@interface SPTBuiltInSettingsFeatureImplementation : NSObject <SPTService>
 {
     _Bool _freeTierEnabled;
     _Bool _dataSaverActivated;
@@ -30,21 +29,29 @@
     id <SPTFreeTierService> _freeTierService;
     id <SPTURIDispatchService> _URIDispatchService;
     id <SPTDataSaverService> _dataSaverService;
+    id <SPTLoginService> _loginService;
+    id <ProfileFeature> _profileFeature;
+    id <SPTInAppMessageService> _inAppMessageService;
     id <SPTAbbaFeatureFlags> _featureFlags;
     id <SPTSettingsDataSource> _settingsDataSource;
     id <SPTFeatureFlagSignal> _freeTierFeatureSignal;
     id <SPTFeatureFlagSignal> _dataSaverActivatedSignal;
+    SPTSettingsLogger *_settingsLogger;
     SPTPlaybackPreferencesObserver *_playbackPreferencesObserver;
 }
 
 + (id)serviceIdentifier;
 @property(retain, nonatomic) SPTPlaybackPreferencesObserver *playbackPreferencesObserver; // @synthesize playbackPreferencesObserver=_playbackPreferencesObserver;
+@property(retain, nonatomic) SPTSettingsLogger *settingsLogger; // @synthesize settingsLogger=_settingsLogger;
 @property(nonatomic) _Bool dataSaverActivated; // @synthesize dataSaverActivated=_dataSaverActivated;
 @property(retain, nonatomic) id <SPTFeatureFlagSignal> dataSaverActivatedSignal; // @synthesize dataSaverActivatedSignal=_dataSaverActivatedSignal;
 @property(nonatomic) _Bool freeTierEnabled; // @synthesize freeTierEnabled=_freeTierEnabled;
 @property(retain, nonatomic) id <SPTFeatureFlagSignal> freeTierFeatureSignal; // @synthesize freeTierFeatureSignal=_freeTierFeatureSignal;
 @property(retain, nonatomic) id <SPTSettingsDataSource> settingsDataSource; // @synthesize settingsDataSource=_settingsDataSource;
 @property(retain, nonatomic) id <SPTAbbaFeatureFlags> featureFlags; // @synthesize featureFlags=_featureFlags;
+@property(nonatomic) __weak id <SPTInAppMessageService> inAppMessageService; // @synthesize inAppMessageService=_inAppMessageService;
+@property(nonatomic) __weak id <ProfileFeature> profileFeature; // @synthesize profileFeature=_profileFeature;
+@property(nonatomic) __weak id <SPTLoginService> loginService; // @synthesize loginService=_loginService;
 @property(nonatomic) __weak id <SPTDataSaverService> dataSaverService; // @synthesize dataSaverService=_dataSaverService;
 @property(nonatomic) __weak id <SPTURIDispatchService> URIDispatchService; // @synthesize URIDispatchService=_URIDispatchService;
 @property(nonatomic) __weak id <SPTFreeTierService> freeTierService; // @synthesize freeTierService=_freeTierService;
@@ -65,10 +72,12 @@
 - (id)provideLicensesSettingsWithSettingsViewController:(id)arg1;
 - (id)provideVersionSettingsWithSettingsViewController:(id)arg1;
 - (id)provideFacebookSettingsWithSettingsViewController:(id)arg1;
+- (id)provideRecentlyPlayedArtistsSettingsWithSettingsViewController:(id)arg1;
 - (id)providePublishActivitySettingsWithSettingsViewController:(id)arg1;
 - (id)providePrivateSessionSettingsWithSettingsViewController:(id)arg1;
 - (id)provideStorageSettingsWithSettingsViewController:(id)arg1;
 - (id)provideOfflineSettingsSectionWithSettingsViewController:(id)arg1;
+- (id)provideAutomixSettingsWithSettingsViewController:(id)arg1;
 - (id)provideAudioNormalisationSettingsWithSettingsViewController:(id)arg1;
 - (id)provideUnplayableTracksSettingsWithSettingsViewController:(id)arg1;
 - (id)provideGaplessSettingsWithSettingsViewController:(id)arg1;
@@ -76,6 +85,8 @@
 - (id)provideSyncQualitySettingsWithSettingsViewController:(id)arg1;
 - (id)provideStreamQualitySettingsWithSettingsViewController:(id)arg1;
 - (id)provideLoudnessSettingsWithSettingsViewController:(id)arg1;
+- (id)provideProfileSettingsWithSettingsViewController:(id)arg1;
+- (id)provideLogoutSettingsSection:(id)arg1;
 - (void)unload;
 - (void)load;
 - (void)configureWithServices:(id)arg1;

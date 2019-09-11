@@ -6,7 +6,7 @@
 
 #import "NSObject-Protocol.h"
 
-@class GLUEImageView, GLUELabel, NSArray, NSString, SPTTheme, UIControl, UILabel, UIProgressView, UIView;
+@class GLUEImageView, GLUELabel, GLUETrackAccessoryLabel, NSArray, NSString, SPTTheme, UIControl, UILabel, UIProgressView, UIView;
 @protocol GLUEImageLoader;
 
 @protocol SPTPodcastEpisodeView <NSObject>
@@ -19,9 +19,10 @@
 @property(retain, nonatomic) UIView *mainActionView;
 @property(nonatomic) double listeningProgress;
 @property(readonly, nonatomic) UIProgressView *progressView;
+@property(nonatomic, getter=isExplicit) _Bool explicit;
+@property(readonly, nonatomic) GLUETrackAccessoryLabel *accessoryLabel;
 @property(copy, nonatomic) NSString *descriptionText;
 @property(readonly, nonatomic) GLUELabel *descriptionLabel;
-@property(nonatomic) long long episodeOfflineSyncStatus;
 @property(readonly, nonatomic) UILabel *statusLabel;
 @property(readonly, nonatomic) UILabel *subtitleLabel;
 @property(readonly, nonatomic) UILabel *titleLabel;

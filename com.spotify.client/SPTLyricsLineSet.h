@@ -6,7 +6,7 @@
 
 #import <objc/NSObject.h>
 
-@class NSArray, NSString, NSURL;
+@class NSArray, NSString;
 
 @interface SPTLyricsLineSet : NSObject
 {
@@ -28,8 +28,6 @@
 - (long long)syncTypeFromString:(id)arg1;
 - (id)lyricsLineAtIndex:(unsigned long long)arg1;
 - (id)initWithDictionary:(id)arg1;
-@property(readonly, nonatomic, getter=isDenseDisplayPreferred) _Bool denseDisplayPreferred;
-@property(readonly, nonatomic) NSURL *providerLink;
 
 @end
 

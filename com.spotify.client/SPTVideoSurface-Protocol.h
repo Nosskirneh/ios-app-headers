@@ -6,19 +6,21 @@
 
 #import "NSObject-Protocol.h"
 
-@class CALayer, NSString;
-@protocol SPTVideoSurfaceDelegate;
+@class UIView;
+@protocol SPTVideoPlaybackIdentity, SPTVideoSurfaceContextDelegate, SPTVideoSurfaceDelegate;
 
 @protocol SPTVideoSurface <NSObject>
-@property(nonatomic) long long priority;
-@property(readonly, nonatomic) CALayer *playerLayer;
+@property(readonly, nonatomic) long long priority;
 @property(readonly, nonatomic, getter=isFullscreen) _Bool fullscreen;
-@property(readonly, nonatomic) NSString *identifier;
+@property(nonatomic) __weak id <SPTVideoSurfaceContextDelegate> contextDelegate;
 @property(nonatomic) __weak id <SPTVideoSurfaceDelegate> delegate;
 @property(readonly, nonatomic) struct CGRect videoRect;
 @property(nonatomic) long long gravity;
-@property(nonatomic, getter=isEnabled) _Bool enabled;
 @property(readonly, nonatomic, getter=isAttached) _Bool attached;
+@property(readonly, nonatomic) CDUnknownBlockType shouldDisplayVideoBlock;
+- (void)detachVideoDisplayView;
+- (void)attachVideoDisplayView:(UIView *)arg1;
+- (_Bool)isPlayableForIdentity:(id <SPTVideoPlaybackIdentity>)arg1;
 - (void)setGravity:(long long)arg1 animated:(_Bool)arg2;
 @end
 

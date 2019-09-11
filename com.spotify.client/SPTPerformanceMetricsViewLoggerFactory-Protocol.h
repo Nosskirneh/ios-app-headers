@@ -7,9 +7,11 @@
 #import "NSObject-Protocol.h"
 
 @class NSURL;
-@protocol SPTViewLogger;
+@protocol SPTViewLogger, SPTViewLoggerObserver;
 
 @protocol SPTPerformanceMetricsViewLoggerFactory <NSObject>
+- (void)removeDefaultObserver:(id <SPTViewLoggerObserver>)arg1;
+- (void)addDefaultObserver:(id <SPTViewLoggerObserver>)arg1;
 - (id <SPTViewLogger>)createViewLoggerForViewURI:(NSURL *)arg1;
 @end
 

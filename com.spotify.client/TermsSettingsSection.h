@@ -6,13 +6,15 @@
 
 #import "SettingsSection.h"
 
-@class NSArray;
+@class NSArray, SPTSettingsLogger;
 
 @interface TermsSettingsSection : SettingsSection
 {
     NSArray *_cells;
+    SPTSettingsLogger *_logger;
 }
 
+@property(retain, nonatomic) SPTSettingsLogger *logger; // @synthesize logger=_logger;
 @property(retain, nonatomic) NSArray *cells; // @synthesize cells=_cells;
 - (void).cxx_destruct;
 - (void)didSelectRow:(long long)arg1;
@@ -20,7 +22,7 @@
 - (long long)numberOfRows;
 - (id)createCellWithIdentifier:(id)arg1 text:(id)arg2;
 - (id)createTermAndConditionCellsWithVoiceTestManager:(id)arg1;
-- (id)initWithSettingsViewController:(id)arg1 voiceTestManager:(id)arg2;
+- (id)initWithSettingsViewController:(id)arg1 voiceTestManager:(id)arg2 logger:(id)arg3;
 
 @end
 

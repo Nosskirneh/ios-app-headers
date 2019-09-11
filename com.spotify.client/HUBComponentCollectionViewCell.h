@@ -6,16 +6,15 @@
 
 #import <UIKit/UICollectionViewCell.h>
 
-@class NSUUID;
-@protocol HUBComponent;
+@class HUBComponentView, NSUUID;
 
 @interface HUBComponentCollectionViewCell : UICollectionViewCell
 {
     NSUUID *_identifier;
-    id <HUBComponent> _component;
+    HUBComponentView *_componentView;
 }
 
-@property(retain, nonatomic) id <HUBComponent> component; // @synthesize component=_component;
+@property(retain, nonatomic) HUBComponentView *componentView; // @synthesize componentView=_componentView;
 @property(readonly, nonatomic) NSUUID *identifier; // @synthesize identifier=_identifier;
 - (void).cxx_destruct;
 - (void)layoutSubviews;

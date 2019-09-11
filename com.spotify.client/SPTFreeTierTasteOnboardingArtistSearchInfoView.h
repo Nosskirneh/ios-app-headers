@@ -16,8 +16,10 @@
     GLUELabel *_titleLabel;
     GLUELabel *_subtitleLabel;
     NSLayoutConstraint *_imageViewToTitleLabelMarginConstraint;
+    NSLayoutConstraint *_imageViewHeightConstraint;
 }
 
+@property(retain, nonatomic) NSLayoutConstraint *imageViewHeightConstraint; // @synthesize imageViewHeightConstraint=_imageViewHeightConstraint;
 @property(retain, nonatomic) NSLayoutConstraint *imageViewToTitleLabelMarginConstraint; // @synthesize imageViewToTitleLabelMarginConstraint=_imageViewToTitleLabelMarginConstraint;
 @property(readonly, nonatomic) GLUELabel *subtitleLabel; // @synthesize subtitleLabel=_subtitleLabel;
 @property(readonly, nonatomic) GLUELabel *titleLabel; // @synthesize titleLabel=_titleLabel;

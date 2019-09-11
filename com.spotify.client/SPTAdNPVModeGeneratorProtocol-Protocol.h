@@ -6,10 +6,10 @@
 
 #import "NSObject-Protocol.h"
 
-@protocol SPTAdEntity, SPTNowPlayingMode;
+@protocol SPTAdsBaseEntity, SPTNowPlayingMode;
 
 @protocol SPTAdNPVModeGeneratorProtocol <NSObject>
-- (void)updateAdModeWithAdEntity:(id <SPTAdEntity>)arg1;
+- (void)updateAdModeWithAdEntity:(id <SPTAdsBaseEntity>)arg1;
 - (id <SPTNowPlayingMode>)getNPVAdMode;
 @end
 

@@ -4,18 +4,18 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import "NSObject-Protocol.h"
+#import "SPTFreeTierPlaylistPlayModel-Protocol.h"
 
-@class NSArray, NSString, NSURL, SPTPlayOrigin;
-@protocol SPTFreeTierPlaylistModelDelegate, SPTFreeTierPlaylistModelEntityTrackFields, SPTFreeTierPlaylistSortingFiltering;
+@class NSArray, NSString, NSURL;
+@protocol SPTFreeTierPlaylistModelEntityTrackFields, SPTFreeTierPlaylistModelObserver, SPTFreeTierPlaylistSortingFiltering;
 
-@protocol SPTFreeTierPlaylistModel <NSObject>
+@protocol SPTFreeTierPlaylistModel <SPTFreeTierPlaylistPlayModel>
+@property(readonly, nonatomic, getter=isFormatList) _Bool formatList;
 @property(readonly, nonatomic) id <SPTFreeTierPlaylistSortingFiltering> sortingFiltering;
 @property(readonly, nonatomic) _Bool hasMore;
 @property(readonly, nonatomic) _Bool loadError;
 @property(readonly, nonatomic, getter=isOfflineSyncAvailable) _Bool offlineSyncAvailable;
 @property(readonly, nonatomic, getter=isLoaded) _Bool loaded;
-@property(nonatomic) __weak id <SPTFreeTierPlaylistModelDelegate> delegate;
 @property(readonly, nonatomic) NSURL *playlistURL;
 - (void)playlistContainsTrackURL:(NSURL *)arg1 completion:(void (^)(_Bool, NSError *))arg2;
 - (void)addTrackURL:(NSURL *)arg1 completion:(void (^)(NSError *))arg2;
@@ -30,10 +30,8 @@
 - (void)loadMore;
 - (void)deletePlaylist;
 - (void)changeFollowState:(_Bool)arg1;
-- (void)playTrackEntity:(id <SPTFreeTierPlaylistModelEntityTrackFields>)arg1 andPlayOrigin:(SPTPlayOrigin *)arg2;
-- (void)playWithPlayOrigin:(SPTPlayOrigin *)arg1;
-- (void)shufflePlayWithPlayOrigin:(SPTPlayOrigin *)arg1;
 - (void)loadEntirePlaylist;
 - (void)load;
+- (void)addPlaylistModelObserver:(id <SPTFreeTierPlaylistModelObserver>)arg1;
 @end
 

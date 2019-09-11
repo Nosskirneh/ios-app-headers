@@ -4,32 +4,32 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import "EXP_HUBComponentView.h"
+#import "HUBComponentView.h"
 
-#import "EXP_HUBComponentViewWithChildren-Protocol.h"
+#import "HUBComponentViewWithChildren-Protocol.h"
 
-@class GLUELabel, SPTLayoutConstraintBuilder, UIView;
-@protocol EXP_HUBComponentViewChildDelegate, GLUETheme;
+@class GLUELabel, NSMutableArray, UIView;
+@protocol GLUETheme, HUBComponentViewChildDelegate;
 
-@interface SPTFreeTierUIServiceFooterComponentView : EXP_HUBComponentView <EXP_HUBComponentViewWithChildren>
+@interface SPTFreeTierUIServiceFooterComponentView : HUBComponentView <HUBComponentViewWithChildren>
 {
-    id <EXP_HUBComponentViewChildDelegate> childDelegate;
+    id <HUBComponentViewChildDelegate> childDelegate;
     id <GLUETheme> _theme;
     UIView *_textContainer;
     GLUELabel *_titleLabel;
     GLUELabel *_descriptionLabel;
-    EXP_HUBComponentView *_actionComponentView;
-    SPTLayoutConstraintBuilder *_layoutBuilder;
+    HUBComponentView *_actionComponentView;
+    NSMutableArray *_layoutConstraints;
 }
 
 + (struct CGSize)preferredViewSizeForDisplayingModel:(id)arg1 containerViewSize:(struct CGSize)arg2 theme:(id)arg3;
-@property(retain, nonatomic) SPTLayoutConstraintBuilder *layoutBuilder; // @synthesize layoutBuilder=_layoutBuilder;
-@property(retain, nonatomic) EXP_HUBComponentView *actionComponentView; // @synthesize actionComponentView=_actionComponentView;
+@property(retain, nonatomic) NSMutableArray *layoutConstraints; // @synthesize layoutConstraints=_layoutConstraints;
+@property(retain, nonatomic) HUBComponentView *actionComponentView; // @synthesize actionComponentView=_actionComponentView;
 @property(retain, nonatomic) GLUELabel *descriptionLabel; // @synthesize descriptionLabel=_descriptionLabel;
 @property(retain, nonatomic) GLUELabel *titleLabel; // @synthesize titleLabel=_titleLabel;
 @property(retain, nonatomic) UIView *textContainer; // @synthesize textContainer=_textContainer;
 @property(retain, nonatomic) id <GLUETheme> theme; // @synthesize theme=_theme;
-@property(nonatomic) __weak id <EXP_HUBComponentViewChildDelegate> childDelegate; // @synthesize childDelegate;
+@property(nonatomic) __weak id <HUBComponentViewChildDelegate> childDelegate; // @synthesize childDelegate;
 - (void).cxx_destruct;
 - (void)setupChildComponentsForMode:(id)arg1;
 - (void)configureWithModel:(id)arg1;

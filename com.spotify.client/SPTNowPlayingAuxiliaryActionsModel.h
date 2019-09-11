@@ -41,13 +41,15 @@
 @property(readonly, nonatomic) NSURL *adsURLToOpen;
 @property(readonly, nonatomic) _Bool disableInteractiveTransitionForAd;
 @property(readonly, nonatomic) _Bool videoOfferInProgress;
-@property(readonly, nonatomic) _Bool disallowOpeningContextMenu;
+@property(readonly, nonatomic) _Bool disallowOpeningContextAndShareMenu;
 - (void)updateCollectionState;
 - (void)notifyObservers;
 - (void)setInBannedCollectionAndNotifyObservers:(_Bool)arg1;
 - (void)setInCollectionAndNotifyObservers:(_Bool)arg1;
 - (void)updateStateForCurrentTrack;
+- (void)removeBanFromCollectionWithConfirmation:(_Bool)arg1;
 - (void)removeBanFromCollection;
+- (void)banFromCollectionWithConfirmation:(_Bool)arg1;
 - (void)banFromCollection;
 - (void)addToCollectionWithConfirmation:(_Bool)arg1;
 - (void)addToCollection;

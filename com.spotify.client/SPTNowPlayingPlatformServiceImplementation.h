@@ -9,61 +9,65 @@
 #import "SPTNowPlayingPlatformService-Protocol.h"
 
 @class NSString, SPTAllocationContext, SPTNowPlayingContentProviderRegistriesImplementation, SPTNowPlayingRemoteControlEventControllerManager;
-@protocol SPTAbbaService, SPTCollectionPlatformService, SPTFeatureFlaggingService, SPTFreeTierService, SPTNowPlayingFeedbackObservable, SPTNowPlayingModeResolver, SPTNowPlayingModeViewControllerRegistry, SPTNowPlayingModesRegistry, SPTNowPlayingRemoteControlPolicyRegistry, SPTNowPlayingScrollService_Internal, SPTNowPlayingShowsFormatOverriderRegistry, SPTNowPlayingTestManager, SPTOnDemandService, SPTPersonalisedSetsService, SPTPlayer, SPTPlayerFeature, SPTSessionService;
+@protocol SPTAbbaService, SPTFeatureFlaggingService, SPTFreeTierService, SPTNowPlayingContentLayerResolver, SPTNowPlayingModeResolver, SPTNowPlayingModeViewControllerRegistry, SPTNowPlayingModesRegistry, SPTNowPlayingRemoteControlPolicyRegistry, SPTNowPlayingScrollDataSource_Internal, SPTNowPlayingShowsFormatOverriderRegistry, SPTNowPlayingTestManager, SPTOnDemandService, SPTPlayer, SPTPlayerFeature, SPTRadioRemoteConfigService, SPTSessionService;
 
 @interface SPTNowPlayingPlatformServiceImplementation : NSObject <SPTNowPlayingPlatformService>
 {
-    id <SPTSessionService> _clientSessionService;
+    id <SPTSessionService> _sessionService;
     id <SPTAbbaService> _abbaService;
-    id <SPTFeatureFlaggingService> _featureFlaggingSevice;
+    id <SPTFeatureFlaggingService> _featureFlaggingService;
     id <SPTFreeTierService> _freeTierService;
-    id <SPTCollectionPlatformService> _collectionPlatformService;
-    id <SPTNowPlayingScrollService_Internal> _scrollService;
     id <SPTPlayerFeature> _playerFeature;
     id <SPTOnDemandService> _onDemandService;
-    id <SPTPersonalisedSetsService> _personalisedSetsService;
+    id <SPTRadioRemoteConfigService> _radioRemoteConfigService;
     id <SPTNowPlayingTestManager> _testManager;
     id <SPTNowPlayingModeResolver> _modeResolver;
     id <SPTNowPlayingModesRegistry> _modesRegistry;
     id <SPTNowPlayingModeViewControllerRegistry> _modeViewControllerRegistry;
+    id <SPTNowPlayingModeViewControllerRegistry> _sideBarViewControllerRegistry;
     id <SPTNowPlayingRemoteControlPolicyRegistry> _remoteControlPolicyRegistry;
     id <SPTNowPlayingShowsFormatOverriderRegistry> _showsFormatOverriderRegistry;
     SPTNowPlayingContentProviderRegistriesImplementation *_contentProviderRegistries;
     SPTNowPlayingRemoteControlEventControllerManager *_remoteControlEventControllerManager;
-    id <SPTNowPlayingFeedbackObservable> _feedbackObservable;
+    id <SPTNowPlayingScrollDataSource_Internal> _scrollDataSource;
+    id <SPTNowPlayingContentLayerResolver> _contentLayerResolver;
     id <SPTPlayer> _player;
 }
 
 + (id)serviceIdentifier;
 @property(retain, nonatomic) id <SPTPlayer> player; // @synthesize player=_player;
-@property(retain, nonatomic) id <SPTNowPlayingFeedbackObservable> feedbackObservable; // @synthesize feedbackObservable=_feedbackObservable;
+@property(retain, nonatomic) id <SPTNowPlayingContentLayerResolver> contentLayerResolver; // @synthesize contentLayerResolver=_contentLayerResolver;
+@property(retain, nonatomic) id <SPTNowPlayingScrollDataSource_Internal> scrollDataSource; // @synthesize scrollDataSource=_scrollDataSource;
 @property(retain, nonatomic) SPTNowPlayingRemoteControlEventControllerManager *remoteControlEventControllerManager; // @synthesize remoteControlEventControllerManager=_remoteControlEventControllerManager;
 @property(retain, nonatomic) SPTNowPlayingContentProviderRegistriesImplementation *contentProviderRegistries; // @synthesize contentProviderRegistries=_contentProviderRegistries;
 @property(retain, nonatomic) id <SPTNowPlayingShowsFormatOverriderRegistry> showsFormatOverriderRegistry; // @synthesize showsFormatOverriderRegistry=_showsFormatOverriderRegistry;
 @property(retain, nonatomic) id <SPTNowPlayingRemoteControlPolicyRegistry> remoteControlPolicyRegistry; // @synthesize remoteControlPolicyRegistry=_remoteControlPolicyRegistry;
+@property(retain, nonatomic) id <SPTNowPlayingModeViewControllerRegistry> sideBarViewControllerRegistry; // @synthesize sideBarViewControllerRegistry=_sideBarViewControllerRegistry;
 @property(retain, nonatomic) id <SPTNowPlayingModeViewControllerRegistry> modeViewControllerRegistry; // @synthesize modeViewControllerRegistry=_modeViewControllerRegistry;
 @property(retain, nonatomic) id <SPTNowPlayingModesRegistry> modesRegistry; // @synthesize modesRegistry=_modesRegistry;
 @property(retain, nonatomic) id <SPTNowPlayingModeResolver> modeResolver; // @synthesize modeResolver=_modeResolver;
 @property(retain, nonatomic) id <SPTNowPlayingTestManager> testManager; // @synthesize testManager=_testManager;
-@property(nonatomic) __weak id <SPTPersonalisedSetsService> personalisedSetsService; // @synthesize personalisedSetsService=_personalisedSetsService;
+@property(nonatomic) __weak id <SPTRadioRemoteConfigService> radioRemoteConfigService; // @synthesize radioRemoteConfigService=_radioRemoteConfigService;
 @property(nonatomic) __weak id <SPTOnDemandService> onDemandService; // @synthesize onDemandService=_onDemandService;
 @property(nonatomic) __weak id <SPTPlayerFeature> playerFeature; // @synthesize playerFeature=_playerFeature;
-@property(nonatomic) __weak id <SPTNowPlayingScrollService_Internal> scrollService; // @synthesize scrollService=_scrollService;
-@property(nonatomic) __weak id <SPTCollectionPlatformService> collectionPlatformService; // @synthesize collectionPlatformService=_collectionPlatformService;
 @property(nonatomic) __weak id <SPTFreeTierService> freeTierService; // @synthesize freeTierService=_freeTierService;
-@property(nonatomic) __weak id <SPTFeatureFlaggingService> featureFlaggingSevice; // @synthesize featureFlaggingSevice=_featureFlaggingSevice;
+@property(nonatomic) __weak id <SPTFeatureFlaggingService> featureFlaggingService; // @synthesize featureFlaggingService=_featureFlaggingService;
 @property(nonatomic) __weak id <SPTAbbaService> abbaService; // @synthesize abbaService=_abbaService;
-@property(nonatomic) __weak id <SPTSessionService> clientSessionService; // @synthesize clientSessionService=_clientSessionService;
+@property(nonatomic) __weak id <SPTSessionService> sessionService; // @synthesize sessionService=_sessionService;
 - (void).cxx_destruct;
-- (id)provideFeedbackObservable;
+- (id)provideContentLayerResolver;
+- (id)provideScrollDataSource;
 - (id)provideRemoteControlEventControllerRegistry;
 - (id)provideContentProviderRegistries;
 - (id)provideShowsFormatOverriderRegistry;
 - (id)provideRemoteControlPolicyRegistry;
+- (id)provideSideBarViewControllerRegistry;
 - (id)provideModeViewControllerRegistry;
 - (id)provideModesRegistry;
 - (id)provideModeResolver;
 - (id)provideTestManager;
+- (void)unload;
+- (void)load;
 - (void)configureWithServices:(id)arg1;
 
 // Remaining properties

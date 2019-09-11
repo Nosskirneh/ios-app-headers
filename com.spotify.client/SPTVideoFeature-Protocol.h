@@ -6,16 +6,10 @@
 
 #import "NSObject-Protocol.h"
 
-@class NSString;
-@protocol SPTAVPlayerSource, SPTVideoEventObserverFactory, SPTVideoPlaybackEventObserver, SPTVideoPlayer, SPTVideoSurfaceManager;
+@protocol SPTVideoCacheOptionsFactory, SPTVideoFeaturePlayerFactory;
 
 @protocol SPTVideoFeature <NSObject>
-- (id <SPTVideoPlayer>)createVideoPlayerWithFeatureIdentifier:(NSString *)arg1;
-- (void)removeVideoPlaybackEventObserver:(id <SPTVideoPlaybackEventObserver>)arg1;
-- (void)addVideoPlaybackEventObserver:(id <SPTVideoPlaybackEventObserver>)arg1;
-- (void)registerPlaybackEventObserverFactoryBlock:(id <SPTVideoEventObserver> (^)(id <SPTVideoPlaybackIdentity>))arg1;
-- (void)registerPlaybackEventObserverFactory:(id <SPTVideoEventObserverFactory>)arg1;
-- (id <SPTAVPlayerSource>)providePlayerSource;
-- (id <SPTVideoSurfaceManager>)provideSurfaceManager;
+- (id <SPTVideoFeaturePlayerFactory>)providePlayerFactory;
+- (id <SPTVideoCacheOptionsFactory>)provideVideoCacheOptionsFactory;
 @end
 

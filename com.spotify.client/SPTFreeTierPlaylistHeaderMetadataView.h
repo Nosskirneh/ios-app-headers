@@ -17,6 +17,7 @@
     NSDate *_lastModifiedDate;
     double _totalDuration;
     UIStackView *_verticalStack;
+    UIStackView *_middleRowStack;
     NSLayoutConstraint *_imageHeightConstraint;
     UITextView *_descriptionView;
     GLUELabel *_metadataLabel;
@@ -37,6 +38,7 @@
 @property(retain, nonatomic) GLUELabel *metadataLabel; // @synthesize metadataLabel=_metadataLabel;
 @property(retain, nonatomic) UITextView *descriptionView; // @synthesize descriptionView=_descriptionView;
 @property(retain, nonatomic) NSLayoutConstraint *imageHeightConstraint; // @synthesize imageHeightConstraint=_imageHeightConstraint;
+@property(retain, nonatomic) UIStackView *middleRowStack; // @synthesize middleRowStack=_middleRowStack;
 @property(retain, nonatomic) UIStackView *verticalStack; // @synthesize verticalStack=_verticalStack;
 @property(nonatomic) double totalDuration; // @synthesize totalDuration=_totalDuration;
 @property(retain, nonatomic) NSDate *lastModifiedDate; // @synthesize lastModifiedDate=_lastModifiedDate;

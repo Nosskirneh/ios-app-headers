@@ -13,7 +13,7 @@
 #import "SPTProductStateObserver-Protocol.h"
 
 @class NSArray, NSMutableArray, NSSet, NSString, SPTFreeTierCollectionFilterSortManager;
-@protocol SPTClientSettings, SPTCollectionPlatform, SPTCollectionPlatformDataLoaderRequestToken, SPTExplicitContentAccessManager, SPTFreeTierCollectionRangeDataSource, SPTFreeTierCollectionSongsModelDelegate, SPTFreeTierCollectionTestManager, SPTFreeTierRecommendationsTracksDataLoader, SPTProductState, SPTSortingFilteringSortRule;
+@protocol SPTClientSettings, SPTCollectionPlatform, SPTCollectionPlatformDataLoaderRequestToken, SPTExplicitContentAccessManager, SPTFreeTierCollectionRangeDataSource, SPTFreeTierCollectionSkippedRecommendedTracks, SPTFreeTierCollectionSongsModelDelegate, SPTFreeTierCollectionTestManager, SPTFreeTierRecommendationsTracksDataLoader, SPTProductState, SPTSortingFilteringSortRule;
 
 @interface SPTFreeTierCollectionSongsModelImplementation : NSObject <SPTExplicitContentEnabledStateObserver, SPTProductStateObserver, SPTFreeTierCollectionSongsModel, SPTFreeTierCollectionRangeDataSourceDelegate, SPTFreeTierCollectionSongsDataLoaderDelegate>
 {
@@ -25,6 +25,7 @@
     NSArray *_availableFilters;
     id <SPTSortingFilteringSortRule> _selectedSortRule;
     NSArray *_availableSortRules;
+    long long _dataGroupType;
     id <SPTFreeTierCollectionRangeDataSource> _rangeDataSource;
     id <SPTCollectionPlatform> _collectionPlatform;
     id <SPTFreeTierRecommendationsTracksDataLoader> _recommendationsTracksDataLoader;
@@ -39,8 +40,10 @@
     unsigned long long _offlineAvailability;
     NSString *_currentUsername;
     id <SPTCollectionPlatformDataLoaderRequestToken> _collectionStateRequestToken;
+    id <SPTFreeTierCollectionSkippedRecommendedTracks> _skippedRecommendedTracks;
 }
 
+@property(retain, nonatomic) id <SPTFreeTierCollectionSkippedRecommendedTracks> skippedRecommendedTracks; // @synthesize skippedRecommendedTracks=_skippedRecommendedTracks;
 @property(retain, nonatomic) id <SPTCollectionPlatformDataLoaderRequestToken> collectionStateRequestToken; // @synthesize collectionStateRequestToken=_collectionStateRequestToken;
 @property(copy, nonatomic) NSString *currentUsername; // @synthesize currentUsername=_currentUsername;
 @property(nonatomic) unsigned long long offlineAvailability; // @synthesize offlineAvailability=_offlineAvailability;
@@ -57,6 +60,7 @@
 @property(retain, nonatomic) id <SPTFreeTierRecommendationsTracksDataLoader> recommendationsTracksDataLoader; // @synthesize recommendationsTracksDataLoader=_recommendationsTracksDataLoader;
 @property(nonatomic) __weak id <SPTCollectionPlatform> collectionPlatform; // @synthesize collectionPlatform=_collectionPlatform;
 @property(retain, nonatomic) id <SPTFreeTierCollectionRangeDataSource> rangeDataSource; // @synthesize rangeDataSource=_rangeDataSource;
+@property(nonatomic) long long dataGroupType; // @synthesize dataGroupType=_dataGroupType;
 @property(readonly, copy, nonatomic) NSArray *availableSortRules; // @synthesize availableSortRules=_availableSortRules;
 @property(copy, nonatomic) id <SPTSortingFilteringSortRule> selectedSortRule; // @synthesize selectedSortRule=_selectedSortRule;
 @property(readonly, nonatomic) NSArray *availableFilters; // @synthesize availableFilters=_availableFilters;
@@ -68,15 +72,17 @@
 - (void)productState:(id)arg1 stateDidChange:(id)arg2;
 - (void)songsDataLoader:(id)arg1 didUpdateOfflineAvailability:(unsigned long long)arg2;
 - (void)rangeDataSource:(id)arg1 error:(id)arg2;
-- (void)rangeDataSourceUpdated:(id)arg1;
+- (void)rangeDataSourceUpdated:(id)arg1 itemsCountChanged:(_Bool)arg2;
 - (_Bool)filterDuplicatedRecommendations;
 - (_Bool)filterBannedRecommentations;
 - (void)subscribeBannedTracks;
 - (id)collectionOptions;
 @property(readonly, nonatomic, getter=isContentFiltered) _Bool contentFiltered;
+- (void)removeFilterAtIndex:(long long)arg1;
 - (void)resetFilters;
 - (void)playWithPlayOrigin:(id)arg1 options:(id)arg2;
 - (void)playWithRecommendationsUsingPlayer:(id)arg1 options:(id)arg2;
+- (void)willDisplayItemAtLocation:(long long)arg1;
 - (void)removeObserverForTrackStateWithTrackURL:(id)arg1;
 - (void)addObserverForTrackStateWithTrackURL:(id)arg1 inCollection:(_Bool)arg2 completionHandler:(CDUnknownBlockType)arg3;
 - (void)changeTrackURL:(id)arg1 likeState:(_Bool)arg2;
@@ -86,18 +92,23 @@
 - (void)playTrackEntity:(id)arg1 andPlayOrigin:(id)arg2;
 - (void)shufflePlayWithPlayOrigin:(id)arg1 fallbackPlayer:(id)arg2;
 - (void)loadRecommendationsIfNeeded;
-- (void)notifyModelUpdateIfLoaded;
+- (void)notifyModelUpdateItemsCountChanged:(_Bool)arg1;
 - (void)requestRecommendations;
 @property(readonly, nonatomic, getter=isOfflineSyncAvailable) _Bool offlineSyncAvailable;
 @property(readonly, nonatomic, getter=isPreviewsAvailable) _Bool previewsAvailable;
 - (void)reloadData;
 - (void)loadModel;
+- (void)deleteRecommendedItemAtIndex:(unsigned long long)arg1;
+- (void)addSkippedRecommendedTrackURL:(id)arg1;
 - (id)recommendedItemAtIndex:(unsigned long long)arg1;
-- (id)itemAtIndex:(unsigned long long)arg1;
+- (id)itemAtIndex:(unsigned long long)arg1 inSection:(unsigned long long)arg2;
+- (unsigned long long)globalIndexFromIndex:(unsigned long long)arg1 inSection:(unsigned long long)arg2;
+- (unsigned long long)numberItemsInSection:(unsigned long long)arg1;
 @property(readonly, nonatomic) unsigned long long numberRecommendedItems;
+@property(readonly, nonatomic) unsigned long long numberSections;
 @property(readonly, nonatomic) unsigned long long numberItems;
 - (void)dealloc;
-- (id)initWithCollectionPlatform:(id)arg1 recommendedTracksDataLoader:(id)arg2 clientSettings:(id)arg3 explicitContentAccessManager:(id)arg4 productState:(id)arg5 currentUsername:(id)arg6 filterSortManager:(id)arg7 testManager:(id)arg8;
+- (id)initWithCollectionPlatform:(id)arg1 recommendedTracksDataLoader:(id)arg2 clientSettings:(id)arg3 explicitContentAccessManager:(id)arg4 productState:(id)arg5 currentUsername:(id)arg6 filterSortManager:(id)arg7 testManager:(id)arg8 skippedRecommendedTracks:(id)arg9;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

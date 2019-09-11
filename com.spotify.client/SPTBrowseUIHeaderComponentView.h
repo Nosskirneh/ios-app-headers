@@ -4,19 +4,19 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import "EXP_HUGSThemableComponentView.h"
+#import "HUGSThemableComponentView.h"
 
-#import "EXP_HUBComponentViewContentOffsetObserver-Protocol.h"
-#import "EXP_HUBComponentViewWithChildren-Protocol.h"
-#import "EXP_HUBComponentViewWithEvents-Protocol.h"
+#import "HUBComponentViewContentOffsetObserver-Protocol.h"
+#import "HUBComponentViewWithChildren-Protocol.h"
+#import "HUBComponentViewWithEvents-Protocol.h"
 
 @class SPTBrowseUIHeaderView, UIColor;
-@protocol EXP_HUBComponentEventHandler, EXP_HUBComponentViewChildDelegate;
+@protocol HUBComponentEventHandler, HUBComponentViewChildDelegate;
 
-@interface SPTBrowseUIHeaderComponentView : EXP_HUGSThemableComponentView <EXP_HUBComponentViewContentOffsetObserver, EXP_HUBComponentViewWithChildren, EXP_HUBComponentViewWithEvents>
+@interface SPTBrowseUIHeaderComponentView : HUGSThemableComponentView <HUBComponentViewContentOffsetObserver, HUBComponentViewWithChildren, HUBComponentViewWithEvents>
 {
-    id <EXP_HUBComponentViewChildDelegate> _childDelegate;
-    id <EXP_HUBComponentEventHandler> _eventHandler;
+    id <HUBComponentViewChildDelegate> _childDelegate;
+    id <HUBComponentEventHandler> _eventHandler;
     SPTBrowseUIHeaderView *_headerView;
     UIColor *_gradientBackgroundColor;
 }
@@ -27,8 +27,8 @@
 + (id)defaultHeaderStyleForModel:(id)arg1 theme:(id)arg2;
 @property(copy, nonatomic) UIColor *gradientBackgroundColor; // @synthesize gradientBackgroundColor=_gradientBackgroundColor;
 @property(readonly, nonatomic) SPTBrowseUIHeaderView *headerView; // @synthesize headerView=_headerView;
-@property(retain, nonatomic) id <EXP_HUBComponentEventHandler> eventHandler; // @synthesize eventHandler=_eventHandler;
-@property(nonatomic) __weak id <EXP_HUBComponentViewChildDelegate> childDelegate; // @synthesize childDelegate=_childDelegate;
+@property(retain, nonatomic) id <HUBComponentEventHandler> eventHandler; // @synthesize eventHandler=_eventHandler;
+@property(nonatomic) __weak id <HUBComponentViewChildDelegate> childDelegate; // @synthesize childDelegate=_childDelegate;
 - (void).cxx_destruct;
 - (void)applyThemeLayout;
 - (void)updateViewForChangedContentOffset:(struct CGPoint)arg1;

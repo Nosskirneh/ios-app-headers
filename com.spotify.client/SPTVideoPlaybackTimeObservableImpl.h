@@ -6,37 +6,41 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTVideoPlaybackTimeObservable-Protocol.h"
+#import "SPTVideoPlaybackTimeObservableInternal-Protocol.h"
 
-@class NSMutableArray, NSString;
-@protocol OS_dispatch_queue, SPTVideoPlaybackTimeObservableDataSource;
+@class NSMutableArray, NSString, SPTVideoPlayerSource;
+@protocol OS_dispatch_queue, SPTKVOController;
 
-@interface SPTVideoPlaybackTimeObservableImpl : NSObject <SPTVideoPlaybackTimeObservable>
+@interface SPTVideoPlaybackTimeObservableImpl : NSObject <SPTVideoPlaybackTimeObservableInternal>
 {
     _Bool _ready;
-    id <SPTVideoPlaybackTimeObservableDataSource> _dataSource;
+    SPTVideoPlayerSource *_playerSource;
     NSMutableArray *_addObserverClosures;
     NSMutableArray *_registeredObserverTokens;
     NSObject<OS_dispatch_queue> *_timeObserverQueue;
+    id <SPTKVOController> _kvoController;
 }
 
+@property(retain, nonatomic) id <SPTKVOController> kvoController; // @synthesize kvoController=_kvoController;
 @property(retain, nonatomic) NSObject<OS_dispatch_queue> *timeObserverQueue; // @synthesize timeObserverQueue=_timeObserverQueue;
 @property(retain, nonatomic) NSMutableArray *registeredObserverTokens; // @synthesize registeredObserverTokens=_registeredObserverTokens;
 @property(retain, nonatomic) NSMutableArray *addObserverClosures; // @synthesize addObserverClosures=_addObserverClosures;
-@property(nonatomic) __weak id <SPTVideoPlaybackTimeObservableDataSource> dataSource; // @synthesize dataSource=_dataSource;
+@property(nonatomic) __weak SPTVideoPlayerSource *playerSource; // @synthesize playerSource=_playerSource;
 - (void).cxx_destruct;
 - (id)cmTimesForDurationFactors:(id)arg1 withDuration:(double)arg2;
-- (int)timescale;
 - (double)duration;
 - (id)player;
 - (void)tryAddObserverWithClosure:(CDUnknownBlockType)arg1;
 - (void)removeObservers;
 - (void)addObservers;
 @property(nonatomic) _Bool ready; // @synthesize ready=_ready;
+- (void)stopObserving;
+- (void)startObserving;
 - (void)addObserver:(CDUnknownBlockType)arg1 forPeriodicInterval:(double)arg2;
 - (void)addObserver:(CDUnknownBlockType)arg1 atDurationFactors:(id)arg2;
+- (void)refreshPlayer:(id)arg1 playerSource:(id)arg2;
 - (void)dealloc;
-- (id)initWithDataSource:(id)arg1;
+- (id)initWithPlayerSource:(id)arg1 kvoControllerFactory:(id)arg2;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

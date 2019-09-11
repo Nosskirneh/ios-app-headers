@@ -11,7 +11,7 @@
 }
 
 + (float)distanceFrom:(struct CGPoint)arg1 to:(struct CGPoint)arg2;
-+ (CDStruct_2394fa6e)coordinateRegionForMapView:(id)arg1 withScale:(float)arg2 andTranslation:(struct CGPoint)arg3;
++ (CDStruct_e43cf4f1)coordinateRegionForMapView:(id)arg1 withScale:(float)arg2 andTranslation:(struct CGPoint)arg3;
 + (void)updateMapViewContent:(id)arg1;
 + (void)mapView:(id)arg1 handlePinchEvent:(id)arg2;
 + (void)mapView:(id)arg1 handlePanForTouch:(id)arg2;

@@ -7,9 +7,10 @@
 #import "NSObject-Protocol.h"
 
 @class NSArray, NSString, UITextField, UIView, UIViewController;
-@protocol SPTSortingFilteringFilterBar, SPTSortingFilteringPicker, SPTSortingFilteringSearchField, SPTSortingFilteringSortRule, SPTSortingFilteringTheme;
+@protocol SPTSortingFilteringClearFiltersControl, SPTSortingFilteringFilterBar, SPTSortingFilteringPicker, SPTSortingFilteringSearchField, SPTSortingFilteringSortRule, SPTSortingFilteringTheme;
 
 @protocol SPTSortingFilteringUIFactory <NSObject>
+- (UIView<SPTSortingFilteringClearFiltersControl> *)createClearFiltersControlWithFilterTitles:(NSArray *)arg1;
 - (UIViewController<SPTSortingFilteringPicker> *)createSortingFilteringPickerWithAvailableFilterRules:(NSArray *)arg1 availableSortRules:(NSArray *)arg2 selectedFilterRules:(NSArray *)arg3 selectedSortRule:(id <SPTSortingFilteringSortRule>)arg4;
 - (UIView<SPTSortingFilteringFilterBar> *)createFilterBarWithPlaceholder:(NSString *)arg1;
 - (UITextField<SPTSortingFilteringSearchField> *)createSearchFieldWithFrame:(struct CGRect)arg1;

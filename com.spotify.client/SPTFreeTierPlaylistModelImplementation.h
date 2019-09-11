@@ -11,15 +11,15 @@
 #import "SPTFreeTierPlaylistSortingFilteringDelegate-Protocol.h"
 #import "SPTProductStateObserver-Protocol.h"
 
-@class NSString, NSURL, SPTFreeTierPlaylistModelEntityImplementation;
-@protocol SPTClientSettings, SPTCollectionPlatform, SPTCollectionPlatformConfiguration, SPTExplicitContentAccessManager, SPTFreeTierPlaylistModelDelegate, SPTFreeTierPlaylistSortingFiltering, SPTFreeTierPlaylistTestManager, SPTOnDemandSet, SPTPlaylistModel, SPTPlaylistPlatformDataLoaderRequestToken, SPTPlaylistPlatformPlaylistDataLoader, SPTProductState;
+@class NSString, NSURL, SPTFreeTierPlaylistModelEntityImplementation, SPTObserverManager;
+@protocol SPTClientSettings, SPTCollectionPlatform, SPTCollectionPlatformConfiguration, SPTExplicitContentAccessManager, SPTFreeTierPlaylistSortingFiltering, SPTFreeTierPlaylistTestManager, SPTOnDemandSet, SPTPlaylistModel, SPTPlaylistPlatformDataLoaderRequestToken, SPTPlaylistPlatformPlaylistDataLoader, SPTProductState;
 
 @interface SPTFreeTierPlaylistModelImplementation : NSObject <SPTProductStateObserver, SPTExplicitContentEnabledStateObserver, SPTFreeTierPlaylistModel, SPTFreeTierPlaylistSortingFilteringDelegate>
 {
+    _Bool _formatList;
     _Bool _loadError;
     _Bool _hasMore;
     NSURL *_playlistURL;
-    id <SPTFreeTierPlaylistModelDelegate> _delegate;
     id <SPTFreeTierPlaylistSortingFiltering> _sortingFiltering;
     id <SPTPlaylistPlatformPlaylistDataLoader> _playlistDataLoader;
     id <SPTPlaylistModel> _playlistModel;
@@ -35,10 +35,12 @@
     id <SPTPlaylistPlatformDataLoaderRequestToken> _metadataSubscription;
     id <SPTPlaylistPlatformDataLoaderRequestToken> _followCountSubscription;
     unsigned long long _onDemandType;
+    SPTObserverManager *_observerManager;
     struct _NSRange _currentWindow;
     struct _NSRange _loadedWindow;
 }
 
+@property(readonly, nonatomic) SPTObserverManager *observerManager; // @synthesize observerManager=_observerManager;
 @property(nonatomic) struct _NSRange loadedWindow; // @synthesize loadedWindow=_loadedWindow;
 @property(nonatomic) struct _NSRange currentWindow; // @synthesize currentWindow=_currentWindow;
 @property(nonatomic) _Bool hasMore; // @synthesize hasMore=_hasMore;
@@ -57,10 +59,11 @@
 @property(retain, nonatomic) id <SPTCollectionPlatform> collectionPlatform; // @synthesize collectionPlatform=_collectionPlatform;
 @property(retain, nonatomic) id <SPTPlaylistModel> playlistModel; // @synthesize playlistModel=_playlistModel;
 @property(retain, nonatomic) id <SPTPlaylistPlatformPlaylistDataLoader> playlistDataLoader; // @synthesize playlistDataLoader=_playlistDataLoader;
+@property(readonly, nonatomic, getter=isFormatList) _Bool formatList; // @synthesize formatList=_formatList;
 @property(readonly, nonatomic) id <SPTFreeTierPlaylistSortingFiltering> sortingFiltering; // @synthesize sortingFiltering=_sortingFiltering;
-@property(nonatomic) __weak id <SPTFreeTierPlaylistModelDelegate> delegate; // @synthesize delegate=_delegate;
 @property(readonly, nonatomic) NSURL *playlistURL; // @synthesize playlistURL=_playlistURL;
 - (void).cxx_destruct;
+- (void)addPlaylistModelObserver:(id)arg1;
 - (void)explicitContentEnabledStateDidChange:(_Bool)arg1;
 - (void)productState:(id)arg1 stateDidChange:(id)arg2;
 - (void)handleError:(id)arg1 withContext:(id)arg2;
@@ -71,10 +74,11 @@
 - (void)moveTrack:(id)arg1 before:(_Bool)arg2 targetTrack:(id)arg3 completion:(CDUnknownBlockType)arg4;
 - (void)removeTracks:(id)arg1 completion:(CDUnknownBlockType)arg2;
 - (void)updateModelWithPlaylistSortingFiltering:(id)arg1;
-- (void)updateMetadataWithResponse:(id)arg1 tracksResponse:(SPTPlaylistPlatformDataLoaderResponse_5db64d04 *)arg2 recommendations:(id)arg3;
+- (void)updateMetadataWithResponse:(id)arg1 tracksResponse:(struct SPTPlaylistPlatformDataLoaderResponse *)arg2 recommendations:(id)arg3;
 - (void)loadMetadataAndAllTracks;
 - (void)loadMetadataAndTracks;
 - (_Bool)shouldIncludeEpisodes;
+- (_Bool)showOnlyPlayableTracks;
 - (void)fillCommonOptions:(id)arg1;
 - (void)loadFollowCount;
 - (void)playlistContainsTrackURL:(id)arg1 completion:(CDUnknownBlockType)arg2;
@@ -85,17 +89,20 @@
 - (void)changeOffline:(_Bool)arg1;
 - (void)loadMore;
 - (void)deletePlaylist;
+- (_Bool)showCollectionConfirmation;
 - (void)changeFollowState:(_Bool)arg1;
 - (void)playWithPlayOptions:(id)arg1 andPlayOrigin:(id)arg2;
 - (void)playTrackEntity:(id)arg1 andPlayOrigin:(id)arg2;
 - (void)playWithPlayOrigin:(id)arg1;
 - (void)shufflePlayWithPlayOrigin:(id)arg1;
 - (void)prepareLoad;
+- (unsigned long long)calculateOnDemandTypeWithMetadata:(id)arg1;
 - (void)loadEntirePlaylist;
 - (void)load;
 @property(readonly, nonatomic, getter=isLoaded) _Bool loaded;
 - (void)dealloc;
 - (id)initWithPlaylistURL:(id)arg1 playlistDataLoader:(id)arg2 playlistModel:(id)arg3 collectionPlatform:(id)arg4 collectionConfiguration:(id)arg5 sortingFiltering:(id)arg6 onDemandSet:(id)arg7 clientSettings:(id)arg8 productState:(id)arg9 explicitContentAccessManager:(id)arg10 testManager:(id)arg11 formatListType:(id)arg12;
+@property(readonly, nonatomic, getter=isCappedOverridenByXCUITest) _Bool cappedOverridenByXCUITest;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

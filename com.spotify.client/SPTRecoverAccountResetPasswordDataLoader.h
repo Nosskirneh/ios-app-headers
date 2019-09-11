@@ -22,7 +22,9 @@
 - (void).cxx_destruct;
 - (void)dataLoader:(id)arg1 didReceiveErrorResponse:(id)arg2;
 - (void)dataLoader:(id)arg1 didReceiveSuccessfulResponse:(id)arg2;
-- (void)requestPasswordUpdateWithPassword:(id)arg1;
+- (id)parseRecoverableErrorDescriptionFromResponse:(id)arg1;
+- (id)buildRequestFromPassword:(id)arg1 setPasswordToken:(id)arg2 error:(id *)arg3;
+- (void)requestPasswordUpdateWithPassword:(id)arg1 setPasswordToken:(id)arg2;
 - (id)initWithDataLoader:(id)arg1;
 
 // Remaining properties

@@ -9,37 +9,48 @@
 #import "SPTBrowseService-Protocol.h"
 
 @class NSString, SPTAllocationContext;
-@protocol EXP_SPTHubFrameworkService, SPTBrowseTestManager, SPTBrowseUIService, SPTContainerService, SPTFeatureFlaggingService, SPTFreeTierService, SPTGLUEService, SPTNavigationFeature, SPTNetworkService, SPTOnDemandService, SPTPodcastFeature, SPTRadioService;
+@protocol SPTBrowseTestManager, SPTBrowseUIService, SPTContainerService, SPTFeatureFlaggingService, SPTFreeTierService, SPTGLUEService, SPTHubFrameworkService, SPTNetworkService, SPTOnDemandService, SPTPlayerFeature, SPTPlaylistPlatformService, SPTPodcastFeature, SPTPodcastUIService, SPTPodcastUtteranceSurveyService, SPTRadioService, SPTVISREFFlagsService;
 
 @interface SPTBrowseServiceImplementation : NSObject <SPTBrowseService>
 {
     id <SPTBrowseTestManager> _testManager;
-    id <SPTNavigationFeature> _navigationService;
     id <SPTContainerService> _containerService;
     id <SPTFeatureFlaggingService> _featureFlaggingService;
     id <SPTGLUEService> _glueService;
-    id <EXP_SPTHubFrameworkService> _hubFrameworkService;
+    id <SPTHubFrameworkService> _hubFrameworkService;
     id <SPTBrowseUIService> _browseUIService;
     id <SPTNetworkService> _networkFeature;
     id <SPTPodcastFeature> _podcastFeature;
     id <SPTFreeTierService> _freeTierService;
     id <SPTOnDemandService> _onDemandService;
     id <SPTRadioService> _radioService;
+    id <SPTPlayerFeature> _playerFeature;
+    id <SPTPlaylistPlatformService> _playlistPlatformService;
+    id <SPTVISREFFlagsService> _visualRefreshService;
+    id <SPTPodcastUIService> _podcastUIService;
+    id <SPTPodcastUtteranceSurveyService> _podcastUtteranceSurveyService;
 }
 
 + (id)serviceIdentifier;
+@property(nonatomic) __weak id <SPTPodcastUtteranceSurveyService> podcastUtteranceSurveyService; // @synthesize podcastUtteranceSurveyService=_podcastUtteranceSurveyService;
+@property(nonatomic) __weak id <SPTPodcastUIService> podcastUIService; // @synthesize podcastUIService=_podcastUIService;
+@property(nonatomic) __weak id <SPTVISREFFlagsService> visualRefreshService; // @synthesize visualRefreshService=_visualRefreshService;
+@property(nonatomic) __weak id <SPTPlaylistPlatformService> playlistPlatformService; // @synthesize playlistPlatformService=_playlistPlatformService;
+@property(nonatomic) __weak id <SPTPlayerFeature> playerFeature; // @synthesize playerFeature=_playerFeature;
 @property(nonatomic) __weak id <SPTRadioService> radioService; // @synthesize radioService=_radioService;
 @property(nonatomic) __weak id <SPTOnDemandService> onDemandService; // @synthesize onDemandService=_onDemandService;
 @property(nonatomic) __weak id <SPTFreeTierService> freeTierService; // @synthesize freeTierService=_freeTierService;
 @property(nonatomic) __weak id <SPTPodcastFeature> podcastFeature; // @synthesize podcastFeature=_podcastFeature;
 @property(nonatomic) __weak id <SPTNetworkService> networkFeature; // @synthesize networkFeature=_networkFeature;
 @property(nonatomic) __weak id <SPTBrowseUIService> browseUIService; // @synthesize browseUIService=_browseUIService;
-@property(nonatomic) __weak id <EXP_SPTHubFrameworkService> hubFrameworkService; // @synthesize hubFrameworkService=_hubFrameworkService;
+@property(nonatomic) __weak id <SPTHubFrameworkService> hubFrameworkService; // @synthesize hubFrameworkService=_hubFrameworkService;
 @property(nonatomic) __weak id <SPTGLUEService> glueService; // @synthesize glueService=_glueService;
 @property(nonatomic) __weak id <SPTFeatureFlaggingService> featureFlaggingService; // @synthesize featureFlaggingService=_featureFlaggingService;
 @property(nonatomic) __weak id <SPTContainerService> containerService; // @synthesize containerService=_containerService;
-@property(nonatomic) __weak id <SPTNavigationFeature> navigationService; // @synthesize navigationService=_navigationService;
 - (void).cxx_destruct;
+- (id)createGenrePagePlayableHeroCardCommandHandlerWithPlayer:(id)arg1;
+- (id)makeGenrePlayerForPageURI:(id)arg1;
+- (id)pageIdentifierForURI:(id)arg1;
 - (void)setNavigationBarVisible:(_Bool)arg1 inViewModelBuilder:(id)arg2;
 - (id)makeGenreErrorStateViewModel;
 - (id)makeBrowseErrorStateViewModel;
@@ -49,15 +60,16 @@
 - (id)makeViewControllerWithURI:(id)arg1;
 - (id)makeGenreInitialViewModel;
 - (id)makeBrowseInitialViewModel;
-- (id)makeViewModelProviderForURI:(id)arg1;
-- (id)makeGenreViewModelProviderWithGenre:(id)arg1 pageURI:(id)arg2;
+- (id)makeViewModelProviderForURI:(id)arg1 player:(id)arg2;
+- (id)makeGenreViewModelProviderWithGenre:(id)arg1 pageURI:(id)arg2 player:(id)arg3;
 - (id)makeBrowseViewModelProviderWithPageURI:(id)arg1;
 - (id)makeGenreViewModelFetcherWithGenre:(id)arg1 pageURI:(id)arg2;
 - (id)makeBrowseViewModelFetcherWithPageURI:(id)arg1;
 - (id)makeLogger;
 - (id)makeConnectivityMonitor;
 - (id)makeViewModelBuilderProvider;
-- (id)makeCommandHandlerWithURI:(id)arg1 viewModelProvider:(id)arg2;
+- (id)makeCommandHandlerWithURI:(id)arg1 viewModelProvider:(id)arg2 player:(id)arg3;
+- (id)makeShareDragDelegateFactory;
 - (id)makeImageLoaderFactory;
 - (id)makeComponentLayoutManager;
 - (id)makeComponentRegistry;

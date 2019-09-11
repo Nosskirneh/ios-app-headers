@@ -6,36 +6,28 @@
 
 #import <objc/NSObject.h>
 
-#import "WKScriptMessageHandler-Protocol.h"
+@class SPTInAppMessageActionFactory, SPTInAppMessageBannerMessage, SPTInAppMessageScriptMessageHandler, SPTInAppMessageServiceLogger, SPTInAppMessageTrigger, WKWebView, WKWebViewConfiguration;
+@protocol SPTInAppMessageBannerMessageWebViewContentDelegate;
 
-@class NSDictionary, NSString, SPTInAppMessageActionFactory, SPTInAppMessageBannerMessage, SPTInAppMessageServiceLogger, SPTInAppMessageTrigger, WKWebView, WKWebViewConfiguration;
-@protocol SPTExternalIntegrationDriverDistractionController, SPTInAppMessageBannerMessageWebViewContentDelegate, SPTNowPlayingManager;
-
-@interface SPTInAppMessageBannerMessageViewModel : NSObject <WKScriptMessageHandler>
+@interface SPTInAppMessageBannerMessageViewModel : NSObject
 {
     _Bool _QATool;
-    _Bool _cancelPresention;
     id <SPTInAppMessageBannerMessageWebViewContentDelegate> _delegate;
     WKWebView *_webview;
     SPTInAppMessageBannerMessage *_bannerMessage;
     double _presentationStartTime;
     double _bannerHeight;
     SPTInAppMessageTrigger *_trigger;
+    SPTInAppMessageScriptMessageHandler *_messageHandler;
     SPTInAppMessageActionFactory *_actionFactory;
     SPTInAppMessageServiceLogger *_serviceLogger;
     WKWebViewConfiguration *_webViewConfiguration;
-    id <SPTExternalIntegrationDriverDistractionController> _driverDistractionController;
-    NSDictionary *_cancelationInfo;
-    id <SPTNowPlayingManager> _nowPlayingManager;
 }
 
-@property(retain, nonatomic) id <SPTNowPlayingManager> nowPlayingManager; // @synthesize nowPlayingManager=_nowPlayingManager;
-@property(copy, nonatomic) NSDictionary *cancelationInfo; // @synthesize cancelationInfo=_cancelationInfo;
-@property(retain, nonatomic) id <SPTExternalIntegrationDriverDistractionController> driverDistractionController; // @synthesize driverDistractionController=_driverDistractionController;
-@property(nonatomic) _Bool cancelPresention; // @synthesize cancelPresention=_cancelPresention;
 @property(retain, nonatomic) WKWebViewConfiguration *webViewConfiguration; // @synthesize webViewConfiguration=_webViewConfiguration;
 @property(retain, nonatomic) SPTInAppMessageServiceLogger *serviceLogger; // @synthesize serviceLogger=_serviceLogger;
 @property(retain, nonatomic) SPTInAppMessageActionFactory *actionFactory; // @synthesize actionFactory=_actionFactory;
+@property(retain, nonatomic) SPTInAppMessageScriptMessageHandler *messageHandler; // @synthesize messageHandler=_messageHandler;
 @property(nonatomic, getter=isQATool) _Bool QATool; // @synthesize QATool=_QATool;
 @property(retain, nonatomic) SPTInAppMessageTrigger *trigger; // @synthesize trigger=_trigger;
 @property(nonatomic) double bannerHeight; // @synthesize bannerHeight=_bannerHeight;
@@ -44,21 +36,14 @@
 @property(readonly, nonatomic) WKWebView *webview; // @synthesize webview=_webview;
 @property(nonatomic) __weak id <SPTInAppMessageBannerMessageWebViewContentDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
-- (void)cancelBannerMessagePresentation:(id)arg1;
-- (void)userContentController:(id)arg1 didReceiveScriptMessage:(id)arg2;
-- (void)logMessageDiscarded;
-- (void)logTriggerMessagePresentationPerformace;
-- (void)didReceieveNotification:(id)arg1;
+- (void)logTriggerMessagePresentationPerformance;
+- (void)didReceiveWebviewEvent:(id)arg1;
+- (void)didReceieveActionNotification:(id)arg1;
+- (void)didReceiveNotification:(id)arg1;
 - (void)setupWebview;
 - (double)topEdgeOffset;
 - (void)dealloc;
-- (id)initWithBannerMessage:(id)arg1 actionFactory:(id)arg2 serviceLogger:(id)arg3 driverDistractionController:(id)arg4 nowPlayingManager:(id)arg5;
-
-// Remaining properties
-@property(readonly, copy) NSString *debugDescription;
-@property(readonly, copy) NSString *description;
-@property(readonly) unsigned long long hash;
-@property(readonly) Class superclass;
+- (id)initWithBannerMessage:(id)arg1 actionFactory:(id)arg2 serviceLogger:(id)arg3;
 
 @end
 

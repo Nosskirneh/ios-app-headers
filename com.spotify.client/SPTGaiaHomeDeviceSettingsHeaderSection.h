@@ -6,14 +6,14 @@
 
 #import "SettingsSection.h"
 
-@class SPTGaiaSavedDeviceManager;
+@class SPTGaiaHomeDeviceManager;
 
 @interface SPTGaiaHomeDeviceSettingsHeaderSection : SettingsSection
 {
-    SPTGaiaSavedDeviceManager *_savedDeviceManager;
+    SPTGaiaHomeDeviceManager *_savedDeviceManager;
 }
 
-@property(readonly, nonatomic) SPTGaiaSavedDeviceManager *savedDeviceManager; // @synthesize savedDeviceManager=_savedDeviceManager;
+@property(readonly, nonatomic) SPTGaiaHomeDeviceManager *savedDeviceManager; // @synthesize savedDeviceManager=_savedDeviceManager;
 - (void).cxx_destruct;
 - (id)footerText;
 - (id)headerText;

@@ -18,7 +18,8 @@
     long long _selectedIcon;
     UIColor *_normalIconColor;
     UIColor *_selectedIconColor;
-    UIColor *_backgroundColor;
+    UIColor *_normalBackgroundColor;
+    UIColor *_selectedBackgroundColor;
     double _cornerRadius;
     struct CGSize _size;
     struct CGSize _iconSize;
@@ -26,7 +27,8 @@
 
 @property(nonatomic) _Bool clipToBounds; // @synthesize clipToBounds=_clipToBounds;
 @property(nonatomic) double cornerRadius; // @synthesize cornerRadius=_cornerRadius;
-@property(retain, nonatomic) UIColor *backgroundColor; // @synthesize backgroundColor=_backgroundColor;
+@property(retain, nonatomic) UIColor *selectedBackgroundColor; // @synthesize selectedBackgroundColor=_selectedBackgroundColor;
+@property(retain, nonatomic) UIColor *normalBackgroundColor; // @synthesize normalBackgroundColor=_normalBackgroundColor;
 @property(retain, nonatomic) UIColor *selectedIconColor; // @synthesize selectedIconColor=_selectedIconColor;
 @property(retain, nonatomic) UIColor *normalIconColor; // @synthesize normalIconColor=_normalIconColor;
 @property(nonatomic) struct CGSize iconSize; // @synthesize iconSize=_iconSize;

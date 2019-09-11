@@ -9,6 +9,8 @@
 @class NSString, NSURL;
 
 @protocol SPTFreeTierCollectionItemViewModel <NSObject>
+@property(readonly, nonatomic, getter=isQuickActionsEnabled) _Bool quickActionsEnabled;
+@property(readonly, nonatomic, getter=isEnabled) _Bool enabled;
 @property(readonly, nonatomic) long long offlineStatus;
 @property(readonly, nonatomic, getter=isOfflineAvailable) _Bool offlineAvailable;
 @property(readonly, nonatomic, getter=isFolder) _Bool folder;
@@ -18,6 +20,8 @@
 @property(readonly, nonatomic) long long icon;
 @property(readonly, nonatomic) NSURL *imageURL;
 @property(readonly, nonatomic) NSURL *URL;
+@property(readonly, nonatomic) _Bool showCollectionQuickActions;
+@property(readonly, nonatomic) _Bool inCollection;
 @property(readonly, nonatomic) NSString *subtitle;
 @property(readonly, nonatomic) NSString *title;
 @end

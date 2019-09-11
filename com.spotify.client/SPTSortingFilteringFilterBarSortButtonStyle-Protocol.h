@@ -6,7 +6,7 @@
 
 #import "GLUEStyle-Protocol.h"
 
-@class GLUEPressedAnimatorStyle, UIColor, UIFont, UIImage;
+@class GLUEPressedAnimatorStyle, UIColor, UIFont;
 @protocol SPTSortingFilteringFilterBarSortButtonStyle;
 
 @protocol SPTSortingFilteringFilterBarSortButtonStyle <GLUEStyle>
@@ -24,8 +24,6 @@
 @property(nonatomic) long long lineBreakMode;
 @property(copy, nonatomic) UIFont *textfont;
 @property(nonatomic) double contentMargin;
-@property(nonatomic) double iconMargin;
-@property(retain, nonatomic) UIImage *icon;
 @property(nonatomic) double cornerRadius;
 @property(nonatomic) double height;
 - (_Bool)isEqualToButtonStyle:(id <SPTSortingFilteringFilterBarSortButtonStyle>)arg1;

@@ -6,11 +6,11 @@
 
 #import <objc/NSObject.h>
 
-#import "EXP_SPTHubRemoteContentOperationURLResolver-Protocol.h"
+#import "SPTHubRemoteContentOperationURLResolver-Protocol.h"
 
 @class NSString;
 
-@interface SPTFreeTierTrackHubRemoteURLResolver : NSObject <EXP_SPTHubRemoteContentOperationURLResolver>
+@interface SPTFreeTierTrackHubRemoteURLResolver : NSObject <SPTHubRemoteContentOperationURLResolver>
 {
     NSString *_trackIdentifier;
 }

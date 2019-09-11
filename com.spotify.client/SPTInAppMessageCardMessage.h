@@ -16,18 +16,20 @@
     NSString *_header;
     NSString *_closeTitle;
     NSString *_identifier;
+    NSString *_uuid;
     NSURL *_impressionURL;
 }
 
 @property(nonatomic, getter=isFullScreen) _Bool fullScreen; // @synthesize fullScreen=_fullScreen;
 @property(readonly, nonatomic) NSURL *impressionURL; // @synthesize impressionURL=_impressionURL;
+@property(readonly, copy, nonatomic) NSString *uuid; // @synthesize uuid=_uuid;
 @property(readonly, copy, nonatomic) NSString *identifier; // @synthesize identifier=_identifier;
 @property(readonly, copy, nonatomic) NSString *closeTitle; // @synthesize closeTitle=_closeTitle;
 @property(readonly, copy, nonatomic) NSString *header; // @synthesize header=_header;
 @property(readonly, copy, nonatomic) NSDictionary *clickActions; // @synthesize clickActions=_clickActions;
 @property(readonly, copy, nonatomic) NSString *html; // @synthesize html=_html;
 - (void).cxx_destruct;
-- (id)initWithHTML:(id)arg1 identifier:(id)arg2 localizedHeading:(id)arg3 localizedCloseTitle:(id)arg4 impressionURL:(id)arg5 clickActions:(id)arg6 fullScreen:(_Bool)arg7;
+- (id)initWithHTML:(id)arg1 identifier:(id)arg2 uuid:(id)arg3 localizedHeading:(id)arg4 localizedCloseTitle:(id)arg5 impressionURL:(id)arg6 clickActions:(id)arg7 fullScreen:(_Bool)arg8;
 
 @end
 

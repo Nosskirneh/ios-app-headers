@@ -6,10 +6,9 @@
 
 #import <objc/NSObject.h>
 
-#import "EXP_HUBIconImageResolver-Protocol.h"
 #import "HUBIconImageResolver-Protocol.h"
 
-@interface HUGSIconImageResolver : NSObject <HUBIconImageResolver, EXP_HUBIconImageResolver>
+@interface HUGSIconImageResolver : NSObject <HUBIconImageResolver>
 {
 }
 

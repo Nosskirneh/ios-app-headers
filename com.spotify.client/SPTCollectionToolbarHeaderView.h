@@ -22,7 +22,7 @@
 }
 
 + (double)preferredHeight;
-@property(retain, nonatomic) NSArray *managedConstraints; // @synthesize managedConstraints=_managedConstraints;
+@property(copy, nonatomic) NSArray *managedConstraints; // @synthesize managedConstraints=_managedConstraints;
 @property(retain, nonatomic) UIStackView *trailingStackView; // @synthesize trailingStackView=_trailingStackView;
 @property(retain, nonatomic) GLUELabel *titleLabel; // @synthesize titleLabel=_titleLabel;
 @property(retain, nonatomic) UIToolbar *toolbar; // @synthesize toolbar=_toolbar;
@@ -32,7 +32,7 @@
 - (void)glue_applyStyle:(id)arg1;
 - (void)applyThemeLayout;
 - (void)addViewConstraintsForStyle:(id)arg1;
-@property(retain, nonatomic) NSString *title;
+@property(copy, nonatomic) NSString *title;
 - (void)dealloc;
 - (void)setupToolbarRightBarButtonItem:(id)arg1;
 - (id)initWithFrame:(struct CGRect)arg1;

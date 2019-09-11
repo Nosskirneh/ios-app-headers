@@ -6,39 +6,45 @@
 
 #import <UIKit/UIViewController.h>
 
-#import "SPTNowPlayingAdPlayerObserver-Protocol.h"
+#import "SPTAdPlayerObserver-Protocol.h"
 #import "SPTNowPlayingAdUnitViewController-Protocol.h"
 #import "SPTNowPlayingContainedViewController-Protocol.h"
 
-@class NSString, SPTNowPlayingAdPlayerObservable, SPTNowPlayingMarqueeLabel, SPTTheme;
+@class NSString, SPTAdNowPlayingManager, SPTAdPlayerObservable, SPTNowPlayingButton, SPTNowPlayingMarqueeLabel, SPTNowPlayingNavigationBarViewV2, SPTTheme;
 @protocol SPTNowPlayingContainingViewController, SPTNowPlayingVideoControlsVisibilityDelegate;
 
-@interface SPTNowPlayingVideoAdNavigationBarUnitViewController : UIViewController <SPTNowPlayingAdPlayerObserver, SPTNowPlayingContainedViewController, SPTNowPlayingAdUnitViewController>
+@interface SPTNowPlayingVideoAdNavigationBarUnitViewController : UIViewController <SPTAdPlayerObserver, SPTNowPlayingContainedViewController, SPTNowPlayingAdUnitViewController>
 {
     id <SPTNowPlayingVideoControlsVisibilityDelegate> _visibilityDelegate;
     SPTTheme *_theme;
     SPTNowPlayingMarqueeLabel *_navigationBarLabel;
+    SPTNowPlayingButton *_navigationBarCloseButton;
+    SPTAdNowPlayingManager *_adNowPlayingManager;
     double _animationDuration;
-    SPTNowPlayingAdPlayerObservable *_observable;
+    SPTAdPlayerObservable *_observable;
 }
 
-@property(readonly, nonatomic) SPTNowPlayingAdPlayerObservable *observable; // @synthesize observable=_observable;
+@property(readonly, nonatomic) SPTAdPlayerObservable *observable; // @synthesize observable=_observable;
 @property(nonatomic) double animationDuration; // @synthesize animationDuration=_animationDuration;
+@property(readonly, nonatomic) SPTAdNowPlayingManager *adNowPlayingManager; // @synthesize adNowPlayingManager=_adNowPlayingManager;
+@property(readonly, nonatomic) SPTNowPlayingButton *navigationBarCloseButton; // @synthesize navigationBarCloseButton=_navigationBarCloseButton;
 @property(readonly, nonatomic) SPTNowPlayingMarqueeLabel *navigationBarLabel; // @synthesize navigationBarLabel=_navigationBarLabel;
 @property(readonly, nonatomic) SPTTheme *theme; // @synthesize theme=_theme;
 @property(nonatomic) __weak id <SPTNowPlayingVideoControlsVisibilityDelegate> visibilityDelegate; // @synthesize visibilityDelegate=_visibilityDelegate;
 - (void).cxx_destruct;
-- (void)nowPlayingAdStateDidChangeToTrack:(struct SPTNowPlayingTrack)arg1;
+- (void)adPlayerStateDidChangeToTrack:(struct SPTNowPlayingTrack)arg1;
 - (void)didTapVideoView:(id)arg1;
 - (void)setShowsVideoControls:(_Bool)arg1 animated:(_Bool)arg2;
 - (void)reloadViewControllerWithAdEntity:(id)arg1;
+- (void)minimizePlayingView;
 - (struct CGSize)preferredContentSize;
 - (double)viewControllerPriority;
 - (unsigned long long)leadingEdge;
 - (void)setupConstraints;
 - (void)viewDidLoad;
+- (void)loadView;
 - (void)dealloc;
-- (id)initWithTheme:(id)arg1 playerObservable:(id)arg2;
+- (id)initWithTheme:(id)arg1 playerObservable:(id)arg2 adNowPlayingManager:(id)arg3;
 
 // Remaining properties
 @property(nonatomic) __weak UIViewController<SPTNowPlayingContainingViewController> *container;
@@ -46,6 +52,7 @@
 @property(readonly, copy) NSString *description;
 @property(readonly) unsigned long long hash;
 @property(readonly) Class superclass;
+@property(retain, nonatomic) SPTNowPlayingNavigationBarViewV2 *view; // @dynamic view;
 
 @end
 

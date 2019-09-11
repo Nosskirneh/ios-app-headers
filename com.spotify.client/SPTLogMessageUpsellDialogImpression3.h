@@ -20,13 +20,13 @@
 }
 
 + (id)messageWithPromotedOffer:(id)arg1 currentProduct:(id)arg2 reason:(id)arg3 type:(id)arg4 style:(id)arg5 referrerIdentifier:(id)arg6 adId:(id)arg7;
-@property(retain, nonatomic) NSString *adIdValue; // @synthesize adIdValue=_adIdValue;
-@property(retain, nonatomic) NSString *referrerIdentifierValue; // @synthesize referrerIdentifierValue=_referrerIdentifierValue;
-@property(retain, nonatomic) NSString *styleValue; // @synthesize styleValue=_styleValue;
-@property(retain, nonatomic) NSString *typeValue; // @synthesize typeValue=_typeValue;
-@property(retain, nonatomic) NSString *reasonValue; // @synthesize reasonValue=_reasonValue;
-@property(retain, nonatomic) NSString *currentProductValue; // @synthesize currentProductValue=_currentProductValue;
-@property(retain, nonatomic) NSString *promotedOfferValue; // @synthesize promotedOfferValue=_promotedOfferValue;
+@property(copy, nonatomic) NSString *adIdValue; // @synthesize adIdValue=_adIdValue;
+@property(copy, nonatomic) NSString *referrerIdentifierValue; // @synthesize referrerIdentifierValue=_referrerIdentifierValue;
+@property(copy, nonatomic) NSString *styleValue; // @synthesize styleValue=_styleValue;
+@property(copy, nonatomic) NSString *typeValue; // @synthesize typeValue=_typeValue;
+@property(copy, nonatomic) NSString *reasonValue; // @synthesize reasonValue=_reasonValue;
+@property(copy, nonatomic) NSString *currentProductValue; // @synthesize currentProductValue=_currentProductValue;
+@property(copy, nonatomic) NSString *promotedOfferValue; // @synthesize promotedOfferValue=_promotedOfferValue;
 - (void).cxx_destruct;
 - (_Bool)isEqual:(id)arg1;
 - (unsigned long long)hash;

@@ -7,6 +7,7 @@
 #import "NSObject-Protocol.h"
 
 @class NSURL, SPTPlayerTrack, UIView;
+@protocol SPTNowPlayingCarouselContentProviderDelegate;
 
 @protocol SPTNowPlayingCarouselContentProvider <NSObject>
 - (void)updateWithTrack:(SPTPlayerTrack *)arg1 imageURL:(NSURL *)arg2;
@@ -16,6 +17,7 @@
 - (UIView *)provideContent;
 
 @optional
+@property(nonatomic) __weak id <SPTNowPlayingCarouselContentProviderDelegate> delegate;
 - (void)carouselWillDismissCellWithTrack:(SPTPlayerTrack *)arg1 atRelativePosition:(long long)arg2;
 - (void)carouselDidShowCellWithTrack:(SPTPlayerTrack *)arg1 atRelativePosition:(long long)arg2;
 @end

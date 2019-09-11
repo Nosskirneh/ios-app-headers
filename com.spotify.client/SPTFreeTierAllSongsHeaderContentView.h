@@ -28,8 +28,8 @@
     NSArray *_collapsedTitleMarginConstraints;
 }
 
-@property(retain, nonatomic) NSArray *collapsedTitleMarginConstraints; // @synthesize collapsedTitleMarginConstraints=_collapsedTitleMarginConstraints;
-@property(retain, nonatomic) NSArray *titleMarginConstraints; // @synthesize titleMarginConstraints=_titleMarginConstraints;
+@property(copy, nonatomic) NSArray *collapsedTitleMarginConstraints; // @synthesize collapsedTitleMarginConstraints=_collapsedTitleMarginConstraints;
+@property(copy, nonatomic) NSArray *titleMarginConstraints; // @synthesize titleMarginConstraints=_titleMarginConstraints;
 @property(retain, nonatomic) NSLayoutConstraint *containerActionButtonBottomConstraint; // @synthesize containerActionButtonBottomConstraint=_containerActionButtonBottomConstraint;
 @property(retain, nonatomic) NSLayoutConstraint *containerSubtitleBottomConstraint; // @synthesize containerSubtitleBottomConstraint=_containerSubtitleBottomConstraint;
 @property(retain, nonatomic) NSLayoutConstraint *collapsedTitleConstraint; // @synthesize collapsedTitleConstraint=_collapsedTitleConstraint;

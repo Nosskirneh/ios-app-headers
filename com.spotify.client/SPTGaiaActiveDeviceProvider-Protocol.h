@@ -6,10 +6,10 @@
 
 #import "NSObject-Protocol.h"
 
-@class SPTGaiaDevice;
+@class SPTGaiaConnectDevice;
 
 @protocol SPTGaiaActiveDeviceProvider <NSObject>
-@property(readonly) SPTGaiaDevice *connectingDevice;
-@property(readonly) SPTGaiaDevice *activeDevice;
+@property(readonly) SPTGaiaConnectDevice *connectingDevice;
+@property(readonly) SPTGaiaConnectDevice *activeDevice;
 @end
 

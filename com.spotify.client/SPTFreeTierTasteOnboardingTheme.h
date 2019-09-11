@@ -6,22 +6,24 @@
 
 #import "GLUEThemeBase.h"
 
-@class SPTFreeTierTasteOnboardingArtistCellStyle, SPTFreeTierTasteOnboardingArtistPickerOfflineViewStyle, SPTFreeTierTasteOnboardingArtistSearchInfoViewStyle, SPTFreeTierTasteOnboardingGenreCellStyle, SPTFreeTierTasteOnboardingUpdateTasteViewStyle;
+@class SPTFreeTierTasteOnboardingArtistPickerOfflineViewStyle, SPTFreeTierTasteOnboardingArtistSearchInfoViewStyle;
 @protocol GLUEStyle;
 
 @interface SPTFreeTierTasteOnboardingTheme : GLUEThemeBase
 {
 }
 
-@property(readonly, copy, nonatomic) SPTFreeTierTasteOnboardingUpdateTasteViewStyle<GLUEStyle> *updateTasteViewStyle;
+- (id)artistPickerHeaderViewStyleWithIsStockholmBlackStyleEnabled:(_Bool)arg1;
+- (id)stockholmBlackLabelStyle;
+- (id)updateTasteViewStyleWithIsStockholmBlackStyleEnabled:(_Bool)arg1;
 @property(readonly, copy, nonatomic) SPTFreeTierTasteOnboardingArtistSearchInfoViewStyle<GLUEStyle> *artistSearchNoResultsInfoViewStyle;
-@property(readonly, copy, nonatomic) SPTFreeTierTasteOnboardingArtistSearchInfoViewStyle<GLUEStyle> *artistSearchInitialInfoViewStyle;
-- (id)artistSearchResultCellStyleForTraitCollection:(id)arg1;
-- (id)artistSearchViewStyleForTraitCollection:(id)arg1;
-@property(readonly, copy, nonatomic) SPTFreeTierTasteOnboardingGenreCellStyle<GLUEStyle> *genreCellStyle;
-@property(readonly, copy, nonatomic) SPTFreeTierTasteOnboardingArtistCellStyle<GLUEStyle> *artistCellStyle;
+- (id)artistSearchInitialInfoViewStyleWithIsStockholmBlackStyleEnabled:(_Bool)arg1;
+- (id)artistSearchResultCellStyleForTraitCollection:(id)arg1 isStockholmBlackStyleEnabled:(_Bool)arg2;
+- (id)artistSearchViewStyleForTraitCollection:(id)arg1 isStockholmBlackStyleEnabled:(_Bool)arg2;
+- (id)genreCellStyleIsStockholmBlackStyleEnabled:(_Bool)arg1;
+- (id)artistCellStyleIsStockholmBlackEnabled:(_Bool)arg1;
 @property(readonly, copy, nonatomic) SPTFreeTierTasteOnboardingArtistPickerOfflineViewStyle<GLUEStyle> *artistPickerOfflineViewStyle;
-- (id)artistPickerViewStyleForTraitCollection:(id)arg1;
+- (id)artistPickerViewStyleForTraitCollection:(id)arg1 isStockholmBlackStyleEnabled:(_Bool)arg2;
 
 @end
 

@@ -4,15 +4,18 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
+#import "SPTCollectionPlatformFieldAddTime-Protocol.h"
 #import "SPTCollectionPlatformFieldArtistFollowed-Protocol.h"
 #import "SPTCollectionPlatformFieldArtistIsBanned-Protocol.h"
 #import "SPTCollectionPlatformFieldArtistPortraits-Protocol.h"
+#import "SPTCollectionPlatformFieldArtistTracksCount-Protocol.h"
+#import "SPTCollectionPlatformFieldAvailableOfflineStatus-Protocol.h"
+#import "SPTCollectionPlatformFieldCollectionURL-Protocol.h"
 #import "SPTCollectionPlatformFieldImageURL-Protocol.h"
 #import "SPTCollectionPlatformFieldName-Protocol.h"
 #import "SPTCollectionPlatformFieldURL-Protocol.h"
 #import "SPTFreeTierCollectionEntity-Protocol.h"
-#import "STPCollectionPlatformFieldAddTime-Protocol.h"
 
-@protocol SPTFreeTierCollectionArtistEntity <SPTFreeTierCollectionEntity, SPTCollectionPlatformFieldName, SPTCollectionPlatformFieldURL, SPTCollectionPlatformFieldImageURL, SPTCollectionPlatformFieldArtistPortraits, SPTCollectionPlatformFieldArtistFollowed, SPTCollectionPlatformFieldArtistIsBanned, STPCollectionPlatformFieldAddTime>
+@protocol SPTFreeTierCollectionArtistEntity <SPTFreeTierCollectionEntity, SPTCollectionPlatformFieldName, SPTCollectionPlatformFieldURL, SPTCollectionPlatformFieldImageURL, SPTCollectionPlatformFieldArtistPortraits, SPTCollectionPlatformFieldArtistFollowed, SPTCollectionPlatformFieldArtistIsBanned, SPTCollectionPlatformFieldAddTime, SPTCollectionPlatformFieldArtistTracksCount, SPTCollectionPlatformFieldAvailableOfflineStatus, SPTCollectionPlatformFieldCollectionURL>
 @end
 

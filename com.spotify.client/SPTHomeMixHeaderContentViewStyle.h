@@ -12,6 +12,7 @@
 
 @interface SPTHomeMixHeaderContentViewStyle : NSObject <GLUEDebuggableStyle>
 {
+    _Bool _showSubtitle;
     NSString *_debugName;
     double _actionButtonOverflowHeight;
     UIColor *_backgroundColor;
@@ -24,11 +25,12 @@
     UIColor *_entityImageLayerBackgroundColor;
     GLUELabelStyle *_subtitleStyle;
     GLUEGradientStyle *_backgroundGradientStyle;
-    double _stackviewSpacing;
+    double _subtitleMargin;
     struct CGSize _entityImageShadowOffset;
 }
 
-@property(nonatomic) double stackviewSpacing; // @synthesize stackviewSpacing=_stackviewSpacing;
+@property(nonatomic, getter=shouldShowSubtitle) _Bool showSubtitle; // @synthesize showSubtitle=_showSubtitle;
+@property(nonatomic) double subtitleMargin; // @synthesize subtitleMargin=_subtitleMargin;
 @property(copy, nonatomic) GLUEGradientStyle *backgroundGradientStyle; // @synthesize backgroundGradientStyle=_backgroundGradientStyle;
 @property(copy, nonatomic) GLUELabelStyle *subtitleStyle; // @synthesize subtitleStyle=_subtitleStyle;
 @property(retain, nonatomic) UIColor *entityImageLayerBackgroundColor; // @synthesize entityImageLayerBackgroundColor=_entityImageLayerBackgroundColor;

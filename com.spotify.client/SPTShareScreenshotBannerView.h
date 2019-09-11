@@ -6,18 +6,18 @@
 
 #import "SPTBannerView.h"
 
-@class SPTLayoutConstraintBuilder, SPTShareScreenshotBannerContentView;
+@class NSArray, SPTShareScreenshotBannerContentView;
 @protocol GLUETheme, SPTBannerViewDelegate;
 
 @interface SPTShareScreenshotBannerView : SPTBannerView
 {
     SPTShareScreenshotBannerContentView *_contentView;
-    SPTLayoutConstraintBuilder *_layoutBuilder;
+    NSArray *_layoutConstraints;
     id <GLUETheme> _theme;
 }
 
 @property(retain, nonatomic) id <GLUETheme> theme; // @synthesize theme=_theme;
-@property(retain, nonatomic) SPTLayoutConstraintBuilder *layoutBuilder; // @synthesize layoutBuilder=_layoutBuilder;
+@property(copy, nonatomic) NSArray *layoutConstraints; // @synthesize layoutConstraints=_layoutConstraints;
 @property(retain, nonatomic) SPTShareScreenshotBannerContentView *contentView; // @synthesize contentView=_contentView;
 - (void).cxx_destruct;
 - (void)closeButtonPressed;

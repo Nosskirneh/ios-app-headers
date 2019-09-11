@@ -14,10 +14,10 @@
 {
     GLUELabelStyle *_titleLabelStyle;
     GLUELabelStyle *_subtitleLabelStyle;
-    double _verticalSpacing;
+    double _subtitleBottomEdgePadding;
 }
 
-@property(nonatomic) double verticalSpacing; // @synthesize verticalSpacing=_verticalSpacing;
+@property(nonatomic) double subtitleBottomEdgePadding; // @synthesize subtitleBottomEdgePadding=_subtitleBottomEdgePadding;
 @property(copy, nonatomic) GLUELabelStyle *subtitleLabelStyle; // @synthesize subtitleLabelStyle=_subtitleLabelStyle;
 @property(copy, nonatomic) GLUELabelStyle *titleLabelStyle; // @synthesize titleLabelStyle=_titleLabelStyle;
 - (void).cxx_destruct;

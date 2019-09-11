@@ -4,18 +4,18 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import "EXP_HUGSThemableComponentView.h"
+#import "HUGSThemableComponentView.h"
 
-#import "EXP_HUBComponentViewWithEvents-Protocol.h"
-#import "EXP_HUBComponentViewWithImageHandling-Protocol.h"
-#import "EXP_HUGSSelectableComponentView-Protocol.h"
+#import "HUBComponentViewWithEvents-Protocol.h"
+#import "HUBComponentViewWithImageHandling-Protocol.h"
+#import "HUGSSelectableComponentView-Protocol.h"
 
 @class NSString, SPTHomeUIPromoView, UIGestureRecognizer, UIView;
-@protocol EXP_HUBComponentEventHandler;
+@protocol HUBComponentEventHandler;
 
-@interface SPTHomeUIPromoComponentView : EXP_HUGSThemableComponentView <EXP_HUBComponentViewWithImageHandling, EXP_HUBComponentViewWithEvents, EXP_HUGSSelectableComponentView>
+@interface SPTHomeUIPromoComponentView : HUGSThemableComponentView <HUBComponentViewWithImageHandling, HUBComponentViewWithEvents, HUGSSelectableComponentView>
 {
-    id <EXP_HUBComponentEventHandler> _eventHandler;
+    id <HUBComponentEventHandler> _eventHandler;
     UIGestureRecognizer *_selectionGestureRecognizer;
     SPTHomeUIPromoView *_promoView;
 }
@@ -23,7 +23,7 @@
 + (struct CGSize)preferredViewSizeForDisplayingModel:(id)arg1 containerViewSize:(struct CGSize)arg2 theme:(id)arg3;
 @property(readonly, nonatomic) SPTHomeUIPromoView *promoView; // @synthesize promoView=_promoView;
 @property(retain, nonatomic) UIGestureRecognizer *selectionGestureRecognizer; // @synthesize selectionGestureRecognizer=_selectionGestureRecognizer;
-@property(retain, nonatomic) id <EXP_HUBComponentEventHandler> eventHandler; // @synthesize eventHandler=_eventHandler;
+@property(retain, nonatomic) id <HUBComponentEventHandler> eventHandler; // @synthesize eventHandler=_eventHandler;
 - (void).cxx_destruct;
 - (void)sendSelectionEvent;
 - (void)applyThemeLayout;

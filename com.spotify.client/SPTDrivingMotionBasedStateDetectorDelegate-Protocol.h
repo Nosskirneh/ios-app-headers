@@ -6,10 +6,15 @@
 
 #import "NSObject-Protocol.h"
 
-@class SPTDrivingMotionDetectionLoaderResult;
+@class NSError, SPTDrivingMotionDetectionLoaderResult;
 @protocol SPTDrivingStateDetector;
 
 @protocol SPTDrivingMotionBasedStateDetectorDelegate <NSObject>
 - (void)drivingStateDetector:(id <SPTDrivingStateDetector>)arg1 didReceivePredictionResult:(SPTDrivingMotionDetectionLoaderResult *)arg2;
+
+@optional
+- (void)drivingStateDetectorDidSendPredictionRequest:(id <SPTDrivingStateDetector>)arg1;
+- (void)drivingStateDetectorDidReceiveSensorBatch:(id <SPTDrivingStateDetector>)arg1;
+- (void)drivingStateDetector:(id <SPTDrivingStateDetector>)arg1 didReceivePredictionError:(NSError *)arg2;
 @end
 

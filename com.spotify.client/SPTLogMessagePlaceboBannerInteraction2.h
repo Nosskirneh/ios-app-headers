@@ -16,9 +16,9 @@
 }
 
 + (id)messageWithConfigurationId:(id)arg1 interactionType:(id)arg2 interactionUri:(id)arg3;
-@property(retain, nonatomic) NSString *interactionUriValue; // @synthesize interactionUriValue=_interactionUriValue;
-@property(retain, nonatomic) NSString *interactionTypeValue; // @synthesize interactionTypeValue=_interactionTypeValue;
-@property(retain, nonatomic) NSString *configurationIdValue; // @synthesize configurationIdValue=_configurationIdValue;
+@property(copy, nonatomic) NSString *interactionUriValue; // @synthesize interactionUriValue=_interactionUriValue;
+@property(copy, nonatomic) NSString *interactionTypeValue; // @synthesize interactionTypeValue=_interactionTypeValue;
+@property(copy, nonatomic) NSString *configurationIdValue; // @synthesize configurationIdValue=_configurationIdValue;
 - (void).cxx_destruct;
 - (_Bool)isEqual:(id)arg1;
 - (unsigned long long)hash;

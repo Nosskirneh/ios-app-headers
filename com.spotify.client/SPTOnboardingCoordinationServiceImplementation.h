@@ -6,14 +6,13 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTFeatureFlagSignalObserver-Protocol.h"
 #import "SPTOnboardingCoordinationService-Protocol.h"
 #import "SPTURISubtypeHandler-Protocol.h"
 
 @class NSString, SPTAllocationContext, SPTOnboardingCoordinationManager;
-@protocol SPTContainerService, SPTFeatureFlagSignal, SPTFreeTierService, SPTFreeTierTasteOnboardingService, SPTLanguageOnboardingService, SPTLoginService, SPTUIPresentationService, SPTURIDispatchService;
+@protocol SPTContainerService, SPTFreeTierService, SPTFreeTierTasteOnboardingService, SPTLanguageOnboardingService, SPTLoginService, SPTPodcastOnboardingService, SPTUIPresentationService, SPTURIDispatchService;
 
-@interface SPTOnboardingCoordinationServiceImplementation : NSObject <SPTFeatureFlagSignalObserver, SPTURISubtypeHandler, SPTOnboardingCoordinationService>
+@interface SPTOnboardingCoordinationServiceImplementation : NSObject <SPTURISubtypeHandler, SPTOnboardingCoordinationService>
 {
     id <SPTContainerService> _containerService;
     id <SPTUIPresentationService> _uiPresentationService;
@@ -22,13 +21,13 @@
     id <SPTURIDispatchService> _uriDispatchService;
     id <SPTFreeTierTasteOnboardingService> _tasteOnboardingService;
     id <SPTLanguageOnboardingService> _languageOnboardingService;
-    id <SPTFeatureFlagSignal> _freeTierEnabledSignal;
+    id <SPTPodcastOnboardingService> _podcastOnboardingService;
     SPTOnboardingCoordinationManager *_coordinationManager;
 }
 
 + (id)serviceIdentifier;
 @property(retain, nonatomic) SPTOnboardingCoordinationManager *coordinationManager; // @synthesize coordinationManager=_coordinationManager;
-@property(retain, nonatomic) id <SPTFeatureFlagSignal> freeTierEnabledSignal; // @synthesize freeTierEnabledSignal=_freeTierEnabledSignal;
+@property(nonatomic) __weak id <SPTPodcastOnboardingService> podcastOnboardingService; // @synthesize podcastOnboardingService=_podcastOnboardingService;
 @property(nonatomic) __weak id <SPTLanguageOnboardingService> languageOnboardingService; // @synthesize languageOnboardingService=_languageOnboardingService;
 @property(nonatomic) __weak id <SPTFreeTierTasteOnboardingService> tasteOnboardingService; // @synthesize tasteOnboardingService=_tasteOnboardingService;
 @property(nonatomic) __weak id <SPTURIDispatchService> uriDispatchService; // @synthesize uriDispatchService=_uriDispatchService;
@@ -37,7 +36,6 @@
 @property(nonatomic) __weak id <SPTUIPresentationService> uiPresentationService; // @synthesize uiPresentationService=_uiPresentationService;
 @property(nonatomic) __weak id <SPTContainerService> containerService; // @synthesize containerService=_containerService;
 - (void).cxx_destruct;
-- (void)featureFlagSignal:(id)arg1 hasAssumedState:(long long)arg2;
 - (long long)URISubtypeHandlerOpenURI:(id)arg1 context:(id)arg2;
 - (_Bool)URISubtypeHandlerCanHandleURI:(id)arg1;
 - (void)unregisterLinkHandler;

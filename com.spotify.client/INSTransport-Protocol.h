@@ -9,6 +9,6 @@
 @class NSData, NSString;
 
 @protocol INSTransport <NSObject>
-- (void)postData:(NSData *)arg1 path:(NSString *)arg2 success:(void (^)(long long, NSDictionary *, NSData *))arg3 failure:(void (^)(NSError *))arg4;
+- (void)postData:(NSData *)arg1 path:(NSString *)arg2 authenticate:(_Bool)arg3 success:(void (^)(long long, NSDictionary *, NSData *))arg4 failure:(void (^)(long long, NSError *))arg5;
 @end
 

@@ -6,13 +6,17 @@
 
 #import "GLUEThemeBase.h"
 
-@class GLUECollectionViewStyle, SPTPremiumDestinationCarouselStyle, SPTPremiumDestinationCtaStyle, SPTPremiumDestinationCurrentPlanStyle, SPTPremiumDestinationHeaderTitleStyle, SPTPremiumDestinationLegalTextStyle, SPTPremiumDestinationOfferCardStyle, SPTPremiumDestinationOfferDescriptionStyle, SPTPremiumDestinationOfferTitlePricePeriodStyle, SPTPremiumDestinationOfferTitleStyle, SPTPremiumDestinationValueCardStyle, SPTPremiumDestinationValueComparisonCardStyle;
+@class GLUECollectionViewStyle, SPTPremiumDestinationCarouselStyle, SPTPremiumDestinationCtaStyle, SPTPremiumDestinationCurrentPlanStyle, SPTPremiumDestinationFlexboxButtonStyle, SPTPremiumDestinationFlexboxLegalTextStyle, SPTPremiumDestinationFlexboxSubtitleStyle, SPTPremiumDestinationFlexboxTitleStyle, SPTPremiumDestinationHeaderTitleStyle, SPTPremiumDestinationLegalTextStyle, SPTPremiumDestinationOfferCardStyle, SPTPremiumDestinationOfferDescriptionStyle, SPTPremiumDestinationOfferTitlePricePeriodStyle, SPTPremiumDestinationOfferTitleStyle, SPTPremiumDestinationValueCardStyle, SPTPremiumDestinationValueComparisonCardStyle;
 @protocol GLUEStyle;
 
 @interface SPTPremiumDestinationGLUETheme : GLUEThemeBase
 {
 }
 
+@property(readonly, copy, nonatomic) SPTPremiumDestinationFlexboxLegalTextStyle *flexboxLegalTextStyle;
+@property(readonly, copy, nonatomic) SPTPremiumDestinationFlexboxSubtitleStyle *flexboxSubtitleStyle;
+@property(readonly, copy, nonatomic) SPTPremiumDestinationFlexboxButtonStyle *flexboxButtonStyle;
+@property(readonly, copy, nonatomic) SPTPremiumDestinationFlexboxTitleStyle *flexboxTitleStyle;
 @property(readonly, copy, nonatomic) SPTPremiumDestinationHeaderTitleStyle *headerTitleStyle;
 @property(readonly, copy, nonatomic) SPTPremiumDestinationCtaStyle<GLUEStyle> *offerCtaStyle;
 @property(readonly, copy, nonatomic) SPTPremiumDestinationOfferTitlePricePeriodStyle<GLUEStyle> *offerTitlePricePeriodStyle;
@@ -27,7 +31,7 @@
 @property(readonly, copy, nonatomic) SPTPremiumDestinationCtaStyle<GLUEStyle> *primaryCtaStyle;
 @property(readonly, copy, nonatomic) GLUECollectionViewStyle *premiumDestinationCollectionViewStyle;
 - (double)offerCardComponentBottomContentEdgeMargin;
-- (double)verticalMarginBetweenCurrentPlanAndPlanCardComponents;
+- (double)flexboxComponentVerticalMargin;
 - (double)offerCardComponentVerticalMargin;
 
 @end

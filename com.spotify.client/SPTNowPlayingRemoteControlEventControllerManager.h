@@ -8,12 +8,12 @@
 
 #import "SPTNowPlayingRemoteControlEventControllerRegistry-Protocol.h"
 #import "SPTNowPlayingRemoteControlEventPolicyControllerDelegate-Protocol.h"
-#import "SPTNowPlayingRemoteControlPolicyUpdateOserver-Protocol.h"
+#import "SPTNowPlayingRemoteControlPolicyUpdateObserver-Protocol.h"
 
 @class NSMutableSet, NSString;
 @protocol SPTNowPlayingRemoteControlEventPolicyController, SPTNowPlayingRemoteControlPolicy;
 
-@interface SPTNowPlayingRemoteControlEventControllerManager : NSObject <SPTNowPlayingRemoteControlEventPolicyControllerDelegate, SPTNowPlayingRemoteControlPolicyUpdateOserver, SPTNowPlayingRemoteControlEventControllerRegistry>
+@interface SPTNowPlayingRemoteControlEventControllerManager : NSObject <SPTNowPlayingRemoteControlEventPolicyControllerDelegate, SPTNowPlayingRemoteControlPolicyUpdateObserver, SPTNowPlayingRemoteControlEventControllerRegistry>
 {
     NSMutableSet *_policyControllers;
     NSMutableSet *_subtypeControllers;

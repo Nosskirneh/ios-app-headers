@@ -10,15 +10,17 @@
 #import "SPTDataLoaderDelegate-Protocol.h"
 
 @class NSString, SPTDataLoader;
-@protocol SPTAppProtocolAuthenticatorDelegate;
+@protocol SPTAppProtocolAuthenticatorDelegate, SPTAuthController;
 
 @interface SPTAppProtocolTokenAuthenticator : NSObject <SPTDataLoaderDelegate, SPTAppProtocolAuthenticator>
 {
     id <SPTAppProtocolAuthenticatorDelegate> _delegate;
+    id <SPTAuthController> _authController;
     SPTDataLoader *_dataLoader;
 }
 
 @property(readonly, nonatomic) SPTDataLoader *dataLoader; // @synthesize dataLoader=_dataLoader;
+@property(nonatomic) __weak id <SPTAuthController> authController; // @synthesize authController=_authController;
 @property(nonatomic) __weak id <SPTAppProtocolAuthenticatorDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
 - (void)dataLoader:(id)arg1 didReceiveErrorResponse:(id)arg2;
@@ -26,7 +28,7 @@
 - (void)handleAuthenticateMessage:(id)arg1 forSessionWithID:(unsigned long long)arg2 andReply:(CDUnknownBlockType)arg3;
 - (void)handleHelloMessage:(id)arg1 forSessionWithID:(unsigned long long)arg2 andReply:(CDUnknownBlockType)arg3;
 @property(readonly, copy, nonatomic) NSString *methodName;
-- (id)initWithDataLoaderFactory:(id)arg1;
+- (id)initWithDataLoaderFactory:(id)arg1 authController:(id)arg2;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

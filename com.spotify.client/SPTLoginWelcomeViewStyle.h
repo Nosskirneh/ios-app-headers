@@ -8,34 +8,40 @@
 
 #import "GLUEStyle-Protocol.h"
 
-@class GLUEButtonStyle, NSString, SPTLoginMessageCarouselViewStyle;
+@class GLUEButtonStyle, GLUEGradientStyle, GLUELabelStyle, NSString;
 
 @interface SPTLoginWelcomeViewStyle : NSObject <GLUEStyle>
 {
+    GLUEGradientStyle *_backgroundGradientStyle;
+    GLUELabelStyle *_messageLabelStyle;
     GLUEButtonStyle *_signupButtonStyle;
     GLUEButtonStyle *_facebookButtonStyle;
     GLUEButtonStyle *_loginButtonStyle;
-    SPTLoginMessageCarouselViewStyle *_carouselViewStyle;
+    double _messageLabelHorizontalEdgeMargin;
     double _spotifyLogoTopEdgeMargin;
     double _buttonRegularSizeClassWidth;
     double _buttonMinimumHorizontalEdgeMargin;
     double _buttonMaximumHorizontalEdgeMargin;
     double _buttonsContainerBottomEdgeMargin;
     double _betweenButtonsMargin;
-    double _carouselBottomEdgeMargin;
+    double _titleMessageVerticalSpacing;
+    double _minTitleMessageScale;
 }
 
-@property(nonatomic) double carouselBottomEdgeMargin; // @synthesize carouselBottomEdgeMargin=_carouselBottomEdgeMargin;
+@property(nonatomic) double minTitleMessageScale; // @synthesize minTitleMessageScale=_minTitleMessageScale;
+@property(nonatomic) double titleMessageVerticalSpacing; // @synthesize titleMessageVerticalSpacing=_titleMessageVerticalSpacing;
 @property(nonatomic) double betweenButtonsMargin; // @synthesize betweenButtonsMargin=_betweenButtonsMargin;
 @property(nonatomic) double buttonsContainerBottomEdgeMargin; // @synthesize buttonsContainerBottomEdgeMargin=_buttonsContainerBottomEdgeMargin;
 @property(nonatomic) double buttonMaximumHorizontalEdgeMargin; // @synthesize buttonMaximumHorizontalEdgeMargin=_buttonMaximumHorizontalEdgeMargin;
 @property(nonatomic) double buttonMinimumHorizontalEdgeMargin; // @synthesize buttonMinimumHorizontalEdgeMargin=_buttonMinimumHorizontalEdgeMargin;
 @property(nonatomic) double buttonRegularSizeClassWidth; // @synthesize buttonRegularSizeClassWidth=_buttonRegularSizeClassWidth;
 @property(nonatomic) double spotifyLogoTopEdgeMargin; // @synthesize spotifyLogoTopEdgeMargin=_spotifyLogoTopEdgeMargin;
-@property(copy, nonatomic) SPTLoginMessageCarouselViewStyle *carouselViewStyle; // @synthesize carouselViewStyle=_carouselViewStyle;
+@property(nonatomic) double messageLabelHorizontalEdgeMargin; // @synthesize messageLabelHorizontalEdgeMargin=_messageLabelHorizontalEdgeMargin;
 @property(copy, nonatomic) GLUEButtonStyle *loginButtonStyle; // @synthesize loginButtonStyle=_loginButtonStyle;
 @property(copy, nonatomic) GLUEButtonStyle *facebookButtonStyle; // @synthesize facebookButtonStyle=_facebookButtonStyle;
 @property(copy, nonatomic) GLUEButtonStyle *signupButtonStyle; // @synthesize signupButtonStyle=_signupButtonStyle;
+@property(copy, nonatomic) GLUELabelStyle *messageLabelStyle; // @synthesize messageLabelStyle=_messageLabelStyle;
+@property(copy, nonatomic) GLUEGradientStyle *backgroundGradientStyle; // @synthesize backgroundGradientStyle=_backgroundGradientStyle;
 - (void).cxx_destruct;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 

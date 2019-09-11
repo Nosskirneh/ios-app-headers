@@ -11,38 +11,40 @@
 #import "GCKSessionManagerListener-Protocol.h"
 #import "NSCopying-Protocol.h"
 #import "SPTCastCustomChannelDelegate-Protocol.h"
-#import "SPTConnectLoginStateObserver-Protocol.h"
-#import "SPTGaiaDeviceStateManagerObserver-Protocol.h"
+#import "SPTGaiaCastCoreInteractorDelegate-Protocol.h"
+#import "SPTGaiaConnectManagerObserver-Protocol.h"
 
-@class GCKCastContext, GCKDevice, NSDate, NSHashTable, NSMutableArray, NSString, SPTCastCustomChannel, SPTCastReceiverAppIDManager, SPTGaiaDeviceManager;
-@protocol SPTProductState;
+@class GCKCastContext, GCKDevice, NSArray, NSDate, NSString, SPTCastCustomChannel, SPTCastReceiverAppIDManager, SPTGaiaCastCoreInteractor, SPTObserverManager;
+@protocol SPTGaiaConnectManager, SPTProductState;
 
-@interface SPTCastManager : NSObject <GCKDiscoveryManagerListener, GCKSessionManagerListener, GCKLoggerDelegate, SPTConnectLoginStateObserver, SPTCastCustomChannelDelegate, SPTGaiaDeviceStateManagerObserver, NSCopying>
+@interface SPTCastManager : NSObject <GCKDiscoveryManagerListener, GCKSessionManagerListener, GCKLoggerDelegate, SPTCastCustomChannelDelegate, SPTGaiaConnectManagerObserver, SPTGaiaCastCoreInteractorDelegate, NSCopying>
 {
     float _volume;
     id <SPTProductState> _productState;
     GCKCastContext *_castContext;
-    SPTGaiaDeviceManager *_deviceManager;
     SPTCastReceiverAppIDManager *_receiverAppManager;
+    id <SPTGaiaConnectManager> _connectManager;
+    SPTGaiaCastCoreInteractor *_coreInteractor;
     GCKDevice *_deviceToConnectAfterDisconnection;
     SPTCastCustomChannel *_castCustomChannel;
-    NSHashTable *_observers;
+    SPTObserverManager *_observers;
     NSDate *_lastVolumeSetDate;
-    NSMutableArray *_devices;
+    NSArray *_devices;
 }
 
-+ (id)parseResponse:(id)arg1 error:(id *)arg2;
-@property(retain, nonatomic) NSMutableArray *devices; // @synthesize devices=_devices;
+@property(copy, nonatomic) NSArray *devices; // @synthesize devices=_devices;
 @property(retain, nonatomic) NSDate *lastVolumeSetDate; // @synthesize lastVolumeSetDate=_lastVolumeSetDate;
-@property(retain, nonatomic) NSHashTable *observers; // @synthesize observers=_observers;
+@property(retain, nonatomic) SPTObserverManager *observers; // @synthesize observers=_observers;
 @property(retain, nonatomic) SPTCastCustomChannel *castCustomChannel; // @synthesize castCustomChannel=_castCustomChannel;
 @property(retain, nonatomic) GCKDevice *deviceToConnectAfterDisconnection; // @synthesize deviceToConnectAfterDisconnection=_deviceToConnectAfterDisconnection;
+@property(retain, nonatomic) SPTGaiaCastCoreInteractor *coreInteractor; // @synthesize coreInteractor=_coreInteractor;
+@property(retain, nonatomic) id <SPTGaiaConnectManager> connectManager; // @synthesize connectManager=_connectManager;
 @property(retain, nonatomic) SPTCastReceiverAppIDManager *receiverAppManager; // @synthesize receiverAppManager=_receiverAppManager;
-@property(retain, nonatomic) SPTGaiaDeviceManager *deviceManager; // @synthesize deviceManager=_deviceManager;
 @property(retain, nonatomic) GCKCastContext *castContext; // @synthesize castContext=_castContext;
 @property(retain, nonatomic) id <SPTProductState> productState; // @synthesize productState=_productState;
 @property(nonatomic) float volume; // @synthesize volume=_volume;
 - (void).cxx_destruct;
+- (void)refreshLocalDevices;
 - (void)disconnectCastFromDevice;
 @property(readonly, nonatomic) GCKDevice *connectedCastDevice;
 - (void)connectToDevice:(id)arg1;
@@ -54,17 +56,17 @@
 - (_Bool)isCastDeviceConnected:(id)arg1;
 - (_Bool)isLoginAlreadyPerformed;
 - (id)prependCast:(id)arg1;
-- (_Bool)isGaiaDevice:(id)arg1 sameAsCastDevice:(id)arg2;
-- (void)deviceStateManager:(id)arg1 device:(id)arg2 volumeDidChange:(float)arg3;
-- (void)deviceStateManager:(id)arg1 activeDeviceDidChange:(id)arg2;
+- (_Bool)isDevice:(id)arg1 sameAsCastDevice:(id)arg2;
+- (void)connectManager:(id)arg1 activeDeviceDidChange:(id)arg2;
 - (void)loadDummyMedia;
 - (id)castDiscoveredDeviceFromGCKDevice:(id)arg1;
 - (void)removeDeviceFromCore:(id)arg1;
 - (void)injectDeviceToCore:(id)arg1;
 - (void)removeCastDevice:(id)arg1;
 - (void)addCastDevice:(id)arg1;
-- (void)connectLogout:(id)arg1;
-- (void)connectLoginStatusDidChange:(id)arg1 username:(id)arg2 blob:(id)arg3 clientKey:(id)arg4 tokenType:(id)arg5;
+- (void)handleConnectLoginStatusDidChange:(id)arg1 username:(id)arg2 blob:(id)arg3 clientKey:(id)arg4 tokenType:(id)arg5;
+- (void)didLogoutFromDevice;
+- (void)didLoginToDeviceWithCredentials:(id)arg1;
 - (void)logFromFunction:(const char *)arg1 message:(id)arg2;
 - (void)logMessage:(id)arg1 fromFunction:(id)arg2;
 - (void)destroyMessageChannel;
@@ -83,11 +85,14 @@
 - (float)getVolume;
 - (void)volumeDown;
 - (void)volumeUp;
+- (_Bool)deviceManagerExists;
 - (id)castModelName:(id)arg1;
 - (long long)deviceTypeForGaiaDevice:(id)arg1;
+- (id)activeDevice;
 - (id)getCastDeviceList;
 - (_Bool)isConnectedCastDevice:(id)arg1;
-- (_Bool)isGaiaDeviceCast:(id)arg1;
+- (_Bool)isConnectDeviceConnectIncarnationPreferred:(id)arg1;
+- (_Bool)isDeviceCast:(id)arg1;
 - (_Bool)isCastSessionActive;
 - (void)stopScanning;
 - (void)startScanning;
@@ -95,10 +100,11 @@
 - (void)startScanningInternal;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (void)tearDown;
+- (void)setupCoreInteractor;
 - (void)setupDeviceManager;
 - (void)setupCastContext;
 - (void)dealloc;
-- (id)initWithProductState:(id)arg1 castContext:(id)arg2 deviceManager:(id)arg3 receiverAppManager:(id)arg4;
+- (id)initWithProductState:(id)arg1 castContext:(id)arg2 receiverAppManager:(id)arg3 connectManager:(id)arg4 coreInteractor:(id)arg5;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

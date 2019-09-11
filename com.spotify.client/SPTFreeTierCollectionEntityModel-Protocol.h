@@ -8,14 +8,21 @@
 #import "SPTSortingFilteringFilterableModel-Protocol.h"
 #import "SPTSortingFilteringSortableModel-Protocol.h"
 
+@class NSArray;
 @protocol SPTFreeTierCollectionEntityModelDelegate, SPTFreeTierCollectionModelItemEntity;
 
 @protocol SPTFreeTierCollectionEntityModel <NSObject, SPTSortingFilteringFilterableModel, SPTSortingFilteringSortableModel>
-@property(readonly, nonatomic) unsigned long long numberItems;
+@property(readonly, nonatomic) NSArray *sectionIndexTitles;
+@property(readonly, nonatomic, getter=isEntityItemsArePlayable) _Bool entityItemsArePlayable;
 @property(readonly, nonatomic) _Bool hasHiddenContent;
 @property(readonly, nonatomic, getter=isLoaded) _Bool loaded;
 @property(nonatomic) __weak id <SPTFreeTierCollectionEntityModelDelegate> delegate;
-- (id <SPTFreeTierCollectionModelItemEntity>)itemAtIndex:(unsigned long long)arg1;
+- (void)willDisplayItemAtLocation:(long long)arg1;
+- (unsigned long long)locationForSectionIndex:(long long)arg1;
+- (void)performItemActionAtIndex:(unsigned long long)arg1 inGroup:(unsigned long long)arg2;
+- (id <SPTFreeTierCollectionModelItemEntity>)itemAtIndex:(unsigned long long)arg1 inGroup:(unsigned long long)arg2;
+- (unsigned long long)numberOfItemsInGroup:(unsigned long long)arg1;
+- (unsigned long long)numberOfItemGroups;
 - (void)loadModel;
 @end
 

@@ -16,9 +16,9 @@
 }
 
 + (id)messageWithSessionId:(id)arg1 userIntent:(id)arg2 sourcePageId:(id)arg3;
-@property(retain, nonatomic) NSString *sourcePageIdValue; // @synthesize sourcePageIdValue=_sourcePageIdValue;
-@property(retain, nonatomic) NSString *userIntentValue; // @synthesize userIntentValue=_userIntentValue;
-@property(retain, nonatomic) NSString *sessionIdValue; // @synthesize sessionIdValue=_sessionIdValue;
+@property(copy, nonatomic) NSString *sourcePageIdValue; // @synthesize sourcePageIdValue=_sourcePageIdValue;
+@property(copy, nonatomic) NSString *userIntentValue; // @synthesize userIntentValue=_userIntentValue;
+@property(copy, nonatomic) NSString *sessionIdValue; // @synthesize sessionIdValue=_sessionIdValue;
 - (void).cxx_destruct;
 - (_Bool)isEqual:(id)arg1;
 - (unsigned long long)hash;

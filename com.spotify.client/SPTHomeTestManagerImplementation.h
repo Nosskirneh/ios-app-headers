@@ -6,50 +6,33 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTFeatureFlagSignalObserver-Protocol.h"
 #import "SPTHomeTestManager-Protocol.h"
-#import "SPTLocalSettingsObserver-Protocol.h"
 
-@class NSHashTable, NSString;
-@protocol SPTAlertController, SPTFeatureFlagFactory, SPTFeatureFlagSignal, SPTFeatureSettingsItemFactory, SPTFreeTierService, SPTLocalSettings;
+@class NSString;
+@protocol SPTFeatureFlagFactory, SPTFeatureFlagSignal, SPTProductState;
 
-@interface SPTHomeTestManagerImplementation : NSObject <SPTFeatureFlagSignalObserver, SPTLocalSettingsObserver, SPTHomeTestManager>
+@interface SPTHomeTestManagerImplementation : NSObject <SPTHomeTestManager>
 {
-    _Bool _badgeTestEnabled;
-    NSString *_customSpaceID;
-    id <SPTFeatureFlagSignal> _newExperienceHomeEnabledSignal;
-    id <SPTLocalSettings> _localSettings;
+    _Bool _quickPlayEnabled;
+    _Bool _consolidatedRecentlyPlayedEnabled;
     id <SPTFeatureFlagFactory> _featureFlagFactory;
-    id <SPTFeatureSettingsItemFactory> _featureSettingsItemFactory;
-    id <SPTAlertController> _alertController;
-    id <SPTFreeTierService> _freeTierService;
-    id <SPTFeatureFlagSignal> _homeDisabledSignal;
-    id <SPTFeatureFlagSignal> _badgesEnabledSignal;
-    id <SPTFeatureFlagSignal> _legacyHomeEnabledSignal;
-    unsigned long long _mode;
-    NSHashTable *_observers;
+    id <SPTProductState> _productState;
+    id <SPTFeatureFlagSignal> _quickPlayEnabledSignal;
+    id <SPTFeatureFlagSignal> _consolidatedRecentlyPlayedEnabledSignal;
 }
 
-@property(readonly, nonatomic) NSHashTable *observers; // @synthesize observers=_observers;
-@property(nonatomic, getter=isBadgeTestEnabled) _Bool badgeTestEnabled; // @synthesize badgeTestEnabled=_badgeTestEnabled;
-@property(nonatomic) unsigned long long mode; // @synthesize mode=_mode;
-@property(readonly, nonatomic) id <SPTFeatureFlagSignal> legacyHomeEnabledSignal; // @synthesize legacyHomeEnabledSignal=_legacyHomeEnabledSignal;
-@property(readonly, nonatomic) id <SPTFeatureFlagSignal> badgesEnabledSignal; // @synthesize badgesEnabledSignal=_badgesEnabledSignal;
-@property(readonly, nonatomic) id <SPTFeatureFlagSignal> homeDisabledSignal; // @synthesize homeDisabledSignal=_homeDisabledSignal;
-@property(readonly, nonatomic) __weak id <SPTFreeTierService> freeTierService; // @synthesize freeTierService=_freeTierService;
-@property(readonly, nonatomic) id <SPTAlertController> alertController; // @synthesize alertController=_alertController;
-@property(readonly, nonatomic) id <SPTFeatureSettingsItemFactory> featureSettingsItemFactory; // @synthesize featureSettingsItemFactory=_featureSettingsItemFactory;
+@property(nonatomic, getter=isConsolidatedRecentlyPlayedEnabled) _Bool consolidatedRecentlyPlayedEnabled; // @synthesize consolidatedRecentlyPlayedEnabled=_consolidatedRecentlyPlayedEnabled;
+@property(readonly, nonatomic) id <SPTFeatureFlagSignal> consolidatedRecentlyPlayedEnabledSignal; // @synthesize consolidatedRecentlyPlayedEnabledSignal=_consolidatedRecentlyPlayedEnabledSignal;
+@property(nonatomic, getter=isQuickPlayEnabled) _Bool quickPlayEnabled; // @synthesize quickPlayEnabled=_quickPlayEnabled;
+@property(readonly, nonatomic) id <SPTFeatureFlagSignal> quickPlayEnabledSignal; // @synthesize quickPlayEnabledSignal=_quickPlayEnabledSignal;
+@property(readonly, nonatomic) id <SPTProductState> productState; // @synthesize productState=_productState;
 @property(readonly, nonatomic) id <SPTFeatureFlagFactory> featureFlagFactory; // @synthesize featureFlagFactory=_featureFlagFactory;
-@property(readonly, nonatomic) id <SPTLocalSettings> localSettings; // @synthesize localSettings=_localSettings;
-@property(readonly, nonatomic) id <SPTFeatureFlagSignal> newExperienceHomeEnabledSignal; // @synthesize newExperienceHomeEnabledSignal=_newExperienceHomeEnabledSignal;
-@property(copy, nonatomic) NSString *customSpaceID; // @synthesize customSpaceID=_customSpaceID;
 - (void).cxx_destruct;
-- (void)localSettingsDidChange:(id)arg1;
 - (void)featureFlagSignal:(id)arg1 hasAssumedState:(long long)arg2;
-- (void)removeObserver:(id)arg1;
-- (void)addObserver:(id)arg1;
-- (void)setUpSignals;
-- (id)initWithLocalSettings:(id)arg1 featureFlagFactory:(id)arg2 featureSettingsItemFactory:(id)arg3 alertController:(id)arg4 freeTierService:(id)arg5;
+- (void)setupQuickPlaySignal;
+- (void)setupConsolidatedRecentlyPlayedSignal;
+@property(readonly, nonatomic, getter=isProductStateNPT) _Bool productStateNPT;
+- (id)initWithFeatureFlagFactory:(id)arg1 productState:(id)arg2;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

@@ -30,8 +30,8 @@
 - (void)layoutSubviews;
 - (double)topInset;
 - (struct CGSize)sizeThatFits:(struct CGSize)arg1;
-- (void)setupActionButtonConstraintsTwoButtons:(id)arg1;
-- (void)setupActionButtonConstraintsOneButton:(id)arg1;
+- (id)setupActionButtonConstraintsTwoButtons;
+- (id)setupActionButtonConstraintsOneButton;
 - (void)setupConstraints;
 - (void)setupActionButtons;
 - (void)setupButtonView;

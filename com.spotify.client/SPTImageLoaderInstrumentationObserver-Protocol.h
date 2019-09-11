@@ -7,10 +7,11 @@
 #import "NSObject-Protocol.h"
 
 @class NSURL;
+@protocol SPTImageLoader;
 
 @protocol SPTImageLoaderInstrumentationObserver <NSObject>
-- (void)logLoadingFailedForImageWithURI:(NSURL *)arg1;
-- (void)logLoadingCompletedForImageWithURI:(NSURL *)arg1;
-- (void)logLoadingStartedForImageWithURI:(NSURL *)arg1;
+- (void)imageLoader:(id <SPTImageLoader>)arg1 didFailLoadingImageWithURI:(NSURL *)arg2;
+- (void)imageLoader:(id <SPTImageLoader>)arg1 didFinishLoadingImageWithURI:(NSURL *)arg2;
+- (void)imageLoader:(id <SPTImageLoader>)arg1 didBeginLoadingImageWithURI:(NSURL *)arg2;
 @end
 

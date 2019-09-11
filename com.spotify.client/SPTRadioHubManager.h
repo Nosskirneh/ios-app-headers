@@ -6,18 +6,18 @@
 
 #import <objc/NSObject.h>
 
-@class EXP_HUBComponentDefaults, NSString, SPTRadioLogger, SPTRadioPlaybackService;
-@protocol EXP_HUBIconImageResolver, EXP_SPTHubCommandHandlerFactory, EXP_SPTHubsRendererFactory, GLUETheme, SPTBarButtonItemManager, SPTHugsFactory, SPTLinkDispatcher, SPTRadioTestManager;
+@class HUBComponentDefaults, NSString, SPTRadioLogger, SPTRadioPlaybackService;
+@protocol GLUETheme, HUBIconImageResolver, SPTBarButtonItemManager, SPTHubCommandHandlerFactory, SPTHubsRendererFactory, SPTHugsFactory, SPTLinkDispatcher, SPTRadioTestManager;
 
 @interface SPTRadioHubManager : NSObject
 {
     NSString *_serviceIdentifier;
-    id <EXP_SPTHubsRendererFactory> _hubsRendererFactory;
+    id <SPTHubsRendererFactory> _hubsRendererFactory;
     id <SPTHugsFactory> _hugsFactory;
     id <GLUETheme> _GLUETheme;
-    EXP_HUBComponentDefaults *_componentDefaults;
-    id <EXP_HUBIconImageResolver> _iconImageResolver;
-    id <EXP_SPTHubCommandHandlerFactory> _commandHandlerFactory;
+    HUBComponentDefaults *_componentDefaults;
+    id <HUBIconImageResolver> _iconImageResolver;
+    id <SPTHubCommandHandlerFactory> _commandHandlerFactory;
     SPTRadioLogger *_logger;
     id <SPTRadioTestManager> _radioTestManager;
     SPTRadioPlaybackService *_playbackService;
@@ -30,12 +30,12 @@
 @property(readonly, nonatomic) __weak SPTRadioPlaybackService *playbackService; // @synthesize playbackService=_playbackService;
 @property(readonly, nonatomic) __weak id <SPTRadioTestManager> radioTestManager; // @synthesize radioTestManager=_radioTestManager;
 @property(retain, nonatomic) SPTRadioLogger *logger; // @synthesize logger=_logger;
-@property(readonly, nonatomic) id <EXP_SPTHubCommandHandlerFactory> commandHandlerFactory; // @synthesize commandHandlerFactory=_commandHandlerFactory;
-@property(readonly, nonatomic) id <EXP_HUBIconImageResolver> iconImageResolver; // @synthesize iconImageResolver=_iconImageResolver;
-@property(readonly, nonatomic) EXP_HUBComponentDefaults *componentDefaults; // @synthesize componentDefaults=_componentDefaults;
+@property(readonly, nonatomic) id <SPTHubCommandHandlerFactory> commandHandlerFactory; // @synthesize commandHandlerFactory=_commandHandlerFactory;
+@property(readonly, nonatomic) id <HUBIconImageResolver> iconImageResolver; // @synthesize iconImageResolver=_iconImageResolver;
+@property(readonly, nonatomic) HUBComponentDefaults *componentDefaults; // @synthesize componentDefaults=_componentDefaults;
 @property(readonly, nonatomic) id <GLUETheme> GLUETheme; // @synthesize GLUETheme=_GLUETheme;
 @property(readonly, nonatomic) id <SPTHugsFactory> hugsFactory; // @synthesize hugsFactory=_hugsFactory;
-@property(readonly, nonatomic) id <EXP_SPTHubsRendererFactory> hubsRendererFactory; // @synthesize hubsRendererFactory=_hubsRendererFactory;
+@property(readonly, nonatomic) id <SPTHubsRendererFactory> hubsRendererFactory; // @synthesize hubsRendererFactory=_hubsRendererFactory;
 @property(readonly, copy, nonatomic) NSString *serviceIdentifier; // @synthesize serviceIdentifier=_serviceIdentifier;
 - (void).cxx_destruct;
 - (id)componentRegistry;

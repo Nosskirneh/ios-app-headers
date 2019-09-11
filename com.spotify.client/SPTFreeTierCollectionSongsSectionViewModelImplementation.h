@@ -8,21 +8,27 @@
 
 #import "SPTFreeTierCollectionSongsSectionViewModel-Protocol.h"
 
-@class NSString;
+@class NSString, NSURL;
 
 @interface SPTFreeTierCollectionSongsSectionViewModelImplementation : NSObject <SPTFreeTierCollectionSongsSectionViewModel>
 {
     NSString *_title;
     NSString *_actionTitle;
+    NSURL *_imageURL;
+    NSURL *_entityURL;
     long long _type;
 }
 
 + (id)songsSectionHeaderViewModelForEmptyTopPadding;
 @property(readonly, nonatomic) long long type; // @synthesize type=_type;
+@property(readonly, copy, nonatomic) NSURL *entityURL; // @synthesize entityURL=_entityURL;
+@property(readonly, copy, nonatomic) NSURL *imageURL; // @synthesize imageURL=_imageURL;
 @property(readonly, copy, nonatomic) NSString *actionTitle; // @synthesize actionTitle=_actionTitle;
 @property(readonly, copy, nonatomic) NSString *title; // @synthesize title=_title;
 - (void).cxx_destruct;
+- (id)initWithTitle:(id)arg1 imageURL:(id)arg2 entityURL:(id)arg3;
 - (id)initWithTitle:(id)arg1 actionTitle:(id)arg2;
+- (id)initWithTitle:(id)arg1 actionTitle:(id)arg2 imageURL:(id)arg3 entityURL:(id)arg4 type:(long long)arg5;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

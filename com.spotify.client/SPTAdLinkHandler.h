@@ -8,14 +8,15 @@
 
 #import "SPTURISubtypeHandler-Protocol.h"
 
-@class NSString, SPTAdCosmosBridge;
+@class NSString;
+@protocol SPTAdsBaseCosmosBridge;
 
 @interface SPTAdLinkHandler : NSObject <SPTURISubtypeHandler>
 {
-    SPTAdCosmosBridge *_cosmosBridge;
+    id <SPTAdsBaseCosmosBridge> _cosmosBridge;
 }
 
-@property(readonly, nonatomic) SPTAdCosmosBridge *cosmosBridge; // @synthesize cosmosBridge=_cosmosBridge;
+@property(readonly, nonatomic) id <SPTAdsBaseCosmosBridge> cosmosBridge; // @synthesize cosmosBridge=_cosmosBridge;
 - (void).cxx_destruct;
 - (void)requestPreview:(id)arg1;
 - (long long)URISubtypeHandlerOpenURI:(id)arg1 context:(id)arg2;

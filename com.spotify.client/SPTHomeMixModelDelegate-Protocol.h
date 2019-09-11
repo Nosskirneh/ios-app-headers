@@ -6,13 +6,10 @@
 
 #import "NSObject-Protocol.h"
 
-@class NSArray, NSError;
-@protocol SPTHomeMixMetadataModelEntity, SPTHomeMixModel;
+@class NSArray, NSError, SPTHomeMixMetadataModelEntity, SPTHomeMixModel;
 
 @protocol SPTHomeMixModelDelegate <NSObject>
-- (void)homeMixModel:(id <SPTHomeMixModel>)arg1 didFailToUpdateHomeMixTrackEntitiesWithError:(NSError *)arg2;
-- (void)homeMixModel:(id <SPTHomeMixModel>)arg1 didUpdateHomeMixTrackEntities:(NSArray *)arg2;
-- (void)homeMixModel:(id <SPTHomeMixModel>)arg1 didFailToUpdateHomeMixEntityWithError:(NSError *)arg2;
-- (void)homeMixModel:(id <SPTHomeMixModel>)arg1 didUpdateHomeMixMetadataEntity:(id <SPTHomeMixMetadataModelEntity>)arg2;
+- (void)homeMixModel:(SPTHomeMixModel *)arg1 didFailToUpdateHomeMixWithError:(NSError *)arg2;
+- (void)homeMixModel:(SPTHomeMixModel *)arg1 didUpdateMetadataEntity:(SPTHomeMixMetadataModelEntity *)arg2 trackEntities:(NSArray *)arg3;
 @end
 

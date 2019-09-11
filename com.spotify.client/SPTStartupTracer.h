@@ -7,34 +7,42 @@
 #import <objc/NSObject.h>
 
 #import "SPTColdStartObserver-Protocol.h"
+#import "SPTViewLoggerObserver-Protocol.h"
 
-@class NSMutableDictionary, NSNumber, NSString;
+@class NSMutableDictionary, NSString, NSUUID, SPTStartupDurationTracker;
 @protocol SPTLogCenter, SPTPerformanceLoggingApplicationStateProvider;
 
-@interface SPTStartupTracer : NSObject <SPTColdStartObserver>
+@interface SPTStartupTracer : NSObject <SPTColdStartObserver, SPTViewLoggerObserver>
 {
-    NSNumber *_durationTrackingEnabled;
     _Bool _viewLoadingStarted;
     NSString *_connectionType;
     id <SPTLogCenter> _logCenter;
     NSMutableDictionary *_steps;
     NSMutableDictionary *_metadata;
-    NSMutableDictionary *_temporaryTimestamps;
+    NSUUID *_viewLoadSequenceId;
     NSString *_initialApplicationState;
     id <SPTPerformanceLoggingApplicationStateProvider> _applicationStateProvider;
+    SPTStartupDurationTracker *_durationTracker;
+    CDUnknownBlockType _terminalStateCallback;
 }
 
+@property(readonly, copy, nonatomic) CDUnknownBlockType terminalStateCallback; // @synthesize terminalStateCallback=_terminalStateCallback;
+@property(readonly, nonatomic) SPTStartupDurationTracker *durationTracker; // @synthesize durationTracker=_durationTracker;
 @property(readonly, nonatomic) id <SPTPerformanceLoggingApplicationStateProvider> applicationStateProvider; // @synthesize applicationStateProvider=_applicationStateProvider;
 @property(readonly, copy, nonatomic) NSString *initialApplicationState; // @synthesize initialApplicationState=_initialApplicationState;
-@property(retain) NSMutableDictionary *temporaryTimestamps; // @synthesize temporaryTimestamps=_temporaryTimestamps;
+@property(retain) NSUUID *viewLoadSequenceId; // @synthesize viewLoadSequenceId=_viewLoadSequenceId;
 @property(retain) NSMutableDictionary *metadata; // @synthesize metadata=_metadata;
 @property(retain) NSMutableDictionary *steps; // @synthesize steps=_steps;
 @property _Bool viewLoadingStarted; // @synthesize viewLoadingStarted=_viewLoadingStarted;
 @property(nonatomic) __weak id <SPTLogCenter> logCenter; // @synthesize logCenter=_logCenter;
 @property(copy, nonatomic) NSString *connectionType; // @synthesize connectionType=_connectionType;
 - (void).cxx_destruct;
-@property(readonly, nonatomic, getter=isDurationTrackingEnabled) _Bool durationTrackingEnabled;
-- (void)saveTemporaryTimestampToMetadataWithKey:(id)arg1;
+- (id)serviceDurations;
+- (id)deferredBlockDurations;
+- (id)scopeDurations;
+- (id)rootUIDurations;
+- (id)metadataWithDurations;
+- (void)viewLogger:(id)arg1 didTransitionToState:(long long)arg2 after:(double)arg3;
 - (void)logFinishedDeferredBlockForScope:(id)arg1 identifier:(id)arg2;
 - (void)logStartDeferredBlockForScope:(id)arg1 identifier:(id)arg2;
 - (void)logFinishedSetupRootUIForURI:(id)arg1;
@@ -68,7 +76,7 @@
 - (void)logApplicationInitDidFinish;
 - (void)logApplicationInitDidStart;
 - (_Bool)isStartupTracingEnabled;
-- (id)initWithLogCenter:(id)arg1 applicationStateProvider:(id)arg2;
+- (id)initWithLogCenter:(id)arg1 applicationStateProvider:(id)arg2 terminalStateCallback:(CDUnknownBlockType)arg3;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

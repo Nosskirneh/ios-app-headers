@@ -30,6 +30,7 @@
 - (void)dataLoader:(id)arg1 didReceiveErrorResponse:(id)arg2;
 - (void)dataLoader:(id)arg1 didReceiveSuccessfulResponse:(id)arg2;
 - (void)performCreateUserRequest:(id)arg1;
+- (void)performCreateGuestUserWithUserInfoModel:(id)arg1;
 - (void)performCreateUserWithUserInfoModel:(id)arg1;
 - (void)performCreateFacebookUserWithInfoModel:(id)arg1;
 - (void)dealloc;

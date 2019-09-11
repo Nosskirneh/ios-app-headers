@@ -6,12 +6,10 @@
 
 #import "NSObject-Protocol.h"
 
-@protocol SPTNowPlayingBarContentProviderRegistry, SPTNowPlayingCarouselContentProviderRegistry, SPTNowPlayingShowsFormatDecorationContentProviderRegistry;
+@protocol SPTNowPlayingCarouselContentProviderRegistry;
 
 @protocol SPTNowPlayingContentProviderRegistries <NSObject>
-@property(readonly, nonatomic) id <SPTNowPlayingShowsFormatDecorationContentProviderRegistry> showsFormatDecorationContentProviderRegistry;
 @property(readonly, nonatomic) id <SPTNowPlayingCarouselContentProviderRegistry> showsFormatCarouselContentProviderRegistry;
 @property(readonly, nonatomic) id <SPTNowPlayingCarouselContentProviderRegistry> carouselContentProviderRegistry;
-@property(readonly, nonatomic) id <SPTNowPlayingBarContentProviderRegistry> barContentProviderRegistry;
 @end
 

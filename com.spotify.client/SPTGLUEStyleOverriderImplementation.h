@@ -8,13 +8,20 @@
 
 #import "HUGSStyleOverrider-Protocol.h"
 
+@protocol SPTHubComponentModelURIResolver;
+
 @interface SPTGLUEStyleOverriderImplementation : NSObject <HUGSStyleOverrider>
 {
+    id <SPTHubComponentModelURIResolver> _componentModelURIResolver;
 }
 
++ (id)entityCardStyleForTheme:(id)arg1 imageStyle:(id)arg2;
 + (id)entityRowStyleForTheme:(id)arg1 targetURI:(id)arg2;
 + (id)entityCardStyleForTheme:(id)arg1 targetURI:(id)arg2;
+@property(readonly, nonatomic) id <SPTHubComponentModelURIResolver> componentModelURIResolver; // @synthesize componentModelURIResolver=_componentModelURIResolver;
+- (void).cxx_destruct;
 - (id)styleForComponentModel:(id)arg1 withDefaultStyle:(id)arg2 usingTheme:(id)arg3;
+- (id)initWithComponentModelURIResolver:(id)arg1;
 
 @end
 

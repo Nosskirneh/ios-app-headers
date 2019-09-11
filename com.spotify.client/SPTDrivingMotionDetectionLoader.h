@@ -22,10 +22,8 @@
 - (void)handleDrivingDetectionError:(id)arg1 forRequest:(id)arg2;
 - (void)handleDrivingDetectionResponse:(id)arg1;
 - (_Bool)isResponseForDrivingDetectionRequest:(id)arg1;
-- (id)createRequestWithDetectionResult:(id)arg1 userResponse:(unsigned long long)arg2;
-- (id)createRequestWithMotionSamples:(id)arg1;
-- (void)deliverDrivingDetectionUserResponse:(unsigned long long)arg1 forDetectionResult:(id)arg2;
-- (void)determineDrivingStateForMotionSamples:(id)arg1 successHandler:(CDUnknownBlockType)arg2 errorHandler:(CDUnknownBlockType)arg3;
+- (id)createRequestWithSessionValues:(id)arg1;
+- (void)determineDrivingStateForSession:(id)arg1 successHandler:(CDUnknownBlockType)arg2 errorHandler:(CDUnknownBlockType)arg3;
 - (id)initWithDataLoader:(id)arg1;
 
 // Remaining properties

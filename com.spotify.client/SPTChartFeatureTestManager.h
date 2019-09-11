@@ -6,29 +6,24 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTFeatureFlagSignalObserver-Protocol.h"
-
 @class NSString;
-@protocol SPTFeatureFlagSignal, SPTFreeTierTestManager, SPTProductState;
+@protocol SPTFeatureFlagSignal, SPTProductState;
 
-@interface SPTChartFeatureTestManager : NSObject <SPTFeatureFlagSignalObserver>
+@interface SPTChartFeatureTestManager : NSObject
 {
     _Bool _freeTierEnabled;
-    id <SPTFreeTierTestManager> _freeTierTestManager;
     id <SPTFeatureFlagSignal> _freeTierSignal;
     id <SPTProductState> _productState;
 }
 
 @property(readonly, nonatomic) id <SPTProductState> productState; // @synthesize productState=_productState;
 @property(readonly, nonatomic) id <SPTFeatureFlagSignal> freeTierSignal; // @synthesize freeTierSignal=_freeTierSignal;
-@property(retain, nonatomic) id <SPTFreeTierTestManager> freeTierTestManager; // @synthesize freeTierTestManager=_freeTierTestManager;
 @property(nonatomic, getter=isFreeTierEnabled) _Bool freeTierEnabled; // @synthesize freeTierEnabled=_freeTierEnabled;
 - (void).cxx_destruct;
 - (void)featureFlagSignal:(id)arg1 hasAssumedState:(long long)arg2;
 @property(readonly, nonatomic, getter=isNPTEnabled) _Bool nptEnabled;
-@property(readonly, nonatomic, getter=isHeartsInEntityHeadersEnabled) _Bool heartsInEntityHeadersEnabled;
 - (void)dealloc;
-- (id)initWithFreeTierSignal:(id)arg1 freeTierTestManager:(id)arg2 productState:(id)arg3;
+- (id)initWithFreeTierSignal:(id)arg1 productState:(id)arg2;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

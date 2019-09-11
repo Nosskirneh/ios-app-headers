@@ -6,11 +6,11 @@
 
 #import <objc/NSObject.h>
 
-#import "EXP_SPTHubComponentModelURIResolver-Protocol.h"
+#import "SPTHubComponentModelURIResolver-Protocol.h"
 
 @class NSString;
 
-@interface SPTAssistedCurationComponentModelURIResolver : NSObject <EXP_SPTHubComponentModelURIResolver>
+@interface SPTAssistedCurationComponentModelURIResolver : NSObject <SPTHubComponentModelURIResolver>
 {
 }
 

@@ -19,8 +19,8 @@
     id <SPTCoreService> _coreService;
     id <SPContextMenuFeature> _contextMenuFeature;
     id <SPTNetworkService> _networkFeature;
-    id <FollowFeature> _follow;
-    id <SPTFindFriendsFeature> _findFriends;
+    id <FollowFeature> _followFeature;
+    id <SPTFindFriendsFeature> _findFriendsFeature;
     id <SPTFreeTierService> _freeTierService;
     id <SPTNavigationFeature> _navigationFeature;
     id <SPTBrowsePlatformService> _browsePlatformService;
@@ -46,8 +46,8 @@
 @property(nonatomic) __weak id <SPTBrowsePlatformService> browsePlatformService; // @synthesize browsePlatformService=_browsePlatformService;
 @property(nonatomic) __weak id <SPTNavigationFeature> navigationFeature; // @synthesize navigationFeature=_navigationFeature;
 @property(nonatomic) __weak id <SPTFreeTierService> freeTierService; // @synthesize freeTierService=_freeTierService;
-@property(nonatomic) __weak id <SPTFindFriendsFeature> findFriends; // @synthesize findFriends=_findFriends;
-@property(nonatomic) __weak id <FollowFeature> follow; // @synthesize follow=_follow;
+@property(nonatomic) __weak id <SPTFindFriendsFeature> findFriendsFeature; // @synthesize findFriendsFeature=_findFriendsFeature;
+@property(nonatomic) __weak id <FollowFeature> followFeature; // @synthesize followFeature=_followFeature;
 @property(nonatomic) __weak id <SPTNetworkService> networkFeature; // @synthesize networkFeature=_networkFeature;
 @property(nonatomic) __weak id <SPContextMenuFeature> contextMenuFeature; // @synthesize contextMenuFeature=_contextMenuFeature;
 @property(nonatomic) __weak id <SPTCoreService> coreService; // @synthesize coreService=_coreService;
@@ -55,7 +55,6 @@
 @property(nonatomic) __weak id <SPTCollectionPlatformService> collectionPlatformService; // @synthesize collectionPlatformService=_collectionPlatformService;
 @property(nonatomic) __weak id <SPTSessionService> clientSessionService; // @synthesize clientSessionService=_clientSessionService;
 - (void).cxx_destruct;
-- (void)loadProfileTheme;
 - (id)provideTestManager;
 - (id)provideProvideTheme;
 - (id)provideProfileUserDataForUser:(id)arg1;

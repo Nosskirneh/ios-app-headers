@@ -6,15 +6,16 @@
 
 #import <objc/NSObject.h>
 
-@protocol SPTHomeMixTrackCellDelegate, SPTHomeMixTrackViewModel;
+@class SPTHomeMixTrackViewModel;
+@protocol SPTHomeMixTrackCellDelegate;
 
 @interface SPTHomeMixTrackCellInteractionListener : NSObject
 {
     id <SPTHomeMixTrackCellDelegate> _cellDelegate;
-    id <SPTHomeMixTrackViewModel> _trackViewModel;
+    SPTHomeMixTrackViewModel *_trackViewModel;
 }
 
-@property(nonatomic) __weak id <SPTHomeMixTrackViewModel> trackViewModel; // @synthesize trackViewModel=_trackViewModel;
+@property(nonatomic) __weak SPTHomeMixTrackViewModel *trackViewModel; // @synthesize trackViewModel=_trackViewModel;
 @property(nonatomic) __weak id <SPTHomeMixTrackCellDelegate> cellDelegate; // @synthesize cellDelegate=_cellDelegate;
 - (void).cxx_destruct;
 - (void)facePileTapped:(id)arg1;

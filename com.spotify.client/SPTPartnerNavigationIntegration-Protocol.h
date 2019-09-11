@@ -6,11 +6,16 @@
 
 #import "SPTPartnerIntegration-Protocol.h"
 
+@class NSString;
 @protocol SPTPartnerNavigationIntegrationObserver;
 
 @protocol SPTPartnerNavigationIntegration <SPTPartnerIntegration>
+@property(readonly, nonatomic) NSString *sentToReasonForLogging;
+@property(readonly, nonatomic) NSString *appNameForLogging;
 @property(readonly, nonatomic, getter=isNavigating) _Bool navigating;
 - (void)removeObserver:(id <SPTPartnerNavigationIntegrationObserver>)arg1;
 - (void)addObserver:(id <SPTPartnerNavigationIntegrationObserver>)arg1;
+- (void)openAppStore;
+- (void)openApp;
 @end
 

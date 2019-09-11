@@ -48,8 +48,6 @@
 - (void)addPartnerParameter:(id)arg1 value:(id)arg2;
 - (void)addCallbackParameter:(id)arg1 value:(id)arg2;
 - (id)initWithEventToken:(id)arg1;
-- (id)parametersKeys;
-- (void)spt_addDataParameters:(id)arg1;
 
 @end
 

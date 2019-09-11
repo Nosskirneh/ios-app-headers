@@ -6,15 +6,11 @@
 
 #import "SPTService-Protocol.h"
 
-@protocol HUBComponentFactory, SPTDailyMixFeedbackUIModel, SPTDailyMixLocalizationManager, SPTDailyMixManager, SPTDailyMixTestManager, SPTHubRemoteContentURLResolver, SPTNowPlayingRemoteControlPolicy;
+@protocol SPTDailyMixFeedbackUIModel, SPTDailyMixManager, SPTNowPlayingRemoteControlPolicy;
 
 @protocol SPTDailyMixFeature <SPTService>
-- (id <SPTDailyMixLocalizationManager>)provideDailyMixLocalizationManager;
-- (id <SPTHubRemoteContentURLResolver>)provideDailyMixHubContentURLResolver;
-- (id <HUBComponentFactory>)provideDailyMixHubComponentFactory;
 - (id <SPTDailyMixManager>)provideDailyMixManager;
 - (id <SPTDailyMixFeedbackUIModel>)provideDailyMixFeedbackUIModel;
 - (id <SPTNowPlayingRemoteControlPolicy>)provideDailyMixRemoteControlPolicy;
-- (id <SPTDailyMixTestManager>)provideDailyMixTestManager;
 @end
 

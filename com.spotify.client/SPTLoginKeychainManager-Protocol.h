@@ -6,11 +6,12 @@
 
 #import "NSObject-Protocol.h"
 
-@class SPTLoginCredentials, SPTSerializableCredentials;
+@class SPTSerializableCredentials;
 
 @protocol SPTLoginKeychainManager <NSObject>
+- (void)bootstrapKeychainCredentials;
 - (void)deleteCredentials;
-- (SPTLoginCredentials *)storedCredentials;
+- (void)readStoredCredentialsWithCompletion:(void (^)(SPTLoginCredentials *))arg1;
 - (void)setCredentials:(SPTSerializableCredentials *)arg1;
 @end
 

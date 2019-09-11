@@ -11,7 +11,11 @@
 }
 
 + (id)systemFontForName:(id)arg1;
++ (id)russianFontForName:(id)arg1;
++ (id)hebrewFontForName:(id)arg1;
 + (id)arabicFontForName:(id)arg1;
++ (_Bool)shouldUseRussianFontForCurrentLanguage;
++ (_Bool)shouldUseHebrewFontForCurrentLanguage;
 + (_Bool)shouldUseArabicFontForCurrentLanguage;
 + (_Bool)shouldUseSystemFontForCurrentLanguage;
 + (void)applyNumberSpacing:(id)arg1 toFeatures:(id)arg2 fontKey:(id)arg3 reportErrors:(_Bool)arg4;

@@ -6,12 +6,10 @@
 
 #import "SPTFeatureFlagSignalImplementation.h"
 
-#import "SPTFeatureFlagSignalObserver-Protocol.h"
-
 @class NSString, SPTFeatureSettingsItem;
 @protocol SPTFeatureFlagSignal;
 
-@interface SPTSwitchUpdatingFeatureFlagSignal : SPTFeatureFlagSignalImplementation <SPTFeatureFlagSignalObserver>
+@interface SPTSwitchUpdatingFeatureFlagSignal : SPTFeatureFlagSignalImplementation
 {
     id <SPTFeatureFlagSignal> _combinedSignal;
     id <SPTFeatureFlagSignal> _defaultSignal;

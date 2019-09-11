@@ -6,14 +6,13 @@
 
 #import "NSObject-Protocol.h"
 
-@class NSArray;
-@protocol SPTHomeMixHeaderViewModel, SPTHomeMixViewModel;
+@class NSArray, SPTHomeMixHeaderViewModel, SPTHomeMixViewModel, SPTHomeMixWelcomeViewModel;
 
 @protocol SPTHomeMixViewModelDelegate <NSObject>
-- (void)homeMixViewModel:(id <SPTHomeMixViewModel>)arg1 didChangeOfflineStatus:(_Bool)arg2;
-- (void)homeMixViewModel:(id <SPTHomeMixViewModel>)arg1 didUpdateLikeStatus:(_Bool)arg2;
-- (void)homeMixViewModelDidSwitchTracks:(id <SPTHomeMixViewModel>)arg1;
-- (void)homeMixViewModel:(id <SPTHomeMixViewModel>)arg1 didUpdateHeaderMetadata:(id <SPTHomeMixHeaderViewModel>)arg2;
-- (void)homeMixViewModel:(id <SPTHomeMixViewModel>)arg1 didUpdateTracks:(NSArray *)arg2;
+- (void)homeMixViewModel:(SPTHomeMixViewModel *)arg1 didRequireWelcome:(SPTHomeMixWelcomeViewModel *)arg2;
+- (void)homeMixViewModelUpdateTrackDisplay:(SPTHomeMixViewModel *)arg1;
+- (void)homeMixViewModel:(SPTHomeMixViewModel *)arg1 didUpdateLikeStatus:(_Bool)arg2;
+- (void)homeMixViewModel:(SPTHomeMixViewModel *)arg1 didLoadHeaderData:(SPTHomeMixHeaderViewModel *)arg2;
+- (void)homeMixViewModel:(SPTHomeMixViewModel *)arg1 didUpdateTracks:(NSArray *)arg2;
 @end
 

@@ -6,18 +6,19 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTCollectionEntityListOfflineSupportedItem-Protocol.h"
+#import "SPTRecentlyPlayedEntityItem-Protocol.h"
 
 @class NSDate, NSString, NSURL;
 @protocol SPTCollectionPlatformTestManager, SPTLinkDispatcher, SPTOfflineModeState;
 
-@interface SPTRecentlyPlayedEntity : NSObject <SPTCollectionEntityListOfflineSupportedItem>
+@interface SPTRecentlyPlayedEntity : NSObject <SPTRecentlyPlayedEntityItem>
 {
     _Bool _hasMetadata;
     _Bool _isVideoMediaType;
     _Bool _hidden;
     _Bool _evaluateOfflineSyncStatus;
     _Bool _isInCollection;
+    NSDate *_timestamp;
     NSURL *_originalEntityURL;
     NSString *_title;
     NSString *_subtitle;
@@ -31,11 +32,9 @@
     NSURL *_collectionURL;
     unsigned long long _tracksInCollectionCount;
     id <SPTLinkDispatcher> _linkDispatcher;
-    NSDate *_timestamp;
 }
 
 + (id)recentlyPlayedEntityWithDictionary:(id)arg1 collectionTestManager:(id)arg2 featureFlags:(id)arg3 offlineNotifier:(id)arg4 linkDispatcher:(id)arg5 evaluateOfflineSyncStatus:(_Bool)arg6;
-@property(readonly, copy, nonatomic) NSDate *timestamp; // @synthesize timestamp=_timestamp;
 @property(nonatomic) __weak id <SPTLinkDispatcher> linkDispatcher; // @synthesize linkDispatcher=_linkDispatcher;
 @property(nonatomic) unsigned long long tracksInCollectionCount; // @synthesize tracksInCollectionCount=_tracksInCollectionCount;
 @property(copy, nonatomic) NSURL *collectionURL; // @synthesize collectionURL=_collectionURL;
@@ -54,8 +53,8 @@
 @property(copy, nonatomic) NSString *title; // @synthesize title=_title;
 @property(copy, nonatomic) NSURL *originalEntityURL; // @synthesize originalEntityURL=_originalEntityURL;
 @property(nonatomic) _Bool hasMetadata; // @synthesize hasMetadata=_hasMetadata;
+@property(readonly, copy, nonatomic) NSDate *timestamp; // @synthesize timestamp=_timestamp;
 - (void).cxx_destruct;
-@property(readonly, nonatomic) NSURL *previewURL;
 - (void)action;
 @property(readonly, copy, nonatomic) NSString *loggingContext;
 @property(readonly) unsigned long long hash;
@@ -66,7 +65,6 @@
 @property(readonly, copy, nonatomic) NSURL *navigatableEntityURL;
 - (_Bool)collectionContainsSongsFromArtistUrl:(id)arg1;
 - (_Bool)collectionContainsAlbumOrArtistUrl:(id)arg1;
-- (_Bool)alwaysNavigateToCatalogueAlbum;
 @property(readonly, copy, nonatomic) NSURL *trackURL;
 @property(readonly, copy, nonatomic) NSURL *entityURL;
 @property(readonly, nonatomic) NSURL *canonicalEntityURL;

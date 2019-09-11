@@ -36,6 +36,7 @@
     NSDictionary *_dictionary;
 }
 
++ (_Bool)isDailyMixContext:(id)arg1;
 @property(readonly, nonatomic) NSDictionary *dictionary; // @synthesize dictionary=_dictionary;
 @property(readonly, nonatomic) NSDictionary *pageMetadata; // @synthesize pageMetadata=_pageMetadata;
 @property(readonly, nonatomic) NSDictionary *contextMetadata; // @synthesize contextMetadata=_contextMetadata;

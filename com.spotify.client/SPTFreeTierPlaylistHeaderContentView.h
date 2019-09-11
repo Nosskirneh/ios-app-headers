@@ -9,7 +9,7 @@
 #import "GLUEStyleable-Protocol.h"
 #import "SPTFreeTierPlaylistHeaderContent-Protocol.h"
 
-@class GLUEButton, GLUEImageView, GLUELabel, GLUEShuffleBadgeLabelView, NSLayoutConstraint, NSString, SPTFreeTierPlaylistHeaderConfiguration, SPTFreeTierPlaylistHeaderContentViewStyle, SPTFreeTierPlaylistHeaderTapHandler, UIImage, UIStackView;
+@class GLUEButton, GLUEImageView, GLUELabel, GLUEShuffleBadgeLabelView, NSLayoutConstraint, NSString, SPTFreeTierPlaylistHeaderContentViewStyle, SPTFreeTierPlaylistHeaderTapHandler, UIImage, UIStackView;
 @protocol SPTCollectionPlatformConfiguration, SPTFreeTierPlaylistHeaderContentViewDelegate;
 
 @interface SPTFreeTierPlaylistHeaderContentView : UIView <SPTFreeTierPlaylistHeaderContent, GLUEStyleable>
@@ -23,7 +23,6 @@
     GLUEButton *_followButton;
     NSLayoutConstraint *_entityImageViewHeightConstraint;
     SPTFreeTierPlaylistHeaderTapHandler *_tapHandler;
-    SPTFreeTierPlaylistHeaderConfiguration *_headerConfiguration;
     id <SPTCollectionPlatformConfiguration> _collectionConfiguration;
     SPTFreeTierPlaylistHeaderContentViewStyle *_style;
 }
@@ -31,7 +30,6 @@
 + (_Bool)requiresConstraintBasedLayout;
 @property(retain, nonatomic) SPTFreeTierPlaylistHeaderContentViewStyle *style; // @synthesize style=_style;
 @property(retain, nonatomic) id <SPTCollectionPlatformConfiguration> collectionConfiguration; // @synthesize collectionConfiguration=_collectionConfiguration;
-@property(retain, nonatomic) SPTFreeTierPlaylistHeaderConfiguration *headerConfiguration; // @synthesize headerConfiguration=_headerConfiguration;
 @property(retain, nonatomic) SPTFreeTierPlaylistHeaderTapHandler *tapHandler; // @synthesize tapHandler=_tapHandler;
 @property(retain, nonatomic) NSLayoutConstraint *entityImageViewHeightConstraint; // @synthesize entityImageViewHeightConstraint=_entityImageViewHeightConstraint;
 @property(retain, nonatomic) GLUEButton *followButton; // @synthesize followButton=_followButton;
@@ -46,22 +44,22 @@
 - (void)updateImageWithSize:(struct CGSize)arg1;
 - (void)glue_applyStyle:(id)arg1;
 - (void)followButtonTapped;
-@property(retain, nonatomic) NSString *shuffleBadgeText;
-@property(retain, nonatomic) NSString *metadataText;
+@property(copy, nonatomic) NSString *shuffleBadgeText;
+@property(copy, nonatomic) NSString *metadataText;
 @property(nonatomic) _Bool followButtonSelected;
-- (void)applyHeaderConfiguration;
-- (void)updateHeaderConfiguration:(id)arg1;
+- (void)showFollowButton:(_Bool)arg1;
+- (void)setSubtitle:(id)arg1 showLeadingShuffleBagde:(_Bool)arg2;
 - (void)setupFollowButton;
 - (void)didTapShuffleBagde;
 - (void)setupShuffleBadgeView;
 - (void)setupMetadataLabel;
 - (void)addSpacingRowWithHeight:(double)arg1;
-@property(retain, nonatomic) NSString *title;
+@property(copy, nonatomic) NSString *title;
 - (void)setupTitleLabel;
 @property(retain, nonatomic) UIImage *image;
 - (void)setupEntityImageView;
 - (void)setup;
-- (id)initWithHeaderConfiguration:(id)arg1 collectionConfiguration:(id)arg2;
+- (id)initWithCollectionConfiguration:(id)arg1;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

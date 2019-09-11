@@ -8,6 +8,7 @@
 
 @interface NSURL (Scannables)
 + (id)spt_jsonFormatQueryItem;
++ (id)spt_plainScannablesURLWithFormat:(unsigned long long)arg1 backgroundColor:(id)arg2 barColor:(unsigned long long)arg3 pixelWidth:(unsigned long long)arg4 uri:(id)arg5;
 + (id)spt_plainScannablesForEntityURL:(id)arg1 imageSize:(struct CGSize)arg2;
 + (id)spt_scannablesGeneratorURLForEntityURL:(id)arg1 imageSize:(struct CGSize)arg2;
 + (id)spt_scannablesImageURLForEntityURL:(id)arg1 imageURL:(id)arg2;
@@ -17,6 +18,8 @@
 - (id)spt_scannablesImageURL;
 - (id)spt_scannablesEntityURL;
 @property(readonly, nonatomic, getter=spt_isSpotifyURL) _Bool spotifyURL;
+- (id)spt_sourceForScannablesURL;
+- (id)spt_scannablesURLWithSource:(id)arg1;
 - (_Bool)spt_isScannablesImageURL;
 @property(readonly, nonatomic, getter=spt_isScannablesViewURL) _Bool scannablesViewURL;
 @end

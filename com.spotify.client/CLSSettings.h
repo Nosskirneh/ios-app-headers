@@ -25,6 +25,7 @@
 @property(readonly, nonatomic) unsigned int maxCustomExceptions;
 @property(readonly, nonatomic) unsigned int logBufferSize;
 @property(readonly, nonatomic) unsigned int errorLogBufferSize;
+@property(readonly, nonatomic) _Bool firebaseCrashlyticsEnabled;
 @property(readonly, nonatomic) _Bool userPromptEnabled;
 @property(readonly, nonatomic) _Bool crashReportingEnabled;
 @property(readonly, nonatomic) _Bool customExceptionsEnabled;

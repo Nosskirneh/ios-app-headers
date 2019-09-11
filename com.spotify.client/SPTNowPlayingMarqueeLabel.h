@@ -16,14 +16,14 @@
     SPTNowPlayingFadeMaskView *_fadeMaskView;
     double _marqueeingSpeed;
     double _restingDuration;
-    struct CGPoint _leftAnchorPoint;
-    struct CGPoint _rightAnchorPoint;
+    struct CGPoint _leadingAnchorPoint;
+    struct CGPoint _trailingAnchorPoint;
     struct CGPoint _centerAnchorPoint;
 }
 
 @property(nonatomic) struct CGPoint centerAnchorPoint; // @synthesize centerAnchorPoint=_centerAnchorPoint;
-@property(nonatomic) struct CGPoint rightAnchorPoint; // @synthesize rightAnchorPoint=_rightAnchorPoint;
-@property(nonatomic) struct CGPoint leftAnchorPoint; // @synthesize leftAnchorPoint=_leftAnchorPoint;
+@property(nonatomic) struct CGPoint trailingAnchorPoint; // @synthesize trailingAnchorPoint=_trailingAnchorPoint;
+@property(nonatomic) struct CGPoint leadingAnchorPoint; // @synthesize leadingAnchorPoint=_leadingAnchorPoint;
 @property(nonatomic) _Bool willAnimate; // @synthesize willAnimate=_willAnimate;
 @property(nonatomic) double restingDuration; // @synthesize restingDuration=_restingDuration;
 @property(nonatomic) double marqueeingSpeed; // @synthesize marqueeingSpeed=_marqueeingSpeed;
@@ -32,9 +32,10 @@
 @property(retain, nonatomic) UILabel *label; // @synthesize label=_label;
 - (void).cxx_destruct;
 - (void)setHighlighted:(_Bool)arg1;
+- (unsigned long long)accessibilityTraits;
+- (id)accessibilityLabel;
 - (void)setAccessibilityTraits:(unsigned long long)arg1;
 - (void)setAccessibilityLabel:(id)arg1;
-- (void)setIsAccessibilityElement:(_Bool)arg1;
 - (struct CGRect)frameLabel;
 - (void)layoutSubviews;
 - (struct CGSize)intrinsicContentSize;

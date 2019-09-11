@@ -16,9 +16,9 @@
 }
 
 + (id)messageWithSessionId:(id)arg1 actionType:(id)arg2 data:(id)arg3;
-@property(retain, nonatomic) NSDictionary *dataValue; // @synthesize dataValue=_dataValue;
-@property(retain, nonatomic) NSString *actionTypeValue; // @synthesize actionTypeValue=_actionTypeValue;
-@property(retain, nonatomic) NSString *sessionIdValue; // @synthesize sessionIdValue=_sessionIdValue;
+@property(copy, nonatomic) NSDictionary *dataValue; // @synthesize dataValue=_dataValue;
+@property(copy, nonatomic) NSString *actionTypeValue; // @synthesize actionTypeValue=_actionTypeValue;
+@property(copy, nonatomic) NSString *sessionIdValue; // @synthesize sessionIdValue=_sessionIdValue;
 - (void).cxx_destruct;
 - (_Bool)isEqual:(id)arg1;
 - (unsigned long long)hash;

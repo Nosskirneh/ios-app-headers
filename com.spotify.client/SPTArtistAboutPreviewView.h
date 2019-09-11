@@ -18,10 +18,16 @@
     GLUELabel *_biographyLabel;
     NSLayoutConstraint *_rightEdgeDefaultConstraint;
     NSLayoutConstraint *_rightEdgeWithGlobalChartConstraint;
+    NSLayoutConstraint *_bottomMarginBiographyLabelConstraint;
+    NSLayoutConstraint *_disclosureViewCenterYBiographyLabelConstraint;
+    NSLayoutConstraint *_disclosureViewCenterYMonthlyListenersConstraint;
     SPTDisclosureAccessoryView *_disclosureView;
 }
 
 @property(retain, nonatomic) SPTDisclosureAccessoryView *disclosureView; // @synthesize disclosureView=_disclosureView;
+@property(retain, nonatomic) NSLayoutConstraint *disclosureViewCenterYMonthlyListenersConstraint; // @synthesize disclosureViewCenterYMonthlyListenersConstraint=_disclosureViewCenterYMonthlyListenersConstraint;
+@property(retain, nonatomic) NSLayoutConstraint *disclosureViewCenterYBiographyLabelConstraint; // @synthesize disclosureViewCenterYBiographyLabelConstraint=_disclosureViewCenterYBiographyLabelConstraint;
+@property(retain, nonatomic) NSLayoutConstraint *bottomMarginBiographyLabelConstraint; // @synthesize bottomMarginBiographyLabelConstraint=_bottomMarginBiographyLabelConstraint;
 @property(retain, nonatomic) NSLayoutConstraint *rightEdgeWithGlobalChartConstraint; // @synthesize rightEdgeWithGlobalChartConstraint=_rightEdgeWithGlobalChartConstraint;
 @property(retain, nonatomic) NSLayoutConstraint *rightEdgeDefaultConstraint; // @synthesize rightEdgeDefaultConstraint=_rightEdgeDefaultConstraint;
 @property(retain, nonatomic) GLUELabel *biographyLabel; // @synthesize biographyLabel=_biographyLabel;

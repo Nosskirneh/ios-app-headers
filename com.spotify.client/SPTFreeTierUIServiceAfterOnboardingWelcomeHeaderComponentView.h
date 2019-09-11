@@ -4,21 +4,24 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import "EXP_HUBComponentView.h"
+#import "HUBComponentView.h"
 
-@class GLUELabel, SPTLayoutConstraintBuilder, UIView;
+@class GLUELabel, NSMutableArray, UIView;
 @protocol GLUETheme;
 
-@interface SPTFreeTierUIServiceAfterOnboardingWelcomeHeaderComponentView : EXP_HUBComponentView
+@interface SPTFreeTierUIServiceAfterOnboardingWelcomeHeaderComponentView : HUBComponentView
 {
     id <GLUETheme> _theme;
     UIView *_textContainer;
     GLUELabel *_title;
     GLUELabel *_subtitle;
-    SPTLayoutConstraintBuilder *_layoutBuilder;
+    NSMutableArray *_layoutConstraints;
 }
 
-@property(retain, nonatomic) SPTLayoutConstraintBuilder *layoutBuilder; // @synthesize layoutBuilder=_layoutBuilder;
++ (id)subtitleStyle:(id)arg1;
++ (id)titleStyle:(id)arg1;
++ (struct CGSize)preferredViewSizeForDisplayingModel:(id)arg1 containerViewSize:(struct CGSize)arg2 theme:(id)arg3;
+@property(retain, nonatomic) NSMutableArray *layoutConstraints; // @synthesize layoutConstraints=_layoutConstraints;
 @property(retain, nonatomic) GLUELabel *subtitle; // @synthesize subtitle=_subtitle;
 @property(retain, nonatomic) GLUELabel *title; // @synthesize title=_title;
 @property(retain, nonatomic) UIView *textContainer; // @synthesize textContainer=_textContainer;

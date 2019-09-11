@@ -6,12 +6,10 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTFeatureFlagSignalObserver-Protocol.h"
-
 @class NSString, SPTInAppMessageActionsRegistryImplementation, SPTPopupManager;
 @protocol SPTAccountProductActivationController, SPTCollectionPlatform, SPTCollectionPlatformTestManager, SPTFeatureFlagSignal, SPTFollowModelFactory, SPTLinkDispatcher, SPTOnDemandSet, SPTPlayer, SPTPlaylistModel, SPTPodcastTestManager, SPTUIModeTransitionCoordinator;
 
-@interface SPTInAppMessageActionFactory : NSObject <SPTFeatureFlagSignalObserver>
+@interface SPTInAppMessageActionFactory : NSObject
 {
     _Bool _freeTierEnabled;
     id <SPTLinkDispatcher> _linkDispatcher;
@@ -29,7 +27,6 @@
     SPTInAppMessageActionsRegistryImplementation *_actionsRegistry;
 }
 
-+ (long long)actionTypeFromIdentifier:(id)arg1;
 @property(nonatomic) _Bool freeTierEnabled; // @synthesize freeTierEnabled=_freeTierEnabled;
 @property(retain, nonatomic) SPTInAppMessageActionsRegistryImplementation *actionsRegistry; // @synthesize actionsRegistry=_actionsRegistry;
 @property(retain, nonatomic) id <SPTOnDemandSet> onDemandSet; // @synthesize onDemandSet=_onDemandSet;
@@ -46,7 +43,7 @@
 @property(retain, nonatomic) id <SPTLinkDispatcher> linkDispatcher; // @synthesize linkDispatcher=_linkDispatcher;
 - (void).cxx_destruct;
 - (void)featureFlagSignal:(id)arg1 hasAssumedState:(long long)arg2;
-- (id)createActionForData:(id)arg1;
+- (id)createActionForClickActionType:(long long)arg1;
 - (void)dealloc;
 - (id)initWithLinkDispatcher:(id)arg1 productActivationController:(id)arg2 transitionCoordinator:(id)arg3 freeTierEnabledSignal:(id)arg4 popupManager:(id)arg5 collectionPlatform:(id)arg6 followModelFactory:(id)arg7 podcastTestManager:(id)arg8 playlistModel:(id)arg9 collectionTestManager:(id)arg10 onDemandSet:(id)arg11 player:(id)arg12 actionsRegistry:(id)arg13;
 

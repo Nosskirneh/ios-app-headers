@@ -6,20 +6,18 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTFreeTierSimpleTooltipStyle-Protocol.h"
+#import "GLUEStyle-Protocol.h"
 
 @class GLUELabelStyle, NSString, UIColor;
 
-@interface SPTFreeTierSimpleTooltipStyle : NSObject <SPTFreeTierSimpleTooltipStyle>
+@interface SPTFreeTierSimpleTooltipStyle : NSObject <GLUEStyle>
 {
-    _Bool hasRoundCorners;
-    GLUELabelStyle *textLabelStyle;
-    UIColor *backgroundColor;
+    GLUELabelStyle *_textLabelStyle;
+    UIColor *_backgroundColor;
 }
 
-@property(nonatomic) _Bool hasRoundCorners; // @synthesize hasRoundCorners;
-@property(copy, nonatomic) UIColor *backgroundColor; // @synthesize backgroundColor;
-@property(copy, nonatomic) GLUELabelStyle *textLabelStyle; // @synthesize textLabelStyle;
+@property(copy, nonatomic) UIColor *backgroundColor; // @synthesize backgroundColor=_backgroundColor;
+@property(copy, nonatomic) GLUELabelStyle *textLabelStyle; // @synthesize textLabelStyle=_textLabelStyle;
 - (void).cxx_destruct;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 

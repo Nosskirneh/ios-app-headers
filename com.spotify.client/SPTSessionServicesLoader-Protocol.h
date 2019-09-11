@@ -7,6 +7,6 @@
 #import "NSObject-Protocol.h"
 
 @protocol SPTSessionServicesLoader <NSObject>
-- (void)loadSessionScopesWithCompletion:(void (^)(void))arg1;
+- (void)loadSessionScopeServices;
 @end
 

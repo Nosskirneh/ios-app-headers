@@ -9,23 +9,40 @@
 #import "SPTLanguageOnboardingGridViewControllerDelegate-Protocol.h"
 #import "SPTOnboardingFlowCoordinator-Protocol.h"
 
-@class NSString, SPTLanguageOnboardingFlowConfiguration, UINavigationController;
-@protocol SPTOnboardingServiceFlowStateReporter;
+@class NSString, SPTLanguageOnboardingDataLoader, SPTLanguageOnboardingLoggerFactory, SPTLanguageOnboardingTheme, SPTNetworkConnectivityController, SPTPopupManager, UINavigationController;
+@protocol GLUEImageLoader, SPTLanguageOnboardingTestManager, SPTLanguageOnboardingUserDefaultsController, SPTModalPresentationController, SPTOnboardingServiceFlowStateReporter;
 
 @interface SPTLanguageOnboardingFlowCoordinator : NSObject <SPTLanguageOnboardingGridViewControllerDelegate, SPTOnboardingFlowCoordinator>
 {
     id <SPTOnboardingServiceFlowStateReporter> delegate;
-    SPTLanguageOnboardingFlowConfiguration *_configuration;
+    id <SPTLanguageOnboardingUserDefaultsController> _userDefaultsController;
+    id <SPTModalPresentationController> _modalPresentationController;
+    SPTLanguageOnboardingDataLoader *_languageOnboardingDataLoader;
+    SPTLanguageOnboardingTheme *_languageOnboardingTheme;
+    id <GLUEImageLoader> _imageLoader;
+    SPTNetworkConnectivityController *_networkConnectivityController;
+    SPTPopupManager *_popupManager;
+    id <SPTLanguageOnboardingTestManager> _testManager;
+    SPTLanguageOnboardingLoggerFactory *_loggerFactory;
     unsigned long long _mode;
     UINavigationController *_navigationController;
 }
 
 @property(retain, nonatomic) UINavigationController *navigationController; // @synthesize navigationController=_navigationController;
 @property(nonatomic) unsigned long long mode; // @synthesize mode=_mode;
-@property(readonly, nonatomic) SPTLanguageOnboardingFlowConfiguration *configuration; // @synthesize configuration=_configuration;
+@property(readonly, nonatomic) SPTLanguageOnboardingLoggerFactory *loggerFactory; // @synthesize loggerFactory=_loggerFactory;
+@property(readonly, nonatomic) id <SPTLanguageOnboardingTestManager> testManager; // @synthesize testManager=_testManager;
+@property(readonly, nonatomic) SPTPopupManager *popupManager; // @synthesize popupManager=_popupManager;
+@property(readonly, nonatomic) SPTNetworkConnectivityController *networkConnectivityController; // @synthesize networkConnectivityController=_networkConnectivityController;
+@property(readonly, nonatomic) id <GLUEImageLoader> imageLoader; // @synthesize imageLoader=_imageLoader;
+@property(readonly, nonatomic) SPTLanguageOnboardingTheme *languageOnboardingTheme; // @synthesize languageOnboardingTheme=_languageOnboardingTheme;
+@property(readonly, nonatomic) SPTLanguageOnboardingDataLoader *languageOnboardingDataLoader; // @synthesize languageOnboardingDataLoader=_languageOnboardingDataLoader;
+@property(readonly, nonatomic) id <SPTModalPresentationController> modalPresentationController; // @synthesize modalPresentationController=_modalPresentationController;
+@property(readonly, nonatomic) __weak id <SPTLanguageOnboardingUserDefaultsController> userDefaultsController; // @synthesize userDefaultsController=_userDefaultsController;
 @property(nonatomic) __weak id <SPTOnboardingServiceFlowStateReporter> delegate; // @synthesize delegate;
 - (void).cxx_destruct;
 - (void)startOnboardingFlow;
+- (void)storeOnboardingComplete;
 - (void)languageOnboardingDidCompleteGridViewController:(id)arg1;
 - (_Bool)showsLanguageOnboardingFirstTimeFlow;
 - (id)provideLanguageOnboardingGridViewControllerWithURL:(id)arg1;
@@ -33,7 +50,7 @@
 - (void)dismiss;
 - (void)presentLanguageOnboardingWithURI:(id)arg1 presentationMode:(unsigned long long)arg2;
 - (void)presentLanguageOnboardingWithURI:(id)arg1;
-- (id)initWithConfiguration:(id)arg1;
+- (id)initWithUserDefaultsController:(id)arg1 modalPresentationController:(id)arg2 languageOnboardingDataLoader:(id)arg3 languageOnboardingTheme:(id)arg4 imageLoader:(id)arg5 networkConnectivityController:(id)arg6 popupManager:(id)arg7 testManager:(id)arg8 loggerFactory:(id)arg9;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

@@ -6,13 +6,13 @@
 
 #import <objc/NSObject.h>
 
-@class SPTInstrumentationCoverageLogger, SPTInstrumentationPageView, SPTInstrumentationPageViewLogger;
-@protocol SPTInstrumentationPageStream, SPTInstrumentationServiceMessagingHandler;
+@class SPTInstrumentationCoverageLogger, SPTInstrumentationPageView;
+@protocol SPTInstrumentationPageStream, SPTInstrumentationPageViewLogger, SPTInstrumentationServiceMessagingHandler;
 
 @interface SPTInstrumentationPageStreamObserver : NSObject
 {
     id <SPTInstrumentationPageStream> _pageStream;
-    SPTInstrumentationPageViewLogger *_pageViewLogger;
+    id <SPTInstrumentationPageViewLogger> _pageViewLogger;
     SPTInstrumentationCoverageLogger *_coverageLogger;
     SPTInstrumentationPageView *_latestPageView;
     id <SPTInstrumentationServiceMessagingHandler> _messagingHandler;
@@ -21,7 +21,7 @@
 @property(nonatomic) __weak id <SPTInstrumentationServiceMessagingHandler> messagingHandler; // @synthesize messagingHandler=_messagingHandler;
 @property(retain, nonatomic) SPTInstrumentationPageView *latestPageView; // @synthesize latestPageView=_latestPageView;
 @property(readonly, nonatomic) SPTInstrumentationCoverageLogger *coverageLogger; // @synthesize coverageLogger=_coverageLogger;
-@property(readonly, nonatomic) SPTInstrumentationPageViewLogger *pageViewLogger; // @synthesize pageViewLogger=_pageViewLogger;
+@property(readonly, nonatomic) id <SPTInstrumentationPageViewLogger> pageViewLogger; // @synthesize pageViewLogger=_pageViewLogger;
 @property(readonly, nonatomic) id <SPTInstrumentationPageStream> pageStream; // @synthesize pageStream=_pageStream;
 - (void).cxx_destruct;
 - (void)verifyPermittedPageViewForIdentifier:(id)arg1 pageName:(id)arg2;

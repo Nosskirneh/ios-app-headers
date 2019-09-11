@@ -6,16 +6,15 @@
 
 #import "NSObject-Protocol.h"
 
-@class NSArray, NSString;
+@class NSString;
 @protocol SPTVideoSubtitle;
 
 @protocol SPTVideoSubtitle <NSObject>
+@property(readonly, nonatomic, getter=isOffSubtitle) _Bool offSubtitle;
+@property(readonly, nonatomic, getter=isClosedCaption) _Bool closedCaption;
+@property(readonly, nonatomic) NSString *locale;
+@property(readonly, nonatomic) NSString *language;
+@property(readonly, nonatomic) NSString *languageTag;
 - (unsigned long long)compareScore:(id <SPTVideoSubtitle>)arg1;
-- (_Bool)isOffSubtitle;
-- (_Bool)isClosedCaption;
-- (NSString *)localisedName;
-- (NSString *)language;
-- (NSString *)langtag;
-- (NSArray *)components;
 @end
 

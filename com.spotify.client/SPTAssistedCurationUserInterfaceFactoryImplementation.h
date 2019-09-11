@@ -9,11 +9,11 @@
 #import "SPTAssistedCurationUserInterfaceFactory-Protocol.h"
 
 @class NSString, UIViewController;
-@protocol SPTAssistedCurationUITestManager, SPTAssistedCurationViewModel, SPTAudioPreviewService, SPTExplicitContentService, SPTGLUEService, SPTLinkDispatcher, SPTSearch2RootViewControllerProtocol><SPTPageController, SPTSearchService;
+@protocol SPTAssistedCurationUITestManager, SPTAssistedCurationViewModel, SPTAudioPreviewService, SPTExplicitContentService, SPTGLUEService, SPTLinkDispatcher, SPTSearch2RootViewControllerProtocol><SPTPageController, SPTSearchPlatformService;
 
 @interface SPTAssistedCurationUserInterfaceFactoryImplementation : NSObject <SPTAssistedCurationUserInterfaceFactory>
 {
-    id <SPTSearchService> _searchService;
+    id <SPTSearchPlatformService> _searchPlatformService;
     id <SPTGLUEService> _glueService;
     id <SPTAudioPreviewService> _audioPreviewService;
     id <SPTExplicitContentService> _explicitContentService;
@@ -30,7 +30,7 @@
 @property(readonly, nonatomic) __weak id <SPTExplicitContentService> explicitContentService; // @synthesize explicitContentService=_explicitContentService;
 @property(readonly, nonatomic) __weak id <SPTAudioPreviewService> audioPreviewService; // @synthesize audioPreviewService=_audioPreviewService;
 @property(readonly, nonatomic) __weak id <SPTGLUEService> glueService; // @synthesize glueService=_glueService;
-@property(readonly, nonatomic) __weak id <SPTSearchService> searchService; // @synthesize searchService=_searchService;
+@property(readonly, nonatomic) __weak id <SPTSearchPlatformService> searchPlatformService; // @synthesize searchPlatformService=_searchPlatformService;
 - (void).cxx_destruct;
 - (id)createAssistedCurationSearchViewControllerForEntityType:(id)arg1 query:(id)arg2;
 - (id)createAssistedCurationSearchViewController;
@@ -43,7 +43,7 @@
 - (struct NSDictionary *)assistedCurationComponents;
 - (id)provideGLUEImageLoader;
 - (id)provideAssistedCurationTheme;
-- (id)initWithSearchService:(id)arg1 glueService:(id)arg2 audioPreviewService:(id)arg3 explicitContentService:(id)arg4 viewModel:(id)arg5 linkDispatcher:(id)arg6 testManager:(id)arg7;
+- (id)initWithSearchPlatformService:(id)arg1 glueService:(id)arg2 audioPreviewService:(id)arg3 explicitContentService:(id)arg4 viewModel:(id)arg5 linkDispatcher:(id)arg6 testManager:(id)arg7;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

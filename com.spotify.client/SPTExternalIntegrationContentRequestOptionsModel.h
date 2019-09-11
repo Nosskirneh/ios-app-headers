@@ -8,15 +8,18 @@
 
 #import "SPTExternalIntegrationContentRequestOptions-Protocol.h"
 
-@class NSString;
+@class NSArray, NSString;
 
 @interface SPTExternalIntegrationContentRequestOptionsModel : NSObject <SPTExternalIntegrationContentRequestOptions>
 {
     unsigned long long _limit;
+    NSArray *_debugLogTags;
 }
 
+@property(readonly, nonatomic) NSArray *debugLogTags; // @synthesize debugLogTags=_debugLogTags;
 @property(readonly, nonatomic) unsigned long long limit; // @synthesize limit=_limit;
-- (id)initWithLimit:(unsigned long long)arg1;
+- (void).cxx_destruct;
+- (id)initWithLimit:(unsigned long long)arg1 debugLogTags:(id)arg2;
 - (id)init;
 
 // Remaining properties

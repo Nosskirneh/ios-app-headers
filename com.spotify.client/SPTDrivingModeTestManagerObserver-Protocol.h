@@ -9,6 +9,6 @@
 @protocol SPTDrivingModeTestManager;
 
 @protocol SPTDrivingModeTestManagerObserver <NSObject>
-- (void)testManager:(id <SPTDrivingModeTestManager>)arg1 didChangeCarNowPlayingViewEnabled:(_Bool)arg2;
+- (void)testManager:(id <SPTDrivingModeTestManager>)arg1 didChangeCarViewEnabled:(_Bool)arg2;
 @end
 

@@ -14,7 +14,6 @@
 - (void)undoPositiveSongFeedbackForTrack:(SPTPlayerTrack *)arg1 contextURL:(NSURL *)arg2 completion:(void (^)(_Bool, NSError *))arg3;
 - (void)undoNegativeArtistFeedbackForTrack:(SPTPlayerTrack *)arg1 contextURL:(NSURL *)arg2 completion:(void (^)(_Bool, NSError *))arg3;
 - (void)undoNegativeSongFeedbackForTrack:(SPTPlayerTrack *)arg1 contextURL:(NSURL *)arg2 completion:(void (^)(_Bool, NSError *))arg3;
-- (void)negativeArtistFeedbackForTrack:(SPTPlayerTrack *)arg1 contextURL:(NSURL *)arg2 completion:(void (^)(_Bool, NSError *))arg3;
 - (void)removeObserver:(id <SPTNowPlayingFeedbackManagerObserver>)arg1;
 - (void)addObserver:(id <SPTNowPlayingFeedbackManagerObserver>)arg1;
 @end

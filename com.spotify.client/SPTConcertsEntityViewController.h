@@ -11,11 +11,12 @@
 #import "SPTConcertsEntityViewModelObserver-Protocol.h"
 #import "SPTNavigationControllerNavigationBarState-Protocol.h"
 #import "SPTPageController-Protocol.h"
+#import "UIPopoverPresentationControllerDelegate-Protocol.h"
 
 @class NSString, NSURL, SPTConcertsEntityDataSource, SPTConcertsEntityHeaderContentController, SPTConcertsEntityViewDelegate, SPTConcertsEntityViewModel, SPTConcertsLogger, SPTEntityHeaderViewController, SPTInfoView, SPTProgressView, UICollectionView, UICollectionViewFlowLayout;
 @protocol SPContextMenuActionsFactory, SPTBarButtonItemManager, SPTPageContainer;
 
-@interface SPTConcertsEntityViewController : UIViewController <SPContentInsetViewController, SPTNavigationControllerNavigationBarState, SPTConcertsEntityViewModelObserver, SPTBarButtonItemManagerObserver, SPTPageController>
+@interface SPTConcertsEntityViewController : UIViewController <SPContentInsetViewController, SPTNavigationControllerNavigationBarState, SPTConcertsEntityViewModelObserver, SPTBarButtonItemManagerObserver, UIPopoverPresentationControllerDelegate, SPTPageController>
 {
     SPTConcertsEntityDataSource *_dataSource;
     SPTConcertsEntityViewDelegate *_viewDelegate;
@@ -47,6 +48,7 @@
 @property(readonly, nonatomic, getter=spt_pageURI) NSURL *pageURI;
 @property(readonly, nonatomic, getter=spt_pageIdentifier) NSString *pageIdentifier;
 - (unsigned long long)preferredNavigationBarState;
+- (long long)adaptivePresentationStyleForPresentationController:(id)arg1 traitCollection:(id)arg2;
 - (void)shareButtonTapped:(id)arg1;
 - (void)updateNavigationBarAnimated:(_Bool)arg1;
 - (void)barButtonItemManagerProvidersDidChange:(id)arg1;

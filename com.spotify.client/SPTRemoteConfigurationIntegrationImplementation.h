@@ -8,19 +8,24 @@
 
 #import "SPTRemoteConfigurationIntegration-Protocol.h"
 
-@class NSString, SPTRemoteConfiguration;
+@class NSMutableDictionary, NSString, NSUserDefaults, SPTRemoteConfiguration;
 
 @interface SPTRemoteConfigurationIntegrationImplementation : NSObject <SPTRemoteConfigurationIntegration>
 {
     SPTRemoteConfiguration *_remoteConfiguration;
+    NSUserDefaults *_standardUserDefaults;
+    NSMutableDictionary *_commandLineOverrides;
 }
 
+@property(retain, nonatomic) NSMutableDictionary *commandLineOverrides; // @synthesize commandLineOverrides=_commandLineOverrides;
+@property(readonly, nonatomic) NSUserDefaults *standardUserDefaults; // @synthesize standardUserDefaults=_standardUserDefaults;
 @property(retain, nonatomic) SPTRemoteConfiguration *remoteConfiguration; // @synthesize remoteConfiguration=_remoteConfiguration;
 - (void).cxx_destruct;
 - (void)clearPersistentStorage;
 - (void)activateFetched;
 - (void)fetchConfigurationWithCompletion:(CDUnknownBlockType)arg1;
-- (id)initWithRemoteConfiguration:(id)arg1;
+- (void)fetchConfiguration;
+- (id)initWithRemoteConfiguration:(id)arg1 standardUserDefaults:(id)arg2;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

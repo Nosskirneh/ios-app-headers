@@ -6,14 +6,15 @@
 
 #import "NSObject-Protocol.h"
 
-@class INSMessageEntity, NSArray, NSString;
+@class EventEnvelope, NSString;
 
 @protocol INSPersistentStore <NSObject>
-@property(readonly, nonatomic) unsigned long long count;
-- (void)save;
-- (NSArray *)messagesForName:(NSString *)arg1;
-- (_Bool)containMessageForId:(NSString *)arg1;
-- (void)deleteMessageForId:(NSString *)arg1;
-- (INSMessageEntity *)messageEntityWithId:(NSString *)arg1;
+- (void)persistEventEnvelope:(EventEnvelope *)arg1 authenticated:(_Bool)arg2 withCompletion:(void (^)(INSMessageEntityProxy *))arg3;
+- (void)saveWithCompletion:(void (^)(void))arg1;
+- (void)messagesWithAuthenticatedStatus:(_Bool)arg1 completion:(void (^)(NSArray *))arg2;
+- (void)allMessagesWithCompletion:(void (^)(NSArray *))arg1;
+- (void)containMessageForId:(NSString *)arg1 completion:(void (^)(_Bool))arg2;
+- (void)deleteMessageForId:(NSString *)arg1 completion:(void (^)(void))arg2;
+- (void)countWithCompletion:(void (^)(unsigned long long))arg1;
 @end
 

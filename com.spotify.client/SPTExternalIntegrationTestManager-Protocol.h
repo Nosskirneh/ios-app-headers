@@ -7,6 +7,7 @@
 #import "NSObject-Protocol.h"
 
 @protocol SPTExternalIntegrationTestManager <NSObject>
+@property(readonly, nonatomic, getter=isShowsCollectionFeatureEnabled) _Bool showsCollectionFeatureEnabled;
 @property(readonly, nonatomic, getter=isNotShowingEntityPagesEnabled) _Bool notShowingEntityPagesEnabled;
 @property(readonly, nonatomic, getter=isShowingEntityPagesEverywhereEnabled) _Bool showingEntityPagesEverywhereEnabled;
 @end

@@ -6,22 +6,22 @@
 
 #import <objc/NSObject.h>
 
-@protocol EXP_SPTHubCommandHandlerFactory, EXP_SPTHubsRendererFactory, SPTEntitySeeAllSongsService, SPTLinkDispatcher, SPTPlayerFeature;
+@protocol SPTEntitySeeAllSongsService, SPTHubCommandHandlerFactory, SPTHubsRendererFactory, SPTLinkDispatcher, SPTPlayerFeature;
 
 @interface SPTFreeTierTrackCommandHandlerFactory : NSObject
 {
-    id <EXP_SPTHubCommandHandlerFactory> _defaultCommandHandlerFactory;
+    id <SPTHubCommandHandlerFactory> _defaultCommandHandlerFactory;
     id <SPTPlayerFeature> _playerService;
-    id <EXP_SPTHubsRendererFactory> _hubsRendererFactory;
+    id <SPTHubsRendererFactory> _hubsRendererFactory;
     id <SPTLinkDispatcher> _linkDispatcher;
     id <SPTEntitySeeAllSongsService> _entitySeeAllSongsService;
 }
 
 @property(readonly, nonatomic) __weak id <SPTEntitySeeAllSongsService> entitySeeAllSongsService; // @synthesize entitySeeAllSongsService=_entitySeeAllSongsService;
 @property(readonly, nonatomic) id <SPTLinkDispatcher> linkDispatcher; // @synthesize linkDispatcher=_linkDispatcher;
-@property(readonly, nonatomic) __weak id <EXP_SPTHubsRendererFactory> hubsRendererFactory; // @synthesize hubsRendererFactory=_hubsRendererFactory;
+@property(readonly, nonatomic) __weak id <SPTHubsRendererFactory> hubsRendererFactory; // @synthesize hubsRendererFactory=_hubsRendererFactory;
 @property(readonly, nonatomic) __weak id <SPTPlayerFeature> playerService; // @synthesize playerService=_playerService;
-@property(readonly, nonatomic) id <EXP_SPTHubCommandHandlerFactory> defaultCommandHandlerFactory; // @synthesize defaultCommandHandlerFactory=_defaultCommandHandlerFactory;
+@property(readonly, nonatomic) id <SPTHubCommandHandlerFactory> defaultCommandHandlerFactory; // @synthesize defaultCommandHandlerFactory=_defaultCommandHandlerFactory;
 - (void).cxx_destruct;
 - (id)createLoggerForViewURI:(id)arg1;
 - (id)createCommandHandlerForViewURI:(id)arg1 referrerIdentifier:(id)arg2 reloadPageSignalSource:(id)arg3;

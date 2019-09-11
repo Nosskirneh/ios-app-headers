@@ -35,9 +35,9 @@
 @property(readonly, nonatomic, getter=spt_pageIdentifier) NSString *pageIdentifier;
 @property(readonly, nonatomic, getter=spt_pageURI) NSURL *pageURI;
 - (void)didCompleteFacebookLoginWithError:(id)arg1;
-- (void)userDidTouchUpInsideSignupButton:(id)arg1;
-- (void)userDidTouchUpInsideLoginButton:(id)arg1;
-- (void)userDidTouchUpInsideFacebookButton:(id)arg1;
+- (void)signupButtonTapped:(id)arg1;
+- (void)loginButtonTapped:(id)arg1;
+- (void)facebookButtonTapped:(id)arg1;
 - (void)viewDidAppear:(_Bool)arg1;
 - (void)viewDidLoad;
 - (void)loadView;

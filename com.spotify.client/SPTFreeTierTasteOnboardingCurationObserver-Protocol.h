@@ -9,6 +9,9 @@
 @protocol SPTFreeTierTasteOnboardingCurationProvider;
 
 @protocol SPTFreeTierTasteOnboardingCurationObserver <NSObject>
+
+@optional
+- (void)tasteOnboardingDidFinishCurating:(id <SPTFreeTierTasteOnboardingCurationProvider>)arg1;
 - (void)tasteOnboardingDidUpdateTaste:(id <SPTFreeTierTasteOnboardingCurationProvider>)arg1;
 @end
 

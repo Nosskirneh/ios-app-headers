@@ -7,13 +7,12 @@
 #import <objc/NSObject.h>
 
 #import "CollectionFeature-Protocol.h"
-#import "SPTFeatureFlagSignalObserver-Protocol.h"
 #import "SPTService-Protocol.h"
 
-@class NSString, SPTAllocationContext, SPTCollectionArtistFollowStateManager, SPTCollectionLoggerImplementation, SPTCollectionOverviewNavigationModel, SPTSaveToCollectionPushNotificationAction;
-@protocol FollowFeature, ProfileFeature, SPContextMenuFeature, SPTAbbaService, SPTBrowsePlatformService, SPTBrowseRedirectButtonProvider, SPTCollectionPlatformService, SPTCollectionTestManager, SPTContainerService, SPTCoreService, SPTExplicitContentService, SPTFeatureFlagSignal, SPTFeatureFlaggingService, SPTFreeTierService, SPTGLUEService, SPTNavigationFeature, SPTNetworkService, SPTNuxService, SPTOfflineService, SPTPageRegistrationToken, SPTPerformanceMetricsService, SPTPlayerFeature, SPTPushNotificationsService, SPTRecentlyPlayedService, SPTSessionService, SPTSettingsFeature, SPTShareFeature, SPTShelfService, SPTUIPresentationService, SPTURIDispatchService, UpsellFeature;
+@class NSString, SPTAllocationContext, SPTCollectionLoggerImplementation, SPTCollectionOverviewNavigationModel, SPTSaveToCollectionPushNotificationAction;
+@protocol FollowFeature, SPContextMenuFeature, SPTAbbaService, SPTBrowsePlatformService, SPTBrowseRedirectButtonProvider, SPTCollectionPlatformService, SPTContainerService, SPTCoreService, SPTExplicitContentService, SPTFeatureFlagSignal, SPTFeatureFlaggingService, SPTFreeTierService, SPTGLUEService, SPTNavigationFeature, SPTNetworkService, SPTNuxService, SPTOfflineService, SPTPageRegistrationToken, SPTPerformanceMetricsService, SPTPlayerFeature, SPTPushNotificationsService, SPTRecentlyPlayedService, SPTSessionService, SPTSettingsFeature, SPTShareFeature, SPTShelfService, SPTUIPresentationService, SPTURIDispatchService, SPTYourLibraryService;
 
-@interface CollectionFeatureImplementation : NSObject <SPTFeatureFlagSignalObserver, SPTService, CollectionFeature>
+@interface CollectionFeatureImplementation : NSObject <SPTService, CollectionFeature>
 {
     _Bool _localFilesImportEnabled;
     id <SPTSessionService> _clientSessionService;
@@ -27,13 +26,11 @@
     id <SPTPlayerFeature> _playerFeature;
     id <SPContextMenuFeature> _contextMenuFeature;
     id <SPTAbbaService> _abbaService;
-    id <SPTSettingsFeature> _settings;
+    id <SPTSettingsFeature> _settingsFeature;
     id <FollowFeature> _followFeature;
     id <SPTNuxService> _nuxService;
     id <SPTNavigationFeature> _navigationFeature;
     id <SPTBrowsePlatformService> _browsePlatformService;
-    id <UpsellFeature> _upsell;
-    id <ProfileFeature> _profileFeature;
     id <SPTRecentlyPlayedService> _recentlyPlayedService;
     id <SPTURIDispatchService> _URIDispatchService;
     id <SPTShareFeature> _shareFeature;
@@ -43,12 +40,11 @@
     id <SPTExplicitContentService> _explicitContentService;
     id <SPTPerformanceMetricsService> _performanceMetricsService;
     id <SPTOfflineService> _offlineService;
+    id <SPTYourLibraryService> _yourLibraryService;
     SPTSaveToCollectionPushNotificationAction *_saveToCollectionPushNotificationAction;
     SPTCollectionOverviewNavigationModel *_collectionListModel;
     SPTCollectionLoggerImplementation *_collectionLogger;
     id <SPTBrowseRedirectButtonProvider> _browseRedirectButtonProvider;
-    SPTCollectionArtistFollowStateManager *_collectionArtistFollowStateManager;
-    id <SPTCollectionTestManager> _collectionTestManager;
     id <SPTFeatureFlagSignal> _legacyCollectionFeatureEnabledSignal;
     id <SPTPageRegistrationToken> _collectionOverviewPageRegisterationToken;
     id <SPTPageRegistrationToken> _collectionArtistPageRegisterationToken;
@@ -66,12 +62,11 @@
 @property(retain, nonatomic) id <SPTPageRegistrationToken> collectionArtistPageRegisterationToken; // @synthesize collectionArtistPageRegisterationToken=_collectionArtistPageRegisterationToken;
 @property(retain, nonatomic) id <SPTPageRegistrationToken> collectionOverviewPageRegisterationToken; // @synthesize collectionOverviewPageRegisterationToken=_collectionOverviewPageRegisterationToken;
 @property(retain, nonatomic) id <SPTFeatureFlagSignal> legacyCollectionFeatureEnabledSignal; // @synthesize legacyCollectionFeatureEnabledSignal=_legacyCollectionFeatureEnabledSignal;
-@property(retain, nonatomic) id <SPTCollectionTestManager> collectionTestManager; // @synthesize collectionTestManager=_collectionTestManager;
-@property(retain, nonatomic) SPTCollectionArtistFollowStateManager *collectionArtistFollowStateManager; // @synthesize collectionArtistFollowStateManager=_collectionArtistFollowStateManager;
 @property(retain, nonatomic) id <SPTBrowseRedirectButtonProvider> browseRedirectButtonProvider; // @synthesize browseRedirectButtonProvider=_browseRedirectButtonProvider;
 @property(retain, nonatomic) SPTCollectionLoggerImplementation *collectionLogger; // @synthesize collectionLogger=_collectionLogger;
 @property(retain, nonatomic) SPTCollectionOverviewNavigationModel *collectionListModel; // @synthesize collectionListModel=_collectionListModel;
 @property(retain, nonatomic) SPTSaveToCollectionPushNotificationAction *saveToCollectionPushNotificationAction; // @synthesize saveToCollectionPushNotificationAction=_saveToCollectionPushNotificationAction;
+@property(nonatomic) __weak id <SPTYourLibraryService> yourLibraryService; // @synthesize yourLibraryService=_yourLibraryService;
 @property(nonatomic) __weak id <SPTOfflineService> offlineService; // @synthesize offlineService=_offlineService;
 @property(nonatomic) __weak id <SPTPerformanceMetricsService> performanceMetricsService; // @synthesize performanceMetricsService=_performanceMetricsService;
 @property(nonatomic) __weak id <SPTExplicitContentService> explicitContentService; // @synthesize explicitContentService=_explicitContentService;
@@ -81,13 +76,11 @@
 @property(nonatomic) __weak id <SPTShareFeature> shareFeature; // @synthesize shareFeature=_shareFeature;
 @property(nonatomic) __weak id <SPTURIDispatchService> URIDispatchService; // @synthesize URIDispatchService=_URIDispatchService;
 @property(nonatomic) __weak id <SPTRecentlyPlayedService> recentlyPlayedService; // @synthesize recentlyPlayedService=_recentlyPlayedService;
-@property(nonatomic) __weak id <ProfileFeature> profileFeature; // @synthesize profileFeature=_profileFeature;
-@property(nonatomic) __weak id <UpsellFeature> upsell; // @synthesize upsell=_upsell;
 @property(nonatomic) __weak id <SPTBrowsePlatformService> browsePlatformService; // @synthesize browsePlatformService=_browsePlatformService;
 @property(nonatomic) __weak id <SPTNavigationFeature> navigationFeature; // @synthesize navigationFeature=_navigationFeature;
 @property(nonatomic) __weak id <SPTNuxService> nuxService; // @synthesize nuxService=_nuxService;
 @property(nonatomic) __weak id <FollowFeature> followFeature; // @synthesize followFeature=_followFeature;
-@property(nonatomic) __weak id <SPTSettingsFeature> settings; // @synthesize settings=_settings;
+@property(nonatomic) __weak id <SPTSettingsFeature> settingsFeature; // @synthesize settingsFeature=_settingsFeature;
 @property(nonatomic) __weak id <SPTAbbaService> abbaService; // @synthesize abbaService=_abbaService;
 @property(nonatomic) __weak id <SPContextMenuFeature> contextMenuFeature; // @synthesize contextMenuFeature=_contextMenuFeature;
 @property(nonatomic) __weak id <SPTPlayerFeature> playerFeature; // @synthesize playerFeature=_playerFeature;
@@ -101,18 +94,13 @@
 @property(nonatomic) __weak id <SPTSessionService> clientSessionService; // @synthesize clientSessionService=_clientSessionService;
 @property(nonatomic, getter=isLocalFilesImportEnabled) _Bool localFilesImportEnabled; // @synthesize localFilesImportEnabled=_localFilesImportEnabled;
 - (void).cxx_destruct;
-- (_Bool)profileSettingsTestEnabled;
 - (void)featureFlagSignal:(id)arg1 hasAssumedState:(long long)arg2;
-- (id)provideCollectionBarButtonManager;
 - (id)provideCollectionOverviewPage:(id)arg1 context:(id)arg2;
 - (id)provideCollectionRecentlyPlayedPage:(id)arg1;
 - (id)provideCollectionTheme;
 - (void)unregisterCollectionContentListWithTitle:(id)arg1 URL:(id)arg2;
 - (void)registerCollectionContentListWithTitle:(id)arg1 icon:(long long)arg2 URL:(id)arg3 order:(unsigned long long)arg4;
 - (id)provideContentListModel;
-- (id)provideCollectionAlbumPage:(id)arg1 context:(id)arg2;
-- (id)provideCollectionAlbumModelForURL:(id)arg1 referrerIdentifier:(id)arg2;
-- (id)provideCollectionAlbumModelForURL:(id)arg1;
 - (id)provideCollectionArtistPage:(id)arg1 context:(id)arg2;
 - (id)provideCollectionArtistModelForURL:(id)arg1 referrerIdentifier:(id)arg2;
 - (id)provideCollectionArtistModelForURL:(id)arg1;
@@ -123,10 +111,11 @@
 - (id)provideCollectionArtistsPage:(id)arg1 context:(id)arg2;
 - (id)provideCollectionLogger;
 - (id)provideLegacyCollectionFeatureEnabledSignal;
-- (void)registerTrackDownloadContextMenuAction;
 - (id)playerForViewURI:(id)arg1 featureIdentifier:(id)arg2 referrerIdentifier:(id)arg3;
+- (void)unregisterCollectionArtistPage;
 - (void)unregisterPages;
 - (void)unload;
+- (void)registerCollectionArtistPage;
 - (void)registerPages;
 - (void)setUpManagers;
 - (void)load;

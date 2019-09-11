@@ -9,7 +9,8 @@
 @class IDA4APacket;
 
 @protocol IDA4APacketReader <NSObject>
-@property(readonly) unsigned long long connectionId;
 - (void)readA4APacket:(IDA4APacket *)arg1;
+- (unsigned long long)connectionId;
+- (void)setConnectionId:(unsigned long long)arg1;
 @end
 

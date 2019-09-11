@@ -9,6 +9,6 @@
 @class NSURL, SPTAssistedCurationCardCellConfigurator;
 
 @protocol SPTAssistedCurationCardCellConfiguratorDelegate <NSObject>
-- (void)cardCellConfigurator:(SPTAssistedCurationCardCellConfigurator *)arg1 previewTrackURI:(NSURL *)arg2 atIndex:(long long)arg3;
+- (void)cardCellConfigurator:(SPTAssistedCurationCardCellConfigurator *)arg1 previewTrackURI:(NSURL *)arg2 atIndex:(long long)arg3 locationInCollection:(struct CGPoint)arg4;
 @end
 

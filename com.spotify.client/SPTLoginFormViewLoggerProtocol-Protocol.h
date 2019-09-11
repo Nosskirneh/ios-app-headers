@@ -9,7 +9,7 @@
 @class NSString;
 
 @protocol SPTLoginFormViewLoggerProtocol <NSObject>
-- (long long)adjustIdentifierForFieldWithStringIdentifier:(NSString *)arg1;
+- (NSString *)adjustIdentifierForFieldWithStringIdentifier:(NSString *)arg1;
 - (void)logErrorWithCode:(unsigned long long)arg1 fieldIdentifier:(NSString *)arg2;
 - (void)logUserDidTapSubmitButton;
 - (void)logUserDidInteractWithField:(NSString *)arg1;

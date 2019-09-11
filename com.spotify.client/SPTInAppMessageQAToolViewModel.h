@@ -29,6 +29,7 @@
 @property(retain, nonatomic) SPTInAppMessageQAToolConfigurationsController *qaToolConfigurationsController; // @synthesize qaToolConfigurationsController=_qaToolConfigurationsController;
 @property(nonatomic) __weak id <SPTInAppMessageQAToolViewModelDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
+- (id)localesFromData:(id)arg1;
 - (void)showAlert:(_Bool)arg1;
 - (void)hideLoadingIndicator;
 - (void)showLoadingIndicator;
@@ -48,6 +49,7 @@
 - (void)removeQAToolViewModelObserver:(id)arg1;
 - (void)addQAToolViewModelObserver:(id)arg1;
 - (_Bool)fetchMessageCreativesForCampaignWithID:(id)arg1 status:(long long)arg2 type:(id)arg3 andLocale:(id)arg4;
+- (void)fetchLocaleList;
 - (id)initWithQAToolConfigurationsController:(id)arg1 alertController:(id)arg2;
 
 // Remaining properties

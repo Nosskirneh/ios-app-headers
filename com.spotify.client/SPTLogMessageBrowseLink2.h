@@ -16,9 +16,9 @@
 }
 
 + (id)messageWithSource:(id)arg1 link:(id)arg2 uri:(id)arg3;
-@property(retain, nonatomic) NSString *uriValue; // @synthesize uriValue=_uriValue;
-@property(retain, nonatomic) NSString *linkValue; // @synthesize linkValue=_linkValue;
-@property(retain, nonatomic) NSString *sourceValue; // @synthesize sourceValue=_sourceValue;
+@property(copy, nonatomic) NSString *uriValue; // @synthesize uriValue=_uriValue;
+@property(copy, nonatomic) NSString *linkValue; // @synthesize linkValue=_linkValue;
+@property(copy, nonatomic) NSString *sourceValue; // @synthesize sourceValue=_sourceValue;
 - (void).cxx_destruct;
 - (_Bool)isEqual:(id)arg1;
 - (unsigned long long)hash;

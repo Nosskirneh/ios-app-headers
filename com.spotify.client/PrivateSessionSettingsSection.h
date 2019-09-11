@@ -8,14 +8,16 @@
 
 #import "SPTIncognitoModeHandlerObserver-Protocol.h"
 
-@class NSString, SPTIncognitoModeHandler, SettingsSwitchTableViewCell;
+@class NSString, SPTIncognitoModeHandler, SPTSettingsLogger, SettingsSwitchTableViewCell;
 
 @interface PrivateSessionSettingsSection : SettingsSection <SPTIncognitoModeHandlerObserver>
 {
     SettingsSwitchTableViewCell *_cell;
     SPTIncognitoModeHandler *_incognitoModeHandler;
+    SPTSettingsLogger *_logger;
 }
 
+@property(retain, nonatomic) SPTSettingsLogger *logger; // @synthesize logger=_logger;
 @property(readonly, nonatomic) __weak SPTIncognitoModeHandler *incognitoModeHandler; // @synthesize incognitoModeHandler=_incognitoModeHandler;
 @property(readonly, nonatomic) SettingsSwitchTableViewCell *cell; // @synthesize cell=_cell;
 - (void).cxx_destruct;
@@ -28,7 +30,7 @@
 - (long long)numberOfRows;
 - (unsigned long long)categoryPosition;
 - (void)dealloc;
-- (id)initWithSettingsViewController:(id)arg1 incognitoModeHandler:(id)arg2;
+- (id)initWithSettingsViewController:(id)arg1 incognitoModeHandler:(id)arg2 logger:(id)arg3;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

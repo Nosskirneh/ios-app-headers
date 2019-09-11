@@ -6,16 +6,11 @@
 
 #import "SPTService-Protocol.h"
 
-@protocol GLUETheme, HUBComponentFactoryShowcaseNameProvider, HUBComponentFallbackHandler, HUBComponentLayoutManager, HUBIconImageResolver, HUGSStyleOverrider, SPTGLUEImageLoaderFactory, SPTHugsFactory;
+@protocol GLUETheme, SPTGLUEImageLoaderFactory, SPTHugsFactory;
 
 @protocol SPTGLUEService <SPTService>
 - (id <SPTHugsFactory>)provideHugsFactory;
-- (id <HUBIconImageResolver>)provideHubIconImageResolver;
-- (id <HUBComponentFactoryShowcaseNameProvider>)provideHubComponentFactory;
-- (id <HUBComponentFallbackHandler>)provideHubComponentFallbackHandler;
-- (id <HUBComponentLayoutManager>)provideHubComponentLayoutManager;
 - (id <SPTGLUEImageLoaderFactory>)provideImageLoaderFactory;
-- (id <HUGSStyleOverrider>)provideStyleOverrider;
 - (id <GLUETheme>)provideTheme;
 @end
 

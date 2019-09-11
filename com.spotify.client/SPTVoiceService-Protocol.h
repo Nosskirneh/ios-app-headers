@@ -5,19 +5,18 @@
 //
 
 #import "SPTService-Protocol.h"
-#import "SPTVoiceHomeComponentManager-Protocol.h"
 
-@class NSString, SPTVoiceCommandHandlingOptions, SPTVoiceSessionPresentationOptions, UIView;
+@class NSString, SPTVoiceCommandHandlingOptions, SPTVoiceSessionHandlingOptions, SPTVoiceSessionPresentationOptions;
 @protocol SPTRadioManager, SPTVoiceSessionFactory, SPTVoiceSessionViewControllerFactory, SPTVoiceTestManager;
 
-@protocol SPTVoiceService <SPTService, SPTVoiceHomeComponentManager>
+@protocol SPTVoiceService <SPTService>
 - (void)setVoiceCalloutTooltipDidDisplay:(_Bool)arg1;
 - (_Bool)didDisplayVoiceCalloutTooltip;
 - (_Bool)didFinishVoiceOnboarding;
 - (void)provideWithRadioManager:(id <SPTRadioManager>)arg1;
-- (void)launchVoiceWithReferrerIdentifier:(NSString *)arg1 senderView:(UIView *)arg2;
+- (void)launchVoiceWithReferrerIdentifier:(NSString *)arg1;
 - (id <SPTVoiceTestManager>)provideTestManager;
 - (id <SPTVoiceSessionViewControllerFactory>)createViewControllerFactoryWithVoiceSessionFactory:(id <SPTVoiceSessionFactory>)arg1 presentationOptions:(SPTVoiceSessionPresentationOptions *)arg2 commandHandlingOptions:(SPTVoiceCommandHandlingOptions *)arg3;
-- (id <SPTVoiceSessionFactory>)createVoiceSessionFactoryWithServiceIdentifier:(NSString *)arg1;
+- (id <SPTVoiceSessionFactory>)createVoiceSessionFactoryWithServiceIdentifier:(NSString *)arg1 sessionHandlingOptions:(SPTVoiceSessionHandlingOptions *)arg2;
 @end
 

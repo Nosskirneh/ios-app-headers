@@ -4,25 +4,25 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import "EXP_HUGSThemableComponentView.h"
+#import "HUGSThemableComponentView.h"
 
-#import "EXP_HUBComponentViewContentOffsetObserver-Protocol.h"
-#import "EXP_HUBComponentViewWithEvents-Protocol.h"
-#import "EXP_HUBComponentViewWithImageHandling-Protocol.h"
+#import "HUBComponentViewContentOffsetObserver-Protocol.h"
+#import "HUBComponentViewWithEvents-Protocol.h"
+#import "HUBComponentViewWithImageHandling-Protocol.h"
 
 @class SPTFreeTierEntityHeaderView;
-@protocol EXP_HUBComponentEventHandler;
+@protocol HUBComponentEventHandler;
 
-@interface SPTFreeTierEntityHeaderComponentView : EXP_HUGSThemableComponentView <EXP_HUBComponentViewWithImageHandling, EXP_HUBComponentViewContentOffsetObserver, EXP_HUBComponentViewWithEvents>
+@interface SPTFreeTierEntityHeaderComponentView : HUGSThemableComponentView <HUBComponentViewWithImageHandling, HUBComponentViewContentOffsetObserver, HUBComponentViewWithEvents>
 {
-    id <EXP_HUBComponentEventHandler> _eventHandler;
+    id <HUBComponentEventHandler> _eventHandler;
     SPTFreeTierEntityHeaderView *_headerView;
 }
 
 + (unsigned long long)headerViewStyleFromComponentModel:(id)arg1;
 + (double)preferredViewHeightForDisplayingModel:(id)arg1 theme:(id)arg2;
 @property(readonly, nonatomic) SPTFreeTierEntityHeaderView *headerView; // @synthesize headerView=_headerView;
-@property(retain, nonatomic) id <EXP_HUBComponentEventHandler> eventHandler; // @synthesize eventHandler=_eventHandler;
+@property(retain, nonatomic) id <HUBComponentEventHandler> eventHandler; // @synthesize eventHandler=_eventHandler;
 - (void).cxx_destruct;
 - (_Bool)pointInside:(struct CGPoint)arg1 withEvent:(id)arg2;
 - (void)updateViewForChangedContentOffset:(struct CGPoint)arg1;

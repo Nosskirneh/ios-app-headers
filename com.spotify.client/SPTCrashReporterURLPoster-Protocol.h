@@ -6,12 +6,9 @@
 
 #import "NSObject-Protocol.h"
 
-@class NSString, NSURL;
-@protocol SPTCrashReporterURLPosterDelegate;
+@class NSURL;
 
 @protocol SPTCrashReporterURLPoster <NSObject>
-@property(nonatomic) __weak id <SPTCrashReporterURLPosterDelegate> delegate;
 - (void)postURL:(NSURL *)arg1 timeout:(unsigned long long)arg2 completion:(void (^)(NSError *))arg3;
-- (void)postRequestURL:(NSURL *)arg1 dataURL:(NSURL *)arg2 sessionID:(NSString *)arg3 timeout:(unsigned long long)arg4 contentType:(NSString *)arg5;
 @end
 

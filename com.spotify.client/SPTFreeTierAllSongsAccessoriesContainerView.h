@@ -15,7 +15,7 @@
     NSArray *_activeConstraints;
 }
 
-@property(retain, nonatomic) NSArray *activeConstraints; // @synthesize activeConstraints=_activeConstraints;
+@property(copy, nonatomic) NSArray *activeConstraints; // @synthesize activeConstraints=_activeConstraints;
 @property(retain, nonatomic) GLUETrackMultipleAccessoriesView *trackMultiAccessoriesView; // @synthesize trackMultiAccessoriesView=_trackMultiAccessoriesView;
 @property(retain, nonatomic) UIView *leadingAccessoryView; // @synthesize leadingAccessoryView=_leadingAccessoryView;
 - (void).cxx_destruct;

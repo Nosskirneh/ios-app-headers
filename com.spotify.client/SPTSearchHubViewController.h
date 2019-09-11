@@ -6,21 +6,14 @@
 
 #import "SPTSearchHubBaseViewController.h"
 
-@protocol SPTSearchHubViewControllerDelegate, SPTSearchLogger;
-
 @interface SPTSearchHubViewController : SPTSearchHubBaseViewController
 {
-    id <SPTSearchHubViewControllerDelegate> _delegate;
-    id <SPTSearchLogger> _searchLogger;
 }
 
-@property(readonly, nonatomic) id <SPTSearchLogger> searchLogger; // @synthesize searchLogger=_searchLogger;
-@property(nonatomic) __weak id <SPTSearchHubViewControllerDelegate> delegate; // @synthesize delegate=_delegate;
-- (void).cxx_destruct;
 - (void)handleTouchDownGesture:(id)arg1;
 - (void)configureOverlayView;
 - (void)viewDidLoad;
-- (id)initWithTheme:(id)arg1 viewURI:(id)arg2 componentRegistry:(id)arg3 componentLayoutManager:(id)arg4 imageLoaderFactory:(id)arg5 commandHandler:(id)arg6 searchLogger:(id)arg7;
+- (id)initWithTheme:(id)arg1 viewURI:(id)arg2 componentRegistry:(id)arg3 componentLayoutManager:(id)arg4 imageLoaderFactory:(id)arg5 commandHandler:(id)arg6 searchLogger:(id)arg7 shareDragDelegateFactory:(id)arg8;
 
 @end
 

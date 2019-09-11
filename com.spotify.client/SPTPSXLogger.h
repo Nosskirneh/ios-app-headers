@@ -21,7 +21,7 @@
 @property(readonly, copy, nonatomic) NSString *setURIString; // @synthesize setURIString=_setURIString;
 - (void).cxx_destruct;
 - (void)logViewLoadingCancelledWithPageIdentifier:(id)arg1;
-- (void)logViewDataDidFailToLoadWithError:(id)arg1 pageIdentifier:(id)arg2;
+- (void)logViewDataDidFailToLoadWithPageIdentifier:(id)arg1;
 - (void)logViewDataDidLoadWithPageIdentifier:(id)arg1;
 - (void)logViewLoadingStartedWithPageIdentifier:(id)arg1;
 - (double)timeIntervalSinceEpoch;
@@ -29,9 +29,9 @@
 - (void)logFollowButtonInteractionWithNewFollowStatus:(_Bool)arg1;
 - (void)logContextMenuInteraction;
 - (void)logShufflePlayInteraction;
-- (void)logTrackContextMenuInteractionForTrackURI:(id)arg1 index:(long long)arg2 containsRecsplanation:(_Bool)arg3;
-- (void)logTrackInteractionForTrackURI:(id)arg1 index:(long long)arg2 containsRecsplanation:(_Bool)arg3;
-- (void)logTrackImpressionForTrackURI:(id)arg1 index:(long long)arg2 containsRecsplanation:(_Bool)arg3;
+- (void)logTrackContextMenuInteractionForTrackURI:(id)arg1 index:(long long)arg2;
+- (void)logTrackInteractionForTrackURI:(id)arg1 index:(long long)arg2;
+- (void)logTrackImpressionForTrackURI:(id)arg1 index:(long long)arg2;
 - (id)initWithLogCenter:(id)arg1 setURI:(id)arg2 viewLogger:(id)arg3;
 
 @end

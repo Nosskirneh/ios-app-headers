@@ -10,7 +10,7 @@
 @protocol SPTNowPlayingScrollProvider;
 
 @protocol SPTNowPlayingScrollDataSource_Internal <SPTNowPlayingScrollDataSource>
-- (void)loadProvidersForTrack:(SPTPlayerTrack *)arg1;
+- (_Bool)updateProvidersForTrack:(SPTPlayerTrack *)arg1;
 - (id <SPTNowPlayingScrollProvider>)providerAtIndex:(unsigned long long)arg1;
 - (unsigned long long)numberOfProviders;
 @end

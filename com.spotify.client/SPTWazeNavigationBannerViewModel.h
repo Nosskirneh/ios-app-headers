@@ -9,7 +9,7 @@
 #import "SPTWazeNavigationState-Protocol.h"
 #import "SPTWazeTransportManagerDelegate-Protocol.h"
 
-@class NSString, NSTimer, SPTObserverManager, SPTWazeBannerSessionLogger, SPTWazeTransportManager, UIImage;
+@class NSString, NSTimer, SPTObserverManager, SPTWazeTransportManager, UIImage;
 @protocol SPTWazeNavigationBannerViewModelDelegate;
 
 @interface SPTWazeNavigationBannerViewModel : NSObject <SPTWazeTransportManagerDelegate, SPTWazeNavigationState>
@@ -20,7 +20,6 @@
     NSString *_roundaboutExit;
     NSString *_distanceText;
     SPTWazeTransportManager *_transportManager;
-    SPTWazeBannerSessionLogger *_bannerSessionLogger;
     double _idleTimeout;
     NSTimer *_idleTimer;
     SPTObserverManager *_observers;
@@ -31,7 +30,6 @@
 @property(readonly, nonatomic) SPTObserverManager *observers; // @synthesize observers=_observers;
 @property(retain, nonatomic) NSTimer *idleTimer; // @synthesize idleTimer=_idleTimer;
 @property(readonly, nonatomic) double idleTimeout; // @synthesize idleTimeout=_idleTimeout;
-@property(readonly, nonatomic) SPTWazeBannerSessionLogger *bannerSessionLogger; // @synthesize bannerSessionLogger=_bannerSessionLogger;
 @property(readonly, nonatomic) SPTWazeTransportManager *transportManager; // @synthesize transportManager=_transportManager;
 @property(readonly, nonatomic, getter=isReadyToBeDisplayed) _Bool readyToBeDisplayed; // @synthesize readyToBeDisplayed=_readyToBeDisplayed;
 @property(retain, nonatomic) NSString *distanceText; // @synthesize distanceText=_distanceText;
@@ -51,7 +49,7 @@
 - (void)setReadyToBeDisplayed:(_Bool)arg1;
 - (void)updateWithTransportMessage:(id)arg1;
 - (void)updateWithConnectionStatus:(_Bool)arg1;
-- (id)initWithTransportManager:(id)arg1 bannerSessionLogger:(id)arg2 idleTimeout:(double)arg3;
+- (id)initWithTransportManager:(id)arg1 idleTimeout:(double)arg2;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

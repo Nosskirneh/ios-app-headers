@@ -9,22 +9,22 @@
 #import "SPTStateController-Protocol.h"
 
 @class NSString, SPCore, SPTStartupTracer;
-@protocol SPObjectRepresentation;
+@protocol OS_dispatch_queue;
 
 @interface StateController : NSObject <SPTStateController>
 {
     _Bool _isRestoring;
-    id <SPObjectRepresentation> playbackRepresentation;
     SPTStartupTracer *_startupTracer;
     SPCore *_core;
+    NSObject<OS_dispatch_queue> *_queue;
 }
 
 + (id)pathForLockFile:(id)arg1;
 + (id)saveStateLockPath;
+@property(retain, nonatomic) NSObject<OS_dispatch_queue> *queue; // @synthesize queue=_queue;
 @property(nonatomic) __weak SPCore *core; // @synthesize core=_core;
 @property(nonatomic) __weak SPTStartupTracer *startupTracer; // @synthesize startupTracer=_startupTracer;
 @property(nonatomic) _Bool isRestoring; // @synthesize isRestoring=_isRestoring;
-@property(nonatomic) __weak id <SPObjectRepresentation> playbackRepresentation; // @synthesize playbackRepresentation;
 - (void).cxx_destruct;
 - (void)clearState;
 - (void)clearLockFile:(id)arg1;
@@ -40,11 +40,8 @@
 - (id)initWithCore:(id)arg1 startupTracer:(id)arg2;
 - (_Bool)restoreWithRootViewController:(id)arg1;
 - (_Bool)restoreStateWithRootViewController:(id)arg1;
-- (void)saveStateSynchronous;
-- (void)savePlayState;
-- (void)saveState;
-- (void)savePlayStateActual;
-- (void)saveStateActual;
+- (void)saveStateWithContentViewController:(id)arg1;
+- (void)saveStateActualWithContentViewController:(id)arg1;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

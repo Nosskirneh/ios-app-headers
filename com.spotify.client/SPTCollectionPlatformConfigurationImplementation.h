@@ -7,29 +7,32 @@
 #import <objc/NSObject.h>
 
 #import "SPTCollectionPlatformConfiguration-Protocol.h"
+#import "SPTCollectionPlatformTestManagerUpdateDelegate-Protocol.h"
 
 @class NSString, NSURL, UIImage;
-@protocol SPTCollectionPlatformTestManager, SPTFreeTierTestManager;
+@protocol SPTCollectionPlatformTestManager;
 
-@interface SPTCollectionPlatformConfigurationImplementation : NSObject <SPTCollectionPlatformConfiguration>
+@interface SPTCollectionPlatformConfigurationImplementation : NSObject <SPTCollectionPlatformConfiguration, SPTCollectionPlatformTestManagerUpdateDelegate>
 {
-    NSURL *_collectionSongsImageURL;
+    _Bool _useHideWhenBanningTracks;
     id <SPTCollectionPlatformTestManager> _testManager;
-    id <SPTFreeTierTestManager> _freeTierTestManager;
     UIImage *_selectedOverlayImage;
     UIImage *_overlayImage;
 }
 
+@property(nonatomic) _Bool useHideWhenBanningTracks; // @synthesize useHideWhenBanningTracks=_useHideWhenBanningTracks;
 @property(retain, nonatomic) UIImage *overlayImage; // @synthesize overlayImage=_overlayImage;
 @property(retain, nonatomic) UIImage *selectedOverlayImage; // @synthesize selectedOverlayImage=_selectedOverlayImage;
-@property(readonly, nonatomic) __weak id <SPTFreeTierTestManager> freeTierTestManager; // @synthesize freeTierTestManager=_freeTierTestManager;
 @property(readonly, nonatomic) __weak id <SPTCollectionPlatformTestManager> testManager; // @synthesize testManager=_testManager;
-@property(readonly, nonatomic) NSURL *collectionSongsImageURL; // @synthesize collectionSongsImageURL=_collectionSongsImageURL;
 - (void).cxx_destruct;
 - (id)trackURI;
+- (_Bool)isFollowURL:(id)arg1;
 - (_Bool)shouldUseHeart:(id)arg1;
 - (id)actionAccessibilityHintWithBanState:(_Bool)arg1 entityURL:(id)arg2;
 - (id)actionAccessibilityHintWithCollectionState:(_Bool)arg1 entityURL:(id)arg2;
+- (void)collectionPlatformTestManager:(id)arg1 useHideWhenBanningTracks:(_Bool)arg2;
+- (void)collectionPlatformTestManager:(id)arg1;
+- (unsigned long long)banActionTypeForURL:(id)arg1 contextURL:(id)arg2;
 - (id)localfilesImportDialogForPlaylistCount:(unsigned long long)arg1 songsCount:(unsigned long long)arg2;
 - (id)entityNuxTitleForType:(unsigned long long)arg1 entityName:(id)arg2;
 - (id)nuxTitleForType:(unsigned long long)arg1;
@@ -43,23 +46,29 @@
 - (id)provideShelfViewForItemWithCollectionState:(_Bool)arg1;
 - (id)actionNameForArtistWithBanState:(_Bool)arg1;
 - (long long)actionIconForArtistWithBanState:(_Bool)arg1;
+- (id)actionNameForItemWithCollectionLocalBanState:(_Bool)arg1 entityURL:(id)arg2;
 - (id)actionNameForItemWithCollectionBanState:(_Bool)arg1 entityURL:(id)arg2;
 - (id)actionIconColorForItemWithCollectionBanState:(_Bool)arg1;
+- (long long)actionIconForItemWithCollectionLocalBanState:(_Bool)arg1 entityURL:(id)arg2;
 - (long long)actionIconForItemWithCollectionBanState:(_Bool)arg1 entityURL:(id)arg2;
 - (id)actionNameForItemWithFollowState:(_Bool)arg1 entityURL:(id)arg2;
 - (long long)actionIconForItemWithFollowState:(_Bool)arg1 entityURL:(id)arg2;
 - (id)actionNameForTrackWithCollectionState:(_Bool)arg1;
+- (id)actionNameForItemsWithCollectionState:(_Bool)arg1 entityURL:(id)arg2;
 - (id)actionNameForItemWithCollectionState:(_Bool)arg1 entityURL:(id)arg2;
 - (id)actionIconColorForItemWithCollectionState:(_Bool)arg1;
 - (long long)actionIconForItemWithCollectionState:(_Bool)arg1 entityURL:(id)arg2;
 - (long long)iconForItemInCollection:(_Bool)arg1 entityURL:(id)arg2;
 @property(readonly, nonatomic, getter=isRemoveActionPresentInPlaylist) _Bool removeActionPresentInPlaylist;
+@property(readonly, nonatomic) NSString *collectionSongsSearchPlaceholder;
+@property(readonly, nonatomic) NSURL *collectionSongsImageURL; // @dynamic collectionSongsImageURL;
 @property(readonly, nonatomic) long long collectionIcon;
 @property(readonly, nonatomic) NSString *collectionRecentlyPlayedSongsTitle;
+@property(readonly, nonatomic) NSString *collectionSongsTitle;
 @property(readonly, nonatomic) NSString *collectionPlayingFromTitle;
 @property(readonly, nonatomic) long long contentInCollectionIcon;
 @property(readonly, nonatomic) NSString *collectionTitle;
-- (id)initWithTestManager:(id)arg1 freeTierTestManager:(id)arg2;
+- (id)initWithTestManager:(id)arg1 useHideWhenBanningTracks:(_Bool)arg2;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

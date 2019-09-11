@@ -6,9 +6,9 @@
 
 #import "NSObject-Protocol.h"
 
-@protocol SPTVideoEventObserver, SPTVideoPlaybackIdentity;
+@protocol SPTVideoEventObserver, SPTVideoPlayOptions, SPTVideoPlaybackIdentity, SPTVideoPlaybackTimeObservable;
 
 @protocol SPTVideoEventObserverFactory <NSObject>
-- (id <SPTVideoEventObserver>)createPlaybackEventObserverForPlaybackIdentity:(id <SPTVideoPlaybackIdentity>)arg1;
+- (id <SPTVideoEventObserver>)createPlaybackEventObserverForPlaybackIdentity:(id <SPTVideoPlaybackIdentity>)arg1 options:(id <SPTVideoPlayOptions>)arg2 timeObservable:(id <SPTVideoPlaybackTimeObservable>)arg3;
 @end
 

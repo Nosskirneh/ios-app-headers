@@ -11,6 +11,6 @@
 
 @protocol SPTFreeTierCollectionSongsModelDelegate <NSObject>
 - (void)songsModel:(id <SPTFreeTierCollectionSongsModel>)arg1 error:(NSError *)arg2;
-- (void)songsModelDidUpdate:(id <SPTFreeTierCollectionSongsModel>)arg1;
+- (void)songsModelDidUpdate:(id <SPTFreeTierCollectionSongsModel>)arg1 itemsCountChanged:(_Bool)arg2;
 @end
 

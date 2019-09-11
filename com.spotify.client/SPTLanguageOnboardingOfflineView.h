@@ -8,21 +8,19 @@
 
 #import "GLUEStyleable-Protocol.h"
 
-@class GLUELabel, NSLayoutConstraint, NSString;
+@class GLUELabel, NSString;
 
 @interface SPTLanguageOnboardingOfflineView : UIView <GLUEStyleable>
 {
     GLUELabel *_titleLabel;
     GLUELabel *_subtitleLabel;
-    NSLayoutConstraint *_verticalSpacingConstraint;
 }
 
-@property(retain, nonatomic) NSLayoutConstraint *verticalSpacingConstraint; // @synthesize verticalSpacingConstraint=_verticalSpacingConstraint;
 @property(retain, nonatomic) GLUELabel *subtitleLabel; // @synthesize subtitleLabel=_subtitleLabel;
 @property(retain, nonatomic) GLUELabel *titleLabel; // @synthesize titleLabel=_titleLabel;
 - (void).cxx_destruct;
 - (void)glue_applyStyle:(id)arg1;
-- (void)setupConstraints;
+- (void)setupConstraintsWithStyle:(id)arg1;
 - (void)setupView;
 - (id)initWithFrame:(struct CGRect)arg1 style:(id)arg2;
 

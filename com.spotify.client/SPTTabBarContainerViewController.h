@@ -6,16 +6,14 @@
 
 #import <UIKit/UIViewController.h>
 
-#import "SPContentInsetViewController-Protocol.h"
-#import "SPTInitialViewController-Protocol.h"
-#import "SPTTabBarControllerProtocol-Protocol.h"
+#import "SPTTabBarContainer-Protocol.h"
 
 @class NSArray, NSString, SPTStatusBarToken, SPTTabBarContainerLayout, SPTTheme, UIView;
 @protocol SPTTabBar, SPTTabBarControllerProtocol><SPContentInsetViewController;
 
-@interface SPTTabBarContainerViewController : UIViewController <SPContentInsetViewController, SPTTabBarControllerProtocol, SPTInitialViewController>
+@interface SPTTabBarContainerViewController : UIViewController <SPTTabBarContainer>
 {
-    UIViewController<SPTTabBarControllerProtocol><SPContentInsetViewController> *_tabBarController;
+    struct UIViewController *_tabBarController;
     SPTTabBarContainerLayout *_containerLayout;
     SPTTheme *_theme;
     SPTStatusBarToken *_statusBarToken;
@@ -43,7 +41,7 @@
 - (void)addFixedConstraints;
 - (void)setupViews;
 - (void)viewDidLoad;
-- (id)initWithTabBarController:(id)arg1 theme:(id)arg2;
+- (id)initWithTabBarController:(struct UIViewController *)arg1 theme:(id)arg2;
 - (_Bool)restoreWithObjectRepresentation:(id)arg1;
 
 // Remaining properties

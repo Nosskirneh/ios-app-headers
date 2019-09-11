@@ -9,6 +9,7 @@
 @class NSArray, NSString;
 
 @protocol SPTFreeTierPlaylistCloudViewModel <NSObject>
+@property(readonly, nonatomic) _Bool hasCompanionButton;
 @property(readonly, copy, nonatomic) NSString *title;
 @property(readonly, nonatomic) NSArray *trackCloudData;
 @end

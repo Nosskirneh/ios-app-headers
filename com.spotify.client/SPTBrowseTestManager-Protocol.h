@@ -6,10 +6,7 @@
 
 #import "NSObject-Protocol.h"
 
-@class NSString;
-
 @protocol SPTBrowseTestManager <NSObject>
-@property(readonly, nonatomic, getter=isHubsRendererBrowseEnabled) _Bool hubsRendererBrowseEnabled;
-@property(readonly, copy, nonatomic) NSString *customSpacesIdentifier;
+@property(nonatomic, getter=isPlayableHeroCardEnabled) _Bool playableHeroCardEnabled;
 @end
 

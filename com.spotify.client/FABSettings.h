@@ -29,7 +29,7 @@
 @property(readonly, nonatomic) _Bool errorReportingEnabled; // @synthesize errorReportingEnabled=_errorReportingEnabled;
 @property(readonly, nonatomic) _Bool reportingEnabled; // @synthesize reportingEnabled=_reportingEnabled;
 - (void).cxx_destruct;
-- (id)settingsURLForEndpoint:(id)arg1 appInstanceIdentifer:(id)arg2 appIconHash:(id)arg3;
+- (id)settingsURLForEndpoint:(id)arg1 appInstanceIdentifer:(id)arg2;
 - (void)clearSettingsDictionary;
 - (id)appStatus;
 - (id)appSettings;

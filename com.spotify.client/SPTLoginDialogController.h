@@ -6,23 +6,30 @@
 
 #import <objc/NSObject.h>
 
-@class SPTLoginTheme, SPTPopupManager;
+#import "SPTDialogController-Protocol.h"
 
-@interface SPTLoginDialogController : NSObject
+@class NSString, SPTLoginTheme, SPTPopupManager;
+
+@interface SPTLoginDialogController : NSObject <SPTDialogController>
 {
     SPTPopupManager *_popupManager;
     SPTLoginTheme *_theme;
 }
 
-+ (id)dialogButtonWithTitle:(id)arg1 action:(CDUnknownBlockType)arg2;
 @property(readonly, nonatomic) SPTLoginTheme *theme; // @synthesize theme=_theme;
 @property(readonly, nonatomic) SPTPopupManager *popupManager; // @synthesize popupManager=_popupManager;
 - (void).cxx_destruct;
-- (id)alertButtonAndHandlerWithButtons:(id)arg1;
-- (void)showAlertWithTitle:(id)arg1 message:(id)arg2 buttonsAndHandlers:(id)arg3;
-- (void)showAlertWithTitle:(id)arg1 message:(id)arg2;
-- (void)showAlertWithMessage:(id)arg1;
+- (void)dismissAllPresentedPopupDialogsAndClearQueue;
+- (void)showDialogWithTitle:(id)arg1 message:(id)arg2 buttons:(id)arg3;
+- (void)showDialogWithTitle:(id)arg1 message:(id)arg2;
+- (void)showDialogWithMessage:(id)arg1;
 - (id)initWithPopupManager:(id)arg1 theme:(id)arg2;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

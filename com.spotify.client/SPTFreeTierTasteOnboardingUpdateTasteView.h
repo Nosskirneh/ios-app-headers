@@ -18,8 +18,16 @@
     GLUEGradientView *_backgroundOverlayGradientView;
     UILayoutGuide *_bottomSpacerGuide;
     NSLayoutConstraint *_bottomSpacerGuideBottomConstraint;
+    NSLayoutConstraint *_messageLabelLeadingConstraint;
+    NSLayoutConstraint *_messageLabelTrailingConstraint;
+    NSLayoutConstraint *_messageLabelTopConstraint;
+    NSLayoutConstraint *_messageLabelCenterYConstraint;
 }
 
+@property(retain, nonatomic) NSLayoutConstraint *messageLabelCenterYConstraint; // @synthesize messageLabelCenterYConstraint=_messageLabelCenterYConstraint;
+@property(retain, nonatomic) NSLayoutConstraint *messageLabelTopConstraint; // @synthesize messageLabelTopConstraint=_messageLabelTopConstraint;
+@property(retain, nonatomic) NSLayoutConstraint *messageLabelTrailingConstraint; // @synthesize messageLabelTrailingConstraint=_messageLabelTrailingConstraint;
+@property(retain, nonatomic) NSLayoutConstraint *messageLabelLeadingConstraint; // @synthesize messageLabelLeadingConstraint=_messageLabelLeadingConstraint;
 @property(retain, nonatomic) NSLayoutConstraint *bottomSpacerGuideBottomConstraint; // @synthesize bottomSpacerGuideBottomConstraint=_bottomSpacerGuideBottomConstraint;
 @property(retain, nonatomic) UILayoutGuide *bottomSpacerGuide; // @synthesize bottomSpacerGuide=_bottomSpacerGuide;
 @property(readonly, nonatomic) GLUEGradientView *backgroundOverlayGradientView; // @synthesize backgroundOverlayGradientView=_backgroundOverlayGradientView;

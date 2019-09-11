@@ -6,17 +6,21 @@
 
 #import "NSObject-Protocol.h"
 
-@class NSError, SPTLoginCredentials, SPTLoginOptions;
+@class NSError, NSString, SPTLoginCredentials, SPTLoginOptions;
 
 @protocol SPTLoginStateController <NSObject>
 @property(nonatomic) _Bool allowErrorDispatch;
+@property(readonly, nonatomic, getter=isLoggedIn) _Bool loggedIn;
 @property(readonly, nonatomic) _Bool userDidSignUp;
 @property(retain, nonatomic) NSError *lastConnectionError;
+- (SPTLoginCredentials *)currentCredentials;
+- (void)didLogin;
+- (void)reloginWithCredentials:(SPTLoginCredentials *)arg1 options:(SPTLoginOptions *)arg2 completionHandler:(void (^)(NSError *))arg3;
 - (void)reloginWithCompletionHandler:(void (^)(NSError *))arg1;
 - (void)logoutForgetUser:(_Bool)arg1;
-- (void)loginWithFacebookSSOWithCompletion:(void (^)(NSDictionary *, NSError *))arg1;
 - (void)loginWithCredentials:(SPTLoginCredentials *)arg1 options:(SPTLoginOptions *)arg2 userDidSignUp:(_Bool)arg3 completion:(void (^)(NSError *))arg4;
 - (void)loginWithCredentials:(SPTLoginCredentials *)arg1 options:(SPTLoginOptions *)arg2 completion:(void (^)(NSError *))arg3;
 - (void)loginWithStoredCredentials:(SPTLoginCredentials *)arg1 options:(SPTLoginOptions *)arg2 completion:(void (^)(NSError *))arg3;
+- (void)loginWithOneTimeToken:(NSString *)arg1 userDidSignUp:(_Bool)arg2 completion:(void (^)(NSError *))arg3;
 @end
 

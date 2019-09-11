@@ -6,22 +6,18 @@
 
 #import <objc/NSObject.h>
 
-@protocol SPTAdjustUserTrackerProtocol;
+@protocol SPTLoginLogger;
 
 @interface SPTLoginMagicLinkSentConfirmationViewLogger : NSObject
 {
-    id <SPTAdjustUserTrackerProtocol> _adjustTracker;
+    id <SPTLoginLogger> _logger;
 }
 
-@property(readonly, nonatomic) id <SPTAdjustUserTrackerProtocol> adjustTracker; // @synthesize adjustTracker=_adjustTracker;
+@property(readonly, nonatomic) id <SPTLoginLogger> logger; // @synthesize logger=_logger;
 - (void).cxx_destruct;
-- (long long)adjustButtonIdentifierWithTitle:(id)arg1;
-- (void)logUserDidTapDismissDialogButton;
-- (void)logUserDidTapDialogButton:(id)arg1;
-- (void)logUserDidSeeEmailDialog;
 - (void)logUserDidTapOpenEmailButton;
 - (void)logUserDidSeeView;
-- (id)initWithAdjustTracker:(id)arg1;
+- (id)initWithLogger:(id)arg1;
 
 @end
 

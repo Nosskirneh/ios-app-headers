@@ -6,14 +6,13 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTFeatureFlagSignalObserver-Protocol.h"
-
 @class NSString, NSURL;
-@protocol SPTAbbaFeatureFlags, SPTFeatureFlagFactory, SPTFeatureFlagSignal, SPTFreeTierTestManager, SPTLocalSettings, SPTProductState;
+@protocol SPTAbbaFeatureFlags, SPTFeatureFlagFactory, SPTFeatureFlagSignal, SPTLocalSettings, SPTProductState;
 
-@interface SPTPlaylistTestManager : NSObject <SPTFeatureFlagSignalObserver>
+@interface SPTPlaylistTestManager : NSObject
 {
     _Bool _shouldUseSnackbarForAddedToPlaylistConfirmation;
+    _Bool _featureHandlesAddToPlaylistEnabled;
     _Bool _discoverWeeklyMarketingCampaignOn;
     _Bool _madeForSignalEnabled;
     _Bool _madeForEmployeeSignalEnabled;
@@ -24,27 +23,30 @@
     id <SPTProductState> _productState;
     id <SPTLocalSettings> _localSettings;
     id <SPTFeatureFlagSignal> _freeTierEnabledSignal;
+    id <SPTFeatureFlagSignal> _yourLibraryEnabledSignal;
     id <SPTFeatureFlagFactory> _featureFlagFactory;
-    id <SPTFreeTierTestManager> _freeTierTestManager;
     id <SPTFeatureFlagSignal> _playlistFeatureEnabledSignal;
     id <SPTFeatureFlagSignal> _listOfPlaylistsFeatureEnabledSignal;
     id <SPTFeatureFlagSignal> _madeForSignal;
     id <SPTFeatureFlagSignal> _madeForEmployeeSignal;
+    id <SPTFeatureFlagSignal> _addToPlaylistFeatureEnabledSignal;
 }
 
-@property(retain, nonatomic) id <SPTFeatureFlagSignal> madeForEmployeeSignal; // @synthesize madeForEmployeeSignal=_madeForEmployeeSignal;
-@property(retain, nonatomic) id <SPTFeatureFlagSignal> madeForSignal; // @synthesize madeForSignal=_madeForSignal;
+@property(readonly, nonatomic) id <SPTFeatureFlagSignal> addToPlaylistFeatureEnabledSignal; // @synthesize addToPlaylistFeatureEnabledSignal=_addToPlaylistFeatureEnabledSignal;
 @property(nonatomic, getter=isMadeForEmployeeSignalEnabled) _Bool madeForEmployeeSignalEnabled; // @synthesize madeForEmployeeSignalEnabled=_madeForEmployeeSignalEnabled;
 @property(nonatomic, getter=isMadeForSignalEnabled) _Bool madeForSignalEnabled; // @synthesize madeForSignalEnabled=_madeForSignalEnabled;
+@property(retain, nonatomic) id <SPTFeatureFlagSignal> madeForEmployeeSignal; // @synthesize madeForEmployeeSignal=_madeForEmployeeSignal;
+@property(retain, nonatomic) id <SPTFeatureFlagSignal> madeForSignal; // @synthesize madeForSignal=_madeForSignal;
 @property(readonly, nonatomic, getter=isDiscoverWeeklyMarketingCampaignOn) _Bool discoverWeeklyMarketingCampaignOn; // @synthesize discoverWeeklyMarketingCampaignOn=_discoverWeeklyMarketingCampaignOn;
 @property(retain, nonatomic) id <SPTFeatureFlagSignal> listOfPlaylistsFeatureEnabledSignal; // @synthesize listOfPlaylistsFeatureEnabledSignal=_listOfPlaylistsFeatureEnabledSignal;
 @property(retain, nonatomic) id <SPTFeatureFlagSignal> playlistFeatureEnabledSignal; // @synthesize playlistFeatureEnabledSignal=_playlistFeatureEnabledSignal;
-@property(retain, nonatomic) id <SPTFreeTierTestManager> freeTierTestManager; // @synthesize freeTierTestManager=_freeTierTestManager;
 @property(readonly, nonatomic) id <SPTFeatureFlagFactory> featureFlagFactory; // @synthesize featureFlagFactory=_featureFlagFactory;
+@property(readonly, nonatomic) id <SPTFeatureFlagSignal> yourLibraryEnabledSignal; // @synthesize yourLibraryEnabledSignal=_yourLibraryEnabledSignal;
 @property(readonly, nonatomic) id <SPTFeatureFlagSignal> freeTierEnabledSignal; // @synthesize freeTierEnabledSignal=_freeTierEnabledSignal;
 @property(readonly, nonatomic) id <SPTLocalSettings> localSettings; // @synthesize localSettings=_localSettings;
 @property(readonly, nonatomic) id <SPTProductState> productState; // @synthesize productState=_productState;
 @property(readonly, nonatomic) id <SPTAbbaFeatureFlags> featureFlags; // @synthesize featureFlags=_featureFlags;
+@property(nonatomic, getter=isFeatureHandlesAddToPlaylistEnabled) _Bool featureHandlesAddToPlaylistEnabled; // @synthesize featureHandlesAddToPlaylistEnabled=_featureHandlesAddToPlaylistEnabled;
 @property(nonatomic) _Bool shouldUseSnackbarForAddedToPlaylistConfirmation; // @synthesize shouldUseSnackbarForAddedToPlaylistConfirmation=_shouldUseSnackbarForAddedToPlaylistConfirmation;
 @property(copy, nonatomic) NSURL *pageURIForAddToPlaylistInteractionLogging; // @synthesize pageURIForAddToPlaylistInteractionLogging=_pageURIForAddToPlaylistInteractionLogging;
 @property(copy, nonatomic) NSString *featureIdentifierForAddToPlaylistInteractionLogging; // @synthesize featureIdentifierForAddToPlaylistInteractionLogging=_featureIdentifierForAddToPlaylistInteractionLogging;
@@ -57,9 +59,8 @@
 - (_Bool)shouldAnimateFooterSection;
 - (_Bool)shouldShowPremiumLabel;
 - (_Bool)shouldHidePremiumOnly;
-@property(readonly, nonatomic, getter=isHeartsInEntityHeadersEnabled) _Bool heartsInEntityHeadersEnabled;
 - (void)dealloc;
-- (id)initWithFeatureFlags:(id)arg1 productState:(id)arg2 localSettings:(id)arg3 freeTierEnabledSignal:(id)arg4 freeTierTestManager:(id)arg5 featureFlagFactory:(id)arg6;
+- (id)initWithFeatureFlags:(id)arg1 productState:(id)arg2 localSettings:(id)arg3 freeTierEnabledSignal:(id)arg4 yourLibraryEnabledSignal:(id)arg5 addToPlaylistFeatureEnabledSignal:(id)arg6 featureFlagFactory:(id)arg7;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

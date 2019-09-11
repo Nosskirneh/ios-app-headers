@@ -11,8 +11,6 @@
 
 @protocol SPTServiceInstanceInteractor <NSObject>
 - (void)unloadService:(id <SPTService>)arg1 scope:(NSString *)arg2;
-- (void)backgroundLoadService:(id <SPTService>)arg1 scope:(NSString *)arg2;
-- (_Bool)canBackgroundLoadService:(id <SPTService>)arg1 scope:(NSString *)arg2;
 - (void)loadService:(id <SPTService>)arg1 scope:(NSString *)arg2;
 - (void)configureService:(id <SPTService>)arg1 scope:(NSString *)arg2 serviceProvider:(id <SPTServiceProvider>)arg3;
 - (id <SPTService>)instantiateServiceClass:(Class)arg1 scope:(NSString *)arg2;

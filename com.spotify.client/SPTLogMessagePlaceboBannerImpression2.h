@@ -16,9 +16,9 @@
 }
 
 + (id)messageWithConfigurationId:(id)arg1 impressionType:(id)arg2 impressionUri:(id)arg3;
-@property(retain, nonatomic) NSString *impressionUriValue; // @synthesize impressionUriValue=_impressionUriValue;
-@property(retain, nonatomic) NSString *impressionTypeValue; // @synthesize impressionTypeValue=_impressionTypeValue;
-@property(retain, nonatomic) NSString *configurationIdValue; // @synthesize configurationIdValue=_configurationIdValue;
+@property(copy, nonatomic) NSString *impressionUriValue; // @synthesize impressionUriValue=_impressionUriValue;
+@property(copy, nonatomic) NSString *impressionTypeValue; // @synthesize impressionTypeValue=_impressionTypeValue;
+@property(copy, nonatomic) NSString *configurationIdValue; // @synthesize configurationIdValue=_configurationIdValue;
 - (void).cxx_destruct;
 - (_Bool)isEqual:(id)arg1;
 - (unsigned long long)hash;

@@ -7,10 +7,12 @@
 #import <UIKit/UIViewController.h>
 
 #import "SPTContextMenuPresenterDelegate-Protocol.h"
+#import "SPTFeedCollectionViewCellActionTarget-Protocol.h"
 #import "SPTFeedCreatorViewDelegate-Protocol.h"
 #import "SPTFeedFiltersViewControllerDelegate-Protocol.h"
 #import "SPTFeedOnboardingViewControllerDelegate-Protocol.h"
 #import "SPTFeedSuggestedArtistViewDelegate-Protocol.h"
+#import "SPTFeedTableViewCellActionTarget-Protocol.h"
 #import "SPTFeedViewModelDelegate-Protocol.h"
 #import "SPTPageController-Protocol.h"
 #import "UICollectionViewDataSource-Protocol.h"
@@ -20,10 +22,10 @@
 #import "UITableViewDataSource-Protocol.h"
 #import "UITableViewDelegate-Protocol.h"
 
-@class NSString, NSURL, SPTFeedCollectionViewCellConfigurator, SPTFeedFiltersViewController, SPTFeedFiltersViewModel, SPTFeedFollowHandler, SPTFeedFollowRecommendationsNetworkService, SPTFeedOnboardingViewController, SPTFeedTableViewCellConfigurator, SPTFeedViewModel, SPTInfoView, SPTLayoutConstraintBuilder, SPTProgressView, UICollectionViewCell, UIRefreshControl, UITableView, UITableViewCell;
+@class NSArray, NSString, NSURL, SPTFeedCollectionViewCellConfigurator, SPTFeedFiltersViewController, SPTFeedFiltersViewModel, SPTFeedFollowHandler, SPTFeedFollowRecommendationsNetworkService, SPTFeedItemTableViewCell, SPTFeedOnboardingViewController, SPTFeedTableViewCellConfigurator, SPTFeedViewModel, SPTInfoView, SPTProgressView, UIRefreshControl, UITableView;
 @protocol GLUEImageLoader, GLUETheme, SPTContextMenuOptionsFactory, SPTContextMenuPresenter, SPTContextMenuPresenterFactory, SPTFeedFeatureFlags, SPTOfflineModeState, SPTPageContainer;
 
-@interface SPTFeedViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UIScrollViewDelegate, SPTFeedOnboardingViewControllerDelegate, SPTFeedViewModelDelegate, SPTContextMenuPresenterDelegate, SPTFeedCreatorViewDelegate, SPTFeedSuggestedArtistViewDelegate, SPTFeedFiltersViewControllerDelegate, SPTPageController>
+@interface SPTFeedViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UIScrollViewDelegate, SPTFeedOnboardingViewControllerDelegate, SPTFeedViewModelDelegate, SPTContextMenuPresenterDelegate, SPTFeedCreatorViewDelegate, SPTFeedSuggestedArtistViewDelegate, SPTFeedFiltersViewControllerDelegate, SPTFeedCollectionViewCellActionTarget, SPTFeedTableViewCellActionTarget, SPTPageController>
 {
     id <GLUETheme> _theme;
     id <GLUEImageLoader> _imageLoader;
@@ -33,11 +35,10 @@
     id <SPTContextMenuPresenter> _contextMenuPresenter;
     id <SPTFeedFeatureFlags> _featureFlagsManager;
     SPTFeedFollowRecommendationsNetworkService *_followNetworkService;
-    SPTLayoutConstraintBuilder *_layout;
+    NSArray *_layoutConstraints;
     UITableView *_tableView;
     UIRefreshControl *_refreshControl;
-    UITableViewCell *_selectedTableViewCell;
-    UICollectionViewCell *_selectedCollectionViewCell;
+    SPTFeedItemTableViewCell *_selectedTableViewCell;
     SPTFeedViewModel *_viewModel;
     SPTFeedFiltersViewModel *_filtersViewModel;
     SPTFeedFollowHandler *_followHandler;
@@ -58,11 +59,10 @@
 @property(retain, nonatomic) SPTFeedFollowHandler *followHandler; // @synthesize followHandler=_followHandler;
 @property(retain, nonatomic) SPTFeedFiltersViewModel *filtersViewModel; // @synthesize filtersViewModel=_filtersViewModel;
 @property(retain, nonatomic) SPTFeedViewModel *viewModel; // @synthesize viewModel=_viewModel;
-@property(retain, nonatomic) UICollectionViewCell *selectedCollectionViewCell; // @synthesize selectedCollectionViewCell=_selectedCollectionViewCell;
-@property(retain, nonatomic) UITableViewCell *selectedTableViewCell; // @synthesize selectedTableViewCell=_selectedTableViewCell;
+@property(retain, nonatomic) SPTFeedItemTableViewCell *selectedTableViewCell; // @synthesize selectedTableViewCell=_selectedTableViewCell;
 @property(retain, nonatomic) UIRefreshControl *refreshControl; // @synthesize refreshControl=_refreshControl;
 @property(retain, nonatomic) UITableView *tableView; // @synthesize tableView=_tableView;
-@property(retain, nonatomic) SPTLayoutConstraintBuilder *layout; // @synthesize layout=_layout;
+@property(copy, nonatomic) NSArray *layoutConstraints; // @synthesize layoutConstraints=_layoutConstraints;
 @property(retain, nonatomic) SPTFeedFollowRecommendationsNetworkService *followNetworkService; // @synthesize followNetworkService=_followNetworkService;
 @property(retain, nonatomic) id <SPTFeedFeatureFlags> featureFlagsManager; // @synthesize featureFlagsManager=_featureFlagsManager;
 @property(retain, nonatomic) id <SPTContextMenuPresenter> contextMenuPresenter; // @synthesize contextMenuPresenter=_contextMenuPresenter;
@@ -74,17 +74,18 @@
 - (void).cxx_destruct;
 - (void)didSelectFilter:(id)arg1;
 - (void)didSelectContextMenuAction:(id)arg1;
-- (void)feedShouldRefetchData;
-- (void)followItemDidUpdate:(id)arg1 atIndex:(unsigned long long)arg2;
 - (void)didFinishOnboarding;
-- (struct CGPoint)pointForNextDataPage;
 - (void)scrollViewDidEndDecelerating:(id)arg1;
+- (struct CGPoint)pointForNextDataPage;
 @property(readonly, nonatomic, getter=spt_pageURI) NSURL *pageURI;
 @property(readonly, nonatomic, getter=spt_pageIdentifier) NSString *pageIdentifier;
 - (void)discardChildViewController:(id)arg1;
+- (void)updateFeedItemPlaybackStatus:(id)arg1 played:(_Bool)arg2 feedEntityTableViewCell:(id)arg3;
+- (void)feedShouldRefetchData;
+- (void)followItemDidUpdate:(id)arg1 atIndex:(unsigned long long)arg2;
 - (void)playerStateOutOfFeedBoundaries;
-- (void)playerSkippedTrackForTableViewCellIndex:(id)arg1 collectionViewCellIndex:(id)arg2;
-- (void)playerPaused:(_Bool)arg1 tableViewCellIndex:(id)arg2 collectionViewCellIndex:(id)arg3;
+- (void)playerSkippedTrackForTableViewCellIndex:(unsigned long long)arg1;
+- (void)playerPaused:(_Bool)arg1 tableViewCellIndex:(unsigned long long)arg2;
 - (void)collectionView:(id)arg1 didSelectItemAtIndexPath:(id)arg2;
 - (struct CGSize)collectionView:(id)arg1 layout:(id)arg2 sizeForItemAtIndexPath:(id)arg3;
 - (id)collectionView:(id)arg1 cellForItemAtIndexPath:(id)arg2;
@@ -100,8 +101,11 @@
 - (void)titleLabel:(id)arg1 willOpenURI:(id)arg2;
 - (void)followButtonTapped:(id)arg1;
 - (void)contextMenuButtonTapped:(id)arg1;
-- (void)playButtonTapped:(id)arg1;
-- (void)coverButtonTapped:(id)arg1;
+- (void)playEntityAtIndex:(unsigned long long)arg1;
+- (void)entityViewPlayButtonTapped:(id)arg1;
+- (void)navigateToPodcastEpisodeEntityPage:(id)arg1;
+- (void)entityViewSelectionGestureRecognizerTapped:(id)arg1;
+- (void)viewFullEntityButtonTapped:(id)arg1;
 - (void)profileButtonTapped:(id)arg1;
 - (void)refreshControlActivated;
 - (void)dismissfilters;

@@ -10,6 +10,7 @@
 {
 }
 
++ (id)nextPageURI:(id)arg1;
 + (id)itemsWithObject:(id)arg1;
 
 @end

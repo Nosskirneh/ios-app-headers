@@ -8,18 +8,17 @@
 
 #import "SPTGaiaSettingsProvider-Protocol.h"
 
-@class NSHashTable, NSString, SPTGaiaDeviceManager, SPTGaiaLogger, SPTGaiaSavedDeviceManager;
-@protocol SPTGaiaDevicePickerDeviceSpecificConfigurationProvider, SPTGaiaLockScreenPlayerFlagsProvider><SPTGaiaHomeDeviceFlagsProvider, SPTGaiaManager, SPTGaiaSettingsStorageProtocol, SPTLinkDispatcher, SPTLogCenter;
+@class NSString, SPTGaiaHomeDeviceManager, SPTGaiaLogger, SPTObserverManager;
+@protocol SPTGaiaDevicePickerDeviceSpecificConfigurationProvider, SPTGaiaDevicePickerPresenter, SPTGaiaLockScreenPlayerFlagsProvider><SPTGaiaHomeDeviceFlagsProvider, SPTGaiaSettingsStorageProtocol, SPTLinkDispatcher, SPTLogCenter;
 
 @interface SPTGaiaSettingsManager : NSObject <SPTGaiaSettingsProvider>
 {
-    id <SPTGaiaManager> _gaiaManager;
+    id <SPTGaiaDevicePickerPresenter> _devicePickerPresenter;
     id <SPTGaiaSettingsStorageProtocol> _settingsStorage;
     id <SPTLogCenter> _logCenter;
     id <SPTGaiaLockScreenPlayerFlagsProvider><SPTGaiaHomeDeviceFlagsProvider> _settingsFlags;
-    SPTGaiaDeviceManager *_deviceManager;
-    NSHashTable *_observers;
-    SPTGaiaSavedDeviceManager *_savedDeviceManager;
+    SPTObserverManager *_observers;
+    SPTGaiaHomeDeviceManager *_savedDeviceManager;
     id <SPTLinkDispatcher> _linkDispatcher;
     SPTGaiaLogger *_logger;
     id <SPTGaiaDevicePickerDeviceSpecificConfigurationProvider> _deviceConfiguration;
@@ -29,13 +28,12 @@
 @property(readonly, nonatomic) id <SPTGaiaDevicePickerDeviceSpecificConfigurationProvider> deviceConfiguration; // @synthesize deviceConfiguration=_deviceConfiguration;
 @property(readonly, nonatomic) SPTGaiaLogger *logger; // @synthesize logger=_logger;
 @property(readonly, nonatomic) id <SPTLinkDispatcher> linkDispatcher; // @synthesize linkDispatcher=_linkDispatcher;
-@property(readonly, nonatomic) SPTGaiaSavedDeviceManager *savedDeviceManager; // @synthesize savedDeviceManager=_savedDeviceManager;
-@property(readonly, nonatomic) NSHashTable *observers; // @synthesize observers=_observers;
-@property(readonly, nonatomic) SPTGaiaDeviceManager *deviceManager; // @synthesize deviceManager=_deviceManager;
+@property(readonly, nonatomic) SPTGaiaHomeDeviceManager *savedDeviceManager; // @synthesize savedDeviceManager=_savedDeviceManager;
+@property(readonly, nonatomic) SPTObserverManager *observers; // @synthesize observers=_observers;
 @property(readonly, nonatomic) id <SPTGaiaLockScreenPlayerFlagsProvider><SPTGaiaHomeDeviceFlagsProvider> settingsFlags; // @synthesize settingsFlags=_settingsFlags;
 @property(readonly, nonatomic) id <SPTLogCenter> logCenter; // @synthesize logCenter=_logCenter;
 @property(readonly, nonatomic) id <SPTGaiaSettingsStorageProtocol> settingsStorage; // @synthesize settingsStorage=_settingsStorage;
-@property(readonly, nonatomic) id <SPTGaiaManager> gaiaManager; // @synthesize gaiaManager=_gaiaManager;
+@property(readonly, nonatomic) id <SPTGaiaDevicePickerPresenter> devicePickerPresenter; // @synthesize devicePickerPresenter=_devicePickerPresenter;
 - (void).cxx_destruct;
 - (id)provideHomeDeviceResetSectionWithSettingsViewController:(id)arg1;
 - (id)provideHomeDeviceHeaderSectionWithSettingsViewController:(id)arg1;
@@ -49,9 +47,10 @@
 @property(nonatomic) _Bool automaticallyTransfersPlaybackForHomeDevice;
 @property(nonatomic) _Bool lockScreenControlsEnabled;
 @property(nonatomic) _Bool localDevicesFilterEnabled;
+- (void)notifyObserversLocalDevicesOnlySettingChanged;
 - (void)notifyObserversLockScreenControlsEnabledSettingsChanged;
 - (void)registerDefaultSettingsIfNotExist;
-- (id)initWithGaiaManager:(id)arg1 storage:(id)arg2 logCenter:(id)arg3 settingsFlags:(id)arg4 deviceManager:(id)arg5 savedDeviceManager:(id)arg6 linkDispatcher:(id)arg7 logger:(id)arg8 deviceConfiguration:(id)arg9;
+- (id)initWithDevicePickerPresenter:(id)arg1 storage:(id)arg2 logCenter:(id)arg3 settingsFlags:(id)arg4 savedDeviceManager:(id)arg5 linkDispatcher:(id)arg6 logger:(id)arg7 deviceConfiguration:(id)arg8;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

@@ -6,26 +6,32 @@
 
 #import <UIKit/UIViewController.h>
 
-#import "EXP_HUBViewContentOffsetObserver-Protocol.h"
+#import "HUBViewContentOffsetObserver-Protocol.h"
 #import "SPTBrowseViewModelProviderObserver-Protocol.h"
 #import "SPTNavigationControllerNavigationBarState-Protocol.h"
 #import "SPTPageController-Protocol.h"
 
-@class EXP_SPTHubViewController, NSString, NSURL, SPTProgressView, SPTTheme;
-@protocol SPTBrowseViewModelProvider, SPTPageContainer;
+@class NSString, NSURL, SPTHubViewController, SPTProgressView, SPTTheme, VISREFIntegrationManager;
+@protocol SPTBrowseViewModelProvider, SPTPageContainer, SPTPodcastUtteranceSurveyManager;
 
-@interface SPTBrowseViewController : UIViewController <SPTBrowseViewModelProviderObserver, SPTNavigationControllerNavigationBarState, EXP_HUBViewContentOffsetObserver, SPTPageController>
+@interface SPTBrowseViewController : UIViewController <SPTBrowseViewModelProviderObserver, SPTNavigationControllerNavigationBarState, HUBViewContentOffsetObserver, SPTPageController>
 {
     SPTProgressView *_progressView;
     id <SPTBrowseViewModelProvider> _viewModelProvider;
-    EXP_SPTHubViewController *_hubsViewController;
+    SPTHubViewController *_hubsViewController;
     unsigned long long _preferredNavigationBarState;
     SPTTheme *_theme;
+    VISREFIntegrationManager *_visualRefreshIntegrationManager;
+    id <SPTPodcastUtteranceSurveyManager> _podcastUtteranceSurveyManager;
+    struct CGRect _lastKnownHubContainerViewFrame;
 }
 
+@property(readonly, nonatomic) id <SPTPodcastUtteranceSurveyManager> podcastUtteranceSurveyManager; // @synthesize podcastUtteranceSurveyManager=_podcastUtteranceSurveyManager;
+@property(readonly, nonatomic) VISREFIntegrationManager *visualRefreshIntegrationManager; // @synthesize visualRefreshIntegrationManager=_visualRefreshIntegrationManager;
+@property(nonatomic) struct CGRect lastKnownHubContainerViewFrame; // @synthesize lastKnownHubContainerViewFrame=_lastKnownHubContainerViewFrame;
 @property(readonly, nonatomic) SPTTheme *theme; // @synthesize theme=_theme;
 @property(nonatomic) unsigned long long preferredNavigationBarState; // @synthesize preferredNavigationBarState=_preferredNavigationBarState;
-@property(readonly, nonatomic) EXP_SPTHubViewController *hubsViewController; // @synthesize hubsViewController=_hubsViewController;
+@property(readonly, nonatomic) SPTHubViewController *hubsViewController; // @synthesize hubsViewController=_hubsViewController;
 @property(readonly, nonatomic) id <SPTBrowseViewModelProvider> viewModelProvider; // @synthesize viewModelProvider=_viewModelProvider;
 - (void).cxx_destruct;
 - (void)performIgnoringOffsetChangeCallbacks:(CDUnknownBlockType)arg1;
@@ -39,9 +45,13 @@
 - (void)viewModelProvider:(id)arg1 didUpdateStateFrom:(unsigned long long)arg2;
 - (void)viewModelProvider:(id)arg1 didUpdateFromViewModel:(id)arg2;
 - (void)viewDidLoad;
+- (void)viewWillTransitionToSize:(struct CGSize)arg1 withTransitionCoordinator:(id)arg2;
+- (void)viewDidLayoutSubviews;
+- (void)viewDidDisappear:(_Bool)arg1;
+- (void)viewDidAppear:(_Bool)arg1;
 - (void)viewWillAppear:(_Bool)arg1;
 @property(readonly, nonatomic) SPTProgressView *progressView; // @synthesize progressView=_progressView;
-- (id)initWithViewModelProvider:(id)arg1 theme:(id)arg2 pageIdentifier:(id)arg3 pageURI:(id)arg4 componentRegistry:(id)arg5 componentLayoutManager:(id)arg6 imageLoaderFactory:(id)arg7 commandHandler:(id)arg8 impressionLogger:(id)arg9 loadingLogger:(id)arg10;
+- (id)initWithViewModelProvider:(id)arg1 theme:(id)arg2 pageIdentifier:(id)arg3 pageURI:(id)arg4 componentRegistry:(id)arg5 componentLayoutManager:(id)arg6 imageLoaderFactory:(id)arg7 commandHandler:(id)arg8 impressionLogger:(id)arg9 loadingLogger:(id)arg10 visualRefreshIntegrationManager:(id)arg11 podcastUtteranceSurveyManager:(id)arg12 shareDragDelegateFactory:(id)arg13;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

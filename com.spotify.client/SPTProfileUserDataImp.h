@@ -8,7 +8,7 @@
 
 #import "SPTProfileUserData-Protocol.h"
 
-@class NSHashTable, NSString, NSURL, SPTUser, UIColor;
+@class NSHashTable, NSString, NSURL, SPTUser;
 
 @interface SPTProfileUserDataImp : NSObject <SPTProfileUserData>
 {
@@ -22,7 +22,6 @@
 - (void)removeProfileChangeObserver:(id)arg1;
 - (void)addProfileChangeObserver:(id)arg1;
 - (void)dispatchObservers;
-@property(readonly, nonatomic) UIColor *color; // @dynamic color;
 @property(readonly, nonatomic) NSURL *imageURL; // @dynamic imageURL;
 @property(readonly, nonatomic) NSString *shortName; // @dynamic shortName;
 @property(readonly, nonatomic) NSString *name; // @dynamic name;

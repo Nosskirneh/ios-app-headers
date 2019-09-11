@@ -6,7 +6,7 @@
 
 #import "GLUEThemeBase.h"
 
-@class SPTFreeTierCollectionDeactivateFiltersFooterStyle, SPTFreeTierCollectionPlaylistsHeaderViewStyle, SPTFreeTierCollectionSongsImageStyle, SPTFreeTierPreCurationQuickActionViewStyle, SPTFreeTierPreCurationTheme;
+@class GLUEAccessoryIconButtonStyle, SPTFreeTierCollectionFollowButtonStyle, SPTFreeTierCollectionSongsImageStyle, SPTFreeTierPreCurationTheme;
 @protocol SPTSortingFilteringTheme;
 
 @interface SPTFreeTierCollectionGLUETheme : GLUEThemeBase
@@ -20,39 +20,31 @@
 @property(nonatomic, getter=isPreCurationEnabled) _Bool preCurationEnabled; // @synthesize preCurationEnabled=_preCurationEnabled;
 @property(retain, nonatomic) SPTFreeTierPreCurationTheme *preCurationTheme; // @synthesize preCurationTheme=_preCurationTheme;
 - (void).cxx_destruct;
+- (id)smallRowStyleWithBaseStyle:(id)arg1;
 - (id)largeRowStyleWithBaseStyle:(id)arg1;
-@property(readonly, copy, nonatomic) SPTFreeTierCollectionDeactivateFiltersFooterStyle *deactivateFiltersFooterStyle;
+- (id)rightAlignedEntityRowStyleWithBaseStyle:(id)arg1;
+@property(readonly, copy, nonatomic) GLUEAccessoryIconButtonStyle *quickActionIconStyle;
+@property(readonly, copy, nonatomic) SPTFreeTierCollectionFollowButtonStyle *followButtonStyle;
 @property(readonly, copy, nonatomic) SPTFreeTierCollectionSongsImageStyle *songsImageStyle;
-@property(readonly, copy, nonatomic) SPTFreeTierCollectionPlaylistsHeaderViewStyle *playlistsHeaderStyle;
 - (id)searchViewStyle;
 - (id)filterBarViewControllerStyle;
-@property(readonly, copy, nonatomic) SPTFreeTierPreCurationQuickActionViewStyle *onlyLikeQuickActionViewStyle;
-@property(readonly, copy, nonatomic) SPTFreeTierPreCurationQuickActionViewStyle *likedQuickActionViewStyle;
-@property(readonly, copy, nonatomic) SPTFreeTierPreCurationQuickActionViewStyle *banQuickActionViewStyle;
-@property(readonly, copy, nonatomic) SPTFreeTierPreCurationQuickActionViewStyle *defaultQuickActionViewStyle;
 - (id)chunkyRowStyle;
-- (id)offlineBannerStyle;
 - (id)entityPageEmptyStateViewStyle;
 - (id)songEntityRowStyle;
 - (id)emptySongsSectionHeaderStyle;
+- (id)entitySectionHeaderStyle;
+- (id)songsAlbumEntitySectionHeaderStyle;
+- (id)songsArtistEntitySectionHeaderStyle;
+- (id)songsEntitySectionHeaderStyleWithEntityRowStyle:(id)arg1;
 - (id)songsSectionHeaderStyle;
-- (id)tabControlStyle;
-- (id)sectionSeparatorViewStyle;
-- (id)podcastEntityRowStyleCompact;
-- (id)podcastEntityRowStyle;
-- (id)artistEntityRowStyleCompact;
-- (id)artistEntityRowStyle;
-- (id)albumEntityRowStyleCompact;
-- (id)albumEntityRowStyle;
+- (id)artistEntityRowStyleWithRowSize:(long long)arg1;
+- (id)albumEntityRowStyleWithRowSize:(long long)arg1;
 - (id)backgroundOverlayStyle;
-- (id)overlayImageViewStyleWithSolidBackground:(_Bool)arg1 gradientBackground:(_Bool)arg2;
-- (id)gradientOverlayImageViewStyle;
-- (id)solidOverlayImageViewStyle;
-- (id)overlayImageViewStyle;
-- (id)entityRowCollectionStyleCompact;
-- (id)entityRowCollectionStyle;
-- (id)backgroundGradientStyleForConstraints;
-- (id)backgroundGradientStyle;
+- (id)overlayImageViewStyleWithSolidBackground:(_Bool)arg1 gradientBackground:(_Bool)arg2 baseImageStyle:(id)arg3;
+- (id)gradientOverlayImageViewStyleWithImageStyle:(id)arg1;
+- (id)solidOverlayImageViewStyleWithImageStyle:(id)arg1;
+- (id)overlayImageViewStyleWithImageStyle:(id)arg1;
+- (id)entityRowCollectionStyleWithRowSize:(long long)arg1;
 - (id)songsHeaderContentViewStyle;
 - (id)initWithParentTheme:(id)arg1 andPreCurationTheme:(id)arg2 preCurationEnabled:(_Bool)arg3 sortingFilteringTheme:(id)arg4;
 

@@ -6,7 +6,7 @@
 
 #import <UIKit/UIView.h>
 
-@class GLUEImageView, GLUELabel, SPTLayoutConstraintBuilder, UIButton, UIImage;
+@class GLUEImageView, GLUELabel, NSMutableArray, UIButton, UIImage;
 @protocol GLUETheme, SPTShareTestManager;
 
 @interface SPTShareScreenshotBannerContentView : UIView
@@ -18,12 +18,12 @@
     id <SPTShareTestManager> _testManager;
     GLUELabel *_titleLabel;
     UIView *_contentView;
-    SPTLayoutConstraintBuilder *_layoutBuilder;
+    NSMutableArray *_layoutConstraints;
     id <GLUETheme> _theme;
 }
 
 @property(retain, nonatomic) id <GLUETheme> theme; // @synthesize theme=_theme;
-@property(retain, nonatomic) SPTLayoutConstraintBuilder *layoutBuilder; // @synthesize layoutBuilder=_layoutBuilder;
+@property(retain, nonatomic) NSMutableArray *layoutConstraints; // @synthesize layoutConstraints=_layoutConstraints;
 @property(retain, nonatomic) UIView *contentView; // @synthesize contentView=_contentView;
 @property(retain, nonatomic) GLUELabel *titleLabel; // @synthesize titleLabel=_titleLabel;
 @property(retain, nonatomic) id <SPTShareTestManager> testManager; // @synthesize testManager=_testManager;

@@ -6,16 +6,19 @@
 
 #import <objc/NSObject.h>
 
-@class AVAudioSessionRouteDescription, NSSet, NSTimer, SPTAccessoryManagerLogging;
+@class AVAudioSession, AVAudioSessionRouteDescription, EAAccessoryManager, NSArray, NSNotificationCenter, NSSet, NSTimer, SPTAccessoryManagerLogging;
 @protocol SPTAccessoryCategorizer, SPTAccessoryStateManager;
 
 @interface SPTAccessoryDetector : NSObject
 {
-    _Bool _observing;
     _Bool _audioSessionInterrupted;
+    NSNotificationCenter *_notificationCenter;
+    EAAccessoryManager *_eaAccessoryManager;
+    AVAudioSession *_audioSession;
     id <SPTAccessoryCategorizer> _categorizer;
     id <SPTAccessoryStateManager> _accessoryStateManager;
     SPTAccessoryManagerLogging *_logger;
+    NSArray *_notificationCenterObserverTokens;
     AVAudioSessionRouteDescription *_currentRoute;
     NSSet *_pendingAccessories;
     NSTimer *_accessoryCollectionTimer;
@@ -25,11 +28,15 @@
 @property(retain, nonatomic) NSSet *pendingAccessories; // @synthesize pendingAccessories=_pendingAccessories;
 @property(retain, nonatomic) AVAudioSessionRouteDescription *currentRoute; // @synthesize currentRoute=_currentRoute;
 @property(nonatomic, getter=isAudioSessionInterrupted) _Bool audioSessionInterrupted; // @synthesize audioSessionInterrupted=_audioSessionInterrupted;
-@property(nonatomic, getter=isObserving) _Bool observing; // @synthesize observing=_observing;
+@property(retain, nonatomic) NSArray *notificationCenterObserverTokens; // @synthesize notificationCenterObserverTokens=_notificationCenterObserverTokens;
 @property(readonly, nonatomic) SPTAccessoryManagerLogging *logger; // @synthesize logger=_logger;
 @property(readonly, nonatomic) id <SPTAccessoryStateManager> accessoryStateManager; // @synthesize accessoryStateManager=_accessoryStateManager;
 @property(readonly, nonatomic) id <SPTAccessoryCategorizer> categorizer; // @synthesize categorizer=_categorizer;
+@property(readonly, nonatomic) AVAudioSession *audioSession; // @synthesize audioSession=_audioSession;
+@property(readonly, nonatomic) EAAccessoryManager *eaAccessoryManager; // @synthesize eaAccessoryManager=_eaAccessoryManager;
+@property(readonly, nonatomic) NSNotificationCenter *notificationCenter; // @synthesize notificationCenter=_notificationCenter;
 - (void).cxx_destruct;
+- (id)outputPortsInAudioRoute:(id)arg1 notPresentInAudioRoute:(id)arg2;
 - (void)applicationDidBecomeActive:(id)arg1;
 - (void)updateWithAudioRoute:(id)arg1;
 - (void)audioSessionWasInterrupted:(id)arg1;
@@ -49,7 +56,7 @@
 - (void)endObservingAccessories;
 - (void)beginObservingAccessories;
 - (void)dealloc;
-- (id)initWithCategorizer:(id)arg1 accessoryStateManager:(id)arg2 logger:(id)arg3;
+- (id)initWithNotificationCenter:(id)arg1 eaAccessoryManager:(id)arg2 audioSession:(id)arg3 categorizer:(id)arg4 accessoryStateManager:(id)arg5 logger:(id)arg6;
 
 @end
 

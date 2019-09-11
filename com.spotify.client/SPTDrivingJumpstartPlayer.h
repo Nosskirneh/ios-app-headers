@@ -6,35 +6,35 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTCollectionEntityListObserver-Protocol.h"
 #import "SPTDrivingJumpstartHandler-Protocol.h"
+#import "SPTRecentlyPlayedListObserver-Protocol.h"
 
-@class NSString, SPTGaiaDeviceManager;
-@protocol SPTCollectionEntityList, SPTExternalIntegrationPlaybackController, SPTPlayerFeature, SPTUICompletionNotifier;
+@class NSString;
+@protocol SPTExternalIntegrationPlaybackController, SPTGaiaConnectAPI, SPTPlayerFeature, SPTRecentlyPlayedList, SPTUICompletionNotifier;
 
-@interface SPTDrivingJumpstartPlayer : NSObject <SPTCollectionEntityListObserver, SPTDrivingJumpstartHandler>
+@interface SPTDrivingJumpstartPlayer : NSObject <SPTRecentlyPlayedListObserver, SPTDrivingJumpstartHandler>
 {
     id <SPTExternalIntegrationPlaybackController> _playbackController;
     id <SPTPlayerFeature> _playerFeature;
-    id <SPTCollectionEntityList> _recentlyPlayedEntityList;
-    SPTGaiaDeviceManager *_gaiaDeviceManager;
+    id <SPTRecentlyPlayedList> _recentlyPlayedList;
+    id <SPTGaiaConnectAPI> _connectManager;
     id <SPTUICompletionNotifier> _uiCompletionNotifier;
 }
 
 @property(readonly, nonatomic) id <SPTUICompletionNotifier> uiCompletionNotifier; // @synthesize uiCompletionNotifier=_uiCompletionNotifier;
-@property(readonly, nonatomic) SPTGaiaDeviceManager *gaiaDeviceManager; // @synthesize gaiaDeviceManager=_gaiaDeviceManager;
-@property(readonly, nonatomic) id <SPTCollectionEntityList> recentlyPlayedEntityList; // @synthesize recentlyPlayedEntityList=_recentlyPlayedEntityList;
+@property(readonly, nonatomic) id <SPTGaiaConnectAPI> connectManager; // @synthesize connectManager=_connectManager;
+@property(readonly, nonatomic) id <SPTRecentlyPlayedList> recentlyPlayedList; // @synthesize recentlyPlayedList=_recentlyPlayedList;
 @property(readonly, nonatomic) __weak id <SPTPlayerFeature> playerFeature; // @synthesize playerFeature=_playerFeature;
 @property(readonly, nonatomic) id <SPTExternalIntegrationPlaybackController> playbackController; // @synthesize playbackController=_playbackController;
 - (void).cxx_destruct;
-- (void)entityListDidReload:(id)arg1;
+- (void)recentlyPlayedListDidReload:(id)arg1;
 - (void)attemptPlayingRecentlyPlayedContextAtIndex:(unsigned long long)arg1;
 - (void)attemptPlayingMostRecentlyPlayedContext;
 - (_Bool)shouldResumePlayingForPlayerState:(id)arg1;
 - (void)autoplayForPlayerState:(id)arg1;
 - (void)handleJumpstart;
 - (void)dealloc;
-- (id)initWithPlaybackController:(id)arg1 playerFeature:(id)arg2 recentlyPlayedEntityList:(id)arg3 gaiaDeviceManager:(id)arg4 uiCompletionNotifier:(id)arg5;
+- (id)initWithPlaybackController:(id)arg1 playerFeature:(id)arg2 recentlyPlayedEntityList:(id)arg3 connectManager:(id)arg4 uiCompletionNotifier:(id)arg5;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

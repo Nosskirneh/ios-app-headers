@@ -6,13 +6,12 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTFeatureFlagSignalObserver-Protocol.h"
 #import "SPTQuickActionsFeature-Protocol.h"
 
 @class NSString, SPTAllocationContext, SPTQuickActionsController;
 @protocol SPTContainerService, SPTFeatureFlagSignal, SPTFreeTierService, SPTRecentlyPlayedService, SPTScannablesService, SPTURIDispatchService;
 
-@interface SPTQuickActionsFeatureImplementation : NSObject <SPTFeatureFlagSignalObserver, SPTQuickActionsFeature>
+@interface SPTQuickActionsFeatureImplementation : NSObject <SPTQuickActionsFeature>
 {
     id <SPTContainerService> _containerService;
     id <SPTRecentlyPlayedService> _recentlyPlayedService;

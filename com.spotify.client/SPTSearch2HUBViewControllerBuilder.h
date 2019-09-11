@@ -7,7 +7,7 @@
 #import <objc/NSObject.h>
 
 @class NSDictionary, SPTSearch2ViewControllerDependencies;
-@protocol EXP_HUBCommandHandler;
+@protocol HUBCommandHandler;
 
 @interface SPTSearch2HUBViewControllerBuilder : NSObject
 {
@@ -23,11 +23,11 @@
 - (id)referrerIdentifier;
 - (id)viewURI;
 - (struct NSDictionary *)defaultCommandRegistry;
-- (id)searchLogger;
+- (id)makeSearchLogger;
 - (id)makeSearchHubViewController;
-@property(readonly, nonatomic) id <EXP_HUBCommandHandler> contextMenuCommandHandler;
-@property(readonly, nonatomic) id <EXP_HUBCommandHandler> navigateCommandHandler;
-@property(readonly, nonatomic) id <EXP_HUBCommandHandler> playCommandHandler;
+@property(readonly, nonatomic) id <HUBCommandHandler> contextMenuCommandHandler;
+@property(readonly, nonatomic) id <HUBCommandHandler> navigateCommandHandler;
+@property(readonly, nonatomic) id <HUBCommandHandler> playCommandHandler;
 - (id)initWithDependencies:(id)arg1;
 
 @end

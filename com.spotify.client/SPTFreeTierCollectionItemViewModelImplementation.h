@@ -9,19 +9,23 @@
 #import "SPTFreeTierCollectionItemViewModel-Protocol.h"
 
 @class NSString, NSURL;
-@protocol SPTFreeTierCollectionAlbumEntity, SPTFreeTierCollectionArtistEntity, SPTFreeTierCollectionFolderEntity, SPTFreeTierCollectionPlaylistEntity, SPTFreeTierCollectionPodcastEntity, SPTFreeTierCollectionSongEntity, SPTFreeTierCollectionTestManager;
+@protocol SPTFreeTierCollectionAlbumEntity, SPTFreeTierCollectionArtistEntity, SPTFreeTierCollectionFolderEntity, SPTFreeTierCollectionPlaylistEntity, SPTFreeTierCollectionSongEntity, SPTFreeTierCollectionTestManager;
 
 @interface SPTFreeTierCollectionItemViewModelImplementation : NSObject <SPTFreeTierCollectionItemViewModel>
 {
+    _Bool _inCollection;
+    _Bool _showCollectionQuickActions;
     _Bool showOverlayMask;
+    _Bool _enabled;
+    _Bool _quickActionsEnabled;
     _Bool _locked;
     _Bool _onDemand;
     _Bool _showDecorationOverlay;
+    NSString *_title;
     id <SPTFreeTierCollectionTestManager> _testManager;
     id <SPTFreeTierCollectionPlaylistEntity> _playlistEntity;
     id <SPTFreeTierCollectionAlbumEntity> _albumEntity;
     id <SPTFreeTierCollectionArtistEntity> _artistEntity;
-    id <SPTFreeTierCollectionPodcastEntity> _podcastEntity;
     id <SPTFreeTierCollectionSongEntity> _songEntity;
     id <SPTFreeTierCollectionFolderEntity> _folderEntity;
     unsigned long long _type;
@@ -41,20 +45,25 @@
 @property(nonatomic) unsigned long long type; // @synthesize type=_type;
 @property(retain, nonatomic) id <SPTFreeTierCollectionFolderEntity> folderEntity; // @synthesize folderEntity=_folderEntity;
 @property(retain, nonatomic) id <SPTFreeTierCollectionSongEntity> songEntity; // @synthesize songEntity=_songEntity;
-@property(retain, nonatomic) id <SPTFreeTierCollectionPodcastEntity> podcastEntity; // @synthesize podcastEntity=_podcastEntity;
 @property(retain, nonatomic) id <SPTFreeTierCollectionArtistEntity> artistEntity; // @synthesize artistEntity=_artistEntity;
 @property(retain, nonatomic) id <SPTFreeTierCollectionAlbumEntity> albumEntity; // @synthesize albumEntity=_albumEntity;
 @property(retain, nonatomic) id <SPTFreeTierCollectionPlaylistEntity> playlistEntity; // @synthesize playlistEntity=_playlistEntity;
 @property(retain, nonatomic) id <SPTFreeTierCollectionTestManager> testManager; // @synthesize testManager=_testManager;
+@property(readonly, nonatomic, getter=isQuickActionsEnabled) _Bool quickActionsEnabled; // @synthesize quickActionsEnabled=_quickActionsEnabled;
+@property(readonly, nonatomic, getter=isEnabled) _Bool enabled; // @synthesize enabled=_enabled;
+@property(readonly, nonatomic) NSString *title; // @synthesize title=_title;
 @property(readonly, nonatomic) _Bool showOverlayMask; // @synthesize showOverlayMask;
+@property(readonly, nonatomic) _Bool showCollectionQuickActions; // @synthesize showCollectionQuickActions=_showCollectionQuickActions;
+@property(readonly, nonatomic) _Bool inCollection; // @synthesize inCollection=_inCollection;
 - (void).cxx_destruct;
 @property(readonly, nonatomic, getter=isFolder) _Bool folder;
 @property(readonly, nonatomic, getter=isOfflineAvailable) _Bool offlineAvailable;
 @property(readonly, nonatomic, getter=isShuffle) _Bool isShuffle;
 @property(readonly, nonatomic) long long icon;
 @property(readonly, nonatomic) NSURL *imageURL;
-@property(readonly, nonatomic) NSString *title;
-- (id)initWithItemModelEntity:(id)arg1 testManager:(id)arg2;
+- (id)initWithSongModelItemEntity:(id)arg1 testManager:(id)arg2 showAlbumNameOnSongEntities:(_Bool)arg3 showCollectionQuickActions:(_Bool)arg4;
+- (id)initWithItemModelEntity:(id)arg1 testManager:(id)arg2 enabledForPlayback:(_Bool)arg3;
+- (id)initWithEntityType:(unsigned long long)arg1 enabledForPlayback:(_Bool)arg2 testManager:(id)arg3;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

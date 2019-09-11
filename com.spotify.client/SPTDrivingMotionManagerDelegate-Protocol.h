@@ -6,9 +6,12 @@
 
 #import "NSObject-Protocol.h"
 
-@class NSArray, SPTDrivingMotionManager;
+@class SPTDrivingMotionManager, SPTDrivingMotionRecorderResult;
 
 @protocol SPTDrivingMotionManagerDelegate <NSObject>
-- (void)motionManager:(SPTDrivingMotionManager *)arg1 didFinishBatchRecordingWithResults:(NSArray *)arg2;
+- (void)motionManager:(SPTDrivingMotionManager *)arg1 didFinishBatchRecordingWithResult:(SPTDrivingMotionRecorderResult *)arg2;
+
+@optional
+- (void)motionManagerDidFinishProcessingAllRequestedBatches:(SPTDrivingMotionManager *)arg1;
 @end
 

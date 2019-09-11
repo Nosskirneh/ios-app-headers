@@ -6,18 +6,18 @@
 
 #import <objc/NSObject.h>
 
-@protocol EXP_SPTHubContentOperationFactory, SPTOnDemandService, SPTProductState;
+@protocol SPTHubContentOperationFactory, SPTOnDemandService, SPTProductState;
 
 @interface SPTFreeTierRecommendationsPlaylistContentOperationsFactory : NSObject
 {
-    id <EXP_SPTHubContentOperationFactory> _hubContentOperationFactory;
+    id <SPTHubContentOperationFactory> _hubContentOperationFactory;
     id <SPTOnDemandService> _onDemandService;
     id <SPTProductState> _productState;
 }
 
 @property(readonly, nonatomic) id <SPTProductState> productState; // @synthesize productState=_productState;
 @property(readonly, nonatomic) __weak id <SPTOnDemandService> onDemandService; // @synthesize onDemandService=_onDemandService;
-@property(readonly, nonatomic) id <EXP_SPTHubContentOperationFactory> hubContentOperationFactory; // @synthesize hubContentOperationFactory=_hubContentOperationFactory;
+@property(readonly, nonatomic) id <SPTHubContentOperationFactory> hubContentOperationFactory; // @synthesize hubContentOperationFactory=_hubContentOperationFactory;
 - (void).cxx_destruct;
 - (id)createContentOperationsForViewURI:(id)arg1 referrerIdentifier:(id)arg2;
 - (id)initWithHubContentOperationFactory:(id)arg1 onDemandService:(id)arg2 productState:(id)arg3;

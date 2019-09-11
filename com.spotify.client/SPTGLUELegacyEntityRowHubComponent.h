@@ -6,40 +6,22 @@
 
 #import "HUGSThemableComponent.h"
 
-#import "HUBComponentActionPerformer-Protocol.h"
-#import "HUBComponentWithImageHandling-Protocol.h"
+#import "HUBComponent-Protocol.h"
 
-@class NSSet, SPTCalendarView, SPTTrackAccessoryLabel, UILabel, UIView;
-@protocol HUBActionPerformer;
+@class NSSet;
+@protocol HUGSStyleOverrider;
 
-@interface SPTGLUELegacyEntityRowHubComponent : HUGSThemableComponent <HUBComponentWithImageHandling, HUBComponentActionPerformer>
+@interface SPTGLUELegacyEntityRowHubComponent : HUGSThemableComponent <HUBComponent>
 {
-    UIView *_view;
-    id <HUBActionPerformer> _actionPerformer;
-    UILabel *_prefixLabel;
-    SPTTrackAccessoryLabel *_subtitleAccessoryLabel;
-    SPTCalendarView *_calendarView;
+    id <HUGSStyleOverrider> _styleOverrider;
 }
 
-@property(retain, nonatomic) SPTCalendarView *calendarView; // @synthesize calendarView=_calendarView;
-@property(retain, nonatomic) SPTTrackAccessoryLabel *subtitleAccessoryLabel; // @synthesize subtitleAccessoryLabel=_subtitleAccessoryLabel;
-@property(retain, nonatomic) UILabel *prefixLabel; // @synthesize prefixLabel=_prefixLabel;
-@property(nonatomic) __weak id <HUBActionPerformer> actionPerformer; // @synthesize actionPerformer=_actionPerformer;
-@property(retain, nonatomic) UIView *view; // @synthesize view=_view;
+@property(readonly, nonatomic) id <HUGSStyleOverrider> styleOverrider; // @synthesize styleOverrider=_styleOverrider;
 - (void).cxx_destruct;
-- (void)applyThemeLayout;
-- (id)styleForModel:(id)arg1;
-- (long long)accessoryLabelTypeForLabelText:(id)arg1 subtitle:(id)arg2;
-- (void)configureSubtitleAccessoryViewForCell:(id)arg1 model:(id)arg2;
-- (void)handleContextMenuButtonTap:(id)arg1;
-- (struct CGSize)imageSize;
-- (void)updateViewForLoadedImage:(id)arg1 fromData:(id)arg2 model:(id)arg3 animated:(_Bool)arg4;
-- (struct CGSize)preferredSizeForImageFromData:(id)arg1 model:(id)arg2 containerViewSize:(struct CGSize)arg3;
-- (void)configureViewWithModel:(id)arg1 containerViewSize:(struct CGSize)arg2;
-- (void)prepareViewForReuse;
 - (struct CGSize)preferredViewSizeForDisplayingModel:(id)arg1 containerViewSize:(struct CGSize)arg2;
-- (void)loadView;
-@property(readonly, nonatomic) NSSet *layoutTraits;
+- (id)createViewWithFrame:(struct CGRect)arg1;
+@property(readonly, copy, nonatomic) NSSet *layoutTraits;
+- (id)initWithTheme:(id)arg1 styleOverrider:(id)arg2;
 
 @end
 

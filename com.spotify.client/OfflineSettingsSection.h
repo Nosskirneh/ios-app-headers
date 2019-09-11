@@ -8,8 +8,8 @@
 
 #import "SPSessionObserver-Protocol.h"
 
-@class NSString, SPSession, SPTNetworkConnectivityController, SPTSettingsTableViewCell, SettingsSwitchTableViewCell;
-@protocol SPTOfflineManager, SPTProductState, SPTSettingsUpsellDelegate;
+@class NSString, SPSession, SPTNetworkConnectivityController, SPTSettingsLogger, SPTSettingsTableViewCell, SettingsSwitchTableViewCell;
+@protocol SPTOfflineManager, SPTProductState;
 
 @interface OfflineSettingsSection : SettingsSection <SPSessionObserver>
 {
@@ -17,16 +17,16 @@
     SettingsSwitchTableViewCell *_offlineModeCell;
     SPTSettingsTableViewCell *_goOnlineWithinCell;
     SPTNetworkConnectivityController *_networkConnectivityController;
+    SPTSettingsLogger *_logger;
     id <SPTOfflineManager> _offlineManager;
     SPSession *_session;
     id <SPTProductState> _productState;
-    id <SPTSettingsUpsellDelegate> _upsellDelegate;
 }
 
-@property(readonly, nonatomic) __weak id <SPTSettingsUpsellDelegate> upsellDelegate; // @synthesize upsellDelegate=_upsellDelegate;
 @property(readonly, nonatomic) id <SPTProductState> productState; // @synthesize productState=_productState;
 @property(nonatomic) __weak SPSession *session; // @synthesize session=_session;
 @property(nonatomic) __weak id <SPTOfflineManager> offlineManager; // @synthesize offlineManager=_offlineManager;
+@property(retain, nonatomic) SPTSettingsLogger *logger; // @synthesize logger=_logger;
 @property(retain, nonatomic) SPTNetworkConnectivityController *networkConnectivityController; // @synthesize networkConnectivityController=_networkConnectivityController;
 @property(nonatomic) _Bool showingGoOnlineWithinCell; // @synthesize showingGoOnlineWithinCell=_showingGoOnlineWithinCell;
 @property(retain, nonatomic) SPTSettingsTableViewCell *goOnlineWithinCell; // @synthesize goOnlineWithinCell=_goOnlineWithinCell;
@@ -41,7 +41,7 @@
 - (void)sessionLoginModeChanged:(id)arg1;
 - (void)offlineSwitchChanged:(id)arg1;
 - (void)dealloc;
-- (id)initWithSettingsViewController:(id)arg1 productState:(id)arg2 upsellDelegate:(id)arg3 networkConnectivityController:(id)arg4 offlineManager:(id)arg5 session:(id)arg6;
+- (id)initWithSettingsViewController:(id)arg1 productState:(id)arg2 networkConnectivityController:(id)arg3 offlineManager:(id)arg4 session:(id)arg5 logger:(id)arg6;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

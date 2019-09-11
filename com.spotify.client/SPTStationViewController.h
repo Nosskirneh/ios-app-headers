@@ -14,16 +14,14 @@
 #import "SPTStationViewModelDelegate-Protocol.h"
 #import "SPTThemableView-Protocol.h"
 
-@class GLUEButton, GLUEEntityRowStyle, NSArray, NSString, NSURL, SPTInfoView, SPTProgressView, SPTRadioLogger, SPTStationEntityPullToRefreshView, SPTStationEntityTableHeaderView, UIBarButtonItem, UITableViewCell;
-@protocol CollectionFeature, GLUETheme, SPContextMenuFeature, SPTBarButtonItemManager, SPTCollectionLogger, SPTCollectionPlatformTestManager, SPTContextMenuPresenter, SPTDailyMixManager, SPTImageLoader, SPTLinkDispatcher, SPTPageContainer, SPTRadioStationViewModel, SPTShelves, SPTThemableViewLayoutDelegate, SPTUpsellManager, SPTViewLogger;
+@class GLUEEntityRowStyle, NSArray, NSString, NSURL, SPTInfoView, SPTProgressView, SPTRadioLogger, SPTStationEntityPullToRefreshView, SPTStationEntityTableHeaderView, UITableViewCell;
+@protocol GLUETheme, SPContextMenuFeature, SPTBarButtonItemManager, SPTCollectionLogger, SPTContextMenuPresenter, SPTImageLoader, SPTLinkDispatcher, SPTPageContainer, SPTRadioStationViewModel, SPTShelves, SPTThemableViewLayoutDelegate, SPTViewLogger;
 
 @interface SPTStationViewController : SPTableViewController <SPTNavigationControllerNavigationBarState, SPTImageLoaderDelegate, SPTStationViewModelDelegate, SPContentInsetViewController, SPTThemableView, SPTBarButtonItemManagerObserver, SPTPageController>
 {
-    _Bool _heartsInEntityHeadersEnabled;
     _Bool _haveExpandedHeader;
     id <SPTThemableViewLayoutDelegate> _layoutDelegate;
-    id <SPContextMenuFeature> _contextMenu;
-    id <CollectionFeature> _collection;
+    id <SPContextMenuFeature> _contextMenuFeature;
     id <SPTShelves> _shelves;
     id <SPTRadioStationViewModel> _viewModel;
     id <SPTViewLogger> _viewLogger;
@@ -33,17 +31,13 @@
     NSArray *_stationImpressionSectionNames;
     id <SPTContextMenuPresenter> _contextMenuPresenter;
     id <SPTBarButtonItemManager> _barButtonItemManager;
-    id <SPTDailyMixManager> _dailyMixManager;
-    id <SPTCollectionPlatformTestManager> _collectionTestManager;
-    id <SPTUpsellManager> _upsellManager;
     id <SPTLinkDispatcher> _linkDispatcher;
+    NSString *_referrerIdentifier;
     UITableViewCell *_relatedArtistsCell;
     SPTStationEntityTableHeaderView *_entityHeaderView;
     SPTStationEntityPullToRefreshView *_footerView;
     SPTProgressView *_progressView;
     SPTInfoView *_infoView;
-    GLUEButton *_followButton;
-    UIBarButtonItem *_likeBarButtonItem;
     double _defaultFooterHeight;
     double _defaultFooterScrollOffset;
     id <GLUETheme> _theme;
@@ -51,23 +45,18 @@
 }
 
 + (unsigned long long)defaultTrackRowAccessibilityTraits;
-@property(retain, nonatomic) GLUEEntityRowStyle *trackRowStyle; // @synthesize trackRowStyle=_trackRowStyle;
+@property(readonly, nonatomic) GLUEEntityRowStyle *trackRowStyle; // @synthesize trackRowStyle=_trackRowStyle;
 @property(readonly, nonatomic) id <GLUETheme> theme; // @synthesize theme=_theme;
 @property(nonatomic) double defaultFooterScrollOffset; // @synthesize defaultFooterScrollOffset=_defaultFooterScrollOffset;
 @property(nonatomic) double defaultFooterHeight; // @synthesize defaultFooterHeight=_defaultFooterHeight;
-@property(retain, nonatomic) UIBarButtonItem *likeBarButtonItem; // @synthesize likeBarButtonItem=_likeBarButtonItem;
-@property(retain, nonatomic) GLUEButton *followButton; // @synthesize followButton=_followButton;
 @property(retain, nonatomic) SPTInfoView *infoView; // @synthesize infoView=_infoView;
 @property(retain, nonatomic) SPTProgressView *progressView; // @synthesize progressView=_progressView;
 @property(retain, nonatomic) SPTStationEntityPullToRefreshView *footerView; // @synthesize footerView=_footerView;
 @property(readonly, nonatomic, getter=shouldHaveExpandedHeader) _Bool haveExpandedHeader; // @synthesize haveExpandedHeader=_haveExpandedHeader;
 @property(retain, nonatomic) SPTStationEntityTableHeaderView *entityHeaderView; // @synthesize entityHeaderView=_entityHeaderView;
 @property(retain, nonatomic) UITableViewCell *relatedArtistsCell; // @synthesize relatedArtistsCell=_relatedArtistsCell;
-@property(readonly, nonatomic) _Bool heartsInEntityHeadersEnabled; // @synthesize heartsInEntityHeadersEnabled=_heartsInEntityHeadersEnabled;
+@property(readonly, nonatomic) NSString *referrerIdentifier; // @synthesize referrerIdentifier=_referrerIdentifier;
 @property(readonly, nonatomic) id <SPTLinkDispatcher> linkDispatcher; // @synthesize linkDispatcher=_linkDispatcher;
-@property(readonly, nonatomic) __weak id <SPTUpsellManager> upsellManager; // @synthesize upsellManager=_upsellManager;
-@property(retain, nonatomic) id <SPTCollectionPlatformTestManager> collectionTestManager; // @synthesize collectionTestManager=_collectionTestManager;
-@property(retain, nonatomic) id <SPTDailyMixManager> dailyMixManager; // @synthesize dailyMixManager=_dailyMixManager;
 @property(readonly, nonatomic) __weak id <SPTBarButtonItemManager> barButtonItemManager; // @synthesize barButtonItemManager=_barButtonItemManager;
 @property(retain, nonatomic) id <SPTContextMenuPresenter> contextMenuPresenter; // @synthesize contextMenuPresenter=_contextMenuPresenter;
 @property(retain, nonatomic) NSArray *stationImpressionSectionNames; // @synthesize stationImpressionSectionNames=_stationImpressionSectionNames;
@@ -77,8 +66,7 @@
 @property(retain, nonatomic) id <SPTViewLogger> viewLogger; // @synthesize viewLogger=_viewLogger;
 @property(retain, nonatomic) id <SPTRadioStationViewModel> viewModel; // @synthesize viewModel=_viewModel;
 @property(nonatomic) __weak id <SPTShelves> shelves; // @synthesize shelves=_shelves;
-@property(readonly, nonatomic) __weak id <CollectionFeature> collection; // @synthesize collection=_collection;
-@property(readonly, nonatomic) __weak id <SPContextMenuFeature> contextMenu; // @synthesize contextMenu=_contextMenu;
+@property(readonly, nonatomic) __weak id <SPContextMenuFeature> contextMenuFeature; // @synthesize contextMenuFeature=_contextMenuFeature;
 @property(nonatomic) __weak id <SPTThemableViewLayoutDelegate> layoutDelegate; // @synthesize layoutDelegate=_layoutDelegate;
 - (void).cxx_destruct;
 - (void)updateCellActiveStatus:(id)arg1 forCurrentlyPlayingIndex:(id)arg2;
@@ -93,7 +81,6 @@
 - (void)stationViewModelUpdatedTracks:(id)arg1;
 - (void)updateView;
 - (void)viewModel:(id)arg1 didLoadData:(id)arg2 forRequestKey:(id)arg3;
-- (void)stationViewModelCurrentStationSavedStateDidChange:(id)arg1;
 - (void)stationViewModelCurrentTrackDidChange:(id)arg1;
 - (void)stationViewModelPlaybackStateChanged:(id)arg1;
 - (void)viewModel:(id)arg1 offlineModeChanged:(_Bool)arg2;
@@ -128,25 +115,19 @@
 - (void)mainContextMenuButtonTapped:(id)arg1;
 - (void)updateInfoViewWithError:(id)arg1;
 - (void)trackContextMenuButtonTapped:(id)arg1;
-- (void)toggleCollectionButtonTapped:(id)arg1;
 - (void)didPressPlayButton;
 - (void)sp_updateContentInsets;
 - (void)viewWillLayoutSubviews;
-- (void)updateSaveStationButton;
 - (void)updateFooterViewFrameWithOffset:(double)arg1;
 - (void)setupFooterView;
 - (void)setupHeaderView;
 - (void)setPlaceholderHeaderImage;
-- (void)clickedAllMixesButton;
-- (void)setupDailyMixHeader;
-- (_Bool)shouldShowSeeAllMixesButton;
-- (void)setupFollowButton;
 - (void)viewWillDisappear:(_Bool)arg1;
 - (void)viewDidAppear:(_Bool)arg1;
 - (void)viewWillAppear:(_Bool)arg1;
 - (void)dealloc;
 - (void)viewDidLoad;
-- (id)initWithContextMenu:(id)arg1 collection:(id)arg2 stationViewModel:(id)arg3 viewLogger:(id)arg4 imageLoaderFactory:(id)arg5 shelves:(id)arg6 loggingService:(id)arg7 collectionLogger:(id)arg8 barButtonItemManager:(id)arg9 dailyMixManager:(id)arg10 collectionTestManager:(id)arg11 upsellManager:(id)arg12 linkDispatcher:(id)arg13 heartsInEntityHeadersEnabled:(_Bool)arg14;
+- (id)initWithContextMenu:(id)arg1 stationViewModel:(id)arg2 viewLogger:(id)arg3 imageLoaderFactory:(id)arg4 shelves:(id)arg5 loggingService:(id)arg6 collectionLogger:(id)arg7 barButtonItemManager:(id)arg8 linkDispatcher:(id)arg9 referrerIdentifier:(id)arg10;
 
 // Remaining properties
 @property(nonatomic) _Bool automaticallyAdjustsScrollViewInsets;

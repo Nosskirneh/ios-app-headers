@@ -12,6 +12,9 @@
 @protocol SPTDrivingModeController <NSObject>
 @property(nonatomic) __weak id <SPTDrivingModeControllerDelegate> delegate;
 @property(readonly, nonatomic) _Bool drivingModeEnabled;
-@property(readonly, nonatomic) NSString *drivingModeIdentifier;
+@property(readonly, nonatomic) NSString *drivingAdsModeIdentifier;
+@property(readonly, nonatomic) NSString *drivingPodcastModeIdentifier;
+@property(readonly, nonatomic) NSString *drivingFeedbackModeIdentifier;
+@property(readonly, nonatomic) NSString *drivingDefaultModeIdentifier;
 @end
 

@@ -6,23 +6,23 @@
 
 #import <UIKit/UIView.h>
 
-@class NSArray, SPTLayoutConstraintBuilder, SPTTheme, UIButton;
+@class NSArray, SPTTheme, UIButton;
 
 @interface SPTNowPlayingNavigationButtonsView : UIView
 {
     NSArray *_leftBarButtons;
     UIButton *_rightBarButton;
     SPTTheme *_theme;
-    SPTLayoutConstraintBuilder *_viewLayout;
+    NSArray *_layoutConstraints;
 }
 
-@property(retain, nonatomic) SPTLayoutConstraintBuilder *viewLayout; // @synthesize viewLayout=_viewLayout;
+@property(copy, nonatomic) NSArray *layoutConstraints; // @synthesize layoutConstraints=_layoutConstraints;
 @property(retain, nonatomic) SPTTheme *theme; // @synthesize theme=_theme;
 @property(retain, nonatomic) UIButton *rightBarButton; // @synthesize rightBarButton=_rightBarButton;
 @property(retain, nonatomic) NSArray *leftBarButtons; // @synthesize leftBarButtons=_leftBarButtons;
 - (void).cxx_destruct;
 - (id)hitTest:(struct CGPoint)arg1 withEvent:(id)arg2;
-- (id)layout;
+- (void)setupConstraints;
 - (void)forceUpdateConstraints;
 - (void)updateConstraints;
 @property(readonly, nonatomic) UIButton *leftBarButton;

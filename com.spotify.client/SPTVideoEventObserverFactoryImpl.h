@@ -17,7 +17,7 @@
 
 @property(copy, nonatomic) CDUnknownBlockType createObserverBlock; // @synthesize createObserverBlock=_createObserverBlock;
 - (void).cxx_destruct;
-- (id)createPlaybackEventObserverForPlaybackIdentity:(id)arg1;
+- (id)createPlaybackEventObserverForPlaybackIdentity:(id)arg1 options:(id)arg2 timeObservable:(id)arg3;
 - (id)initWithCreatePlaybackEventObserverBlock:(CDUnknownBlockType)arg1;
 
 // Remaining properties

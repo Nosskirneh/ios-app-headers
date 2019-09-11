@@ -6,11 +6,14 @@
 
 #import "NSObject-Protocol.h"
 
-@class SPTRemoteConfiguration_Configuration;
+@class NSDictionary, SPTRemoteConfiguration_GranularConfiguration;
 
 @protocol SPTRemoteConfigurationPersistence <NSObject>
+- (void)clearLocalOverride;
+- (NSDictionary *)restoreLocalOverride;
+- (void)storeLocalOverride:(NSDictionary *)arg1;
 - (void)clearAll;
-- (SPTRemoteConfiguration_Configuration *)restoreConfigurationWithType:(unsigned long long)arg1;
-- (void)storeConfiguration:(SPTRemoteConfiguration_Configuration *)arg1 type:(unsigned long long)arg2;
+- (SPTRemoteConfiguration_GranularConfiguration *)restoreConfigurationWithType:(unsigned long long)arg1;
+- (void)storeConfiguration:(SPTRemoteConfiguration_GranularConfiguration *)arg1 type:(unsigned long long)arg2;
 @end
 

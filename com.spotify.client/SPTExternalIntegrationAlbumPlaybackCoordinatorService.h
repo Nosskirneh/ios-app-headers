@@ -7,26 +7,30 @@
 #import <objc/NSObject.h>
 
 #import "SPTExternalIntegrationPlaybackCoordinator-Protocol.h"
+#import "SPTPlayerObserver-Protocol.h"
 #import "SPTService-Protocol.h"
 
 @class NSMutableArray, NSString, SPTAllocationContext, SPTExternalIntegrationPlaybackServiceImplementation;
 @protocol SPTNetworkService, SPTPlayer;
 
-@interface SPTExternalIntegrationAlbumPlaybackCoordinatorService : NSObject <SPTService, SPTExternalIntegrationPlaybackCoordinator>
+@interface SPTExternalIntegrationAlbumPlaybackCoordinatorService : NSObject <SPTPlayerObserver, SPTService, SPTExternalIntegrationPlaybackCoordinator>
 {
     id <SPTNetworkService> _networkService;
     SPTExternalIntegrationPlaybackServiceImplementation *_playbackService;
     NSMutableArray *_activeDataLoaders;
     id <SPTPlayer> _player;
+    CDUnknownBlockType _completionHandler;
 }
 
 + (id)serviceIdentifier;
+@property(copy, nonatomic) CDUnknownBlockType completionHandler; // @synthesize completionHandler=_completionHandler;
 @property(readonly, nonatomic) id <SPTPlayer> player; // @synthesize player=_player;
 @property(readonly, nonatomic) NSMutableArray *activeDataLoaders; // @synthesize activeDataLoaders=_activeDataLoaders;
 @property(readonly, nonatomic) __weak SPTExternalIntegrationPlaybackServiceImplementation *playbackService; // @synthesize playbackService=_playbackService;
 @property(readonly, nonatomic) __weak id <SPTNetworkService> networkService; // @synthesize networkService=_networkService;
 - (void).cxx_destruct;
 - (id)createPlayContextWithData:(id)arg1;
+- (void)player:(id)arg1 didEncounterError:(id)arg2;
 - (void)playContentWithURI:(id)arg1 withOptions:(id)arg2 origin:(id)arg3 requestOptions:(id)arg4 completionHandler:(CDUnknownBlockType)arg5;
 - (_Bool)canPlayContentWithURI:(id)arg1;
 - (void)unload;

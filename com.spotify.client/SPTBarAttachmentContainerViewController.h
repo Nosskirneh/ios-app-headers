@@ -8,17 +8,17 @@
 
 #import "SPTBarInteractiveTransitionParticipant-Protocol.h"
 
-@class NSMutableArray, NSString, SPTLayoutConstraintBuilder;
+@class NSArray, NSMutableArray, NSString;
 
 @interface SPTBarAttachmentContainerViewController : UIViewController <SPTBarInteractiveTransitionParticipant>
 {
     double _totalHeight;
-    SPTLayoutConstraintBuilder *_layout;
+    NSArray *_layoutConstraints;
     NSMutableArray *_controllers;
 }
 
 @property(retain, nonatomic) NSMutableArray *controllers; // @synthesize controllers=_controllers;
-@property(retain, nonatomic) SPTLayoutConstraintBuilder *layout; // @synthesize layout=_layout;
+@property(copy, nonatomic) NSArray *layoutConstraints; // @synthesize layoutConstraints=_layoutConstraints;
 @property(nonatomic) double totalHeight; // @synthesize totalHeight=_totalHeight;
 - (void).cxx_destruct;
 - (id)replacementViewsForBarTransition:(id)arg1;

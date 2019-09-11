@@ -6,25 +6,25 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTCollectionEntityListObserver-Protocol.h"
+#import "SPTRecentlyPlayedListObserver-Protocol.h"
 #import "SPTRecentlyPlayedShortcutItemsProvider-Protocol.h"
 
 @class NSHashTable, NSString;
-@protocol SPTCollectionEntityList, SPTLinkDispatcher;
+@protocol SPTLinkDispatcher, SPTRecentlyPlayedList;
 
-@interface SPTRecentlyPlayedShortcutItemsProviderImplementation : NSObject <SPTCollectionEntityListObserver, SPTRecentlyPlayedShortcutItemsProvider>
+@interface SPTRecentlyPlayedShortcutItemsProviderImplementation : NSObject <SPTRecentlyPlayedListObserver, SPTRecentlyPlayedShortcutItemsProvider>
 {
-    id <SPTCollectionEntityList> _recentlyPlayedModel;
+    id <SPTRecentlyPlayedList> _recentlyPlayedModel;
     id <SPTLinkDispatcher> _linkDispatcher;
     NSHashTable *_observers;
 }
 
 @property(readonly, nonatomic) NSHashTable *observers; // @synthesize observers=_observers;
 @property(retain, nonatomic) id <SPTLinkDispatcher> linkDispatcher; // @synthesize linkDispatcher=_linkDispatcher;
-@property(readonly, nonatomic) id <SPTCollectionEntityList> recentlyPlayedModel; // @synthesize recentlyPlayedModel=_recentlyPlayedModel;
+@property(readonly, nonatomic) id <SPTRecentlyPlayedList> recentlyPlayedModel; // @synthesize recentlyPlayedModel=_recentlyPlayedModel;
 - (void).cxx_destruct;
 - (void)notifyObservers;
-- (void)entityListDidReload:(id)arg1;
+- (void)recentlyPlayedListDidReload:(id)arg1;
 - (id)createItemAtIndex:(id)arg1 fromEntityList:(id)arg2;
 - (void)removeShortcutItemsUpdateObserver:(id)arg1;
 - (void)addShortcutItemsUpdateObserver:(id)arg1;

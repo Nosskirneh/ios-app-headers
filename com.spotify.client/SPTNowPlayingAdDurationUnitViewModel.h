@@ -6,23 +6,23 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTNowPlayingAdPlayerObserver-Protocol.h"
+#import "SPTAdPlayerObserver-Protocol.h"
 
-@class NSString, SPTNowPlayingAdPlayerObservable;
+@class NSString, SPTAdPlayerObservable;
 @protocol SPTNowPlayingAdDurationUnitViewModelDelegate;
 
-@interface SPTNowPlayingAdDurationUnitViewModel : NSObject <SPTNowPlayingAdPlayerObserver>
+@interface SPTNowPlayingAdDurationUnitViewModel : NSObject <SPTAdPlayerObserver>
 {
     _Bool _visible;
     id <SPTNowPlayingAdDurationUnitViewModelDelegate> _delegate;
-    SPTNowPlayingAdPlayerObservable *_playerObservable;
+    SPTAdPlayerObservable *_playerObservable;
 }
 
 @property(nonatomic) _Bool visible; // @synthesize visible=_visible;
-@property(readonly, nonatomic) SPTNowPlayingAdPlayerObservable *playerObservable; // @synthesize playerObservable=_playerObservable;
+@property(readonly, nonatomic) SPTAdPlayerObservable *playerObservable; // @synthesize playerObservable=_playerObservable;
 @property(nonatomic) __weak id <SPTNowPlayingAdDurationUnitViewModelDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
-- (void)nowPlayingAdStateDidChangeToTrack:(struct SPTNowPlayingTrack)arg1;
+- (void)adPlayerStateDidChangeToTrack:(struct SPTNowPlayingTrack)arg1;
 - (id)timeIntervalToString:(double)arg1;
 - (_Bool)disallowsSeeking;
 - (double)animationSpeed;

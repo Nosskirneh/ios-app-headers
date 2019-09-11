@@ -23,6 +23,7 @@
 @property(readonly, nonatomic, getter=spt_pageIdentifier) NSString *pageIdentifier;
 @property(readonly, nonatomic, getter=spt_pageURI) NSURL *pageURI;
 - (void)traitCollectionDidChange:(id)arg1;
+- (void)viewWillAppear:(_Bool)arg1;
 - (void)viewDidLoad;
 - (void)loadView;
 - (id)initWithViewModel:(id)arg1;

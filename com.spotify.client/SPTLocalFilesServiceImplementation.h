@@ -21,7 +21,7 @@
     id <SPTPlaylistPlatformService> _playlistPlatformService;
     id <SPTNetworkService> _networkService;
     id <SPTNuxService> _nuxService;
-    id <SPTSettingsFeature> _settings;
+    id <SPTSettingsFeature> _settingsFeature;
     id <CosmosFeature> _cosmosService;
     id <SPTContainerUIService> _containerUIService;
     id <SPTURIDispatchService> _dispatchService;
@@ -35,7 +35,7 @@
 @property(readonly, nonatomic) __weak id <SPTURIDispatchService> dispatchService; // @synthesize dispatchService=_dispatchService;
 @property(readonly, nonatomic) __weak id <SPTContainerUIService> containerUIService; // @synthesize containerUIService=_containerUIService;
 @property(readonly, nonatomic) __weak id <CosmosFeature> cosmosService; // @synthesize cosmosService=_cosmosService;
-@property(readonly, nonatomic) __weak id <SPTSettingsFeature> settings; // @synthesize settings=_settings;
+@property(readonly, nonatomic) __weak id <SPTSettingsFeature> settingsFeature; // @synthesize settingsFeature=_settingsFeature;
 @property(readonly, nonatomic) __weak id <SPTNuxService> nuxService; // @synthesize nuxService=_nuxService;
 @property(readonly, nonatomic) __weak id <SPTNetworkService> networkService; // @synthesize networkService=_networkService;
 @property(readonly, nonatomic) __weak id <SPTPlaylistPlatformService> playlistPlatformService; // @synthesize playlistPlatformService=_playlistPlatformService;

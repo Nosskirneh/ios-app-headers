@@ -14,6 +14,7 @@
 {
     GLUEImageStyle *_imageViewStyle;
     GLUELabelStyle *_textLabelStyle;
+    GLUELabelStyle *_subtitleLabelStyle;
     UIImage *_placeholderImage;
     double _imageViewLeadingMargin;
     double _imageViewToTextLabelMargin;
@@ -21,7 +22,6 @@
     double _badgeImageBorderWidth;
     UIColor *_badgeImageColor;
     UIColor *_badgeImageBorderColor;
-    UIColor *_badgeImageIconColor;
     UIColor *_badgeImageFollowIconColor;
     double _imageViewAlpha;
     double _imageViewSelectedAlpha;
@@ -33,12 +33,14 @@
     double _badgeViewAppearanceAnimationSpringDamping;
     double _badgeViewAppearanceAnimationSpringVelocity;
     double _badgeViewDisappearanceAnimationDuration;
+    double _nameToSubtitlePadding;
     struct CGSize _badgeImageSize;
     struct CGSize _badgeImageIconSize;
     struct CGSize _badgeViewAppearanceAnimationInitialScale;
     struct CGSize _badgeViewDisappearanceAnimationFinalScale;
 }
 
+@property(nonatomic) double nameToSubtitlePadding; // @synthesize nameToSubtitlePadding=_nameToSubtitlePadding;
 @property(nonatomic) struct CGSize badgeViewDisappearanceAnimationFinalScale; // @synthesize badgeViewDisappearanceAnimationFinalScale=_badgeViewDisappearanceAnimationFinalScale;
 @property(nonatomic) double badgeViewDisappearanceAnimationDuration; // @synthesize badgeViewDisappearanceAnimationDuration=_badgeViewDisappearanceAnimationDuration;
 @property(nonatomic) double badgeViewAppearanceAnimationSpringVelocity; // @synthesize badgeViewAppearanceAnimationSpringVelocity=_badgeViewAppearanceAnimationSpringVelocity;
@@ -52,7 +54,6 @@
 @property(nonatomic) double imageViewSelectedAlpha; // @synthesize imageViewSelectedAlpha=_imageViewSelectedAlpha;
 @property(nonatomic) double imageViewAlpha; // @synthesize imageViewAlpha=_imageViewAlpha;
 @property(retain, nonatomic) UIColor *badgeImageFollowIconColor; // @synthesize badgeImageFollowIconColor=_badgeImageFollowIconColor;
-@property(retain, nonatomic) UIColor *badgeImageIconColor; // @synthesize badgeImageIconColor=_badgeImageIconColor;
 @property(retain, nonatomic) UIColor *badgeImageBorderColor; // @synthesize badgeImageBorderColor=_badgeImageBorderColor;
 @property(retain, nonatomic) UIColor *badgeImageColor; // @synthesize badgeImageColor=_badgeImageColor;
 @property(nonatomic) struct CGSize badgeImageIconSize; // @synthesize badgeImageIconSize=_badgeImageIconSize;
@@ -62,6 +63,7 @@
 @property(nonatomic) double imageViewToTextLabelMargin; // @synthesize imageViewToTextLabelMargin=_imageViewToTextLabelMargin;
 @property(nonatomic) double imageViewLeadingMargin; // @synthesize imageViewLeadingMargin=_imageViewLeadingMargin;
 @property(retain, nonatomic) UIImage *placeholderImage; // @synthesize placeholderImage=_placeholderImage;
+@property(copy, nonatomic) GLUELabelStyle *subtitleLabelStyle; // @synthesize subtitleLabelStyle=_subtitleLabelStyle;
 @property(copy, nonatomic) GLUELabelStyle *textLabelStyle; // @synthesize textLabelStyle=_textLabelStyle;
 @property(copy, nonatomic) GLUEImageStyle *imageViewStyle; // @synthesize imageViewStyle=_imageViewStyle;
 - (void).cxx_destruct;

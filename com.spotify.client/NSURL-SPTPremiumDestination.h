@@ -13,10 +13,9 @@
 + (id)spt_premiumDestinationHubsDevV2ServiceURL;
 + (id)spt_premiumDestinationHubsV2ServiceURL;
 + (id)spt_premiumDestinationHubsDevServiceURL;
++ (id)spt_premiumDestinationPreviewToolNavURL;
 + (id)spt_premiumDestinationHubsServiceURL;
-+ (id)spt_trialStartedUpsellURL;
-+ (id)spt_accountUpsellURL;
-- (_Bool)spt_isTrialStartedUpsellMessageURL;
-- (_Bool)spt_isAccountUpsellURL;
++ (id)spt_premiumDestinationPreviewURL;
+- (_Bool)spt_isPremiumDestinationPreviewURL;
 @end
 

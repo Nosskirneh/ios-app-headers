@@ -11,7 +11,8 @@
 }
 
 + (id)buildLogParamsFromCrash:(double)arg1;
-+ (void)logCrashWithTimeStamp:(double)arg1;
++ (void)registerAnalyticsEventListener:(CDUnknownBlockType)arg1;
++ (void)logCrashWithTimeStamp:(double)arg1 firebaseCrashlyticsEnabled:(_Bool)arg2;
 
 @end
 

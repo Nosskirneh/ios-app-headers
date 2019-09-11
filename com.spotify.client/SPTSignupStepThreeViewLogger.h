@@ -9,23 +9,23 @@
 #import "SPTLoginFormViewLoggerProtocol-Protocol.h"
 
 @class NSString, SPTLoginErrorLogger;
-@protocol SPTAdjustUserTrackerProtocol;
+@protocol SPTLoginLogger;
 
 @interface SPTSignupStepThreeViewLogger : NSObject <SPTLoginFormViewLoggerProtocol>
 {
-    id <SPTAdjustUserTrackerProtocol> _adjustTracker;
+    id <SPTLoginLogger> _logger;
     SPTLoginErrorLogger *_errorLogger;
 }
 
 @property(retain, nonatomic) SPTLoginErrorLogger *errorLogger; // @synthesize errorLogger=_errorLogger;
-@property(retain, nonatomic) id <SPTAdjustUserTrackerProtocol> adjustTracker; // @synthesize adjustTracker=_adjustTracker;
+@property(retain, nonatomic) id <SPTLoginLogger> logger; // @synthesize logger=_logger;
 - (void).cxx_destruct;
-- (long long)adjustIdentifierForFieldWithStringIdentifier:(id)arg1;
+- (id)adjustIdentifierForFieldWithStringIdentifier:(id)arg1;
 - (void)logErrorWithCode:(unsigned long long)arg1 fieldIdentifier:(id)arg2;
 - (void)logUserDidTapSubmitButton;
 - (void)logUserDidInteractWithField:(id)arg1;
 - (void)logUserDidSeeView;
-- (id)initWithAdjustTracker:(id)arg1;
+- (id)initWithLogger:(id)arg1;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

@@ -6,22 +6,20 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTInAppMessageAction-Protocol.h"
+#import "SPTInAppMessageActionHandler-Protocol.h"
 
-@class NSString, NSURL;
+@class NSString;
 @protocol SPTLinkDispatcher;
 
-@interface SPTInAppMessageOpenURLAction : NSObject <SPTInAppMessageAction>
+@interface SPTInAppMessageOpenURLAction : NSObject <SPTInAppMessageActionHandler>
 {
     id <SPTLinkDispatcher> _linkDispatcher;
-    NSURL *_URL;
 }
 
-@property(readonly, nonatomic) NSURL *URL; // @synthesize URL=_URL;
 @property(retain, nonatomic) id <SPTLinkDispatcher> linkDispatcher; // @synthesize linkDispatcher=_linkDispatcher;
 - (void).cxx_destruct;
-- (void)perform;
-- (id)initWithURL:(id)arg1 linkDispatcher:(id)arg2;
+- (void)executeActionWithURL:(id)arg1;
+- (id)initWithLinkDispatcher:(id)arg1;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

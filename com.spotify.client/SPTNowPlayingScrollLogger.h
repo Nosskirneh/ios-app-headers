@@ -17,7 +17,7 @@
 - (void).cxx_destruct;
 - (void)logScrollSwipeInteractionWithPlaybackId:(id)arg1;
 - (void)logScrollComponentImpressionWithIdentifier:(id)arg1 atIndex:(unsigned long long)arg2 playbackId:(id)arg3;
-- (void)logScrollPageImpressionWithPlaybackId:(id)arg1;
+- (void)logScrollPageImpressionWithPlayer:(id)arg1;
 - (id)initWithLogCenter:(id)arg1;
 
 @end

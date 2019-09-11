@@ -28,6 +28,7 @@
 @property(nonatomic) __weak id <SPTGLUEService> glueService; // @synthesize glueService=_glueService;
 - (void).cxx_destruct;
 - (id)provideHubsComponentRegistry;
+- (id)providePersistentCounterWithIdentifier:(id)arg1 viewURI:(id)arg2;
 - (void)unload;
 - (void)load;
 - (void)configureWithServices:(id)arg1;

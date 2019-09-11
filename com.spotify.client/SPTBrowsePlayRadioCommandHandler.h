@@ -6,17 +6,17 @@
 
 #import <objc/NSObject.h>
 
-#import "EXP_HUBCommandHandler-Protocol.h"
+#import "HUBCommandHandler-Protocol.h"
 
-@protocol EXP_SPTHubInteractionLogger, SPTRadioManager;
+@protocol SPTHubInteractionLogger, SPTRadioManager;
 
-@interface SPTBrowsePlayRadioCommandHandler : NSObject <EXP_HUBCommandHandler>
+@interface SPTBrowsePlayRadioCommandHandler : NSObject <HUBCommandHandler>
 {
     id <SPTRadioManager> _radioManager;
-    id <EXP_SPTHubInteractionLogger> _interactionLogger;
+    id <SPTHubInteractionLogger> _interactionLogger;
 }
 
-@property(readonly, nonatomic) id <EXP_SPTHubInteractionLogger> interactionLogger; // @synthesize interactionLogger=_interactionLogger;
+@property(readonly, nonatomic) id <SPTHubInteractionLogger> interactionLogger; // @synthesize interactionLogger=_interactionLogger;
 @property(readonly, nonatomic) id <SPTRadioManager> radioManager; // @synthesize radioManager=_radioManager;
 - (void).cxx_destruct;
 - (void)handleCommand:(id)arg1 event:(id)arg2;

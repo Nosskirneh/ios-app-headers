@@ -6,15 +6,15 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTSearch2ContextDelegate-Protocol.h"
 #import "SPTSearch2ViewModelProvider-Protocol.h"
+#import "SPTSearchPlatformContextDelegate-Protocol.h"
 
 @class NSMutableArray, NSString;
-@protocol EXP_HUBViewModel, SPTSearch2ContextProvider, SPTSearch2ViewModelProviderDelegate;
+@protocol HUBViewModel, SPTSearch2ContextProvider, SPTSearch2ViewModelProviderDelegate;
 
-@interface SPTSearch2ViewModelProviderImplementation : NSObject <SPTSearch2ContextDelegate, SPTSearch2ViewModelProvider>
+@interface SPTSearch2ViewModelProviderImplementation : NSObject <SPTSearchPlatformContextDelegate, SPTSearch2ViewModelProvider>
 {
-    id <EXP_HUBViewModel> _viewModel;
+    id <HUBViewModel> _viewModel;
     id <SPTSearch2ViewModelProviderDelegate> _delegate;
     unsigned long long _state;
     id <SPTSearch2ContextProvider> _contextProvider;
@@ -25,7 +25,7 @@
 @property(readonly, nonatomic) id <SPTSearch2ContextProvider> contextProvider; // @synthesize contextProvider=_contextProvider;
 @property(nonatomic) unsigned long long state; // @synthesize state=_state;
 @property(nonatomic) __weak id <SPTSearch2ViewModelProviderDelegate> delegate; // @synthesize delegate=_delegate;
-@property(readonly, nonatomic) id <EXP_HUBViewModel> viewModel; // @synthesize viewModel=_viewModel;
+@property(readonly, nonatomic) id <HUBViewModel> viewModel; // @synthesize viewModel=_viewModel;
 - (void).cxx_destruct;
 - (void)updateState;
 - (void)removeExcessiveContexts;

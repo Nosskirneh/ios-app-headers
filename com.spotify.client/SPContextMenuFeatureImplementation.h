@@ -6,18 +6,16 @@
 
 #import <objc/NSObject.h>
 
-#import "SPContextMenuFeature-Protocol.h"
 #import "SPTService-Protocol.h"
 
 @class NSString, SPTAllocationContext;
-@protocol SPContextMenuActionsFactory, SPTContainerService, SPTContextMenuActionsProvider, SPTContextMenuOptionsFactory, SPTContextMenuPresenterFactory, SPTContributingArtistsService, SPTFreeTierService, SPTGLUEService, SPTHubFrameworkService, SPTNetworkService, SPTPlayerFeature, SPTScannablesService, SPTUIPresentationService, SPTURIDispatchService;
+@protocol SPContextMenuActionsFactory, SPTContainerService, SPTContextMenuActionsProvider, SPTContextMenuOptionsFactory, SPTContextMenuPresenterFactory, SPTContributingArtistsService, SPTFreeTierService, SPTGLUEService, SPTNetworkService, SPTPlayerFeature, SPTScannablesService, SPTUIPresentationService, SPTURIDispatchService;
 
-@interface SPContextMenuFeatureImplementation : NSObject <SPTService, SPContextMenuFeature>
+@interface SPContextMenuFeatureImplementation : NSObject <SPTService>
 {
     id <SPTNetworkService> _networkFeature;
     id <SPTContainerService> _containerService;
     id <SPTScannablesService> _scannablesService;
-    id <SPTHubFrameworkService> _hubFrameworkService;
     id <SPTUIPresentationService> _UIPresentationService;
     id <SPTContributingArtistsService> _contributingArtistService;
     id <SPTPlayerFeature> _playerFeature;
@@ -41,7 +39,6 @@
 @property(nonatomic) __weak id <SPTPlayerFeature> playerFeature; // @synthesize playerFeature=_playerFeature;
 @property(nonatomic) __weak id <SPTContributingArtistsService> contributingArtistService; // @synthesize contributingArtistService=_contributingArtistService;
 @property(nonatomic) __weak id <SPTUIPresentationService> UIPresentationService; // @synthesize UIPresentationService=_UIPresentationService;
-@property(nonatomic) __weak id <SPTHubFrameworkService> hubFrameworkService; // @synthesize hubFrameworkService=_hubFrameworkService;
 @property(nonatomic) __weak id <SPTScannablesService> scannablesService; // @synthesize scannablesService=_scannablesService;
 @property(nonatomic) __weak id <SPTContainerService> containerService; // @synthesize containerService=_containerService;
 @property(nonatomic) __weak id <SPTNetworkService> networkFeature; // @synthesize networkFeature=_networkFeature;

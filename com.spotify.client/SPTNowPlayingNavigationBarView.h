@@ -6,16 +6,16 @@
 
 #import <UIKit/UIView.h>
 
-@class SPTLayoutConstraintBuilder, SPTNowPlayingNavigationBarTitleView, SPTTheme;
+@class NSArray, SPTNowPlayingNavigationBarTitleView, SPTTheme;
 
 @interface SPTNowPlayingNavigationBarView : UIView
 {
     SPTNowPlayingNavigationBarTitleView *_titleView;
     SPTTheme *_theme;
-    SPTLayoutConstraintBuilder *_viewLayout;
+    NSArray *_layoutConstraints;
 }
 
-@property(retain, nonatomic) SPTLayoutConstraintBuilder *viewLayout; // @synthesize viewLayout=_viewLayout;
+@property(copy, nonatomic) NSArray *layoutConstraints; // @synthesize layoutConstraints=_layoutConstraints;
 @property(retain, nonatomic) SPTTheme *theme; // @synthesize theme=_theme;
 @property(retain, nonatomic) SPTNowPlayingNavigationBarTitleView *titleView; // @synthesize titleView=_titleView;
 - (void).cxx_destruct;

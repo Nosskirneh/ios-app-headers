@@ -8,26 +8,33 @@
 
 #import "SPTGaiaContextMenuAction-Protocol.h"
 
-@class NSString, SPTGaiaDevice;
-@protocol SPTGaiaContextMenuActionDelegate;
+@class NSString, SPTGaiaConnectDevice;
+@protocol SPTGaiaConnectManager, SPTGaiaContextMenuActionDelegate;
 
 @interface SPTGaiaContextMenuLogoutAction : NSObject <SPTGaiaContextMenuAction>
 {
     id <SPTGaiaContextMenuActionDelegate> _delegate;
-    SPTGaiaDevice *_device;
+    SPTGaiaConnectDevice *_connectDevice;
+    id <SPTGaiaConnectManager> _connectManager;
 }
 
 + (id)featureIdentifier;
 + (id)featureTitle;
-@property(retain, nonatomic) SPTGaiaDevice *device; // @synthesize device=_device;
+@property(readonly, nonatomic) id <SPTGaiaConnectManager> connectManager; // @synthesize connectManager=_connectManager;
+@property(retain, nonatomic) SPTGaiaConnectDevice *connectDevice; // @synthesize connectDevice=_connectDevice;
 @property(nonatomic) __weak id <SPTGaiaContextMenuActionDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
 @property(readonly, nonatomic) _Bool supportsAutomaticFiltering;
 - (id)accessoryView;
+- (void)logPerformAction;
+- (void)updateProgressView;
+- (void)logoutDevice;
 - (id)performAction;
+- (_Bool)isAvailableConnectDevice;
 @property(readonly, nonatomic) _Bool available;
 - (id)title;
 @property(readonly, nonatomic) NSString *identifier;
+- (id)initWithConnectManager:(id)arg1;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

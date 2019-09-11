@@ -9,8 +9,8 @@
 #import "SPTShareFeature-Protocol.h"
 #import "SPTShareScreenshotObserverManagerDelegate-Protocol.h"
 
-@class NSString, SPTAllocationContext, SPTDataLoaderFactory, SPTExternalDeeplinksFetcher, SPTSharePlaylistHelper, SPTSharePresenter, SPTShareScreenshotObserverManager, SPTShareTransition;
-@protocol SPContextMenuFeature, SPTBannerFeature, SPTContainerService, SPTContainerUIService, SPTFeatureFlaggingService, SPTNetworkService, SPTPlayer, SPTPlayerFeature, SPTPlaylistPlatformService, SPTSessionService, SPTShareDeeplinkHandler, SPTShareEntityDataFactory, SPTShareTestManager;
+@class NSString, SPTAllocationContext, SPTDataLoaderFactory, SPTSharePlaylistHelper, SPTSharePresenter, SPTShareScreenshotObserverManager, SPTShareTrackHelper, SPTShareTransition;
+@protocol SPContextMenuFeature, SPTBannerFeature, SPTContainerService, SPTContainerUIService, SPTCoreService, SPTFeatureFlaggingService, SPTNetworkService, SPTPlayer, SPTPlayerFeature, SPTPlaylistPlatformService, SPTSessionService, SPTShareDeeplinkHandler, SPTShareEntityDataFactory, SPTShareTestManager, SPTVideoFeature;
 
 @interface SPTShareFeatureImplementation : NSObject <SPTShareScreenshotObserverManagerDelegate, SPTShareFeature>
 {
@@ -23,13 +23,15 @@
     id <SPTPlayerFeature> _playerFeature;
     id <SPTPlaylistPlatformService> _playlistPlatformService;
     id <SPTFeatureFlaggingService> _featureFlagSignalService;
+    id <SPTVideoFeature> _videoFeature;
+    id <SPTCoreService> _coreService;
     SPTSharePlaylistHelper *_sharePlaylistHelper;
+    SPTShareTrackHelper *_shareTrackHelper;
     NSString *_logContext;
     id <SPTPlayer> _player;
     SPTShareScreenshotObserverManager *_screenshotObserverManager;
     SPTShareTransition *_shareTransition;
     SPTDataLoaderFactory *_dataloaderFactory;
-    SPTExternalDeeplinksFetcher *_externalDeeplinksFetcher;
     id <SPTShareDeeplinkHandler> _deeplinkHandler;
     id <SPTShareTestManager> _testManager;
     id <SPTShareEntityDataFactory> _shareEntityDataFactory;
@@ -41,13 +43,15 @@
 @property(retain, nonatomic) id <SPTShareEntityDataFactory> shareEntityDataFactory; // @synthesize shareEntityDataFactory=_shareEntityDataFactory;
 @property(retain, nonatomic) id <SPTShareTestManager> testManager; // @synthesize testManager=_testManager;
 @property(retain, nonatomic) id <SPTShareDeeplinkHandler> deeplinkHandler; // @synthesize deeplinkHandler=_deeplinkHandler;
-@property(retain, nonatomic) SPTExternalDeeplinksFetcher *externalDeeplinksFetcher; // @synthesize externalDeeplinksFetcher=_externalDeeplinksFetcher;
 @property(retain, nonatomic) SPTDataLoaderFactory *dataloaderFactory; // @synthesize dataloaderFactory=_dataloaderFactory;
 @property(retain, nonatomic) SPTShareTransition *shareTransition; // @synthesize shareTransition=_shareTransition;
 @property(retain, nonatomic) SPTShareScreenshotObserverManager *screenshotObserverManager; // @synthesize screenshotObserverManager=_screenshotObserverManager;
 @property(retain, nonatomic) id <SPTPlayer> player; // @synthesize player=_player;
 @property(retain, nonatomic) NSString *logContext; // @synthesize logContext=_logContext;
+@property(retain, nonatomic) SPTShareTrackHelper *shareTrackHelper; // @synthesize shareTrackHelper=_shareTrackHelper;
 @property(retain, nonatomic) SPTSharePlaylistHelper *sharePlaylistHelper; // @synthesize sharePlaylistHelper=_sharePlaylistHelper;
+@property(nonatomic) __weak id <SPTCoreService> coreService; // @synthesize coreService=_coreService;
+@property(nonatomic) __weak id <SPTVideoFeature> videoFeature; // @synthesize videoFeature=_videoFeature;
 @property(nonatomic) __weak id <SPTFeatureFlaggingService> featureFlagSignalService; // @synthesize featureFlagSignalService=_featureFlagSignalService;
 @property(nonatomic) __weak id <SPTPlaylistPlatformService> playlistPlatformService; // @synthesize playlistPlatformService=_playlistPlatformService;
 @property(nonatomic) __weak id <SPTPlayerFeature> playerFeature; // @synthesize playerFeature=_playerFeature;
@@ -58,16 +62,17 @@
 @property(nonatomic) __weak id <SPTContainerUIService> containerUIService; // @synthesize containerUIService=_containerUIService;
 @property(nonatomic) __weak id <SPTContainerService> containerService; // @synthesize containerService=_containerService;
 - (void).cxx_destruct;
+- (id)provideScreenshotLogger;
 - (id)provideShareLogger;
 - (id)provideShareHandlerFactory;
 - (void)presentShareViewController:(id)arg1;
+- (id)provideShareDragDelegateFactory;
 - (id)provideShareScreenshotObserverManager;
 - (void)shareActionButtonTappedInScreenshotShareBannerView:(id)arg1;
 - (id)provideShareScreenshotLogger;
 - (id)provideShareViewControllerForShareEntityData:(id)arg1;
 - (id)provideShareEntityDataFactory;
 - (id)provideTestManager;
-- (void)loadTheme;
 - (void)registerWithContextMenu;
 - (void)load;
 - (void)configureWithServices:(id)arg1;

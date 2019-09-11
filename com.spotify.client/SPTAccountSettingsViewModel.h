@@ -8,7 +8,7 @@
 
 #import "SPTAccountProductInformationObserver-Protocol.h"
 
-@class NSArray, NSString, SPTAccountPremiumInfoTableViewCell, SPTSettingsTableViewCell;
+@class NSArray, NSString, SPTAccountPremiumInfoTableViewCell, SPTAccountPrepaidHelper, SPTAccountSettingsCellFactory, SPTSettingsTableViewCell;
 @protocol SPTAccountProductInformationController, SPTAccountSettingsViewModelDelegate, SPTLinkDispatcher, SPTPageRegistry;
 
 @interface SPTAccountSettingsViewModel : NSObject <SPTAccountProductInformationObserver>
@@ -19,16 +19,22 @@
     id <SPTPageRegistry> _pageRegistry;
     id <SPTLinkDispatcher> _linkDispatcher;
     id <SPTAccountProductInformationController> _productInformationController;
+    SPTAccountPrepaidHelper *_prepaidHelper;
+    SPTAccountSettingsCellFactory *_cellFactory;
     SPTSettingsTableViewCell *_usernameCell;
     SPTSettingsTableViewCell *_subscriptionCell;
+    SPTSettingsTableViewCell *_daysLeftCell;
     SPTSettingsTableViewCell *_readMoreCell;
     SPTAccountPremiumInfoTableViewCell *_premiumInfoCell;
 }
 
 @property(retain, nonatomic) SPTAccountPremiumInfoTableViewCell *premiumInfoCell; // @synthesize premiumInfoCell=_premiumInfoCell;
 @property(retain, nonatomic) SPTSettingsTableViewCell *readMoreCell; // @synthesize readMoreCell=_readMoreCell;
+@property(retain, nonatomic) SPTSettingsTableViewCell *daysLeftCell; // @synthesize daysLeftCell=_daysLeftCell;
 @property(retain, nonatomic) SPTSettingsTableViewCell *subscriptionCell; // @synthesize subscriptionCell=_subscriptionCell;
 @property(retain, nonatomic) SPTSettingsTableViewCell *usernameCell; // @synthesize usernameCell=_usernameCell;
+@property(readonly, nonatomic) SPTAccountSettingsCellFactory *cellFactory; // @synthesize cellFactory=_cellFactory;
+@property(readonly, nonatomic) SPTAccountPrepaidHelper *prepaidHelper; // @synthesize prepaidHelper=_prepaidHelper;
 @property(readonly, nonatomic) id <SPTAccountProductInformationController> productInformationController; // @synthesize productInformationController=_productInformationController;
 @property(readonly, nonatomic) id <SPTLinkDispatcher> linkDispatcher; // @synthesize linkDispatcher=_linkDispatcher;
 @property(readonly, nonatomic) id <SPTPageRegistry> pageRegistry; // @synthesize pageRegistry=_pageRegistry;
@@ -39,14 +45,19 @@
 - (void)dealloc;
 - (void)currentProductDidChangeForProductInformationController:(id)arg1;
 - (void)availableProductDidChangeForProductInformationController:(id)arg1;
+- (id)daysLeftDetailText;
+- (id)subscriptionCellDetailText;
+- (id)userNameCellDetailText;
+- (_Bool)hasDaysLeftCell;
+- (_Bool)hasPremiumInfoCells;
 - (void)showInterstitialView;
 - (double)heightForRow:(long long)arg1 originalHeight:(double)arg2;
 - (void)didSelectRow:(long long)arg1;
 - (void)removeObserver;
 - (void)addObserver;
 - (void)updateCells;
-- (void)setupStrings;
-- (id)initWithProductInformationController:(id)arg1 pageRegistry:(id)arg2 linkDispatcher:(id)arg3;
+- (void)setupCells;
+- (id)initWithProductInformationController:(id)arg1 pageRegistry:(id)arg2 linkDispatcher:(id)arg3 prepaidHelper:(id)arg4 cellFactory:(id)arg5;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

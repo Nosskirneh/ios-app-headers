@@ -20,6 +20,17 @@
 @property(retain, nonatomic) id <SPTFeatureFlagBuilder> underlyingFeatureFlagBuilder; // @synthesize underlyingFeatureFlagBuilder=_underlyingFeatureFlagBuilder;
 @property(nonatomic) _Bool hasBeenModified; // @synthesize hasBeenModified=_hasBeenModified;
 - (void).cxx_destruct;
+- (id)swift_withDefaultState:(long long)arg1;
+- (id)swift_withDependencies:(id)arg1;
+- (id)swift_withBaseSignal:(id)arg1;
+- (id)swift_withSettingsPageTitle:(id)arg1 settingsItemTitle:(id)arg2 settingsItemDescription:(id)arg3 requiresRestart:(_Bool)arg4;
+- (id)swift_withLocalSettingsKey:(id)arg1;
+- (id)swift_withProductStateKey:(id)arg1 signalMapper:(CDUnknownBlockType)arg2;
+- (id)swift_withProductStateKey:(id)arg1 enabledValue:(id)arg2 disabledValue:(id)arg3;
+- (id)swift_withProductStateKey:(id)arg1;
+- (id)swift_withAbbaKey:(id)arg1 signalMapper:(CDUnknownBlockType)arg2;
+- (id)swift_withAbbaKey:(id)arg1 enabledValue:(id)arg2 disabledValue:(id)arg3;
+- (id)swift_withAbbaKey:(id)arg1;
 @property(retain, nonatomic) NSArray *dependencies;
 @property(retain, nonatomic) id <SPTFeatureFlagSignal> baseSignal;
 @property(nonatomic) long long defaultState;

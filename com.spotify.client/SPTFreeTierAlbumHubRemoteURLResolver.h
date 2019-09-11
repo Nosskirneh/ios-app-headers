@@ -6,19 +6,27 @@
 
 #import <objc/NSObject.h>
 
-#import "EXP_SPTHubRemoteContentOperationURLResolver-Protocol.h"
+#import "SPTHubRemoteContentOperationURLResolver-Protocol.h"
 
 @class NSString;
+@protocol SPTOnDemandTrialService, SPTProductState;
 
-@interface SPTFreeTierAlbumHubRemoteURLResolver : NSObject <EXP_SPTHubRemoteContentOperationURLResolver>
+@interface SPTFreeTierAlbumHubRemoteURLResolver : NSObject <SPTHubRemoteContentOperationURLResolver>
 {
     NSString *_albumIdentifier;
+    id <SPTProductState> _productState;
+    id <SPTOnDemandTrialService> _onDemandTrialService;
 }
 
+@property(readonly, nonatomic) __weak id <SPTOnDemandTrialService> onDemandTrialService; // @synthesize onDemandTrialService=_onDemandTrialService;
+@property(readonly, nonatomic) id <SPTProductState> productState; // @synthesize productState=_productState;
 @property(readonly, copy, nonatomic) NSString *albumIdentifier; // @synthesize albumIdentifier=_albumIdentifier;
 - (void).cxx_destruct;
+- (_Bool)isOnDemandTrialEnabled;
+- (_Bool)isVideoFeatureEnabled;
+- (_Bool)isShowsCollectionFeatureEnabled;
 - (id)resolveContentURL;
-- (id)initWithAlbumIdentifier:(id)arg1;
+- (id)initWithAlbumIdentifier:(id)arg1 productState:(id)arg2 onDemandTrialService:(id)arg3;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

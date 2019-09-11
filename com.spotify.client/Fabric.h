@@ -6,7 +6,7 @@
 
 #import <objc/NSObject.h>
 
-@class FABApplicationIdentiferModel, FABSettingsOnboardingManager, NSArray, NSDictionary, NSString;
+@class FABApplicationIdentifierModel, FABSettingsOnboardingManager, NSArray, NSDictionary, NSString;
 
 @interface Fabric : NSObject
 {
@@ -19,13 +19,18 @@
     NSArray *_kitClasses;
     NSDictionary *_fabricConfig;
     FABSettingsOnboardingManager *_settingsAndOnboardingManager;
-    FABApplicationIdentiferModel *_applicationIdentifierModel;
+    FABApplicationIdentifierModel *_applicationIdentifierModel;
     unsigned long long _installationMode;
+    NSString *_firebaseGoogleAppId;
 }
 
++ (void)autoInitialize:(id)arg1;
 + (void)load;
 + (id)configurationDictionaryForKitClass:(Class)arg1;
++ (_Bool)isCrashlyticsCollectionEnabled;
++ (void)setCrashlyticsCollectionEnabled:(_Bool)arg1;
 + (void)initializeKit:(Class)arg1;
++ (void)disableUninitializedKitMessagingForKit:(Class)arg1;
 + (id)kitClassesByAddingAdMobIfFound:(id)arg1;
 + (id)kitClassesByEnsuringAppseeIsFirst:(id)arg1;
 + (id)kitClassesByAddingAnswersIfFound:(id)arg1;
@@ -34,8 +39,9 @@
 + (id)convertToKitClassesIfNeeded:(id)arg1;
 + (id)with:(id)arg1;
 + (id)sharedSDK;
+@property(copy, nonatomic) NSString *firebaseGoogleAppId; // @synthesize firebaseGoogleAppId=_firebaseGoogleAppId;
 @property(nonatomic) unsigned long long installationMode; // @synthesize installationMode=_installationMode;
-@property(readonly, nonatomic) FABApplicationIdentiferModel *applicationIdentifierModel; // @synthesize applicationIdentifierModel=_applicationIdentifierModel;
+@property(readonly, nonatomic) FABApplicationIdentifierModel *applicationIdentifierModel; // @synthesize applicationIdentifierModel=_applicationIdentifierModel;
 @property(retain, nonatomic) FABSettingsOnboardingManager *settingsAndOnboardingManager; // @synthesize settingsAndOnboardingManager=_settingsAndOnboardingManager;
 @property(copy, nonatomic) NSDictionary *fabricConfig; // @synthesize fabricConfig=_fabricConfig;
 @property(copy, nonatomic) NSArray *kitClasses; // @synthesize kitClasses=_kitClasses;
@@ -47,11 +53,13 @@
 @property(nonatomic) _Bool debug; // @synthesize debug=_debug;
 - (void).cxx_destruct;
 - (void)regenerateInstallIDIfNeededWithManager:(Class)arg1;
+- (_Bool)shouldAutoInitialize:(id)arg1;
 - (_Bool)firebaseMode;
 @property(readonly, nonatomic) NSString *instanceIdentifier;
 @property(readonly, nonatomic) NSDictionary *settings;
 - (id)configurationDictionaryForKit:(id)arg1;
 - (id)validFabricConfigFromInfoPlist:(id)arg1;
+- (_Bool)setFirebaseGoogleAppIdFromUserInfo:(id)arg1;
 - (id)generateInstallationUUID;
 - (id)readInstallationUUID;
 - (id)kitVersionsByKitBundleIdentifier;

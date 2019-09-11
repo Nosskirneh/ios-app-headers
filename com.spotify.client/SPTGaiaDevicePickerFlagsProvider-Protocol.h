@@ -6,11 +6,7 @@
 
 #import "NSObject-Protocol.h"
 
-@class NSString;
-
 @protocol SPTGaiaDevicePickerFlagsProvider <NSObject>
 - (_Bool)freeTierEducationPickerDesignEnabled;
-- (NSString *)sortingMethodSettingsKey;
-- (long long)sortingMethod;
 @end
 

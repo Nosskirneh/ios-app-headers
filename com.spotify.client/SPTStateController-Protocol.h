@@ -7,11 +7,9 @@
 #import "NSObject-Protocol.h"
 
 @class NSString;
-@protocol SPObjectRepresentation;
 
 @protocol SPTStateController <NSObject>
 + (NSString *)saveStateLockPath;
-@property(nonatomic) __weak id <SPObjectRepresentation> playbackRepresentation;
 - (void)abortLoading:(id)arg1;
 - (void)clearInvalidStoredState;
 - (void)clearState;

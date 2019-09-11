@@ -10,8 +10,6 @@
 @protocol SPTPageCreationContext, SPTPodcastRecommendationsViewController;
 
 @protocol SPTPodcastRecommendationsViewProvider <NSObject>
-- (UIViewController<SPTPodcastRecommendationsViewController> *)similarEpisodesViewForEpisodeURL:(NSURL *)arg1 withContext:(id <SPTPageCreationContext>)arg2;
-- (UIViewController<SPTPodcastRecommendationsViewController> *)nextEpisodeViewForEpisodeURL:(NSURL *)arg1 withContext:(id <SPTPageCreationContext>)arg2;
 - (UIViewController<SPTPodcastRecommendationsViewController> *)recommendationsForEpisodeURL:(NSURL *)arg1 withContext:(id <SPTPageCreationContext>)arg2;
 @end
 

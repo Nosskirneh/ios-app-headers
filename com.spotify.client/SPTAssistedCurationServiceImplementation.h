@@ -17,13 +17,13 @@
     id <SPTCoreService> _coreService;
     id <CosmosFeature> _cosmosFeature;
     id <SPTCosmosDataLoaderService> _cosmosDataLoaderService;
-    id <SPTPlaylistPlatformService> _playlistPlatform;
+    id <SPTPlaylistPlatformService> _playlistPlatformService;
     id <SPTNetworkService> _networkService;
 }
 
 + (id)serviceIdentifier;
 @property(nonatomic) __weak id <SPTNetworkService> networkService; // @synthesize networkService=_networkService;
-@property(nonatomic) __weak id <SPTPlaylistPlatformService> playlistPlatform; // @synthesize playlistPlatform=_playlistPlatform;
+@property(nonatomic) __weak id <SPTPlaylistPlatformService> playlistPlatformService; // @synthesize playlistPlatformService=_playlistPlatformService;
 @property(nonatomic) __weak id <SPTCosmosDataLoaderService> cosmosDataLoaderService; // @synthesize cosmosDataLoaderService=_cosmosDataLoaderService;
 @property(nonatomic) __weak id <CosmosFeature> cosmosFeature; // @synthesize cosmosFeature=_cosmosFeature;
 @property(nonatomic) __weak id <SPTCoreService> coreService; // @synthesize coreService=_coreService;

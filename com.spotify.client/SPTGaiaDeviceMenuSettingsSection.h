@@ -7,24 +7,22 @@
 #import "SettingsSection.h"
 
 @class SPTSettingsButtonTableViewCell;
-@protocol SPTGaiaDevicePickerDeviceSpecificConfigurationProvider, SPTGaiaManager;
+@protocol SPTGaiaDevicePickerPresenter;
 
 @interface SPTGaiaDeviceMenuSettingsSection : SettingsSection
 {
     SPTSettingsButtonTableViewCell *_buttonCell;
-    id <SPTGaiaManager> _gaiaManager;
-    id <SPTGaiaDevicePickerDeviceSpecificConfigurationProvider> _deviceConfiguration;
+    id <SPTGaiaDevicePickerPresenter> _devicePickerPresenter;
 }
 
-@property(readonly, nonatomic) id <SPTGaiaDevicePickerDeviceSpecificConfigurationProvider> deviceConfiguration; // @synthesize deviceConfiguration=_deviceConfiguration;
-@property(retain, nonatomic) id <SPTGaiaManager> gaiaManager; // @synthesize gaiaManager=_gaiaManager;
+@property(readonly, nonatomic) id <SPTGaiaDevicePickerPresenter> devicePickerPresenter; // @synthesize devicePickerPresenter=_devicePickerPresenter;
 @property(retain, nonatomic) SPTSettingsButtonTableViewCell *buttonCell; // @synthesize buttonCell=_buttonCell;
 - (void).cxx_destruct;
 - (void)didSelectRow:(long long)arg1;
 - (id)cellForRow:(long long)arg1;
 - (long long)numberOfRows;
 - (void)setupButtonCell;
-- (id)initWithSettingsViewController:(id)arg1 gaiaManager:(id)arg2 deviceConfiguration:(id)arg3;
+- (id)initWithSettingsViewController:(id)arg1 devicePickerPresenter:(id)arg2;
 
 @end
 

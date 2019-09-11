@@ -20,9 +20,9 @@
 @property(nonatomic) long long numberOfTimesFailedCalled; // @synthesize numberOfTimesFailedCalled=_numberOfTimesFailedCalled;
 @property(nonatomic) long long numberOfTimesCompletedCalled; // @synthesize numberOfTimesCompletedCalled=_numberOfTimesCompletedCalled;
 @property(nonatomic) long long numberOfTimesStartedCalled; // @synthesize numberOfTimesStartedCalled=_numberOfTimesStartedCalled;
-- (void)logLoadingFailedForImageWithURI:(id)arg1;
-- (void)logLoadingCompletedForImageWithURI:(id)arg1;
-- (void)logLoadingStartedForImageWithURI:(id)arg1;
+- (void)imageLoader:(id)arg1 didFailLoadingImageWithURI:(id)arg2;
+- (void)imageLoader:(id)arg1 didFinishLoadingImageWithURI:(id)arg2;
+- (void)imageLoader:(id)arg1 didBeginLoadingImageWithURI:(id)arg2;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

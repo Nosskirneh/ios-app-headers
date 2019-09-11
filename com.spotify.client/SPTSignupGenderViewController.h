@@ -13,7 +13,7 @@
 #import "SPTSignupPickerContainerViewDelegate-Protocol.h"
 #import "UITextFieldDelegate-Protocol.h"
 
-@class NSError, NSString, NSURL, SPTSignupAnimatedTransitioning, SPTSignupGenderPickerDataSource, SPTSignupGenderViewModel, SPTSignupSingleInputFieldView, UIPickerView;
+@class NSError, NSString, NSURL, SPTLoginTheme, SPTSignupAnimatedTransitioning, SPTSignupGenderPickerDataSource, SPTSignupGenderViewModel, SPTSignupSingleInputFieldView, UIPickerView;
 @protocol SPTPageContainer;
 
 @interface SPTSignupGenderViewController : UIViewController <SPTNavigationControllerNavigationBarState, UITextFieldDelegate, SPTSignupGenderViewModelDelegate, SPTSignupPickerContainerViewDelegate, SPTPageController, SPTLoginViewControllerProtocol>
@@ -24,8 +24,10 @@
     SPTSignupGenderViewModel *_viewModel;
     SPTSignupGenderPickerDataSource *_pickerDataSource;
     SPTSignupAnimatedTransitioning *_animatedTransitioning;
+    SPTLoginTheme *_theme;
 }
 
+@property(retain, nonatomic) SPTLoginTheme *theme; // @synthesize theme=_theme;
 @property(retain, nonatomic) SPTSignupAnimatedTransitioning *animatedTransitioning; // @synthesize animatedTransitioning=_animatedTransitioning;
 @property(retain, nonatomic) SPTSignupGenderPickerDataSource *pickerDataSource; // @synthesize pickerDataSource=_pickerDataSource;
 @property(retain, nonatomic) SPTSignupGenderViewModel *viewModel; // @synthesize viewModel=_viewModel;
@@ -41,7 +43,7 @@
 @property(readonly, nonatomic, getter=spt_pageIdentifier) NSString *pageIdentifier;
 @property(readonly, nonatomic, getter=spt_pageURI) NSURL *pageURI;
 - (void)textFieldDidBeginEditing:(id)arg1;
-- (void)userDidTouchUpInsideNextButton:(id)arg1;
+- (void)nextButtonTapped:(id)arg1;
 - (id)createGenderPickerView;
 - (void)updateViewModelFromInitialSelection;
 - (void)updateViewFromViewModelState;
@@ -51,7 +53,7 @@
 - (void)viewWillAppear:(_Bool)arg1;
 - (void)viewDidLoad;
 - (void)loadView;
-- (id)initWithViewModel:(id)arg1;
+- (id)initWithTheme:(id)arg1 viewModel:(id)arg2;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

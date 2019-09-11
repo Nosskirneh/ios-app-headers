@@ -7,6 +7,9 @@
 #import "NSObject-Protocol.h"
 
 @protocol SPTShareTestManager <NSObject>
+@property(readonly, nonatomic) _Bool isDragDropSharingEnabled;
+@property(readonly, nonatomic) _Bool isTikTokSharingEnabled;
+@property(readonly, nonatomic) _Bool isFacebookStoriesAllAssetsEnabled;
 @property(readonly, nonatomic) _Bool isFacebookStoriesPodcastEnabled;
 @property(readonly, nonatomic) _Bool isFacebookStoriesEnabled;
 @property(readonly, nonatomic) _Bool isInstagramStoriesPodcastEnabled;
@@ -19,8 +22,6 @@
 @property(readonly, nonatomic) _Bool isScreenshotBannerTypeBlueCloseEnabled;
 @property(readonly, nonatomic) _Bool isScreenshotBannerTypeControl;
 @property(readonly, nonatomic) _Bool isBrowselinkIdEnabled;
-@property(readonly, nonatomic) _Bool isSnapchatPlaylistEnabled;
-@property(readonly, nonatomic) _Bool isSnapchatDisclaimerEnabled;
 @property(readonly, nonatomic) _Bool isSnapchatEnabled;
 @property(readonly, nonatomic) _Bool isScreenshotsEnabled;
 @end

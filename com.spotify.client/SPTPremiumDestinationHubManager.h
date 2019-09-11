@@ -6,31 +6,31 @@
 
 #import <objc/NSObject.h>
 
-@class EXP_HUBComponentDefaults, SPTPremiumDestinationHubManagerConfiguration;
-@protocol EXP_HUBIconImageResolver, EXP_SPTHubCommandHandlerFactory;
+@class HUBComponentDefaults, SPTPremiumDestinationHubManagerConfiguration;
+@protocol HUBIconImageResolver, SPTHubCommandHandlerFactory;
 
 @interface SPTPremiumDestinationHubManager : NSObject
 {
-    EXP_HUBComponentDefaults *_componentDefaults;
-    id <EXP_HUBIconImageResolver> _iconImageResolver;
-    id <EXP_SPTHubCommandHandlerFactory> _commandHandlerFactory;
+    HUBComponentDefaults *_componentDefaults;
+    id <HUBIconImageResolver> _iconImageResolver;
+    id <SPTHubCommandHandlerFactory> _commandHandlerFactory;
     SPTPremiumDestinationHubManagerConfiguration *_configuration;
 }
 
-+ (id)provideLocalPremiumDestinationHubsResponseURL;
 @property(retain, nonatomic) SPTPremiumDestinationHubManagerConfiguration *configuration; // @synthesize configuration=_configuration;
-@property(readonly, nonatomic) id <EXP_SPTHubCommandHandlerFactory> commandHandlerFactory; // @synthesize commandHandlerFactory=_commandHandlerFactory;
-@property(readonly, nonatomic) id <EXP_HUBIconImageResolver> iconImageResolver; // @synthesize iconImageResolver=_iconImageResolver;
-@property(readonly, nonatomic) EXP_HUBComponentDefaults *componentDefaults; // @synthesize componentDefaults=_componentDefaults;
+@property(readonly, nonatomic) id <SPTHubCommandHandlerFactory> commandHandlerFactory; // @synthesize commandHandlerFactory=_commandHandlerFactory;
+@property(readonly, nonatomic) id <HUBIconImageResolver> iconImageResolver; // @synthesize iconImageResolver=_iconImageResolver;
+@property(readonly, nonatomic) HUBComponentDefaults *componentDefaults; // @synthesize componentDefaults=_componentDefaults;
 - (void).cxx_destruct;
+- (id)provideViewControllerForURL:(id)arg1 referrerIdentifier:(id)arg2 viewModelProvider:(id)arg3 reloadSignalSource:(id)arg4;
+- (id)createCommandDispatcherForURL:(id)arg1 referrerIdentifier:(id)arg2 interactionLogger:(id)arg3 reloadSignalSource:(id)arg4;
+- (id)createViewModelProviderWithContentOperations:(id)arg1;
+- (id)createRemoteContentOperationsWithContentURLResolver:(id)arg1 reloadSignalSource:(id)arg2;
+- (id)createLocalContentOperations;
 - (id)providePremiumDestinationHubsRemoteURLResolver;
 - (id)providePremiumDestinationComponentLayoutManager;
+- (id)provideLocalJSONPreviewViewControllerForURL:(id)arg1 referrerIdentifier:(id)arg2;
 - (id)provideViewControllerForURL:(id)arg1 referrerIdentifier:(id)arg2;
-- (id)createCommandDispatcherForURL:(id)arg1 referrerIdentifier:(id)arg2 interactionLogger:(id)arg3;
-- (id)createViewModelProvider;
-- (id)createRemoteContentOperations;
-- (id)createLocalContentOperations;
-- (id)createContentOperations;
 - (id)initWithHubManagerConfiguration:(id)arg1;
 
 @end

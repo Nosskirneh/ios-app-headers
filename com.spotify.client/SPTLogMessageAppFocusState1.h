@@ -16,7 +16,7 @@
 
 + (id)messageWithState:(id)arg1 timestamp:(long long)arg2;
 @property(nonatomic) long long timestampValue; // @synthesize timestampValue=_timestampValue;
-@property(retain, nonatomic) NSString *stateValue; // @synthesize stateValue=_stateValue;
+@property(copy, nonatomic) NSString *stateValue; // @synthesize stateValue=_stateValue;
 - (void).cxx_destruct;
 - (_Bool)isEqual:(id)arg1;
 - (unsigned long long)hash;

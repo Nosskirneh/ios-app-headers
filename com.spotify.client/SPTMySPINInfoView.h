@@ -8,7 +8,7 @@
 
 #import "SPTThemableView-Protocol.h"
 
-@class GLUEButton, NSString, SPTLayoutConstraintBuilder, UIImageView, UILabel;
+@class GLUEButton, NSArray, NSString, UIImageView, UILabel;
 @protocol GLUETheme, SPTThemableViewLayoutDelegate;
 
 @interface SPTMySPINInfoView : UIView <SPTThemableView>
@@ -18,12 +18,12 @@
     UILabel *_titleLabel;
     UILabel *_detailedDescriptionLabel;
     GLUEButton *_actionButton;
-    SPTLayoutConstraintBuilder *_layout;
+    NSArray *_layoutConstraints;
     id <GLUETheme> _glueTheme;
 }
 
 @property(readonly, nonatomic) __weak id <GLUETheme> glueTheme; // @synthesize glueTheme=_glueTheme;
-@property(retain, nonatomic) SPTLayoutConstraintBuilder *layout; // @synthesize layout=_layout;
+@property(copy, nonatomic) NSArray *layoutConstraints; // @synthesize layoutConstraints=_layoutConstraints;
 @property(readonly, nonatomic) GLUEButton *actionButton; // @synthesize actionButton=_actionButton;
 @property(readonly, nonatomic) UILabel *detailedDescriptionLabel; // @synthesize detailedDescriptionLabel=_detailedDescriptionLabel;
 @property(readonly, nonatomic) UILabel *titleLabel; // @synthesize titleLabel=_titleLabel;

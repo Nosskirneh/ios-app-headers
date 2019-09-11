@@ -9,22 +9,21 @@
 #import "HUBComponentFallbackHandler-Protocol.h"
 
 @class NSDictionary, NSString;
-@protocol HUBComponentFactory;
 
 @interface HUGSComponentFallbackHandler : NSObject <HUBComponentFallbackHandler>
 {
     NSDictionary *_fallbackComponentNames;
-    id <HUBComponentFactory> _componentFactory;
+    NSDictionary *_fallbackComponents;
 }
 
-@property(readonly, nonatomic) id <HUBComponentFactory> componentFactory; // @synthesize componentFactory=_componentFactory;
+@property(readonly, copy, nonatomic) NSDictionary *fallbackComponents; // @synthesize fallbackComponents=_fallbackComponents;
 - (void).cxx_destruct;
-@property(readonly, nonatomic) NSDictionary *fallbackComponentNames; // @synthesize fallbackComponentNames=_fallbackComponentNames;
-- (id)createFallbackComponentForCategory:(id)arg1;
+@property(readonly, copy, nonatomic) NSDictionary *fallbackComponentNames; // @synthesize fallbackComponentNames=_fallbackComponentNames;
+- (id)fallbackComponentForCategory:(id)arg1;
 @property(readonly, copy, nonatomic) NSString *defaultComponentCategory;
 @property(readonly, copy, nonatomic) NSString *defaultComponentName;
 @property(readonly, copy, nonatomic) NSString *defaultComponentNamespace;
-- (id)initWithComponentFactory:(id)arg1;
+- (id)initWithFallbackComponents:(id)arg1;
 
 @end
 

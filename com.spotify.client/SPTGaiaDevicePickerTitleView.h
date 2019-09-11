@@ -8,21 +8,19 @@
 
 #import "SPTGaiaContentOffsetObserver-Protocol.h"
 
-@class NSString, SPTLayoutConstraintBuilder, SPTTheme, UILabel;
+@class NSString, SPTTheme, UILabel;
 
 @interface SPTGaiaDevicePickerTitleView : UIView <SPTGaiaContentOffsetObserver>
 {
     NSString *_title;
     SPTTheme *_theme;
     UILabel *_titleLabel;
-    SPTLayoutConstraintBuilder *_titleLayout;
     double _thresholdOffset;
     double _offsetChange;
 }
 
 @property(nonatomic) double offsetChange; // @synthesize offsetChange=_offsetChange;
 @property(nonatomic) double thresholdOffset; // @synthesize thresholdOffset=_thresholdOffset;
-@property(retain, nonatomic) SPTLayoutConstraintBuilder *titleLayout; // @synthesize titleLayout=_titleLayout;
 @property(retain, nonatomic) UILabel *titleLabel; // @synthesize titleLabel=_titleLabel;
 @property(retain, nonatomic) SPTTheme *theme; // @synthesize theme=_theme;
 @property(copy, nonatomic) NSString *title; // @synthesize title=_title;

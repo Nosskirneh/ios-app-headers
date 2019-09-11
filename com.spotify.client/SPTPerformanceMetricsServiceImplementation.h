@@ -9,8 +9,8 @@
 #import "SPTNavigationManagerDelegate-Protocol.h"
 #import "SPTPerformanceMetricsService-Protocol.h"
 
-@class NSString, SPTAllocationContext, SPTPerformanceMetricsTransports, SPTPerformanceMetricsViewLoggerFactoryImplementation, SPTStartupTracer;
-@protocol CosmosFeature, SPTContainerService, SPTNetworkService, SPTResolver;
+@class NSString, SPTAllocationContext, SPTPerformanceMetricsViewLoggerFactoryImplementation, SPTStartupTracer;
+@protocol CosmosFeature, SPTContainerService, SPTNetworkService, SPTPerformanceKitUUIDProvider, SPTResolver, SPTViewLoggerConnectionTypeProvider;
 
 @interface SPTPerformanceMetricsServiceImplementation : NSObject <SPTNavigationManagerDelegate, SPTPerformanceMetricsService>
 {
@@ -19,13 +19,15 @@
     id <SPTNetworkService> _networkService;
     SPTStartupTracer *_startupTracer;
     id <SPTResolver> _resolver;
-    SPTPerformanceMetricsTransports *_transports;
+    id <SPTViewLoggerConnectionTypeProvider> _connectionTypeProvider;
+    id <SPTPerformanceKitUUIDProvider> _uuidProvider;
     SPTPerformanceMetricsViewLoggerFactoryImplementation *_viewLoggerFactory;
 }
 
 + (id)serviceIdentifier;
 @property(retain, nonatomic) SPTPerformanceMetricsViewLoggerFactoryImplementation *viewLoggerFactory; // @synthesize viewLoggerFactory=_viewLoggerFactory;
-@property(retain, nonatomic) SPTPerformanceMetricsTransports *transports; // @synthesize transports=_transports;
+@property(retain, nonatomic) id <SPTPerformanceKitUUIDProvider> uuidProvider; // @synthesize uuidProvider=_uuidProvider;
+@property(retain, nonatomic) id <SPTViewLoggerConnectionTypeProvider> connectionTypeProvider; // @synthesize connectionTypeProvider=_connectionTypeProvider;
 @property(retain, nonatomic) id <SPTResolver> resolver; // @synthesize resolver=_resolver;
 @property(retain, nonatomic) SPTStartupTracer *startupTracer; // @synthesize startupTracer=_startupTracer;
 @property(nonatomic) __weak id <SPTNetworkService> networkService; // @synthesize networkService=_networkService;
@@ -40,7 +42,6 @@
 - (void)unload;
 - (void)load;
 - (id)provideViewLoggerFactory;
-- (id)provideTransportRegistry;
 - (id)provideResolver;
 - (void)configureWithServices:(id)arg1;
 

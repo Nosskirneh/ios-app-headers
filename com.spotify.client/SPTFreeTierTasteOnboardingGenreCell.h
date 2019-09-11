@@ -8,17 +8,17 @@
 
 #import "GLUEStyleable-Protocol.h"
 
-@class GLUEImageView, GLUELabel, NSDictionary, NSString;
+@class GLUEImageView, GLUELabel, NSArray, NSString;
 
 @interface SPTFreeTierTasteOnboardingGenreCell : UICollectionViewCell <GLUEStyleable>
 {
     _Bool _newlyCreated;
     GLUEImageView *_imageView;
     GLUELabel *_textLabel;
-    NSDictionary *_textLabelEdgeConstraints;
+    NSArray *_textLabelEdgeConstraints;
 }
 
-@property(copy, nonatomic) NSDictionary *textLabelEdgeConstraints; // @synthesize textLabelEdgeConstraints=_textLabelEdgeConstraints;
+@property(copy, nonatomic) NSArray *textLabelEdgeConstraints; // @synthesize textLabelEdgeConstraints=_textLabelEdgeConstraints;
 @property(readonly, nonatomic) GLUELabel *textLabel; // @synthesize textLabel=_textLabel;
 @property(readonly, nonatomic) GLUEImageView *imageView; // @synthesize imageView=_imageView;
 @property(nonatomic, getter=isNewlyCreated) _Bool newlyCreated; // @synthesize newlyCreated=_newlyCreated;

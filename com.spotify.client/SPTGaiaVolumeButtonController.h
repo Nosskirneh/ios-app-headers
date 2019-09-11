@@ -6,8 +6,8 @@
 
 #import <objc/NSObject.h>
 
-@class AVAudioSession, MPMusicPlayerController, MPVolumeView, NSArray, UIApplication;
-@protocol SPTGaiaVolumeButtonControllerDelegate;
+@class AVAudioSession, MPVolumeView, NSArray, UIApplication;
+@protocol SPTGaiaSystemVolumeManager, SPTGaiaVolumeButtonControllerDelegate;
 
 @interface SPTGaiaVolumeButtonController : NSObject
 {
@@ -18,29 +18,31 @@
     float _initialVolume;
     float _resetVolume;
     id <SPTGaiaVolumeButtonControllerDelegate> _delegate;
-    NSArray *_stealingWithOutputRoutes;
     UIApplication *_application;
     AVAudioSession *_audioSession;
-    MPMusicPlayerController *_applicationMusicPlayer;
+    id <SPTGaiaSystemVolumeManager> _systemVolumeManager;
+    NSArray *_stealingWithOutputRoutes;
     MPVolumeView *_volumeView;
 }
 
+@property(nonatomic) float resetVolume; // @synthesize resetVolume=_resetVolume;
+@property(nonatomic) float initialVolume; // @synthesize initialVolume=_initialVolume;
 @property(retain, nonatomic) MPVolumeView *volumeView; // @synthesize volumeView=_volumeView;
-@property(retain, nonatomic) MPMusicPlayerController *applicationMusicPlayer; // @synthesize applicationMusicPlayer=_applicationMusicPlayer;
-@property(retain, nonatomic) AVAudioSession *audioSession; // @synthesize audioSession=_audioSession;
-@property(retain, nonatomic) UIApplication *application; // @synthesize application=_application;
 @property(nonatomic, getter=isObservingOutputVolume) _Bool observingOutputVolume; // @synthesize observingOutputVolume=_observingOutputVolume;
 @property(nonatomic) _Bool stealingInterruptedBySecondaryAudio; // @synthesize stealingInterruptedBySecondaryAudio=_stealingInterruptedBySecondaryAudio;
 @property(copy, nonatomic) NSArray *stealingWithOutputRoutes; // @synthesize stealingWithOutputRoutes=_stealingWithOutputRoutes;
-@property(nonatomic) float resetVolume; // @synthesize resetVolume=_resetVolume;
-@property(nonatomic) float initialVolume; // @synthesize initialVolume=_initialVolume;
+@property(retain, nonatomic) id <SPTGaiaSystemVolumeManager> systemVolumeManager; // @synthesize systemVolumeManager=_systemVolumeManager;
+@property(retain, nonatomic) AVAudioSession *audioSession; // @synthesize audioSession=_audioSession;
+@property(retain, nonatomic) UIApplication *application; // @synthesize application=_application;
 @property(nonatomic) __weak id <SPTGaiaVolumeButtonControllerDelegate> delegate; // @synthesize delegate=_delegate;
 @property(nonatomic) _Bool shouldMissTheNextVolumeEvent; // @synthesize shouldMissTheNextVolumeEvent=_shouldMissTheNextVolumeEvent;
 @property(nonatomic, getter=isStealingVolume) _Bool stealingVolume; // @synthesize stealingVolume=_stealingVolume;
 - (void).cxx_destruct;
 - (_Bool)hasCurrentOutputRouteChanged;
 - (void)tryToStealVolumeAgain;
+- (void)setSystemVolumeAndSyncResetVolume:(float)arg1;
 - (void)outputVolumeChanged;
+- (void)setDeviceVolumeIfDifferent:(float)arg1;
 - (void)stopStealingVolumeButtons;
 - (void)continueStealingVolumeButtonsOperationWithCompletion:(CDUnknownBlockType)arg1;
 - (void)startStealingVolumeButtonsWithCompletion:(CDUnknownBlockType)arg1;
@@ -48,7 +50,7 @@
 - (void)removeVolumeDependencies;
 - (void)setupVolumeDependencies;
 - (void)dealloc;
-- (id)initWithApplication:(id)arg1 audioSession:(id)arg2 applicationMusicPlayer:(id)arg3;
+- (id)initWithApplication:(id)arg1 audioSession:(id)arg2 systemVolumeManager:(id)arg3;
 
 @end
 

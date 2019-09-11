@@ -6,11 +6,12 @@
 
 #import <objc/NSObject.h>
 
-@class NSDictionary, NSNotificationCenter, NSUserDefaults, UIApplication, UNUserNotificationCenter;
+@class NSDictionary, NSNotificationCenter, NSUserDefaults, SPTGaiaConnectDevice, SPTGaiaHomeDeviceLogger, UIApplication, UNUserNotificationCenter;
 @protocol SPTGaiaHomeDeviceFlagsProvider, SPTGaiaHomeDeviceLocalNotificationHandler, SPTUserNotificationsRegistrar;
 
 @interface SPTGaiaHomeDeviceLocalNotificationManager : NSObject
 {
+    _Bool _didRespondToNotification;
     id <SPTGaiaHomeDeviceLocalNotificationHandler> _homeDeviceLocalNotificationHandler;
     id <SPTUserNotificationsRegistrar> _notificationsRegistrar;
     UNUserNotificationCenter *_userNotificationCenter;
@@ -18,10 +19,15 @@
     NSUserDefaults *_userDefaults;
     id <SPTGaiaHomeDeviceFlagsProvider> _homeDeviceFlagsProvider;
     UIApplication *_application;
+    SPTGaiaHomeDeviceLogger *_logger;
     NSDictionary *_actionIdentifierMap;
+    SPTGaiaConnectDevice *_notificationHomeDevice;
 }
 
-@property(retain, nonatomic) NSDictionary *actionIdentifierMap; // @synthesize actionIdentifierMap=_actionIdentifierMap;
+@property(retain, nonatomic) SPTGaiaConnectDevice *notificationHomeDevice; // @synthesize notificationHomeDevice=_notificationHomeDevice;
+@property(nonatomic) _Bool didRespondToNotification; // @synthesize didRespondToNotification=_didRespondToNotification;
+@property(copy, nonatomic) NSDictionary *actionIdentifierMap; // @synthesize actionIdentifierMap=_actionIdentifierMap;
+@property(readonly, nonatomic) SPTGaiaHomeDeviceLogger *logger; // @synthesize logger=_logger;
 @property(readonly, nonatomic) UIApplication *application; // @synthesize application=_application;
 @property(readonly, nonatomic) id <SPTGaiaHomeDeviceFlagsProvider> homeDeviceFlagsProvider; // @synthesize homeDeviceFlagsProvider=_homeDeviceFlagsProvider;
 @property(readonly, nonatomic) NSUserDefaults *userDefaults; // @synthesize userDefaults=_userDefaults;
@@ -30,13 +36,18 @@
 @property(readonly, nonatomic) id <SPTUserNotificationsRegistrar> notificationsRegistrar; // @synthesize notificationsRegistrar=_notificationsRegistrar;
 @property(nonatomic) __weak id <SPTGaiaHomeDeviceLocalNotificationHandler> homeDeviceLocalNotificationHandler; // @synthesize homeDeviceLocalNotificationHandler=_homeDeviceLocalNotificationHandler;
 - (void).cxx_destruct;
+- (unsigned long long)notificationTypeFromNotification:(id)arg1;
+- (unsigned long long)actionTypeFromNotificationResponse:(id)arg1;
 - (void)applicationDidReceiveNotificationResponse:(id)arg1;
 - (void)removeLastLocalNotification;
 - (id)lastLocalNotification;
 - (void)registerNotificationSettings;
+- (id)askForTransferRequestForDevice:(id)arg1;
+- (id)automaticTransferRequestForDevice:(id)arg1;
+- (id)requestForNotifcationType:(unsigned long long)arg1 forDevice:(id)arg2;
 - (void)fireLocalNotificationWithType:(unsigned long long)arg1 forDevice:(id)arg2;
 - (void)dealloc;
-- (id)initWithUserDefaults:(id)arg1 notificationCenter:(id)arg2 notificationsRegistrar:(id)arg3 userNotificationCenter:(id)arg4 homeDeviceFlagsProvider:(id)arg5 application:(id)arg6;
+- (id)initWithUserDefaults:(id)arg1 notificationCenter:(id)arg2 notificationsRegistrar:(id)arg3 userNotificationCenter:(id)arg4 homeDeviceFlagsProvider:(id)arg5 application:(id)arg6 logger:(id)arg7;
 
 @end
 

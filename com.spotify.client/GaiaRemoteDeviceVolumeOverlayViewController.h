@@ -6,16 +6,14 @@
 
 #import <UIKit/UIViewController.h>
 
-@class NSString, NSTimer, SPTGaiaLogger, SPTTheme, UIImage, UIImageView, UILabel, UIProgressView;
+@class NSString, NSTimer, SPTGaiaLogger, SPTTheme, UIImageView, UILabel, UIProgressView;
 
 @interface GaiaRemoteDeviceVolumeOverlayViewController : UIViewController
 {
-    long long _deviceIcon;
     UILabel *_deviceNameLabel;
     UIImageView *_volumeSymbolImageView;
     UIProgressView *_volumeLevelView;
     NSTimer *_hideTimer;
-    UIImage *_deviceIconImage;
     SPTTheme *_theme;
     SPTGaiaLogger *_logger;
 }
@@ -24,12 +22,10 @@
 + (id)keyPathsForValuesAffectingValue;
 @property(readonly, nonatomic) SPTGaiaLogger *logger; // @synthesize logger=_logger;
 @property(retain, nonatomic) SPTTheme *theme; // @synthesize theme=_theme;
-@property(retain, nonatomic) UIImage *deviceIconImage; // @synthesize deviceIconImage=_deviceIconImage;
 @property(retain, nonatomic) NSTimer *hideTimer; // @synthesize hideTimer=_hideTimer;
 @property(retain, nonatomic) UIProgressView *volumeLevelView; // @synthesize volumeLevelView=_volumeLevelView;
 @property(retain, nonatomic) UIImageView *volumeSymbolImageView; // @synthesize volumeSymbolImageView=_volumeSymbolImageView;
 @property(retain, nonatomic) UILabel *deviceNameLabel; // @synthesize deviceNameLabel=_deviceNameLabel;
-@property(nonatomic) long long deviceIcon; // @synthesize deviceIcon=_deviceIcon;
 - (void).cxx_destruct;
 - (void)dealloc;
 - (void)hideTimerDidPop:(id)arg1;
@@ -42,6 +38,7 @@
 - (void)destroySubviews;
 - (void)createSubviews;
 @property(copy, nonatomic) NSString *label;
+- (void)updateDeviceIconImage:(long long)arg1;
 @property(nonatomic) float value;
 - (void)viewDidLoad;
 - (void)loadView;

@@ -10,7 +10,6 @@
 {
 }
 
-+ (id)shareButtonV2;
 + (id)shareButton;
 
 @end

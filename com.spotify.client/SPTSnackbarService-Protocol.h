@@ -6,10 +6,10 @@
 
 #import "SPTService-Protocol.h"
 
-@class NSString;
-@protocol SPTSnackbarPresenter;
+@class NSURL;
+@protocol SPTSnackbarConditionalPresenter;
 
 @protocol SPTSnackbarService <SPTService>
-- (id <SPTSnackbarPresenter>)provideSnackbarPresenterForService:(NSString *)arg1;
+- (id <SPTSnackbarConditionalPresenter>)provideSnackbarPresenterForViewURI:(NSURL *)arg1;
 @end
 

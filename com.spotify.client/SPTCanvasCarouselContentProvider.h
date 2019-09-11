@@ -6,23 +6,51 @@
 
 #import <objc/NSObject.h>
 
+#import "SPTCanvasModelLoadDelegate-Protocol.h"
 #import "SPTNowPlayingCarouselContentProvider-Protocol.h"
+#import "SPTOfflineModeStateObserver-Protocol.h"
 
-@class NSString, SPTCanvasViewController;
+@class NSString, NSURL, SPTCanvasViewController, SPTCanvasViewControllerFactory, SPTPlayerTrack;
+@protocol SPTNowPlayingCarouselContentProviderDelegate, SPTOfflineModeState;
 
-@interface SPTCanvasCarouselContentProvider : NSObject <SPTNowPlayingCarouselContentProvider>
+@interface SPTCanvasCarouselContentProvider : NSObject <SPTOfflineModeStateObserver, SPTCanvasModelLoadDelegate, SPTNowPlayingCarouselContentProvider>
 {
-    SPTCanvasViewController *_canvasViewController;
+    _Bool _offline;
+    _Bool _loading;
+    _Bool _failedToLoad;
+    id <SPTNowPlayingCarouselContentProviderDelegate> delegate;
+    SPTCanvasViewControllerFactory *_canvasViewControllerFactory;
+    id <SPTOfflineModeState> _offlineState;
+    SPTCanvasViewController *_providedCanvasViewController;
+    SPTPlayerTrack *_canvasTrack;
+    NSURL *_canvasPlaceholderURI;
 }
 
-@property(retain, nonatomic) SPTCanvasViewController *canvasViewController; // @synthesize canvasViewController=_canvasViewController;
+@property(nonatomic) _Bool failedToLoad; // @synthesize failedToLoad=_failedToLoad;
+@property(nonatomic, getter=isLoading) _Bool loading; // @synthesize loading=_loading;
+@property(nonatomic, getter=isOffline) _Bool offline; // @synthesize offline=_offline;
+@property(retain, nonatomic) NSURL *canvasPlaceholderURI; // @synthesize canvasPlaceholderURI=_canvasPlaceholderURI;
+@property(copy, nonatomic) SPTPlayerTrack *canvasTrack; // @synthesize canvasTrack=_canvasTrack;
+@property(retain, nonatomic) SPTCanvasViewController *providedCanvasViewController; // @synthesize providedCanvasViewController=_providedCanvasViewController;
+@property(retain, nonatomic) id <SPTOfflineModeState> offlineState; // @synthesize offlineState=_offlineState;
+@property(retain, nonatomic) SPTCanvasViewControllerFactory *canvasViewControllerFactory; // @synthesize canvasViewControllerFactory=_canvasViewControllerFactory;
+@property(nonatomic) __weak id <SPTNowPlayingCarouselContentProviderDelegate> delegate; // @synthesize delegate;
 - (void).cxx_destruct;
+- (void)didFailToLoadCanvasModel:(id)arg1 forViewController:(id)arg2;
+- (void)didLoadCanvasModel:(id)arg1 forViewController:(id)arg2;
+- (void)willLoadCanvasModel:(id)arg1 forViewController:(id)arg2;
+- (void)offlineModeState:(id)arg1 updated:(_Bool)arg2;
+- (void)loadCanvasIfAvailable;
+- (void)reloadCanvas;
+- (void)reloadCanvasIfNeeded;
 - (void)updateWithTrack:(id)arg1 imageURL:(id)arg2;
 - (void)setActive:(_Bool)arg1;
 - (_Bool)shouldReplaceCoverArt;
 - (_Bool)shouldRenderContent;
+- (_Bool)canRenderContent;
 - (id)provideContent;
-- (id)initWithCanvasViewController:(id)arg1;
+- (void)dealloc;
+- (id)initWithCanvasViewControllerFactory:(id)arg1 offlineState:(id)arg2;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

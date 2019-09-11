@@ -9,19 +9,19 @@
 #import "SPTThemableView-Protocol.h"
 
 @class NSString;
-@protocol SPTCollectionBannerViewDelegate, SPTThemableViewLayoutDelegate;
+@protocol SPTCollectionBannerContentView, SPTCollectionBannerViewDelegate, SPTThemableViewLayoutDelegate;
 
 @interface SPTCollectionBannerView : UIView <SPTThemableView>
 {
     id <SPTThemableViewLayoutDelegate> _layoutDelegate;
-    UIView *_contentView;
+    UIView<SPTCollectionBannerContentView> *_contentView;
     id <SPTCollectionBannerViewDelegate> _delegate;
     UIView *_overlayView;
 }
 
 @property(retain, nonatomic) UIView *overlayView; // @synthesize overlayView=_overlayView;
 @property(nonatomic) __weak id <SPTCollectionBannerViewDelegate> delegate; // @synthesize delegate=_delegate;
-@property(retain, nonatomic) UIView *contentView; // @synthesize contentView=_contentView;
+@property(retain, nonatomic) UIView<SPTCollectionBannerContentView> *contentView; // @synthesize contentView=_contentView;
 @property(nonatomic) __weak id <SPTThemableViewLayoutDelegate> layoutDelegate; // @synthesize layoutDelegate=_layoutDelegate;
 - (void).cxx_destruct;
 - (void)applyThemeLayout;

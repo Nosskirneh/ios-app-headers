@@ -6,14 +6,13 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTInAppMessageAction-Protocol.h"
+#import "SPTInAppMessageActionHandler-Protocol.h"
 
-@class FollowModel, NSString, NSURL;
+@class FollowModel, NSString;
 @protocol SPTCollectionPlatform, SPTCollectionPlatformTestManager, SPTFollowModelFactory, SPTPlaylistModel, SPTPodcastTestManager;
 
-@interface SPTInAppMessageSaveAction : NSObject <SPTInAppMessageAction>
+@interface SPTInAppMessageSaveAction : NSObject <SPTInAppMessageActionHandler>
 {
-    NSURL *_URI;
     id <SPTCollectionPlatform> _collectionPlatform;
     id <SPTFollowModelFactory> _followModelFactory;
     id <SPTPodcastTestManager> _podcastTestManager;
@@ -28,12 +27,11 @@
 @property(retain, nonatomic) id <SPTPodcastTestManager> podcastTestManager; // @synthesize podcastTestManager=_podcastTestManager;
 @property(retain, nonatomic) id <SPTFollowModelFactory> followModelFactory; // @synthesize followModelFactory=_followModelFactory;
 @property(retain, nonatomic) id <SPTCollectionPlatform> collectionPlatform; // @synthesize collectionPlatform=_collectionPlatform;
-@property(retain, nonatomic) NSURL *URI; // @synthesize URI=_URI;
 - (void).cxx_destruct;
-- (_Bool)isSaveAlbumOrTrackAction;
-- (_Bool)isFollowPodcastAction;
-- (void)perform;
-- (id)initWithURI:(id)arg1 collectionPlatform:(id)arg2 followModelFactory:(id)arg3 podcastTestManager:(id)arg4 playlistModel:(id)arg5 collectionTestManager:(id)arg6;
+- (_Bool)isSaveAlbumOrTrackAction:(id)arg1;
+- (_Bool)isFollowPodcastAction:(id)arg1;
+- (void)executeActionWithURL:(id)arg1;
+- (id)initWithCollectionPlatform:(id)arg1 followModelFactory:(id)arg2 podcastTestManager:(id)arg3 playlistModel:(id)arg4 collectionTestManager:(id)arg5;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

@@ -13,7 +13,6 @@
 
 @interface INSPersistentStoreImplementation : NSObject <INSPersistentStore>
 {
-    unsigned long long _count;
     INSPersistentStoreStack *_stack;
     id <INSLogger> _logger;
 }
@@ -21,16 +20,19 @@
 + (_Bool)automaticallyNotifiesObserversOfCount;
 @property(retain, nonatomic) id <INSLogger> logger; // @synthesize logger=_logger;
 @property(retain, nonatomic) INSPersistentStoreStack *stack; // @synthesize stack=_stack;
-@property(nonatomic) unsigned long long count; // @synthesize count=_count;
 - (void).cxx_destruct;
 - (unsigned long long)countInContext:(id)arg1 predicate:(id)arg2;
-- (id)messagesWithPredicate:(id)arg1;
-- (id)fetchMessageEntityWithId:(id)arg1;
-- (id)messagesForName:(id)arg1;
-- (_Bool)containMessageForId:(id)arg1;
-- (void)deleteMessageForId:(id)arg1;
-- (void)save;
-- (id)messageEntityWithId:(id)arg1;
+- (id)messagesWithContext:(id)arg1 predicate:(id)arg2;
+- (id)fetchMessageEntityWithContext:(id)arg1 messageId:(id)arg2;
+- (void)fetchOrCreateEntityWithId:(id)arg1 completion:(CDUnknownBlockType)arg2;
+- (void)persistEventEnvelope:(id)arg1 authenticated:(_Bool)arg2 withCompletion:(CDUnknownBlockType)arg3;
+- (void)messagesMatchingPredicate:(id)arg1 completion:(CDUnknownBlockType)arg2;
+- (void)messagesWithAuthenticatedStatus:(_Bool)arg1 completion:(CDUnknownBlockType)arg2;
+- (void)allMessagesWithCompletion:(CDUnknownBlockType)arg1;
+- (void)containMessageForId:(id)arg1 completion:(CDUnknownBlockType)arg2;
+- (void)deleteMessageForId:(id)arg1 completion:(CDUnknownBlockType)arg2;
+- (void)countWithCompletion:(CDUnknownBlockType)arg1;
+- (void)saveWithCompletion:(CDUnknownBlockType)arg1;
 - (id)initWithPersistentStoreStack:(id)arg1 logger:(id)arg2;
 
 // Remaining properties

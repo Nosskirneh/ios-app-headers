@@ -16,9 +16,9 @@
 }
 
 + (id)messageWithSessionId:(id)arg1 userIntent:(id)arg2 contextMenuActionId:(id)arg3;
-@property(retain, nonatomic) NSString *contextMenuActionIdValue; // @synthesize contextMenuActionIdValue=_contextMenuActionIdValue;
-@property(retain, nonatomic) NSString *userIntentValue; // @synthesize userIntentValue=_userIntentValue;
-@property(retain, nonatomic) NSString *sessionIdValue; // @synthesize sessionIdValue=_sessionIdValue;
+@property(copy, nonatomic) NSString *contextMenuActionIdValue; // @synthesize contextMenuActionIdValue=_contextMenuActionIdValue;
+@property(copy, nonatomic) NSString *userIntentValue; // @synthesize userIntentValue=_userIntentValue;
+@property(copy, nonatomic) NSString *sessionIdValue; // @synthesize sessionIdValue=_sessionIdValue;
 - (void).cxx_destruct;
 - (_Bool)isEqual:(id)arg1;
 - (unsigned long long)hash;

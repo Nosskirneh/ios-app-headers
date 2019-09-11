@@ -6,27 +6,31 @@
 
 #import <objc/NSObject.h>
 
-@class SPTFeatureSettingsPage;
+@class NSUserDefaults, SPTFeatureSettingsPage;
 @protocol SPTFeatureSettingsItemFactory, SPTLocalSettings;
 
 @interface SPTNavigationSettingsRegistration : NSObject
 {
     id <SPTLocalSettings> _localSettings;
     id <SPTFeatureSettingsItemFactory> _featureSettingsItemFactory;
+    NSUserDefaults *_userDefaults;
     SPTFeatureSettingsPage *_settingsPage;
 }
 
 @property(retain, nonatomic) SPTFeatureSettingsPage *settingsPage; // @synthesize settingsPage=_settingsPage;
+@property(readonly, nonatomic) NSUserDefaults *userDefaults; // @synthesize userDefaults=_userDefaults;
 @property(readonly, nonatomic) id <SPTFeatureSettingsItemFactory> featureSettingsItemFactory; // @synthesize featureSettingsItemFactory=_featureSettingsItemFactory;
 @property(retain, nonatomic) id <SPTLocalSettings> localSettings; // @synthesize localSettings=_localSettings;
 - (void).cxx_destruct;
 - (_Bool)shouldHideNavigationTitlesLocalSetting;
+- (_Bool)mobileLandscapeEnabled;
+- (_Bool)sideBarEnabled;
 - (id)navigationListIdentifier;
 - (void)registerValues:(id)arg1 defaultValue:(id)arg2;
 - (id)multipleChoiceSettingsOptionsFromValues:(id)arg1;
 - (void)registerSwitchControlForHidingNavigationTitlesWithTitle:(id)arg1 hint:(id)arg2;
 - (void)registerNavigationListIdentifiers:(id)arg1;
-- (id)initWithLocalSettings:(id)arg1 featureSettingsItemFactory:(id)arg2;
+- (id)initWithLocalSettings:(id)arg1 featureSettingsItemFactory:(id)arg2 userDefaults:(id)arg3;
 
 @end
 

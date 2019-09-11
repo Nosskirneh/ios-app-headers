@@ -7,10 +7,8 @@
 #import "NSObject-Protocol.h"
 
 @class NSError;
-@protocol SPTPlaybackErrorDialogsDelegate;
 
 @protocol SPTPlaybackErrorDialogs <NSObject>
-@property(nonatomic) __weak id <SPTPlaybackErrorDialogsDelegate> delegate;
 - (void)showUnableToPlaySongDialogForError:(NSError *)arg1;
 - (void)showCappingReachedDialogForError:(NSError *)arg1;
 - (void)showOnlyAvailableInPremiumDialogForError:(NSError *)arg1;

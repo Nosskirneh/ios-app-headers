@@ -10,9 +10,6 @@
 
 @protocol SPTFreeTierService <SPTService>
 - (id <SPTFreeTierTestManager>)provideFreeTierTestManager;
-- (id <SPTFeatureFlagSignal>)provideConsolidatedAlbumSignal;
-- (id <SPTFeatureFlagSignal>)provideConsolidatedArtistFollowHeaderSignal;
-- (id <SPTFeatureFlagSignal>)provideHeartsEverywhereEnabledSignal;
 - (id <SPTFeatureFlagSignal>)provideNewExperienceEnabledSignal;
 @end
 

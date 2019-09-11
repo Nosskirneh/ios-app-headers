@@ -6,16 +6,20 @@
 
 #import "SPTFreeTierCollectionFilterableViewModel-Protocol.h"
 
-@class NSIndexPath, NSString;
+@class NSArray, NSIndexPath, NSString;
 @protocol SPTFreeTierCollectionItemViewModel, SPTFreeTierCollectionPlaylistsViewModelDelegate, SPTFreeTierCollectionSectionViewModel;
 
 @protocol SPTFreeTierCollectionPlaylistsViewModel <SPTFreeTierCollectionFilterableViewModel>
-@property(readonly, nonatomic, getter=isCompactMode) _Bool compactMode;
+@property(readonly, nonatomic) NSArray *sectionIndexTitles;
 @property(readonly, nonatomic) unsigned long long countOfSections;
 @property(nonatomic) __weak id <SPTFreeTierCollectionPlaylistsViewModelDelegate> delegate;
 @property(readonly, nonatomic, getter=isEmpty) _Bool empty;
 @property(readonly, nonatomic, getter=isLoaded) _Bool loaded;
 @property(readonly, nonatomic) NSString *title;
+- (NSIndexPath *)indexPathForScrollSectionIndex:(unsigned long long)arg1;
+- (_Bool)showSeparatorForSection:(long long)arg1;
+- (void)createPlaylistActionInInfoView:(_Bool)arg1;
+- (void)logSectionIndexSelected;
 - (void)logFilterSortInteractionType:(unsigned long long)arg1;
 - (void)endObservingRowAtIndexPath:(NSIndexPath *)arg1;
 - (void)beginObservingRowAtIndexPath:(NSIndexPath *)arg1;
@@ -25,6 +29,11 @@
 - (unsigned long long)countOfItemsInSection:(unsigned long long)arg1;
 - (_Bool)hasMoreInSection:(unsigned long long)arg1;
 - (void)loadMoreInSection:(unsigned long long)arg1;
+- (void)viewWillAppear;
 - (void)loadViewModel;
+
+@optional
+- (void)willEndTextFiltering;
+- (void)willBeginTextFiltering;
 @end
 

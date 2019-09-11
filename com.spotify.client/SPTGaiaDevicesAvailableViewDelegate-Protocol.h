@@ -9,6 +9,6 @@
 @class NSString;
 
 @protocol SPTGaiaDevicesAvailableViewDelegate <NSObject>
-- (void)didUpdateDevicesAvailableText:(NSString *)arg1;
+- (void)didUpdateDevicesAvailableText:(NSString *)arg1 withAccessibilityLabel:(NSString *)arg2;
 @end
 

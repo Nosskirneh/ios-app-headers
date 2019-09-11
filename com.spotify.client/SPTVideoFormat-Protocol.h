@@ -11,7 +11,6 @@
 @protocol SPTVideoFormat <NSObject>
 @property(readonly, nonatomic) struct CGSize videoSize;
 @property(readonly, nonatomic) double indicatedBitrate;
-@property(readonly, nonatomic) NSString *audioCodec;
 @property(readonly, nonatomic) NSString *videoCodec;
 @end
 

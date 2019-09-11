@@ -9,8 +9,6 @@
 @class NSString;
 
 @protocol SPTFreeTierCollectionSectionViewModel <NSObject>
-@property(readonly, nonatomic) _Bool sectionHasAction;
-@property(readonly, nonatomic, getter=isSectionSeparatorShowing) _Bool sectionSeparatorShowing;
 @property(readonly, nonatomic, getter=isSectionHeaderShowing) _Bool sectionHeaderShowing;
 @property(readonly, nonatomic) NSString *title;
 - (void)performAction;

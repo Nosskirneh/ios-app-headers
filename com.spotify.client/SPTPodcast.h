@@ -6,39 +6,38 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTShow-Protocol.h"
+#import "SPTPodcast-Protocol.h"
 
 @class NSArray, NSString, NSURL;
 
-@interface SPTPodcast : NSObject <SPTShow>
+@interface SPTPodcast : NSObject <SPTPodcast>
 {
     _Bool _following;
-    long long _numberOfFollowers;
-    long long _consumptionOrder;
-    unsigned long long _unrangedLength;
-    NSArray *_episodes;
     NSString *_title;
     NSString *_descriptionText;
     NSString *_publisher;
     NSURL *_URL;
     NSURL *_latestPlayedEpisodeURL;
     NSURL *_imageURL;
+    long long _numberOfFollowers;
+    long long _consumptionOrder;
+    NSArray *_episodes;
     unsigned long long _mediaType;
+    unsigned long long _unrangedLength;
 }
 
-+ (id)podcastWithDictionary:(id)arg1 featureFlags:(id)arg2;
+@property(nonatomic) unsigned long long unrangedLength; // @synthesize unrangedLength=_unrangedLength;
 @property(nonatomic) unsigned long long mediaType; // @synthesize mediaType=_mediaType;
+@property(retain, nonatomic) NSArray *episodes; // @synthesize episodes=_episodes;
+@property(nonatomic) long long consumptionOrder; // @synthesize consumptionOrder=_consumptionOrder;
 @property(nonatomic, getter=isFollowing) _Bool following; // @synthesize following=_following;
+@property(nonatomic) long long numberOfFollowers; // @synthesize numberOfFollowers=_numberOfFollowers;
 @property(retain, nonatomic) NSURL *imageURL; // @synthesize imageURL=_imageURL;
 @property(retain, nonatomic) NSURL *latestPlayedEpisodeURL; // @synthesize latestPlayedEpisodeURL=_latestPlayedEpisodeURL;
 @property(retain, nonatomic) NSURL *URL; // @synthesize URL=_URL;
 @property(retain, nonatomic) NSString *publisher; // @synthesize publisher=_publisher;
 @property(retain, nonatomic) NSString *descriptionText; // @synthesize descriptionText=_descriptionText;
 @property(retain, nonatomic) NSString *title; // @synthesize title=_title;
-@property(retain, nonatomic) NSArray *episodes; // @synthesize episodes=_episodes;
-@property(nonatomic) unsigned long long unrangedLength; // @synthesize unrangedLength=_unrangedLength;
-@property(nonatomic) long long consumptionOrder; // @synthesize consumptionOrder=_consumptionOrder;
-@property(nonatomic) long long numberOfFollowers; // @synthesize numberOfFollowers=_numberOfFollowers;
 - (void).cxx_destruct;
 @property(readonly) unsigned long long hash;
 - (_Bool)isEqual:(id)arg1;

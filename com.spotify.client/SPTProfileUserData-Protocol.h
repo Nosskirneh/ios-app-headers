@@ -6,12 +6,11 @@
 
 #import "NSObject-Protocol.h"
 
-@class NSString, NSURL, UIColor;
+@class NSString, NSURL;
 @protocol SPTProfileUserDataChangeObserver;
 
 @protocol SPTProfileUserData <NSObject>
 @property(readonly, nonatomic) NSURL *imageURL;
-@property(readonly, nonatomic) UIColor *color;
 @property(readonly, nonatomic) NSString *shortName;
 @property(readonly, nonatomic) NSString *name;
 @property(readonly, nonatomic) NSString *username;

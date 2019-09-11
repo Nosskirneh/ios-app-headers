@@ -6,11 +6,12 @@
 
 #import "NSObject-Protocol.h"
 
-@class NSError, NSIndexPath, SPTPodcastEpisode, SPTPodcastViewModel;
+@class NSError, NSIndexPath, SPTPodcastViewModel;
+@protocol SPTPodcastEpisode;
 
 @protocol SPTPodcastViewModelDelegate <NSObject>
 - (void)podcastViewModelDidUpdatePlaybackRestrictions:(SPTPodcastViewModel *)arg1;
-- (void)viewModelPodcastLatestPlayedEpisode:(SPTPodcastEpisode *)arg1 atIndexPath:(NSIndexPath *)arg2;
+- (void)viewModelPodcastLatestPlayedEpisode:(id <SPTPodcastEpisode>)arg1 atIndexPath:(NSIndexPath *)arg2;
 - (void)viewModelPodcastDidUpdatePlayingEpisode:(SPTPodcastViewModel *)arg1 atIndexPath:(NSIndexPath *)arg2;
 - (void)viewModelFinishedLoadingWithoutPlayerStateChange:(SPTPodcastViewModel *)arg1;
 - (void)viewModel:(SPTPodcastViewModel *)arg1 podcastDidFinishLoadingWithError:(NSError *)arg2;

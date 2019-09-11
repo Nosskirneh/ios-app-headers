@@ -6,7 +6,11 @@
 
 #import "NSObject-Protocol.h"
 
+@class NSURL;
+
 @protocol SPTPodcastEpisodeDescriptionTableViewCellDelegate <NSObject>
-- (void)episodeDescriptionContentChanged;
+- (void)episodeDescriptionURLTapped:(NSURL *)arg1;
+- (void)episodeDescriptionTimestampTapped:(double)arg1;
+- (void)episodeDescriptionDidExpand;
 @end
 

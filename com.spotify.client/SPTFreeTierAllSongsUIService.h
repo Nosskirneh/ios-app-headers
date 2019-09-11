@@ -10,7 +10,7 @@
 #import "SPTURISubtypeHandler-Protocol.h"
 
 @class NSString, SPNavigationController, SPTAllocationContext;
-@protocol SPContextMenuFeature, SPTAudioPreviewService, SPTCollectionPlatformService, SPTContainerService, SPTExplicitContentService, SPTFreeTierAllSongsRegistry, SPTFreeTierAllSongsService, SPTFreeTierPreCurationService, SPTFreeTierPresentationService, SPTGLUEService, SPTPerformanceMetricsService, SPTSelfPresentingViewController, SPTURIDispatchService;
+@protocol SPContextMenuFeature, SPTAudioPreviewService, SPTCollectionPlatformService, SPTContainerService, SPTExplicitContentService, SPTFreeTierAllSongsRegistry, SPTFreeTierAllSongsService, SPTFreeTierPreCurationService, SPTFreeTierPresentationService, SPTGLUEService, SPTPerformanceMetricsService, SPTPodcastFeature, SPTSelfPresentingViewController, SPTURIDispatchService;
 
 @interface SPTFreeTierAllSongsUIService : NSObject <SPTService, SPTURISubtypeHandler>
 {
@@ -25,6 +25,7 @@
     id <SPTPerformanceMetricsService> _performanceMetricsService;
     id <SPTExplicitContentService> _explicitContentService;
     id <SPTFreeTierPreCurationService> _preCurationService;
+    id <SPTPodcastFeature> _podcastService;
     id <SPTFreeTierAllSongsRegistry> _registry;
     SPNavigationController<SPTSelfPresentingViewController> *_navigationController;
 }
@@ -32,6 +33,7 @@
 + (id)serviceIdentifier;
 @property(retain, nonatomic) SPNavigationController<SPTSelfPresentingViewController> *navigationController; // @synthesize navigationController=_navigationController;
 @property(retain, nonatomic) id <SPTFreeTierAllSongsRegistry> registry; // @synthesize registry=_registry;
+@property(nonatomic) __weak id <SPTPodcastFeature> podcastService; // @synthesize podcastService=_podcastService;
 @property(nonatomic) __weak id <SPTFreeTierPreCurationService> preCurationService; // @synthesize preCurationService=_preCurationService;
 @property(nonatomic) __weak id <SPTExplicitContentService> explicitContentService; // @synthesize explicitContentService=_explicitContentService;
 @property(nonatomic) __weak id <SPTPerformanceMetricsService> performanceMetricsService; // @synthesize performanceMetricsService=_performanceMetricsService;

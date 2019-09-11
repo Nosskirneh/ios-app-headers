@@ -9,12 +9,15 @@
 #import "SPTComScoreAnalyticsManager-Protocol.h"
 
 @class NSString;
+@protocol OS_dispatch_queue;
 
 @interface SPTComScoreAnalyticsManagerImplementation : NSObject <SPTComScoreAnalyticsManager>
 {
+    NSObject<OS_dispatch_queue> *_workerQueue;
 }
 
-- (id)userTargeting;
+@property(readonly, nonatomic) NSObject<OS_dispatch_queue> *workerQueue; // @synthesize workerQueue=_workerQueue;
+- (void).cxx_destruct;
 - (void)userTargetingUpdated:(id)arg1;
 - (void)playbackEnded;
 - (void)playbackStarted;

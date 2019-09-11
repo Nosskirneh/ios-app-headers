@@ -9,28 +9,25 @@
 @protocol SPTPodcastTestManagerObserver;
 
 @protocol SPTPodcastTestManager <NSObject>
-@property(readonly, nonatomic, getter=isModernDownloadButtonEnabled) _Bool modernDownloadButtonEnabled;
+@property(readonly, nonatomic, getter=isYourLibraryAnchorTestEnabled) _Bool yourLibraryAnchorTestEnabled;
+@property(readonly, nonatomic, getter=isPodcastHeaderV2Enabled) _Bool podcastHeaderV2Enabled;
+@property(readonly, nonatomic, getter=isAddToPlaylistForAudioEpisodesEnabled) _Bool addToPlaylistForAudioEpisodesEnabled;
+@property(readonly, nonatomic, getter=isPodcastMarkedAsUnplayedEnabled) _Bool podcastMarkedAsUnplayedEnabled;
+@property(readonly, nonatomic, getter=isRefinedPodcastPageEnabled) _Bool refinedPodcastPageEnabled;
+@property(readonly, nonatomic, getter=isPodcast3DTouchEnabled) _Bool podcast3DTouchEnabled;
+@property(readonly, nonatomic, getter=isPodcastPlaybackOrderEnabled) _Bool podcastPlaybackOrderEnabled;
+@property(readonly, nonatomic, getter=isProductionisedYourLibraryEnabled) _Bool productionisedYourLibraryEnabled;
 @property(readonly, nonatomic, getter=isScannablesEnabled) _Bool podcastContextMenuScannablesEnabled;
 @property(readonly, nonatomic, getter=isPodcastEpisodeCardV2Enabled) _Bool podcastEpisodeCardV2Enabled;
-@property(readonly, nonatomic, getter=isPodcastReverseOrderEnabled) _Bool podcastReverseOrderEnabled;
 @property(readonly, nonatomic, getter=isPodcastShowAutoFollowDisabled) _Bool podcastShowAutoFollowDisabled;
-@property(readonly, nonatomic, getter=isPodcastEpisodeEntityPageSimilarEpisodesEnabled) _Bool podcastEpisodeEntityPageSimilarEpisodesEnabled;
-@property(readonly, nonatomic, getter=isPodcastEpisodeEntityPageNextEpisodeEnabled) _Bool podcastEpisodeEntityPageNextEpisodeEnabled;
-@property(readonly, nonatomic, getter=isPodcastEpisodeEntityPageRecommendationsEnabled) _Bool podcastEpisodeEntityPageRecommendationsEnabled;
-@property(readonly, nonatomic, getter=isPodcastEpisodeEntityPageEnabled) _Bool podcastEpisodeEntityPageEnabled;
-@property(readonly, nonatomic, getter=isPodcastYourLibrarySubmenuEnabled) _Bool podcastYourLibrarySubmenuEnabled;
-@property(readonly, nonatomic, getter=isPodcastYourLibraryEnabled) _Bool podcastYourLibraryEnabled;
 @property(readonly, nonatomic, getter=isLikeActionEnabled) _Bool likeActionEnabled;
-@property(readonly, nonatomic, getter=isFollowHeaderActionEnabled) _Bool followHeaderActionEnabled;
 @property(readonly, nonatomic, getter=isFollowActionEnabled) _Bool followActionEnabled;
 @property(readonly, nonatomic, getter=isOnboardingTabBarTooltipTestEnabled) _Bool onboardingTabBarTooltipTestEnabled;
 @property(readonly, nonatomic, getter=isOnboardingShowcaseTestEnabled) _Bool onboardingShowcaseTestEnabled;
-@property(readonly, nonatomic, getter=isActionsForVideoWithAudioEnabled) _Bool actionsForVideoWithAudioEnabled;
 @property(readonly, nonatomic, getter=isShowsCollectionFeatureEnabled) _Bool showsCollectionFeatureEnabled;
 @property(readonly, nonatomic, getter=isVideoEntityPagesEnabled) _Bool videoEntityPagesEnabled;
 @property(readonly, nonatomic, getter=isVideoFeatureEnabled) _Bool videoFeatureEnabled;
 @property(readonly, nonatomic, getter=isPodcastFeatureEnabled) _Bool podcastFeatureEnabled;
-@property(readonly, nonatomic, getter=isPodmarksEnabled) _Bool podmarksEnabled;
 - (void)removeObserver:(id <SPTPodcastTestManagerObserver>)arg1;
 - (void)addObserver:(id <SPTPodcastTestManagerObserver>)arg1;
 @end

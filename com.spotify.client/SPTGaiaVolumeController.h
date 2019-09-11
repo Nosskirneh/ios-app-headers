@@ -7,47 +7,45 @@
 #import <objc/NSObject.h>
 
 #import "SPTCastManagerObserver-Protocol.h"
-#import "SPTGaiaDeviceStateManagerObserver-Protocol.h"
+#import "SPTGaiaConnectManagerObserver-Protocol.h"
+#import "SPTGaiaSystemVolumeObserver-Protocol.h"
 #import "SPTGaiaVolumeButtonControllerDelegate-Protocol.h"
 #import "SPTGaiaVolumeControllerInterface-Protocol.h"
-#import "SPTGaiaVolumeViewDelegate-Protocol.h"
 
-@class AVAudioSession, GaiaRemoteDeviceVolumeOverlayViewController, MPMusicPlayerController, NSNotificationCenter, NSNumber, NSString, SPTCastManager, SPTGaiaDeviceAppearanceMapping, SPTGaiaDeviceManager, SPTGaiaLogger, SPTGaiaVolumeButtonController, SPTGaiaVolumeView, SPTObserverManager, SPTTheme;
-@protocol SPTGaiaLockScreenControlsStateProvider;
+@class AVAudioSession, GaiaRemoteDeviceVolumeOverlayViewController, NSNotificationCenter, NSNumber, NSString, SPTCastManager, SPTGaiaDeviceAppearanceMapping, SPTGaiaLogger, SPTGaiaVolumeButtonController, SPTObserverManager, SPTTheme;
+@protocol SPTGaiaConnectManager, SPTGaiaLockScreenControlsStateProvider, SPTGaiaSystemVolumeManager;
 
-@interface SPTGaiaVolumeController : NSObject <SPTCastManagerObserver, SPTGaiaDeviceStateManagerObserver, SPTGaiaVolumeViewDelegate, SPTGaiaVolumeButtonControllerDelegate, SPTGaiaVolumeControllerInterface>
+@interface SPTGaiaVolumeController : NSObject <SPTCastManagerObserver, SPTGaiaVolumeButtonControllerDelegate, SPTGaiaConnectManagerObserver, SPTGaiaSystemVolumeObserver, SPTGaiaVolumeControllerInterface>
 {
-    _Bool _airplayHidden;
+    _Bool _disableRemoteVolumePopup;
     NSNumber *_currentVolume;
     SPTGaiaVolumeButtonController *_volumeButtonController;
-    SPTGaiaDeviceManager *_deviceManager;
     SPTCastManager *_castDeviceManager;
-    SPTGaiaVolumeView *_volumeView;
-    GaiaRemoteDeviceVolumeOverlayViewController *_remoteVolumeOverlay;
-    SPTGaiaDeviceAppearanceMapping *_appearanceMapping;
-    id <SPTGaiaLockScreenControlsStateProvider> _lockScreenControlsStateProvider;
+    id <SPTGaiaConnectManager> _connectManager;
     SPTTheme *_theme;
+    SPTGaiaDeviceAppearanceMapping *_deviceIconMapper;
+    id <SPTGaiaLockScreenControlsStateProvider> _lockScreenControlsStateProvider;
     NSNotificationCenter *_notificationCenter;
     AVAudioSession *_audioSession;
-    MPMusicPlayerController *_applicationMusicPlayer;
+    id <SPTGaiaSystemVolumeManager> _systemVolumeManager;
+    GaiaRemoteDeviceVolumeOverlayViewController *_remoteVolumeOverlay;
     SPTGaiaLogger *_logger;
     SPTObserverManager *_observerManager;
 }
 
 @property(readonly, nonatomic) SPTObserverManager *observerManager; // @synthesize observerManager=_observerManager;
 @property(readonly, nonatomic) SPTGaiaLogger *logger; // @synthesize logger=_logger;
-@property(retain, nonatomic) MPMusicPlayerController *applicationMusicPlayer; // @synthesize applicationMusicPlayer=_applicationMusicPlayer;
+@property(retain, nonatomic) GaiaRemoteDeviceVolumeOverlayViewController *remoteVolumeOverlay; // @synthesize remoteVolumeOverlay=_remoteVolumeOverlay;
+@property(retain, nonatomic) id <SPTGaiaSystemVolumeManager> systemVolumeManager; // @synthesize systemVolumeManager=_systemVolumeManager;
 @property(retain, nonatomic) AVAudioSession *audioSession; // @synthesize audioSession=_audioSession;
 @property(retain, nonatomic) NSNotificationCenter *notificationCenter; // @synthesize notificationCenter=_notificationCenter;
+@property(retain, nonatomic) id <SPTGaiaLockScreenControlsStateProvider> lockScreenControlsStateProvider; // @synthesize lockScreenControlsStateProvider=_lockScreenControlsStateProvider;
+@property(retain, nonatomic) SPTGaiaDeviceAppearanceMapping *deviceIconMapper; // @synthesize deviceIconMapper=_deviceIconMapper;
 @property(retain, nonatomic) SPTTheme *theme; // @synthesize theme=_theme;
-@property(nonatomic) __weak id <SPTGaiaLockScreenControlsStateProvider> lockScreenControlsStateProvider; // @synthesize lockScreenControlsStateProvider=_lockScreenControlsStateProvider;
-@property(retain, nonatomic) SPTGaiaDeviceAppearanceMapping *appearanceMapping; // @synthesize appearanceMapping=_appearanceMapping;
-@property(retain, nonatomic) GaiaRemoteDeviceVolumeOverlayViewController *remoteVolumeOverlay; // @synthesize remoteVolumeOverlay=_remoteVolumeOverlay;
-@property(retain, nonatomic) SPTGaiaVolumeView *volumeView; // @synthesize volumeView=_volumeView;
+@property(retain, nonatomic) id <SPTGaiaConnectManager> connectManager; // @synthesize connectManager=_connectManager;
 @property(nonatomic) __weak SPTCastManager *castDeviceManager; // @synthesize castDeviceManager=_castDeviceManager;
-@property(nonatomic) __weak SPTGaiaDeviceManager *deviceManager; // @synthesize deviceManager=_deviceManager;
-@property(nonatomic) _Bool airplayHidden; // @synthesize airplayHidden=_airplayHidden;
 @property(retain, nonatomic) SPTGaiaVolumeButtonController *volumeButtonController; // @synthesize volumeButtonController=_volumeButtonController;
+@property(nonatomic) _Bool disableRemoteVolumePopup; // @synthesize disableRemoteVolumePopup=_disableRemoteVolumePopup;
 @property(retain, nonatomic) NSNumber *currentVolume; // @synthesize currentVolume=_currentVolume;
 - (void).cxx_destruct;
 - (void)removeVolumeControllerObserver:(id)arg1;
@@ -60,22 +58,34 @@
 - (void)updateRemoteVolume:(id)arg1 maybeShowOverlay:(_Bool)arg2;
 - (_Bool)shouldShowVolumeControls:(id)arg1;
 - (void)requestVolumeChange:(float)arg1;
+- (void)musicPlayerVolumeDidChange;
 - (float)volumeButtonControllerDidStealVolumeDown:(id)arg1;
 - (float)volumeButtonControllerDidStealVolumeUp:(id)arg1;
-- (void)volumeView:(id)arg1 localVolumeChanged:(float)arg2;
-- (void)volumeView:(id)arg1 remoteVolumeChanged:(float)arg2;
+- (void)observeCastVolume;
+- (void)observeLocalVolume;
 - (void)audioSessionInterruptionNotification:(id)arg1;
 - (_Bool)isRemoteVolumeAllowedForDevice:(id)arg1;
 - (void)updateRemoteVolumeAvailabilityWithCompletion:(CDUnknownBlockType)arg1;
 - (void)applicationDidBecomeActiveNotification;
 - (void)applicationWillResignActiveNotification;
 - (void)callUpdateRemoteVolumeWithCurrentVolumeAndNoOverlay;
-- (void)deviceStateManager:(id)arg1 activeDeviceDidChange:(id)arg2;
-- (void)deviceStateManager:(id)arg1 deviceBeingActivatedDidChange:(id)arg2 error:(id)arg3;
+- (void)activeDeviceDidChange:(id)arg1;
+- (void)castVolumeDidUpdate;
+- (void)deviceDidUpdateWithNewVolume:(double)arg1;
+- (float)updateVolumeOfActiveDeviceWithValue:(float)arg1;
+- (float)decreaseVolumeOfActiveDevice;
+- (float)increaseVolumeOfActiveDevice;
+- (id)activeDevice;
+- (void)systemVolumeDidUpdate:(double)arg1;
+- (void)deactivateDeviceDidFailOnConnectManager:(id)arg1;
+- (void)deactivateDeviceWasCalledOnConnectManager:(id)arg1;
+- (void)connectManager:(id)arg1 activeDeviceDidChange:(id)arg2;
+- (void)connectManager:(id)arg1 activeDeviceVolumeDidChange:(double)arg2;
 - (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
-- (void)deviceStateManager:(id)arg1 device:(id)arg2 volumeDidChange:(float)arg3;
+- (void)setupNotificationCenterObserving;
+- (void)setupObserving;
 - (void)dealloc;
-- (id)initWithDeviceManager:(id)arg1 castDeviceManager:(id)arg2 theme:(id)arg3 deviceIconMapper:(id)arg4 lockScreenControlsStateProvider:(id)arg5 notificationCenter:(id)arg6 application:(id)arg7 audioSession:(id)arg8 applicationMusicPlayer:(id)arg9 logger:(id)arg10 remoteVolumeOverlay:(id)arg11 volumeButtonController:(id)arg12;
+- (id)initWithCastDeviceManager:(id)arg1 connectManager:(id)arg2 theme:(id)arg3 deviceIconMapper:(id)arg4 lockScreenControlsStateProvider:(id)arg5 notificationCenter:(id)arg6 audioSession:(id)arg7 logger:(id)arg8 volumeButtonController:(id)arg9 systemVolumeManager:(id)arg10;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

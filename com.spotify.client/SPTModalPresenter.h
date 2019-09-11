@@ -11,6 +11,7 @@
 }
 
 + (void)dismissModalViewController:(id)arg1 animated:(_Bool)arg2 completion:(CDUnknownBlockType)arg3;
++ (void)presentModalViewController:(id)arg1 presentationStyle:(long long)arg2 animated:(_Bool)arg3 completion:(CDUnknownBlockType)arg4;
 + (void)presentModalViewController:(id)arg1 animated:(_Bool)arg2 completion:(CDUnknownBlockType)arg3;
 
 @end

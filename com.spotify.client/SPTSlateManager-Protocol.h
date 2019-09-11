@@ -6,9 +6,10 @@
 
 #import "SPTSlateContentUnitDelegate-Protocol.h"
 
-@protocol SPTSlate;
+@protocol SPTSlate, SPTSlateWireframe;
 
 @protocol SPTSlateManager <SPTSlateContentUnitDelegate>
+@property(readonly, nonatomic) id <SPTSlateWireframe> wireframe;
 @property(readonly, nonatomic) id <SPTSlate> presentedSlate;
 - (void)dismissSlate:(id <SPTSlate>)arg1 animated:(_Bool)arg2;
 - (void)presentSlate:(id <SPTSlate>)arg1 animated:(_Bool)arg2;

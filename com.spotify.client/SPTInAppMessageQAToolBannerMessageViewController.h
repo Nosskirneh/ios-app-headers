@@ -8,7 +8,7 @@
 
 #import "SPTPageController-Protocol.h"
 
-@class GLUEButton, NSString, NSURL, SPTLayoutConstraintBuilder, UIScrollView, UIView;
+@class GLUEButton, NSArray, NSString, NSURL, UIScrollView, UIView;
 @protocol GLUETheme, SPTInAppMessageQAToolBannerViewDelegate, SPTPageContainer;
 
 @interface SPTInAppMessageQAToolBannerMessageViewController : UIViewController <SPTPageController>
@@ -20,10 +20,10 @@
     GLUEButton *_rejectCreativeButton;
     GLUEButton *_cancelButton;
     id <GLUETheme> _theme;
-    SPTLayoutConstraintBuilder *_layout;
+    NSArray *_layoutConstraints;
 }
 
-@property(retain, nonatomic) SPTLayoutConstraintBuilder *layout; // @synthesize layout=_layout;
+@property(copy, nonatomic) NSArray *layoutConstraints; // @synthesize layoutConstraints=_layoutConstraints;
 @property(retain, nonatomic) id <GLUETheme> theme; // @synthesize theme=_theme;
 @property(retain, nonatomic) GLUEButton *cancelButton; // @synthesize cancelButton=_cancelButton;
 @property(retain, nonatomic) GLUEButton *rejectCreativeButton; // @synthesize rejectCreativeButton=_rejectCreativeButton;

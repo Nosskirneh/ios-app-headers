@@ -10,7 +10,7 @@
 #import "SPTExplicitContentEnabledStateObserver-Protocol.h"
 
 @class NSString, NSURL;
-@protocol SPTAudioPreviewPlayer, SPTCollectionPlatform, SPTEntitySeeAllSongsHubsDataSource, SPTEntitySeeAllSongsViewModelDelegate, SPTExplicitContentAccessManager, SPTFreeTierPreCurationTestManager, SPTLogCenter, SPTViewLogger;
+@protocol SPTAudioPreviewPlayer, SPTCollectionPlatform, SPTEntitySeeAllSongsHubsDataSource, SPTEntitySeeAllSongsViewModelDelegate, SPTExplicitContentAccessManager, SPTLogCenter, SPTViewLogger;
 
 @interface SPTEntitySeeAllSongsViewModel : NSObject <SPTExplicitContentEnabledStateObserver, SPTEntitySeeAllSongsHubsDataSourceDelegate>
 {
@@ -23,10 +23,8 @@
     id <SPTViewLogger> _viewLogger;
     id <SPTLogCenter> _logCenter;
     id <SPTExplicitContentAccessManager> _explicitContentAccessManager;
-    id <SPTFreeTierPreCurationTestManager> _preCurationTestManager;
 }
 
-@property(readonly, nonatomic) id <SPTFreeTierPreCurationTestManager> preCurationTestManager; // @synthesize preCurationTestManager=_preCurationTestManager;
 @property(readonly, nonatomic) id <SPTExplicitContentAccessManager> explicitContentAccessManager; // @synthesize explicitContentAccessManager=_explicitContentAccessManager;
 @property(readonly, nonatomic) id <SPTLogCenter> logCenter; // @synthesize logCenter=_logCenter;
 @property(readonly, nonatomic) id <SPTViewLogger> viewLogger; // @synthesize viewLogger=_viewLogger;
@@ -68,9 +66,8 @@
 - (void)audioPreviewPreventedForIndexPath:(id)arg1;
 - (void)stopAudioPreviewViewPlayer;
 - (void)loadModel;
-@property(readonly, nonatomic, getter=isPreCurationEnabled) _Bool preCurationEnabled;
 - (void)dealloc;
-- (id)initWithDataSource:(id)arg1 audioPreviewPlayer:(id)arg2 collectionPlatform:(id)arg3 viewLogger:(id)arg4 logCenter:(id)arg5 explicitContentAccessManager:(id)arg6 preCurationTestManager:(id)arg7 viewURI:(id)arg8;
+- (id)initWithDataSource:(id)arg1 audioPreviewPlayer:(id)arg2 collectionPlatform:(id)arg3 viewLogger:(id)arg4 logCenter:(id)arg5 explicitContentAccessManager:(id)arg6 viewURI:(id)arg7;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

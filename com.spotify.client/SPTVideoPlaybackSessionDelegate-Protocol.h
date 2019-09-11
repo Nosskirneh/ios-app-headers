@@ -6,13 +6,13 @@
 
 #import "NSObject-Protocol.h"
 
-@class NSError, SPTVideoPlaybackSession, SPTVideoPlaybackState;
+@class NSError, SPTVideoPlaybackSession;
 
 @protocol SPTVideoPlaybackSessionDelegate <NSObject>
 - (void)videoPlaybackSession:(SPTVideoPlaybackSession *)arg1 didPlayToTime:(CDStruct_1b6d18a9)arg2;
 - (void)videoPlaybackSessionDidFinish:(SPTVideoPlaybackSession *)arg1;
 - (void)videoPlaybackSession:(SPTVideoPlaybackSession *)arg1 didEncounterUnrecoverableError:(NSError *)arg2;
-- (void)videoPlaybackSession:(SPTVideoPlaybackSession *)arg1 stateDidChange:(SPTVideoPlaybackState *)arg2;
+- (void)videoPlaybackSession:(SPTVideoPlaybackSession *)arg1 didChangeDuration:(double)arg2;
 - (void)videoPlaybackSessionDidStart:(SPTVideoPlaybackSession *)arg1;
 @end
 

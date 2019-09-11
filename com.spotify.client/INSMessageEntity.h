@@ -6,24 +6,29 @@
 
 #import <CoreData/NSManagedObject.h>
 
+#import "INSMessageEntityProtocol-Protocol.h"
+
 @class NSData, NSDate, NSString;
 
-@interface INSMessageEntity : NSManagedObject
+@interface INSMessageEntity : NSManagedObject <INSMessageEntityProtocol>
 {
 }
 
-- (id)ins_eventEnvelope;
 
 // Remaining properties
+@property(nonatomic) _Bool authenticated; // @dynamic authenticated;
 @property(copy, nonatomic) NSDate *createdDate; // @dynamic createdDate;
+@property(readonly, copy) NSString *debugDescription;
 @property(nonatomic) _Bool delivered; // @dynamic delivered;
+@property(readonly, copy) NSString *description;
 @property(retain, nonatomic) NSData *fragments; // @dynamic fragments;
+@property(readonly) unsigned long long hash;
 @property(copy, nonatomic) NSString *messageId; // @dynamic messageId;
 @property(copy, nonatomic) NSString *name; // @dynamic name;
 @property(nonatomic) int retryCount; // @dynamic retryCount;
 @property(copy, nonatomic) NSDate *retryDate; // @dynamic retryDate;
 @property(retain, nonatomic) NSData *sequenceId; // @dynamic sequenceId;
 @property(nonatomic) long long sequenceNumber; // @dynamic sequenceNumber;
-
+@property(readonly) Class superclass;
 @end
 

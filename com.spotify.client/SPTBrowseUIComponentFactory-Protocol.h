@@ -6,11 +6,11 @@
 
 #import "NSObject-Protocol.h"
 
-@class EXP_HUBComponentRegistry, NSDictionary;
+@class HUBComponentRegistry, NSDictionary;
 
 @protocol SPTBrowseUIComponentFactory <NSObject>
-- (void)unregisterBrowseComponentsFromComponentRegistry:(EXP_HUBComponentRegistry *)arg1;
-- (void)registerBrowseComponentsToComponentRegistry:(EXP_HUBComponentRegistry *)arg1;
+- (void)unregisterBrowseComponentsFromComponentRegistry:(HUBComponentRegistry *)arg1;
+- (void)registerBrowseComponentsToComponentRegistry:(HUBComponentRegistry *)arg1;
 - (NSDictionary *)browseHubComponents;
 @end
 

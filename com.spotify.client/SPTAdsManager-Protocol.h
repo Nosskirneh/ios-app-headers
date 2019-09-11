@@ -7,26 +7,23 @@
 #import "NSObject-Protocol.h"
 
 @class NSString, NSURL;
-@protocol SPTAdManagerNPVRegistryUpdateOserver, SPTAdNowPlayingRemoteControlPolicy, SPTNowPlayingManager, SPTNowPlayingModesRegistry, SPTNowPlayingNavigationBarModel;
+@protocol SPTAdNowPlayingRemoteControlPolicy, SPTAdsBaseEntity, SPTNowPlayingManager, SPTNowPlayingNavigationBarModel;
 
 @protocol SPTAdsManager <NSObject>
-@property(readonly, nonatomic, getter=isAdsEnabled) _Bool adsEnabled;
-@property(readonly, nonatomic) id <SPTNowPlayingModesRegistry> nowPlayingModeRegistry;
+@property(readonly, nonatomic) _Bool shouldDisallowPause;
 @property(readonly, nonatomic) _Bool shouldEnableSkipControl;
 @property(readonly, nonatomic) _Bool shouldShowSkipControl;
 @property(readonly, nonatomic, getter=isVideoInProgress) _Bool videoInProgress;
 @property(readonly, nonatomic) _Bool isVideoCompanionAd;
 @property(readonly, nonatomic) _Bool isNowPlayingViewForcedOpen;
+@property(readonly, nonatomic) id <SPTAdsBaseEntity> activeAdEntity;
 @property(readonly, copy, nonatomic) NSString *actionMessage;
 @property(readonly, nonatomic) _Bool isEndOfWatchNow;
 @property(readonly, nonatomic, getter=isOptOutAvailable) _Bool optOutAvailable;
 @property(readonly, nonatomic, getter=isOptInAvailable) _Bool optInAvailable;
 @property(readonly, nonatomic, getter=isBreakInProgress) _Bool breakInProgress;
-- (void)removeObserver:(id <SPTAdManagerNPVRegistryUpdateOserver>)arg1;
-- (void)addObserver:(id <SPTAdManagerNPVRegistryUpdateOserver>)arg1;
 - (id <SPTAdNowPlayingRemoteControlPolicy>)provideRemoteControlPolicy;
 - (void)skipCurrentAd;
-- (void)setNPVModeRegistry:(id <SPTNowPlayingModesRegistry>)arg1;
 - (void)setNowPlayingNavigationBarModel:(id <SPTNowPlayingNavigationBarModel>)arg1;
 - (void)setNowPlayingManager:(id <SPTNowPlayingManager>)arg1;
 - (void)disableMidrollAdExperience:(_Bool)arg1 playOriginContext:(NSURL *)arg2;

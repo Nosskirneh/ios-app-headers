@@ -6,11 +6,11 @@
 
 #import "NSObject-Protocol.h"
 
-@class NSError;
+@class NSError, SPTSignupDataLoaderResponse;
 @protocol SPTSignupDataLoader;
 
 @protocol SPTSignupDataLoaderDelegate <NSObject>
 - (void)dataLoader:(id <SPTSignupDataLoader>)arg1 didFinishLoadingWithError:(NSError *)arg2;
-- (void)dataLoaderFinishLoadingWithSuccess:(id <SPTSignupDataLoader>)arg1;
+- (void)dataLoader:(id <SPTSignupDataLoader>)arg1 didFinishLoadingWithSuccessResponse:(SPTSignupDataLoaderResponse *)arg2;
 @end
 

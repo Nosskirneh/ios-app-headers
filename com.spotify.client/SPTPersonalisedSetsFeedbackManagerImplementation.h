@@ -38,7 +38,6 @@
 - (void)undoPositiveSongFeedbackForTrack:(id)arg1 contextURL:(id)arg2 completion:(CDUnknownBlockType)arg3;
 - (void)undoNegativeArtistFeedbackForTrack:(id)arg1 contextURL:(id)arg2 completion:(CDUnknownBlockType)arg3;
 - (void)undoNegativeSongFeedbackForTrack:(id)arg1 contextURL:(id)arg2 completion:(CDUnknownBlockType)arg3;
-- (void)negativeArtistFeedbackForTrack:(id)arg1 contextURL:(id)arg2 completion:(CDUnknownBlockType)arg3;
 - (void)removeObserver:(id)arg1;
 - (void)addObserver:(id)arg1;
 @property(readonly, nonatomic, getter=isFinite) _Bool finite;

@@ -6,23 +6,30 @@
 
 #import <objc/NSObject.h>
 
-@class SPTHomeMixGlueTheme;
+@class SPTHomeMixGlueTheme, SPTHomeMixMemberPileViewStyle;
 @protocol GLUEImageLoader;
 
 @interface SPTHomeMixFamilyPileConfigurator : NSObject
 {
     unsigned long long _maxNumberOfVisibleElements;
+    SPTHomeMixMemberPileViewStyle *_currentMemberPileViewStyle;
     SPTHomeMixGlueTheme *_theme;
     id <GLUEImageLoader> _glueImageLoader;
 }
 
++ (id)overflowTextWithCount:(unsigned long long)arg1;
 @property(readonly, nonatomic) id <GLUEImageLoader> glueImageLoader; // @synthesize glueImageLoader=_glueImageLoader;
 @property(readonly, nonatomic) SPTHomeMixGlueTheme *theme; // @synthesize theme=_theme;
+@property(copy, nonatomic) SPTHomeMixMemberPileViewStyle *currentMemberPileViewStyle; // @synthesize currentMemberPileViewStyle=_currentMemberPileViewStyle;
 @property(nonatomic) unsigned long long maxNumberOfVisibleElements; // @synthesize maxNumberOfVisibleElements=_maxNumberOfVisibleElements;
 - (void).cxx_destruct;
-- (id)imageViewWithURL:(id)arg1;
+- (id)memberImageView;
+- (id)avatarImageWithBackgroundColor:(id)arg1 size:(struct CGSize)arg2;
+- (id)avatarViewWithBackgroundColor:(id)arg1;
+- (id)imageViewWithURL:(id)arg1 backgroundColor:(id)arg2;
 - (id)overflowViewWithCount:(unsigned long long)arg1;
 - (id)textViewWithText:(id)arg1 backgroundColor:(id)arg2;
+- (id)viewForFacepileViewModel:(id)arg1;
 - (void)configurePileContainer:(id)arg1 viewModels:(id)arg2;
 - (id)initWithTheme:(id)arg1 glueImageLoader:(id)arg2;
 

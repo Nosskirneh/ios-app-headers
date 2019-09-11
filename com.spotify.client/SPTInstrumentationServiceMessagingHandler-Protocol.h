@@ -6,10 +6,9 @@
 
 #import "NSObject-Protocol.h"
 
-@class NSString, UIViewController;
+@class UIViewController;
 
 @protocol SPTInstrumentationServiceMessagingHandler <NSObject>
 - (void)instrumentationServiceObservedUninstrumentedPage:(UIViewController *)arg1;
-- (void)instrumentationServiceObservedUninstrumentedLegacyHubWithTitle:(NSString *)arg1;
 @end
 

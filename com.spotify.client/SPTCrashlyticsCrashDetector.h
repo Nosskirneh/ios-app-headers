@@ -10,7 +10,7 @@
 #import "SPTCrashDetector-Protocol.h"
 
 @class NSMutableDictionary, NSString;
-@protocol SPTCrashDetectorDelegate;
+@protocol OS_dispatch_queue, SPTCrashDetectorDelegate;
 
 @interface SPTCrashlyticsCrashDetector : NSObject <CrashlyticsDelegate, SPTCrashDetector>
 {
@@ -19,11 +19,13 @@
     NSString *_coreVersionString;
     NSString *_clientVersionString;
     NSMutableDictionary *_stateKeys;
+    NSObject<OS_dispatch_queue> *_stateQueue;
     NSString *_appState;
 }
 
 @property(retain, nonatomic) NSString *appState; // @synthesize appState=_appState;
 @property(nonatomic) _Bool terminated; // @synthesize terminated=_terminated;
+@property(readonly, nonatomic) NSObject<OS_dispatch_queue> *stateQueue; // @synthesize stateQueue=_stateQueue;
 @property(readonly, nonatomic) NSMutableDictionary *stateKeys; // @synthesize stateKeys=_stateKeys;
 @property(readonly, copy, nonatomic) NSString *clientVersionString; // @synthesize clientVersionString=_clientVersionString;
 @property(readonly, copy, nonatomic) NSString *coreVersionString; // @synthesize coreVersionString=_coreVersionString;
@@ -34,7 +36,9 @@
 - (void)recordNonFatalError:(id)arg1;
 - (void)recordCustomExceptionName:(id)arg1 reason:(id)arg2 callStack:(id)arg3;
 - (id)crashReportURLForUUID:(id)arg1;
+- (void)_setValue:(id)arg1 forStateKey:(id)arg2;
 - (void)setValue:(id)arg1 forStateKey:(id)arg2;
+- (void)setValuesForStateKeysWithDictionary:(id)arg1;
 - (void)leaveBreadcrumb:(id)arg1;
 - (void)setUserIdentifier:(id)arg1;
 - (void)appOperational;

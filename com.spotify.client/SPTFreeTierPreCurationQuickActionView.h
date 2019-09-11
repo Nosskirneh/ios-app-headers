@@ -27,6 +27,9 @@
 @property(retain, nonatomic) GLUEAccessoryIconButton *likeButton; // @synthesize likeButton=_likeButton;
 @property(retain, nonatomic) GLUEAccessoryIconButton *contextMenuButton; // @synthesize contextMenuButton=_contextMenuButton;
 - (void).cxx_destruct;
+- (id)contextMenuButtonAccessibilityIdentifier;
+- (void)hideLikeButton;
+- (void)hideBanButton;
 - (void)glue_applyStyle:(id)arg1;
 - (void)addViewConstraints;
 - (id)initWithFrame:(struct CGRect)arg1;

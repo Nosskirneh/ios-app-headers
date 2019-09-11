@@ -8,7 +8,7 @@
 
 #import "SPTPlaybackPreferencesProtocol-Protocol.h"
 
-@class NSString, SPTPlaybackPreferencesObserver;
+@class NSString, SPTPlaybackPreferencesObserver, SPTSettingsLogger;
 @protocol SPTPreferences, SPTProductState;
 
 @interface SPTLoudnessSettingsSection : MultipleChoiceSettingsSection <SPTPlaybackPreferencesProtocol>
@@ -16,11 +16,13 @@
     id <SPTProductState> _productState;
     id <SPTPreferences> _preferences;
     SPTPlaybackPreferencesObserver *_playbackPreferencesObserver;
+    SPTSettingsLogger *_logger;
 }
 
 + (id)productState;
 + (void)setProductState:(id)arg1;
 + (_Bool)shouldDisplayInSettingsViewController:(id)arg1;
+@property(retain, nonatomic) SPTSettingsLogger *logger; // @synthesize logger=_logger;
 @property(nonatomic) __weak SPTPlaybackPreferencesObserver *playbackPreferencesObserver; // @synthesize playbackPreferencesObserver=_playbackPreferencesObserver;
 @property(readonly, nonatomic) id <SPTPreferences> preferences; // @synthesize preferences=_preferences;
 @property(readonly, nonatomic) __weak id <SPTProductState> productState; // @synthesize productState=_productState;
@@ -36,7 +38,7 @@
 - (id)footerText;
 - (id)headerText;
 - (void)selectedChoiceIndexChanged;
-- (id)initWithSettingsViewController:(id)arg1 productState:(id)arg2 preferences:(id)arg3 playbackPreferencesObserver:(id)arg4;
+- (id)initWithSettingsViewController:(id)arg1 productState:(id)arg2 preferences:(id)arg3 playbackPreferencesObserver:(id)arg4 logger:(id)arg5;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

@@ -18,7 +18,6 @@
 @property(readonly, nonatomic) NSString *title;
 @property(readonly, nonatomic, getter=isAlbumStation) _Bool albumStation;
 @property(readonly, nonatomic, getter=isArtistStation) _Bool artistStation;
-@property(readonly, nonatomic, getter=isStationInCollection) _Bool stationInCollection;
 @property(readonly, nonatomic) _Bool hasSuccessfullyLoadedData;
 @property(readonly, nonatomic, getter=isPlaying) _Bool playing;
 @property(readonly, nonatomic) long long imageStyle;
@@ -31,17 +30,15 @@
 @property(readonly, nonatomic) NSURL *seedURL;
 @property(readonly, nonatomic) NSURL *stationURL;
 @property(nonatomic) __weak id <SPTStationViewModelDelegate> delegate;
-- (_Bool)shouldShowFollowButtonForStation;
 - (_Bool)isOfflineError:(NSError *)arg1;
 - (NSString *)displayableErrorMessageForError:(NSError *)arg1;
-- (void)updateSavedStationState:(_Bool)arg1 completion:(void (^)(SPTRadioStation *, NSError *))arg2;
 - (void)requestData;
 - (void)loadMoreTracks:(void (^)(SPTRadioStation *, NSError *))arg1;
-- (_Bool)startPlaybackDidUserTapTrackRow:(_Bool)arg1;
-- (void)togglePlayback;
+- (_Bool)startPlaybackDidUserTapTrackRow:(_Bool)arg1 referrerIdentifier:(NSString *)arg2;
+- (void)togglePlaybackWithReferrerIdentifier:(NSString *)arg1;
 - (_Bool)trackIsDisabledAtIndexPath:(NSIndexPath *)arg1;
 - (_Bool)trackIsCurrentlyPlayingAtIndexPath:(NSIndexPath *)arg1;
-- (_Bool)playTrackAtIndex:(long long)arg1;
+- (_Bool)playTrackAtIndex:(long long)arg1 referrerIdentifier:(NSString *)arg2;
 - (SPTRadioTrack *)trackAtIndex:(long long)arg1;
 - (_Bool)isLoading;
 

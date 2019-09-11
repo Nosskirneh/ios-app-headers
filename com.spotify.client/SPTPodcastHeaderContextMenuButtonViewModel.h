@@ -8,18 +8,18 @@
 
 #import "SPTFreeTierEntityContextMenuButtonViewModel-Protocol.h"
 
-@class NSString, NSURL, SPTPodcastLogger, SPTPodcastViewModel, SPTShowContextMenuController, SPTShowContextMenuControllerOptions, UIView, UIViewController;
-@protocol SPTFreeTierEntityContextMenuButtonViewModelDelegate, SPTShowContextMenuControllerDelegate;
+@class NSString, NSURL, SPTShowContextMenuController, UIView, UIViewController;
+@protocol SPTFreeTierEntityContextMenuButtonViewModelDelegate, SPTPodcast, SPTPodcastLogger, SPTShowContextMenuControllerDelegate, SPTShowContextMenuControllerOptions;
 
 @interface SPTPodcastHeaderContextMenuButtonViewModel : NSObject <SPTFreeTierEntityContextMenuButtonViewModel>
 {
     id <SPTFreeTierEntityContextMenuButtonViewModelDelegate> delegate;
     unsigned long long state;
     SPTShowContextMenuController *_showContextMenuController;
-    SPTPodcastLogger *_logger;
-    SPTPodcastViewModel *_viewModel;
+    id <SPTPodcastLogger> _logger;
+    id <SPTPodcast> _podcast;
     id <SPTShowContextMenuControllerDelegate> _contextMenuDelegate;
-    SPTShowContextMenuControllerOptions *_options;
+    id <SPTShowContextMenuControllerOptions> _options;
     UIViewController *_inViewController;
     UIView *_senderView;
     NSURL *_URI;
@@ -28,16 +28,16 @@
 @property(retain, nonatomic) NSURL *URI; // @synthesize URI=_URI;
 @property(retain, nonatomic) UIView *senderView; // @synthesize senderView=_senderView;
 @property(retain, nonatomic) UIViewController *inViewController; // @synthesize inViewController=_inViewController;
-@property(retain, nonatomic) SPTShowContextMenuControllerOptions *options; // @synthesize options=_options;
+@property(retain, nonatomic) id <SPTShowContextMenuControllerOptions> options; // @synthesize options=_options;
 @property(nonatomic) __weak id <SPTShowContextMenuControllerDelegate> contextMenuDelegate; // @synthesize contextMenuDelegate=_contextMenuDelegate;
-@property(retain, nonatomic) SPTPodcastViewModel *viewModel; // @synthesize viewModel=_viewModel;
-@property(retain, nonatomic) SPTPodcastLogger *logger; // @synthesize logger=_logger;
+@property(retain, nonatomic) id <SPTPodcast> podcast; // @synthesize podcast=_podcast;
+@property(retain, nonatomic) id <SPTPodcastLogger> logger; // @synthesize logger=_logger;
 @property(retain, nonatomic) SPTShowContextMenuController *showContextMenuController; // @synthesize showContextMenuController=_showContextMenuController;
 @property(readonly, nonatomic) unsigned long long state; // @synthesize state;
 @property(nonatomic) __weak id <SPTFreeTierEntityContextMenuButtonViewModelDelegate> delegate; // @synthesize delegate;
 - (void).cxx_destruct;
 - (void)tapContextMenuButton:(id)arg1;
-- (void)configureWithViewModel:(id)arg1 delegate:(id)arg2 options:(id)arg3 inViewController:(id)arg4 senderView:(id)arg5 URI:(id)arg6;
+- (void)configureWithShow:(id)arg1 delegate:(id)arg2 options:(id)arg3 inViewController:(id)arg4 senderView:(id)arg5 URI:(id)arg6;
 - (id)initWithShowContextMenuController:(id)arg1 logger:(id)arg2;
 
 // Remaining properties

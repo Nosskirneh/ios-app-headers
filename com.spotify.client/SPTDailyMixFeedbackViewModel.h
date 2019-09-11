@@ -8,15 +8,13 @@
 
 #import "SPTDailyMixFeedbackUIModel-Protocol.h"
 #import "SPTDailyMixManagerObserver-Protocol.h"
-#import "SPTPlayerObserver-Protocol.h"
+#import "SPTDailyMixPlayerProxyObserver-Protocol.h"
 
 @class NSString, SPTDailyMixManagerImplementation, SPTObserverManager, SPTPlayerState;
-@protocol SPTPlayer;
 
-@interface SPTDailyMixFeedbackViewModel : NSObject <SPTPlayerObserver, SPTDailyMixManagerObserver, SPTDailyMixFeedbackUIModel>
+@interface SPTDailyMixFeedbackViewModel : NSObject <SPTDailyMixManagerObserver, SPTDailyMixPlayerProxyObserver, SPTDailyMixFeedbackUIModel>
 {
     _Bool _useDailyMixFeedbackUI;
-    id <SPTPlayer> _player;
     SPTDailyMixManagerImplementation *_dailyMixManager;
     SPTPlayerState *_currentState;
     long long _currentlyDisplayedFeedback;
@@ -27,10 +25,9 @@
 @property(readonly, nonatomic) long long currentlyDisplayedFeedback; // @synthesize currentlyDisplayedFeedback=_currentlyDisplayedFeedback;
 @property(retain, nonatomic) SPTPlayerState *currentState; // @synthesize currentState=_currentState;
 @property(readonly, nonatomic) SPTDailyMixManagerImplementation *dailyMixManager; // @synthesize dailyMixManager=_dailyMixManager;
-@property(readonly, nonatomic) id <SPTPlayer> player; // @synthesize player=_player;
 @property(readonly, nonatomic, getter=shouldUseDailyMixFeedbackUI) _Bool useDailyMixFeedbackUI; // @synthesize useDailyMixFeedbackUI=_useDailyMixFeedbackUI;
 - (void).cxx_destruct;
-- (void)player:(id)arg1 stateDidChange:(id)arg2;
+- (void)playerProxy:(id)arg1 player:(id)arg2 stateDidChange:(id)arg3;
 - (void)feedbackManager:(id)arg1 track:(id)arg2 contextURL:(id)arg3 originalFeedback:(long long)arg4 didFailToChangeTo:(long long)arg5 error:(id)arg6;
 - (void)dailyMixManager:(id)arg1 track:(id)arg2 contextURL:(id)arg3 originalFeedback:(long long)arg4 didChangeTo:(long long)arg5;
 - (void)feedbackManagerWillUndoNegativeArtistFeedback:(id)arg1 track:(id)arg2 contextURL:(id)arg3;
@@ -56,7 +53,7 @@
 - (void)addObserver:(id)arg1;
 - (void)notifyObserversThatModelDidChange;
 - (void)dealloc;
-- (id)initWithPlayer:(id)arg1 dailyMixManager:(id)arg2;
+- (id)initWithDailyMixManager:(id)arg1;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

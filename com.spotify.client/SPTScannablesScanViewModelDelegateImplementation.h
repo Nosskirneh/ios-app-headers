@@ -9,7 +9,7 @@
 #import "SPTScannablesScanViewModelDelegate-Protocol.h"
 
 @class NSString, SPTScannablesDependencies, SPTScannablesScanViewController, UINavigationController;
-@protocol SPTAlertController, SPTPageController, SPTScannablesImagePickerController, SPTScannablesRegistry;
+@protocol SPTPageController, SPTScannablesImagePickerController, SPTScannablesRegistry;
 
 @interface SPTScannablesScanViewModelDelegateImplementation : NSObject <SPTScannablesScanViewModelDelegate>
 {
@@ -17,10 +17,8 @@
     SPTScannablesScanViewController<SPTPageController> *_viewController;
     SPTScannablesDependencies *_dependencies;
     UINavigationController<SPTScannablesImagePickerController> *_imagePickerController;
-    id <SPTAlertController> _alertController;
 }
 
-@property(retain, nonatomic) id <SPTAlertController> alertController; // @synthesize alertController=_alertController;
 @property(readonly, nonatomic) __weak UINavigationController<SPTScannablesImagePickerController> *imagePickerController; // @synthesize imagePickerController=_imagePickerController;
 @property(readonly, nonatomic) __weak SPTScannablesDependencies *dependencies; // @synthesize dependencies=_dependencies;
 @property(readonly, nonatomic) __weak SPTScannablesScanViewController<SPTPageController> *viewController; // @synthesize viewController=_viewController;
@@ -28,7 +26,7 @@
 - (void).cxx_destruct;
 - (void)scannablesScanViewModel:(id)arg1 didFailScanWithError:(id)arg2;
 - (void)scannablesScanViewModel:(id)arg1 didScanScannable:(id)arg2;
-- (id)initWithRegistry:(id)arg1 viewController:(id)arg2 dependencies:(id)arg3 imagePickerController:(id)arg4 alertController:(id)arg5;
+- (id)initWithRegistry:(id)arg1 viewController:(id)arg2 dependencies:(id)arg3 imagePickerController:(id)arg4;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

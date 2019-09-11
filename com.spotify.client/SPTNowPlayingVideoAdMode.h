@@ -8,13 +8,17 @@
 
 #import "SPTNowPlayingMode-Protocol.h"
 
-@class NSPointerArray, NSString, UIViewController;
-@protocol SPTNowPlayingAdUnitViewController, SPTNowPlayingContainedViewController, SPTNowPlayingModeLayoutDelegate;
+@class NSPointerArray, NSString, SPTAdNowPlayingManager, SPTAdPlayerObservable, SPTTheme, UIViewController;
+@protocol SPTAdsManager, SPTNowPlayingAdUnitViewController, SPTNowPlayingContainedViewController, SPTNowPlayingModeLayoutDelegate;
 
 @interface SPTNowPlayingVideoAdMode : NSObject <SPTNowPlayingMode>
 {
     id <SPTNowPlayingModeLayoutDelegate> _layoutDelegate;
     NSPointerArray *_unitViewControllers;
+    id <SPTAdsManager> _adsManager;
+    SPTAdNowPlayingManager *_adNowPlayingManager;
+    SPTAdPlayerObservable *_playerObserver;
+    SPTTheme *_theme;
     UIViewController<SPTNowPlayingContainedViewController> *_navigationBarViewController;
     UIViewController<SPTNowPlayingContainedViewController> *_informationViewController;
     UIViewController<SPTNowPlayingContainedViewController> *_durationViewController;
@@ -31,9 +35,14 @@
 @property(retain, nonatomic) UIViewController<SPTNowPlayingContainedViewController> *durationViewController; // @synthesize durationViewController=_durationViewController;
 @property(retain, nonatomic) UIViewController<SPTNowPlayingContainedViewController> *informationViewController; // @synthesize informationViewController=_informationViewController;
 @property(retain, nonatomic) UIViewController<SPTNowPlayingContainedViewController> *navigationBarViewController; // @synthesize navigationBarViewController=_navigationBarViewController;
+@property(retain, nonatomic) SPTTheme *theme; // @synthesize theme=_theme;
+@property(retain, nonatomic) SPTAdPlayerObservable *playerObserver; // @synthesize playerObserver=_playerObserver;
+@property(retain, nonatomic) SPTAdNowPlayingManager *adNowPlayingManager; // @synthesize adNowPlayingManager=_adNowPlayingManager;
+@property(retain, nonatomic) id <SPTAdsManager> adsManager; // @synthesize adsManager=_adsManager;
 @property(retain, nonatomic) NSPointerArray *unitViewControllers; // @synthesize unitViewControllers=_unitViewControllers;
 @property(nonatomic) __weak id <SPTNowPlayingModeLayoutDelegate> layoutDelegate; // @synthesize layoutDelegate=_layoutDelegate;
 - (void).cxx_destruct;
+- (_Bool)requiresScrollDisabled;
 - (id)queueHeadUnitViewController;
 - (id)contentDecorationViewController;
 - (id)footerUnitViewController;
@@ -42,7 +51,7 @@
 - (id)informationUnitViewController;
 - (id)navigationBarUnitViewController;
 - (id)identifier;
-- (id)initWithNavigationBarViewController:(id)arg1 informationUnitViewController:(id)arg2 durationUnitViewController:(id)arg3 headUnitViewController:(id)arg4 footerUnitViewController:(id)arg5 contentDecorationController:(id)arg6 queueHeadUnitViewController:(id)arg7;
+- (id)initWithAdManager:(id)arg1 playerObserver:(id)arg2 theme:(id)arg3 adNowPlayingManager:(id)arg4;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

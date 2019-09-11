@@ -6,13 +6,13 @@
 
 #import "NSObject-Protocol.h"
 
-@class SPTNowPlayingPlaybackActionsHandler;
+@protocol SPTNowPlayingPlaybackActionsHandler;
 
 @protocol SPTNowPlayingPlaybackActionsHandlerObserver <NSObject>
-- (void)playbackActionsHandlerDidPlayPause:(SPTNowPlayingPlaybackActionsHandler *)arg1;
+- (void)playbackActionsHandlerDidPlayPause:(id <SPTNowPlayingPlaybackActionsHandler>)arg1;
 
 @optional
-- (void)playbackActionsHandlerDidToggleRepeat:(SPTNowPlayingPlaybackActionsHandler *)arg1;
-- (void)playbackActionsHandlerDidToggleShuffle:(SPTNowPlayingPlaybackActionsHandler *)arg1;
+- (void)playbackActionsHandlerDidToggleRepeat:(id <SPTNowPlayingPlaybackActionsHandler>)arg1;
+- (void)playbackActionsHandlerDidToggleShuffle:(id <SPTNowPlayingPlaybackActionsHandler>)arg1;
 @end
 

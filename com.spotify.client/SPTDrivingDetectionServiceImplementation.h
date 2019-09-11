@@ -6,15 +6,14 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTDrivingMotionBasedStateDetectorDelegate-Protocol.h"
 #import "SPTDrivingStateDetectionService-Protocol.h"
 #import "SPTDrivingStateTestManagerObserver-Protocol.h"
 #import "SPTService-Protocol.h"
 
-@class NSDate, NSString, SPTAccessory, SPTAllocationContext, SPTDrivingDetectionFeedbackPresenter, SPTDrivingMotionBasedStateDetector, SPTDrivingMotionDetectionLoader, SPTDrivingMotionDetectionLoaderResult, SPTDrivingStateDetectorImplementation;
-@protocol SPTAccessoryManagerService, SPTExternalIntegrationDebugLogService, SPTFeatureFlaggingService, SPTGLUEService, SPTNetworkService, SPTSettingsFeature, SlateFeature;
+@class NSDate, NSString, SPTAccessory, SPTAllocationContext, SPTDrivingDetectionFeedbackController, SPTDrivingDetectorMiddleware, SPTDrivingMotionBasedStateDetector, SPTDrivingMotionDetectionLoaderResult, SPTDrivingStateDetectorImplementation;
+@protocol SPTAccessoryManagerService, SPTExternalIntegrationDebugLogService, SPTFeatureFlaggingService, SPTGLUEService, SPTNetworkService, SPTSettingsFeature, SPTUIPresentationService, SlateFeature;
 
-@interface SPTDrivingDetectionServiceImplementation : NSObject <SPTDrivingStateTestManagerObserver, SPTDrivingMotionBasedStateDetectorDelegate, SPTService, SPTDrivingStateDetectionService>
+@interface SPTDrivingDetectionServiceImplementation : NSObject <SPTDrivingStateTestManagerObserver, SPTService, SPTDrivingStateDetectionService>
 {
     SPTAccessory *_debugCarAccessory;
     id <SPTAccessoryManagerService> _accessoryManagerService;
@@ -24,21 +23,23 @@
     id <SlateFeature> _slateService;
     id <SPTGLUEService> _glueService;
     id <SPTSettingsFeature> _settingsService;
-    SPTDrivingMotionDetectionLoader *_motionDetectionLoader;
+    id <SPTUIPresentationService> _UIPresentationService;
+    SPTDrivingStateDetectorImplementation *_accessoryBasedDrivingDetector;
     SPTDrivingMotionBasedStateDetector *_motionBasedDrivingDetector;
-    SPTDrivingDetectionFeedbackPresenter *_feedbackPresenter;
+    SPTDrivingDetectionFeedbackController *_drivingSurveyController;
+    SPTDrivingDetectorMiddleware *_drivingDetectorMiddleware;
     SPTDrivingMotionDetectionLoaderResult *_pendingPrediction;
     NSDate *_pendingPresentationTimestamp;
-    SPTDrivingStateDetectorImplementation *_drivingDetector;
 }
 
 + (id)serviceIdentifier;
-@property(retain, nonatomic) SPTDrivingStateDetectorImplementation *drivingDetector; // @synthesize drivingDetector=_drivingDetector;
 @property(retain, nonatomic) NSDate *pendingPresentationTimestamp; // @synthesize pendingPresentationTimestamp=_pendingPresentationTimestamp;
 @property(retain, nonatomic) SPTDrivingMotionDetectionLoaderResult *pendingPrediction; // @synthesize pendingPrediction=_pendingPrediction;
-@property(retain, nonatomic) SPTDrivingDetectionFeedbackPresenter *feedbackPresenter; // @synthesize feedbackPresenter=_feedbackPresenter;
+@property(retain, nonatomic) SPTDrivingDetectorMiddleware *drivingDetectorMiddleware; // @synthesize drivingDetectorMiddleware=_drivingDetectorMiddleware;
+@property(retain, nonatomic) SPTDrivingDetectionFeedbackController *drivingSurveyController; // @synthesize drivingSurveyController=_drivingSurveyController;
 @property(retain, nonatomic) SPTDrivingMotionBasedStateDetector *motionBasedDrivingDetector; // @synthesize motionBasedDrivingDetector=_motionBasedDrivingDetector;
-@property(retain, nonatomic) SPTDrivingMotionDetectionLoader *motionDetectionLoader; // @synthesize motionDetectionLoader=_motionDetectionLoader;
+@property(retain, nonatomic) SPTDrivingStateDetectorImplementation *accessoryBasedDrivingDetector; // @synthesize accessoryBasedDrivingDetector=_accessoryBasedDrivingDetector;
+@property(nonatomic) __weak id <SPTUIPresentationService> UIPresentationService; // @synthesize UIPresentationService=_UIPresentationService;
 @property(nonatomic) __weak id <SPTSettingsFeature> settingsService; // @synthesize settingsService=_settingsService;
 @property(nonatomic) __weak id <SPTGLUEService> glueService; // @synthesize glueService=_glueService;
 @property(nonatomic) __weak id <SlateFeature> slateService; // @synthesize slateService=_slateService;
@@ -47,15 +48,15 @@
 @property(nonatomic) __weak id <SPTFeatureFlaggingService> featureFlaggingService; // @synthesize featureFlaggingService=_featureFlaggingService;
 @property(nonatomic) __weak id <SPTAccessoryManagerService> accessoryManagerService; // @synthesize accessoryManagerService=_accessoryManagerService;
 - (void).cxx_destruct;
-- (void)applicationStateChanged:(id)arg1;
-- (void)drivingStateDetector:(id)arg1 didReceivePredictionResult:(id)arg2;
-- (void)testManagerDidPerformManualSamplingAction:(id)arg1;
-- (void)testManager:(id)arg1 didChangeMotionBasedDrivingSurveyEnabled:(_Bool)arg2;
-- (void)testManager:(id)arg1 didChangeDebugCarConnectedEnabled:(_Bool)arg2;
+- (id)createFeedbackPresenter;
+- (id)createMotionBasedDetectorWithDetectionLoader:(id)arg1;
+- (id)createFeedbackLoader;
+- (id)createDrivingMotionDetectionLoader;
 @property(readonly, nonatomic) SPTAccessory *debugCarAccessory; // @synthesize debugCarAccessory=_debugCarAccessory;
-- (void)presentDrivingFeedbackOverlayForPrediction:(id)arg1;
-- (void)didPresentDetectionFeedbackOverlay;
-- (_Bool)shouldPresentDrivingDetectionFeedbackOverlay:(id)arg1;
+- (id)createMotionRecorderViewController;
+- (void)testManagerDidPerformManualSamplingAction:(id)arg1;
+- (void)testManager:(id)arg1 didChangeDebugCarConnectedEnabled:(_Bool)arg2;
+- (id)provideMotionAndOrAccessoryDetector;
 - (id)provideDrivingDetector;
 - (void)unload;
 - (void)load;

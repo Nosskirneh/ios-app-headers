@@ -9,8 +9,12 @@
 @interface NSString (SPTWatchPlatformPubSubTopic)
 + (id)spt_sessionStateTopic;
 + (id)spt_recentlyPlayedItemsTopic;
++ (id)spt_playingContextTopic;
 + (id)spt_playerStateTopic;
 + (id)spt_playbackSpeedStateTopic;
++ (id)spt_outgoingOfflineStateTopic;
++ (id)spt_incomingOfflineStateTopic;
++ (id)spt_featureFlagsTopic;
 + (id)spt_deviceTopic;
 + (id)spt_connectStateTopic;
 @end

@@ -10,59 +10,53 @@
 #import "SPTPageController-Protocol.h"
 #import "SPTPlayerObserver-Protocol.h"
 
-@class NSMutableDictionary, NSString, NSTimer, NSURL, SPTGeniusAnnotation, SPTGeniusAnnotationSet, SPTGeniusCardContainerView, SPTGeniusLoggingService, SPTGeniusService, UIView;
+@class NSCache, NSString, NSTimer, NSURL, SPTGeniusAnnotation, SPTGeniusAnnotationSet, SPTGeniusCardContainerView, SPTGeniusLoggingService, SPTGeniusService, UIView;
 @protocol SPTImageLoaderFactory, SPTLinkDispatcher, SPTPageContainer, SPTPlayer;
 
-@interface SPTGeniusCardsViewController : UIViewController <SPTPlayerObserver, SPTGeniusLaunchExternalDelegate, SPTPageController>
+@interface SPTGeniusCardsViewController : UIViewController <SPTGeniusLaunchExternalDelegate, SPTPlayerObserver, SPTPageController>
 {
-    _Bool _active;
-    _Bool _visible;
     _Bool _pausedPlayback;
     _Bool _firstCardScheduled;
     _Bool _loggedUIPageImpression;
-    NSURL *_trackURL;
     SPTGeniusService *_geniusService;
     id <SPTPlayer> _player;
     SPTGeniusLoggingService *_loggingService;
     id <SPTImageLoaderFactory> _imageLoaderFactory;
     id <SPTLinkDispatcher> _linkDispatcher;
+    NSCache *_cardViewCache;
+    NSURL *_trackURL;
     SPTGeniusAnnotationSet *_annotationSet;
     SPTGeniusCardContainerView *_cardContainerView;
     UIView *_currentCard;
     SPTGeniusAnnotation *_currentAnnotation;
+    NSTimer *_timer;
     double _nextTimestamp;
     double _currentTimestamp;
-    NSTimer *_timer;
-    NSMutableDictionary *_cardViewCache;
 }
 
-@property(retain, nonatomic) NSMutableDictionary *cardViewCache; // @synthesize cardViewCache=_cardViewCache;
-@property(retain, nonatomic) NSTimer *timer; // @synthesize timer=_timer;
 @property(nonatomic) _Bool loggedUIPageImpression; // @synthesize loggedUIPageImpression=_loggedUIPageImpression;
 @property(nonatomic) _Bool firstCardScheduled; // @synthesize firstCardScheduled=_firstCardScheduled;
 @property(nonatomic) _Bool pausedPlayback; // @synthesize pausedPlayback=_pausedPlayback;
 @property(nonatomic) double currentTimestamp; // @synthesize currentTimestamp=_currentTimestamp;
 @property(nonatomic) double nextTimestamp; // @synthesize nextTimestamp=_nextTimestamp;
+@property(retain, nonatomic) NSTimer *timer; // @synthesize timer=_timer;
 @property(retain, nonatomic) SPTGeniusAnnotation *currentAnnotation; // @synthesize currentAnnotation=_currentAnnotation;
 @property(retain, nonatomic) UIView *currentCard; // @synthesize currentCard=_currentCard;
 @property(retain, nonatomic) SPTGeniusCardContainerView *cardContainerView; // @synthesize cardContainerView=_cardContainerView;
 @property(retain, nonatomic) SPTGeniusAnnotationSet *annotationSet; // @synthesize annotationSet=_annotationSet;
+@property(retain, nonatomic) NSURL *trackURL; // @synthesize trackURL=_trackURL;
+@property(readonly, nonatomic) NSCache *cardViewCache; // @synthesize cardViewCache=_cardViewCache;
 @property(readonly, nonatomic) id <SPTLinkDispatcher> linkDispatcher; // @synthesize linkDispatcher=_linkDispatcher;
 @property(readonly, nonatomic) id <SPTImageLoaderFactory> imageLoaderFactory; // @synthesize imageLoaderFactory=_imageLoaderFactory;
 @property(readonly, nonatomic) SPTGeniusLoggingService *loggingService; // @synthesize loggingService=_loggingService;
 @property(readonly, nonatomic) id <SPTPlayer> player; // @synthesize player=_player;
 @property(readonly, nonatomic) SPTGeniusService *geniusService; // @synthesize geniusService=_geniusService;
-@property(readonly, nonatomic) NSURL *trackURL; // @synthesize trackURL=_trackURL;
-@property(nonatomic, getter=isVisible) _Bool visible; // @synthesize visible=_visible;
-@property(nonatomic, getter=isActive) _Bool active; // @synthesize active=_active;
 - (void).cxx_destruct;
 @property(readonly, nonatomic, getter=spt_pageURI) NSURL *pageURI;
 @property(readonly, nonatomic, getter=spt_pageIdentifier) NSString *pageIdentifier;
 - (void)didTapButtonWithGeniusSongID:(long long)arg1 itemIndex:(int)arg2;
-- (void)player:(id)arg1 stateDidChange:(id)arg2;
 - (void)handleNewPlayerState:(id)arg1;
-- (void)hideHint;
-- (void)showHint;
+- (void)player:(id)arg1 stateDidChange:(id)arg2;
 - (void)showCardAtTime:(double)arg1;
 - (long long)getCurrentAnnotationIndex;
 - (void)showNextCardWithDelay:(double)arg1;
@@ -70,13 +64,13 @@
 - (void)showCardAtIndex:(int)arg1;
 - (id)cardViewForAnnotation:(id)arg1;
 - (_Bool)shouldShowIntroCard;
-- (void)viewWillLayoutSubviews;
 - (void)setAnnotationSet:(id)arg1 trackURL:(id)arg2;
+- (void)loadTrack:(id)arg1;
 - (void)resetState;
+- (void)viewDidDisappear:(_Bool)arg1;
 - (void)viewWillAppear:(_Bool)arg1;
 - (void)viewDidLoad;
-- (void)dealloc;
-- (id)initWithTrackURL:(id)arg1 geniusService:(id)arg2 player:(id)arg3 loggingService:(id)arg4 imageLoaderFactory:(id)arg5 linkDispatcher:(id)arg6;
+- (id)initWithGeniusService:(id)arg1 loggingService:(id)arg2 player:(id)arg3 imageLoaderFactory:(id)arg4 linkDispatcher:(id)arg5;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

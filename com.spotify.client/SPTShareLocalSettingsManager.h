@@ -20,8 +20,6 @@
 @property(retain, nonatomic) id <SPTLocalSettings> localSettings; // @synthesize localSettings=_localSettings;
 - (void).cxx_destruct;
 - (_Bool)isShareDestinationIdInstalled:(long long)arg1 shareDestinations:(id)arg2;
-- (_Bool)shouldDisplaySnapchatDisclaimer:(id)arg1;
-- (void)recordSnapchatDisclaimerDismissed;
 - (id)initWithLocalSettings:(id)arg1 deeplinkHandler:(id)arg2 testManager:(id)arg3;
 
 @end

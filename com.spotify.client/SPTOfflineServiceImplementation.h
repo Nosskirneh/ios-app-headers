@@ -13,13 +13,13 @@
 
 @interface SPTOfflineServiceImplementation : NSObject <SPTOfflineService>
 {
-    id <CosmosFeature> _cosmos;
+    id <CosmosFeature> _cosmosFeature;
     id <SPTCosmosDataLoaderService> _cosmosDataLoaderService;
 }
 
 + (id)serviceIdentifier;
 @property(nonatomic) __weak id <SPTCosmosDataLoaderService> cosmosDataLoaderService; // @synthesize cosmosDataLoaderService=_cosmosDataLoaderService;
-@property(nonatomic) __weak id <CosmosFeature> cosmos; // @synthesize cosmos=_cosmos;
+@property(nonatomic) __weak id <CosmosFeature> cosmosFeature; // @synthesize cosmosFeature=_cosmosFeature;
 - (void).cxx_destruct;
 - (id)provideOfflineSyncModel;
 - (void)load;

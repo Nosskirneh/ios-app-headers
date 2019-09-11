@@ -6,10 +6,10 @@
 
 #import "NSObject-Protocol.h"
 
-@class SPTPodcast;
+@class SPTShowContextMenuController;
+@protocol SPTPodcast;
 
 @protocol SPTShowContextMenuControllerDelegate <NSObject>
-- (void)editOfflinedEpisodesForShow:(SPTPodcast *)arg1;
-- (void)followShow:(SPTPodcast *)arg1 follow:(_Bool)arg2;
+- (void)showContextMenuController:(SPTShowContextMenuController *)arg1 didUpdateFollowedState:(_Bool)arg2 forShow:(id <SPTPodcast>)arg3;
 @end
 

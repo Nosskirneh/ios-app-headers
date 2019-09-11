@@ -6,12 +6,11 @@
 
 #import "NSObject-Protocol.h"
 
-@class NSString, NSURL, SPTCanvasStreamingPlaybackManager;
+@class NSError, NSURL, SPTCanvasStreamingPlaybackManager;
 
 @protocol SPTCanvasStreamingPlaybackManagerLoadDelegate <NSObject>
-- (void)streamingPlaybackManager:(SPTCanvasStreamingPlaybackManager *)arg1 didFailToLoadAssetURL:(NSURL *)arg2 entityURI:(NSURL *)arg3 playbackOption:(long long)arg4;
+- (void)streamingPlaybackManager:(SPTCanvasStreamingPlaybackManager *)arg1 didFailToLoadAssetURL:(NSURL *)arg2 entityURI:(NSURL *)arg3 playbackOption:(long long)arg4 error:(NSError *)arg5;
 - (void)streamingPlaybackManager:(SPTCanvasStreamingPlaybackManager *)arg1 didLoadAssetURL:(NSURL *)arg2 entityURI:(NSURL *)arg3 playbackOption:(long long)arg4;
 - (void)streamingPlaybackManager:(SPTCanvasStreamingPlaybackManager *)arg1 willLoadAssetURL:(NSURL *)arg2 entityURI:(NSURL *)arg3 playbackOption:(long long)arg4;
-- (void)streamingPlaybackManager:(SPTCanvasStreamingPlaybackManager *)arg1 streamingStartedManifestID:(NSString *)arg2 entityURI:(NSURL *)arg3 playbackOption:(long long)arg4;
 @end
 

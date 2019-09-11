@@ -11,7 +11,7 @@
 @protocol MessageBarControllerObserver <NSObject>
 
 @optional
-- (void)messageBarController:(MessageBarController *)arg1 willChangeContentInset:(struct UIEdgeInsets)arg2;
+- (void)messageBarController:(MessageBarController *)arg1 didChangeContentInset:(struct UIEdgeInsets)arg2;
 - (void)messageBarController:(MessageBarController *)arg1 didChangeToContentViewController:(UIViewController *)arg2;
 - (void)messageBarController:(MessageBarController *)arg1 willChangeToContentViewController:(UIViewController *)arg2;
 @end

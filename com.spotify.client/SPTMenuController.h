@@ -6,19 +6,24 @@
 
 #import <objc/NSObject.h>
 
-@class NSArray, SPTNavigationManager, SPTTabBarContainerViewController, UIView, UIViewController;
+@class NSArray, SPTNavigationManager, SPTObserverManager, UIView, UIViewController;
+@protocol SPTTabBarContainer;
 
 @interface SPTMenuController : NSObject
 {
-    SPTTabBarContainerViewController *_menuViewController;
+    UIViewController<SPTTabBarContainer> *_menuViewController;
     SPTNavigationManager *_navigationManager;
+    SPTObserverManager *_observerManager;
 }
 
+@property(retain, nonatomic) SPTObserverManager *observerManager; // @synthesize observerManager=_observerManager;
 @property(retain, nonatomic) SPTNavigationManager *navigationManager; // @synthesize navigationManager=_navigationManager;
-@property(retain, nonatomic) SPTTabBarContainerViewController *menuViewController; // @synthesize menuViewController=_menuViewController;
+@property(retain, nonatomic) UIViewController<SPTTabBarContainer> *menuViewController; // @synthesize menuViewController=_menuViewController;
 - (void).cxx_destruct;
 - (void)setContentHeaderView:(id)arg1 animated:(_Bool)arg2 completion:(CDUnknownBlockType)arg3;
 @property(readonly, nonatomic) UIView *contentHeaderView;
+- (void)removeObserver:(id)arg1;
+- (void)addObserver:(id)arg1;
 @property(nonatomic) __weak UIViewController *selectedViewController;
 @property(copy, nonatomic) NSArray *viewControllers;
 - (id)initWithTabBarFactory:(id)arg1 navigationManager:(id)arg2 logCenter:(id)arg3;

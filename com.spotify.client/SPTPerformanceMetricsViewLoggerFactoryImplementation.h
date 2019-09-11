@@ -8,20 +8,26 @@
 
 #import "SPTPerformanceMetricsViewLoggerFactory-Protocol.h"
 
-@class NSString, SPTNetworkConnectivityController;
-@protocol SPTPerformanceMetricsTransport;
+@class NSHashTable, NSString;
+@protocol SPTLogCenter, SPTPerformanceKitUUIDProvider, SPTViewLoggerConnectionTypeProvider;
 
 @interface SPTPerformanceMetricsViewLoggerFactoryImplementation : NSObject <SPTPerformanceMetricsViewLoggerFactory>
 {
-    id <SPTPerformanceMetricsTransport> _transport;
-    SPTNetworkConnectivityController *_networkConnectivityController;
+    id <SPTLogCenter> _logCenter;
+    id <SPTViewLoggerConnectionTypeProvider> _connectionTypeProvider;
+    id <SPTPerformanceKitUUIDProvider> _uuidProvider;
+    NSHashTable *_defaultObservers;
 }
 
-@property(retain, nonatomic) SPTNetworkConnectivityController *networkConnectivityController; // @synthesize networkConnectivityController=_networkConnectivityController;
-@property(retain, nonatomic) id <SPTPerformanceMetricsTransport> transport; // @synthesize transport=_transport;
+@property(retain, nonatomic) NSHashTable *defaultObservers; // @synthesize defaultObservers=_defaultObservers;
+@property(readonly, nonatomic) __weak id <SPTPerformanceKitUUIDProvider> uuidProvider; // @synthesize uuidProvider=_uuidProvider;
+@property(readonly, nonatomic) __weak id <SPTViewLoggerConnectionTypeProvider> connectionTypeProvider; // @synthesize connectionTypeProvider=_connectionTypeProvider;
+@property(nonatomic) __weak id <SPTLogCenter> logCenter; // @synthesize logCenter=_logCenter;
 - (void).cxx_destruct;
 - (id)createViewLoggerForViewURI:(id)arg1;
-- (id)initWithTransport:(id)arg1 networkConnectivityController:(id)arg2;
+- (void)removeDefaultObserver:(id)arg1;
+- (void)addDefaultObserver:(id)arg1;
+- (id)initWithLogCenter:(id)arg1 connectionTypeProvider:(id)arg2 uuidProvider:(id)arg3;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

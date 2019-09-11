@@ -47,6 +47,7 @@
 - (void)imageLoader:(id)arg1 didLoadImage:(id)arg2 forURL:(id)arg3 loadTime:(double)arg4 context:(id)arg5;
 - (_Bool)isSongBannedForIndexPath:(id)arg1;
 - (id)trackSubtitleAccessoryViewForIndexPath:(id)arg1;
+- (void)trackContextMenuDataForIndexPath:(id)arg1 completion:(CDUnknownBlockType)arg2;
 - (id)artistsForIndexPath:(id)arg1;
 - (id)albumNameForIndexPath:(id)arg1;
 - (id)trackURIForIndexPath:(id)arg1;
@@ -97,9 +98,7 @@
 @property(readonly, nonatomic) _Bool hasHeader;
 @property(readonly) unsigned long long hash;
 @property(readonly, nonatomic) id <SPTFreeTierAllSongsHeaderEntityViewModel> headerEntityViewModel;
-@property(readonly, nonatomic) _Bool shouldDisplayUpdateDialogForAllSongs;
 @property(readonly) Class superclass;
-@property(readonly, copy, nonatomic) NSString *updateDialogMessageForAllSongs;
 
 @end
 

@@ -7,9 +7,9 @@
 #import "NSObject-Protocol.h"
 
 @class UIViewController;
-@protocol SPTSearch2RootViewControllerProtocol;
+@protocol SPTSearch2RootViewControllerProtocol><SPTPageController;
 
 @protocol SPTFreeTierFindInterfaceFactory <NSObject>
-- (UIViewController<SPTSearch2RootViewControllerProtocol> *)createSearchViewController;
+- (UIViewController<SPTSearch2RootViewControllerProtocol><SPTPageController> *)createSearchViewController;
 @end
 

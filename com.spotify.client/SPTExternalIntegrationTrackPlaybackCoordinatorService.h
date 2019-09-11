@@ -7,23 +7,27 @@
 #import <objc/NSObject.h>
 
 #import "SPTExternalIntegrationPlaybackCoordinator-Protocol.h"
+#import "SPTPlayerObserver-Protocol.h"
 #import "SPTService-Protocol.h"
 
 @class NSDictionary, NSString, SPTAllocationContext, SPTExternalIntegrationPlaybackServiceImplementation;
 @protocol SPTPlayer;
 
-@interface SPTExternalIntegrationTrackPlaybackCoordinatorService : NSObject <SPTService, SPTExternalIntegrationPlaybackCoordinator>
+@interface SPTExternalIntegrationTrackPlaybackCoordinatorService : NSObject <SPTPlayerObserver, SPTService, SPTExternalIntegrationPlaybackCoordinator>
 {
     SPTExternalIntegrationPlaybackServiceImplementation *_playbackService;
     id <SPTPlayer> _player;
     NSDictionary *_socialOnDemandClients;
+    CDUnknownBlockType _completionHandler;
 }
 
 + (id)serviceIdentifier;
+@property(copy, nonatomic) CDUnknownBlockType completionHandler; // @synthesize completionHandler=_completionHandler;
 @property(retain, nonatomic) NSDictionary *socialOnDemandClients; // @synthesize socialOnDemandClients=_socialOnDemandClients;
 @property(readonly, nonatomic) __weak id <SPTPlayer> player; // @synthesize player=_player;
 @property(readonly, nonatomic) __weak SPTExternalIntegrationPlaybackServiceImplementation *playbackService; // @synthesize playbackService=_playbackService;
 - (void).cxx_destruct;
+- (void)player:(id)arg1 didEncounterError:(id)arg2;
 - (void)playContentWithURI:(id)arg1 withOptions:(id)arg2 origin:(id)arg3 requestOptions:(id)arg4 completionHandler:(CDUnknownBlockType)arg5;
 - (_Bool)canPlayContentWithURI:(id)arg1;
 - (void)unload;

@@ -9,7 +9,7 @@
 #import "SPTCollectionAlbumsModel-Protocol.h"
 
 @class NSArray, NSHashTable, NSString, SPTCollectionPlatformFetchOptions;
-@protocol SPTCollectionPlatformDataLoader, SPTCollectionPlatformDataLoaderRequestToken, SPTCollectionPlatformTestManager, SPTFreeTierTestManager, SPTLinkDispatcher, SPTLocalSettings, SPTOfflineManager, SPTOfflineModeState, SPTProductState;
+@protocol SPTCollectionPlatformDataLoader, SPTCollectionPlatformDataLoaderRequestToken, SPTCollectionPlatformTestManager, SPTLinkDispatcher, SPTLocalSettings, SPTOfflineManager, SPTOfflineModeState, SPTProductState;
 
 @interface SPTCollectionAlbumsCosmosModel : NSObject <SPTCollectionAlbumsModel>
 {
@@ -21,11 +21,10 @@
     id <SPTOfflineModeState> _offlineNotifier;
     id <SPTLocalSettings> _localSettings;
     id <SPTCollectionPlatformTestManager> _collectionTestManager;
-    id <SPTFreeTierTestManager> _freeTierTestManager;
     id <SPTOfflineManager> _offlineManager;
     id <SPTLinkDispatcher> _linkDispatcher;
     NSArray *_sectionedAlbums;
-    NSArray *_sections;
+    NSArray *_sectionIndices;
     unsigned long long _numberOfAlbums;
     unsigned long long _unfilteredLength;
     unsigned long long _sortColumn;
@@ -45,11 +44,10 @@
 @property(nonatomic) unsigned long long sortColumn; // @synthesize sortColumn=_sortColumn;
 @property(nonatomic) unsigned long long unfilteredLength; // @synthesize unfilteredLength=_unfilteredLength;
 @property(nonatomic) unsigned long long numberOfAlbums; // @synthesize numberOfAlbums=_numberOfAlbums;
-@property(retain, nonatomic) NSArray *sections; // @synthesize sections=_sections;
+@property(retain, nonatomic) NSArray *sectionIndices; // @synthesize sectionIndices=_sectionIndices;
 @property(retain, nonatomic) NSArray *sectionedAlbums; // @synthesize sectionedAlbums=_sectionedAlbums;
 @property(retain, nonatomic) id <SPTLinkDispatcher> linkDispatcher; // @synthesize linkDispatcher=_linkDispatcher;
 @property(nonatomic) __weak id <SPTOfflineManager> offlineManager; // @synthesize offlineManager=_offlineManager;
-@property(nonatomic) __weak id <SPTFreeTierTestManager> freeTierTestManager; // @synthesize freeTierTestManager=_freeTierTestManager;
 @property(nonatomic) __weak id <SPTCollectionPlatformTestManager> collectionTestManager; // @synthesize collectionTestManager=_collectionTestManager;
 @property(readonly, nonatomic) id <SPTLocalSettings> localSettings; // @synthesize localSettings=_localSettings;
 @property(readonly, nonatomic) __weak id <SPTOfflineModeState> offlineNotifier; // @synthesize offlineNotifier=_offlineNotifier;
@@ -83,7 +81,7 @@
 @property(nonatomic) _Bool showOnlyCompleteAlbums;
 - (unsigned long long)offlineSyncStateForAlbumAtIndexPath:(id)arg1;
 - (void)load;
-- (id)initWithDataLoader:(id)arg1 username:(id)arg2 offlineNotifier:(id)arg3 productState:(id)arg4 localSettings:(id)arg5 collectionTestManager:(id)arg6 freeTierTestManager:(id)arg7 offlineManager:(id)arg8 linkDispatcher:(id)arg9;
+- (id)initWithDataLoader:(id)arg1 username:(id)arg2 offlineNotifier:(id)arg3 productState:(id)arg4 localSettings:(id)arg5 collectionTestManager:(id)arg6 offlineManager:(id)arg7 linkDispatcher:(id)arg8;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

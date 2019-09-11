@@ -6,27 +6,21 @@
 
 #import <objc/NSObject.h>
 
-@class NSString, SPTLoginMagicLinkSentConfirmationViewLogger, SPTLoginTheme;
-@protocol SPTAlertController, SPTLinkDispatcher;
+@class NSString, SPTLoginMagicLinkSentConfirmationViewLogger, SPTLoginOpenEmailAppController, SPTLoginTheme;
 
 @interface SPTLoginMagicLinkSentConfirmationViewModel : NSObject
 {
     SPTLoginMagicLinkSentConfirmationViewLogger *_logger;
     SPTLoginTheme *_theme;
     NSString *_emailOrUsername;
-    id <SPTLinkDispatcher> _linkDispatcher;
-    id <SPTAlertController> _alertController;
+    SPTLoginOpenEmailAppController *_emailAppController;
 }
 
-@property(retain, nonatomic) id <SPTAlertController> alertController; // @synthesize alertController=_alertController;
-@property(retain, nonatomic) id <SPTLinkDispatcher> linkDispatcher; // @synthesize linkDispatcher=_linkDispatcher;
+@property(readonly, nonatomic) SPTLoginOpenEmailAppController *emailAppController; // @synthesize emailAppController=_emailAppController;
 @property(readonly, nonatomic) NSString *emailOrUsername; // @synthesize emailOrUsername=_emailOrUsername;
 @property(readonly, nonatomic) SPTLoginTheme *theme; // @synthesize theme=_theme;
 @property(readonly, nonatomic) SPTLoginMagicLinkSentConfirmationViewLogger *logger; // @synthesize logger=_logger;
 - (void).cxx_destruct;
-- (id)emailAppsURLStrings;
-- (id)installedEmailApps;
-- (void)navigateToAppWithURI:(id)arg1;
 - (void)userDidTapOpenEmailButton;
 - (_Bool)shouldShowOpenEmailButton;
 - (id)viewStyle;
@@ -35,7 +29,7 @@
 - (id)lowerLabelText;
 - (id)upperLabelText;
 - (id)titleLabelText;
-- (id)initWithTheme:(id)arg1 emailOrUsername:(id)arg2 logger:(id)arg3 linkDispatcher:(id)arg4 alertController:(id)arg5;
+- (id)initWithTheme:(id)arg1 emailOrUsername:(id)arg2 logger:(id)arg3 emailAppController:(id)arg4;
 
 @end
 

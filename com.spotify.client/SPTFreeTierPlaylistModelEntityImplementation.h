@@ -15,15 +15,15 @@
 {
     id <SPTFreeTierPlaylistModelEntityMetadataFields> _metadata;
     NSArray *_tracks;
+    NSArray *_recommendations;
     unsigned long long _unrangedTracksLength;
     unsigned long long onDemandType;
-    NSArray *_recommendations;
 }
 
-@property(retain, nonatomic) NSArray *recommendations; // @synthesize recommendations=_recommendations;
 @property(nonatomic) unsigned long long onDemandType; // @synthesize onDemandType;
 @property(nonatomic) unsigned long long unrangedTracksLength; // @synthesize unrangedTracksLength=_unrangedTracksLength;
-@property(retain, nonatomic) NSArray *tracks; // @synthesize tracks=_tracks;
+@property(copy, nonatomic) NSArray *recommendations; // @synthesize recommendations=_recommendations;
+@property(copy, nonatomic) NSArray *tracks; // @synthesize tracks=_tracks;
 @property(retain, nonatomic) id <SPTFreeTierPlaylistModelEntityMetadataFields> metadata; // @synthesize metadata=_metadata;
 - (void).cxx_destruct;
 

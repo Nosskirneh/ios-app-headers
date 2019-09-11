@@ -16,14 +16,14 @@
 #import "SPTSpotifyAppProtocolService-Protocol.h"
 
 @class NSMapTable, NSString, SPSession, SPTAllocationContext, SPTAppProtocolBackgroundController, SPTAppProtocolDelegateConnector, SPTAppProtocolEAConnector, SPTAppProtocolFeatureFlagManager;
-@protocol SPTAccessoryManagerService, SPTAccessoryStateManager, SPTAppProtocolConnector, SPTExternalIntegrationDebugLog, SPTExternalIntegrationDebugLogService, SPTExternalIntegrationPlatform, SPTGaiaDeviceStateManager, SPTNetworkService, SPTProductState;
+@protocol SPTAccessoryManagerService, SPTAccessoryStateManager, SPTAppProtocolConnector, SPTAuthController, SPTCoreService, SPTExternalIntegrationDebugLog, SPTExternalIntegrationDebugLogService, SPTExternalIntegrationPlatform, SPTGaiaConnectAPI, SPTNetworkService, SPTProductState;
 
 @interface SPTSpotifyAppProtocolServiceImplementation : NSObject <NSNetServiceDelegate, SPTAppProtocolConnectionHandlerDelegate, SPTAppProtocolConnectorDelegate, SPTExternalIntegrationPlaybackControllerObserver, SPTAppProtocolBackgroundControllerDelegate, SPTAppProtocolFeatureFlagManagerObserver, SPTService, SPTSpotifyAppProtocolService>
 {
     _Bool _backgrounded;
-    _Bool _hasEnabledEASession;
     id <SPTAccessoryStateManager> _accessoryStateManager;
-    id <SPTGaiaDeviceStateManager> _gaiaDeviceStateManager;
+    id <SPTAuthController> _authController;
+    id <SPTGaiaConnectAPI> _connectManager;
     SPSession *_currentSession;
     id <SPTProductState> _productState;
     id <SPTExternalIntegrationPlatform> _externalIntegrationPlatform;
@@ -31,6 +31,7 @@
     id <SPTAccessoryManagerService> _accessoryManagerService;
     id <SPTExternalIntegrationDebugLogService> _debugLogService;
     id <SPTNetworkService> _networkFeature;
+    id <SPTCoreService> _coreService;
     id <SPTAppProtocolConnector> _socketConnector;
     SPTAppProtocolEAConnector *_eaConnector;
     SPTAppProtocolDelegateConnector *_delegateConnector;
@@ -41,13 +42,13 @@
 
 + (id)serviceIdentifier;
 @property(copy, nonatomic) NSMapTable *activeConnectionHandlers; // @synthesize activeConnectionHandlers=_activeConnectionHandlers;
-@property(nonatomic) _Bool hasEnabledEASession; // @synthesize hasEnabledEASession=_hasEnabledEASession;
 @property(retain, nonatomic) id <SPTExternalIntegrationDebugLog> debugLog; // @synthesize debugLog=_debugLog;
 @property(nonatomic, getter=isBackgrounded) _Bool backgrounded; // @synthesize backgrounded=_backgrounded;
 @property(retain, nonatomic) SPTAppProtocolBackgroundController *backgroundController; // @synthesize backgroundController=_backgroundController;
 @property(retain, nonatomic) SPTAppProtocolDelegateConnector *delegateConnector; // @synthesize delegateConnector=_delegateConnector;
 @property(retain, nonatomic) SPTAppProtocolEAConnector *eaConnector; // @synthesize eaConnector=_eaConnector;
 @property(retain, nonatomic) id <SPTAppProtocolConnector> socketConnector; // @synthesize socketConnector=_socketConnector;
+@property(readonly, nonatomic) __weak id <SPTCoreService> coreService; // @synthesize coreService=_coreService;
 @property(readonly, nonatomic) __weak id <SPTNetworkService> networkFeature; // @synthesize networkFeature=_networkFeature;
 @property(readonly, nonatomic) __weak id <SPTExternalIntegrationDebugLogService> debugLogService; // @synthesize debugLogService=_debugLogService;
 @property(readonly, nonatomic) __weak id <SPTAccessoryManagerService> accessoryManagerService; // @synthesize accessoryManagerService=_accessoryManagerService;
@@ -55,7 +56,8 @@
 @property(nonatomic) __weak id <SPTExternalIntegrationPlatform> externalIntegrationPlatform; // @synthesize externalIntegrationPlatform=_externalIntegrationPlatform;
 @property(nonatomic) __weak id <SPTProductState> productState; // @synthesize productState=_productState;
 @property(nonatomic) __weak SPSession *currentSession; // @synthesize currentSession=_currentSession;
-@property(nonatomic) __weak id <SPTGaiaDeviceStateManager> gaiaDeviceStateManager; // @synthesize gaiaDeviceStateManager=_gaiaDeviceStateManager;
+@property(nonatomic) __weak id <SPTGaiaConnectAPI> connectManager; // @synthesize connectManager=_connectManager;
+@property(nonatomic) __weak id <SPTAuthController> authController; // @synthesize authController=_authController;
 - (void).cxx_destruct;
 - (_Bool)hasAllBackgroundControllerDependencies;
 - (void)updateBackgroundControllerEnabled;

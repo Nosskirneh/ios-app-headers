@@ -24,17 +24,17 @@
 }
 
 + (id)messageWithPageIdentifier:(id)arg1 targetUri:(id)arg2 intent:(id)arg3 contentSource:(id)arg4 contentSourceUri:(id)arg5 section:(id)arg6 positionIndex:(long long)arg7 maxPositionIndex:(long long)arg8 sequenceNumber:(long long)arg9 sessionId:(id)arg10 interactionId:(id)arg11;
-@property(retain, nonatomic) NSString *interactionIdValue; // @synthesize interactionIdValue=_interactionIdValue;
-@property(retain, nonatomic) NSString *sessionIdValue; // @synthesize sessionIdValue=_sessionIdValue;
+@property(copy, nonatomic) NSString *interactionIdValue; // @synthesize interactionIdValue=_interactionIdValue;
+@property(copy, nonatomic) NSString *sessionIdValue; // @synthesize sessionIdValue=_sessionIdValue;
 @property(nonatomic) long long sequenceNumberValue; // @synthesize sequenceNumberValue=_sequenceNumberValue;
 @property(nonatomic) long long maxPositionIndexValue; // @synthesize maxPositionIndexValue=_maxPositionIndexValue;
 @property(nonatomic) long long positionIndexValue; // @synthesize positionIndexValue=_positionIndexValue;
-@property(retain, nonatomic) NSString *sectionValue; // @synthesize sectionValue=_sectionValue;
-@property(retain, nonatomic) NSString *contentSourceUriValue; // @synthesize contentSourceUriValue=_contentSourceUriValue;
-@property(retain, nonatomic) NSString *contentSourceValue; // @synthesize contentSourceValue=_contentSourceValue;
-@property(retain, nonatomic) NSString *intentValue; // @synthesize intentValue=_intentValue;
-@property(retain, nonatomic) NSString *targetUriValue; // @synthesize targetUriValue=_targetUriValue;
-@property(retain, nonatomic) NSString *pageIdentifierValue; // @synthesize pageIdentifierValue=_pageIdentifierValue;
+@property(copy, nonatomic) NSString *sectionValue; // @synthesize sectionValue=_sectionValue;
+@property(copy, nonatomic) NSString *contentSourceUriValue; // @synthesize contentSourceUriValue=_contentSourceUriValue;
+@property(copy, nonatomic) NSString *contentSourceValue; // @synthesize contentSourceValue=_contentSourceValue;
+@property(copy, nonatomic) NSString *intentValue; // @synthesize intentValue=_intentValue;
+@property(copy, nonatomic) NSString *targetUriValue; // @synthesize targetUriValue=_targetUriValue;
+@property(copy, nonatomic) NSString *pageIdentifierValue; // @synthesize pageIdentifierValue=_pageIdentifierValue;
 - (void).cxx_destruct;
 - (_Bool)isEqual:(id)arg1;
 - (unsigned long long)hash;

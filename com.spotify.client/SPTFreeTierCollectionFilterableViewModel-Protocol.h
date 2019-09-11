@@ -6,12 +6,14 @@
 
 #import "NSObject-Protocol.h"
 
-@class NSString, UIViewController;
+@class NSArray, NSString, UIViewController;
 
 @protocol SPTFreeTierCollectionFilterableViewModel <NSObject>
+@property(readonly, nonatomic) NSArray *activeFilterTitles;
 @property(copy, nonatomic) NSString *textFilter;
 @property(readonly, nonatomic) unsigned long long filteredContentState;
 @property(readonly, nonatomic, getter=isSortingAndFilteringEnabled) _Bool sortingAndFilteringEnabled;
+- (void)removeFilterAtIndex:(long long)arg1;
 - (void)resetFilters;
 - (UIViewController *)sortingAndFilteringPickerViewController;
 @end

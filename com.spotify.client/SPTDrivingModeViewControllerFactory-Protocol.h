@@ -6,14 +6,10 @@
 
 #import "NSObject-Protocol.h"
 
-@class UIViewController;
+@class SPTDrivingModeSession, UIViewController;
 @protocol SPTNowPlayingContainedViewController;
 
 @protocol SPTDrivingModeViewControllerFactory <NSObject>
-- (UIViewController<SPTNowPlayingContainedViewController> *)createFooterUnitViewController;
-- (UIViewController<SPTNowPlayingContainedViewController> *)createHeadUnitViewController;
-- (UIViewController<SPTNowPlayingContainedViewController> *)createDurationUnitViewController;
-- (UIViewController<SPTNowPlayingContainedViewController> *)createInformationUnitViewController;
-- (UIViewController<SPTNowPlayingContainedViewController> *)createNavigationBarUnitViewController;
+- (UIViewController<SPTNowPlayingContainedViewController> *)createViewControllerForUnit:(unsigned long long)arg1 session:(SPTDrivingModeSession *)arg2;
 @end
 

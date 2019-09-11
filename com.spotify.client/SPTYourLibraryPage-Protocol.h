@@ -9,6 +9,7 @@
 @protocol SPTYourLibraryPageDelegate;
 
 @protocol SPTYourLibraryPage <NSObject>
+@property(readonly, nonatomic) double offscreenContentHeight;
 @property(nonatomic) __weak id <SPTYourLibraryPageDelegate> pageDelegate;
 @end
 

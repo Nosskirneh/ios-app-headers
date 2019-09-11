@@ -8,8 +8,8 @@
 
 #import "GLUEThemeObserver-Protocol.h"
 
-@class GLUEEntityRowStyle, SPTFreeTierCollectionGLUETheme, SPTFreeTierPreCurationChunkyRowStyle, SPTFreeTierPreCurationQuickActionViewStyle;
-@protocol GLUEImageLoader, SPTAudioPreviewModelFactory, SPTAudioPreviewUIFactory, SPTCollectionPlatformConfiguration, SPTFreeTierCollectionSongCellConfiguratorDelegate;
+@class GLUEEntityRowStyle, SPTFreeTierCollectionGLUETheme, SPTFreeTierCollectionSongsEntitySectionHeaderViewStyle, SPTFreeTierPreCurationChunkyRowStyle;
+@protocol GLUEImageLoader, SPTAudioPreviewModelFactory, SPTAudioPreviewUIFactory, SPTCollectionPlatformConfiguration, SPTFreeTierCollectionSongCellConfiguratorDelegate, SPTFreeTierPreCurationUIFactory, SPTShelves;
 
 @interface SPTFreeTierCollectionSongCellConfigurator : NSObject <GLUEThemeObserver>
 {
@@ -20,22 +20,22 @@
     SPTFreeTierCollectionGLUETheme *_theme;
     id <SPTAudioPreviewModelFactory> _audioPreviewModelFactory;
     id <SPTAudioPreviewUIFactory> _audioPreviewUIFactory;
+    id <SPTShelves> _shelves;
     id <SPTCollectionPlatformConfiguration> _collectionConfiguration;
     SPTFreeTierPreCurationChunkyRowStyle *_chunkRowStyle;
     GLUEEntityRowStyle *_songEntityRowStyle;
-    SPTFreeTierPreCurationQuickActionViewStyle *_defaultQuickActionViewStyle;
-    SPTFreeTierPreCurationQuickActionViewStyle *_banQuickActionViewStyle;
-    SPTFreeTierPreCurationQuickActionViewStyle *_likedQuickActionViewStyle;
-    SPTFreeTierPreCurationQuickActionViewStyle *_onlyLikeQuickActionViewStyle;
+    SPTFreeTierCollectionSongsEntitySectionHeaderViewStyle *_songsAlbumSectionHeaderStyle;
+    SPTFreeTierCollectionSongsEntitySectionHeaderViewStyle *_songsArtistSectionHeaderStyle;
+    id <SPTFreeTierPreCurationUIFactory> _preCurationUIFactory;
 }
 
-@property(retain, nonatomic) SPTFreeTierPreCurationQuickActionViewStyle *onlyLikeQuickActionViewStyle; // @synthesize onlyLikeQuickActionViewStyle=_onlyLikeQuickActionViewStyle;
-@property(retain, nonatomic) SPTFreeTierPreCurationQuickActionViewStyle *likedQuickActionViewStyle; // @synthesize likedQuickActionViewStyle=_likedQuickActionViewStyle;
-@property(retain, nonatomic) SPTFreeTierPreCurationQuickActionViewStyle *banQuickActionViewStyle; // @synthesize banQuickActionViewStyle=_banQuickActionViewStyle;
-@property(retain, nonatomic) SPTFreeTierPreCurationQuickActionViewStyle *defaultQuickActionViewStyle; // @synthesize defaultQuickActionViewStyle=_defaultQuickActionViewStyle;
+@property(retain, nonatomic) id <SPTFreeTierPreCurationUIFactory> preCurationUIFactory; // @synthesize preCurationUIFactory=_preCurationUIFactory;
+@property(retain, nonatomic) SPTFreeTierCollectionSongsEntitySectionHeaderViewStyle *songsArtistSectionHeaderStyle; // @synthesize songsArtistSectionHeaderStyle=_songsArtistSectionHeaderStyle;
+@property(retain, nonatomic) SPTFreeTierCollectionSongsEntitySectionHeaderViewStyle *songsAlbumSectionHeaderStyle; // @synthesize songsAlbumSectionHeaderStyle=_songsAlbumSectionHeaderStyle;
 @property(retain, nonatomic) GLUEEntityRowStyle *songEntityRowStyle; // @synthesize songEntityRowStyle=_songEntityRowStyle;
 @property(retain, nonatomic) SPTFreeTierPreCurationChunkyRowStyle *chunkRowStyle; // @synthesize chunkRowStyle=_chunkRowStyle;
 @property(retain, nonatomic) id <SPTCollectionPlatformConfiguration> collectionConfiguration; // @synthesize collectionConfiguration=_collectionConfiguration;
+@property(retain, nonatomic) id <SPTShelves> shelves; // @synthesize shelves=_shelves;
 @property(retain, nonatomic) id <SPTAudioPreviewUIFactory> audioPreviewUIFactory; // @synthesize audioPreviewUIFactory=_audioPreviewUIFactory;
 @property(retain, nonatomic) id <SPTAudioPreviewModelFactory> audioPreviewModelFactory; // @synthesize audioPreviewModelFactory=_audioPreviewModelFactory;
 @property(retain, nonatomic) SPTFreeTierCollectionGLUETheme *theme; // @synthesize theme=_theme;
@@ -53,6 +53,7 @@
 - (void)banButtonButtonDidTouchUpInside:(id)arg1;
 - (void)likeButtonButtonDidTouchUpInside:(id)arg1;
 - (void)cellContextMenuButtonDidTouchUpInside:(id)arg1;
+- (void)configureSwipeGesturesOnCell:(id)arg1 viewModel:(id)arg2;
 - (void)configureMultipleAccessoriesViewForCell:(id)arg1 viewModel:(id)arg2;
 - (void)setupQuickActionsTrailingAccessoryForCell:(id)arg1 withViewModel:(id)arg2;
 - (void)setupTrailingAccessoryForCell:(id)arg1 withViewModel:(id)arg2;
@@ -60,11 +61,12 @@
 - (void)setupContentViewForCell:(id)arg1;
 - (void)handleAudioPreviewOnCell:(id)arg1;
 - (double)heightForSectionHeaderWithViewModel:(id)arg1;
+- (void)configureEntitySectionHeader:(id)arg1 withViewModel:(id)arg2;
 - (void)configureSectionHeader:(id)arg1 withViewModel:(id)arg2;
 - (void)configurePreviewCell:(id)arg1 withViewModel:(id)arg2;
 - (void)configureCell:(id)arg1 withViewModel:(id)arg2;
 - (void)dealloc;
-- (id)initWithImageLoader:(id)arg1 theme:(id)arg2 collectionConfiguration:(id)arg3 audioPreviewModelFactory:(id)arg4 audioPreviewUIFactory:(id)arg5;
+- (id)initWithImageLoader:(id)arg1 theme:(id)arg2 collectionConfiguration:(id)arg3 audioPreviewModelFactory:(id)arg4 audioPreviewUIFactory:(id)arg5 preCurationUIFactory:(id)arg6 shelves:(id)arg7;
 
 @end
 

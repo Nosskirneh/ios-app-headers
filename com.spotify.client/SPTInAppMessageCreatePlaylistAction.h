@@ -6,18 +6,18 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTInAppMessageAction-Protocol.h"
+#import "SPTInAppMessageActionHandler-Protocol.h"
 
 @class NSString, SPTInAppMessageActionsRegistryImplementation;
 
-@interface SPTInAppMessageCreatePlaylistAction : NSObject <SPTInAppMessageAction>
+@interface SPTInAppMessageCreatePlaylistAction : NSObject <SPTInAppMessageActionHandler>
 {
     SPTInAppMessageActionsRegistryImplementation *_registry;
 }
 
 @property(readonly, nonatomic) SPTInAppMessageActionsRegistryImplementation *registry; // @synthesize registry=_registry;
 - (void).cxx_destruct;
-- (void)perform;
+- (void)executeActionWithURL:(id)arg1;
 - (id)initWithActionsRegistry:(id)arg1;
 
 // Remaining properties

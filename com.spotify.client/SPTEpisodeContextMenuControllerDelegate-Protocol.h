@@ -6,9 +6,10 @@
 
 #import "NSObject-Protocol.h"
 
-@class SPTPodcastEpisode;
+@protocol SPTPodcastEpisode;
 
 @protocol SPTEpisodeContextMenuControllerDelegate <NSObject>
-- (void)offlineEpisode:(SPTPodcastEpisode *)arg1 offline:(_Bool)arg2;
+- (void)markEpisodeAsPlayed:(id <SPTPodcastEpisode>)arg1 played:(_Bool)arg2;
+- (void)offlineEpisode:(id <SPTPodcastEpisode>)arg1 offline:(_Bool)arg2;
 @end
 

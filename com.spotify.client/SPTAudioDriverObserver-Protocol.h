@@ -11,6 +11,7 @@
 @protocol SPTAudioDriverObserver <NSObject>
 
 @optional
+- (void)audioDriverDidReset:(SPTAudioDriver *)arg1;
 - (void)audioDriverWillStartRunning:(SPTAudioDriver *)arg1;
 - (void)audioDriver:(SPTAudioDriver *)arg1 didFailWithError:(NSError *)arg2;
 - (void)audioDriverDidStopRunning:(SPTAudioDriver *)arg1;

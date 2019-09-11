@@ -17,10 +17,10 @@
 }
 
 + (id)messageWithSessionId:(id)arg1 userIntent:(id)arg2 entityUri:(id)arg3 contextIdentifier:(id)arg4;
-@property(retain, nonatomic) NSString *contextIdentifierValue; // @synthesize contextIdentifierValue=_contextIdentifierValue;
-@property(retain, nonatomic) NSString *entityUriValue; // @synthesize entityUriValue=_entityUriValue;
-@property(retain, nonatomic) NSString *userIntentValue; // @synthesize userIntentValue=_userIntentValue;
-@property(retain, nonatomic) NSString *sessionIdValue; // @synthesize sessionIdValue=_sessionIdValue;
+@property(copy, nonatomic) NSString *contextIdentifierValue; // @synthesize contextIdentifierValue=_contextIdentifierValue;
+@property(copy, nonatomic) NSString *entityUriValue; // @synthesize entityUriValue=_entityUriValue;
+@property(copy, nonatomic) NSString *userIntentValue; // @synthesize userIntentValue=_userIntentValue;
+@property(copy, nonatomic) NSString *sessionIdValue; // @synthesize sessionIdValue=_sessionIdValue;
 - (void).cxx_destruct;
 - (_Bool)isEqual:(id)arg1;
 - (unsigned long long)hash;

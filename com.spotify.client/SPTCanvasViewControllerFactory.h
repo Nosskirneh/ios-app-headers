@@ -7,7 +7,7 @@
 #import <objc/NSObject.h>
 
 @class NSCache, SPTCanvasLoadEventLogger, SPTCanvasLoadStateTracker, SPTCanvasLoggingService, SPTCanvasTrackCheckerImplementation;
-@protocol SPTCanvasIdleMonitorObserverDelegate, SPTEntityService, SPTImageLoaderFactory, SPTPlayerFeature, SPTVideoFeature, SPTVideoURLAssetLoader;
+@protocol SPTCanvasIdleMonitorObserverDelegate, SPTEntityService, SPTImageLoaderFactory, SPTLinkDispatcher, SPTPlayerFeature, SPTVideoFeaturePlayerFactory, SPTVideoURLAssetLoader;
 
 @interface SPTCanvasViewControllerFactory : NSObject
 {
@@ -19,16 +19,18 @@
     SPTCanvasLoggingService *_loggingService;
     SPTCanvasLoadEventLogger *_loadEventLogger;
     id <SPTCanvasIdleMonitorObserverDelegate> _delegate;
-    id <SPTVideoFeature> _videoFeature;
+    id <SPTVideoFeaturePlayerFactory> _playerFactory;
     id <SPTPlayerFeature> _playerFeature;
     NSCache *_avatarURICache;
     NSCache *_canvasImageCache;
+    id <SPTLinkDispatcher> _linkDispatcher;
 }
 
+@property(readonly, nonatomic) id <SPTLinkDispatcher> linkDispatcher; // @synthesize linkDispatcher=_linkDispatcher;
 @property(readonly, nonatomic) NSCache *canvasImageCache; // @synthesize canvasImageCache=_canvasImageCache;
 @property(readonly, nonatomic) NSCache *avatarURICache; // @synthesize avatarURICache=_avatarURICache;
 @property(readonly, nonatomic) id <SPTPlayerFeature> playerFeature; // @synthesize playerFeature=_playerFeature;
-@property(readonly, nonatomic) id <SPTVideoFeature> videoFeature; // @synthesize videoFeature=_videoFeature;
+@property(readonly, nonatomic) id <SPTVideoFeaturePlayerFactory> playerFactory; // @synthesize playerFactory=_playerFactory;
 @property(nonatomic) __weak id <SPTCanvasIdleMonitorObserverDelegate> delegate; // @synthesize delegate=_delegate;
 @property(readonly, nonatomic) SPTCanvasLoadEventLogger *loadEventLogger; // @synthesize loadEventLogger=_loadEventLogger;
 @property(readonly, nonatomic) SPTCanvasLoggingService *loggingService; // @synthesize loggingService=_loggingService;
@@ -38,8 +40,10 @@
 @property(readonly, nonatomic) SPTCanvasLoadStateTracker *loadStateTracker; // @synthesize loadStateTracker=_loadStateTracker;
 @property(readonly, nonatomic) SPTCanvasTrackCheckerImplementation *trackChecker; // @synthesize trackChecker=_trackChecker;
 - (void).cxx_destruct;
+- (_Bool)shouldCreateCanvasViewControllerForTrack:(id)arg1;
+- (id)canvasModelForTrack:(id)arg1 withPlaceholderURI:(id)arg2;
 - (id)createCanvasViewController;
-- (id)initWithCanvasTrackChecker:(id)arg1 loadStateTracker:(id)arg2 imageLoaderFactory:(id)arg3 entityService:(id)arg4 videoManager:(id)arg5 loggingService:(id)arg6 loadEventLogger:(id)arg7 idleMonitorDelegate:(id)arg8 videoFeature:(id)arg9 playerFeature:(id)arg10;
+- (id)initWithCanvasTrackChecker:(id)arg1 loadStateTracker:(id)arg2 imageLoaderFactory:(id)arg3 entityService:(id)arg4 videoManager:(id)arg5 loggingService:(id)arg6 loadEventLogger:(id)arg7 idleMonitorDelegate:(id)arg8 playerFactory:(id)arg9 playerFeature:(id)arg10 linkDispatcher:(id)arg11;
 
 @end
 

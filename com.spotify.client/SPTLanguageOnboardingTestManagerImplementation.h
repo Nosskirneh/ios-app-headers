@@ -6,13 +6,12 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTFeatureFlagSignalObserver-Protocol.h"
 #import "SPTLanguageOnboardingTestManager-Protocol.h"
 
 @class NSString;
 @protocol SPTFeatureFlagFactory, SPTFeatureFlagSignal;
 
-@interface SPTLanguageOnboardingTestManagerImplementation : NSObject <SPTFeatureFlagSignalObserver, SPTLanguageOnboardingTestManager>
+@interface SPTLanguageOnboardingTestManagerImplementation : NSObject <SPTLanguageOnboardingTestManager>
 {
     id <SPTFeatureFlagFactory> _featureFlagFactory;
     id <SPTFeatureFlagSignal> _languageOnboardingProductStateSignal;

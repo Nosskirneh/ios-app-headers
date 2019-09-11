@@ -6,12 +6,10 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTFeatureFlagSignalObserver-Protocol.h"
-
 @class NSString, SPTObserverManager;
 @protocol SPTFeatureFlagFactory, SPTFeatureFlagSignal, SPTFeatureSettingsItemFactory;
 
-@interface SPTDrivingStateTestManager : NSObject <SPTFeatureFlagSignalObserver>
+@interface SPTDrivingStateTestManager : NSObject
 {
     _Bool _debugCarConnectedEnabled;
     _Bool _motionBasedDrivingSurveyEnabled;

@@ -6,7 +6,7 @@
 
 #import <objc/NSObject.h>
 
-@class NSMapTable, NSString, SPTApplicationStateTracker, SPTAudioVolumeControl, SPTCoreClientFeatures, SPTGaiaDeviceManagerFactory, SPTHermesController, SPTIncognitoModeHandler, SPTLogger, SPTOfflineModeNotifier, SPTPlayTokenHandler, SPTPlayerMftCanPlayChecker, SPTPlayerProxyContextPlayer, SPTPlayerRestorable, SPTSocialManager, SPTUserFactory;
+@class NSMapTable, NSString, SPTApplicationStateTracker, SPTAudioVolumeControl, SPTCoreClientFeatures, SPTHermesController, SPTIncognitoModeHandler, SPTLogger, SPTOfflineModeNotifier, SPTPlayerMftCanPlayChecker, SPTPlayerProxyContextPlayer, SPTSocialManager, SPTUserFactory;
 @protocol SPTAsyncScheduler, SPTConnectivityManager, SPTEntityService, SPTOfflineManager, SPTProductState, SPTResolver;
 
 @interface SPSession : NSObject
@@ -64,15 +64,12 @@
 - (void)addObserver:(id)arg1 onQueue:(id)arg2;
 - (void)invalidate;
 - (id)initWithCore:(id)arg1 coreCreateOptions:(id)arg2 isPerfTracingEnabled:(_Bool)arg3 session:(struct Session *)arg4 connectivityManager:(id)arg5 scheduler:(id)arg6;
-@property(readonly, nonatomic) SPTGaiaDeviceManagerFactory *gaiaDeviceManagerFactory;
 @property(readonly, nonatomic) SPTIncognitoModeHandler *incognitoModeHandler;
 @property(readonly, nonatomic) id <SPTOfflineManager> offlineManager;
 @property(readonly, nonatomic) SPTUserFactory *userFactory;
 @property(readonly, nonatomic) SPTSocialManager *socialManager;
 @property(readonly, nonatomic) SPTPlayerProxyContextPlayer *proxyContextPlayer;
-@property(readonly, nonatomic) SPTPlayerRestorable *restorable;
 @property(readonly, nonatomic) SPTPlayerMftCanPlayChecker *mftCanPlayChecker;
-@property(readonly, nonatomic) SPTPlayTokenHandler *playTokenHandler;
 @property(readonly, nonatomic) SPTAudioVolumeControl *audioVolumeControl;
 @property(readonly, nonatomic) id <SPTEntityService> entityService;
 @property(readonly, nonatomic) SPTHermesController *hermes;

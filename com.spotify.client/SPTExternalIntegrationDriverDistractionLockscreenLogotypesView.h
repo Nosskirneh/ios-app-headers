@@ -8,7 +8,7 @@
 
 #import "SPTThemableView-Protocol.h"
 
-@class NSLayoutConstraint, NSString, SPTLayoutConstraintBuilder, UIImageView;
+@class NSLayoutConstraint, NSMutableArray, NSString, UIImageView;
 @protocol SPTThemableViewLayoutDelegate;
 
 @interface SPTExternalIntegrationDriverDistractionLockscreenLogotypesView : UIView <SPTThemableView>
@@ -17,16 +17,16 @@
     UIImageView *_partnerLogotypeImageView;
     UIImageView *_spotifyLogotypeImageView;
     UIImageView *_dotsImageView;
-    SPTLayoutConstraintBuilder *_commonLayout;
-    SPTLayoutConstraintBuilder *_dualLogotypeLayout;
-    SPTLayoutConstraintBuilder *_singleLogotypeLayout;
+    NSMutableArray *_commonLayout;
+    NSMutableArray *_dualLogotypeLayout;
+    NSMutableArray *_singleLogotypeLayout;
     NSLayoutConstraint *_partnerImageAspectConstraint;
 }
 
 @property(retain, nonatomic) NSLayoutConstraint *partnerImageAspectConstraint; // @synthesize partnerImageAspectConstraint=_partnerImageAspectConstraint;
-@property(retain, nonatomic) SPTLayoutConstraintBuilder *singleLogotypeLayout; // @synthesize singleLogotypeLayout=_singleLogotypeLayout;
-@property(retain, nonatomic) SPTLayoutConstraintBuilder *dualLogotypeLayout; // @synthesize dualLogotypeLayout=_dualLogotypeLayout;
-@property(retain, nonatomic) SPTLayoutConstraintBuilder *commonLayout; // @synthesize commonLayout=_commonLayout;
+@property(retain, nonatomic) NSMutableArray *singleLogotypeLayout; // @synthesize singleLogotypeLayout=_singleLogotypeLayout;
+@property(retain, nonatomic) NSMutableArray *dualLogotypeLayout; // @synthesize dualLogotypeLayout=_dualLogotypeLayout;
+@property(retain, nonatomic) NSMutableArray *commonLayout; // @synthesize commonLayout=_commonLayout;
 @property(readonly, nonatomic) UIImageView *dotsImageView; // @synthesize dotsImageView=_dotsImageView;
 @property(readonly, nonatomic) UIImageView *spotifyLogotypeImageView; // @synthesize spotifyLogotypeImageView=_spotifyLogotypeImageView;
 @property(readonly, nonatomic) UIImageView *partnerLogotypeImageView; // @synthesize partnerLogotypeImageView=_partnerLogotypeImageView;
@@ -35,7 +35,7 @@
 - (void)applyThemeLayout;
 - (id)createCommonLayout;
 - (id)createDualLogotypeLayout;
-- (id)createPartnerImageAspectConstraintWithLayout:(id)arg1;
+- (id)createPartnerImageAspectConstraint;
 - (id)createSingleLogotypeLayout;
 - (void)removeViewConstraints;
 - (void)addViewConstraints;

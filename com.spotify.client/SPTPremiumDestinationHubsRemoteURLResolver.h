@@ -6,12 +6,12 @@
 
 #import <objc/NSObject.h>
 
-#import "EXP_SPTHubRemoteContentOperationURLResolver-Protocol.h"
+#import "SPTHubRemoteContentOperationURLResolver-Protocol.h"
 
 @class NSString;
 @protocol SPTPremiumDestinationExperiments;
 
-@interface SPTPremiumDestinationHubsRemoteURLResolver : NSObject <EXP_SPTHubRemoteContentOperationURLResolver>
+@interface SPTPremiumDestinationHubsRemoteURLResolver : NSObject <SPTHubRemoteContentOperationURLResolver>
 {
     id <SPTPremiumDestinationExperiments> _experiments;
 }

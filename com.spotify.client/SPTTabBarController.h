@@ -29,6 +29,7 @@
 @property(retain, nonatomic) SPTTabBarLogger *logger; // @synthesize logger=_logger;
 @property(copy, nonatomic) CDUnknownBlockType visibleStateCallback; // @synthesize visibleStateCallback=_visibleStateCallback;
 - (void).cxx_destruct;
+- (void)applicationDidBecomeActive;
 - (_Bool)tabBarController:(id)arg1 shouldSelectViewController:(id)arg2;
 - (void)tabBar:(id)arg1 didSelectItem:(id)arg2;
 - (void)scrollToTopViewController:(id)arg1;

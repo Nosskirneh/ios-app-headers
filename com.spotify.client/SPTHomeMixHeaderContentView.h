@@ -8,8 +8,7 @@
 
 #import "GLUEStyleable-Protocol.h"
 
-@class GLUEGradientView, GLUEImageView, GLUELabel, NSLayoutConstraint, NSString, SPTHomeMixHeaderContentViewStyle, UIStackView;
-@protocol UILayoutSupport;
+@class GLUEGradientView, GLUEImageView, GLUELabel, NSLayoutConstraint, NSString, SPTHomeMixHeaderContentViewStyle, UILayoutGuide, UIStackView;
 
 @interface SPTHomeMixHeaderContentView : UIView <GLUEStyleable>
 {
@@ -17,24 +16,38 @@
     GLUEImageView *_entityImageView;
     GLUELabel *_subtitleLabel;
     GLUEGradientView *_backgroundView;
-    SPTHomeMixHeaderContentViewStyle *_currentStyle;
     UIView *_containerView;
     UIView *_gradientView;
     UIStackView *_mainVerticalStackView;
+    UIView *_labelContainer;
     NSLayoutConstraint *_containerTopMarginLayoutConstraint;
-    NSLayoutConstraint *_contentViewHeightLayoutConstraint;
-    id <UILayoutSupport> _legacyTopLayoutGuide;
-    double _previousLayoutGuideLength;
+    NSLayoutConstraint *_containerHeightLayoutConstraint;
+    NSLayoutConstraint *_contentViewHeightToParentHeightLayoutConstraint;
+    NSLayoutConstraint *_contentViewLessThanSafeAreaLayoutConstraint;
+    SPTHomeMixHeaderContentViewStyle *_currentStyle;
+    NSLayoutConstraint *_subtitleMarginLayoutConstraint;
+    NSLayoutConstraint *_bottomMarginLayoutConstraint;
+    NSLayoutConstraint *_contentViewButtonLayoutConstraint;
+    NSLayoutConstraint *_topMarginLayoutConstraint;
+    UILayoutGuide *_parentSafeAreaLayoutGuide;
+    double _currentSafeAreaMinY;
 }
 
-@property(nonatomic) double previousLayoutGuideLength; // @synthesize previousLayoutGuideLength=_previousLayoutGuideLength;
-@property(retain, nonatomic) id <UILayoutSupport> legacyTopLayoutGuide; // @synthesize legacyTopLayoutGuide=_legacyTopLayoutGuide;
-@property(retain, nonatomic) NSLayoutConstraint *contentViewHeightLayoutConstraint; // @synthesize contentViewHeightLayoutConstraint=_contentViewHeightLayoutConstraint;
+@property(nonatomic) double currentSafeAreaMinY; // @synthesize currentSafeAreaMinY=_currentSafeAreaMinY;
+@property(retain, nonatomic) UILayoutGuide *parentSafeAreaLayoutGuide; // @synthesize parentSafeAreaLayoutGuide=_parentSafeAreaLayoutGuide;
+@property(retain, nonatomic) NSLayoutConstraint *topMarginLayoutConstraint; // @synthesize topMarginLayoutConstraint=_topMarginLayoutConstraint;
+@property(retain, nonatomic) NSLayoutConstraint *contentViewButtonLayoutConstraint; // @synthesize contentViewButtonLayoutConstraint=_contentViewButtonLayoutConstraint;
+@property(retain, nonatomic) NSLayoutConstraint *bottomMarginLayoutConstraint; // @synthesize bottomMarginLayoutConstraint=_bottomMarginLayoutConstraint;
+@property(retain, nonatomic) NSLayoutConstraint *subtitleMarginLayoutConstraint; // @synthesize subtitleMarginLayoutConstraint=_subtitleMarginLayoutConstraint;
+@property(copy, nonatomic) SPTHomeMixHeaderContentViewStyle *currentStyle; // @synthesize currentStyle=_currentStyle;
+@property(retain, nonatomic) NSLayoutConstraint *contentViewLessThanSafeAreaLayoutConstraint; // @synthesize contentViewLessThanSafeAreaLayoutConstraint=_contentViewLessThanSafeAreaLayoutConstraint;
+@property(retain, nonatomic) NSLayoutConstraint *contentViewHeightToParentHeightLayoutConstraint; // @synthesize contentViewHeightToParentHeightLayoutConstraint=_contentViewHeightToParentHeightLayoutConstraint;
+@property(retain, nonatomic) NSLayoutConstraint *containerHeightLayoutConstraint; // @synthesize containerHeightLayoutConstraint=_containerHeightLayoutConstraint;
 @property(retain, nonatomic) NSLayoutConstraint *containerTopMarginLayoutConstraint; // @synthesize containerTopMarginLayoutConstraint=_containerTopMarginLayoutConstraint;
+@property(nonatomic) __weak UIView *labelContainer; // @synthesize labelContainer=_labelContainer;
 @property(nonatomic) __weak UIStackView *mainVerticalStackView; // @synthesize mainVerticalStackView=_mainVerticalStackView;
 @property(nonatomic) __weak UIView *gradientView; // @synthesize gradientView=_gradientView;
 @property(nonatomic) __weak UIView *containerView; // @synthesize containerView=_containerView;
-@property(copy, nonatomic) SPTHomeMixHeaderContentViewStyle *currentStyle; // @synthesize currentStyle=_currentStyle;
 @property(readonly, nonatomic) __weak GLUEGradientView *backgroundView; // @synthesize backgroundView=_backgroundView;
 @property(readonly, nonatomic) __weak GLUELabel *subtitleLabel; // @synthesize subtitleLabel=_subtitleLabel;
 @property(readonly, nonatomic) __weak GLUEImageView *entityImageView; // @synthesize entityImageView=_entityImageView;
@@ -43,11 +56,12 @@
 - (void)enableImageShaddowIfNeeded;
 - (void)entityHeaderViewControllerDidUpdateBounceOffsets:(struct UIEdgeInsets)arg1;
 - (void)entityHeaderViewControllerDidUpdateVisibleRect:(struct CGRect)arg1;
-- (struct CGSize)intrinsicContentSize;
-- (void)safeAreaInsetsDidChange;
+- (void)updateConstraints;
 - (void)layoutSubviews;
 - (void)glue_applyStyle:(id)arg1;
-- (void)establishConstraints:(id)arg1;
+- (void)establishConstraintsFromSafeAreaLayoutGuide:(id)arg1;
+@property(readonly, nonatomic) double minimumHeight;
+- (void)addSubtitleIfNeeded;
 - (void)setupUI;
 - (id)initWithFrame:(struct CGRect)arg1;
 

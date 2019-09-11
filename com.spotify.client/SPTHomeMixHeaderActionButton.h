@@ -8,21 +8,35 @@
 
 #import "GLUEStyleable-Protocol.h"
 
-@class NSString;
+@class NSString, SPTHomeMixHeaderActionButtonStyle, UIView;
+@protocol GLUEAnimationLoading><GLUEAnimationControlling, GLUEAnimationLottieStyling;
 
 @interface SPTHomeMixHeaderActionButton : UIButton <GLUEStyleable>
 {
     NSString *_normalAccessibilityLabel;
     NSString *_selectedAccessibilityLabel;
+    SPTHomeMixHeaderActionButtonStyle *_currentStyle;
+    UIView *_loadingOverlay;
+    struct UIView *_spinnerAnimationView;
+    id <GLUEAnimationLottieStyling> _spinnerAnimationStyler;
 }
 
+@property(retain, nonatomic) id <GLUEAnimationLottieStyling> spinnerAnimationStyler; // @synthesize spinnerAnimationStyler=_spinnerAnimationStyler;
+@property(retain, nonatomic) UIView<GLUEAnimationLoading><GLUEAnimationControlling> *spinnerAnimationView; // @synthesize spinnerAnimationView=_spinnerAnimationView;
+@property(retain, nonatomic) UIView *loadingOverlay; // @synthesize loadingOverlay=_loadingOverlay;
+@property(copy, nonatomic) SPTHomeMixHeaderActionButtonStyle *currentStyle; // @synthesize currentStyle=_currentStyle;
 @property(copy, nonatomic) NSString *selectedAccessibilityLabel; // @synthesize selectedAccessibilityLabel=_selectedAccessibilityLabel;
 @property(copy, nonatomic) NSString *normalAccessibilityLabel; // @synthesize normalAccessibilityLabel=_normalAccessibilityLabel;
 - (void).cxx_destruct;
+- (void)setupAnimationOverlay;
+- (void)stopAnimation;
+- (void)startAnimation;
+- (void)setEnabled:(_Bool)arg1;
+- (struct CGSize)intrinsicContentSize;
 - (id)accessibilityLabel;
 - (id)generateBackgroundImage:(id)arg1;
 - (void)glue_applyStyle:(id)arg1;
-- (id)initWithFrame:(struct CGRect)arg1 normalAccessibilityLabel:(id)arg2 selectedAccessibilityLabel:(id)arg3;
+- (id)initWithNormalAccessibilityLabel:(id)arg1 selectedAccessibilityLabel:(id)arg2;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

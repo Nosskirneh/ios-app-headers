@@ -6,7 +6,7 @@
 
 #import "SPAction.h"
 
-@class NSURL;
+@class NSURL, SPTPlaylistLogger;
 @protocol SPTCollectionPlatformTestManager, SPTPlaylistModel;
 
 @interface SPTPlaylistFollowAction : SPAction
@@ -15,8 +15,10 @@
     NSURL *_entityURL;
     id <SPTCollectionPlatformTestManager> _collectionTestManager;
     id <SPTPlaylistModel> _playlistCosmosModel;
+    SPTPlaylistLogger *_logger;
 }
 
+@property(readonly, nonatomic) SPTPlaylistLogger *logger; // @synthesize logger=_logger;
 @property(readonly, nonatomic) _Bool isFollowedByCurrentUser; // @synthesize isFollowedByCurrentUser=_isFollowedByCurrentUser;
 @property(readonly, nonatomic) id <SPTPlaylistModel> playlistCosmosModel; // @synthesize playlistCosmosModel=_playlistCosmosModel;
 @property(readonly, nonatomic) id <SPTCollectionPlatformTestManager> collectionTestManager; // @synthesize collectionTestManager=_collectionTestManager;
@@ -28,7 +30,7 @@
 - (id)iconColor;
 - (long long)icon;
 - (id)title;
-- (id)initEntityURL:(id)arg1 collectionTestManager:(id)arg2 playlistModel:(id)arg3 isFollowedByCurrentUser:(_Bool)arg4 logContext:(id)arg5;
+- (id)initEntityURL:(id)arg1 collectionTestManager:(id)arg2 playlistModel:(id)arg3 isFollowedByCurrentUser:(_Bool)arg4 logContext:(id)arg5 logger:(id)arg6;
 
 @end
 

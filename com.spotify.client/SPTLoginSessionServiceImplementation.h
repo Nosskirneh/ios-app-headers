@@ -9,7 +9,7 @@
 #import "SPTService-Protocol.h"
 
 @class NSString, SPTAllocationContext, SPTLoginKeychainCredentialsWriter, SPTLoginSignupMarketingOptInFlashController;
-@protocol SPTContainerUIService, SPTCoreService, SPTFeatureFlaggingService, SPTLoginService, SPTNotificationsService, SPTSessionService, SPTURIDispatchService;
+@protocol SPTCoreService, SPTLoginService, SPTNotificationsService, SPTSessionService, SPTURIDispatchService;
 
 @interface SPTLoginSessionServiceImplementation : NSObject <SPTService>
 {
@@ -17,9 +17,7 @@
     id <SPTLoginService> _loginService;
     id <SPTSessionService> _sessionService;
     id <SPTURIDispatchService> _URIDispatchService;
-    id <SPTContainerUIService> _containerUIService;
     id <SPTNotificationsService> _notificationsService;
-    id <SPTFeatureFlaggingService> _featureFlaggingService;
     SPTLoginKeychainCredentialsWriter *_credentialsWriter;
     SPTLoginSignupMarketingOptInFlashController *_marketingOptInController;
 }
@@ -27,9 +25,7 @@
 + (id)serviceIdentifier;
 @property(retain, nonatomic) SPTLoginSignupMarketingOptInFlashController *marketingOptInController; // @synthesize marketingOptInController=_marketingOptInController;
 @property(retain, nonatomic) SPTLoginKeychainCredentialsWriter *credentialsWriter; // @synthesize credentialsWriter=_credentialsWriter;
-@property(nonatomic) __weak id <SPTFeatureFlaggingService> featureFlaggingService; // @synthesize featureFlaggingService=_featureFlaggingService;
 @property(nonatomic) __weak id <SPTNotificationsService> notificationsService; // @synthesize notificationsService=_notificationsService;
-@property(nonatomic) __weak id <SPTContainerUIService> containerUIService; // @synthesize containerUIService=_containerUIService;
 @property(nonatomic) __weak id <SPTURIDispatchService> URIDispatchService; // @synthesize URIDispatchService=_URIDispatchService;
 @property(nonatomic) __weak id <SPTSessionService> sessionService; // @synthesize sessionService=_sessionService;
 @property(nonatomic) __weak id <SPTLoginService> loginService; // @synthesize loginService=_loginService;

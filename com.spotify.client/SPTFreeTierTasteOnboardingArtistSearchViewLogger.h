@@ -6,19 +6,26 @@
 
 #import <objc/NSObject.h>
 
+@class NSString;
 @protocol SPTLogCenter;
 
 @interface SPTFreeTierTasteOnboardingArtistSearchViewLogger : NSObject
 {
     id <SPTLogCenter> _logCenter;
+    NSString *_sessionId;
 }
 
+@property(readonly, nonatomic) NSString *sessionId; // @synthesize sessionId=_sessionId;
 @property(readonly, nonatomic) id <SPTLogCenter> logCenter; // @synthesize logCenter=_logCenter;
 - (void).cxx_destruct;
-- (void)logSelectArtistInteractionWithIdentifier:(id)arg1 contentSource:(id)arg2 contentSourceUri:(id)arg3 section:(id)arg4 position:(unsigned long long)arg5 maxPosition:(unsigned long long)arg6 sequenceNumber:(unsigned long long)arg7 sessionId:(id)arg8 interactionId:(id)arg9;
+- (void)logSearchInteractionWithIntent:(id)arg1 component:(id)arg2 targetUri:(id)arg3 searchSessionId:(id)arg4 interactionId:(id)arg5;
+- (void)logSelectArtistInteractionWithIdentifier:(id)arg1 contentSource:(id)arg2 contentSourceUri:(id)arg3 section:(id)arg4 position:(unsigned long long)arg5 maxPosition:(unsigned long long)arg6 sequenceNumber:(unsigned long long)arg7 interactionId:(id)arg8;
 - (void)logItemSelectionInteractionWithIdentifier:(id)arg1 position:(unsigned long long)arg2;
 - (void)logItemImpressionWithIdentifier:(id)arg1 position:(unsigned long long)arg2;
-- (id)initWithLogCenter:(id)arg1;
+- (void)logSearchSelectArtistInteractionWithTargetUri:(id)arg1 searchSessionId:(id)arg2 interactionId:(id)arg3 isExtendedSearchItem:(_Bool)arg4;
+- (void)logBackButtonInteractionWithSearchSessionId:(id)arg1;
+- (void)logClearButtonInteractionWithSearchSessionId:(id)arg1;
+- (id)initWithLogCenter:(id)arg1 sessionId:(id)arg2;
 
 @end
 

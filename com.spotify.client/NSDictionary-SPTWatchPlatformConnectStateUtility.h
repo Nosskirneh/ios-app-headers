@@ -7,9 +7,9 @@
 #import <Foundation/NSDictionary.h>
 
 @interface NSDictionary (SPTWatchPlatformConnectStateUtility)
-+ (id)gaiaDeviceDictionaryWithDeviceId:(id)arg1 name:(id)arg2 type:(id)arg3 active:(_Bool)arg4 restricted:(_Bool)arg5 watchPairedDevice:(_Bool)arg6;
-+ (id)gaiaDeviceDictionaryWithLocalDeviceId:(id)arg1 localDeviceName:(id)arg2 active:(_Bool)arg3;
-+ (id)gaiaDeviceDictionaryWithDevice:(id)arg1;
-+ (id)connectStateDictionaryWithGaiaDevices:(id)arg1 localDeviceId:(id)arg2 localDeviceName:(id)arg3 isPlayingRemotely:(_Bool)arg4;
++ (id)deviceDictionaryWithDeviceId:(id)arg1 name:(id)arg2 type:(id)arg3 active:(_Bool)arg4 restricted:(_Bool)arg5 watchPairedDevice:(_Bool)arg6;
++ (id)deviceDictionaryWithLocalDevice:(id)arg1 localDeviceName:(id)arg2 isActive:(_Bool)arg3;
++ (id)deviceDictionaryWithDevice:(id)arg1 isActive:(_Bool)arg2;
++ (id)connectStateDictionaryWithDevices:(id)arg1 activeRemoteDevice:(id)arg2 localDevice:(id)arg3 localDeviceName:(id)arg4;
 @end
 

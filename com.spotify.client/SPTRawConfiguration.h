@@ -6,20 +6,24 @@
 
 #import <objc/NSObject.h>
 
-@class GPBInt32Array, NSDictionary, SPTRemoteConfiguration_Configuration;
+@class GPBInt64Array, NSDictionary, NSString;
 
 @interface SPTRawConfiguration : NSObject
 {
-    SPTRemoteConfiguration_Configuration *_configuration;
+    GPBInt64Array *_policyGroupIDs;
+    long long _rcsFetchTime;
+    NSString *_assignmentID;
     NSDictionary *_properties;
 }
 
 @property(readonly, nonatomic) NSDictionary *properties; // @synthesize properties=_properties;
-@property(readonly, nonatomic) SPTRemoteConfiguration_Configuration *configuration; // @synthesize configuration=_configuration;
+@property(readonly, copy, nonatomic) NSString *assignmentID; // @synthesize assignmentID=_assignmentID;
+@property(readonly, nonatomic) long long rcsFetchTime; // @synthesize rcsFetchTime=_rcsFetchTime;
+@property(readonly, nonatomic) GPBInt64Array *policyGroupIDs; // @synthesize policyGroupIDs=_policyGroupIDs;
 - (void).cxx_destruct;
+- (id)propertyFromProtobuf:(id)arg1;
 - (id)createPropertiesFromConfiguration:(id)arg1;
-@property(readonly, nonatomic) long long timestamp;
-@property(readonly, nonatomic) GPBInt32Array *groupIDs;
+- (id)createGroupIDsFromConfiguration:(id)arg1;
 @property(readonly, nonatomic) _Bool isDefaultConfiguration;
 - (id)initWithConfiguration:(id)arg1;
 

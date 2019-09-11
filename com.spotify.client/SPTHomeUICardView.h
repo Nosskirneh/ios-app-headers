@@ -8,34 +8,38 @@
 
 #import "GLUEStyleable-Protocol.h"
 
-@class GLUEImageView, NSAttributedString, NSLayoutConstraint, NSString, SPTHomeUILabel, UIImage;
+@class GLUEImageView, NSAttributedString, NSString, SPTHomeUILabel, UIImage, UIStackView;
+@protocol GLUETheme;
 
 @interface SPTHomeUICardView : GLUEStatefulView <GLUEStyleable>
 {
+    UIStackView *_stackView;
     GLUEImageView *_imageView;
     SPTHomeUILabel *_titleLabel;
-    NSLayoutConstraint *_titleLabelTopEdgeConstraint;
-    NSLayoutConstraint *_titleLabelBottomEdgeConstraint;
-    NSLayoutConstraint *_titleLabelLeftEdgeConstraint;
-    NSLayoutConstraint *_titleLabelRightEdgeConstraint;
+    SPTHomeUILabel *_subtitleLabel;
+    id <GLUETheme> _theme;
+    unsigned long long _type;
 }
 
-+ (struct CGSize)sizeForAttributedTitle:(id)arg1 maxWidth:(double)arg2 style:(id)arg3;
++ (double)imageBottomMarginForTheme:(id)arg1 type:(unsigned long long)arg2;
++ (struct CGSize)sizeForAttributedTitle:(id)arg1 attributedSubtitle:(id)arg2 maxWidth:(double)arg3 style:(id)arg4 theme:(id)arg5 type:(unsigned long long)arg6;
 + (struct CGSize)imageSizeForMaxWidth:(double)arg1;
-@property(retain, nonatomic) NSLayoutConstraint *titleLabelRightEdgeConstraint; // @synthesize titleLabelRightEdgeConstraint=_titleLabelRightEdgeConstraint;
-@property(retain, nonatomic) NSLayoutConstraint *titleLabelLeftEdgeConstraint; // @synthesize titleLabelLeftEdgeConstraint=_titleLabelLeftEdgeConstraint;
-@property(retain, nonatomic) NSLayoutConstraint *titleLabelBottomEdgeConstraint; // @synthesize titleLabelBottomEdgeConstraint=_titleLabelBottomEdgeConstraint;
-@property(retain, nonatomic) NSLayoutConstraint *titleLabelTopEdgeConstraint; // @synthesize titleLabelTopEdgeConstraint=_titleLabelTopEdgeConstraint;
+@property(readonly, nonatomic) unsigned long long type; // @synthesize type=_type;
+@property(readonly, nonatomic) id <GLUETheme> theme; // @synthesize theme=_theme;
+@property(readonly, nonatomic) SPTHomeUILabel *subtitleLabel; // @synthesize subtitleLabel=_subtitleLabel;
 @property(readonly, nonatomic) SPTHomeUILabel *titleLabel; // @synthesize titleLabel=_titleLabel;
 @property(readonly, nonatomic) GLUEImageView *imageView; // @synthesize imageView=_imageView;
+@property(readonly, nonatomic) UIStackView *stackView; // @synthesize stackView=_stackView;
 - (void).cxx_destruct;
-- (void)addConstraints;
 - (void)setImage:(id)arg1 animated:(_Bool)arg2;
-- (void)applyStateStyle:(id)arg1;
+- (void)animateToHighlighted:(_Bool)arg1;
+- (void)setHighlighted:(_Bool)arg1;
 - (void)glue_applyStyle:(id)arg1;
+@property(copy, nonatomic) NSAttributedString *attributedSubtitle; // @dynamic attributedSubtitle;
 @property(copy, nonatomic) NSAttributedString *attributedTitle; // @dynamic attributedTitle;
 @property(retain, nonatomic) UIImage *image; // @dynamic image;
-- (id)initWithFrame:(struct CGRect)arg1;
+- (void)prepareForReuse;
+- (id)initWithTheme:(id)arg1 type:(unsigned long long)arg2;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

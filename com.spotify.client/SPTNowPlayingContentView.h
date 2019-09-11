@@ -7,14 +7,15 @@
 #import <UIKit/UIView.h>
 
 #import "SPTNowPlayingContentCellDelegate-Protocol.h"
+#import "SPTNowPlayingContentCellRefreshDelegate-Protocol.h"
 #import "SPTNowPlayingContentViewModelDelegate-Protocol.h"
 #import "SPTThemableView-Protocol.h"
 #import "UIScrollViewDelegate-Protocol.h"
 
 @class NSMutableArray, NSString, SPTNowPlayingContentViewModel, UIScrollView;
-@protocol SPTCarouselBackgroundBlurDelegate, SPTImageLoader, SPTImageLoaderFactory, SPTNowPlayingContentViewDataSource, SPTNowPlayingContentViewDelegate, SPTNowPlayingVideoManager, SPTThemableViewLayoutDelegate;
+@protocol SPTImageLoader, SPTImageLoaderFactory, SPTNowPlayingCarouselBackgroundBlurDelegate, SPTNowPlayingContentViewDataSource, SPTNowPlayingContentViewDelegate, SPTNowPlayingVideoManager, SPTThemableViewLayoutDelegate;
 
-@interface SPTNowPlayingContentView : UIView <SPTThemableView, UIScrollViewDelegate, SPTNowPlayingContentCellDelegate, SPTNowPlayingContentViewModelDelegate>
+@interface SPTNowPlayingContentView : UIView <SPTThemableView, UIScrollViewDelegate, SPTNowPlayingContentCellRefreshDelegate, SPTNowPlayingContentCellDelegate, SPTNowPlayingContentViewModelDelegate>
 {
     _Bool _overrideVideoCellAppearance;
     _Bool _visible;
@@ -37,7 +38,7 @@
     SPTNowPlayingContentViewModel *_viewModel;
     id <SPTImageLoaderFactory> _imageLoaderFactory;
     id <SPTImageLoader> _imageLoader;
-    id <SPTCarouselBackgroundBlurDelegate> _backgroundDelegate;
+    id <SPTNowPlayingCarouselBackgroundBlurDelegate> _backgroundDelegate;
     id <SPTNowPlayingVideoManager> _nowPlayingVideoManager;
     struct UIEdgeInsets _touchInsets;
     struct CGRect _contentUnitFrame;
@@ -47,7 +48,7 @@
 @property(nonatomic) _Bool isLayingOutSubviews; // @synthesize isLayingOutSubviews=_isLayingOutSubviews;
 @property(nonatomic) _Bool disableContentAnimation; // @synthesize disableContentAnimation=_disableContentAnimation;
 @property(readonly, nonatomic) id <SPTNowPlayingVideoManager> nowPlayingVideoManager; // @synthesize nowPlayingVideoManager=_nowPlayingVideoManager;
-@property(readonly, nonatomic) __weak id <SPTCarouselBackgroundBlurDelegate> backgroundDelegate; // @synthesize backgroundDelegate=_backgroundDelegate;
+@property(readonly, nonatomic) __weak id <SPTNowPlayingCarouselBackgroundBlurDelegate> backgroundDelegate; // @synthesize backgroundDelegate=_backgroundDelegate;
 @property(readonly, nonatomic) id <SPTImageLoader> imageLoader; // @synthesize imageLoader=_imageLoader;
 @property(readonly, nonatomic) id <SPTImageLoaderFactory> imageLoaderFactory; // @synthesize imageLoaderFactory=_imageLoaderFactory;
 @property(readonly, nonatomic) SPTNowPlayingContentViewModel *viewModel; // @synthesize viewModel=_viewModel;
@@ -69,13 +70,14 @@
 @property(nonatomic) struct UIEdgeInsets touchInsets; // @synthesize touchInsets=_touchInsets;
 @property(nonatomic) __weak id <SPTThemableViewLayoutDelegate> layoutDelegate; // @synthesize layoutDelegate=_layoutDelegate;
 - (void).cxx_destruct;
-- (void)contentViewModelDidStageContextImageURL:(id)arg1;
+- (void)traitCollectionDidChange:(id)arg1;
+- (void)contentCellDidUpdate:(id)arg1;
 - (void)contentViewModelDidChangeLoadingState;
 - (void)contentViewModelRequestsAnimation:(unsigned long long)arg1;
-- (void)requestedImage:(id)arg1 forURL:(id)arg2;
 - (void)dealloc;
 - (void)scrollViewDidScroll:(id)arg1;
 - (void)scrollViewDidEndDecelerating:(id)arg1;
+- (void)scrollViewWillBeginDragging:(id)arg1;
 - (void)nowPlayingContentCellAccessoryViewTouchedUp:(id)arg1;
 - (void)nowPlayingContentCellDidDetachVideoSurface:(id)arg1;
 - (void)nowPlayingContentCellDidAttachVideoSurface:(id)arg1;
@@ -88,7 +90,6 @@
 - (void)scrollToCellNumber:(long long)arg1 animated:(_Bool)arg2;
 - (void)videoAttachedStateChangedInCell:(id)arg1;
 - (void)updateCoverArtsAnimated:(_Bool)arg1 includeVideo:(_Bool)arg2;
-- (void)updateStagedContextCoverArtAnimated:(_Bool)arg1;
 - (void)updateActivity;
 - (void)updateCoverArtForCell:(id)arg1 onRelativePage:(long long)arg2 animated:(_Bool)arg3;
 - (void)updateVideoSurfaceEnabledForCell:(id)arg1 onRelativePage:(long long)arg2 animated:(_Bool)arg3;
@@ -108,11 +109,9 @@
 - (void)willScrollFromRelativePage:(long long)arg1 toRelativePage:(long long)arg2;
 - (void)refreshCellLayers;
 - (void)didScrollToRelativePage:(long long)arg1 interactively:(_Bool)arg2 dragging:(_Bool)arg3;
-- (void)didLoadStagedContextImageURL:(id)arg1 image:(id)arg2;
 - (void)reloadCellsAppearance;
 - (void)setAppearanceForCell:(id)arg1 isVideo:(_Bool)arg2 trackBelongsToContext:(_Bool)arg3;
 - (id)createContentCell;
-- (id)contentForStagedContextCell:(id)arg1 cellSize:(struct CGSize)arg2;
 - (id)contentForCell:(id)arg1 cellSize:(struct CGSize)arg2 relativePage:(long long)arg3;
 - (void)updateAppearTransition:(_Bool)arg1 inProgress:(_Bool)arg2;
 - (void)applyThemeLayout;

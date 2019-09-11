@@ -19,9 +19,13 @@
 - (void).cxx_destruct;
 - (id)applicationDocumentsDirectory;
 - (id)fileURLWithName:(id)arg1;
-- (void)clearFilesForTypes:(id)arg1;
+- (void)clearFileWithKey:(id)arg1;
+- (void)clearConfigurationFileForType:(unsigned long long)arg1;
 - (id)restoreConfigurationWithURL:(id)arg1;
 - (void)storeConfiguration:(id)arg1 URL:(id)arg2;
+- (void)clearLocalOverride;
+- (id)restoreLocalOverride;
+- (void)storeLocalOverride:(id)arg1;
 - (void)clearAll;
 - (id)restoreConfigurationWithType:(unsigned long long)arg1;
 - (void)storeConfiguration:(id)arg1 type:(unsigned long long)arg2;

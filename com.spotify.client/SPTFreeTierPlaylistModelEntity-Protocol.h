@@ -11,9 +11,9 @@
 
 @protocol SPTFreeTierPlaylistModelEntity <NSObject>
 @property(readonly, nonatomic) unsigned long long onDemandType;
-@property(readonly, nonatomic) NSArray *recommendations;
+@property(readonly, copy, nonatomic) NSArray *recommendations;
 @property(readonly, nonatomic) unsigned long long unrangedTracksLength;
-@property(readonly, nonatomic) NSArray *tracks;
+@property(readonly, copy, nonatomic) NSArray *tracks;
 @property(readonly, nonatomic) id <SPTFreeTierPlaylistModelEntityMetadataFields> metadata;
 @end
 

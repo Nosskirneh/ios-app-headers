@@ -24,7 +24,7 @@
 - (id)mainImageWithState:(long long)arg1 icon:(long long)arg2;
 @property(readonly, nonatomic) GLUEImageStyle *subtitleImageStyle;
 @property(readonly, nonatomic) GLUEImageStyle *mainImageStyle;
-- (id)deviceCellStyleForState:(long long)arg1;
+- (id)deviceCellStyleForState:(long long)arg1 hasContextMenu:(_Bool)arg2;
 - (id)initWithMainTheme:(id)arg1;
 
 @end

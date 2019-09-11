@@ -15,8 +15,8 @@
 }
 
 + (id)messageWithTestName:(id)arg1 groupName:(id)arg2;
-@property(retain, nonatomic) NSString *groupNameValue; // @synthesize groupNameValue=_groupNameValue;
-@property(retain, nonatomic) NSString *testNameValue; // @synthesize testNameValue=_testNameValue;
+@property(copy, nonatomic) NSString *groupNameValue; // @synthesize groupNameValue=_groupNameValue;
+@property(copy, nonatomic) NSString *testNameValue; // @synthesize testNameValue=_testNameValue;
 - (void).cxx_destruct;
 - (_Bool)isEqual:(id)arg1;
 - (unsigned long long)hash;

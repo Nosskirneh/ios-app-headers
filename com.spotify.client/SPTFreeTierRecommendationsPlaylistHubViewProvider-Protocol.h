@@ -6,9 +6,9 @@
 
 #import "NSObject-Protocol.h"
 
-@class EXP_HUBView;
+@class HUBView;
 
 @protocol SPTFreeTierRecommendationsPlaylistHubViewProvider <NSObject>
-- (EXP_HUBView *)hubViewWithFrame:(struct CGRect)arg1;
+- (HUBView *)hubViewWithFrame:(struct CGRect)arg1;
 @end
 

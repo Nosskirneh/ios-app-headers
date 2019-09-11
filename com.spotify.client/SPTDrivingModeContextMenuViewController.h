@@ -8,7 +8,7 @@
 
 #import "SPTSelfPresentingViewController-Protocol.h"
 
-@class NSString;
+@class NSString, SPTDrivingModeLogger;
 @protocol GLUETheme, SPTDrivingModeOptOutHandler, SPTModalPresentationController;
 
 @interface SPTDrivingModeContextMenuViewController : UIViewController <SPTSelfPresentingViewController>
@@ -16,8 +16,10 @@
     id <SPTDrivingModeOptOutHandler> _optOutHandler;
     id <SPTModalPresentationController> _modalPresentationController;
     id <GLUETheme> _theme;
+    SPTDrivingModeLogger *_logger;
 }
 
+@property(readonly, nonatomic) SPTDrivingModeLogger *logger; // @synthesize logger=_logger;
 @property(readonly, nonatomic) id <GLUETheme> theme; // @synthesize theme=_theme;
 @property(readonly, nonatomic) id <SPTModalPresentationController> modalPresentationController; // @synthesize modalPresentationController=_modalPresentationController;
 @property(readonly, nonatomic) id <SPTDrivingModeOptOutHandler> optOutHandler; // @synthesize optOutHandler=_optOutHandler;
@@ -27,7 +29,7 @@
 - (void)onCancelButtonTap;
 - (void)onOptOutButtonTap;
 - (void)viewDidLoad;
-- (id)initWithOptOutHandler:(id)arg1 modalPresentationController:(id)arg2 theme:(id)arg3;
+- (id)initWithOptOutHandler:(id)arg1 modalPresentationController:(id)arg2 theme:(id)arg3 logger:(id)arg4;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

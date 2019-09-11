@@ -11,19 +11,17 @@
 @interface SPTInAppMessageTrigger : NSObject
 {
     _Bool _cache;
-    long long _type;
-    long long _format;
+    NSString *_type;
+    NSString *_format;
     NSString *_pattern;
 }
 
-+ (id)typeStringFromType:(long long)arg1;
-+ (id)formatStringFromFormat:(long long)arg1;
 @property(readonly, copy, nonatomic) NSString *pattern; // @synthesize pattern=_pattern;
-@property(readonly, nonatomic) long long format; // @synthesize format=_format;
+@property(readonly, copy, nonatomic) NSString *format; // @synthesize format=_format;
 @property(readonly, nonatomic) _Bool cache; // @synthesize cache=_cache;
-@property(readonly, nonatomic) long long type; // @synthesize type=_type;
+@property(readonly, copy, nonatomic) NSString *type; // @synthesize type=_type;
 - (void).cxx_destruct;
-- (id)initWithType:(long long)arg1 pattern:(id)arg2 format:(long long)arg3 cache:(_Bool)arg4;
+- (id)initWithType:(id)arg1 pattern:(id)arg2 format:(id)arg3 cache:(_Bool)arg4;
 
 @end
 

@@ -8,16 +8,15 @@
 
 #import "GLUEStyleable-Protocol.h"
 
-@class GLUELabel, NSString;
-@protocol SPTFreeTierSimpleTooltipStyle;
+@class GLUELabel, NSString, SPTFreeTierSimpleTooltipStyle;
 
 @interface SPTFreeTierSimpleTooltipContentView : UIView <GLUEStyleable>
 {
     GLUELabel *_textLabel;
-    id <SPTFreeTierSimpleTooltipStyle> _style;
+    SPTFreeTierSimpleTooltipStyle *_style;
 }
 
-@property(retain, nonatomic) id <SPTFreeTierSimpleTooltipStyle> style; // @synthesize style=_style;
+@property(retain, nonatomic) SPTFreeTierSimpleTooltipStyle *style; // @synthesize style=_style;
 @property(retain, nonatomic) GLUELabel *textLabel; // @synthesize textLabel=_textLabel;
 - (void).cxx_destruct;
 - (void)glue_applyStyle:(id)arg1;

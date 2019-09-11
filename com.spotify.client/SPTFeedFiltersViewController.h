@@ -10,14 +10,14 @@
 #import "UICollectionViewDelegate-Protocol.h"
 #import "UICollectionViewDelegateFlowLayout-Protocol.h"
 
-@class NSLayoutConstraint, NSString, SPTFeedFiltersViewModel, SPTLayoutConstraintBuilder, UICollectionView, UIView;
+@class NSArray, NSLayoutConstraint, NSString, SPTFeedFiltersViewModel, UICollectionView, UIView;
 @protocol GLUETheme, SPTFeedFiltersViewControllerDelegate;
 
 @interface SPTFeedFiltersViewController : UIViewController <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 {
     id <SPTFeedFiltersViewControllerDelegate> _delegate;
     id <GLUETheme> _theme;
-    SPTLayoutConstraintBuilder *_layout;
+    NSArray *_layoutConstraints;
     NSLayoutConstraint *_collectionViewBottomContraint;
     UICollectionView *_collectionView;
     UIView *_backgroundContainerView;
@@ -30,7 +30,7 @@
 @property(retain, nonatomic) UIView *backgroundContainerView; // @synthesize backgroundContainerView=_backgroundContainerView;
 @property(retain, nonatomic) UICollectionView *collectionView; // @synthesize collectionView=_collectionView;
 @property(retain, nonatomic) NSLayoutConstraint *collectionViewBottomContraint; // @synthesize collectionViewBottomContraint=_collectionViewBottomContraint;
-@property(retain, nonatomic) SPTLayoutConstraintBuilder *layout; // @synthesize layout=_layout;
+@property(copy, nonatomic) NSArray *layoutConstraints; // @synthesize layoutConstraints=_layoutConstraints;
 @property(retain, nonatomic) id <GLUETheme> theme; // @synthesize theme=_theme;
 @property(nonatomic) __weak id <SPTFeedFiltersViewControllerDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;

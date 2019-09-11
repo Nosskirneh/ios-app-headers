@@ -50,12 +50,14 @@
 - (void)fetchAlbumViewForAlbumURL:(id)arg1 withMetadataProtocols:(id)arg2 andTracksProtocols:(id)arg3 options:(id)arg4 completion:(CDUnknownBlockType)arg5 onError:(CDUnknownBlockType)arg6;
 - (id)subscribeAlbumsMetadataWithPolicyProtocols:(id)arg1 options:(id)arg2 completion:(CDUnknownBlockType)arg3 onError:(CDUnknownBlockType)arg4;
 - (void)fetchAlbumsMetadataWithPolicyProtocols:(id)arg1 options:(id)arg2 completion:(CDUnknownBlockType)arg3 onError:(CDUnknownBlockType)arg4;
+- (void)decorateAlbumsURLs:(id)arg1 withPolicyProtocols:(id)arg2 completion:(CDUnknownBlockType)arg3 onError:(CDUnknownBlockType)arg4;
+- (void)decorateAlbumURL:(id)arg1 withPolicyProtocols:(id)arg2 completion:(CDUnknownBlockType)arg3 onError:(CDUnknownBlockType)arg4;
 - (void)decorateArtistURL:(id)arg1 withPolicyProtocols:(id)arg2 completion:(CDUnknownBlockType)arg3 onError:(CDUnknownBlockType)arg4;
 - (void)decorateTrackURL:(id)arg1 withPolicyProtocols:(id)arg2 completion:(CDUnknownBlockType)arg3 onError:(CDUnknownBlockType)arg4;
-- (SPTCollectionPlatformDataLoaderResponse_35b6aaff *)responseForData:(id)arg1 withItemBuilder:(id)arg2 itemKey:(id)arg3;
+- (SPTCollectionPlatformDataLoaderResponse_3cfdded1 *)responseForData:(id)arg1 withItemBuilder:(id)arg2 itemKey:(id)arg3;
 - (id)sectionIndexForData:(id)arg1 withItemBuilder:(id)arg2;
-- (SPTCollectionPlatformDataLoaderResponse_35b6aaff *)responseForData:(id)arg1 withItemBuilder:(id)arg2;
-- (SPTCollectionPlatformDataLoaderResponse_35b6aaff *)responseForData:(id)arg1 items:(id)arg2;
+- (SPTCollectionPlatformDataLoaderResponse_3cfdded1 *)responseForData:(id)arg1 withItemBuilder:(id)arg2;
+- (SPTCollectionPlatformDataLoaderResponse_3cfdded1 *)responseForData:(id)arg1 items:(id)arg2;
 - (id)makeCancelableRequestWithURL:(id)arg1 requestAction:(id)arg2 requestData:(id)arg3 replyOnMainThread:(_Bool)arg4 completion:(CDUnknownBlockType)arg5 onError:(CDUnknownBlockType)arg6;
 - (void)makeRequestWithURL:(id)arg1 requestAction:(id)arg2 requestData:(id)arg3 replyOnMainThread:(_Bool)arg4 completion:(CDUnknownBlockType)arg5 onError:(CDUnknownBlockType)arg6;
 - (id)initWithCosmosDataLoader:(id)arg1 testManager:(id)arg2;

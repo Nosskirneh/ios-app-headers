@@ -8,21 +8,21 @@
 
 #import "SPTNowPlayingAuxiliaryActionsModelObserver-Protocol.h"
 
-@class NSString, SPTNowPlayingFeedbackButton, SPTNowPlayingModel, SPTTheme;
-@protocol SPTNowPlayingAuxiliaryActionsHandler, SPTNowPlayingFeedbackObservable;
+@class NSString, SPTNowPlayingFeedbackButton, SPTNowPlayingLogger, SPTNowPlayingModel, SPTTheme;
+@protocol SPTNowPlayingAuxiliaryActionsHandler;
 
 @interface SPTNowPlayingBarHeartViewController : UIViewController <SPTNowPlayingAuxiliaryActionsModelObserver>
 {
     SPTNowPlayingModel *_model;
     SPTTheme *_theme;
-    id <SPTNowPlayingFeedbackObservable> _feedbackObservable;
     id <SPTNowPlayingAuxiliaryActionsHandler> _auxiliaryActionsHandler;
+    SPTNowPlayingLogger *_logger;
     SPTNowPlayingFeedbackButton *_heartButton;
 }
 
 @property(retain, nonatomic) SPTNowPlayingFeedbackButton *heartButton; // @synthesize heartButton=_heartButton;
+@property(readonly, nonatomic) SPTNowPlayingLogger *logger; // @synthesize logger=_logger;
 @property(retain, nonatomic) id <SPTNowPlayingAuxiliaryActionsHandler> auxiliaryActionsHandler; // @synthesize auxiliaryActionsHandler=_auxiliaryActionsHandler;
-@property(retain, nonatomic) id <SPTNowPlayingFeedbackObservable> feedbackObservable; // @synthesize feedbackObservable=_feedbackObservable;
 @property(readonly, nonatomic) SPTTheme *theme; // @synthesize theme=_theme;
 @property(retain, nonatomic) SPTNowPlayingModel *model; // @synthesize model=_model;
 - (void).cxx_destruct;
@@ -31,7 +31,7 @@
 - (void)needUpdateUI;
 - (void)viewDidLoad;
 - (void)dealloc;
-- (id)initWithModel:(id)arg1 theme:(id)arg2 feedbackObservable:(id)arg3 auxiliaryActionsHandler:(id)arg4;
+- (id)initWithModel:(id)arg1 theme:(id)arg2 auxiliaryActionsHandler:(id)arg3 logger:(id)arg4;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

@@ -7,18 +7,18 @@
 #import <UIKit/UIButton.h>
 
 #import "SPTFreeTierAddToCollectionButton-Protocol.h"
-#import "SPTFreeTierEntityHeartBanButtonViewModelDelegate-Protocol.h"
+#import "SPTFreeTierEntityFeedbackButtonViewModelDelegate-Protocol.h"
 
 @class NSString;
-@protocol SPTFreeTierEntityHeartBanButtonViewModel;
+@protocol SPTFreeTierEntityFeedbackButtonViewModel;
 
-@interface SPTFreeTierEntityHeartBanButton : UIButton <SPTFreeTierEntityHeartBanButtonViewModelDelegate, SPTFreeTierAddToCollectionButton>
+@interface SPTFreeTierEntityHeartBanButton : UIButton <SPTFreeTierEntityFeedbackButtonViewModelDelegate, SPTFreeTierAddToCollectionButton>
 {
-    id <SPTFreeTierEntityHeartBanButtonViewModel> _viewModel;
+    id <SPTFreeTierEntityFeedbackButtonViewModel> _viewModel;
     struct UIEdgeInsets alignmentRectInsetsOverride;
 }
 
-@property(readonly, nonatomic) id <SPTFreeTierEntityHeartBanButtonViewModel> viewModel; // @synthesize viewModel=_viewModel;
+@property(readonly, nonatomic) id <SPTFreeTierEntityFeedbackButtonViewModel> viewModel; // @synthesize viewModel=_viewModel;
 @property(nonatomic) struct UIEdgeInsets alignmentRectInsetsOverride; // @synthesize alignmentRectInsetsOverride;
 - (void).cxx_destruct;
 - (void)viewModel:(id)arg1 didUpdateState:(unsigned long long)arg2;

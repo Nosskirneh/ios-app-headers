@@ -22,8 +22,10 @@
     NSConditionLock *_stateCondition;
     NSConditionLock *_connectionCondition;
     IDConnectionMultiplexer *_multiplexer;
+    CDUnknownBlockType _handshakeTimeoutBlock;
 }
 
+@property(copy) CDUnknownBlockType handshakeTimeoutBlock; // @synthesize handshakeTimeoutBlock=_handshakeTimeoutBlock;
 @property float handshakeTimeout; // @synthesize handshakeTimeout=_handshakeTimeout;
 @property(retain) IDConnectionMultiplexer *multiplexer; // @synthesize multiplexer=_multiplexer;
 @property(retain) NSConditionLock *connectionCondition; // @synthesize connectionCondition=_connectionCondition;
@@ -39,6 +41,8 @@
 - (_Bool)shouldRegisterForiAPAppLaunch;
 - (_Bool)shouldEnqueProtocolInUseNotification;
 - (void)stopMultiplexer;
+- (_Bool)tryStartHandshakeWithInputStream:(id)arg1 outputStream:(id)arg2;
+- (void)startConnectionWithInputStream:(id)arg1 outputStream:(id)arg2;
 - (void)streamProvider:(id)arg1 didFailToStartWithError:(id)arg2;
 - (void)streamProvider:(id)arg1 didFailToResolveStreamsWithError:(id)arg2;
 - (void)streamProviderWillDiscardStreams:(id)arg1;
@@ -56,6 +60,8 @@
 - (void)connectionMultiplexerDidReceiveEndOfStreamFromA4AConnection:(id)arg1;
 - (void)connectionMultiplexerDidFinishHandshake:(id)arg1;
 - (void)connectionMultiplexer:(id)arg1 errorOccurred:(id)arg2;
+- (void)cancelHandshakeTimeout;
+- (void)handleHandshakeTimeoutDispatched:(float)arg1;
 - (void)waitForHandshakeWithTimeout:(float)arg1;
 - (void)stop;
 - (void)startWithStreamProvider:(id)arg1;

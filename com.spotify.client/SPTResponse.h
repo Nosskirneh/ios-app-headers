@@ -19,10 +19,10 @@
 @property(readonly, copy, nonatomic) NSData *body; // @synthesize body=_body;
 @property(readonly, nonatomic) int status; // @synthesize status=_status;
 - (void).cxx_destruct;
-- (void)getCppResponse:(struct Response *)arg1;
+- (void)getCppResponse:(Response_d1689f6a *)arg1;
 - (id)description;
 @property(readonly, nonatomic, getter=isSuccessful) _Bool successful;
-- (id)initWithCppResponse:(struct Response *)arg1;
+- (id)initWithCppResponse:(Response_d1689f6a *)arg1;
 - (id)initRespondingWithStatus:(int)arg1 body:(id)arg2 headers:(id)arg3;
 
 @end

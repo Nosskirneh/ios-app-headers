@@ -17,7 +17,7 @@
 @property(retain, nonatomic) id <SPTViewLogger> viewLogger; // @synthesize viewLogger=_viewLogger;
 @property(retain, nonatomic) id <SPTLogCenter> logCenter; // @synthesize logCenter=_logCenter;
 - (void).cxx_destruct;
-- (void)logViewDidFailToLoadWithError:(id)arg1 pageIdentifier:(id)arg2;
+- (void)logViewDidFailToLoadWithPageIdentifier:(id)arg1;
 - (void)logViewLoadingCancelledWithPageIdentifier:(id)arg1;
 - (void)logViewDidLoadWithPageIdentifier:(id)arg1;
 - (void)logViewLoadingStartedWithPageIdentifier:(id)arg1;

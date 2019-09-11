@@ -6,14 +6,14 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTCollectionEntityListObserver-Protocol.h"
 #import "SPTExternalIntegrationContentProvider-Protocol.h"
+#import "SPTRecentlyPlayedListObserver-Protocol.h"
 #import "SPTService-Protocol.h"
 
 @class NSMutableArray, NSString, SPTAllocationContext, SPTExternalIntegrationRecentlyPlayedContentFactory;
 @protocol SPTExternalIntegrationContentService, SPTExternalIntegrationTestManagerService, SPTRecentlyPlayedService;
 
-@interface SPTExternalIntegrationRecentlyPlayedContentProviderService : NSObject <SPTCollectionEntityListObserver, SPTService, SPTExternalIntegrationContentProvider>
+@interface SPTExternalIntegrationRecentlyPlayedContentProviderService : NSObject <SPTRecentlyPlayedListObserver, SPTService, SPTExternalIntegrationContentProvider>
 {
     id <SPTExternalIntegrationContentService> _contentService;
     id <SPTRecentlyPlayedService> _recentlyPlayedService;
@@ -29,8 +29,9 @@
 @property(readonly, nonatomic) __weak id <SPTRecentlyPlayedService> recentlyPlayedService; // @synthesize recentlyPlayedService=_recentlyPlayedService;
 @property(readonly, nonatomic) __weak id <SPTExternalIntegrationContentService> contentService; // @synthesize contentService=_contentService;
 - (void).cxx_destruct;
-- (void)entityList:(id)arg1 didFailWithError:(id)arg2;
-- (void)entityListDidReload:(id)arg1;
+- (void)recentlyPlayedList:(id)arg1 didFailWithError:(id)arg2;
+- (void)recentlyPlayedListDidReload:(id)arg1;
+- (id)createPlaceholderContentItemForURI:(id)arg1;
 - (void)resolveChildContentOfParentWithURI:(id)arg1 options:(id)arg2 withCompletionHandler:(CDUnknownBlockType)arg3;
 - (long long)priorityForChildContentOfParentWithURI:(id)arg1;
 - (void)resolveContentWithURI:(id)arg1 options:(id)arg2 withCompletionHandler:(CDUnknownBlockType)arg3;

@@ -7,23 +7,23 @@
 #import <UIKit/UIViewController.h>
 
 #import "SPContentInsetViewController-Protocol.h"
-#import "SPTCollectionFilterBarDelegate-Protocol.h"
+#import "SPTFilePickerFilterBarDelegate-Protocol.h"
 #import "SPTFilePickerItemCell-Protocol.h"
 #import "SPTFilePickerSectionModelDelegate-Protocol.h"
 #import "SPTImageLoaderDelegate-Protocol.h"
 #import "UITableViewDataSource-Protocol.h"
 #import "UITableViewDelegate-Protocol.h"
 
-@class GLUEEntityRowStyle, NSMutableDictionary, NSString, SPTCollectionFilterBar, SPTFilePickerSectionModel, SPTInfoView, SPTLocalFilesLogger, SPTTableView;
+@class GLUEEntityRowStyle, NSMutableDictionary, NSString, SPTFilePickerFilterBar, SPTFilePickerSectionModel, SPTInfoView, SPTLocalFilesLogger, SPTTableView;
 @protocol SPTImageLoader;
 
-@interface SPTFilePickerSectionViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, SPTFilePickerItemCell, SPTImageLoaderDelegate, SPTCollectionFilterBarDelegate, SPTFilePickerSectionModelDelegate, SPContentInsetViewController>
+@interface SPTFilePickerSectionViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, SPTFilePickerItemCell, SPTImageLoaderDelegate, SPTFilePickerFilterBarDelegate, SPTFilePickerSectionModelDelegate, SPContentInsetViewController>
 {
     SPTTableView *_tableView;
     SPTFilePickerSectionModel *_model;
     SPTInfoView *_infoView;
     id <SPTImageLoader> _imageLoader;
-    SPTCollectionFilterBar *_filterBar;
+    SPTFilePickerFilterBar *_filterBar;
     NSMutableDictionary *_imagesForIndexPaths;
     SPTLocalFilesLogger *_logger;
     unsigned long long _sectionIndex;
@@ -34,7 +34,7 @@
 @property(readonly, nonatomic) unsigned long long sectionIndex; // @synthesize sectionIndex=_sectionIndex;
 @property(readonly, nonatomic) SPTLocalFilesLogger *logger; // @synthesize logger=_logger;
 @property(retain, nonatomic) NSMutableDictionary *imagesForIndexPaths; // @synthesize imagesForIndexPaths=_imagesForIndexPaths;
-@property(retain, nonatomic) SPTCollectionFilterBar *filterBar; // @synthesize filterBar=_filterBar;
+@property(retain, nonatomic) SPTFilePickerFilterBar *filterBar; // @synthesize filterBar=_filterBar;
 @property(retain, nonatomic) id <SPTImageLoader> imageLoader; // @synthesize imageLoader=_imageLoader;
 @property(retain, nonatomic) SPTInfoView *infoView; // @synthesize infoView=_infoView;
 @property(retain, nonatomic) SPTFilePickerSectionModel *model; // @synthesize model=_model;

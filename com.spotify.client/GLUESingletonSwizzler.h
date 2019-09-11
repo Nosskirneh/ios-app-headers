@@ -10,7 +10,7 @@
 {
 }
 
-+ (void)swizzleSelector:(SEL)arg1 fromClass:(Class)arg2 withBlock:(CDUnknownBlockType)arg3 forBlock:(CDUnknownBlockType)arg4;
++ (void)swizzleSelector:(SEL)arg1 fromClass:(Class)arg2 withBlock:(id)arg3 forBlock:(CDUnknownBlockType)arg4;
 + (void)swizzleSelector:(SEL)arg1 fromClass:(Class)arg2 toClass:(Class)arg3 forBlock:(CDUnknownBlockType)arg4;
 
 @end

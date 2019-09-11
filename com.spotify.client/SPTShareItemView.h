@@ -6,7 +6,7 @@
 
 #import <UIKit/UIView.h>
 
-@class NSString, SPTImageBlurView, SPTLayoutConstraintBuilder, SPTTheme, UIImage, UIImageView, UILabel;
+@class NSString, SPTImageBlurView, SPTTheme, UIImage, UIImageView, UILabel;
 
 @interface SPTShareItemView : UIView
 {
@@ -19,11 +19,9 @@
     SPTImageBlurView *_backgroundBlurView;
     UILabel *_titleLabel;
     UILabel *_subtitleLabel;
-    SPTLayoutConstraintBuilder *_layoutBuilder;
 }
 
 + (id)placeholderImageForItemType:(unsigned long long)arg1;
-@property(retain, nonatomic) SPTLayoutConstraintBuilder *layoutBuilder; // @synthesize layoutBuilder=_layoutBuilder;
 @property(retain, nonatomic) UILabel *subtitleLabel; // @synthesize subtitleLabel=_subtitleLabel;
 @property(retain, nonatomic) UILabel *titleLabel; // @synthesize titleLabel=_titleLabel;
 @property(retain, nonatomic) SPTImageBlurView *backgroundBlurView; // @synthesize backgroundBlurView=_backgroundBlurView;

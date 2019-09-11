@@ -6,10 +6,10 @@
 
 #import "NSObject-Protocol.h"
 
-@class NSArray, SPTGaiaContextMenuModel, SPTGaiaDevice;
+@class NSArray, SPTGaiaConnectDevice, SPTGaiaContextMenuModel;
 
 @protocol SPTGaiaContextMenuModelProvider <NSObject>
-- (SPTGaiaContextMenuModel *)contextModelForDevice:(SPTGaiaDevice *)arg1;
+- (SPTGaiaContextMenuModel *)contextModelForDevice:(SPTGaiaConnectDevice *)arg1;
 - (void)setDevices:(NSArray *)arg1;
 @end
 

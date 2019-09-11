@@ -8,22 +8,15 @@
 
 #import "HUBComponent-Protocol.h"
 
-@class NSSet, UIView;
+@class NSSet;
 
 @interface HUGSTextRowComponent : HUGSThemableComponent <HUBComponent>
 {
-    UIView *_view;
 }
 
-@property(retain, nonatomic) UIView *view; // @synthesize view=_view;
-- (void).cxx_destruct;
-- (id)cellStyle;
-- (void)applyThemeLayout;
-- (void)prepareViewForReuse;
 - (struct CGSize)preferredViewSizeForDisplayingModel:(id)arg1 containerViewSize:(struct CGSize)arg2;
-- (void)configureViewWithModel:(id)arg1 containerViewSize:(struct CGSize)arg2;
-- (void)loadView;
-@property(readonly, nonatomic) NSSet *layoutTraits;
+- (id)createViewWithFrame:(struct CGRect)arg1;
+@property(readonly, copy, nonatomic) NSSet *layoutTraits;
 
 @end
 

@@ -19,11 +19,14 @@
 - (void).cxx_destruct;
 - (void)dataLoader:(id)arg1 didReceiveErrorResponse:(id)arg2;
 - (void)dataLoader:(id)arg1 didReceiveSuccessfulResponse:(id)arg2;
-- (void)postToEndpointPathComponenets:(id)arg1 requestTyle:(long long)arg2 bodyPayload:(id)arg3 completionHandler:(CDUnknownBlockType)arg4;
+- (void)handleSuccessResponse:(id)arg1;
+- (void)postToEndpointPathComponents:(id)arg1 requestTyle:(long long)arg2 bodyPayload:(id)arg3 timeout:(double)arg4 completionHandler:(CDUnknownBlockType)arg5;
+- (void)postWelcomeStatusUpdate:(CDUnknownBlockType)arg1;
 - (void)postHomeMixOptOutChange:(_Bool)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (void)handleSettingsErrorResponse:(id)arg1;
-- (void)handleSettingsResponse:(id)arg1;
 - (void)postExplicitOptOutChange:(_Bool)arg1 completionHandler:(CDUnknownBlockType)arg2;
+- (void)handleChangeMoodErrorResponse:(id)arg1;
+- (void)postTuningWithMoodChange:(unsigned long long)arg1 memberBlacklist:(id)arg2 homeMixURI:(id)arg3 completionHandler:(CDUnknownBlockType)arg4;
 - (id)initWithDataLoader:(id)arg1;
 
 // Remaining properties

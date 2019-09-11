@@ -47,12 +47,12 @@
     SPTID3Parser *_id3Parser;
     double _currentTime;
     double _loopTime;
-    long long _framesDecoded;
-    long long _junkSampleCount;
+    unsigned long long _framesDecoded;
+    unsigned long long _junkSampleCount;
 }
 
-@property long long junkSampleCount; // @synthesize junkSampleCount=_junkSampleCount;
-@property long long framesDecoded; // @synthesize framesDecoded=_framesDecoded;
+@property unsigned long long junkSampleCount; // @synthesize junkSampleCount=_junkSampleCount;
+@property unsigned long long framesDecoded; // @synthesize framesDecoded=_framesDecoded;
 @property(getter=isAudioPipelineSetup) _Bool audioPipelineSetup; // @synthesize audioPipelineSetup=_audioPipelineSetup;
 @property(getter=isLooping) _Bool looping; // @synthesize looping=_looping;
 @property double loopTime; // @synthesize loopTime=_loopTime;

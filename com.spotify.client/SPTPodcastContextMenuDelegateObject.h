@@ -8,15 +8,15 @@
 
 #import "SPTEpisodeContextMenuControllerDelegate-Protocol.h"
 
-@class NSString, SPTPodcastLogger;
-@protocol SPTCollectionLogger, SPTCollectionPlatform, SPTOfflineManager, SPTPodcastDataLoader, SPTPodcastTestManager, SPTShow, SPTShowEntityService;
+@class NSString;
+@protocol SPTCollectionLogger, SPTCollectionPlatform, SPTOfflineManager, SPTPodcastDataLoader, SPTPodcastLogger, SPTPodcastTestManager, SPTShow, SPTShowEntityService;
 
 @interface SPTPodcastContextMenuDelegateObject : NSObject <SPTEpisodeContextMenuControllerDelegate>
 {
     id <SPTOfflineManager> _offlineManager;
     id <SPTShowEntityService> _showEntityService;
     id <SPTPodcastDataLoader> _dataLoader;
-    SPTPodcastLogger *_logger;
+    id <SPTPodcastLogger> _logger;
     id <SPTShow> _show;
     id <SPTCollectionLogger> _collectionLogger;
     id <SPTCollectionPlatform> _collectionPlatform;
@@ -27,11 +27,12 @@
 @property(nonatomic) __weak id <SPTCollectionPlatform> collectionPlatform; // @synthesize collectionPlatform=_collectionPlatform;
 @property(readonly, nonatomic) __weak id <SPTCollectionLogger> collectionLogger; // @synthesize collectionLogger=_collectionLogger;
 @property(retain, nonatomic) id <SPTShow> show; // @synthesize show=_show;
-@property(retain, nonatomic) SPTPodcastLogger *logger; // @synthesize logger=_logger;
+@property(retain, nonatomic) id <SPTPodcastLogger> logger; // @synthesize logger=_logger;
 @property(retain, nonatomic) id <SPTPodcastDataLoader> dataLoader; // @synthesize dataLoader=_dataLoader;
 @property(retain, nonatomic) id <SPTShowEntityService> showEntityService; // @synthesize showEntityService=_showEntityService;
 @property(nonatomic) __weak id <SPTOfflineManager> offlineManager; // @synthesize offlineManager=_offlineManager;
 - (void).cxx_destruct;
+- (void)markEpisodeAsPlayed:(id)arg1 played:(_Bool)arg2;
 - (void)offlineEpisode:(id)arg1 offline:(_Bool)arg2;
 - (void)autoFollowIfNotFollowed:(id)arg1;
 - (void)followPodcast;

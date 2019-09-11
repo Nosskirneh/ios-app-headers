@@ -4,18 +4,27 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import "EXP_HUGS2ButtonComponentView.h"
+#import "HUGSThemableComponentView.h"
 
-@class SPTPremiumDestinationCtaStyle;
+#import "HUBComponentViewWithEvents-Protocol.h"
 
-@interface SPTPremiumDestinationPrimaryCtaComponentView : EXP_HUGS2ButtonComponentView
+@class GLUEButton, SPTPremiumDestinationCtaStyle;
+@protocol HUBComponentEventHandler;
+
+@interface SPTPremiumDestinationPrimaryCtaComponentView : HUGSThemableComponentView <HUBComponentViewWithEvents>
 {
+    id <HUBComponentEventHandler> _eventHandler;
     SPTPremiumDestinationCtaStyle *_style;
+    GLUEButton *_button;
 }
 
 + (struct CGSize)preferredViewSizeForDisplayingModel:(id)arg1 containerViewSize:(struct CGSize)arg2 theme:(id)arg3;
+@property(retain, nonatomic) GLUEButton *button; // @synthesize button=_button;
 @property(retain, nonatomic) SPTPremiumDestinationCtaStyle *style; // @synthesize style=_style;
+@property(retain, nonatomic) id <HUBComponentEventHandler> eventHandler; // @synthesize eventHandler=_eventHandler;
 - (void).cxx_destruct;
+- (void)applyThemeLayout;
+- (void)buttonTapped:(id)arg1;
 - (void)configureWithModel:(id)arg1;
 - (id)initWithFrame:(struct CGRect)arg1 theme:(id)arg2;
 

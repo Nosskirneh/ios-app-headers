@@ -9,20 +9,18 @@
 #import "SPTPlaybackErrorDialogs-Protocol.h"
 
 @class NSString, SPTNetworkConnectivityController, SPTask;
-@protocol SPTContainerUIService, SPTPlaybackErrorDialogsDelegate;
+@protocol SPTContainerUIService;
 
 @interface SPTPlaybackErrorDialogs : NSObject <SPTPlaybackErrorDialogs>
 {
     _Bool _dialogs_blocked;
     SPTask *_metadataTask;
-    id <SPTPlaybackErrorDialogsDelegate> _delegate;
     SPTNetworkConnectivityController *_networkConnectivityController;
     id <SPTContainerUIService> _containerUIService;
 }
 
 @property(nonatomic) __weak id <SPTContainerUIService> containerUIService; // @synthesize containerUIService=_containerUIService;
 @property(retain, nonatomic) SPTNetworkConnectivityController *networkConnectivityController; // @synthesize networkConnectivityController=_networkConnectivityController;
-@property(nonatomic) __weak id <SPTPlaybackErrorDialogsDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
 - (void)allowErrorDialogsAfterShortDelay;
 - (void)allowErrorDialogs;

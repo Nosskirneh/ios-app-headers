@@ -6,17 +6,17 @@
 
 #import <objc/NSObject.h>
 
-#import "EXP_HUBCommandHandler-Protocol.h"
+#import "HUBCommandHandler-Protocol.h"
 
-@protocol EXP_SPTHubInteractionLogger, SPTPlayer;
+@protocol SPTHubInteractionLogger, SPTPlayer;
 
-@interface SPTFreeTierEntityPlaybackToggleCommandHandler : NSObject <EXP_HUBCommandHandler>
+@interface SPTFreeTierEntityPlaybackToggleCommandHandler : NSObject <HUBCommandHandler>
 {
     id <SPTPlayer> _player;
-    id <EXP_SPTHubInteractionLogger> _logger;
+    id <SPTHubInteractionLogger> _logger;
 }
 
-@property(readonly, nonatomic) id <EXP_SPTHubInteractionLogger> logger; // @synthesize logger=_logger;
+@property(readonly, nonatomic) id <SPTHubInteractionLogger> logger; // @synthesize logger=_logger;
 @property(readonly, nonatomic) id <SPTPlayer> player; // @synthesize player=_player;
 - (void).cxx_destruct;
 - (id)createPlayOptionsFromCommand:(id)arg1;

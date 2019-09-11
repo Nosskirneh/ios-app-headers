@@ -15,14 +15,12 @@
 {
     id <SPTNavigationListProvider> _listProvider;
     id <SPTNavigationListItemsAppearance> _listItemsAppearance;
-    NSString *_navigationMenuUserPolicyValue;
     NSSet *_validTabBarAbbaFlagValues;
     NSSet *_tabBarFlagValuesFindEnabled;
 }
 
-@property(retain, nonatomic) NSSet *tabBarFlagValuesFindEnabled; // @synthesize tabBarFlagValuesFindEnabled=_tabBarFlagValuesFindEnabled;
-@property(retain, nonatomic) NSSet *validTabBarAbbaFlagValues; // @synthesize validTabBarAbbaFlagValues=_validTabBarAbbaFlagValues;
-@property(retain, nonatomic) NSString *navigationMenuUserPolicyValue; // @synthesize navigationMenuUserPolicyValue=_navigationMenuUserPolicyValue;
+@property(copy, nonatomic) NSSet *tabBarFlagValuesFindEnabled; // @synthesize tabBarFlagValuesFindEnabled=_tabBarFlagValuesFindEnabled;
+@property(copy, nonatomic) NSSet *validTabBarAbbaFlagValues; // @synthesize validTabBarAbbaFlagValues=_validTabBarAbbaFlagValues;
 @property(retain, nonatomic) id <SPTNavigationListItemsAppearance> listItemsAppearance; // @synthesize listItemsAppearance=_listItemsAppearance;
 @property(retain, nonatomic) id <SPTNavigationListProvider> listProvider; // @synthesize listProvider=_listProvider;
 - (void).cxx_destruct;

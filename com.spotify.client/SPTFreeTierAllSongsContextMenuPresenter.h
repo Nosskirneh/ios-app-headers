@@ -7,7 +7,7 @@
 #import <objc/NSObject.h>
 
 @class NSURL, SPTFreeTierAllSongsViewModel;
-@protocol SPContextMenuActionsFactory, SPTContextMenuOptionsFactory, SPTContextMenuPresenter, SPTContextMenuPresenterFactory;
+@protocol SPContextMenuActionsFactory, SPTContextMenuOptionsFactory, SPTContextMenuPresenter, SPTContextMenuPresenterFactory, SPTPodcastContextMenuProvider, SPTShowContextMenuControllerOptions;
 
 @interface SPTFreeTierAllSongsContextMenuPresenter : NSObject
 {
@@ -15,19 +15,23 @@
     id <SPContextMenuActionsFactory> _contextMenuActionsFactory;
     id <SPTContextMenuOptionsFactory> _contextMenuOptionsFactory;
     SPTFreeTierAllSongsViewModel *_viewModel;
+    id <SPTPodcastContextMenuProvider> _podcastMenuPresenter;
+    id <SPTShowContextMenuControllerOptions> _podcastMenuOptions;
     NSURL *_viewURI;
     id <SPTContextMenuPresenter> _presenter;
 }
 
 @property(retain, nonatomic) id <SPTContextMenuPresenter> presenter; // @synthesize presenter=_presenter;
 @property(retain, nonatomic) NSURL *viewURI; // @synthesize viewURI=_viewURI;
+@property(readonly, nonatomic) id <SPTShowContextMenuControllerOptions> podcastMenuOptions; // @synthesize podcastMenuOptions=_podcastMenuOptions;
+@property(readonly, nonatomic) id <SPTPodcastContextMenuProvider> podcastMenuPresenter; // @synthesize podcastMenuPresenter=_podcastMenuPresenter;
 @property(readonly, nonatomic) SPTFreeTierAllSongsViewModel *viewModel; // @synthesize viewModel=_viewModel;
 @property(readonly, nonatomic) id <SPTContextMenuOptionsFactory> contextMenuOptionsFactory; // @synthesize contextMenuOptionsFactory=_contextMenuOptionsFactory;
 @property(readonly, nonatomic) id <SPContextMenuActionsFactory> contextMenuActionsFactory; // @synthesize contextMenuActionsFactory=_contextMenuActionsFactory;
 @property(readonly, nonatomic) id <SPTContextMenuPresenterFactory> contextMenuPresenterFactory; // @synthesize contextMenuPresenterFactory=_contextMenuPresenterFactory;
 - (void).cxx_destruct;
 - (void)presentContextMenuAtIndexPath:(id)arg1 fromView:(id)arg2;
-- (id)initWithViewURI:(id)arg1 contextMenuPresenterFactory:(id)arg2 contextMenuOptionsFactory:(id)arg3 contextMenuActionsFactory:(id)arg4 viewModel:(id)arg5;
+- (id)initWithViewURI:(id)arg1 contextMenuPresenterFactory:(id)arg2 contextMenuOptionsFactory:(id)arg3 contextMenuActionsFactory:(id)arg4 viewModel:(id)arg5 podcastMenuPresenter:(id)arg6;
 
 @end
 

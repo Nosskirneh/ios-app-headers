@@ -10,7 +10,7 @@
 #import "SPTService-Protocol.h"
 
 @class NSString, SPTAllocationContext;
-@protocol InAppPurchaseController, SPTAbbaService, SPTContainerService, SPTContainerUIService, SPTCoreService, SPTIAPController, SPTIAPFeatureFlags, SPTLocalSettings, SPTNetworkService, SPTSessionService, SPTSettingsFeature;
+@protocol InAppPurchaseController, SPTContainerService, SPTContainerUIService, SPTCoreService, SPTIAPController, SPTIAPFeatureFlags, SPTLocalSettings, SPTNetworkService, SPTSessionService, SPTSettingsFeature;
 
 @interface InAppPurchaseFeatureImplementation : NSObject <SPTService, InAppPurchaseFeature>
 {
@@ -18,7 +18,6 @@
     id <SPTCoreService> _coreService;
     id <SPTNetworkService> _networkService;
     id <SPTSettingsFeature> _settingsFeature;
-    id <SPTAbbaService> _abbaService;
     id <SPTContainerService> _containerService;
     id <SPTContainerUIService> _containerUIService;
     id <InAppPurchaseController> _inAppPurchaseController;
@@ -34,7 +33,6 @@
 @property(retain, nonatomic) id <InAppPurchaseController> inAppPurchaseController; // @synthesize inAppPurchaseController=_inAppPurchaseController;
 @property(nonatomic) __weak id <SPTContainerUIService> containerUIService; // @synthesize containerUIService=_containerUIService;
 @property(nonatomic) __weak id <SPTContainerService> containerService; // @synthesize containerService=_containerService;
-@property(nonatomic) __weak id <SPTAbbaService> abbaService; // @synthesize abbaService=_abbaService;
 @property(nonatomic) __weak id <SPTSettingsFeature> settingsFeature; // @synthesize settingsFeature=_settingsFeature;
 @property(nonatomic) __weak id <SPTNetworkService> networkService; // @synthesize networkService=_networkService;
 @property(nonatomic) __weak id <SPTCoreService> coreService; // @synthesize coreService=_coreService;

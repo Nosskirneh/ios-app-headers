@@ -6,34 +6,38 @@
 
 #import <UIKit/UIViewController.h>
 
-#import "SPTNowPlayingAdPlayerObserver-Protocol.h"
+#import "SPTAdPlayerObserver-Protocol.h"
 #import "SPTNowPlayingAdUnitViewController-Protocol.h"
 #import "SPTNowPlayingContainedViewController-Protocol.h"
 
-@class GLUELabel, NSString, SPTLayoutConstraintBuilder, SPTNowPlayingAdPlayerObservable, SPTNowPlayingHeadUnitViewV2, SPTTheme;
-@protocol SPTAdNowPlayingRemoteControlPolicy, SPTAdsManager, SPTNowPlayingContainingViewController;
+@class GLUELabel, NSArray, NSString, SPTAdFeatureFlagChecks, SPTAdNowPlayingFeedbackModel, SPTAdPlayerObservable, SPTNowPlayingHeadUnitView, SPTTheme;
+@protocol SPTAdNowPlayingRemoteControlPolicy, SPTAdsBaseEntity, SPTAdsManager, SPTNowPlayingContainingViewController;
 
-@interface SPTNowPlayingAudioAdHeadUnitViewController : UIViewController <SPTNowPlayingAdPlayerObserver, SPTNowPlayingContainedViewController, SPTNowPlayingAdUnitViewController>
+@interface SPTNowPlayingAudioAdHeadUnitViewController : UIViewController <SPTAdPlayerObserver, SPTNowPlayingContainedViewController, SPTNowPlayingAdUnitViewController>
 {
     id <SPTAdsManager> _adsManager;
-    SPTNowPlayingAdPlayerObservable *_observable;
+    SPTAdPlayerObservable *_observable;
     SPTTheme *_theme;
-    id <SPTAdNowPlayingRemoteControlPolicy> _remoteControlPolicy;
     GLUELabel *_skipDelayLabel;
-    long long _skipDelayLabelWidth;
-    SPTLayoutConstraintBuilder *_layout;
+    SPTAdNowPlayingFeedbackModel *_feedbackModel;
+    SPTAdFeatureFlagChecks *_featureChecker;
+    NSArray *_layoutConstraints;
+    id <SPTAdNowPlayingRemoteControlPolicy> _remoteControlPolicy;
+    id <SPTAdsBaseEntity> _adEntity;
 }
 
-@property(retain, nonatomic) SPTLayoutConstraintBuilder *layout; // @synthesize layout=_layout;
-@property(nonatomic) long long skipDelayLabelWidth; // @synthesize skipDelayLabelWidth=_skipDelayLabelWidth;
-@property(retain, nonatomic) GLUELabel *skipDelayLabel; // @synthesize skipDelayLabel=_skipDelayLabel;
+@property(nonatomic) __weak id <SPTAdsBaseEntity> adEntity; // @synthesize adEntity=_adEntity;
 @property(retain, nonatomic) id <SPTAdNowPlayingRemoteControlPolicy> remoteControlPolicy; // @synthesize remoteControlPolicy=_remoteControlPolicy;
+@property(copy, nonatomic) NSArray *layoutConstraints; // @synthesize layoutConstraints=_layoutConstraints;
+@property(readonly, nonatomic) SPTAdFeatureFlagChecks *featureChecker; // @synthesize featureChecker=_featureChecker;
+@property(readonly, nonatomic) SPTAdNowPlayingFeedbackModel *feedbackModel; // @synthesize feedbackModel=_feedbackModel;
+@property(readonly, nonatomic) GLUELabel *skipDelayLabel; // @synthesize skipDelayLabel=_skipDelayLabel;
 @property(readonly, nonatomic) SPTTheme *theme; // @synthesize theme=_theme;
-@property(readonly, nonatomic) SPTNowPlayingAdPlayerObservable *observable; // @synthesize observable=_observable;
+@property(readonly, nonatomic) SPTAdPlayerObservable *observable; // @synthesize observable=_observable;
 @property(readonly, nonatomic) id <SPTAdsManager> adsManager; // @synthesize adsManager=_adsManager;
 - (void).cxx_destruct;
-- (void)nowPlayingAdDisplayLinkFiredWithTrack:(struct SPTNowPlayingTrack)arg1;
-- (void)nowPlayingAdStateDidChangeToTrack:(struct SPTNowPlayingTrack)arg1;
+- (void)adPlayerDisplayLinkFiredWithTrack:(struct SPTNowPlayingTrack)arg1;
+- (void)adPlayerStateDidChangeToTrack:(struct SPTNowPlayingTrack)arg1;
 - (void)updateSkipDelayLabel;
 - (id)skipDelayAttributedText:(unsigned long long)arg1;
 - (void)reloadViewControllerWithAdEntity:(id)arg1;
@@ -42,16 +46,18 @@
 - (unsigned long long)leadingEdge;
 - (void)updateSkipButtons:(_Bool)arg1;
 - (void)updatePlayPauseButton;
+- (void)updateTertiaryButtons;
 - (void)updateHeadUnitButtons:(_Bool)arg1;
+- (void)didTapNegativeFeedbackButton:(id)arg1;
+- (void)didTapPositiveFeedbackButton:(id)arg1;
 - (void)skipToNext:(id)arg1;
 - (void)didTapPlaybackButton:(id)arg1;
 - (long long)findBestSkipDelayLabelWidth;
-- (void)createSkipDelayLabel;
 - (void)viewDidLayoutSubviews;
 - (void)viewDidLoad;
 - (void)loadView;
 - (void)dealloc;
-- (id)initWithAdManager:(id)arg1 playerObservable:(id)arg2 theme:(id)arg3;
+- (id)initWithAdManager:(id)arg1 playerObservable:(id)arg2 feedbackModel:(id)arg3 featureChecker:(id)arg4 theme:(id)arg5;
 
 // Remaining properties
 @property(nonatomic) __weak UIViewController<SPTNowPlayingContainingViewController> *container;
@@ -59,7 +65,7 @@
 @property(readonly, copy) NSString *description;
 @property(readonly) unsigned long long hash;
 @property(readonly) Class superclass;
-@property(readonly, nonatomic) SPTNowPlayingHeadUnitViewV2 *view; // @dynamic view;
+@property(readonly, nonatomic) SPTNowPlayingHeadUnitView *view; // @dynamic view;
 
 @end
 

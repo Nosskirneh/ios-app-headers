@@ -16,8 +16,8 @@
 
 @interface SPTVoiceSpeechRecognitionDataLoader : NSObject <SPTVoiceOutputStreamDelegate, SPTNetworkConnectivityControllerObserver, SPTOfflineModeStateObserver, SPTDataLoaderDelegate>
 {
-    _Bool _hasReceivedFinalTranscription;
     _Bool _didSendAudioData;
+    _Bool _hasReceivedFinalTranscription;
     id <SPTVoiceSpeechRecognitionDataLoaderDelegate> _delegate;
     SPTDataLoader *_dataLoader;
     id <SPTPlayer> _player;
@@ -34,13 +34,10 @@
     SPTNetworkConnectivityController *_networkConnectivityController;
     id <SPTOfflineModeState> _offlineModeState;
     double _noResultIntervalTimeout;
-    double _noUtteranceIntervalTimeout;
     double _isFinalIntervalTimeout;
 }
 
-@property(nonatomic) _Bool didSendAudioData; // @synthesize didSendAudioData=_didSendAudioData;
 @property(nonatomic) double isFinalIntervalTimeout; // @synthesize isFinalIntervalTimeout=_isFinalIntervalTimeout;
-@property(nonatomic) double noUtteranceIntervalTimeout; // @synthesize noUtteranceIntervalTimeout=_noUtteranceIntervalTimeout;
 @property(nonatomic) double noResultIntervalTimeout; // @synthesize noResultIntervalTimeout=_noResultIntervalTimeout;
 @property(readonly, nonatomic) id <SPTOfflineModeState> offlineModeState; // @synthesize offlineModeState=_offlineModeState;
 @property(readonly, nonatomic) SPTNetworkConnectivityController *networkConnectivityController; // @synthesize networkConnectivityController=_networkConnectivityController;
@@ -57,6 +54,7 @@
 @property(readonly, nonatomic) NSString *sampleRate; // @synthesize sampleRate=_sampleRate;
 @property(readonly, nonatomic) id <SPTPlayer> player; // @synthesize player=_player;
 @property(readonly, nonatomic) SPTDataLoader *dataLoader; // @synthesize dataLoader=_dataLoader;
+@property(nonatomic) _Bool didSendAudioData; // @synthesize didSendAudioData=_didSendAudioData;
 @property(nonatomic) __weak id <SPTVoiceSpeechRecognitionDataLoaderDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
 - (void)outputStream:(id)arg1 didFailWithError:(id)arg2;
@@ -79,10 +77,9 @@
 - (void)cancelScheduledTimeout;
 - (void)scheduleResultTimeoutTimer;
 - (void)scheduleIsFinalTimeoutTimer;
-- (void)scheduleFirstUtteranceTimer;
 - (void)removeNetworkConnectivityObservers;
 - (void)setupNetworkConnectivityObservers;
-- (void)write:(const char *)arg1 maxLength:(unsigned long long)arg2;
+- (void)write:(short **)arg1 maxLength:(unsigned long long)arg2;
 - (void)cancel;
 - (void)start;
 - (id)initWithDataLoader:(id)arg1 player:(id)arg2 sampleRate:(double)arg3 testManager:(id)arg4 networkConnectivityController:(id)arg5 offlineModeState:(id)arg6;

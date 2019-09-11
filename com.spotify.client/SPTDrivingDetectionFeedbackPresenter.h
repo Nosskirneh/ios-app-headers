@@ -9,7 +9,7 @@
 #import "SPTSlateDataSource-Protocol.h"
 #import "SPTSlateDelegate-Protocol.h"
 
-@class NSString, SPTDrivingDetectionFeedbackPresentationToken, SPTDrivingStateTestManager, UIWindow;
+@class NSString, SPTDrivingDetectionFeedbackPresentationToken, UIWindow;
 @protocol GLUETheme, SPTSlateBuilder, SPTSlateManager;
 
 @interface SPTDrivingDetectionFeedbackPresenter : NSObject <SPTSlateDataSource, SPTSlateDelegate>
@@ -18,12 +18,10 @@
     id <SPTSlateBuilder> _slateBuilder;
     UIWindow *_window;
     id <GLUETheme> _glueTheme;
-    SPTDrivingStateTestManager *_testManager;
     SPTDrivingDetectionFeedbackPresentationToken *_currentPresentationToken;
 }
 
 @property(retain, nonatomic) SPTDrivingDetectionFeedbackPresentationToken *currentPresentationToken; // @synthesize currentPresentationToken=_currentPresentationToken;
-@property(readonly, nonatomic) SPTDrivingStateTestManager *testManager; // @synthesize testManager=_testManager;
 @property(readonly, nonatomic) id <GLUETheme> glueTheme; // @synthesize glueTheme=_glueTheme;
 @property(readonly, nonatomic) UIWindow *window; // @synthesize window=_window;
 @property(readonly, nonatomic) id <SPTSlateBuilder> slateBuilder; // @synthesize slateBuilder=_slateBuilder;
@@ -37,7 +35,7 @@
 - (void)completeCurrentPresentationWithResponse:(unsigned long long)arg1 dismiss:(_Bool)arg2;
 - (id)presentFeedbackOverlayWithCompletion:(CDUnknownBlockType)arg1;
 - (void)configureSlateBuilder:(id)arg1;
-- (id)initWithSlateManager:(id)arg1 slateBuilder:(id)arg2 glueTheme:(id)arg3 window:(id)arg4 testManager:(id)arg5;
+- (id)initWithSlateManager:(id)arg1 slateBuilder:(id)arg2 glueTheme:(id)arg3 window:(id)arg4;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

@@ -8,18 +8,18 @@
 
 #import "SPTCanvasTrackChecker-Protocol.h"
 
-@class NSString, SPTCanvasBackendService;
+@class NSString, SPTCanvasTestManager;
 
 @interface SPTCanvasTrackCheckerImplementation : NSObject <SPTCanvasTrackChecker>
 {
-    SPTCanvasBackendService *_backendService;
+    SPTCanvasTestManager *_testManager;
 }
 
-@property(readonly, nonatomic) SPTCanvasBackendService *backendService; // @synthesize backendService=_backendService;
+@property(readonly, nonatomic) SPTCanvasTestManager *testManager; // @synthesize testManager=_testManager;
 - (void).cxx_destruct;
 - (id)canvasModelForTrack:(id)arg1 withPlaceholderURI:(id)arg2;
 - (_Bool)isCanvasEnabledForTrack:(id)arg1;
-- (id)initWithBackendService:(id)arg1;
+- (id)initWithTestManager:(id)arg1;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

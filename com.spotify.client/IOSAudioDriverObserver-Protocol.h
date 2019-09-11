@@ -9,6 +9,7 @@
 @class NSError;
 
 @protocol IOSAudioDriverObserver <NSObject>
+- (void)audioDriverDidReset:(struct IOSAudioDriver *)arg1;
 - (void)audioDriverWillStartRunning:(struct IOSAudioDriver *)arg1;
 - (void)audioDriver:(struct IOSAudioDriver *)arg1 didFailWithError:(NSError *)arg2;
 - (void)audioDriverDidStopRunning:(struct IOSAudioDriver *)arg1;

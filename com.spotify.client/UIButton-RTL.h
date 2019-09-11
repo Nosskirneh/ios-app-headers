@@ -8,6 +8,7 @@
 
 @interface UIButton (RTL)
 - (struct UIEdgeInsets)spt_adjustEdgeInsets:(struct UIEdgeInsets)arg1;
+@property(nonatomic) struct UIEdgeInsets spt_titleEdgeInsets;
 @property(nonatomic) struct UIEdgeInsets spt_contentEdgeInsets;
 @property(nonatomic) struct UIEdgeInsets spt_imageEdgeInsets;
 @end

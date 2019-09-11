@@ -7,7 +7,6 @@
 #import <objc/NSObject.h>
 
 #import "MySpinServerSDKDelegate-Protocol.h"
-#import "SPTFeatureFlagSignalObserver-Protocol.h"
 #import "SPTMySPINDebugViewControllerDelegate-Protocol.h"
 #import "SPTMySPINWebViewControllerDelegate-Protocol.h"
 #import "SPTService-Protocol.h"
@@ -15,7 +14,7 @@
 @class NSOperationQueue, NSString, NSURL, SPTAccessory, SPTAllocationContext, SPTMySPINAppFeatureImplementation, SPTMySPINBridgeClient, SPTMySPINDebugViewController, SPTMySPINURIHandlerFeatureImplementation, SPTMySPINWebViewController, UIImageView;
 @protocol GLUETheme, SPTAccessoryManagerService, SPTAccessoryStateManager, SPTContainerService, SPTContainerUIService, SPTDebugService, SPTExternalIntegrationPlaybackService, SPTFeatureFlagSignal, SPTFeatureFlaggingService, SPTGLUEService, SPTSessionService, SPTSettingsFeature, SPTSpotifyAppProtocolService;
 
-@interface SPTMySPINFeatureImplementation : NSObject <MySpinServerSDKDelegate, SPTMySPINWebViewControllerDelegate, SPTMySPINDebugViewControllerDelegate, SPTFeatureFlagSignalObserver, SPTService>
+@interface SPTMySPINFeatureImplementation : NSObject <MySpinServerSDKDelegate, SPTMySPINWebViewControllerDelegate, SPTMySPINDebugViewControllerDelegate, SPTService>
 {
     _Bool _didStartLoadingOfWebUI;
     id <SPTSessionService> _clientSessionService;

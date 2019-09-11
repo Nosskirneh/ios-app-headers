@@ -31,6 +31,7 @@
 - (void).cxx_destruct;
 - (_Bool)presentBridgeViewAnimated:(_Bool)arg1 manualLogin:(_Bool)arg2 completion:(CDUnknownBlockType)arg3;
 - (id)provideNavigationControllerWithRootViewController:(id)arg1;
+- (void)onboardingFlowDidSkip;
 - (void)onboardingFlowDidFinish;
 - (id)onboardingFlowNavigationControllerWithViewController:(id)arg1 animated:(_Bool)arg2;
 - (void)presentHome;

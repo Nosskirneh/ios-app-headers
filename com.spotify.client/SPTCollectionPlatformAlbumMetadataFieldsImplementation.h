@@ -19,8 +19,10 @@
     NSURL *_collectionURL;
     unsigned long long _collectionAlbumTracksCount;
     unsigned long long _albumTracksCount;
+    unsigned long long _year;
 }
 
+@property(nonatomic) unsigned long long year; // @synthesize year=_year;
 @property(nonatomic) _Bool isComplete; // @synthesize isComplete=_isComplete;
 @property(nonatomic) unsigned long long albumTracksCount; // @synthesize albumTracksCount=_albumTracksCount;
 @property(nonatomic) unsigned long long collectionAlbumTracksCount; // @synthesize collectionAlbumTracksCount=_collectionAlbumTracksCount;

@@ -20,14 +20,12 @@
     CDUnknownBlockType _onActionBlock;
 }
 
-+ (id)bodyTextForEmptyView:(id)arg1;
-+ (id)emptyStateView:(id)arg1 theme:(id)arg2 ctaButtonTitle:(id)arg3 linkDispatcher:(id)arg4 metaViewController:(id)arg5 navigationRouter:(id)arg6 navigateToURI:(id)arg7 navigateFromURI:(id)arg8;
++ (id)emptyStateView:(id)arg1 subtitle:(id)arg2 theme:(id)arg3 ctaButtonTitle:(id)arg4 linkDispatcher:(id)arg5 metaViewController:(id)arg6 navigationRouter:(id)arg7 navigateToURI:(id)arg8 navigateFromURI:(id)arg9;
 + (id)noResultFilteringEmptyStateView:(id)arg1 filterString:(id)arg2 onAction:(CDUnknownBlockType)arg3;
-+ (id)songsEmptyStateView:(id)arg1 linkDispatcher:(id)arg2;
-+ (id)podcastsYourLibraryTestEmptyStateView:(id)arg1 linkDispatcher:(id)arg2 metaViewController:(id)arg3 navigationRouter:(id)arg4;
-+ (id)podcastsEmptyStateView:(id)arg1 linkDispatcher:(id)arg2 metaViewController:(id)arg3 navigationRouter:(id)arg4;
++ (id)songsEmptyStateView:(id)arg1 onAction:(CDUnknownBlockType)arg2;
 + (id)albumsEmptyStateViewWithTheme:(id)arg1;
-+ (id)artistsEmptyStateView:(id)arg1 linkDispatcher:(id)arg2;
++ (id)artistsEmptyStateView:(id)arg1 onAction:(CDUnknownBlockType)arg2;
++ (id)playlistsEmptyStateView:(id)arg1 onAction:(CDUnknownBlockType)arg2;
 @property(copy, nonatomic) CDUnknownBlockType onActionBlock; // @synthesize onActionBlock=_onActionBlock;
 @property(retain, nonatomic) SPTFreeTierCollectionGLUETheme *theme; // @synthesize theme=_theme;
 @property(retain, nonatomic) NSURL *navigateFromURI; // @synthesize navigateFromURI=_navigateFromURI;

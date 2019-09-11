@@ -6,13 +6,14 @@
 
 #import "GLUEThemeBase.h"
 
-@class SPTLanguageOnboardingContainerViewStyle, SPTLanguageOnboardingGridCellStyle;
+@class SPTLanguageOnboardingContainerViewStyle, SPTLanguageOnboardingGridCellStyle, SPTLanguageOnboardingSettingsContainerViewStyle;
 @protocol GLUEStyle;
 
 @interface SPTLanguageOnboardingTheme : GLUEThemeBase
 {
 }
 
+@property(readonly, copy, nonatomic) SPTLanguageOnboardingSettingsContainerViewStyle *settingsContainerViewStyle;
 - (id)offlineViewStyle;
 - (id)gridViewStyle;
 - (id)headerViewStyle;

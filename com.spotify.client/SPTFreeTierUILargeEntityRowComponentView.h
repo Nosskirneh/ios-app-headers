@@ -4,33 +4,30 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import "EXP_HUBComponentView.h"
+#import "HUBComponentView.h"
 
-#import "EXP_HUBComponentViewWithEvents-Protocol.h"
-#import "EXP_HUBComponentViewWithImageHandling-Protocol.h"
-#import "UIGestureRecognizerDelegate-Protocol.h"
+#import "HUBComponentViewWithEvents-Protocol.h"
+#import "HUBComponentViewWithImageHandling-Protocol.h"
 
-@class GLUEEntityRowStyle, NSString, SPTFreeTierUILargeEntityRowView;
-@protocol EXP_HUBComponentEventHandler, EXP_HUGSStyleOverrider, GLUETheme;
+@class GLUEEntityRowStyle, HUGSCustomViewControl;
+@protocol GLUETheme, HUBComponentEventHandler, HUGSStyleOverrider;
 
-@interface SPTFreeTierUILargeEntityRowComponentView : EXP_HUBComponentView <UIGestureRecognizerDelegate, EXP_HUBComponentViewWithEvents, EXP_HUBComponentViewWithImageHandling>
+@interface SPTFreeTierUILargeEntityRowComponentView : HUBComponentView <HUBComponentViewWithEvents, HUBComponentViewWithImageHandling>
 {
-    id <EXP_HUBComponentEventHandler> _eventHandler;
+    id <HUBComponentEventHandler> _eventHandler;
     id <GLUETheme> _theme;
-    SPTFreeTierUILargeEntityRowView *_rowView;
-    id <EXP_HUGSStyleOverrider> _styleOverrider;
+    HUGSCustomViewControl *_rowViewControl;
+    id <HUGSStyleOverrider> _styleOverrider;
     GLUEEntityRowStyle *_style;
 }
 
 @property(retain, nonatomic) GLUEEntityRowStyle *style; // @synthesize style=_style;
-@property(readonly, nonatomic) id <EXP_HUGSStyleOverrider> styleOverrider; // @synthesize styleOverrider=_styleOverrider;
-@property(readonly, nonatomic) SPTFreeTierUILargeEntityRowView *rowView; // @synthesize rowView=_rowView;
+@property(readonly, nonatomic) id <HUGSStyleOverrider> styleOverrider; // @synthesize styleOverrider=_styleOverrider;
+@property(readonly, nonatomic) HUGSCustomViewControl *rowViewControl; // @synthesize rowViewControl=_rowViewControl;
 @property(readonly, nonatomic) id <GLUETheme> theme; // @synthesize theme=_theme;
-@property(retain, nonatomic) id <EXP_HUBComponentEventHandler> eventHandler; // @synthesize eventHandler=_eventHandler;
+@property(retain, nonatomic) id <HUBComponentEventHandler> eventHandler; // @synthesize eventHandler=_eventHandler;
 - (void).cxx_destruct;
-- (_Bool)gestureRecognizer:(id)arg1 shouldRecognizeSimultaneouslyWithGestureRecognizer:(id)arg2;
-- (void)selectionGestureRecognizerFired:(id)arg1;
-- (void)highlightGestureRecognizerFired:(id)arg1;
+- (void)didPress;
 - (void)updateViewForLoadedImage:(id)arg1 fromData:(id)arg2 model:(id)arg3 animated:(_Bool)arg4;
 - (struct CGSize)preferredSizeForImageFromData:(id)arg1 model:(id)arg2 containerViewSize:(struct CGSize)arg3;
 - (void)prepareForReuse;
@@ -38,15 +35,8 @@
 - (id)styleForModel:(id)arg1;
 - (void)configureWithModel:(id)arg1;
 - (struct CGSize)imageSize;
-- (void)setupGestureRecognizers;
 - (void)setupConstraints;
 - (id)initWithTheme:(id)arg1 styleOverrider:(id)arg2 frame:(struct CGRect)arg3;
-
-// Remaining properties
-@property(readonly, copy) NSString *debugDescription;
-@property(readonly, copy) NSString *description;
-@property(readonly) unsigned long long hash;
-@property(readonly) Class superclass;
 
 @end
 

@@ -12,12 +12,9 @@
 @property(readonly, nonatomic, getter=isLocalBansEnabled) _Bool localBansEnabled;
 @property(readonly, nonatomic) id <SPTFeatureFlagSignal> localBansEnabledSignal;
 @property(readonly, nonatomic, getter=isMadeForAttributionEnabled) _Bool madeForAttributionEnabled;
-@property(readonly, nonatomic, getter=isNewNowPlayingViewEnabled) _Bool newNowPlayingViewEnabled;
 @property(readonly, nonatomic, getter=isIncompleteAlbumsUsedForCollectionState) _Bool incompleteAlbumsUsedForCollectionState;
 @property(readonly, nonatomic, getter=isPremiumLabelEnabled) _Bool premiumLabelEnabled;
 @property(readonly, getter=isFollowedArtistsOnlyEnabled) _Bool followedArtistsOnlyEnabled;
-@property(readonly, getter=isHeartsEverywhereEnabled) _Bool heartsEverywhereEnabled;
-@property(readonly, getter=isBookmarkModelEnabled) _Bool bookmarkModelEnabled;
 @property(readonly, nonatomic, getter=isYourLibraryFeatureEnabled) _Bool yourLibraryFeatureEnabled;
 @property(readonly, nonatomic) id <SPTCollectionPlatformConfiguration> collectionConfiguration;
 @end

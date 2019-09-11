@@ -9,15 +9,14 @@
 #import "HUBComponentTargetBuilder-Protocol.h"
 #import "NSCopying-Protocol.h"
 
-@class HUBComponentDefaults, HUBViewModelBuilderImplementation, NSDictionary, NSMutableOrderedSet, NSURL;
-@protocol HUBIconImageResolver, HUBJSONSchema, HUBViewModelBuilder;
+@class HUBComponentDefaults, HUBViewModelBuilderImplementation, NSMutableDictionary, NSMutableOrderedSet, NSURL;
+@protocol HUBIconImageResolver, HUBViewModelBuilder;
 
 @interface HUBComponentTargetBuilderImplementation : NSObject <HUBComponentTargetBuilder, NSCopying>
 {
     NSURL *_URI;
     NSMutableOrderedSet *_actionIdentifiers;
-    NSDictionary *_customData;
-    id <HUBJSONSchema> _JSONSchema;
+    NSMutableDictionary *_customData;
     HUBComponentDefaults *_componentDefaults;
     id <HUBIconImageResolver> _iconImageResolver;
     HUBViewModelBuilderImplementation *_initialViewModelBuilderImplementation;
@@ -26,8 +25,7 @@
 @property(retain, nonatomic) HUBViewModelBuilderImplementation *initialViewModelBuilderImplementation; // @synthesize initialViewModelBuilderImplementation=_initialViewModelBuilderImplementation;
 @property(readonly, nonatomic) id <HUBIconImageResolver> iconImageResolver; // @synthesize iconImageResolver=_iconImageResolver;
 @property(readonly, nonatomic) HUBComponentDefaults *componentDefaults; // @synthesize componentDefaults=_componentDefaults;
-@property(readonly, nonatomic) id <HUBJSONSchema> JSONSchema; // @synthesize JSONSchema=_JSONSchema;
-@property(copy, nonatomic) NSDictionary *customData; // @synthesize customData=_customData;
+@property(readonly, nonatomic) NSMutableDictionary *customData; // @synthesize customData=_customData;
 @property(readonly, nonatomic) NSMutableOrderedSet *actionIdentifiers; // @synthesize actionIdentifiers=_actionIdentifiers;
 @property(copy, nonatomic) NSURL *URI; // @synthesize URI=_URI;
 - (void).cxx_destruct;
@@ -38,7 +36,7 @@
 - (void)addActionWithNamespace:(id)arg1 name:(id)arg2;
 @property(readonly, nonatomic) id <HUBViewModelBuilder> initialViewModelBuilder;
 - (id)build;
-- (id)initWithJSONSchema:(id)arg1 componentDefaults:(id)arg2 iconImageResolver:(id)arg3 actionIdentifiers:(id)arg4;
+- (id)initWithComponentDefaults:(id)arg1 iconImageResolver:(id)arg2 actionIdentifiers:(id)arg3;
 
 @end
 

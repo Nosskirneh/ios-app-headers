@@ -9,7 +9,7 @@
 @class IDAudioService;
 
 @protocol IDAudioServiceDelegate <NSObject>
-- (void)audioService:(IDAudioService *)arg1 multimediaButtonEvent:(int)arg2;
+- (void)audioService:(IDAudioService *)arg1 multimediaButtonEvent:(unsigned long long)arg2;
 - (void)audioService:(IDAudioService *)arg1 interruptStateChanged:(int)arg2;
 - (void)audioService:(IDAudioService *)arg1 entertainmentStateChanged:(int)arg2;
 @end

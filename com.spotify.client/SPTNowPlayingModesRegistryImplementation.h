@@ -8,22 +8,20 @@
 
 #import "SPTNowPlayingModesRegistry-Protocol.h"
 
-@class NSMapTable, NSString;
-@protocol SPTNowPlayingModeViewControllerRegistry;
+@class NSMutableDictionary, NSString;
 
 @interface SPTNowPlayingModesRegistryImplementation : NSObject <SPTNowPlayingModesRegistry>
 {
-    NSMapTable *_modesMap;
-    id <SPTNowPlayingModeViewControllerRegistry> _modeViewControllerRegistry;
+    NSMutableDictionary *_modes;
 }
 
-@property(readonly, nonatomic) id <SPTNowPlayingModeViewControllerRegistry> modeViewControllerRegistry; // @synthesize modeViewControllerRegistry=_modeViewControllerRegistry;
-@property(readonly, nonatomic) NSMapTable *modesMap; // @synthesize modesMap=_modesMap;
+@property(readonly, nonatomic) NSMutableDictionary *modes; // @synthesize modes=_modes;
 - (void).cxx_destruct;
+- (void)unregisterAllModes;
 - (void)deregisterMode:(id)arg1;
 - (void)registerMode:(id)arg1;
 - (id)modeWithIdentifier:(id)arg1;
-- (id)initWithModeViewControllerRegistry:(id)arg1;
+- (id)init;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

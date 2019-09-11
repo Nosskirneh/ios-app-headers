@@ -9,16 +9,17 @@
 #import "SPTYourLibraryPageProvider-Protocol.h"
 
 @class NSString, NSURL, SPTFreeTierCollectionGLUETheme, SPTFreeTierCollectionLogger;
-@protocol SPTFreeTierCollectionEntityModel, SPTFreeTierCollectionTestManager, SPTGLUEImageLoaderFactory, SPTSortingFilteringUIFactory;
+@protocol SPTFreeTierCollectionEntityViewModelConfiguration, SPTFreeTierCollectionTestManager, SPTGLUEImageLoaderFactory, SPTPerformanceMetricsViewLoggerFactory, SPTShareDragDelegateFactory, SPTSnackbarConditionalPresenter, SPTSortingFilteringUIFactory;
 
 @interface SPTFreeTierCollectionEntityPagePageProvider : NSObject <SPTYourLibraryPageProvider>
 {
     _Bool _buttonSectionEnabled;
-    _Bool _compactMode;
     unsigned long long _groupIdentifier;
     unsigned long long _providerIdentifier;
     NSString *_title;
-    id <SPTFreeTierCollectionEntityModel> _model;
+    CDUnknownBlockType _modelProvider;
+    id <SPTFreeTierCollectionEntityViewModelConfiguration> _viewModelConfiguration;
+    NSString *_searchPlaceholderText;
     NSURL *_URI;
     CDUnknownBlockType _styleFactoryBlock;
     CDUnknownBlockType _emptyViewBlock;
@@ -27,28 +28,41 @@
     id <SPTGLUEImageLoaderFactory> _imageLoaderFactory;
     id <SPTSortingFilteringUIFactory> _sortingFilteringUIFactory;
     SPTFreeTierCollectionLogger *_logger;
+    id <SPTPerformanceMetricsViewLoggerFactory> _viewLoggerFactory;
     id <SPTFreeTierCollectionTestManager> _testManager;
+    NSString *_pageIdentifier;
+    NSURL *_pageURI;
+    NSString *_username;
+    id <SPTSnackbarConditionalPresenter> _snackbarPresenter;
+    id <SPTShareDragDelegateFactory> _shareDragDelegateFactory;
 }
 
+@property(retain, nonatomic) id <SPTShareDragDelegateFactory> shareDragDelegateFactory; // @synthesize shareDragDelegateFactory=_shareDragDelegateFactory;
+@property(retain, nonatomic) id <SPTSnackbarConditionalPresenter> snackbarPresenter; // @synthesize snackbarPresenter=_snackbarPresenter;
+@property(copy, nonatomic) NSString *username; // @synthesize username=_username;
+@property(readonly, nonatomic) NSURL *pageURI; // @synthesize pageURI=_pageURI;
+@property(readonly, copy, nonatomic) NSString *pageIdentifier; // @synthesize pageIdentifier=_pageIdentifier;
 @property(readonly, nonatomic) id <SPTFreeTierCollectionTestManager> testManager; // @synthesize testManager=_testManager;
+@property(readonly, nonatomic) id <SPTPerformanceMetricsViewLoggerFactory> viewLoggerFactory; // @synthesize viewLoggerFactory=_viewLoggerFactory;
 @property(readonly, nonatomic) SPTFreeTierCollectionLogger *logger; // @synthesize logger=_logger;
 @property(readonly, nonatomic) id <SPTSortingFilteringUIFactory> sortingFilteringUIFactory; // @synthesize sortingFilteringUIFactory=_sortingFilteringUIFactory;
 @property(readonly, nonatomic) id <SPTGLUEImageLoaderFactory> imageLoaderFactory; // @synthesize imageLoaderFactory=_imageLoaderFactory;
 @property(readonly, nonatomic) SPTFreeTierCollectionGLUETheme *theme; // @synthesize theme=_theme;
-@property(readonly, nonatomic, getter=isCompactMode) _Bool compactMode; // @synthesize compactMode=_compactMode;
 @property(readonly, copy, nonatomic) NSString *logContext; // @synthesize logContext=_logContext;
 @property(readonly, nonatomic) _Bool buttonSectionEnabled; // @synthesize buttonSectionEnabled=_buttonSectionEnabled;
 @property(readonly, copy, nonatomic) CDUnknownBlockType emptyViewBlock; // @synthesize emptyViewBlock=_emptyViewBlock;
 @property(readonly, copy, nonatomic) CDUnknownBlockType styleFactoryBlock; // @synthesize styleFactoryBlock=_styleFactoryBlock;
 @property(readonly, nonatomic) NSURL *URI; // @synthesize URI=_URI;
-@property(readonly, nonatomic) id <SPTFreeTierCollectionEntityModel> model; // @synthesize model=_model;
+@property(readonly, copy, nonatomic) NSString *searchPlaceholderText; // @synthesize searchPlaceholderText=_searchPlaceholderText;
+@property(readonly, nonatomic) id <SPTFreeTierCollectionEntityViewModelConfiguration> viewModelConfiguration; // @synthesize viewModelConfiguration=_viewModelConfiguration;
+@property(readonly, copy, nonatomic) CDUnknownBlockType modelProvider; // @synthesize modelProvider=_modelProvider;
 @property(readonly, nonatomic) NSString *title; // @synthesize title=_title;
 @property(readonly, nonatomic) unsigned long long providerIdentifier; // @synthesize providerIdentifier=_providerIdentifier;
 @property(readonly, nonatomic) unsigned long long groupIdentifier; // @synthesize groupIdentifier=_groupIdentifier;
 - (void).cxx_destruct;
 - (id)pageViewControllerForContext:(id)arg1;
 - (_Bool)claimsURI:(id)arg1;
-- (id)initWithModel:(id)arg1 title:(id)arg2 pageProviderIdentifier:(unsigned long long)arg3 URI:(id)arg4 styleFactoryBlock:(CDUnknownBlockType)arg5 emptyView:(CDUnknownBlockType)arg6 buttonSectionEnabled:(_Bool)arg7 logContext:(id)arg8 isCompactMode:(_Bool)arg9 imageLoaderFactory:(id)arg10 theme:(id)arg11 sortingFilteringUIFactory:(id)arg12 logger:(id)arg13 testManager:(id)arg14;
+- (id)initWithModelProvider:(CDUnknownBlockType)arg1 viewModelConfiguration:(id)arg2 title:(id)arg3 searchPlaceholderText:(id)arg4 pageProviderIdentifier:(unsigned long long)arg5 URI:(id)arg6 styleFactoryBlock:(CDUnknownBlockType)arg7 emptyView:(CDUnknownBlockType)arg8 buttonSectionEnabled:(_Bool)arg9 logContext:(id)arg10 imageLoaderFactory:(id)arg11 theme:(id)arg12 sortingFilteringUIFactory:(id)arg13 logger:(id)arg14 viewLoggerFactory:(id)arg15 pageIdentifier:(id)arg16 testManager:(id)arg17 username:(id)arg18 snackbarPresenter:(id)arg19 shareDragDelegateFactory:(id)arg20;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

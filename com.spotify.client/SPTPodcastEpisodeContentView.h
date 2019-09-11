@@ -8,18 +8,19 @@
 
 #import "SPTPodcastEpisodeView-Protocol.h"
 
-@class GLUEImageView, GLUELabel, NSArray, NSLayoutConstraint, NSMutableArray, NSString, SPTLayoutConstraintBuilder, SPTOfflineSyncStatusView, SPTTheme, UIControl, UILabel, UIProgressView, UIStackView, UIView;
+@class GLUEImageView, GLUELabel, GLUETrackAccessoryLabel, NSArray, NSLayoutConstraint, NSMutableArray, NSString, SPTTheme, UIControl, UILabel, UIProgressView, UIStackView, UIView;
 @protocol GLUEImageLoader;
 
 @interface SPTPodcastEpisodeContentView : GLUEStatefulView <SPTPodcastEpisodeView>
 {
+    _Bool _explicit;
     _Bool _editing;
     _Bool shouldTruncateDescription;
-    _Bool _didCheckIfTruncationNeeded;
     UILabel *_statusLabel;
     UILabel *_titleLabel;
     UILabel *_subtitleLabel;
     GLUELabel *_descriptionLabel;
+    GLUETrackAccessoryLabel *_accessoryLabel;
     UIView *_mainActionView;
     NSArray *_secondaryActionViewsLeft;
     NSArray *_secondaryActionViewsRight;
@@ -30,12 +31,12 @@
     UIView *_upperContainerView;
     UIView *_upperMiddleContainerView;
     UIView *_mainActionContainerView;
-    UIView *_headerTextContainerView;
+    UIView *_headerContainerView;
+    UIStackView *_headerMetadataContainerView;
     UIStackView *_secondaryActionLeftStackView;
     UIStackView *_secondaryActionRightStackView;
-    SPTOfflineSyncStatusView *_statusAccessoryView;
     SPTTheme *_catTheme;
-    SPTLayoutConstraintBuilder *_layout;
+    NSArray *_layoutConstraints;
     NSLayoutConstraint *_progressViewHeightConstraint;
     NSMutableArray *_mainActionViewConstraints;
     UILabel *_statusLabelV2;
@@ -43,18 +44,17 @@
     NSLayoutConstraint *_playButtonBottomConstraint;
 }
 
-@property(nonatomic) _Bool didCheckIfTruncationNeeded; // @synthesize didCheckIfTruncationNeeded=_didCheckIfTruncationNeeded;
 @property(retain, nonatomic) NSLayoutConstraint *playButtonBottomConstraint; // @synthesize playButtonBottomConstraint=_playButtonBottomConstraint;
 @property(retain, nonatomic) NSLayoutConstraint *statusLabelTopConstraint; // @synthesize statusLabelTopConstraint=_statusLabelTopConstraint;
 @property(retain, nonatomic) UILabel *statusLabelV2; // @synthesize statusLabelV2=_statusLabelV2;
 @property(retain, nonatomic) NSMutableArray *mainActionViewConstraints; // @synthesize mainActionViewConstraints=_mainActionViewConstraints;
 @property(retain, nonatomic) NSLayoutConstraint *progressViewHeightConstraint; // @synthesize progressViewHeightConstraint=_progressViewHeightConstraint;
-@property(retain, nonatomic) SPTLayoutConstraintBuilder *layout; // @synthesize layout=_layout;
+@property(copy, nonatomic) NSArray *layoutConstraints; // @synthesize layoutConstraints=_layoutConstraints;
 @property(retain, nonatomic) SPTTheme *catTheme; // @synthesize catTheme=_catTheme;
-@property(retain, nonatomic) SPTOfflineSyncStatusView *statusAccessoryView; // @synthesize statusAccessoryView=_statusAccessoryView;
 @property(retain, nonatomic) UIStackView *secondaryActionRightStackView; // @synthesize secondaryActionRightStackView=_secondaryActionRightStackView;
 @property(retain, nonatomic) UIStackView *secondaryActionLeftStackView; // @synthesize secondaryActionLeftStackView=_secondaryActionLeftStackView;
-@property(retain, nonatomic) UIView *headerTextContainerView; // @synthesize headerTextContainerView=_headerTextContainerView;
+@property(retain, nonatomic) UIStackView *headerMetadataContainerView; // @synthesize headerMetadataContainerView=_headerMetadataContainerView;
+@property(retain, nonatomic) UIView *headerContainerView; // @synthesize headerContainerView=_headerContainerView;
 @property(retain, nonatomic) UIView *mainActionContainerView; // @synthesize mainActionContainerView=_mainActionContainerView;
 @property(retain, nonatomic) UIView *upperMiddleContainerView; // @synthesize upperMiddleContainerView=_upperMiddleContainerView;
 @property(retain, nonatomic) UIView *upperContainerView; // @synthesize upperContainerView=_upperContainerView;
@@ -67,21 +67,19 @@
 @property(retain, nonatomic) NSArray *secondaryActionViewsLeft; // @synthesize secondaryActionViewsLeft=_secondaryActionViewsLeft;
 @property(retain, nonatomic) UIView *mainActionView; // @synthesize mainActionView=_mainActionView;
 @property(nonatomic) _Bool editing; // @synthesize editing=_editing;
+@property(nonatomic, getter=isExplicit) _Bool explicit; // @synthesize explicit=_explicit;
+@property(readonly, nonatomic) GLUETrackAccessoryLabel *accessoryLabel; // @synthesize accessoryLabel=_accessoryLabel;
 @property(readonly, nonatomic) GLUELabel *descriptionLabel; // @synthesize descriptionLabel=_descriptionLabel;
 @property(readonly, nonatomic) UILabel *subtitleLabel; // @synthesize subtitleLabel=_subtitleLabel;
 @property(readonly, nonatomic) UILabel *titleLabel; // @synthesize titleLabel=_titleLabel;
 @property(readonly, nonatomic) UILabel *statusLabel; // @synthesize statusLabel=_statusLabel;
 - (void).cxx_destruct;
-- (unsigned long long)fitString:(id)arg1 intoLabel:(id)arg2;
-- (struct CGSize)labelSizeToFitString:(id)arg1 intoLabel:(id)arg2;
 - (double)progressViewHeight;
 - (_Bool)shouldShowProgressView;
 - (void)applyStateStyle:(id)arg1;
 @property(nonatomic) double listeningProgress;
 @property(retain, nonatomic) id <GLUEImageLoader> imageLoader;
-@property(nonatomic) long long episodeOfflineSyncStatus;
 - (void)addMainActionViewViewToViewHierarchy;
-- (void)appendAddMoreToDescriptionLabel;
 - (void)layoutSubviews;
 - (void)createConstraints;
 - (id)initWithTheme:(id)arg1;

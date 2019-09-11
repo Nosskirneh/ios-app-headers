@@ -6,18 +6,18 @@
 
 #import <objc/NSObject.h>
 
-#import "EXP_HUBContentOperation-Protocol.h"
+#import "HUBContentOperation-Protocol.h"
 
-@protocol EXP_HUBContentOperationDelegate, SPTOnDemandSet;
+@protocol HUBContentOperationDelegate, SPTOnDemandSet;
 
-@interface SPTOnDemandExtractorContentOperation : NSObject <EXP_HUBContentOperation>
+@interface SPTOnDemandExtractorContentOperation : NSObject <HUBContentOperation>
 {
-    id <EXP_HUBContentOperationDelegate> _delegate;
+    id <HUBContentOperationDelegate> _delegate;
     id <SPTOnDemandSet> _onDemandSet;
 }
 
 @property(readonly, nonatomic) id <SPTOnDemandSet> onDemandSet; // @synthesize onDemandSet=_onDemandSet;
-@property(nonatomic) __weak id <EXP_HUBContentOperationDelegate> delegate; // @synthesize delegate=_delegate;
+@property(nonatomic) __weak id <HUBContentOperationDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
 - (id)onDemandSetWithArray:(id)arg1;
 - (void)performForViewModelBuilder:(id)arg1 previousError:(id)arg2;

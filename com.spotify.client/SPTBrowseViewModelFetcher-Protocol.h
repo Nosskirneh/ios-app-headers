@@ -9,6 +9,6 @@
 @protocol SPTDataLoaderCancellationToken;
 
 @protocol SPTBrowseViewModelFetcher <NSObject>
-- (id <SPTDataLoaderCancellationToken>)fetchViewModelWithCompletion:(void (^)(id <EXP_HUBViewModel>, id <SPTBrowseViewModelFetcher>, NSError *))arg1;
+- (id <SPTDataLoaderCancellationToken>)fetchViewModelWithCompletion:(void (^)(id <HUBViewModel>, id <SPTBrowseViewModelFetcher>, NSError *))arg1;
 @end
 

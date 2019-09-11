@@ -23,8 +23,8 @@
 @property(nonatomic) double meanValueValue; // @synthesize meanValueValue=_meanValueValue;
 @property(nonatomic) double maxValueValue; // @synthesize maxValueValue=_maxValueValue;
 @property(nonatomic) double minValueValue; // @synthesize minValueValue=_minValueValue;
-@property(retain, nonatomic) NSString *loggingStartReasonValue; // @synthesize loggingStartReasonValue=_loggingStartReasonValue;
-@property(retain, nonatomic) NSString *sensorTypeValue; // @synthesize sensorTypeValue=_sensorTypeValue;
+@property(copy, nonatomic) NSString *loggingStartReasonValue; // @synthesize loggingStartReasonValue=_loggingStartReasonValue;
+@property(copy, nonatomic) NSString *sensorTypeValue; // @synthesize sensorTypeValue=_sensorTypeValue;
 - (void).cxx_destruct;
 - (_Bool)isEqual:(id)arg1;
 - (unsigned long long)hash;

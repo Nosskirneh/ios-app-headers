@@ -6,20 +6,13 @@
 
 #import <Foundation/NSURL.h>
 
-@class NSString;
-
 @interface NSURL (Station)
 + (id)spt_stationURLWithSeed:(id)arg1;
-+ (id)spt_createStationURL;
 - (id)spt_URIByNormalizingRadioStation;
 - (id)spt_GDPRSafeStationURI;
 - (id)spt_radioStationSeedURI;
-- (id)spt_createStationDrillDownPageIdentifer;
-@property(readonly, copy, nonatomic, getter=spt_createStationDrillDownQuery) NSString *createStationDrillDownQuery;
-@property(readonly, copy, nonatomic, getter=spt_createStationDrillDownEntityType) NSString *createStationDrillDownEntityType;
 @property(readonly, nonatomic, getter=spt_canSeedRadioStation) _Bool canSeedRadioStation;
-- (_Bool)spt_isCreateStationDrillDownURL;
-@property(readonly, nonatomic, getter=spt_isCreateStationURL) _Bool isCreateStationURL;
+@property(readonly, nonatomic, getter=spt_isFormatListStation) _Bool isFormatListStation;
 @property(readonly, nonatomic, getter=spt_isSongSeededRadioStationURL) _Bool songSeededRadioStationURL;
 @property(readonly, nonatomic, getter=spt_isPlaylistSeededRadioStationURL) _Bool playlistSeededRadioStationURL;
 @property(readonly, nonatomic, getter=spt_isAlbumSeededRadioStationURL) _Bool albumSeededRadioStationURL;

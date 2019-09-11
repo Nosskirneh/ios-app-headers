@@ -19,8 +19,8 @@
 + (id)messageWithItem:(id)arg1 category:(id)arg2 weight:(long long)arg3 isDevBuild:(_Bool)arg4;
 @property(nonatomic) _Bool isDevBuildValue; // @synthesize isDevBuildValue=_isDevBuildValue;
 @property(nonatomic) long long weightValue; // @synthesize weightValue=_weightValue;
-@property(retain, nonatomic) NSString *categoryValue; // @synthesize categoryValue=_categoryValue;
-@property(retain, nonatomic) NSString *itemValue; // @synthesize itemValue=_itemValue;
+@property(copy, nonatomic) NSString *categoryValue; // @synthesize categoryValue=_categoryValue;
+@property(copy, nonatomic) NSString *itemValue; // @synthesize itemValue=_itemValue;
 - (void).cxx_destruct;
 - (_Bool)isEqual:(id)arg1;
 - (unsigned long long)hash;

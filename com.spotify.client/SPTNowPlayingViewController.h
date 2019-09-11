@@ -7,125 +7,113 @@
 #import <UIKit/UIViewController.h>
 
 #import "SPTBarOverlayViewController-Protocol.h"
-#import "SPTNowPlayingAnimationViewProvider-Protocol.h"
 #import "SPTNowPlayingContainerIdleMonitorLoggingDelegate-Protocol.h"
 #import "SPTNowPlayingContainerIdleMonitorObserver-Protocol.h"
 #import "SPTNowPlayingContainerIdleMonitorReceiving-Protocol.h"
 #import "SPTNowPlayingContainingViewController-Protocol.h"
-#import "SPTNowPlayingDeviceOrientationManagerObserver-Protocol.h"
-#import "SPTNowPlayingGestureRecognizerProxyReceiving-Protocol.h"
-#import "SPTNowPlayingUnitProviderObserver-Protocol.h"
+#import "SPTNowPlayingContentContainingViewController-Protocol.h"
+#import "SPTNowPlayingModeLayoutDelegate-Protocol.h"
+#import "SPTNowPlayingModeResolverObserver-Protocol.h"
 #import "SPTPlayerObserver-Protocol.h"
 #import "SPTShareScreenshotObserverManagerDataSource-Protocol.h"
 
-@class NSArray, NSHashTable, NSString, SPTGLNowPlayingOverlayViewController, SPTLayoutConstraintBuilder, SPTNowPlayingContainerIdleMonitor, SPTNowPlayingContentUnitProvider, SPTNowPlayingDeviceOrientationManager, SPTNowPlayingDurationUnitProvider, SPTNowPlayingFooterUnitProvider, SPTNowPlayingHeadUnitProvider, SPTNowPlayingLogger, SPTNowPlayingModel, SPTNowPlayingNavigationBarButtonsUnitProvider, SPTNowPlayingNavigationBarUnitProvider, SPTNowPlayingOpenGLManager, SPTNowPlayingShowsFormatDecorationUnitProvider, SPTShareScreenshotObserverManager, SPTTheme, UITapGestureRecognizer, UIView;
-@protocol SPTShareFeature;
+@class NSArray, NSHashTable, NSLayoutConstraint, NSMutableArray, NSMutableDictionary, NSString, SPTNowPlayingContainerIdleMonitor, SPTNowPlayingContentViewProvider, SPTNowPlayingLogger, SPTNowPlayingModel, SPTShareScreenshotObserverManager, SPTTheme, UIStackView;
+@protocol SPTNowPlayingContainedViewController, SPTNowPlayingContentViewController, SPTNowPlayingModeResolver, SPTShareFeature;
 
-@interface SPTNowPlayingViewController : UIViewController <SPTNowPlayingDeviceOrientationManagerObserver, SPTNowPlayingUnitProviderObserver, SPTNowPlayingContainingViewController, SPTNowPlayingAnimationViewProvider, SPTNowPlayingContainerIdleMonitorObserver, SPTNowPlayingGestureRecognizerProxyReceiving, SPTNowPlayingContainerIdleMonitorReceiving, SPTNowPlayingContainerIdleMonitorLoggingDelegate, SPTPlayerObserver, SPTShareScreenshotObserverManagerDataSource, SPTBarOverlayViewController>
+@interface SPTNowPlayingViewController : UIViewController <SPTNowPlayingContainingViewController, SPTNowPlayingContainerIdleMonitorObserver, SPTNowPlayingContainerIdleMonitorLoggingDelegate, SPTPlayerObserver, SPTShareScreenshotObserverManagerDataSource, SPTNowPlayingModeResolverObserver, SPTNowPlayingModeLayoutDelegate, SPTBarOverlayViewController, SPTNowPlayingContentContainingViewController, SPTNowPlayingContainerIdleMonitorReceiving>
 {
     _Bool _allowsScreenshots;
     SPTNowPlayingModel *_model;
     SPTTheme *_theme;
-    SPTLayoutConstraintBuilder *_layout;
-    NSArray *_extraLayoutConstraints;
     NSHashTable *_viewControllers;
     NSArray *_providers;
-    UIView *_backgroundView;
-    UITapGestureRecognizer *_tapGestureRecognizer;
-    SPTNowPlayingContentUnitProvider *_contentUnitProvider;
-    SPTNowPlayingDurationUnitProvider *_durationUnitProvider;
-    SPTNowPlayingFooterUnitProvider *_footerUnitProvider;
-    SPTNowPlayingShowsFormatDecorationUnitProvider *_decorationUnitProvider;
-    SPTNowPlayingDeviceOrientationManager *_deviceOrientationManager;
-    SPTNowPlayingNavigationBarUnitProvider *_navigationBarUnitProvider;
-    SPTNowPlayingNavigationBarButtonsUnitProvider *_navigationBarButtonsUnitProvider;
-    SPTGLNowPlayingOverlayViewController *_glOverlayViewController;
-    SPTNowPlayingOpenGLManager *_openGLManager;
     SPTNowPlayingLogger *_logger;
-    UIViewController *_navigationBarButtonsViewController;
     SPTNowPlayingContainerIdleMonitor *_idleMonitor;
-    SPTNowPlayingHeadUnitProvider *_headUnitProvider;
+    NSMutableArray *_layoutConstraints;
+    UIStackView *_topStackView;
+    UIStackView *_bottomStackView;
     id <SPTShareFeature> _shareFeature;
     SPTShareScreenshotObserverManager *_screenshotShareObserverManager;
+    id <SPTNowPlayingModeResolver> _modeResolver;
+    UIViewController<SPTNowPlayingContainedViewController> *_navigationBarUnitViewController;
+    SPTNowPlayingContentViewProvider *_contentViewProvider;
+    UIViewController<SPTNowPlayingContentViewController> *_contentViewController;
+    NSMutableDictionary *_viewConstraints;
+    NSLayoutConstraint *_topStackViewHeightConstraint;
+    NSLayoutConstraint *_bottomStackViewHeightConstraint;
+    NSLayoutConstraint *_bottomStackViewBottomConstraint;
+    double _topMargin;
+    double _topStackViewHeight;
+    double _bottomStackViewHeight;
 }
 
+@property(nonatomic) double bottomStackViewHeight; // @synthesize bottomStackViewHeight=_bottomStackViewHeight;
+@property(nonatomic) double topStackViewHeight; // @synthesize topStackViewHeight=_topStackViewHeight;
+@property(nonatomic) double topMargin; // @synthesize topMargin=_topMargin;
+@property(retain, nonatomic) NSLayoutConstraint *bottomStackViewBottomConstraint; // @synthesize bottomStackViewBottomConstraint=_bottomStackViewBottomConstraint;
+@property(retain, nonatomic) NSLayoutConstraint *bottomStackViewHeightConstraint; // @synthesize bottomStackViewHeightConstraint=_bottomStackViewHeightConstraint;
+@property(retain, nonatomic) NSLayoutConstraint *topStackViewHeightConstraint; // @synthesize topStackViewHeightConstraint=_topStackViewHeightConstraint;
+@property(retain, nonatomic) NSMutableDictionary *viewConstraints; // @synthesize viewConstraints=_viewConstraints;
+@property(retain, nonatomic) UIViewController<SPTNowPlayingContentViewController> *contentViewController; // @synthesize contentViewController=_contentViewController;
+@property(readonly, nonatomic) SPTNowPlayingContentViewProvider *contentViewProvider; // @synthesize contentViewProvider=_contentViewProvider;
+@property(retain, nonatomic) UIViewController<SPTNowPlayingContainedViewController> *navigationBarUnitViewController; // @synthesize navigationBarUnitViewController=_navigationBarUnitViewController;
+@property(retain, nonatomic) id <SPTNowPlayingModeResolver> modeResolver; // @synthesize modeResolver=_modeResolver;
 @property(nonatomic) _Bool allowsScreenshots; // @synthesize allowsScreenshots=_allowsScreenshots;
 @property(retain, nonatomic) SPTShareScreenshotObserverManager *screenshotShareObserverManager; // @synthesize screenshotShareObserverManager=_screenshotShareObserverManager;
 @property(nonatomic) __weak id <SPTShareFeature> shareFeature; // @synthesize shareFeature=_shareFeature;
-@property(retain, nonatomic) SPTNowPlayingHeadUnitProvider *headUnitProvider; // @synthesize headUnitProvider=_headUnitProvider;
-@property(nonatomic) __weak SPTNowPlayingContainerIdleMonitor *idleMonitor; // @synthesize idleMonitor=_idleMonitor;
-@property(retain, nonatomic) UIViewController *navigationBarButtonsViewController; // @synthesize navigationBarButtonsViewController=_navigationBarButtonsViewController;
+@property(retain, nonatomic) UIStackView *bottomStackView; // @synthesize bottomStackView=_bottomStackView;
+@property(retain, nonatomic) UIStackView *topStackView; // @synthesize topStackView=_topStackView;
+@property(retain, nonatomic) NSMutableArray *layoutConstraints; // @synthesize layoutConstraints=_layoutConstraints;
+@property(retain, nonatomic) SPTNowPlayingContainerIdleMonitor *idleMonitor; // @synthesize idleMonitor=_idleMonitor;
 @property(readonly, nonatomic) SPTNowPlayingLogger *logger; // @synthesize logger=_logger;
-@property(readonly, nonatomic) SPTNowPlayingOpenGLManager *openGLManager; // @synthesize openGLManager=_openGLManager;
-@property(retain, nonatomic) SPTGLNowPlayingOverlayViewController *glOverlayViewController; // @synthesize glOverlayViewController=_glOverlayViewController;
-@property(readonly, nonatomic) SPTNowPlayingNavigationBarButtonsUnitProvider *navigationBarButtonsUnitProvider; // @synthesize navigationBarButtonsUnitProvider=_navigationBarButtonsUnitProvider;
-@property(readonly, nonatomic) SPTNowPlayingNavigationBarUnitProvider *navigationBarUnitProvider; // @synthesize navigationBarUnitProvider=_navigationBarUnitProvider;
-@property(readonly, nonatomic) SPTNowPlayingDeviceOrientationManager *deviceOrientationManager; // @synthesize deviceOrientationManager=_deviceOrientationManager;
-@property(readonly, nonatomic) SPTNowPlayingShowsFormatDecorationUnitProvider *decorationUnitProvider; // @synthesize decorationUnitProvider=_decorationUnitProvider;
-@property(readonly, nonatomic) SPTNowPlayingFooterUnitProvider *footerUnitProvider; // @synthesize footerUnitProvider=_footerUnitProvider;
-@property(retain, nonatomic) SPTNowPlayingDurationUnitProvider *durationUnitProvider; // @synthesize durationUnitProvider=_durationUnitProvider;
-@property(retain, nonatomic) SPTNowPlayingContentUnitProvider *contentUnitProvider; // @synthesize contentUnitProvider=_contentUnitProvider;
-@property(retain, nonatomic) UITapGestureRecognizer *tapGestureRecognizer; // @synthesize tapGestureRecognizer=_tapGestureRecognizer;
-@property(retain, nonatomic) UIView *backgroundView; // @synthesize backgroundView=_backgroundView;
 @property(retain, nonatomic) NSArray *providers; // @synthesize providers=_providers;
 @property(retain, nonatomic) NSHashTable *viewControllers; // @synthesize viewControllers=_viewControllers;
-@property(retain, nonatomic) NSArray *extraLayoutConstraints; // @synthesize extraLayoutConstraints=_extraLayoutConstraints;
-@property(retain, nonatomic) SPTLayoutConstraintBuilder *layout; // @synthesize layout=_layout;
 @property(retain, nonatomic) SPTTheme *theme; // @synthesize theme=_theme;
 @property(retain, nonatomic) SPTNowPlayingModel *model; // @synthesize model=_model;
 - (void).cxx_destruct;
-- (void)removeOpenGLOverlay;
-- (void)addOpenGLOverlay;
-- (_Bool)shouldDisplayOpenGLOverlayForPlayerState:(id)arg1;
+- (void)traitCollectionDidChange:(id)arg1;
+- (void)updateLayoutForMode:(id)arg1;
+- (void)setupForMode:(id)arg1 fromMode:(id)arg2;
+- (id)viewControllersForMode:(id)arg1;
+- (void)modeResolver:(id)arg1 didChangeToMode:(id)arg2 fromMode:(id)arg3;
 - (_Bool)shouldShowScreenshotBannerWithObserverManager:(id)arg1;
 - (id)shareDataForScreenshotObserverManager:(id)arg1 image:(id)arg2;
 - (void)player:(id)arg1 stateDidChange:(id)arg2 fromState:(id)arg3;
-- (void)willAnimateRotationToInterfaceOrientation:(long long)arg1 duration:(double)arg2;
-- (void)removeProxiedGestureRecognizers;
-- (void)receiveProxiedGestureRecognizer:(id)arg1;
 - (void)logIdleMonitorIntent:(id)arg1;
 - (void)logUserDidEndIdlePeriod;
 - (void)logUserDidBeginIdlePeriod;
-- (void)idleMonitorDidPauseMonitoring;
-- (void)idleMonitorDidStartMonitoring;
 - (void)idlePeriodDidEnd;
 - (void)idlePeriodDidBegin;
-- (id)managedViewControllers;
-- (void)deviceOrientationManagerDidChangeInterfaceOrientation:(id)arg1;
 - (void)statusBarOrientationDidChange:(id)arg1;
 - (void)viewWillTransitionToSize:(struct CGSize)arg1 withTransitionCoordinator:(id)arg2;
 - (void)addChildViewController:(id)arg1;
-@property(readonly, nonatomic) UIView *spt_nowPlayingNavigationBarButtonsView;
-@property(readonly, nonatomic) UIView *spt_nowPlayingNavigationBarView;
-@property(readonly, nonatomic) UIView *spt_nowPlayingCoverArtView;
 - (void)containedViewController:(id)arg1 didUpdatePreferredSizeTo:(struct CGSize)arg2;
 - (_Bool)barViewControllerInteractiveTransitionEnabled:(id)arg1;
 - (id)replacementViewsForBarTransition:(id)arg1;
-- (void)provider:(id)arg1 willReplaceViewController:(id)arg2 with:(id)arg3;
-- (void)bringNavigationBarButtonsToFront;
+- (double)preferredHeightForViewController:(id)arg1;
+- (void)replaceViewController:(id)arg1 with:(id)arg2;
+- (void)setupContentViewController;
+- (void)emptyStackViews;
+- (void)setupStackViews;
 - (void)updateScreenshotsAllowedForCurrentTrack:(_Bool)arg1;
-- (void)forceIdlePeriodBegin;
 - (void)viewDidDisappear:(_Bool)arg1;
 - (void)viewWillAppear:(_Bool)arg1;
 - (id)viewControllersForEdge:(unsigned long long)arg1;
-- (void)forceUpdateViewConstraints;
-- (void)updateViewConstraintsForOrientation:(long long)arg1 intoLayout:(id)arg2 usingGuideView:(id)arg3;
-- (void)updateViewConstraintsForGuideView:(id)arg1 layout:(id)arg2;
-- (void)updateViewConstraintsForNavigationButtons:(id)arg1;
 - (void)updateViewConstraints;
+- (void)updateWindowedContentSpace;
+- (double)maxHeight;
 - (void)viewDidLayoutSubviews;
-- (void)updateBackgroundViewConstraintsOnLayout:(id)arg1;
-- (void)setupViewControllers;
+- (void)setupConstraints;
+- (void)forceUpdateViewConstraints;
 - (void)viewDidLoad;
 - (_Bool)shouldAutorotate;
 - (void)dealloc;
-- (id)initWithModel:(id)arg1 theme:(id)arg2 headUnitProvider:(id)arg3 contentUnitProvider:(id)arg4 informationUnitProvider:(id)arg5 durationUnitProvider:(id)arg6 deviceOrientationManager:(id)arg7 footerUnitProvider:(id)arg8 navigationBarUnitProvider:(id)arg9 decorationUnitProvider:(id)arg10 navigationBarButtonsUnitProvider:(id)arg11 shareFeature:(id)arg12 logger:(id)arg13 openGLManager:(id)arg14;
+- (id)initWithModel:(id)arg1 theme:(id)arg2 modeResolver:(id)arg3 shareFeature:(id)arg4 logger:(id)arg5 contentViewProvider:(id)arg6;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
 @property(readonly) unsigned long long hash;
-@property(readonly, nonatomic) UIView *spt_nowPlayingNavigationBarLeftButton;
 @property(readonly) Class superclass;
 
 @end

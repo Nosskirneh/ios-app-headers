@@ -6,12 +6,12 @@
 
 #import <objc/NSObject.h>
 
-#import "EXP_HUBComponent-Protocol.h"
+#import "HUBComponent-Protocol.h"
 
 @class NSSet, SPTAssistedCurationGLUETheme;
 @protocol GLUEImageLoader, SPTAudioPreviewModelFactory, SPTAudioPreviewUIFactory, SPTExplicitContentAccessManager;
 
-@interface SPTAssistedCurationTrackItemComponent : NSObject <EXP_HUBComponent>
+@interface SPTAssistedCurationTrackItemComponent : NSObject <HUBComponent>
 {
     SPTAssistedCurationGLUETheme *_theme;
     id <SPTAudioPreviewModelFactory> _audioPreviewModelFactory;

@@ -11,7 +11,7 @@
 }
 
 + (double)randomDoubleBetween:(double)arg1 high:(double)arg2;
-+ (double)exponentialBackoff:(double)arg1 jitter:(float)arg2 attempt:(unsigned long long)arg3;
++ (double)exponentialBackoff:(double)arg1 jitter:(double)arg2 attempt:(unsigned long long)arg3;
 
 @end
 

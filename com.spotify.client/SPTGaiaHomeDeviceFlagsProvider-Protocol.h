@@ -10,6 +10,7 @@
 
 @protocol SPTGaiaHomeDeviceFlagsProvider <NSObject>
 - (NSString *)homeDeviceLocalForcedSettingsKey;
+- (_Bool)homeDeviceAutomaticTransferEnabled;
 - (_Bool)homeDeviceFeatureEnabled;
 @end
 

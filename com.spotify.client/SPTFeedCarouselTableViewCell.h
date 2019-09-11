@@ -6,17 +6,17 @@
 
 #import <UIKit/UITableViewCell.h>
 
-@class SPTFeedCollectionView, SPTLayoutConstraintBuilder, UIActivityIndicatorView, UILabel;
+@class NSArray, SPTFeedCollectionView, UIActivityIndicatorView, UILabel;
 
 @interface SPTFeedCarouselTableViewCell : UITableViewCell
 {
     UILabel *_titleLabel;
     UIActivityIndicatorView *_activityIndicatorView;
     SPTFeedCollectionView *_collectionView;
-    SPTLayoutConstraintBuilder *_layout;
+    NSArray *_layoutConstraints;
 }
 
-@property(retain, nonatomic) SPTLayoutConstraintBuilder *layout; // @synthesize layout=_layout;
+@property(copy, nonatomic) NSArray *layoutConstraints; // @synthesize layoutConstraints=_layoutConstraints;
 @property(retain, nonatomic) SPTFeedCollectionView *collectionView; // @synthesize collectionView=_collectionView;
 @property(retain, nonatomic) UIActivityIndicatorView *activityIndicatorView; // @synthesize activityIndicatorView=_activityIndicatorView;
 @property(retain, nonatomic) UILabel *titleLabel; // @synthesize titleLabel=_titleLabel;

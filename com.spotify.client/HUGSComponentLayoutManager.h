@@ -23,6 +23,8 @@
 - (double)verticalMarginForComponentWithLayoutTraits:(id)arg1 precedingComponentLayoutTraits:(id)arg2;
 - (double)verticalMarginBetweenComponentWithLayoutTraits:(id)arg1 andHeaderComponentWithLayoutTraits:(id)arg2;
 - (double)marginBetweenComponentWithLayoutTraits:(id)arg1 andContentEdge:(unsigned long long)arg2;
+- (unsigned long long)containerAlignmentForComponentWithLayoutTraits:(id)arg1;
+- (double)containerMaxWidthForComponentWithLayoutTraits:(id)arg1;
 @property(readonly, nonatomic) double defaultComponentMargin;
 - (id)initWithTheme:(id)arg1;
 

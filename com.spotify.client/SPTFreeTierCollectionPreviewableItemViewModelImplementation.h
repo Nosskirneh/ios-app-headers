@@ -13,24 +13,20 @@
 
 @interface SPTFreeTierCollectionPreviewableItemViewModelImplementation : SPTFreeTierCollectionItemViewModelImplementation <SPTFreeTierCollectionPreviewableItemViewModel>
 {
-    _Bool _hideBanQuickAction;
     _Bool _banned;
     _Bool _playingTrack;
     _Bool _offline;
     _Bool _playbackRestricted;
     _Bool _premiumOnlyFeatureEnabled;
-    _Bool _showCollectionQuickActions;
     id <SPTFreeTierCollectionSongModelItemEntity> _songModel;
 }
 
-@property(nonatomic) _Bool showCollectionQuickActions; // @synthesize showCollectionQuickActions=_showCollectionQuickActions;
 @property(readonly, nonatomic, getter=isPremiumOnlyFeatureEnabled) _Bool premiumOnlyFeatureEnabled; // @synthesize premiumOnlyFeatureEnabled=_premiumOnlyFeatureEnabled;
 @property(readonly, nonatomic, getter=isPlaybackRestricted) _Bool playbackRestricted; // @synthesize playbackRestricted=_playbackRestricted;
 @property(nonatomic, getter=isOffline) _Bool offline; // @synthesize offline=_offline;
 @property(readonly, nonatomic, getter=isPlayingTrack) _Bool playingTrack; // @synthesize playingTrack=_playingTrack;
 @property(nonatomic, getter=isBanned) _Bool banned; // @synthesize banned=_banned;
 @property(readonly, nonatomic) id <SPTFreeTierCollectionSongModelItemEntity> songModel; // @synthesize songModel=_songModel;
-@property(readonly, nonatomic) _Bool hideBanQuickAction; // @synthesize hideBanQuickAction=_hideBanQuickAction;
 - (void).cxx_destruct;
 @property(readonly, nonatomic, getter=isPremiumOnly) _Bool premiumOnly;
 @property(readonly, nonatomic) NSString *previewId;
@@ -38,7 +34,7 @@
 @property(readonly, nonatomic, getter=isEnabled) _Bool enabled;
 @property(readonly, nonatomic, getter=isActive) _Bool active;
 @property(readonly, nonatomic) _Bool inCollection;
-- (id)initWithItemModelEntity:(id)arg1 isPlayingTrack:(_Bool)arg2 isOffline:(_Bool)arg3 isPlaybackRestricted:(_Bool)arg4 isPremiumOnlyFeatureEnabled:(_Bool)arg5 testManager:(id)arg6 showCollectionQuickActions:(_Bool)arg7;
+- (id)initWithItemModelEntity:(id)arg1 isPlayingTrack:(_Bool)arg2 isOffline:(_Bool)arg3 isPlaybackRestricted:(_Bool)arg4 isPremiumOnlyFeatureEnabled:(_Bool)arg5 testManager:(id)arg6 showCollectionQuickActions:(_Bool)arg7 showAlbumNameOnSongEntities:(_Bool)arg8;
 - (id)initWithItemModelEntity:(id)arg1 testManager:(id)arg2;
 
 // Remaining properties
@@ -52,6 +48,8 @@
 @property(readonly, nonatomic, getter=isShuffle) _Bool isShuffle;
 @property(readonly, nonatomic, getter=isOfflineAvailable) _Bool offlineAvailable;
 @property(readonly, nonatomic) long long offlineStatus;
+@property(readonly, nonatomic, getter=isQuickActionsEnabled) _Bool quickActionsEnabled;
+@property(readonly, nonatomic) _Bool showCollectionQuickActions;
 @property(readonly, nonatomic) _Bool showDecorationOverlay;
 @property(readonly, nonatomic) _Bool showOverlayMask;
 @property(readonly, nonatomic) NSString *subtitle;

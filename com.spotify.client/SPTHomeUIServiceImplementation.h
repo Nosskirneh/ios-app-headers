@@ -9,35 +9,34 @@
 #import "SPTHomeUIService-Protocol.h"
 
 @class NSString, SPTAllocationContext;
-@protocol EXP_SPTHubFrameworkService, SPTContainerService, SPTDataSaverService, SPTFeatureFlaggingService, SPTGLUEService, SPTHomeUIComponentFactory, SPTHomeUITestManager, SPTSettingsFeature, SPTVideoFeature;
+@protocol SPTContainerService, SPTFeatureFlaggingService, SPTGLUEService, SPTHomeUIComponentFactory, SPTHomeUITestManager, SPTHubFrameworkService, SPTPlayerFeature, SPTSessionService, SPTSettingsFeature;
 
 @interface SPTHomeUIServiceImplementation : NSObject <SPTHomeUIService>
 {
     id <SPTContainerService> _containerService;
     id <SPTGLUEService> _glueService;
     id <SPTFeatureFlaggingService> _featureFlaggingService;
-    id <EXP_SPTHubFrameworkService> _hubFrameworkService;
+    id <SPTHubFrameworkService> _hubFrameworkService;
     id <SPTSettingsFeature> _settingsFeature;
-    id <SPTVideoFeature> _videoService;
-    id <SPTDataSaverService> _dataSaverService;
+    id <SPTPlayerFeature> _playerFeature;
+    id <SPTSessionService> _sessionService;
     id <SPTHomeUITestManager> _testManager;
 }
 
 + (id)serviceIdentifier;
 @property(retain, nonatomic) id <SPTHomeUITestManager> testManager; // @synthesize testManager=_testManager;
-@property(nonatomic) __weak id <SPTDataSaverService> dataSaverService; // @synthesize dataSaverService=_dataSaverService;
-@property(nonatomic) __weak id <SPTVideoFeature> videoService; // @synthesize videoService=_videoService;
+@property(nonatomic) __weak id <SPTSessionService> sessionService; // @synthesize sessionService=_sessionService;
+@property(nonatomic) __weak id <SPTPlayerFeature> playerFeature; // @synthesize playerFeature=_playerFeature;
 @property(nonatomic) __weak id <SPTSettingsFeature> settingsFeature; // @synthesize settingsFeature=_settingsFeature;
-@property(nonatomic) __weak id <EXP_SPTHubFrameworkService> hubFrameworkService; // @synthesize hubFrameworkService=_hubFrameworkService;
+@property(nonatomic) __weak id <SPTHubFrameworkService> hubFrameworkService; // @synthesize hubFrameworkService=_hubFrameworkService;
 @property(nonatomic) __weak id <SPTFeatureFlaggingService> featureFlaggingService; // @synthesize featureFlaggingService=_featureFlaggingService;
 @property(nonatomic) __weak id <SPTGLUEService> glueService; // @synthesize glueService=_glueService;
 @property(nonatomic) __weak id <SPTContainerService> containerService; // @synthesize containerService=_containerService;
 - (void).cxx_destruct;
 - (id)provideHomeComponentLayoutManager;
+- (id)provideHomePromoV2MockHubContentOperation;
 - (id)provideHomeMockHubContentOperation;
 @property(readonly, nonatomic) id <SPTHomeUIComponentFactory> componentFactory;
-- (void)unload;
-- (void)load;
 - (void)configureWithServices:(id)arg1;
 
 // Remaining properties

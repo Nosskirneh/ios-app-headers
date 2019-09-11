@@ -6,49 +6,29 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTDrivingModeContextMenuFactory-Protocol.h"
 #import "SPTDrivingModeService-Protocol.h"
 #import "SPTDrivingModeTestManagerObserver-Protocol.h"
-#import "SPTDrivingModeViewControllerFactory-Protocol.h"
 
-@class NSString, SPTAllocationContext, SPTDrivingModeControllerImplementation;
-@protocol SPTDrivingModeTestManager, SPTDrivingStateDetectionService, SPTFeatureFlaggingService, SPTGLUEService, SPTNowPlayingMode, SPTNowPlayingPlatformService, SPTNowPlayingService, SPTSessionService, SPTUIPresentationService;
+@class NSString, SPTAllocationContext, SPTDrivingModeControllerImplementation, SPTDrivingModeFactory, SPTDrivingModeTestManagerImplementation;
+@protocol SPTDrivingStateDetectionService;
 
-@interface SPTDrivingModeServiceImplementation : NSObject <SPTDrivingModeTestManagerObserver, SPTDrivingModeViewControllerFactory, SPTDrivingModeContextMenuFactory, SPTDrivingModeService>
+@interface SPTDrivingModeServiceImplementation : NSObject <SPTDrivingModeTestManagerObserver, SPTDrivingModeService>
 {
-    _Bool _carNowPlayingViewEnabled;
-    id <SPTSessionService> _sessionService;
+    _Bool _carViewEnabled;
     id <SPTDrivingStateDetectionService> _drivingDetectionService;
-    id <SPTNowPlayingService> _nowPlayingService;
-    id <SPTNowPlayingPlatformService> _nowPlayingPlatformService;
-    id <SPTFeatureFlaggingService> _featureFlaggingService;
-    id <SPTUIPresentationService> _UIPresentationService;
-    id <SPTGLUEService> _glueService;
-    id <SPTDrivingModeTestManager> _testManager;
+    SPTDrivingModeTestManagerImplementation *_testManager;
     SPTDrivingModeControllerImplementation *_drivingModeController;
-    id <SPTNowPlayingMode> _nowPlayingMode;
+    SPTDrivingModeFactory *_drivingModeFactory;
 }
 
 + (id)serviceIdentifier;
-@property(retain, nonatomic) id <SPTNowPlayingMode> nowPlayingMode; // @synthesize nowPlayingMode=_nowPlayingMode;
-@property(nonatomic) _Bool carNowPlayingViewEnabled; // @synthesize carNowPlayingViewEnabled=_carNowPlayingViewEnabled;
+@property(retain, nonatomic) SPTDrivingModeFactory *drivingModeFactory; // @synthesize drivingModeFactory=_drivingModeFactory;
+@property(nonatomic) _Bool carViewEnabled; // @synthesize carViewEnabled=_carViewEnabled;
 @property(retain, nonatomic) SPTDrivingModeControllerImplementation *drivingModeController; // @synthesize drivingModeController=_drivingModeController;
-@property(retain, nonatomic) id <SPTDrivingModeTestManager> testManager; // @synthesize testManager=_testManager;
-@property(nonatomic) __weak id <SPTGLUEService> glueService; // @synthesize glueService=_glueService;
-@property(nonatomic) __weak id <SPTUIPresentationService> UIPresentationService; // @synthesize UIPresentationService=_UIPresentationService;
-@property(nonatomic) __weak id <SPTFeatureFlaggingService> featureFlaggingService; // @synthesize featureFlaggingService=_featureFlaggingService;
-@property(nonatomic) __weak id <SPTNowPlayingPlatformService> nowPlayingPlatformService; // @synthesize nowPlayingPlatformService=_nowPlayingPlatformService;
-@property(nonatomic) __weak id <SPTNowPlayingService> nowPlayingService; // @synthesize nowPlayingService=_nowPlayingService;
+@property(retain, nonatomic) SPTDrivingModeTestManagerImplementation *testManager; // @synthesize testManager=_testManager;
 @property(nonatomic) __weak id <SPTDrivingStateDetectionService> drivingDetectionService; // @synthesize drivingDetectionService=_drivingDetectionService;
-@property(nonatomic) __weak id <SPTSessionService> sessionService; // @synthesize sessionService=_sessionService;
 - (void).cxx_destruct;
-- (id)createContextMenuViewController;
-- (id)createFooterUnitViewController;
-- (id)createHeadUnitViewController;
-- (id)createDurationUnitViewController;
-- (id)createInformationUnitViewController;
-- (id)createNavigationBarUnitViewController;
-- (void)testManager:(id)arg1 didChangeCarNowPlayingViewEnabled:(_Bool)arg2;
+- (void)testManager:(id)arg1 didChangeCarViewEnabled:(_Bool)arg2;
 - (void)disableDrivingMode;
 - (void)enableDrivingMode;
 - (void)unload;

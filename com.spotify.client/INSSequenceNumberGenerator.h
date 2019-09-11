@@ -6,14 +6,31 @@
 
 #import <objc/NSObject.h>
 
-@interface INSSequenceNumberGenerator : NSObject
+#import "INSSequenceNumberGeneratorProtocol-Protocol.h"
+
+@class NSString;
+@protocol INSKeyValueStorageProtocol, INSLogger;
+
+@interface INSSequenceNumberGenerator : NSObject <INSSequenceNumberGeneratorProtocol>
 {
+    id <INSLogger> _logger;
+    id <INSKeyValueStorageProtocol> _keyValueStorage;
 }
 
-+ (id)keyFromEventName:(id)arg1;
-+ (void)reset;
-+ (long long)lastSequenceNumberForEventName:(id)arg1;
-+ (long long)nextSequenceNumberForEventName:(id)arg1;
+@property(retain, nonatomic) id <INSKeyValueStorageProtocol> keyValueStorage; // @synthesize keyValueStorage=_keyValueStorage;
+@property(retain, nonatomic) id <INSLogger> logger; // @synthesize logger=_logger;
+- (void).cxx_destruct;
+- (id)localErrorWithDescription:(id)arg1;
+- (void)logMissingEventNameErrorFromFunction:(char [62])arg1;
+- (long long)lastSequenceNumberForEventName:(id)arg1;
+- (long long)nextSequenceNumberForEventName:(id)arg1;
+- (id)initWithKeyValueStorage:(id)arg1 logger:(id)arg2;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

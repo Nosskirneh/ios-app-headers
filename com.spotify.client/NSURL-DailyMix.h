@@ -6,16 +6,13 @@
 
 #import <Foundation/NSURL.h>
 
-@class NSArray, NSString;
+@class NSString;
 
 @interface NSURL (DailyMix)
-+ (id)spt_dailyMixInternalHubURI;
-+ (id)spt_dailyMixHubURI;
+@property(readonly, nonatomic, getter=spt_isDailyMixHub) _Bool dailyMixHub;
 @property(readonly, nonatomic, getter=spt_isDailyMixURL) _Bool dailyMixURL;
 @property(readonly, nonatomic, getter=spt_isClusterStationURL) _Bool clusterStationURL;
 @property(readonly, nonatomic) NSString *spt_dailyMixId;
 - (id)spt_dailyMixURIComponentsPrefix;
-@property(readonly, nonatomic, getter=spt_dailyMixImageLayers) NSArray *dailyMixImageLayers;
-@property(readonly, nonatomic, getter=spt_isDailyMixImageURL) _Bool dailyMixImageURL;
 @end
 

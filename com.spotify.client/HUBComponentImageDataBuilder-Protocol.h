@@ -6,12 +6,14 @@
 
 #import "HUBJSONCompatibleBuilder-Protocol.h"
 
-@class NSDictionary, NSString, NSURL, UIImage;
+@class NSMutableDictionary, NSString, NSURL, UIImage;
+@protocol HUBComponentImageData;
 
 @protocol HUBComponentImageDataBuilder <HUBJSONCompatibleBuilder>
-@property(retain, nonatomic) NSDictionary *customData;
+@property(readonly, nonatomic) NSMutableDictionary *customData;
 @property(retain, nonatomic) UIImage *localImage;
 @property(copy, nonatomic) NSString *placeholderIconIdentifier;
 @property(copy, nonatomic) NSURL *URL;
+- (id <HUBComponentImageData>)buildWithIdentifier:(NSString *)arg1 type:(long long)arg2;
 @end
 

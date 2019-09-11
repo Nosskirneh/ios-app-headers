@@ -6,83 +6,37 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTFeatureFlagSignalObserver-Protocol.h"
 #import "SPTFreeTierTestManager-Protocol.h"
 
 @class NSString;
-@protocol SPTFeatureFlagFactory, SPTFeatureFlagSignal, SPTLocalSettings;
+@protocol SPTFeatureFlagFactory, SPTFeatureFlagSignal, SPTLocalSettings, SPTProductState;
 
-@interface SPTFreeTierTestManagerImplementation : NSObject <SPTFeatureFlagSignalObserver, SPTFreeTierTestManager>
+@interface SPTFreeTierTestManagerImplementation : NSObject <SPTFreeTierTestManager>
 {
-    _Bool _heartsInTracksEnabled;
-    _Bool _heartsInEntityHeadersEnabled;
-    _Bool _heartsEverywhereEnabled;
-    _Bool _consolidatedArtistEnabled;
-    _Bool _consolidatedAlbumEnabled;
-    _Bool _followHeaderEnabled;
-    _Bool _heartsFollowEnabled;
-    unsigned long long _followHeaderOnboardingState;
     id <SPTFeatureFlagFactory> _featureFlagFactory;
     id <SPTLocalSettings> _localSettings;
     id <SPTFeatureFlagSignal> _shadowNewExperienceEnabledSignal;
     id <SPTFeatureFlagSignal> _actualNewExperienceEnabledSignal;
-    id <SPTFeatureFlagSignal> _heartsEverywhereEnabledSignal;
-    id <SPTFeatureFlagSignal> _heartsEverywhereEnabledTracksSignal;
-    id <SPTFeatureFlagSignal> _heartsEverywhereEnabledEntitiesSignal;
-    id <SPTFeatureFlagSignal> _heartsEverywhereEnabledTracksAndEntitiesSignal;
-    id <SPTFeatureFlagSignal> _followHeaderSignal;
-    id <SPTFeatureFlagSignal> _consolidatedArtistFollowHeaderSignal;
-    id <SPTFeatureFlagSignal> _consolidatedAlbumSignal;
-    id <SPTFeatureFlagSignal> _followHeaderOnboardingControlSignal;
-    id <SPTFeatureFlagSignal> _followHeaderOnboardingEnabledHeadersSignal;
-    id <SPTFeatureFlagSignal> _followHeaderOnboardingEnabledHeadersIconSignal;
-    id <SPTFeatureFlagSignal> _followHeaderOnboardingEnabledHeadersIconTextSignal;
+    id <SPTProductState> _productState;
 }
 
-@property(nonatomic) _Bool heartsFollowEnabled; // @synthesize heartsFollowEnabled=_heartsFollowEnabled;
-@property(nonatomic) _Bool followHeaderEnabled; // @synthesize followHeaderEnabled=_followHeaderEnabled;
-@property(nonatomic) _Bool consolidatedAlbumEnabled; // @synthesize consolidatedAlbumEnabled=_consolidatedAlbumEnabled;
-@property(nonatomic) _Bool consolidatedArtistEnabled; // @synthesize consolidatedArtistEnabled=_consolidatedArtistEnabled;
-@property(nonatomic) _Bool heartsEverywhereEnabled; // @synthesize heartsEverywhereEnabled=_heartsEverywhereEnabled;
-@property(nonatomic) _Bool heartsInEntityHeadersEnabled; // @synthesize heartsInEntityHeadersEnabled=_heartsInEntityHeadersEnabled;
-@property(nonatomic) _Bool heartsInTracksEnabled; // @synthesize heartsInTracksEnabled=_heartsInTracksEnabled;
-@property(retain, nonatomic) id <SPTFeatureFlagSignal> followHeaderOnboardingEnabledHeadersIconTextSignal; // @synthesize followHeaderOnboardingEnabledHeadersIconTextSignal=_followHeaderOnboardingEnabledHeadersIconTextSignal;
-@property(retain, nonatomic) id <SPTFeatureFlagSignal> followHeaderOnboardingEnabledHeadersIconSignal; // @synthesize followHeaderOnboardingEnabledHeadersIconSignal=_followHeaderOnboardingEnabledHeadersIconSignal;
-@property(retain, nonatomic) id <SPTFeatureFlagSignal> followHeaderOnboardingEnabledHeadersSignal; // @synthesize followHeaderOnboardingEnabledHeadersSignal=_followHeaderOnboardingEnabledHeadersSignal;
-@property(retain, nonatomic) id <SPTFeatureFlagSignal> followHeaderOnboardingControlSignal; // @synthesize followHeaderOnboardingControlSignal=_followHeaderOnboardingControlSignal;
-@property(retain, nonatomic) id <SPTFeatureFlagSignal> consolidatedAlbumSignal; // @synthesize consolidatedAlbumSignal=_consolidatedAlbumSignal;
-@property(retain, nonatomic) id <SPTFeatureFlagSignal> consolidatedArtistFollowHeaderSignal; // @synthesize consolidatedArtistFollowHeaderSignal=_consolidatedArtistFollowHeaderSignal;
-@property(retain, nonatomic) id <SPTFeatureFlagSignal> followHeaderSignal; // @synthesize followHeaderSignal=_followHeaderSignal;
-@property(retain, nonatomic) id <SPTFeatureFlagSignal> heartsEverywhereEnabledTracksAndEntitiesSignal; // @synthesize heartsEverywhereEnabledTracksAndEntitiesSignal=_heartsEverywhereEnabledTracksAndEntitiesSignal;
-@property(retain, nonatomic) id <SPTFeatureFlagSignal> heartsEverywhereEnabledEntitiesSignal; // @synthesize heartsEverywhereEnabledEntitiesSignal=_heartsEverywhereEnabledEntitiesSignal;
-@property(retain, nonatomic) id <SPTFeatureFlagSignal> heartsEverywhereEnabledTracksSignal; // @synthesize heartsEverywhereEnabledTracksSignal=_heartsEverywhereEnabledTracksSignal;
-@property(retain, nonatomic) id <SPTFeatureFlagSignal> heartsEverywhereEnabledSignal; // @synthesize heartsEverywhereEnabledSignal=_heartsEverywhereEnabledSignal;
+@property(readonly, nonatomic) id <SPTProductState> productState; // @synthesize productState=_productState;
 @property(retain, nonatomic) id <SPTFeatureFlagSignal> actualNewExperienceEnabledSignal; // @synthesize actualNewExperienceEnabledSignal=_actualNewExperienceEnabledSignal;
 @property(retain, nonatomic) id <SPTFeatureFlagSignal> shadowNewExperienceEnabledSignal; // @synthesize shadowNewExperienceEnabledSignal=_shadowNewExperienceEnabledSignal;
 @property(readonly, nonatomic) id <SPTLocalSettings> localSettings; // @synthesize localSettings=_localSettings;
 @property(readonly, nonatomic) id <SPTFeatureFlagFactory> featureFlagFactory; // @synthesize featureFlagFactory=_featureFlagFactory;
-@property(nonatomic) unsigned long long followHeaderOnboardingState; // @synthesize followHeaderOnboardingState=_followHeaderOnboardingState;
 - (void).cxx_destruct;
-- (_Bool)followTasteOnboardingTextEnabled;
-- (_Bool)followTasteOnboardingIconEnabled;
-- (_Bool)followInArtistEntityHeaderEnabled;
+- (_Bool)isProductStateNPT;
 @property(readonly, nonatomic) _Bool theNewExperienceEnabled;
-- (id)provideConsolidatedAlbumSignal;
-- (id)provideConsolidatedArtistFollowHeaderSignal;
-- (id)provideHeartsEverywhereEnabledSignal;
 - (id)provideLiveNewExperienceEnabledSignal;
 - (id)provideShadowNewExperienceEnabledSignal;
 - (void)featureFlagSignal:(id)arg1 hasAssumedState:(long long)arg2;
-- (void)setupFollowHeaderOnboardingFlag:(id)arg1;
-- (void)setupConsolidatedAlbumSignal:(id)arg1;
-- (void)setupConsolidatedArtistFollowHeaderFlag:(id)arg1;
-- (void)setUpHeartsFlag:(id)arg1;
 - (id)setUpPremiumFlag:(id)arg1;
 - (id)setUpFreeFlag:(id)arg1;
 - (void)setupIPadFlagsWithFactory:(id)arg1;
 - (void)setupIPhoneFlagsWithFactory:(id)arg1;
 - (void)setupFlags;
-- (id)initWithFeatureFlagFactory:(id)arg1 localSettings:(id)arg2;
+- (id)initWithFeatureFlagFactory:(id)arg1 localSettings:(id)arg2 productState:(id)arg3;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

@@ -8,28 +8,30 @@
 
 #import "SPTHugsFactory-Protocol.h"
 
-@class EXP_HUGSComponentFallbackHandler, EXP_HUGSComponentLayoutManager, HUGSIconImageResolver, NSString;
+@class HUGSComponentFallbackHandler, HUGSComponentLayoutManager, HUGSIconImageResolver, NSString;
 @protocol GLUETheme;
 
 @interface SPTHugsFactoryImplementation : NSObject <SPTHugsFactory>
 {
     id <GLUETheme> _theme;
     HUGSIconImageResolver *_iconImageResolver;
-    EXP_HUGSComponentLayoutManager *_componentLayoutManager;
-    EXP_HUGSComponentFallbackHandler *_componentFallbackHandler;
+    HUGSComponentLayoutManager *_componentLayoutManager;
+    HUGSComponentFallbackHandler *_componentFallbackHandler;
 }
 
-@property(readonly, nonatomic) EXP_HUGSComponentFallbackHandler *componentFallbackHandler; // @synthesize componentFallbackHandler=_componentFallbackHandler;
-@property(readonly, nonatomic) EXP_HUGSComponentLayoutManager *componentLayoutManager; // @synthesize componentLayoutManager=_componentLayoutManager;
+@property(readonly, nonatomic) HUGSComponentFallbackHandler *componentFallbackHandler; // @synthesize componentFallbackHandler=_componentFallbackHandler;
+@property(readonly, nonatomic) HUGSComponentLayoutManager *componentLayoutManager; // @synthesize componentLayoutManager=_componentLayoutManager;
 @property(readonly, nonatomic) HUGSIconImageResolver *iconImageResolver; // @synthesize iconImageResolver=_iconImageResolver;
 @property(readonly, nonatomic) id <GLUETheme> theme; // @synthesize theme=_theme;
 - (void).cxx_destruct;
 - (id)createHugs2Components;
 - (id)createHugsComponentsWithStyleOverrider:(id)arg1;
+- (id)provideSimpleComponentFallbackHandler;
 - (id)provideComponentFallbackHandler;
 - (id)provideComponentLayoutManager;
 - (id)provideIconImageResolver;
 - (id)createStyleOverriderWithComponentModelURIResolver:(id)arg1;
+- (id)createComponentRegistryWithComponentModelURIResolver:(id)arg1 fallbackHandler:(id)arg2;
 - (id)createComponentRegistryWithComponentModelURIResolver:(id)arg1;
 - (id)initWithTheme:(id)arg1;
 

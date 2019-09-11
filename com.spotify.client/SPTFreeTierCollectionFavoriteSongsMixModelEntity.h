@@ -9,20 +9,25 @@
 #import "SPTFreeTierCollectionFavoriteMixModelEntity-Protocol.h"
 
 @class NSString, NSURL;
+@protocol SPTFreeTierCollectionTestManager;
 
 @interface SPTFreeTierCollectionFavoriteSongsMixModelEntity : NSObject <SPTFreeTierCollectionFavoriteMixModelEntity>
 {
     unsigned long long _availableOfflineStatus;
     unsigned long long _itemCount;
+    id <SPTFreeTierCollectionTestManager> _testManager;
 }
 
+@property(readonly, nonatomic) id <SPTFreeTierCollectionTestManager> testManager; // @synthesize testManager=_testManager;
 @property(readonly, nonatomic) unsigned long long itemCount; // @synthesize itemCount=_itemCount;
 @property(readonly, nonatomic) unsigned long long availableOfflineStatus; // @synthesize availableOfflineStatus=_availableOfflineStatus;
+- (void).cxx_destruct;
+@property(readonly, nonatomic) NSString *name;
 @property(readonly, nonatomic) NSURL *entityURL;
 - (_Bool)isBackedByCollection;
 - (_Bool)isLocked;
 - (id)playlistEntity;
-- (id)initWithSongCount:(unsigned long long)arg1 availableOfflineStatus:(unsigned long long)arg2;
+- (id)initWithSongCount:(unsigned long long)arg1 availableOfflineStatus:(unsigned long long)arg2 testManager:(id)arg3;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

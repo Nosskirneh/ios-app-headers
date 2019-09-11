@@ -11,8 +11,10 @@
 @interface SPTNowPlayingScrollCell : UICollectionViewCell
 {
     UIView *_moduleView;
+    double _moduleViewMaxWidth;
 }
 
+@property(nonatomic) double moduleViewMaxWidth; // @synthesize moduleViewMaxWidth=_moduleViewMaxWidth;
 @property(retain, nonatomic) UIView *moduleView; // @synthesize moduleView=_moduleView;
 - (void).cxx_destruct;
 - (void)layoutSubviews;

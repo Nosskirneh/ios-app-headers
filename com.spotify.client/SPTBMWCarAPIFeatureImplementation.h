@@ -9,16 +9,16 @@
 #import "SPTBMWCarAPIFeature-Protocol.h"
 
 @class NSString, SPTAllocationContext, SPTBMWSession, UIViewController, UIWindow;
-@protocol SPTAccessoryManagerService, SPTDebugService, SPTExternalIntegrationDebugLogService, SPTNetworkService, SPTURIDispatchService;
+@protocol SPTAccessoryManagerService, SPTContainerService, SPTExternalIntegrationDebugLogService, SPTNetworkService, SPTURIDispatchService;
 
 @interface SPTBMWCarAPIFeatureImplementation : NSObject <SPTBMWCarAPIFeature>
 {
     SPTBMWSession *_session;
     id <SPTAccessoryManagerService> _accessoryManagerService;
     id <SPTNetworkService> _networkService;
-    id <SPTDebugService> _debug;
     id <SPTExternalIntegrationDebugLogService> _debugLogService;
     id <SPTURIDispatchService> _URIDispatchService;
+    id <SPTContainerService> _containerService;
     UIViewController *_rapiDebugViewController;
     UIWindow *_rapiDebugWindow;
 }
@@ -26,11 +26,11 @@
 + (id)serviceIdentifier;
 @property(retain, nonatomic) UIWindow *rapiDebugWindow; // @synthesize rapiDebugWindow=_rapiDebugWindow;
 @property(retain, nonatomic) UIViewController *rapiDebugViewController; // @synthesize rapiDebugViewController=_rapiDebugViewController;
+@property(nonatomic) __weak id <SPTContainerService> containerService; // @synthesize containerService=_containerService;
 @property(nonatomic) __weak id <SPTURIDispatchService> URIDispatchService; // @synthesize URIDispatchService=_URIDispatchService;
-@property(readonly, nonatomic) __weak id <SPTExternalIntegrationDebugLogService> debugLogService; // @synthesize debugLogService=_debugLogService;
-@property(readonly, nonatomic) __weak id <SPTDebugService> debug; // @synthesize debug=_debug;
-@property(readonly, nonatomic) __weak id <SPTNetworkService> networkService; // @synthesize networkService=_networkService;
-@property(readonly, nonatomic) __weak id <SPTAccessoryManagerService> accessoryManagerService; // @synthesize accessoryManagerService=_accessoryManagerService;
+@property(nonatomic) __weak id <SPTExternalIntegrationDebugLogService> debugLogService; // @synthesize debugLogService=_debugLogService;
+@property(nonatomic) __weak id <SPTNetworkService> networkService; // @synthesize networkService=_networkService;
+@property(nonatomic) __weak id <SPTAccessoryManagerService> accessoryManagerService; // @synthesize accessoryManagerService=_accessoryManagerService;
 @property(retain, nonatomic) SPTBMWSession *session; // @synthesize session=_session;
 - (void).cxx_destruct;
 - (id)provideBMWSession;

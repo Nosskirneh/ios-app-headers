@@ -16,9 +16,9 @@
     struct CGSize _iconSize;
 }
 
++ (id)queueButtonV2;
 + (id)saveButton;
 + (id)userProfileButton;
-+ (id)shareButtonV2;
 + (id)shareButton;
 + (id)repeatButton;
 + (id)playButtonV2;
@@ -26,7 +26,6 @@
 + (id)playBarButton;
 + (id)shuffleButton;
 + (id)collectionButtonWithTestManager:(id)arg1;
-+ (id)titleQueueButton;
 + (id)titleBackButton;
 + (id)titleCloseQueueButton;
 + (id)titleCloseButton;

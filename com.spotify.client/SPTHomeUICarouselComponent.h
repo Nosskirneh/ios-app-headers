@@ -4,21 +4,21 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import "EXP_HUGSThemableComponent.h"
+#import "HUGSThemableComponent.h"
 
-#import "EXP_HUBComponent-Protocol.h"
-#import "EXP_HUBComponentWithChildren-Protocol.h"
+#import "HUBComponent-Protocol.h"
+#import "HUBComponentWithChildren-Protocol.h"
 #import "SPTHomeUICarouselChildSizingDelegate-Protocol.h"
 
 @class NSSet, NSString;
-@protocol EXP_HUBComponentChildDelegate;
+@protocol HUBComponentChildDelegate;
 
-@interface SPTHomeUICarouselComponent : EXP_HUGSThemableComponent <SPTHomeUICarouselChildSizingDelegate, EXP_HUBComponent, EXP_HUBComponentWithChildren>
+@interface SPTHomeUICarouselComponent : HUGSThemableComponent <SPTHomeUICarouselChildSizingDelegate, HUBComponent, HUBComponentWithChildren>
 {
-    id <EXP_HUBComponentChildDelegate> _childDelegate;
+    id <HUBComponentChildDelegate> _childDelegate;
 }
 
-@property(nonatomic) __weak id <EXP_HUBComponentChildDelegate> childDelegate; // @synthesize childDelegate=_childDelegate;
+@property(nonatomic) __weak id <HUBComponentChildDelegate> childDelegate; // @synthesize childDelegate=_childDelegate;
 - (void).cxx_destruct;
 - (struct CGSize)sizeForChildAtIndex:(unsigned long long)arg1 inModel:(id)arg2 containerSize:(struct CGSize)arg3;
 - (struct CGSize)preferredViewSizeForDisplayingModel:(id)arg1 containerViewSize:(struct CGSize)arg2;

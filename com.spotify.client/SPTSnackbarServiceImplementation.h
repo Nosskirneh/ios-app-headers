@@ -6,30 +6,29 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTSnackbarService-Protocol.h"
-
 @class NSString, SPTAllocationContext, SPTSnackbarAnimationView, SPTSnackbarPresenterImplementation;
-@protocol SPTContainerUIService, SPTFreeTierService, SPTGLUEService;
+@protocol SPTContainerUIService, SPTExternalIntegrationDriverDistractionService, SPTFreeTierUIService, SPTGLUEService;
 
-@interface SPTSnackbarServiceImplementation : NSObject <SPTSnackbarService>
+@interface SPTSnackbarServiceImplementation : NSObject
 {
     id <SPTGLUEService> _glueService;
     id <SPTContainerUIService> _containerUIService;
+    id <SPTFreeTierUIService> _freeTierUIService;
+    id <SPTExternalIntegrationDriverDistractionService> _driverDistractionService;
     SPTSnackbarPresenterImplementation *_presenter;
     SPTSnackbarAnimationView *_snackbarAnimationView;
-    id <SPTFreeTierService> _freeTierService;
 }
 
 + (id)serviceIdentifier;
-@property(nonatomic) __weak id <SPTFreeTierService> freeTierService; // @synthesize freeTierService=_freeTierService;
 @property(retain, nonatomic) SPTSnackbarAnimationView *snackbarAnimationView; // @synthesize snackbarAnimationView=_snackbarAnimationView;
 @property(retain, nonatomic) SPTSnackbarPresenterImplementation *presenter; // @synthesize presenter=_presenter;
+@property(nonatomic) __weak id <SPTExternalIntegrationDriverDistractionService> driverDistractionService; // @synthesize driverDistractionService=_driverDistractionService;
+@property(nonatomic) __weak id <SPTFreeTierUIService> freeTierUIService; // @synthesize freeTierUIService=_freeTierUIService;
 @property(nonatomic) __weak id <SPTContainerUIService> containerUIService; // @synthesize containerUIService=_containerUIService;
 @property(nonatomic) __weak id <SPTGLUEService> glueService; // @synthesize glueService=_glueService;
 - (void).cxx_destruct;
+- (id)provideSnackbarPresenterForViewURI:(id)arg1;
 - (id)provideSnackbarPresenter;
-- (id)provideSnackbarPresenterForService:(id)arg1;
-- (void)loadTheme;
 - (void)disableSnackbarService;
 - (void)enableSnackbarService;
 - (void)unload;

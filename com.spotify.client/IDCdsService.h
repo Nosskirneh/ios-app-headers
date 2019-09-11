@@ -6,11 +6,9 @@
 
 #import "IDService.h"
 
-#import "IDEtchSessionCdsDelegate-Protocol.h"
+@class IDVersionInfo, NSMutableSet, NSOperationQueue;
 
-@class IDVersionInfo, NSMutableSet, NSOperationQueue, NSString;
-
-@interface IDCdsService : IDService <IDEtchSessionCdsDelegate>
+@interface IDCdsService : IDService
 {
     IDVersionInfo *_versionInfo;
     NSMutableSet *_propertyChangedEventObservers;
@@ -33,12 +31,6 @@
 - (void)bindProperty:(id)arg1 interval:(double)arg2 target:(id)arg3 selector:(SEL)arg4 completionBlock:(CDUnknownBlockType)arg5;
 - (void)bindProperty:(id)arg1 target:(id)arg2 selector:(SEL)arg3 completionBlock:(CDUnknownBlockType)arg4;
 - (id)initWithEtchSession:(id)arg1 handle:(long long)arg2 callbackQueue:(id)arg3 cdsVersion:(id)arg4;
-
-// Remaining properties
-@property(readonly, copy) NSString *debugDescription;
-@property(readonly, copy) NSString *description;
-@property(readonly) unsigned long long hash;
-@property(readonly) Class superclass;
 
 @end
 

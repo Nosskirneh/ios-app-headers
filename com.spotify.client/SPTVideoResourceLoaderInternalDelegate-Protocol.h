@@ -9,8 +9,9 @@
 @protocol SPTVideoResourceLoaderInternal;
 
 @protocol SPTVideoResourceLoaderInternalDelegate <NSObject>
-- (void)resourceLoaderDidLoadDRMSession:(id <SPTVideoResourceLoaderInternal>)arg1;
-- (void)resourceLoaderWillLoadDRMSession:(id <SPTVideoResourceLoaderInternal>)arg1;
+- (void)resourceLoaderDidLoadEncryptionKey:(id <SPTVideoResourceLoaderInternal>)arg1 ofEncryptionType:(long long)arg2;
+- (void)resourceLoaderWillLoadEncryptionKey:(id <SPTVideoResourceLoaderInternal>)arg1;
+- (void)resourceLoaderDidEnableFullVideoUsage:(id <SPTVideoResourceLoaderInternal>)arg1;
 - (void)resourceLoader:(id <SPTVideoResourceLoaderInternal>)arg1 willDownloadVideoSegment:(long long)arg2;
 @end
 

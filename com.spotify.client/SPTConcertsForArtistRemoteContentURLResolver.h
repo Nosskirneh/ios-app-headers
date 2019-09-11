@@ -6,11 +6,11 @@
 
 #import <objc/NSObject.h>
 
-#import "EXP_SPTHubRemoteContentOperationURLResolver-Protocol.h"
+#import "SPTHubRemoteContentOperationURLResolver-Protocol.h"
 
 @class NSString, SPTConcertsLocalDataManager;
 
-@interface SPTConcertsForArtistRemoteContentURLResolver : NSObject <EXP_SPTHubRemoteContentOperationURLResolver>
+@interface SPTConcertsForArtistRemoteContentURLResolver : NSObject <SPTHubRemoteContentOperationURLResolver>
 {
     NSString *_artistIdentifier;
     SPTConcertsLocalDataManager *_localDataManager;

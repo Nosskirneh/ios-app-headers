@@ -6,20 +6,23 @@
 
 #import <objc/NSObject.h>
 
-@protocol SPTAdjustUserTrackerProtocol;
+@class NSString;
+@protocol SPTLoginLogger;
 
 @interface SPTSignupTermsAndPolicyDialogLogger : NSObject
 {
-    id <SPTAdjustUserTrackerProtocol> _adjustTracker;
+    id <SPTLoginLogger> _logger;
+    NSString *_screenIdentifier;
 }
 
-@property(retain, nonatomic) id <SPTAdjustUserTrackerProtocol> adjustTracker; // @synthesize adjustTracker=_adjustTracker;
+@property(readonly, copy, nonatomic) NSString *screenIdentifier; // @synthesize screenIdentifier=_screenIdentifier;
+@property(retain, nonatomic) id <SPTLoginLogger> logger; // @synthesize logger=_logger;
 - (void).cxx_destruct;
-- (long long)adjustDialogIdentifierWithType:(unsigned long long)arg1;
+- (id)adjustDialogIdentifierWithType:(unsigned long long)arg1;
 - (void)logUserDidDeclineDialogWithType:(unsigned long long)arg1;
 - (void)logUserDidAcceptDialogWithType:(unsigned long long)arg1;
 - (void)logUserDidSeeDialogWithType:(unsigned long long)arg1;
-- (id)initWithAdjustTracker:(id)arg1;
+- (id)initWithLogger:(id)arg1 screenIdentifier:(id)arg2;
 
 @end
 

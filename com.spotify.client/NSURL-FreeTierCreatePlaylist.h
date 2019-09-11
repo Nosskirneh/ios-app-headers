@@ -9,9 +9,6 @@
 @interface NSURL (FreeTierCreatePlaylist)
 + (id)spt_freeTierRenamePlaylistURI;
 + (id)spt_freeTierCreatePlaylistURI;
-+ (id)spt_freeTierAddToPlaylistURIWithEntityURI:(id)arg1;
-+ (id)spt_freeTierAddToPlaylistURI;
-- (_Bool)spt_isFreeTierAddToPlaylistURI;
 - (_Bool)spt_isFreeTierRenamePlaylistURI;
 - (_Bool)spt_isFreeTierCreatePlaylistURI;
 @end

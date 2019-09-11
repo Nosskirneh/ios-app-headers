@@ -8,7 +8,7 @@
 
 #import "SPTSortingFilteringFilterBarSortButtonStyle-Protocol.h"
 
-@class GLUEPressedAnimatorStyle, NSString, UIColor, UIFont, UIImage;
+@class GLUEPressedAnimatorStyle, NSString, UIColor, UIFont;
 
 @interface SPTSortingFilteringSortButtonStyle : NSObject <SPTSortingFilteringFilterBarSortButtonStyle>
 {
@@ -17,8 +17,6 @@
     long long _lineBreakMode;
     double cornerRadius;
     double contentMargin;
-    double iconMargin;
-    UIImage *icon;
     UIColor *normalTextColor;
     UIColor *highlightedTextColor;
     UIColor *disabledTextColor;
@@ -43,8 +41,6 @@
 @property(copy, nonatomic) UIColor *disabledTextColor; // @synthesize disabledTextColor;
 @property(copy, nonatomic) UIColor *highlightedTextColor; // @synthesize highlightedTextColor;
 @property(copy, nonatomic) UIColor *normalTextColor; // @synthesize normalTextColor;
-@property(retain, nonatomic) UIImage *icon; // @synthesize icon;
-@property(nonatomic) double iconMargin; // @synthesize iconMargin;
 @property(nonatomic) double contentMargin; // @synthesize contentMargin;
 @property(nonatomic) double cornerRadius; // @synthesize cornerRadius;
 @property(nonatomic) long long lineBreakMode; // @synthesize lineBreakMode=_lineBreakMode;

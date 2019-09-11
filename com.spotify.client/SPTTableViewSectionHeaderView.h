@@ -9,7 +9,7 @@
 #import "GLUEStyleable-Protocol.h"
 #import "SPTThemableView-Protocol.h"
 
-@class GLUELabel, NSArray, NSString, UIImageView;
+@class GLUELabel, NSArray, NSAttributedString, NSString, UIImageView;
 @protocol SPTThemableViewLayoutDelegate;
 
 @interface SPTTableViewSectionHeaderView : UITableViewHeaderFooterView <GLUEStyleable, SPTThemableView>
@@ -48,6 +48,8 @@
 - (void)layoutSubviews;
 - (id)detailTextLabel;
 - (id)textLabel;
+@property(nonatomic) _Bool allowMultiLineTitle;
+@property(copy, nonatomic) NSAttributedString *attributedTitle;
 @property(copy, nonatomic) NSString *title;
 - (id)initWithReuseIdentifier:(id)arg1;
 @property(readonly, nonatomic, getter=isShuffleIncludesCell) _Bool shuffleIncludesCell;

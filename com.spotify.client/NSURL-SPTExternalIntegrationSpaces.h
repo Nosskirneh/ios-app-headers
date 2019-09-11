@@ -12,6 +12,7 @@
 - (id)spt_externalIntegrationURIWithoutSpacesBlockIdentifier;
 - (id)spt_externalIntegrationURIWithSpacesBlockIdentifier:(id)arg1;
 @property(readonly, copy, nonatomic) NSString *spt_externalIntegrationSpacesBlockIdentifier;
+@property(readonly, nonatomic) _Bool spt_isExternalIntegrationGenreURI;
 @property(readonly, nonatomic) _Bool spt_isExternalIntegrationSpacesURI;
 @end
 

@@ -10,7 +10,9 @@
 
 @interface SPTFeedEntity : NSObject
 {
+    _Bool _played;
     unsigned long long _entityType;
+    NSString *_entityTypeString;
     NSURL *_URI;
     NSArray *_creators;
     SPTFeedCreator *_creator;
@@ -21,13 +23,15 @@
 }
 
 + (id)entityTypeMapping;
+@property(nonatomic) _Bool played; // @synthesize played=_played;
 @property(retain, nonatomic) UIColor *backgroundColor; // @synthesize backgroundColor=_backgroundColor;
-@property(retain, nonatomic) NSString *text; // @synthesize text=_text;
+@property(copy, nonatomic) NSString *text; // @synthesize text=_text;
 @property(retain, nonatomic) NSDateComponents *timestandDateComponents; // @synthesize timestandDateComponents=_timestandDateComponents;
-@property(retain, nonatomic) NSDate *timestamp; // @synthesize timestamp=_timestamp;
+@property(copy, nonatomic) NSDate *timestamp; // @synthesize timestamp=_timestamp;
 @property(retain, nonatomic) SPTFeedCreator *creator; // @synthesize creator=_creator;
-@property(retain, nonatomic) NSArray *creators; // @synthesize creators=_creators;
-@property(readonly, nonatomic) NSURL *URI; // @synthesize URI=_URI;
+@property(copy, nonatomic) NSArray *creators; // @synthesize creators=_creators;
+@property(readonly, copy, nonatomic) NSURL *URI; // @synthesize URI=_URI;
+@property(copy, nonatomic) NSString *entityTypeString; // @synthesize entityTypeString=_entityTypeString;
 @property(nonatomic) unsigned long long entityType; // @synthesize entityType=_entityType;
 - (void).cxx_destruct;
 - (id)setupAttributedText:(id)arg1;

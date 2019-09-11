@@ -8,13 +8,18 @@
 
 #import "SPTVideoPlaybackRequestFactory-Protocol.h"
 
-@class NSString;
+@class NSString, SPTVideoMediaURLConverter;
 
 @interface SPTVideoPlaybackRequestFactoryImpl : NSObject <SPTVideoPlaybackRequestFactory>
 {
+    SPTVideoMediaURLConverter *_mediaURLConverter;
 }
 
-- (id)createPlaybackRequestWithRoyaltyVideo:(_Bool)arg1 backgroundable:(_Bool)arg2;
+@property(retain, nonatomic) SPTVideoMediaURLConverter *mediaURLConverter; // @synthesize mediaURLConverter=_mediaURLConverter;
+- (void).cxx_destruct;
+- (id)createPlaybackRequestWithMediaURL:(id)arg1 metadata:(id)arg2 royaltyMedia:(_Bool)arg3 audioOnlyAllowed:(_Bool)arg4;
+- (id)createPlaybackRequestWithManifestID:(id)arg1 metadata:(id)arg2 royaltyMedia:(_Bool)arg3 audioOnlyAllowed:(_Bool)arg4;
+- (id)initWithMediaURLConverter:(id)arg1;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

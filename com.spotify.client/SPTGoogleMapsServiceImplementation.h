@@ -9,12 +9,11 @@
 #import "SPTGoogleMapsDeepLinkObserver-Protocol.h"
 #import "SPTGoogleMapsFeatureFlagManagerObserver-Protocol.h"
 #import "SPTGoogleMapsService-Protocol.h"
-#import "SPTPartnerNavigationIntegration-Protocol.h"
 
-@class NSString, SPTAllocationContext, SPTGoogleMapsFeatureFlagManager, SPTGoogleMapsLogger, SPTGoogleMapsPresenter, UIImage;
-@protocol SPTBannerFeature, SPTContainerService, SPTFeatureFlaggingService, SPTGLUEService, SPTPartnerService, SPTURIDispatchService;
+@class NSString, SPTAllocationContext, SPTGoogleMapsFeatureFlagManager, SPTGoogleMapsLogger, SPTGoogleMapsPartnerIntegration, SPTGoogleMapsPresenter;
+@protocol SPTBannerFeature, SPTContainerService, SPTFeatureFlaggingService, SPTGLUEService, SPTNowPlayingPlatformService, SPTNowPlayingService, SPTPartnerService, SPTURIDispatchService;
 
-@interface SPTGoogleMapsServiceImplementation : NSObject <SPTGoogleMapsFeatureFlagManagerObserver, SPTGoogleMapsDeepLinkObserver, SPTPartnerNavigationIntegration, SPTGoogleMapsService>
+@interface SPTGoogleMapsServiceImplementation : NSObject <SPTGoogleMapsFeatureFlagManagerObserver, SPTGoogleMapsDeepLinkObserver, SPTGoogleMapsService>
 {
     SPTGoogleMapsFeatureFlagManager *_featureFlagManager;
     id <SPTContainerService> _containerService;
@@ -23,13 +22,19 @@
     id <SPTFeatureFlaggingService> _featureFlaggingService;
     id <SPTURIDispatchService> _uriDispatchService;
     id <SPTPartnerService> _partnerService;
+    id <SPTNowPlayingService> _nowPlayingService;
+    id <SPTNowPlayingPlatformService> _nowPlayingPlatformService;
     SPTGoogleMapsPresenter *_presenter;
     SPTGoogleMapsLogger *_logger;
+    SPTGoogleMapsPartnerIntegration *_partnerIntegration;
 }
 
 + (id)serviceIdentifier;
+@property(retain, nonatomic) SPTGoogleMapsPartnerIntegration *partnerIntegration; // @synthesize partnerIntegration=_partnerIntegration;
 @property(retain, nonatomic) SPTGoogleMapsLogger *logger; // @synthesize logger=_logger;
 @property(retain, nonatomic) SPTGoogleMapsPresenter *presenter; // @synthesize presenter=_presenter;
+@property(readonly, nonatomic) __weak id <SPTNowPlayingPlatformService> nowPlayingPlatformService; // @synthesize nowPlayingPlatformService=_nowPlayingPlatformService;
+@property(readonly, nonatomic) __weak id <SPTNowPlayingService> nowPlayingService; // @synthesize nowPlayingService=_nowPlayingService;
 @property(readonly, nonatomic) __weak id <SPTPartnerService> partnerService; // @synthesize partnerService=_partnerService;
 @property(readonly, nonatomic) __weak id <SPTURIDispatchService> uriDispatchService; // @synthesize uriDispatchService=_uriDispatchService;
 @property(readonly, nonatomic) __weak id <SPTFeatureFlaggingService> featureFlaggingService; // @synthesize featureFlaggingService=_featureFlaggingService;
@@ -38,14 +43,6 @@
 @property(readonly, nonatomic) __weak id <SPTContainerService> containerService; // @synthesize containerService=_containerService;
 @property(retain, nonatomic) SPTGoogleMapsFeatureFlagManager *featureFlagManager; // @synthesize featureFlagManager=_featureFlagManager;
 - (void).cxx_destruct;
-- (void)removeObserver:(id)arg1;
-- (void)addObserver:(id)arg1;
-@property(readonly, nonatomic, getter=isNavigating) _Bool navigating;
-@property(readonly, nonatomic) unsigned long long category;
-- (void)setEnabled:(_Bool)arg1 completion:(CDUnknownBlockType)arg2;
-@property(readonly, nonatomic) UIImage *icon;
-@property(readonly, nonatomic) NSString *name;
-@property(readonly, nonatomic) _Bool isEnabled;
 - (void)applicationDidLaunchFromGoogleMapsDeepLink;
 - (void)googleMapsFeatureFlagManager:(id)arg1 didUpdateEnabled:(_Bool)arg2;
 - (void)disable;

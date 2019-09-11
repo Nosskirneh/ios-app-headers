@@ -42,7 +42,7 @@
 - (void)handleCDSVehicleTimeChange:(id)arg1;
 - (id)languageStringForHeadUnitLanguageId:(long long)arg1;
 - (void)handleCDSVehicleLanguageChange:(id)arg1;
-- (void)audioService:(id)arg1 multimediaButtonEvent:(int)arg2;
+- (void)audioService:(id)arg1 multimediaButtonEvent:(unsigned long long)arg2;
 - (void)audioService:(id)arg1 interruptStateChanged:(int)arg2;
 - (void)audioService:(id)arg1 entertainmentStateChanged:(int)arg2;
 - (id)getAudioStateDescription:(int)arg1;

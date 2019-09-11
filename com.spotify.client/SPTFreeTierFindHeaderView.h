@@ -6,7 +6,7 @@
 
 #import <UIKit/UIView.h>
 
-@class GLUEGradientView, NSLayoutConstraint, SPTFreeTierFindLogger, UIButton;
+@class GLUELabel, NSLayoutConstraint, SPTFreeTierFindLogger, UIButton;
 @protocol GLUETheme, SPTFreeTierFindHeaderViewDelegate;
 
 @interface SPTFreeTierFindHeaderView : UIView
@@ -15,34 +15,35 @@
     UIView *_backgroundView;
     id <GLUETheme> _theme;
     SPTFreeTierFindLogger *_logger;
+    GLUELabel *_titleLabel;
+    UIView *_searchBarView;
     UIButton *_findHeaderButton;
     UIButton *_microphoneButton;
-    GLUEGradientView *_backgroundGradientView;
-    GLUEGradientView *_backgroundOverlayView;
-    NSLayoutConstraint *_topMicrophoneConstraint;
-    NSLayoutConstraint *_searchBarRightConstraint;
+    NSLayoutConstraint *_searchButtonToMicrophoneConstraint;
+    NSLayoutConstraint *_searchButtonToSearchBarConstraint;
 }
 
-@property(retain, nonatomic) NSLayoutConstraint *searchBarRightConstraint; // @synthesize searchBarRightConstraint=_searchBarRightConstraint;
-@property(retain, nonatomic) NSLayoutConstraint *topMicrophoneConstraint; // @synthesize topMicrophoneConstraint=_topMicrophoneConstraint;
-@property(retain, nonatomic) GLUEGradientView *backgroundOverlayView; // @synthesize backgroundOverlayView=_backgroundOverlayView;
-@property(retain, nonatomic) GLUEGradientView *backgroundGradientView; // @synthesize backgroundGradientView=_backgroundGradientView;
-@property(retain, nonatomic) UIButton *microphoneButton; // @synthesize microphoneButton=_microphoneButton;
-@property(retain, nonatomic) UIButton *findHeaderButton; // @synthesize findHeaderButton=_findHeaderButton;
+@property(readonly, nonatomic) NSLayoutConstraint *searchButtonToSearchBarConstraint; // @synthesize searchButtonToSearchBarConstraint=_searchButtonToSearchBarConstraint;
+@property(readonly, nonatomic) NSLayoutConstraint *searchButtonToMicrophoneConstraint; // @synthesize searchButtonToMicrophoneConstraint=_searchButtonToMicrophoneConstraint;
+@property(readonly, nonatomic) UIButton *microphoneButton; // @synthesize microphoneButton=_microphoneButton;
+@property(readonly, nonatomic) UIButton *findHeaderButton; // @synthesize findHeaderButton=_findHeaderButton;
+@property(readonly, nonatomic) UIView *searchBarView; // @synthesize searchBarView=_searchBarView;
+@property(readonly, nonatomic) GLUELabel *titleLabel; // @synthesize titleLabel=_titleLabel;
 @property(readonly, nonatomic) SPTFreeTierFindLogger *logger; // @synthesize logger=_logger;
 @property(readonly, nonatomic) id <GLUETheme> theme; // @synthesize theme=_theme;
-@property(retain, nonatomic) UIView *backgroundView; // @synthesize backgroundView=_backgroundView;
+@property(readonly, nonatomic) UIView *backgroundView; // @synthesize backgroundView=_backgroundView;
 @property(nonatomic) __weak id <SPTFreeTierFindHeaderViewDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
-- (void)parentContentOffsetDidChange:(struct CGPoint)arg1;
-- (void)didTapMicrophoneButton:(id)arg1;
+- (void)didTapMicrophoneButton;
 - (void)didTapSearchButton;
+- (double)headerMinimumHeight;
+- (double)headerHeight;
+@property(nonatomic) _Bool microphoneButtonHidden;
 - (void)updateButtonWithTitle:(id)arg1 forState:(unsigned long long)arg2;
 - (void)addFindHeaderButton;
 - (void)addMicrophoneButton;
-- (void)setupBackgroundView;
+- (void)addTitleLabel;
 - (void)setupConstraints;
-- (void)showMicrophoneButton;
 - (id)initWithTheme:(id)arg1 logger:(id)arg2;
 
 @end

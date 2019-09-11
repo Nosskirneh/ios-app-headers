@@ -8,7 +8,7 @@
 
 #import "GLUEStyleable-Protocol.h"
 
-@class GLUELabel, GLUESectionHeaderStyle, NSString, SPTLayoutConstraintBuilder;
+@class GLUELabel, GLUESectionHeaderStyle, NSArray, NSString;
 @protocol SPTQueueTableViewSectionHeaderViewDelegate;
 
 @interface SPTQueueTableViewSectionHeaderView : UITableViewHeaderFooterView <GLUEStyleable>
@@ -16,10 +16,10 @@
     id <SPTQueueTableViewSectionHeaderViewDelegate> _delegate;
     GLUELabel *_titleLabel;
     GLUESectionHeaderStyle *_style;
-    SPTLayoutConstraintBuilder *_layout;
+    NSArray *_layoutConstraints;
 }
 
-@property(retain, nonatomic) SPTLayoutConstraintBuilder *layout; // @synthesize layout=_layout;
+@property(copy, nonatomic) NSArray *layoutConstraints; // @synthesize layoutConstraints=_layoutConstraints;
 @property(retain, nonatomic) GLUESectionHeaderStyle *style; // @synthesize style=_style;
 @property(readonly, nonatomic) GLUELabel *titleLabel; // @synthesize titleLabel=_titleLabel;
 @property(nonatomic) __weak id <SPTQueueTableViewSectionHeaderViewDelegate> delegate; // @synthesize delegate=_delegate;
@@ -27,6 +27,7 @@
 - (void)removeConstraints;
 - (void)createConstraintsIfNeeded;
 - (void)glue_applyStyle:(id)arg1;
+- (struct UIEdgeInsets)safeAreaInsets;
 - (void)setFrame:(struct CGRect)arg1;
 - (id)textLabel;
 - (id)initWithReuseIdentifier:(id)arg1;

@@ -4,33 +4,33 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import "EXP_HUBComponentView.h"
+#import "HUBComponentView.h"
 
-#import "EXP_HUBComponentViewWithChildren-Protocol.h"
+#import "HUBComponentViewWithChildren-Protocol.h"
 
 @class GLUEGradientView, NSArray, SPTPremiumDestinationGLUETheme, SPTPremiumDestinationOfferCardStyle;
-@protocol EXP_HUBComponentViewChildDelegate;
+@protocol HUBComponentViewChildDelegate;
 
-@interface SPTPremiumDestinationOfferCardComponentView : EXP_HUBComponentView <EXP_HUBComponentViewWithChildren>
+@interface SPTPremiumDestinationOfferCardComponentView : HUBComponentView <HUBComponentViewWithChildren>
 {
-    id <EXP_HUBComponentViewChildDelegate> _childDelegate;
+    id <HUBComponentViewChildDelegate> _childDelegate;
     SPTPremiumDestinationGLUETheme *_theme;
     SPTPremiumDestinationOfferCardStyle *_style;
     NSArray *_childComponentViews;
     GLUEGradientView *_gradientView;
 }
 
-+ (id)gradientStyleForModel:(id)arg1;
 + (struct CGRect)layoutRectForComponentView:(id)arg1 fromPreviousComponentView:(id)arg2 withStyle:(id)arg3;
 @property(retain, nonatomic) GLUEGradientView *gradientView; // @synthesize gradientView=_gradientView;
 @property(retain, nonatomic) NSArray *childComponentViews; // @synthesize childComponentViews=_childComponentViews;
 @property(retain, nonatomic) SPTPremiumDestinationOfferCardStyle *style; // @synthesize style=_style;
 @property(retain, nonatomic) SPTPremiumDestinationGLUETheme *theme; // @synthesize theme=_theme;
-@property(nonatomic) __weak id <EXP_HUBComponentViewChildDelegate> childDelegate; // @synthesize childDelegate=_childDelegate;
+@property(nonatomic) __weak id <HUBComponentViewChildDelegate> childDelegate; // @synthesize childDelegate=_childDelegate;
 - (void).cxx_destruct;
 - (void)setupChildComponentViewsForModel:(id)arg1;
 - (void)prepareForReuse;
 - (void)configureWithModel:(id)arg1;
+- (void)setupConstraints;
 - (void)setupViews;
 - (id)initWithFrame:(struct CGRect)arg1 theme:(id)arg2;
 

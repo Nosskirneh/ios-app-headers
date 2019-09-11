@@ -23,7 +23,6 @@
 - (_Bool)populateWithRawMessage:(id)arg1 error:(id *)arg2;
 @property(readonly, nonatomic) NSArray *rawMessage;
 @property(readonly, nonatomic) long long messageType;
-- (id)initWithSignature:(id)arg1 extra:(id)arg2;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

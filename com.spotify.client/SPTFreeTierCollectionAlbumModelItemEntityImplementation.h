@@ -13,15 +13,17 @@
 
 @interface SPTFreeTierCollectionAlbumModelItemEntityImplementation : NSObject <SPTFreeTierCollectionAlbumModelItemEntity>
 {
+    _Bool _inCollection;
     id <SPTFreeTierCollectionAlbumEntity> _albumEntity;
     unsigned long long _type;
 }
 
+@property(readonly, nonatomic) _Bool inCollection; // @synthesize inCollection=_inCollection;
 @property(readonly, nonatomic) unsigned long long type; // @synthesize type=_type;
 @property(readonly, nonatomic) id <SPTFreeTierCollectionAlbumEntity> albumEntity; // @synthesize albumEntity=_albumEntity;
 - (void).cxx_destruct;
 @property(readonly, nonatomic, getter=isOnDemand) _Bool onDemand;
-- (id)initWithAlbumEntity:(id)arg1;
+- (id)initWithAlbumEntity:(id)arg1 inCollection:(_Bool)arg2;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

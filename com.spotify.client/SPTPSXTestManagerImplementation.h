@@ -24,20 +24,12 @@
     SPTPSXFeatureFlagSignalObserver *_employeePSXCopyDiscoverWeeklySignalObserver;
     SPTPSXFeatureFlagSignalObserver *_publicMadeForAttributionSignalObserver;
     SPTPSXFeatureFlagSignalObserver *_employeeMadeForAttributionSignalObserver;
-    SPTPSXFeatureFlagSignalObserver *_publicMadeForHubSignalObserver;
-    SPTPSXFeatureFlagSignalObserver *_employeeMadeForHubSignalObserver;
-    SPTPSXFeatureFlagSignalObserver *_publicRecsplanationsSignalObserver;
-    SPTPSXFeatureFlagSignalObserver *_employeeRecsplanationsSignalObserver;
     SPTPSXFeatureFlagSignalObserver *_publicReleaseRadarPSXSignalObserver;
     SPTPSXFeatureFlagSignalObserver *_employeeReleaseRadarPSXSignalObserver;
 }
 
 @property(retain, nonatomic) SPTPSXFeatureFlagSignalObserver *employeeReleaseRadarPSXSignalObserver; // @synthesize employeeReleaseRadarPSXSignalObserver=_employeeReleaseRadarPSXSignalObserver;
 @property(retain, nonatomic) SPTPSXFeatureFlagSignalObserver *publicReleaseRadarPSXSignalObserver; // @synthesize publicReleaseRadarPSXSignalObserver=_publicReleaseRadarPSXSignalObserver;
-@property(retain, nonatomic) SPTPSXFeatureFlagSignalObserver *employeeRecsplanationsSignalObserver; // @synthesize employeeRecsplanationsSignalObserver=_employeeRecsplanationsSignalObserver;
-@property(retain, nonatomic) SPTPSXFeatureFlagSignalObserver *publicRecsplanationsSignalObserver; // @synthesize publicRecsplanationsSignalObserver=_publicRecsplanationsSignalObserver;
-@property(retain, nonatomic) SPTPSXFeatureFlagSignalObserver *employeeMadeForHubSignalObserver; // @synthesize employeeMadeForHubSignalObserver=_employeeMadeForHubSignalObserver;
-@property(retain, nonatomic) SPTPSXFeatureFlagSignalObserver *publicMadeForHubSignalObserver; // @synthesize publicMadeForHubSignalObserver=_publicMadeForHubSignalObserver;
 @property(retain, nonatomic) SPTPSXFeatureFlagSignalObserver *employeeMadeForAttributionSignalObserver; // @synthesize employeeMadeForAttributionSignalObserver=_employeeMadeForAttributionSignalObserver;
 @property(retain, nonatomic) SPTPSXFeatureFlagSignalObserver *publicMadeForAttributionSignalObserver; // @synthesize publicMadeForAttributionSignalObserver=_publicMadeForAttributionSignalObserver;
 @property(retain, nonatomic) SPTPSXFeatureFlagSignalObserver *employeePSXCopyDiscoverWeeklySignalObserver; // @synthesize employeePSXCopyDiscoverWeeklySignalObserver=_employeePSXCopyDiscoverWeeklySignalObserver;
@@ -50,17 +42,9 @@
 @property(readonly, nonatomic) id <SPTProductState> productState; // @synthesize productState=_productState;
 @property(readonly, nonatomic) id <SPTFeatureFlagFactory> featureFlagFactory; // @synthesize featureFlagFactory=_featureFlagFactory;
 - (void).cxx_destruct;
-@property(readonly, nonatomic, getter=isReleaseRadarPSXEnabled) _Bool releaseRadarPSXEnabled;
-@property(readonly, nonatomic, getter=isRecsplanationEnabled) _Bool recsplanationEnabled;
-@property(readonly, nonatomic, getter=isMadeForHubEnabled) _Bool madeForHubEnabled;
-@property(readonly, nonatomic, getter=isMadeForAttributionEnabled) _Bool madeForAttributionEnabled;
 @property(readonly, nonatomic, getter=isCopyDiscoverWeeklyEnabled) _Bool copyDiscoverWeeklyEnabled;
 @property(readonly, nonatomic, getter=isFeedbackEnabled) _Bool feedbackEnabled;
 @property(readonly, nonatomic, getter=isPersonalisedSetsUIEnabled) _Bool personalisedSetsUIEnabled;
-- (void)setUpReleaseRadarPSXFeatureFlags;
-- (void)setUpRecsplanationFeatureFlags;
-- (void)setupMadeForHubFeatureFlags;
-- (void)setupMadeForAttributionFeatureFlags;
 - (void)setupPSXCopyDiscoverWeeklyFeatureFlags;
 - (void)setupPSXFeedbackFeatureFlags;
 - (void)setupPSXUIFeatureFlags;

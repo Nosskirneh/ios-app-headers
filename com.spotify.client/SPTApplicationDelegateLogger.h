@@ -18,6 +18,9 @@
 @property(retain, nonatomic) UNUserNotificationCenter *notificationCenter; // @synthesize notificationCenter=_notificationCenter;
 @property(retain, nonatomic) id <SPTLogCenter> logCenter; // @synthesize logCenter=_logCenter;
 - (void).cxx_destruct;
+- (void)logAccessibilityFeatures;
+- (id)loggingIdentifiersForNotificationSettings:(id)arg1;
+- (id)loggingIdentifierForAuthorizationStatus:(long long)arg1;
 - (void)logMobileDeviceSettings;
 - (id)initWithLogCenter:(id)arg1 notificationCenter:(id)arg2;
 

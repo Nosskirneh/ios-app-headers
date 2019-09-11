@@ -7,12 +7,14 @@
 #import <Foundation/NSURL.h>
 
 @interface NSURL (SPTNowPlaying)
++ (id)spt_nowPlayingSideBarURI;
 + (id)spt_nowPlayingBarURI;
 + (id)spt_nowPlayingViewContentsURI;
 + (id)spt_nowPlayingViewURI;
 - (_Bool)spt_isRadioURI;
 - (_Bool)spt_isPodcastURI;
 - (_Bool)spt_isDailyMixURI;
+@property(readonly, nonatomic, getter=spt_isNowPlayingSideBarURI) _Bool isNowPlayingSideBarURI;
 @property(readonly, nonatomic, getter=spt_isNowPlayingBarURI) _Bool isNowPlayingBarURI;
 @property(readonly, nonatomic, getter=spt_isNowPlayingViewContentsURI) _Bool isNowPlayingViewContentsURI;
 @property(readonly, nonatomic, getter=spt_isNowPlayingViewURI) _Bool isNowPlayingViewURI;

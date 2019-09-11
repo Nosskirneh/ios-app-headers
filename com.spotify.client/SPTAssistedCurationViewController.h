@@ -17,7 +17,7 @@
 #import "UICollectionViewDelegateFlowLayout-Protocol.h"
 #import "UIScrollViewDelegate-Protocol.h"
 
-@class NSString, NSURL, SPTAssistedCurationCardCellConfigurator, SPTAssistedCurationCardStyle, SPTAssistedCurationGLUETheme, SPTAssistedCurationInfoView, SPTAssistedCurationLogger, SPTAssistedCurationSearchButton, UIActivityIndicatorView, UICollectionView, UIPageControl, UITapGestureRecognizer;
+@class NSMutableSet, NSString, NSURL, SPTAssistedCurationCardCellConfigurator, SPTAssistedCurationCardStyle, SPTAssistedCurationGLUETheme, SPTAssistedCurationInfoView, SPTAssistedCurationLogger, SPTAssistedCurationSearchButton, UIActivityIndicatorView, UICollectionView, UIPageControl, UITapGestureRecognizer;
 @protocol GLUEImageLoader, SPTAssistedCurationViewControllerDelegate, SPTAssistedCurationViewModel, SPTAudioPreviewModelFactory, SPTAudioPreviewUIFactory, SPTPageContainer;
 
 @interface SPTAssistedCurationViewController : UIViewController <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UIScrollViewDelegate, SPTAssistedCurationSearchButtonDelegate, SPTAssistedCurationCardCellLogDelegate, SPTAssistedCurationCardCellConfiguratorDelegate, SPTNavigationControllerNavigationBarState, SPTAssistedCurationViewModelDelegate, SPTPageController>
@@ -37,8 +37,10 @@
     id <GLUEImageLoader> _glueImageLoader;
     SPTAssistedCurationCardCellConfigurator *_cardCellConfigurator;
     UITapGestureRecognizer *_tapGesture;
+    NSMutableSet *_visibleCardIdentifiers;
 }
 
+@property(retain, nonatomic) NSMutableSet *visibleCardIdentifiers; // @synthesize visibleCardIdentifiers=_visibleCardIdentifiers;
 @property(retain, nonatomic) UITapGestureRecognizer *tapGesture; // @synthesize tapGesture=_tapGesture;
 @property(retain, nonatomic) SPTAssistedCurationCardCellConfigurator *cardCellConfigurator; // @synthesize cardCellConfigurator=_cardCellConfigurator;
 @property(readonly, nonatomic) id <GLUEImageLoader> glueImageLoader; // @synthesize glueImageLoader=_glueImageLoader;
@@ -58,8 +60,8 @@
 - (unsigned long long)preferredNavigationBarState;
 @property(readonly, nonatomic, getter=spt_pageURI) NSURL *pageURI;
 @property(readonly, nonatomic, getter=spt_pageIdentifier) NSString *pageIdentifier;
-- (void)logDidLoadCardAtIndex:(unsigned long long)arg1;
-- (void)cardCellConfigurator:(id)arg1 previewTrackURI:(id)arg2 atIndex:(long long)arg3;
+- (void)logDidLoadCardAtIndex:(unsigned long long)arg1 isUserInteractionEnabled:(_Bool)arg2;
+- (void)cardCellConfigurator:(id)arg1 previewTrackURI:(id)arg2 atIndex:(long long)arg3 locationInCollection:(struct CGPoint)arg4;
 - (void)logAssistedCurationCardCell:(id)arg1 tapTrackAtIndexPath:(id)arg2;
 - (void)logAssistedCurationCardCell:(id)arg1 tapAddTrackAtIndexPath:(id)arg2;
 - (void)openSearchWhenTapped:(id)arg1;
@@ -69,6 +71,10 @@
 - (void)assistedCurationViewModel:(id)arg1 scrollToCardAtIndex:(long long)arg2;
 - (void)assistedCurationViewModel:(id)arg1 removedCardAtIndex:(long long)arg2;
 - (void)didChangeAssistedCurationViewModel:(id)arg1;
+- (_Bool)isUserInteractionEnabledForCell:(id)arg1 atIndexPath:(id)arg2;
+- (double)visibilityFactorForRect:(struct CGRect)arg1;
+- (void)updatePageControl;
+- (unsigned long long)numberOfCardsPerScreen;
 - (void)evaluateScrolledToIndexForScrollView:(id)arg1;
 - (void)evaluateScrolledToIndexForContentOffset:(double)arg1;
 - (void)scrollToCardAtIndex:(unsigned long long)arg1 animated:(_Bool)arg2;
@@ -77,10 +83,13 @@
 - (void)scrollToNextLeadingCard;
 - (_Bool)isLastLeadingCard;
 - (double)contentOffsetForCardIndex:(unsigned long long)arg1;
+- (long long)cardIndexForPoint:(struct CGPoint)arg1;
+- (long long)cardIndexForContentOffset:(double)arg1;
 - (long long)currentCardIndex;
 - (long long)nextCardIndexRTLWithVelocity:(struct CGPoint)arg1 targetContentOffset:(struct CGPoint)arg2;
 - (long long)nextCardIndexWithVelocity:(struct CGPoint)arg1 targetContentOffset:(struct CGPoint)arg2;
-- (double)cardWidth;
+- (double)cardWidthIncludingSpacing:(_Bool)arg1;
+- (void)scrollViewDidEndScrollingAnimation:(id)arg1;
 - (void)scrollViewDidEndDecelerating:(id)arg1;
 - (void)scrollViewWillEndDragging:(id)arg1 withVelocity:(struct CGPoint)arg2 targetContentOffset:(inout struct CGPoint *)arg3;
 - (void)scrollViewDidScroll:(id)arg1;
@@ -99,6 +108,7 @@
 - (void)tapGestureAction:(id)arg1;
 - (void)pageControlChanged:(id)arg1;
 - (void)setupConstraints;
+- (void)viewWillTransitionToSize:(struct CGSize)arg1 withTransitionCoordinator:(id)arg2;
 - (void)viewDidDisappear:(_Bool)arg1;
 - (void)viewWillAppear:(_Bool)arg1;
 - (void)viewDidLoad;

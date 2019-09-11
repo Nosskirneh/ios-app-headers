@@ -6,48 +6,41 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTMetaViewControllerObserver-Protocol.h"
+#import "SPTLoginFacebookAuthenticationControllerDelegate-Protocol.h"
 
-@class NSString, SPTLoginDialogController, SPTLoginNoContentWelcomeCopyProvider, SPTLoginWelcomeViewLogger;
-@protocol SPTLoginNavigationCoordinator, SPTLoginStateController, SPTLoginWelcomeViewModelDelegate, SPTMetaViewController, SPTNavigationRouter, SPTSessionServicesLoader;
+@class NSString, SPTLoginErrorDecorator, SPTLoginFacebookAuthenticationController, SPTLoginNoContentWelcomeCopyProvider, SPTLoginWelcomeViewLogger;
+@protocol SPTLoginStateController, SPTLoginWelcomeViewModelDelegate, SPTNavigationRouter;
 
-@interface SPTLoginWelcomeViewModel : NSObject <SPTMetaViewControllerObserver>
+@interface SPTLoginWelcomeViewModel : NSObject <SPTLoginFacebookAuthenticationControllerDelegate>
 {
     id <SPTLoginWelcomeViewModelDelegate> _delegate;
     SPTLoginWelcomeViewLogger *_logger;
     id <SPTLoginStateController> _loginStateController;
-    id <SPTMetaViewController> _metaViewController;
     id <SPTNavigationRouter> _navigationRouter;
-    id <SPTLoginNavigationCoordinator> _signupNavigationCoordinator;
-    SPTLoginDialogController *_alertController;
-    id <SPTSessionServicesLoader> _sessionServicesLoader;
     SPTLoginNoContentWelcomeCopyProvider *_titleCopyProvider;
+    SPTLoginErrorDecorator *_errorDecorator;
+    SPTLoginFacebookAuthenticationController *_facebookAuthController;
 }
 
+@property(retain, nonatomic) SPTLoginFacebookAuthenticationController *facebookAuthController; // @synthesize facebookAuthController=_facebookAuthController;
+@property(retain, nonatomic) SPTLoginErrorDecorator *errorDecorator; // @synthesize errorDecorator=_errorDecorator;
 @property(retain, nonatomic) SPTLoginNoContentWelcomeCopyProvider *titleCopyProvider; // @synthesize titleCopyProvider=_titleCopyProvider;
-@property(retain, nonatomic) id <SPTSessionServicesLoader> sessionServicesLoader; // @synthesize sessionServicesLoader=_sessionServicesLoader;
-@property(retain, nonatomic) SPTLoginDialogController *alertController; // @synthesize alertController=_alertController;
-@property(retain, nonatomic) id <SPTLoginNavigationCoordinator> signupNavigationCoordinator; // @synthesize signupNavigationCoordinator=_signupNavigationCoordinator;
 @property(retain, nonatomic) id <SPTNavigationRouter> navigationRouter; // @synthesize navigationRouter=_navigationRouter;
-@property(retain, nonatomic) id <SPTMetaViewController> metaViewController; // @synthesize metaViewController=_metaViewController;
 @property(retain, nonatomic) id <SPTLoginStateController> loginStateController; // @synthesize loginStateController=_loginStateController;
 @property(readonly, nonatomic) SPTLoginWelcomeViewLogger *logger; // @synthesize logger=_logger;
 @property(nonatomic) __weak id <SPTLoginWelcomeViewModelDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
+- (void)controller:(id)arg1 didCompleteFacebookLoginWithError:(id)arg2;
 - (id)welcomeTitle;
-- (id)carouselMessages;
 - (void)logoutForgetUser:(_Bool)arg1;
 - (void)navigateToLogin;
 - (void)loginWithFacebook;
 - (void)presentSignupStepOneViewController;
-- (id)carouselViewModel;
-- (double)messageCarouselAnimationDuration;
-- (long long)messageCarouselNumberOfPages;
 - (id)signupButtonText;
 - (id)facebookButtonText;
 - (id)loginButtonText;
 - (id)spotifyLogo;
-- (id)initWithLoginStateController:(id)arg1 metaViewController:(id)arg2 navigationRouter:(id)arg3 signupNavigationCoordinator:(id)arg4 alertController:(id)arg5 logger:(id)arg6 sessionServicesLoader:(id)arg7 titleCopyProvider:(id)arg8;
+- (id)initWithLoginStateController:(id)arg1 navigationRouter:(id)arg2 logger:(id)arg3 titleCopyProvider:(id)arg4 facebookAuthController:(id)arg5;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

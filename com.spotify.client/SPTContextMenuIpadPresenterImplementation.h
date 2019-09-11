@@ -25,11 +25,13 @@
 @property(nonatomic) __weak id <SPTContextMenuPresenterDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
 - (void)contextMenuViewControllerIPadDidDismiss:(id)arg1;
+- (long long)adaptivePresentationStyleForPresentationController:(id)arg1 traitCollection:(id)arg2;
 - (void)popoverPresentationControllerDidDismissPopover:(id)arg1;
 - (_Bool)popoverPresentationControllerShouldDismissPopover:(id)arg1;
 @property(readonly, nonatomic, getter=isPresenting) _Bool presenting;
 - (void)dismissAnimated:(_Bool)arg1;
 - (void)updateHeaderViewAnimated:(_Bool)arg1;
+- (void)presentInViewController:(id)arg1 presentationStyle:(long long)arg2 senderView:(id)arg3 permittedArrowDirections:(unsigned long long)arg4 animated:(_Bool)arg5;
 - (void)presentWithSenderView:(id)arg1 permittedArrowDirections:(unsigned long long)arg2 animated:(_Bool)arg3;
 - (void)presentInViewController:(id)arg1 senderView:(id)arg2 permittedArrowDirections:(unsigned long long)arg3 animated:(_Bool)arg4;
 - (id)initWithViewController:(id)arg1;

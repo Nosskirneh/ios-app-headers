@@ -52,9 +52,7 @@
 - (void)listeningViewModelWantsToClose:(id)arg1;
 - (void)viewModelWantsToNavigateToSettings:(id)arg1;
 - (void)viewModelWantsToClose:(id)arg1;
-- (_Bool)anyFeedbackDisabled;
 - (void)didDismiss;
-- (void)didPresent;
 - (void)willPresent;
 - (void)voiceSession:(id)arg1 didHandleVoiceCommand:(id)arg2;
 - (void)voiceSession:(id)arg1 didReceiveVoiceCommand:(id)arg2;

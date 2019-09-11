@@ -12,7 +12,7 @@
 #import "SPTProductStateObserver-Protocol.h"
 
 @class NSHashTable, NSString, SPTPlayerState;
-@protocol SPTDailyMixTestManager, SPTNowPlayingManager, SPTNowPlayingTestManager, SPTPlayer, SPTProductState, SPTQueueService;
+@protocol SPTNowPlayingManager, SPTNowPlayingTestManager, SPTPlayer, SPTProductState, SPTQueueService;
 
 @interface SPTNowPlayingQueueMetadataModel : NSObject <SPTPlayerObserver, SPTPlayerQueueObserver, SPTProductStateObserver, SPTPlayerStagedContextObserver>
 {
@@ -24,10 +24,8 @@
     id <SPTProductState> _productState;
     id <SPTQueueService> _queueService;
     id <SPTNowPlayingTestManager> _testManager;
-    id <SPTDailyMixTestManager> _dailyMixTestManager;
 }
 
-@property(readonly, nonatomic) __weak id <SPTDailyMixTestManager> dailyMixTestManager; // @synthesize dailyMixTestManager=_dailyMixTestManager;
 @property(readonly, nonatomic) __weak id <SPTNowPlayingTestManager> testManager; // @synthesize testManager=_testManager;
 @property(readonly, nonatomic) __weak id <SPTQueueService> queueService; // @synthesize queueService=_queueService;
 @property(readonly, nonatomic) __weak id <SPTProductState> productState; // @synthesize productState=_productState;
@@ -49,7 +47,7 @@
 - (void)removeObserver:(id)arg1;
 - (void)addObserver:(id)arg1;
 - (void)dealloc;
-- (id)initWithPlayer:(id)arg1 productState:(id)arg2 queueService:(id)arg3 testManager:(id)arg4 dailyMixTestManager:(id)arg5;
+- (id)initWithPlayer:(id)arg1 productState:(id)arg2 queueService:(id)arg3 testManager:(id)arg4;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

@@ -14,10 +14,6 @@
 
 @interface SPTFormatListPlatformRemoteControlPolicyImplementation : NSObject <SPTPlayerObserver, SPTNowPlayingRemoteControlPolicy>
 {
-    _Bool shouldRepeatCommandBeAvailable;
-    _Bool shouldRepeatCommandBeEnabled;
-    _Bool shouldShuffleCommandBeAvailable;
-    _Bool shouldShuffleCommandBeEnabled;
     _Bool _shouldNextTrackCommandBeAvailable;
     _Bool _shouldNextTrackCommandBeEnabled;
     _Bool _shouldPreviousTrackCommandBeAvailable;
@@ -26,12 +22,9 @@
     _Bool _shouldSkipBackwardCommandBeEnabled;
     _Bool _shouldSkipForwardCommandBeAvailable;
     _Bool _shouldSkipForwardCommandBeEnabled;
-    _Bool _shouldSeekForwardCommandBeAvailable;
-    _Bool _shouldSeekForwardCommandBeEnabled;
-    _Bool _shouldSeekBackwardCommandBeAvailable;
-    _Bool _shouldSeekBackwardCommandBeEnabled;
     _Bool _shouldChangePlaybackPositionCommandBeAvailable;
     _Bool _shouldChangePlaybackPositionCommandBeEnabled;
+    _Bool _shouldPauseCommandBeEnabled;
     _Bool _shouldLikeCommandBeAvailable;
     _Bool _shouldLikeCommandBeEnabled;
     _Bool _shouldLikeCommandBeSelected;
@@ -69,12 +62,9 @@
 @property(nonatomic) _Bool shouldLikeCommandBeSelected; // @synthesize shouldLikeCommandBeSelected=_shouldLikeCommandBeSelected;
 @property(nonatomic) _Bool shouldLikeCommandBeEnabled; // @synthesize shouldLikeCommandBeEnabled=_shouldLikeCommandBeEnabled;
 @property(nonatomic) _Bool shouldLikeCommandBeAvailable; // @synthesize shouldLikeCommandBeAvailable=_shouldLikeCommandBeAvailable;
+@property(nonatomic) _Bool shouldPauseCommandBeEnabled; // @synthesize shouldPauseCommandBeEnabled=_shouldPauseCommandBeEnabled;
 @property(nonatomic) _Bool shouldChangePlaybackPositionCommandBeEnabled; // @synthesize shouldChangePlaybackPositionCommandBeEnabled=_shouldChangePlaybackPositionCommandBeEnabled;
 @property(nonatomic) _Bool shouldChangePlaybackPositionCommandBeAvailable; // @synthesize shouldChangePlaybackPositionCommandBeAvailable=_shouldChangePlaybackPositionCommandBeAvailable;
-@property(nonatomic) _Bool shouldSeekBackwardCommandBeEnabled; // @synthesize shouldSeekBackwardCommandBeEnabled=_shouldSeekBackwardCommandBeEnabled;
-@property(nonatomic) _Bool shouldSeekBackwardCommandBeAvailable; // @synthesize shouldSeekBackwardCommandBeAvailable=_shouldSeekBackwardCommandBeAvailable;
-@property(nonatomic) _Bool shouldSeekForwardCommandBeEnabled; // @synthesize shouldSeekForwardCommandBeEnabled=_shouldSeekForwardCommandBeEnabled;
-@property(nonatomic) _Bool shouldSeekForwardCommandBeAvailable; // @synthesize shouldSeekForwardCommandBeAvailable=_shouldSeekForwardCommandBeAvailable;
 @property(retain, nonatomic) NSArray *skipForwardCommandIntervals; // @synthesize skipForwardCommandIntervals=_skipForwardCommandIntervals;
 @property(nonatomic) _Bool shouldSkipForwardCommandBeEnabled; // @synthesize shouldSkipForwardCommandBeEnabled=_shouldSkipForwardCommandBeEnabled;
 @property(nonatomic) _Bool shouldSkipForwardCommandBeAvailable; // @synthesize shouldSkipForwardCommandBeAvailable=_shouldSkipForwardCommandBeAvailable;
@@ -91,10 +81,6 @@
 @property(readonly, nonatomic) id <SPTPlayer> player; // @synthesize player=_player;
 @property(readonly, nonatomic) id <SPTFormatListPlatformResolver> resolver; // @synthesize resolver=_resolver;
 @property(readonly, nonatomic) NSURL *URI; // @synthesize URI=_URI;
-@property(readonly, nonatomic) _Bool shouldShuffleCommandBeEnabled; // @synthesize shouldShuffleCommandBeEnabled;
-@property(readonly, nonatomic) _Bool shouldShuffleCommandBeAvailable; // @synthesize shouldShuffleCommandBeAvailable;
-@property(readonly, nonatomic) _Bool shouldRepeatCommandBeEnabled; // @synthesize shouldRepeatCommandBeEnabled;
-@property(readonly, nonatomic) _Bool shouldRepeatCommandBeAvailable; // @synthesize shouldRepeatCommandBeAvailable;
 @property(retain, nonatomic) SPTPlayerState *playerState; // @synthesize playerState=_playerState;
 - (void).cxx_destruct;
 - (void)player:(id)arg1 stateDidChange:(id)arg2;
@@ -112,8 +98,18 @@
 - (void)removeRemoteControlStateUpdateObserver:(id)arg1;
 - (void)addRemoteControlStateUpdateObserver:(id)arg1;
 - (void)bookmarkButtonPressedWithCompletion:(CDUnknownBlockType)arg1;
+@property(readonly, nonatomic) _Bool shouldPlaybackSpeedControlBeEnabled;
+@property(readonly, nonatomic) _Bool shouldPlaybackSpeedControlBeAvailable;
+@property(readonly, nonatomic) _Bool shouldSeekBackwardCommandBeEnabled;
+@property(readonly, nonatomic) _Bool shouldSeekBackwardCommandBeAvailable;
+@property(readonly, nonatomic) _Bool shouldSeekForwardCommandBeEnabled;
+@property(readonly, nonatomic) _Bool shouldSeekForwardCommandBeAvailable;
 - (void)shuffleButtonPressedWithShuffleType:(long long)arg1;
+@property(readonly, nonatomic) _Bool shouldShuffleCommandBeEnabled;
+@property(readonly, nonatomic) _Bool shouldShuffleCommandBeAvailable;
 - (void)repeatButtonPressedWithRepeatType:(long long)arg1;
+@property(readonly, nonatomic) _Bool shouldRepeatCommandBeEnabled;
+@property(readonly, nonatomic) _Bool shouldRepeatCommandBeAvailable;
 - (void)dislikeButtonPressedWithCompletion:(CDUnknownBlockType)arg1 identifier:(id)arg2;
 - (void)likeButtonPressedWithCompletion:(CDUnknownBlockType)arg1 identifier:(id)arg2;
 - (void)skipForwardWithInterval:(double)arg1;

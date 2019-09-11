@@ -6,24 +6,28 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTFeatureFlagSignalObserver-Protocol.h"
 #import "SPTSocialListeningTestManager-Protocol.h"
 
 @class NSString;
 @protocol SPTFeatureFlagFactory, SPTFeatureFlagSignal;
 
-@interface SPTSocialListeningTestManagerImplementation : NSObject <SPTFeatureFlagSignalObserver, SPTSocialListeningTestManager>
+@interface SPTSocialListeningTestManagerImplementation : NSObject <SPTSocialListeningTestManager>
 {
     _Bool _socialListeningEnabled;
+    _Bool _shareLinkEnabled;
     id <SPTFeatureFlagFactory> _featureFlagFactory;
     id <SPTFeatureFlagSignal> _socialListeningEnabledSignal;
+    id <SPTFeatureFlagSignal> _shareLinkEnabledSignal;
 }
 
+@property(retain, nonatomic) id <SPTFeatureFlagSignal> shareLinkEnabledSignal; // @synthesize shareLinkEnabledSignal=_shareLinkEnabledSignal;
 @property(retain, nonatomic) id <SPTFeatureFlagSignal> socialListeningEnabledSignal; // @synthesize socialListeningEnabledSignal=_socialListeningEnabledSignal;
+@property(nonatomic, getter=isShareLinkEnabled) _Bool shareLinkEnabled; // @synthesize shareLinkEnabled=_shareLinkEnabled;
 @property(nonatomic, getter=isSocialListeningEnabled) _Bool socialListeningEnabled; // @synthesize socialListeningEnabled=_socialListeningEnabled;
 @property(retain, nonatomic) id <SPTFeatureFlagFactory> featureFlagFactory; // @synthesize featureFlagFactory=_featureFlagFactory;
 - (void).cxx_destruct;
 - (void)featureFlagSignal:(id)arg1 hasAssumedState:(long long)arg2;
+- (void)setupShareLinkEnabledSignal;
 - (void)setupSocialListeningEnabledSignal;
 - (id)initWithFeatureFlagFactory:(id)arg1;
 

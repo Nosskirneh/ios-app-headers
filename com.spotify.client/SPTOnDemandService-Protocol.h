@@ -6,14 +6,13 @@
 
 #import "SPTService-Protocol.h"
 
-@protocol EXP_HUBContentOperation, SPTCeramicViewDecorator, SPTOnDemandSet;
+@protocol HUBContentOperation, SPTOnDemandSet;
 
 @protocol SPTOnDemandService <SPTService>
-- (id <SPTCeramicViewDecorator>)provideOnDemandCeramicViewDecorator;
-- (id <EXP_HUBContentOperation>)provideOnDemandCardAccessibilityContentOperation;
-- (id <EXP_HUBContentOperation>)provideOnDemandReloadContentOperation;
-- (id <EXP_HUBContentOperation>)provideOnDemandDecoratorContentOperation;
-- (id <EXP_HUBContentOperation>)provideOnDemandExtractorContentOperation;
+- (id <HUBContentOperation>)provideOnDemandCardAccessibilityContentOperation;
+- (id <HUBContentOperation>)provideOnDemandReloadContentOperation;
+- (id <HUBContentOperation>)provideOnDemandDecoratorContentOperation;
+- (id <HUBContentOperation>)provideOnDemandExtractorContentOperation;
 - (id <SPTOnDemandSet>)provideOnDemandSet;
 @end
 

@@ -4,16 +4,16 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import "EXP_HUBComponentView.h"
+#import "HUBComponentView.h"
 
-#import "EXP_HUBComponentViewWithEvents-Protocol.h"
+#import "HUBComponentViewWithEvents-Protocol.h"
 
 @class GLUEEntityRowCollectionViewCell, SPTAssistedCurationGLUETheme, UITapGestureRecognizer;
-@protocol EXP_HUBComponentEventHandler, GLUEImageLoader, SPTAudioPreviewModelFactory, SPTAudioPreviewUIFactory, SPTExplicitContentAccessManager;
+@protocol GLUEImageLoader, HUBComponentEventHandler, SPTAudioPreviewModelFactory, SPTAudioPreviewUIFactory, SPTExplicitContentAccessManager;
 
-@interface SPTAssistedCurationTrackItemComponentView : EXP_HUBComponentView <EXP_HUBComponentViewWithEvents>
+@interface SPTAssistedCurationTrackItemComponentView : HUBComponentView <HUBComponentViewWithEvents>
 {
-    id <EXP_HUBComponentEventHandler> _eventHandler;
+    id <HUBComponentEventHandler> _eventHandler;
     SPTAssistedCurationGLUETheme *_theme;
     id <SPTAudioPreviewModelFactory> _audioPreviewModelFactory;
     id <SPTAudioPreviewUIFactory> _audioPreviewUIFactory;
@@ -30,7 +30,7 @@
 @property(readonly, nonatomic) id <SPTAudioPreviewUIFactory> audioPreviewUIFactory; // @synthesize audioPreviewUIFactory=_audioPreviewUIFactory;
 @property(readonly, nonatomic) id <SPTAudioPreviewModelFactory> audioPreviewModelFactory; // @synthesize audioPreviewModelFactory=_audioPreviewModelFactory;
 @property(readonly, nonatomic) SPTAssistedCurationGLUETheme *theme; // @synthesize theme=_theme;
-@property(retain, nonatomic) id <EXP_HUBComponentEventHandler> eventHandler; // @synthesize eventHandler=_eventHandler;
+@property(retain, nonatomic) id <HUBComponentEventHandler> eventHandler; // @synthesize eventHandler=_eventHandler;
 - (void).cxx_destruct;
 - (void)didClickAddButton;
 - (void)onTapGesture:(id)arg1;

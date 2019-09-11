@@ -9,17 +9,15 @@
 #import "SPTCrashReporterService-Protocol.h"
 
 @class NSString, SPTAllocationContext, SPTCrashReporterImplementation;
-@protocol SPTContainerService, SPTCoreService;
+@protocol SPTCoreService;
 
 @interface SPTCrashReporterServiceImplementation : NSObject <SPTCrashReporterService>
 {
     SPTCrashReporterImplementation *_crashReporter;
     id <SPTCoreService> _coreService;
-    id <SPTContainerService> _containerService;
 }
 
 + (id)serviceIdentifier;
-@property(nonatomic) __weak id <SPTContainerService> containerService; // @synthesize containerService=_containerService;
 @property(nonatomic) __weak id <SPTCoreService> coreService; // @synthesize coreService=_coreService;
 @property(retain, nonatomic) SPTCrashReporterImplementation *crashReporter; // @synthesize crashReporter=_crashReporter;
 - (void).cxx_destruct;

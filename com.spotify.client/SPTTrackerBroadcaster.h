@@ -39,6 +39,7 @@
 - (void)sessionLoginModeChanged:(id)arg1;
 - (void)offlineModeState:(id)arg1 updated:(_Bool)arg2;
 - (void)setOfflineMode:(_Bool)arg1;
+- (void)userDidReconnect;
 - (void)userWillLogout;
 - (void)userDidLogout;
 - (void)userDidLoginWithProductState:(id)arg1;

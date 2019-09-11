@@ -30,6 +30,7 @@
 - (id)subtitleLabel;
 - (id)titleLabel;
 - (void)prepareForReuse;
+- (struct UIEdgeInsets)safeAreaInsets;
 - (id)initWithStyle:(long long)arg1 reuseIdentifier:(id)arg2;
 
 // Remaining properties

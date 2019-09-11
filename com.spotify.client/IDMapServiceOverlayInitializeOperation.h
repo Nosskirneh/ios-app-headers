@@ -13,7 +13,7 @@
 
 @property(readonly) double timeout; // @synthesize timeout=_timeout;
 - (id)description;
-- (void)handleMapServiceEvent:(unsigned long long)arg1 transferId:(long long)arg2;
+- (void)handleMapServiceEvent:(id)arg1 transferId:(long long)arg2;
 - (void)asyncMain;
 - (id)initWithEtchSession:(id)arg1 mapServiceHandle:(long long)arg2;
 - (id)initWithEtchSession:(id)arg1 mapServiceHandle:(long long)arg2 timeout:(double)arg3;

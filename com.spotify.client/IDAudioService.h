@@ -6,12 +6,10 @@
 
 #import "IDService.h"
 
-#import "IDEtchSessionAudioDelegate-Protocol.h"
-
-@class IDVehicleInfo, NSString;
+@class IDVehicleInfo;
 @protocol IDAudioServiceDelegate;
 
-@interface IDAudioService : IDService <IDEtchSessionAudioDelegate>
+@interface IDAudioService : IDService
 {
     int _entertainmentAudioState;
     int _interruptAudioState;
@@ -22,32 +20,27 @@
 @property(readonly) IDVehicleInfo *vehicleInfo; // @synthesize vehicleInfo=_vehicleInfo;
 @property __weak id <IDAudioServiceDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
-- (id)stringWithAudioConnectionType:(int)arg1;
-- (id)stringWithAudioButtonEvent:(int)arg1;
+- (id)stringWithAudioConnectionType:(unsigned long long)arg1;
+- (id)stringWithAudioButtonEvent:(unsigned long long)arg1;
 - (id)stringWithAudioState:(int)arg1;
-- (id)stringWithAudioPlayerState:(int)arg1;
+- (id)stringWithAudioPlayerState:(unsigned long long)arg1;
 - (void)performSelectorOnDelegate:(SEL)arg1 withObject:(id)arg2 completionHandler:(CDUnknownBlockType)arg3;
 - (_Bool)shouldSendArtificialPlayCommand:(int)arg1 vehicleInfo:(id)arg2;
-@property(readonly, copy) NSString *description;
-- (void)session:(id)arg1 audioService:(long long)arg2 handleConnection:(int)arg3 stateChanged:(int)arg4;
-- (void)session:(id)arg1 audioService:(long long)arg2 handleMultimediaButtonEvent:(int)arg3;
-- (void)session:(id)arg1 audioService:(long long)arg2 handleConnectionDenied:(int)arg3;
-- (void)session:(id)arg1 audioService:(long long)arg2 handleConnectionDeactivated:(int)arg3;
-- (void)session:(id)arg1 audioService:(long long)arg2 handleConnectionGranted:(int)arg3;
+- (id)description;
+- (void)session:(id)arg1 audioService:(long long)arg2 handleConnection:(unsigned long long)arg3 stateChanged:(unsigned long long)arg4;
+- (void)session:(id)arg1 audioService:(long long)arg2 handleMultimediaButtonEvent:(unsigned long long)arg3;
+- (void)session:(id)arg1 audioService:(long long)arg2 handleConnectionDenied:(unsigned long long)arg3;
+- (void)session:(id)arg1 audioService:(long long)arg2 handleConnectionDeactivated:(unsigned long long)arg3;
+- (void)session:(id)arg1 audioService:(long long)arg2 handleConnectionGranted:(unsigned long long)arg3;
 @property(nonatomic) int interruptAudioState; // @synthesize interruptAudioState=_interruptAudioState;
 @property(nonatomic) int entertainmentAudioState; // @synthesize entertainmentAudioState=_entertainmentAudioState;
-- (void)deactivateConnectionOfType:(int)arg1;
+- (void)deactivateConnectionOfType:(unsigned long long)arg1;
 - (void)deactivateInterrupt;
 - (void)deactivateEntertainment;
-- (void)activateConnectionOfType:(int)arg1;
+- (void)activateConnectionOfType:(unsigned long long)arg1;
 - (void)activateEntertainment;
 - (void)activateInterrupt;
 - (id)initWithEtchSession:(id)arg1 handle:(long long)arg2 vehicleInfo:(id)arg3;
-
-// Remaining properties
-@property(readonly, copy) NSString *debugDescription;
-@property(readonly) unsigned long long hash;
-@property(readonly) Class superclass;
 
 @end
 

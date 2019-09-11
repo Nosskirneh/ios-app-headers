@@ -6,18 +6,16 @@
 
 #import "SPTNowPlayingFeedbackManager-Protocol.h"
 
-@class NSString, NSURL, SPTDailyMixViewUtils, SPTPlayerTrack;
+@class NSString, NSURL, SPTPlayerTrack;
 @protocol SPTCollectionPlatformTestManager;
 
 @protocol SPTDailyMixManager <SPTNowPlayingFeedbackManager>
-@property(nonatomic, getter=isHubAvailable) _Bool hubAvailable;
-@property(readonly, nonatomic) SPTDailyMixViewUtils *viewUtils;
 @property(readonly, nonatomic) id <SPTCollectionPlatformTestManager> collectionTestManager;
-- (void)fetchDailyMixAvailability:(void (^)(_Bool, NSError *))arg1;
-- (void)fetchURLForDailyMixHub:(void (^)(NSURL *))arg1;
+- (void)negativeArtistFeedbackForTrack:(SPTPlayerTrack *)arg1 contextURL:(NSURL *)arg2 completion:(void (^)(_Bool, NSError *))arg3;
 - (void)negativeSongFeedbackForTrack:(SPTPlayerTrack *)arg1 contextURL:(NSURL *)arg2 completion:(void (^)(_Bool, NSError *))arg3;
 - (void)positiveSongFeedbackForTrack:(SPTPlayerTrack *)arg1 contextURL:(NSURL *)arg2 completion:(void (^)(_Bool, NSError *))arg3;
 - (long long)feedbackForTrackURL:(NSURL *)arg1;
-- (void)startDailyMixWithURL:(NSURL *)arg1 startedFromElement:(NSString *)arg2 completion:(void (^)(NSError *))arg3;
+- (void)startDecoratedDailyMixWithURL:(NSURL *)arg1 startedFromElement:(NSString *)arg2 atIndex:(unsigned long long)arg3 referrerIdentifier:(NSString *)arg4 completion:(void (^)(NSError *))arg5;
+- (void)startDailyMixWithURL:(NSURL *)arg1 startedFromElement:(NSString *)arg2 referrerIdentifier:(NSString *)arg3 completion:(void (^)(NSError *))arg4;
 @end
 

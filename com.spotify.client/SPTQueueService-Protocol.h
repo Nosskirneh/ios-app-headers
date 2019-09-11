@@ -7,13 +7,12 @@
 #import "SPTService-Protocol.h"
 
 @class SPTNowPlayingEntityDecorationController, UIViewController;
-@protocol SPTNowPlayingModeResolver, SPTNowPlayingUnitProvider, SPTQueueHeadUnitRegistry, SPTQueueInteractor, SPTQueueLogger, SPTQueuePlaybackDelegateRegistry, SPTQueueViewControllerDelegate;
+@protocol SPTNowPlayingModeResolver, SPTQueueInteractor, SPTQueueLogger, SPTQueuePlaybackDelegateRegistry, SPTQueueViewControllerDelegate;
 
 @protocol SPTQueueService <SPTService>
 - (id <SPTQueueLogger>)provideQueueLogger;
 - (id <SPTQueuePlaybackDelegateRegistry>)provideQueuePlaybackDelegateRegistry;
-- (id <SPTQueueHeadUnitRegistry>)provideQueueHeadUnitRegistry;
 - (id <SPTQueueInteractor>)provideQueueInteractor;
-- (struct UIViewController *)provideQueueViewControllerWithDelegate:(id <SPTQueueViewControllerDelegate>)arg1 headUnitProvider:(id <SPTNowPlayingUnitProvider>)arg2 modeResolver:(id <SPTNowPlayingModeResolver>)arg3 navigationBarUnitProvider:(id <SPTNowPlayingUnitProvider>)arg4 navigationBarButtonsUnitProvider:(id <SPTNowPlayingUnitProvider>)arg5 navigationBarViewControllerV2:(UIViewController *)arg6 queueInteractor:(id <SPTQueueInteractor>)arg7 entityDecorationController:(SPTNowPlayingEntityDecorationController *)arg8;
+- (struct UIViewController *)provideQueueViewControllerWithDelegate:(id <SPTQueueViewControllerDelegate>)arg1 modeResolver:(id <SPTNowPlayingModeResolver>)arg2 navigationBarViewControllerV2:(UIViewController *)arg3 queueInteractor:(id <SPTQueueInteractor>)arg4 entityDecorationController:(SPTNowPlayingEntityDecorationController *)arg5;
 @end
 

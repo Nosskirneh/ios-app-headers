@@ -9,7 +9,8 @@
 #import "UITableViewDataSource-Protocol.h"
 #import "UITableViewDelegate-Protocol.h"
 
-@class NSArray, NSDictionary, NSString, SPTActionButton, SPTAdCosmosBridge, SPTTheme, UISwitch, UITableView, UITapGestureRecognizer, UITextField, UITextView;
+@class NSArray, NSDictionary, NSString, SPTActionButton, SPTTheme, UISwitch, UITableView, UITapGestureRecognizer, UITextField, UITextView;
+@protocol SPTAdsBaseCosmosBridge;
 
 @interface SPTClientStateViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 {
@@ -23,7 +24,7 @@
     UITextField *_lastAdBreakStreamTime;
     SPTActionButton *_submitStateButton;
     NSDictionary *_activeConnectedDevice;
-    SPTAdCosmosBridge *_cosmosBridge;
+    id <SPTAdsBaseCosmosBridge> _cosmosBridge;
     SPTTheme *_theme;
     UIViewController *_clientStateViewController;
     NSArray *_cellReuseIdentifiers;
@@ -34,7 +35,7 @@
 @property(retain, nonatomic) NSArray *cellReuseIdentifiers; // @synthesize cellReuseIdentifiers=_cellReuseIdentifiers;
 @property(retain, nonatomic) UIViewController *clientStateViewController; // @synthesize clientStateViewController=_clientStateViewController;
 @property(retain, nonatomic) SPTTheme *theme; // @synthesize theme=_theme;
-@property(retain, nonatomic) SPTAdCosmosBridge *cosmosBridge; // @synthesize cosmosBridge=_cosmosBridge;
+@property(retain, nonatomic) id <SPTAdsBaseCosmosBridge> cosmosBridge; // @synthesize cosmosBridge=_cosmosBridge;
 @property(retain, nonatomic) NSDictionary *activeConnectedDevice; // @synthesize activeConnectedDevice=_activeConnectedDevice;
 @property(retain, nonatomic) SPTActionButton *submitStateButton; // @synthesize submitStateButton=_submitStateButton;
 @property(retain, nonatomic) UITextField *lastAdBreakStreamTime; // @synthesize lastAdBreakStreamTime=_lastAdBreakStreamTime;

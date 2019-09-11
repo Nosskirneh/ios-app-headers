@@ -7,39 +7,53 @@
 #import <UIKit/UIViewController.h>
 
 #import "SPTNowPlayingContainedViewController-Protocol.h"
-#import "SPTNowPlayingContainerIdleMonitorObserver-Protocol.h"
 #import "SPTNowPlayingInformationUnitViewModelDelegate-Protocol.h"
 
-@class NSString, SPTNowPlayingInformationUnitViewModelImplementation, SPTNowPlayingMarqueeLabel, SPTTheme;
+@class NSString, SPTNowPlayingFreeTierFeedbackButton, SPTNowPlayingInformationUnitViewModelImplementation, SPTNowPlayingMarqueeLabel, SPTTheme;
 @protocol SPTNowPlayingContainingViewController;
 
-@interface SPTNowPlayingInformationUnitViewController : UIViewController <SPTNowPlayingInformationUnitViewModelDelegate, SPTNowPlayingContainerIdleMonitorObserver, SPTNowPlayingContainedViewController>
+@interface SPTNowPlayingInformationUnitViewController : UIViewController <SPTNowPlayingInformationUnitViewModelDelegate, SPTNowPlayingContainedViewController>
 {
     SPTTheme *_theme;
+    long long _context;
     SPTNowPlayingMarqueeLabel *_titleLabel;
     SPTNowPlayingMarqueeLabel *_subtitleLabel;
+    SPTNowPlayingFreeTierFeedbackButton *_positiveFeedbackButton;
     SPTNowPlayingInformationUnitViewModelImplementation *_viewModel;
 }
 
 @property(readonly, nonatomic) SPTNowPlayingInformationUnitViewModelImplementation *viewModel; // @synthesize viewModel=_viewModel;
+@property(retain, nonatomic) SPTNowPlayingFreeTierFeedbackButton *positiveFeedbackButton; // @synthesize positiveFeedbackButton=_positiveFeedbackButton;
 @property(retain, nonatomic) SPTNowPlayingMarqueeLabel *subtitleLabel; // @synthesize subtitleLabel=_subtitleLabel;
 @property(retain, nonatomic) SPTNowPlayingMarqueeLabel *titleLabel; // @synthesize titleLabel=_titleLabel;
+@property(readonly, nonatomic) long long context; // @synthesize context=_context;
 @property(readonly, nonatomic) SPTTheme *theme; // @synthesize theme=_theme;
 - (void).cxx_destruct;
-- (void)idlePeriodDidEnd;
-- (void)idlePeriodDidBegin;
+- (void)viewModelDidUpdatePositiveFeedbackButtonState:(id)arg1;
+- (void)viewModelTrackDidChange:(id)arg1;
 - (void)updateLabels;
+- (void)updateFeedbackButton;
 - (struct CGSize)preferredContentSize;
 - (double)viewControllerPriority;
 - (unsigned long long)leadingEdge;
-- (void)setupConstraints;
+- (void)setupPositiveFeedbackButtonConstraints;
+- (id)centerAlignmentConstraints;
+- (id)naturalAlignmentConstraints;
+- (void)setupDefaultConstraints;
+- (double)contextDependentPositiveFeedbackButtonTrailingMargin;
+- (double)contextDependentTitleSideMargin;
+- (void)positiveFeedbackButtonTapped:(id)arg1;
 - (void)subtitleLabelTapped:(id)arg1;
 - (void)titleLabelTapped:(id)arg1;
 - (void)viewDidAppear:(_Bool)arg1;
 - (void)viewWillDisappear:(_Bool)arg1;
 - (void)viewWillAppear:(_Bool)arg1;
+- (void)setupPositiveFeedbackButton;
+- (void)setupSubtitleLabel;
+- (void)setupTitleLabel;
+- (void)setupUI;
 - (void)viewDidLoad;
-- (id)initWithTheme:(id)arg1 viewModel:(id)arg2;
+- (id)initWithTheme:(id)arg1 context:(long long)arg2 viewModel:(id)arg3;
 
 // Remaining properties
 @property(nonatomic) __weak UIViewController<SPTNowPlayingContainingViewController> *container;

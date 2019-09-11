@@ -6,10 +6,11 @@
 
 #import "NSObject-Protocol.h"
 
-@class NSError, SPTVideoPlayerImpl;
+@class NSError;
+@protocol SPTVideoPlayer;
 
 @protocol SPTVideoContextPlayerCoordinatorErrorHandler <NSObject>
-- (void)handleUnrecoverableError:(NSError *)arg1 atPlayer:(SPTVideoPlayerImpl *)arg2;
-- (void)handleRecoverableError:(NSError *)arg1 atPlayer:(SPTVideoPlayerImpl *)arg2;
+- (void)handleUnrecoverableError:(NSError *)arg1 atPlayer:(id <SPTVideoPlayer>)arg2;
+- (void)handleRecoverableError:(NSError *)arg1 atPlayer:(id <SPTVideoPlayer>)arg2;
 @end
 

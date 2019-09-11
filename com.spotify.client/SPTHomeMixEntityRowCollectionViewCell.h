@@ -6,12 +6,14 @@
 
 #import "GLUEEntityRowCollectionViewCell.h"
 
+@class SPTHomeMixTrackCellInteractionListener;
+
 @interface SPTHomeMixEntityRowCollectionViewCell : GLUEEntityRowCollectionViewCell
 {
-    id _interactionListener;
+    SPTHomeMixTrackCellInteractionListener *_interactionListener;
 }
 
-@property(retain, nonatomic) id interactionListener; // @synthesize interactionListener=_interactionListener;
+@property(retain, nonatomic) SPTHomeMixTrackCellInteractionListener *interactionListener; // @synthesize interactionListener=_interactionListener;
 - (void).cxx_destruct;
 - (id)preferredLayoutAttributesFittingAttributes:(id)arg1;
 

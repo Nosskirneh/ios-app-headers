@@ -6,32 +6,35 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTGaiaManagerObserver-Protocol.h"
+#import "SPTGaiaConnectObserver-Protocol.h"
+#import "SPTGaiaSocialListeningIntegrationManagerObserver-Protocol.h"
 
-@class NSNotificationCenter, NSString, SPTGaiaDevicePickerAppearanceManager, SPTTheme, UIColor, UIImage;
-@protocol SPTGaiaDevicesAvailableViewModelDelegate, SPTGaiaManager;
+@class NSNotificationCenter, NSString, SPTGaiaDevicePickerAppearanceManager, SPTGaiaSocialListeningIntegrationManager, SPTTheme, UIColor, UIImage;
+@protocol SPTGaiaConnectAPI, SPTGaiaDevicesAvailableViewModelDelegate;
 
-@interface SPTGaiaDevicesAvailableViewModel : NSObject <SPTGaiaManagerObserver>
+@interface SPTGaiaDevicesAvailableViewModel : NSObject <SPTGaiaConnectObserver, SPTGaiaSocialListeningIntegrationManagerObserver>
 {
     _Bool _hidesTextWhenDisconnected;
-    _Bool _ignoreDevicePickerAvailability;
     id <SPTGaiaDevicesAvailableViewModelDelegate> _delegate;
     NSString *_title;
     NSString *_accessibilityTitle;
     UIImage *_icon;
     UIColor *_color;
-    id <SPTGaiaManager> _gaiaManager;
+    id <SPTGaiaConnectAPI> _connectManager;
     SPTGaiaDevicePickerAppearanceManager *_appearanceManager;
     SPTTheme *_theme;
     NSNotificationCenter *_notificationCenter;
+    long long _appearanceRules;
+    SPTGaiaSocialListeningIntegrationManager *_socialListeningManager;
     struct CGSize _iconSize;
 }
 
-@property(readonly, nonatomic) _Bool ignoreDevicePickerAvailability; // @synthesize ignoreDevicePickerAvailability=_ignoreDevicePickerAvailability;
+@property(readonly, nonatomic) SPTGaiaSocialListeningIntegrationManager *socialListeningManager; // @synthesize socialListeningManager=_socialListeningManager;
+@property(readonly, nonatomic) long long appearanceRules; // @synthesize appearanceRules=_appearanceRules;
 @property(readonly, nonatomic) NSNotificationCenter *notificationCenter; // @synthesize notificationCenter=_notificationCenter;
 @property(readonly, nonatomic) SPTTheme *theme; // @synthesize theme=_theme;
 @property(readonly, nonatomic) SPTGaiaDevicePickerAppearanceManager *appearanceManager; // @synthesize appearanceManager=_appearanceManager;
-@property(readonly, nonatomic) id <SPTGaiaManager> gaiaManager; // @synthesize gaiaManager=_gaiaManager;
+@property(readonly, nonatomic) id <SPTGaiaConnectAPI> connectManager; // @synthesize connectManager=_connectManager;
 @property(nonatomic) _Bool hidesTextWhenDisconnected; // @synthesize hidesTextWhenDisconnected=_hidesTextWhenDisconnected;
 @property(copy, nonatomic) UIColor *color; // @synthesize color=_color;
 @property(copy, nonatomic) UIImage *icon; // @synthesize icon=_icon;
@@ -40,22 +43,28 @@
 @property(nonatomic) struct CGSize iconSize; // @synthesize iconSize=_iconSize;
 @property(nonatomic) __weak id <SPTGaiaDevicesAvailableViewModelDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
+- (void)socialListeningIntegrationManagerUpdated:(id)arg1;
 - (void)dealloc;
 - (id)inactiveFontColor;
 - (id)activeFontColor;
 - (id)createColor;
 - (id)createIcon;
+- (id)titleStringByHiddingLabelIfDisconnected:(_Bool)arg1;
+- (id)accessibilityString;
 - (id)titleString;
 - (id)createTitle;
+- (_Bool)shouldBeVisible;
+- (_Bool)shouldAnimate:(id)arg1;
 - (void)updateContent;
-- (void)gaiaManagerDidChangeConnectionTypesAvailable:(id)arg1;
-- (void)gaiaManagerDidChangeAvailable:(id)arg1;
-- (void)gaiaManagerDidChangeRemoteConnectionState:(id)arg1;
-- (void)gaiaManagerDidChangeActiveDeviceName:(id)arg1;
+- (void)connectActiveConnectionTypeDidChange:(long long)arg1;
+- (void)connectConnectionAvailabilityDidChange:(_Bool)arg1;
+- (void)connectConnectionStateDidChange:(long long)arg1;
+- (void)connectActiveDeviceDisplayNameDidChange:(id)arg1;
 - (void)setupIconSize;
 - (void)addThemeLayoutObserver;
+- (void)setupSocialListeningManager;
 - (void)setupGaiaManager;
-- (id)initWithGaiaManager:(id)arg1 theme:(id)arg2 appearanceManager:(id)arg3 notificationCenter:(id)arg4 ignoreDevicePickerAvailability:(_Bool)arg5;
+- (id)initWithConnectManager:(id)arg1 theme:(id)arg2 appearanceManager:(id)arg3 notificationCenter:(id)arg4 appearanceRules:(long long)arg5 socialListeningManager:(id)arg6;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

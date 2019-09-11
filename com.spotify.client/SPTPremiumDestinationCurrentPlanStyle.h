@@ -16,14 +16,16 @@
     GLUELabelStyle *_subtitleLabelStyle;
     UIColor *_backgroundColor;
     double _cornerRadius;
-    double _textMargin;
+    double _contentSideMargin;
+    double _itemSpacing;
     double _componentViewHeight;
     double _componentViewMargin;
 }
 
 @property(nonatomic) double componentViewMargin; // @synthesize componentViewMargin=_componentViewMargin;
 @property(nonatomic) double componentViewHeight; // @synthesize componentViewHeight=_componentViewHeight;
-@property(nonatomic) double textMargin; // @synthesize textMargin=_textMargin;
+@property(nonatomic) double itemSpacing; // @synthesize itemSpacing=_itemSpacing;
+@property(nonatomic) double contentSideMargin; // @synthesize contentSideMargin=_contentSideMargin;
 @property(nonatomic) double cornerRadius; // @synthesize cornerRadius=_cornerRadius;
 @property(retain, nonatomic) UIColor *backgroundColor; // @synthesize backgroundColor=_backgroundColor;
 @property(retain, nonatomic) GLUELabelStyle *subtitleLabelStyle; // @synthesize subtitleLabelStyle=_subtitleLabelStyle;

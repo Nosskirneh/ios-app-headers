@@ -6,7 +6,7 @@
 
 #import "GPBMessage.h"
 
-@class NSString;
+@class NSData, NSString;
 
 @interface DeviceIos : GPBMessage
 {
@@ -17,7 +17,9 @@
 // Remaining properties
 @property(copy, nonatomic) NSString *deviceType; // @dynamic deviceType;
 @property(nonatomic) _Bool hasDeviceType; // @dynamic hasDeviceType;
+@property(nonatomic) _Bool hasIdentifierForVendor; // @dynamic hasIdentifierForVendor;
 @property(nonatomic) _Bool hasOsVersion; // @dynamic hasOsVersion;
+@property(copy, nonatomic) NSData *identifierForVendor; // @dynamic identifierForVendor;
 @property(copy, nonatomic) NSString *osVersion; // @dynamic osVersion;
 
 @end

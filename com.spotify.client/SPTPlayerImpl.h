@@ -63,6 +63,7 @@
 - (id)updateWithContext:(id)arg1;
 - (id)seekTo:(double)arg1 options:(id)arg2;
 - (id)seekTo:(double)arg1;
+- (id)setOptions:(id)arg1;
 - (id)setRepeatingTrack:(_Bool)arg1;
 - (id)setRepeatingContext:(_Bool)arg1;
 - (id)setShufflingContext:(_Bool)arg1;

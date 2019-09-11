@@ -18,11 +18,11 @@
 }
 
 + (id)messageWithErrorType:(id)arg1 requestUri:(id)arg2 statusCode:(long long)arg3 errorLocalizeddescription:(id)arg4 messageFormat:(id)arg5;
-@property(retain, nonatomic) NSString *messageFormatValue; // @synthesize messageFormatValue=_messageFormatValue;
-@property(retain, nonatomic) NSString *errorLocalizeddescriptionValue; // @synthesize errorLocalizeddescriptionValue=_errorLocalizeddescriptionValue;
+@property(copy, nonatomic) NSString *messageFormatValue; // @synthesize messageFormatValue=_messageFormatValue;
+@property(copy, nonatomic) NSString *errorLocalizeddescriptionValue; // @synthesize errorLocalizeddescriptionValue=_errorLocalizeddescriptionValue;
 @property(nonatomic) long long statusCodeValue; // @synthesize statusCodeValue=_statusCodeValue;
-@property(retain, nonatomic) NSString *requestUriValue; // @synthesize requestUriValue=_requestUriValue;
-@property(retain, nonatomic) NSString *errorTypeValue; // @synthesize errorTypeValue=_errorTypeValue;
+@property(copy, nonatomic) NSString *requestUriValue; // @synthesize requestUriValue=_requestUriValue;
+@property(copy, nonatomic) NSString *errorTypeValue; // @synthesize errorTypeValue=_errorTypeValue;
 - (void).cxx_destruct;
 - (_Bool)isEqual:(id)arg1;
 - (unsigned long long)hash;

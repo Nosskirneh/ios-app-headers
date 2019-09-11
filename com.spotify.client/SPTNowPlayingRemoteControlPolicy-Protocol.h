@@ -7,10 +7,12 @@
 #import "NSObject-Protocol.h"
 
 @class NSArray, NSString, SPTPlayerState;
-@protocol SPTNowPlayingRemoteControlPolicyUpdateOserver;
+@protocol SPTNowPlayingRemoteControlPolicyUpdateObserver;
 
 @protocol SPTNowPlayingRemoteControlPolicy <NSObject>
 @property(retain, nonatomic) SPTPlayerState *playerState;
+@property(readonly, nonatomic) _Bool shouldPlaybackSpeedControlBeEnabled;
+@property(readonly, nonatomic) _Bool shouldPlaybackSpeedControlBeAvailable;
 @property(readonly, nonatomic) NSString *localizedTitleForBookmarkCommand;
 @property(readonly, nonatomic) _Bool shouldBookmarkCommandBeEnabled;
 @property(readonly, nonatomic) _Bool shouldBookmarkCommandBeAvailable;
@@ -28,6 +30,7 @@
 @property(readonly, nonatomic) _Bool shouldLikeCommandBeAvailable;
 @property(readonly, nonatomic) _Bool shouldChangePlaybackPositionCommandBeEnabled;
 @property(readonly, nonatomic) _Bool shouldChangePlaybackPositionCommandBeAvailable;
+@property(readonly, nonatomic) _Bool shouldPauseCommandBeEnabled;
 @property(readonly, nonatomic) _Bool shouldSeekBackwardCommandBeEnabled;
 @property(readonly, nonatomic) _Bool shouldSeekBackwardCommandBeAvailable;
 @property(readonly, nonatomic) _Bool shouldSeekForwardCommandBeEnabled;
@@ -42,8 +45,8 @@
 @property(readonly, nonatomic) _Bool shouldPreviousTrackCommandBeAvailable;
 @property(readonly, nonatomic) _Bool shouldNextTrackCommandBeEnabled;
 @property(readonly, nonatomic) _Bool shouldNextTrackCommandBeAvailable;
-- (void)removeRemoteControlStateUpdateObserver:(id <SPTNowPlayingRemoteControlPolicyUpdateOserver>)arg1;
-- (void)addRemoteControlStateUpdateObserver:(id <SPTNowPlayingRemoteControlPolicyUpdateOserver>)arg1;
+- (void)removeRemoteControlStateUpdateObserver:(id <SPTNowPlayingRemoteControlPolicyUpdateObserver>)arg1;
+- (void)addRemoteControlStateUpdateObserver:(id <SPTNowPlayingRemoteControlPolicyUpdateObserver>)arg1;
 - (void)bookmarkButtonPressedWithCompletion:(void (^)(_Bool, NSError *))arg1;
 - (void)shuffleButtonPressedWithShuffleType:(long long)arg1;
 - (void)repeatButtonPressedWithRepeatType:(long long)arg1;

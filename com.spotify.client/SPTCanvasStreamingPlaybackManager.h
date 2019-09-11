@@ -6,7 +6,7 @@
 
 #import <objc/NSObject.h>
 
-@class NSURL;
+@class NSString, NSURL;
 @protocol SPTCanvasStreamingPlaybackManagerLoadDelegate, SPTVideoPlaybackRequestFactory, SPTVideoPlayer, SPTVideoURLAssetLoader;
 
 @interface SPTCanvasStreamingPlaybackManager : NSObject
@@ -16,8 +16,10 @@
     id <SPTVideoPlayer> _videoPlayer;
     id <SPTVideoURLAssetLoader> _videoManager;
     NSURL *_assetURL;
+    NSString *_playbackIdentifier;
 }
 
+@property(copy, nonatomic) NSString *playbackIdentifier; // @synthesize playbackIdentifier=_playbackIdentifier;
 @property(retain, nonatomic) NSURL *assetURL; // @synthesize assetURL=_assetURL;
 @property(readonly, nonatomic) id <SPTVideoURLAssetLoader> videoManager; // @synthesize videoManager=_videoManager;
 @property(readonly, nonatomic) id <SPTVideoPlayer> videoPlayer; // @synthesize videoPlayer=_videoPlayer;
@@ -29,8 +31,8 @@
 - (_Bool)shouldRepeatVideo:(long long)arg1;
 - (void)setAssetURL:(id)arg1 assetDuration:(double)arg2 entityURI:(id)arg3 playbackOption:(long long)arg4;
 - (void)setManifestID:(id)arg1 entityURI:(id)arg2 playbackOption:(long long)arg3;
-- (id)requestForEntityURI:(id)arg1 playbackOption:(long long)arg2;
-- (void)didLoadAsset:(id)arg1 assetURL:(id)arg2 entityURI:(id)arg3 playbackOption:(long long)arg4;
+- (id)playbackRequestMetadataForEntityURI:(id)arg1 playbackOption:(long long)arg2 isStreamingAsset:(_Bool)arg3;
+- (void)didLoadAsset:(id)arg1 error:(id)arg2 assetURL:(id)arg3 entityURI:(id)arg4 playbackOption:(long long)arg5;
 - (void)loadAssetURL:(id)arg1 entityURI:(id)arg2 playbackOption:(long long)arg3;
 - (void)dealloc;
 - (id)initWithVideoPlayer:(id)arg1 videoManager:(id)arg2 videoPlaybackRequestFactory:(id)arg3;

@@ -6,9 +6,7 @@
 
 #import "NSObject-Protocol.h"
 
-@protocol SPTNowPlayingManager;
-
 @protocol SPTInAppMessageNowPlayingManagerRegistry <NSObject>
-- (void)setNowPlayingManager:(id <SPTNowPlayingManager>)arg1;
+- (void)setNowPlayingViewVisibilityObserverBlock:(_Bool (^)(void))arg1;
 @end
 

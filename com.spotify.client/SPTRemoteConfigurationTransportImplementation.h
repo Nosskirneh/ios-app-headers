@@ -9,23 +9,19 @@
 #import "SPTDataLoaderDelegate-Protocol.h"
 #import "SPTRemoteConfigurationTransport-Protocol.h"
 
-@class NSString, NSURL, SPTDataLoader;
+@class NSString, SPTDataLoader;
 
 @interface SPTRemoteConfigurationTransportImplementation : NSObject <SPTDataLoaderDelegate, SPTRemoteConfigurationTransport>
 {
-    NSURL *_baseURL;
     SPTDataLoader *_dataLoader;
-    CDUnknownBlockType _fetchCompletionBlock;
 }
 
-@property(copy, nonatomic) CDUnknownBlockType fetchCompletionBlock; // @synthesize fetchCompletionBlock=_fetchCompletionBlock;
 @property(readonly, nonatomic) SPTDataLoader *dataLoader; // @synthesize dataLoader=_dataLoader;
-@property(readonly, nonatomic) NSURL *baseURL; // @synthesize baseURL=_baseURL;
 - (void).cxx_destruct;
 - (void)dataLoader:(id)arg1 didReceiveErrorResponse:(id)arg2;
 - (void)dataLoader:(id)arg1 didReceiveSuccessfulResponse:(id)arg2;
-- (void)fetchConfigurationWithClientAttributes:(id)arg1 path:(id)arg2 completion:(CDUnknownBlockType)arg3;
-- (id)initWithConfigurationServiceURL:(id)arg1 dataLoader:(id)arg2;
+- (void)fetchConfigurationWithClientAttributes:(id)arg1 url:(id)arg2 backgroundFetchCompletion:(CDUnknownBlockType)arg3 success:(CDUnknownBlockType)arg4 failure:(CDUnknownBlockType)arg5;
+- (id)initWithDataLoader:(id)arg1;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

@@ -7,49 +7,48 @@
 #import <objc/NSObject.h>
 
 #import "SPSessionObserver-Protocol.h"
-#import "SPTAuthRequestDelegate-Protocol.h"
 #import "SPTAuthService-Protocol.h"
 #import "SPTURISubtypeHandler-Protocol.h"
 
-@class NSString, SPTAllocationContext, SPTAuthAccountsFeatureFlagManager, SPTAuthRequest, SPTObserverManager, SPTProgressView;
-@protocol GaiaFeature, SPTContainerUIService, SPTExternalIntegrationPlatformService, SPTFeatureFlaggingService, SPTNetworkService, SPTSessionService, SPTURIDispatchService;
+@class NSString, SPTAllocationContext, SPTAuthCache, SPTAuthCacheEnvironmentObserver, SPTAuthControllerImplementation;
+@protocol GaiaFeature, SPTAuthTestManager, SPTContainerService, SPTContainerUIService, SPTExternalIntegrationPlatformService, SPTFeatureFlaggingService, SPTNetworkService, SPTSessionService, SPTSpotifyAppProtocolService, SPTURIDispatchService;
 
-@interface AuthFeatureImplementation : NSObject <SPTURISubtypeHandler, SPTAuthRequestDelegate, SPTAuthService, SPSessionObserver>
+@interface AuthFeatureImplementation : NSObject <SPTURISubtypeHandler, SPTAuthService, SPSessionObserver>
 {
+    SPTAuthControllerImplementation *_authController;
     id <SPTContainerUIService> _containerUIService;
+    id <SPTContainerService> _containerService;
     id <SPTSessionService> _clientSessionService;
     id <SPTNetworkService> _networkService;
     id <SPTExternalIntegrationPlatformService> _externalIntegrationPlatformService;
     id <GaiaFeature> _gaiaFeature;
     id <SPTURIDispatchService> _URIDispatchService;
     id <SPTFeatureFlaggingService> _featureFlaggingService;
-    SPTAuthAccountsFeatureFlagManager *_featureFlagManager;
-    SPTAuthRequest *_authRequest;
-    SPTProgressView *_progressView;
-    SPTObserverManager *_observerManager;
+    id <SPTSpotifyAppProtocolService> _appProtocolService;
+    id <SPTAuthTestManager> _testManager;
+    SPTAuthCacheEnvironmentObserver *_environmentObserver;
+    SPTAuthCache *_authCache;
 }
 
 + (id)serviceIdentifier;
-@property(readonly, nonatomic) SPTObserverManager *observerManager; // @synthesize observerManager=_observerManager;
-@property(retain, nonatomic) SPTProgressView *progressView; // @synthesize progressView=_progressView;
-@property(retain, nonatomic) SPTAuthRequest *authRequest; // @synthesize authRequest=_authRequest;
-@property(retain, nonatomic) SPTAuthAccountsFeatureFlagManager *featureFlagManager; // @synthesize featureFlagManager=_featureFlagManager;
+@property(retain, nonatomic) SPTAuthCache *authCache; // @synthesize authCache=_authCache;
+@property(retain, nonatomic) SPTAuthCacheEnvironmentObserver *environmentObserver; // @synthesize environmentObserver=_environmentObserver;
+@property(retain, nonatomic) id <SPTAuthTestManager> testManager; // @synthesize testManager=_testManager;
+@property(nonatomic) __weak id <SPTSpotifyAppProtocolService> appProtocolService; // @synthesize appProtocolService=_appProtocolService;
 @property(nonatomic) __weak id <SPTFeatureFlaggingService> featureFlaggingService; // @synthesize featureFlaggingService=_featureFlaggingService;
 @property(nonatomic) __weak id <SPTURIDispatchService> URIDispatchService; // @synthesize URIDispatchService=_URIDispatchService;
 @property(nonatomic) __weak id <GaiaFeature> gaiaFeature; // @synthesize gaiaFeature=_gaiaFeature;
 @property(nonatomic) __weak id <SPTExternalIntegrationPlatformService> externalIntegrationPlatformService; // @synthesize externalIntegrationPlatformService=_externalIntegrationPlatformService;
 @property(nonatomic) __weak id <SPTNetworkService> networkService; // @synthesize networkService=_networkService;
 @property(nonatomic) __weak id <SPTSessionService> clientSessionService; // @synthesize clientSessionService=_clientSessionService;
+@property(nonatomic) __weak id <SPTContainerService> containerService; // @synthesize containerService=_containerService;
 @property(nonatomic) __weak id <SPTContainerUIService> containerUIService; // @synthesize containerUIService=_containerUIService;
+@property(retain, nonatomic) SPTAuthControllerImplementation *authController; // @synthesize authController=_authController;
 - (void).cxx_destruct;
-- (void)removeAuthServiceObserver:(id)arg1;
-- (void)addAuthServiceObserver:(id)arg1;
-- (void)authRequest:(id)arg1 didCompleteWithResponseURI:(id)arg2;
-- (void)authRequestDidStart:(id)arg1;
 - (long long)URISubtypeHandlerOpenURI:(id)arg1 context:(id)arg2;
 - (_Bool)URISubtypeHandlerCanHandleURI:(id)arg1;
-- (_Bool)isOffline;
-- (void)authenticateWithURL:(id)arg1 sourceApplication:(id)arg2;
+- (id)provideAuthController;
+- (void)unload;
 - (void)load;
 - (void)configureWithServices:(id)arg1;
 

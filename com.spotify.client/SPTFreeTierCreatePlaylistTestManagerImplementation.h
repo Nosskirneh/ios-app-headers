@@ -6,13 +6,12 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTFeatureFlagSignalObserver-Protocol.h"
 #import "SPTFreeTierCreatePlaylistTestManager-Protocol.h"
 
 @class NSString;
 @protocol SPTFeatureFlagFactory, SPTFeatureFlagSignal;
 
-@interface SPTFreeTierCreatePlaylistTestManagerImplementation : NSObject <SPTFeatureFlagSignalObserver, SPTFreeTierCreatePlaylistTestManager>
+@interface SPTFreeTierCreatePlaylistTestManagerImplementation : NSObject <SPTFreeTierCreatePlaylistTestManager>
 {
     _Bool _createPlaylistEnabled;
     id <SPTFeatureFlagFactory> _featureFlagFactory;

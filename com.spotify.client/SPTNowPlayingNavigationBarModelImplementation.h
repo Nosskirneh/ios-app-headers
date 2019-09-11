@@ -42,6 +42,10 @@
 @property(nonatomic) _Bool shouldDisableNavBarButtons; // @synthesize shouldDisableNavBarButtons=_shouldDisableNavBarButtons;
 - (void).cxx_destruct;
 @property(readonly, nonatomic) _Bool isEntityRadio;
+@property(readonly, nonatomic) NSString *showsFormatNavigationBarTitle;
+- (id)defaultNavigationBarTitle;
+@property(readonly, nonatomic) NSString *navigationBarSubtitle;
+- (_Bool)isPodcastAd;
 @property(readonly, nonatomic) NSString *navigationBarTitle;
 - (void)removeObserver:(id)arg1;
 - (void)addObserver:(id)arg1;

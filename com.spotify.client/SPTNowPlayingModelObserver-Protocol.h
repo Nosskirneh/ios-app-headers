@@ -14,5 +14,8 @@
 
 @optional
 - (void)nowPlayingModel:(SPTNowPlayingModel *)arg1 toggleModeDidChange:(unsigned long long)arg2 animated:(_Bool)arg3;
+- (void)nowPlayingModelDidSynchronizeQueue:(SPTNowPlayingModel *)arg1;
+- (void)nowPlayingModelPreviousTrackDidChange:(SPTNowPlayingModel *)arg1;
+- (void)nowPlayingModelNextTrackDidChange:(SPTNowPlayingModel *)arg1;
 @end
 

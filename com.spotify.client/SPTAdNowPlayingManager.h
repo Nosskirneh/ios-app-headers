@@ -7,25 +7,26 @@
 #import <objc/NSObject.h>
 
 #import "SPTAdFocusManagerObserver-Protocol.h"
-#import "SPTAdRegistryObserver-Protocol.h"
+#import "SPTAdsBaseRegistryObserver-Protocol.h"
+#import "SPTGaiaSystemVolumeObserver-Protocol.h"
 #import "SPTPlayerObserver-Protocol.h"
 
-@class AVAudioSession, NSString, SPTAdCosmosBridge, SPTAdFeatureFlagChecks, SPTAdFocusManager, SPTAdRegistry, SPTPlayerState;
-@protocol SPContextMenuFeature, SPTAdEventLogger, SPTNowPlayingManager, SPTPlayer;
+@class AVAudioSession, NSString, SPTAdFeatureFlagChecks, SPTAdFocusManager, SPTPlayerState;
+@protocol SPContextMenuFeature, SPTAdsBaseCosmosBridge, SPTAdsBaseRegistry, SPTGaiaSystemVolumeManager, SPTNowPlayingManager, SPTPlayer;
 
-@interface SPTAdNowPlayingManager : NSObject <SPTAdRegistryObserver, SPTPlayerObserver, SPTAdFocusManagerObserver>
+@interface SPTAdNowPlayingManager : NSObject <SPTAdsBaseRegistryObserver, SPTPlayerObserver, SPTAdFocusManagerObserver, SPTGaiaSystemVolumeObserver>
 {
     _Bool _inAdBreak;
     _Bool _nowPlayingViewHiddenBeforeAdStart;
     float _previousVolume;
     id <SPTNowPlayingManager> _nowPlayingManager;
-    SPTAdCosmosBridge *_cosmosBridge;
-    SPTAdRegistry *_adRegistry;
+    id <SPTAdsBaseCosmosBridge> _cosmosBridge;
+    id <SPTAdsBaseRegistry> _adRegistry;
     id <SPTPlayer> _player;
     SPTAdFeatureFlagChecks *_featureChecker;
     SPTAdFocusManager *_adFocusManager;
-    id <SPTAdEventLogger> _adEventLogger;
     id <SPContextMenuFeature> _contextMenuFeature;
+    id <SPTGaiaSystemVolumeManager> _systemVolumeManager;
     AVAudioSession *_audioSession;
     NSString *_previousAudioOutput;
 }
@@ -34,25 +35,25 @@
 @property(retain, nonatomic) NSString *previousAudioOutput; // @synthesize previousAudioOutput=_previousAudioOutput;
 @property(nonatomic) float previousVolume; // @synthesize previousVolume=_previousVolume;
 @property(retain, nonatomic) AVAudioSession *audioSession; // @synthesize audioSession=_audioSession;
+@property(retain, nonatomic) id <SPTGaiaSystemVolumeManager> systemVolumeManager; // @synthesize systemVolumeManager=_systemVolumeManager;
 @property(nonatomic) __weak id <SPContextMenuFeature> contextMenuFeature; // @synthesize contextMenuFeature=_contextMenuFeature;
-@property(retain, nonatomic) id <SPTAdEventLogger> adEventLogger; // @synthesize adEventLogger=_adEventLogger;
 @property(retain, nonatomic) SPTAdFocusManager *adFocusManager; // @synthesize adFocusManager=_adFocusManager;
 @property(retain, nonatomic) SPTAdFeatureFlagChecks *featureChecker; // @synthesize featureChecker=_featureChecker;
 @property(retain, nonatomic) id <SPTPlayer> player; // @synthesize player=_player;
-@property(retain, nonatomic) SPTAdRegistry *adRegistry; // @synthesize adRegistry=_adRegistry;
-@property(retain, nonatomic) SPTAdCosmosBridge *cosmosBridge; // @synthesize cosmosBridge=_cosmosBridge;
+@property(retain, nonatomic) id <SPTAdsBaseRegistry> adRegistry; // @synthesize adRegistry=_adRegistry;
+@property(retain, nonatomic) id <SPTAdsBaseCosmosBridge> cosmosBridge; // @synthesize cosmosBridge=_cosmosBridge;
 @property(nonatomic, getter=isInAdBreak) _Bool inAdBreak; // @synthesize inAdBreak=_inAdBreak;
 @property(nonatomic) __weak id <SPTNowPlayingManager> nowPlayingManager; // @synthesize nowPlayingManager=_nowPlayingManager;
 - (void).cxx_destruct;
-- (_Bool)isVideoCompanionAd:(id)arg1;
-- (void)adFocusManagerDidResignActive:(id)arg1;
-- (void)adFocusManagerDidBecomeActive:(id)arg1;
+- (void)systemVolumeDidUpdate:(double)arg1;
+- (void)adFocusManagerDidEnterBackground:(id)arg1;
+- (void)adFocusManagerWillEnterForeground:(id)arg1;
 - (void)adRegistry:(id)arg1 didProcessAdEntity:(id)arg2 event:(long long)arg3;
 - (void)processAdBreakChange:(id)arg1;
 - (void)subscribeToAdBreakChanges;
 - (void)logEvent:(id)arg1;
 - (id)getAudioRoute;
-- (void)volumeChanged:(id)arg1;
+- (void)volumeChanged;
 - (void)audioRouteChanged:(id)arg1;
 - (void)addAVAudioChangeObservers;
 - (void)showNowPlayingView:(CDUnknownBlockType)arg1;
@@ -61,7 +62,7 @@
 @property(readonly, nonatomic, getter=isPlayingAd) _Bool playingAd;
 @property(readonly, nonatomic) SPTPlayerState *currentPlayerState;
 - (void)dealloc;
-- (id)initWithCosmosBridge:(id)arg1 adRegistry:(id)arg2 player:(id)arg3 featureChecker:(id)arg4 adFocusManager:(id)arg5 adEventLogger:(id)arg6 contextMenuFeature:(id)arg7;
+- (id)initWithCosmosBridge:(id)arg1 adRegistry:(id)arg2 player:(id)arg3 featureChecker:(id)arg4 adFocusManager:(id)arg5 contextMenuFeature:(id)arg6 systemVolumeManager:(id)arg7;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

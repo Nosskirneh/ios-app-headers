@@ -6,9 +6,12 @@
 
 #import "NSObject-Protocol.h"
 
-@class UILabel;
+@class GLUEButton, UILabel;
 
 @protocol SPTPodcastHeaderDescriptionViewDelegate <NSObject>
 - (void)didTapPodcastDescriptionTextOnLabel:(UILabel *)arg1;
+
+@optional
+- (void)followButtonTapped:(GLUEButton *)arg1;
 @end
 

@@ -10,7 +10,7 @@
 #import "SPTPlayerObserver-Protocol.h"
 
 @class NSMutableArray, NSString, NSURL, SPSession, SPTDataLoader, SPTInfinitePlaybackContext, SPTNetworkConnectivityController, SPTRadioAutoplayOfflineLogger, SPTRadioLogger, SPTRadioPlaybackService;
-@protocol SPTGaiaManager, SPTLocalSettings, SPTPlayer;
+@protocol SPTGaiaConnectAPI, SPTLocalSettings, SPTPlayer;
 
 @interface SPTInfinitePlaybackManager : NSObject <SPTDataLoaderDelegate, SPTPlayerObserver>
 {
@@ -23,7 +23,7 @@
     SPSession *_session;
     SPTDataLoader *_dataLoader;
     SPTNetworkConnectivityController *_networkConnectivity;
-    id <SPTGaiaManager> _gaiaManager;
+    id <SPTGaiaConnectAPI> _connectManager;
     SPTRadioLogger *_logger;
     SPTRadioAutoplayOfflineLogger *_offlineLogger;
     NSMutableArray *_previousTrackURIs;
@@ -38,7 +38,7 @@
 @property(readonly, nonatomic) NSMutableArray *previousTrackURIs; // @synthesize previousTrackURIs=_previousTrackURIs;
 @property(readonly, nonatomic) SPTRadioAutoplayOfflineLogger *offlineLogger; // @synthesize offlineLogger=_offlineLogger;
 @property(readonly, nonatomic) __weak SPTRadioLogger *logger; // @synthesize logger=_logger;
-@property(readonly, nonatomic) __weak id <SPTGaiaManager> gaiaManager; // @synthesize gaiaManager=_gaiaManager;
+@property(readonly, nonatomic) __weak id <SPTGaiaConnectAPI> connectManager; // @synthesize connectManager=_connectManager;
 @property(readonly, nonatomic) __weak SPTNetworkConnectivityController *networkConnectivity; // @synthesize networkConnectivity=_networkConnectivity;
 @property(readonly, nonatomic) SPTDataLoader *dataLoader; // @synthesize dataLoader=_dataLoader;
 @property(readonly, nonatomic) __weak SPSession *session; // @synthesize session=_session;
@@ -58,7 +58,7 @@
 - (void)dataLoader:(id)arg1 didReceiveSuccessfulResponse:(id)arg2;
 - (void)player:(id)arg1 stateDidChange:(id)arg2 fromState:(id)arg3;
 - (void)dealloc;
-- (id)initWithPlayer:(id)arg1 playbackService:(id)arg2 localSettings:(id)arg3 session:(id)arg4 dataLoader:(id)arg5 networkConnectivity:(id)arg6 gaiaManager:(id)arg7 logger:(id)arg8 offlineLogger:(id)arg9;
+- (id)initWithPlayer:(id)arg1 playbackService:(id)arg2 localSettings:(id)arg3 session:(id)arg4 dataLoader:(id)arg5 networkConnectivity:(id)arg6 connectManager:(id)arg7 logger:(id)arg8 offlineLogger:(id)arg9;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

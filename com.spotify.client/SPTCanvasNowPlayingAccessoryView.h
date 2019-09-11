@@ -11,12 +11,11 @@
 @interface SPTCanvasNowPlayingAccessoryView : UIView
 {
     UIImageView *_imageView;
-    UIView *_containerView;
 }
 
-@property(retain, nonatomic) UIView *containerView; // @synthesize containerView=_containerView;
 @property(retain, nonatomic) UIImageView *imageView; // @synthesize imageView=_imageView;
 - (void).cxx_destruct;
+- (id)placeholderImage;
 - (void)updateImage:(id)arg1;
 - (void)layoutSubviews;
 - (void)setUp;

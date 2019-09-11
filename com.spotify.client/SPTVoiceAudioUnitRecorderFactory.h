@@ -8,7 +8,7 @@
 
 #import "SPTVoiceAudioRecorderFactory-Protocol.h"
 
-@class NSHashTable, NSString;
+@class NSHashTable, NSString, SPTVoiceAudioLevelMonitor;
 @protocol OS_dispatch_queue, SPTVoiceOnboardingRecordPermissionsState;
 
 @interface SPTVoiceAudioUnitRecorderFactory : NSObject <SPTVoiceAudioRecorderFactory>
@@ -22,13 +22,13 @@
     id <SPTVoiceOnboardingRecordPermissionsState> _permissionsReducer;
     struct OpaqueAudioComponentInstance *_audioUnit;
     struct AudioBufferList *_inputAudioBufferList;
+    SPTVoiceAudioLevelMonitor *_audioLevelMonitor;
     NSHashTable *_recorders;
-    CDStruct_a2d37825 _levelMonitorData;
     struct AudioStreamBasicDescription _audioFormat;
 }
 
 @property(retain, nonatomic) NSHashTable *recorders; // @synthesize recorders=_recorders;
-@property(nonatomic) CDStruct_a2d37825 levelMonitorData; // @synthesize levelMonitorData=_levelMonitorData;
+@property(retain, nonatomic) SPTVoiceAudioLevelMonitor *audioLevelMonitor; // @synthesize audioLevelMonitor=_audioLevelMonitor;
 @property(nonatomic) struct AudioBufferList *inputAudioBufferList; // @synthesize inputAudioBufferList=_inputAudioBufferList;
 @property(nonatomic) struct AudioStreamBasicDescription audioFormat; // @synthesize audioFormat=_audioFormat;
 @property(nonatomic) struct OpaqueAudioComponentInstance *audioUnit; // @synthesize audioUnit=_audioUnit;
@@ -44,9 +44,7 @@
 - (struct AudioStreamBasicDescription)createAudioStreamDescriptionWithSampleRate:(double)arg1;
 - (_Bool)updateAudioStreamFormatIfNeeded;
 - (void)notifyRecordedAudioChunk:(void *)arg1 ofSize:(unsigned int)arg2;
-- (void)resetLevelMonitor;
 - (void)notifyAudioLevelChanged;
-- (void)performLevelMonitoringForAudioBuffer:(struct AudioBufferList *)arg1 frameCount:(unsigned int)arg2;
 - (void)notifyError:(id)arg1;
 - (void)notifyErrorWithStatusCode:(int)arg1 description:(id)arg2;
 - (_Bool)stopAudioUnit;

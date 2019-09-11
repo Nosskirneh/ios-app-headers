@@ -11,9 +11,9 @@
 
 @protocol SPTFreeTierPlaylistSponsoredViewModel <NSObject>
 @property(readonly, nonatomic, getter=isSponsoredPlaylist) _Bool sponsoredPlaylist;
-@property(readonly, nonatomic) NSString *sponsoredPlaylistAccessibilityHint;
-@property(readonly, nonatomic) NSString *sponsoredPlaylistAccessibilityLabel;
-@property(readonly, nonatomic) NSString *sponsoredMessage;
+@property(readonly, copy, nonatomic) NSString *sponsoredPlaylistAccessibilityHint;
+@property(readonly, copy, nonatomic) NSString *sponsoredPlaylistAccessibilityLabel;
+@property(readonly, copy, nonatomic) NSString *sponsoredMessage;
 @property(readonly, nonatomic) UIImage *sponsoredImage;
 @property(nonatomic) __weak id <SPTFreeTierPlaylistSponsoredViewModelDelegate> delegate;
 - (void)sponsoredContextInFocus:(_Bool)arg1;

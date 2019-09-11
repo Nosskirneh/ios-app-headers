@@ -11,8 +11,7 @@
 @protocol SPTVoiceTestManager <NSObject>
 - (void)removeObserver:(id <SPTVoiceTestManagerObserver>)arg1;
 - (void)addObserver:(id <SPTVoiceTestManagerObserver>)arg1;
-- (_Bool)isOnlyTranscriptionFeedbackEnabled;
-- (_Bool)shouldShowVoiceSearchEntryInHome;
+- (_Bool)shouldUseAVAudioEngine;
 - (_Bool)isFloatingMicrophoneEnabled;
 - (_Bool)isVoiceSearchEnabled;
 - (_Bool)isVoiceServiceEnabled;

@@ -6,12 +6,10 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTContainerService-Protocol.h"
-
 @class MetaViewController, NSString, SPTAllocationContext, SPTNavigationManager, SPTPageRegistryImplementation, SpotifyAppDelegate;
 @protocol SPTContainerUIService, SPTCoreService, SPTStateController, SPTUICompletionNotifier, SPTURIDispatchService;
 
-@interface SPTContainerServiceImplementation : NSObject <SPTContainerService>
+@interface SPTContainerServiceImplementation : NSObject
 {
     SpotifyAppDelegate *_appDelegate;
     id <SPTContainerUIService> _containerUIService;

@@ -7,11 +7,10 @@
 #import <UIKit/UICollectionReusableView.h>
 
 #import "GLUEStyleable-Protocol.h"
-#import "SPTCeramicCollectionViewHeader-Protocol.h"
 
 @class GLUELabel, GLUESectionHeaderStyle, NSLayoutConstraint, NSString, UIView;
 
-@interface GLUESectionHeaderView : UICollectionReusableView <SPTCeramicCollectionViewHeader, GLUEStyleable>
+@interface GLUESectionHeaderView : UICollectionReusableView <GLUEStyleable>
 {
     GLUELabel *_titleLabel;
     GLUELabel *_subtitleLabel;
@@ -26,7 +25,6 @@
 }
 
 + (double)subtitleHeightForWidth:(double)arg1 text:(id)arg2 style:(id)arg3;
-+ (double)heightForDescriptionLabelWithText:(id)arg1 expanded:(_Bool)arg2 viewWidth:(double)arg3;
 @property(retain, nonatomic) NSLayoutConstraint *subtitleBaselineFromContentBottomEdgeConstraint; // @synthesize subtitleBaselineFromContentBottomEdgeConstraint=_subtitleBaselineFromContentBottomEdgeConstraint;
 @property(retain, nonatomic) NSLayoutConstraint *subtitleBaselineToTitleBaselineConstraint; // @synthesize subtitleBaselineToTitleBaselineConstraint=_subtitleBaselineToTitleBaselineConstraint;
 @property(retain, nonatomic) NSLayoutConstraint *titleBaselineToContentBottomEdgeConstraint; // @synthesize titleBaselineToContentBottomEdgeConstraint=_titleBaselineToContentBottomEdgeConstraint;
@@ -50,17 +48,11 @@
 - (id)accessibilityLabel;
 - (_Bool)shouldGroupAccessibilityChildren;
 - (id)initWithFrame:(struct CGRect)arg1;
-@property(retain, nonatomic) NSString *subtitle;
-@property(retain, nonatomic) NSString *title;
-- (void)populateHeaderWithBlock:(id)arg1;
 
 // Remaining properties
-@property(retain, nonatomic) UIView *accessoryView;
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
-@property(copy, nonatomic) NSString *descriptionText;
 @property(readonly) unsigned long long hash;
-@property(readonly, copy, nonatomic) NSString *headerAlignment;
 @property(readonly) Class superclass;
 
 @end

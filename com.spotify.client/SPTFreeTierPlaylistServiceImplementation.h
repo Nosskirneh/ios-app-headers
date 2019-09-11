@@ -9,7 +9,7 @@
 #import "SPTFreeTierPlaylistService-Protocol.h"
 
 @class NSString, SPTAllocationContext;
-@protocol SPTCollectionPlatformService, SPTExplicitContentService, SPTFeatureFlaggingService, SPTFreeTierPlaylistTestManager, SPTFreeTierPreCurationService, SPTFreeTierService, SPTOnDemandService, SPTPlaylistPlatformService, SPTSessionService, SPTSettingsFeature, SPTSortingFilteringService;
+@protocol SPTCollectionPlatformService, SPTExplicitContentService, SPTFeatureFlaggingService, SPTFreeTierPlaylistTestManager, SPTFreeTierPreCurationService, SPTFreeTierService, SPTOnDemandService, SPTPlaylistPlatformService, SPTRemoteConfigurationService, SPTSessionService, SPTSettingsFeature, SPTSortingFilteringService;
 
 @interface SPTFreeTierPlaylistServiceImplementation : NSObject <SPTFreeTierPlaylistService>
 {
@@ -22,13 +22,15 @@
     id <SPTOnDemandService> _onDemandService;
     id <SPTPlaylistPlatformService> _playlistPlatformService;
     id <SPTSortingFilteringService> _sortingFilteringService;
-    id <SPTSettingsFeature> _settings;
+    id <SPTSettingsFeature> _settingsFeature;
+    id <SPTRemoteConfigurationService> _remoteConfigurationService;
     id <SPTFreeTierPlaylistTestManager> _testManager;
 }
 
 + (id)serviceIdentifier;
 @property(retain, nonatomic) id <SPTFreeTierPlaylistTestManager> testManager; // @synthesize testManager=_testManager;
-@property(retain, nonatomic) id <SPTSettingsFeature> settings; // @synthesize settings=_settings;
+@property(nonatomic) __weak id <SPTRemoteConfigurationService> remoteConfigurationService; // @synthesize remoteConfigurationService=_remoteConfigurationService;
+@property(nonatomic) __weak id <SPTSettingsFeature> settingsFeature; // @synthesize settingsFeature=_settingsFeature;
 @property(nonatomic) __weak id <SPTSortingFilteringService> sortingFilteringService; // @synthesize sortingFilteringService=_sortingFilteringService;
 @property(nonatomic) __weak id <SPTPlaylistPlatformService> playlistPlatformService; // @synthesize playlistPlatformService=_playlistPlatformService;
 @property(nonatomic) __weak id <SPTOnDemandService> onDemandService; // @synthesize onDemandService=_onDemandService;

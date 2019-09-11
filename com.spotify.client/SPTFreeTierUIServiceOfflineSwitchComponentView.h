@@ -4,30 +4,30 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import "EXP_HUBComponentView.h"
+#import "HUBComponentView.h"
 
-#import "EXP_HUBComponentViewObserver-Protocol.h"
-#import "EXP_HUBComponentViewWithEvents-Protocol.h"
+#import "HUBComponentViewObserver-Protocol.h"
+#import "HUBComponentViewWithEvents-Protocol.h"
 #import "SPTViewOfflineSwitchDelegate-Protocol.h"
 
-@class NSString, SPTLayoutConstraintBuilder, SPTViewOfflineSwitch;
-@protocol EXP_HUBComponentEventHandler, GLUETheme;
+@class NSArray, NSString, SPTViewOfflineSwitch;
+@protocol GLUETheme, HUBComponentEventHandler;
 
-@interface SPTFreeTierUIServiceOfflineSwitchComponentView : EXP_HUBComponentView <SPTViewOfflineSwitchDelegate, EXP_HUBComponentViewObserver, EXP_HUBComponentViewWithEvents>
+@interface SPTFreeTierUIServiceOfflineSwitchComponentView : HUBComponentView <SPTViewOfflineSwitchDelegate, HUBComponentViewObserver, HUBComponentViewWithEvents>
 {
-    id <EXP_HUBComponentEventHandler> _eventHandler;
+    id <HUBComponentEventHandler> _eventHandler;
     id <GLUETheme> _theme;
     SPTViewOfflineSwitch *_offlineSwitchView;
-    SPTLayoutConstraintBuilder *_layoutContraintBuilder;
+    NSArray *_layoutConstraints;
     unsigned long long _offlineAvailability;
 }
 
 + (struct CGSize)sizeForContainerViewSize:(struct CGSize)arg1 model:(id)arg2 theme:(id)arg3;
 @property(nonatomic) unsigned long long offlineAvailability; // @synthesize offlineAvailability=_offlineAvailability;
-@property(retain, nonatomic) SPTLayoutConstraintBuilder *layoutContraintBuilder; // @synthesize layoutContraintBuilder=_layoutContraintBuilder;
+@property(copy, nonatomic) NSArray *layoutConstraints; // @synthesize layoutConstraints=_layoutConstraints;
 @property(readonly, nonatomic) SPTViewOfflineSwitch *offlineSwitchView; // @synthesize offlineSwitchView=_offlineSwitchView;
 @property(readonly, nonatomic) id <GLUETheme> theme; // @synthesize theme=_theme;
-@property(retain, nonatomic) id <EXP_HUBComponentEventHandler> eventHandler; // @synthesize eventHandler=_eventHandler;
+@property(retain, nonatomic) id <HUBComponentEventHandler> eventHandler; // @synthesize eventHandler=_eventHandler;
 - (void).cxx_destruct;
 - (void)viewDidDisappear;
 - (void)viewWillAppear;

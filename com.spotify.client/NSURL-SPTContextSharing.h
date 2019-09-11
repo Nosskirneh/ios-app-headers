@@ -7,7 +7,7 @@
 #import <Foundation/NSURL.h>
 
 @interface NSURL (SPTContextSharing)
-@property(readonly, nonatomic, getter=spt_sharingContext) __weak NSURL *sharingContext;
+@property(readonly, nonatomic, getter=spt_sharingContext) NSURL *sharingContext;
 - (id)spt_URLWithSharingContext:(id)arg1;
 @end
 

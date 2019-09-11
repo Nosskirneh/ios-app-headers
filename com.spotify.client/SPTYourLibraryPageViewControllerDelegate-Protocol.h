@@ -6,9 +6,12 @@
 
 #import "NSObject-Protocol.h"
 
-@class SPTYourLibraryPageViewController;
+@class SPTYourLibraryPageViewController, UIViewController;
 
 @protocol SPTYourLibraryPageViewControllerDelegate <NSObject>
 - (void)pageViewController:(SPTYourLibraryPageViewController *)arg1 fromPage:(double)arg2 toPage:(double)arg3;
+
+@optional
+- (void)pageViewController:(SPTYourLibraryPageViewController *)arg1 didChangeActiveViewController:(UIViewController *)arg2;
 @end
 

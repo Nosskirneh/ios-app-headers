@@ -6,7 +6,7 @@
 
 #import "GLUEThemeBase.h"
 
-@class GLUEEntityRowStyle, SPTFreeTierPlaylistButtonSectionHeaderViewStyle, SPTFreeTierPlaylistEditStyle, SPTFreeTierPlaylistFilterSearchBarStyle, SPTFreeTierPlaylistHeaderMetadataViewStyle, SPTFreeTierPlaylistHeaderPageContainerViewStyle, SPTFreeTierPreCurationQuickActionViewStyle, SPTFreeTierPreCurationTheme;
+@class GLUEEntityRowStyle, SPTFreeTierPlaylistButtonSectionHeaderViewStyle, SPTFreeTierPlaylistEditStyle, SPTFreeTierPlaylistFilterSearchBarStyle, SPTFreeTierPlaylistHeaderMetadataViewStyle, SPTFreeTierPlaylistHeaderPageContainerViewStyle, SPTFreeTierPreCurationTheme;
 @protocol GLUETheme;
 
 @interface SPTFreeTierPlaylistGLUETheme : GLUEThemeBase
@@ -22,10 +22,6 @@
 @property(readonly, copy, nonatomic) SPTFreeTierPlaylistHeaderPageContainerViewStyle *headerPageContainerViewStyle;
 @property(readonly, copy, nonatomic) SPTFreeTierPlaylistFilterSearchBarStyle *filterSearchBarStyle;
 @property(readonly, copy, nonatomic) GLUEEntityRowStyle *trackRowPreCurationStyle;
-@property(readonly, copy, nonatomic) SPTFreeTierPreCurationQuickActionViewStyle *likedAndBannedQuickActionViewStyle;
-@property(readonly, copy, nonatomic) SPTFreeTierPreCurationQuickActionViewStyle *likedQuickActionViewStyle;
-@property(readonly, copy, nonatomic) SPTFreeTierPreCurationQuickActionViewStyle *banQuickActionViewStyle;
-@property(readonly, copy, nonatomic) SPTFreeTierPreCurationQuickActionViewStyle *defaultQuickActionViewStyle;
 - (id)editCellStyle;
 @property(readonly, copy, nonatomic) SPTFreeTierPlaylistEditStyle *editStyle;
 - (_Bool)isPad;
@@ -37,12 +33,11 @@
 - (id)playlistNoTitleCloudStyle;
 - (id)playlistCloudStyle;
 - (id)renameFieldStyle;
-- (id)sectionHeaderEmptyViewStyleWithEducationalTopMargin:(long long)arg1;
-@property(readonly, copy, nonatomic) SPTFreeTierPlaylistButtonSectionHeaderViewStyle *sectionLegacyHeaderEmptyViewStyle;
 @property(readonly, copy, nonatomic) SPTFreeTierPlaylistButtonSectionHeaderViewStyle *sectionHeaderEmptyViewStyle;
 @property(readonly, copy, nonatomic) SPTFreeTierPlaylistButtonSectionHeaderViewStyle *sectionHeaderViewStyle;
 - (id)freeTierSponsoredLogoCellStyle;
 - (id)trackRowWithColoredIconStyle;
+- (id)entityRowTrackStyle;
 - (id)initWithParentTheme:(id)arg1 preCurationTheme:(id)arg2;
 
 @end

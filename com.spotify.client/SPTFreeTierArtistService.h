@@ -7,51 +7,54 @@
 #import "SPTUIPageService.h"
 
 @class SPTFreeTierArtistHubManager;
-@protocol EXP_SPTHubFrameworkService, FollowFeature, SPContextMenuFeature, SPTArtistService, SPTArtistUIService, SPTCollectionPlatformService, SPTEntitySeeAllSongsService, SPTFeatureFlaggingService, SPTFreeTierService, SPTFreeTierUIService, SPTGLUEService, SPTNavigationFeature, SPTNetworkService, SPTOnDemandService, SPTPermissionsService, SPTPlayerFeature, SPTSessionService;
+@protocol FollowFeature, SPContextMenuFeature, SPTArtistAboutService, SPTCollectionPlatformService, SPTEntitySeeAllSongsService, SPTExplicitContentService, SPTFreeTierUIService, SPTGLUEService, SPTHubFrameworkService, SPTModerationService, SPTNavigationFeature, SPTNetworkService, SPTOnDemandService, SPTOnDemandTrialService, SPTPermissionsService, SPTPlayerFeature, SPTSessionService, SPTShelfService, SPTVISREFFlagsService;
 
 @interface SPTFreeTierArtistService : SPTUIPageService
 {
-    id <EXP_SPTHubFrameworkService> _hubFrameworkService;
+    id <SPTHubFrameworkService> _hubFrameworkService;
     id <SPTGLUEService> _glueService;
-    id <SPTFeatureFlaggingService> _featureFlaggingSevice;
     id <SPTFreeTierUIService> _freeTierUIService;
     id <SPTEntitySeeAllSongsService> _entitySeeAllSongsService;
     id <SPTCollectionPlatformService> _collectionPlatformService;
     id <FollowFeature> _followService;
     id <SPTOnDemandService> _onDemandService;
+    id <SPTOnDemandTrialService> _onDemandTrialService;
     id <SPContextMenuFeature> _contextMenuService;
     id <SPTPlayerFeature> _playerService;
     id <SPTNetworkService> _networkService;
-    id <SPTArtistUIService> _artistUIService;
-    id <SPTArtistService> _artistService;
+    id <SPTArtistAboutService> _artistAboutService;
     id <SPTSessionService> _clientSessionService;
     id <SPTPermissionsService> _permissionService;
-    id <SPTFreeTierService> _freeTierService;
     id <SPTNavigationFeature> _navigationFeature;
+    id <SPTShelfService> _shelfService;
+    id <SPTVISREFFlagsService> _visualRefreshService;
+    id <SPTExplicitContentService> _explicitContentService;
+    id <SPTModerationService> _moderationFeature;
     SPTFreeTierArtistHubManager *_hubManager;
 }
 
 + (id)serviceIdentifier;
 @property(retain, nonatomic) SPTFreeTierArtistHubManager *hubManager; // @synthesize hubManager=_hubManager;
+@property(nonatomic) __weak id <SPTModerationService> moderationFeature; // @synthesize moderationFeature=_moderationFeature;
+@property(nonatomic) __weak id <SPTExplicitContentService> explicitContentService; // @synthesize explicitContentService=_explicitContentService;
+@property(nonatomic) __weak id <SPTVISREFFlagsService> visualRefreshService; // @synthesize visualRefreshService=_visualRefreshService;
+@property(nonatomic) __weak id <SPTShelfService> shelfService; // @synthesize shelfService=_shelfService;
 @property(nonatomic) __weak id <SPTNavigationFeature> navigationFeature; // @synthesize navigationFeature=_navigationFeature;
-@property(nonatomic) __weak id <SPTFreeTierService> freeTierService; // @synthesize freeTierService=_freeTierService;
 @property(nonatomic) __weak id <SPTPermissionsService> permissionService; // @synthesize permissionService=_permissionService;
 @property(nonatomic) __weak id <SPTSessionService> clientSessionService; // @synthesize clientSessionService=_clientSessionService;
-@property(nonatomic) __weak id <SPTArtistService> artistService; // @synthesize artistService=_artistService;
-@property(nonatomic) __weak id <SPTArtistUIService> artistUIService; // @synthesize artistUIService=_artistUIService;
+@property(nonatomic) __weak id <SPTArtistAboutService> artistAboutService; // @synthesize artistAboutService=_artistAboutService;
 @property(nonatomic) __weak id <SPTNetworkService> networkService; // @synthesize networkService=_networkService;
 @property(nonatomic) __weak id <SPTPlayerFeature> playerService; // @synthesize playerService=_playerService;
 @property(nonatomic) __weak id <SPContextMenuFeature> contextMenuService; // @synthesize contextMenuService=_contextMenuService;
+@property(nonatomic) __weak id <SPTOnDemandTrialService> onDemandTrialService; // @synthesize onDemandTrialService=_onDemandTrialService;
 @property(nonatomic) __weak id <SPTOnDemandService> onDemandService; // @synthesize onDemandService=_onDemandService;
 @property(nonatomic) __weak id <FollowFeature> followService; // @synthesize followService=_followService;
 @property(nonatomic) __weak id <SPTCollectionPlatformService> collectionPlatformService; // @synthesize collectionPlatformService=_collectionPlatformService;
 @property(nonatomic) __weak id <SPTEntitySeeAllSongsService> entitySeeAllSongsService; // @synthesize entitySeeAllSongsService=_entitySeeAllSongsService;
 @property(nonatomic) __weak id <SPTFreeTierUIService> freeTierUIService; // @synthesize freeTierUIService=_freeTierUIService;
-@property(nonatomic) __weak id <SPTFeatureFlaggingService> featureFlaggingSevice; // @synthesize featureFlaggingSevice=_featureFlaggingSevice;
 @property(nonatomic) __weak id <SPTGLUEService> glueService; // @synthesize glueService=_glueService;
-@property(nonatomic) __weak id <EXP_SPTHubFrameworkService> hubFrameworkService; // @synthesize hubFrameworkService=_hubFrameworkService;
+@property(nonatomic) __weak id <SPTHubFrameworkService> hubFrameworkService; // @synthesize hubFrameworkService=_hubFrameworkService;
 - (void).cxx_destruct;
-- (void)configureMasterFeatureFlag:(id)arg1;
 - (id)provideViewControllerForURI:(id)arg1 context:(id)arg2;
 - (_Bool)claimsURI:(id)arg1;
 - (void)load;

@@ -17,6 +17,7 @@
 + (Class)layerClass;
 - (void)glue_applyStyle:(id)arg1;
 @property(readonly, nonatomic) CAGradientLayer *gradientLayer;
+- (void)commonSetup;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithFrame:(struct CGRect)arg1;
 

@@ -13,25 +13,22 @@
 @interface SPTVideoFormatImpl : NSObject <SPTVideoFormat>
 {
     SPTVideoManifestProfile *_videoProfile;
-    SPTVideoManifestProfile *_audioProfile;
     AVPlayerItemAccessLogEvent *_accessLogEvent;
 }
 
 @property(retain, nonatomic) AVPlayerItemAccessLogEvent *accessLogEvent; // @synthesize accessLogEvent=_accessLogEvent;
-@property(retain, nonatomic) SPTVideoManifestProfile *audioProfile; // @synthesize audioProfile=_audioProfile;
 @property(retain, nonatomic) SPTVideoManifestProfile *videoProfile; // @synthesize videoProfile=_videoProfile;
 - (void).cxx_destruct;
+@property(readonly, copy) NSString *description;
 - (_Bool)isEqual:(id)arg1;
 @property(readonly) unsigned long long hash;
 @property(readonly, nonatomic) struct CGSize videoSize;
 @property(readonly, nonatomic) double indicatedBitrate;
-@property(readonly, nonatomic) NSString *audioCodec;
 @property(readonly, nonatomic) NSString *videoCodec;
-- (id)initWithVideoVideoManifestProfile:(id)arg1 audioManifestProfile:(id)arg2 accessLogEvent:(id)arg3;
+- (id)initWithVideoVideoManifestProfile:(id)arg1 accessLogEvent:(id)arg2;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;
-@property(readonly, copy) NSString *description;
 @property(readonly) Class superclass;
 
 @end

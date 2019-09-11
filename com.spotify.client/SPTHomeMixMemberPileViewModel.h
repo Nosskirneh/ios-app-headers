@@ -6,11 +6,25 @@
 
 #import <objc/NSObject.h>
 
+@class NSString, NSURL, UIColor;
+
 @interface SPTHomeMixMemberPileViewModel : NSObject
 {
+    NSString *_text;
+    UIColor *_backgroundColor;
+    NSString *_accessibilityText;
+    NSURL *_imageURL;
+    unsigned long long _visualStyle;
 }
 
-- (id)mapImage:(CDUnknownBlockType)arg1 mapText:(CDUnknownBlockType)arg2;
+@property(nonatomic) unsigned long long visualStyle; // @synthesize visualStyle=_visualStyle;
+@property(readonly, copy, nonatomic) NSURL *imageURL; // @synthesize imageURL=_imageURL;
+@property(readonly, copy, nonatomic) NSString *accessibilityText; // @synthesize accessibilityText=_accessibilityText;
+@property(readonly, copy, nonatomic) UIColor *backgroundColor; // @synthesize backgroundColor=_backgroundColor;
+@property(readonly, copy, nonatomic) NSString *text; // @synthesize text=_text;
+- (void).cxx_destruct;
+- (unsigned long long)defaultVisualStyle;
+- (id)initWithImageURL:(id)arg1 text:(id)arg2 backgroundColor:(id)arg3 accessibilityText:(id)arg4;
 
 @end
 

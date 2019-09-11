@@ -6,26 +6,26 @@
 
 #import <objc/NSObject.h>
 
-#import "EXP_HUBContentOperation-Protocol.h"
+#import "HUBContentOperation-Protocol.h"
 #import "SPTOfflineObserver-Protocol.h"
 
 @class NSString, NSURL;
-@protocol EXP_HUBContentOperationDelegate, EXP_SPTHubComponentModelURIResolver, SPTOfflineManager;
+@protocol HUBContentOperationDelegate, SPTHubComponentModelURIResolver, SPTOfflineManager;
 
-@interface SPTFreeTierOfflineStatusUpdatingContentOperation : NSObject <SPTOfflineObserver, EXP_HUBContentOperation>
+@interface SPTFreeTierOfflineStatusUpdatingContentOperation : NSObject <SPTOfflineObserver, HUBContentOperation>
 {
-    id <EXP_HUBContentOperationDelegate> _delegate;
+    id <HUBContentOperationDelegate> _delegate;
     id <SPTOfflineManager> _offlineManager;
-    id <EXP_SPTHubComponentModelURIResolver> _componentModelURIResolver;
+    id <SPTHubComponentModelURIResolver> _componentModelURIResolver;
     NSURL *_entityURL;
     NSString *_username;
 }
 
 @property(readonly, nonatomic) NSString *username; // @synthesize username=_username;
 @property(readonly, nonatomic) NSURL *entityURL; // @synthesize entityURL=_entityURL;
-@property(readonly, nonatomic) id <EXP_SPTHubComponentModelURIResolver> componentModelURIResolver; // @synthesize componentModelURIResolver=_componentModelURIResolver;
+@property(readonly, nonatomic) id <SPTHubComponentModelURIResolver> componentModelURIResolver; // @synthesize componentModelURIResolver=_componentModelURIResolver;
 @property(readonly, nonatomic) __weak id <SPTOfflineManager> offlineManager; // @synthesize offlineManager=_offlineManager;
-@property(nonatomic) __weak id <EXP_HUBContentOperationDelegate> delegate; // @synthesize delegate=_delegate;
+@property(nonatomic) __weak id <HUBContentOperationDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
 - (long long)glueOfflineSyncStatusForURL:(id)arg1;
 - (long long)offlineSyncStatusForURL:(id)arg1;

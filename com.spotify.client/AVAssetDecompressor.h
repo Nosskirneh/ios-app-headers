@@ -6,16 +6,14 @@
 
 #import <objc/NSObject.h>
 
-@class AVAsset, AVAssetReaderTrackOutput, AVAssetTrack, NSURL;
+@class AVAsset, AVAssetReader, AVAssetReaderTrackOutput;
 
 @interface AVAssetDecompressor : NSObject
 {
     struct deque<short, std::__1::allocator<short>> _buffer;
-    NSURL *_url;
-    _Bool _is_prepared;
-    AVAssetReaderTrackOutput *_track_output;
-    AVAssetTrack *_track;
     AVAsset *_asset;
+    AVAssetReader *_asset_reader;
+    AVAssetReaderTrackOutput *_track_output;
     struct AudioStreamBasicDescription _audio_format;
 }
 
@@ -23,12 +21,13 @@
 - (void).cxx_destruct;
 - (_Bool)scheduledReadHandler:(id)arg1;
 - (_Bool)readSomeSamples;
-- (_Bool)prepareAsset;
+- (_Bool)prepareAssetWithUrl:(id)arg1;
 - (_Bool)prepareAssetReaderAtTime:(double)arg1;
 - (id)outputSettingsFromAudioFormat:(const struct AudioStreamBasicDescription *)arg1;
 - (double)duration;
 - (_Bool)seekTo:(double)arg1;
 - (int)decodeToBuffer:(short *)arg1 numberOfFrames:(int)arg2;
+- (void)dealloc;
 - (id)initWithURL:(id)arg1 audioFormat:(const struct AudioStreamBasicDescription *)arg2;
 
 @end

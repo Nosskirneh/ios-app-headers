@@ -6,7 +6,7 @@
 
 #import "SettingsSection.h"
 
-@class SPTRequestLifetime, SPTSettingsButtonTableViewCell, SPTSettingsStorageBarTableViewCell, SPTSettingsStorageLabelsTableViewCell;
+@class SPTRequestLifetime, SPTSettingsButtonTableViewCell, SPTSettingsLogger, SPTSettingsStorageBarTableViewCell, SPTSettingsStorageLabelsTableViewCell;
 @protocol SPTAlertController, SPTResolver;
 
 @interface SPTStorageSettingsSection : SettingsSection
@@ -18,8 +18,10 @@
     id <SPTAlertController> _alertController;
     SPTRequestLifetime *_getStatsRequestLifetime;
     SPTRequestLifetime *_deleteCacheRequestLifetime;
+    SPTSettingsLogger *_logger;
 }
 
+@property(retain, nonatomic) SPTSettingsLogger *logger; // @synthesize logger=_logger;
 @property(retain, nonatomic) SPTRequestLifetime *deleteCacheRequestLifetime; // @synthesize deleteCacheRequestLifetime=_deleteCacheRequestLifetime;
 @property(retain, nonatomic) SPTRequestLifetime *getStatsRequestLifetime; // @synthesize getStatsRequestLifetime=_getStatsRequestLifetime;
 @property(retain, nonatomic) id <SPTAlertController> alertController; // @synthesize alertController=_alertController;
@@ -37,7 +39,7 @@
 - (double)heightForRow:(long long)arg1;
 - (id)cellForRow:(long long)arg1;
 - (long long)numberOfRows;
-- (id)initWithSettingsViewController:(id)arg1 resolver:(id)arg2 alertController:(id)arg3;
+- (id)initWithSettingsViewController:(id)arg1 resolver:(id)arg2 alertController:(id)arg3 logger:(id)arg4;
 
 @end
 

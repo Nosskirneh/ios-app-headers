@@ -10,5 +10,10 @@
 
 @protocol SPTStatefulPlayerQueueObserver <NSObject>
 - (void)playerQueue:(SPTStatefulPlayerQueue *)arg1 didMoveToRelativeTrack:(NSNumber *)arg2;
+
+@optional
+- (void)playerQueueDidSynchronizeQueue:(SPTStatefulPlayerQueue *)arg1;
+- (void)playerQueuePreviousTrackDidChange:(SPTStatefulPlayerQueue *)arg1;
+- (void)playerQueueNextTrackDidChange:(SPTStatefulPlayerQueue *)arg1;
 @end
 

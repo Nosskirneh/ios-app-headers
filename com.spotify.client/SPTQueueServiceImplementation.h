@@ -9,7 +9,7 @@
 #import "SPTQueueService-Protocol.h"
 
 @class NSString, SPTAllocationContext;
-@protocol SPContextMenuFeature, SPTContainerService, SPTContainerUIService, SPTContextMenuOptions, SPTContextMenuPresenter, SPTCoreService, SPTCrashReporterService, SPTExplicitContentService, SPTGLUEImageLoaderFactory, SPTGLUEService, SPTImageLoaderFactory, SPTLocalSettings, SPTNetworkService, SPTPlayer, SPTPlayerFeature, SPTPodcastFeature, SPTProductState, SPTQueueHeadUnitRegistry, SPTQueueLogger, SPTQueuePlaybackDelegateRegistry, SPTSessionService, SPTSettingsFeature, SPTShelfService, SPTShowEntityService, UpsellFeature;
+@protocol SPContextMenuFeature, SPTContainerService, SPTContainerUIService, SPTContextMenuOptions, SPTContextMenuPresenter, SPTCoreService, SPTCrashReporterService, SPTExplicitContentService, SPTGLUEImageLoaderFactory, SPTGLUEService, SPTImageLoaderFactory, SPTLocalSettings, SPTNetworkService, SPTPlayer, SPTPlayerFeature, SPTPodcastFeature, SPTProductState, SPTQueueLogger, SPTQueuePlaybackDelegateRegistry, SPTSessionService, SPTSettingsFeature, SPTShelfService, SPTShowEntityService;
 
 @interface SPTQueueServiceImplementation : NSObject <SPTQueueService>
 {
@@ -27,7 +27,6 @@
     id <SPTPlayerFeature> _playerFeature;
     id <SPTPodcastFeature> _podcastFeature;
     id <SPTSettingsFeature> _settingsFeature;
-    id <UpsellFeature> _upsellFeature;
     id <SPTGLUEService> _glueService;
     id <SPTLocalSettings> _localSettings;
     id <SPTImageLoaderFactory> _imageLoaderFactory;
@@ -35,7 +34,6 @@
     id <SPTShowEntityService> _entityService;
     id <SPTProductState> _productState;
     id <SPTPlayer> _player;
-    id <SPTQueueHeadUnitRegistry> _headUnitRegistry;
     id <SPTQueuePlaybackDelegateRegistry> _playbackDelegateRegistry;
     id <SPTQueueLogger> _queueLogger;
 }
@@ -43,7 +41,6 @@
 + (id)serviceIdentifier;
 @property(retain, nonatomic) id <SPTQueueLogger> queueLogger; // @synthesize queueLogger=_queueLogger;
 @property(retain, nonatomic) id <SPTQueuePlaybackDelegateRegistry> playbackDelegateRegistry; // @synthesize playbackDelegateRegistry=_playbackDelegateRegistry;
-@property(retain, nonatomic) id <SPTQueueHeadUnitRegistry> headUnitRegistry; // @synthesize headUnitRegistry=_headUnitRegistry;
 @property(retain, nonatomic) id <SPTPlayer> player; // @synthesize player=_player;
 @property(retain, nonatomic) id <SPTProductState> productState; // @synthesize productState=_productState;
 @property(retain, nonatomic) id <SPTShowEntityService> entityService; // @synthesize entityService=_entityService;
@@ -51,7 +48,6 @@
 @property(retain, nonatomic) id <SPTImageLoaderFactory> imageLoaderFactory; // @synthesize imageLoaderFactory=_imageLoaderFactory;
 @property(retain, nonatomic) id <SPTLocalSettings> localSettings; // @synthesize localSettings=_localSettings;
 @property(nonatomic) __weak id <SPTGLUEService> glueService; // @synthesize glueService=_glueService;
-@property(nonatomic) __weak id <UpsellFeature> upsellFeature; // @synthesize upsellFeature=_upsellFeature;
 @property(nonatomic) __weak id <SPTSettingsFeature> settingsFeature; // @synthesize settingsFeature=_settingsFeature;
 @property(nonatomic) __weak id <SPTPodcastFeature> podcastFeature; // @synthesize podcastFeature=_podcastFeature;
 @property(nonatomic) __weak id <SPTPlayerFeature> playerFeature; // @synthesize playerFeature=_playerFeature;
@@ -77,9 +73,8 @@
 - (id)provideQueueViewModel:(id)arg1;
 - (id)provideQueueLogger;
 - (id)provideQueuePlaybackDelegateRegistry;
-- (id)provideQueueHeadUnitRegistry;
 - (id)provideQueueInteractor;
-- (struct UIViewController *)provideQueueViewControllerWithDelegate:(id)arg1 headUnitProvider:(id)arg2 modeResolver:(id)arg3 navigationBarUnitProvider:(id)arg4 navigationBarButtonsUnitProvider:(id)arg5 navigationBarViewControllerV2:(id)arg6 queueInteractor:(id)arg7 entityDecorationController:(id)arg8;
+- (struct UIViewController *)provideQueueViewControllerWithDelegate:(id)arg1 modeResolver:(id)arg2 navigationBarViewControllerV2:(id)arg3 queueInteractor:(id)arg4 entityDecorationController:(id)arg5;
 - (void)unload;
 - (void)load;
 - (void)configureWithServices:(id)arg1;

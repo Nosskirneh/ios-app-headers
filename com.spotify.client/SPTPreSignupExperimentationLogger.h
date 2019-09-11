@@ -15,6 +15,7 @@
 
 @property(retain, nonatomic) id <SPTAdjustUserTrackerProtocol> adjustTracker; // @synthesize adjustTracker=_adjustTracker;
 - (void).cxx_destruct;
+- (void)logWillFetchFeatureFlags;
 - (void)logDidFailToFetchFeatureFlags;
 - (void)logDidFetchFeatureFlags:(id)arg1 fromCache:(_Bool)arg2;
 - (id)initWithAdjustTracker:(id)arg1;

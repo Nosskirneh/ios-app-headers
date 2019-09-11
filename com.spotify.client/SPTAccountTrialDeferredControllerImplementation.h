@@ -11,7 +11,7 @@
 #import "SPTAccountTrialRequestDelegate-Protocol.h"
 #import "SPTOfflineModeStateObserver-Protocol.h"
 
-@class NSError, NSString, SPTAccountTrialController, SPTAccountTrialRequest, SPTDataLoader, SPTHermesController, SPTUser;
+@class NSError, NSString, SPTAccountTrialController, SPTAccountTrialRequest, SPTDataLoader, SPTHermesController;
 @protocol SPTAccountEligibilityRequest, SPTAccountTrialDeferredControllerDelegate, SPTOfflineModeState, SPTProductState;
 
 @interface SPTAccountTrialDeferredControllerImplementation : NSObject <SPTAccountTrialRequestDelegate, SPTAccountEligibilityRequestDelegate, SPTOfflineModeStateObserver, SPTAccountTrialDeferredController>
@@ -24,7 +24,7 @@
     id <SPTAccountEligibilityRequest> _eligibilityRequest;
     id <SPTOfflineModeState> _offlineState;
     id <SPTProductState> _productState;
-    SPTUser *_user;
+    NSString *_username;
     SPTAccountTrialController *_trialController;
     SPTHermesController *_hermes;
     SPTDataLoader *_dataLoader;
@@ -33,7 +33,7 @@
 @property(retain, nonatomic) SPTDataLoader *dataLoader; // @synthesize dataLoader=_dataLoader;
 @property(retain, nonatomic) SPTHermesController *hermes; // @synthesize hermes=_hermes;
 @property(retain, nonatomic) SPTAccountTrialController *trialController; // @synthesize trialController=_trialController;
-@property(retain, nonatomic) SPTUser *user; // @synthesize user=_user;
+@property(readonly, copy, nonatomic) NSString *username; // @synthesize username=_username;
 @property(retain, nonatomic) id <SPTProductState> productState; // @synthesize productState=_productState;
 @property(retain, nonatomic) id <SPTOfflineModeState> offlineState; // @synthesize offlineState=_offlineState;
 @property(retain, nonatomic) id <SPTAccountEligibilityRequest> eligibilityRequest; // @synthesize eligibilityRequest=_eligibilityRequest;
@@ -56,7 +56,7 @@
 - (void)startTrial;
 - (void)offlineModeState:(id)arg1 updated:(_Bool)arg2;
 - (void)dealloc;
-- (id)initWithUser:(id)arg1 offlineState:(id)arg2 productState:(id)arg3 trialController:(id)arg4 hermes:(id)arg5 dataLoader:(id)arg6;
+- (id)initWithUsername:(id)arg1 offlineState:(id)arg2 productState:(id)arg3 trialController:(id)arg4 hermes:(id)arg5 dataLoader:(id)arg6;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

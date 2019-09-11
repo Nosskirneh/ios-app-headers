@@ -6,38 +6,24 @@
 
 #import <UIKit/UIView.h>
 
-#import "GLUEStyleable-Protocol.h"
+@class GLUELabel, NSString;
+@protocol GLUETheme;
 
-@class NSAttributedString, NSLayoutConstraint, NSString, SPTHomeUISectionHeaderStyle, UILabel;
-
-@interface SPTHomeUISectionHeaderView : UIView <GLUEStyleable>
+@interface SPTHomeUISectionHeaderView : UIView
 {
-    NSAttributedString *_attributedText;
-    SPTHomeUISectionHeaderStyle *_style;
-    UILabel *_titleLabel;
-    NSLayoutConstraint *_titleLeftConstraint;
-    NSLayoutConstraint *_titleRightConstraint;
-    NSLayoutConstraint *_titleTopConstraint;
+    GLUELabel *_titleLabel;
+    id <GLUETheme> _theme;
 }
 
-+ (double)heightForSectionHeaderWithTitle:(id)arg1 containerWidth:(double)arg2 style:(id)arg3;
-@property(readonly, nonatomic) NSLayoutConstraint *titleTopConstraint; // @synthesize titleTopConstraint=_titleTopConstraint;
-@property(readonly, nonatomic) NSLayoutConstraint *titleRightConstraint; // @synthesize titleRightConstraint=_titleRightConstraint;
-@property(readonly, nonatomic) NSLayoutConstraint *titleLeftConstraint; // @synthesize titleLeftConstraint=_titleLeftConstraint;
-@property(readonly, nonatomic) UILabel *titleLabel; // @synthesize titleLabel=_titleLabel;
-@property(copy, nonatomic) SPTHomeUISectionHeaderStyle *style; // @synthesize style=_style;
-@property(copy, nonatomic) NSAttributedString *attributedText; // @synthesize attributedText=_attributedText;
++ (id)titleLabelAttributesForTheme:(id)arg1;
++ (double)heightForSectionHeaderWithTitle:(id)arg1 containerWidth:(double)arg2 theme:(id)arg3;
+@property(readonly, nonatomic) id <GLUETheme> theme; // @synthesize theme=_theme;
+@property(readonly, nonatomic) GLUELabel *titleLabel; // @synthesize titleLabel=_titleLabel;
 - (void).cxx_destruct;
-- (void)updateTitleWithStyle:(id)arg1;
-- (void)glue_applyStyle:(id)arg1;
-- (void)addConstraints;
-- (id)initWithFrame:(struct CGRect)arg1;
-
-// Remaining properties
-@property(readonly, copy) NSString *debugDescription;
-@property(readonly, copy) NSString *description;
-@property(readonly) unsigned long long hash;
-@property(readonly) Class superclass;
+- (void)applyTitleLabelStyle;
+@property(copy, nonatomic) NSString *title;
+- (void)constrainTitleLabel:(id)arg1;
+- (id)initWithTheme:(id)arg1 frame:(struct CGRect)arg2;
 
 @end
 

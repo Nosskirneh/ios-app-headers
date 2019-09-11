@@ -7,7 +7,6 @@
 #import <UIKit/UIColor.h>
 
 @interface UIColor (UIColor_Expanded)
-+ (void)load;
 + (id)LOT_colorByLerpingFromColor:(id)arg1 toColor:(id)arg2 amount:(double)arg3;
 + (id)LOT_colorWithName:(id)arg1;
 + (id)LOT_colorWithHexString:(id)arg1;

@@ -7,7 +7,7 @@
 #import "SPAction.h"
 
 @class NSURL;
-@protocol SPTCollectionSortingEntityManager, SPTPlayer, SPTPlayerQueue, SPTPlaylistPlatformPlaylistDataLoader, SPTUpsellManager;
+@protocol SPTCollectionSortingEntityManager, SPTPlayer, SPTPlayerQueue, SPTPlaylistPlatformPlaylistDataLoader;
 
 @interface SPTPlaylistQueueAction : SPAction
 {
@@ -15,12 +15,10 @@
     id <SPTPlaylistPlatformPlaylistDataLoader> _playlistDataLoader;
     id <SPTPlayer> _player;
     id <SPTPlayerQueue> _playerQueue;
-    id <SPTUpsellManager> _upsellManager;
     id <SPTCollectionSortingEntityManager> _sortingEntityManager;
 }
 
 @property(readonly, nonatomic) __weak id <SPTCollectionSortingEntityManager> sortingEntityManager; // @synthesize sortingEntityManager=_sortingEntityManager;
-@property(readonly, nonatomic) id <SPTUpsellManager> upsellManager; // @synthesize upsellManager=_upsellManager;
 @property(readonly, nonatomic) id <SPTPlayerQueue> playerQueue; // @synthesize playerQueue=_playerQueue;
 @property(readonly, nonatomic) id <SPTPlayer> player; // @synthesize player=_player;
 @property(readonly, nonatomic) id <SPTPlaylistPlatformPlaylistDataLoader> playlistDataLoader; // @synthesize playlistDataLoader=_playlistDataLoader;
@@ -31,7 +29,7 @@
 - (id)logEventName;
 - (long long)icon;
 - (id)title;
-- (id)initWithPlaylistURL:(id)arg1 playlistDataLoader:(id)arg2 player:(id)arg3 playerQueue:(id)arg4 upsellManager:(id)arg5 sortingEntityManager:(id)arg6 logContext:(id)arg7;
+- (id)initWithPlaylistURL:(id)arg1 playlistDataLoader:(id)arg2 player:(id)arg3 playerQueue:(id)arg4 sortingEntityManager:(id)arg5 logContext:(id)arg6;
 
 @end
 

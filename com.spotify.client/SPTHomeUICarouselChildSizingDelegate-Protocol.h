@@ -6,9 +6,9 @@
 
 #import "NSObject-Protocol.h"
 
-@protocol EXP_HUBComponentModel;
+@protocol HUBComponentModel;
 
 @protocol SPTHomeUICarouselChildSizingDelegate <NSObject>
-- (struct CGSize)sizeForChildAtIndex:(unsigned long long)arg1 inModel:(id <EXP_HUBComponentModel>)arg2 containerSize:(struct CGSize)arg3;
+- (struct CGSize)sizeForChildAtIndex:(unsigned long long)arg1 inModel:(id <HUBComponentModel>)arg2 containerSize:(struct CGSize)arg3;
 @end
 

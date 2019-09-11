@@ -25,13 +25,15 @@
 @property(nonatomic) double rowHeight; // @synthesize rowHeight=_rowHeight;
 @property(retain, nonatomic) UIColor *backgroundColor; // @synthesize backgroundColor=_backgroundColor;
 - (void).cxx_destruct;
+@property(readonly) unsigned long long hash;
+- (_Bool)isEqual:(id)arg1;
+- (_Bool)isEqualToTableViewStyle:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)init;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
-@property(readonly) unsigned long long hash;
 @property(readonly) Class superclass;
 
 @end

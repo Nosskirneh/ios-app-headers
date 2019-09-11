@@ -8,7 +8,7 @@
 
 #import "FollowModelObserver-Protocol.h"
 
-@class MultipleFollowModel, NSString, NSURL, SPTProfileSocialRelationsViewModelData;
+@class MultipleFollowModel, NSString, NSURL, SPTProfileLogger, SPTProfileSocialRelationsViewModelData;
 @protocol FollowFeature, SPTLinkDispatcher, SPTProfileSocialRelationsViewModelDelegate, SPTProfileTestManager;
 
 @interface SPTProfileSocialRelationsViewModel : SPTBaseViewModel <FollowModelObserver>
@@ -21,8 +21,10 @@
     id <SPTLinkDispatcher> _linkDispatcher;
     NSString *_currentUsername;
     id <SPTProfileTestManager> _testManager;
+    SPTProfileLogger *_logger;
 }
 
+@property(readonly, nonatomic) SPTProfileLogger *logger; // @synthesize logger=_logger;
 @property(retain, nonatomic) id <SPTProfileTestManager> testManager; // @synthesize testManager=_testManager;
 @property(copy, nonatomic) NSString *currentUsername; // @synthesize currentUsername=_currentUsername;
 @property(retain, nonatomic) id <SPTLinkDispatcher> linkDispatcher; // @synthesize linkDispatcher=_linkDispatcher;
@@ -38,7 +40,7 @@
 - (void)pushViewControllerForEntity:(id)arg1 rank:(unsigned long long)arg2;
 - (void)toggleFollowStateForURI:(id)arg1;
 - (id)parseResponse:(id)arg1 requestKey:(id)arg2 error:(id *)arg3;
-- (id)initWithRequestURLDictionary:(id)arg1 offlineModeState:(id)arg2 uri:(id)arg3 socialRelationsType:(unsigned long long)arg4 dataLoader:(id)arg5 followFeature:(id)arg6 linkDispatcher:(id)arg7 currentUsername:(id)arg8 testManager:(id)arg9;
+- (id)initWithRequestURLDictionary:(id)arg1 offlineModeState:(id)arg2 uri:(id)arg3 socialRelationsType:(unsigned long long)arg4 dataLoader:(id)arg5 followFeature:(id)arg6 linkDispatcher:(id)arg7 currentUsername:(id)arg8 testManager:(id)arg9 logger:(id)arg10;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

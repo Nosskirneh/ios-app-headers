@@ -9,36 +9,22 @@
 #import "SPTContextMenuSectionHeaderDelegate-Protocol.h"
 #import "SPTNowPlayingPlaybackActionsHandlerObserver-Protocol.h"
 
-@class NSString, SPTNowPlayingButton, SPTNowPlayingModel, SPTNowPlayingPlaybackActionsHandler, SPTTheme, UIButton, UILabel, UIStackView;
-@protocol SPTNowPlayingAuxiliaryActionsHandler, SPTNowPlayingRepeatButton, SPTNowPlayingShuffleButton;
+@class NSString, SPTNowPlayingContextMenuHeaderView, SPTNowPlayingModel, SPTTheme;
+@protocol SPTNowPlayingAuxiliaryActionsHandler, SPTNowPlayingPlaybackActionsHandler;
 
 @interface SPTNowPlayingContextMenuHeaderViewController : UIViewController <SPTNowPlayingPlaybackActionsHandlerObserver, SPTContextMenuSectionHeaderDelegate>
 {
     _Bool _queueHidden;
     SPTNowPlayingModel *_model;
-    SPTNowPlayingPlaybackActionsHandler *_playbackActionsHandler;
+    id <SPTNowPlayingPlaybackActionsHandler> _playbackActionsHandler;
     id <SPTNowPlayingAuxiliaryActionsHandler> _auxiliaryActionsHandler;
     SPTTheme *_theme;
-    UIStackView *_stackView;
-    SPTNowPlayingButton<SPTNowPlayingShuffleButton> *_shuffleButton;
-    SPTNowPlayingButton<SPTNowPlayingRepeatButton> *_repeatButton;
-    UIButton *_queueButton;
-    UILabel *_shuffleLabel;
-    UILabel *_repeatLabel;
-    UILabel *_queueLabel;
 }
 
 @property(readonly, nonatomic) _Bool queueHidden; // @synthesize queueHidden=_queueHidden;
-@property(retain, nonatomic) UILabel *queueLabel; // @synthesize queueLabel=_queueLabel;
-@property(retain, nonatomic) UILabel *repeatLabel; // @synthesize repeatLabel=_repeatLabel;
-@property(retain, nonatomic) UILabel *shuffleLabel; // @synthesize shuffleLabel=_shuffleLabel;
-@property(retain, nonatomic) UIButton *queueButton; // @synthesize queueButton=_queueButton;
-@property(retain, nonatomic) SPTNowPlayingButton<SPTNowPlayingRepeatButton> *repeatButton; // @synthesize repeatButton=_repeatButton;
-@property(retain, nonatomic) SPTNowPlayingButton<SPTNowPlayingShuffleButton> *shuffleButton; // @synthesize shuffleButton=_shuffleButton;
-@property(retain, nonatomic) UIStackView *stackView; // @synthesize stackView=_stackView;
-@property(retain, nonatomic) SPTTheme *theme; // @synthesize theme=_theme;
+@property(readonly, nonatomic) SPTTheme *theme; // @synthesize theme=_theme;
 @property(readonly, nonatomic) id <SPTNowPlayingAuxiliaryActionsHandler> auxiliaryActionsHandler; // @synthesize auxiliaryActionsHandler=_auxiliaryActionsHandler;
-@property(readonly, nonatomic) SPTNowPlayingPlaybackActionsHandler *playbackActionsHandler; // @synthesize playbackActionsHandler=_playbackActionsHandler;
+@property(readonly, nonatomic) id <SPTNowPlayingPlaybackActionsHandler> playbackActionsHandler; // @synthesize playbackActionsHandler=_playbackActionsHandler;
 @property(readonly, nonatomic) SPTNowPlayingModel *model; // @synthesize model=_model;
 - (void).cxx_destruct;
 - (void)playbackActionsHandlerDidToggleRepeat:(id)arg1;
@@ -46,14 +32,7 @@
 - (void)playbackActionsHandlerDidPlayPause:(id)arg1;
 - (id)contextMenuViewForSectionHeader;
 - (double)contextMenuHeightForSectionHeader;
-- (void)setupConstraintsForView:(id)arg1 button:(id)arg2 label:(id)arg3;
-- (id)createButtonLabel;
-- (void)setupQueueButton;
-- (void)updateRepeatButton;
-- (void)setupRepeatButton;
-- (void)updateShuffleButton;
-- (void)setupShuffleButton;
-- (void)setupStackView;
+- (void)loadView;
 - (void)viewDidLoad;
 - (id)initWithModel:(id)arg1 playbackActionsHandler:(id)arg2 auxiliaryActionsHandler:(id)arg3 theme:(id)arg4 queueHidden:(_Bool)arg5;
 
@@ -62,6 +41,7 @@
 @property(readonly, copy) NSString *description;
 @property(readonly) unsigned long long hash;
 @property(readonly) Class superclass;
+@property(readonly, nonatomic) SPTNowPlayingContextMenuHeaderView *view; // @dynamic view;
 
 @end
 

@@ -6,17 +6,15 @@
 
 #import <UIKit/UIView.h>
 
-@class GLUEButton, SPTActionButton, SPTLayoutConstraintBuilder, SPTTheme;
+@class GLUEButton, SPTActionButton, SPTTheme;
 
 @interface SPTNowPlayingAudioAdInfoUnitView : UIView
 {
     GLUEButton *_actionButton;
     SPTActionButton *_optOutButton;
     SPTTheme *_theme;
-    SPTLayoutConstraintBuilder *_layout;
 }
 
-@property(retain, nonatomic) SPTLayoutConstraintBuilder *layout; // @synthesize layout=_layout;
 @property(retain, nonatomic) SPTTheme *theme; // @synthesize theme=_theme;
 @property(retain, nonatomic) SPTActionButton *optOutButton; // @synthesize optOutButton=_optOutButton;
 @property(retain, nonatomic) GLUEButton *actionButton; // @synthesize actionButton=_actionButton;

@@ -12,6 +12,7 @@
 
 @interface SPTLoginTextFieldStyle : NSObject <GLUEStyle>
 {
+    _Bool _errorOutlineEnabled;
     UIFont *_font;
     UIColor *_textColor;
     UIColor *_invalidTextColor;
@@ -22,9 +23,14 @@
     double _textMargin;
     long long _textAlignment;
     long long _keyboardAppearance;
+    UIColor *_passwordToggleTintColor;
+    UIColor *_invalidPasswordToggleTintColor;
     struct CGSize _rightViewSize;
 }
 
+@property(retain, nonatomic) UIColor *invalidPasswordToggleTintColor; // @synthesize invalidPasswordToggleTintColor=_invalidPasswordToggleTintColor;
+@property(retain, nonatomic) UIColor *passwordToggleTintColor; // @synthesize passwordToggleTintColor=_passwordToggleTintColor;
+@property(nonatomic, getter=isErrorOutlineEnabled) _Bool errorOutlineEnabled; // @synthesize errorOutlineEnabled=_errorOutlineEnabled;
 @property(nonatomic) long long keyboardAppearance; // @synthesize keyboardAppearance=_keyboardAppearance;
 @property(nonatomic) long long textAlignment; // @synthesize textAlignment=_textAlignment;
 @property(nonatomic) struct CGSize rightViewSize; // @synthesize rightViewSize=_rightViewSize;

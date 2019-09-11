@@ -10,8 +10,9 @@
 @protocol SPTContextMenuPresenterFactory;
 
 @protocol SPTSleepTimerContextMenuActionsProvider <NSObject>
-- (SPTask *)viewSleepTimerOptionsWithViewController:(UIViewController *)arg1 senderView:(UIView *)arg2 contextMenuPresenter:(id <SPTContextMenuPresenterFactory>)arg3 logContext:(NSString *)arg4;
+- (SPTask *)viewSleepTimerOptionsWithViewController:(UIViewController *)arg1 senderView:(UIView *)arg2 contextMenuPresenter:(id <SPTContextMenuPresenterFactory>)arg3 logContext:(NSString *)arg4 isPodcastContext:(_Bool)arg5;
 - (NSString *)contextMenuTitle;
-- (NSArray *)allActions;
+- (NSArray *)allActionsForTracks;
+- (NSArray *)allActionsForPodcasts;
 @end
 

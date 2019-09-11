@@ -10,5 +10,6 @@
 - (void)clearPersistentStorage;
 - (void)activateFetched;
 - (void)fetchConfigurationWithCompletion:(void (^)(unsigned long long))arg1;
+- (void)fetchConfiguration;
 @end
 

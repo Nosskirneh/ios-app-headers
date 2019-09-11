@@ -7,9 +7,9 @@
 #import "NSObject-Protocol.h"
 
 @class NSString;
-@protocol GLUEImageLoader;
+@protocol SPTGLUEObservableImageLoader;
 
 @protocol SPTGLUEImageLoaderFactory <NSObject>
-- (id <GLUEImageLoader>)createImageLoaderForSourceIdentifier:(NSString *)arg1;
+- (id <SPTGLUEObservableImageLoader>)createImageLoaderForSourceIdentifier:(NSString *)arg1;
 @end
 

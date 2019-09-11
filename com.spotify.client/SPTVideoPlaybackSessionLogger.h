@@ -6,42 +6,44 @@
 
 #import "SPTVideoBaseTracker.h"
 
-@class NSMutableArray, NSString, SPTNetworkConnectivityController;
-@protocol SPTLogCenter;
+@class NSMutableArray, NSString;
+@protocol SPTVideoLogger, SPTVideoLoggerDataProvider;
 
 @interface SPTVideoPlaybackSessionLogger : SPTVideoBaseTracker
 {
-    id <SPTLogCenter> _logCenter;
-    NSString *_featureIdentifier;
-    SPTNetworkConnectivityController *_networkConnectivityController;
+    id <SPTVideoLogger> _logger;
+    id <SPTVideoLoggerDataProvider> _videoLoggerDataProvider;
     NSMutableArray *_bitrateEvents;
     NSString *_connectionTypeStart;
     NSString *_connectionTypeEnd;
     long long _nViewTransitions;
     long long _nDroppedFrames;
     double _aspectRatio;
+    NSString *_exitReason;
 }
 
+@property(copy, nonatomic) NSString *exitReason; // @synthesize exitReason=_exitReason;
 @property(nonatomic) double aspectRatio; // @synthesize aspectRatio=_aspectRatio;
 @property(nonatomic) long long nDroppedFrames; // @synthesize nDroppedFrames=_nDroppedFrames;
 @property(nonatomic) long long nViewTransitions; // @synthesize nViewTransitions=_nViewTransitions;
 @property(copy, nonatomic) NSString *connectionTypeEnd; // @synthesize connectionTypeEnd=_connectionTypeEnd;
 @property(copy, nonatomic) NSString *connectionTypeStart; // @synthesize connectionTypeStart=_connectionTypeStart;
 @property(retain, nonatomic) NSMutableArray *bitrateEvents; // @synthesize bitrateEvents=_bitrateEvents;
-@property(retain, nonatomic) SPTNetworkConnectivityController *networkConnectivityController; // @synthesize networkConnectivityController=_networkConnectivityController;
-@property(retain, nonatomic) NSString *featureIdentifier; // @synthesize featureIdentifier=_featureIdentifier;
-@property(retain, nonatomic) id <SPTLogCenter> logCenter; // @synthesize logCenter=_logCenter;
+@property(retain, nonatomic) id <SPTVideoLoggerDataProvider> videoLoggerDataProvider; // @synthesize videoLoggerDataProvider=_videoLoggerDataProvider;
+@property(retain, nonatomic) id <SPTVideoLogger> logger; // @synthesize logger=_logger;
 - (void).cxx_destruct;
+- (id)encryptionType;
 - (long long)kbpsAverageBandwidth;
+- (id)exitReasonFromEndReasonCode:(long long)arg1;
 - (void)sendMessage;
-- (void)videoPlaybackDidEndAtPosition:(double)arg1 withEndReason:(long long)arg2;
-- (void)videoPlaybackDidDropVideoFrames:(unsigned long long)arg1;
-- (void)videoPlaybackDidTransferBytes:(long long)arg1 bitrate:(double)arg2;
-- (void)videoPlaybackFormatDidChange:(id)arg1 atPosition:(double)arg2;
-- (void)videoPlaybackSurfaceDidChange:(id)arg1 atPosition:(double)arg2;
-- (void)videoPlaybackDidCreateSessionWithIdentity:(id)arg1 timeObservable:(id)arg2 inBackground:(_Bool)arg3;
+- (void)didEndPlaybackWithReason:(long long)arg1 atPosition:(double)arg2 timestamp:(double)arg3;
+- (void)didDropVideoFrames:(unsigned long long)arg1 timestamp:(double)arg2;
+- (void)didTransferBytes:(long long)arg1 forBitrate:(double)arg2 withElapsedTime:(double)arg3 timestamp:(double)arg4;
+- (void)didChangeVideoFormat:(id)arg1 atPosition:(double)arg2 timestamp:(double)arg3;
+- (void)didChangeSurface:(id)arg1 atPosition:(double)arg2 timestamp:(double)arg3;
+- (void)didCreatePlaybackInBackground:(_Bool)arg1 timestamp:(double)arg2;
 - (void)dealloc;
-- (id)initWithLogCenter:(id)arg1 featureIdentifier:(id)arg2 networkConnectivityController:(id)arg3;
+- (id)initWithLogger:(id)arg1 videoLoggerDataProvider:(id)arg2 identity:(id)arg3;
 
 @end
 

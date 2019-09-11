@@ -10,7 +10,7 @@
 {
 }
 
-- (id)initWithViewModel:(id)arg1 platformManager:(id)arg2 theme:(id)arg3 contextMenuPresenterFactory:(id)arg4 contextMenuOptionsFactory:(id)arg5 shelves:(id)arg6 upsellManager:(id)arg7 onDemandUpsell:(id)arg8 trackRowDelegate:(id)arg9 testManager:(id)arg10 explicitContentAccessManager:(id)arg11 logger:(id)arg12;
+- (id)initWithViewModel:(id)arg1 platformManager:(id)arg2 theme:(id)arg3 contextMenuPresenterFactory:(id)arg4 contextMenuOptionsFactory:(id)arg5 shelves:(id)arg6 trackRowDelegate:(id)arg7 testManager:(id)arg8 explicitContentAccessManager:(id)arg9 logger:(id)arg10;
 
 @end
 

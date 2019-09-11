@@ -20,11 +20,10 @@
 - (void)addObserver:(id <SPTCollectionPlatformObserver>)arg1;
 - (void)removeBanURL:(NSURL *)arg1 bySource:(NSString *)arg2 fromContext:(NSURL *)arg3 showUIConfirmation:(_Bool)arg4 completion:(void (^)(_Bool))arg5;
 - (void)banURL:(NSURL *)arg1 bySource:(NSString *)arg2 fromContext:(NSURL *)arg3 showUIConfirmation:(_Bool)arg4 completion:(void (^)(_Bool))arg5;
+- (void)removeURLs:(NSArray *)arg1 bySource:(NSString *)arg2 fromContext:(NSURL *)arg3 showUIConfirmation:(_Bool)arg4 completion:(void (^)(_Bool))arg5;
 - (void)removeURL:(NSURL *)arg1 bySource:(NSString *)arg2 fromContext:(NSURL *)arg3 showUIConfirmation:(_Bool)arg4 completion:(void (^)(_Bool))arg5;
-- (void)addURLs:(NSArray *)arg1 bySource:(NSString *)arg2 fromContext:(NSURL *)arg3 completion:(void (^)(_Bool))arg4;
+- (void)addURLs:(NSArray *)arg1 bySource:(NSString *)arg2 fromContext:(NSURL *)arg3 showUIConfirmation:(_Bool)arg4 completion:(void (^)(_Bool))arg5;
 - (void)addURL:(NSURL *)arg1 bySource:(NSString *)arg2 fromContext:(NSURL *)arg3 showUIConfirmation:(_Bool)arg4 completion:(void (^)(_Bool))arg5;
-- (void)addURL:(NSURL *)arg1 bySource:(NSString *)arg2 fromContext:(NSURL *)arg3 completion:(void (^)(_Bool))arg4;
-- (void)addURL:(NSURL *)arg1 bySource:(NSString *)arg2 fromContext:(NSURL *)arg3 showUIConfirmation:(_Bool)arg4;
 - (_Bool)canAddTrackWithURL:(NSURL *)arg1;
 - (id <SPTCollectionPlatformDataLoaderRequestToken>)subscribeCollectionStateForURLs:(NSArray *)arg1 completion:(void (^)(NSArray *, NSError *))arg2;
 - (id <SPTCollectionPlatformDataLoaderRequestToken>)subscribeCollectionStateForURL:(NSURL *)arg1 completion:(void (^)(unsigned long long, NSError *))arg2;

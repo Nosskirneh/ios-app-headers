@@ -10,7 +10,9 @@
 @protocol INSEventMessageNode;
 
 @protocol INSSchedulerDelegate <NSObject>
-- (void)schedulerDidFailWithErrorBatch:(NSArray *)arg1;
+- (void)schedulerDidRequestBackOff;
+- (void)schedulerDidFailBatch:(NSArray *)arg1;
+- (void)schedulerDidRetryBatch:(NSArray *)arg1;
 - (void)schedulerDidFinishWithSuccessBatch:(NSArray *)arg1;
 - (void)schedulerDidStartBatch:(NSArray *)arg1;
 - (void)schedulerDidAddMessageNode:(id <INSEventMessageNode>)arg1;

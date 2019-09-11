@@ -22,6 +22,7 @@
 @property(retain, nonatomic) IDPlacemark *highlightedPlacemark; // @synthesize highlightedPlacemark=_highlightedPlacemark;
 @property __weak id <IDMapViewOverlayDataProvider> overlayDataProvider; // @synthesize overlayDataProvider=_overlayDataProvider;
 - (void).cxx_destruct;
+- (void)handleVisibilityUpdate:(_Bool)arg1;
 - (void)updatePlacemarks:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (_Bool)hidePlacemarksWithError:(id *)arg1;
 - (void)hidePlacemarks;

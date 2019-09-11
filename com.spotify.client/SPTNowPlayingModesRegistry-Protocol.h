@@ -10,6 +10,7 @@
 @protocol SPTNowPlayingMode;
 
 @protocol SPTNowPlayingModesRegistry <NSObject>
+- (void)unregisterAllModes;
 - (void)deregisterMode:(id <SPTNowPlayingMode>)arg1;
 - (void)registerMode:(id <SPTNowPlayingMode>)arg1;
 - (id <SPTNowPlayingMode>)modeWithIdentifier:(NSString *)arg1;

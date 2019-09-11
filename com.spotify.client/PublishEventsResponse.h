@@ -6,7 +6,7 @@
 
 #import "GPBMessage.h"
 
-@class GPBInt32Array, NSMutableArray;
+@class NSMutableArray;
 
 @interface PublishEventsResponse : GPBMessage
 {
@@ -15,10 +15,8 @@
 + (id)descriptor;
 
 // Remaining properties
-@property(retain, nonatomic) NSMutableArray *debugInfoArray; // @dynamic debugInfoArray;
-@property(readonly, nonatomic) unsigned long long debugInfoArray_Count; // @dynamic debugInfoArray_Count;
-@property(retain, nonatomic) GPBInt32Array *nackArray; // @dynamic nackArray;
-@property(readonly, nonatomic) unsigned long long nackArray_Count; // @dynamic nackArray_Count;
+@property(retain, nonatomic) NSMutableArray *errorArray; // @dynamic errorArray;
+@property(readonly, nonatomic) unsigned long long errorArray_Count; // @dynamic errorArray_Count;
 
 @end
 

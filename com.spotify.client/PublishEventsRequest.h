@@ -15,10 +15,9 @@
 + (id)descriptor;
 
 // Remaining properties
-@property(nonatomic) _Bool debugEnableInfo; // @dynamic debugEnableInfo;
-@property(nonatomic) _Bool debugSuppressPersist; // @dynamic debugSuppressPersist;
 @property(retain, nonatomic) NSMutableArray *eventArray; // @dynamic eventArray;
 @property(readonly, nonatomic) unsigned long long eventArray_Count; // @dynamic eventArray_Count;
+@property(nonatomic) _Bool suppressPersist; // @dynamic suppressPersist;
 
 @end
 

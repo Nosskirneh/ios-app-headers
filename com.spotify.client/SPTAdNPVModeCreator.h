@@ -6,35 +6,33 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTAdManagerNPVRegistryUpdateOserver-Protocol.h"
-#import "SPTAdRegistryObserver-Protocol.h"
+#import "SPTAdsBaseRegistryObserver-Protocol.h"
 
-@class NSString, SPTAdRegistry;
-@protocol SPTAdNPVModeGeneratorProtocol, SPTAdsManager, SPTNowPlayingMode, SPTNowPlayingModesRegistry;
+@class NSString;
+@protocol SPTAdNPVModeGeneratorProtocol, SPTAdsBaseRegistry, SPTAdsManager, SPTNowPlayingMode, SPTNowPlayingModesRegistry;
 
-@interface SPTAdNPVModeCreator : NSObject <SPTAdManagerNPVRegistryUpdateOserver, SPTAdRegistryObserver>
+@interface SPTAdNPVModeCreator : NSObject <SPTAdsBaseRegistryObserver>
 {
-    id <SPTAdsManager> _adManager;
-    id <SPTNowPlayingModesRegistry> _npvModeRegistry;
-    SPTAdRegistry *_adRegistry;
     id <SPTNowPlayingMode> _audioAdMode;
     id <SPTNowPlayingMode> _videoAdMode;
+    id <SPTAdsManager> _adManager;
+    id <SPTNowPlayingModesRegistry> _npvModeRegistry;
+    id <SPTAdsBaseRegistry> _adRegistry;
     id <SPTAdNPVModeGeneratorProtocol> _audioModeGenerator;
     id <SPTAdNPVModeGeneratorProtocol> _videoModeGenerator;
 }
 
 @property(retain, nonatomic) id <SPTAdNPVModeGeneratorProtocol> videoModeGenerator; // @synthesize videoModeGenerator=_videoModeGenerator;
 @property(retain, nonatomic) id <SPTAdNPVModeGeneratorProtocol> audioModeGenerator; // @synthesize audioModeGenerator=_audioModeGenerator;
-@property(retain, nonatomic) id <SPTNowPlayingMode> videoAdMode; // @synthesize videoAdMode=_videoAdMode;
-@property(retain, nonatomic) id <SPTNowPlayingMode> audioAdMode; // @synthesize audioAdMode=_audioAdMode;
-@property(retain, nonatomic) SPTAdRegistry *adRegistry; // @synthesize adRegistry=_adRegistry;
+@property(retain, nonatomic) id <SPTAdsBaseRegistry> adRegistry; // @synthesize adRegistry=_adRegistry;
 @property(nonatomic) __weak id <SPTNowPlayingModesRegistry> npvModeRegistry; // @synthesize npvModeRegistry=_npvModeRegistry;
 @property(nonatomic) __weak id <SPTAdsManager> adManager; // @synthesize adManager=_adManager;
+@property(readonly, nonatomic) id <SPTNowPlayingMode> videoAdMode; // @synthesize videoAdMode=_videoAdMode;
+@property(readonly, nonatomic) id <SPTNowPlayingMode> audioAdMode; // @synthesize audioAdMode=_audioAdMode;
 - (void).cxx_destruct;
 - (void)adRegistry:(id)arg1 didProcessAdEntity:(id)arg2 event:(long long)arg3;
-- (void)npvRegistryDidChange:(id)arg1;
 - (void)dealloc;
-- (id)initWithAdManager:(id)arg1 adRegistry:(id)arg2 adNowPlayingManager:(id)arg3 animationView:(id)arg4 player:(id)arg5 linkDispatcher:(id)arg6 videoSurfaceManager:(id)arg7 theme:(id)arg8 eventLogger:(id)arg9 featureChecker:(id)arg10;
+- (id)initWithAdManager:(id)arg1 adRegistry:(id)arg2 adNowPlayingManager:(id)arg3 animationView:(id)arg4 feedbackModel:(id)arg5 featureChecker:(id)arg6 modeRegistry:(id)arg7 theme:(id)arg8 linkDispatcher:(id)arg9 playerObserver:(id)arg10 cosmosBridge:(id)arg11;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

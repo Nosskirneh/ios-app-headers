@@ -11,8 +11,8 @@
 #import "SPTVoiceTestManagerObserver-Protocol.h"
 #import "SPTVoiceTestManagerSettingsDelegate-Protocol.h"
 
-@class NSString, SPTAllocationContext, SPTDataLoaderKeymasterAuthoriser, SPTVoiceOnboardingManager, SPTVoiceTabBarViewManager, SPTVoiceTestManagerImplementation;
-@protocol EXP_HUBContentOperation, GaiaFeature, SPTBannerFeature, SPTCollectionPlatformService, SPTContainerService, SPTCoreService, SPTExternalIntegrationPlaybackService, SPTFeatureFlaggingService, SPTFreeTierService, SPTGLUEService, SPTNetworkService, SPTPageRegistrationToken, SPTPlayerFeature, SPTPlaylistPlatformService, SPTPodcastFeature, SPTRadioManager, SPTSessionService, SPTSettingsFeature, SPTURIDispatchService, SPTVoiceAudioRecorderFactory, SPTVoiceHomeComponentCommandHandlerFactory, SPTVoiceHomeViewModel, SPTVoiceLoggerProtocol, SPTVoiceOnboardingRecordPermissionsState, SPTVoiceSessionViewControllerFactory;
+@class NSString, SPTAllocationContext, SPTDataLoaderKeymasterAuthoriser, SPTVoiceOnboardingManager, SPTVoiceSessionHandlingOptions, SPTVoiceTabBarViewManager, SPTVoiceTestManagerImplementation;
+@protocol SPTBannerFeature, SPTCollectionPlatformService, SPTContainerService, SPTCoreService, SPTExternalIntegrationPlaybackService, SPTFeatureFlaggingService, SPTFreeTierService, SPTGLUEService, SPTNetworkService, SPTPageRegistrationToken, SPTPlayerFeature, SPTPlaylistPlatformService, SPTPodcastFeature, SPTRadioManager, SPTSessionService, SPTSettingsFeature, SPTURIDispatchService, SPTVoiceAudioRecorderFactory, SPTVoiceLoggerProtocol, SPTVoiceOnboardingRecordPermissionsState, SPTVoiceSessionViewControllerFactory;
 
 @interface SPTVoiceServiceImplementation : NSObject <SPTVoiceTestManagerObserver, SPTVoiceTestManagerSettingsDelegate, SPTVoiceTabBarViewManagerDelegate, SPTVoiceService>
 {
@@ -33,7 +33,6 @@
     id <SPTFeatureFlaggingService> _featureFlaggingService;
     id <SPTFreeTierService> _freeTierService;
     id <SPTBannerFeature> _bannerService;
-    id <GaiaFeature> _gaiaFeature;
     SPTDataLoaderKeymasterAuthoriser *_keymasterAuthoriser;
     id <SPTVoiceSessionViewControllerFactory> _defaultViewControllerFactory;
     SPTVoiceTestManagerImplementation *_testManager;
@@ -42,15 +41,11 @@
     id <SPTVoiceLoggerProtocol> _logger;
     id <SPTPageRegistrationToken> _defaultVoicePageRegistration;
     id <SPTVoiceOnboardingRecordPermissionsState> _permissionsReducer;
-    id <SPTVoiceHomeComponentCommandHandlerFactory> _voiceCommandHandlerFactory;
-    id <SPTVoiceHomeViewModel> _voiceComponentHomeViewModelProvider;
-    id <EXP_HUBContentOperation> _voiceContentOperation;
+    SPTVoiceSessionHandlingOptions *_sessionHandlingOptions;
 }
 
 + (id)serviceIdentifier;
-@property(retain, nonatomic) id <EXP_HUBContentOperation> voiceContentOperation; // @synthesize voiceContentOperation=_voiceContentOperation;
-@property(retain, nonatomic) id <SPTVoiceHomeViewModel> voiceComponentHomeViewModelProvider; // @synthesize voiceComponentHomeViewModelProvider=_voiceComponentHomeViewModelProvider;
-@property(retain, nonatomic) id <SPTVoiceHomeComponentCommandHandlerFactory> voiceCommandHandlerFactory; // @synthesize voiceCommandHandlerFactory=_voiceCommandHandlerFactory;
+@property(retain, nonatomic) SPTVoiceSessionHandlingOptions *sessionHandlingOptions; // @synthesize sessionHandlingOptions=_sessionHandlingOptions;
 @property(retain, nonatomic) id <SPTVoiceOnboardingRecordPermissionsState> permissionsReducer; // @synthesize permissionsReducer=_permissionsReducer;
 @property(retain, nonatomic) id <SPTPageRegistrationToken> defaultVoicePageRegistration; // @synthesize defaultVoicePageRegistration=_defaultVoicePageRegistration;
 @property(retain, nonatomic) id <SPTVoiceLoggerProtocol> logger; // @synthesize logger=_logger;
@@ -59,7 +54,6 @@
 @property(readonly, nonatomic) SPTVoiceTestManagerImplementation *testManager; // @synthesize testManager=_testManager;
 @property(readonly, nonatomic) id <SPTVoiceSessionViewControllerFactory> defaultViewControllerFactory; // @synthesize defaultViewControllerFactory=_defaultViewControllerFactory;
 @property(nonatomic) __weak SPTDataLoaderKeymasterAuthoriser *keymasterAuthoriser; // @synthesize keymasterAuthoriser=_keymasterAuthoriser;
-@property(nonatomic) __weak id <GaiaFeature> gaiaFeature; // @synthesize gaiaFeature=_gaiaFeature;
 @property(nonatomic) __weak id <SPTBannerFeature> bannerService; // @synthesize bannerService=_bannerService;
 @property(nonatomic) __weak id <SPTFreeTierService> freeTierService; // @synthesize freeTierService=_freeTierService;
 @property(nonatomic) __weak id <SPTFeatureFlaggingService> featureFlaggingService; // @synthesize featureFlaggingService=_featureFlaggingService;
@@ -81,21 +75,17 @@
 - (id)resolveReferrerIdentiferForContext:(id)arg1;
 - (id)authorisationHosts;
 - (id)provideVoiceTabBarViewManager;
-- (void)presentVoiceViewControllerFromSender:(id)arg1;
 - (void)presentVoiceViewController;
 - (id)createDefaultVoiceViewControllerWithURI:(id)arg1 context:(id)arg2;
 - (id)createDefaultVoiceViewController;
 @property(readonly, nonatomic) id <SPTVoiceAudioRecorderFactory> audioRecorderFactory; // @synthesize audioRecorderFactory=_audioRecorderFactory;
-- (id)presentationOptions;
 - (id)provideDefaultViewControllerFactory;
 - (id)createVoiceRecognitionTaskFactoryWithPlayer:(id)arg1;
 - (id)createVoiceDeeplinkCommandHandlerWithOptions:(id)arg1;
 - (id)createEntityDecorationController;
 - (id)createVoiceCommandHandlerWithReferrerIdentifier:(id)arg1 player:(id)arg2;
 - (id)providePlayerWithReferrerIdentifier:(id)arg1;
-- (id)provideVoiceComponentViewModelProvider;
-- (id)provideVoiceContentOperation;
-- (id)provideVoiceCommandHandlerFactory;
+- (void)testManager:(id)arg1 didSwitchEndpoint:(unsigned long long)arg2;
 - (void)didRequestTurnOffOnboardingWithTestManager:(id)arg1;
 - (void)didTapResetOnboardingWithTestManager:(id)arg1;
 - (void)didTapOpenVoiceOverlayWithTestManager:(id)arg1;
@@ -106,9 +96,9 @@
 - (_Bool)didFinishVoiceOnboarding;
 - (void)provideWithRadioManager:(id)arg1;
 - (id)provideTestManager;
-- (void)launchVoiceWithReferrerIdentifier:(id)arg1 senderView:(id)arg2;
+- (void)launchVoiceWithReferrerIdentifier:(id)arg1;
 - (id)createViewControllerFactoryWithVoiceSessionFactory:(id)arg1 presentationOptions:(id)arg2 commandHandlingOptions:(id)arg3;
-- (id)createVoiceSessionFactoryWithServiceIdentifier:(id)arg1;
+- (id)createVoiceSessionFactoryWithServiceIdentifier:(id)arg1 sessionHandlingOptions:(id)arg2;
 - (void)disable;
 - (void)unload;
 - (void)enable;

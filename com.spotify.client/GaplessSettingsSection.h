@@ -6,7 +6,7 @@
 
 #import "SettingsSection.h"
 
-@class SettingsSliderTableViewCell, SettingsSwitchTableViewCell;
+@class SPTSettingsLogger, SettingsSliderTableViewCell, SettingsSwitchTableViewCell;
 @protocol SPTPreferences;
 
 @interface GaplessSettingsSection : SettingsSection
@@ -14,8 +14,10 @@
     SettingsSliderTableViewCell *_crossfadeCell;
     SettingsSwitchTableViewCell *_gaplessCell;
     id <SPTPreferences> _preferences;
+    SPTSettingsLogger *_logger;
 }
 
+@property(retain, nonatomic) SPTSettingsLogger *logger; // @synthesize logger=_logger;
 @property(readonly, nonatomic) id <SPTPreferences> preferences; // @synthesize preferences=_preferences;
 @property(retain, nonatomic) SettingsSwitchTableViewCell *gaplessCell; // @synthesize gaplessCell=_gaplessCell;
 @property(retain, nonatomic) SettingsSliderTableViewCell *crossfadeCell; // @synthesize crossfadeCell=_crossfadeCell;
@@ -26,7 +28,7 @@
 - (void)crossfadeChanged:(id)arg1;
 - (void)gaplessChanged:(id)arg1;
 - (void)dealloc;
-- (id)initWithSettingsViewController:(id)arg1 animationView:(id)arg2 preferences:(id)arg3;
+- (id)initWithSettingsViewController:(id)arg1 animationView:(id)arg2 preferences:(id)arg3 logger:(id)arg4;
 
 @end
 

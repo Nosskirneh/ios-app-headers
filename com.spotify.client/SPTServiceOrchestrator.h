@@ -36,7 +36,7 @@
 - (id)childManagersForScope:(id)arg1;
 - (id)childScopesForScope:(id)arg1;
 - (void)unloadServicesForScope:(id)arg1;
-- (void)loadServicesForScope:(id)arg1 withCompletionBlock:(CDUnknownBlockType)arg2;
+- (void)loadServicesForScope:(id)arg1;
 - (id)serviceManagerForScope:(id)arg1;
 - (id)initWithServiceList:(id)arg1 instanceInteractor:(id)arg2 startupTracer:(id)arg3;
 

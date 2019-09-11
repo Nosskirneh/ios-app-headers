@@ -8,7 +8,7 @@
 
 #import "SPTSignupDataLoaderDelegate-Protocol.h"
 
-@class NSString, SPTAuthenticationHandler, SPTLoginDialogController, SPTLoginSpinnerButtonTestManager, SPTLoginTheme, SPTSignupCreateUserDataLoader, SPTSignupFacebookConfirmationLogger, SPTSignupTermsAndPolicyViewModel, SPTSignupUserInfoModel;
+@class NSString, SPTAuthenticationHandler, SPTLoginDialogController, SPTLoginEmailAlreadyExistsDialogLogger, SPTSignupCreateUserDataLoader, SPTSignupFacebookConfirmationLogger, SPTSignupTermsAndPolicyViewModel, SPTSignupUserInfoModel;
 @protocol GLUEImageLoader, SPTNavigationRouter, SPTSignupFacebookConfirmationViewModelDelegate;
 
 @interface SPTSignupFacebookConfirmationViewModel : NSObject <SPTSignupDataLoaderDelegate>
@@ -16,33 +16,30 @@
     id <SPTSignupFacebookConfirmationViewModelDelegate> _delegate;
     SPTSignupFacebookConfirmationLogger *_logger;
     SPTSignupTermsAndPolicyViewModel *_termsAndPolicyViewModel;
-    SPTLoginSpinnerButtonTestManager *_spinnerButtonTestManager;
-    SPTLoginTheme *_theme;
     SPTSignupUserInfoModel *_userInfo;
     id <GLUEImageLoader> _glueImageLoader;
     id <SPTNavigationRouter> _navigationRouter;
     SPTSignupCreateUserDataLoader *_createUserDataLoader;
     SPTAuthenticationHandler *_authenticationHandler;
-    SPTLoginDialogController *_alertController;
+    SPTLoginDialogController *_dialogController;
+    SPTLoginEmailAlreadyExistsDialogLogger *_emailExistDialogLogger;
 }
 
-@property(retain, nonatomic) SPTLoginDialogController *alertController; // @synthesize alertController=_alertController;
+@property(retain, nonatomic) SPTLoginEmailAlreadyExistsDialogLogger *emailExistDialogLogger; // @synthesize emailExistDialogLogger=_emailExistDialogLogger;
+@property(retain, nonatomic) SPTLoginDialogController *dialogController; // @synthesize dialogController=_dialogController;
 @property(retain, nonatomic) SPTAuthenticationHandler *authenticationHandler; // @synthesize authenticationHandler=_authenticationHandler;
 @property(retain, nonatomic) SPTSignupCreateUserDataLoader *createUserDataLoader; // @synthesize createUserDataLoader=_createUserDataLoader;
 @property(retain, nonatomic) id <SPTNavigationRouter> navigationRouter; // @synthesize navigationRouter=_navigationRouter;
 @property(readonly, nonatomic) id <GLUEImageLoader> glueImageLoader; // @synthesize glueImageLoader=_glueImageLoader;
 @property(readonly, nonatomic) SPTSignupUserInfoModel *userInfo; // @synthesize userInfo=_userInfo;
-@property(readonly, nonatomic) SPTLoginTheme *theme; // @synthesize theme=_theme;
-@property(retain, nonatomic) SPTLoginSpinnerButtonTestManager *spinnerButtonTestManager; // @synthesize spinnerButtonTestManager=_spinnerButtonTestManager;
 @property(readonly, nonatomic) SPTSignupTermsAndPolicyViewModel *termsAndPolicyViewModel; // @synthesize termsAndPolicyViewModel=_termsAndPolicyViewModel;
 @property(readonly, nonatomic) SPTSignupFacebookConfirmationLogger *logger; // @synthesize logger=_logger;
 @property(nonatomic) __weak id <SPTSignupFacebookConfirmationViewModelDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
 - (void)dataLoader:(id)arg1 didFinishLoadingWithError:(id)arg2;
-- (void)dataLoaderFinishLoadingWithSuccess:(id)arg1;
+- (void)dataLoader:(id)arg1 didFinishLoadingWithSuccessResponse:(id)arg2;
 - (void)presentLoginViewWithEmail:(id)arg1;
 - (void)loginWithFacebookCredentials;
-- (struct CGSize)profilePictureSize;
 - (id)imageLoader;
 - (id)profilePictureURL;
 - (id)loginButtonTitle;
@@ -51,8 +48,7 @@
 - (id)separatorText;
 - (id)explanationText;
 - (id)greetingText;
-- (id)viewStyle;
-- (id)initWithTheme:(id)arg1 userInfo:(id)arg2 imageLoader:(id)arg3 navigationRouter:(id)arg4 logger:(id)arg5 termsAndPolicyViewModel:(id)arg6 createUserDataLoader:(id)arg7 authenticationHandler:(id)arg8 alertController:(id)arg9 spinnerButtonTestManager:(id)arg10;
+- (id)initWithUserInfo:(id)arg1 imageLoader:(id)arg2 navigationRouter:(id)arg3 logger:(id)arg4 termsAndPolicyViewModel:(id)arg5 createUserDataLoader:(id)arg6 authenticationHandler:(id)arg7 dialogController:(id)arg8 emailExistsDialogLogger:(id)arg9;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

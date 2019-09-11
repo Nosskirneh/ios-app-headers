@@ -4,64 +4,61 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import "SPTNowPlayingBaseHeadUnitViewController.h"
+#import <UIKit/UIViewController.h>
 
-#import "SPTDailyMixFeedbackUIModelObserver-Protocol.h"
-#import "SPTNowPlayingRemoteControlPolicyUpdateOserver-Protocol.h"
+#import "SPTNowPlayingAuxiliaryActionsHandlerObserver-Protocol.h"
+#import "SPTNowPlayingContainedViewController-Protocol.h"
+#import "SPTNowPlayingModelObserver-Protocol.h"
+#import "SPTNowPlayingPlaybackActionsHandlerObserver-Protocol.h"
 
-@class NSString, NSURL, SPTNowPlayingBaseHeadUnitController, SPTNowPlayingFeedbackHeadUnitView, SPTNowPlayingLogger, SPTNowPlayingModel;
-@protocol SPContextMenuFeature, SPTContextMenuPresenter, SPTDailyMixFeedbackUIModel, SPTFeedbackViewModel, SPTNowPlayingRemoteControlPolicy, SPTPSXTestManager, SPTQueueLogger, SPTUpsellManager;
+@class NSString, SPTNowPlayingHeadUnitView, SPTNowPlayingModel, SPTProgressView, SPTTheme;
+@protocol SPTNowPlayingAuxiliaryActionsHandler, SPTNowPlayingContainingViewController, SPTNowPlayingPlaybackActionsHandler, SPTNowPlayingTestManager;
 
-@interface SPTNowPlayingFeedbackHeadUnitViewController : SPTNowPlayingBaseHeadUnitViewController <SPTNowPlayingRemoteControlPolicyUpdateOserver, SPTDailyMixFeedbackUIModelObserver>
+@interface SPTNowPlayingFeedbackHeadUnitViewController : UIViewController <SPTNowPlayingModelObserver, SPTNowPlayingPlaybackActionsHandlerObserver, SPTNowPlayingAuxiliaryActionsHandlerObserver, SPTNowPlayingContainedViewController>
 {
-    id <SPTPSXTestManager> _psxTestManager;
-    NSURL *_contextURI;
-    id <SPTFeedbackViewModel> _feedbackViewModel;
     SPTNowPlayingModel *_model;
-    SPTNowPlayingBaseHeadUnitController *_headUnitController;
-    id <SPTUpsellManager> _upsellManager;
-    id <SPTNowPlayingRemoteControlPolicy> _remoteControlPolicy;
-    id <SPTDailyMixFeedbackUIModel> _dailyMixFeedbackUIModel;
-    SPTNowPlayingLogger *_logger;
-    id <SPTQueueLogger> _queueLogger;
-    id <SPContextMenuFeature> _contextMenuFeature;
-    id <SPTContextMenuPresenter> _presenter;
+    id <SPTNowPlayingPlaybackActionsHandler> _playbackActionsHandler;
+    id <SPTNowPlayingAuxiliaryActionsHandler> _auxiliaryActionsHandler;
+    id <SPTNowPlayingTestManager> _testManager;
+    SPTTheme *_theme;
+    SPTProgressView *_progressView;
+    double _timeBeforeRadioAction;
 }
 
-@property(retain, nonatomic) id <SPTContextMenuPresenter> presenter; // @synthesize presenter=_presenter;
-@property(nonatomic) __weak id <SPContextMenuFeature> contextMenuFeature; // @synthesize contextMenuFeature=_contextMenuFeature;
-@property(retain, nonatomic) id <SPTQueueLogger> queueLogger; // @synthesize queueLogger=_queueLogger;
-@property(retain, nonatomic) SPTNowPlayingLogger *logger; // @synthesize logger=_logger;
-@property(nonatomic) __weak id <SPTDailyMixFeedbackUIModel> dailyMixFeedbackUIModel; // @synthesize dailyMixFeedbackUIModel=_dailyMixFeedbackUIModel;
-@property(retain, nonatomic) id <SPTNowPlayingRemoteControlPolicy> remoteControlPolicy; // @synthesize remoteControlPolicy=_remoteControlPolicy;
-@property(nonatomic) __weak id <SPTUpsellManager> upsellManager; // @synthesize upsellManager=_upsellManager;
-@property(retain, nonatomic) SPTNowPlayingBaseHeadUnitController *headUnitController; // @synthesize headUnitController=_headUnitController;
-@property(retain, nonatomic) SPTNowPlayingModel *model; // @synthesize model=_model;
-@property(readonly, nonatomic) id <SPTFeedbackViewModel> feedbackViewModel; // @synthesize feedbackViewModel=_feedbackViewModel;
-@property(readonly, nonatomic) NSURL *contextURI; // @synthesize contextURI=_contextURI;
-@property(readonly, nonatomic) id <SPTPSXTestManager> psxTestManager; // @synthesize psxTestManager=_psxTestManager;
+@property(nonatomic) double timeBeforeRadioAction; // @synthesize timeBeforeRadioAction=_timeBeforeRadioAction;
+@property(readonly, nonatomic) SPTProgressView *progressView; // @synthesize progressView=_progressView;
+@property(retain, nonatomic) SPTTheme *theme; // @synthesize theme=_theme;
+@property(readonly, nonatomic) id <SPTNowPlayingTestManager> testManager; // @synthesize testManager=_testManager;
+@property(readonly, nonatomic) id <SPTNowPlayingAuxiliaryActionsHandler> auxiliaryActionsHandler; // @synthesize auxiliaryActionsHandler=_auxiliaryActionsHandler;
+@property(readonly, nonatomic) id <SPTNowPlayingPlaybackActionsHandler> playbackActionsHandler; // @synthesize playbackActionsHandler=_playbackActionsHandler;
+@property(readonly, nonatomic) SPTNowPlayingModel *model; // @synthesize model=_model;
 - (void).cxx_destruct;
-- (id)provideRemoteControlPolicy;
-- (void)remoteControlPolicyDidChange:(id)arg1;
-- (void)dailyMixFeedbackUIModelDidChange:(id)arg1;
-- (void)needUpdateUI;
-- (void)presentNegativeFeedbackOptions:(id)arg1;
-- (void)positiveFeedbackButtonTouchedUpInside:(id)arg1;
-- (void)negativeFeedbackButtonTouchedUpInside:(id)arg1;
-- (id)psxBanActions;
-- (id)dmBanActions;
+- (void)auxiliaryActionsHandlerDidToggleCollectionState:(id)arg1;
+- (void)playbackActionsHandlerDidPlayPause:(id)arg1;
+- (void)nowPlayingModel:(id)arg1 didMoveToRelativeTrack:(id)arg2;
+- (void)updateUI;
+- (void)nowPlayingModelDidUpdateMetadata:(id)arg1;
+- (void)updateBanButton;
+- (void)updateHeartButton;
+- (void)updateSkipButtons;
+- (void)updatePlayPauseButton;
+- (void)toggleBanState:(id)arg1;
+- (void)toggleCollectionState:(id)arg1;
+- (double)viewControllerPriority;
+- (unsigned long long)leadingEdge;
+- (struct CGSize)preferredContentSize;
+- (void)viewWillDisappear:(_Bool)arg1;
 - (void)viewWillAppear:(_Bool)arg1;
-- (void)viewDidLoad;
 - (void)loadView;
-- (void)dealloc;
-- (id)initWithModel:(id)arg1 theme:(id)arg2 logger:(id)arg3 queueLogger:(id)arg4 upsellManager:(id)arg5 remoteControlPolicy:(id)arg6 dailyMixFeedbackUIModel:(id)arg7 contextMenuFeature:(id)arg8 psxTestManager:(id)arg9 contextURI:(id)arg10 feedbackViewModel:(id)arg11 crashReporter:(id)arg12;
+- (id)initWithModel:(id)arg1 playbackActionsHandler:(id)arg2 auxiliaryActionsHandler:(id)arg3 testManager:(id)arg4 theme:(id)arg5;
 
 // Remaining properties
+@property(nonatomic) __weak UIViewController<SPTNowPlayingContainingViewController> *container;
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
 @property(readonly) unsigned long long hash;
 @property(readonly) Class superclass;
-@property(retain, nonatomic) SPTNowPlayingFeedbackHeadUnitView *view; // @dynamic view;
+@property(retain, nonatomic) SPTNowPlayingHeadUnitView *view; // @dynamic view;
 
 @end
 

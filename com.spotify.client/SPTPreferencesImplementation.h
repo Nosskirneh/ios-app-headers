@@ -30,6 +30,7 @@
 @property(nonatomic) _Bool audioResyncBitrate;
 @property(nonatomic) long long audioSyncBitrate;
 @property(nonatomic) long long audioPlayBitrate;
+@property(nonatomic) _Bool audioAutomix;
 @property(nonatomic) long long audioCrossfadeTime;
 @property(nonatomic) _Bool audioCrossfade;
 @property(nonatomic) _Bool audioGapless;

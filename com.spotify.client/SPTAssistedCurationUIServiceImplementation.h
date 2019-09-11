@@ -10,7 +10,7 @@
 #import "SPTAssistedCurationUIService-Protocol.h"
 
 @class NSString, SPTAllocationContext, SPTAssistedCurationLinkDispatcherImplementation, SPTAssistedCurationPresentationHelper;
-@protocol SPContextMenuFeature, SPTAssistedCurationService, SPTAssistedCurationUITestManager, SPTAssistedCurationUserInterfaceFactory, SPTAudioPreviewService, SPTExplicitContentService, SPTFreeTierEducationService, SPTFreeTierPresentationService, SPTFreeTierService, SPTGLUEService, SPTPerformanceMetricsService, SPTSearchService, SPTSessionService, SPTSettingsFeature;
+@protocol SPContextMenuFeature, SPTAssistedCurationService, SPTAssistedCurationUITestManager, SPTAssistedCurationUserInterfaceFactory, SPTAudioPreviewService, SPTExplicitContentService, SPTFreeTierPresentationService, SPTFreeTierService, SPTGLUEService, SPTPerformanceMetricsService, SPTSearchPlatformService, SPTSessionService, SPTSettingsFeature, SPTSnackbarService;
 
 @interface SPTAssistedCurationUIServiceImplementation : SPTUIPageService <SPTAssistedCurationLinkDispatcherPageProvider, SPTAssistedCurationUIService>
 {
@@ -18,10 +18,10 @@
     id <SPTGLUEService> _glueService;
     id <SPContextMenuFeature> _contextMenuFeature;
     id <SPTAssistedCurationService> _assistedCurationService;
-    id <SPTSearchService> _searchService;
+    id <SPTSearchPlatformService> _searchPlatformService;
     id <SPTAudioPreviewService> _audioPreviewService;
     id <SPTExplicitContentService> _explicitContentService;
-    id <SPTFreeTierEducationService> _freeTierEducationService;
+    id <SPTSnackbarService> _snackbarService;
     id <SPTFreeTierPresentationService> _freeTierPresentationService;
     id <SPTPerformanceMetricsService> _performanceMetricsService;
     id <SPTAssistedCurationUserInterfaceFactory> _userInterfaceFactory;
@@ -41,10 +41,10 @@
 @property(retain, nonatomic) id <SPTAssistedCurationUserInterfaceFactory> userInterfaceFactory; // @synthesize userInterfaceFactory=_userInterfaceFactory;
 @property(nonatomic) __weak id <SPTPerformanceMetricsService> performanceMetricsService; // @synthesize performanceMetricsService=_performanceMetricsService;
 @property(nonatomic) __weak id <SPTFreeTierPresentationService> freeTierPresentationService; // @synthesize freeTierPresentationService=_freeTierPresentationService;
-@property(nonatomic) __weak id <SPTFreeTierEducationService> freeTierEducationService; // @synthesize freeTierEducationService=_freeTierEducationService;
+@property(nonatomic) __weak id <SPTSnackbarService> snackbarService; // @synthesize snackbarService=_snackbarService;
 @property(nonatomic) __weak id <SPTExplicitContentService> explicitContentService; // @synthesize explicitContentService=_explicitContentService;
 @property(nonatomic) __weak id <SPTAudioPreviewService> audioPreviewService; // @synthesize audioPreviewService=_audioPreviewService;
-@property(nonatomic) __weak id <SPTSearchService> searchService; // @synthesize searchService=_searchService;
+@property(nonatomic) __weak id <SPTSearchPlatformService> searchPlatformService; // @synthesize searchPlatformService=_searchPlatformService;
 @property(nonatomic) __weak id <SPTAssistedCurationService> assistedCurationService; // @synthesize assistedCurationService=_assistedCurationService;
 @property(nonatomic) __weak id <SPContextMenuFeature> contextMenuFeature; // @synthesize contextMenuFeature=_contextMenuFeature;
 @property(nonatomic) __weak id <SPTGLUEService> glueService; // @synthesize glueService=_glueService;
@@ -63,7 +63,6 @@
 - (id)providerCardsSortMechanism;
 - (id)provideAssistedCurationPresentationHelper;
 - (id)providerAssistedCurationLinkDispatcher;
-- (void)configureMasterFeatureFlag:(id)arg1;
 - (_Bool)claimsURI:(id)arg1;
 - (void)curatePlaylistURL:(id)arg1;
 - (void)load;

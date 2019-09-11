@@ -6,19 +6,19 @@
 
 #import <Foundation/NSOperation.h>
 
-@class IDEtchSession;
+@class BMWRemotingSession;
 
 @interface IDMapServiceOverlayAsyncBaseOperation : NSOperation
 {
     _Bool _executing;
     _Bool _finished;
-    IDEtchSession *_etchSession;
+    BMWRemotingSession *_etchSession;
     long long _mapServiceHandle;
 }
 
 + (id)new;
 @property(readonly) long long mapServiceHandle; // @synthesize mapServiceHandle=_mapServiceHandle;
-@property(readonly) IDEtchSession *etchSession; // @synthesize etchSession=_etchSession;
+@property(readonly) BMWRemotingSession *etchSession; // @synthesize etchSession=_etchSession;
 - (void).cxx_destruct;
 - (void)completeOperation;
 - (void)asyncMain;
@@ -27,7 +27,7 @@
 - (_Bool)isExecuting;
 - (_Bool)isAsynchronous;
 - (_Bool)isConcurrent;
-- (void)handleMapServiceEvent:(unsigned long long)arg1 transferId:(long long)arg2;
+- (void)handleMapServiceEvent:(id)arg1 transferId:(long long)arg2;
 - (id)init;
 - (id)initWithEtchSession:(id)arg1 mapServiceHandle:(long long)arg2;
 

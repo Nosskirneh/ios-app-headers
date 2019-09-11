@@ -6,21 +6,21 @@
 
 #import "SettingsSection.h"
 
-@class SPTNetworkConnectivityController, SettingsSwitchTableViewCell;
-@protocol SPTProductState, SPTSettingsUpsellDelegate;
+@class SPTNetworkConnectivityController, SPTSettingsLogger, SettingsSwitchTableViewCell;
+@protocol SPTProductState;
 
 @interface CellularSyncSettingsSection : SettingsSection
 {
     SettingsSwitchTableViewCell *_cell;
-    id <SPTSettingsUpsellDelegate> _upsellDelegate;
     id <SPTProductState> _productState;
     SPTNetworkConnectivityController *_networkConnectivityController;
+    SPTSettingsLogger *_logger;
 }
 
 + (_Bool)shouldDisplayInSettingsViewController:(id)arg1;
+@property(retain, nonatomic) SPTSettingsLogger *logger; // @synthesize logger=_logger;
 @property(retain, nonatomic) SPTNetworkConnectivityController *networkConnectivityController; // @synthesize networkConnectivityController=_networkConnectivityController;
 @property(readonly, nonatomic) __weak id <SPTProductState> productState; // @synthesize productState=_productState;
-@property(nonatomic) __weak id <SPTSettingsUpsellDelegate> upsellDelegate; // @synthesize upsellDelegate=_upsellDelegate;
 @property(retain, nonatomic) SettingsSwitchTableViewCell *cell; // @synthesize cell=_cell;
 - (void).cxx_destruct;
 - (id)footerText;
@@ -28,7 +28,7 @@
 - (long long)numberOfRows;
 - (void)syncOver3GChanged:(id)arg1;
 - (void)dealloc;
-- (id)initWithSettingsViewController:(id)arg1 productState:(id)arg2 upsellDelegate:(id)arg3 networkConnectivityController:(id)arg4;
+- (id)initWithSettingsViewController:(id)arg1 productState:(id)arg2 networkConnectivityController:(id)arg3 logger:(id)arg4;
 
 @end
 

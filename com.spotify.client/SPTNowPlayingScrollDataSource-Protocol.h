@@ -6,10 +6,9 @@
 
 #import "NSObject-Protocol.h"
 
-@protocol SPTNowPlayingScrollDataSourceDelegate, SPTNowPlayingScrollProvider;
+@protocol SPTNowPlayingScrollProvider;
 
 @protocol SPTNowPlayingScrollDataSource <NSObject>
-@property(nonatomic) __weak id <SPTNowPlayingScrollDataSourceDelegate> delegate;
 - (void)unregisterProvider:(id <SPTNowPlayingScrollProvider>)arg1;
 - (void)registerProvider:(id <SPTNowPlayingScrollProvider>)arg1;
 @end

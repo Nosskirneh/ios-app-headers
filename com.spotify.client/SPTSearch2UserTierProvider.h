@@ -6,24 +6,15 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTFeatureFlagSignalObserver-Protocol.h"
 #import "SPTSearch2UserTierProviding-Protocol.h"
 
 @class NSString;
-@protocol SPTFeatureFlagSignal;
 
-@interface SPTSearch2UserTierProvider : NSObject <SPTFeatureFlagSignalObserver, SPTSearch2UserTierProviding>
+@interface SPTSearch2UserTierProvider : NSObject <SPTSearch2UserTierProviding>
 {
-    id <SPTFeatureFlagSignal> _freeTierFeatureFlagSignal;
-    long long _freeTierFeatureFlagState;
 }
 
-@property(nonatomic) long long freeTierFeatureFlagState; // @synthesize freeTierFeatureFlagState=_freeTierFeatureFlagState;
-@property(readonly, nonatomic) id <SPTFeatureFlagSignal> freeTierFeatureFlagSignal; // @synthesize freeTierFeatureFlagSignal=_freeTierFeatureFlagSignal;
-- (void).cxx_destruct;
-- (void)featureFlagSignal:(id)arg1 hasAssumedState:(long long)arg2;
 @property(readonly, nonatomic) unsigned long long userTier;
-- (id)initWithFreeTierService:(id)arg1;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

@@ -9,6 +9,7 @@
 @class NSError, SPTLoginViewModel;
 
 @protocol SPTLoginViewModelDelegate <NSObject>
+- (void)viewModel:(SPTLoginViewModel *)arg1 shouldShowKeyboard:(_Bool)arg2;
 - (void)viewModelDidSucceedRequestMagicLink:(SPTLoginViewModel *)arg1;
 - (void)viewModel:(SPTLoginViewModel *)arg1 didFailRequestMagicLinkWithError:(NSError *)arg2;
 - (void)viewModelDidStartRequestMagicLink:(SPTLoginViewModel *)arg1;

@@ -6,35 +6,38 @@
 
 #import <objc/NSObject.h>
 
-@class AVAudioSession, MPVolumeView, NSHashTable, NSNotificationCenter, NSString, UIApplication;
+#import "SPTGaiaWirelessRoutesAPI-Protocol.h"
 
-@interface SPTGaiaAirplayManager : NSObject
+@class AVAudioSession, MPVolumeView, NSNotificationCenter, NSString, SPTObserverManager, UIApplication;
+
+@interface SPTGaiaAirplayManager : NSObject <SPTGaiaWirelessRoutesAPI>
 {
     _Bool _available;
     _Bool _active;
-    NSString *_activeDeviceName;
-    long long _audioOutputRoute;
     MPVolumeView *_volumeView;
     AVAudioSession *_audioSession;
     NSNotificationCenter *_notificationCenter;
     UIApplication *_application;
-    NSHashTable *_observers;
+    SPTObserverManager *_observers;
+    NSString *_activeDeviceName;
+    long long _wirelessConnectionType;
 }
 
-@property(retain, nonatomic) NSHashTable *observers; // @synthesize observers=_observers;
+@property(nonatomic) long long wirelessConnectionType; // @synthesize wirelessConnectionType=_wirelessConnectionType;
+@property(copy, nonatomic) NSString *activeDeviceName; // @synthesize activeDeviceName=_activeDeviceName;
+@property(nonatomic, getter=isActive) _Bool active; // @synthesize active=_active;
+@property(nonatomic, getter=isAvailable) _Bool available; // @synthesize available=_available;
+@property(retain, nonatomic) SPTObserverManager *observers; // @synthesize observers=_observers;
 @property(retain, nonatomic) UIApplication *application; // @synthesize application=_application;
 @property(retain, nonatomic) NSNotificationCenter *notificationCenter; // @synthesize notificationCenter=_notificationCenter;
 @property(retain, nonatomic) AVAudioSession *audioSession; // @synthesize audioSession=_audioSession;
 @property(retain, nonatomic) MPVolumeView *volumeView; // @synthesize volumeView=_volumeView;
-@property(nonatomic) long long audioOutputRoute; // @synthesize audioOutputRoute=_audioOutputRoute;
-@property(retain, nonatomic) NSString *activeDeviceName; // @synthesize activeDeviceName=_activeDeviceName;
-@property(nonatomic, getter=isActive) _Bool active; // @synthesize active=_active;
-@property(nonatomic, getter=isAvailable) _Bool available; // @synthesize available=_available;
 - (void).cxx_destruct;
 - (void)dealloc;
 - (void)routeChanged:(id)arg1;
 - (void)wirelessRouteActiveDidChange:(id)arg1;
 - (void)wirelessRoutesAvailableDidChange:(id)arg1;
+- (void)callObserversAboutAvailabilityChange;
 - (void)callObserversAboutActiveChange;
 - (void)wipeOutActiveDevice;
 - (void)determineActiveDevice;
@@ -45,6 +48,12 @@
 - (void)addObservers;
 - (void)setupVolumeView;
 - (id)initWithVolumeView:(id)arg1 audioSession:(id)arg2 notificationCenter:(id)arg3 application:(id)arg4;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

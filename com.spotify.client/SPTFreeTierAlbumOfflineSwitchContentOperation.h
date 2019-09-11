@@ -6,15 +6,15 @@
 
 #import <objc/NSObject.h>
 
-#import "EXP_HUBContentOperation-Protocol.h"
+#import "HUBContentOperation-Protocol.h"
 #import "SPTOfflineObserver-Protocol.h"
 
 @class NSString, NSURL, SPTFreeTierAlbumOfflineModel;
-@protocol EXP_HUBContentOperationDelegate, SPTOfflineManager;
+@protocol HUBContentOperationDelegate, SPTOfflineManager;
 
-@interface SPTFreeTierAlbumOfflineSwitchContentOperation : NSObject <SPTOfflineObserver, EXP_HUBContentOperation>
+@interface SPTFreeTierAlbumOfflineSwitchContentOperation : NSObject <SPTOfflineObserver, HUBContentOperation>
 {
-    id <EXP_HUBContentOperationDelegate> _delegate;
+    id <HUBContentOperationDelegate> _delegate;
     NSURL *_entityURL;
     id <SPTOfflineManager> _offlineManager;
     SPTFreeTierAlbumOfflineModel *_offlineModel;
@@ -23,7 +23,7 @@
 @property(retain, nonatomic) SPTFreeTierAlbumOfflineModel *offlineModel; // @synthesize offlineModel=_offlineModel;
 @property(readonly, nonatomic) __weak id <SPTOfflineManager> offlineManager; // @synthesize offlineManager=_offlineManager;
 @property(readonly, nonatomic) NSURL *entityURL; // @synthesize entityURL=_entityURL;
-@property(nonatomic) __weak id <EXP_HUBContentOperationDelegate> delegate; // @synthesize delegate=_delegate;
+@property(nonatomic) __weak id <HUBContentOperationDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
 - (void)offlineStateChangedForEntity:(id)arg1 withURL:(id)arg2;
 - (void)updateOfflineStateForComponentBuilder:(id)arg1;

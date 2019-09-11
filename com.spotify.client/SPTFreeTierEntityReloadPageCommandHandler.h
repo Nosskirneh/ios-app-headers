@@ -6,11 +6,11 @@
 
 #import <objc/NSObject.h>
 
-#import "EXP_HUBCommandHandler-Protocol.h"
+#import "HUBCommandHandler-Protocol.h"
 
 @class SPTFreeTierEntitySignalSource;
 
-@interface SPTFreeTierEntityReloadPageCommandHandler : NSObject <EXP_HUBCommandHandler>
+@interface SPTFreeTierEntityReloadPageCommandHandler : NSObject <HUBCommandHandler>
 {
     SPTFreeTierEntitySignalSource *_reloadPageSignalSource;
 }

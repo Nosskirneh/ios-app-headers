@@ -9,21 +9,25 @@
 #import "SPTFreeTierFindInterfaceFactory-Protocol.h"
 
 @class NSString;
-@protocol SPTSearchService;
+@protocol SPTSearchPlatformService, SPTSearchService;
 
 @interface SPTFreeTierFindInterfaceFactoryImplementation : NSObject <SPTFreeTierFindInterfaceFactory>
 {
     _Bool _nftExperience;
+    id <SPTSearchPlatformService> _searchPlatformService;
     id <SPTSearchService> _searchService;
 }
 
 @property(readonly, nonatomic) _Bool nftExperience; // @synthesize nftExperience=_nftExperience;
-@property(nonatomic) __weak id <SPTSearchService> searchService; // @synthesize searchService=_searchService;
+@property(readonly, nonatomic) __weak id <SPTSearchService> searchService; // @synthesize searchService=_searchService;
+@property(readonly, nonatomic) __weak id <SPTSearchPlatformService> searchPlatformService; // @synthesize searchPlatformService=_searchPlatformService;
 - (void).cxx_destruct;
+- (id)makeURLProvider;
+- (id)makeDefaultConfiguration;
 - (id)makeNonNFTSearchViewController;
 - (id)makeNFTSearchViewController;
 - (id)createSearchViewController;
-- (id)initWithSearchService:(id)arg1 nftExperience:(_Bool)arg2;
+- (id)initWithSearchPlatformService:(id)arg1 searchService:(id)arg2 nftExperience:(_Bool)arg3;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

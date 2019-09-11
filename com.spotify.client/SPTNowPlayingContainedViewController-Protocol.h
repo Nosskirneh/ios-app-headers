@@ -15,6 +15,6 @@
 
 @optional
 @property(nonatomic) __weak UIViewController<SPTNowPlayingContainingViewController> *container;
-- (void)configureForOrientation:(long long)arg1;
+- (struct CGSize)preferredContentSizeForContainerSize:(struct CGSize)arg1;
 @end
 

@@ -8,8 +8,8 @@
 
 #import "SPTFreeTierPlaylistTrackViewModel-Protocol.h"
 
-@class NSArray, NSString, NSURL, UIColor;
-@protocol SPTCollectionPlatformConfiguration, SPTFreeTierPlaylistModelEntityTrackFields;
+@class NSArray, NSDate, NSDictionary, NSString, NSURL, UIColor;
+@protocol SPTCollectionPlatformConfiguration, SPTFreeTierPlaylistModelEntityTrackFields, SPTVISREFFlagsService;
 
 @interface SPTFreeTierPlaylistTrackViewModelImplementation : NSObject <SPTFreeTierPlaylistTrackViewModel>
 {
@@ -20,14 +20,21 @@
     _Bool _collectionMenuIconsEnabled;
     _Bool _showCollectionQuickActions;
     _Bool _showTrackOwner;
+    _Bool _showAlbumInSubtitle;
+    _Bool _showThumbnailImage;
     id <SPTFreeTierPlaylistModelEntityTrackFields> _trackEntity;
     id <SPTCollectionPlatformConfiguration> _collectionConfiguration;
     NSString *_subtitle;
+    NSString *_formatListTitle;
     NSArray *_artists;
     long long _offlineSyncStatus;
+    id <SPTVISREFFlagsService> _visualRefreshService;
 }
 
+@property(nonatomic) __weak id <SPTVISREFFlagsService> visualRefreshService; // @synthesize visualRefreshService=_visualRefreshService;
 @property(nonatomic) long long offlineSyncStatus; // @synthesize offlineSyncStatus=_offlineSyncStatus;
+@property(nonatomic) _Bool showThumbnailImage; // @synthesize showThumbnailImage=_showThumbnailImage;
+@property(nonatomic) _Bool showAlbumInSubtitle; // @synthesize showAlbumInSubtitle=_showAlbumInSubtitle;
 @property(nonatomic) _Bool showTrackOwner; // @synthesize showTrackOwner=_showTrackOwner;
 @property(nonatomic) _Bool showCollectionQuickActions; // @synthesize showCollectionQuickActions=_showCollectionQuickActions;
 @property(readonly, nonatomic, getter=isCollectionMenuIconsEnabled) _Bool collectionMenuIconsEnabled; // @synthesize collectionMenuIconsEnabled=_collectionMenuIconsEnabled;
@@ -35,15 +42,27 @@
 @property(nonatomic, getter=isPlaybackRestricted) _Bool playbackRestricted; // @synthesize playbackRestricted=_playbackRestricted;
 @property(nonatomic, getter=isOffline) _Bool offline; // @synthesize offline=_offline;
 @property(nonatomic, getter=isPlayingTrack) _Bool playingTrack; // @synthesize playingTrack=_playingTrack;
-@property(retain, nonatomic) NSArray *artists; // @synthesize artists=_artists;
+@property(copy, nonatomic) NSArray *artists; // @synthesize artists=_artists;
+@property(copy, nonatomic) NSString *formatListTitle; // @synthesize formatListTitle=_formatListTitle;
 @property(copy, nonatomic) NSString *subtitle; // @synthesize subtitle=_subtitle;
 @property(retain, nonatomic) id <SPTCollectionPlatformConfiguration> collectionConfiguration; // @synthesize collectionConfiguration=_collectionConfiguration;
 @property(retain, nonatomic) id <SPTFreeTierPlaylistModelEntityTrackFields> trackEntity; // @synthesize trackEntity=_trackEntity;
 - (void).cxx_destruct;
+@property(readonly, copy, nonatomic) NSDictionary *formatListAttributes;
+@property(readonly, nonatomic) _Bool isPlayed;
+@property(readonly, nonatomic) double timeLeft;
+@property(readonly, nonatomic) double duration;
+@property(readonly, nonatomic) NSDate *publishDate;
+@property(readonly, copy, nonatomic) NSString *publisherName;
 - (void)setUpOfflineSyncStatus;
-@property(readonly, nonatomic) NSString *previewID;
+@property(readonly, nonatomic) NSString *freeformDescription;
+@property(readonly, nonatomic) NSURL *videoThumbnailURL;
+@property(readonly, copy, nonatomic) NSString *previewID;
 @property(readonly, nonatomic) NSURL *albumURL;
-@property(readonly, nonatomic) NSString *albumName;
+@property(readonly, copy, nonatomic) NSString *albumName;
+@property(readonly, nonatomic, getter=isEpisode) _Bool episode;
+@property(readonly, nonatomic, getter=isVideo) _Bool video;
+@property(readonly, nonatomic, getter=isImageEnabled) _Bool imageEnabled;
 @property(readonly, nonatomic, getter=isBanned) _Bool banned;
 @property(readonly, nonatomic, getter=isLiked) _Bool liked;
 @property(readonly, nonatomic, getter=isEnabled) _Bool enabled;
@@ -55,7 +74,7 @@
 @property(readonly, nonatomic) NSURL *imageURL;
 @property(readonly, nonatomic) NSURL *URL;
 @property(readonly, copy, nonatomic) NSString *title;
-- (id)initWithPlaylistTrackEntity:(id)arg1 collectionConfiguration:(id)arg2 isPlayingTrack:(_Bool)arg3 isOffline:(_Bool)arg4 isPlaybackRestricted:(_Bool)arg5 isPremiumOnlyFeatureEnabled:(_Bool)arg6 isCollectionMenuIconsEnabled:(_Bool)arg7 showCollectionQuickActions:(_Bool)arg8 showTrackOwner:(_Bool)arg9;
+- (id)initWithPlaylistTrackEntity:(id)arg1 collectionConfiguration:(id)arg2 isPlayingTrack:(_Bool)arg3 isOffline:(_Bool)arg4 isPlaybackRestricted:(_Bool)arg5 isPremiumOnlyFeatureEnabled:(_Bool)arg6 isCollectionMenuIconsEnabled:(_Bool)arg7 showCollectionQuickActions:(_Bool)arg8 showTrackOwner:(_Bool)arg9 showAlbumInSubtitle:(_Bool)arg10 visualRefreshService:(id)arg11 showThumbnailImage:(_Bool)arg12;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

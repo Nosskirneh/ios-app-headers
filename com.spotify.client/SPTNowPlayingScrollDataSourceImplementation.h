@@ -6,39 +6,30 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTNowPlayingScrollDataSource-Protocol.h"
 #import "SPTNowPlayingScrollDataSource_Internal-Protocol.h"
-#import "SPTNowPlayingScrollProviderDelegate-Protocol.h"
 
-@class NSArray, NSBundle, NSMutableDictionary, NSOrderedSet, NSString;
-@protocol SPTNowPlayingScrollDataSourceDelegate;
+@class NSMutableDictionary, NSOrderedSet, NSString;
+@protocol SPTNowPlayingTestManager;
 
-@interface SPTNowPlayingScrollDataSourceImplementation : NSObject <SPTNowPlayingScrollProviderDelegate, SPTNowPlayingScrollDataSource, SPTNowPlayingScrollDataSource_Internal>
+@interface SPTNowPlayingScrollDataSourceImplementation : NSObject <SPTNowPlayingScrollDataSource_Internal>
 {
-    id <SPTNowPlayingScrollDataSourceDelegate> delegate;
-    NSBundle *_bundle;
     NSMutableDictionary *_providersDictionary;
     NSOrderedSet *_activeProviders;
-    NSArray *_priorityList;
+    id <SPTNowPlayingTestManager> _testManager;
 }
 
-@property(retain, nonatomic) NSArray *priorityList; // @synthesize priorityList=_priorityList;
+@property(retain, nonatomic) id <SPTNowPlayingTestManager> testManager; // @synthesize testManager=_testManager;
 @property(copy, nonatomic) NSOrderedSet *activeProviders; // @synthesize activeProviders=_activeProviders;
 @property(readonly, nonatomic) NSMutableDictionary *providersDictionary; // @synthesize providersDictionary=_providersDictionary;
-@property(readonly, nonatomic) NSBundle *bundle; // @synthesize bundle=_bundle;
-@property(nonatomic) __weak id <SPTNowPlayingScrollDataSourceDelegate> delegate; // @synthesize delegate;
 - (void).cxx_destruct;
-- (void)providerDidChangeState:(id)arg1;
-- (void)provider:(id)arg1 didFinishUpdatingWithTrack:(id)arg2;
 - (id)providerAtIndex:(unsigned long long)arg1;
 - (unsigned long long)numberOfProviders;
-- (void)loadProvidersForTrack:(id)arg1;
+- (_Bool)updateProvidersForTrack:(id)arg1;
 - (void)unregisterProvider:(id)arg1;
 - (void)registerProvider:(id)arg1;
-- (void)refreshActiveProviders;
 - (unsigned long long)maximumNumberOfProviders;
-- (id)filteredProviders;
-- (id)initWithBundle:(id)arg1;
+- (id)filteredProvidersForTrack:(id)arg1;
+- (id)initWithTestManager:(id)arg1;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

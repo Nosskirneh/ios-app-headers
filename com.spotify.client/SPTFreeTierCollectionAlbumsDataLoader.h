@@ -8,7 +8,7 @@
 
 #import "SPTFreeTierCollectionRangeDataLoader-Protocol.h"
 
-@class NSString;
+@class NSArray, NSString;
 @protocol SPTCollectionPlatformDataLoader, SPTCollectionPlatformDataLoaderRequestToken, SPTFreeTierCollectionRangeDataLoaderDelegate, SPTFreeTierCollectionTestManager;
 
 @interface SPTFreeTierCollectionAlbumsDataLoader : NSObject <SPTFreeTierCollectionRangeDataLoader>
@@ -17,16 +17,18 @@
     id <SPTCollectionPlatformDataLoader> _collectionDataLoader;
     id <SPTFreeTierCollectionTestManager> _testManager;
     unsigned long long _totalNumberOfItems;
+    NSArray *_sectionIndices;
     id <SPTCollectionPlatformDataLoaderRequestToken> _subscription;
 }
 
 @property(retain, nonatomic) id <SPTCollectionPlatformDataLoaderRequestToken> subscription; // @synthesize subscription=_subscription;
+@property(copy, nonatomic) NSArray *sectionIndices; // @synthesize sectionIndices=_sectionIndices;
 @property(nonatomic) unsigned long long totalNumberOfItems; // @synthesize totalNumberOfItems=_totalNumberOfItems;
 @property(retain, nonatomic) id <SPTFreeTierCollectionTestManager> testManager; // @synthesize testManager=_testManager;
 @property(readonly, nonatomic) id <SPTCollectionPlatformDataLoader> collectionDataLoader; // @synthesize collectionDataLoader=_collectionDataLoader;
 @property(nonatomic) __weak id <SPTFreeTierCollectionRangeDataLoaderDelegate> rangeDataLoaderDelegate; // @synthesize rangeDataLoaderDelegate;
 - (void).cxx_destruct;
-- (void)loadItemsForRange:(struct _NSRange)arg1 sortRule:(id)arg2 filterRules:(id)arg3 textFilter:(id)arg4;
+- (void)loadItemsForRange:(struct _NSRange)arg1 sortRules:(id)arg2 filterRules:(id)arg3 textFilter:(id)arg4;
 - (id)initWithCollectionDataLoader:(id)arg1 testManager:(id)arg2;
 
 // Remaining properties

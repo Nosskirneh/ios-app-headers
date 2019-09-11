@@ -8,24 +8,23 @@
 
 #import "GLUEStyleable-Protocol.h"
 
-@class NSAttributedString, NSDictionary, NSString, UITextView;
+@class NSArray, NSString, UITextView;
 @protocol UITextViewDelegate;
 
 @interface SPTSignupTermsAndPolicyView : UIView <GLUEStyleable>
 {
-    NSAttributedString *_attributedText;
     id <UITextViewDelegate> _delegate;
     UITextView *_textView;
-    NSDictionary *_termsViewHorizontalMargin;
+    NSArray *_termsViewHorizontalMargin;
 }
 
-@property(retain, nonatomic) NSDictionary *termsViewHorizontalMargin; // @synthesize termsViewHorizontalMargin=_termsViewHorizontalMargin;
+@property(retain, nonatomic) NSArray *termsViewHorizontalMargin; // @synthesize termsViewHorizontalMargin=_termsViewHorizontalMargin;
 @property(retain, nonatomic) UITextView *textView; // @synthesize textView=_textView;
 @property(nonatomic) __weak id <UITextViewDelegate> delegate; // @synthesize delegate=_delegate;
-@property(retain, nonatomic) NSAttributedString *attributedText; // @synthesize attributedText=_attributedText;
 - (void).cxx_destruct;
 - (void)glue_applyStyle:(id)arg1;
 - (void)setupConstraints;
+- (void)setAttributedText:(id)arg1;
 - (id)initWithFrame:(struct CGRect)arg1;
 
 // Remaining properties

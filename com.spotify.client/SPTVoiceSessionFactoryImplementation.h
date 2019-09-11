@@ -8,7 +8,7 @@
 
 #import "SPTVoiceSessionFactory-Protocol.h"
 
-@class NSString, SPTVoiceDynamicCommandSuggestionsGenerator;
+@class NSString, SPTVoiceDynamicCommandSuggestionsGenerator, SPTVoiceSessionHandlingOptions, SPTVoiceTestManagerImplementation;
 @protocol SPTPlayer, SPTVoiceAudioSession, SPTVoiceCommandHandler, SPTVoiceRecognitionTaskFactory, SPTVoiceUtteranceIdentifierProvider;
 
 @interface SPTVoiceSessionFactoryImplementation : NSObject <SPTVoiceSessionFactory>
@@ -19,8 +19,12 @@
     id <SPTVoiceUtteranceIdentifierProvider> _utteranceIdProvider;
     id <SPTVoiceAudioSession> _audioSessionManager;
     SPTVoiceDynamicCommandSuggestionsGenerator *_suggestionGenerator;
+    SPTVoiceSessionHandlingOptions *_sessionHandlingOptions;
+    SPTVoiceTestManagerImplementation *_testManager;
 }
 
+@property(readonly, nonatomic) SPTVoiceTestManagerImplementation *testManager; // @synthesize testManager=_testManager;
+@property(readonly, nonatomic) SPTVoiceSessionHandlingOptions *sessionHandlingOptions; // @synthesize sessionHandlingOptions=_sessionHandlingOptions;
 @property(readonly, nonatomic) SPTVoiceDynamicCommandSuggestionsGenerator *suggestionGenerator; // @synthesize suggestionGenerator=_suggestionGenerator;
 @property(readonly, nonatomic) id <SPTVoiceAudioSession> audioSessionManager; // @synthesize audioSessionManager=_audioSessionManager;
 @property(readonly, nonatomic) id <SPTVoiceUtteranceIdentifierProvider> utteranceIdProvider; // @synthesize utteranceIdProvider=_utteranceIdProvider;
@@ -30,7 +34,7 @@
 - (void).cxx_destruct;
 - (id)createVoiceSessionWithInitialUtteranceId:(id)arg1;
 - (id)createVoiceSession;
-- (id)initWithVoiceRecognitionTaskFactory:(id)arg1 audioSessionManager:(id)arg2 voiceCommandHandler:(id)arg3 player:(id)arg4 utteranceIdProvider:(id)arg5 suggestionGenerator:(id)arg6;
+- (id)initWithVoiceRecognitionTaskFactory:(id)arg1 audioSessionManager:(id)arg2 voiceCommandHandler:(id)arg3 player:(id)arg4 utteranceIdProvider:(id)arg5 suggestionGenerator:(id)arg6 sessionHandlingOptions:(id)arg7 testManager:(id)arg8;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

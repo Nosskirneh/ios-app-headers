@@ -6,14 +6,14 @@
 
 #import <objc/NSObject.h>
 
-#import "EXP_HUBContentOperation-Protocol.h"
+#import "HUBContentOperation-Protocol.h"
 
 @class NSString;
-@protocol EXP_HUBContentOperationDelegate;
+@protocol HUBContentOperationDelegate;
 
-@interface SPTFreeTierEntityGlueHeaderTransformerContentOperation : NSObject <EXP_HUBContentOperation>
+@interface SPTFreeTierEntityGlueHeaderTransformerContentOperation : NSObject <HUBContentOperation>
 {
-    id <EXP_HUBContentOperationDelegate> delegate;
+    id <HUBContentOperationDelegate> delegate;
     NSString *_headerNamespace;
     NSString *_headerName;
     NSString *_headerCategory;
@@ -22,7 +22,7 @@
 @property(copy, nonatomic) NSString *headerCategory; // @synthesize headerCategory=_headerCategory;
 @property(copy, nonatomic) NSString *headerName; // @synthesize headerName=_headerName;
 @property(copy, nonatomic) NSString *headerNamespace; // @synthesize headerNamespace=_headerNamespace;
-@property(nonatomic) __weak id <EXP_HUBContentOperationDelegate> delegate; // @synthesize delegate;
+@property(nonatomic) __weak id <HUBContentOperationDelegate> delegate; // @synthesize delegate;
 - (void).cxx_destruct;
 - (void)copyComponentModelBuilderFrom:(id)arg1 to:(id)arg2;
 - (void)performForViewModelBuilder:(id)arg1 previousError:(id)arg2;

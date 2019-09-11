@@ -36,6 +36,8 @@
 - (void)updateStyleForState;
 - (void)glue_applyStyle:(id)arg1;
 - (id)initWithFrame:(struct CGRect)arg1;
+- (void)setTextWithImageButtonStyle:(id)arg1;
+- (void)setTitle:(id)arg1;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

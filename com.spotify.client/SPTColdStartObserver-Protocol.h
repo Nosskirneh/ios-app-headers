@@ -10,5 +10,8 @@
 
 @protocol SPTColdStartObserver <NSObject>
 - (void)logAppStartupWithStepName:(NSString *)arg1 categories:(NSString *)arg2 eventType:(long long)arg3 level:(long long)arg4;
+
+@optional
+- (void)logAppStartupWithStepName:(NSString *)arg1;
 @end
 

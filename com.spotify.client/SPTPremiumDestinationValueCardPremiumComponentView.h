@@ -14,7 +14,6 @@
     GLUEGradientView *_gradientView;
 }
 
-+ (id)gradientStyleForComponentModel:(id)arg1;
 @property(retain, nonatomic) GLUEGradientView *gradientView; // @synthesize gradientView=_gradientView;
 @property(retain, nonatomic) UIImageView *imageView; // @synthesize imageView=_imageView;
 - (void).cxx_destruct;

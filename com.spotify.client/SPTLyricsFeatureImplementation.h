@@ -6,91 +6,61 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTAbbaFeatureFlagsObserver-Protocol.h"
-#import "SPTLocalSettingsObserver-Protocol.h"
 #import "SPTLyricsFeature-Protocol.h"
-#import "SPTNowPlayingCarouselContentProviderFactory-Protocol.h"
 
-@class NSString, SPTAllocationContext, SPTLyricsLoggingService, SPTLyricsNowPlayingBarContentProvider, SPTLyricsService;
-@protocol SPContextMenuFeature, SPTAbbaFeatureFlags, SPTAbbaService, SPTContainerService, SPTCoreService, SPTGLUEService, SPTKaraokeService, SPTLocalSettings, SPTLyricsOnboardingManager, SPTLyricsTrackChecker, SPTNetworkService, SPTNowPlayingPlatformService, SPTNowPlayingService, SPTPageRegistrationToken, SPTPlayer, SPTPlayerFeature, SPTSessionService, SPTSettingsFeature, SPTTooltipService, SPTUIPresentationService, SPTURIDispatchService;
+@class NSString, SPTAllocationContext, SPTLyricsV2Service;
+@protocol CosmosFeature, GaiaFeature, SPContextMenuFeature, SPTBannerFeature, SPTContainerService, SPTCoreService, SPTFeatureFlaggingService, SPTGLUEService, SPTInAppMessageService, SPTLyricsTrackChecker, SPTLyricsV2TestManager, SPTNetworkService, SPTNowPlayingPlatformService, SPTNowPlayingService, SPTPlayer, SPTPlayerFeature, SPTUIPresentationService, SPTURIDispatchService;
 
-@interface SPTLyricsFeatureImplementation : NSObject <SPTAbbaFeatureFlagsObserver, SPTLocalSettingsObserver, SPTNowPlayingCarouselContentProviderFactory, SPTLyricsFeature>
+@interface SPTLyricsFeatureImplementation : NSObject <SPTLyricsFeature>
 {
-    _Bool _hasRegisteredProviders;
-    id <SPTAbbaService> _abbaService;
-    id <SPTSessionService> _clientSessionService;
     id <SPTContainerService> _containerService;
     id <SPContextMenuFeature> _contextMenuService;
     id <SPTCoreService> _coreService;
+    id <SPTFeatureFlaggingService> _featureFlaggingService;
     id <SPTGLUEService> _glueService;
-    id <SPTKaraokeService> _karaokeService;
     id <SPTNetworkService> _networkService;
     id <SPTNowPlayingService> _nowPlayingService;
     id <SPTNowPlayingPlatformService> _nowPlayingPlatformService;
     id <SPTPlayerFeature> _playerService;
-    id <SPTSettingsFeature> _settingsService;
-    id <SPTTooltipService> _tooltipService;
     id <SPTUIPresentationService> _uiPresentationService;
-    id <SPTURIDispatchService> _URIDispatchService;
-    id <SPTLocalSettings> _localSettings;
-    id <SPTAbbaFeatureFlags> _abbaFeatureFlags;
-    id <SPTPageRegistrationToken> _lyricsMiniNPVRegistration;
-    id <SPTPageRegistrationToken> _lyricsLyricsFullScreenRegistration;
+    id <SPTURIDispatchService> _uriDispatchService;
     id <SPTPlayer> _player;
-    SPTLyricsService *_lyricsService;
-    SPTLyricsLoggingService *_loggingService;
-    id <SPTLyricsOnboardingManager> _onboardingManager;
-    SPTLyricsNowPlayingBarContentProvider *_barContentProvider;
     id <SPTLyricsTrackChecker> _trackChecker;
+    id <SPTBannerFeature> _bannerService;
+    id <CosmosFeature> _cosmosFeature;
+    id <GaiaFeature> _gaiaFeature;
+    id <SPTInAppMessageService> _inAppMessageService;
+    id <SPTLyricsV2TestManager> _testManager;
+    SPTLyricsV2Service *_lyricsV2Service;
 }
 
 + (id)serviceIdentifier;
+@property(retain, nonatomic) SPTLyricsV2Service *lyricsV2Service; // @synthesize lyricsV2Service=_lyricsV2Service;
+@property(retain, nonatomic) id <SPTLyricsV2TestManager> testManager; // @synthesize testManager=_testManager;
+@property(nonatomic) __weak id <SPTInAppMessageService> inAppMessageService; // @synthesize inAppMessageService=_inAppMessageService;
+@property(nonatomic) __weak id <GaiaFeature> gaiaFeature; // @synthesize gaiaFeature=_gaiaFeature;
+@property(nonatomic) __weak id <CosmosFeature> cosmosFeature; // @synthesize cosmosFeature=_cosmosFeature;
+@property(nonatomic) __weak id <SPTBannerFeature> bannerService; // @synthesize bannerService=_bannerService;
 @property(retain, nonatomic) id <SPTLyricsTrackChecker> trackChecker; // @synthesize trackChecker=_trackChecker;
-@property(nonatomic) _Bool hasRegisteredProviders; // @synthesize hasRegisteredProviders=_hasRegisteredProviders;
-@property(retain, nonatomic) SPTLyricsNowPlayingBarContentProvider *barContentProvider; // @synthesize barContentProvider=_barContentProvider;
-@property(retain, nonatomic) id <SPTLyricsOnboardingManager> onboardingManager; // @synthesize onboardingManager=_onboardingManager;
-@property(retain, nonatomic) SPTLyricsLoggingService *loggingService; // @synthesize loggingService=_loggingService;
-@property(retain, nonatomic) SPTLyricsService *lyricsService; // @synthesize lyricsService=_lyricsService;
 @property(retain, nonatomic) id <SPTPlayer> player; // @synthesize player=_player;
-@property(retain, nonatomic) id <SPTPageRegistrationToken> lyricsLyricsFullScreenRegistration; // @synthesize lyricsLyricsFullScreenRegistration=_lyricsLyricsFullScreenRegistration;
-@property(retain, nonatomic) id <SPTPageRegistrationToken> lyricsMiniNPVRegistration; // @synthesize lyricsMiniNPVRegistration=_lyricsMiniNPVRegistration;
-@property(retain, nonatomic) id <SPTAbbaFeatureFlags> abbaFeatureFlags; // @synthesize abbaFeatureFlags=_abbaFeatureFlags;
-@property(retain, nonatomic) id <SPTLocalSettings> localSettings; // @synthesize localSettings=_localSettings;
-@property(nonatomic) __weak id <SPTURIDispatchService> URIDispatchService; // @synthesize URIDispatchService=_URIDispatchService;
+@property(nonatomic) __weak id <SPTURIDispatchService> uriDispatchService; // @synthesize uriDispatchService=_uriDispatchService;
 @property(nonatomic) __weak id <SPTUIPresentationService> uiPresentationService; // @synthesize uiPresentationService=_uiPresentationService;
-@property(nonatomic) __weak id <SPTTooltipService> tooltipService; // @synthesize tooltipService=_tooltipService;
-@property(nonatomic) __weak id <SPTSettingsFeature> settingsService; // @synthesize settingsService=_settingsService;
 @property(nonatomic) __weak id <SPTPlayerFeature> playerService; // @synthesize playerService=_playerService;
 @property(nonatomic) __weak id <SPTNowPlayingPlatformService> nowPlayingPlatformService; // @synthesize nowPlayingPlatformService=_nowPlayingPlatformService;
 @property(nonatomic) __weak id <SPTNowPlayingService> nowPlayingService; // @synthesize nowPlayingService=_nowPlayingService;
 @property(nonatomic) __weak id <SPTNetworkService> networkService; // @synthesize networkService=_networkService;
-@property(nonatomic) __weak id <SPTKaraokeService> karaokeService; // @synthesize karaokeService=_karaokeService;
 @property(nonatomic) __weak id <SPTGLUEService> glueService; // @synthesize glueService=_glueService;
+@property(nonatomic) __weak id <SPTFeatureFlaggingService> featureFlaggingService; // @synthesize featureFlaggingService=_featureFlaggingService;
 @property(nonatomic) __weak id <SPTCoreService> coreService; // @synthesize coreService=_coreService;
 @property(nonatomic) __weak id <SPContextMenuFeature> contextMenuService; // @synthesize contextMenuService=_contextMenuService;
 @property(nonatomic) __weak id <SPTContainerService> containerService; // @synthesize containerService=_containerService;
-@property(nonatomic) __weak id <SPTSessionService> clientSessionService; // @synthesize clientSessionService=_clientSessionService;
-@property(nonatomic) __weak id <SPTAbbaService> abbaService; // @synthesize abbaService=_abbaService;
 - (void).cxx_destruct;
-- (void)featureFlagsDidChange:(id)arg1;
-- (void)localSettingsDidChange:(id)arg1;
-- (id)provideLyricsTrackChecker;
-- (void)updateLyricsFeatureRegistration;
-- (id)provideLyricsOnboardingManager;
-- (id)provideOfflineModeState;
-- (id)provideLoggingService;
-- (id)provideLyricsService;
+- (id)provideResolver;
+- (void)registerNowPlayingScrollProvider;
+- (id)provideLyricsV2Service;
 - (id)providePlayer;
-- (id)createProvider;
-- (_Bool)isLyricsEnabled;
+- (id)provideLyricsTrackChecker;
 - (void)unload;
-- (void)registerContextMenuActions;
-- (void)registerFeatureSettingsPage;
-- (id)provideBarContentProvider;
-- (void)unregisterBarContentProvider;
-- (void)registerBarContentProvider;
-- (void)unregisterCarouselContentProvider;
-- (void)registerCarouselContentProvider;
 - (void)load;
 - (void)configureWithServices:(id)arg1;
 

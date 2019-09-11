@@ -6,15 +6,15 @@
 
 #import <UIKit/UIView.h>
 
-#import "SPTImageLoaderDelegate-Protocol.h"
+#import "SPTNowPlayingCarouselContentProviderDelegate-Protocol.h"
 #import "SPTNowPlayingCoverArtContentViewDelegate-Protocol.h"
 #import "SPTNowPlayingVideoTimerDelegate-Protocol.h"
 #import "SPTVideoSurfaceDelegate-Protocol.h"
 
 @class NSArray, NSString, NSURL, SPTNowPlayingCarouselGradientView, SPTNowPlayingVideoTimer, SPTPlayerTrack, UIActivityIndicatorView, UIButton, UIImage, UIImageView;
-@protocol SPTImageLoader, SPTNowPlayingContentCellDelegate, SPTNowPlayingCoverArtContentView, SPTVideoSurface;
+@protocol SPTNowPlayingContentCellDelegate, SPTNowPlayingContentCellRefreshDelegate, SPTNowPlayingCoverArtContentView, SPTVideoSurface, SPTVideoSurfaceManager;
 
-@interface SPTNowPlayingContentCell : UIView <SPTImageLoaderDelegate, SPTVideoSurfaceDelegate, SPTNowPlayingCoverArtContentViewDelegate, SPTNowPlayingVideoTimerDelegate>
+@interface SPTNowPlayingContentCell : UIView <SPTVideoSurfaceDelegate, SPTNowPlayingCoverArtContentViewDelegate, SPTNowPlayingVideoTimerDelegate, SPTNowPlayingCarouselContentProviderDelegate>
 {
     _Bool _shouldOverrideVideoAppearance;
     _Bool _selected;
@@ -28,11 +28,12 @@
     UIView<SPTNowPlayingCoverArtContentView> *_coverArtContent;
     SPTPlayerTrack *_track;
     id <SPTNowPlayingContentCellDelegate> _delegate;
-    id <SPTImageLoader> _imageLoader;
+    id <SPTNowPlayingContentCellRefreshDelegate> _refreshDelegate;
     UIView *_contentView;
     UIView *_contentUnitView;
     UIImageView *_placeholderImageView;
     UIView<SPTVideoSurface> *_videoSurfaceView;
+    id <SPTVideoSurfaceManager> _videoSurfaceManager;
     UIActivityIndicatorView *_activityView;
     long long _placeholderIconType;
     SPTNowPlayingCarouselGradientView *_gradientView;
@@ -49,11 +50,12 @@
 @property(nonatomic) long long placeholderIconType; // @synthesize placeholderIconType=_placeholderIconType;
 @property(nonatomic) _Bool fullscreen; // @synthesize fullscreen=_fullscreen;
 @property(readonly, nonatomic) UIActivityIndicatorView *activityView; // @synthesize activityView=_activityView;
+@property(readonly, nonatomic) id <SPTVideoSurfaceManager> videoSurfaceManager; // @synthesize videoSurfaceManager=_videoSurfaceManager;
 @property(readonly, nonatomic) UIView<SPTVideoSurface> *videoSurfaceView; // @synthesize videoSurfaceView=_videoSurfaceView;
 @property(retain, nonatomic) UIImageView *placeholderImageView; // @synthesize placeholderImageView=_placeholderImageView;
 @property(readonly, nonatomic) UIView *contentUnitView; // @synthesize contentUnitView=_contentUnitView;
 @property(readonly, nonatomic) UIView *contentView; // @synthesize contentView=_contentView;
-@property(readonly, nonatomic) id <SPTImageLoader> imageLoader; // @synthesize imageLoader=_imageLoader;
+@property(nonatomic) __weak id <SPTNowPlayingContentCellRefreshDelegate> refreshDelegate; // @synthesize refreshDelegate=_refreshDelegate;
 @property(nonatomic) __weak id <SPTNowPlayingContentCellDelegate> delegate; // @synthesize delegate=_delegate;
 @property(retain, nonatomic) SPTPlayerTrack *track; // @synthesize track=_track;
 @property(nonatomic) _Bool showActivityView; // @synthesize showActivityView=_showActivityView;
@@ -65,14 +67,13 @@
 @property(nonatomic) _Bool shouldOverrideVideoAppearance; // @synthesize shouldOverrideVideoAppearance=_shouldOverrideVideoAppearance;
 @property(nonatomic) long long cellAppearance; // @synthesize cellAppearance=_cellAppearance;
 - (void).cxx_destruct;
+- (void)contentDidFailToLoad:(id)arg1;
 - (void)videoTimerDidFire:(id)arg1;
 - (void)contentViewIsReadyForDisplay:(id)arg1;
 - (void)dealloc;
 - (void)videoSurfaceDidDetachVideo:(id)arg1;
 - (void)videoSurfaceDidAttachVideo:(id)arg1;
 - (void)videoSurfaceDidChangeVideoRect:(id)arg1;
-- (void)imageLoader:(id)arg1 didFailToLoadImageForURL:(id)arg2 error:(id)arg3 context:(id)arg4;
-- (void)imageLoader:(id)arg1 didLoadImage:(id)arg2 forURL:(id)arg3 loadTime:(double)arg4 context:(id)arg5;
 - (void)contentViewTapped;
 - (double)aspectRatioMultiplier;
 - (double)smallestMetric;
@@ -103,7 +104,7 @@
 @property(readonly, nonatomic) _Bool shouldShowPlaceholderView;
 @property(readonly, nonatomic) _Bool shouldShowVideo;
 - (void)layoutSubviews;
-- (id)initWithFrame:(struct CGRect)arg1 imageLoader:(id)arg2 videoSurfaceManager:(id)arg3 defaultFrame:(struct CGRect)arg4;
+- (id)initWithFrame:(struct CGRect)arg1 videoSurfaceManager:(id)arg2 surfaceFactory:(id)arg3 defaultFrame:(struct CGRect)arg4;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

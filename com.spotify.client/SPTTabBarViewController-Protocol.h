@@ -4,19 +4,16 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import "NSObject-Protocol.h"
+#import "SPTTabBarVisualRepresentationController-Protocol.h"
 
 @class NSArray, UIView, UIViewController;
 @protocol SPTTabBar;
 
-@protocol SPTTabBarViewController <NSObject>
-@property(readonly, nonatomic) UIView<SPTTabBar> *spt_tabBar;
-@property(nonatomic) unsigned long long selectedIndex;
+@protocol SPTTabBarViewController <SPTTabBarVisualRepresentationController>
 @property(nonatomic) __weak UIViewController *selectedViewController;
 @property(copy, nonatomic) NSArray *viewControllers;
+@property(nonatomic) unsigned long long selectedIndex;
+@property(readonly, nonatomic) UIView<SPTTabBar> *spt_tabBar;
 - (void)updateCurrentTabBarItems;
-- (void)setViewControllers:(NSArray *)arg1 animated:(_Bool)arg2;
-- (void)setSelectedIndex:(unsigned long long)arg1 animated:(_Bool)arg2;
-- (void)setSelectedViewController:(UIViewController *)arg1 animated:(_Bool)arg2;
 @end
 

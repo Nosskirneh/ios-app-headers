@@ -18,6 +18,9 @@
     _Bool _isPublished;
     _Bool _isLoaded;
     _Bool _canReportAnnotationAbuse;
+    _Bool _containsTracks;
+    _Bool _containsEpisodes;
+    _Bool _containsAudioEpisodes;
     NSString *_name;
     NSString *_freeformDescription;
     NSURL *_URL;
@@ -38,6 +41,9 @@
     NSString *_madeForName;
 }
 
+@property(nonatomic) _Bool containsAudioEpisodes; // @synthesize containsAudioEpisodes=_containsAudioEpisodes;
+@property(nonatomic) _Bool containsEpisodes; // @synthesize containsEpisodes=_containsEpisodes;
+@property(nonatomic) _Bool containsTracks; // @synthesize containsTracks=_containsTracks;
 @property(copy, nonatomic) NSString *madeForName; // @synthesize madeForName=_madeForName;
 @property(retain, nonatomic) NSDate *addedAt; // @synthesize addedAt=_addedAt;
 @property(nonatomic) _Bool canReportAnnotationAbuse; // @synthesize canReportAnnotationAbuse=_canReportAnnotationAbuse;

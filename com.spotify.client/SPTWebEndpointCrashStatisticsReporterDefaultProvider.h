@@ -6,32 +6,21 @@
 
 #import <objc/NSObject.h>
 
-#import "NSURLSessionDelegate-Protocol.h"
-#import "SPTCrashReporterBackgroundUploader-Protocol.h"
 #import "SPTCrashReporterPersistentStore-Protocol.h"
 #import "SPTCrashReporterURLPoster-Protocol.h"
 
 @class NSMapTable, NSMutableSet, NSString;
-@protocol SPTCrashReporterURLPosterDelegate;
 
-@interface SPTWebEndpointCrashStatisticsReporterDefaultProvider : NSObject <NSURLSessionDelegate, SPTCrashReporterPersistentStore, SPTCrashReporterURLPoster, SPTCrashReporterBackgroundUploader>
+@interface SPTWebEndpointCrashStatisticsReporterDefaultProvider : NSObject <SPTCrashReporterPersistentStore, SPTCrashReporterURLPoster>
 {
-    id <SPTCrashReporterURLPosterDelegate> delegate;
     NSMapTable *_completions;
     NSMutableSet *_sessions;
 }
 
 @property(retain, nonatomic) NSMutableSet *sessions; // @synthesize sessions=_sessions;
 @property(retain, nonatomic) NSMapTable *completions; // @synthesize completions=_completions;
-@property(nonatomic) __weak id <SPTCrashReporterURLPosterDelegate> delegate; // @synthesize delegate;
 - (void).cxx_destruct;
 - (void)postURL:(id)arg1 timeout:(unsigned long long)arg2 completion:(CDUnknownBlockType)arg3;
-- (void)postRequestURL:(id)arg1 dataURL:(id)arg2 sessionID:(id)arg3 timeout:(unsigned long long)arg4 contentType:(id)arg5;
-- (void)handleEventsForBackgroundURLSession:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
-- (void)URLSessionDidFinishEventsForBackgroundURLSession:(id)arg1;
-- (void)URLSession:(id)arg1 task:(id)arg2 didCompleteWithError:(id)arg3;
-- (void)URLSession:(id)arg1 didBecomeInvalidWithError:(id)arg2;
-- (id)URLSessionFromID:(id)arg1;
 - (void)setObject:(id)arg1 forKeyedSubscript:(id)arg2;
 - (id)objectForKeyedSubscript:(id)arg1;
 - (id)init;

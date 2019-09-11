@@ -10,18 +10,19 @@
 #import "SPTInstrumentationInteractionMediatorColleague-Protocol.h"
 #import "UICollectionViewDataSource-Protocol.h"
 #import "UICollectionViewDelegateFlowLayout-Protocol.h"
+#import "UISearchBarDelegate-Protocol.h"
 #import "UISearchResultsUpdating-Protocol.h"
 
 @class NSMutableArray, NSString, SPTDataLoader, SPTFreeTierTasteOnboardingArtistSearchInfoView, SPTFreeTierTasteOnboardingArtistSearchResultCellStyle, SPTFreeTierTasteOnboardingArtistSearchViewLogger, SPTFreeTierTasteOnboardingSession, SPTFreeTierTasteOnboardingTheme, UICollectionView;
 @protocol GLUEImageLoader, SPTFreeTierTasteOnboardingArtistSearchViewModelDelegate, SPTFreeTierTasteOnboardingTestManager;
 
-@interface SPTFreeTierTasteOnboardingArtistSearchViewModel : NSObject <SPTDataLoaderDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UISearchResultsUpdating, SPTInstrumentationInteractionMediatorColleague>
+@interface SPTFreeTierTasteOnboardingArtistSearchViewModel : NSObject <SPTDataLoaderDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UISearchResultsUpdating, UISearchBarDelegate, SPTInstrumentationInteractionMediatorColleague>
 {
     _Bool _repeatVisit;
+    _Bool _isLoadingMore;
     id <SPTFreeTierTasteOnboardingArtistSearchViewModelDelegate> _delegate;
     SPTFreeTierTasteOnboardingArtistSearchViewLogger *_logger;
     SPTFreeTierTasteOnboardingSession *_session;
-    double _topMargin;
     SPTFreeTierTasteOnboardingTheme *_theme;
     SPTDataLoader *_dataLoader;
     id <GLUEImageLoader> _imageLoader;
@@ -31,9 +32,14 @@
     SPTFreeTierTasteOnboardingArtistSearchResultCellStyle *_cellStyle;
     SPTFreeTierTasteOnboardingArtistSearchInfoView *_infoView;
     NSString *_searchQuery;
+    NSString *_searchSessionId;
+    NSString *_searchNextPageURI;
     struct CGRect _keyboardFrame;
 }
 
+@property(nonatomic) _Bool isLoadingMore; // @synthesize isLoadingMore=_isLoadingMore;
+@property(copy, nonatomic) NSString *searchNextPageURI; // @synthesize searchNextPageURI=_searchNextPageURI;
+@property(copy, nonatomic) NSString *searchSessionId; // @synthesize searchSessionId=_searchSessionId;
 @property(copy, nonatomic) NSString *searchQuery; // @synthesize searchQuery=_searchQuery;
 @property(nonatomic) struct CGRect keyboardFrame; // @synthesize keyboardFrame=_keyboardFrame;
 @property(nonatomic) __weak SPTFreeTierTasteOnboardingArtistSearchInfoView *infoView; // @synthesize infoView=_infoView;
@@ -45,12 +51,17 @@
 @property(readonly, nonatomic) SPTDataLoader *dataLoader; // @synthesize dataLoader=_dataLoader;
 @property(readonly, nonatomic) SPTFreeTierTasteOnboardingTheme *theme; // @synthesize theme=_theme;
 @property(nonatomic, getter=isRepeatVisit) _Bool repeatVisit; // @synthesize repeatVisit=_repeatVisit;
-@property(readonly, nonatomic) double topMargin; // @synthesize topMargin=_topMargin;
 @property(readonly, nonatomic) SPTFreeTierTasteOnboardingSession *session; // @synthesize session=_session;
 @property(readonly, nonatomic) SPTFreeTierTasteOnboardingArtistSearchViewLogger *logger; // @synthesize logger=_logger;
 @property(nonatomic) __weak id <SPTFreeTierTasteOnboardingArtistSearchViewModelDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
+- (void)performLoadMoreRequest;
 - (void)mediator:(id)arg1 requiresDataForBuilder:(id)arg2 forInteractionInformation:(id)arg3;
+- (void)resetContentOffset;
+@property(readonly, nonatomic) double topMargin;
+- (void)searchBarCancelButtonClicked:(id)arg1;
+- (void)searchBar:(id)arg1 textDidChange:(id)arg2;
+- (_Bool)searchBar:(id)arg1 shouldChangeTextInRange:(struct _NSRange)arg2 replacementText:(id)arg3;
 - (void)updateSearchResultsForSearchController:(id)arg1;
 - (void)collectionView:(id)arg1 willDisplayCell:(id)arg2 forItemAtIndexPath:(id)arg3;
 - (void)scrollViewWillBeginDragging:(id)arg1;
@@ -64,6 +75,7 @@
 - (struct UIEdgeInsets)infoViewLayoutMargins;
 - (void)keyboardChangeNotification:(id)arg1;
 - (void)registerKeyboardNotifications;
+- (void)setNewSearchSessionId;
 - (void)updateTraitCollection:(id)arg1;
 - (void)performSearch:(id)arg1;
 - (void)registerWithCollectionView:(id)arg1;

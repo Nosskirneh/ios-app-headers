@@ -6,13 +6,12 @@
 
 #import "SPTNowPlayingButton.h"
 
-#import "SPTNowPlayingFeedbackButtonMigrationProtocol-Protocol.h"
 #import "SPTThemableView-Protocol.h"
 
 @class NSString, SPTTheme, UIColor;
 @protocol SPTThemableViewLayoutDelegate;
 
-@interface SPTNowPlayingFeedbackButton : SPTNowPlayingButton <SPTNowPlayingFeedbackButtonMigrationProtocol, SPTThemableView>
+@interface SPTNowPlayingFeedbackButton : SPTNowPlayingButton <SPTThemableView>
 {
     long long _icon;
     id <SPTThemableViewLayoutDelegate> _layoutDelegate;

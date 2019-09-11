@@ -8,20 +8,18 @@
 
 #import "SPTWazeTestManagerObserver-Protocol.h"
 
-@class NSString, SPTWazeLogger, SettingsSwitchTableViewCell;
+@class NSString, SettingsSwitchTableViewCell;
 @protocol SPTWazeTestManager;
 
 @interface SPTWazeSettingsSection : SettingsSection <SPTWazeTestManagerObserver>
 {
     id <SPTWazeTestManager> _testManager;
-    SPTWazeLogger *_logger;
     SettingsSwitchTableViewCell *_cell;
 }
 
 + (_Bool)shouldDisplayInSettingsViewController:(id)arg1;
 + (void)setShouldDisplayInSettings:(_Bool)arg1;
 @property(readonly, nonatomic) SettingsSwitchTableViewCell *cell; // @synthesize cell=_cell;
-@property(readonly, nonatomic) SPTWazeLogger *logger; // @synthesize logger=_logger;
 @property(readonly, nonatomic) id <SPTWazeTestManager> testManager; // @synthesize testManager=_testManager;
 - (void).cxx_destruct;
 - (id)footerText;
@@ -32,7 +30,7 @@
 - (void)testManager:(id)arg1 didChangeWazeIntegrationEnabledState:(_Bool)arg2;
 - (void)switchValueDidChange:(id)arg1;
 - (void)dealloc;
-- (id)initWithSettingsViewController:(id)arg1 testManager:(id)arg2 logger:(id)arg3;
+- (id)initWithSettingsViewController:(id)arg1 testManager:(id)arg2;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

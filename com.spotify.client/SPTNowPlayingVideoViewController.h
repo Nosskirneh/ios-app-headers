@@ -6,17 +6,17 @@
 
 #import <UIKit/UIViewController.h>
 
-#import "SPTNowPlayingDurationViewDataSource-Protocol.h"
-#import "SPTNowPlayingDurationViewDelegate-Protocol.h"
+#import "SPTNowPlayingDurationViewV2DataSource-Protocol.h"
+#import "SPTNowPlayingDurationViewV2Delegate-Protocol.h"
 #import "SPTNowPlayingTrackMetadataQueueObserver-Protocol.h"
 #import "SPTNowPlayingTrackPositionObserver-Protocol.h"
 #import "SPTNowPlayingVideoTimerDelegate-Protocol.h"
-#import "SPTNowPlayingVideoViewDelegate-Protocol.h"
+#import "SPTNowPlayingVideoViewV2Delegate-Protocol.h"
 
-@class NSString, SPTLayoutConstraintBuilder, SPTNowPlayingBaseHeadUnitController, SPTNowPlayingLogger, SPTNowPlayingVideoTimer, SPTNowPlayingVideoView, SPTNowPlayingVideoViewModel, SPTStatusBarToken, SPTTheme, UIView;
-@protocol SPTLinkDispatcher, SPTLocalSettings, SPTNowPlayingVideoViewControllerDelegate, SPTPodcastContextMenuProvider, SPTQueueLogger, SPTUpsellManager, SPTVideoSurfaceManager;
+@class NSString, SPTNowPlayingLogger, SPTNowPlayingSkipLimitReachedMessageRequester, SPTNowPlayingVideoHeadUnitViewController, SPTNowPlayingVideoTimer, SPTNowPlayingVideoView, SPTNowPlayingVideoViewModel, SPTStatusBarToken, SPTTheme, UIView;
+@protocol SPTLinkDispatcher, SPTLocalSettings, SPTNowPlayingVideoViewControllerDelegate, SPTPodcastContextMenuProvider, SPTQueueLogger, SPTVideoSurfaceManager;
 
-@interface SPTNowPlayingVideoViewController : UIViewController <SPTNowPlayingDurationViewDataSource, SPTNowPlayingDurationViewDelegate, SPTNowPlayingTrackPositionObserver, SPTNowPlayingVideoViewDelegate, SPTNowPlayingVideoTimerDelegate, SPTNowPlayingTrackMetadataQueueObserver>
+@interface SPTNowPlayingVideoViewController : UIViewController <SPTNowPlayingDurationViewV2DataSource, SPTNowPlayingDurationViewV2Delegate, SPTNowPlayingTrackPositionObserver, SPTNowPlayingVideoViewV2Delegate, SPTNowPlayingVideoTimerDelegate, SPTNowPlayingTrackMetadataQueueObserver>
 {
     _Bool _shouldNotifyDismissal;
     _Bool _visible;
@@ -26,30 +26,28 @@
     SPTNowPlayingVideoViewModel *_viewModel;
     id <SPTVideoSurfaceManager> _videoSurfaceManager;
     id <SPTPodcastContextMenuProvider> _podcastContextMenuProvider;
-    SPTNowPlayingBaseHeadUnitController *_headUnitController;
     id <SPTLocalSettings> _localSettings;
-    id <SPTUpsellManager> _upsellManager;
+    SPTNowPlayingSkipLimitReachedMessageRequester *_skipLimitReachedMessageRequester;
     SPTNowPlayingLogger *_logger;
     id <SPTQueueLogger> _queueLogger;
     id <SPTLinkDispatcher> _linkDispatcher;
-    SPTLayoutConstraintBuilder *_layout;
     SPTNowPlayingVideoView *_videoView;
     SPTNowPlayingVideoTimer *_dismissControlsTimer;
     SPTStatusBarToken *_statusBarToken;
+    SPTNowPlayingVideoHeadUnitViewController *_headUnitViewController;
 }
 
+@property(retain, nonatomic) SPTNowPlayingVideoHeadUnitViewController *headUnitViewController; // @synthesize headUnitViewController=_headUnitViewController;
 @property(nonatomic) _Bool visible; // @synthesize visible=_visible;
 @property(nonatomic) _Bool shouldNotifyDismissal; // @synthesize shouldNotifyDismissal=_shouldNotifyDismissal;
 @property(retain, nonatomic) SPTStatusBarToken *statusBarToken; // @synthesize statusBarToken=_statusBarToken;
 @property(retain, nonatomic) SPTNowPlayingVideoTimer *dismissControlsTimer; // @synthesize dismissControlsTimer=_dismissControlsTimer;
 @property(retain, nonatomic) SPTNowPlayingVideoView *videoView; // @synthesize videoView=_videoView;
-@property(retain, nonatomic) SPTLayoutConstraintBuilder *layout; // @synthesize layout=_layout;
 @property(readonly, nonatomic) id <SPTLinkDispatcher> linkDispatcher; // @synthesize linkDispatcher=_linkDispatcher;
 @property(retain, nonatomic) id <SPTQueueLogger> queueLogger; // @synthesize queueLogger=_queueLogger;
 @property(retain, nonatomic) SPTNowPlayingLogger *logger; // @synthesize logger=_logger;
-@property(nonatomic) __weak id <SPTUpsellManager> upsellManager; // @synthesize upsellManager=_upsellManager;
+@property(readonly, nonatomic) SPTNowPlayingSkipLimitReachedMessageRequester *skipLimitReachedMessageRequester; // @synthesize skipLimitReachedMessageRequester=_skipLimitReachedMessageRequester;
 @property(readonly, nonatomic) id <SPTLocalSettings> localSettings; // @synthesize localSettings=_localSettings;
-@property(readonly, nonatomic) SPTNowPlayingBaseHeadUnitController *headUnitController; // @synthesize headUnitController=_headUnitController;
 @property(readonly, nonatomic) id <SPTPodcastContextMenuProvider> podcastContextMenuProvider; // @synthesize podcastContextMenuProvider=_podcastContextMenuProvider;
 @property(readonly, nonatomic) id <SPTVideoSurfaceManager> videoSurfaceManager; // @synthesize videoSurfaceManager=_videoSurfaceManager;
 @property(readonly, nonatomic) SPTNowPlayingVideoViewModel *viewModel; // @synthesize viewModel=_viewModel;
@@ -64,16 +62,18 @@
 - (void)trackMetadataQueueDidFinishUpdating:(id)arg1;
 - (void)trackMetadataQueue:(id)arg1 didMoveToRelativeTrack:(id)arg2;
 - (void)nowPlayingTrackPositionDidChange:(id)arg1;
-- (void)durationView:(id)arg1 didChangeAlwaysShowDurationLabelsValue:(_Bool)arg2;
-- (void)durationViewTappedSlider:(id)arg1;
-- (void)durationViewTappedTimeRemainingLabel:(id)arg1;
-- (void)durationViewEndedScrubbing:(id)arg1;
-- (void)durationViewBeganScrubbing:(id)arg1;
-- (void)durationView:(id)arg1 trackProgressChanged:(float)arg2;
-- (_Bool)durationViewDisallowSeeking:(id)arg1;
-- (double)durationViewAnimationSpeed:(id)arg1;
-- (double)durationViewCurrentDuration:(id)arg1;
-- (double)durationViewCurrentPosition:(id)arg1;
+- (void)nowPlayingDurationViewDidTapSlider:(id)arg1;
+- (void)nowPlayingDurationViewToggleTimeRemainingLabel:(id)arg1;
+- (void)nowPlayingDurationViewDidBeginScrubbing:(id)arg1;
+- (void)nowPlayingDurationViewDidEndScrubbing:(id)arg1;
+- (void)nowPlayingDurationViewProgressDidChange:(id)arg1;
+- (_Bool)nowPlayingDurationViewShouldAlwaysShowDurationLabels:(id)arg1;
+- (id)nowPlayingDurationView:(id)arg1 timeTakenTextForSliderValue:(float)arg2;
+- (id)nowPlayingDurationView:(id)arg1 timeRemainingTextForSliderValue:(float)arg2;
+- (_Bool)nowPlayingSliderDisallowSeeking:(id)arg1;
+- (double)nowPlayingSliderAnimationSpeed:(id)arg1;
+- (double)nowPlayingSliderCurrentDuration:(id)arg1;
+- (double)nowPlayingSliderCurrentPosition:(id)arg1;
 - (void)updateAuxiliaryAction;
 - (void)updateLoadingState;
 - (void)updateEntityLabels;
@@ -92,11 +92,12 @@
 - (void)viewWillDisappear:(_Bool)arg1;
 - (void)viewWillAppear:(_Bool)arg1;
 - (void)viewDidLoad;
+- (_Bool)isLiveVideo;
 - (_Bool)prefersStatusBarHidden;
 - (unsigned long long)supportedInterfaceOrientations;
 - (_Bool)shouldAutorotate;
 - (void)dealloc;
-- (id)initWithTheme:(id)arg1 viewModel:(id)arg2 videoSurfaceManager:(id)arg3 podcastContextMenuProvider:(id)arg4 upsellManager:(id)arg5 localSettings:(id)arg6 logger:(id)arg7 queueLogger:(id)arg8 animationView:(id)arg9 linkDispatcher:(id)arg10;
+- (id)initWithTheme:(id)arg1 viewModel:(id)arg2 videoSurfaceManager:(id)arg3 podcastContextMenuProvider:(id)arg4 skipLimitReachedMessageRequester:(id)arg5 localSettings:(id)arg6 logger:(id)arg7 queueLogger:(id)arg8 headUnitViewController:(id)arg9 animationView:(id)arg10 linkDispatcher:(id)arg11;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

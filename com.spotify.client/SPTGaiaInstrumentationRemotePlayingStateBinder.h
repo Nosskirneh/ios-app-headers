@@ -6,23 +6,23 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTGaiaDeviceStateManagerObserver-Protocol.h"
+#import "SPTGaiaConnectManagerObserver-Protocol.h"
 
 @class NSString;
-@protocol SPTGaiaDeviceStateManager, SPTInstrumentationRemotePlayingHandler;
+@protocol SPTGaiaConnectManager, SPTInstrumentationRemotePlayingHandler;
 
-@interface SPTGaiaInstrumentationRemotePlayingStateBinder : NSObject <SPTGaiaDeviceStateManagerObserver>
+@interface SPTGaiaInstrumentationRemotePlayingStateBinder : NSObject <SPTGaiaConnectManagerObserver>
 {
-    id <SPTGaiaDeviceStateManager> _deviceStateManager;
     id <SPTInstrumentationRemotePlayingHandler> _remotePlayingHandler;
+    id <SPTGaiaConnectManager> _connectManager;
 }
 
-@property(retain, nonatomic) id <SPTInstrumentationRemotePlayingHandler> remotePlayingHandler; // @synthesize remotePlayingHandler=_remotePlayingHandler;
-@property(retain, nonatomic) id <SPTGaiaDeviceStateManager> deviceStateManager; // @synthesize deviceStateManager=_deviceStateManager;
+@property(readonly, nonatomic) id <SPTGaiaConnectManager> connectManager; // @synthesize connectManager=_connectManager;
+@property(readonly, nonatomic) id <SPTInstrumentationRemotePlayingHandler> remotePlayingHandler; // @synthesize remotePlayingHandler=_remotePlayingHandler;
 - (void).cxx_destruct;
+- (void)connectManager:(id)arg1 playingRemotelyDidChange:(_Bool)arg2;
 - (void)dealloc;
-- (void)deviceStateManager:(id)arg1 playingRemotelyDidChange:(_Bool)arg2;
-- (id)initWithDeviceStateManager:(id)arg1 instrumentationRemotePlayingHandler:(id)arg2;
+- (id)initWithConnectManager:(id)arg1 instrumentationRemotePlayingHandler:(id)arg2;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

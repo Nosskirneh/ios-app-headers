@@ -51,13 +51,12 @@
 - (void)addObserver:(id)arg1;
 - (void)notifyObservers;
 - (void)subscribeToCollectionChanges;
+- (void)removeURLs:(id)arg1 bySource:(id)arg2 fromContext:(id)arg3 showUIConfirmation:(_Bool)arg4 completion:(CDUnknownBlockType)arg5;
 - (void)removeURL:(id)arg1 bySource:(id)arg2 fromContext:(id)arg3 showUIConfirmation:(_Bool)arg4 completion:(CDUnknownBlockType)arg5;
 - (void)removeBanURL:(id)arg1 bySource:(id)arg2 fromContext:(id)arg3 showUIConfirmation:(_Bool)arg4 completion:(CDUnknownBlockType)arg5;
 - (void)banURL:(id)arg1 bySource:(id)arg2 fromContext:(id)arg3 showUIConfirmation:(_Bool)arg4 completion:(CDUnknownBlockType)arg5;
-- (void)addURLs:(id)arg1 bySource:(id)arg2 fromContext:(id)arg3 completion:(CDUnknownBlockType)arg4;
+- (void)addURLs:(id)arg1 bySource:(id)arg2 fromContext:(id)arg3 showUIConfirmation:(_Bool)arg4 completion:(CDUnknownBlockType)arg5;
 - (void)addURL:(id)arg1 bySource:(id)arg2 fromContext:(id)arg3 showUIConfirmation:(_Bool)arg4 completion:(CDUnknownBlockType)arg5;
-- (void)addURL:(id)arg1 bySource:(id)arg2 fromContext:(id)arg3 showUIConfirmation:(_Bool)arg4;
-- (void)addURL:(id)arg1 bySource:(id)arg2 fromContext:(id)arg3 completion:(CDUnknownBlockType)arg4;
 - (_Bool)canAddTrackWithURL:(id)arg1;
 - (id)subscribeCollectionStateForURLs:(id)arg1 completion:(CDUnknownBlockType)arg2;
 - (id)subscribeCollectionStateForURL:(id)arg1 completion:(CDUnknownBlockType)arg2;

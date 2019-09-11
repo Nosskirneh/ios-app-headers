@@ -8,7 +8,7 @@
 
 #import "SPTTrackCreditsService-Protocol.h"
 
-@class NSString, SPTAllocationContext, SPTTrackCreditsTestManager;
+@class NSString, SPTAllocationContext;
 @protocol SPContextMenuFeature, SPTContainerService, SPTContainerUIService, SPTFeatureFlaggingService, SPTNetworkService, SPTURIDispatchService;
 
 @interface SPTTrackCreditsServiceImplementation : NSObject <SPTTrackCreditsService>
@@ -19,11 +19,9 @@
     id <SPTURIDispatchService> _uriDispatchService;
     id <SPTFeatureFlaggingService> _featureFlaggingService;
     id <SPTContainerUIService> _containerUIService;
-    SPTTrackCreditsTestManager *_testManager;
 }
 
 + (id)serviceIdentifier;
-@property(retain, nonatomic) SPTTrackCreditsTestManager *testManager; // @synthesize testManager=_testManager;
 @property(nonatomic) __weak id <SPTContainerUIService> containerUIService; // @synthesize containerUIService=_containerUIService;
 @property(nonatomic) __weak id <SPTFeatureFlaggingService> featureFlaggingService; // @synthesize featureFlaggingService=_featureFlaggingService;
 @property(nonatomic) __weak id <SPTURIDispatchService> uriDispatchService; // @synthesize uriDispatchService=_uriDispatchService;

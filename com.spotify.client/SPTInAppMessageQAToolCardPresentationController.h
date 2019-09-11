@@ -30,6 +30,7 @@
 @property(retain, nonatomic) SPTInAppMessageQAToolCardMessageController *cardMessageController; // @synthesize cardMessageController=_cardMessageController;
 - (void).cxx_destruct;
 - (id)provideSlate;
+- (void)actionReceivedWithValue:(id)arg1;
 - (void)dismissTriggerMessageContentUnit;
 - (_Bool)presentMessage;
 - (_Bool)slateShouldOnlyDismissOnFooterTap:(id)arg1;

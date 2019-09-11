@@ -27,7 +27,7 @@
 @property(nonatomic) __weak id <SPTPlayerFeature> playerFeature; // @synthesize playerFeature=_playerFeature;
 @property(nonatomic) __weak id <SPTContainerService> containerService; // @synthesize containerService=_containerService;
 - (void).cxx_destruct;
-- (id)audioPlayerMediaClockForTrackURI:(id)arg1;
+- (id)audioPlayerMediaClockForPlaybackIdentity:(id)arg1;
 - (void)unload;
 - (void)load;
 - (void)configureWithServices:(id)arg1;

@@ -15,8 +15,8 @@
 }
 
 + (id)messageWithFeatureIdentifier:(id)arg1 requestedAdType:(id)arg2;
-@property(retain, nonatomic) NSString *requestedAdTypeValue; // @synthesize requestedAdTypeValue=_requestedAdTypeValue;
-@property(retain, nonatomic) NSString *featureIdentifierValue; // @synthesize featureIdentifierValue=_featureIdentifierValue;
+@property(copy, nonatomic) NSString *requestedAdTypeValue; // @synthesize requestedAdTypeValue=_requestedAdTypeValue;
+@property(copy, nonatomic) NSString *featureIdentifierValue; // @synthesize featureIdentifierValue=_featureIdentifierValue;
 - (void).cxx_destruct;
 - (_Bool)isEqual:(id)arg1;
 - (unsigned long long)hash;

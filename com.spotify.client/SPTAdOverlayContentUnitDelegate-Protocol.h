@@ -6,9 +6,9 @@
 
 #import "NSObject-Protocol.h"
 
-@protocol SPTAdOverlayContentUnit;
+@class UIViewController;
 
 @protocol SPTAdOverlayContentUnitDelegate <NSObject>
-- (void)dismissAdOverlayContentUnit:(id <SPTAdOverlayContentUnit>)arg1;
+- (void)dismissAdOverlayContentUnit:(UIViewController *)arg1 completionBlock:(void (^)(void))arg2;
 @end
 

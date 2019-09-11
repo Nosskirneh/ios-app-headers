@@ -27,7 +27,7 @@
 - (void)contentOperationRequiresRescheduling:(id)arg1;
 - (void)contentOperation:(id)arg1 didFailWithError:(id)arg2;
 - (void)contentOperationDidFinish:(id)arg1;
-- (void)performOperationForViewURI:(id)arg1 featureInfo:(id)arg2 connectivityState:(unsigned long long)arg3 viewModelBuilder:(id)arg4 pageIndex:(id)arg5 previousError:(id)arg6;
+- (void)performOperationForViewModelBuilder:(id)arg1 previousError:(id)arg2;
 - (id)initWithContentOperation:(id)arg1 index:(unsigned long long)arg2;
 
 @end

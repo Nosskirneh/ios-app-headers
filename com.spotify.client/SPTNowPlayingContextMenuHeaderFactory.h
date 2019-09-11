@@ -6,20 +6,20 @@
 
 #import <objc/NSObject.h>
 
-@class SPTNowPlayingModel, SPTNowPlayingPlaybackActionsHandler, SPTTheme;
-@protocol SPTNowPlayingAuxiliaryActionsHandler;
+@class SPTNowPlayingModel, SPTTheme;
+@protocol SPTNowPlayingAuxiliaryActionsHandler, SPTNowPlayingPlaybackActionsHandler;
 
 @interface SPTNowPlayingContextMenuHeaderFactory : NSObject
 {
     SPTNowPlayingModel *_model;
-    SPTNowPlayingPlaybackActionsHandler *_playbackActionsHandler;
+    id <SPTNowPlayingPlaybackActionsHandler> _playbackActionsHandler;
     id <SPTNowPlayingAuxiliaryActionsHandler> _auxiliaryActionsHandler;
     SPTTheme *_theme;
 }
 
 @property(retain, nonatomic) SPTTheme *theme; // @synthesize theme=_theme;
 @property(readonly, nonatomic) id <SPTNowPlayingAuxiliaryActionsHandler> auxiliaryActionsHandler; // @synthesize auxiliaryActionsHandler=_auxiliaryActionsHandler;
-@property(readonly, nonatomic) SPTNowPlayingPlaybackActionsHandler *playbackActionsHandler; // @synthesize playbackActionsHandler=_playbackActionsHandler;
+@property(readonly, nonatomic) id <SPTNowPlayingPlaybackActionsHandler> playbackActionsHandler; // @synthesize playbackActionsHandler=_playbackActionsHandler;
 @property(readonly, nonatomic) SPTNowPlayingModel *model; // @synthesize model=_model;
 - (void).cxx_destruct;
 - (id)createContextMenuSectionHeaderDelegateWithQueueHidden:(_Bool)arg1;

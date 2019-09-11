@@ -87,6 +87,7 @@
 - (id)screenConfigWithDebugName:(id)arg1 showImage:(_Bool)arg2 showGroupLabels:(_Bool)arg3 masterOptionButton:(_Bool)arg4 numberOfLinesPerRow:(long long)arg5;
 - (void)initializeAppLink;
 - (id)rapiConfig;
+- (void)asynchronouslySetupAppLink;
 - (id)initWithAccessoryManager:(id)arg1 imageLoaderFactory:(id)arg2 debugLog:(id)arg3;
 
 // Remaining properties

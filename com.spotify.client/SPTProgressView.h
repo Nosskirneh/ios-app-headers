@@ -8,7 +8,7 @@
 
 #import "SPTThemableView-Protocol.h"
 
-@class NSString, UILabel;
+@class NSArray, NSLayoutConstraint, NSString, UILabel;
 @protocol SPTThemableViewLayoutDelegate;
 
 @interface SPTProgressView : UIView <SPTThemableView>
@@ -18,23 +18,47 @@
     long long _mode;
     long long _customIcon;
     unsigned long long _numberOfLines;
-    UIView *_containerView;
+    UIView *_backgroundView;
     UIView *_indicatorView;
     UILabel *_titleLabel;
+    UIView *_containerView;
+    NSLayoutConstraint *_backgroundViewWidthConstraint;
+    NSLayoutConstraint *_backgroundViewHeightConstraint;
+    NSLayoutConstraint *_indicatorViewWidthConstraint;
+    NSLayoutConstraint *_indicatorViewHeightConstraint;
+    NSLayoutConstraint *_titleLabelTopMarginConstraint;
+    NSLayoutConstraint *_containerViewEdgeInsetTopConstraint;
+    NSLayoutConstraint *_containerViewEdgeInsetRightConstraint;
+    NSLayoutConstraint *_containerViewEdgeInsetBottomConstraint;
+    NSLayoutConstraint *_containerViewEdgeInsetLeftConstraint;
+    NSArray *_indicatorViewLayoutConstraints;
 }
 
 + (id)progressView;
 + (void)showGaiaContextMenuProgressViewWithTitle:(id)arg1;
 @property(nonatomic) _Bool loadingViewShown; // @synthesize loadingViewShown=_loadingViewShown;
+@property(copy, nonatomic) NSArray *indicatorViewLayoutConstraints; // @synthesize indicatorViewLayoutConstraints=_indicatorViewLayoutConstraints;
+@property(retain, nonatomic) NSLayoutConstraint *containerViewEdgeInsetLeftConstraint; // @synthesize containerViewEdgeInsetLeftConstraint=_containerViewEdgeInsetLeftConstraint;
+@property(retain, nonatomic) NSLayoutConstraint *containerViewEdgeInsetBottomConstraint; // @synthesize containerViewEdgeInsetBottomConstraint=_containerViewEdgeInsetBottomConstraint;
+@property(retain, nonatomic) NSLayoutConstraint *containerViewEdgeInsetRightConstraint; // @synthesize containerViewEdgeInsetRightConstraint=_containerViewEdgeInsetRightConstraint;
+@property(retain, nonatomic) NSLayoutConstraint *containerViewEdgeInsetTopConstraint; // @synthesize containerViewEdgeInsetTopConstraint=_containerViewEdgeInsetTopConstraint;
+@property(retain, nonatomic) NSLayoutConstraint *titleLabelTopMarginConstraint; // @synthesize titleLabelTopMarginConstraint=_titleLabelTopMarginConstraint;
+@property(retain, nonatomic) NSLayoutConstraint *indicatorViewHeightConstraint; // @synthesize indicatorViewHeightConstraint=_indicatorViewHeightConstraint;
+@property(retain, nonatomic) NSLayoutConstraint *indicatorViewWidthConstraint; // @synthesize indicatorViewWidthConstraint=_indicatorViewWidthConstraint;
+@property(retain, nonatomic) NSLayoutConstraint *backgroundViewHeightConstraint; // @synthesize backgroundViewHeightConstraint=_backgroundViewHeightConstraint;
+@property(retain, nonatomic) NSLayoutConstraint *backgroundViewWidthConstraint; // @synthesize backgroundViewWidthConstraint=_backgroundViewWidthConstraint;
+@property(retain, nonatomic) UIView *containerView; // @synthesize containerView=_containerView;
 @property(retain, nonatomic) UILabel *titleLabel; // @synthesize titleLabel=_titleLabel;
 @property(retain, nonatomic) UIView *indicatorView; // @synthesize indicatorView=_indicatorView;
-@property(retain, nonatomic) UIView *containerView; // @synthesize containerView=_containerView;
+@property(retain, nonatomic) UIView *backgroundView; // @synthesize backgroundView=_backgroundView;
 @property(nonatomic) unsigned long long numberOfLines; // @synthesize numberOfLines=_numberOfLines;
 @property(nonatomic) long long customIcon; // @synthesize customIcon=_customIcon;
 @property(nonatomic) long long mode; // @synthesize mode=_mode;
 @property(nonatomic) __weak id <SPTThemableViewLayoutDelegate> layoutDelegate; // @synthesize layoutDelegate=_layoutDelegate;
 - (void).cxx_destruct;
 - (void)applyThemeLayout;
+- (void)createConstraints;
+- (void)updateIndicatorViewConstraints;
 - (void)layoutSubviews;
 - (void)updateProgressMode;
 @property(copy, nonatomic) NSString *title;
@@ -47,7 +71,6 @@
 - (void)showInView:(id)arg1 afterDelay:(double)arg2;
 - (void)showInView:(id)arg1;
 - (void)dealloc;
-- (void)didMoveToWindow;
 - (id)initWithFrame:(struct CGRect)arg1;
 
 // Remaining properties

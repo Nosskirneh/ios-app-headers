@@ -8,7 +8,7 @@
 
 #import "SPTDrivingMotionRecorderDelegate-Protocol.h"
 
-@class NSMutableArray, NSString, SPTDrivingMotionRecorder, SPTDrivingMotionRecorderConfiguration;
+@class NSString, SPTDrivingMotionRecorder, SPTDrivingMotionRecorderConfiguration;
 @protocol SPTDrivingMotionManagerDelegate;
 
 @interface SPTDrivingMotionManager : NSObject <SPTDrivingMotionRecorderDelegate>
@@ -17,10 +17,10 @@
     SPTDrivingMotionRecorder *_recorder;
     long long _batchCount;
     SPTDrivingMotionRecorderConfiguration *_recorderConfiguration;
-    NSMutableArray *_results;
+    double _recordingWaitingTime;
 }
 
-@property(retain, nonatomic) NSMutableArray *results; // @synthesize results=_results;
+@property(nonatomic) double recordingWaitingTime; // @synthesize recordingWaitingTime=_recordingWaitingTime;
 @property(retain, nonatomic) SPTDrivingMotionRecorderConfiguration *recorderConfiguration; // @synthesize recorderConfiguration=_recorderConfiguration;
 @property(nonatomic) long long batchCount; // @synthesize batchCount=_batchCount;
 @property(readonly, nonatomic) SPTDrivingMotionRecorder *recorder; // @synthesize recorder=_recorder;

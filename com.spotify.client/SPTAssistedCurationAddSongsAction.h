@@ -6,10 +6,12 @@
 
 #import "SPAction.h"
 
+#import "SPTDismissContextMenuAction-Protocol.h"
+
 @class NSURL;
 @protocol SPTAssistedCurationUIService;
 
-@interface SPTAssistedCurationAddSongsAction : SPAction
+@interface SPTAssistedCurationAddSongsAction : SPAction <SPTDismissContextMenuAction>
 {
     NSURL *_playlistURL;
     id <SPTAssistedCurationUIService> _assistedCurationUIService;
@@ -18,6 +20,7 @@
 @property(nonatomic) __weak id <SPTAssistedCurationUIService> assistedCurationUIService; // @synthesize assistedCurationUIService=_assistedCurationUIService;
 @property(retain, nonatomic) NSURL *playlistURL; // @synthesize playlistURL=_playlistURL;
 - (void).cxx_destruct;
+- (_Bool)shouldDismissContextMenuBeforePerformingAction;
 - (id)execute:(id)arg1;
 - (long long)style;
 - (id)logEventName;

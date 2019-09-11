@@ -8,15 +8,14 @@
 
 #import "SPForegroundObserverDelegate-Protocol.h"
 #import "SPTCanvasLoadStateTrackerObserver-Protocol.h"
-#import "SPTFeatureFlagSignalObserver-Protocol.h"
-#import "SPTGaiaDeviceStateManagerObserver-Protocol.h"
-#import "SPTNowPlayingStateObserver-Protocol.h"
+#import "SPTCanvasNowPlayingViewStateObserver-Protocol.h"
+#import "SPTGaiaConnectObserver-Protocol.h"
 #import "SPTPlayerObserver-Protocol.h"
 
-@class NSString, NSURL, SPForegroundObserver, SPTCanvasLoadStateTracker, SPTCanvasTrackCheckerImplementation, SPTPlayerState;
-@protocol SPTFeatureFlagSignal, SPTGaiaDeviceStateManager, SPTLogCenter, SPTNowPlayingManager, SPTNowPlayingStateObservable, SPTPlayerFeature;
+@class NSString, NSURL, SPForegroundObserver, SPTCanvasLoadStateTracker, SPTCanvasNowPlayingViewState, SPTCanvasTrackCheckerImplementation, SPTPlayerState;
+@protocol SPTFeatureFlagSignal, SPTGaiaConnectAPI, SPTLogCenter, SPTPlayerFeature;
 
-@interface SPTCanvasLogger : NSObject <SPForegroundObserverDelegate, SPTFeatureFlagSignalObserver, SPTNowPlayingStateObserver, SPTPlayerObserver, SPTGaiaDeviceStateManagerObserver, SPTCanvasLoadStateTrackerObserver>
+@interface SPTCanvasLogger : NSObject <SPForegroundObserverDelegate, SPTPlayerObserver, SPTGaiaConnectObserver, SPTCanvasLoadStateTrackerObserver, SPTCanvasNowPlayingViewStateObserver>
 {
     _Bool _isPlayingRemotely;
     _Bool _dataSaverEnabled;
@@ -24,10 +23,9 @@
     id <SPTLogCenter> _logCenter;
     SPTCanvasTrackCheckerImplementation *_trackChecker;
     SPTCanvasLoadStateTracker *_loadStateTracker;
-    id <SPTNowPlayingManager> _nowPlayingManager;
-    id <SPTNowPlayingStateObservable> _nowPlayingStateObservable;
+    SPTCanvasNowPlayingViewState *_nowPlayingState;
     id <SPTPlayerFeature> _playerFeature;
-    id <SPTGaiaDeviceStateManager> _gaiaStateManager;
+    id <SPTGaiaConnectAPI> _connectManager;
     SPForegroundObserver *_foregroundObserver;
     SPTPlayerState *_currentPlayerState;
     NSString *_currentAppState;
@@ -38,8 +36,6 @@
 }
 
 + (id)appStateForForegroundObserver:(id)arg1;
-+ (id)visualStateForNowPlayingManager:(id)arg1;
-+ (id)pageSourceWithNowPlayingManager:(id)arg1;
 @property(nonatomic, getter=isDataSaverEnabled) _Bool dataSaverEnabled; // @synthesize dataSaverEnabled=_dataSaverEnabled;
 @property(readonly, nonatomic) id <SPTFeatureFlagSignal> dataSaverFeatureFlagSignal; // @synthesize dataSaverFeatureFlagSignal=_dataSaverFeatureFlagSignal;
 @property(nonatomic) _Bool isPlayingRemotely; // @synthesize isPlayingRemotely=_isPlayingRemotely;
@@ -49,10 +45,9 @@
 @property(retain, nonatomic) NSString *currentAppState; // @synthesize currentAppState=_currentAppState;
 @property(retain, nonatomic) SPTPlayerState *currentPlayerState; // @synthesize currentPlayerState=_currentPlayerState;
 @property(readonly, nonatomic) SPForegroundObserver *foregroundObserver; // @synthesize foregroundObserver=_foregroundObserver;
-@property(readonly, nonatomic) __weak id <SPTGaiaDeviceStateManager> gaiaStateManager; // @synthesize gaiaStateManager=_gaiaStateManager;
+@property(readonly, nonatomic) __weak id <SPTGaiaConnectAPI> connectManager; // @synthesize connectManager=_connectManager;
 @property(readonly, nonatomic) __weak id <SPTPlayerFeature> playerFeature; // @synthesize playerFeature=_playerFeature;
-@property(readonly, nonatomic) id <SPTNowPlayingStateObservable> nowPlayingStateObservable; // @synthesize nowPlayingStateObservable=_nowPlayingStateObservable;
-@property(readonly, nonatomic) id <SPTNowPlayingManager> nowPlayingManager; // @synthesize nowPlayingManager=_nowPlayingManager;
+@property(readonly, nonatomic) SPTCanvasNowPlayingViewState *nowPlayingState; // @synthesize nowPlayingState=_nowPlayingState;
 @property(readonly, nonatomic) SPTCanvasLoadStateTracker *loadStateTracker; // @synthesize loadStateTracker=_loadStateTracker;
 @property(readonly, nonatomic) SPTCanvasTrackCheckerImplementation *trackChecker; // @synthesize trackChecker=_trackChecker;
 @property(readonly, nonatomic) id <SPTLogCenter> logCenter; // @synthesize logCenter=_logCenter;
@@ -67,9 +62,9 @@
 - (void)logWithPlayerState:(id)arg1;
 - (void)logCurrentState;
 - (_Bool)shouldLogWithPlayerState:(id)arg1;
-- (void)deviceStateManager:(id)arg1 playingRemotelyDidChange:(_Bool)arg2;
-- (void)nowPlayingBarViewControllerDidAppearInContainerViewController:(id)arg1;
-- (void)headUnitViewDidAppear:(id)arg1 inContainerViewController:(id)arg2;
+- (void)connectActiveDeviceDidChange:(id)arg1;
+- (void)nowPlayingViewWillDisappear;
+- (void)nowPlayingViewWillAppear;
 - (void)player:(id)arg1 stateDidChange:(id)arg2;
 - (void)featureFlagSignal:(id)arg1 hasAssumedState:(long long)arg2;
 - (void)foregroundObserverDidHibernate:(id)arg1;
@@ -80,7 +75,7 @@
 - (void)addObservers;
 @property(retain, nonatomic) NSString *currentVisualState; // @synthesize currentVisualState=_currentVisualState;
 - (void)dealloc;
-- (id)initWithLogCenter:(id)arg1 canvasTrackChecker:(id)arg2 loadStateTracker:(id)arg3 nowPlayingManager:(id)arg4 nowPlayingStateObservable:(id)arg5 playerFeature:(id)arg6 gaiaStateManager:(id)arg7 dataSaverFeatureFlagSignal:(id)arg8;
+- (id)initWithLogCenter:(id)arg1 canvasTrackChecker:(id)arg2 loadStateTracker:(id)arg3 nowPlayingState:(id)arg4 playerFeature:(id)arg5 connectManager:(id)arg6 dataSaverFeatureFlagSignal:(id)arg7;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

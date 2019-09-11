@@ -4,18 +4,18 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import "EXP_HUGSThemableComponentView.h"
+#import "HUGSThemableComponentView.h"
 
-#import "EXP_HUBComponentViewWithEvents-Protocol.h"
-#import "EXP_HUBComponentViewWithImageHandling-Protocol.h"
+#import "HUBComponentViewWithEvents-Protocol.h"
+#import "HUBComponentViewWithImageHandling-Protocol.h"
 #import "UIGestureRecognizerDelegate-Protocol.h"
 
 @class NSString, SPTHomeUILargeRowView, UILongPressGestureRecognizer, UITapGestureRecognizer;
-@protocol EXP_HUBComponentEventHandler;
+@protocol HUBComponentEventHandler;
 
-@interface SPTHomeUILargeRowComponentView : EXP_HUGSThemableComponentView <UIGestureRecognizerDelegate, EXP_HUBComponentViewWithImageHandling, EXP_HUBComponentViewWithEvents>
+@interface SPTHomeUILargeRowComponentView : HUGSThemableComponentView <UIGestureRecognizerDelegate, HUBComponentViewWithImageHandling, HUBComponentViewWithEvents>
 {
-    id <EXP_HUBComponentEventHandler> _eventHandler;
+    id <HUBComponentEventHandler> _eventHandler;
     SPTHomeUILargeRowView *_largeRow;
     UILongPressGestureRecognizer *_highlightGestureRecognizer;
     UITapGestureRecognizer *_selectionGestureRecognizer;
@@ -27,7 +27,7 @@
 @property(retain, nonatomic) UITapGestureRecognizer *selectionGestureRecognizer; // @synthesize selectionGestureRecognizer=_selectionGestureRecognizer;
 @property(retain, nonatomic) UILongPressGestureRecognizer *highlightGestureRecognizer; // @synthesize highlightGestureRecognizer=_highlightGestureRecognizer;
 @property(readonly, nonatomic) SPTHomeUILargeRowView *largeRow; // @synthesize largeRow=_largeRow;
-@property(retain, nonatomic) id <EXP_HUBComponentEventHandler> eventHandler; // @synthesize eventHandler=_eventHandler;
+@property(retain, nonatomic) id <HUBComponentEventHandler> eventHandler; // @synthesize eventHandler=_eventHandler;
 - (void).cxx_destruct;
 - (id)largeRowStyleWithContainerViewSize:(struct CGSize)arg1;
 - (void)applyThemeLayout;

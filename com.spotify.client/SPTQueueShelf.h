@@ -9,23 +9,21 @@
 #import "SPTShelf-Protocol.h"
 
 @class NSString, SPTSwipeableTableViewCellShelf;
-@protocol SPTEntityService, SPTPlayerQueue, SPTUpsellManager;
+@protocol SPTEntityService, SPTPlayerQueue;
 
 @interface SPTQueueShelf : NSObject <SPTShelf>
 {
     id <SPTPlayerQueue> _playerQueue;
-    id <SPTUpsellManager> _upsellManager;
     id <SPTEntityService> _entityService;
     SPTSwipeableTableViewCellShelf *_shelfView;
 }
 
 @property(readonly, nonatomic) SPTSwipeableTableViewCellShelf *shelfView; // @synthesize shelfView=_shelfView;
 @property(readonly, nonatomic) id <SPTEntityService> entityService; // @synthesize entityService=_entityService;
-@property(readonly, nonatomic) id <SPTUpsellManager> upsellManager; // @synthesize upsellManager=_upsellManager;
 @property(readonly, nonatomic) id <SPTPlayerQueue> playerQueue; // @synthesize playerQueue=_playerQueue;
 - (void).cxx_destruct;
 - (void)shelfView:(CDUnknownBlockType)arg1;
-- (id)initWithPlayerQueue:(id)arg1 upsellManager:(id)arg2 entityService:(id)arg3;
+- (id)initWithPlayerQueue:(id)arg1 entityService:(id)arg2;
 - (void)execute:(id)arg1 source:(id)arg2 completion:(CDUnknownBlockType)arg3;
 
 // Remaining properties

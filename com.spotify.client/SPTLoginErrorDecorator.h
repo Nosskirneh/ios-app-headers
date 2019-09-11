@@ -10,6 +10,7 @@
 {
 }
 
+- (id)localizedDescriptionForCoreErrorCode:(long long)arg1;
 - (id)decoratedErrorWithCode:(long long)arg1;
 
 @end

@@ -22,11 +22,13 @@
     double _kerning;
     long long _verticalAlignment;
     double _lineSpacing;
+    double _hyphenationFactor;
     TKNTypeStyle *_typeStyle;
 }
 
 + (id)labelStyleFromTypeStyle:(id)arg1;
 @property(retain, nonatomic) TKNTypeStyle *typeStyle; // @synthesize typeStyle=_typeStyle;
+@property(nonatomic) double hyphenationFactor; // @synthesize hyphenationFactor=_hyphenationFactor;
 @property(nonatomic) double lineSpacing; // @synthesize lineSpacing=_lineSpacing;
 @property(nonatomic) _Bool upperCase; // @synthesize upperCase=_upperCase;
 @property(nonatomic) long long verticalAlignment; // @synthesize verticalAlignment=_verticalAlignment;

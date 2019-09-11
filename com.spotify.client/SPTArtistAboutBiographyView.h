@@ -51,7 +51,7 @@
 - (id)biographyText:(id)arg1 withStyle:(id)arg2;
 - (id)attributedTextForBiographyText:(id)arg1;
 - (void)didTapExternalLinkForType:(id)arg1;
-- (void)addSocialLinkFromViewModel:(id)arg1;
+- (void)addSocialLinksFromViewModels:(id)arg1;
 - (void)setAuthorName:(id)arg1 didEditBio:(_Bool)arg2;
 - (void)glue_applyStyle:(id)arg1;
 - (void)addLayoutConstraints;

@@ -6,16 +6,15 @@
 
 #import "NSObject-Protocol.h"
 
-@protocol SPTFeatureFlagSignal;
-
 @protocol SPTFreeTierTasteOnboardingTestManager <NSObject>
-@property(readonly, nonatomic, getter=isHapticFeedbackEnabled) _Bool hapticFeedbackEnabled;
-@property(readonly, nonatomic, getter=isFollowTextEnabled) _Bool followTextEnabled;
-@property(readonly, nonatomic, getter=isFollowIconEnabled) _Bool followIconEnabled;
-@property(readonly, nonatomic, getter=isOnboardingIPadEnabled) _Bool onboardingIPadEnabled;
-@property(readonly, nonatomic) id <SPTFeatureFlagSignal> onboardingIPadEnabledFlagSignal;
+@property(readonly, nonatomic, getter=isPodcastInFirstTimeFlowExperimentOn) _Bool podcastInFirstTimeFlowExperimentOn;
+@property(readonly, nonatomic, getter=isPodcastInFirstTimeFlowEnabled) _Bool podcastInFirstTimeFlowEnabled;
+@property(readonly, nonatomic, getter=isStockholmBlackStyleExperimentOn) _Bool stockholmBlackStyleExperimentOn;
+@property(readonly, nonatomic, getter=isStockholmBlackStyleEnabled) _Bool stockholmBlackStyleEnabled;
+@property(readonly, nonatomic, getter=isDeeplinkAdBasedSkipEnabled) _Bool deeplinkAdBasedSkipEnabled;
+@property(readonly, nonatomic, getter=isDeeplinkBasedSkipEnabled) _Bool deeplinkBasedSkipEnabled;
 @property(readonly, nonatomic, getter=isOnboardingCoordinationEnabled) _Bool onboardingCoordinationEnabled;
-@property(readonly, nonatomic) _Bool shouldHideCloseButtonInArtistPicker;
 @property(readonly, nonatomic, getter=isTasteOnboardingFirstTimeFlowForcedEnabled) _Bool tasteOnboardingFirstTimeFlowForcedEnabled;
+@property(readonly, nonatomic, getter=isTasteOnboardingFirstTimeFlowEnabled) _Bool tasteOnboardingFirstTimeFlowEnabled;
 @end
 

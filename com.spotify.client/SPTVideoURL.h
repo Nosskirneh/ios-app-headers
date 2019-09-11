@@ -14,8 +14,8 @@
     NSString *_path;
 }
 
-@property(retain, nonatomic) NSString *path; // @synthesize path=_path;
-@property(retain, nonatomic) NSArray *baseURLs; // @synthesize baseURLs=_baseURLs;
+@property(copy, nonatomic) NSString *path; // @synthesize path=_path;
+@property(copy, nonatomic) NSArray *baseURLs; // @synthesize baseURLs=_baseURLs;
 - (void).cxx_destruct;
 
 @end

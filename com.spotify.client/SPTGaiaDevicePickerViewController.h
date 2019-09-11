@@ -13,7 +13,7 @@
 #import "UITableViewDataSource-Protocol.h"
 #import "UITableViewDelegate-Protocol.h"
 
-@class NSNotificationCenter, NSString, NSURL, SPTGaiaDevicePickerView, SPTGaiaDevicePickerViewModel, SPTGaiaLogger, SPTGaiaVolumeController, SPTObserverManager, UIView;
+@class NSNotificationCenter, NSString, NSURL, SPTGaiaDevicePickerBackgroundView, SPTGaiaDevicePickerView, SPTGaiaDevicePickerViewModel, SPTGaiaLogger, SPTGaiaSocialListeningIntegrationManager, SPTGaiaVolumeController, SPTGaiaVolumeSliderView, SPTGaiaVolumeSliderViewFactory, SPTObserverManager, SPTStatusBarManager, SPTStatusBarToken, UIView;
 @protocol SPTGaiaDevicePickerDeviceSpecificConfigurationProvider, SPTGaiaDevicePickerHeader, SPTModalPresentationController, SPTPageContainer;
 
 @interface SPTGaiaDevicePickerViewController : UIViewController <SPTGaiaDevicePickerViewModelDelegate, UITableViewDelegate, UITableViewDataSource, SPTGaiaContextMenuViewControllerDelegate, SPTGaiaDevicePicker, SPTPageController>
@@ -26,15 +26,27 @@
     id <SPTModalPresentationController> _modalPresentationController;
     SPTGaiaLogger *_logger;
     id <SPTGaiaDevicePickerDeviceSpecificConfigurationProvider> _deviceConfiguration;
+    SPTStatusBarManager *_statusBarManager;
+    SPTGaiaSocialListeningIntegrationManager *_socialListeningManager;
+    SPTGaiaVolumeSliderViewFactory *_volumeSliderViewFactory;
     SPTGaiaDevicePickerView *_devicePickerView;
+    SPTGaiaDevicePickerBackgroundView *_devicePickerBackgroundView;
     UIView<SPTGaiaDevicePickerHeader> *_headerView;
+    SPTGaiaVolumeSliderView *_volumeSliderView;
     long long _pickerContext;
+    SPTStatusBarToken *_statusBarToken;
 }
 
+@property(retain, nonatomic) SPTStatusBarToken *statusBarToken; // @synthesize statusBarToken=_statusBarToken;
 @property(nonatomic, getter=isPickerVisible) _Bool pickerVisible; // @synthesize pickerVisible=_pickerVisible;
 @property(nonatomic) long long pickerContext; // @synthesize pickerContext=_pickerContext;
+@property(retain, nonatomic) SPTGaiaVolumeSliderView *volumeSliderView; // @synthesize volumeSliderView=_volumeSliderView;
 @property(retain, nonatomic) UIView<SPTGaiaDevicePickerHeader> *headerView; // @synthesize headerView=_headerView;
+@property(retain, nonatomic) SPTGaiaDevicePickerBackgroundView *devicePickerBackgroundView; // @synthesize devicePickerBackgroundView=_devicePickerBackgroundView;
 @property(retain, nonatomic) SPTGaiaDevicePickerView *devicePickerView; // @synthesize devicePickerView=_devicePickerView;
+@property(readonly, nonatomic) SPTGaiaVolumeSliderViewFactory *volumeSliderViewFactory; // @synthesize volumeSliderViewFactory=_volumeSliderViewFactory;
+@property(readonly, nonatomic) SPTGaiaSocialListeningIntegrationManager *socialListeningManager; // @synthesize socialListeningManager=_socialListeningManager;
+@property(readonly, nonatomic) SPTStatusBarManager *statusBarManager; // @synthesize statusBarManager=_statusBarManager;
 @property(readonly, nonatomic) id <SPTGaiaDevicePickerDeviceSpecificConfigurationProvider> deviceConfiguration; // @synthesize deviceConfiguration=_deviceConfiguration;
 @property(readonly, nonatomic) SPTGaiaLogger *logger; // @synthesize logger=_logger;
 @property(readonly, nonatomic) id <SPTModalPresentationController> modalPresentationController; // @synthesize modalPresentationController=_modalPresentationController;
@@ -61,6 +73,8 @@
 - (id)tableView:(id)arg1 willSelectRowAtIndexPath:(id)arg2;
 - (void)tableView:(id)arg1 willDisplayCell:(id)arg2 forRowAtIndexPath:(id)arg3;
 - (id)tableView:(id)arg1 cellForRowAtIndexPath:(id)arg2;
+- (double)tableView:(id)arg1 estimatedHeightForRowAtIndexPath:(id)arg2;
+- (double)tableView:(id)arg1 heightForRowAtIndexPath:(id)arg2;
 - (id)tableView:(id)arg1 viewForFooterInSection:(long long)arg2;
 - (id)tableView:(id)arg1 viewForHeaderInSection:(long long)arg2;
 - (double)tableView:(id)arg1 heightForFooterInSection:(long long)arg2;
@@ -69,16 +83,24 @@
 - (long long)numberOfSectionsInTableView:(id)arg1;
 - (void)updateHeaderViewState;
 - (void)reloadData;
+- (void)hideStatusBarIfNeededWithViewDismissed:(_Bool)arg1;
+- (void)showStatusBarIfNeeded;
 - (_Bool)isPresentedInAPopover;
 - (void)updateVolumeViewVisibilityForDevice:(id)arg1 animated:(_Bool)arg2;
+- (_Bool)shouldAdjustHeaderInsetManually;
+- (void)viewDidLayoutSubviews;
 - (void)viewDidDisappear:(_Bool)arg1;
 - (void)viewWillDisappear:(_Bool)arg1;
 - (void)viewDidAppear:(_Bool)arg1;
 - (void)viewWillAppear:(_Bool)arg1;
+- (void)preferredContentSizeDidChangeForChildContentContainer:(id)arg1;
 - (void)viewDidLoad;
-- (void)loadView;
+- (void)addTableViewHeader:(id)arg1;
+- (void)addContentView:(id)arg1;
+- (void)createBackgroundView;
+- (void)createDevicePickerView;
 - (void)dealloc;
-- (id)initWithViewModel:(id)arg1 volumeController:(id)arg2 devicePickerContext:(long long)arg3 notificationCenter:(id)arg4 modalPresentationController:(id)arg5 logger:(id)arg6 deviceConfiguration:(id)arg7;
+- (id)initWithViewModel:(id)arg1 volumeController:(id)arg2 devicePickerContext:(long long)arg3 notificationCenter:(id)arg4 modalPresentationController:(id)arg5 logger:(id)arg6 deviceConfiguration:(id)arg7 statusBarManager:(id)arg8 socialListeningManager:(id)arg9 volumeSliderViewFactory:(id)arg10;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

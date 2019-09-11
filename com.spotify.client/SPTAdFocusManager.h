@@ -9,29 +9,35 @@
 #import "SPForegroundObserverDelegate-Protocol.h"
 #import "SPTAdFeatureFlagChecksObserver-Protocol.h"
 
-@class NSString, SPForegroundObserver, SPTAdFeatureFlagChecks, SPTAdGlobalSettingsController, SPTObserverManager;
+@class NSString, SPForegroundObserver, SPTAdFeatureFlagChecks, SPTObserverManager;
+@protocol SPTAdsBaseGlobalSettingsController, SPTProductState;
 
 @interface SPTAdFocusManager : NSObject <SPForegroundObserverDelegate, SPTAdFeatureFlagChecksObserver>
 {
-    SPTAdGlobalSettingsController *_settingsController;
+    id <SPTAdsBaseGlobalSettingsController> _settingsController;
     SPTAdFeatureFlagChecks *_featureFlags;
     SPTObserverManager *_observerManager;
     SPForegroundObserver *_foregroundObserver;
+    id <SPTProductState> _productState;
 }
 
+@property(readonly, nonatomic) id <SPTProductState> productState; // @synthesize productState=_productState;
 @property(readonly, nonatomic) SPForegroundObserver *foregroundObserver; // @synthesize foregroundObserver=_foregroundObserver;
 @property(readonly, nonatomic) SPTObserverManager *observerManager; // @synthesize observerManager=_observerManager;
 @property(readonly, nonatomic) __weak SPTAdFeatureFlagChecks *featureFlags; // @synthesize featureFlags=_featureFlags;
-@property(readonly, nonatomic) __weak SPTAdGlobalSettingsController *settingsController; // @synthesize settingsController=_settingsController;
+@property(readonly, nonatomic) __weak id <SPTAdsBaseGlobalSettingsController> settingsController; // @synthesize settingsController=_settingsController;
 - (void).cxx_destruct;
 - (void)adsFeatureFlagsDidLoad:(id)arg1;
 - (void)adsFeatureFlagsDidChange:(id)arg1;
 - (void)foregroundObserverDidHibernate:(id)arg1;
 - (void)foregroundObserverDidAwake:(id)arg1;
+- (void)applicationWillResignActive;
+- (void)applicationDidBecomeActive;
+- (void)observeAppActiveState;
 - (void)removeObserver:(id)arg1;
 - (void)addObserver:(id)arg1;
 - (void)dealloc;
-- (id)initWithAdSettingsController:(id)arg1 featureFlags:(id)arg2 foregroundObserver:(id)arg3;
+- (id)initWithAdSettingsController:(id)arg1 featureFlags:(id)arg2 foregroundObserver:(id)arg3 productState:(id)arg4;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

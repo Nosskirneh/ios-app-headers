@@ -4,25 +4,24 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import "EXP_HUBComponentView.h"
+#import "HUBComponentView.h"
 
-#import "EXP_HUBComponentViewWithChildren-Protocol.h"
+#import "HUBComponentViewWithChildren-Protocol.h"
 
 @class GLUEGradientView, NSArray;
-@protocol EXP_HUBComponentViewChildDelegate;
+@protocol HUBComponentViewChildDelegate;
 
-@interface SPTPremiumDestinationGradientComponentView : EXP_HUBComponentView <EXP_HUBComponentViewWithChildren>
+@interface SPTPremiumDestinationGradientComponentView : HUBComponentView <HUBComponentViewWithChildren>
 {
-    id <EXP_HUBComponentViewChildDelegate> childDelegate;
+    id <HUBComponentViewChildDelegate> childDelegate;
     GLUEGradientView *_gradientView;
     NSArray *_childComponentViews;
 }
 
-+ (id)gradientStyleForModel:(id)arg1;
 + (struct CGRect)layoutRectForComponentView:(id)arg1 fromPreviousComponentView:(id)arg2;
 @property(retain, nonatomic) NSArray *childComponentViews; // @synthesize childComponentViews=_childComponentViews;
 @property(retain, nonatomic) GLUEGradientView *gradientView; // @synthesize gradientView=_gradientView;
-@property(nonatomic) __weak id <EXP_HUBComponentViewChildDelegate> childDelegate; // @synthesize childDelegate;
+@property(nonatomic) __weak id <HUBComponentViewChildDelegate> childDelegate; // @synthesize childDelegate;
 - (void).cxx_destruct;
 - (void)setupChildComponentsForModel:(id)arg1;
 - (void)prepareForReuse;

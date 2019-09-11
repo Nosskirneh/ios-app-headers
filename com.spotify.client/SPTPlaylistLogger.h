@@ -24,8 +24,9 @@
 - (void)logCancelAddToPlaylistSource:(id)arg1 itemURI:(id)arg2;
 - (void)logAddToPlaylistSource:(id)arg1 itemURI:(id)arg2 numberItems:(long long)arg3 playlistIndex:(unsigned long long)arg4 playlistURI:(id)arg5 totalNumberPlaylists:(unsigned long long)arg6 contextSourceURI:(id)arg7;
 - (void)logCreateAndAddToPlaylistSource:(id)arg1 itemURI:(id)arg2 numberItems:(long long)arg3 playlistURI:(id)arg4 totalNumberPlaylists:(unsigned long long)arg5 contextSourceURI:(id)arg6;
-- (void)logInteractionWithInteractionType:(id)arg1 userIntent:(id)arg2 targetUri:(id)arg3 itemIndex:(long long)arg4 sectionId:(id)arg5;
+- (void)logInteractionWithInteractionType:(id)arg1 userIntent:(id)arg2 targetUri:(id)arg3 itemIndex:(long long)arg4 sectionId:(id)arg5 action:(id)arg6;
 - (void)logHitInteractionWithIntent:(id)arg1 targetUri:(id)arg2 itemIndex:(long long)arg3;
+- (void)logHitInteractionWithIntent:(id)arg1 action:(id)arg2;
 - (void)logHitInteractionWithIntent:(id)arg1;
 - (void)logCreatePlaylistButton;
 - (void)logRenamePlaylistButtonSelectedWithRenamed:(_Bool)arg1;
@@ -33,6 +34,7 @@
 - (void)logPlaylistEntityTableHeaderViewShufflePlayTap:(_Bool)arg1;
 - (void)logPlaylistEntityTableHeaderViewContextMenuTap;
 - (void)logPlaylistEntityTableHeaderViewImageTap;
+- (void)logPlaylistFollowInteraction:(_Bool)arg1;
 - (void)logPlaylistFollowButtonTap;
 - (id)initWithPageURL:(id)arg1 logCenter:(id)arg2 featureIdentifier:(id)arg3;
 

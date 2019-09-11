@@ -6,31 +6,48 @@
 
 #import <UIKit/UIViewController.h>
 
-#import "SPTYourLibraryPageViewControllerDelegate-Protocol.h"
 #import "SPTYourLibraryTabControlDelegate-Protocol.h"
 
-@class NSString, SPTYourLibraryGLUETheme, SPTYourLibraryTabControl;
+@class NSLayoutConstraint, NSString, SPTYourLibraryGLUETheme, SPTYourLibraryTabControl;
 @protocol SPTYourLibraryHeaderViewControllerDelegate, SPTYourLibraryViewModel;
 
-@interface SPTYourLibraryHeaderViewController : UIViewController <SPTYourLibraryTabControlDelegate, SPTYourLibraryPageViewControllerDelegate>
+@interface SPTYourLibraryHeaderViewController : UIViewController <SPTYourLibraryTabControlDelegate>
 {
+    _Bool _updateHeaderOffset;
+    _Bool _hidden;
     id <SPTYourLibraryHeaderViewControllerDelegate> _delegate;
     unsigned long long _state;
     SPTYourLibraryGLUETheme *_theme;
     id <SPTYourLibraryViewModel> _viewModel;
     SPTYourLibraryTabControl *_tabControl;
+    double _lastScrollPosition;
+    NSLayoutConstraint *_topConstraint;
 }
 
+@property(nonatomic, getter=isHidden) _Bool hidden; // @synthesize hidden=_hidden;
+@property(retain, nonatomic) NSLayoutConstraint *topConstraint; // @synthesize topConstraint=_topConstraint;
+@property(nonatomic) _Bool updateHeaderOffset; // @synthesize updateHeaderOffset=_updateHeaderOffset;
+@property(nonatomic) double lastScrollPosition; // @synthesize lastScrollPosition=_lastScrollPosition;
 @property(retain, nonatomic) SPTYourLibraryTabControl *tabControl; // @synthesize tabControl=_tabControl;
 @property(readonly, nonatomic) id <SPTYourLibraryViewModel> viewModel; // @synthesize viewModel=_viewModel;
 @property(readonly, nonatomic) SPTYourLibraryGLUETheme *theme; // @synthesize theme=_theme;
 @property(nonatomic) unsigned long long state; // @synthesize state=_state;
 @property(nonatomic) __weak id <SPTYourLibraryHeaderViewControllerDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
-- (void)pageViewController:(id)arg1 fromPage:(double)arg2 toPage:(double)arg3;
+- (_Bool)isScrollViewShort:(id)arg1;
+- (void)setHeaderState:(unsigned long long)arg1;
+- (_Bool)shouldMoveHeaderAfterScroll:(id)arg1;
 - (void)yourLibraryTabControlDidChangeSelection:(id)arg1;
-- (void)reload;
-- (void)updateTabControlSegments;
+- (void)setHidden:(_Bool)arg1 withOffset:(double)arg2;
+- (void)setupTopConstraintWithAnchor:(id)arg1;
+- (void)autoExpandIfNeededOnViewController:(id)arg1;
+- (void)expand;
+- (void)updateHeaderState;
+- (void)scrollViewDidScroll:(id)arg1;
+- (void)setSelectedGroupFrom:(double)arg1 to:(double)arg2;
+- (void)reloadWithGroupIndex:(long long)arg1;
+@property(readonly, nonatomic) unsigned long long selectedGroup;
+- (void)updateTabControlSegmentsWithSegmentIndex:(long long)arg1;
 - (void)viewDidLoad;
 - (id)initWithTheme:(id)arg1 viewModel:(id)arg2;
 

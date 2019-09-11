@@ -29,8 +29,9 @@
 - (id)banActionsWithCompletionBlock:(CDUnknownBlockType)arg1;
 - (_Bool)currentTrackHasPositiveFeedback;
 - (_Bool)currentTrackHasNegativeFeedback;
-- (void)handlePositiveFeedbackAction:(id)arg1;
-- (void)handleNegativeFeedbackActionForArtist:(id)arg1 trackName:(id)arg2 albumImageURL:(id)arg3 actionControl:(id)arg4 completion:(CDUnknownBlockType)arg5;
+- (void)handlePositiveFeedbackAction:(id)arg1 withConfirmation:(_Bool)arg2;
+- (void)handleNegativeFeedbackActionForTrackWithConfirmation:(_Bool)arg1 completion:(CDUnknownBlockType)arg2;
+- (void)handleNegativeFeedbackActionForArtist:(id)arg1 trackName:(id)arg2 albumImageURL:(id)arg3 actionControl:(id)arg4 withConfirmation:(_Bool)arg5 completion:(CDUnknownBlockType)arg6;
 - (id)initWithRemoteControlPolicy:(id)arg1 contextMenuPresenterFactory:(id)arg2 feedbackViewModel:(id)arg3;
 
 // Remaining properties

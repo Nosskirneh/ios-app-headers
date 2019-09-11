@@ -6,10 +6,10 @@
 
 #import "NSObject-Protocol.h"
 
-@protocol SPTAdEntity;
+@protocol SPTAdsBaseEntity;
 
 @protocol SPTNowPlayingAdUnitViewController <NSObject>
-- (void)reloadViewControllerWithAdEntity:(id <SPTAdEntity>)arg1;
+- (void)reloadViewControllerWithAdEntity:(id <SPTAdsBaseEntity>)arg1;
 
 @optional
 - (void)setShowsVideoControls:(_Bool)arg1 animated:(_Bool)arg2;

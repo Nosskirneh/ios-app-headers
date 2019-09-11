@@ -6,22 +6,25 @@
 
 #import <objc/NSObject.h>
 
-@class NSArray;
+@class NSArray, SPTGaiaSocialListeningIntegrationManager;
 @protocol GLUETheme;
 
 @interface SPTGaiaEducationDetailModelManager : NSObject
 {
     NSArray *_educationDetailModels;
     id <GLUETheme> _theme;
+    SPTGaiaSocialListeningIntegrationManager *_socialListeningManager;
 }
 
+@property(readonly, nonatomic) SPTGaiaSocialListeningIntegrationManager *socialListeningManager; // @synthesize socialListeningManager=_socialListeningManager;
 @property(retain, nonatomic) id <GLUETheme> theme; // @synthesize theme=_theme;
-@property(retain, nonatomic) NSArray *educationDetailModels; // @synthesize educationDetailModels=_educationDetailModels;
+@property(copy, nonatomic) NSArray *educationDetailModels; // @synthesize educationDetailModels=_educationDetailModels;
 - (void).cxx_destruct;
+- (id)createSocialListeningEducationDetailModel;
 - (id)createSpeakerEducationDetailModel;
 - (id)createTvEducationDetailModel;
 - (id)createComputerEducationDetailModel;
-- (id)initWithTheme:(id)arg1;
+- (id)initWithTheme:(id)arg1 socialListeningManager:(id)arg2;
 
 @end
 

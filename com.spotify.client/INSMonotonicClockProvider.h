@@ -6,13 +6,25 @@
 
 #import <objc/NSObject.h>
 
-@interface INSMonotonicClockProvider : NSObject
+#import "INSEventContext-Protocol.h"
+
+@class NSData, NSString;
+
+@interface INSMonotonicClockProvider : NSObject <INSEventContext>
 {
 }
 
 + (id)monotonicClock;
 + (long long)uptime;
 + (long long)monotonicID;
+@property(readonly, copy, nonatomic) NSData *contextData;
+@property(readonly, copy, nonatomic) NSString *contextName;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

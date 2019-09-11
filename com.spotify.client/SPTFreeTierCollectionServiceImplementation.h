@@ -6,17 +6,18 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTFreeTierCollectionService-Protocol.h"
-
 @class NSString, SPTAllocationContext;
-@protocol SPTCollectionPlatformService, SPTExplicitContentService, SPTFeatureFlaggingService, SPTFreeTierCollectionTestManager, SPTFreeTierRecommendationsService, SPTNetworkService, SPTOnDemandService, SPTPlaylistPlatformService, SPTRecentlyPlayedService, SPTSessionService, SPTSettingsFeature, SPTYourLibraryService;
+@protocol FollowFeature, SPTCollectionPlatformService, SPTExplicitContentService, SPTFeatureFlaggingService, SPTFreeTierCollectionTestManager, SPTFreeTierPreCurationService, SPTFreeTierRecommendationsService, SPTFreeTierService, SPTNetworkService, SPTOnDemandService, SPTPlaylistPlatformService, SPTRecentlyPlayedService, SPTSessionService, SPTSettingsFeature, SPTYourLibraryService;
 
-@interface SPTFreeTierCollectionServiceImplementation : NSObject <SPTFreeTierCollectionService>
+@interface SPTFreeTierCollectionServiceImplementation : NSObject
 {
     id <SPTSessionService> _clientSessionService;
     id <SPTCollectionPlatformService> _collectionPlatformService;
     id <SPTExplicitContentService> _explicitContentService;
     id <SPTFeatureFlaggingService> _featureFlaggingService;
+    id <FollowFeature> _followService;
+    id <SPTFreeTierService> _freeTierService;
+    id <SPTFreeTierPreCurationService> _preCurationService;
     id <SPTNetworkService> _networkService;
     id <SPTOnDemandService> _onDemandService;
     id <SPTPlaylistPlatformService> _playlistPlatformService;
@@ -36,15 +37,19 @@
 @property(nonatomic) __weak id <SPTPlaylistPlatformService> playlistPlatformService; // @synthesize playlistPlatformService=_playlistPlatformService;
 @property(nonatomic) __weak id <SPTOnDemandService> onDemandService; // @synthesize onDemandService=_onDemandService;
 @property(nonatomic) __weak id <SPTNetworkService> networkService; // @synthesize networkService=_networkService;
+@property(nonatomic) __weak id <SPTFreeTierPreCurationService> preCurationService; // @synthesize preCurationService=_preCurationService;
+@property(nonatomic) __weak id <SPTFreeTierService> freeTierService; // @synthesize freeTierService=_freeTierService;
+@property(nonatomic) __weak id <FollowFeature> followService; // @synthesize followService=_followService;
 @property(nonatomic) __weak id <SPTFeatureFlaggingService> featureFlaggingService; // @synthesize featureFlaggingService=_featureFlaggingService;
 @property(nonatomic) __weak id <SPTExplicitContentService> explicitContentService; // @synthesize explicitContentService=_explicitContentService;
 @property(nonatomic) __weak id <SPTCollectionPlatformService> collectionPlatformService; // @synthesize collectionPlatformService=_collectionPlatformService;
 @property(nonatomic) __weak id <SPTSessionService> clientSessionService; // @synthesize clientSessionService=_clientSessionService;
 - (void).cxx_destruct;
+- (id)providePlaylistSortRules;
+- (id)setUpDataSourceForDataLoader:(id)arg1;
 - (id)provideTestManager;
 - (id)provideHiddenContentModel;
 - (id)provideSongsEntityModel;
-- (id)providePodcastsEntityModel;
 - (id)provideArtistsEntityModel;
 - (id)provideAlbumsEntityModel;
 - (id)providePlaylistsModel:(id)arg1;

@@ -13,6 +13,7 @@
 + (id)spt_skipBackwardURI;
 + (id)spt_skipForwardURI;
 + (id)spt_setVolumeURI;
++ (id)spt_setRepeatModeURI;
 + (id)spt_setShufflingContextURI;
 + (id)spt_pauseURI;
 + (id)spt_playURI;
@@ -20,9 +21,10 @@
 + (id)spt_skipNextURI;
 + (id)spt_currentlyPlayingURI;
 + (id)spt_logMessageURI;
++ (id)spt_imageURI;
++ (id)spt_contentChildrenURI;
 + (id)spt_connectSetActiveDeviceURI;
 + (id)spt_connectDevicesURI;
-+ (id)spt_collectionTransferItemImageURI;
 + (id)spt_collectionRemoveURI;
 + (id)spt_collectionAddURI;
 + (id)spt_collectionItemStateURI;
@@ -33,6 +35,7 @@
 @property(readonly, nonatomic) _Bool spt_isSkipBackwardURI;
 @property(readonly, nonatomic) _Bool spt_isSkipForwardURI;
 @property(readonly, nonatomic) _Bool spt_isSetVolumeURI;
+@property(readonly, nonatomic) _Bool spt_isSetRepeatModeURI;
 @property(readonly, nonatomic) _Bool spt_isSetShufflingContextURI;
 @property(readonly, nonatomic) _Bool spt_isPauseURI;
 @property(readonly, nonatomic) _Bool spt_isPlayURI;
@@ -40,9 +43,10 @@
 @property(readonly, nonatomic) _Bool spt_isSkipNextURI;
 @property(readonly, nonatomic) _Bool spt_isCurrentlyPlayingURI;
 @property(readonly, nonatomic) _Bool spt_isLogMessageURI;
+- (_Bool)spt_isImageURI;
+@property(readonly, nonatomic) _Bool spt_isContentChildrenURI;
 @property(readonly, nonatomic) _Bool spt_isConnectSetActiveDeviceURI;
 @property(readonly, nonatomic) _Bool spt_isConnectDevicesURI;
-@property(readonly, nonatomic) _Bool spt_isCollectionTransferItemImageURI;
 @property(readonly, nonatomic) _Bool spt_isCollectionRemoveURI;
 @property(readonly, nonatomic) _Bool spt_isCollectionAddURI;
 @property(readonly, nonatomic) _Bool spt_isCollectionItemStateURI;

@@ -6,15 +6,17 @@
 
 #import "SettingsSection.h"
 
-@class SettingsSwitchTableViewCell;
+@class SPTSettingsLogger, SettingsSwitchTableViewCell;
 @protocol SPTClientSettings;
 
 @interface UnplayableTracksSettingsSection : SettingsSection
 {
     SettingsSwitchTableViewCell *_cell;
     id <SPTClientSettings> _clientSettings;
+    SPTSettingsLogger *_logger;
 }
 
+@property(retain, nonatomic) SPTSettingsLogger *logger; // @synthesize logger=_logger;
 @property(readonly, nonatomic) id <SPTClientSettings> clientSettings; // @synthesize clientSettings=_clientSettings;
 @property(readonly, nonatomic) SettingsSwitchTableViewCell *cell; // @synthesize cell=_cell;
 - (void).cxx_destruct;
@@ -22,7 +24,7 @@
 - (long long)numberOfRows;
 - (void)hideUnplayableTracksChanged:(id)arg1;
 - (void)dealloc;
-- (id)initWithSettingsViewController:(id)arg1 clientSettings:(id)arg2;
+- (id)initWithSettingsViewController:(id)arg1 clientSettings:(id)arg2 logger:(id)arg3;
 
 @end
 

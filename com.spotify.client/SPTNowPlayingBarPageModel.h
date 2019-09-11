@@ -6,31 +6,31 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTGaiaManagerObserver-Protocol.h"
+#import "SPTGaiaConnectObserver-Protocol.h"
 
 @class NSString;
-@protocol SPTGaiaManager, SPTNowPlayingBarPageModelDelegate;
+@protocol SPTGaiaConnectAPI, SPTGaiaDevicePickerPresenter, SPTNowPlayingBarPageModelDelegate;
 
-@interface SPTNowPlayingBarPageModel : NSObject <SPTGaiaManagerObserver>
+@interface SPTNowPlayingBarPageModel : NSObject <SPTGaiaConnectObserver>
 {
     _Bool _remoteDevicesVisible;
     _Bool _disableRemoteDevicesView;
     id <SPTNowPlayingBarPageModelDelegate> _delegate;
-    id <SPTGaiaManager> _gaiaManager;
+    id <SPTGaiaConnectAPI> _connectManager;
+    id <SPTGaiaDevicePickerPresenter> _devicePresenter;
 }
 
-@property(retain, nonatomic) id <SPTGaiaManager> gaiaManager; // @synthesize gaiaManager=_gaiaManager;
+@property(retain, nonatomic) id <SPTGaiaDevicePickerPresenter> devicePresenter; // @synthesize devicePresenter=_devicePresenter;
+@property(retain, nonatomic) id <SPTGaiaConnectAPI> connectManager; // @synthesize connectManager=_connectManager;
 @property(nonatomic) _Bool disableRemoteDevicesView; // @synthesize disableRemoteDevicesView=_disableRemoteDevicesView;
 @property(nonatomic, getter=isRemoteDevicesVisible) _Bool remoteDevicesVisible; // @synthesize remoteDevicesVisible=_remoteDevicesVisible;
 @property(nonatomic) __weak id <SPTNowPlayingBarPageModelDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
 - (void)dealloc;
-- (void)gaiaManagerDidChangeConnectionTypesAvailable:(id)arg1;
-- (void)gaiaManagerDidChangeAvailable:(id)arg1;
-- (void)gaiaManagerDidChangeRemoteConnectionState:(id)arg1;
-- (void)gaiaManagerDidChangeActiveDeviceName:(id)arg1;
+- (void)connectActiveConnectionTypeDidChange:(long long)arg1;
+- (void)connectAvailableDevicesDidChange:(id)arg1;
 - (void)calculateRemoteDevicesVisible;
-- (id)initWithGaiaManager:(id)arg1;
+- (id)initWithConnectManager:(id)arg1 devicePresenter:(id)arg2;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

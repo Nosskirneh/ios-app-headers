@@ -10,10 +10,22 @@
 {
 }
 
-- (id)login_inputAccessoryViewActionButtonStyle;
-- (id)magicLinkLabelStyle;
+- (id)login_primaryWhiteBorderedButtonStyle;
+- (id)delayedSignup_primaryBlackActionButtonStyle;
 - (id)login_primaryActionButtonStyle;
-- (id)noContentWelcomeViewStyle;
+- (id)delayedSignup_signupButtonStyle;
+- (id)delayedSignup_loginButtonStyle;
+- (id)delayedSignupShutDownDialogStyle;
+- (id)delayedSignupWelcomeDialogStyle;
+- (id)delayedSignupBannerStyle;
+- (id)autosendLinkSecondVersionViewStyle;
+- (id)autosendLinkFirstVersionViewStyle;
+- (id)authOptionsViewStyle;
+- (id)setNewPasswordViewStyle;
+- (id)continueWithEmailViewStyle;
+- (id)continueWithWelcomeViewStyle;
+- (id)welcomeViewStyle;
+- (id)magicLinkSentConfirmationViewStyleWithUITweaks;
 - (id)magicLinkSentConfirmationViewStyle;
 - (id)singleInputFieldBaseViewStyle;
 - (id)singleInputFieldForAgeOrGenderViewStyle;
@@ -21,19 +33,14 @@
 - (id)popupContainerViewStyle;
 - (id)inputFormViewStyle;
 - (id)facebookButtonStyle;
-- (id)messageCarouselViewStyle;
+- (id)delayedSignupTermsAndConditionsTextViewStyle;
 - (id)termsAndConditionsTextViewStyle;
 - (id)formTextFieldStyle;
-- (id)recoverAccountPasswordResetConfirmationStyle;
-- (id)slateStyle;
-- (id)recoverAccountFormViewStyle;
-- (id)recoverAccountStepTwoViewStyle;
+- (id)recoverAccountLinkRequestOptimizationViewStyle;
 - (id)recoverAccountViewStyle;
 - (id)facebookConfirmationViewStyle;
 - (id)signupViewStyle;
-- (id)loginViewMagicLinkStyle;
 - (id)loginViewStyle;
-- (id)welcomeViewStyle;
 
 @end
 

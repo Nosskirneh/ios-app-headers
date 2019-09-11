@@ -13,6 +13,7 @@
 - (void)freeTierFilterSearchBar:(SPTFreeTierCollectionFilterBarViewController *)arg1 textDidChange:(NSString *)arg2;
 
 @optional
+- (void)freeTierFilterSearchBar:(SPTFreeTierCollectionFilterBarViewController *)arg1 didSelectFilterRuleAtIndex:(long long)arg2;
 - (void)freeTierFilterSearchBarTextWillEndEditing:(SPTFreeTierCollectionFilterBarViewController *)arg1;
 - (void)freeTierFilterSearchBarTextWillBeginEditing:(SPTFreeTierCollectionFilterBarViewController *)arg1;
 - (void)freeTierFilterSearchBarTextDidEndEditing:(SPTFreeTierCollectionFilterBarViewController *)arg1;

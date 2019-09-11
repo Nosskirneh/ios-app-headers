@@ -41,6 +41,7 @@
 @property(retain, nonatomic) id subscriptionToken; // @synthesize subscriptionToken;
 @property(nonatomic) __weak id <SPTPlaylistExtenderModelDelegate> delegate; // @synthesize delegate;
 - (void).cxx_destruct;
+- (void)networkConnectivityController:(id)arg1 didChangeConnectionType:(long long)arg2 oldConnectionType:(long long)arg3;
 - (void)networkConnectivityController:(id)arg1 didChangeForcedOffline:(_Bool)arg2;
 @property(readonly, nonatomic) NSString *sectionFooterButtonTitle;
 @property(readonly, nonatomic) NSString *sectionHeaderSubtitle;

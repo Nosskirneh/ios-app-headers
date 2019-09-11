@@ -6,28 +6,33 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTFeatureFlagSignalObserver-Protocol.h"
 #import "SPTHomeUITestManager-Protocol.h"
 
 @class NSString;
-@protocol SPTFeatureFlagFactory, SPTFeatureFlagSignal, SPTFeatureSettingsItemFactory;
+@protocol SPTFeatureFlagFactory, SPTFeatureFlagSignal, SPTFeatureSettingsItemFactory, SPTLocalSettings;
 
-@interface SPTHomeUITestManagerImplementation : NSObject <SPTFeatureFlagSignalObserver, SPTHomeUITestManager>
+@interface SPTHomeUITestManagerImplementation : NSObject <SPTHomeUITestManager>
 {
-    _Bool _consolidatedHomeMockEnabled;
+    _Bool _homeComponentsMockEnabled;
+    _Bool _homePromoV2ComponentsMockEnabled;
     id <SPTFeatureFlagFactory> _featureFlagFactory;
     id <SPTFeatureSettingsItemFactory> _featureSettingsItemFactory;
-    id <SPTFeatureFlagSignal> _consolidatedHomeMockEnabledSignal;
+    id <SPTLocalSettings> _localSettings;
+    id <SPTFeatureFlagSignal> _homeComponentsMockEnabledSignal;
+    id <SPTFeatureFlagSignal> _homeComponentsMockPromoV2EnabledSignal;
 }
 
-@property(nonatomic, getter=isConsolidatedHomeMockEnabled) _Bool consolidatedHomeMockEnabled; // @synthesize consolidatedHomeMockEnabled=_consolidatedHomeMockEnabled;
-@property(readonly, nonatomic) id <SPTFeatureFlagSignal> consolidatedHomeMockEnabledSignal; // @synthesize consolidatedHomeMockEnabledSignal=_consolidatedHomeMockEnabledSignal;
+@property(nonatomic, getter=isHomePromoV2ComponentsMockEnabled) _Bool homePromoV2ComponentsMockEnabled; // @synthesize homePromoV2ComponentsMockEnabled=_homePromoV2ComponentsMockEnabled;
+@property(nonatomic, getter=isHomeComponentsMockEnabled) _Bool homeComponentsMockEnabled; // @synthesize homeComponentsMockEnabled=_homeComponentsMockEnabled;
+@property(readonly, nonatomic) id <SPTFeatureFlagSignal> homeComponentsMockPromoV2EnabledSignal; // @synthesize homeComponentsMockPromoV2EnabledSignal=_homeComponentsMockPromoV2EnabledSignal;
+@property(readonly, nonatomic) id <SPTFeatureFlagSignal> homeComponentsMockEnabledSignal; // @synthesize homeComponentsMockEnabledSignal=_homeComponentsMockEnabledSignal;
+@property(readonly, nonatomic) id <SPTLocalSettings> localSettings; // @synthesize localSettings=_localSettings;
 @property(readonly, nonatomic) id <SPTFeatureSettingsItemFactory> featureSettingsItemFactory; // @synthesize featureSettingsItemFactory=_featureSettingsItemFactory;
 @property(readonly, nonatomic) id <SPTFeatureFlagFactory> featureFlagFactory; // @synthesize featureFlagFactory=_featureFlagFactory;
 - (void).cxx_destruct;
 - (void)featureFlagSignal:(id)arg1 hasAssumedState:(long long)arg2;
 - (void)setupSignals;
-- (id)initWithFeatureFlagFactory:(id)arg1 featureSettingsItemFactory:(id)arg2;
+- (id)initWithFeatureFlagFactory:(id)arg1 featureSettingsItemFactory:(id)arg2 localSettings:(id)arg3;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

@@ -6,29 +6,26 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTFeatureFlagSignalObserver-Protocol.h"
+#import "SPSessionObserver-Protocol.h"
 
-@class NSString, SPCore;
-@protocol SPTFeatureFlagFactory, SPTFeatureFlagSignal, SPTLoginKeychainManager;
+@class NSString, SPCore, SPTLoginDelayedSignupGuestAccountTracker;
+@protocol SPTLoginKeychainManager;
 
-@interface SPTLoginKeychainCredentialsWriter : NSObject <SPTFeatureFlagSignalObserver>
+@interface SPTLoginKeychainCredentialsWriter : NSObject <SPSessionObserver>
 {
     SPCore *_core;
     id <SPTLoginKeychainManager> _keychainManager;
-    id <SPTFeatureFlagFactory> _featureFlagfactory;
-    id <SPTFeatureFlagSignal> _writeCredentialsSignal;
+    SPTLoginDelayedSignupGuestAccountTracker *_tracker;
 }
 
-@property(retain, nonatomic) id <SPTFeatureFlagSignal> writeCredentialsSignal; // @synthesize writeCredentialsSignal=_writeCredentialsSignal;
-@property(retain, nonatomic) id <SPTFeatureFlagFactory> featureFlagfactory; // @synthesize featureFlagfactory=_featureFlagfactory;
+@property(retain, nonatomic) SPTLoginDelayedSignupGuestAccountTracker *tracker; // @synthesize tracker=_tracker;
 @property(retain, nonatomic) id <SPTLoginKeychainManager> keychainManager; // @synthesize keychainManager=_keychainManager;
 @property(nonatomic) __weak SPCore *core; // @synthesize core=_core;
 - (void).cxx_destruct;
-- (void)featureFlagSignal:(id)arg1 hasAssumedState:(long long)arg2;
+- (void)sessionLoginModeChanged:(id)arg1;
+- (void)deferCredentialsWritingUntilOnlineLogin;
 - (void)writeCredentialsToKeychain;
-- (void)setupFeatureFlags;
-- (void)dealloc;
-- (id)initWithCore:(id)arg1 keychainManager:(id)arg2 featureFlagFactory:(id)arg3;
+- (id)initWithCore:(id)arg1 keychainManager:(id)arg2 guestAccountTracker:(id)arg3;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

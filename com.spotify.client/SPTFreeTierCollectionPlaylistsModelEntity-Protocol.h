@@ -10,6 +10,8 @@
 @protocol SPTFreeTierCollectionPlaylistModelItemEntity;
 
 @protocol SPTFreeTierCollectionPlaylistsModelEntity <NSObject>
+@property(readonly, copy, nonatomic) NSArray *sectionTitles;
+@property(readonly, copy, nonatomic) NSArray *sectionIndexes;
 @property(readonly, nonatomic) _Bool hasHiddenContent;
 @property(readonly, nonatomic) _Bool hasOwnPlaylists;
 @property(readonly, nonatomic) id <SPTFreeTierCollectionPlaylistModelItemEntity> favoriteEntity;

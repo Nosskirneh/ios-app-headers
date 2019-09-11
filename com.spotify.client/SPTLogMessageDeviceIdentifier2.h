@@ -16,9 +16,9 @@
 }
 
 + (id)messageWithIdfa:(id)arg1 deviceid:(id)arg2 googleaid:(id)arg3;
-@property(retain, nonatomic) NSString *googleaidValue; // @synthesize googleaidValue=_googleaidValue;
-@property(retain, nonatomic) NSString *deviceidValue; // @synthesize deviceidValue=_deviceidValue;
-@property(retain, nonatomic) NSString *idfaValue; // @synthesize idfaValue=_idfaValue;
+@property(copy, nonatomic) NSString *googleaidValue; // @synthesize googleaidValue=_googleaidValue;
+@property(copy, nonatomic) NSString *deviceidValue; // @synthesize deviceidValue=_deviceidValue;
+@property(copy, nonatomic) NSString *idfaValue; // @synthesize idfaValue=_idfaValue;
 - (void).cxx_destruct;
 - (_Bool)isEqual:(id)arg1;
 - (unsigned long long)hash;

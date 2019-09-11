@@ -10,6 +10,6 @@
 @protocol SPTGaiaDevicesAvailableView;
 
 @protocol SPTGaiaDevicesAvailableViewProvider <NSObject>
-- (UIView<SPTGaiaDevicesAvailableView> *)createGaiaDevicesAvailableView:(_Bool)arg1;
+- (UIView<SPTGaiaDevicesAvailableView> *)createGaiaDevicesAvailableViewWithRules:(long long)arg1;
 @end
 

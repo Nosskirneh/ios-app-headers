@@ -43,8 +43,10 @@
     IDJSONRPCRequest *_lastBroadcastProtocolRequest;
     IDJSONRPCNotification *_lastClaimProtocolNotification;
     double _sessionId;
+    CDUnknownBlockType _handshakeTimeoutBlock;
 }
 
+@property(copy) CDUnknownBlockType handshakeTimeoutBlock; // @synthesize handshakeTimeoutBlock=_handshakeTimeoutBlock;
 @property double sessionId; // @synthesize sessionId=_sessionId;
 @property(retain) IDJSONRPCNotification *lastClaimProtocolNotification; // @synthesize lastClaimProtocolNotification=_lastClaimProtocolNotification;
 @property(retain) IDJSONRPCRequest *lastBroadcastProtocolRequest; // @synthesize lastBroadcastProtocolRequest=_lastBroadcastProtocolRequest;
@@ -86,12 +88,17 @@
 - (void)requestBroadcastProtocol;
 - (void)processA4ABroadcastPacket:(id)arg1;
 - (void)finishHandshake;
+- (void)didReceiveHandshakePacket:(id)arg1 forConnection:(id)arg2;
 - (void)connectionDidCloseUnderlyingStreams:(id)arg1;
 - (void)connection:(id)arg1 errorOccured:(id)arg2;
 - (void)connection:(id)arg1 didReceivePacket:(id)arg2;
 - (void)monitor:(id)arg1 didEncounterError:(id)arg2;
 - (void)monitor:(id)arg1 didCreatePacket:(id)arg2;
+- (void)cancelHandshakeTimeout;
+- (void)handleHandshakeTimeoutDispatched:(float)arg1;
 - (void)waitForHandshakeWithTimeout:(float)arg1;
+- (_Bool)tryStartHandshakeWithInputStream:(id)arg1 outputStream:(id)arg2;
+- (void)startConnectionWithInputStream:(id)arg1 outputStream:(id)arg2;
 - (void)streamProvider:(id)arg1 didFailToStartWithError:(id)arg2;
 - (void)streamProvider:(id)arg1 didFailToResolveStreamsWithError:(id)arg2;
 - (void)streamProviderWillDiscardStreams:(id)arg1;

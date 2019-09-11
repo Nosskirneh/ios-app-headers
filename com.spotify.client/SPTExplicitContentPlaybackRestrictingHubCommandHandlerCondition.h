@@ -6,11 +6,11 @@
 
 #import <objc/NSObject.h>
 
-#import "EXP_SPTHubCommandHandlerCondition-Protocol.h"
+#import "SPTHubCommandHandlerCondition-Protocol.h"
 
 @class NSString, SPTExplicitContentAccessManagerImplementation;
 
-@interface SPTExplicitContentPlaybackRestrictingHubCommandHandlerCondition : NSObject <EXP_SPTHubCommandHandlerCondition>
+@interface SPTExplicitContentPlaybackRestrictingHubCommandHandlerCondition : NSObject <SPTHubCommandHandlerCondition>
 {
     SPTExplicitContentAccessManagerImplementation *_accessManager;
 }

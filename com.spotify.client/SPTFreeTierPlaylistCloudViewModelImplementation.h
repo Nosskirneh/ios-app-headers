@@ -12,6 +12,7 @@
 
 @interface SPTFreeTierPlaylistCloudViewModelImplementation : NSObject <SPTFreeTierPlaylistCloudViewModel>
 {
+    _Bool _hasCompanionButton;
     _Bool _offline;
     NSArray *_tracks;
     NSString *_title;
@@ -19,12 +20,13 @@
 }
 
 @property(nonatomic, getter=isOffline) _Bool offline; // @synthesize offline=_offline;
-@property(retain, nonatomic) NSArray *trackCloudData; // @synthesize trackCloudData=_trackCloudData;
+@property(copy, nonatomic) NSArray *trackCloudData; // @synthesize trackCloudData=_trackCloudData;
 @property(copy, nonatomic) NSString *title; // @synthesize title=_title;
-@property(retain, nonatomic) NSArray *tracks; // @synthesize tracks=_tracks;
+@property(copy, nonatomic) NSArray *tracks; // @synthesize tracks=_tracks;
+@property(readonly, nonatomic) _Bool hasCompanionButton; // @synthesize hasCompanionButton=_hasCompanionButton;
 - (void).cxx_destruct;
 - (id)trackCloudDataIncludeBannedTracks:(_Bool)arg1;
-- (id)initWithPlaylistTracks:(id)arg1 title:(id)arg2 isOffline:(_Bool)arg3;
+- (id)initWithPlaylistTracks:(id)arg1 title:(id)arg2 isOffline:(_Bool)arg3 hasCompanionButton:(_Bool)arg4;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

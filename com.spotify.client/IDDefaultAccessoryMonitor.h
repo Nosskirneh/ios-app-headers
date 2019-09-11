@@ -68,6 +68,7 @@
 - (void)stopBclManager;
 - (void)stopProtocolSelector;
 - (void)startProtocolSelector;
+- (long long)getApplicationState;
 - (void)persistLastUsedCommunicationProtocol:(id)arg1;
 - (id)connectionInfoDict;
 - (void)overrideSystemInfoWithCustomSettings:(id)arg1;

@@ -7,6 +7,8 @@
 @class NSArray, NSSet;
 
 @protocol HUBComponentLayoutManager
+- (unsigned long long)containerAlignmentForComponentWithLayoutTraits:(NSSet *)arg1;
+- (double)containerMaxWidthForComponentWithLayoutTraits:(NSSet *)arg1;
 - (double)horizontalOffsetForComponentsWithLayoutTraits:(NSArray *)arg1 firstComponentLeadingHorizontalOffset:(double)arg2 lastComponentTrailingHorizontalOffset:(double)arg3;
 - (double)verticalMarginForComponentWithLayoutTraits:(NSSet *)arg1 precedingComponentLayoutTraits:(NSSet *)arg2;
 - (double)horizontalMarginForComponentWithLayoutTraits:(NSSet *)arg1 precedingComponentLayoutTraits:(NSSet *)arg2;

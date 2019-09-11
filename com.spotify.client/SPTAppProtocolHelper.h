@@ -14,7 +14,6 @@
 + (id)messageDataAsArray:(id)arg1;
 + (id)prependHeaderToData:(id)arg1;
 + (id)generateNonce;
-+ (id)HMACSHA256ForKey:(id)arg1 withData:(id)arg2;
 + (id)createChallengeWithSessionId:(id)arg1 withNonce:(id)arg2 andAuthId:(id)arg3;
 + (id)safeStringForURL:(id)arg1;
 

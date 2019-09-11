@@ -6,24 +6,29 @@
 
 #import <objc/NSObject.h>
 
+#import "SPTPlayerObserver-Protocol.h"
 #import "SPTVoiceCommandHandler-Protocol.h"
 
-@class NSString, SPTVoiceLogger;
+@class NSString, SPTPlayerState, SPTVoiceLogger;
 @protocol SPTPlayer, SPTVoiceCommandHandler;
 
-@interface SPTVoiceLoggingCommandHandler : NSObject <SPTVoiceCommandHandler>
+@interface SPTVoiceLoggingCommandHandler : NSObject <SPTPlayerObserver, SPTVoiceCommandHandler>
 {
     id <SPTVoiceCommandHandler> _commandHandler;
     SPTVoiceLogger *_logger;
     id <SPTPlayer> _player;
+    SPTPlayerState *_latestState;
 }
 
+@property(retain, nonatomic) SPTPlayerState *latestState; // @synthesize latestState=_latestState;
 @property(readonly, nonatomic) id <SPTPlayer> player; // @synthesize player=_player;
 @property(readonly, nonatomic) SPTVoiceLogger *logger; // @synthesize logger=_logger;
 @property(readonly, nonatomic) id <SPTVoiceCommandHandler> commandHandler; // @synthesize commandHandler=_commandHandler;
 - (void).cxx_destruct;
 - (id)handleVoiceCommand:(id)arg1;
 - (_Bool)canHandleVoiceCommand:(id)arg1;
+- (void)player:(id)arg1 stateDidChange:(id)arg2 fromState:(id)arg3;
+- (void)dealloc;
 - (id)initWithCommandHandler:(id)arg1 logger:(id)arg2 player:(id)arg3;
 
 // Remaining properties

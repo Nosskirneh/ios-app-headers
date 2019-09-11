@@ -6,10 +6,9 @@
 
 #import "SPTService-Protocol.h"
 
-@protocol SPTFeedFeatureFlagExposureLogger, SPTFeedFeatureFlags, SPTFeedHeartBeatManager, SPTFeedTooltipManager;
+@protocol SPTFeedFeatureFlagExposureLogger, SPTFeedFeatureFlags, SPTFeedHeartBeatManager;
 
 @protocol SPTFeedService <SPTService>
-- (id <SPTFeedTooltipManager>)provideTooltipManager;
 - (id <SPTFeedFeatureFlagExposureLogger>)provideFeatureFlagExposureLogger;
 - (id <SPTFeedHeartBeatManager>)provideHeartbeatManager;
 - (id <SPTFeedFeatureFlags>)provideFeatureFlagsManager;

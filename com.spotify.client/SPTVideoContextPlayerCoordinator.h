@@ -6,66 +6,77 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTVideoContextPlayerDelegate-Protocol.h"
+#import "SPTExternalIntegrationDriverDistractionObserver-Protocol.h"
+#import "SPTVideoCoordinatorCosmosReceiverDelegate-Protocol.h"
 #import "SPTVideoEventObserver-Protocol.h"
 
-@class NSMutableDictionary, NSString, NSTimer, SPTVideoPlayerImpl, SPTVideoStartCommand;
-@protocol SPTResolver, SPTVideoContextPlayerCoordinatorErrorHandler;
+@class NSString, NSTimer, SPTVideoCoordinatorCosmosReceiver, SPTVideoCoordinatorCosmosSender, SPTVideoPlaybackStateFactory, SPTVideoStartCommand;
+@protocol OS_dispatch_queue, SPTExternalIntegrationDriverDistractionController, SPTVideoContextPlayerCoordinatorErrorHandler, SPTVideoEventObserverFactory, SPTVideoFeaturePlayerFactory, SPTVideoPlaybackIdentity, SPTVideoPlayer, SPTVideoSubtitleManager, SPTVideoSurfaceManager;
 
-@interface SPTVideoContextPlayerCoordinator : NSObject <SPTVideoEventObserver, SPTVideoContextPlayerDelegate>
+@interface SPTVideoContextPlayerCoordinator : NSObject <SPTVideoCoordinatorCosmosReceiverDelegate, SPTVideoEventObserver, SPTExternalIntegrationDriverDistractionObserver>
 {
-    _Bool _subscribed;
-    _Bool _shouldUnsubscribe;
     _Bool _stalled;
-    float _preferredPlaybackRate;
-    SPTVideoPlayerImpl *_player;
-    id <SPTResolver> _resolver;
+    id <SPTVideoPlayer> _player;
+    id <SPTVideoSurfaceManager> _surfaceManager;
+    id <SPTVideoSubtitleManager> _subtitleManager;
+    id <SPTVideoFeaturePlayerFactory> _playerFactory;
+    id <SPTVideoEventObserverFactory> _dynamicEventObserverFactory;
+    SPTVideoCoordinatorCosmosReceiver *_cosmosReceiver;
+    SPTVideoCoordinatorCosmosSender *_cosmosSender;
+    SPTVideoPlaybackStateFactory *_playbackStateFactory;
     id <SPTVideoContextPlayerCoordinatorErrorHandler> _errorHandler;
-    NSMutableDictionary *_handlers;
+    id <SPTExternalIntegrationDriverDistractionController> _driverDistractionController;
+    CDUnknownBlockType _appIsBackgroundedStateProvider;
     SPTVideoStartCommand *_deferredStartCommand;
     double _maxAllowedStallTimeout;
     NSTimer *_maxStalledTimer;
+    id <SPTVideoPlaybackIdentity> _currentIdentity;
 }
 
-@property(nonatomic) float preferredPlaybackRate; // @synthesize preferredPlaybackRate=_preferredPlaybackRate;
+@property(retain, nonatomic) id <SPTVideoPlaybackIdentity> currentIdentity; // @synthesize currentIdentity=_currentIdentity;
 @property(retain, nonatomic) NSTimer *maxStalledTimer; // @synthesize maxStalledTimer=_maxStalledTimer;
 @property(nonatomic) double maxAllowedStallTimeout; // @synthesize maxAllowedStallTimeout=_maxAllowedStallTimeout;
 @property(nonatomic, getter=isStalled) _Bool stalled; // @synthesize stalled=_stalled;
 @property(retain, nonatomic) SPTVideoStartCommand *deferredStartCommand; // @synthesize deferredStartCommand=_deferredStartCommand;
-@property(nonatomic) _Bool shouldUnsubscribe; // @synthesize shouldUnsubscribe=_shouldUnsubscribe;
-@property(retain, nonatomic) NSMutableDictionary *handlers; // @synthesize handlers=_handlers;
+@property(copy, nonatomic) CDUnknownBlockType appIsBackgroundedStateProvider; // @synthesize appIsBackgroundedStateProvider=_appIsBackgroundedStateProvider;
+@property(retain, nonatomic) id <SPTExternalIntegrationDriverDistractionController> driverDistractionController; // @synthesize driverDistractionController=_driverDistractionController;
 @property(retain, nonatomic) id <SPTVideoContextPlayerCoordinatorErrorHandler> errorHandler; // @synthesize errorHandler=_errorHandler;
-@property(retain, nonatomic) id <SPTResolver> resolver; // @synthesize resolver=_resolver;
-@property(retain, nonatomic) SPTVideoPlayerImpl *player; // @synthesize player=_player;
-@property(nonatomic, getter=isSubscribed) _Bool subscribed; // @synthesize subscribed=_subscribed;
+@property(retain, nonatomic) SPTVideoPlaybackStateFactory *playbackStateFactory; // @synthesize playbackStateFactory=_playbackStateFactory;
+@property(retain, nonatomic) SPTVideoCoordinatorCosmosSender *cosmosSender; // @synthesize cosmosSender=_cosmosSender;
+@property(retain, nonatomic) SPTVideoCoordinatorCosmosReceiver *cosmosReceiver; // @synthesize cosmosReceiver=_cosmosReceiver;
+@property(retain, nonatomic) id <SPTVideoEventObserverFactory> dynamicEventObserverFactory; // @synthesize dynamicEventObserverFactory=_dynamicEventObserverFactory;
+@property(retain, nonatomic) id <SPTVideoFeaturePlayerFactory> playerFactory; // @synthesize playerFactory=_playerFactory;
+@property(retain, nonatomic) id <SPTVideoSubtitleManager> subtitleManager; // @synthesize subtitleManager=_subtitleManager;
+@property(retain, nonatomic) id <SPTVideoSurfaceManager> surfaceManager; // @synthesize surfaceManager=_surfaceManager;
+@property(retain, nonatomic) id <SPTVideoPlayer> player; // @synthesize player=_player;
 - (void).cxx_destruct;
+- (void)externalIntegrationDriverDistractionController:(id)arg1 didChangeEnabledState:(_Bool)arg2;
 - (void)advanceWithReasonStallTimeoutExceeded:(id)arg1;
-- (void)videoPlayer:(id)arg1 unplayableWithReason:(id)arg2;
-- (void)videoPlayer:(id)arg1 didChangeStateTo:(id)arg2;
-- (void)videoPlaybackReadyAtPosition:(double)arg1 duration:(double)arg2 playWhenReady:(_Bool)arg3;
-- (void)videoPlaybackDidStartBuffering:(double)arg1;
-- (void)videoPlaybackDidFailWithRecoverableError:(id)arg1 atPosition:(double)arg2;
-- (void)videoPlaybackDidFailWithError:(id)arg1 atPosition:(double)arg2;
-- (void)videoPlaybackDidEndAtPosition:(double)arg1 withEndReason:(long long)arg2;
+- (void)didEndPlaybackWithReason:(long long)arg1 atPosition:(double)arg2 timestamp:(double)arg3;
+- (void)didFailWithRecoverableError:(id)arg1 atPosition:(double)arg2 timestamp:(double)arg3;
+- (void)didFailWithFatalError:(id)arg1 atPosition:(double)arg2 timestamp:(double)arg3;
+- (void)didStartBufferingAtPosition:(double)arg1 timestamp:(double)arg2;
+- (void)didBecomeReadyAtPosition:(double)arg1 timestamp:(double)arg2;
 - (void)invalidateStalledTimer;
+- (void)maybeCreateStalledTimer;
 - (void)setDeferredState:(id)arg1;
-- (void)playVideoWithPlaybackRequest:(id)arg1;
-- (void)sendMessage:(id)arg1 toCPEndpoint:(id)arg2 withRequestAction:(id)arg3;
-- (void)postMessage:(id)arg1 toCPEndpoint:(id)arg2;
-- (float)playbackRateFromParams:(id)arg1;
-- (id)subtitleFromParams:(id)arg1;
-- (void)handleCommandWithPayload:(id)arg1;
-- (void)addHandlerForCommand:(id)arg1 block:(CDUnknownBlockType)arg2;
-- (void)handleSubscription;
-- (void)setPreferredSubtitle:(id)arg1;
+- (id)coordinatorObserverFactory;
+- (void)playWithRequest:(id)arg1 options:(id)arg2;
+- (void)cosmosReceiver:(id)arg1 receivedPreferredSubtitleCommand:(id)arg2;
+- (void)cosmosReceiver:(id)arg1 receivedSeekCommand:(double)arg2;
+- (void)cosmosReceiverReceivedResumeCommand:(id)arg1;
+- (void)cosmosReceiverReceivedPauseCommand:(id)arg1;
+- (void)cosmosReceiverReceivedStopCommand:(id)arg1;
+- (void)cosmosReceiver:(id)arg1 receivedStartCommand:(id)arg2;
 - (void)unsubscribe;
 - (void)subscribe;
 - (void)dealloc;
-- (id)initWithPlayer:(id)arg1 resolver:(id)arg2 errorHandler:(id)arg3;
+- (id)initWithPlayerFactory:(id)arg1 playbackStateFactory:(id)arg2 dynamicEventObserverFactory:(id)arg3 cosmosReceiver:(id)arg4 cosmosSender:(id)arg5 errorHandler:(id)arg6 driverDistraction:(id)arg7 appIsBackgroundedStateProvider:(CDUnknownBlockType)arg8;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
+@property(readonly, nonatomic) NSObject<OS_dispatch_queue> *dispatchQueue;
 @property(readonly) unsigned long long hash;
 @property(readonly) Class superclass;
 

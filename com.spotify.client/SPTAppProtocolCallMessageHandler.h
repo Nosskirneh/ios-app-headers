@@ -6,40 +6,42 @@
 
 #import <objc/NSObject.h>
 
-@class SPSession, SPTAccessory, SPTAppProtocolBlockBasedImageLoader, SPTAppProtocolConnectionHandler, SPTAppProtocolSeekingHelper, SPTNetworkConnectivityController;
-@protocol SPTExternalIntegrationDebugLog, SPTExternalIntegrationPlatform, SPTGaiaDeviceStateManager, SPTImageLoaderFactory;
+@class SPSession, SPTAccessory, SPTAppProtocolBlockBasedImageLoader, SPTAppProtocolConnectionHandler, SPTNetworkConnectivityController;
+@protocol SPTExternalIntegrationDebugLog, SPTExternalIntegrationPlatform, SPTGaiaConnectAPI, SPTImageLoaderFactory, SPTPreferences;
 
 @interface SPTAppProtocolCallMessageHandler : NSObject
 {
     SPTAppProtocolConnectionHandler *_connectionHandler;
-    id <SPTGaiaDeviceStateManager> _gaiaDeviceStateManager;
+    id <SPTGaiaConnectAPI> _connectManager;
     SPSession *_session;
     id <SPTExternalIntegrationPlatform> _externalIntegrationPlatform;
     SPTAccessory *_currentAccessory;
     SPTNetworkConnectivityController *_connectivityController;
     id <SPTImageLoaderFactory> _imageLoaderFactory;
     SPTAppProtocolBlockBasedImageLoader *_blockBasedImageLoader;
-    SPTAppProtocolSeekingHelper *_seekingHelper;
+    id <SPTPreferences> _preferences;
     id <SPTExternalIntegrationDebugLog> _debugLog;
 }
 
 @property(retain, nonatomic) id <SPTExternalIntegrationDebugLog> debugLog; // @synthesize debugLog=_debugLog;
-@property(readonly, nonatomic) SPTAppProtocolSeekingHelper *seekingHelper; // @synthesize seekingHelper=_seekingHelper;
+@property(readonly, nonatomic) __weak id <SPTPreferences> preferences; // @synthesize preferences=_preferences;
 @property(readonly, nonatomic) SPTAppProtocolBlockBasedImageLoader *blockBasedImageLoader; // @synthesize blockBasedImageLoader=_blockBasedImageLoader;
 @property(readonly, nonatomic) id <SPTImageLoaderFactory> imageLoaderFactory; // @synthesize imageLoaderFactory=_imageLoaderFactory;
 @property(readonly, nonatomic) SPTNetworkConnectivityController *connectivityController; // @synthesize connectivityController=_connectivityController;
 @property(nonatomic) __weak SPTAccessory *currentAccessory; // @synthesize currentAccessory=_currentAccessory;
 @property(nonatomic) __weak id <SPTExternalIntegrationPlatform> externalIntegrationPlatform; // @synthesize externalIntegrationPlatform=_externalIntegrationPlatform;
 @property(nonatomic) __weak SPSession *session; // @synthesize session=_session;
-@property(retain, nonatomic) id <SPTGaiaDeviceStateManager> gaiaDeviceStateManager; // @synthesize gaiaDeviceStateManager=_gaiaDeviceStateManager;
+@property(retain, nonatomic) id <SPTGaiaConnectAPI> connectManager; // @synthesize connectManager=_connectManager;
 @property(retain, nonatomic) SPTAppProtocolConnectionHandler *connectionHandler; // @synthesize connectionHandler=_connectionHandler;
 - (void).cxx_destruct;
+- (_Bool)isOffline;
 - (id)propertyListRepresentationOfItems:(id)arg1;
 - (id)propertyListRepresentationOfItems:(id)arg1 inRange:(struct _NSRange)arg2 ofTotalLength:(unsigned long long)arg3;
 - (id)propertyListRepresentationOfItem:(id)arg1;
 - (id)propertyListRepresentationOfRootItem:(id)arg1;
-- (id)rootContentIdentifiersForContentType:(id)arg1;
-- (void)handleLogMessage:(id)arg1 andReply:(CDUnknownBlockType)arg2;
+- (id)rootContentIdentifiersForContentType;
+- (void)handleGetCrossfadeStateCallMessage:(id)arg1 andReply:(CDUnknownBlockType)arg2;
+- (void)handleLogMessage:(id)arg1;
 - (void)handleQueueUriMessage:(id)arg1 andReply:(CDUnknownBlockType)arg2;
 - (void)handleSearchQueryMessage:(id)arg1 andReply:(CDUnknownBlockType)arg2;
 - (void)handleGetNextTracksMessage:(id)arg1 andReply:(CDUnknownBlockType)arg2;
@@ -51,6 +53,7 @@
 - (void)handlePlayItemMessage:(id)arg1 andReply:(CDUnknownBlockType)arg2;
 - (void)handleGetChildrenOfItemMessage:(id)arg1 andReply:(CDUnknownBlockType)arg2;
 - (void)handleGetRootItemMessage:(id)arg1 andReply:(CDUnknownBlockType)arg2;
+- (void)handleGetItemForURIMessage:(id)arg1 andReply:(CDUnknownBlockType)arg2;
 - (void)handleGetRecommendedRootItemsMessage:(id)arg1 andReply:(CDUnknownBlockType)arg2;
 - (CDUnknownBlockType)imageRequestCompletionBlockWithMessage:(id)arg1 imageType:(unsigned long long)arg2 imageSize:(struct CGSize)arg3 andReply:(CDUnknownBlockType)arg4;
 - (void)handleGetImageCallMessage:(id)arg1 asThumbnail:(_Bool)arg2 andReply:(CDUnknownBlockType)arg3;
@@ -78,7 +81,7 @@
 - (void)handleSetShuffleCallMessage:(id)arg1 andReply:(CDUnknownBlockType)arg2;
 - (void)handleCallMessage:(id)arg1 andReply:(CDUnknownBlockType)arg2;
 - (void)handleMethodNamed:(id)arg1 sourceMessage:(id)arg2 andReply:(CDUnknownBlockType)arg3;
-- (id)initWithExternalIntegrationPlatform:(id)arg1 connectionHandler:(id)arg2 networkConnectivityController:(id)arg3 imageLoaderFactory:(id)arg4 gaiaDeviceStateManager:(id)arg5 session:(id)arg6 debugLog:(id)arg7;
+- (id)initWithExternalIntegrationPlatform:(id)arg1 connectionHandler:(id)arg2 networkConnectivityController:(id)arg3 imageLoaderFactory:(id)arg4 connectManager:(id)arg5 session:(id)arg6 preferences:(id)arg7 debugLog:(id)arg8;
 
 @end
 

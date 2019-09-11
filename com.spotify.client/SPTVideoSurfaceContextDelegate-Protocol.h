@@ -7,15 +7,11 @@
 #import "NSObject-Protocol.h"
 
 @class UIView;
-@protocol SPTVideoPlaybackIdentity, SPTVideoSurface;
+@protocol SPTVideoSurface;
 
 @protocol SPTVideoSurfaceContextDelegate <NSObject>
 - (void)videoSurfacePriorityChanged:(UIView<SPTVideoSurface> *)arg1;
 - (void)videoSurfaceEligibleForAttachmentChanged:(UIView<SPTVideoSurface> *)arg1;
-- (void)videoSurfaceAttachedStateDidChange:(UIView<SPTVideoSurface> *)arg1;
-- (void)videoSurfaceAttachedStateWillChange:(UIView<SPTVideoSurface> *)arg1;
 - (void)videoSurfaceSizeDidChangeWhileAttached:(UIView<SPTVideoSurface> *)arg1;
-- (void)videoSurfaceLayoutChanged:(UIView<SPTVideoSurface> *)arg1;
-- (id <SPTVideoPlaybackIdentity>)playbackIdentityForVideoSurface:(UIView<SPTVideoSurface> *)arg1;
 @end
 

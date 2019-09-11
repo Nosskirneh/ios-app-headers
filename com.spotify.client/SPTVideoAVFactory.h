@@ -6,11 +6,20 @@
 
 #import <objc/NSObject.h>
 
+@protocol SPTKVOControllerFactory;
+
 @interface SPTVideoAVFactory : NSObject
 {
+    id <SPTKVOControllerFactory> _kvoControllerFactory;
 }
 
+@property(retain, nonatomic) id <SPTKVOControllerFactory> kvoControllerFactory; // @synthesize kvoControllerFactory=_kvoControllerFactory;
+- (void).cxx_destruct;
+- (id)playerLooperWithPlayer:(id)arg1;
 - (id)playerItemWithAsset:(id)arg1;
+- (id)player;
+- (id)assetWithURL:(id)arg1;
+- (id)initWithKvoControllerFactory:(id)arg1;
 
 @end
 

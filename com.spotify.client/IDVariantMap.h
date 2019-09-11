@@ -14,10 +14,10 @@
 }
 
 + (id)variantMapWithVariant:(id)arg1 forId:(long long)arg2;
-+ (id)variantMapWithEtchObject:(shared_ptr_987f58d3)arg1;
 + (id)allSDSLanguageKeys;
 + (id)variantMapWithAppName:(id)arg1;
 - (void).cxx_destruct;
+- (id)content;
 - (void)setObject:(id)arg1 forKeyedSubscript:(id)arg2;
 - (id)objectForKeyedSubscript:(id)arg1;
 - (unsigned long long)count;
@@ -29,9 +29,6 @@
 @property(readonly, copy) NSArray *allKeys;
 - (id)initWithVariant:(id)arg1 forId:(long long)arg2;
 - (id)init;
-- (shared_ptr_cdcbacd5)etchObject;
-- (shared_ptr_987f58d3)etchHashTable;
-- (id)initWithEtchObject:(shared_ptr_987f58d3)arg1;
 - (id)extractIntentResultRecognizedSlots;
 - (id)extractIntentIdentifier;
 - (id)extractDialogToken;

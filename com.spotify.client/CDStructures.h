@@ -14,11 +14,7 @@ typedef void (^CDUnknownBlockType)(void); // return type and parameters are unkn
 
 #pragma mark Named Structures
 
-struct AVConnectionType;
-
-struct AVPlayerState;
-
-struct AbstractConnectDevice;
+struct AccessTokenScope;
 
 struct ActivityPeriod {
     int _field1;
@@ -31,6 +27,7 @@ struct AlbumInfo {
     CDUnknownFunctionPointerType *_field1;
     struct weak_ptr<spotify::metadata::AlbumInfo> _field2;
     struct MetadataModel *_field3;
+    unsigned int :1;
     unsigned int :1;
 };
 
@@ -47,14 +44,18 @@ struct ApHandler {
     CDUnknownFunctionPointerType *_field1;
 };
 
-struct ApResolver;
-
-struct AppleSessionManager;
+struct AppleConnectionFactory;
 
 struct ApplicationKey {
     struct vector<unsigned char, std::__1::allocator<unsigned char>> _field1;
     basic_string_7c0a1c0b _field2;
 };
+
+struct ApplicationScope {
+    struct unique_ptr<spotify::connectivity::ApplicationScope::Impl, std::__1::default_delete<spotify::connectivity::ApplicationScope::Impl>> _field1;
+};
+
+struct ApplicationScopeImpl;
 
 struct ApplicationStateTracker {
     struct shared_ptr<spotify::client::ApplicationStateTracker::Impl> _field1;
@@ -150,8 +151,9 @@ struct AudioBufferList {
 
 struct AudioDriver {
     CDUnknownFunctionPointerType *_field1;
-    int _field2;
-    struct signal<void (const spotify::playback::AudioDriverInfo &), boost::signals2::optional_last_value<void>, int, std::__1::less<int>, boost::function<void (const spotify::playback::AudioDriverInfo &)>, boost::function<void (const boost::signals2::connection &, const spotify::playback::AudioDriverInfo &)>, boost::signals2::mutex> _field3;
+    struct signal<void (const spotify::playback::AudioDriverInfo &), boost::signals2::optional_last_value<void>, int, std::__1::less<int>, boost::function<void (const spotify::playback::AudioDriverInfo &)>, boost::function<void (const boost::signals2::connection &, const spotify::playback::AudioDriverInfo &)>, boost::signals2::mutex> _field2;
+    int _field3;
+    int _field4;
 };
 
 struct AudioStreamBasicDescription {
@@ -179,8 +181,14 @@ struct AudioVolumeControlManager {
     int _field4;
 };
 
-struct BMWRemotingClientFactory {
-    CDUnknownFunctionPointerType *_field1;
+struct AuthSession;
+
+struct AutologinFromCredentialsStore;
+
+struct BezierPointDefinition {
+    struct CGPoint _field1;
+    struct CGPoint _field2;
+    struct CGPoint _field3;
 };
 
 struct BiographyOrReview;
@@ -204,13 +212,6 @@ struct CATransform3D {
     double _field16;
 };
 
-struct CCCubeCell {
-    unsigned int hitCount;
-    double redAcc;
-    double greenAcc;
-    double blueAcc;
-};
-
 struct CGAffineTransform {
     double _field1;
     double _field2;
@@ -219,8 +220,6 @@ struct CGAffineTransform {
     double _field5;
     double _field6;
 };
-
-struct CGColor;
 
 struct CGPoint {
     double x;
@@ -286,20 +285,34 @@ struct ClientVersionInfo {
     basic_string_7c0a1c0b _field5;
 };
 
-struct ColorBounds {
-    unsigned char maxAlpha;
-    unsigned char maxRed;
-    unsigned char maxGreen;
-    unsigned char maxBlue;
-    unsigned char minAlpha;
-    unsigned char minRed;
-    unsigned char minGreen;
-    unsigned char minBlue;
+struct Code {
+    int _field1;
+    unsigned long long _field2;
+    basic_string_7c0a1c0b _field3;
+    struct duration<long long, std::__1::ratio<1, 1>> _field4;
+    struct time_point<std::__1::chrono::system_clock, std::__1::chrono::duration<long long, std::__1::ratio<1, 1000000>>> _field5;
+    unsigned long long _field6;
+};
+
+struct ColorCube {
+    struct shared_ptr<std::__1::vector<spotify::palette::Swatch, std::__1::allocator<spotify::palette::Swatch>>> _field1;
+    unsigned long long _field2;
+    unsigned long long _field3;
+    unsigned long long _field4;
+    struct UInt8Range _field5;
+    struct UInt8Range _field6;
+    struct UInt8Range _field7;
 };
 
 struct Configuration;
 
 struct ConfigurationListenerImpl;
+
+struct Connection;
+
+struct ConnectionBuilder {
+    struct shared_ptr<spotify::http::ConnectionBuilder::Impl> _field1;
+};
 
 struct ConnectionFactory;
 
@@ -334,8 +347,10 @@ struct CoreCreateOptions {
     struct optional<unsigned char> _field8;
     struct optional<unsigned int> _field9;
     basic_string_7c0a1c0b _field10;
-    struct function<void (const std::__1::basic_string<char>&)> _field11;
-    _Bool _field12;
+    struct optional<spotify::http::ConnectionType> _field11;
+    struct function<void (const std::__1::basic_string<char>&)> _field12;
+    _Bool _field13;
+    struct vector<std::__1::basic_string<char>, std::__1::allocator<std::__1::basic_string<char>>> _field14;
 };
 
 struct CriticalSection {
@@ -350,93 +365,9 @@ struct DeviceInfo {
     basic_string_7c0a1c0b _field3;
 };
 
-struct DialManagerInterface {
-    CDUnknownFunctionPointerType *_field1;
-};
-
 struct Disc;
 
 struct DummyCriticalSection;
-
-struct EtchAsyncResult<EtchBool>;
-
-struct EtchAsyncResult<EtchHashTable<std::__1::shared_ptr<EtchObject>, std::__1::shared_ptr<EtchObject>, EtchComparator<std::__1::shared_ptr<EtchObject>>, EtchHash<std::__1::shared_ptr<EtchObject>>>>;
-
-struct EtchAsyncResult<EtchInt32>;
-
-struct EtchAsyncResult<EtchNativeArray<signed char>>;
-
-struct EtchAsyncResult<EtchObject>;
-
-struct EtchAsyncResult<EtchString>;
-
-struct EtchAsyncResult<de_bmw_idrive_BMWRemoting::BMWRemoting::VersionInfo>;
-
-struct EtchAsyncResultNone;
-
-struct EtchBool;
-
-struct EtchByte;
-
-struct EtchDeliveryService;
-
-struct EtchException;
-
-struct EtchFloat;
-
-struct EtchHashTable<EtchString, EtchObject *, EtchComparator<EtchString>, EtchHash<EtchString>> {
-    CDUnknownFunctionPointerType *_field1;
-    struct list<const EtchObjectType *, std::__1::allocator<const EtchObjectType *>> _field2;
-    struct __hash_table<std::__1::__hash_value_type<EtchString, EtchObject *>, std::__1::__unordered_map_hasher<EtchString, std::__1::__hash_value_type<EtchString, EtchObject *>, EtchHash<EtchString>, true>, std::__1::__unordered_map_equal<EtchString, std::__1::__hash_value_type<EtchString, EtchObject *>, EtchComparator<EtchString>, true>, std::__1::allocator<std::__1::__hash_value_type<EtchString, EtchObject *>>> {
-        struct unique_ptr<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<EtchString, EtchObject *>, void *>*>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<EtchString, EtchObject *>, void *>*>*>>> _field1;
-        struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<EtchString, EtchObject *>, void *>*>, std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<EtchString, EtchObject *>, void *>>> {
-            struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<EtchString, EtchObject *>, void *>*> _field1;
-        } _field2;
-        struct __compressed_pair<unsigned long, std::__1::__unordered_map_hasher<EtchString, std::__1::__hash_value_type<EtchString, EtchObject *>, EtchHash<EtchString>, true>> {
-            unsigned long long _field1;
-        } _field3;
-        struct __compressed_pair<float, std::__1::__unordered_map_equal<EtchString, std::__1::__hash_value_type<EtchString, EtchObject *>, EtchComparator<EtchString>, true>> {
-            float _field1;
-        } _field4;
-    } _field3;
-};
-
-struct EtchHashTable<std::__1::shared_ptr<EtchObject>, std::__1::shared_ptr<EtchObject>, EtchComparator<std::__1::shared_ptr<EtchObject>>, EtchHash<std::__1::shared_ptr<EtchObject>>>;
-
-struct EtchInt32 {
-    CDUnknownFunctionPointerType *_field1;
-    struct list<const EtchObjectType *, std::__1::allocator<const EtchObjectType *>> _field2;
-    int _field3;
-};
-
-struct EtchNativeArray<signed char>;
-
-struct EtchNativeArray<std::__1::shared_ptr<EtchObject>>;
-
-struct EtchObject;
-
-struct EtchResources {
-    struct EtchResources *_field1;
-    struct EtchHashTable<EtchString, EtchObject *, EtchComparator<EtchString>, EtchHash<EtchString>> _field2;
-};
-
-struct EtchRuntime;
-
-struct EtchSessionData;
-
-struct EtchShort;
-
-struct EtchStack;
-
-struct EtchString {
-    CDUnknownFunctionPointerType *_field1;
-    struct list<const EtchObjectType *, std::__1::allocator<const EtchObjectType *>> _field2;
-    char *_field3;
-    unsigned int _field4;
-    unsigned int _field5;
-};
-
-struct EtchValueFactory;
 
 struct EventInfo {
     struct CriticalSection _field1;
@@ -495,6 +426,15 @@ struct FacebookService {
 struct FacebookServiceRequestFactory;
 
 struct FriendsMetadataRequest;
+
+struct GCKCastMessageSegmenterOutgoingMessage {
+    Class _field1;
+    _Bool _field2;
+    _Bool _field3;
+    id _field4;
+    id _field5;
+    unsigned long long _field6;
+};
 
 struct GLUEEntityCardImageLayoutState {
     double sideMargin;
@@ -556,10 +496,6 @@ struct GPBOutputBufferState {
     NSOutputStream *output;
 };
 
-struct GaiaManagerInterface {
-    CDUnknownFunctionPointerType *_field1;
-};
-
 struct HashEntry;
 
 struct HashMap<ComScore::String, ComScore::String, ComScore::DefaultHashFunctions, ComScore::CriticalSection> {
@@ -611,28 +547,20 @@ struct HermesQuery;
 
 struct HermesRequest;
 
-struct IDBclConnection {
-    CDUnknownFunctionPointerType *_field1;
-    struct EtchSessionData *_field2;
-    id _field3;
-    id _field4;
-    unsigned int _field5;
-    unsigned int _field6;
-    struct mutex _field7;
-    _Bool _field8;
-    _Bool _field9;
-    _Bool _field10;
-};
-
-struct IDEtchSessionCppAdaptor {
-    CDUnknownFunctionPointerType *_field1;
-    id _field2;
+struct HueRange {
+    double _field1;
+    double _field2;
 };
 
 struct IOSAudioDriver {
     CDUnknownFunctionPointerType *_field1;
-    int _field2;
-    struct signal<void (const spotify::playback::AudioDriverInfo &), boost::signals2::optional_last_value<void>, int, std::__1::less<int>, boost::function<void (const spotify::playback::AudioDriverInfo &)>, boost::function<void (const boost::signals2::connection &, const spotify::playback::AudioDriverInfo &)>, boost::signals2::mutex> _field3;
+    struct signal<void (const spotify::playback::AudioDriverInfo &), boost::signals2::optional_last_value<void>, int, std::__1::less<int>, boost::function<void (const spotify::playback::AudioDriverInfo &)>, boost::function<void (const boost::signals2::connection &, const spotify::playback::AudioDriverInfo &)>, boost::signals2::mutex> _field2;
+    int _field3;
+    int _field4;
+};
+
+struct Identifier {
+    struct unique_ptr<spotify::auth::Identifier::Impl, std::__1::default_delete<spotify::auth::Identifier::Impl>> _field1;
 };
 
 struct Impl;
@@ -661,8 +589,6 @@ struct LifetimeStorageEntry;
 
 struct LocalTrack;
 
-struct LogLevel;
-
 struct LogMessageFilter {
     struct unordered_map<std::__1::basic_string<char>, unsigned int, std::__1::hash<std::__1::basic_string<char>>, std::__1::equal_to<std::__1::basic_string<char>>, std::__1::allocator<std::__1::pair<const std::__1::basic_string<char>, unsigned int>>> _field1;
     int _field2;
@@ -678,30 +604,34 @@ struct LogObserver {
 
 struct Logger;
 
-struct LoginControllerEvent {
-    int _field1;
-    struct error_code _field2;
-    union Data _field3;
+struct LoginBootstrap {
+    unique_ptr_5965b565 _field1;
+    struct function<void (bool, const std::__1::basic_string<char>&)> _field2;
 };
+
+struct LoginController {
+    CDUnknownFunctionPointerType *_field1;
+};
+
+struct LoginControllerImpl;
 
 struct LoginCredentials {
     struct unique_ptr<spotify::auth::LoginCredentials::Impl, std::__1::default_delete<spotify::auth::LoginCredentials::Impl>> _impl;
 };
 
 struct LoginOptions {
-    basic_string_7c0a1c0b _field1;
-    basic_string_7c0a1c0b _field2;
+    int _field1;
+    int _field2;
     basic_string_7c0a1c0b _field3;
     basic_string_7c0a1c0b _field4;
-    _Bool _field5;
+    basic_string_7c0a1c0b _field5;
     basic_string_7c0a1c0b _field6;
-    struct ProxySettings _field7;
-};
-
-struct MapMode;
-
-struct MdnsManagerInterface {
-    CDUnknownFunctionPointerType *_field1;
+    _Bool _field7;
+    _Bool _field8;
+    _Bool _field9;
+    basic_string_7c0a1c0b _field10;
+    basic_string_7c0a1c0b _field11;
+    struct ProxySettings _field12;
 };
 
 struct MeMetadataRequest;
@@ -750,6 +680,7 @@ struct MutableState {
     unsigned int :1;
     unsigned int :1;
     unsigned int :1;
+    unsigned int :1;
 };
 
 struct NSDictionary {
@@ -760,7 +691,7 @@ struct NSMutableDictionary {
     Class _field1;
 };
 
-struct NSNumber {
+struct NSString {
     Class _field1;
 };
 
@@ -768,18 +699,6 @@ struct NetworkInfo {
     _Bool _field1;
     _Bool _field2;
     _Bool _field3;
-};
-
-struct ObjectStorage<std::__1::basic_string<char>> {
-    unsigned char _field1[24];
-};
-
-struct ObjectStorage<std::__1::vector<spotify::spos::SposDictEntry, std::__1::allocator<spotify::spos::SposDictEntry>>> {
-    unsigned char _field1[24];
-};
-
-struct ObjectStorage<std::__1::vector<spotify::spos::SposNode, std::__1::allocator<spotify::spos::SposNode>>> {
-    unsigned char _field1[24];
 };
 
 struct OfflineCache;
@@ -793,6 +712,10 @@ struct OfflineManagerObserverBridge {
     SPTOfflineManager *_objc;
 };
 
+struct OneTimeToken {
+    struct unique_ptr<spotify::auth::credentials::OneTimeToken::Impl, std::__1::default_delete<spotify::auth::credentials::OneTimeToken::Impl>> _field1;
+};
+
 struct OwnedArray<ConfigurationListenerImpl, ComScore::DummyCriticalSection> {
     struct ArrayAllocationBase<ConfigurationListenerImpl *, ComScore::DummyCriticalSection> _field1;
     int _field2;
@@ -801,6 +724,10 @@ struct OwnedArray<ConfigurationListenerImpl, ComScore::DummyCriticalSection> {
 struct OwnedArray<StreamingListenerImpl, ComScore::CriticalSection> {
     struct ArrayAllocationBase<StreamingListenerImpl *, ComScore::CriticalSection> _field1;
     int _field2;
+};
+
+struct ParentChildCredentials {
+    struct unique_ptr<spotify::auth::credentials::ParentChildCredentials::Impl, std::__1::default_delete<spotify::auth::credentials::ParentChildCredentials::Impl>> _field1;
 };
 
 struct PendingMessageStorage {
@@ -826,11 +753,14 @@ struct PlayOrigin {
     struct set<std::__1::basic_string<char>, std::__1::less<std::__1::basic_string<char>>, std::__1::allocator<std::__1::basic_string<char>>> _field7;
 };
 
-struct PlayTokenHandler {
-    CDUnknownFunctionPointerType *_field1;
-};
-
 struct PlaybackSession;
+
+struct Position {
+    double _field1;
+    double _field2;
+    double _field3;
+    double _field4;
+};
 
 struct PrefStore;
 
@@ -842,17 +772,18 @@ struct Prefs {
 
 struct PreparePlayOptions {
     struct optional<spotify::player::PlaybackId> _field1;
-    struct SkipToTrack _field2;
-    struct optional<std::__1::chrono::duration<long long, std::__1::ratio<1, 1000>>> _field3;
-    _Bool _field4;
+    _Bool _field2;
+    struct SkipToTrack _field3;
+    struct optional<std::__1::chrono::duration<long long, std::__1::ratio<1, 1000>>> _field4;
     _Bool _field5;
-    struct ContextPlayerOptionOverrides _field6;
-    struct Suppressions _field7;
-    int _field8;
+    _Bool _field6;
+    struct ContextPlayerOptionOverrides _field7;
+    struct Suppressions _field8;
     int _field9;
-    basic_string_7c0a1c0b _field10;
-    struct optional<spotify::player::PlayerLicense> _field11;
-    struct flat_map<std::__1::basic_string<char>, spotify::json::encoded_value, std::__1::less<std::__1::basic_string<char>>, boost::container::new_allocator<std::__1::pair<std::__1::basic_string<char>, spotify::json::encoded_value>>> _field12;
+    int _field10;
+    basic_string_7c0a1c0b _field11;
+    struct optional<spotify::player::PlayerLicense> _field12;
+    struct flat_map<std::__1::basic_string<char>, spotify::json::encoded_value, std::__1::less<std::__1::basic_string<char>>, boost::container::new_allocator<std::__1::pair<std::__1::basic_string<char>, spotify::json::encoded_value>>> _field13;
 };
 
 struct ProductState;
@@ -869,14 +800,6 @@ struct ProxySettings {
     basic_string_7c0a1c0b _field5;
 };
 
-struct RHMIDataTable;
-
-struct RHMIMetaData;
-
-struct RHMIResourceType;
-
-struct RHMIVersion;
-
 struct ReducedRequirementsStreamingAnalytics {
     struct shared_ptr<ComScore::StreamingAnalytics> _field1;
     int _field2;
@@ -885,27 +808,8 @@ struct ReducedRequirementsStreamingAnalytics {
     int _field5;
 };
 
-struct RemoteBMWRemotingServer {
-    CDUnknownFunctionPointerType *_field1;
-    shared_ptr_628bbfde _field2;
-    struct EtchDeliveryService *_field3;
-    struct EtchValueFactory *_field4;
-    struct EtchStack *_field5;
-    CDUnknownFunctionPointerType *_field6;
-    struct EtchInt32 _field7;
-    struct EtchInt32 _field8;
-    shared_ptr_628bbfde _field9;
-    CDUnknownFunctionPointerType *_field10;
-    CDUnknownFunctionPointerType *_field11;
-    struct EtchInt32 _field12;
-    struct EtchInt32 _field13;
-};
-
-struct Request {
-    basic_string_7c0a1c0b _field1;
-    basic_string_7c0a1c0b _field2;
-    struct unordered_map<std::__1::basic_string<char>, std::__1::basic_string<char>, spotify::cosmos::detail::HashCaseInsensitive, spotify::cosmos::detail::EqualsCaseInsensitive, std::__1::allocator<std::__1::pair<const std::__1::basic_string<char>, std::__1::basic_string<char>>>> _field3;
-    basic_string_7c0a1c0b _field4;
+struct RefreshTokenCredentials {
+    struct unique_ptr<spotify::auth::credentials::RefreshTokenCredentials::Impl, std::__1::default_delete<spotify::auth::credentials::RefreshTokenCredentials::Impl>> _field1;
 };
 
 struct RequestAccountingSink {
@@ -917,27 +821,9 @@ struct Resolve {
     struct vector<spotify::cosmos::Route, std::__1::allocator<spotify::cosmos::Route>> _routes;
 };
 
-struct Response {
-    int _field1;
-    struct unordered_map<std::__1::basic_string<char>, std::__1::basic_string<char>, spotify::cosmos::detail::HashCaseInsensitive, spotify::cosmos::detail::EqualsCaseInsensitive, std::__1::allocator<std::__1::pair<const std::__1::basic_string<char>, std::__1::basic_string<char>>>> _field2;
-    basic_string_7c0a1c0b _field3;
-};
-
-struct Restorable;
+struct Resolver;
 
 struct Route;
-
-struct SDSDialogCommand;
-
-struct SPTCeramicItemOrder {
-    unsigned long long _field1;
-    unsigned long long _field2;
-};
-
-struct SPTHubIndexPath {
-    unsigned long long _field1;
-    unsigned long long _field2;
-};
 
 struct SPTID3ParserHeaderStruct {
     char headerType[3];
@@ -968,11 +854,6 @@ struct SPTNowPlayingTrack {
     _Bool skippableAdvertisement;
 };
 
-struct SPTPaletteHistogramSample {
-    union SPTColor _field1;
-    unsigned long long _field2;
-};
-
 struct SPTPersistentCacheRecordHeader {
     unsigned int _field1;
     unsigned int _field2;
@@ -988,21 +869,27 @@ struct SPTPersistentCacheRecordHeader {
     unsigned int _field12;
 };
 
+struct SPTTextAttributes {
+    double _field1;
+    double _field2;
+};
+
 struct Scheduler {
     CDUnknownFunctionPointerType *_field1;
 };
 
+struct SchedulerImpl;
+
 struct ScrobblerContainer;
 
 struct Search {
-    CDUnknownFunctionPointerType *_field1;
+    struct function<std::__1::vector<std::__1::shared_ptr<const spotify::metadata::TrackInfo>, std::__1::allocator<std::__1::shared_ptr<const spotify::metadata::TrackInfo>>>()> _field1;
+    struct function<std::__1::vector<std::__1::shared_ptr<const spotify::metadata::TrackInfo>, std::__1::allocator<std::__1::shared_ptr<const spotify::metadata::TrackInfo>>>()> _field2;
 };
 
 struct SerializableCredentials {
     struct unique_ptr<spotify::auth::SerializableCredentials::Impl, std::__1::default_delete<spotify::auth::SerializableCredentials::Impl>> _impl;
 };
-
-struct ServerTime;
 
 struct Session {
     CDUnknownFunctionPointerType *_field1;
@@ -1032,36 +919,6 @@ struct SpinLock {
     struct Atomic<int> _field1;
 };
 
-struct SposDict {
-    union {
-        unsigned char _field1;
-        struct {
-            unsigned char _field1;
-            long long _field2;
-        } _field2;
-        struct {
-            unsigned char _field1;
-            double _field2;
-        } _field3;
-        struct {
-            unsigned char _field1;
-            struct ObjectStorage<std::__1::basic_string<char>> _field2;
-        } _field4;
-        struct {
-            int _field1;
-            struct ObjectStorage<std::__1::vector<spotify::spos::SposNode, std::__1::allocator<spotify::spos::SposNode>>> _field2;
-        } _field5;
-        struct {
-            int _field1;
-            struct ObjectStorage<std::__1::vector<spotify::spos::SposDictEntry, std::__1::allocator<spotify::spos::SposDictEntry>>> _field2;
-        } _field6;
-        struct {
-            unsigned char _field1;
-            char _field2[15];
-        } _field7;
-    } _field1;
-};
-
 struct SpotifyLink {
     int _field1;
     basic_string_7c0a1c0b _field2;
@@ -1077,30 +934,33 @@ struct SpotifyLink {
         struct gid<16, spotify::uri::detail::PlaylistIdTag> _field4;
         int _field5;
         struct gid<16, spotify::uri::detail::AdIdTag> _field6;
-        unsigned long long _field7;
-        basic_string_7c0a1c0b *_field8;
-        int _field9;
-        struct gid<20, spotify::uri::detail::ImageIdTag> _field10;
-        vector_553ebee1 *_field11;
-        struct gid<16, spotify::uri::detail::ShowIdTag> _field12;
-        struct gid<16, spotify::uri::detail::EpisodeIdTag> _field13;
-        struct gid<16, spotify::uri::detail::DailyMixIdTag> _field14;
-        struct gid<16, spotify::uri::detail::LicensorIdTag> _field15;
-        int _field16;
+        struct gid<16, spotify::uri::detail::AdIdTag> _field7;
+        unsigned long long _field8;
+        basic_string_7c0a1c0b *_field9;
+        int _field10;
+        int _field11;
+        struct gid<20, spotify::uri::detail::ImageIdTag> _field12;
+        vector_553ebee1 *_field13;
+        struct gid<16, spotify::uri::detail::ShowIdTag> _field14;
+        struct gid<16, spotify::uri::detail::EpisodeIdTag> _field15;
+        struct gid<16, spotify::uri::detail::DailyMixIdTag> _field16;
+        struct gid<16, spotify::uri::detail::LicensorIdTag> _field17;
+        struct gid<16, spotify::uri::detail::ZeroTapIdTag> _field18;
+        int _field19;
         struct {
             struct vector<spotify::tl::gid<16, spotify::uri::detail::TrackIdTag>, std::__1::allocator<spotify::tl::gid<16, spotify::uri::detail::TrackIdTag>>> *_field1;
             int _field2;
-        } _field17;
+        } _field20;
         struct {
             struct gid<20, spotify::uri::detail::FileIdTag> _field1;
             int _field2;
-        } _field18;
+        } _field21;
         struct {
             int _field1;
             unsigned int _field2;
-        } _field19;
-        int _field20;
-        int _field21;
+        } _field22;
+        int _field23;
+        int _field24;
     } _field8;
 };
 
@@ -1187,21 +1047,39 @@ struct UIOffset {
     double vertical;
 };
 
+struct UIView {
+    Class _field1;
+};
+
 struct UIViewController {
     Class _field1;
 };
 
-struct VersionInfo;
+struct UInt8Range {
+    unsigned char _field1;
+    unsigned char _field2;
+};
 
-struct VoicePriorityType;
+struct VISREFColorExtractionConfiguration {
+    double _field1;
+    double _field2;
+    double _field3;
+    double _field4;
+    double _field5;
+    double _field6;
+    double _field7;
+    double _field8;
+    double _field9;
+    double _field10;
+};
 
 struct _NSRange {
     unsigned long long location;
     unsigned long long length;
 };
 
-struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<EtchString, EtchObject *>, void *>*> {
-    struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<EtchString, EtchObject *>, void *>*> *_field1;
+struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<std::__1::basic_string<char>, std::__1::basic_string<char>>, void *>*>, std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<std::__1::basic_string<char>, std::__1::basic_string<char>>, void *>>> {
+    struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<std::__1::basic_string<char>, std::__1::basic_string<char>>, void *>*> _field1;
 };
 
 struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<std::__1::basic_string<char>, std::__1::basic_string<char>>, void *>*> {
@@ -1214,16 +1092,6 @@ struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<std::_
 
 struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, std::__1::shared_ptr<spotify::async::Timer>>, void *>*> {
     struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, std::__1::shared_ptr<spotify::async::Timer>>, void *>*> *__next_;
-};
-
-struct __list_node_base<SPTTimeRange, void *> {
-    struct __list_node_base<SPTTimeRange, void *> *__prev_;
-    struct __list_node_base<SPTTimeRange, void *> *__next_;
-};
-
-struct __list_node_base<const EtchObjectType *, void *> {
-    struct __list_node_base<const EtchObjectType *, void *> *_field1;
-    struct __list_node_base<const EtchObjectType *, void *> *_field2;
 };
 
 struct __sFILE {
@@ -1377,11 +1245,19 @@ struct dl_info {
     void *_field4;
 };
 
+struct duration<long long, std::__1::ratio<1, 1000000>> {
+    long long _field1;
+};
+
+struct duration<long long, std::__1::ratio<1, 1>> {
+    long long _field1;
+};
+
 struct error_category;
 
 struct error_code {
-    int m_val;
-    struct error_category *m_cat;
+    int _field1;
+    struct error_category *_field2;
 };
 
 struct flat_map<std::__1::basic_string<char>, spotify::json::encoded_value, std::__1::less<std::__1::basic_string<char>>, boost::container::new_allocator<std::__1::pair<std::__1::basic_string<char>, spotify::json::encoded_value>>> {
@@ -1429,14 +1305,24 @@ struct function<std::__1::shared_ptr<void>(const spotify::cosmos::Request &, con
     struct __base<std::__1::shared_ptr<void>(const spotify::cosmos::Request &, const std::__1::function<void (spotify::cosmos::Response)>&)> *__f_;
 };
 
+struct function<std::__1::vector<std::__1::shared_ptr<const spotify::metadata::TrackInfo>, std::__1::allocator<std::__1::shared_ptr<const spotify::metadata::TrackInfo>>>()> {
+    struct type _field1;
+    struct __base<std::__1::vector<std::__1::shared_ptr<const spotify::metadata::TrackInfo>, std::__1::allocator<std::__1::shared_ptr<const spotify::metadata::TrackInfo>>>()> *_field2;
+};
+
 struct function<void ()> {
     struct type __buf_;
     struct __base<void ()> *__f_;
 };
 
-struct function<void (const std::__1::basic_string<char>&)> {
+struct function<void (bool, const std::__1::basic_string<char>&)> {
     struct type _field1;
-    struct __base<void (const std::__1::basic_string<char>&)> *_field2;
+    struct __base<void (bool, const std::__1::basic_string<char>&)> *_field2;
+};
+
+struct function<void (const std::__1::basic_string<char>&)> {
+    struct type __buf_;
+    struct __base<void (const std::__1::basic_string<char>&)> *__f_;
 };
 
 struct function<void (const std::__1::function<void ()>&)> {
@@ -1485,6 +1371,10 @@ struct gid<16, spotify::uri::detail::TrackIdTag> {
     unsigned char _field1[16];
 };
 
+struct gid<16, spotify::uri::detail::ZeroTapIdTag> {
+    unsigned char _field1[16];
+};
+
 struct gid<20, spotify::uri::detail::FileIdTag> {
     unsigned char _field1[20];
 };
@@ -1499,22 +1389,18 @@ struct gzFile_s {
     long long _field3;
 };
 
+struct ifaddrs {
+    struct ifaddrs *_field1;
+    char *_field2;
+    unsigned int _field3;
+    struct sockaddr *_field4;
+    struct sockaddr *_field5;
+    struct sockaddr *_field6;
+    void *_field7;
+};
+
 struct in_addr {
     unsigned int _field1;
-};
-
-struct list<SPTTimeRange, std::__1::allocator<SPTTimeRange>> {
-    struct __list_node_base<SPTTimeRange, void *> __end_;
-    struct __compressed_pair<unsigned long, std::__1::allocator<std::__1::__list_node<SPTTimeRange, void *>>> {
-        unsigned long long __value_;
-    } __size_alloc_;
-};
-
-struct list<const EtchObjectType *, std::__1::allocator<const EtchObjectType *>> {
-    struct __list_node_base<const EtchObjectType *, void *> _field1;
-    struct __compressed_pair<unsigned long, std::__1::allocator<std::__1::__list_node<const EtchObjectType *, void *>>> {
-        unsigned long long _field1;
-    } _field2;
 };
 
 struct map<std::__1::basic_string<char>, long long, std::__1::less<std::__1::basic_string<char>>, std::__1::allocator<std::__1::pair<const std::__1::basic_string<char>, long long>>> {
@@ -1550,6 +1436,14 @@ struct optional<bool> {
     _Bool _field2;
 };
 
+struct optional<spotify::http::ConnectionType> {
+    union {
+        char _field1;
+        int _field2;
+    } _field1;
+    _Bool _field2;
+};
+
 struct optional<spotify::player::PlaybackId> {
     _Bool _field1;
     struct aligned_storage<spotify::player::PlaybackId> _field2;
@@ -1570,14 +1464,36 @@ struct optional<std::__1::chrono::duration<long long, std::__1::ratio<1, 1000>>>
     struct aligned_storage<std::__1::chrono::duration<long long, std::__1::ratio<1, 1000>>> _field2;
 };
 
+struct optional<std::__1::function<void ()>> {
+    union {
+        char __null_state_;
+        function_f9feaa7d __val_;
+    } ;
+    _Bool __engaged_;
+};
+
+struct optional<std::__1::function<void (const std::__1::basic_string<char>&)>> {
+    union {
+        char __null_state_;
+        struct function<void (const std::__1::basic_string<char>&)> __val_;
+    } ;
+    _Bool __engaged_;
+};
+
 struct optional<unsigned char> {
-    _Bool _field1;
-    unsigned char _field2;
+    union {
+        char _field1;
+        unsigned char _field2;
+    } _field1;
+    _Bool _field2;
 };
 
 struct optional<unsigned int> {
-    _Bool _field1;
-    unsigned int _field2;
+    union {
+        char _field1;
+        unsigned int _field2;
+    } _field1;
+    _Bool _field2;
 };
 
 struct optional<unsigned long> {
@@ -1666,106 +1582,6 @@ struct shared_ptr<ComScore::TaskExecutor> {
     struct __shared_weak_count *_field2;
 };
 
-struct shared_ptr<EtchAsyncResult<EtchBool>> {
-    struct EtchAsyncResult<EtchBool> *_field1;
-    struct __shared_weak_count *_field2;
-};
-
-struct shared_ptr<EtchAsyncResult<EtchHashTable<std::__1::shared_ptr<EtchObject>, std::__1::shared_ptr<EtchObject>, EtchComparator<std::__1::shared_ptr<EtchObject>>, EtchHash<std::__1::shared_ptr<EtchObject>>>>> {
-    struct EtchAsyncResult<EtchHashTable<std::__1::shared_ptr<EtchObject>, std::__1::shared_ptr<EtchObject>, EtchComparator<std::__1::shared_ptr<EtchObject>>, EtchHash<std::__1::shared_ptr<EtchObject>>>> *_field1;
-    struct __shared_weak_count *_field2;
-};
-
-struct shared_ptr<EtchAsyncResult<EtchInt32>> {
-    struct EtchAsyncResult<EtchInt32> *_field1;
-    struct __shared_weak_count *_field2;
-};
-
-struct shared_ptr<EtchAsyncResult<EtchNativeArray<signed char>>> {
-    struct EtchAsyncResult<EtchNativeArray<signed char>> *_field1;
-    struct __shared_weak_count *_field2;
-};
-
-struct shared_ptr<EtchAsyncResult<EtchObject>> {
-    struct EtchAsyncResult<EtchObject> *_field1;
-    struct __shared_weak_count *_field2;
-};
-
-struct shared_ptr<EtchAsyncResult<EtchString>> {
-    struct EtchAsyncResult<EtchString> *_field1;
-    struct __shared_weak_count *_field2;
-};
-
-struct shared_ptr<EtchAsyncResult<de_bmw_idrive_BMWRemoting::BMWRemoting::VersionInfo>> {
-    struct EtchAsyncResult<de_bmw_idrive_BMWRemoting::BMWRemoting::VersionInfo> *_field1;
-    struct __shared_weak_count *_field2;
-};
-
-struct shared_ptr<EtchAsyncResultNone> {
-    struct EtchAsyncResultNone *_field1;
-    struct __shared_weak_count *_field2;
-};
-
-struct shared_ptr<EtchBool> {
-    struct EtchBool *_field1;
-    struct __shared_weak_count *_field2;
-};
-
-struct shared_ptr<EtchByte> {
-    struct EtchByte *_field1;
-    struct __shared_weak_count *_field2;
-};
-
-struct shared_ptr<EtchException> {
-    struct EtchException *_field1;
-    struct __shared_weak_count *_field2;
-};
-
-struct shared_ptr<EtchFloat> {
-    struct EtchFloat *_field1;
-    struct __shared_weak_count *_field2;
-};
-
-struct shared_ptr<EtchHashTable<std::__1::shared_ptr<EtchObject>, std::__1::shared_ptr<EtchObject>, EtchComparator<std::__1::shared_ptr<EtchObject>>, EtchHash<std::__1::shared_ptr<EtchObject>>>> {
-    struct EtchHashTable<std::__1::shared_ptr<EtchObject>, std::__1::shared_ptr<EtchObject>, EtchComparator<std::__1::shared_ptr<EtchObject>>, EtchHash<std::__1::shared_ptr<EtchObject>>> *_field1;
-    struct __shared_weak_count *_field2;
-};
-
-struct shared_ptr<EtchInt32> {
-    struct EtchInt32 *_field1;
-    struct __shared_weak_count *_field2;
-};
-
-struct shared_ptr<EtchNativeArray<signed char>> {
-    struct EtchNativeArray<signed char> *_field1;
-    struct __shared_weak_count *_field2;
-};
-
-struct shared_ptr<EtchNativeArray<std::__1::shared_ptr<EtchObject>>> {
-    struct EtchNativeArray<std::__1::shared_ptr<EtchObject>> *_field1;
-    struct __shared_weak_count *_field2;
-};
-
-struct shared_ptr<EtchObject> {
-    struct EtchObject *_field1;
-    struct __shared_weak_count *_field2;
-};
-
-struct shared_ptr<EtchRuntime> {
-    struct EtchRuntime *_field1;
-    struct __shared_weak_count *_field2;
-};
-
-struct shared_ptr<EtchShort> {
-    struct EtchShort *_field1;
-    struct __shared_weak_count *_field2;
-};
-
-struct shared_ptr<EtchString> {
-    struct EtchString *_field1;
-    struct __shared_weak_count *_field2;
-};
-
 struct shared_ptr<boost::signals2::detail::signal_impl<void (), boost::signals2::optional_last_value<void>, int, std::__1::less<int>, boost::function<void ()>, boost::function<void (const boost::signals2::connection &)>, boost::signals2::mutex>> {
     struct signal_impl<void (), boost::signals2::optional_last_value<void>, int, std::__1::less<int>, boost::function<void ()>, boost::function<void (const boost::signals2::connection &)>, boost::signals2::mutex> *_field1;
     struct shared_count _field2;
@@ -1801,11 +1617,6 @@ struct shared_ptr<boost::signals2::detail::signal_impl<void (spotify::prefs::Pre
     struct shared_count _field2;
 };
 
-struct shared_ptr<const spotify::connect::AbstractConnectDevice> {
-    struct AbstractConnectDevice *_field1;
-    struct __shared_weak_count *_field2;
-};
-
 struct shared_ptr<const spotify::social::SocialUserData> {
     struct SocialUserData *_field1;
     struct __shared_weak_count *_field2;
@@ -1814,61 +1625,6 @@ struct shared_ptr<const spotify::social::SocialUserData> {
 struct shared_ptr<coreobjc::LogObserver> {
     struct LogObserver *__ptr_;
     struct __shared_weak_count *__cntrl_;
-};
-
-struct shared_ptr<de_bmw_idrive_BMWRemoting::AVConnectionType> {
-    struct AVConnectionType *_field1;
-    struct __shared_weak_count *_field2;
-};
-
-struct shared_ptr<de_bmw_idrive_BMWRemoting::AVPlayerState> {
-    struct AVPlayerState *_field1;
-    struct __shared_weak_count *_field2;
-};
-
-struct shared_ptr<de_bmw_idrive_BMWRemoting::BMWRemoting::RHMIDataTable> {
-    struct RHMIDataTable *_field1;
-    struct __shared_weak_count *_field2;
-};
-
-struct shared_ptr<de_bmw_idrive_BMWRemoting::BMWRemoting::RHMIMetaData> {
-    struct RHMIMetaData *_field1;
-    struct __shared_weak_count *_field2;
-};
-
-struct shared_ptr<de_bmw_idrive_BMWRemoting::BMWRemoting::VersionInfo> {
-    struct VersionInfo *_field1;
-    struct __shared_weak_count *_field2;
-};
-
-struct shared_ptr<de_bmw_idrive_BMWRemoting::LogLevel> {
-    struct LogLevel *_field1;
-    struct __shared_weak_count *_field2;
-};
-
-struct shared_ptr<de_bmw_idrive_BMWRemoting::MapMode> {
-    struct MapMode *_field1;
-    struct __shared_weak_count *_field2;
-};
-
-struct shared_ptr<de_bmw_idrive_BMWRemoting::RHMIResourceType> {
-    struct RHMIResourceType *_field1;
-    struct __shared_weak_count *_field2;
-};
-
-struct shared_ptr<de_bmw_idrive_BMWRemoting::RHMIVersion> {
-    struct RHMIVersion *_field1;
-    struct __shared_weak_count *_field2;
-};
-
-struct shared_ptr<de_bmw_idrive_BMWRemoting::SDSDialogCommand> {
-    struct SDSDialogCommand *_field1;
-    struct __shared_weak_count *_field2;
-};
-
-struct shared_ptr<de_bmw_idrive_BMWRemoting::VoicePriorityType> {
-    struct VoicePriorityType *_field1;
-    struct __shared_weak_count *_field2;
 };
 
 struct shared_ptr<spotify::analytics::Logger> {
@@ -1884,11 +1640,6 @@ struct shared_ptr<spotify::async::Timer::Impl> {
 struct shared_ptr<spotify::client::ApplicationStateTracker::Impl> {
     struct Impl *_field1;
     struct __shared_weak_count *_field2;
-};
-
-struct shared_ptr<spotify::connect::AbstractConnectDevice> {
-    struct AbstractConnectDevice *__ptr_;
-    struct __shared_weak_count *__cntrl_;
 };
 
 struct shared_ptr<spotify::facebook::FacebookPermissions> {
@@ -1931,8 +1682,18 @@ struct shared_ptr<spotify::hermes::HermesRequest> {
     struct __shared_weak_count *_field2;
 };
 
-struct shared_ptr<spotify::http::AppleSessionManager> {
-    struct AppleSessionManager *_field1;
+struct shared_ptr<spotify::http::AppleConnectionFactory> {
+    struct AppleConnectionFactory *_field1;
+    struct __shared_weak_count *_field2;
+};
+
+struct shared_ptr<spotify::http::Connection> {
+    struct Connection *__ptr_;
+    struct __shared_weak_count *__cntrl_;
+};
+
+struct shared_ptr<spotify::http::ConnectionBuilder::Impl> {
+    struct Impl *_field1;
     struct __shared_weak_count *_field2;
 };
 
@@ -1966,11 +1727,6 @@ struct shared_ptr<spotify::player::ProxyContextPlayer> {
     struct __shared_weak_count *_field2;
 };
 
-struct shared_ptr<spotify::player::Restorable> {
-    struct Restorable *__ptr_;
-    struct __shared_weak_count *__cntrl_;
-};
-
 struct shared_ptr<spotify::player::mft::MftCanPlayChecker> {
     struct MftCanPlayChecker *__ptr_;
     struct __shared_weak_count *__cntrl_;
@@ -1981,8 +1737,8 @@ struct shared_ptr<spotify::product_state::ProductState> {
     struct __shared_weak_count *__cntrl_;
 };
 
-struct shared_ptr<spotify::time::ServerTime> {
-    struct ServerTime *_field1;
+struct shared_ptr<std::__1::vector<spotify::palette::Swatch, std::__1::allocator<spotify::palette::Swatch>>> {
+    struct vector<spotify::palette::Swatch, std::__1::allocator<spotify::palette::Swatch>> *_field1;
     struct __shared_weak_count *_field2;
 };
 
@@ -2097,6 +1853,10 @@ struct streamingConfigurationParams {
     _Bool systemClockJumpDetection;
 };
 
+struct time_point<std::__1::chrono::system_clock, std::__1::chrono::duration<long long, std::__1::ratio<1, 1000000>>> {
+    struct duration<long long, std::__1::ratio<1, 1000000>> _field1;
+};
+
 struct timespec {
     long long _field1;
     long long _field2;
@@ -2106,9 +1866,21 @@ struct type {
     unsigned char __lx[24];
 };
 
-struct unique_ptr<spotify::accesspoint_resolve::ApResolver, std::__1::default_delete<spotify::accesspoint_resolve::ApResolver>> {
-    struct __compressed_pair<spotify::accesspoint_resolve::ApResolver *, std::__1::default_delete<spotify::accesspoint_resolve::ApResolver>> {
-        struct ApResolver *__value_;
+struct unique_ptr<ApplicationScopeImpl, std::__1::default_delete<ApplicationScopeImpl>> {
+    struct __compressed_pair<ApplicationScopeImpl *, std::__1::default_delete<ApplicationScopeImpl>> {
+        struct ApplicationScopeImpl *__value_;
+    } __ptr_;
+};
+
+struct unique_ptr<LoginControllerImpl, std::__1::default_delete<LoginControllerImpl>> {
+    struct __compressed_pair<LoginControllerImpl *, std::__1::default_delete<LoginControllerImpl>> {
+        struct LoginControllerImpl *__value_;
+    } __ptr_;
+};
+
+struct unique_ptr<SchedulerImpl, std::__1::default_delete<SchedulerImpl>> {
+    struct __compressed_pair<SchedulerImpl *, std::__1::default_delete<SchedulerImpl>> {
+        struct SchedulerImpl *__value_;
     } __ptr_;
 };
 
@@ -2118,6 +1890,18 @@ struct unique_ptr<spotify::async::TimerManager, std::__1::default_delete<spotify
     struct __compressed_pair<spotify::async::TimerManager *, std::__1::default_delete<spotify::async::TimerManager>> {
         struct TimerManager *__value_;
     } __ptr_;
+};
+
+struct unique_ptr<spotify::auth::AuthSession, std::__1::default_delete<spotify::auth::AuthSession>> {
+    struct __compressed_pair<spotify::auth::AuthSession *, std::__1::default_delete<spotify::auth::AuthSession>> {
+        struct AuthSession *__value_;
+    } __ptr_;
+};
+
+struct unique_ptr<spotify::auth::Identifier::Impl, std::__1::default_delete<spotify::auth::Identifier::Impl>> {
+    struct __compressed_pair<spotify::auth::Identifier::Impl *, std::__1::default_delete<spotify::auth::Identifier::Impl>> {
+        struct Impl *_field1;
+    } _field1;
 };
 
 struct unique_ptr<spotify::auth::LoginCredentials::Impl, std::__1::default_delete<spotify::auth::LoginCredentials::Impl>> {
@@ -2130,6 +1914,36 @@ struct unique_ptr<spotify::auth::SerializableCredentials::Impl, std::__1::defaul
     struct __compressed_pair<spotify::auth::SerializableCredentials::Impl *, std::__1::default_delete<spotify::auth::SerializableCredentials::Impl>> {
         struct Impl *__value_;
     } __ptr_;
+};
+
+struct unique_ptr<spotify::auth::Session, std::__1::default_delete<spotify::auth::Session>> {
+    struct __compressed_pair<spotify::auth::Session *, std::__1::default_delete<spotify::auth::Session>> {
+        struct Session *__value_;
+    } __ptr_;
+};
+
+struct unique_ptr<spotify::auth::credentials::OneTimeToken::Impl, std::__1::default_delete<spotify::auth::credentials::OneTimeToken::Impl>> {
+    struct __compressed_pair<spotify::auth::credentials::OneTimeToken::Impl *, std::__1::default_delete<spotify::auth::credentials::OneTimeToken::Impl>> {
+        struct Impl *_field1;
+    } _field1;
+};
+
+struct unique_ptr<spotify::auth::credentials::ParentChildCredentials, std::__1::default_delete<spotify::auth::credentials::ParentChildCredentials>> {
+    struct __compressed_pair<spotify::auth::credentials::ParentChildCredentials *, std::__1::default_delete<spotify::auth::credentials::ParentChildCredentials>> {
+        struct ParentChildCredentials *__value_;
+    } __ptr_;
+};
+
+struct unique_ptr<spotify::auth::credentials::ParentChildCredentials::Impl, std::__1::default_delete<spotify::auth::credentials::ParentChildCredentials::Impl>> {
+    struct __compressed_pair<spotify::auth::credentials::ParentChildCredentials::Impl *, std::__1::default_delete<spotify::auth::credentials::ParentChildCredentials::Impl>> {
+        struct Impl *_field1;
+    } _field1;
+};
+
+struct unique_ptr<spotify::auth::credentials::RefreshTokenCredentials::Impl, std::__1::default_delete<spotify::auth::credentials::RefreshTokenCredentials::Impl>> {
+    struct __compressed_pair<spotify::auth::credentials::RefreshTokenCredentials::Impl *, std::__1::default_delete<spotify::auth::credentials::RefreshTokenCredentials::Impl>> {
+        struct Impl *_field1;
+    } _field1;
 };
 
 struct unique_ptr<spotify::client::Core, std::__1::default_delete<spotify::client::Core>> {
@@ -2146,6 +1960,18 @@ struct unique_ptr<spotify::client_features::ClientFeatureStack, std::__1::defaul
 
 struct unique_ptr<spotify::client_features::ClientFeatureStack::Impl, std::__1::default_delete<spotify::client_features::ClientFeatureStack::Impl>> {
     struct __compressed_pair<spotify::client_features::ClientFeatureStack::Impl *, std::__1::default_delete<spotify::client_features::ClientFeatureStack::Impl>> {
+        struct Impl *_field1;
+    } _field1;
+};
+
+struct unique_ptr<spotify::connectivity::AccessTokenScope, std::__1::default_delete<spotify::connectivity::AccessTokenScope>> {
+    struct __compressed_pair<spotify::connectivity::AccessTokenScope *, std::__1::default_delete<spotify::connectivity::AccessTokenScope>> {
+        struct AccessTokenScope *__value_;
+    } __ptr_;
+};
+
+struct unique_ptr<spotify::connectivity::ApplicationScope::Impl, std::__1::default_delete<spotify::connectivity::ApplicationScope::Impl>> {
+    struct __compressed_pair<spotify::connectivity::ApplicationScope::Impl *, std::__1::default_delete<spotify::connectivity::ApplicationScope::Impl>> {
         struct Impl *_field1;
     } _field1;
 };
@@ -2174,15 +2000,10 @@ struct unique_ptr<spotify::prefs::Prefs, std::__1::default_delete<spotify::prefs
     } __ptr_;
 };
 
-struct unique_ptr<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<EtchString, EtchObject *>, void *>*>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<EtchString, EtchObject *>, void *>*>*>>> {
-    struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<EtchString, EtchObject *>, void *>*>**, std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<EtchString, EtchObject *>, void *>*>*>>> {
-        struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<EtchString, EtchObject *>, void *>*> **_field1;
-        struct __bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<EtchString, EtchObject *>, void *>*>*>> {
-            struct __compressed_pair<unsigned long, std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<EtchString, EtchObject *>, void *>*>*>> {
-                unsigned long long _field1;
-            } _field1;
-        } _field2;
-    } _field1;
+struct unique_ptr<spotify::xresolve::Resolver, std::__1::default_delete<spotify::xresolve::Resolver>> {
+    struct __compressed_pair<spotify::xresolve::Resolver *, std::__1::default_delete<spotify::xresolve::Resolver>> {
+        struct Resolver *__value_;
+    } __ptr_;
 };
 
 struct unique_ptr<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<std::__1::basic_string<char>, std::__1::basic_string<char>>, void *>*>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<std::__1::basic_string<char>, std::__1::basic_string<char>>, void *>*>*>>> {
@@ -2221,13 +2042,24 @@ struct unique_ptr<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__h
 struct unordered_map<std::__1::basic_string<char>, std::__1::basic_string<char>, spotify::cosmos::detail::HashCaseInsensitive, spotify::cosmos::detail::EqualsCaseInsensitive, std::__1::allocator<std::__1::pair<const std::__1::basic_string<char>, std::__1::basic_string<char>>>> {
     struct __hash_table<std::__1::__hash_value_type<std::__1::basic_string<char>, std::__1::basic_string<char>>, std::__1::__unordered_map_hasher<std::__1::basic_string<char>, std::__1::__hash_value_type<std::__1::basic_string<char>, std::__1::basic_string<char>>, spotify::cosmos::detail::HashCaseInsensitive, true>, std::__1::__unordered_map_equal<std::__1::basic_string<char>, std::__1::__hash_value_type<std::__1::basic_string<char>, std::__1::basic_string<char>>, spotify::cosmos::detail::EqualsCaseInsensitive, true>, std::__1::allocator<std::__1::__hash_value_type<std::__1::basic_string<char>, std::__1::basic_string<char>>>> {
         struct unique_ptr<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<std::__1::basic_string<char>, std::__1::basic_string<char>>, void *>*>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<std::__1::basic_string<char>, std::__1::basic_string<char>>, void *>*>*>>> _field1;
-        struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<std::__1::basic_string<char>, std::__1::basic_string<char>>, void *>*>, std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<std::__1::basic_string<char>, std::__1::basic_string<char>>, void *>>> {
-            struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<std::__1::basic_string<char>, std::__1::basic_string<char>>, void *>*> _field1;
-        } _field2;
+        struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<std::__1::basic_string<char>, std::__1::basic_string<char>>, void *>*>, std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<std::__1::basic_string<char>, std::__1::basic_string<char>>, void *>>> _field2;
         struct __compressed_pair<unsigned long, std::__1::__unordered_map_hasher<std::__1::basic_string<char>, std::__1::__hash_value_type<std::__1::basic_string<char>, std::__1::basic_string<char>>, spotify::cosmos::detail::HashCaseInsensitive, true>> {
             unsigned long long _field1;
         } _field3;
         struct __compressed_pair<float, std::__1::__unordered_map_equal<std::__1::basic_string<char>, std::__1::__hash_value_type<std::__1::basic_string<char>, std::__1::basic_string<char>>, spotify::cosmos::detail::EqualsCaseInsensitive, true>> {
+            float _field1;
+        } _field4;
+    } _field1;
+};
+
+struct unordered_map<std::__1::basic_string<char>, std::__1::basic_string<char>, spotify::http::detail::HashCaseInsensitive, spotify::http::detail::EqualsCaseInsensitive, std::__1::allocator<std::__1::pair<const std::__1::basic_string<char>, std::__1::basic_string<char>>>> {
+    struct __hash_table<std::__1::__hash_value_type<std::__1::basic_string<char>, std::__1::basic_string<char>>, std::__1::__unordered_map_hasher<std::__1::basic_string<char>, std::__1::__hash_value_type<std::__1::basic_string<char>, std::__1::basic_string<char>>, spotify::http::detail::HashCaseInsensitive, true>, std::__1::__unordered_map_equal<std::__1::basic_string<char>, std::__1::__hash_value_type<std::__1::basic_string<char>, std::__1::basic_string<char>>, spotify::http::detail::EqualsCaseInsensitive, true>, std::__1::allocator<std::__1::__hash_value_type<std::__1::basic_string<char>, std::__1::basic_string<char>>>> {
+        struct unique_ptr<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<std::__1::basic_string<char>, std::__1::basic_string<char>>, void *>*>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<std::__1::basic_string<char>, std::__1::basic_string<char>>, void *>*>*>>> _field1;
+        struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<std::__1::basic_string<char>, std::__1::basic_string<char>>, void *>*>, std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<std::__1::basic_string<char>, std::__1::basic_string<char>>, void *>>> _field2;
+        struct __compressed_pair<unsigned long, std::__1::__unordered_map_hasher<std::__1::basic_string<char>, std::__1::__hash_value_type<std::__1::basic_string<char>, std::__1::basic_string<char>>, spotify::http::detail::HashCaseInsensitive, true>> {
+            unsigned long long _field1;
+        } _field3;
+        struct __compressed_pair<float, std::__1::__unordered_map_equal<std::__1::basic_string<char>, std::__1::__hash_value_type<std::__1::basic_string<char>, std::__1::basic_string<char>>, spotify::http::detail::EqualsCaseInsensitive, true>> {
             float _field1;
         } _field4;
     } _field1;
@@ -2261,6 +2093,49 @@ struct unordered_map<unsigned long long, std::__1::shared_ptr<spotify::async::Ti
             float __value_;
         } __p3_;
     } __table_;
+};
+
+struct variant<spotify::auth::Identifier, spotify::auth::credentials::OneTimeToken, spotify::auth::LoginCredentials, spotify::auth::credentials::ParentChildCredentials, spotify::auth::AutologinFromCredentialsStore, spotify::auth::credentials::RefreshTokenCredentials> {
+    struct __impl<spotify::auth::Identifier, spotify::auth::credentials::OneTimeToken, spotify::auth::LoginCredentials, spotify::auth::credentials::ParentChildCredentials, spotify::auth::AutologinFromCredentialsStore, spotify::auth::credentials::RefreshTokenCredentials> {
+        union __union<std::__1::__variant_detail::_Trait::_Available, 0, spotify::auth::Identifier, spotify::auth::credentials::OneTimeToken, spotify::auth::LoginCredentials, spotify::auth::credentials::ParentChildCredentials, spotify::auth::AutologinFromCredentialsStore, spotify::auth::credentials::RefreshTokenCredentials> {
+            char _field1;
+            struct __alt<0, spotify::auth::Identifier> {
+                struct Identifier _field1;
+            } _field2;
+            union __union<std::__1::__variant_detail::_Trait::_Available, 1, spotify::auth::credentials::OneTimeToken, spotify::auth::LoginCredentials, spotify::auth::credentials::ParentChildCredentials, spotify::auth::AutologinFromCredentialsStore, spotify::auth::credentials::RefreshTokenCredentials> {
+                char _field1;
+                struct __alt<1, spotify::auth::credentials::OneTimeToken> {
+                    struct OneTimeToken _field1;
+                } _field2;
+                union __union<std::__1::__variant_detail::_Trait::_Available, 2, spotify::auth::LoginCredentials, spotify::auth::credentials::ParentChildCredentials, spotify::auth::AutologinFromCredentialsStore, spotify::auth::credentials::RefreshTokenCredentials> {
+                    char _field1;
+                    struct __alt<2, spotify::auth::LoginCredentials> {
+                        struct LoginCredentials _field1;
+                    } _field2;
+                    union __union<std::__1::__variant_detail::_Trait::_Available, 3, spotify::auth::credentials::ParentChildCredentials, spotify::auth::AutologinFromCredentialsStore, spotify::auth::credentials::RefreshTokenCredentials> {
+                        char _field1;
+                        struct __alt<3, spotify::auth::credentials::ParentChildCredentials> {
+                            struct ParentChildCredentials _field1;
+                        } _field2;
+                        union __union<std::__1::__variant_detail::_Trait::_Available, 4, spotify::auth::AutologinFromCredentialsStore, spotify::auth::credentials::RefreshTokenCredentials> {
+                            char _field1;
+                            struct __alt<4, spotify::auth::AutologinFromCredentialsStore> {
+                                struct AutologinFromCredentialsStore _field1;
+                            } _field2;
+                            union __union<std::__1::__variant_detail::_Trait::_Available, 5, spotify::auth::credentials::RefreshTokenCredentials> {
+                                char _field1;
+                                struct __alt<5, spotify::auth::credentials::RefreshTokenCredentials> {
+                                    struct RefreshTokenCredentials _field1;
+                                } _field2;
+                                union __union<std::__1::__variant_detail::_Trait::_Available, 6> _field3;
+                            } _field3;
+                        } _field3;
+                    } _field3;
+                } _field3;
+            } _field3;
+        } _field1;
+        unsigned int _field2;
+    } _field1;
 };
 
 struct vector<(anonymous namespace)::LifetimeStorageEntry, std::__1::allocator<(anonymous namespace)::LifetimeStorageEntry>> {
@@ -2310,6 +2185,8 @@ struct vector<spotify::metadata::BiographyOrReview, std::__1::allocator<spotify:
         struct BiographyOrReview *_field1;
     } _field3;
 };
+
+struct vector<spotify::palette::Swatch, std::__1::allocator<spotify::palette::Swatch>>;
 
 struct vector<spotify::tl::gid<16, spotify::uri::detail::TrackIdTag>, std::__1::allocator<spotify::tl::gid<16, spotify::uri::detail::TrackIdTag>>>;
 
@@ -2379,8 +2256,8 @@ struct weak_ptr<spotify::facebook::FacebookService> {
     struct __shared_weak_count *_field2;
 };
 
-struct weak_ptr<spotify::http::AppleSessionManager> {
-    struct AppleSessionManager *__ptr_;
+struct weak_ptr<spotify::http::AppleConnectionFactory> {
+    struct AppleConnectionFactory *__ptr_;
     struct __shared_weak_count *__cntrl_;
 };
 
@@ -2414,31 +2291,42 @@ struct weak_ptr<spotify::social::SocialManager> {
     struct __shared_weak_count *_field2;
 };
 
-struct weak_ptr<spotify::time::ServerTime> {
-    struct ServerTime *__ptr_;
-    struct __shared_weak_count *__cntrl_;
-};
-
 #if 0
 // Names with conflicting types:
 typedef struct {
     Class _field1;
     id _field2;
-    id _field3;
+    unsigned long long _field3;
     unsigned long long _field4;
     unsigned long long _field5;
     unsigned long long _field6;
-    unsigned long long _field7;
+    id _field7;
     id _field8;
-} SPTCollectionPlatformDataLoaderResponse_35b6aaff;
-
-typedef struct {
-    Class _field1;
-} SPTPlaylistPlatformDataLoaderResponse_5db64d04;
+} SPTCollectionPlatformDataLoaderResponse_3cfdded1;
 
 typedef struct {
     Class _field1;
 } SPTCollectionPlatformDataLoaderResponse_f5c2288a;
+
+typedef struct {
+    int _field1;
+    basic_string_7c0a1c0b _field2;
+    struct unordered_map<std::__1::basic_string<char>, std::__1::basic_string<char>, spotify::http::detail::HashCaseInsensitive, spotify::http::detail::EqualsCaseInsensitive, std::__1::allocator<std::__1::pair<const std::__1::basic_string<char>, std::__1::basic_string<char>>>> _field3;
+    basic_string_7c0a1c0b _field4;
+} Response_17a732c3;
+
+typedef struct {
+    int _field1;
+    struct unordered_map<std::__1::basic_string<char>, std::__1::basic_string<char>, spotify::cosmos::detail::HashCaseInsensitive, spotify::cosmos::detail::EqualsCaseInsensitive, std::__1::allocator<std::__1::pair<const std::__1::basic_string<char>, std::__1::basic_string<char>>>> _field2;
+    basic_string_7c0a1c0b _field3;
+} Response_d1689f6a;
+
+typedef struct {
+    basic_string_7c0a1c0b _field1;
+    basic_string_7c0a1c0b _field2;
+    struct unordered_map<std::__1::basic_string<char>, std::__1::basic_string<char>, spotify::cosmos::detail::HashCaseInsensitive, spotify::cosmos::detail::EqualsCaseInsensitive, std::__1::allocator<std::__1::pair<const std::__1::basic_string<char>, std::__1::basic_string<char>>>> _field3;
+    basic_string_7c0a1c0b _field4;
+} Request_995d6ec1;
 
 typedef struct {
     struct CriticalSection _field1;
@@ -2504,15 +2392,6 @@ typedef struct {
 } CDStruct_1e2a2a70;
 
 typedef struct {
-    unsigned int doesImpWillMoveItemToSection:1;
-    unsigned int doesImpScrollIntoSection:1;
-    unsigned int doesImpScrollWithOffSet:1;
-    unsigned int doesImpVisibleCells:1;
-    unsigned int doesImpSectionBounds:1;
-    unsigned int doesImpReloadCell:1;
-} CDStruct_811f134b;
-
-typedef struct {
     double broadcastRequestTimeout;
     double applicationDeleteTimeout;
     double applicationStartTimeout;
@@ -2534,22 +2413,9 @@ typedef struct {
 } CDStruct_b9b47a9c;
 
 typedef struct {
-    double start;
-    double end;
-} CDStruct_88b945db;
-
-typedef struct {
-    float _field1;
-    float _field2;
-} CDStruct_b2fbf00d;
-
-typedef struct {
-    long long _field1;
-    void *_field2;
-    CDUnknownFunctionPointerType _field3;
-    CDUnknownFunctionPointerType _field4;
-    CDUnknownFunctionPointerType _field5;
-} CDStruct_e097db04;
+    double minimumValue;
+    double maximumValue;
+} CDStruct_5a28e70a;
 
 typedef struct {
     long long value;
@@ -2586,17 +2452,6 @@ typedef struct {
 } CDStruct_fad71a87;
 
 typedef struct {
-    basic_string_7c0a1c0b *_field1;
-} CDStruct_ecbe5f6e;
-
-typedef struct {
-    double adOverlayCardContainerMaximumWidth;
-    double adOverlayCardContainerAspectRatioMetric;
-    double adOverlayCardContainerRadius;
-    struct CGColor *adOverlayBackgroundColor;
-} CDStruct_4414572c;
-
-typedef struct {
     CDStruct_3412e649 x;
     CDStruct_3412e649 y;
     CDStruct_3412e649 z;
@@ -2605,8 +2460,8 @@ typedef struct {
 
 typedef struct {
     struct CLLocationCoordinate2D _field1;
-    CDStruct_88b945db _field2;
-} CDStruct_2394fa6e;
+    CDStruct_5a28e70a _field2;
+} CDStruct_e43cf4f1;
 
 // Template types
 typedef struct HashMap<ComScore::String, ComScore::String, ComScore::DefaultHashFunctions, ComScore::CriticalSection> {
@@ -2666,6 +2521,22 @@ typedef struct map<std::__1::basic_string<char>, std::__1::basic_string<char>, s
     } _field1;
 } map_0edfe763;
 
+typedef struct optional<std::__1::function<void ()>> {
+    union {
+        char __null_state_;
+        function_f9feaa7d __val_;
+    } ;
+    _Bool __engaged_;
+} optional_b0104c67;
+
+typedef struct optional<std::__1::function<void (const std::__1::basic_string<char>&)>> {
+    union {
+        char __null_state_;
+        struct function<void (const std::__1::basic_string<char>&)> __val_;
+    } ;
+    _Bool __engaged_;
+} optional_f8dbc4af;
+
 typedef struct shared_ptr<ComScore::Asset> {
     struct Asset *__ptr_;
     struct __shared_weak_count *__cntrl_;
@@ -2706,111 +2577,6 @@ typedef struct shared_ptr<ComScore::PropertyManager> {
     struct __shared_weak_count *__cntrl_;
 } shared_ptr_4af07e7b;
 
-typedef struct shared_ptr<EtchAsyncResult<EtchBool>> {
-    struct EtchAsyncResult<EtchBool> *_field1;
-    struct __shared_weak_count *_field2;
-} shared_ptr_4760166f;
-
-typedef struct shared_ptr<EtchAsyncResult<EtchHashTable<std::__1::shared_ptr<EtchObject>, std::__1::shared_ptr<EtchObject>, EtchComparator<std::__1::shared_ptr<EtchObject>>, EtchHash<std::__1::shared_ptr<EtchObject>>>>> {
-    struct EtchAsyncResult<EtchHashTable<std::__1::shared_ptr<EtchObject>, std::__1::shared_ptr<EtchObject>, EtchComparator<std::__1::shared_ptr<EtchObject>>, EtchHash<std::__1::shared_ptr<EtchObject>>>> *_field1;
-    struct __shared_weak_count *_field2;
-} shared_ptr_b278485e;
-
-typedef struct shared_ptr<EtchAsyncResult<EtchInt32>> {
-    struct EtchAsyncResult<EtchInt32> *_field1;
-    struct __shared_weak_count *_field2;
-} shared_ptr_64f13db7;
-
-typedef struct shared_ptr<EtchAsyncResult<EtchNativeArray<signed char>>> {
-    struct EtchAsyncResult<EtchNativeArray<signed char>> *_field1;
-    struct __shared_weak_count *_field2;
-} shared_ptr_9e448cc3;
-
-typedef struct shared_ptr<EtchAsyncResult<EtchObject>> {
-    struct EtchAsyncResult<EtchObject> *_field1;
-    struct __shared_weak_count *_field2;
-} shared_ptr_8422e678;
-
-typedef struct shared_ptr<EtchAsyncResult<EtchString>> {
-    struct EtchAsyncResult<EtchString> *_field1;
-    struct __shared_weak_count *_field2;
-} shared_ptr_86a9717a;
-
-typedef struct shared_ptr<EtchAsyncResult<de_bmw_idrive_BMWRemoting::BMWRemoting::VersionInfo>> {
-    struct EtchAsyncResult<de_bmw_idrive_BMWRemoting::BMWRemoting::VersionInfo> *_field1;
-    struct __shared_weak_count *_field2;
-} shared_ptr_ad0c0903;
-
-typedef struct shared_ptr<EtchAsyncResultNone> {
-    struct EtchAsyncResultNone *_field1;
-    struct __shared_weak_count *_field2;
-} shared_ptr_db9b4e3e;
-
-typedef struct shared_ptr<EtchBool> {
-    struct EtchBool *_field1;
-    struct __shared_weak_count *_field2;
-} shared_ptr_6049e213;
-
-typedef struct shared_ptr<EtchByte> {
-    struct EtchByte *_field1;
-    struct __shared_weak_count *_field2;
-} shared_ptr_d1a96395;
-
-typedef struct shared_ptr<EtchException> {
-    struct EtchException *_field1;
-    struct __shared_weak_count *_field2;
-} shared_ptr_6e242317;
-
-typedef struct shared_ptr<EtchFloat> {
-    struct EtchFloat *_field1;
-    struct __shared_weak_count *_field2;
-} shared_ptr_d725f4e5;
-
-typedef struct shared_ptr<EtchHashTable<std::__1::shared_ptr<EtchObject>, std::__1::shared_ptr<EtchObject>, EtchComparator<std::__1::shared_ptr<EtchObject>>, EtchHash<std::__1::shared_ptr<EtchObject>>>> {
-    struct EtchHashTable<std::__1::shared_ptr<EtchObject>, std::__1::shared_ptr<EtchObject>, EtchComparator<std::__1::shared_ptr<EtchObject>>, EtchHash<std::__1::shared_ptr<EtchObject>>> *_field1;
-    struct __shared_weak_count *_field2;
-} shared_ptr_987f58d3;
-
-typedef struct shared_ptr<EtchInt32> {
-    struct EtchInt32 *_field1;
-    struct __shared_weak_count *_field2;
-} shared_ptr_6d134981;
-
-typedef struct shared_ptr<EtchNativeArray<signed char>> {
-    struct EtchNativeArray<signed char> *_field1;
-    struct __shared_weak_count *_field2;
-} shared_ptr_9280a9be;
-
-typedef struct shared_ptr<EtchNativeArray<std::__1::shared_ptr<EtchObject>>> {
-    struct EtchNativeArray<std::__1::shared_ptr<EtchObject>> *_field1;
-    struct __shared_weak_count *_field2;
-} shared_ptr_4c384e63;
-
-typedef struct shared_ptr<EtchObject> {
-    struct EtchObject *_field1;
-    struct __shared_weak_count *_field2;
-} shared_ptr_cdcbacd5;
-
-typedef struct shared_ptr<EtchRuntime> {
-    struct EtchRuntime *_field1;
-    struct __shared_weak_count *_field2;
-} shared_ptr_628bbfde;
-
-typedef struct shared_ptr<EtchShort> {
-    struct EtchShort *_field1;
-    struct __shared_weak_count *_field2;
-} shared_ptr_d40d6c12;
-
-typedef struct shared_ptr<EtchString> {
-    struct EtchString *_field1;
-    struct __shared_weak_count *_field2;
-} shared_ptr_bb08349a;
-
-typedef struct shared_ptr<const spotify::connect::AbstractConnectDevice> {
-    struct AbstractConnectDevice *_field1;
-    struct __shared_weak_count *_field2;
-} shared_ptr_bdbe5a13;
-
 typedef struct shared_ptr<const spotify::social::SocialUserData> {
     struct SocialUserData *_field1;
     struct __shared_weak_count *_field2;
@@ -2821,75 +2587,20 @@ typedef struct shared_ptr<coreobjc::LogObserver> {
     struct __shared_weak_count *__cntrl_;
 } shared_ptr_97588a64;
 
-typedef struct shared_ptr<de_bmw_idrive_BMWRemoting::AVConnectionType> {
-    struct AVConnectionType *_field1;
-    struct __shared_weak_count *_field2;
-} shared_ptr_9f50eacd;
-
-typedef struct shared_ptr<de_bmw_idrive_BMWRemoting::AVPlayerState> {
-    struct AVPlayerState *_field1;
-    struct __shared_weak_count *_field2;
-} shared_ptr_0b1fe177;
-
-typedef struct shared_ptr<de_bmw_idrive_BMWRemoting::BMWRemoting::RHMIDataTable> {
-    struct RHMIDataTable *_field1;
-    struct __shared_weak_count *_field2;
-} shared_ptr_2c7d29fd;
-
-typedef struct shared_ptr<de_bmw_idrive_BMWRemoting::BMWRemoting::RHMIMetaData> {
-    struct RHMIMetaData *_field1;
-    struct __shared_weak_count *_field2;
-} shared_ptr_06cdad31;
-
-typedef struct shared_ptr<de_bmw_idrive_BMWRemoting::BMWRemoting::VersionInfo> {
-    struct VersionInfo *_field1;
-    struct __shared_weak_count *_field2;
-} shared_ptr_d04dc555;
-
-typedef struct shared_ptr<de_bmw_idrive_BMWRemoting::LogLevel> {
-    struct LogLevel *_field1;
-    struct __shared_weak_count *_field2;
-} shared_ptr_e92c9ff6;
-
-typedef struct shared_ptr<de_bmw_idrive_BMWRemoting::MapMode> {
-    struct MapMode *_field1;
-    struct __shared_weak_count *_field2;
-} shared_ptr_e9bf6e71;
-
-typedef struct shared_ptr<de_bmw_idrive_BMWRemoting::RHMIResourceType> {
-    struct RHMIResourceType *_field1;
-    struct __shared_weak_count *_field2;
-} shared_ptr_585487b4;
-
-typedef struct shared_ptr<de_bmw_idrive_BMWRemoting::RHMIVersion> {
-    struct RHMIVersion *_field1;
-    struct __shared_weak_count *_field2;
-} shared_ptr_51068687;
-
-typedef struct shared_ptr<de_bmw_idrive_BMWRemoting::SDSDialogCommand> {
-    struct SDSDialogCommand *_field1;
-    struct __shared_weak_count *_field2;
-} shared_ptr_95c73aa4;
-
-typedef struct shared_ptr<de_bmw_idrive_BMWRemoting::VoicePriorityType> {
-    struct VoicePriorityType *_field1;
-    struct __shared_weak_count *_field2;
-} shared_ptr_c41975d0;
-
 typedef struct shared_ptr<spotify::analytics::Logger> {
     struct Logger *__ptr_;
     struct __shared_weak_count *__cntrl_;
 } shared_ptr_0bb93f61;
 
-typedef struct shared_ptr<spotify::connect::AbstractConnectDevice> {
-    struct AbstractConnectDevice *__ptr_;
-    struct __shared_weak_count *__cntrl_;
-} shared_ptr_e7b078e8;
-
-typedef struct shared_ptr<spotify::http::AppleSessionManager> {
-    struct AppleSessionManager *_field1;
+typedef struct shared_ptr<spotify::http::AppleConnectionFactory> {
+    struct AppleConnectionFactory *_field1;
     struct __shared_weak_count *_field2;
-} shared_ptr_d8673b2f;
+} shared_ptr_04bee604;
+
+typedef struct shared_ptr<spotify::http::Connection> {
+    struct Connection *__ptr_;
+    struct __shared_weak_count *__cntrl_;
+} shared_ptr_d5d571b3;
 
 typedef struct shared_ptr<spotify::http::ConnectionFactory> {
     struct ConnectionFactory *_field1;
@@ -2906,11 +2617,6 @@ typedef struct shared_ptr<spotify::player::ProxyContextPlayer> {
     struct __shared_weak_count *_field2;
 } shared_ptr_fa30f844;
 
-typedef struct shared_ptr<spotify::player::Restorable> {
-    struct Restorable *__ptr_;
-    struct __shared_weak_count *__cntrl_;
-} shared_ptr_43aca8fa;
-
 typedef struct shared_ptr<spotify::player::mft::MftCanPlayChecker> {
     struct MftCanPlayChecker *__ptr_;
     struct __shared_weak_count *__cntrl_;
@@ -2920,11 +2626,6 @@ typedef struct shared_ptr<spotify::product_state::ProductState> {
     struct ProductState *__ptr_;
     struct __shared_weak_count *__cntrl_;
 } shared_ptr_2175cb8d;
-
-typedef struct shared_ptr<spotify::time::ServerTime> {
-    struct ServerTime *_field1;
-    struct __shared_weak_count *_field2;
-} shared_ptr_20fc2b2c;
 
 typedef struct span<const spotify::metadata::AlbumGroup> {
     struct AlbumGroup *_field1;
@@ -2936,6 +2637,61 @@ typedef struct span<const spotify::uri::SpotifyLink> {
     unsigned long long _field2;
 } span_60459498;
 
+typedef struct unique_ptr<spotify::auth::AuthSession, std::__1::default_delete<spotify::auth::AuthSession>> {
+    struct __compressed_pair<spotify::auth::AuthSession *, std::__1::default_delete<spotify::auth::AuthSession>> {
+        struct AuthSession *__value_;
+    } __ptr_;
+} unique_ptr_5965b565;
+
+typedef struct unique_ptr<spotify::auth::Session, std::__1::default_delete<spotify::auth::Session>> {
+    struct __compressed_pair<spotify::auth::Session *, std::__1::default_delete<spotify::auth::Session>> {
+        struct Session *__value_;
+    } __ptr_;
+} unique_ptr_af2c9e6c;
+
+typedef struct variant<spotify::auth::Identifier, spotify::auth::credentials::OneTimeToken, spotify::auth::LoginCredentials, spotify::auth::credentials::ParentChildCredentials, spotify::auth::AutologinFromCredentialsStore, spotify::auth::credentials::RefreshTokenCredentials> {
+    struct __impl<spotify::auth::Identifier, spotify::auth::credentials::OneTimeToken, spotify::auth::LoginCredentials, spotify::auth::credentials::ParentChildCredentials, spotify::auth::AutologinFromCredentialsStore, spotify::auth::credentials::RefreshTokenCredentials> {
+        union __union<std::__1::__variant_detail::_Trait::_Available, 0, spotify::auth::Identifier, spotify::auth::credentials::OneTimeToken, spotify::auth::LoginCredentials, spotify::auth::credentials::ParentChildCredentials, spotify::auth::AutologinFromCredentialsStore, spotify::auth::credentials::RefreshTokenCredentials> {
+            char _field1;
+            struct __alt<0, spotify::auth::Identifier> {
+                struct Identifier _field1;
+            } _field2;
+            union __union<std::__1::__variant_detail::_Trait::_Available, 1, spotify::auth::credentials::OneTimeToken, spotify::auth::LoginCredentials, spotify::auth::credentials::ParentChildCredentials, spotify::auth::AutologinFromCredentialsStore, spotify::auth::credentials::RefreshTokenCredentials> {
+                char _field1;
+                struct __alt<1, spotify::auth::credentials::OneTimeToken> {
+                    struct OneTimeToken _field1;
+                } _field2;
+                union __union<std::__1::__variant_detail::_Trait::_Available, 2, spotify::auth::LoginCredentials, spotify::auth::credentials::ParentChildCredentials, spotify::auth::AutologinFromCredentialsStore, spotify::auth::credentials::RefreshTokenCredentials> {
+                    char _field1;
+                    struct __alt<2, spotify::auth::LoginCredentials> {
+                        struct LoginCredentials _field1;
+                    } _field2;
+                    union __union<std::__1::__variant_detail::_Trait::_Available, 3, spotify::auth::credentials::ParentChildCredentials, spotify::auth::AutologinFromCredentialsStore, spotify::auth::credentials::RefreshTokenCredentials> {
+                        char _field1;
+                        struct __alt<3, spotify::auth::credentials::ParentChildCredentials> {
+                            struct ParentChildCredentials _field1;
+                        } _field2;
+                        union __union<std::__1::__variant_detail::_Trait::_Available, 4, spotify::auth::AutologinFromCredentialsStore, spotify::auth::credentials::RefreshTokenCredentials> {
+                            char _field1;
+                            struct __alt<4, spotify::auth::AutologinFromCredentialsStore> {
+                                struct AutologinFromCredentialsStore _field1;
+                            } _field2;
+                            union __union<std::__1::__variant_detail::_Trait::_Available, 5, spotify::auth::credentials::RefreshTokenCredentials> {
+                                char _field1;
+                                struct __alt<5, spotify::auth::credentials::RefreshTokenCredentials> {
+                                    struct RefreshTokenCredentials _field1;
+                                } _field2;
+                                union __union<std::__1::__variant_detail::_Trait::_Available, 6> _field3;
+                            } _field3;
+                        } _field3;
+                    } _field3;
+                } _field3;
+            } _field3;
+        } _field1;
+        unsigned int _field2;
+    } _field1;
+} variant_5d3576ba;
+
 typedef struct vector<spotify::uri::SpotifyLink, std::__1::allocator<spotify::uri::SpotifyLink>> {
     struct SpotifyLink *_field1;
     struct SpotifyLink *_field2;
@@ -2944,27 +2700,17 @@ typedef struct vector<spotify::uri::SpotifyLink, std::__1::allocator<spotify::ur
     } _field3;
 } vector_553ebee1;
 
-typedef struct weak_ptr<spotify::http::AppleSessionManager> {
-    struct AppleSessionManager *__ptr_;
+typedef struct weak_ptr<spotify::http::AppleConnectionFactory> {
+    struct AppleConnectionFactory *__ptr_;
     struct __shared_weak_count *__cntrl_;
-} weak_ptr_a31af7f1;
+} weak_ptr_746914f4;
 
 typedef struct weak_ptr<spotify::player::ProxyContextPlayer> {
     struct ProxyContextPlayer *__ptr_;
     struct __shared_weak_count *__cntrl_;
 } weak_ptr_20886a9c;
 
-typedef struct weak_ptr<spotify::time::ServerTime> {
-    struct ServerTime *__ptr_;
-    struct __shared_weak_count *__cntrl_;
-} weak_ptr_0e97206c;
-
 #pragma mark Named Unions
-
-union Data {
-    CDStruct_ecbe5f6e _field1;
-    CDStruct_ecbe5f6e _field2;
-};
 
 union SPTColor {
     struct {
@@ -2974,34 +2720,6 @@ union SPTColor {
         unsigned char alpha;
     } ;
     unsigned int argb;
-};
-
-union _GLKMatrix4 {
-    struct {
-        float m00;
-        float m01;
-        float m02;
-        float m03;
-        float m10;
-        float m11;
-        float m12;
-        float m13;
-        float m20;
-        float m21;
-        float m22;
-        float m23;
-        float m30;
-        float m31;
-        float m32;
-        float m33;
-    } ;
-    float m[16];
-};
-
-union _GLKVector2 {
-    CDStruct_b2fbf00d _field1;
-    CDStruct_b2fbf00d _field2;
-    float _field3[2];
 };
 
 #if 0

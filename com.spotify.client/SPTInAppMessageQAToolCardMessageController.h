@@ -35,8 +35,10 @@
 - (void)presentFirstMessageInQueue;
 - (void)parseCardData:(id)arg1;
 - (void)qaToolViewModel:(id)arg1 didFetchCardCreativesData:(id)arg2;
+- (void)actionReceivedWithValue:(id)arg1;
 - (void)dismissCardMessageOverlayContentUnit;
 - (_Bool)present;
+- (void)cancelReviewOfCreative;
 - (void)prepareQueueForNextMessage;
 - (_Bool)isFullScreen;
 - (id)initWithCardMessageParser:(id)arg1 actionFactory:(id)arg2;

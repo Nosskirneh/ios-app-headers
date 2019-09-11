@@ -4,18 +4,18 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import "EXP_HUBComponentView.h"
+#import "HUBComponentView.h"
 
-#import "EXP_HUBComponentViewWithChildren-Protocol.h"
+#import "HUBComponentViewWithChildren-Protocol.h"
 #import "UICollectionViewDataSource-Protocol.h"
 #import "UICollectionViewDelegate-Protocol.h"
 
 @class NSString, SPTPremiumDestinationCarouselStyle, SPTPremiumDestinationGLUETheme, SPTPremiumDestinationValueCarouselFlowLayout, UICollectionView, UIPageControl;
-@protocol EXP_HUBComponentViewChildDelegate;
+@protocol HUBComponentViewChildDelegate;
 
-@interface SPTPremiumDestinationCarouselComponentView : EXP_HUBComponentView <UICollectionViewDataSource, UICollectionViewDelegate, EXP_HUBComponentViewWithChildren>
+@interface SPTPremiumDestinationCarouselComponentView : HUBComponentView <UICollectionViewDataSource, UICollectionViewDelegate, HUBComponentViewWithChildren>
 {
-    id <EXP_HUBComponentViewChildDelegate> _childDelegate;
+    id <HUBComponentViewChildDelegate> _childDelegate;
     SPTPremiumDestinationGLUETheme *_theme;
     SPTPremiumDestinationCarouselStyle *_style;
     SPTPremiumDestinationValueCarouselFlowLayout *_collectionLayout;
@@ -30,7 +30,7 @@
 @property(retain, nonatomic) SPTPremiumDestinationValueCarouselFlowLayout *collectionLayout; // @synthesize collectionLayout=_collectionLayout;
 @property(retain, nonatomic) SPTPremiumDestinationCarouselStyle *style; // @synthesize style=_style;
 @property(retain, nonatomic) SPTPremiumDestinationGLUETheme *theme; // @synthesize theme=_theme;
-@property(nonatomic) __weak id <EXP_HUBComponentViewChildDelegate> childDelegate; // @synthesize childDelegate=_childDelegate;
+@property(nonatomic) __weak id <HUBComponentViewChildDelegate> childDelegate; // @synthesize childDelegate=_childDelegate;
 - (void).cxx_destruct;
 - (double)minimumLineSpacingForItemSize:(struct CGSize)arg1 containerSize:(struct CGSize)arg2 sectionInsets:(struct UIEdgeInsets)arg3 style:(id)arg4;
 - (struct UIEdgeInsets)sectionInsetsForItemSize:(struct CGSize)arg1 containerSize:(struct CGSize)arg2;
@@ -41,7 +41,7 @@
 - (long long)collectionView:(id)arg1 numberOfItemsInSection:(long long)arg2;
 - (void)configureWithModel:(id)arg1;
 - (void)setupConstraints;
-- (void)setupCollectionView;
+- (void)setupViews;
 - (id)initWithFrame:(struct CGRect)arg1 theme:(id)arg2;
 
 // Remaining properties

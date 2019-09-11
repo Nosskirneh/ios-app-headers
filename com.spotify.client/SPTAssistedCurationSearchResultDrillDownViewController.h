@@ -4,13 +4,13 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import "EXP_SPTHubViewController.h"
+#import "SPTHubViewController.h"
 
-@interface SPTAssistedCurationSearchResultDrillDownViewController : EXP_SPTHubViewController
+@interface SPTAssistedCurationSearchResultDrillDownViewController : SPTHubViewController
 {
 }
 
-- (id)initWithTheme:(id)arg1 viewURI:(id)arg2 componentRegistry:(id)arg3 componentLayoutManager:(id)arg4 imageLoaderFactory:(id)arg5 commandHandler:(id)arg6 viewModelProvider:(id)arg7 impressionLogger:(id)arg8 loadingLogger:(id)arg9;
+- (id)initWithTheme:(id)arg1 viewURI:(id)arg2 componentRegistry:(id)arg3 componentLayoutManager:(id)arg4 imageLoaderFactory:(id)arg5 commandHandler:(id)arg6 viewModelProvider:(id)arg7 impressionLogger:(id)arg8 loadingLogger:(id)arg9 shareDragDelegateFactory:(id)arg10;
 
 @end
 

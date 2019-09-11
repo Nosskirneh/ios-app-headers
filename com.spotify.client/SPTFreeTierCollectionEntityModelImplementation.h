@@ -6,36 +6,46 @@
 
 #import <objc/NSObject.h>
 
+#import "SPTFreeTierCollectionAvailableContentMonitorDelegate-Protocol.h"
 #import "SPTFreeTierCollectionEntityModel-Protocol.h"
+#import "SPTFreeTierCollectionExternalSortDelegate-Protocol.h"
 #import "SPTFreeTierCollectionHiddenContentModelDelegate-Protocol.h"
 #import "SPTFreeTierCollectionRangeDataSourceDelegate-Protocol.h"
 
-@class NSArray, NSString, SPTFreeTierCollectionFilterSortManager;
-@protocol SPTFreeTierCollectionEntityModelDelegate, SPTFreeTierCollectionHiddenContentModel, SPTFreeTierCollectionRangeDataSource, SPTSortingFilteringSortRule;
+@class NSArray, NSMutableArray, NSString, SPTFreeTierCollectionFilterSortManager;
+@protocol SPTFreeTierCollectionAvailableContentMonitor, SPTFreeTierCollectionEntityModelDelegate, SPTFreeTierCollectionExternalSort, SPTFreeTierCollectionHiddenContentModel, SPTSortingFilteringSortRule;
 
-@interface SPTFreeTierCollectionEntityModelImplementation : NSObject <SPTFreeTierCollectionHiddenContentModelDelegate, SPTFreeTierCollectionEntityModel, SPTFreeTierCollectionRangeDataSourceDelegate>
+@interface SPTFreeTierCollectionEntityModelImplementation : NSObject <SPTFreeTierCollectionHiddenContentModelDelegate, SPTFreeTierCollectionEntityModel, SPTFreeTierCollectionRangeDataSourceDelegate, SPTFreeTierCollectionExternalSortDelegate, SPTFreeTierCollectionAvailableContentMonitorDelegate>
 {
     _Bool hasHiddenContent;
     _Bool _firstLoadPerformed;
     _Bool _loaded;
+    _Bool _entityItemsArePlayable;
     id <SPTFreeTierCollectionEntityModelDelegate> delegate;
     NSString *_textFilter;
     NSArray *_activeFilters;
     NSArray *_availableFilters;
     id <SPTSortingFilteringSortRule> _selectedSortRule;
     NSArray *_availableSortRules;
-    id <SPTFreeTierCollectionRangeDataSource> _rangeDataSource;
     long long _numberOfItems;
     id <SPTFreeTierCollectionHiddenContentModel> _hiddenContentModel;
     SPTFreeTierCollectionFilterSortManager *_filterSortManager;
+    id <SPTFreeTierCollectionExternalSort> _externalSort;
+    id <SPTFreeTierCollectionAvailableContentMonitor> _availableContentMonitor;
+    NSMutableArray *_dataSources;
+    NSArray *_cachedSectionIndexTitles;
 }
 
+@property(copy, nonatomic) NSArray *cachedSectionIndexTitles; // @synthesize cachedSectionIndexTitles=_cachedSectionIndexTitles;
+@property(retain, nonatomic) NSMutableArray *dataSources; // @synthesize dataSources=_dataSources;
+@property(retain, nonatomic) id <SPTFreeTierCollectionAvailableContentMonitor> availableContentMonitor; // @synthesize availableContentMonitor=_availableContentMonitor;
+@property(retain, nonatomic) id <SPTFreeTierCollectionExternalSort> externalSort; // @synthesize externalSort=_externalSort;
 @property(retain, nonatomic) SPTFreeTierCollectionFilterSortManager *filterSortManager; // @synthesize filterSortManager=_filterSortManager;
 @property(retain, nonatomic) id <SPTFreeTierCollectionHiddenContentModel> hiddenContentModel; // @synthesize hiddenContentModel=_hiddenContentModel;
+@property(nonatomic, getter=isEntityItemsArePlayable) _Bool entityItemsArePlayable; // @synthesize entityItemsArePlayable=_entityItemsArePlayable;
 @property(nonatomic, getter=isLoaded) _Bool loaded; // @synthesize loaded=_loaded;
 @property(nonatomic, getter=isFirstLoadPerformed) _Bool firstLoadPerformed; // @synthesize firstLoadPerformed=_firstLoadPerformed;
 @property(nonatomic) long long numberOfItems; // @synthesize numberOfItems=_numberOfItems;
-@property(retain, nonatomic) id <SPTFreeTierCollectionRangeDataSource> rangeDataSource; // @synthesize rangeDataSource=_rangeDataSource;
 @property(readonly, copy, nonatomic) NSArray *availableSortRules; // @synthesize availableSortRules=_availableSortRules;
 @property(copy, nonatomic) id <SPTSortingFilteringSortRule> selectedSortRule; // @synthesize selectedSortRule=_selectedSortRule;
 @property(readonly, nonatomic) NSArray *availableFilters; // @synthesize availableFilters=_availableFilters;
@@ -45,17 +55,26 @@
 @property(nonatomic) __weak id <SPTFreeTierCollectionEntityModelDelegate> delegate; // @synthesize delegate;
 - (void).cxx_destruct;
 - (void)notifyModelUpdateIfLoaded;
+- (void)availableContentMonitorChanged:(id)arg1;
+- (void)didChangeExternalSort:(id)arg1;
 @property(readonly, nonatomic, getter=isContentFiltered) _Bool contentFiltered;
+- (void)removeFilterAtIndex:(long long)arg1;
 - (void)resetFilters;
 - (void)rangeDataSource:(id)arg1 error:(id)arg2;
-- (void)rangeDataSourceUpdated:(id)arg1;
+- (void)rangeDataSourceUpdated:(id)arg1 itemsCountChanged:(_Bool)arg2;
 - (void)hiddenContentModel:(id)arg1 didFailWithError:(id)arg2;
 - (void)hiddenContentModelDidUpdate:(id)arg1;
 - (void)reloadData;
 - (void)loadModel;
-- (id)itemAtIndex:(unsigned long long)arg1;
-@property(readonly, nonatomic) unsigned long long numberItems;
-- (id)initWithHiddenContentModel:(id)arg1 filterSortManager:(id)arg2;
+- (void)addDataSource:(id)arg1 withItemAction:(CDUnknownBlockType)arg2;
+- (void)performItemActionAtIndex:(unsigned long long)arg1 inGroup:(unsigned long long)arg2;
+- (id)itemAtIndex:(unsigned long long)arg1 inGroup:(unsigned long long)arg2;
+- (void)willDisplayItemAtLocation:(long long)arg1;
+- (unsigned long long)locationForSectionIndex:(long long)arg1;
+@property(readonly, nonatomic) NSArray *sectionIndexTitles;
+- (unsigned long long)numberOfItemsInGroup:(unsigned long long)arg1;
+- (unsigned long long)numberOfItemGroups;
+- (id)initWithHiddenContentModel:(id)arg1 filterSortManager:(id)arg2 externalSort:(id)arg3 availableContentMonitor:(id)arg4;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

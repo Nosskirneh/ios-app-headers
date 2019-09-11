@@ -15,7 +15,6 @@
     double _additionalItemHeight;
     double _itemAspectRadio;
     double _interitemSpacing;
-    unsigned long long _itemsPerRow;
     double _lineSpacing;
     double _minimumInteritemSpacing;
     struct UIEdgeInsets _sectionInset;
@@ -24,7 +23,6 @@
 @property(nonatomic) double minimumInteritemSpacing; // @synthesize minimumInteritemSpacing=_minimumInteritemSpacing;
 @property(nonatomic) struct UIEdgeInsets sectionInset; // @synthesize sectionInset=_sectionInset;
 @property(nonatomic) double lineSpacing; // @synthesize lineSpacing=_lineSpacing;
-@property(nonatomic) unsigned long long itemsPerRow; // @synthesize itemsPerRow=_itemsPerRow;
 @property(nonatomic) double interitemSpacing; // @synthesize interitemSpacing=_interitemSpacing;
 @property(nonatomic) double itemAspectRadio; // @synthesize itemAspectRadio=_itemAspectRadio;
 @property(nonatomic) double additionalItemHeight; // @synthesize additionalItemHeight=_additionalItemHeight;

@@ -6,9 +6,10 @@
 
 #import "NSObject-Protocol.h"
 
-@class NSURL;
+@class NSString, NSURL;
 
 @protocol SPTFreeTierCollectionFavoriteMixModelEntity <NSObject>
+@property(readonly, nonatomic) NSString *name;
 @property(readonly, nonatomic) unsigned long long itemCount;
 @property(readonly, nonatomic) NSURL *entityURL;
 @property(readonly, nonatomic) unsigned long long availableOfflineStatus;

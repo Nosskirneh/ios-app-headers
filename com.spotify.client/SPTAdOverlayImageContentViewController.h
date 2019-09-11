@@ -6,52 +6,53 @@
 
 #import <UIKit/UIViewController.h>
 
-#import "SPTAdOverlayContentUnit-Protocol.h"
 #import "SPTAdOverlayImageContentViewDataSource-Protocol.h"
-#import "SPTImageLoaderDelegate-Protocol.h"
+#import "SPTAdsPromotedContentImageViewDelegate-Protocol.h"
 
-@class NSString, SPTAdOverlayImageContentView, SPTTheme;
-@protocol SPTAdEventLogger, SPTAdImageEntity, SPTAdOverlayContentUnitDelegate, SPTAdsManager, SPTImageLoader;
+@class NSString, SPTAdFeatureFlagChecks, SPTTheme, UIView;
+@protocol GLUEImageLoader, SPTAdOverlayContentUnitDelegate, SPTAdsBaseCosmosBridge, SPTAdsBaseImageEntity, SPTAdsManager, SPTAdsMobileOverlayContentView;
 
-@interface SPTAdOverlayImageContentViewController : UIViewController <SPTImageLoaderDelegate, SPTAdOverlayContentUnit, SPTAdOverlayImageContentViewDataSource>
+@interface SPTAdOverlayImageContentViewController : UIViewController <SPTAdsPromotedContentImageViewDelegate, SPTAdOverlayImageContentViewDataSource>
 {
     _Bool _imageLoaded;
     _Bool _viewDisplayed;
     id <SPTAdOverlayContentUnitDelegate> _delegate;
-    id <SPTAdImageEntity> _entity;
+    UIView<SPTAdsMobileOverlayContentView> *_overlayContentView;
+    id <SPTAdsBaseImageEntity> _entity;
     id <SPTAdsManager> _adManager;
-    id <SPTImageLoader> _imageLoader;
+    id <GLUEImageLoader> _imageLoader;
     SPTTheme *_theme;
-    id <SPTAdEventLogger> _eventLogger;
+    id <SPTAdsBaseCosmosBridge> _cosmosBridge;
+    SPTAdFeatureFlagChecks *_featureChecker;
 }
 
 @property(nonatomic) _Bool viewDisplayed; // @synthesize viewDisplayed=_viewDisplayed;
 @property(nonatomic) _Bool imageLoaded; // @synthesize imageLoaded=_imageLoaded;
-@property(readonly, nonatomic) id <SPTAdEventLogger> eventLogger; // @synthesize eventLogger=_eventLogger;
+@property(readonly, nonatomic) SPTAdFeatureFlagChecks *featureChecker; // @synthesize featureChecker=_featureChecker;
+@property(readonly, nonatomic) id <SPTAdsBaseCosmosBridge> cosmosBridge; // @synthesize cosmosBridge=_cosmosBridge;
 @property(readonly, nonatomic) SPTTheme *theme; // @synthesize theme=_theme;
-@property(readonly, nonatomic) id <SPTImageLoader> imageLoader; // @synthesize imageLoader=_imageLoader;
+@property(readonly, nonatomic) id <GLUEImageLoader> imageLoader; // @synthesize imageLoader=_imageLoader;
 @property(readonly, nonatomic) id <SPTAdsManager> adManager; // @synthesize adManager=_adManager;
-@property(readonly, nonatomic) id <SPTAdImageEntity> entity; // @synthesize entity=_entity;
+@property(readonly, nonatomic) id <SPTAdsBaseImageEntity> entity; // @synthesize entity=_entity;
+@property(readonly, nonatomic) UIView<SPTAdsMobileOverlayContentView> *overlayContentView; // @synthesize overlayContentView=_overlayContentView;
 @property(nonatomic) __weak id <SPTAdOverlayContentUnitDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
-- (void)containerWillDismiss:(id)arg1;
 - (id)dismissText;
 - (id)title;
-- (void)imageLoader:(id)arg1 didLoadImage:(id)arg2 forURL:(id)arg3 loadTime:(double)arg4 context:(id)arg5;
+- (void)didLoadContentImage:(id)arg1;
 - (_Bool)isGoogleHomeOverlay;
 - (void)postImpressionIfNeeded;
+- (_Bool)isCompanionBanner;
 - (void)actionButtonTapped;
 - (void)viewDidAppear:(_Bool)arg1;
 - (void)viewDidLoad;
-- (void)loadView;
-- (id)initWithEntity:(id)arg1 adManager:(id)arg2 imageLoader:(id)arg3 theme:(id)arg4 eventLogger:(id)arg5;
+- (id)initWithEntity:(id)arg1 adManager:(id)arg2 imageLoader:(id)arg3 theme:(id)arg4 cosmosBridge:(id)arg5 featureChecker:(id)arg6;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
 @property(readonly) unsigned long long hash;
 @property(readonly) Class superclass;
-@property(retain, nonatomic) SPTAdOverlayImageContentView *view; // @dynamic view;
 
 @end
 

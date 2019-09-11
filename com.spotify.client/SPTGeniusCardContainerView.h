@@ -6,7 +6,7 @@
 
 #import <UIKit/UIView.h>
 
-@class NSTimer, SPTGeniusCardHintView, SPTGeniusCardIntroView, SPTGeniusNowPlayingViewTimer, UIImageView;
+@class NSTimer, SPTGeniusCardIntroView, SPTGeniusNowPlayingViewTimer, UIImageView;
 
 @interface SPTGeniusCardContainerView : UIView
 {
@@ -15,7 +15,6 @@
     _Bool _paused;
     _Bool _visibleOnTop;
     double _curentCardDuration;
-    SPTGeniusCardHintView *_hintView;
     UIImageView *_background;
     UIImageView *_logoImageView;
     SPTGeniusNowPlayingViewTimer *_timerView;
@@ -30,7 +29,6 @@
 @property(readonly, nonatomic) SPTGeniusNowPlayingViewTimer *timerView; // @synthesize timerView=_timerView;
 @property(readonly, nonatomic) UIImageView *logoImageView; // @synthesize logoImageView=_logoImageView;
 @property(readonly, nonatomic) UIImageView *background; // @synthesize background=_background;
-@property(retain, nonatomic) SPTGeniusCardHintView *hintView; // @synthesize hintView=_hintView;
 @property(nonatomic) double curentCardDuration; // @synthesize curentCardDuration=_curentCardDuration;
 @property(nonatomic) _Bool visibleOnTop; // @synthesize visibleOnTop=_visibleOnTop;
 @property(nonatomic) _Bool paused; // @synthesize paused=_paused;

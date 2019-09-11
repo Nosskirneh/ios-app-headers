@@ -14,6 +14,7 @@
 + (id)spt_backendAgeValidationURLForBirthdayDate:(id)arg1 calendar:(id)arg2;
 + (id)spt_backendSignupConfigurationURL;
 + (id)spt_backendUsernameValidationURLForUsername:(id)arg1;
++ (id)spt_backendPasswordValidationURLForPassword:(id)arg1;
 + (id)spt_backendEmailValidationURLForEmail:(id)arg1;
 + (id)spt_backendDisplayNameSuggestionForEmail:(id)arg1;
 + (id)spt_backendCreateFacebookUserURL;

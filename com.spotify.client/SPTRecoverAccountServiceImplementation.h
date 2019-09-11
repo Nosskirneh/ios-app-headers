@@ -10,12 +10,11 @@
 #import "SPTRecoverAccountService-Protocol.h"
 
 @class NSString, SPTAllocationContext, SPTRecoverAccountURIHandler;
-@protocol SPTContainerService, SPTContainerUIService, SPTGLUEService, SPTLoginService, SPTNetworkService, SPTPreSignupExperimentationService, SPTServiceManagerService, SPTURIDispatchService, SPTUserTrackingService;
+@protocol SPTContainerService, SPTContainerUIService, SPTFacebookIntegrationService, SPTGLUEService, SPTLoginLoggingService, SPTLoginService, SPTNetworkService, SPTPreSignupExperimentationService, SPTServiceManagerService, SPTURIDispatchService;
 
 @interface SPTRecoverAccountServiceImplementation : NSObject <SPTPageRegistryObserver, SPTRecoverAccountService>
 {
     id <SPTContainerService> _containerService;
-    id <SPTUserTrackingService> _userTrackingService;
     id <SPTGLUEService> _glueService;
     id <SPTNetworkService> _networkService;
     id <SPTURIDispatchService> _URIDispatchService;
@@ -23,11 +22,15 @@
     id <SPTServiceManagerService> _serviceManagerService;
     id <SPTContainerUIService> _containerUIService;
     id <SPTPreSignupExperimentationService> _experimentationService;
+    id <SPTLoginLoggingService> _loggerService;
+    id <SPTFacebookIntegrationService> _facebookIntegrationService;
     SPTRecoverAccountURIHandler *_recoverAccountURIHandler;
 }
 
 + (id)serviceIdentifier;
 @property(retain, nonatomic) SPTRecoverAccountURIHandler *recoverAccountURIHandler; // @synthesize recoverAccountURIHandler=_recoverAccountURIHandler;
+@property(nonatomic) __weak id <SPTFacebookIntegrationService> facebookIntegrationService; // @synthesize facebookIntegrationService=_facebookIntegrationService;
+@property(nonatomic) __weak id <SPTLoginLoggingService> loggerService; // @synthesize loggerService=_loggerService;
 @property(nonatomic) __weak id <SPTPreSignupExperimentationService> experimentationService; // @synthesize experimentationService=_experimentationService;
 @property(nonatomic) __weak id <SPTContainerUIService> containerUIService; // @synthesize containerUIService=_containerUIService;
 @property(nonatomic) __weak id <SPTServiceManagerService> serviceManagerService; // @synthesize serviceManagerService=_serviceManagerService;
@@ -35,10 +38,8 @@
 @property(nonatomic) __weak id <SPTURIDispatchService> URIDispatchService; // @synthesize URIDispatchService=_URIDispatchService;
 @property(nonatomic) __weak id <SPTNetworkService> networkService; // @synthesize networkService=_networkService;
 @property(nonatomic) __weak id <SPTGLUEService> glueService; // @synthesize glueService=_glueService;
-@property(nonatomic) __weak id <SPTUserTrackingService> userTrackingService; // @synthesize userTrackingService=_userTrackingService;
 @property(nonatomic) __weak id <SPTContainerService> containerService; // @synthesize containerService=_containerService;
 - (void).cxx_destruct;
-- (id)provideRecoverAccountStepTwoViewController;
 - (id)provideRecoverAccountViewControllerForURI:(id)arg1 context:(id)arg2;
 - (void)registerRecoverAccountViewControllers;
 - (id)provideLinkErrorHandler;

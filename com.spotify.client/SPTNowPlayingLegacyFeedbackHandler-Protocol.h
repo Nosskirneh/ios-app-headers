@@ -12,7 +12,8 @@
 @property(nonatomic) __weak UIViewController *containingViewController;
 - (_Bool)currentTrackHasPositiveFeedback;
 - (_Bool)currentTrackHasNegativeFeedback;
-- (void)handleNegativeFeedbackActionForArtist:(NSString *)arg1 trackName:(NSString *)arg2 albumImageURL:(NSURL *)arg3 actionControl:(UIButton *)arg4 completion:(void (^)(void))arg5;
-- (void)handlePositiveFeedbackAction:(UIButton *)arg1;
+- (void)handleNegativeFeedbackActionForTrackWithConfirmation:(_Bool)arg1 completion:(void (^)(void))arg2;
+- (void)handleNegativeFeedbackActionForArtist:(NSString *)arg1 trackName:(NSString *)arg2 albumImageURL:(NSURL *)arg3 actionControl:(UIButton *)arg4 withConfirmation:(_Bool)arg5 completion:(void (^)(void))arg6;
+- (void)handlePositiveFeedbackAction:(UIButton *)arg1 withConfirmation:(_Bool)arg2;
 @end
 

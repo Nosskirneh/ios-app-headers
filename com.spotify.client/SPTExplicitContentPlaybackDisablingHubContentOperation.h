@@ -6,22 +6,22 @@
 
 #import <objc/NSObject.h>
 
-#import "EXP_HUBContentOperation-Protocol.h"
+#import "HUBContentOperation-Protocol.h"
 #import "SPTExplicitContentEnabledStateObserver-Protocol.h"
 
 @class NSString, SPTExplicitContentAccessManagerImplementation;
-@protocol EXP_HUBContentOperationDelegate, EXP_SPTHubComponentModelURIResolver;
+@protocol HUBContentOperationDelegate, SPTHubComponentModelURIResolver;
 
-@interface SPTExplicitContentPlaybackDisablingHubContentOperation : NSObject <SPTExplicitContentEnabledStateObserver, EXP_HUBContentOperation>
+@interface SPTExplicitContentPlaybackDisablingHubContentOperation : NSObject <SPTExplicitContentEnabledStateObserver, HUBContentOperation>
 {
-    id <EXP_HUBContentOperationDelegate> _delegate;
+    id <HUBContentOperationDelegate> _delegate;
     SPTExplicitContentAccessManagerImplementation *_accessManager;
-    id <EXP_SPTHubComponentModelURIResolver> _componentModelURIResolver;
+    id <SPTHubComponentModelURIResolver> _componentModelURIResolver;
 }
 
-@property(readonly, nonatomic) id <EXP_SPTHubComponentModelURIResolver> componentModelURIResolver; // @synthesize componentModelURIResolver=_componentModelURIResolver;
+@property(readonly, nonatomic) id <SPTHubComponentModelURIResolver> componentModelURIResolver; // @synthesize componentModelURIResolver=_componentModelURIResolver;
 @property(readonly, nonatomic) SPTExplicitContentAccessManagerImplementation *accessManager; // @synthesize accessManager=_accessManager;
-@property(nonatomic) __weak id <EXP_HUBContentOperationDelegate> delegate; // @synthesize delegate=_delegate;
+@property(nonatomic) __weak id <HUBContentOperationDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
 - (void)explicitContentEnabledStateDidChange:(_Bool)arg1;
 - (void)recursivelyUpdateDisabledForComponentModelBuilder:(id)arg1;

@@ -36,6 +36,7 @@
 + (id)startWithAPIKey:(id)arg1 afterDelay:(double)arg2;
 + (id)startWithAPIKey:(id)arg1 delegate:(id)arg2;
 + (id)startWithAPIKey:(id)arg1;
++ (void)disableUninitializedKitMessaging;
 + (void)initializeIfNeeded;
 + (id)kitBuildVersion;
 + (id)kitDisplayVersion;

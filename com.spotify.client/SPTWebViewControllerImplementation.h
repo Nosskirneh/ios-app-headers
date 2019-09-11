@@ -13,7 +13,7 @@
 #import "WKUIDelegate-Protocol.h"
 
 @class NSMutableSet, NSString, NSURL, SPSession, SPTAccesspointWebTokenRequest, SPTTheme, SPTWebViewProgressView, UIBarButtonItem, UIButton, UILabel, UIView;
-@protocol SPTLinkDispatcher, SPTPageContainer, SPTWebView, SPTWebViewControllerDelegate;
+@protocol SPTLinkDispatcher, SPTModalPresentationController, SPTPageContainer, SPTWebView, SPTWebViewControllerDelegate;
 
 @interface SPTWebViewControllerImplementation : UIViewController <WKNavigationDelegate, WKUIDelegate, SPContentInsetViewController, SPTPageController, SPTWebViewController>
 {
@@ -21,7 +21,6 @@
     _Bool _appearanceCompleted;
     _Bool _dismissAnimated;
     _Bool _progressObserved;
-    _Bool _hideNavigationItems;
     id <SPTWebViewControllerDelegate> delegate;
     NSURL *_initialURL;
     unsigned long long _requestCount;
@@ -37,13 +36,16 @@
     SPTWebViewProgressView *_progressView;
     NSString *_initialPageIdentifer;
     NSURL *_initialURI;
+    long long _navigationItemsType;
     SPSession *_session;
     id <SPTLinkDispatcher> _linkDispatcher;
+    id <SPTModalPresentationController> _modalPresentationController;
 }
 
+@property(retain, nonatomic) id <SPTModalPresentationController> modalPresentationController; // @synthesize modalPresentationController=_modalPresentationController;
 @property(retain, nonatomic) id <SPTLinkDispatcher> linkDispatcher; // @synthesize linkDispatcher=_linkDispatcher;
 @property(nonatomic) __weak SPSession *session; // @synthesize session=_session;
-@property(nonatomic) _Bool hideNavigationItems; // @synthesize hideNavigationItems=_hideNavigationItems;
+@property(nonatomic) long long navigationItemsType; // @synthesize navigationItemsType=_navigationItemsType;
 @property(retain, nonatomic) NSURL *initialURI; // @synthesize initialURI=_initialURI;
 @property(retain, nonatomic) NSString *initialPageIdentifer; // @synthesize initialPageIdentifer=_initialPageIdentifer;
 @property(retain, nonatomic) SPTWebViewProgressView *progressView; // @synthesize progressView=_progressView;
@@ -91,22 +93,26 @@
 - (void)finishedRequest;
 - (void)startedRequest;
 - (id)webView:(id)arg1 createWebViewWithConfiguration:(id)arg2 forNavigationAction:(id)arg3 windowFeatures:(id)arg4;
+- (void)webView:(id)arg1 didFailProvisionalNavigation:(id)arg2 withError:(id)arg3;
 - (void)webView:(id)arg1 didFailNavigation:(id)arg2 withError:(id)arg3;
 - (void)webView:(id)arg1 didFinishNavigation:(id)arg2;
 - (void)webView:(id)arg1 didStartProvisionalNavigation:(id)arg2;
 - (void)webView:(id)arg1 decidePolicyForNavigationAction:(id)arg2 decisionHandler:(CDUnknownBlockType)arg3;
-- (void)presentFromViewController:(id)arg1 animated:(_Bool)arg2;
+- (void)presentViewControllerAnimated:(_Bool)arg1;
 - (void)viewDidDisappear:(_Bool)arg1;
 - (void)viewWillDisappear:(_Bool)arg1;
 - (void)viewDidAppear:(_Bool)arg1;
 - (void)viewWillAppear:(_Bool)arg1;
-- (void)setupNavigationTitleView;
+- (struct CGRect)subtitleLabelFrameForNavigationType:(long long)arg1;
+- (struct CGRect)titleLabelFrameForNavigationType:(long long)arg1;
+- (double)titleLabelHeightForNavigationType:(long long)arg1;
+- (void)setupNavigationTitleViewForNavigationType:(long long)arg1;
 - (void)viewDidLoad;
 - (void)loadView;
 - (void)dealloc;
-- (id)initWithURL:(id)arg1 authenticate:(_Bool)arg2 pageURI:(id)arg3 pageIdentifier:(id)arg4 hideNavigationContentAndControls:(_Bool)arg5 session:(id)arg6 linkDispatcher:(id)arg7;
-- (id)initWithURL:(id)arg1 authenticate:(_Bool)arg2 session:(id)arg3 linkDispatcher:(id)arg4;
-- (id)initWithURL:(id)arg1 session:(id)arg2 linkDispatcher:(id)arg3;
+- (id)initWithURL:(id)arg1 authenticate:(_Bool)arg2 pageURI:(id)arg3 pageIdentifier:(id)arg4 navigationItemsType:(long long)arg5 session:(id)arg6 linkDispatcher:(id)arg7 modalPresentationController:(id)arg8;
+- (id)initWithURL:(id)arg1 authenticate:(_Bool)arg2 session:(id)arg3 linkDispatcher:(id)arg4 modalPresentationController:(id)arg5;
+- (id)initWithURL:(id)arg1 session:(id)arg2 linkDispatcher:(id)arg3 modalPresentationController:(id)arg4;
 
 // Remaining properties
 @property(nonatomic) _Bool automaticallyAdjustsScrollViewInsets;

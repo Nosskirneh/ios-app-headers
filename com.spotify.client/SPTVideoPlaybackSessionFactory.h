@@ -6,29 +6,40 @@
 
 #import <objc/NSObject.h>
 
-@class SPSession, SPTNetworkConnectivityController, SPTRequestAccounting, SPTVideoAVFactory, SPTVideoManifestService;
-@protocol SPTLogCenter;
+@class NSArray, SPTVideoAVFactory, SPTVideoApplicationStateObservable, SPTVideoCDNSelector, SPTVideoPlayerSource;
+@protocol SPTConnectionModeObservable, SPTKVOControllerFactory, SPTNotificationCenter, SPTVideoPlaybackErrorFormatter, SPTVideoPlayerConfiguration, SPTVideoResourceLoaderFactory, SPTVideoSubtitleFactory;
 
 @interface SPTVideoPlaybackSessionFactory : NSObject
 {
-    SPTVideoManifestService *_manifestService;
-    id <SPTLogCenter> _logCenter;
-    SPTRequestAccounting *_requestAccounting;
-    SPSession *_loginSession;
-    SPTNetworkConnectivityController *_networkConnectivityController;
+    SPTVideoCDNSelector *_cdnSelector;
+    SPTVideoPlayerSource *_playerSource;
+    id <SPTVideoPlayerConfiguration> _playerConfiguration;
+    id <SPTVideoResourceLoaderFactory> _resourceLoaderFactory;
+    id <SPTKVOControllerFactory> _kvoControllerFactory;
+    id <SPTConnectionModeObservable> _connectionModeObservable;
+    id <SPTNotificationCenter> _notificationCenter;
+    id <SPTVideoPlaybackErrorFormatter> _videoPlaybackErrorFormatter;
+    id <SPTVideoSubtitleFactory> _subtitleFactory;
+    SPTVideoApplicationStateObservable *_appStateObservable;
     SPTVideoAVFactory *_avFactory;
+    NSArray *_eventObserverFactories;
 }
 
+@property(copy, nonatomic) NSArray *eventObserverFactories; // @synthesize eventObserverFactories=_eventObserverFactories;
 @property(retain, nonatomic) SPTVideoAVFactory *avFactory; // @synthesize avFactory=_avFactory;
-@property(retain, nonatomic) SPTNetworkConnectivityController *networkConnectivityController; // @synthesize networkConnectivityController=_networkConnectivityController;
-@property(nonatomic) __weak SPSession *loginSession; // @synthesize loginSession=_loginSession;
-@property(retain, nonatomic) SPTRequestAccounting *requestAccounting; // @synthesize requestAccounting=_requestAccounting;
-@property(retain, nonatomic) id <SPTLogCenter> logCenter; // @synthesize logCenter=_logCenter;
-@property(retain, nonatomic) SPTVideoManifestService *manifestService; // @synthesize manifestService=_manifestService;
+@property(retain, nonatomic) SPTVideoApplicationStateObservable *appStateObservable; // @synthesize appStateObservable=_appStateObservable;
+@property(retain, nonatomic) id <SPTVideoSubtitleFactory> subtitleFactory; // @synthesize subtitleFactory=_subtitleFactory;
+@property(retain, nonatomic) id <SPTVideoPlaybackErrorFormatter> videoPlaybackErrorFormatter; // @synthesize videoPlaybackErrorFormatter=_videoPlaybackErrorFormatter;
+@property(retain, nonatomic) id <SPTNotificationCenter> notificationCenter; // @synthesize notificationCenter=_notificationCenter;
+@property(retain, nonatomic) id <SPTConnectionModeObservable> connectionModeObservable; // @synthesize connectionModeObservable=_connectionModeObservable;
+@property(retain, nonatomic) id <SPTKVOControllerFactory> kvoControllerFactory; // @synthesize kvoControllerFactory=_kvoControllerFactory;
+@property(retain, nonatomic) id <SPTVideoResourceLoaderFactory> resourceLoaderFactory; // @synthesize resourceLoaderFactory=_resourceLoaderFactory;
+@property(retain, nonatomic) id <SPTVideoPlayerConfiguration> playerConfiguration; // @synthesize playerConfiguration=_playerConfiguration;
+@property(retain, nonatomic) SPTVideoPlayerSource *playerSource; // @synthesize playerSource=_playerSource;
+@property(retain, nonatomic) SPTVideoCDNSelector *cdnSelector; // @synthesize cdnSelector=_cdnSelector;
 - (void).cxx_destruct;
-- (id)createResourceLoaderInternalWithManifestID:(id)arg1 mediaURL:(id)arg2 playbackID:(id)arg3;
-- (id)createSessionWithPlaybackIdentity:(id)arg1 playerSource:(id)arg2 notifierProxyHolder:(id)arg3 subtitlesEnabled:(_Bool)arg4 endVideoLoggingWithEventApiEnabled:(_Bool)arg5;
-- (id)initWithManifestService:(id)arg1 logCenter:(id)arg2 requestAccounting:(id)arg3 loginSession:(id)arg4 networkConnectivityController:(id)arg5;
+- (id)createSessionWithPlaybackIdentity:(id)arg1 options:(id)arg2 playerSource:(id)arg3;
+- (id)initWithCDNSelector:(id)arg1 resourceLoaderFactory:(id)arg2 connectionModeObservable:(id)arg3 playerConfiguration:(id)arg4 kvoControllerFactory:(id)arg5 notificationCenter:(id)arg6 videoPlaybackErrorFormatter:(id)arg7 subtitleFactory:(id)arg8 playerSource:(id)arg9 appStateObservable:(id)arg10 avFactory:(id)arg11 eventObserverFactories:(id)arg12;
 
 @end
 

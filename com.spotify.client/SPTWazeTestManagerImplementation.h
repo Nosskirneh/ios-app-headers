@@ -9,23 +9,23 @@
 #import "SPTLegacyFeatureFlagObserver-Protocol.h"
 #import "SPTWazeTestManager-Protocol.h"
 
-@class NSString, SPTObserverManager, SPTWazeLogger;
-@protocol SPTAbbaService, SPTLegacyFeatureFlag, SPTLocalSettings, SPTWazeTestManagerImplementationDataSource;
+@class NSString, SPTObserverManager;
+@protocol SPTAbbaService, SPTLegacyFeatureFlag, SPTLocalSettings, SPTPartnerTestManager, SPTWazeTestManagerImplementationDataSource;
 
 @interface SPTWazeTestManagerImplementation : NSObject <SPTLegacyFeatureFlagObserver, SPTWazeTestManager>
 {
     id <SPTAbbaService> _abbaService;
     id <SPTLocalSettings> _localSettings;
-    SPTWazeLogger *_logger;
     id <SPTWazeTestManagerImplementationDataSource> _dataSource;
+    id <SPTPartnerTestManager> _partnerTestManager;
     id <SPTLegacyFeatureFlag> _featureEnabledFlag;
     SPTObserverManager *_observerManager;
 }
 
 @property(readonly, nonatomic) SPTObserverManager *observerManager; // @synthesize observerManager=_observerManager;
 @property(retain, nonatomic) id <SPTLegacyFeatureFlag> featureEnabledFlag; // @synthesize featureEnabledFlag=_featureEnabledFlag;
+@property(readonly, nonatomic) id <SPTPartnerTestManager> partnerTestManager; // @synthesize partnerTestManager=_partnerTestManager;
 @property(readonly, nonatomic) id <SPTWazeTestManagerImplementationDataSource> dataSource; // @synthesize dataSource=_dataSource;
-@property(readonly, nonatomic) SPTWazeLogger *logger; // @synthesize logger=_logger;
 @property(readonly, nonatomic) id <SPTLocalSettings> localSettings; // @synthesize localSettings=_localSettings;
 @property(readonly, nonatomic) __weak id <SPTAbbaService> abbaService; // @synthesize abbaService=_abbaService;
 - (void).cxx_destruct;
@@ -39,7 +39,7 @@
 - (void)teardownFeatureFlags;
 - (void)setupFeatureFlags;
 - (void)dealloc;
-- (id)initWithAbbaService:(id)arg1 localSettings:(id)arg2 dataSource:(id)arg3 logger:(id)arg4;
+- (id)initWithAbbaService:(id)arg1 localSettings:(id)arg2 dataSource:(id)arg3 partnerTestManager:(id)arg4;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

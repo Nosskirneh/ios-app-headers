@@ -6,49 +6,44 @@
 
 #import <UIKit/UIViewController.h>
 
-#import "SPContentInsetViewController-Protocol.h"
 #import "SPTNavigationControllerNavigationBarState-Protocol.h"
+#import "SPTPageContainer-Protocol.h"
 #import "SPTPageController-Protocol.h"
-#import "SPTYourLibraryGroupViewControllerDataSource-Protocol.h"
 #import "SPTYourLibraryHeaderViewControllerDelegate-Protocol.h"
 #import "SPTYourLibraryPageDelegate-Protocol.h"
-#import "SPTYourLibraryPageViewControllerDataSource-Protocol.h"
-#import "SPTYourLibraryViewModelDelegate-Protocol.h"
+#import "SPTYourLibraryPagesViewControllerDatasource-Protocol.h"
+#import "SPTYourLibraryPagesViewControllerDelegate-Protocol.h"
+#import "SPTYourLibrarySectionsHeadersViewControllerDelegate-Protocol.h"
+#import "SPTYourLibraryViewModelObserver-Protocol.h"
 
-@class NSLayoutConstraint, NSMutableArray, NSString, NSURL, SPTYourLibraryGLUETheme, SPTYourLibraryHeaderViewController, SPTYourLibraryPageViewController, UIView;
-@protocol SPTPageContainer, SPTYourLibraryViewModel;
+@class NSString, NSURL, SPTYourLibraryGLUETheme, SPTYourLibraryHeaderViewController, SPTYourLibraryLogger, SPTYourLibraryPagesViewController, SPTYourLibrarySectionsHeadersViewController, UIView;
+@protocol SPTPageContainer, SPTPageController, SPTViewLogger, SPTYourLibraryOfflineBanner, SPTYourLibraryViewModel;
 
-@interface SPTYourLibraryViewController : UIViewController <SPTYourLibraryPageDelegate, SPTYourLibraryPageViewControllerDataSource, SPTYourLibraryGroupViewControllerDataSource, SPTYourLibraryHeaderViewControllerDelegate, SPContentInsetViewController, SPTNavigationControllerNavigationBarState, SPTPageController, SPTYourLibraryViewModelDelegate>
+@interface SPTYourLibraryViewController : UIViewController <SPTYourLibraryPageDelegate, SPTYourLibraryHeaderViewControllerDelegate, SPTYourLibrarySectionsHeadersViewControllerDelegate, SPTYourLibraryPagesViewControllerDatasource, SPTYourLibraryPagesViewControllerDelegate, SPTNavigationControllerNavigationBarState, SPTYourLibraryViewModelObserver, SPTPageController, SPTPageContainer>
 {
-    _Bool _updateHeaderOffset;
-    _Bool _modalMode;
+    UIViewController<SPTPageController> *_currentPageController;
     id <SPTYourLibraryViewModel> _viewModel;
     SPTYourLibraryGLUETheme *_theme;
-    SPTYourLibraryPageViewController *_groupPageViewController;
+    UIViewController<SPTYourLibraryOfflineBanner> *_offlineBannerViewController;
     SPTYourLibraryHeaderViewController *_headerViewController;
+    SPTYourLibrarySectionsHeadersViewController *_sectionsHeadersViewController;
+    SPTYourLibraryPagesViewController *_pagesViewController;
     UIView *_topCoverView;
-    NSLayoutConstraint *_bottomConstraint;
-    NSLayoutConstraint *_headerTopConstraint;
-    double _lastScrollPosition;
-    NSMutableArray *_groupCache;
+    SPTYourLibraryLogger *_logger;
+    id <SPTViewLogger> _viewLogger;
 }
 
-@property(retain, nonatomic) NSMutableArray *groupCache; // @synthesize groupCache=_groupCache;
-@property(nonatomic, getter=isModalMode) _Bool modalMode; // @synthesize modalMode=_modalMode;
-@property(nonatomic) _Bool updateHeaderOffset; // @synthesize updateHeaderOffset=_updateHeaderOffset;
-@property(nonatomic) double lastScrollPosition; // @synthesize lastScrollPosition=_lastScrollPosition;
-@property(retain, nonatomic) NSLayoutConstraint *headerTopConstraint; // @synthesize headerTopConstraint=_headerTopConstraint;
-@property(retain, nonatomic) NSLayoutConstraint *bottomConstraint; // @synthesize bottomConstraint=_bottomConstraint;
+@property(retain, nonatomic) id <SPTViewLogger> viewLogger; // @synthesize viewLogger=_viewLogger;
+@property(retain, nonatomic) SPTYourLibraryLogger *logger; // @synthesize logger=_logger;
 @property(retain, nonatomic) UIView *topCoverView; // @synthesize topCoverView=_topCoverView;
+@property(retain, nonatomic) SPTYourLibraryPagesViewController *pagesViewController; // @synthesize pagesViewController=_pagesViewController;
+@property(retain, nonatomic) SPTYourLibrarySectionsHeadersViewController *sectionsHeadersViewController; // @synthesize sectionsHeadersViewController=_sectionsHeadersViewController;
 @property(retain, nonatomic) SPTYourLibraryHeaderViewController *headerViewController; // @synthesize headerViewController=_headerViewController;
-@property(retain, nonatomic) SPTYourLibraryPageViewController *groupPageViewController; // @synthesize groupPageViewController=_groupPageViewController;
+@property(readonly, nonatomic) UIViewController<SPTYourLibraryOfflineBanner> *offlineBannerViewController; // @synthesize offlineBannerViewController=_offlineBannerViewController;
 @property(readonly, nonatomic) SPTYourLibraryGLUETheme *theme; // @synthesize theme=_theme;
 @property(readonly, nonatomic) id <SPTYourLibraryViewModel> viewModel; // @synthesize viewModel=_viewModel;
+@property(retain, nonatomic, getter=spt_currentPageController) UIViewController<SPTPageController> *currentPageController; // @synthesize currentPageController=_currentPageController;
 - (void).cxx_destruct;
-- (void)setHeaderState:(unsigned long long)arg1;
-- (void)updateHeader;
-@property(nonatomic) _Bool automaticallyAdjustsScrollViewInsets;
-- (void)sp_updateContentInsets;
 - (unsigned long long)preferredNavigationBarState;
 - (void)headerViewController:(id)arg1 selectedGroupIndexChanged:(unsigned long long)arg2;
 - (void)pageDidStopScrolling:(id)arg1;
@@ -56,26 +51,30 @@
 - (void)page:(id)arg1 collapseTabControl:(_Bool)arg2;
 - (_Bool)pageShouldScrollToTop:(id)arg1;
 - (void)didFinishLoadingPage:(id)arg1;
-- (id)groupViewController:(id)arg1 viewControllerAtIndex:(unsigned long long)arg2;
-- (id)groupViewController:(id)arg1 titleAtIndex:(unsigned long long)arg2;
-- (unsigned long long)numberPagesForGroupViewController:(id)arg1;
-- (id)pageViewController:(id)arg1 viewControllerAtIndex:(unsigned long long)arg2;
-- (unsigned long long)numberPagesForPageViewController:(id)arg1;
+- (void)yourLibraryPagesViewController:(id)arg1 didChangeActiveViewController:(id)arg2;
+- (void)yourLibraryPagesViewController:(id)arg1 fromSection:(double)arg2 toSection:(double)arg3 fromPage:(double)arg4 toPage:(double)arg5;
+- (id)yourLibraryPagesViewController:(id)arg1 viewControllerForPageAtIndexPath:(id)arg2;
+- (unsigned long long)yourLibraryPagesViewController:(id)arg1 numberPagesForSection:(unsigned long long)arg2;
+- (unsigned long long)numberSectionsForYourLibraryPagesViewController:(id)arg1;
+- (void)sectionsHeadersViewController:(id)arg1 didSelectSegment:(unsigned long long)arg2 fromSection:(unsigned long long)arg3;
+- (void)yourLibraryViewModel:(id)arg1 navigateToGroup:(unsigned long long)arg2 index:(unsigned long long)arg3;
+- (void)yourLibraryViewModelUpdated:(id)arg1 withActiveGroupIndex:(unsigned long long)arg2 pageIndex:(unsigned long long)arg3;
+- (void)yourLibraryViewModelUpdated:(id)arg1;
 - (id)URI;
+@property(readonly, nonatomic, getter=spt_pageContainer) id <SPTPageContainer> pageContainer;
 @property(readonly, nonatomic, getter=spt_pageIdentifier) NSString *pageIdentifier;
 @property(readonly, nonatomic, getter=spt_pageURI) NSURL *pageURI;
-- (void)yourLibraryViewModelUpdated:(id)arg1;
 - (void)setupConstraints;
 - (void)viewWillDisappear:(_Bool)arg1;
 - (void)viewDidAppear:(_Bool)arg1;
+- (void)viewWillAppear:(_Bool)arg1;
 - (void)viewDidLoad;
-- (id)initWithViewModel:(id)arg1 theme:(id)arg2;
+- (id)initWithViewModel:(id)arg1 theme:(id)arg2 logger:(id)arg3 viewLogger:(id)arg4 offlineBannerViewController:(id)arg5;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
 @property(readonly) unsigned long long hash;
-@property(readonly, nonatomic, getter=spt_pageContainer) id <SPTPageContainer> pageContainer;
 @property(readonly) Class superclass;
 
 @end

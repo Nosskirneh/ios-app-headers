@@ -9,13 +9,13 @@
 #import "SPTAssistedCurationLinkDispatcherPageProvider-Protocol.h"
 
 @class NSString, SPTAssistedCurationSearchResultDrillDownHubManager;
-@protocol EXP_SPTHubFrameworkService, SPTAssistedCurationService, SPTAssistedCurationUIService, SPTAudioPreviewService, SPTExplicitContentService, SPTFreeTierService, SPTGLUEService, SPTSearchService;
+@protocol SPTAssistedCurationService, SPTAssistedCurationUIService, SPTAudioPreviewService, SPTExplicitContentService, SPTFreeTierService, SPTGLUEService, SPTHubFrameworkService, SPTSearchPlatformService;
 
 @interface SPTAssistedCurationSearchResultDrillDownService : SPTUIPageService <SPTAssistedCurationLinkDispatcherPageProvider>
 {
     SPTAssistedCurationSearchResultDrillDownHubManager *_hubManager;
-    id <EXP_SPTHubFrameworkService> _hubFrameworkService;
-    id <SPTSearchService> _searchService;
+    id <SPTHubFrameworkService> _hubFrameworkService;
+    id <SPTSearchPlatformService> _searchPlatformService;
     id <SPTGLUEService> _glueService;
     id <SPTAudioPreviewService> _audioPreviewService;
     id <SPTExplicitContentService> _explicitContentService;
@@ -31,8 +31,8 @@
 @property(nonatomic) __weak id <SPTExplicitContentService> explicitContentService; // @synthesize explicitContentService=_explicitContentService;
 @property(nonatomic) __weak id <SPTAudioPreviewService> audioPreviewService; // @synthesize audioPreviewService=_audioPreviewService;
 @property(nonatomic) __weak id <SPTGLUEService> glueService; // @synthesize glueService=_glueService;
-@property(nonatomic) __weak id <SPTSearchService> searchService; // @synthesize searchService=_searchService;
-@property(nonatomic) __weak id <EXP_SPTHubFrameworkService> hubFrameworkService; // @synthesize hubFrameworkService=_hubFrameworkService;
+@property(nonatomic) __weak id <SPTSearchPlatformService> searchPlatformService; // @synthesize searchPlatformService=_searchPlatformService;
+@property(nonatomic) __weak id <SPTHubFrameworkService> hubFrameworkService; // @synthesize hubFrameworkService=_hubFrameworkService;
 @property(retain, nonatomic) SPTAssistedCurationSearchResultDrillDownHubManager *hubManager; // @synthesize hubManager=_hubManager;
 - (void).cxx_destruct;
 - (id)provideGLUEImageLoader;

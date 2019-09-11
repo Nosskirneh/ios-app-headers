@@ -8,24 +8,30 @@
 
 #import "SPTAdNowPlayingRemoteControlPolicy-Protocol.h"
 
-@class NSArray, NSString, SPTObserverManager, SPTPlayerState;
+@class NSArray, NSString, SPTAdFeatureFlagChecks, SPTAdNowPlayingFeedbackModel, SPTObserverManager, SPTPlayerState;
 @protocol SPTAdsManager;
 
 @interface SPTAdRemoteControlPolicy : NSObject <SPTAdNowPlayingRemoteControlPolicy>
 {
     SPTPlayerState *_playerState;
     id <SPTAdsManager> _manager;
+    SPTAdFeatureFlagChecks *_featureFlags;
+    SPTAdNowPlayingFeedbackModel *_feedbackModel;
     SPTObserverManager *_observerManager;
 }
 
 @property(readonly, nonatomic) SPTObserverManager *observerManager; // @synthesize observerManager=_observerManager;
-@property(readonly, nonatomic) id <SPTAdsManager> manager; // @synthesize manager=_manager;
+@property(readonly, nonatomic) SPTAdNowPlayingFeedbackModel *feedbackModel; // @synthesize feedbackModel=_feedbackModel;
+@property(readonly, nonatomic) SPTAdFeatureFlagChecks *featureFlags; // @synthesize featureFlags=_featureFlags;
+@property(readonly, nonatomic) __weak id <SPTAdsManager> manager; // @synthesize manager=_manager;
 @property(retain, nonatomic) SPTPlayerState *playerState; // @synthesize playerState=_playerState;
 - (void).cxx_destruct;
 - (void)removeRemoteControlStateUpdateObserver:(id)arg1;
 - (void)addRemoteControlStateUpdateObserver:(id)arg1;
 - (void)bookmarkButtonPressedWithCompletion:(CDUnknownBlockType)arg1;
 @property(readonly, nonatomic) NSString *localizedTitleForBookmarkCommand;
+@property(readonly, nonatomic) _Bool shouldPlaybackSpeedControlBeEnabled;
+@property(readonly, nonatomic) _Bool shouldPlaybackSpeedControlBeAvailable;
 @property(readonly, nonatomic) _Bool shouldBookmarkCommandBeEnabled;
 @property(readonly, nonatomic) _Bool shouldBookmarkCommandBeAvailable;
 - (void)dislikeButtonPressedWithCompletion:(CDUnknownBlockType)arg1 identifier:(id)arg2;
@@ -46,6 +52,7 @@
 @property(readonly, nonatomic) _Bool shouldLikeCommandBeAvailable;
 @property(readonly, nonatomic) _Bool shouldChangePlaybackPositionCommandBeEnabled;
 @property(readonly, nonatomic) _Bool shouldChangePlaybackPositionCommandBeAvailable;
+@property(readonly, nonatomic) _Bool shouldPauseCommandBeEnabled;
 @property(readonly, nonatomic) _Bool shouldSeekBackwardCommandBeEnabled;
 @property(readonly, nonatomic) _Bool shouldSeekBackwardCommandBeAvailable;
 @property(readonly, nonatomic) _Bool shouldSeekForwardCommandBeEnabled;
@@ -63,7 +70,7 @@
 @property(readonly, nonatomic) _Bool shouldNextTrackCommandBeEnabled;
 @property(readonly, nonatomic) _Bool shouldNextTrackCommandBeAvailable;
 - (void)notifyObserversThatPolicyDidChange;
-- (id)initWithManager:(id)arg1;
+- (id)initWithManager:(id)arg1 featureChecker:(id)arg2 adFeedbackModel:(id)arg3;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

@@ -7,14 +7,13 @@
 #import "SPTSwipeableTableViewCell.h"
 
 #import "SPTCellImageLoadingContextCompatibleCell-Protocol.h"
-#import "SPTCeramicCollectionViewCellWithMetaDataPrefixView-Protocol.h"
 #import "SPTDimensionalTableViewCell-Protocol.h"
 #import "SPTThemableView-Protocol.h"
 
-@class NSString, SPTActionButton, SPTBadgeView, UIFont, UIImage, UIView;
+@class NSString, SPTBadgeView, UIFont, UIImage, UIView;
 @protocol SPTThemableViewLayoutDelegate;
 
-@interface SPTTableViewCell : SPTSwipeableTableViewCell <SPTCeramicCollectionViewCellWithMetaDataPrefixView, SPTThemableView, SPTCellImageLoadingContextCompatibleCell, SPTDimensionalTableViewCell>
+@interface SPTTableViewCell : SPTSwipeableTableViewCell <SPTThemableView, SPTCellImageLoadingContextCompatibleCell, SPTDimensionalTableViewCell>
 {
     _Bool _active;
     _Bool _disabled;
@@ -37,7 +36,6 @@
 }
 
 + (double)preferredHeight;
-+ (double)shufflePreferredHeight;
 @property(nonatomic) double numberOfLinesForTitle; // @synthesize numberOfLinesForTitle=_numberOfLinesForTitle;
 @property(nonatomic) long long tableViewThemeStyle; // @synthesize tableViewThemeStyle=_tableViewThemeStyle;
 @property(nonatomic) _Bool prefixViewRemovesImage; // @synthesize prefixViewRemovesImage=_prefixViewRemovesImage;
@@ -75,22 +73,14 @@
 - (void)prepareForReuse;
 - (id)initWithReuseIdentifier:(id)arg1;
 - (id)initWithStyle:(long long)arg1 reuseIdentifier:(id)arg2;
-- (void)populateWithCeramicItem:(id)arg1 order:(struct SPTCeramicItemOrder)arg2;
-@property(retain, nonatomic) UIView *metaDataPrefixView;
-@property(readonly, nonatomic) struct CGSize imageViewSize;
-@property(readonly, nonatomic) unsigned long long cellType;
 @property(nonatomic, getter=isShuffleTrackCell) _Bool shuffleTrackCell;
 
 // Remaining properties
 @property(nonatomic) long long accessoryType; // @dynamic accessoryType;
-@property(retain, nonatomic) UIView *accessoryView;
-@property(readonly, nonatomic) SPTActionButton *actionButton;
-@property(readonly, nonatomic) struct CGSize backgroundImageViewSize;
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
 @property(readonly) unsigned long long hash;
 @property(readonly) Class superclass;
-@property(retain, nonatomic) UIView *touchPreviewView;
 
 @end
 

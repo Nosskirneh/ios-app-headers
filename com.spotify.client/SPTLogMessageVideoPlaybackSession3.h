@@ -49,9 +49,9 @@
 }
 
 + (id)messageWithSessionId:(id)arg1 featureIdentifier:(id)arg2 manifestId:(id)arg3 mediaUrl:(id)arg4 msStartPosition:(long long)arg5 startBitrate:(long long)arg6 msDuration:(long long)arg7 msStartTime:(long long)arg8 msManifestLoadTime:(long long)arg9 msEncryptionLoadTime:(long long)arg10 msInitialBuffering:(long long)arg11 msBufferingSeek:(long long)arg12 msBufferingSeekLongest:(long long)arg13 msBufferingStall:(long long)arg14 msBufferingStallLongest:(long long)arg15 nStalls:(long long)arg16 nSeekback:(long long)arg17 nSeekforward:(long long)arg18 msPlayed:(long long)arg19 msPlayedBackground:(long long)arg20 msPlayedFullscreen:(long long)arg21 msPlayedSubtitles:(long long)arg22 connectionTypeStart:(id)arg23 connectionTypeEnd:(id)arg24 kbpsAverageBandwidth:(long long)arg25 encryptionType:(id)arg26 kbytesPlayed:(long long)arg27 kbytesDownloaded:(long long)arg28 nViewTransitions:(long long)arg29 fps:(long long)arg30 nDroppedFrames:(long long)arg31 averageScaleFactor:(double)arg32 averageDeviceOrientation:(double)arg33 exitReason:(id)arg34 aspectRatio:(double)arg35 lastUsedSubtitle:(id)arg36;
-@property(retain, nonatomic) NSString *lastUsedSubtitleValue; // @synthesize lastUsedSubtitleValue=_lastUsedSubtitleValue;
+@property(copy, nonatomic) NSString *lastUsedSubtitleValue; // @synthesize lastUsedSubtitleValue=_lastUsedSubtitleValue;
 @property(nonatomic) double aspectRatioValue; // @synthesize aspectRatioValue=_aspectRatioValue;
-@property(retain, nonatomic) NSString *exitReasonValue; // @synthesize exitReasonValue=_exitReasonValue;
+@property(copy, nonatomic) NSString *exitReasonValue; // @synthesize exitReasonValue=_exitReasonValue;
 @property(nonatomic) double averageDeviceOrientationValue; // @synthesize averageDeviceOrientationValue=_averageDeviceOrientationValue;
 @property(nonatomic) double averageScaleFactorValue; // @synthesize averageScaleFactorValue=_averageScaleFactorValue;
 @property(nonatomic) long long nDroppedFramesValue; // @synthesize nDroppedFramesValue=_nDroppedFramesValue;
@@ -59,10 +59,10 @@
 @property(nonatomic) long long nViewTransitionsValue; // @synthesize nViewTransitionsValue=_nViewTransitionsValue;
 @property(nonatomic) long long kbytesDownloadedValue; // @synthesize kbytesDownloadedValue=_kbytesDownloadedValue;
 @property(nonatomic) long long kbytesPlayedValue; // @synthesize kbytesPlayedValue=_kbytesPlayedValue;
-@property(retain, nonatomic) NSString *encryptionTypeValue; // @synthesize encryptionTypeValue=_encryptionTypeValue;
+@property(copy, nonatomic) NSString *encryptionTypeValue; // @synthesize encryptionTypeValue=_encryptionTypeValue;
 @property(nonatomic) long long kbpsAverageBandwidthValue; // @synthesize kbpsAverageBandwidthValue=_kbpsAverageBandwidthValue;
-@property(retain, nonatomic) NSString *connectionTypeEndValue; // @synthesize connectionTypeEndValue=_connectionTypeEndValue;
-@property(retain, nonatomic) NSString *connectionTypeStartValue; // @synthesize connectionTypeStartValue=_connectionTypeStartValue;
+@property(copy, nonatomic) NSString *connectionTypeEndValue; // @synthesize connectionTypeEndValue=_connectionTypeEndValue;
+@property(copy, nonatomic) NSString *connectionTypeStartValue; // @synthesize connectionTypeStartValue=_connectionTypeStartValue;
 @property(nonatomic) long long msPlayedSubtitlesValue; // @synthesize msPlayedSubtitlesValue=_msPlayedSubtitlesValue;
 @property(nonatomic) long long msPlayedFullscreenValue; // @synthesize msPlayedFullscreenValue=_msPlayedFullscreenValue;
 @property(nonatomic) long long msPlayedBackgroundValue; // @synthesize msPlayedBackgroundValue=_msPlayedBackgroundValue;
@@ -81,10 +81,10 @@
 @property(nonatomic) long long msDurationValue; // @synthesize msDurationValue=_msDurationValue;
 @property(nonatomic) long long startBitrateValue; // @synthesize startBitrateValue=_startBitrateValue;
 @property(nonatomic) long long msStartPositionValue; // @synthesize msStartPositionValue=_msStartPositionValue;
-@property(retain, nonatomic) NSString *mediaUrlValue; // @synthesize mediaUrlValue=_mediaUrlValue;
-@property(retain, nonatomic) NSString *manifestIdValue; // @synthesize manifestIdValue=_manifestIdValue;
-@property(retain, nonatomic) NSString *featureIdentifierValue; // @synthesize featureIdentifierValue=_featureIdentifierValue;
-@property(retain, nonatomic) NSString *sessionIdValue; // @synthesize sessionIdValue=_sessionIdValue;
+@property(copy, nonatomic) NSString *mediaUrlValue; // @synthesize mediaUrlValue=_mediaUrlValue;
+@property(copy, nonatomic) NSString *manifestIdValue; // @synthesize manifestIdValue=_manifestIdValue;
+@property(copy, nonatomic) NSString *featureIdentifierValue; // @synthesize featureIdentifierValue=_featureIdentifierValue;
+@property(copy, nonatomic) NSString *sessionIdValue; // @synthesize sessionIdValue=_sessionIdValue;
 - (void).cxx_destruct;
 - (_Bool)isEqual:(id)arg1;
 - (unsigned long long)hash;

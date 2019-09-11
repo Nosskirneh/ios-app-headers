@@ -18,9 +18,9 @@
 
 + (id)messageWithPushId:(id)arg1 campaignId:(id)arg2 targetUri:(id)arg3 timestamp:(long long)arg4;
 @property(nonatomic) long long timestampValue; // @synthesize timestampValue=_timestampValue;
-@property(retain, nonatomic) NSString *targetUriValue; // @synthesize targetUriValue=_targetUriValue;
-@property(retain, nonatomic) NSString *campaignIdValue; // @synthesize campaignIdValue=_campaignIdValue;
-@property(retain, nonatomic) NSString *pushIdValue; // @synthesize pushIdValue=_pushIdValue;
+@property(copy, nonatomic) NSString *targetUriValue; // @synthesize targetUriValue=_targetUriValue;
+@property(copy, nonatomic) NSString *campaignIdValue; // @synthesize campaignIdValue=_campaignIdValue;
+@property(copy, nonatomic) NSString *pushIdValue; // @synthesize pushIdValue=_pushIdValue;
 - (void).cxx_destruct;
 - (_Bool)isEqual:(id)arg1;
 - (unsigned long long)hash;

@@ -25,6 +25,7 @@
     GLUEButton *_photoLibraryButton;
     UIImageView *_scanningIndicatorImageView;
     UILabel *_subtitleLabel;
+    UILabel *_privacyLabel;
     CALayer *_captureLayer;
     CAGradientLayer *_backgroundGradientTop;
     CAGradientLayer *_backgroundGradientBottom;
@@ -32,9 +33,11 @@
     CALayer *_viewfinderStrokeLayer;
     double _internalVerticalMargin;
     UIFont *_subtitleFont;
+    UIFont *_privacyFont;
 }
 
 + (id)sta_currentContext;
+@property(retain, nonatomic) UIFont *privacyFont; // @synthesize privacyFont=_privacyFont;
 @property(retain, nonatomic) UIFont *subtitleFont; // @synthesize subtitleFont=_subtitleFont;
 @property(nonatomic) double internalVerticalMargin; // @synthesize internalVerticalMargin=_internalVerticalMargin;
 @property(retain, nonatomic) CALayer *viewfinderStrokeLayer; // @synthesize viewfinderStrokeLayer=_viewfinderStrokeLayer;
@@ -42,6 +45,7 @@
 @property(retain, nonatomic) CAGradientLayer *backgroundGradientBottom; // @synthesize backgroundGradientBottom=_backgroundGradientBottom;
 @property(retain, nonatomic) CAGradientLayer *backgroundGradientTop; // @synthesize backgroundGradientTop=_backgroundGradientTop;
 @property(retain, nonatomic) CALayer *captureLayer; // @synthesize captureLayer=_captureLayer;
+@property(retain, nonatomic) UILabel *privacyLabel; // @synthesize privacyLabel=_privacyLabel;
 @property(retain, nonatomic) UILabel *subtitleLabel; // @synthesize subtitleLabel=_subtitleLabel;
 @property(retain, nonatomic) UIImageView *scanningIndicatorImageView; // @synthesize scanningIndicatorImageView=_scanningIndicatorImageView;
 @property(retain, nonatomic) GLUEButton *photoLibraryButton; // @synthesize photoLibraryButton=_photoLibraryButton;
@@ -53,19 +57,22 @@
 @property(readonly, nonatomic) UINavigationController<SPTScannablesImagePickerController> *imagePickerController; // @synthesize imagePickerController=_imagePickerController;
 @property(readonly, nonatomic) SPTScannablesScanViewModel *viewModel; // @synthesize viewModel=_viewModel;
 - (void).cxx_destruct;
+- (void)viewWillTransitionToSize:(struct CGSize)arg1 withTransitionCoordinator:(id)arg2;
+- (_Bool)isSourceCardView;
 - (_Bool)imagePickerControllerIsPresented;
 - (long long)preferredStatusBarStyle;
 - (void)imagePickerControllerDidCancel:(id)arg1;
 - (void)imagePickerController:(id)arg1 didFinishPickingMediaWithInfo:(id)arg2;
-- (void)alertControllerDidAcceptError;
 - (id)URI;
 @property(readonly, nonatomic, getter=spt_pageIdentifier) NSString *pageIdentifier;
 @property(readonly, nonatomic, getter=spt_pageURI) NSURL *pageURI;
 - (void)addAndLayoutViewFinderLayer;
 - (void)layoutOverlayView;
+- (void)layoutPrivacyLabel;
 - (void)layoutPhotoLibraryButton;
 - (void)layoutSubtitleLabel;
 - (void)layoutScanningIndicatorImageView;
+- (long long)currentVideoOrientation;
 - (void)layoutCaptureLayer;
 - (void)layoutCloseButton;
 - (void)addCaptureLayer:(id)arg1;
@@ -78,6 +85,7 @@
 - (void)addScanningIndicatorImageView;
 - (id)provideBackgroundGratientBottom;
 - (id)provideBackgroundGratientTop;
+- (void)addPrivacyLabel;
 - (void)addPhotoLibraryButton;
 - (void)addSubtitleLabel;
 - (void)addCloseButton;

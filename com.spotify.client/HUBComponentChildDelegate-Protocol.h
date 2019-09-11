@@ -4,13 +4,9 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-@class NSDictionary, UIView;
 @protocol HUBComponent, HUBComponentModel, HUBComponentWithChildren;
 
 @protocol HUBComponentChildDelegate
-- (void)component:(id <HUBComponentWithChildren>)arg1 childWithCustomViewSelectedAtIndex:(unsigned long long)arg2 customData:(NSDictionary *)arg3;
-- (void)component:(id <HUBComponentWithChildren>)arg1 didStopDisplayingChildAtIndex:(unsigned long long)arg2 view:(UIView *)arg3;
-- (void)component:(id <HUBComponentWithChildren>)arg1 willDisplayChildAtIndex:(unsigned long long)arg2 view:(UIView *)arg3;
 - (id <HUBComponent>)component:(id <HUBComponentWithChildren>)arg1 childComponentForModel:(id <HUBComponentModel>)arg2;
 @end
 

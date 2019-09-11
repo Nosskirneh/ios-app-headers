@@ -7,6 +7,7 @@
 #import <UIKit/UIImage.h>
 
 @interface UIImage (SPTBlur)
+- (id)spt_resizeAndBlurImageWithRadius:(double)arg1 iterations:(unsigned long long)arg2;
 - (id)spt_blurImageWithRadius:(double)arg1 iterations:(unsigned long long)arg2 tintColor:(id)arg3;
 @end
 

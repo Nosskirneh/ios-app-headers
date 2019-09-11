@@ -16,6 +16,8 @@
 - (NSString *)logEventName;
 - (NSString *)accessibilityHint;
 - (UIView *)accessoryView;
+- (_Bool)shouldHaveTwoLineSubtitle;
+- (_Bool)shouldHaveTwoLineTitle;
 - (NSString *)subtitle;
 - (GLUEImageStyle *)imageStyle;
 - (UIImage *)placeholderImage;

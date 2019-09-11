@@ -6,8 +6,8 @@
 
 #import "NSObject-Protocol.h"
 
-@class NSIndexPath, NSString, NSURL, SPTPodcastEpisode;
-@protocol SPTPodcastYourLibraryEpisodesViewModelDelegate;
+@class NSArray, NSIndexPath, NSString, NSURL;
+@protocol SPTPodcastEpisode, SPTPodcastYourLibraryEpisodesViewModelDelegate;
 
 @protocol SPTPodcastYourLibraryEpisodesViewModel <NSObject>
 @property(readonly, nonatomic, getter=isEmpty) _Bool empty;
@@ -17,14 +17,14 @@
 @property(readonly, nonatomic) _Bool isLoading;
 @property(readonly, nonatomic) NSURL *URL;
 @property(nonatomic) __weak id <SPTPodcastYourLibraryEpisodesViewModelDelegate> delegate;
-- (void)pauseEpisodeAtIndexPath:(NSIndexPath *)arg1;
+- (_Bool)showSeparatorForSection:(long long)arg1;
 - (_Bool)isEpisodePlayingAtIndexPath:(NSIndexPath *)arg1;
-- (void)playEpisodeAtIndexPath:(NSIndexPath *)arg1;
 - (_Bool)isEpisodeActiveAtIndexPath:(NSIndexPath *)arg1;
 - (_Bool)isEpisodeDisabledAtIndexPath:(NSIndexPath *)arg1;
 - (void)unsubscribe;
 - (void)loadAndSubscribe;
-- (SPTPodcastEpisode *)episodeAtIndexPath:(NSIndexPath *)arg1;
+- (NSArray *)allEpisodesInSection:(unsigned long long)arg1;
+- (id <SPTPodcastEpisode>)episodeAtIndexPath:(NSIndexPath *)arg1;
 - (unsigned long long)numberOfEntriesInSection:(unsigned long long)arg1;
 - (unsigned long long)numberOfEntrySections;
 - (NSString *)titleForSection:(unsigned long long)arg1;

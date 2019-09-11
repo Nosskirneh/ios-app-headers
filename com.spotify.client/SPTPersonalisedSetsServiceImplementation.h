@@ -6,13 +6,12 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTFeatureFlagSignalObserver-Protocol.h"
 #import "SPTPersonalisedSetsService-Protocol.h"
 
 @class NSArray, NSString, SPTAllocationContext;
-@protocol CollectionFeature, EXP_SPTHubFrameworkService, PlaylistFeature, SPContextMenuFeature, SPTCollectionPlatformService, SPTCollectionSortingEntityManager, SPTContainerService, SPTCoreService, SPTExplicitContentService, SPTFeatureFlagSignal, SPTFeatureFlaggingService, SPTFeedbackService, SPTFollowShelfService, SPTFormatListPlatformService, SPTFreeTierService, SPTGLUEService, SPTLocalSettings, SPTNetworkService, SPTPSXTestManager, SPTPerformanceMetricsService, SPTPersonalisedSetsNowPlayingFeedbackManagerFactory, SPTPlayerFeature, SPTPlaylistPlatformService, SPTSessionService, SPTShelfService, UpsellFeature;
+@protocol PlaylistFeature, SPContextMenuFeature, SPTCollectionPlatformService, SPTCollectionSortingEntityManager, SPTContainerService, SPTCoreService, SPTExplicitContentService, SPTFeatureFlagSignal, SPTFeatureFlaggingService, SPTFeedbackService, SPTFollowShelfService, SPTFormatListPlatformService, SPTFreeTierService, SPTGLUEService, SPTLocalSettings, SPTNetworkService, SPTPSXTestManager, SPTPerformanceMetricsService, SPTPersonalisedSetsNowPlayingFeedbackManagerFactory, SPTPlayerFeature, SPTPlaylistPlatformService, SPTSessionService, SPTShelfService;
 
-@interface SPTPersonalisedSetsServiceImplementation : NSObject <SPTFeatureFlagSignalObserver, SPTPersonalisedSetsService>
+@interface SPTPersonalisedSetsServiceImplementation : NSObject <SPTPersonalisedSetsService>
 {
     _Bool _followShelfEnabled;
     id <SPTContainerService> _containerService;
@@ -28,15 +27,12 @@
     id <SPTPlaylistPlatformService> _playlistPlatformService;
     id <SPTShelfService> _shelfService;
     id <SPTGLUEService> _glueService;
-    id <UpsellFeature> _upsellService;
     id <SPTFeedbackService> _feedbackService;
     id <SPTFreeTierService> _freeTierService;
     id <SPTExplicitContentService> _explicitContentService;
     id <SPTPerformanceMetricsService> _performanceMetricsService;
     id <SPTFollowShelfService> _followShelfService;
     id <SPTFeatureFlagSignal> _freeTierFlagSignal;
-    id <CollectionFeature> _collectionService;
-    id <EXP_SPTHubFrameworkService> _hubFrameworkService;
     id <SPTCollectionSortingEntityManager> _personalisedSetSortingEntityManager;
     id <SPTLocalSettings> _localSettings;
     NSArray *_formatListExpressions;
@@ -51,15 +47,12 @@
 @property(retain, nonatomic) NSArray *formatListExpressions; // @synthesize formatListExpressions=_formatListExpressions;
 @property(retain, nonatomic) id <SPTLocalSettings> localSettings; // @synthesize localSettings=_localSettings;
 @property(retain, nonatomic) id <SPTCollectionSortingEntityManager> personalisedSetSortingEntityManager; // @synthesize personalisedSetSortingEntityManager=_personalisedSetSortingEntityManager;
-@property(nonatomic) __weak id <EXP_SPTHubFrameworkService> hubFrameworkService; // @synthesize hubFrameworkService=_hubFrameworkService;
-@property(nonatomic) __weak id <CollectionFeature> collectionService; // @synthesize collectionService=_collectionService;
 @property(retain, nonatomic) id <SPTFeatureFlagSignal> freeTierFlagSignal; // @synthesize freeTierFlagSignal=_freeTierFlagSignal;
 @property(nonatomic) __weak id <SPTFollowShelfService> followShelfService; // @synthesize followShelfService=_followShelfService;
 @property(nonatomic) __weak id <SPTPerformanceMetricsService> performanceMetricsService; // @synthesize performanceMetricsService=_performanceMetricsService;
 @property(nonatomic) __weak id <SPTExplicitContentService> explicitContentService; // @synthesize explicitContentService=_explicitContentService;
 @property(nonatomic) __weak id <SPTFreeTierService> freeTierService; // @synthesize freeTierService=_freeTierService;
 @property(nonatomic) __weak id <SPTFeedbackService> feedbackService; // @synthesize feedbackService=_feedbackService;
-@property(nonatomic) __weak id <UpsellFeature> upsellService; // @synthesize upsellService=_upsellService;
 @property(nonatomic) __weak id <SPTGLUEService> glueService; // @synthesize glueService=_glueService;
 @property(nonatomic) __weak id <SPTShelfService> shelfService; // @synthesize shelfService=_shelfService;
 @property(nonatomic) __weak id <SPTPlaylistPlatformService> playlistPlatformService; // @synthesize playlistPlatformService=_playlistPlatformService;
@@ -74,14 +67,11 @@
 @property(nonatomic) __weak id <SPTCoreService> coreService; // @synthesize coreService=_coreService;
 @property(nonatomic) __weak id <SPTContainerService> containerService; // @synthesize containerService=_containerService;
 - (void).cxx_destruct;
-- (id)provideAsyncPersonalizedSetsHubViewControllerWithURI:(id)arg1 context:(id)arg2;
-- (void)registerPersonalizedSetsHubWithCollection;
-- (void)registerPersonalizedSetsHubPageIdentifier;
 - (void)featureFlagSignal:(id)arg1 hasAssumedState:(long long)arg2;
 - (id)provideFormatListExpressions;
 - (id)provideFeedbackManagerFactory;
 - (id)provideTestManager;
-- (id)providePersonalisedSetViewControllerForURL:(id)arg1 isFollowShelfEnabled:(_Bool)arg2;
+- (id)providePersonalisedSetViewControllerForURL:(id)arg1 referrerIdentifier:(id)arg2 isFollowShelfEnabled:(_Bool)arg3;
 - (void)unload;
 - (void)load;
 - (void)configureWithServices:(id)arg1;

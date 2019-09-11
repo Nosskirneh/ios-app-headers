@@ -6,12 +6,12 @@
 
 #import <objc/NSObject.h>
 
-#import "EXP_HUBComponent-Protocol.h"
+#import "HUBComponent-Protocol.h"
 
 @class NSSet;
 @protocol GLUETheme;
 
-@interface SPTFreeTierUIServiceTertiaryButtonComponent : NSObject <EXP_HUBComponent>
+@interface SPTFreeTierUIServiceTertiaryButtonComponent : NSObject <HUBComponent>
 {
     id <GLUETheme> _theme;
 }

@@ -6,26 +6,23 @@
 
 #import <objc/NSObject.h>
 
-@class SPTLoginSpinnerButtonTestManager, SPTRecoverAccountConfiguration, SPTRecoverAccountSlatePresenter, SPTRecoverAccountTestManager;
+@class SPTRecoverAccountConfiguration;
+@protocol SPTBannerPresentationManager;
 
 @interface SPTRecoverAccountCoordinator : NSObject
 {
-    SPTRecoverAccountSlatePresenter *_slatePresenter;
     SPTRecoverAccountConfiguration *_configuration;
-    SPTRecoverAccountTestManager *_testManager;
-    SPTLoginSpinnerButtonTestManager *_spinnerButtonTestManager;
+    id <SPTBannerPresentationManager> _bannerPresenter;
 }
 
-@property(readonly, nonatomic) SPTLoginSpinnerButtonTestManager *spinnerButtonTestManager; // @synthesize spinnerButtonTestManager=_spinnerButtonTestManager;
-@property(readonly, nonatomic) SPTRecoverAccountTestManager *testManager; // @synthesize testManager=_testManager;
+@property(readonly, nonatomic) id <SPTBannerPresentationManager> bannerPresenter; // @synthesize bannerPresenter=_bannerPresenter;
 @property(readonly, nonatomic) SPTRecoverAccountConfiguration *configuration; // @synthesize configuration=_configuration;
-@property(readonly, nonatomic) SPTRecoverAccountSlatePresenter *slatePresenter; // @synthesize slatePresenter=_slatePresenter;
 - (void).cxx_destruct;
-- (id)provideCollectEmailViewController;
-- (id)provideResetPasswordViewController;
-- (void)presentResetPasswordSlate;
-- (void)presentCollectEmailSlate;
-- (id)initWithConfiguration:(id)arg1 slatePresenter:(id)arg2 testManager:(id)arg3 spinnerButtonTestManager:(id)arg4;
+- (void)presentSetPasswordDialogWithToken:(id)arg1;
+- (void)handleResetPasswordBannerStatusChangedWithTicket:(id)arg1 oldStatus:(long long)arg2 setPasswordToken:(id)arg3;
+- (void)queueSetPasswordBannerForPresentationWithToken:(id)arg1;
+- (void)presentSetPasswordBannerWithToken:(id)arg1;
+- (id)initWithConfiguration:(id)arg1 bannerPresenter:(id)arg2;
 
 @end
 

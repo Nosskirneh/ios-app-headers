@@ -6,11 +6,11 @@
 
 #import "NSObject-Protocol.h"
 
-@class NSData, NSDate, NSString;
+@class NSDate, NSString;
 
 @protocol SPTCrashSummaryObserver <NSObject>
 - (void)sendPendingCrashReports;
-- (void)logCrashWithClientVersion:(NSString *)arg1 OSVersion:(NSString *)arg2 date:(NSDate *)arg3 userName:(NSString *)arg4 UUID:(NSString *)arg5 detectorIdentifier:(NSString *)arg6 crashData:(NSData *)arg7;
+- (void)logCrashWithClientVersion:(NSString *)arg1 OSVersion:(NSString *)arg2 date:(NSDate *)arg3 userName:(NSString *)arg4 UUID:(NSString *)arg5 detectorIdentifier:(NSString *)arg6;
 
 @optional
 - (_Bool)canHandleUserName;

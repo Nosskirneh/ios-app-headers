@@ -24,6 +24,7 @@
 @property(readonly, nonatomic) __weak id <SPTDailyMixFeature> dailyMixService; // @synthesize dailyMixService=_dailyMixService;
 @property(readonly, nonatomic) __weak id <SPTExternalIntegrationPlaybackService> playbackService; // @synthesize playbackService=_playbackService;
 - (void).cxx_destruct;
+- (id)playbackErrorWithUnderlyingError:(id)arg1;
 - (void)playContentWithURI:(id)arg1 withOptions:(id)arg2 origin:(id)arg3 requestOptions:(id)arg4 completionHandler:(CDUnknownBlockType)arg5;
 - (_Bool)canPlayContentWithURI:(id)arg1;
 - (void)unload;

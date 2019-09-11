@@ -9,14 +9,14 @@
 #import "SPTVideoPlaybackEventObserver-Protocol.h"
 
 @class NSString;
-@protocol SPTAdEventLogger, SPTResolver;
+@protocol SPTAdsBaseCosmosBridge, SPTResolver;
 
 @interface SPTInterruptionVideoEventReporter : NSObject <SPTVideoPlaybackEventObserver>
 {
     _Bool _shouldFireVideoEvents;
     _Bool _didProcessVideoFinishEvent;
     _Bool _didRequestFireVideoEventsFlag;
-    id <SPTAdEventLogger> _eventLogger;
+    id <SPTAdsBaseCosmosBridge> _cosmosBridge;
     id <SPTResolver> _resolver;
     double _trackDuration;
     unsigned long long _quartilesPlayed;
@@ -28,7 +28,7 @@
 @property(nonatomic) unsigned long long quartilesPlayed; // @synthesize quartilesPlayed=_quartilesPlayed;
 @property(nonatomic) double trackDuration; // @synthesize trackDuration=_trackDuration;
 @property(readonly, nonatomic) id <SPTResolver> resolver; // @synthesize resolver=_resolver;
-@property(readonly, nonatomic) id <SPTAdEventLogger> eventLogger; // @synthesize eventLogger=_eventLogger;
+@property(readonly, nonatomic) id <SPTAdsBaseCosmosBridge> cosmosBridge; // @synthesize cosmosBridge=_cosmosBridge;
 - (void).cxx_destruct;
 - (_Bool)isSASInterruption:(id)arg1;
 - (void)logCompleteEventForInterruption:(id)arg1 eventData:(id)arg2;
@@ -45,7 +45,7 @@
 - (void)playback:(id)arg1 didChangeDuration:(double)arg2;
 - (void)playback:(id)arg1 didPlayToTime:(CDStruct_1b6d18a9)arg2;
 - (void)playbackDidStartForIdentity:(id)arg1;
-- (id)initWithEventLogger:(id)arg1 resolver:(id)arg2;
+- (id)initWithCosmosBridge:(id)arg1 resolver:(id)arg2;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

@@ -8,12 +8,11 @@
 
 #import "SPTBrowseViewModelFetcher-Protocol.h"
 #import "SPTDataLoaderDelegate-Protocol.h"
-#import "SPTFeatureFlagSignalObserver-Protocol.h"
 
 @class NSString, SPTBrowseOnDemandDecorator, SPTDataLoader, SPTDataLoaderFactory;
-@protocol SPTBrowseViewModelBuilderProvider, SPTFeatureFlagSignal, SPTPodcastTestManager;
+@protocol SPTBrowseTimeZoneProvider, SPTBrowseViewModelBuilderProvider, SPTFeatureFlagSignal, SPTPodcastTestManager;
 
-@interface SPTBrowseHubsRendererViewModelFetcher : NSObject <SPTDataLoaderDelegate, SPTFeatureFlagSignalObserver, SPTBrowseViewModelFetcher>
+@interface SPTBrowseHubsRendererViewModelFetcher : NSObject <SPTDataLoaderDelegate, SPTBrowseViewModelFetcher>
 {
     _Bool _nftEnabled;
     id <SPTBrowseViewModelBuilderProvider> _viewModelBuilderProvider;
@@ -28,8 +27,10 @@
     NSString *_sourceIdentifier;
     NSString *_featureID;
     NSString *_pageURI;
+    id <SPTBrowseTimeZoneProvider> _timeZoneProvider;
 }
 
+@property(readonly, nonatomic) id <SPTBrowseTimeZoneProvider> timeZoneProvider; // @synthesize timeZoneProvider=_timeZoneProvider;
 @property(readonly, copy, nonatomic) NSString *pageURI; // @synthesize pageURI=_pageURI;
 @property(readonly, copy, nonatomic) NSString *featureID; // @synthesize featureID=_featureID;
 @property(readonly, copy, nonatomic) NSString *sourceIdentifier; // @synthesize sourceIdentifier=_sourceIdentifier;
@@ -44,10 +45,6 @@
 @property(readonly, nonatomic) SPTDataLoaderFactory *dataLoaderFactory; // @synthesize dataLoaderFactory=_dataLoaderFactory;
 @property(readonly, nonatomic) id <SPTBrowseViewModelBuilderProvider> viewModelBuilderProvider; // @synthesize viewModelBuilderProvider=_viewModelBuilderProvider;
 - (void).cxx_destruct;
-- (void)addInteractionLoggingDataToComponentModelBuilder:(id)arg1;
-- (void)addInteractionLoggingDataToViewModelBuilder:(id)arg1;
-- (void)addImpressionLoggingDataToComponentModelBuilder:(id)arg1;
-- (void)addImpressionLoggingDataToViewModelBuilder:(id)arg1;
 - (void)handleErrorResponse:(id)arg1 completion:(CDUnknownBlockType)arg2;
 - (void)handleSuccessfulResponseData:(id)arg1 withCompletion:(CDUnknownBlockType)arg2;
 - (void)handleSuccessfulResponse:(id)arg1 completion:(CDUnknownBlockType)arg2;
@@ -62,7 +59,7 @@
 - (void)dataLoader:(id)arg1 didReceiveErrorResponse:(id)arg2;
 - (void)dataLoader:(id)arg1 didReceiveSuccessfulResponse:(id)arg2;
 - (id)fetchViewModelWithCompletion:(CDUnknownBlockType)arg1;
-- (id)initWithViewModelBuilderProvider:(id)arg1 dataLoaderFactory:(id)arg2 genre:(id)arg3 podcastTestManager:(id)arg4 nftEnabledSignal:(id)arg5 onDemandDecorator:(id)arg6 locale:(id)arg7 offset:(unsigned long long)arg8 sourceIdentifier:(id)arg9 featureID:(id)arg10 pageURI:(id)arg11;
+- (id)initWithViewModelBuilderProvider:(id)arg1 dataLoaderFactory:(id)arg2 genre:(id)arg3 podcastTestManager:(id)arg4 nftEnabledSignal:(id)arg5 onDemandDecorator:(id)arg6 locale:(id)arg7 offset:(unsigned long long)arg8 sourceIdentifier:(id)arg9 featureID:(id)arg10 pageURI:(id)arg11 timeZoneProvider:(id)arg12;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

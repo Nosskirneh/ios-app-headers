@@ -6,22 +6,22 @@
 
 #import <objc/NSObject.h>
 
-#import "EXP_HUBComponent-Protocol.h"
-#import "EXP_HUBComponentWithChildren-Protocol.h"
+#import "HUBComponent-Protocol.h"
+#import "HUBComponentWithChildren-Protocol.h"
 
 @class NSSet, SPTPremiumDestinationGLUETheme;
-@protocol EXP_HUBComponentChildDelegate;
+@protocol HUBComponentChildDelegate;
 
-@interface SPTPremiumDestinationOfferCardComponent : NSObject <EXP_HUBComponent, EXP_HUBComponentWithChildren>
+@interface SPTPremiumDestinationOfferCardComponent : NSObject <HUBComponent, HUBComponentWithChildren>
 {
-    id <EXP_HUBComponentChildDelegate> _childDelegate;
+    id <HUBComponentChildDelegate> _childDelegate;
     SPTPremiumDestinationGLUETheme *_theme;
 }
 
 + (double)offerCardBaseComponentHeightForStyle:(id)arg1;
 + (struct CGSize)offerCardContentViewSizeForContainerViewSize:(struct CGSize)arg1 style:(id)arg2;
 @property(retain, nonatomic) SPTPremiumDestinationGLUETheme *theme; // @synthesize theme=_theme;
-@property(nonatomic) __weak id <EXP_HUBComponentChildDelegate> childDelegate; // @synthesize childDelegate=_childDelegate;
+@property(nonatomic) __weak id <HUBComponentChildDelegate> childDelegate; // @synthesize childDelegate=_childDelegate;
 - (void).cxx_destruct;
 - (struct CGSize)preferredViewSizeForDisplayingModel:(id)arg1 containerViewSize:(struct CGSize)arg2;
 @property(readonly, copy, nonatomic) NSSet *layoutTraits;

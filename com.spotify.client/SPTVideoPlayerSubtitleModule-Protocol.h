@@ -7,11 +7,10 @@
 #import "NSObject-Protocol.h"
 
 @class NSArray;
-@protocol SPTVideoSubtitle, SPTVideoSubtitleFactory;
+@protocol SPTVideoSubtitle;
 
 @protocol SPTVideoPlayerSubtitleModule <NSObject>
 @property(retain, nonatomic) id <SPTVideoSubtitle> preferredSubtitle;
-- (id <SPTVideoSubtitleFactory>)subtitleFactory;
 - (NSArray *)availableSubtitles;
 - (id <SPTVideoSubtitle>)selectedSubtitle;
 @end

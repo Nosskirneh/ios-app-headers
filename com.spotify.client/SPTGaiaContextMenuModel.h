@@ -9,13 +9,13 @@
 #import "SPTContextMenuViewDataSource-Protocol.h"
 #import "SPTGaiaContextMenuActionDelegate-Protocol.h"
 
-@class NSArray, NSString, SPTGaiaDevice, SPTGaiaDeviceAppearanceMapping;
+@class NSArray, NSString, SPTGaiaConnectDevice, SPTGaiaDeviceAppearanceMapping;
 @protocol GLUEImageLoader, SPTGaiaContextMenuModelDelegate, SPTGaiaDevicePickerContextMenuFlagsProvider><SPTGaiaHomeDeviceFlagsProvider;
 
 @interface SPTGaiaContextMenuModel : NSObject <SPTGaiaContextMenuActionDelegate, SPTContextMenuViewDataSource>
 {
     id <SPTGaiaContextMenuModelDelegate> _delegate;
-    SPTGaiaDevice *_device;
+    SPTGaiaConnectDevice *_device;
     id <SPTGaiaDevicePickerContextMenuFlagsProvider><SPTGaiaHomeDeviceFlagsProvider> _flagsProvider;
     NSArray *_actions;
     NSArray *_filteredActions;
@@ -25,10 +25,10 @@
 
 @property(retain, nonatomic) id <GLUEImageLoader> imageLoader; // @synthesize imageLoader=_imageLoader;
 @property(readonly, nonatomic) SPTGaiaDeviceAppearanceMapping *iconMapper; // @synthesize iconMapper=_iconMapper;
-@property(retain, nonatomic) NSArray *filteredActions; // @synthesize filteredActions=_filteredActions;
-@property(retain, nonatomic) NSArray *actions; // @synthesize actions=_actions;
+@property(copy, nonatomic) NSArray *filteredActions; // @synthesize filteredActions=_filteredActions;
+@property(copy, nonatomic) NSArray *actions; // @synthesize actions=_actions;
 @property(retain, nonatomic) id <SPTGaiaDevicePickerContextMenuFlagsProvider><SPTGaiaHomeDeviceFlagsProvider> flagsProvider; // @synthesize flagsProvider=_flagsProvider;
-@property(readonly, nonatomic) SPTGaiaDevice *device; // @synthesize device=_device;
+@property(readonly, nonatomic) SPTGaiaConnectDevice *device; // @synthesize device=_device;
 @property(nonatomic) __weak id <SPTGaiaContextMenuModelDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
 - (id)enabledActionsInArray:(id)arg1;

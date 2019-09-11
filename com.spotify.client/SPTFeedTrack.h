@@ -18,9 +18,9 @@
 }
 
 @property(retain, nonatomic) NSURL *imageURL; // @synthesize imageURL=_imageURL;
-@property(retain, nonatomic) NSString *artistName; // @synthesize artistName=_artistName;
-@property(retain, nonatomic) NSString *name; // @synthesize name=_name;
-@property(readonly, nonatomic) SPTFeedAlbum *album; // @synthesize album=_album;
+@property(copy, nonatomic) NSString *artistName; // @synthesize artistName=_artistName;
+@property(copy, nonatomic) NSString *name; // @synthesize name=_name;
+@property(readonly, nonatomic) __weak SPTFeedAlbum *album; // @synthesize album=_album;
 @property(retain, nonatomic) NSURL *URI; // @synthesize URI;
 - (void).cxx_destruct;
 - (void)processDictionary:(id)arg1;

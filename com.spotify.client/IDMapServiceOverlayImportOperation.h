@@ -21,7 +21,7 @@
 - (void).cxx_destruct;
 - (id)description;
 - (void)completeOperation;
-- (void)handleMapServiceEvent:(unsigned long long)arg1 transferId:(long long)arg2;
+- (void)handleMapServiceEvent:(id)arg1 transferId:(long long)arg2;
 - (void)abortTransfer;
 - (void)finalizeTransfer;
 - (void)importData;

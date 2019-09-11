@@ -6,17 +6,17 @@
 
 #import "GLUETableViewCellStyle.h"
 
-@class GLUELabelStyle, GLUETrackAccessoryLabelStyle;
+@class GLUELabelStyle, SPTPodcastEpisodeDescriptionTextViewStyle;
 
 @interface SPTPodcastEpisodeDescriptionTableViewCellStyle : GLUETableViewCellStyle
 {
     GLUELabelStyle *_metadataLabelStyle;
-    GLUETrackAccessoryLabelStyle *_accessoryLabelStyle;
+    SPTPodcastEpisodeDescriptionTextViewStyle *_descriptionTextViewStyle;
     double _spacing;
 }
 
 @property(nonatomic) double spacing; // @synthesize spacing=_spacing;
-@property(copy, nonatomic) GLUETrackAccessoryLabelStyle *accessoryLabelStyle; // @synthesize accessoryLabelStyle=_accessoryLabelStyle;
+@property(copy, nonatomic) SPTPodcastEpisodeDescriptionTextViewStyle *descriptionTextViewStyle; // @synthesize descriptionTextViewStyle=_descriptionTextViewStyle;
 @property(copy, nonatomic) GLUELabelStyle *metadataLabelStyle; // @synthesize metadataLabelStyle=_metadataLabelStyle;
 - (void).cxx_destruct;
 - (id)copyWithZone:(struct _NSZone *)arg1;

@@ -18,7 +18,7 @@
 + (id)messageWithUtteranceId:(id)arg1 timestamp:(long long)arg2 accepted:(_Bool)arg3;
 @property(nonatomic) _Bool acceptedValue; // @synthesize acceptedValue=_acceptedValue;
 @property(nonatomic) long long timestampValue; // @synthesize timestampValue=_timestampValue;
-@property(retain, nonatomic) NSString *utteranceIdValue; // @synthesize utteranceIdValue=_utteranceIdValue;
+@property(copy, nonatomic) NSString *utteranceIdValue; // @synthesize utteranceIdValue=_utteranceIdValue;
 - (void).cxx_destruct;
 - (_Bool)isEqual:(id)arg1;
 - (unsigned long long)hash;

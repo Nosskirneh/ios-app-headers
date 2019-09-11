@@ -25,7 +25,7 @@
 @property(retain, nonatomic) SPTSignupRequestProvider *requestProvider; // @synthesize requestProvider=_requestProvider;
 @property(retain, nonatomic) SPTSignupResponseProcessor *responseProcessor; // @synthesize responseProcessor=_responseProcessor;
 @property(retain, nonatomic) SPTDataLoader *dataLoader; // @synthesize dataLoader=_dataLoader;
-@property(retain, nonatomic) NSDictionary *configurationDictionary; // @synthesize configurationDictionary=_configurationDictionary;
+@property(copy, nonatomic) NSDictionary *configurationDictionary; // @synthesize configurationDictionary=_configurationDictionary;
 @property(nonatomic) __weak id <SPTSignupDataLoaderDelegate> delegate; // @synthesize delegate;
 - (void).cxx_destruct;
 - (void)handleFallbackResponse;

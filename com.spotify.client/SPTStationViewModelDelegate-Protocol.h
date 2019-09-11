@@ -10,7 +10,6 @@
 @protocol SPTRadioStationViewModel;
 
 @protocol SPTStationViewModelDelegate <SPTBaseViewModelDelegate>
-- (void)stationViewModelCurrentStationSavedStateDidChange:(id <SPTRadioStationViewModel>)arg1;
 - (void)stationViewModelUpdatedTracks:(id <SPTRadioStationViewModel>)arg1;
 - (void)stationViewModelFailedToLoadMoreTracks:(id <SPTRadioStationViewModel>)arg1;
 - (void)stationViewModelLoadedMoreTracks:(id <SPTRadioStationViewModel>)arg1;

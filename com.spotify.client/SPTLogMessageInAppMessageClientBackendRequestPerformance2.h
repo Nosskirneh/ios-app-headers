@@ -17,10 +17,10 @@
 }
 
 + (id)messageWithRequestUri:(id)arg1 performanceTime:(id)arg2 requestType:(id)arg3 messageFormat:(id)arg4;
-@property(retain, nonatomic) NSString *messageFormatValue; // @synthesize messageFormatValue=_messageFormatValue;
-@property(retain, nonatomic) NSString *requestTypeValue; // @synthesize requestTypeValue=_requestTypeValue;
-@property(retain, nonatomic) NSString *performanceTimeValue; // @synthesize performanceTimeValue=_performanceTimeValue;
-@property(retain, nonatomic) NSString *requestUriValue; // @synthesize requestUriValue=_requestUriValue;
+@property(copy, nonatomic) NSString *messageFormatValue; // @synthesize messageFormatValue=_messageFormatValue;
+@property(copy, nonatomic) NSString *requestTypeValue; // @synthesize requestTypeValue=_requestTypeValue;
+@property(copy, nonatomic) NSString *performanceTimeValue; // @synthesize performanceTimeValue=_performanceTimeValue;
+@property(copy, nonatomic) NSString *requestUriValue; // @synthesize requestUriValue=_requestUriValue;
 - (void).cxx_destruct;
 - (_Bool)isEqual:(id)arg1;
 - (unsigned long long)hash;

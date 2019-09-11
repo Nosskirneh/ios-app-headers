@@ -7,6 +7,7 @@
 #import "NSObject-Protocol.h"
 
 @protocol SPTGaiaSettingsObserver <NSObject>
+- (void)localDevicesOnlySettingsChanged:(_Bool)arg1;
 - (void)lockScreenControlsSettingsChanged:(_Bool)arg1;
 @end
 

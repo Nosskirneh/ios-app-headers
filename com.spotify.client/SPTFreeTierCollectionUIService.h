@@ -6,7 +6,7 @@
 
 #import "SPTUIPageService.h"
 
-@protocol CollectionFeature, SPContextMenuFeature, SPTAudioPreviewService, SPTCollectionPlatformService, SPTContainerUIService, SPTCoreService, SPTFreeTierCollectionPrivateEntityPageRegistry, SPTFreeTierCollectionService, SPTFreeTierCreatePlaylistService, SPTFreeTierPreCurationService, SPTGLUEService, SPTImageLoaderRequestFactory, SPTNetworkService, SPTOfflineService, SPTPerformanceMetricsService, SPTPlayerFeature, SPTPlaylistPlatformService, SPTPodcastFeature, SPTSessionService, SPTSortingFilteringService, SPTUIPresentationService, SPTYourLibraryService;
+@protocol CollectionFeature, SPContextMenuFeature, SPTAudioPreviewService, SPTCollectionPlatformService, SPTContainerUIService, SPTCoreService, SPTFreeTierCollectionService, SPTFreeTierCreatePlaylistService, SPTFreeTierPreCurationService, SPTGLUEService, SPTImageLoaderRequestFactory, SPTNetworkService, SPTOfflineService, SPTPerformanceMetricsService, SPTPlayerFeature, SPTPlaylistPlatformService, SPTSessionService, SPTShareFeature, SPTShelfService, SPTSnackbarService, SPTSortingFilteringService, SPTUIPresentationService, SPTYourLibraryService;
 
 @interface SPTFreeTierCollectionUIService : SPTUIPageService
 {
@@ -19,37 +19,37 @@
     id <SPContextMenuFeature> _contextMenuService;
     id <SPTCoreService> _coreService;
     id <SPTFreeTierCollectionService> _freeTierCollectionService;
+    id <SPTSnackbarService> _snackbarService;
     id <SPTGLUEService> _glueService;
     id <SPTNetworkService> _networkService;
     id <SPTOfflineService> _offlineService;
     id <SPTPerformanceMetricsService> _performanceMetricsService;
     id <SPTPlayerFeature> _playerService;
     id <SPTPlaylistPlatformService> _playlistPlatformService;
-    id <SPTPodcastFeature> _podcastService;
     id <SPTUIPresentationService> _presentationService;
     id <SPTFreeTierPreCurationService> _preCurationService;
     id <SPTSortingFilteringService> _sortingFilteringService;
     id <SPTYourLibraryService> _yourLibraryService;
-    id <SPTFreeTierCollectionPrivateEntityPageRegistry> _entityPageRegistry;
-    id <SPTFreeTierCollectionPrivateEntityPageRegistry> _musicEntityPageRegistry;
+    id <SPTShelfService> _shelfService;
     id <SPTImageLoaderRequestFactory> _imageLoaderRequestFactory;
+    id <SPTShareFeature> _shareService;
 }
 
 + (id)serviceIdentifier;
+@property(nonatomic) __weak id <SPTShareFeature> shareService; // @synthesize shareService=_shareService;
 @property(nonatomic) __weak id <SPTImageLoaderRequestFactory> imageLoaderRequestFactory; // @synthesize imageLoaderRequestFactory=_imageLoaderRequestFactory;
-@property(retain, nonatomic) id <SPTFreeTierCollectionPrivateEntityPageRegistry> musicEntityPageRegistry; // @synthesize musicEntityPageRegistry=_musicEntityPageRegistry;
-@property(retain, nonatomic) id <SPTFreeTierCollectionPrivateEntityPageRegistry> entityPageRegistry; // @synthesize entityPageRegistry=_entityPageRegistry;
+@property(nonatomic) __weak id <SPTShelfService> shelfService; // @synthesize shelfService=_shelfService;
 @property(nonatomic) __weak id <SPTYourLibraryService> yourLibraryService; // @synthesize yourLibraryService=_yourLibraryService;
 @property(nonatomic) __weak id <SPTSortingFilteringService> sortingFilteringService; // @synthesize sortingFilteringService=_sortingFilteringService;
 @property(nonatomic) __weak id <SPTFreeTierPreCurationService> preCurationService; // @synthesize preCurationService=_preCurationService;
 @property(nonatomic) __weak id <SPTUIPresentationService> presentationService; // @synthesize presentationService=_presentationService;
-@property(nonatomic) __weak id <SPTPodcastFeature> podcastService; // @synthesize podcastService=_podcastService;
 @property(nonatomic) __weak id <SPTPlaylistPlatformService> playlistPlatformService; // @synthesize playlistPlatformService=_playlistPlatformService;
 @property(nonatomic) __weak id <SPTPlayerFeature> playerService; // @synthesize playerService=_playerService;
 @property(nonatomic) __weak id <SPTPerformanceMetricsService> performanceMetricsService; // @synthesize performanceMetricsService=_performanceMetricsService;
 @property(nonatomic) __weak id <SPTOfflineService> offlineService; // @synthesize offlineService=_offlineService;
 @property(nonatomic) __weak id <SPTNetworkService> networkService; // @synthesize networkService=_networkService;
 @property(nonatomic) __weak id <SPTGLUEService> glueService; // @synthesize glueService=_glueService;
+@property(nonatomic) __weak id <SPTSnackbarService> snackbarService; // @synthesize snackbarService=_snackbarService;
 @property(nonatomic) __weak id <SPTFreeTierCollectionService> freeTierCollectionService; // @synthesize freeTierCollectionService=_freeTierCollectionService;
 @property(nonatomic) __weak id <SPTCoreService> coreService; // @synthesize coreService=_coreService;
 @property(nonatomic) __weak id <SPContextMenuFeature> contextMenuService; // @synthesize contextMenuService=_contextMenuService;
@@ -60,25 +60,21 @@
 @property(nonatomic) __weak id <SPTSessionService> clientSessionService; // @synthesize clientSessionService=_clientSessionService;
 @property(nonatomic) __weak id <SPTAudioPreviewService> audioPreviewService; // @synthesize audioPreviewService=_audioPreviewService;
 - (void).cxx_destruct;
+- (long long)entityRowSize;
 - (void)featureFlagSignal:(id)arg1 hasAssumedState:(long long)arg2;
-- (void)registerEntityPages:(id)arg1 podcastsEnabled:(_Bool)arg2 isCompactMode:(_Bool)arg3;
-- (id)providePrivateEntityPageRegistry;
-- (id)providePrivateMusicEntityPageRegistry;
+- (void)registerImageLoaderRequestFactory;
+- (id)loggingFeatureIdentifier;
+- (id)provideLoggerWithLogContext:(id)arg1 suggestedPageURI:(id)arg2;
 - (id)provideCollectionTheme;
-- (id)provideLoggerWithLogContext:(id)arg1;
 - (id)provideViewLoggerForURI:(id)arg1;
 - (id)provideSongsViewControllerForURI:(id)arg1 context:(id)arg2;
-- (id)providePodcastsViewControllerForURI:(id)arg1 context:(id)arg2;
-- (id)providePlaylistsViewControllerForURI:(id)arg1 context:(id)arg2 compactMode:(_Bool)arg3;
-- (id)provideYourLibraryViewControllerForURI:(id)arg1 context:(id)arg2 registry:(id)arg3;
-- (id)provideYourMusicViewControllerForURI:(id)arg1 context:(id)arg2;
+- (id)providePlaylistsViewControllerForURI:(id)arg1 context:(id)arg2;
 - (id)provideViewControllerForURI:(id)arg1 context:(id)arg2;
 - (void)configureMasterFeatureFlag:(id)arg1;
 - (_Bool)claimsURI:(id)arg1;
-- (id)podcastsPageProviderWithCompactMode:(_Bool)arg1;
-- (id)albumsPageProviderWithCompactMode:(_Bool)arg1;
-- (id)artistsPageProviderWithCompactMode:(_Bool)arg1;
-- (id)playlistPageProviderWithCompactMode:(_Bool)arg1 URI:(id)arg2;
+- (id)albumsPageProvider;
+- (id)artistsPageProvider;
+- (id)playlistPageProviderWithURI:(id)arg1;
 - (void)load;
 - (void)configureWithServices:(id)arg1;
 

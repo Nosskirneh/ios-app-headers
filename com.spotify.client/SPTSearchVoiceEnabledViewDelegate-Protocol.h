@@ -10,6 +10,6 @@
 @protocol SPTSearchVoiceEnabledView;
 
 @protocol SPTSearchVoiceEnabledViewDelegate <NSObject>
-- (void)voiceEnabledView:(UIView<SPTSearchVoiceEnabledView> *)arg1 didSelectElementWithSourceIdentifier:(NSString *)arg2 sender:(id)arg3;
+- (void)voiceEnabledView:(UIView<SPTSearchVoiceEnabledView> *)arg1 didSelectElementWithSourceIdentifier:(NSString *)arg2;
 @end
 

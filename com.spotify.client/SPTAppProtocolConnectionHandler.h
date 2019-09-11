@@ -12,12 +12,11 @@
 #import "SPTAppProtocolSubscriptionDelegate-Protocol.h"
 
 @class NSDictionary, NSMutableDictionary, NSString, SPSession, SPTAccessory, SPTAppProtocolCallMessageHandler, SPTAppProtocolMainHandler, SPTAppProtocolSessionMessageHandler;
-@protocol SPTAccessoryStateManager, SPTAppProtocolConnection, SPTAppProtocolConnectionHandlerDelegate, SPTExternalIntegrationDebugLog, SPTExternalIntegrationPlatform, SPTGaiaDeviceStateManager, SPTImageLoaderFactory, SPTProductState;
+@protocol SPTAccessoryStateManager, SPTAppProtocolConnection, SPTAppProtocolConnectionHandlerDelegate, SPTExternalIntegrationDebugLog, SPTExternalIntegrationPlatform, SPTGaiaConnectAPI, SPTImageLoaderFactory, SPTPreferences, SPTProductState;
 
 @interface SPTAppProtocolConnectionHandler : NSObject <SPTAppProtocolConnectionOutput, SPTAppProtocolConnectionDelegate, SPTAppProtocolSubscriptionDelegate, SPTAppProtocolSessionHandler>
 {
     _Bool _requiresAuthentication;
-    _Bool _hasAuthenticated;
     _Bool _hasValidSession;
     int _publicationId;
     float _imageHeight;
@@ -33,7 +32,7 @@
     NSDictionary *_lastHelloInfo;
     NSString *_lastClientID;
     unsigned long long _imageType;
-    id <SPTGaiaDeviceStateManager> _gaiaDeviceStateManger;
+    id <SPTGaiaConnectAPI> _connectManager;
     SPSession *_currentSession;
     id <SPTProductState> _productState;
     id <SPTAppProtocolConnection> _connection;
@@ -42,10 +41,12 @@
     id <SPTAccessoryStateManager> _accessoryManager;
     id <SPTImageLoaderFactory> _imageLoaderFactory;
     SPTAccessory *_currentAccesory;
+    id <SPTPreferences> _preferences;
     id <SPTExternalIntegrationDebugLog> _debugLog;
 }
 
 @property(retain, nonatomic) id <SPTExternalIntegrationDebugLog> debugLog; // @synthesize debugLog=_debugLog;
+@property(readonly, nonatomic) __weak id <SPTPreferences> preferences; // @synthesize preferences=_preferences;
 @property(retain, nonatomic) SPTAccessory *currentAccesory; // @synthesize currentAccesory=_currentAccesory;
 @property(nonatomic) _Bool hasValidSession; // @synthesize hasValidSession=_hasValidSession;
 @property(readonly, nonatomic) id <SPTImageLoaderFactory> imageLoaderFactory; // @synthesize imageLoaderFactory=_imageLoaderFactory;
@@ -55,7 +56,7 @@
 @property(readonly, nonatomic) id <SPTAppProtocolConnection> connection; // @synthesize connection=_connection;
 @property(nonatomic) __weak id <SPTProductState> productState; // @synthesize productState=_productState;
 @property(nonatomic) __weak SPSession *currentSession; // @synthesize currentSession=_currentSession;
-@property(retain, nonatomic) id <SPTGaiaDeviceStateManager> gaiaDeviceStateManger; // @synthesize gaiaDeviceStateManger=_gaiaDeviceStateManger;
+@property(retain, nonatomic) id <SPTGaiaConnectAPI> connectManager; // @synthesize connectManager=_connectManager;
 @property(nonatomic) unsigned long long imageType; // @synthesize imageType=_imageType;
 @property(nonatomic) float thumbnailImageWidth; // @synthesize thumbnailImageWidth=_thumbnailImageWidth;
 @property(nonatomic) float thumbnailImageHeight; // @synthesize thumbnailImageHeight=_thumbnailImageHeight;
@@ -66,7 +67,6 @@
 @property(retain, nonatomic) NSDictionary *lastHelloInfo; // @synthesize lastHelloInfo=_lastHelloInfo;
 @property(retain, nonatomic) NSMutableDictionary *callStorage; // @synthesize callStorage=_callStorage;
 @property(retain, nonatomic) NSMutableDictionary *subscriptionStorage; // @synthesize subscriptionStorage=_subscriptionStorage;
-@property(nonatomic) _Bool hasAuthenticated; // @synthesize hasAuthenticated=_hasAuthenticated;
 @property(readonly, nonatomic) _Bool requiresAuthentication; // @synthesize requiresAuthentication=_requiresAuthentication;
 @property(readonly, nonatomic) SPTAppProtocolCallMessageHandler *callMessageHandler; // @synthesize callMessageHandler=_callMessageHandler;
 @property(readonly, nonatomic) SPTAppProtocolSessionMessageHandler *sessionMessageHandler; // @synthesize sessionMessageHandler=_sessionMessageHandler;
@@ -85,7 +85,7 @@
 - (void)connection:(id)arg1 didCloseByRequest:(_Bool)arg2;
 - (void)connection:(id)arg1 didReceiveMessage:(id)arg2 userInfo:(id)arg3;
 - (int)nextPublicationID;
-- (id)initWithConnection:(id)arg1 accessoryStateManager:(id)arg2 networkConnectivityController:(id)arg3 externalIntegrationPlatform:(id)arg4 authenticators:(id)arg5 requiresAuthentication:(_Bool)arg6 imageLoaderFactory:(id)arg7 gaiaDeviceStateManager:(id)arg8 currentSession:(id)arg9 productState:(id)arg10 debugLog:(id)arg11;
+- (id)initWithConnection:(id)arg1 accessoryStateManager:(id)arg2 networkConnectivityController:(id)arg3 externalIntegrationPlatform:(id)arg4 authenticators:(id)arg5 requiresAuthentication:(_Bool)arg6 imageLoaderFactory:(id)arg7 connectManager:(id)arg8 currentSession:(id)arg9 productState:(id)arg10 preferences:(id)arg11 debugLog:(id)arg12;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

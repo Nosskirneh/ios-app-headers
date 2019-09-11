@@ -23,7 +23,6 @@
 - (_Bool)populateWithRawMessage:(id)arg1 error:(id *)arg2;
 - (id)rawMessage;
 - (long long)messageType;
-- (id)initWithCallRequestID:(unsigned long long)arg1 options:(id)arg2;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

@@ -8,14 +8,14 @@
 
 #import "SPTFreeTierUIServiceComponentFactory-Protocol.h"
 
-@class EXP_HUBComponentRegistry, NSString;
-@protocol EXP_HUGSStyleOverrider, GLUETheme, SPTImageLoaderFactory, SPTModalPresentationController, SPTProductState;
+@class HUBComponentRegistry, NSString;
+@protocol GLUETheme, HUGSStyleOverrider, SPTImageLoaderFactory, SPTModalPresentationController, SPTProductState;
 
 @interface SPTFreeTierUIServiceComponentFactoryImplementation : NSObject <SPTFreeTierUIServiceComponentFactory>
 {
-    EXP_HUBComponentRegistry *_componentRegistry;
+    HUBComponentRegistry *_componentRegistry;
     id <GLUETheme> _theme;
-    id <EXP_HUGSStyleOverrider> _styleOverrider;
+    id <HUGSStyleOverrider> _styleOverrider;
     id <SPTImageLoaderFactory> _imageLoaderFactory;
     id <SPTProductState> _productState;
     id <SPTModalPresentationController> _modalPresentationController;
@@ -24,12 +24,11 @@
 @property(readonly, nonatomic) id <SPTModalPresentationController> modalPresentationController; // @synthesize modalPresentationController=_modalPresentationController;
 @property(readonly, nonatomic) __weak id <SPTProductState> productState; // @synthesize productState=_productState;
 @property(readonly, nonatomic) id <SPTImageLoaderFactory> imageLoaderFactory; // @synthesize imageLoaderFactory=_imageLoaderFactory;
-@property(readonly, nonatomic) id <EXP_HUGSStyleOverrider> styleOverrider; // @synthesize styleOverrider=_styleOverrider;
+@property(readonly, nonatomic) id <HUGSStyleOverrider> styleOverrider; // @synthesize styleOverrider=_styleOverrider;
 @property(readonly, nonatomic) id <GLUETheme> theme; // @synthesize theme=_theme;
-@property(readonly, nonatomic) EXP_HUBComponentRegistry *componentRegistry; // @synthesize componentRegistry=_componentRegistry;
+@property(readonly, nonatomic) HUBComponentRegistry *componentRegistry; // @synthesize componentRegistry=_componentRegistry;
 - (void).cxx_destruct;
 - (id)provideFullBleadHeaderComponent;
-- (id)provideSolarHomeComponents;
 - (id)provideFreeTierComponents;
 - (void)registerFreeTierHubsComponents;
 - (id)provideHubsComponentRegistry;

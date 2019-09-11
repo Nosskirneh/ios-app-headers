@@ -8,7 +8,7 @@
 
 #import "SPTService-Protocol.h"
 
-@class NSString, SPTAllocationContext, SPTEqualizerModel;
+@class NSString, SPTAllocationContext, SPTEqualizerLogger, SPTEqualizerModel;
 @protocol GaiaFeature, SPTContainerService, SPTCoreService, SPTSessionService, SPTSettingsFeature, SPTURIDispatchService;
 
 @interface SPTEqualizerFeatureImplementation : NSObject <SPTService>
@@ -16,17 +16,19 @@
     id <SPTCoreService> _coreService;
     id <SPTSessionService> _clientSessionService;
     id <SPTContainerService> _containerService;
-    id <SPTSettingsFeature> _settings;
+    id <SPTSettingsFeature> _settingsFeature;
     id <SPTURIDispatchService> _URIDispatchService;
-    id <GaiaFeature> _gaia;
+    id <GaiaFeature> _gaiaFeature;
     SPTEqualizerModel *_equalizerModel;
+    SPTEqualizerLogger *_equalizerLogger;
 }
 
 + (id)serviceIdentifier;
+@property(retain, nonatomic) SPTEqualizerLogger *equalizerLogger; // @synthesize equalizerLogger=_equalizerLogger;
 @property(retain, nonatomic) SPTEqualizerModel *equalizerModel; // @synthesize equalizerModel=_equalizerModel;
-@property(nonatomic) __weak id <GaiaFeature> gaia; // @synthesize gaia=_gaia;
+@property(nonatomic) __weak id <GaiaFeature> gaiaFeature; // @synthesize gaiaFeature=_gaiaFeature;
 @property(nonatomic) __weak id <SPTURIDispatchService> URIDispatchService; // @synthesize URIDispatchService=_URIDispatchService;
-@property(nonatomic) __weak id <SPTSettingsFeature> settings; // @synthesize settings=_settings;
+@property(nonatomic) __weak id <SPTSettingsFeature> settingsFeature; // @synthesize settingsFeature=_settingsFeature;
 @property(nonatomic) __weak id <SPTContainerService> containerService; // @synthesize containerService=_containerService;
 @property(nonatomic) __weak id <SPTSessionService> clientSessionService; // @synthesize clientSessionService=_clientSessionService;
 @property(nonatomic) __weak id <SPTCoreService> coreService; // @synthesize coreService=_coreService;

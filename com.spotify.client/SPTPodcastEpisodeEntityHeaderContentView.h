@@ -8,7 +8,7 @@
 
 #import "GLUEStyleable-Protocol.h"
 
-@class GLUEButton, GLUEGradientView, GLUEImageView, GLUELabel, NSLayoutConstraint, NSString, SPTPodcastEpisodeEntityHeaderContentViewStyle, UIImage, UIImageView, UIProgressView, UIStackView;
+@class GLUEButton, GLUEGradientView, GLUEImageView, GLUELabel, GLUETrackAccessoryLabel, NSLayoutConstraint, NSString, SPTPodcastEpisodeEntityHeaderContentViewStyle, UIImage, UIImageView, UIProgressView, UIStackView;
 @protocol SPTPodcastEpisodeEntityHeaderContentViewDelegate;
 
 @interface SPTPodcastEpisodeEntityHeaderContentView : UIView <GLUEStyleable>
@@ -28,26 +28,32 @@
     UIImageView *_playedCheckmark;
     UIStackView *_metadataContainer;
     UIStackView *_contentStackView;
+    UIView *_titleSpacer;
+    GLUETrackAccessoryLabel *_accessoryLabel;
+    UIView *_accessoryContainerView;
     GLUEGradientView *_backgroundGradientView;
     NSLayoutConstraint *_contentConstraint;
-    NSLayoutConstraint *_contentLeftLayoutConstraint;
-    NSLayoutConstraint *_contentRightLayoutConstraint;
+    NSLayoutConstraint *_contentLeadingLayoutConstraint;
+    NSLayoutConstraint *_contentTrailingLayoutConstraint;
     NSLayoutConstraint *_collapsedTitleTopLayoutConstraint;
-    NSLayoutConstraint *_collapsedTitleLeftLayoutConstraint;
-    NSLayoutConstraint *_collapsedTitleRightLayoutConstraint;
+    NSLayoutConstraint *_collapsedTitleLeadingLayoutConstraint;
+    NSLayoutConstraint *_collapsedTitleTrailingLayoutConstraint;
     NSLayoutConstraint *_backgroundHeightConstraint;
     NSLayoutConstraint *_heightLayoutConstraint;
 }
 
 @property(retain, nonatomic) NSLayoutConstraint *heightLayoutConstraint; // @synthesize heightLayoutConstraint=_heightLayoutConstraint;
 @property(retain, nonatomic) NSLayoutConstraint *backgroundHeightConstraint; // @synthesize backgroundHeightConstraint=_backgroundHeightConstraint;
-@property(retain, nonatomic) NSLayoutConstraint *collapsedTitleRightLayoutConstraint; // @synthesize collapsedTitleRightLayoutConstraint=_collapsedTitleRightLayoutConstraint;
-@property(retain, nonatomic) NSLayoutConstraint *collapsedTitleLeftLayoutConstraint; // @synthesize collapsedTitleLeftLayoutConstraint=_collapsedTitleLeftLayoutConstraint;
+@property(retain, nonatomic) NSLayoutConstraint *collapsedTitleTrailingLayoutConstraint; // @synthesize collapsedTitleTrailingLayoutConstraint=_collapsedTitleTrailingLayoutConstraint;
+@property(retain, nonatomic) NSLayoutConstraint *collapsedTitleLeadingLayoutConstraint; // @synthesize collapsedTitleLeadingLayoutConstraint=_collapsedTitleLeadingLayoutConstraint;
 @property(retain, nonatomic) NSLayoutConstraint *collapsedTitleTopLayoutConstraint; // @synthesize collapsedTitleTopLayoutConstraint=_collapsedTitleTopLayoutConstraint;
-@property(retain, nonatomic) NSLayoutConstraint *contentRightLayoutConstraint; // @synthesize contentRightLayoutConstraint=_contentRightLayoutConstraint;
-@property(retain, nonatomic) NSLayoutConstraint *contentLeftLayoutConstraint; // @synthesize contentLeftLayoutConstraint=_contentLeftLayoutConstraint;
+@property(retain, nonatomic) NSLayoutConstraint *contentTrailingLayoutConstraint; // @synthesize contentTrailingLayoutConstraint=_contentTrailingLayoutConstraint;
+@property(retain, nonatomic) NSLayoutConstraint *contentLeadingLayoutConstraint; // @synthesize contentLeadingLayoutConstraint=_contentLeadingLayoutConstraint;
 @property(retain, nonatomic) NSLayoutConstraint *contentConstraint; // @synthesize contentConstraint=_contentConstraint;
 @property(retain, nonatomic) GLUEGradientView *backgroundGradientView; // @synthesize backgroundGradientView=_backgroundGradientView;
+@property(retain, nonatomic) UIView *accessoryContainerView; // @synthesize accessoryContainerView=_accessoryContainerView;
+@property(retain, nonatomic) GLUETrackAccessoryLabel *accessoryLabel; // @synthesize accessoryLabel=_accessoryLabel;
+@property(retain, nonatomic) UIView *titleSpacer; // @synthesize titleSpacer=_titleSpacer;
 @property(retain, nonatomic) UIStackView *contentStackView; // @synthesize contentStackView=_contentStackView;
 @property(retain, nonatomic) UIStackView *metadataContainer; // @synthesize metadataContainer=_metadataContainer;
 @property(retain, nonatomic) UIImageView *playedCheckmark; // @synthesize playedCheckmark=_playedCheckmark;
@@ -66,15 +72,17 @@
 - (void).cxx_destruct;
 - (void)glue_applyStyle:(id)arg1;
 - (void)updateOffset:(double)arg1;
-- (void)updateVisibleRect:(struct CGRect)arg1 minimumHeight:(double)arg2;
+- (void)updateVisibleRect:(struct CGRect)arg1 minimumHeight:(double)arg2 navBarHeight:(double)arg3;
 @property(nonatomic) double listeningProgress;
 @property(nonatomic, getter=isPlayed) _Bool played;
+@property(nonatomic, getter=isExplicit) _Bool explicit;
 @property(copy, nonatomic) UIImage *image;
 @property(copy, nonatomic) NSString *metadataText;
 @property(copy, nonatomic) NSString *podcastText;
 @property(copy, nonatomic) NSString *title;
 - (double)heightAdjustment;
 - (double)contentAdjustment;
+- (id)accessoryContainerForLabel:(id)arg1 spacing:(double)arg2;
 - (void)setupConstraints;
 - (void)initializeInterface;
 - (id)initWithFrame:(struct CGRect)arg1;

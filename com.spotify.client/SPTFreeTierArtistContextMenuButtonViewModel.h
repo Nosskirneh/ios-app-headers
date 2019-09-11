@@ -6,13 +6,15 @@
 
 #import <objc/NSObject.h>
 
+#import "FollowModelObserver-Protocol.h"
 #import "SPTFreeTierEntityContextMenuButtonViewModel-Protocol.h"
 
-@class NSDictionary, NSString, NSURL;
-@protocol SPTContextMenuActionsProvider, SPTContextMenuPresenter, SPTContextMenuPresenterFactory, SPTFreeTierEntityContextMenuButtonViewModelDelegate;
+@class FollowModel, NSDictionary, NSString, NSURL;
+@protocol SPTContextMenuActionsProvider, SPTContextMenuPresenter, SPTContextMenuPresenterFactory, SPTFollowModelFactory, SPTFreeTierArtistTestManager, SPTFreeTierEntityContextMenuButtonViewModelDelegate, SPTModerationReportDecorationRegistry, SPTModerationServiceState;
 
-@interface SPTFreeTierArtistContextMenuButtonViewModel : NSObject <SPTFreeTierEntityContextMenuButtonViewModel>
+@interface SPTFreeTierArtistContextMenuButtonViewModel : NSObject <SPTFreeTierEntityContextMenuButtonViewModel, FollowModelObserver>
 {
+    _Bool _artistBanned;
     id <SPTFreeTierEntityContextMenuButtonViewModelDelegate> _delegate;
     unsigned long long _state;
     id <SPTContextMenuPresenterFactory> _presenterFactory;
@@ -20,8 +22,19 @@
     NSURL *_viewURI;
     NSDictionary *_metadata;
     id <SPTContextMenuPresenter> _presenter;
+    id <SPTFreeTierArtistTestManager> _freeTierArtistTestManager;
+    id <SPTFollowModelFactory> _followModelFactory;
+    FollowModel *_followModel;
+    id <SPTModerationReportDecorationRegistry> _decorationRegistry;
+    id <SPTModerationServiceState> _moderationFeatureState;
 }
 
+@property(readonly, nonatomic) id <SPTModerationServiceState> moderationFeatureState; // @synthesize moderationFeatureState=_moderationFeatureState;
+@property(readonly, nonatomic) id <SPTModerationReportDecorationRegistry> decorationRegistry; // @synthesize decorationRegistry=_decorationRegistry;
+@property(nonatomic, getter=isArtistBanned) _Bool artistBanned; // @synthesize artistBanned=_artistBanned;
+@property(readonly, nonatomic) FollowModel *followModel; // @synthesize followModel=_followModel;
+@property(readonly, nonatomic) id <SPTFollowModelFactory> followModelFactory; // @synthesize followModelFactory=_followModelFactory;
+@property(readonly, nonatomic) id <SPTFreeTierArtistTestManager> freeTierArtistTestManager; // @synthesize freeTierArtistTestManager=_freeTierArtistTestManager;
 @property(retain, nonatomic) id <SPTContextMenuPresenter> presenter; // @synthesize presenter=_presenter;
 @property(retain, nonatomic) NSDictionary *metadata; // @synthesize metadata=_metadata;
 @property(retain, nonatomic) NSURL *viewURI; // @synthesize viewURI=_viewURI;
@@ -30,13 +43,15 @@
 @property(readonly, nonatomic) unsigned long long state; // @synthesize state=_state;
 @property(nonatomic) __weak id <SPTFreeTierEntityContextMenuButtonViewModelDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
+- (void)followModel:(id)arg1 followDataDidChange:(id)arg2;
+- (void)registerArtistModerationDecorator;
 - (id)createRadioTask;
 - (id)createContextMenuTasks;
 - (id)contextMenuPresenterWithSenderView:(id)arg1;
 - (void)transitionToState:(unsigned long long)arg1;
 - (void)tapContextMenuButton:(id)arg1;
-- (void)configureWithViewURI:(id)arg1 metadata:(id)arg2;
-- (id)initWithPresenterFactory:(id)arg1 actionFactory:(id)arg2;
+- (void)configureWithViewURI:(id)arg1 metadata:(id)arg2 imageURL:(id)arg3;
+- (id)initWithPresenterFactory:(id)arg1 actionFactory:(id)arg2 freeTierArtistTestManager:(id)arg3 artistURI:(id)arg4 followModelFactory:(id)arg5 decorationRegistry:(id)arg6 moderationFeatureState:(id)arg7;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

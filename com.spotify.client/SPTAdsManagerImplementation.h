@@ -7,62 +7,60 @@
 #import <objc/NSObject.h>
 
 #import "SPTAdsManager-Protocol.h"
-#import "SPTNavigationManagerDelegate-Protocol.h"
 
-@class NSString, SPTAdContextManager, SPTAdFeatureFlagChecks, SPTAdFeaturedActionHandler, SPTAdGlobalSettingsController, SPTAdNowPlayingManager, SPTAdRulesManager, SPTAdsViewModel, SPTObserverManager;
-@protocol SPTAdNowPlayingRemoteControlPolicy, SPTLinkDispatcher, SPTMetaViewController, SPTNowPlayingModesRegistry, SPTNowPlayingNavigationBarModel;
+@class NSString, SPTAdFeatureFlagChecks, SPTAdFeaturedActionHandler, SPTAdNowPlayingFeedbackModel, SPTAdNowPlayingManager, SPTAdRulesManager, SPTAdVoicePermissions, SPTAdsInAppBrowserController, SPTAdsViewModel;
+@protocol SPTAdNowPlayingRemoteControlPolicy, SPTAdsBaseCosmosBridge, SPTAdsBaseEntity, SPTAdsBaseGlobalSettingsController, SPTLinkDispatcher, SPTMetaViewController, SPTNowPlayingNavigationBarModel, SPTPlayer;
 
-@interface SPTAdsManagerImplementation : NSObject <SPTAdsManager, SPTNavigationManagerDelegate>
+@interface SPTAdsManagerImplementation : NSObject <SPTAdsManager>
 {
     _Bool _wasStatusBarHidden;
-    id <SPTNowPlayingModesRegistry> _nowPlayingModeRegistry;
     id <SPTMetaViewController> _metaViewController;
     SPTAdNowPlayingManager *_adNowPlayingManager;
     SPTAdsViewModel *_adsViewModel;
     id <SPTNowPlayingNavigationBarModel> _nowPlayingNavigationBarModel;
     SPTAdFeaturedActionHandler *_adActionHandler;
-    SPTAdContextManager *_adContextManager;
     SPTAdRulesManager *_adRulesManager;
     SPTAdFeatureFlagChecks *_adFeatureChecker;
-    SPTAdGlobalSettingsController *_adSettingsController;
+    id <SPTAdsBaseGlobalSettingsController> _adSettingsController;
     id <SPTLinkDispatcher> _linkDispatcher;
-    id <SPTNowPlayingModesRegistry> _npvModeRegistry;
-    SPTObserverManager *_observerManager;
+    id <SPTPlayer> _player;
+    id <SPTAdsBaseCosmosBridge> _cosmosBridge;
     id <SPTAdNowPlayingRemoteControlPolicy> _remoteControlPolicy;
+    SPTAdNowPlayingFeedbackModel *_feedbackModel;
+    SPTAdsInAppBrowserController *_inAppBrowserController;
+    SPTAdVoicePermissions *_voicePermission;
 }
 
+@property(retain, nonatomic) SPTAdVoicePermissions *voicePermission; // @synthesize voicePermission=_voicePermission;
+@property(retain, nonatomic) SPTAdsInAppBrowserController *inAppBrowserController; // @synthesize inAppBrowserController=_inAppBrowserController;
+@property(retain, nonatomic) SPTAdNowPlayingFeedbackModel *feedbackModel; // @synthesize feedbackModel=_feedbackModel;
 @property(retain, nonatomic) id <SPTAdNowPlayingRemoteControlPolicy> remoteControlPolicy; // @synthesize remoteControlPolicy=_remoteControlPolicy;
-@property(retain, nonatomic) SPTObserverManager *observerManager; // @synthesize observerManager=_observerManager;
-@property(nonatomic) __weak id <SPTNowPlayingModesRegistry> npvModeRegistry; // @synthesize npvModeRegistry=_npvModeRegistry;
+@property(nonatomic) __weak id <SPTAdsBaseCosmosBridge> cosmosBridge; // @synthesize cosmosBridge=_cosmosBridge;
+@property(nonatomic) __weak id <SPTPlayer> player; // @synthesize player=_player;
 @property(retain, nonatomic) id <SPTLinkDispatcher> linkDispatcher; // @synthesize linkDispatcher=_linkDispatcher;
-@property(nonatomic) __weak SPTAdGlobalSettingsController *adSettingsController; // @synthesize adSettingsController=_adSettingsController;
+@property(nonatomic) __weak id <SPTAdsBaseGlobalSettingsController> adSettingsController; // @synthesize adSettingsController=_adSettingsController;
 @property(nonatomic) __weak SPTAdFeatureFlagChecks *adFeatureChecker; // @synthesize adFeatureChecker=_adFeatureChecker;
 @property(retain, nonatomic) SPTAdRulesManager *adRulesManager; // @synthesize adRulesManager=_adRulesManager;
-@property(nonatomic) __weak SPTAdContextManager *adContextManager; // @synthesize adContextManager=_adContextManager;
 @property(retain, nonatomic) SPTAdFeaturedActionHandler *adActionHandler; // @synthesize adActionHandler=_adActionHandler;
 @property(nonatomic) __weak id <SPTNowPlayingNavigationBarModel> nowPlayingNavigationBarModel; // @synthesize nowPlayingNavigationBarModel=_nowPlayingNavigationBarModel;
 @property(nonatomic) _Bool wasStatusBarHidden; // @synthesize wasStatusBarHidden=_wasStatusBarHidden;
 @property(nonatomic) __weak SPTAdsViewModel *adsViewModel; // @synthesize adsViewModel=_adsViewModel;
 @property(nonatomic) __weak SPTAdNowPlayingManager *adNowPlayingManager; // @synthesize adNowPlayingManager=_adNowPlayingManager;
 @property(nonatomic) __weak id <SPTMetaViewController> metaViewController; // @synthesize metaViewController=_metaViewController;
-@property(readonly, nonatomic) id <SPTNowPlayingModesRegistry> nowPlayingModeRegistry; // @synthesize nowPlayingModeRegistry=_nowPlayingModeRegistry;
 - (void).cxx_destruct;
 @property(readonly, copy) NSString *description;
-- (_Bool)hasURI:(id)arg1;
-- (void)navigationManager:(id)arg1 didNavigateFromViewController:(id)arg2 toViewController:(id)arg3;
 - (void)updateNowPlayingNavigationBar;
 - (id)provideRemoteControlPolicy;
-- (void)endFeatureContext:(id)arg1;
-- (void)beginFeatureContext:(id)arg1;
-- (void)setNPVModeRegistry:(id)arg1;
 - (void)setNowPlayingManager:(id)arg1;
 - (void)disableMidrollAdExperience:(_Bool)arg1 playOriginContext:(id)arg2;
 - (void)disablePrerollAdExperience:(_Bool)arg1 featureIdentifier:(id)arg2;
 - (void)skipCurrentAd;
 - (_Bool)handleSkip;
+- (void)handlePlayContext:(id)arg1;
 - (void)handleAdTap:(id)arg1;
-@property(readonly, nonatomic, getter=isAdsEnabled) _Bool adsEnabled;
 - (double)skipDelayRemaining:(double)arg1;
+@property(readonly, nonatomic) id <SPTAdsBaseEntity> activeAdEntity;
+@property(readonly, nonatomic) _Bool shouldDisallowPause;
 @property(readonly, nonatomic) _Bool shouldEnableSkipControl;
 @property(readonly, nonatomic) _Bool shouldShowSkipControl;
 @property(readonly, nonatomic, getter=isVideoInProgress) _Bool videoInProgress;
@@ -73,13 +71,10 @@
 @property(readonly, nonatomic, getter=isOptOutAvailable) _Bool optOutAvailable;
 @property(readonly, nonatomic, getter=isOptInAvailable) _Bool optInAvailable;
 @property(readonly, nonatomic, getter=isBreakInProgress) _Bool breakInProgress;
-- (void)notifyObserversOfChange;
-- (void)removeObserver:(id)arg1;
-- (void)addObserver:(id)arg1;
 - (void)removeObservers;
 - (void)addObservers;
 - (void)dealloc;
-- (id)initWithViewModel:(id)arg1 metaViewController:(id)arg2 adNowPlayingManager:(id)arg3 adFeaturedActionHandler:(id)arg4 adContextManager:(id)arg5 adRulesManager:(id)arg6 adFeatureChecker:(id)arg7 adSettingsController:(id)arg8 linkDispatcher:(id)arg9;
+- (id)initWithViewModel:(id)arg1 metaViewController:(id)arg2 adNowPlayingManager:(id)arg3 adFeaturedActionHandler:(id)arg4 adRulesManager:(id)arg5 adFeatureChecker:(id)arg6 adSettingsController:(id)arg7 linkDispatcher:(id)arg8 adFeedbackModel:(id)arg9 player:(id)arg10 cosmosBridge:(id)arg11 inAppBrowserController:(id)arg12 voicePermission:(id)arg13;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

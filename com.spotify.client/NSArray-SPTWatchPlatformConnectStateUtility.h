@@ -7,6 +7,6 @@
 #import <Foundation/NSArray.h>
 
 @interface NSArray (SPTWatchPlatformConnectStateUtility)
-+ (id)gaiaDevicesArrayFromGaiaDevices:(id)arg1 localDeviceId:(id)arg2 localDeviceName:(id)arg3 isPlayingRemotely:(_Bool)arg4;
++ (id)devicesArrayFromDevices:(id)arg1 activeRemoteDevice:(id)arg2 localDevice:(id)arg3 localDeviceName:(id)arg4;
 @end
 

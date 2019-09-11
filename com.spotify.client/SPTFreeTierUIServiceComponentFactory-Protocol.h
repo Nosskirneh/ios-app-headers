@@ -6,10 +6,10 @@
 
 #import "NSObject-Protocol.h"
 
-@class EXP_HUBComponentRegistry;
+@class HUBComponentRegistry;
 
 @protocol SPTFreeTierUIServiceComponentFactory <NSObject>
 - (void)registerFreeTierHubsComponents;
-- (EXP_HUBComponentRegistry *)provideHubsComponentRegistry;
+- (HUBComponentRegistry *)provideHubsComponentRegistry;
 @end
 

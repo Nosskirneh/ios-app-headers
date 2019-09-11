@@ -6,47 +6,34 @@
 
 #import <objc/NSObject.h>
 
-@class NSTimer, SPTLoginSplitEmailSignupViewLogger, SPTLoginTheme, SPTSignupPasswordFieldValidator, SPTSignupUserInfoModel;
-@protocol SPTLoginNavigationCoordinator, SPTNavigationRouter, SPTSignupPasswordViewModelDelegate;
+@class SPTLoginSplitEmailSignupViewLogger, SPTSignupPasswordFieldValidationViewModel, SPTSignupUserInfoModel;
+@protocol SPTNavigationRouter;
 
 @interface SPTSignupPasswordViewModel : NSObject
 {
-    _Bool _fullValidationEnabled;
     SPTLoginSplitEmailSignupViewLogger *_logger;
-    id <SPTSignupPasswordViewModelDelegate> _delegate;
     SPTSignupUserInfoModel *_userInfoModel;
-    SPTLoginTheme *_theme;
-    SPTSignupPasswordFieldValidator *_fieldValidator;
-    NSTimer *_timer;
+    SPTSignupPasswordFieldValidationViewModel *_fieldViewModel;
     id <SPTNavigationRouter> _navigationRouter;
-    id <SPTLoginNavigationCoordinator> _navigationCoordinator;
 }
 
-@property(retain, nonatomic) id <SPTLoginNavigationCoordinator> navigationCoordinator; // @synthesize navigationCoordinator=_navigationCoordinator;
 @property(retain, nonatomic) id <SPTNavigationRouter> navigationRouter; // @synthesize navigationRouter=_navigationRouter;
-@property(retain, nonatomic) NSTimer *timer; // @synthesize timer=_timer;
-@property(nonatomic, getter=isFullValidationEnabled) _Bool fullValidationEnabled; // @synthesize fullValidationEnabled=_fullValidationEnabled;
-@property(retain, nonatomic) SPTSignupPasswordFieldValidator *fieldValidator; // @synthesize fieldValidator=_fieldValidator;
-@property(retain, nonatomic) SPTLoginTheme *theme; // @synthesize theme=_theme;
+@property(retain, nonatomic) SPTSignupPasswordFieldValidationViewModel *fieldViewModel; // @synthesize fieldViewModel=_fieldViewModel;
 @property(retain, nonatomic) SPTSignupUserInfoModel *userInfoModel; // @synthesize userInfoModel=_userInfoModel;
-@property(nonatomic) __weak id <SPTSignupPasswordViewModelDelegate> delegate; // @synthesize delegate=_delegate;
 @property(retain, nonatomic) SPTLoginSplitEmailSignupViewLogger *logger; // @synthesize logger=_logger;
 - (void).cxx_destruct;
-- (void)validateAndOpenNextScreen:(id)arg1;
+- (void)openNextScreenWithPassword:(id)arg1;
 - (void)userDidTapNextButtonWithValue:(id)arg1;
 - (void)userDidTapReturnButtonWithValue:(id)arg1;
 - (void)userDidUpdateTextFieldWithValue:(id)arg1;
-- (void)resetTimer;
-- (void)timerDidFire:(id)arg1;
-- (void)validatePassword:(id)arg1 withCompletionBlock:(CDUnknownBlockType)arg2;
+- (void)setFieldValidationHandlerDelegate:(id)arg1;
 - (id)userEmail;
-- (id)viewStyle;
 - (id)previouslySelectedPassword;
 - (id)nextButtonText;
 - (id)fieldDisclosureLabelText;
 - (id)fieldTitleLabelText;
 - (id)titleLabelText;
-- (id)initWithLogger:(id)arg1 userInfoModel:(id)arg2 fieldValidator:(id)arg3 theme:(id)arg4 navigationRouter:(id)arg5 navigationCoordinator:(id)arg6;
+- (id)initWithLogger:(id)arg1 userInfoModel:(id)arg2 fieldViewModel:(id)arg3 navigationRouter:(id)arg4;
 
 @end
 

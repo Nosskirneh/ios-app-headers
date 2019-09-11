@@ -11,6 +11,6 @@
 
 @protocol SPTFreeTierCollectionEntityModelDelegate <NSObject>
 - (void)entityModel:(id <SPTFreeTierCollectionEntityModel>)arg1 error:(NSError *)arg2;
-- (void)entityModelDidUpdate:(id <SPTFreeTierCollectionEntityModel>)arg1;
+- (void)entityModelDidUpdate:(id <SPTFreeTierCollectionEntityModel>)arg1 itemsCountChanged:(_Bool)arg2;
 @end
 

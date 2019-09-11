@@ -19,6 +19,7 @@
 @property(readonly, nonatomic) NSString *unplayableReason; // @synthesize unplayableReason=_unplayableReason;
 @property(readonly, nonatomic) unsigned long long reason; // @synthesize reason=_reason;
 - (void).cxx_destruct;
+- (id)description;
 - (id)serializedDictionary;
 - (id)initWithReason:(unsigned long long)arg1 unplayableReason:(id)arg2;
 

@@ -9,17 +9,17 @@
 #import "SPTNowPlayingAdUnitViewController-Protocol.h"
 #import "SPTNowPlayingContainedViewController-Protocol.h"
 
-@class NSString, SPTAdEntity, SPTNowPlayingAudioAdInfoUnitView, SPTTheme;
-@protocol SPTAdsManager, SPTNowPlayingContainingViewController;
+@class NSString, SPTNowPlayingAudioAdInfoUnitView, SPTTheme;
+@protocol SPTAdsBaseEntity, SPTAdsManager, SPTNowPlayingContainingViewController;
 
 @interface SPTNowPlayingAudioAdInformationUnitViewController : UIViewController <SPTNowPlayingContainedViewController, SPTNowPlayingAdUnitViewController>
 {
     SPTTheme *_theme;
     id <SPTAdsManager> _adsManager;
-    SPTAdEntity *_adEntity;
+    id <SPTAdsBaseEntity> _adEntity;
 }
 
-@property(retain, nonatomic) SPTAdEntity *adEntity; // @synthesize adEntity=_adEntity;
+@property(retain, nonatomic) id <SPTAdsBaseEntity> adEntity; // @synthesize adEntity=_adEntity;
 @property(readonly, nonatomic) id <SPTAdsManager> adsManager; // @synthesize adsManager=_adsManager;
 @property(readonly, nonatomic) SPTTheme *theme; // @synthesize theme=_theme;
 - (void).cxx_destruct;
@@ -30,6 +30,7 @@
 - (void)didTapActionButton;
 - (void)updateButton;
 - (void)viewDidLoad;
+- (void)viewDidAppear:(_Bool)arg1;
 - (void)loadView;
 - (id)initWithAdsManager:(id)arg1 theme:(id)arg2;
 

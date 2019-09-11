@@ -15,6 +15,8 @@
 
 @property(readonly, nonatomic) id <SPTPlayer> player; // @synthesize player=_player;
 - (void).cxx_destruct;
+- (_Bool)shouldPlaybackSpeedControlBeEnabled;
+- (_Bool)shouldPlaybackSpeedControlBeAvailable;
 - (void)shuffleButtonPressedWithShuffleType:(long long)arg1;
 - (_Bool)shouldShuffleCommandBeEnabled;
 - (_Bool)shouldShuffleCommandBeAvailable;

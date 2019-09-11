@@ -6,44 +6,28 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTVideoResourceLoaderFactory-Protocol.h"
+@class SPTVideoManifestFactory;
+@protocol SPTVideoDataLoader, SPTVideoPlayerConfiguration;
 
-@class NSMapTable, NSOperationQueue, NSString, SPTDataLoaderFactory, SPTNetworkConnectivityController, SPTPersistentCache, SPTVideoCDNSelector, SPTVideoFairplayService, SPTVideoPreferences;
-
-@interface SPTVideoManifestService : NSObject <SPTVideoResourceLoaderFactory>
+@interface SPTVideoManifestService : NSObject
 {
-    SPTVideoCDNSelector *_cdnSelector;
-    SPTDataLoaderFactory *_dataLoaderFactory;
-    SPTVideoFairplayService *_fairplayService;
-    SPTPersistentCache *_cache;
-    SPTVideoPreferences *_videoPreferences;
-    NSMapTable *_pendingManifestRequests;
-    NSOperationQueue *_operationQueue;
-    SPTNetworkConnectivityController *_ncc;
+    id <SPTVideoDataLoader> _videoDataLoader;
+    id <SPTVideoPlayerConfiguration> _playerConfiguration;
+    SPTVideoManifestFactory *_manifestFactory;
+    unsigned long long _retryCount;
+    unsigned long long _max500ErrorRetryCount;
 }
 
-@property(retain, nonatomic) SPTNetworkConnectivityController *ncc; // @synthesize ncc=_ncc;
-@property(retain, nonatomic) NSOperationQueue *operationQueue; // @synthesize operationQueue=_operationQueue;
-@property(retain, nonatomic) NSMapTable *pendingManifestRequests; // @synthesize pendingManifestRequests=_pendingManifestRequests;
-@property(retain, nonatomic) SPTVideoPreferences *videoPreferences; // @synthesize videoPreferences=_videoPreferences;
-@property(retain, nonatomic) SPTPersistentCache *cache; // @synthesize cache=_cache;
-@property(retain, nonatomic) SPTVideoFairplayService *fairplayService; // @synthesize fairplayService=_fairplayService;
-@property(retain, nonatomic) SPTDataLoaderFactory *dataLoaderFactory; // @synthesize dataLoaderFactory=_dataLoaderFactory;
-@property(retain, nonatomic) SPTVideoCDNSelector *cdnSelector; // @synthesize cdnSelector=_cdnSelector;
+@property(nonatomic) unsigned long long max500ErrorRetryCount; // @synthesize max500ErrorRetryCount=_max500ErrorRetryCount;
+@property(nonatomic) unsigned long long retryCount; // @synthesize retryCount=_retryCount;
+@property(retain, nonatomic) SPTVideoManifestFactory *manifestFactory; // @synthesize manifestFactory=_manifestFactory;
+@property(retain, nonatomic) id <SPTVideoPlayerConfiguration> playerConfiguration; // @synthesize playerConfiguration=_playerConfiguration;
+@property(retain, nonatomic) id <SPTVideoDataLoader> videoDataLoader; // @synthesize videoDataLoader=_videoDataLoader;
 - (void).cxx_destruct;
-- (id)createFlatResourceLoaderWithMediaURL:(id)arg1 playbackID:(id)arg2;
-- (id)createHLSResourceLoaderWithVideoSourceID:(id)arg1 playbackID:(id)arg2;
-- (unsigned long long)startBitrate;
-- (void)pruneCache;
-- (void)removeCacheForVideoSourceID:(id)arg1;
-- (id)fetchManifestWithVideoSourceID:(id)arg1 initiatingPlaybackID:(id)arg2;
-- (id)initWithDataLoaderFactory:(id)arg1 fairplayService:(id)arg2 cache:(id)arg3 networkConnectivityController:(id)arg4 videoPreferences:(id)arg5 cdnSelector:(id)arg6;
-
-// Remaining properties
-@property(readonly, copy) NSString *debugDescription;
-@property(readonly, copy) NSString *description;
-@property(readonly) unsigned long long hash;
-@property(readonly) Class superclass;
+- (id)reasonFromErrorResponseJSON:(id)arg1;
+- (id)manifestErrorFromResponse:(unsigned long long)arg1 error:(id)arg2 body:(id)arg3;
+- (void)fetchManifestWithManifestID:(id)arg1 initiatingPlaybackID:(id)arg2 success:(CDUnknownBlockType)arg3 failure:(CDUnknownBlockType)arg4;
+- (id)initWithVideoDataLoader:(id)arg1 playerConfiguration:(id)arg2 manifestFactory:(id)arg3;
 
 @end
 

@@ -4,22 +4,22 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import "EXP_HUBComponentView.h"
+#import "HUBComponentView.h"
 
-#import "EXP_HUBComponentViewWithEvents-Protocol.h"
+#import "HUBComponentViewWithEvents-Protocol.h"
 #import "UIGestureRecognizerDelegate-Protocol.h"
 
-@class EXP_HUBComponentEvent, GLUEImageView, GLUELabel, NSString, UITapGestureRecognizer;
-@protocol EXP_HUBComponentEventHandler, GLUETheme;
+@class GLUEImageView, GLUELabel, HUBComponentEvent, NSString, UITapGestureRecognizer;
+@protocol GLUETheme, HUBComponentEventHandler;
 
-@interface SPTFreeTierUIServiceVoiceComponentView : EXP_HUBComponentView <UIGestureRecognizerDelegate, EXP_HUBComponentViewWithEvents>
+@interface SPTFreeTierUIServiceVoiceComponentView : HUBComponentView <UIGestureRecognizerDelegate, HUBComponentViewWithEvents>
 {
-    id <EXP_HUBComponentEventHandler> eventHandler;
+    id <HUBComponentEventHandler> eventHandler;
     id <GLUETheme> _theme;
     GLUEImageView *_iconView;
     GLUELabel *_titleLabel;
     GLUELabel *_subtitleLabel;
-    EXP_HUBComponentEvent *_tapEvent;
+    HUBComponentEvent *_tapEvent;
     UITapGestureRecognizer *_tapGestureRecognizer;
 }
 
@@ -29,12 +29,12 @@
 + (double)heightForViewFromContainerViewSize:(struct CGSize)arg1 labelHeight:(double)arg2 theme:(id)arg3;
 + (struct CGSize)sizeForContainerViewSize:(struct CGSize)arg1 model:(id)arg2 theme:(id)arg3;
 @property(retain, nonatomic) UITapGestureRecognizer *tapGestureRecognizer; // @synthesize tapGestureRecognizer=_tapGestureRecognizer;
-@property(retain, nonatomic) EXP_HUBComponentEvent *tapEvent; // @synthesize tapEvent=_tapEvent;
+@property(retain, nonatomic) HUBComponentEvent *tapEvent; // @synthesize tapEvent=_tapEvent;
 @property(retain, nonatomic) GLUELabel *subtitleLabel; // @synthesize subtitleLabel=_subtitleLabel;
 @property(retain, nonatomic) GLUELabel *titleLabel; // @synthesize titleLabel=_titleLabel;
 @property(retain, nonatomic) GLUEImageView *iconView; // @synthesize iconView=_iconView;
 @property(retain, nonatomic) id <GLUETheme> theme; // @synthesize theme=_theme;
-@property(retain, nonatomic) id <EXP_HUBComponentEventHandler> eventHandler; // @synthesize eventHandler;
+@property(retain, nonatomic) id <HUBComponentEventHandler> eventHandler; // @synthesize eventHandler;
 - (void).cxx_destruct;
 - (void)sendTapEvent;
 - (void)setupGestureRecognizers;

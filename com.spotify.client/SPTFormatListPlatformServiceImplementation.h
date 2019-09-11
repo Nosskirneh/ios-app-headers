@@ -10,7 +10,7 @@
 #import "SPTService-Protocol.h"
 
 @class NSString, SPTAllocationContext, SPTFormatListPlatformRegistryImplementation, SPTFormatListPlatformRemoteControlPolicyFactoryImplementation, SPTFormatListPlatformRemoteControlPolicyManagerImplementation, SPTFormatListPlatformTestManagerImplementation;
-@protocol SPTAbbaService, SPTContainerService, SPTCoreService, SPTFeedbackService, SPTFormatListPlatformResolver, SPTFreeTierService, SPTGLUEService, SPTLocalSettings, SPTPlayerFeature, SPTPlaylistPlatformService, SPTSessionService, SPTSettingsFeature, UpsellFeature;
+@protocol SPTAbbaService, SPTAlgotorialSharingService, SPTContainerService, SPTCoreService, SPTFeedbackService, SPTFormatListPlatformResolver, SPTFreeTierService, SPTGLUEService, SPTLocalSettings, SPTPlayerFeature, SPTPlaylistPlatformService, SPTSessionService, SPTSettingsFeature;
 
 @interface SPTFormatListPlatformServiceImplementation : NSObject <SPTService, SPTFormatListPlatformService>
 {
@@ -20,11 +20,11 @@
     id <SPTGLUEService> _glueService;
     id <SPTSettingsFeature> _settingsFeature;
     id <SPTCoreService> _coreService;
-    id <UpsellFeature> _upsellFeature;
     id <SPTAbbaService> _abbaService;
     id <SPTPlaylistPlatformService> _playlistPlatformService;
     id <SPTPlayerFeature> _playerFeature;
     id <SPTFeedbackService> _feedbackService;
+    id <SPTAlgotorialSharingService> _algotorialSharingService;
     SPTFormatListPlatformTestManagerImplementation *_testManager;
     SPTFormatListPlatformRegistryImplementation *_registry;
     id <SPTFormatListPlatformResolver> _platformResolver;
@@ -40,11 +40,11 @@
 @property(retain, nonatomic) id <SPTFormatListPlatformResolver> platformResolver; // @synthesize platformResolver=_platformResolver;
 @property(retain, nonatomic) SPTFormatListPlatformRegistryImplementation *registry; // @synthesize registry=_registry;
 @property(retain, nonatomic) SPTFormatListPlatformTestManagerImplementation *testManager; // @synthesize testManager=_testManager;
+@property(nonatomic) __weak id <SPTAlgotorialSharingService> algotorialSharingService; // @synthesize algotorialSharingService=_algotorialSharingService;
 @property(nonatomic) __weak id <SPTFeedbackService> feedbackService; // @synthesize feedbackService=_feedbackService;
 @property(nonatomic) __weak id <SPTPlayerFeature> playerFeature; // @synthesize playerFeature=_playerFeature;
 @property(nonatomic) __weak id <SPTPlaylistPlatformService> playlistPlatformService; // @synthesize playlistPlatformService=_playlistPlatformService;
 @property(nonatomic) __weak id <SPTAbbaService> abbaService; // @synthesize abbaService=_abbaService;
-@property(nonatomic) __weak id <UpsellFeature> upsellFeature; // @synthesize upsellFeature=_upsellFeature;
 @property(nonatomic) __weak id <SPTCoreService> coreService; // @synthesize coreService=_coreService;
 @property(nonatomic) __weak id <SPTSettingsFeature> settingsFeature; // @synthesize settingsFeature=_settingsFeature;
 @property(nonatomic) __weak id <SPTGLUEService> glueService; // @synthesize glueService=_glueService;

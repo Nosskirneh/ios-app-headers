@@ -4,9 +4,9 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-@class NSDictionary, NSString;
+@class NSDictionary, NSURL;
 
 @protocol SPTRemoteConfigurationTransport
-- (void)fetchConfigurationWithClientAttributes:(NSDictionary *)arg1 path:(NSString *)arg2 completion:(void (^)(NSData *, NSError *))arg3;
+- (void)fetchConfigurationWithClientAttributes:(NSDictionary *)arg1 url:(NSURL *)arg2 backgroundFetchCompletion:(void (^)(unsigned long long))arg3 success:(void (^)(long long, NSDictionary *, NSData *))arg4 failure:(void (^)(long long, NSError *))arg5;
 @end
 

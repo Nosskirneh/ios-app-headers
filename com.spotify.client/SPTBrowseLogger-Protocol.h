@@ -4,9 +4,9 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import "EXP_SPTHubImpressionLogger-Protocol.h"
-#import "EXP_SPTHubInteractionLogger-Protocol.h"
+#import "SPTHubImpressionLogger-Protocol.h"
+#import "SPTHubInteractionLogger-Protocol.h"
 
-@protocol SPTBrowseLogger <EXP_SPTHubImpressionLogger, EXP_SPTHubInteractionLogger>
+@protocol SPTBrowseLogger <SPTHubImpressionLogger, SPTHubInteractionLogger>
 @end
 

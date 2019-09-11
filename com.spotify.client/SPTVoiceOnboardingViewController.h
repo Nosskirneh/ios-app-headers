@@ -12,7 +12,7 @@
 #import "SPTVoiceOnboardingViewDelegate-Protocol.h"
 #import "UIScrollViewDelegate-Protocol.h"
 
-@class CAGradientLayer, NSArray, NSString, NSURL, SPTVoiceOnboardingFlow, UIButton, UIPageControl, UIScrollView;
+@class CAGradientLayer, NSArray, NSString, NSURL, SPTVoiceOnboardingFlow, UIButton, UIPageControl, UIScrollView, UIView;
 @protocol GLUETheme, SPTLinkDispatcher, SPTPageContainer, SPTVoiceLoggerProtocol, SPTVoiceOnboardingRecordPermissionsState;
 
 @interface SPTVoiceOnboardingViewController : UIViewController <UIScrollViewDelegate, SPTVoiceOnboardingViewDelegate, SPTPageController, SPTMetaViewControllerPresentable, SPTVoiceOnboardingFlowSessionIdProvider>
@@ -25,6 +25,7 @@
     id <SPTVoiceLoggerProtocol> _logger;
     NSString *_utteranceId;
     UIButton *_closeButton;
+    UIView *_topView;
     UIScrollView *_scrollView;
     UIPageControl *_pageControl;
     CAGradientLayer *_backgroundGradientLayer;
@@ -39,6 +40,7 @@
 @property(retain, nonatomic) CAGradientLayer *backgroundGradientLayer; // @synthesize backgroundGradientLayer=_backgroundGradientLayer;
 @property(retain, nonatomic) UIPageControl *pageControl; // @synthesize pageControl=_pageControl;
 @property(retain, nonatomic) UIScrollView *scrollView; // @synthesize scrollView=_scrollView;
+@property(retain, nonatomic) UIView *topView; // @synthesize topView=_topView;
 @property(retain, nonatomic) UIButton *closeButton; // @synthesize closeButton=_closeButton;
 @property(readonly, nonatomic) NSString *utteranceId; // @synthesize utteranceId=_utteranceId;
 @property(readonly, nonatomic) id <SPTVoiceLoggerProtocol> logger; // @synthesize logger=_logger;

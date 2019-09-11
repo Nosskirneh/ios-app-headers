@@ -7,12 +7,12 @@
 #import "NSObject-Protocol.h"
 
 @protocol SPTFreeTierCollectionTestManager <NSObject>
-@property(readonly, nonatomic, getter=isAlternativeActionButtonsEnabled) _Bool alternativeActionButtonsEnabled;
+@property(readonly, nonatomic, getter=isGroupsInLikedSongsEnabled) _Bool groupsInLikedSongsEnabled;
+@property(readonly, nonatomic, getter=isShowAlbumArtistRecommendationsEnabled) _Bool showAlbumArtistRecommendationsEnabled;
+@property(readonly, nonatomic, getter=isQuickActionsInLikedSongsEnabled) _Bool quickActionsInLikedSongsEnabled;
+@property(readonly, nonatomic, getter=isDoubleTabYourLibraryEnabled) _Bool doubleTabYourLibraryEnabled;
 @property(readonly, nonatomic, getter=isFrecencySortOrderDefaultInPlaylistsEnabled) _Bool frecencySortOrderDefaultInPlaylistsEnabled;
-@property(readonly, nonatomic, getter=isFrecencySortOrderInPlaylistsEnabled) _Bool frecencySortOrderInPlaylistsEnabled;
-@property(readonly, nonatomic, getter=isSortingAndFilteringFavoriteSongsEnabled) _Bool sortingAndFilteringFavoriteSongsEnabled;
-@property(readonly, nonatomic, getter=isSortingAndFilteringEnabled) _Bool sortingAndFilteringEnabled;
-@property(readonly, nonatomic, getter=isMadeForSubtitleEnabled) _Bool madeForSubtitleEnabled;
+@property(readonly, nonatomic, getter=isConsolidatedExperienceEnabled) _Bool consolidatedExperienceEnabled;
 @property(readonly, nonatomic, getter=isPremiumLabelEnabled) _Bool premiumLabelEnabled;
 @property(readonly, nonatomic, getter=isBookmarkModelEnabled) _Bool bookmarkModelEnabled;
 @end

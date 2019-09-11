@@ -10,6 +10,7 @@
 @protocol SPTPodcastPlayer;
 
 @protocol SPTPodcastPlayerDelegate <NSObject>
+- (void)podcastPlayerStateDidChange:(id <SPTPodcastPlayer>)arg1;
 - (void)podcastPlayer:(id <SPTPodcastPlayer>)arg1 didChangePlayingTrackURL:(NSURL *)arg2;
 
 @optional

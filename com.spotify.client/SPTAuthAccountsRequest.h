@@ -13,6 +13,7 @@
     _Bool _usingStagingEnvironment;
     NSString *_clientId;
     NSString *_redirectURI;
+    NSString *_redirectURIPath;
     NSString *_responseType;
     NSArray *_scopes;
     NSString *_bundleId;
@@ -21,8 +22,10 @@
     NSString *_playURI;
     NSString *_codeChallenge;
     NSString *_codeChallengeMethod;
+    NSString *_appLocalizationLanguage;
 }
 
+@property(copy, nonatomic) NSString *appLocalizationLanguage; // @synthesize appLocalizationLanguage=_appLocalizationLanguage;
 @property(readonly, nonatomic, getter=isUsingStagingEnvironment) _Bool usingStagingEnvironment; // @synthesize usingStagingEnvironment=_usingStagingEnvironment;
 @property(readonly, nonatomic) NSString *codeChallengeMethod; // @synthesize codeChallengeMethod=_codeChallengeMethod;
 @property(readonly, nonatomic) NSString *codeChallenge; // @synthesize codeChallenge=_codeChallenge;
@@ -32,13 +35,14 @@
 @property(readonly, nonatomic) NSString *bundleId; // @synthesize bundleId=_bundleId;
 @property(readonly, nonatomic) NSArray *scopes; // @synthesize scopes=_scopes;
 @property(readonly, nonatomic) NSString *responseType; // @synthesize responseType=_responseType;
+@property(readonly, nonatomic) NSString *redirectURIPath; // @synthesize redirectURIPath=_redirectURIPath;
 @property(readonly, nonatomic) NSString *redirectURI; // @synthesize redirectURI=_redirectURI;
 @property(readonly, nonatomic) NSString *clientId; // @synthesize clientId=_clientId;
 - (void).cxx_destruct;
+- (id)loadJsonForResource:(id)arg1 ofType:(id)arg2;
+- (id)webLanguageForAppLanguage:(id)arg1;
 - (id)toURL;
-- (id)getMap:(id)arg1;
-- (id)parseScopes:(id)arg1;
-- (id)initWithBundleId:(id)arg1 queryString:(id)arg2 useStaging:(_Bool)arg3;
+- (id)initWithBundleId:(id)arg1 queryDict:(id)arg2 useStaging:(_Bool)arg3;
 
 @end
 

@@ -6,16 +6,16 @@
 
 #import <objc/NSObject.h>
 
-#import "EXP_HUBContentOperation-Protocol.h"
+#import "HUBContentOperation-Protocol.h"
 
-@protocol EXP_HUBContentOperationDelegate;
+@protocol HUBContentOperationDelegate;
 
-@interface SPTFreeTierUIErrorInfoContentOperation : NSObject <EXP_HUBContentOperation>
+@interface SPTFreeTierUIErrorInfoContentOperation : NSObject <HUBContentOperation>
 {
-    id <EXP_HUBContentOperationDelegate> _delegate;
+    id <HUBContentOperationDelegate> _delegate;
 }
 
-@property(nonatomic) __weak id <EXP_HUBContentOperationDelegate> delegate; // @synthesize delegate=_delegate;
+@property(nonatomic) __weak id <HUBContentOperationDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
 - (void)addInfoViewComponentForError:(id)arg1 toViewModelBuilder:(id)arg2;
 - (void)performForViewModelBuilder:(id)arg1 previousError:(id)arg2;

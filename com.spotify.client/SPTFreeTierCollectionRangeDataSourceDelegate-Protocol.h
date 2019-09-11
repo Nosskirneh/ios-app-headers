@@ -11,6 +11,6 @@
 
 @protocol SPTFreeTierCollectionRangeDataSourceDelegate <NSObject>
 - (void)rangeDataSource:(id <SPTFreeTierCollectionRangeDataSource>)arg1 error:(NSError *)arg2;
-- (void)rangeDataSourceUpdated:(id <SPTFreeTierCollectionRangeDataSource>)arg1;
+- (void)rangeDataSourceUpdated:(id <SPTFreeTierCollectionRangeDataSource>)arg1 itemsCountChanged:(_Bool)arg2;
 @end
 

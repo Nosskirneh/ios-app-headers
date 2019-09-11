@@ -6,18 +6,18 @@
 
 #import <objc/NSObject.h>
 
-#import "EXP_HUBContentOperation-Protocol.h"
+#import "HUBContentOperation-Protocol.h"
 #import "SPTFreeTierEntitySignalObserver-Protocol.h"
 
 @class NSString;
-@protocol EXP_HUBContentOperationDelegate;
+@protocol HUBContentOperationDelegate;
 
-@interface SPTFreeTierEntityReloadableContentOperation : NSObject <SPTFreeTierEntitySignalObserver, EXP_HUBContentOperation>
+@interface SPTFreeTierEntityReloadableContentOperation : NSObject <SPTFreeTierEntitySignalObserver, HUBContentOperation>
 {
-    id <EXP_HUBContentOperationDelegate> delegate;
+    id <HUBContentOperationDelegate> delegate;
 }
 
-@property(nonatomic) __weak id <EXP_HUBContentOperationDelegate> delegate; // @synthesize delegate;
+@property(nonatomic) __weak id <HUBContentOperationDelegate> delegate; // @synthesize delegate;
 - (void).cxx_destruct;
 - (void)next:(id)arg1;
 - (void)performForViewModelBuilder:(id)arg1 previousError:(id)arg2;

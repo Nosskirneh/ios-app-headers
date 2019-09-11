@@ -10,8 +10,8 @@
 #import "HUBComponentModelBuilderDelegate-Protocol.h"
 #import "NSCopying-Protocol.h"
 
-@class HUBComponentDefaults, HUBComponentImageDataBuilderImplementation, HUBComponentTargetBuilderImplementation, NSDictionary, NSMutableArray, NSMutableDictionary, NSNumber, NSString, NSURL, UIImage;
-@protocol HUBComponentImageDataBuilder, HUBComponentModelBuilderDelegate, HUBComponentTargetBuilder, HUBIconImageResolver, HUBJSONSchema;
+@class HUBCommandModelBuilderImplementation, HUBComponentDefaults, HUBComponentImageDataBuilderImplementation, HUBComponentTargetBuilderImplementation, NSMutableArray, NSMutableDictionary, NSNumber, NSString, NSURL, UIImage;
+@protocol HUBComponentImageDataBuilder, HUBComponentModelBuilderDelegate, HUBComponentTargetBuilder, HUBIconImageResolver;
 
 @interface HUBComponentModelBuilderImplementation : NSObject <HUBComponentModelBuilderDelegate, HUBComponentModelBuilder, NSCopying>
 {
@@ -27,17 +27,18 @@
     NSString *_accessoryTitle;
     NSString *_descriptionText;
     NSString *_iconIdentifier;
-    NSDictionary *_metadata;
-    NSDictionary *_loggingData;
-    NSDictionary *_customData;
+    NSMutableDictionary *_metadata;
+    NSMutableDictionary *_loggingData;
+    NSMutableDictionary *_customData;
     unsigned long long _type;
-    id <HUBJSONSchema> _JSONSchema;
     HUBComponentDefaults *_componentDefaults;
     id <HUBIconImageResolver> _iconImageResolver;
     HUBComponentImageDataBuilderImplementation *_mainImageDataBuilderImplementation;
     HUBComponentImageDataBuilderImplementation *_backgroundImageDataBuilderImplementation;
     NSMutableDictionary *_customImageDataBuilders;
     HUBComponentTargetBuilderImplementation *_targetBuilderImplementation;
+    NSMutableDictionary *_eventsBuilders;
+    HUBCommandModelBuilderImplementation *_commandModelBuilderImplementation;
     NSMutableDictionary *_childBuilders;
     NSMutableArray *_childIdentifierOrder;
     NSMutableDictionary *_childBuildersByGroupIdentifier;
@@ -47,17 +48,18 @@
 @property(readonly, nonatomic) NSMutableDictionary *childBuildersByGroupIdentifier; // @synthesize childBuildersByGroupIdentifier=_childBuildersByGroupIdentifier;
 @property(readonly, nonatomic) NSMutableArray *childIdentifierOrder; // @synthesize childIdentifierOrder=_childIdentifierOrder;
 @property(readonly, nonatomic) NSMutableDictionary *childBuilders; // @synthesize childBuilders=_childBuilders;
+@property(retain, nonatomic) HUBCommandModelBuilderImplementation *commandModelBuilderImplementation; // @synthesize commandModelBuilderImplementation=_commandModelBuilderImplementation;
+@property(readonly, nonatomic) NSMutableDictionary *eventsBuilders; // @synthesize eventsBuilders=_eventsBuilders;
 @property(retain, nonatomic) HUBComponentTargetBuilderImplementation *targetBuilderImplementation; // @synthesize targetBuilderImplementation=_targetBuilderImplementation;
 @property(readonly, nonatomic) NSMutableDictionary *customImageDataBuilders; // @synthesize customImageDataBuilders=_customImageDataBuilders;
 @property(readonly, nonatomic) HUBComponentImageDataBuilderImplementation *backgroundImageDataBuilderImplementation; // @synthesize backgroundImageDataBuilderImplementation=_backgroundImageDataBuilderImplementation;
 @property(readonly, nonatomic) HUBComponentImageDataBuilderImplementation *mainImageDataBuilderImplementation; // @synthesize mainImageDataBuilderImplementation=_mainImageDataBuilderImplementation;
 @property(readonly, nonatomic) id <HUBIconImageResolver> iconImageResolver; // @synthesize iconImageResolver=_iconImageResolver;
 @property(readonly, nonatomic) HUBComponentDefaults *componentDefaults; // @synthesize componentDefaults=_componentDefaults;
-@property(readonly, nonatomic) id <HUBJSONSchema> JSONSchema; // @synthesize JSONSchema=_JSONSchema;
 @property(readonly, nonatomic) unsigned long long type; // @synthesize type=_type;
-@property(retain, nonatomic) NSDictionary *customData; // @synthesize customData=_customData;
-@property(retain, nonatomic) NSDictionary *loggingData; // @synthesize loggingData=_loggingData;
-@property(retain, nonatomic) NSDictionary *metadata; // @synthesize metadata=_metadata;
+@property(readonly, nonatomic) NSMutableDictionary *customData; // @synthesize customData=_customData;
+@property(readonly, nonatomic) NSMutableDictionary *loggingData; // @synthesize loggingData=_loggingData;
+@property(readonly, nonatomic) NSMutableDictionary *metadata; // @synthesize metadata=_metadata;
 @property(copy, nonatomic) NSString *iconIdentifier; // @synthesize iconIdentifier=_iconIdentifier;
 @property(copy, nonatomic) NSString *descriptionText; // @synthesize descriptionText=_descriptionText;
 @property(copy, nonatomic) NSString *accessoryTitle; // @synthesize accessoryTitle=_accessoryTitle;
@@ -75,6 +77,7 @@
 - (id)buildIconForPlaceholder:(_Bool)arg1;
 - (id)getOrCreateBuilderForChildWithIdentifier:(id)arg1;
 - (id)getOrCreateBuilderForCustomImageDataWithIdentifier:(id)arg1;
+- (id)getOrCreateCommandModelBuilderForEventWithName:(id)arg1;
 - (id)getOrCreateTargetBuilder;
 - (id)buildForIndex:(unsigned long long)arg1 parent:(id)arg2;
 - (id)copyWithZone:(struct _NSZone *)arg1;
@@ -89,14 +92,17 @@
 - (id)allChildBuilders;
 - (id)builderForCustomImageDataWithIdentifier:(id)arg1;
 - (_Bool)builderExistsForCustomImageDataWithIdentifier:(id)arg1;
+- (id)commandModelBuilderForEventWithName:(id)arg1;
+- (_Bool)builderExistsForEventWithName:(id)arg1;
 @property(retain, nonatomic) UIImage *backgroundImage;
 @property(copy, nonatomic) NSURL *backgroundImageURL;
+@property(readonly, nonatomic) _Bool targetBuilderExists;
 @property(readonly, nonatomic) id <HUBComponentTargetBuilder> targetBuilder;
 @property(readonly, nonatomic) id <HUBComponentImageDataBuilder> backgroundImageDataBuilder;
 @property(retain, nonatomic) UIImage *mainImage;
 @property(copy, nonatomic) NSURL *mainImageURL;
 @property(readonly, nonatomic) id <HUBComponentImageDataBuilder> mainImageDataBuilder;
-- (id)initWithModelIdentifier:(id)arg1 type:(unsigned long long)arg2 JSONSchema:(id)arg3 componentDefaults:(id)arg4 iconImageResolver:(id)arg5 mainImageDataBuilder:(id)arg6 backgroundImageDataBuilder:(id)arg7;
+- (id)initWithModelIdentifier:(id)arg1 type:(unsigned long long)arg2 componentDefaults:(id)arg3 iconImageResolver:(id)arg4 mainImageDataBuilder:(id)arg5 backgroundImageDataBuilder:(id)arg6;
 
 // Remaining properties
 @property(readonly, copy) NSString *description;

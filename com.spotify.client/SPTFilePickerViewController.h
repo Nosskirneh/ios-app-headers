@@ -7,7 +7,7 @@
 #import <UIKit/UIViewController.h>
 
 #import "SPContentInsetViewController-Protocol.h"
-#import "SPTCollectionPromoting-Protocol.h"
+#import "SPTFilePickerPromoting-Protocol.h"
 #import "SPTLocalFilesImportModelDelegate-Protocol.h"
 #import "SPTPageController-Protocol.h"
 #import "UIPageViewControllerDataSource-Protocol.h"
@@ -16,7 +16,7 @@
 @class NSMutableArray, NSString, NSURL, SPTLocalFilesImportModel, SPTLocalFilesLogger, SPTProgressView, SPTTabControl, UIBarButtonItem, UIPageViewController, UIToolbar;
 @protocol SPTContainerUIService, SPTImageLoaderFactory, SPTPageContainer;
 
-@interface SPTFilePickerViewController : UIViewController <UIPageViewControllerDataSource, UIPageViewControllerDelegate, SPTLocalFilesImportModelDelegate, SPTCollectionPromoting, SPContentInsetViewController, SPTPageController>
+@interface SPTFilePickerViewController : UIViewController <UIPageViewControllerDataSource, UIPageViewControllerDelegate, SPTLocalFilesImportModelDelegate, SPTFilePickerPromoting, SPContentInsetViewController, SPTPageController>
 {
     _Bool _filtering;
     long long _selectedSection;

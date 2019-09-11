@@ -6,61 +6,62 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTAdSlateContentUnitProviderObserver-Protocol.h"
+#import "SPTAdFocusManagerObserver-Protocol.h"
 #import "SPTVideoSurfaceDelegate-Protocol.h"
 
-@class AVPlayer, FBKVOController, NSDictionary, NSString, SPOTMoatVideoTracker, SPTAdCosmosBridge, SPTAdSponsoredSessionContentUnitProvider, UIView;
-@protocol SPTAVPlayerSource, SPTAdEventLogger, SPTVideoSurfaceManager;
+@class AVPlayer, FBKVOController, NSDictionary, NSString, SPOTMoatVideoTracker, SPTAdFocusManager;
+@protocol SPTAVPlayerSource, SPTAdsBaseCosmosBridge, SPTVideoSurfaceManager;
 
-@interface SPTAdsMoatManager : NSObject <SPTVideoSurfaceDelegate, SPTAdSlateContentUnitProviderObserver>
+@interface SPTAdsMoatManager : NSObject <SPTVideoSurfaceDelegate, SPTAdFocusManagerObserver>
 {
     _Bool _observing;
     _Bool _tracking;
     SPOTMoatVideoTracker *_videoTracker;
-    SPTAdCosmosBridge *_cosmosBridge;
+    id <SPTAdsBaseCosmosBridge> _cosmosBridge;
     NSObject<SPTVideoSurfaceManager> *_surfaceManager;
     NSObject<SPTAVPlayerSource> *_avPlayerSource;
     FBKVOController *_kvoController;
-    id <SPTAdEventLogger> _eventLogger;
-    SPTAdSponsoredSessionContentUnitProvider *_sponsoredSessionContentUnitProvider;
-    UIView *_currentSlateContentView;
     AVPlayer *_player;
     NSDictionary *_adIds;
+    NSString *_advertisementIdentifier;
     id _timeObserverToken;
+    SPTAdFocusManager *_adFocusManager;
+    double _trackDuration;
 }
 
+@property(nonatomic) double trackDuration; // @synthesize trackDuration=_trackDuration;
+@property(retain, nonatomic) SPTAdFocusManager *adFocusManager; // @synthesize adFocusManager=_adFocusManager;
 @property(retain, nonatomic) id timeObserverToken; // @synthesize timeObserverToken=_timeObserverToken;
+@property(copy, nonatomic) NSString *advertisementIdentifier; // @synthesize advertisementIdentifier=_advertisementIdentifier;
 @property(copy, nonatomic) NSDictionary *adIds; // @synthesize adIds=_adIds;
 @property(nonatomic) __weak AVPlayer *player; // @synthesize player=_player;
-@property(nonatomic) __weak UIView *currentSlateContentView; // @synthesize currentSlateContentView=_currentSlateContentView;
 @property(nonatomic, getter=isTracking) _Bool tracking; // @synthesize tracking=_tracking;
 @property(nonatomic, getter=isObserving) _Bool observing; // @synthesize observing=_observing;
-@property(retain, nonatomic) SPTAdSponsoredSessionContentUnitProvider *sponsoredSessionContentUnitProvider; // @synthesize sponsoredSessionContentUnitProvider=_sponsoredSessionContentUnitProvider;
-@property(retain, nonatomic) id <SPTAdEventLogger> eventLogger; // @synthesize eventLogger=_eventLogger;
 @property(retain, nonatomic) FBKVOController *kvoController; // @synthesize kvoController=_kvoController;
 @property(nonatomic) __weak NSObject<SPTAVPlayerSource> *avPlayerSource; // @synthesize avPlayerSource=_avPlayerSource;
 @property(nonatomic) __weak NSObject<SPTVideoSurfaceManager> *surfaceManager; // @synthesize surfaceManager=_surfaceManager;
-@property(retain, nonatomic) SPTAdCosmosBridge *cosmosBridge; // @synthesize cosmosBridge=_cosmosBridge;
+@property(retain, nonatomic) id <SPTAdsBaseCosmosBridge> cosmosBridge; // @synthesize cosmosBridge=_cosmosBridge;
 @property(retain, nonatomic) SPOTMoatVideoTracker *videoTracker; // @synthesize videoTracker=_videoTracker;
 - (void).cxx_destruct;
-- (void)provider:(id)arg1 slate:(id)arg2;
-- (void)slateWithProvider:(id)arg1 contentView:(id)arg2;
+- (id)eventData;
 - (id)getViewToTrack;
 - (double)currentPlayheadMillis;
+- (void)adFocusManagerWillResignActive:(id)arg1;
+- (void)adFocusManagerDidBecomeActive:(id)arg1;
 - (void)playerDidChange;
 - (void)subscribeToVideoEndedEvent:(CDUnknownBlockType)arg1;
 - (void)subscribeToVideoPlayEvent:(CDUnknownBlockType)arg1;
 - (void)dispatchAdCompleteEvent;
 - (void)pauseTracking;
+- (double)parseTrackDuration:(id)arg1;
 - (id)parseAdIds:(id)arg1;
 - (_Bool)parseMoatEnabled:(id)arg1;
 - (void)endTracking;
-- (void)logError:(id)arg1;
 - (void)startTracking;
 - (void)startObserving;
 - (void)removeBoundaryTimeObserver;
 - (void)dealloc;
-- (id)initWithVideoSurfaceManager:(id)arg1 avPlayerSource:(id)arg2 cosmosBridge:(id)arg3 adEventLogger:(id)arg4 sponsoredSessionContentUnitProvider:(id)arg5;
+- (id)initWithVideoSurfaceManager:(id)arg1 avPlayerSource:(id)arg2 cosmosBridge:(id)arg3 adFocusManager:(id)arg4 videoTracker:(id)arg5;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

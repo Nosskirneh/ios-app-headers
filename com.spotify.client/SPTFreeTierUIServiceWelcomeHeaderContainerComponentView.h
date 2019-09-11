@@ -4,25 +4,25 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import "EXP_HUBComponentView.h"
+#import "HUBComponentView.h"
 
-#import "EXP_HUBComponentViewContentOffsetObserver-Protocol.h"
-#import "EXP_HUBComponentViewWithChildren-Protocol.h"
+#import "HUBComponentViewContentOffsetObserver-Protocol.h"
+#import "HUBComponentViewWithChildren-Protocol.h"
 
-@class GLUEHeaderBackgroundView, GLUEInteractiveAnimation, NSLayoutConstraint, NSMutableArray, SPTLayoutConstraintBuilder, UIView;
-@protocol EXP_HUBComponentViewChildDelegate, GLUETheme;
+@class GLUEHeaderBackgroundView, GLUEInteractiveAnimation, NSLayoutConstraint, NSMutableArray, UIView;
+@protocol GLUETheme, HUBComponentViewChildDelegate;
 
-@interface SPTFreeTierUIServiceWelcomeHeaderContainerComponentView : EXP_HUBComponentView <EXP_HUBComponentViewContentOffsetObserver, EXP_HUBComponentViewWithChildren>
+@interface SPTFreeTierUIServiceWelcomeHeaderContainerComponentView : HUBComponentView <HUBComponentViewContentOffsetObserver, HUBComponentViewWithChildren>
 {
-    id <EXP_HUBComponentViewChildDelegate> childDelegate;
+    id <HUBComponentViewChildDelegate> childDelegate;
     id <GLUETheme> _theme;
     UIView *_backgroundView;
     GLUEHeaderBackgroundView *_backgroundGradientView;
     GLUEHeaderBackgroundView *_backgroundOverlayView;
     GLUEInteractiveAnimation *_headerAlphaAnimation;
-    EXP_HUBComponentView *_childComponentView;
+    HUBComponentView *_childComponentView;
     GLUEInteractiveAnimation *_childScaleAnimation;
-    SPTLayoutConstraintBuilder *_layoutBuilder;
+    NSMutableArray *_layoutConstraints;
     double _defaultHeight;
     NSLayoutConstraint *_backgroundViewHeightConstraint;
     NSMutableArray *_childViewConstraints;
@@ -31,15 +31,15 @@
 @property(retain, nonatomic) NSMutableArray *childViewConstraints; // @synthesize childViewConstraints=_childViewConstraints;
 @property(retain, nonatomic) NSLayoutConstraint *backgroundViewHeightConstraint; // @synthesize backgroundViewHeightConstraint=_backgroundViewHeightConstraint;
 @property(nonatomic) double defaultHeight; // @synthesize defaultHeight=_defaultHeight;
-@property(retain, nonatomic) SPTLayoutConstraintBuilder *layoutBuilder; // @synthesize layoutBuilder=_layoutBuilder;
+@property(retain, nonatomic) NSMutableArray *layoutConstraints; // @synthesize layoutConstraints=_layoutConstraints;
 @property(retain, nonatomic) GLUEInteractiveAnimation *childScaleAnimation; // @synthesize childScaleAnimation=_childScaleAnimation;
-@property(retain, nonatomic) EXP_HUBComponentView *childComponentView; // @synthesize childComponentView=_childComponentView;
+@property(retain, nonatomic) HUBComponentView *childComponentView; // @synthesize childComponentView=_childComponentView;
 @property(retain, nonatomic) GLUEInteractiveAnimation *headerAlphaAnimation; // @synthesize headerAlphaAnimation=_headerAlphaAnimation;
 @property(retain, nonatomic) GLUEHeaderBackgroundView *backgroundOverlayView; // @synthesize backgroundOverlayView=_backgroundOverlayView;
 @property(retain, nonatomic) GLUEHeaderBackgroundView *backgroundGradientView; // @synthesize backgroundGradientView=_backgroundGradientView;
 @property(retain, nonatomic) UIView *backgroundView; // @synthesize backgroundView=_backgroundView;
 @property(retain, nonatomic) id <GLUETheme> theme; // @synthesize theme=_theme;
-@property(nonatomic) __weak id <EXP_HUBComponentViewChildDelegate> childDelegate; // @synthesize childDelegate;
+@property(nonatomic) __weak id <HUBComponentViewChildDelegate> childDelegate; // @synthesize childDelegate;
 - (void).cxx_destruct;
 - (void)updateViewForChangedContentOffset:(struct CGPoint)arg1;
 - (void)setupChildComponentsForModel:(id)arg1;

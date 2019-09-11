@@ -6,14 +6,16 @@
 
 #import "SettingsSection.h"
 
-@class SPTInfinitePlaybackManager, SettingsSwitchTableViewCell;
+@class SPTInfinitePlaybackManager, SPTRadioLogger, SettingsSwitchTableViewCell;
 
 @interface SPTInfinitePlaybackSettingsSection : SettingsSection
 {
     SPTInfinitePlaybackManager *_infinitePlaybackManager;
     SettingsSwitchTableViewCell *_cell;
+    SPTRadioLogger *_loggingService;
 }
 
+@property(retain, nonatomic) SPTRadioLogger *loggingService; // @synthesize loggingService=_loggingService;
 @property(retain, nonatomic) SettingsSwitchTableViewCell *cell; // @synthesize cell=_cell;
 @property(readonly, nonatomic) __weak SPTInfinitePlaybackManager *infinitePlaybackManager; // @synthesize infinitePlaybackManager=_infinitePlaybackManager;
 - (void).cxx_destruct;
@@ -22,7 +24,7 @@
 - (id)cellForRow:(long long)arg1;
 - (long long)numberOfRows;
 - (unsigned long long)categoryPosition;
-- (id)initWithSettingsViewController:(id)arg1 infinitePlaybackManager:(id)arg2;
+- (id)initWithSettingsViewController:(id)arg1 infinitePlaybackManager:(id)arg2 loggingService:(id)arg3;
 
 @end
 

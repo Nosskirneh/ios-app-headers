@@ -6,10 +6,10 @@
 
 #import "NSObject-Protocol.h"
 
-@class NSURL, SPTAuthRequest;
+@class NSURL, SPTAuthAccountsRequest, SPTAuthRequest;
 
 @protocol SPTAuthRequestDelegate <NSObject>
-- (void)authRequest:(SPTAuthRequest *)arg1 didCompleteWithResponseURI:(NSURL *)arg2;
+- (void)authRequest:(SPTAuthRequest *)arg1 didCompleteForAccountsRequest:(SPTAuthAccountsRequest *)arg2 withResponseURI:(NSURL *)arg3;
 - (void)authRequestDidStart:(SPTAuthRequest *)arg1;
 @end
 

@@ -7,9 +7,10 @@
 #import "SPTNavigationItemsDataSource-Protocol.h"
 #import "SPTService-Protocol.h"
 
-@protocol SPTBarButtonItemManager, SPTNavigationListIdentifierFromABTestSource;
+@protocol SPTBarButtonItemManager, SPTNavigationListIdentifierFromABTestSource, SPTNavigationTestManager;
 
 @protocol SPTNavigationFeature <SPTService, SPTNavigationItemsDataSource>
+- (id <SPTNavigationTestManager>)provideNavigationTestManager;
 - (id <SPTBarButtonItemManager>)provideBarButtonItemManager;
 - (id <SPTNavigationListIdentifierFromABTestSource>)provideNavigationListIdentifierFromABTestSource;
 @end

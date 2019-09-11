@@ -8,7 +8,7 @@
 
 #import "SPTEntityHeaderContentController-Protocol.h"
 
-@class NSLayoutConstraint, NSString, SPTEntityHeaderBackgroundImageView, SPTLayoutConstraintBuilder, UIImage, UIView;
+@class NSArray, NSLayoutConstraint, NSString, SPTEntityHeaderBackgroundImageView, UIImage, UIView;
 
 @interface SPTEntityHeaderContentViewController : UIViewController <SPTEntityHeaderContentController>
 {
@@ -19,14 +19,14 @@
     UIView *_supplementaryView;
     SPTEntityHeaderBackgroundImageView *_backgroundImageView;
     UIView *_providedContentView;
-    SPTLayoutConstraintBuilder *_layout;
+    NSArray *_layoutConstraints;
     NSLayoutConstraint *_topOffsetConstraint;
     UIViewController *_contentViewController;
 }
 
 @property(readonly, nonatomic) UIViewController *contentViewController; // @synthesize contentViewController=_contentViewController;
 @property(nonatomic) __weak NSLayoutConstraint *topOffsetConstraint; // @synthesize topOffsetConstraint=_topOffsetConstraint;
-@property(retain, nonatomic) SPTLayoutConstraintBuilder *layout; // @synthesize layout=_layout;
+@property(copy, nonatomic) NSArray *layoutConstraints; // @synthesize layoutConstraints=_layoutConstraints;
 @property(retain, nonatomic) UIView *providedContentView; // @synthesize providedContentView=_providedContentView;
 @property(retain, nonatomic) SPTEntityHeaderBackgroundImageView *backgroundImageView; // @synthesize backgroundImageView=_backgroundImageView;
 @property(nonatomic) _Bool stickyContent; // @synthesize stickyContent=_stickyContent;

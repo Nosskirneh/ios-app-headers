@@ -7,11 +7,11 @@
 #import <Foundation/NSURL.h>
 
 @interface NSURL (SPTInAppMessageService)
-+ (void)createQueryParameterWithTriggerPatterns:(id)arg1 withTriggerURI:(id)arg2 triggerType:(id)arg3 forUrlString:(id)arg4;
-+ (id)spt_inAppMessageFeatureFetchNoteMessagesURLForTriggerPatterns:(id)arg1 triggerURI:(id)arg2 triggerType:(id)arg3 usingDevEnabled:(_Bool)arg4;
-+ (id)spt_inAppMessageFeatureFetchBannerMessagesURLForTriggerPatterns:(id)arg1 withTriggerURI:(id)arg2 triggerType:(id)arg3 usingDevEnabled:(_Bool)arg4 endpointVersion:(id)arg5;
-+ (id)spt_inAppMessageFeatureFetchCardMessagesURLForTriggerPatterns:(id)arg1 withTriggerURI:(id)arg2 triggerType:(id)arg3 usingDevEnabled:(_Bool)arg4 endpointVersion:(id)arg5;
++ (void)createQueryParameterWithTriggerPatterns:(id)arg1 triggerType:(id)arg2 forUrlString:(id)arg3;
++ (id)spt_inAppMessageFeatureFetchNoteMessagesURLForTriggerPatterns:(id)arg1 triggerType:(id)arg2 usingDevEnabled:(_Bool)arg3 V3Enabled:(_Bool)arg4;
++ (id)spt_inAppMessageFeatureFetchBannerMessagesURLForTriggerPatterns:(id)arg1 triggerType:(id)arg2 usingDevEnabled:(_Bool)arg3 V3Enabled:(_Bool)arg4;
++ (id)spt_inAppMessageFeatureFetchCardMessagesURLForTriggerPatterns:(id)arg1 triggerType:(id)arg2 usingDevEnabled:(_Bool)arg3 V3Enabled:(_Bool)arg4;
 + (id)spt_inAppMessageFeatureFetchTriggersURLUsingDevEnabled:(_Bool)arg1;
-+ (id)spt_inAppMessageFeatureBaseURLComponentsUsingDevEnabled:(_Bool)arg1;
++ (id)spt_inAppMessageFeatureBaseURLComponentsForEndpoint:(id)arg1 devEnabled:(_Bool)arg2;
 @end
 

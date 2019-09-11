@@ -6,21 +6,23 @@
 
 #import <objc/NSObject.h>
 
-@class SPTPopupManager;
+@class SPTLoginDialogController;
 @protocol SPTNavigationRouter;
 
 @interface SPTRecoverAccountLinkErrorHandler : NSObject
 {
-    SPTPopupManager *_popupManager;
     id <SPTNavigationRouter> _navigationRouter;
+    SPTLoginDialogController *_dialogController;
 }
 
-@property(retain, nonatomic) id <SPTNavigationRouter> navigationRouter; // @synthesize navigationRouter=_navigationRouter;
-@property(retain, nonatomic) SPTPopupManager *popupManager; // @synthesize popupManager=_popupManager;
+@property(readonly, nonatomic) SPTLoginDialogController *dialogController; // @synthesize dialogController=_dialogController;
+@property(readonly, nonatomic) id <SPTNavigationRouter> navigationRouter; // @synthesize navigationRouter=_navigationRouter;
 - (void).cxx_destruct;
-- (void)getNewLinkButtonTapped:(id)arg1;
-- (void)showDialog;
-- (id)initWithPopupManager:(id)arg1 navigationRouter:(id)arg2;
+- (void)showRegionMismatchErrorDialog;
+- (void)showLinkExpiredErrorDialog;
+- (void)getNewRecoverAccountLink;
+- (void)showDialogWithError:(id)arg1;
+- (id)initWithNavigationRouter:(id)arg1 dialogController:(id)arg2;
 
 @end
 

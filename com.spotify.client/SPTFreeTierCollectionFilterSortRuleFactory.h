@@ -15,21 +15,25 @@
 }
 
 + (id)nameSortRule:(id)arg1 title:(id)arg2;
-+ (id)nameSortRuleWithIdentifier:(id)arg1 title:(id)arg2;
++ (id)nameSortRuleWithIdentifier:(id)arg1 title:(id)arg2 groupByName:(_Bool)arg3;
 @property(readonly, nonatomic) id <SPTFreeTierCollectionTestManager> testManager; // @synthesize testManager=_testManager;
 @property(readonly, nonatomic) id <SPTProductState> productState; // @synthesize productState=_productState;
 - (void).cxx_destruct;
 - (id)customPlaylistsSortRuleWithOptions;
-- (id)namePlaylistsSortRuleWithOptions;
+- (id)namePlaylistsSortRule;
 - (id)relevancePlaylistsSortRule;
 - (id)recentlyPlayedPlaylistsSortRuleWithOptions;
 - (id)recentlyAddedPlaylistsSortRuleWithOptions;
 - (id)recentlyAddedSongsSortRule;
 - (id)recentlyAddedSortRule;
+- (id)songsAlbumSortRule;
+- (id)artistNameSortRule:(id)arg1 groupByName:(_Bool)arg2;
 - (id)albumArtistNameSortRule;
+- (id)songsArtistNameSortRule;
 - (id)albumNameSortRule;
 - (id)artistNameSortRule;
 - (id)songsNameSortRule;
+- (id)recentlyPlayedCollectionEntitySortRuleWithIdentifier:(id)arg1;
 - (id)downloadedPlaylistsFilterRule;
 - (id)downloadedFilterRule;
 - (id)songsAvailableFilterRules;

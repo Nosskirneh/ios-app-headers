@@ -10,7 +10,7 @@
 {
 }
 
-- (id)createRecentlyPlayedChildContentFromEntityList:(id)arg1 withTestManager:(id)arg2;
+- (id)createRecentlyPlayedChildContentFromRecentlyPlayedList:(id)arg1 withTestManager:(id)arg2;
 - (id)createRecentlyPlayedContent;
 
 @end

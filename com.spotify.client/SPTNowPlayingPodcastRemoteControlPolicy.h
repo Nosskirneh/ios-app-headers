@@ -19,6 +19,8 @@
 - (void).cxx_destruct;
 - (void)nowPlayingModel:(id)arg1 didMoveToRelativeTrack:(id)arg2;
 - (void)nowPlayingModelDidUpdateMetadata:(id)arg1;
+- (_Bool)shouldPlaybackSpeedControlBeEnabled;
+- (_Bool)shouldPlaybackSpeedControlBeAvailable;
 - (_Bool)shouldChangePlaybackPositionCommandBeEnabled;
 - (_Bool)shouldChangePlaybackPositionCommandBeAvailable;
 - (void)skipForwardWithInterval:(double)arg1;

@@ -16,7 +16,7 @@
     GLUELabelStyle *_titleLabelStyle;
     GLUELabelStyle *_subtitleLabelStyle;
     GLUELabelStyle *_metadataLabelStyle;
-    double _imageToLabelsMargin;
+    double _titleHorizontalMargin;
     double _subtitleToTitleMargin;
     double _metadataToSubtitleMargin;
     struct UIEdgeInsets _contentInsets;
@@ -25,7 +25,7 @@
 + (id)defaultStyleWithTheme:(id)arg1;
 @property(nonatomic) double metadataToSubtitleMargin; // @synthesize metadataToSubtitleMargin=_metadataToSubtitleMargin;
 @property(nonatomic) double subtitleToTitleMargin; // @synthesize subtitleToTitleMargin=_subtitleToTitleMargin;
-@property(nonatomic) double imageToLabelsMargin; // @synthesize imageToLabelsMargin=_imageToLabelsMargin;
+@property(nonatomic) double titleHorizontalMargin; // @synthesize titleHorizontalMargin=_titleHorizontalMargin;
 @property(nonatomic) struct UIEdgeInsets contentInsets; // @synthesize contentInsets=_contentInsets;
 @property(copy, nonatomic) GLUELabelStyle *metadataLabelStyle; // @synthesize metadataLabelStyle=_metadataLabelStyle;
 @property(copy, nonatomic) GLUELabelStyle *subtitleLabelStyle; // @synthesize subtitleLabelStyle=_subtitleLabelStyle;

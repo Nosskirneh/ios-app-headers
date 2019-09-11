@@ -9,19 +9,19 @@
 #import "SPTLoginRecoverAccountHelpPopupLoggerProtocol-Protocol.h"
 
 @class NSString;
-@protocol SPTAdjustUserTrackerProtocol;
+@protocol SPTLoginLogger;
 
 @interface SPTLoginMagicLinkHelpPopupLogger : NSObject <SPTLoginRecoverAccountHelpPopupLoggerProtocol>
 {
-    id <SPTAdjustUserTrackerProtocol> _adjustTracker;
+    id <SPTLoginLogger> _logger;
 }
 
-@property(retain, nonatomic) id <SPTAdjustUserTrackerProtocol> adjustTracker; // @synthesize adjustTracker=_adjustTracker;
+@property(retain, nonatomic) id <SPTLoginLogger> logger; // @synthesize logger=_logger;
 - (void).cxx_destruct;
 - (void)logUserDidTapGetHelpButton;
 - (void)logUserDidTapTryAgainButton;
 - (void)logUserDidSeePopupDialog;
-- (id)initWithAdjustTracker:(id)arg1;
+- (id)initWithLogger:(id)arg1;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

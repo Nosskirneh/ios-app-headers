@@ -9,7 +9,7 @@
 #import "SPTExternalIntegrationContentService-Protocol.h"
 
 @class NSSet, NSString, SPTAllocationContext, SPTExternalIntegrationContentControllerImplementation;
-@protocol SPTContainerService, SPTExternalIntegrationDebugLogService, SPTNetworkService;
+@protocol SPTContainerService, SPTExplicitContentService, SPTExternalIntegrationDebugLogService, SPTNetworkService;
 
 @interface SPTExternalIntegrationContentServiceImplementation : NSObject <SPTExternalIntegrationContentService>
 {
@@ -17,11 +17,13 @@
     id <SPTExternalIntegrationDebugLogService> _debugLogService;
     id <SPTNetworkService> _networkService;
     id <SPTContainerService> _containerService;
+    id <SPTExplicitContentService> _explicitContentService;
     NSSet *_contentProviderRegistry;
 }
 
 + (id)serviceIdentifier;
 @property(retain, nonatomic) NSSet *contentProviderRegistry; // @synthesize contentProviderRegistry=_contentProviderRegistry;
+@property(readonly, nonatomic) __weak id <SPTExplicitContentService> explicitContentService; // @synthesize explicitContentService=_explicitContentService;
 @property(readonly, nonatomic) __weak id <SPTContainerService> containerService; // @synthesize containerService=_containerService;
 @property(readonly, nonatomic) __weak id <SPTNetworkService> networkService; // @synthesize networkService=_networkService;
 @property(readonly, nonatomic) __weak id <SPTExternalIntegrationDebugLogService> debugLogService; // @synthesize debugLogService=_debugLogService;

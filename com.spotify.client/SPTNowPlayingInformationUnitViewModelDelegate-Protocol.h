@@ -6,7 +6,10 @@
 
 #import "NSObject-Protocol.h"
 
+@protocol SPTNowPlayingInformationUnitViewModel;
+
 @protocol SPTNowPlayingInformationUnitViewModelDelegate <NSObject>
-- (void)updateLabels;
+- (void)viewModelDidUpdatePositiveFeedbackButtonState:(id <SPTNowPlayingInformationUnitViewModel>)arg1;
+- (void)viewModelTrackDidChange:(id <SPTNowPlayingInformationUnitViewModel>)arg1;
 @end
 

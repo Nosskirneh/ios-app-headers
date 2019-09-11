@@ -21,10 +21,12 @@
 @property(nonatomic) __weak id <SPTTableContext> tableContext; // @synthesize tableContext=_tableContext;
 - (void).cxx_destruct;
 - (void)didSelectCell;
+- (_Bool)shouldHighlightCell:(id)arg1;
 - (void)didEndDisplayingCell:(id)arg1;
 - (void)willDisplayCell:(id)arg1;
 - (id)tableCell;
 - (double)tableCellHeight;
+- (double)estimatedTableCellHeight;
 
 @end
 

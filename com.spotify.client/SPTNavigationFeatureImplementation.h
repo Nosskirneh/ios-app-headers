@@ -6,13 +6,12 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTFeatureFlagSignalObserver-Protocol.h"
 #import "SPTNavigationFeature-Protocol.h"
 
-@class NSSet, NSString, SPTAllocationContext, SPTNavigationListDataLoader, SPTNavigationListStaticDataSource, SPTNavigationPageFactoryObserver, SPTNavigationSettingsRegistration;
+@class NSString, SPTAllocationContext, SPTNavigationListDataLoader, SPTNavigationListStaticDataSource, SPTNavigationPageFactoryObserver, SPTNavigationSettingsRegistration;
 @protocol SPTAbbaService, SPTBarButtonItemManager, SPTContainerService, SPTCrashReporterService, SPTFeatureFlagSignal, SPTFeatureFlaggingService, SPTFreeTierService, SPTNavigationConfiguration, SPTNavigationListIdentifierFromABTestSource, SPTNavigationListProvider, SPTNavigationTestManager, SPTNetworkService, SPTSessionService, SPTSettingsFeature, SPTTabBarControllerFactory;
 
-@interface SPTNavigationFeatureImplementation : NSObject <SPTFeatureFlagSignalObserver, SPTNavigationFeature>
+@interface SPTNavigationFeatureImplementation : NSObject <SPTNavigationFeature>
 {
     _Bool _newExperienceEnabled;
     id <SPTSessionService> _clientSessionService;
@@ -21,10 +20,9 @@
     id <SPTSettingsFeature> _settingsFeature;
     id <SPTNetworkService> _networkFeature;
     id <SPTCrashReporterService> _crashReporterService;
-    id <SPTFeatureFlaggingService> _featureFlaggingSevice;
+    id <SPTFeatureFlaggingService> _featureFlaggingService;
     id <SPTNavigationListProvider> _navigationListProvider;
     id <SPTNavigationConfiguration> _navigationConfiguration;
-    NSSet *_consumers;
     SPTNavigationListStaticDataSource *_staticDataSource;
     SPTNavigationListDataLoader *_listDataLoader;
     SPTNavigationPageFactoryObserver *_pageFactoryObserver;
@@ -49,10 +47,9 @@
 @property(retain, nonatomic) SPTNavigationPageFactoryObserver *pageFactoryObserver; // @synthesize pageFactoryObserver=_pageFactoryObserver;
 @property(retain, nonatomic) SPTNavigationListDataLoader *listDataLoader; // @synthesize listDataLoader=_listDataLoader;
 @property(retain, nonatomic) SPTNavigationListStaticDataSource *staticDataSource; // @synthesize staticDataSource=_staticDataSource;
-@property(retain, nonatomic) NSSet *consumers; // @synthesize consumers=_consumers;
 @property(retain, nonatomic) id <SPTNavigationConfiguration> navigationConfiguration; // @synthesize navigationConfiguration=_navigationConfiguration;
 @property(retain, nonatomic) id <SPTNavigationListProvider> navigationListProvider; // @synthesize navigationListProvider=_navigationListProvider;
-@property(nonatomic) __weak id <SPTFeatureFlaggingService> featureFlaggingSevice; // @synthesize featureFlaggingSevice=_featureFlaggingSevice;
+@property(nonatomic) __weak id <SPTFeatureFlaggingService> featureFlaggingService; // @synthesize featureFlaggingService=_featureFlaggingService;
 @property(nonatomic) __weak id <SPTCrashReporterService> crashReporterService; // @synthesize crashReporterService=_crashReporterService;
 @property(nonatomic) __weak id <SPTNetworkService> networkFeature; // @synthesize networkFeature=_networkFeature;
 @property(nonatomic) __weak id <SPTSettingsFeature> settingsFeature; // @synthesize settingsFeature=_settingsFeature;
@@ -64,6 +61,7 @@
 - (id)createListWithItems:(id)arg1 identifier:(id)arg2;
 - (id)listDataSources;
 - (void)registerNavigationState:(id)arg1;
+- (id)provideNavigationTestManager;
 - (id)provideTabBarControllerFactory;
 - (id)provideNavigationListIdentifierFromABTestSource;
 - (id)provideNavigationConfiguration;

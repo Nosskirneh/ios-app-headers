@@ -6,19 +6,19 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTFreeTierService-Protocol.h"
 #import "SPTMetaViewControllerObserver-Protocol.h"
 
 @class NSString, SPTAllocationContext, SPTFreeTierTestManagerImplementation, SPTUIModeSwitchManager;
 @protocol SPTContainerService, SPTContainerUIService, SPTCrashReporterService, SPTDebugService, SPTFeatureFlagSignal, SPTFeatureFlaggingService, SPTLoginService, SPTServiceManagerService, SPTSessionService, SPTURIDispatchService;
 
-@interface SPTFreeTierServiceImplementation : NSObject <SPTMetaViewControllerObserver, SPTFreeTierService>
+@interface SPTFreeTierServiceImplementation : NSObject <SPTMetaViewControllerObserver>
 {
+    _Bool _loaded;
     id <SPTContainerService> _containerService;
     id <SPTContainerUIService> _containerUIService;
     id <SPTCrashReporterService> _crashReporterService;
     id <SPTDebugService> _debugService;
-    id <SPTFeatureFlaggingService> _featureFlaggingSevice;
+    id <SPTFeatureFlaggingService> _featureFlaggingService;
     id <SPTSessionService> _sessionService;
     id <SPTLoginService> _loginService;
     id <SPTServiceManagerService> _serviceManagerService;
@@ -31,6 +31,7 @@
 }
 
 + (id)serviceIdentifier;
+@property(nonatomic, getter=isLoaded) _Bool loaded; // @synthesize loaded=_loaded;
 @property(retain, nonatomic) SPTUIModeSwitchManager *modeSwitcher; // @synthesize modeSwitcher=_modeSwitcher;
 @property(nonatomic) long long theNewExperienceFlagPreviousState; // @synthesize theNewExperienceFlagPreviousState=_theNewExperienceFlagPreviousState;
 @property(retain, nonatomic) id <SPTFeatureFlagSignal> premiumTierEnabledSignal; // @synthesize premiumTierEnabledSignal=_premiumTierEnabledSignal;
@@ -40,18 +41,15 @@
 @property(nonatomic) __weak id <SPTServiceManagerService> serviceManagerService; // @synthesize serviceManagerService=_serviceManagerService;
 @property(nonatomic) __weak id <SPTLoginService> loginService; // @synthesize loginService=_loginService;
 @property(nonatomic) __weak id <SPTSessionService> sessionService; // @synthesize sessionService=_sessionService;
-@property(nonatomic) __weak id <SPTFeatureFlaggingService> featureFlaggingSevice; // @synthesize featureFlaggingSevice=_featureFlaggingSevice;
+@property(nonatomic) __weak id <SPTFeatureFlaggingService> featureFlaggingService; // @synthesize featureFlaggingService=_featureFlaggingService;
 @property(nonatomic) __weak id <SPTDebugService> debugService; // @synthesize debugService=_debugService;
 @property(nonatomic) __weak id <SPTCrashReporterService> crashReporterService; // @synthesize crashReporterService=_crashReporterService;
 @property(nonatomic) __weak id <SPTContainerUIService> containerUIService; // @synthesize containerUIService=_containerUIService;
 @property(nonatomic) __weak id <SPTContainerService> containerService; // @synthesize containerService=_containerService;
 - (void).cxx_destruct;
 - (id)provideFreeTierTestManager;
-- (id)provideConsolidatedAlbumSignal;
-- (id)provideConsolidatedArtistFollowHeaderSignal;
-- (id)provideHeartsEverywhereEnabledSignal;
 - (id)provideNewExperienceEnabledSignal;
-- (void)registerNewExperienceDebugAction;
+- (void)unload;
 - (void)load;
 - (void)configureWithServices:(id)arg1;
 

@@ -6,11 +6,9 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTHubRemoteContentURLResolver-Protocol.h"
+@class NSURL;
 
-@class NSString, NSURL;
-
-@interface SPTAssistedCurationDrillDownRemoteContentURLResolver : NSObject <SPTHubRemoteContentURLResolver>
+@interface SPTAssistedCurationDrillDownRemoteContentURLResolver : NSObject
 {
     NSURL *_viewURI;
 }
@@ -24,12 +22,6 @@
 - (id)endpointPathForViewURI:(id)arg1 forExternalData:(_Bool)arg2;
 - (id)remoteHubContentURLForEndpointPath:(id)arg1 forExternalData:(_Bool)arg2;
 - (id)remoteHubContentURLForViewURI:(id)arg1;
-
-// Remaining properties
-@property(readonly, copy) NSString *debugDescription;
-@property(readonly, copy) NSString *description;
-@property(readonly) unsigned long long hash;
-@property(readonly) Class superclass;
 
 @end
 

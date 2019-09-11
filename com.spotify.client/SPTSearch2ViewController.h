@@ -6,20 +6,19 @@
 
 #import <UIKit/UIViewController.h>
 
-#import "EXP_HUBViewContentOffsetObserver-Protocol.h"
-#import "EXP_SPTHubPlayTrackListCommandHandlerDelegate-Protocol.h"
+#import "HUBViewContentOffsetObserver-Protocol.h"
 #import "SPContentInsetViewController-Protocol.h"
+#import "SPTHubPlayTrackListCommandHandlerDelegate-Protocol.h"
 #import "SPTImageLoaderDelegate-Protocol.h"
 #import "SPTPageController-Protocol.h"
-#import "SPTSearch2ColorInterpolatorDelegate-Protocol.h"
 #import "SPTSearch2ViewControllerProtocol-Protocol.h"
 #import "SPTSearch2ViewModelProviderDelegate-Protocol.h"
-#import "SPTSearchHubViewControllerDelegate-Protocol.h"
+#import "SPTSearchPlatformColorInterpolatorDelegate-Protocol.h"
 
-@class GLUEGradientView, NSString, NSURL, SPTProgressView, SPTSearch2ColorInterpolator, SPTSearch2Configuration, SPTSearchHubViewController;
-@protocol GLUETheme, SPTExplicitContentHubCommandHandlerFactory, SPTImageLoader, SPTPageContainer, SPTSearch2ViewModelProvider;
+@class GLUEGradientView, NSMutableDictionary, NSString, NSURL, SPTProgressView, SPTSearch2Configuration, SPTSearchHubViewController, SPTSearchPlatformColorInterpolator;
+@protocol GLUETheme, SPTExplicitContentHubCommandHandlerFactory, SPTImageLoader, SPTPageContainer, SPTSearch2ViewModelProvider, SPTSearchLoadingLogger, SPTShareDragDelegateFactory;
 
-@interface SPTSearch2ViewController : UIViewController <SPTSearchHubViewControllerDelegate, SPContentInsetViewController, SPTSearch2ViewModelProviderDelegate, EXP_HUBViewContentOffsetObserver, SPTImageLoaderDelegate, EXP_SPTHubPlayTrackListCommandHandlerDelegate, SPTSearch2ColorInterpolatorDelegate, SPTPageController, SPTSearch2ViewControllerProtocol>
+@interface SPTSearch2ViewController : UIViewController <SPContentInsetViewController, SPTSearch2ViewModelProviderDelegate, HUBViewContentOffsetObserver, SPTImageLoaderDelegate, SPTHubPlayTrackListCommandHandlerDelegate, SPTSearchPlatformColorInterpolatorDelegate, SPTPageController, SPTSearch2ViewControllerProtocol>
 {
     _Bool _automaticallyAdjustsInsets;
     NSString *_query;
@@ -31,13 +30,19 @@
     id <SPTImageLoader> _imageLoader;
     id <GLUETheme> _theme;
     SPTSearch2Configuration *_configuration;
-    SPTSearch2ColorInterpolator *_colorInterpolator;
+    SPTSearchPlatformColorInterpolator *_colorInterpolator;
     id <SPTExplicitContentHubCommandHandlerFactory> _explicitContentHubCommandHandlerFactory;
+    id <SPTSearchLoadingLogger> _loadingLogger;
+    NSMutableDictionary *_dragDelegateHolders;
+    id <SPTShareDragDelegateFactory> _shareDragDelegateFactory;
     struct UIEdgeInsets _insets;
 }
 
+@property(readonly, nonatomic) id <SPTShareDragDelegateFactory> shareDragDelegateFactory; // @synthesize shareDragDelegateFactory=_shareDragDelegateFactory;
+@property(readonly, nonatomic) NSMutableDictionary *dragDelegateHolders; // @synthesize dragDelegateHolders=_dragDelegateHolders;
+@property(readonly, nonatomic) id <SPTSearchLoadingLogger> loadingLogger; // @synthesize loadingLogger=_loadingLogger;
 @property(readonly, nonatomic) id <SPTExplicitContentHubCommandHandlerFactory> explicitContentHubCommandHandlerFactory; // @synthesize explicitContentHubCommandHandlerFactory=_explicitContentHubCommandHandlerFactory;
-@property(readonly, nonatomic) SPTSearch2ColorInterpolator *colorInterpolator; // @synthesize colorInterpolator=_colorInterpolator;
+@property(readonly, nonatomic) SPTSearchPlatformColorInterpolator *colorInterpolator; // @synthesize colorInterpolator=_colorInterpolator;
 @property(readonly, copy, nonatomic) SPTSearch2Configuration *configuration; // @synthesize configuration=_configuration;
 @property(readonly, nonatomic) id <GLUETheme> theme; // @synthesize theme=_theme;
 @property(readonly, nonatomic) id <SPTImageLoader> imageLoader; // @synthesize imageLoader=_imageLoader;
@@ -48,6 +53,7 @@
 @property(nonatomic) struct UIEdgeInsets insets; // @synthesize insets=_insets;
 @property(copy, nonatomic) NSString *query; // @synthesize query=_query;
 - (void).cxx_destruct;
+- (void)configureDragDelegateWithViewModel:(id)arg1;
 - (id)makeDeleteAllRecentsCommandHandlerWithDataSource:(id)arg1 searchLogger:(id)arg2;
 - (id)makeDeleteRecentCommandHandlerWithDataSource:(id)arg1 searchLogger:(id)arg2;
 - (id)makeReloadCommandHandler;
@@ -57,10 +63,13 @@
 - (void)dismissKeyboard;
 - (void)setGradientColor:(id)arg1 animated:(_Bool)arg2;
 - (void)updateGradientForViewModel:(id)arg1;
+- (void)logLoadingCompletedWithModel:(id)arg1;
+- (void)handleLoadingLoggingForQuery:(id)arg1 previousQuery:(id)arg2;
+- (void)updateGradientStyle;
 - (void)adjustInsetsIfNeeded;
 - (void)layoutGradientView;
 - (void)layoutSubviews;
-- (void)colorInterpolator:(id)arg1 didChangeToColor:(id)arg2;
+- (void)colorInterpolatorDidChangeColor:(id)arg1;
 - (id)playTrackListHandler:(id)arg1 providePlayerContextForCommand:(id)arg2 event:(id)arg3;
 - (void)imageLoader:(id)arg1 didLoadImage:(id)arg2 forURL:(id)arg3 loadTime:(double)arg4 context:(id)arg5;
 - (void)hubView:(id)arg1 contentOffsetDidChange:(struct CGPoint)arg2;
@@ -69,15 +78,15 @@
 @property(readonly, nonatomic, getter=spt_pageURI) NSURL *pageURI;
 @property(readonly, nonatomic, getter=spt_pageIdentifier) NSString *pageIdentifier;
 - (void)sp_updateContentInsets;
-- (void)searchViewController:(id)arg1 didUpdateFromViewModel:(id)arg2 toViewModel:(id)arg3;
 - (void)scrollToTop;
 @property(readonly, copy, nonatomic) NSString *requestID;
+- (void)viewWillDisappear:(_Bool)arg1;
 - (void)viewDidLayoutSubviews;
 - (void)viewDidLoad;
 - (id)backgroundColor;
 @property(readonly, nonatomic) GLUEGradientView *gradientView; // @synthesize gradientView=_gradientView;
 @property(readonly, nonatomic) SPTProgressView *progressView; // @synthesize progressView=_progressView;
-- (id)initWithViewModelProvider:(id)arg1 dependencies:(id)arg2 configuration:(id)arg3;
+- (id)initWithViewModelProvider:(id)arg1 dependencies:(id)arg2 configuration:(id)arg3 loadingLogger:(id)arg4;
 
 // Remaining properties
 @property(nonatomic) _Bool automaticallyAdjustsScrollViewInsets;

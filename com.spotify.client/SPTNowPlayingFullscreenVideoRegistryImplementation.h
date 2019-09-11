@@ -9,21 +9,21 @@
 #import "SPTNowPlayingFullscreenVideoRegistry-Protocol.h"
 
 @class NSHashTable, NSString;
-@protocol SPTUpsellManager;
+@protocol SPTInAppMessageMessageRequester;
 
 @interface SPTNowPlayingFullscreenVideoRegistryImplementation : NSObject <SPTNowPlayingFullscreenVideoRegistry>
 {
-    id <SPTUpsellManager> _upsellManager;
+    id <SPTInAppMessageMessageRequester> _inAppMessageRequester;
     NSHashTable *_registrants;
 }
 
 @property(retain, nonatomic) NSHashTable *registrants; // @synthesize registrants=_registrants;
-@property(readonly, nonatomic) id <SPTUpsellManager> upsellManager; // @synthesize upsellManager=_upsellManager;
+@property(readonly, nonatomic) id <SPTInAppMessageMessageRequester> inAppMessageRequester; // @synthesize inAppMessageRequester=_inAppMessageRequester;
 - (void).cxx_destruct;
 - (void)removeRegistrant:(id)arg1;
 - (void)addRegistrant:(id)arg1;
 - (_Bool)shouldPresentFullscreenVideo;
-- (id)initWithUpsellManager:(id)arg1;
+- (id)initWithInAppMessageRequester:(id)arg1;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

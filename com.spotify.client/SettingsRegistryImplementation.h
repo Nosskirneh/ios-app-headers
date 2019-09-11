@@ -18,7 +18,6 @@
     NSMutableDictionary *_rootSections;
     NSMutableDictionary *_rootSectionProviders;
     NSMutableDictionary *_settingsStructure;
-    NSDictionary *_availableRootSettings;
     NSMutableArray *_mutableFeatureSettingsPages;
     NSMutableDictionary *_mutableTitles;
     id <SPTAbbaFeatureFlags> _abbaFeatureFlags;
@@ -35,13 +34,11 @@
 - (id)containerInTree:(id)arg1 withURI:(id)arg2;
 @property(readonly, copy, nonatomic) NSDictionary *settingsStructure;
 @property(readonly, copy, nonatomic) NSDictionary *titles;
-@property(readonly, nonatomic) NSDictionary *availableRootSettings; // @synthesize availableRootSettings=_availableRootSettings;
 @property(readonly, nonatomic) NSMutableDictionary *providers;
 - (void)registerTitle:(id)arg1 forURI:(id)arg2;
 @property(readonly, nonatomic) __weak NSArray *featureSettingsPages;
 - (void)unregisterFeatureSettingsPage:(id)arg1;
 - (void)registerFeatureSettingsPage:(id)arg1;
-- (void)registerRootSectionIfNeededForURI:(id)arg1;
 - (void)registerSettingsSectionProvider:(id)arg1 withSelector:(SEL)arg2 forURI:(id)arg3;
 - (void)registerRootSettingsSectionProvider:(id)arg1 withSelector:(SEL)arg2 forURI:(id)arg3;
 - (void)registerRootSettingsURI:(id)arg1 title:(id)arg2 viewControllerClass:(Class)arg3;

@@ -7,38 +7,46 @@
 #import <objc/NSObject.h>
 
 #import "SPTAudioPlayerMediaClockObserver-Protocol.h"
+#import "SPTVideoEventObserver-Protocol.h"
 
 @class NSString, NSTimer;
-@protocol SPTAudioPlayerMediaClock, SPTVideoPlayer;
+@protocol OS_dispatch_queue, SPTAudioPlayerMediaClock, SPTAudioPlayerMediaClockService, SPTVideoPlaybackIdentity;
 
-@interface SPTVideoAudioStackMediaSynchronizer : NSObject <SPTAudioPlayerMediaClockObserver>
+@interface SPTVideoAudioStackMediaSynchronizer : NSObject <SPTAudioPlayerMediaClockObserver, SPTVideoEventObserver>
 {
-    id <SPTVideoPlayer> _videoPlayer;
+    CDUnknownBlockType _videoPlayerProvider;
     NSTimer *_pollingTimer;
+    id <SPTAudioPlayerMediaClockService> _audioPlayerMediaClockService;
     id <SPTAudioPlayerMediaClock> _audioClock;
     double _lastSeekDelay;
+    id <SPTVideoPlaybackIdentity> _identity;
 }
 
+@property(retain, nonatomic) id <SPTVideoPlaybackIdentity> identity; // @synthesize identity=_identity;
 @property(nonatomic) double lastSeekDelay; // @synthesize lastSeekDelay=_lastSeekDelay;
 @property(retain, nonatomic) id <SPTAudioPlayerMediaClock> audioClock; // @synthesize audioClock=_audioClock;
+@property(retain, nonatomic) id <SPTAudioPlayerMediaClockService> audioPlayerMediaClockService; // @synthesize audioPlayerMediaClockService=_audioPlayerMediaClockService;
 @property(retain, nonatomic) NSTimer *pollingTimer; // @synthesize pollingTimer=_pollingTimer;
-@property(nonatomic) __weak id <SPTVideoPlayer> videoPlayer; // @synthesize videoPlayer=_videoPlayer;
+@property(copy, nonatomic) CDUnknownBlockType videoPlayerProvider; // @synthesize videoPlayerProvider=_videoPlayerProvider;
 - (void).cxx_destruct;
+- (void)didCreatePlaybackInBackground:(_Bool)arg1 timestamp:(double)arg2;
 - (void)audioPlayerMediaClock:(id)arg1 didStopTrackingPositionOfTrackURI:(id)arg2;
 - (void)audioPlayerMediaClock:(id)arg1 didStartTrackingPositionOfTrackURI:(id)arg2;
 - (void)stopSyncPolling;
 - (void)startSyncPolling;
-- (void)setVideoPlaybackRate:(float)arg1 timeDifference:(double)arg2;
-- (float)adjustedPlaybackRate:(float)arg1 forTimeDifference:(double)arg2;
-- (void)syncUsingPlaybackRate:(float)arg1 timeDifference:(double)arg2;
-- (void)seekVideoTo:(double)arg1 playbackRate:(float)arg2;
+- (void)setVideoPlaybackSpeed:(float)arg1 timeDifference:(double)arg2;
+- (float)adjustedPlaybackSpeed:(float)arg1 forTimeDifference:(double)arg2;
+- (void)syncUsingPlaybackSpeed:(float)arg1 timeDifference:(double)arg2;
+- (void)seekVideoTo:(double)arg1 playbackSpeed:(float)arg2;
 - (void)syncIfNeeded;
+- (id)videoPlayer;
 - (void)dealloc;
-- (id)initWithAudioPlayerMediaClock:(id)arg1 videoPlayer:(id)arg2 audioTrackURI:(id)arg3;
+- (id)initWithVideoPlayerProvider:(CDUnknownBlockType)arg1 audioPlayerMediaClockService:(id)arg2 identity:(id)arg3;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
+@property(readonly, nonatomic) NSObject<OS_dispatch_queue> *dispatchQueue;
 @property(readonly) unsigned long long hash;
 @property(readonly) Class superclass;
 

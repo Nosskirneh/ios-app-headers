@@ -4,13 +4,13 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import "EXP_SPTHubLogger-Protocol.h"
+#import "SPTHubImpressionLogger-Protocol.h"
+#import "SPTHubInteractionLogger-Protocol.h"
 
-@class EXP_HUBComponentEvent, NSString;
+@class NSString;
 
-@protocol SPTSearchLogger <EXP_SPTHubLogger>
-- (void)logUserInteraction5WithUserIntent:(NSString *)arg1 event:(EXP_HUBComponentEvent *)arg2;
-- (void)logUIInteractionForAutocompleteSuggestionFilled:(NSString *)arg1 requestId:(NSString *)arg2 index:(unsigned long long)arg3;
+@protocol SPTSearchLogger <SPTHubImpressionLogger, SPTHubInteractionLogger>
+- (void)logUIInteractionForAutocompleteSuggestionFilledWithRequestId:(NSString *)arg1 index:(unsigned long long)arg2;
 - (void)logUIInteractionForAutocompleteQueryClearedWithRequestId:(NSString *)arg1;
 - (void)logUIInteractionForAutocompleteSuggestionManuallyEntered:(NSString *)arg1 requestId:(NSString *)arg2;
 - (void)logUIInteractionForAutocompleteSuggestionSelected:(NSString *)arg1 requestId:(NSString *)arg2 index:(unsigned long long)arg3;

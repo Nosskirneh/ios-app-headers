@@ -21,7 +21,8 @@
     NSLayoutConstraint *_contentBottomConstraint;
     NSLayoutConstraint *_contentLeadingConstraint;
     NSLayoutConstraint *_contentTrailingConstraint;
-    NSLayoutConstraint *_imageToLabelsMarginConstraint;
+    NSLayoutConstraint *_titleToImageLeadingConstraint;
+    NSLayoutConstraint *_titleToContentViewTrailingConstraint;
     NSLayoutConstraint *_subtitleToTitleMarginConstraint;
     NSLayoutConstraint *_metadataToSubtitleMarginConstraint;
     NSLayoutConstraint *_metadataToTitleMarginConstraint;
@@ -36,7 +37,8 @@
 @property(retain, nonatomic) NSLayoutConstraint *metadataToTitleMarginConstraint; // @synthesize metadataToTitleMarginConstraint=_metadataToTitleMarginConstraint;
 @property(retain, nonatomic) NSLayoutConstraint *metadataToSubtitleMarginConstraint; // @synthesize metadataToSubtitleMarginConstraint=_metadataToSubtitleMarginConstraint;
 @property(retain, nonatomic) NSLayoutConstraint *subtitleToTitleMarginConstraint; // @synthesize subtitleToTitleMarginConstraint=_subtitleToTitleMarginConstraint;
-@property(retain, nonatomic) NSLayoutConstraint *imageToLabelsMarginConstraint; // @synthesize imageToLabelsMarginConstraint=_imageToLabelsMarginConstraint;
+@property(retain, nonatomic) NSLayoutConstraint *titleToContentViewTrailingConstraint; // @synthesize titleToContentViewTrailingConstraint=_titleToContentViewTrailingConstraint;
+@property(retain, nonatomic) NSLayoutConstraint *titleToImageLeadingConstraint; // @synthesize titleToImageLeadingConstraint=_titleToImageLeadingConstraint;
 @property(retain, nonatomic) NSLayoutConstraint *contentTrailingConstraint; // @synthesize contentTrailingConstraint=_contentTrailingConstraint;
 @property(retain, nonatomic) NSLayoutConstraint *contentLeadingConstraint; // @synthesize contentLeadingConstraint=_contentLeadingConstraint;
 @property(retain, nonatomic) NSLayoutConstraint *contentBottomConstraint; // @synthesize contentBottomConstraint=_contentBottomConstraint;

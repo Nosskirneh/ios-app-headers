@@ -6,64 +6,64 @@
 
 #import <objc/NSObject.h>
 
+#import "SPTLoginFailureHandlerDelegate-Protocol.h"
+#import "SPTLoginRecoverAccountDataLoaderDelegate-Protocol.h"
 #import "SPTLoginRecoverAccountHelpControllerDelegate-Protocol.h"
-#import "SPTSignupDataLoaderDelegate-Protocol.h"
 
-@class NSString, SPTAuthenticationHandler, SPTLoginMagicLinkTestManager, SPTLoginNetworkControllerUtility, SPTLoginOnePasswordHandler, SPTLoginRecoverAccountDataLoader, SPTLoginRecoverAccountHelpController, SPTLoginSpinnerButtonTestManager, SPTLoginTheme, SPTLoginViewLogger, SPTPopupManager;
+@class NSString, SPTAuthenticationHandler, SPTLoginAttemptLogger, SPTLoginFailedLinkRequestHandler, SPTLoginFailureHandler, SPTLoginMagicLinkRequestTracker, SPTLoginMagicLinkRequestWarningPresenter, SPTLoginMagicLinkTestManager, SPTLoginOnePasswordHandler, SPTLoginRecoverAccountDataLoader, SPTLoginRecoverAccountHelpController, SPTLoginViewLogger;
 @protocol SPTLoginViewModelDelegate, SPTNavigationRouter;
 
-@interface SPTLoginViewModel : NSObject <SPTSignupDataLoaderDelegate, SPTLoginRecoverAccountHelpControllerDelegate>
+@interface SPTLoginViewModel : NSObject <SPTLoginRecoverAccountDataLoaderDelegate, SPTLoginRecoverAccountHelpControllerDelegate, SPTLoginFailureHandlerDelegate>
 {
     id <SPTLoginViewModelDelegate> _delegate;
     SPTLoginViewLogger *_logger;
     SPTLoginOnePasswordHandler *_onePassword;
     SPTLoginMagicLinkTestManager *_magicLinkTestManager;
-    SPTLoginSpinnerButtonTestManager *_spinnerButtonTestManager;
     NSString *_userEmail;
-    SPTLoginTheme *_theme;
+    NSString *_initialErrorDescription;
     id <SPTNavigationRouter> _navigationRouter;
     SPTAuthenticationHandler *_authenticationHandler;
-    SPTPopupManager *_popupManager;
-    SPTLoginNetworkControllerUtility *_networkControllerUtility;
     SPTLoginRecoverAccountHelpController *_recoverAccountHelpController;
+    SPTLoginMagicLinkRequestTracker *_magicLinkRequestTracker;
+    SPTLoginMagicLinkRequestWarningPresenter *_magicLinkRequestWarningPresenter;
+    SPTLoginFailureHandler *_loginFailureHandler;
     SPTLoginRecoverAccountDataLoader *_recoverAccountDataLoader;
+    SPTLoginAttemptLogger *_loginAttemptLogger;
+    SPTLoginFailedLinkRequestHandler *_failedLoginLinkRequestHandler;
 }
 
+@property(retain, nonatomic) SPTLoginFailedLinkRequestHandler *failedLoginLinkRequestHandler; // @synthesize failedLoginLinkRequestHandler=_failedLoginLinkRequestHandler;
+@property(retain, nonatomic) SPTLoginAttemptLogger *loginAttemptLogger; // @synthesize loginAttemptLogger=_loginAttemptLogger;
 @property(retain, nonatomic) SPTLoginRecoverAccountDataLoader *recoverAccountDataLoader; // @synthesize recoverAccountDataLoader=_recoverAccountDataLoader;
+@property(retain, nonatomic) SPTLoginFailureHandler *loginFailureHandler; // @synthesize loginFailureHandler=_loginFailureHandler;
+@property(retain, nonatomic) SPTLoginMagicLinkRequestWarningPresenter *magicLinkRequestWarningPresenter; // @synthesize magicLinkRequestWarningPresenter=_magicLinkRequestWarningPresenter;
+@property(retain, nonatomic) SPTLoginMagicLinkRequestTracker *magicLinkRequestTracker; // @synthesize magicLinkRequestTracker=_magicLinkRequestTracker;
 @property(retain, nonatomic) SPTLoginRecoverAccountHelpController *recoverAccountHelpController; // @synthesize recoverAccountHelpController=_recoverAccountHelpController;
-@property(retain, nonatomic) SPTLoginNetworkControllerUtility *networkControllerUtility; // @synthesize networkControllerUtility=_networkControllerUtility;
-@property(retain, nonatomic) SPTPopupManager *popupManager; // @synthesize popupManager=_popupManager;
 @property(retain, nonatomic) SPTAuthenticationHandler *authenticationHandler; // @synthesize authenticationHandler=_authenticationHandler;
 @property(retain, nonatomic) id <SPTNavigationRouter> navigationRouter; // @synthesize navigationRouter=_navigationRouter;
-@property(readonly, nonatomic) SPTLoginTheme *theme; // @synthesize theme=_theme;
-@property(retain, nonatomic) NSString *userEmail; // @synthesize userEmail=_userEmail;
-@property(readonly, nonatomic) SPTLoginSpinnerButtonTestManager *spinnerButtonTestManager; // @synthesize spinnerButtonTestManager=_spinnerButtonTestManager;
+@property(copy, nonatomic) NSString *initialErrorDescription; // @synthesize initialErrorDescription=_initialErrorDescription;
+@property(copy, nonatomic) NSString *userEmail; // @synthesize userEmail=_userEmail;
 @property(retain, nonatomic) SPTLoginMagicLinkTestManager *magicLinkTestManager; // @synthesize magicLinkTestManager=_magicLinkTestManager;
 @property(readonly, nonatomic) SPTLoginOnePasswordHandler *onePassword; // @synthesize onePassword=_onePassword;
 @property(readonly, nonatomic) SPTLoginViewLogger *logger; // @synthesize logger=_logger;
 @property(nonatomic) __weak id <SPTLoginViewModelDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
+- (void)failureHandlerWillShowAutoSendConfirmationView:(id)arg1;
 - (void)recoverAccountHelpController:(id)arg1 didRequestLoginLinkWithEmail:(id)arg2;
-- (id)localizedDescriptionForErrorCode:(long long)arg1;
-- (void)dataLoader:(id)arg1 didFinishLoadingWithError:(id)arg2;
-- (void)dataLoaderFinishLoadingWithSuccess:(id)arg1;
-- (id)loginWithoutPasswordButtonText;
+- (id)localizedDescriptionForError:(id)arg1;
+- (void)dataLoader:(id)arg1 didFinishLoadingWithError:(id)arg2 forEmail:(id)arg3;
+- (void)dataLoader:(id)arg1 didFinishLoadingWithSuccessForEmail:(id)arg2;
+- (void)startRequestForLoginLinkWithEmail:(id)arg1;
 - (void)requestLoginLinkWithEmail:(id)arg1;
-- (_Bool)shouldShowProgressViewOnLogin;
-- (_Bool)isForgotPasswordLinkHidden;
-- (void)presentDisableForcedOfflinePopup;
-- (id)forgotPasswordLabelText;
-- (id)loginButtonLoadingText;
+- (id)loginWithoutPasswordButtonText;
 - (id)loginButtonText;
 - (id)passwordLabelText;
 - (id)emailLabelText;
 - (id)titleLabelText;
-- (id)viewStyle;
-- (void)presentForgotPasswordView;
 - (_Bool)shouldEnableLoginButtonForEmail:(id)arg1 password:(id)arg2;
 - (void)reportLoginCompletionWithError:(id)arg1;
 - (void)loginWithUser:(id)arg1 andPassword:(id)arg2;
-- (id)initWithTheme:(id)arg1 navigationRouter:(id)arg2 logger:(id)arg3 authenticationHandler:(id)arg4 onePasswordLogin:(id)arg5 popupManager:(id)arg6 networkControllerUtility:(id)arg7 userEmail:(id)arg8 recoverAccountHelpController:(id)arg9 magicLinkTestManager:(id)arg10 spinnerButtonTestManager:(id)arg11 recoverAccountDataLoader:(id)arg12;
+- (id)initWithNavigationRouter:(id)arg1 logger:(id)arg2 authenticationHandler:(id)arg3 onePasswordLogin:(id)arg4 userEmail:(id)arg5 initialErrorDescription:(id)arg6 recoverAccountHelpController:(id)arg7 magicLinkTestManager:(id)arg8 magicLinkRequestTracker:(id)arg9 magicLinkWarningPresenter:(id)arg10 magicLinkLoginFailurehandler:(id)arg11 recoverAccountDataLoader:(id)arg12 loginAttemptLogger:(id)arg13 failedLoginLinkRequestHandler:(id)arg14;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

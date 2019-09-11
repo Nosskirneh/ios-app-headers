@@ -8,7 +8,6 @@
 
 #import "SPTAccessoryStateObserver-Protocol.h"
 #import "SPTDrivingMotionManagerDelegate-Protocol.h"
-#import "SPTFeatureFlagSignalObserver-Protocol.h"
 #import "SPTNetworkConnectivityControllerObserver-Protocol.h"
 #import "SPTService-Protocol.h"
 #import "SPTWazeNavigationStateObserver-Protocol.h"
@@ -16,7 +15,7 @@
 @class NSString, NSTimer, SPTAllocationContext, SPTDrivingDetectionLogger, SPTDrivingMotionManager;
 @protocol SPTAccessoryManagerService, SPTContainerService, SPTFeatureFlagSignal, SPTFeatureFlaggingService, SPTNetworkService, SPTWazeService;
 
-@interface SPTDrivingMotionRecorderService : NSObject <SPTAccessoryStateObserver, SPTDrivingMotionManagerDelegate, SPTFeatureFlagSignalObserver, SPTWazeNavigationStateObserver, SPTNetworkConnectivityControllerObserver, SPTService>
+@interface SPTDrivingMotionRecorderService : NSObject <SPTAccessoryStateObserver, SPTDrivingMotionManagerDelegate, SPTWazeNavigationStateObserver, SPTNetworkConnectivityControllerObserver, SPTService>
 {
     _Bool _motionDataLoggingForTrainingEnabled;
     id <SPTAccessoryManagerService> _accessoryManagerService;
@@ -45,7 +44,8 @@
 @property(nonatomic) __weak id <SPTAccessoryManagerService> accessoryManagerService; // @synthesize accessoryManagerService=_accessoryManagerService;
 - (void).cxx_destruct;
 - (void)networkConnectivityController:(id)arg1 didChangeConnectionType:(long long)arg2 oldConnectionType:(long long)arg3;
-- (void)motionManager:(id)arg1 didFinishBatchRecordingWithResults:(id)arg2;
+- (void)motionManagerDidFinishProcessingAllRequestedBatches:(id)arg1;
+- (void)motionManager:(id)arg1 didFinishBatchRecordingWithResult:(id)arg2;
 - (void)wazeNavigationDidEnd;
 - (void)wazeNavigationDidStart;
 - (void)audioRouteChanged:(id)arg1;

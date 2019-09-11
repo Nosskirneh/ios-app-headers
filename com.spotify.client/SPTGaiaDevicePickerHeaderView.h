@@ -14,20 +14,24 @@
 
 @interface SPTGaiaDevicePickerHeaderView : UIView <SPTThemableView, SPTGaiaDevicePickerHeader>
 {
+    _Bool _socialListeningEnabled;
     id <SPTThemableViewLayoutDelegate> _layoutDelegate;
     unsigned long long _state;
     long long _themeStyle;
     UILabel *_titleLabel;
     SPTTheme *_theme;
     NSNotificationCenter *_notificationCenter;
+    UIView *_containerView;
     UIImageView *_imageView;
     UILabel *_subtitleLabel;
-    NSLayoutConstraint *_widthConstraint;
+    NSLayoutConstraint *_topMarginConstraint;
 }
 
-@property(retain, nonatomic) NSLayoutConstraint *widthConstraint; // @synthesize widthConstraint=_widthConstraint;
+@property(readonly, nonatomic) _Bool socialListeningEnabled; // @synthesize socialListeningEnabled=_socialListeningEnabled;
+@property(retain, nonatomic) NSLayoutConstraint *topMarginConstraint; // @synthesize topMarginConstraint=_topMarginConstraint;
 @property(retain, nonatomic) UILabel *subtitleLabel; // @synthesize subtitleLabel=_subtitleLabel;
 @property(retain, nonatomic) UIImageView *imageView; // @synthesize imageView=_imageView;
+@property(retain, nonatomic) UIView *containerView; // @synthesize containerView=_containerView;
 @property(retain, nonatomic) NSNotificationCenter *notificationCenter; // @synthesize notificationCenter=_notificationCenter;
 @property(retain, nonatomic) SPTTheme *theme; // @synthesize theme=_theme;
 @property(retain, nonatomic) UILabel *titleLabel; // @synthesize titleLabel=_titleLabel;
@@ -36,16 +40,15 @@
 @property(nonatomic) __weak id <SPTThemableViewLayoutDelegate> layoutDelegate; // @synthesize layoutDelegate=_layoutDelegate;
 - (void).cxx_destruct;
 - (void)applyThemeLayout;
-- (void)updateWidth;
 - (void)setupObserver;
+- (void)forceVerticalSizeForView:(id)arg1;
 - (void)setupConstraints;
 - (void)configureImageViewAndAddAsSubview;
 - (void)configureSubtitleLabelAndAddAsSubview;
 - (void)configureTitleLabelAndAddAsSubview;
 - (void)configureView;
 - (void)dealloc;
-- (void)setFrame:(struct CGRect)arg1;
-- (id)initWithFrame:(struct CGRect)arg1 theme:(id)arg2 notificationCenter:(id)arg3;
+- (id)initWithFrame:(struct CGRect)arg1 theme:(id)arg2 notificationCenter:(id)arg3 socialListeningEnabled:(_Bool)arg4;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

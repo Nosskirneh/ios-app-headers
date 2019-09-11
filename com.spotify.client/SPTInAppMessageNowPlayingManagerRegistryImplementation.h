@@ -8,21 +8,17 @@
 
 #import "SPTInAppMessageNowPlayingManagerRegistry-Protocol.h"
 
-@class NSString, SPTObserverManager;
-@protocol SPTNowPlayingManager;
+@class NSString;
 
 @interface SPTInAppMessageNowPlayingManagerRegistryImplementation : NSObject <SPTInAppMessageNowPlayingManagerRegistry>
 {
-    id <SPTNowPlayingManager> _nowPlayingManager;
-    SPTObserverManager *_observerManager;
+    CDUnknownBlockType _observerBlock;
 }
 
-@property(readonly, nonatomic) SPTObserverManager *observerManager; // @synthesize observerManager=_observerManager;
-@property(retain, nonatomic) id <SPTNowPlayingManager> nowPlayingManager; // @synthesize nowPlayingManager=_nowPlayingManager;
+@property(copy, nonatomic) CDUnknownBlockType observerBlock; // @synthesize observerBlock=_observerBlock;
 - (void).cxx_destruct;
-- (void)removeObserver:(id)arg1;
-- (void)addObserver:(id)arg1;
-- (id)init;
+- (_Bool)nowPlayingViewHidden;
+- (void)setNowPlayingViewVisibilityObserverBlock:(CDUnknownBlockType)arg1;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

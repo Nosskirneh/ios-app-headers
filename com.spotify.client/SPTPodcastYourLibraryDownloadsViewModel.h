@@ -7,62 +7,60 @@
 #import <objc/NSObject.h>
 
 #import "SPTExplicitContentEnabledStateObserver-Protocol.h"
-#import "SPTPodcastPlayerDelegate-Protocol.h"
+#import "SPTPodcastEpisodeProgressPolling-Protocol.h"
 #import "SPTPodcastYourLibraryEpisodesViewModel-Protocol.h"
 
-@class NSDictionary, NSMutableArray, NSString, NSURL;
-@protocol SPTExplicitContentAccessManager, SPTOfflineManager, SPTPodcastDataLoader, SPTPodcastDataLoaderRequestToken, SPTPodcastPlayer, SPTPodcastTestManager, SPTPodcastYourLibraryEpisodesViewModelDelegate;
+@class NSCache, NSDictionary, NSMutableArray, NSString, NSURL;
+@protocol SPTExplicitContentAccessManager, SPTPodcastDataLoader, SPTPodcastDataLoaderRequestToken, SPTPodcastPlayer, SPTPodcastUITestManager, SPTPodcastYourLibraryEpisodesViewModelDelegate;
 
-@interface SPTPodcastYourLibraryDownloadsViewModel : NSObject <SPTExplicitContentEnabledStateObserver, SPTPodcastPlayerDelegate, SPTPodcastYourLibraryEpisodesViewModel>
+@interface SPTPodcastYourLibraryDownloadsViewModel : NSObject <SPTExplicitContentEnabledStateObserver, SPTPodcastYourLibraryEpisodesViewModel, SPTPodcastEpisodeProgressPolling>
 {
-    _Bool _reversePlaybackOrder;
     _Bool _isLoading;
     _Bool _isLoaded;
     id <SPTPodcastYourLibraryEpisodesViewModelDelegate> _delegate;
+    NSCache *_progressCache;
     NSURL *_URL;
     id <SPTPodcastDataLoader> _dataLoader;
     id <SPTPodcastPlayer> _player;
-    id <SPTOfflineManager> _offlineManager;
-    id <SPTPodcastTestManager> _testManager;
     id <SPTExplicitContentAccessManager> _explicitContentAccessManager;
     NSMutableArray *_episodes;
     id <SPTPodcastDataLoaderRequestToken> _episodesRequestToken;
     NSDictionary *_rawJSON;
+    id <SPTPodcastUITestManager> _podcastUITestManager;
 }
 
+@property(retain, nonatomic) id <SPTPodcastUITestManager> podcastUITestManager; // @synthesize podcastUITestManager=_podcastUITestManager;
 @property(nonatomic) _Bool isLoaded; // @synthesize isLoaded=_isLoaded;
 @property(nonatomic) _Bool isLoading; // @synthesize isLoading=_isLoading;
-@property(nonatomic) _Bool reversePlaybackOrder; // @synthesize reversePlaybackOrder=_reversePlaybackOrder;
 @property(copy, nonatomic) NSDictionary *rawJSON; // @synthesize rawJSON=_rawJSON;
 @property(retain, nonatomic) id <SPTPodcastDataLoaderRequestToken> episodesRequestToken; // @synthesize episodesRequestToken=_episodesRequestToken;
 @property(retain, nonatomic) NSMutableArray *episodes; // @synthesize episodes=_episodes;
 @property(retain, nonatomic) id <SPTExplicitContentAccessManager> explicitContentAccessManager; // @synthesize explicitContentAccessManager=_explicitContentAccessManager;
-@property(retain, nonatomic) id <SPTPodcastTestManager> testManager; // @synthesize testManager=_testManager;
-@property(nonatomic) __weak id <SPTOfflineManager> offlineManager; // @synthesize offlineManager=_offlineManager;
 @property(retain, nonatomic) id <SPTPodcastPlayer> player; // @synthesize player=_player;
 @property(retain, nonatomic) id <SPTPodcastDataLoader> dataLoader; // @synthesize dataLoader=_dataLoader;
 @property(retain, nonatomic) NSURL *URL; // @synthesize URL=_URL;
+@property(readonly, nonatomic) NSCache *progressCache; // @synthesize progressCache=_progressCache;
 @property(nonatomic) __weak id <SPTPodcastYourLibraryEpisodesViewModelDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
-- (void)podcastPlayer:(id)arg1 didChangePlayingTrackURL:(id)arg2;
 - (void)explicitContentEnabledStateDidChange:(_Bool)arg1;
-- (void)offlineEpisode:(id)arg1 offline:(_Bool)arg2;
 - (id)parseJSONDictionary:(id)arg1;
+- (id)cachedProgressForEpisode:(id)arg1;
+- (void)updateCurrentProgress:(double)arg1 position:(double)arg2 duration:(double)arg3 forEpisode:(id)arg4;
+- (_Bool)showSeparatorForSection:(long long)arg1;
+- (id)allEpisodesInSection:(unsigned long long)arg1;
 - (id)titleForSection:(unsigned long long)arg1;
 - (unsigned long long)numberOfEntriesInSection:(unsigned long long)arg1;
 - (unsigned long long)numberOfEntrySections;
 - (_Bool)isEpisodePlayingAtIndexPath:(id)arg1;
 - (_Bool)isEpisodeActiveAtIndexPath:(id)arg1;
 - (_Bool)isEpisodeDisabledAtIndexPath:(id)arg1;
-- (void)pauseEpisodeAtIndexPath:(id)arg1;
-- (void)playEpisodeAtIndexPath:(id)arg1;
 - (void)unsubscribe;
 - (void)loadAndSubscribe;
 @property(readonly, nonatomic, getter=isPlayingPodcastEpsiode) _Bool playingPodcastEpisode;
 @property(readonly, nonatomic) double currentEpisodeProgress;
 - (id)episodeAtIndexPath:(id)arg1;
 @property(readonly, nonatomic, getter=isEmpty) _Bool empty;
-- (id)initWithURL:(id)arg1 dataLoader:(id)arg2 player:(id)arg3 offlineManager:(id)arg4 testManager:(id)arg5 explicitContentAccessManager:(id)arg6;
+- (id)initWithURL:(id)arg1 dataLoader:(id)arg2 player:(id)arg3 explicitContentAccessManager:(id)arg4 podcastUITestManager:(id)arg5;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

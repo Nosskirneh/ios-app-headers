@@ -9,17 +9,16 @@
 #import "HUBViewModelBuilder-Protocol.h"
 #import "NSCopying-Protocol.h"
 
-@class HUBComponentDefaults, HUBComponentModelBuilderImplementation, NSDictionary, NSMutableArray, NSMutableDictionary, NSString, UINavigationItem;
-@protocol HUBComponentModelBuilder, HUBIconImageResolver, HUBJSONSchema;
+@class HUBComponentDefaults, HUBComponentModelBuilderImplementation, NSMutableArray, NSMutableDictionary, NSString;
+@protocol HUBComponentModelBuilder, HUBIconImageResolver;
 
 @interface HUBViewModelBuilderImplementation : NSObject <HUBViewModelBuilder, NSCopying>
 {
     NSString *_viewIdentifier;
-    NSDictionary *_customData;
-    id <HUBJSONSchema> _JSONSchema;
+    NSString *_navigationBarTitle;
+    NSMutableDictionary *_customData;
     HUBComponentDefaults *_componentDefaults;
     id <HUBIconImageResolver> _iconImageResolver;
-    UINavigationItem *_navigationItemImplementation;
     HUBComponentModelBuilderImplementation *_headerComponentModelBuilderImplementation;
     NSMutableDictionary *_bodyComponentModelBuilders;
     NSMutableDictionary *_overlayComponentModelBuilders;
@@ -32,11 +31,10 @@
 @property(readonly, nonatomic) NSMutableDictionary *overlayComponentModelBuilders; // @synthesize overlayComponentModelBuilders=_overlayComponentModelBuilders;
 @property(readonly, nonatomic) NSMutableDictionary *bodyComponentModelBuilders; // @synthesize bodyComponentModelBuilders=_bodyComponentModelBuilders;
 @property(retain, nonatomic) HUBComponentModelBuilderImplementation *headerComponentModelBuilderImplementation; // @synthesize headerComponentModelBuilderImplementation=_headerComponentModelBuilderImplementation;
-@property(retain, nonatomic) UINavigationItem *navigationItemImplementation; // @synthesize navigationItemImplementation=_navigationItemImplementation;
 @property(readonly, nonatomic) id <HUBIconImageResolver> iconImageResolver; // @synthesize iconImageResolver=_iconImageResolver;
 @property(readonly, nonatomic) HUBComponentDefaults *componentDefaults; // @synthesize componentDefaults=_componentDefaults;
-@property(readonly, nonatomic) id <HUBJSONSchema> JSONSchema; // @synthesize JSONSchema=_JSONSchema;
-@property(retain, nonatomic) NSDictionary *customData; // @synthesize customData=_customData;
+@property(readonly, nonatomic) NSMutableDictionary *customData; // @synthesize customData=_customData;
+@property(copy, nonatomic) NSString *navigationBarTitle; // @synthesize navigationBarTitle=_navigationBarTitle;
 @property(copy, nonatomic) NSString *viewIdentifier; // @synthesize viewIdentifier=_viewIdentifier;
 - (void).cxx_destruct;
 - (_Bool)enumerateComponentModelBuilders:(id)arg1 identifierOrder:(id)arg2 withBlock:(CDUnknownBlockType)arg3;
@@ -53,8 +51,11 @@
 - (id)debugDescription;
 - (void)addJSONDictionary:(id)arg1;
 - (_Bool)addJSONData:(id)arg1 error:(id *)arg2;
-- (void)setCustomDataValue:(id)arg1 forKey:(id)arg2;
 - (id)build;
+- (void)appendOverlayComponentModelBuilder:(id)arg1;
+- (void)appendBodyComponentModelBuilder:(id)arg1;
+- (void)replaceHeaderComponentModelBuilderWithComponentModelBuilder:(id)arg1;
+- (void)addViewModelBuilder:(id)arg1;
 - (void)removeAllComponentModelBuilders;
 - (void)removeBuilderForOverlayComponentModelWithIdentifier:(id)arg1;
 - (void)removeBuilderForBodyComponentModelWithIdentifier:(id)arg1;
@@ -68,12 +69,10 @@
 - (_Bool)builderExistsForBodyComponentModelWithIdentifier:(id)arg1;
 @property(readonly, nonatomic) _Bool headerComponentModelBuilderExists;
 @property(readonly, nonatomic) id <HUBComponentModelBuilder> headerComponentModelBuilder;
-@property(readonly, nonatomic) UINavigationItem *navigationItem;
-@property(copy, nonatomic) NSString *navigationBarTitle;
 @property(readonly, nonatomic) unsigned long long numberOfOverlayComponentModelBuilders;
 @property(readonly, nonatomic) unsigned long long numberOfBodyComponentModelBuilders;
 @property(readonly, nonatomic) _Bool isEmpty;
-- (id)initWithJSONSchema:(id)arg1 componentDefaults:(id)arg2 iconImageResolver:(id)arg3;
+- (id)initWithComponentDefaults:(id)arg1 iconImageResolver:(id)arg2;
 
 @end
 

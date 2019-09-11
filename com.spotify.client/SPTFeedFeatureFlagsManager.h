@@ -6,49 +6,40 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTFeatureFlagSignalObserver-Protocol.h"
 #import "SPTFeedFeatureFlags-Protocol.h"
 
 @class NSString, SPTObserverManager;
 @protocol SPTFeatureFlagFactory, SPTFeatureFlagSignal, SPTLocalSettings;
 
-@interface SPTFeedFeatureFlagsManager : NSObject <SPTFeatureFlagSignalObserver, SPTFeedFeatureFlags>
+@interface SPTFeedFeatureFlagsManager : NSObject <SPTFeedFeatureFlags>
 {
     _Bool _isFeedFeatureEnabled;
     _Bool _isFeedFilterFeatureEnabled;
     _Bool _homeFeedButtonEnabledEmployeesOnly;
     _Bool _collectionFeedEnabledEmployeesOnly;
-    _Bool _isFeedPlayerContextEnabled;
+    _Bool _algorithmicEndpointEnabled;
     id <SPTFeatureFlagSignal> _feedFeatureFlagSignal;
     double _feedUpdateTimeInterval;
     long long _feedIcon;
     id <SPTFeatureFlagFactory> _featureFlagFactory;
     id <SPTLocalSettings> _localSettings;
     id <SPTFeatureFlagSignal> _feedHomePageFeatureFlagSignal;
-    id <SPTFeatureFlagSignal> _feedFiltersFeatureFlagSignal;
     id <SPTFeatureFlagSignal> _feedArtistCollectionFeatureFlagSignal;
-    id <SPTFeatureFlagSignal> _feedPlayerContextFeatureFlagSignal;
-    id <SPTFeatureFlagSignal> _feedIconNameControlFeatureFlagSignal;
-    id <SPTFeatureFlagSignal> _feedIconNameGreenBadgeFeatureFlagSignal;
-    id <SPTFeatureFlagSignal> _feedIconNameFilledBlueFeatureFlagSignal;
-    id <SPTFeatureFlagSignal> _feedIconNameFilledGreenFeatureFlagSignal;
+    id <SPTFeatureFlagSignal> _feedFiltersFeatureFlagSignal;
+    id <SPTFeatureFlagSignal> _feedAlgorithmicFeatureFlagSignal;
     SPTObserverManager *_observers;
 }
 
 @property(readonly, nonatomic) SPTObserverManager *observers; // @synthesize observers=_observers;
-@property(readonly, nonatomic) id <SPTFeatureFlagSignal> feedIconNameFilledGreenFeatureFlagSignal; // @synthesize feedIconNameFilledGreenFeatureFlagSignal=_feedIconNameFilledGreenFeatureFlagSignal;
-@property(readonly, nonatomic) id <SPTFeatureFlagSignal> feedIconNameFilledBlueFeatureFlagSignal; // @synthesize feedIconNameFilledBlueFeatureFlagSignal=_feedIconNameFilledBlueFeatureFlagSignal;
-@property(readonly, nonatomic) id <SPTFeatureFlagSignal> feedIconNameGreenBadgeFeatureFlagSignal; // @synthesize feedIconNameGreenBadgeFeatureFlagSignal=_feedIconNameGreenBadgeFeatureFlagSignal;
-@property(readonly, nonatomic) id <SPTFeatureFlagSignal> feedIconNameControlFeatureFlagSignal; // @synthesize feedIconNameControlFeatureFlagSignal=_feedIconNameControlFeatureFlagSignal;
-@property(readonly, nonatomic) id <SPTFeatureFlagSignal> feedPlayerContextFeatureFlagSignal; // @synthesize feedPlayerContextFeatureFlagSignal=_feedPlayerContextFeatureFlagSignal;
-@property(readonly, nonatomic) id <SPTFeatureFlagSignal> feedArtistCollectionFeatureFlagSignal; // @synthesize feedArtistCollectionFeatureFlagSignal=_feedArtistCollectionFeatureFlagSignal;
+@property(readonly, nonatomic) id <SPTFeatureFlagSignal> feedAlgorithmicFeatureFlagSignal; // @synthesize feedAlgorithmicFeatureFlagSignal=_feedAlgorithmicFeatureFlagSignal;
 @property(readonly, nonatomic) id <SPTFeatureFlagSignal> feedFiltersFeatureFlagSignal; // @synthesize feedFiltersFeatureFlagSignal=_feedFiltersFeatureFlagSignal;
+@property(readonly, nonatomic) id <SPTFeatureFlagSignal> feedArtistCollectionFeatureFlagSignal; // @synthesize feedArtistCollectionFeatureFlagSignal=_feedArtistCollectionFeatureFlagSignal;
 @property(readonly, nonatomic) id <SPTFeatureFlagSignal> feedHomePageFeatureFlagSignal; // @synthesize feedHomePageFeatureFlagSignal=_feedHomePageFeatureFlagSignal;
 @property(readonly, nonatomic) id <SPTLocalSettings> localSettings; // @synthesize localSettings=_localSettings;
 @property(readonly, nonatomic) id <SPTFeatureFlagFactory> featureFlagFactory; // @synthesize featureFlagFactory=_featureFlagFactory;
 @property(nonatomic) long long feedIcon; // @synthesize feedIcon=_feedIcon;
 @property(nonatomic) double feedUpdateTimeInterval; // @synthesize feedUpdateTimeInterval=_feedUpdateTimeInterval;
-@property(nonatomic, getter=isFeedPlayerContextEnabled) _Bool isFeedPlayerContextEnabled; // @synthesize isFeedPlayerContextEnabled=_isFeedPlayerContextEnabled;
+@property(nonatomic, getter=isAlgorithmicEndpointEnabled) _Bool algorithmicEndpointEnabled; // @synthesize algorithmicEndpointEnabled=_algorithmicEndpointEnabled;
 @property(nonatomic, getter=isCollectionFeedEnabledEmployeesOnly) _Bool collectionFeedEnabledEmployeesOnly; // @synthesize collectionFeedEnabledEmployeesOnly=_collectionFeedEnabledEmployeesOnly;
 @property(nonatomic, getter=isHomeFeedButtonEnabledEmployeesOnly) _Bool homeFeedButtonEnabledEmployeesOnly; // @synthesize homeFeedButtonEnabledEmployeesOnly=_homeFeedButtonEnabledEmployeesOnly;
 @property(nonatomic, getter=isFeedFilterFeatureEnabled) _Bool isFeedFilterFeatureEnabled; // @synthesize isFeedFilterFeatureEnabled=_isFeedFilterFeatureEnabled;
@@ -61,7 +52,6 @@
 - (void)addFeedFeatureFlagObserver:(id)arg1;
 - (void)logHomeFeedButtonEnabledFlagExposure;
 - (void)dealloc;
-- (void)setupFeedButtonIconFeatureFlag;
 - (void)setupFeedFeatureFlags;
 - (id)initWithFeatureFlagFactory:(id)arg1 localSettings:(id)arg2;
 

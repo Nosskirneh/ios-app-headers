@@ -6,70 +6,55 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTExternalIntegrationDriverDistractionObserver-Protocol.h"
+#import "SPTVideoApplicationStateObserver-Protocol.h"
 #import "SPTVideoPlaybackSessionDelegate-Protocol.h"
 #import "SPTVideoPlayer-Protocol.h"
-#import "SPTVideoSurfaceManagerDataSource-Protocol.h"
+#import "SPTVideoSurfaceManagerObserver-Protocol.h"
 
-@class NSMutableOrderedSet, NSString, SPSession, SPTNetworkConnectivityController, SPTObserverManager, SPTVideoAudioStackMediaSynchronizer, SPTVideoKeyframeLoaderImpl, SPTVideoPlaybackSession, SPTVideoPlaybackSessionFactory, SPTVideoPlayerSource, SPTVideoPreferences, SPTVideoSubtitleFactoryImpl, SPTVideoSurfaceManagerImpl, UIView;
-@protocol SPTAudioPlayerMediaClockService, SPTExternalIntegrationDriverDistractionController, SPTLogCenter, SPTVideoContextPlayerDelegate, SPTVideoPlaybackRequestFactory, SPTVideoSubtitle, SPTVideoSurface;
+@class NSString, SPTVideoApplicationStateObservable, SPTVideoDisplayView, SPTVideoDisplayViewFactory, SPTVideoObserverManager, SPTVideoPlaybackIdentityFactory, SPTVideoPlaybackSession, SPTVideoPlaybackSessionFactory, SPTVideoPlayerSource, SPTVideoSubtitleLayouter;
+@protocol SPTVideoSubtitle, SPTVideoSubtitleFactory, SPTVideoSurface, SPTVideoSurfaceManager;
 
-@interface SPTVideoPlayerImpl : NSObject <SPTVideoPlaybackSessionDelegate, SPTVideoSurfaceManagerDataSource, SPTExternalIntegrationDriverDistractionObserver, SPTVideoPlayer>
+@interface SPTVideoPlayerImpl : NSObject <SPTVideoPlaybackSessionDelegate, SPTVideoApplicationStateObserver, SPTVideoSurfaceManagerObserver, SPTVideoPlayer>
 {
-    _Bool _repeat;
-    _Bool _audioDisabled;
     _Bool _shouldResumeOnActive;
-    _Bool _allowRoyaltyVideos;
-    _Bool _allowMultipleSurfaces;
-    UIView<SPTVideoSurface> *_surfaceView;
+    _Bool _allowRoyaltyMedia;
+    float _playbackSpeed;
     id <SPTVideoSubtitle> _preferredSubtitle;
-    id <SPTVideoContextPlayerDelegate> _delegate;
     SPTVideoPlaybackSessionFactory *_sessionFactory;
-    SPTVideoSubtitleFactoryImpl *_subtitleFactory;
-    id <SPTAudioPlayerMediaClockService> _audioPlayerMediaClockService;
-    id <SPTLogCenter> _logCenter;
-    NSString *_featureIdentifier;
-    SPSession *_loginSession;
-    SPTNetworkConnectivityController *_networkConnectivityController;
-    SPTVideoPreferences *_videoPreferences;
-    SPTVideoKeyframeLoaderImpl *_keyframeLoader;
-    SPTVideoSurfaceManagerImpl *_surfaceManager;
+    id <SPTVideoSurfaceManager> _surfaceManager;
+    SPTVideoPlaybackIdentityFactory *_playbackIdentityFactory;
     SPTVideoPlaybackSession *_currentSession;
-    SPTVideoAudioStackMediaSynchronizer *_audioStackMediaSynchronizer;
     SPTVideoPlayerSource *_playerSource;
-    id <SPTExternalIntegrationDriverDistractionController> _driverDistractionController;
-    id <SPTVideoPlaybackRequestFactory> _playbackRequestFactory;
-    NSMutableOrderedSet *_observerFactories;
-    SPTObserverManager *_playbackEventObserverManager;
+    SPTVideoDisplayViewFactory *_displayViewFactory;
+    SPTVideoDisplayView *_displayView;
+    SPTVideoSubtitleLayouter *_subtitleLayouter;
+    id <SPTVideoSubtitleFactory> _subtitleFactory;
+    SPTVideoApplicationStateObservable *_applicationStateObservable;
+    id <SPTVideoSurface> _surface;
+    SPTVideoObserverManager *_playbackEventObserverManager;
 }
 
-@property(nonatomic) _Bool allowMultipleSurfaces; // @synthesize allowMultipleSurfaces=_allowMultipleSurfaces;
-@property(nonatomic) _Bool allowRoyaltyVideos; // @synthesize allowRoyaltyVideos=_allowRoyaltyVideos;
+@property(nonatomic) _Bool allowRoyaltyMedia; // @synthesize allowRoyaltyMedia=_allowRoyaltyMedia;
 @property(nonatomic) _Bool shouldResumeOnActive; // @synthesize shouldResumeOnActive=_shouldResumeOnActive;
-@property(retain, nonatomic) SPTObserverManager *playbackEventObserverManager; // @synthesize playbackEventObserverManager=_playbackEventObserverManager;
-@property(retain, nonatomic) NSMutableOrderedSet *observerFactories; // @synthesize observerFactories=_observerFactories;
-@property(retain, nonatomic) id <SPTVideoPlaybackRequestFactory> playbackRequestFactory; // @synthesize playbackRequestFactory=_playbackRequestFactory;
-@property(retain, nonatomic) id <SPTExternalIntegrationDriverDistractionController> driverDistractionController; // @synthesize driverDistractionController=_driverDistractionController;
+@property(retain, nonatomic) SPTVideoObserverManager *playbackEventObserverManager; // @synthesize playbackEventObserverManager=_playbackEventObserverManager;
+@property(retain, nonatomic) id <SPTVideoSurface> surface; // @synthesize surface=_surface;
+@property(retain, nonatomic) SPTVideoApplicationStateObservable *applicationStateObservable; // @synthesize applicationStateObservable=_applicationStateObservable;
+@property(retain, nonatomic) id <SPTVideoSubtitleFactory> subtitleFactory; // @synthesize subtitleFactory=_subtitleFactory;
+@property(retain, nonatomic) SPTVideoSubtitleLayouter *subtitleLayouter; // @synthesize subtitleLayouter=_subtitleLayouter;
+@property(retain, nonatomic) SPTVideoDisplayView *displayView; // @synthesize displayView=_displayView;
+@property(retain, nonatomic) SPTVideoDisplayViewFactory *displayViewFactory; // @synthesize displayViewFactory=_displayViewFactory;
 @property(retain, nonatomic) SPTVideoPlayerSource *playerSource; // @synthesize playerSource=_playerSource;
-@property(retain, nonatomic) SPTVideoAudioStackMediaSynchronizer *audioStackMediaSynchronizer; // @synthesize audioStackMediaSynchronizer=_audioStackMediaSynchronizer;
 @property(retain, nonatomic) SPTVideoPlaybackSession *currentSession; // @synthesize currentSession=_currentSession;
-@property(retain, nonatomic) SPTVideoSurfaceManagerImpl *surfaceManager; // @synthesize surfaceManager=_surfaceManager;
-@property(retain, nonatomic) SPTVideoKeyframeLoaderImpl *keyframeLoader; // @synthesize keyframeLoader=_keyframeLoader;
-@property(retain, nonatomic) SPTVideoPreferences *videoPreferences; // @synthesize videoPreferences=_videoPreferences;
-@property(retain, nonatomic) SPTNetworkConnectivityController *networkConnectivityController; // @synthesize networkConnectivityController=_networkConnectivityController;
-@property(nonatomic) __weak SPSession *loginSession; // @synthesize loginSession=_loginSession;
-@property(retain, nonatomic) NSString *featureIdentifier; // @synthesize featureIdentifier=_featureIdentifier;
-@property(retain, nonatomic) id <SPTLogCenter> logCenter; // @synthesize logCenter=_logCenter;
-@property(retain, nonatomic) id <SPTAudioPlayerMediaClockService> audioPlayerMediaClockService; // @synthesize audioPlayerMediaClockService=_audioPlayerMediaClockService;
-@property(retain, nonatomic) SPTVideoSubtitleFactoryImpl *subtitleFactory; // @synthesize subtitleFactory=_subtitleFactory;
+@property(retain, nonatomic) SPTVideoPlaybackIdentityFactory *playbackIdentityFactory; // @synthesize playbackIdentityFactory=_playbackIdentityFactory;
+@property(retain, nonatomic) id <SPTVideoSurfaceManager> surfaceManager; // @synthesize surfaceManager=_surfaceManager;
 @property(retain, nonatomic) SPTVideoPlaybackSessionFactory *sessionFactory; // @synthesize sessionFactory=_sessionFactory;
-@property(nonatomic) __weak id <SPTVideoContextPlayerDelegate> delegate; // @synthesize delegate=_delegate;
-@property(nonatomic, getter=isAudioDisabled) _Bool audioDisabled; // @synthesize audioDisabled=_audioDisabled;
-@property(nonatomic) _Bool repeat; // @synthesize repeat=_repeat;
+@property(nonatomic) float playbackSpeed; // @synthesize playbackSpeed=_playbackSpeed;
 - (void).cxx_destruct;
-- (void)externalIntegrationDriverDistractionController:(id)arg1 didChangeEnabledState:(_Bool)arg2;
+- (void)surfaceManager:(id)arg1 didRemoveSurface:(id)arg2;
+- (void)surfaceManager:(id)arg1 didChangePriorityForSurface:(id)arg2;
+- (void)surfaceManager:(id)arg1 didAddSurface:(id)arg2;
+- (void)didChangeBackgroundState:(_Bool)arg1;
 - (void)didBecomeActive;
-- (void)didEnterBackground;
 - (void)willResignActive;
 - (id)availableSubtitles;
 - (id)selectedSubtitle;
@@ -78,35 +63,26 @@
 - (void)addPlaybackEventObserver:(id)arg1;
 - (void)videoPlaybackSession:(id)arg1 didEncounterUnrecoverableError:(id)arg2;
 - (void)videoPlaybackSessionDidFinish:(id)arg1;
-- (void)videoPlaybackSession:(id)arg1 stateDidChange:(id)arg2;
+- (void)videoPlaybackSession:(id)arg1 didChangeDuration:(double)arg2;
 - (void)videoPlaybackSession:(id)arg1 didPlayToTime:(CDStruct_1b6d18a9)arg2;
 - (void)videoPlaybackSessionDidStart:(id)arg1;
-- (void)surfaceWillHaveNoPlayer;
-- (void)renderingSurfaceDidChange:(id)arg1;
-- (double)currentPlayingVideoAspectRatioForSurfaceManager:(id)arg1;
-- (id)currentlyPlayingIdentityForSurfaceManager:(id)arg1;
-- (void)registerPlaybackEventObserverFactoryBlock:(CDUnknownBlockType)arg1;
-- (void)registerPlaybackEventObserverFactory:(id)arg1;
-- (void)sendErrorMessageForMissingManifestIDAndMediaURL:(id)arg1;
-- (void)loadLoggerFactories;
-- (void)stopWithReason:(id)arg1 nextIdentity:(id)arg2;
-- (void)prefetchTracks:(id)arg1;
-- (void)loadSessionWithIdentity:(id)arg1;
-@property(readonly, nonatomic) UIView<SPTVideoSurface> *surfaceView; // @synthesize surfaceView=_surfaceView;
-- (id)provideSurfaceManager;
-- (id)providePlaybackRequestFactory;
+- (void)stopWithNextIdentity:(id)arg1;
+- (void)loadSessionWithIdentity:(id)arg1 options:(id)arg2;
+- (void)refreshRenderingSurface;
 - (id)providePlayerSource;
-- (void)stopWithReason:(id)arg1;
 - (void)stop;
+@property(nonatomic) _Bool repeat;
+@property(nonatomic, getter=isVideoDisabled) _Bool videoDisabled;
+@property(nonatomic, getter=isAudioDisabled) _Bool audioDisabled;
 - (void)seekTo:(double)arg1 completion:(CDUnknownBlockType)arg2;
-@property(readonly, nonatomic) double currentTime;
-@property(nonatomic) float playbackRate;
-@property(nonatomic, getter=isPaused) _Bool paused;
+@property(readonly, nonatomic) double currentPosition;
+- (_Bool)isPaused;
 - (void)resume;
 - (void)pause;
-- (void)playVideoWithPlaybackRequest:(id)arg1;
+- (void)playWithRequest:(id)arg1 options:(id)arg2;
+- (void)playWithRequest:(id)arg1;
 - (void)dealloc;
-- (id)initWithPlaybackSessionFactory:(id)arg1 logCenter:(id)arg2 featureIdentifier:(id)arg3 loginSession:(id)arg4 networkConnectivityController:(id)arg5 driverDistraction:(id)arg6 videoPreferences:(id)arg7 keyframeLoader:(id)arg8 playbackRequestFactory:(id)arg9 subtitleFactory:(id)arg10 audioPlayerMediaClockService:(id)arg11 allowRoyaltyVideos:(_Bool)arg12 allowMultipleSurfaces:(_Bool)arg13;
+- (id)initWithPlaybackSessionFactory:(id)arg1 playerSource:(id)arg2 surfaceManager:(id)arg3 subtitleFactory:(id)arg4 playbackIdentityFactory:(id)arg5 applicationStateObservable:(id)arg6 displayViewFactory:(id)arg7 subtitleLayouter:(id)arg8 allowRoyaltyMedia:(_Bool)arg9;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

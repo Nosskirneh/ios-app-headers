@@ -6,22 +6,22 @@
 
 #import <objc/NSObject.h>
 
-#import "EXP_HUBContentOperation-Protocol.h"
+#import "HUBContentOperation-Protocol.h"
 #import "SPTOnDemandSetObserver-Protocol.h"
 
 @class NSString;
-@protocol EXP_HUBContentOperationDelegate, SPTOnDemandSet;
+@protocol HUBContentOperationDelegate, SPTOnDemandSet;
 
-@interface SPTOnDemandReloadContentOperation : NSObject <SPTOnDemandSetObserver, EXP_HUBContentOperation>
+@interface SPTOnDemandReloadContentOperation : NSObject <SPTOnDemandSetObserver, HUBContentOperation>
 {
     _Bool _observing;
-    id <EXP_HUBContentOperationDelegate> _delegate;
+    id <HUBContentOperationDelegate> _delegate;
     id <SPTOnDemandSet> _onDemandSet;
 }
 
 @property(nonatomic, getter=isObserving) _Bool observing; // @synthesize observing=_observing;
 @property(readonly, nonatomic) id <SPTOnDemandSet> onDemandSet; // @synthesize onDemandSet=_onDemandSet;
-@property(nonatomic) __weak id <EXP_HUBContentOperationDelegate> delegate; // @synthesize delegate=_delegate;
+@property(nonatomic) __weak id <HUBContentOperationDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
 - (void)onDemandSetDidUpdate:(id)arg1;
 - (void)performForViewModelBuilder:(id)arg1 previousError:(id)arg2;

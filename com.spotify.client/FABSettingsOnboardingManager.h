@@ -9,12 +9,12 @@
 #import "FABDownloadAndSaveSettingsOperationDelegate-Protocol.h"
 #import "FABOnboardingOperationDelegate-Protocol.h"
 
-@class FABApplicationIdentiferModel, FABNetworkClient, FABOnboardingOperation, FABSettings, NSDictionary, NSFileManager, NSString;
+@class FABApplicationIdentifierModel, FABNetworkClient, FABOnboardingOperation, FABSettings, NSDictionary, NSFileManager, NSString;
 
 @interface FABSettingsOnboardingManager : NSObject <FABDownloadAndSaveSettingsOperationDelegate, FABOnboardingOperationDelegate>
 {
     _Bool _hasAttemptedAppConfigure;
-    FABApplicationIdentiferModel *_appIdentifierModel;
+    FABApplicationIdentifierModel *_appIdentifierModel;
     FABSettings *_settingsModel;
     FABOnboardingOperation *_onboardingOperation;
     NSFileManager *_fileManager;
@@ -35,7 +35,7 @@
 @property(retain, nonatomic) NSFileManager *fileManager; // @synthesize fileManager=_fileManager;
 @property(retain, nonatomic) FABOnboardingOperation *onboardingOperation; // @synthesize onboardingOperation=_onboardingOperation;
 @property(retain, nonatomic) FABSettings *settingsModel; // @synthesize settingsModel=_settingsModel;
-@property(retain, nonatomic) FABApplicationIdentiferModel *appIdentifierModel; // @synthesize appIdentifierModel=_appIdentifierModel;
+@property(retain, nonatomic) FABApplicationIdentifierModel *appIdentifierModel; // @synthesize appIdentifierModel=_appIdentifierModel;
 - (void).cxx_destruct;
 - (void)postSettingsDownloadCompletedNotification;
 - (id)settingsPath;
@@ -43,7 +43,6 @@
 - (void)operation:(id)arg1 didDownloadAndSaveSettingsWithError:(id)arg2;
 - (void)onboardingOperation:(id)arg1 didCompleteAppUpdateWithError:(id)arg2;
 - (void)onboardingOperation:(id)arg1 didCompleteAppCreationWithError:(id)arg2;
-- (id)appIconHash;
 - (id)valueForConfigurationKey:(id)arg1;
 - (void)finishNetworkingSession;
 - (id)advertisingToken;

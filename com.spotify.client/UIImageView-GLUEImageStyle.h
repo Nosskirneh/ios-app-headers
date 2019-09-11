@@ -7,6 +7,7 @@
 #import <UIKit/UIImageView.h>
 
 @interface UIImageView (GLUEImageStyle)
+- (void)glue_applyRoundedCornersMaskForImageSize:(struct CGSize)arg1;
 - (void)glue_applyCircularMaskForImageSize:(struct CGSize)arg1;
 - (void)glue_applySquareMaskForImageSize:(struct CGSize)arg1;
 - (void)glue_applyMask:(long long)arg1 imageSize:(struct CGSize)arg2;

@@ -20,8 +20,6 @@
 - (unsigned long long)hash;
 @property(readonly, nonatomic) float trackProbability;
 @property(readonly, nonatomic) float artistProbability;
-@property(readonly, nonatomic) NSString *trackStrategyDisplayName;
-@property(readonly, nonatomic) unsigned long long trackStrategy;
 - (_Bool)isEqual:(id)arg1;
 @property(readonly, nonatomic) NSString *artistSummary;
 - (id)createPlayerTrack;

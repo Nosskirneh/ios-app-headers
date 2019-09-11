@@ -42,6 +42,7 @@
 @property(retain, nonatomic) SPTFreeTierCollectionGLUETheme *theme; // @synthesize theme=_theme;
 @property(retain, nonatomic) id <SPTFreeTierCollectionSongsHeaderViewModel> headerViewModel; // @synthesize headerViewModel=_headerViewModel;
 - (void).cxx_destruct;
+- (void)searchViewController:(id)arg1 removedFilterAtIndex:(long long)arg2;
 - (void)searchViewControllerDidCancel:(id)arg1;
 - (void)searchViewController:(id)arg1 textDidChange:(id)arg2;
 - (_Bool)textFieldShouldBeginEditing:(id)arg1;
@@ -61,6 +62,8 @@
 - (void)entityHeaderViewController:(id)arg1 didAttachToScrollView:(id)arg2 inViewController:(id)arg3;
 - (void)playAction:(id)arg1;
 - (void)updatePlayButtonVisibility;
+- (void)viewWillAppear:(_Bool)arg1;
+- (void)viewWillDisappear:(_Bool)arg1;
 - (void)viewDidLoad;
 - (void)dealloc;
 - (id)initWithHeaderViewModel:(id)arg1 theme:(id)arg2 sortingFilteringUIFactory:(id)arg3;

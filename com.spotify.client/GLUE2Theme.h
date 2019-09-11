@@ -64,8 +64,6 @@
 - (id)videoRowStyleWithTransparentBackground:(_Bool)arg1 subtitleStyleMetadata:(_Bool)arg2 shouldAddTrailingMargin:(_Bool)arg3;
 - (id)entityRowVideoStyle;
 - (id)entityRowEpisodeStyle;
-- (id)entityRowMFTTrackStyle;
-- (id)entityRowMFTStyleForUIState:(unsigned long long)arg1;
 - (id)entityRowTrackStyle;
 - (id)entityRowShowStyle;
 - (id)entityRowConcertStyle;

@@ -8,31 +8,37 @@
 
 #import "SPTInAppMessageCardMessagePriorityDeciderDelegate-Protocol.h"
 
-@class NSString, SPTInAppMessageActionFactory, SPTInAppMessageCardMessageParser, SPTInAppMessageCardMessagePresentationController, SPTInAppMessageServiceLogger;
-@protocol SPTExternalIntegrationDriverDistractionController, SPTSlateBuilderProvider, SPTSlateManager;
+@class NSString, SPTInAppMessageActionFactory, SPTInAppMessageCardMessageParser, SPTInAppMessageCardMessagePresentationController, SPTInAppMessageFeedbackPresentationController, SPTInAppMessageServiceLogger;
+@protocol SPTCrashReporter, SPTExternalIntegrationDriverDistractionController, SPTOfflineModeState, SPTSlateBuilderProvider, SPTSlateManager;
 
 @interface SPTInAppMessageCardMessageController : NSObject <SPTInAppMessageCardMessagePriorityDeciderDelegate>
 {
+    SPTInAppMessageCardMessagePresentationController *_cardMessagePresentationController;
     SPTInAppMessageCardMessageParser *_cardMessageParser;
     id <SPTSlateManager> _slateManager;
     id <SPTSlateBuilderProvider> _slateBuilderProvider;
-    SPTInAppMessageCardMessagePresentationController *_cardMessagePresentationController;
     SPTInAppMessageActionFactory *_actionFactory;
     SPTInAppMessageServiceLogger *_serviceLogger;
     id <SPTExternalIntegrationDriverDistractionController> _driverDistractionController;
+    SPTInAppMessageFeedbackPresentationController *_feedbackPresentationController;
+    id <SPTOfflineModeState> _offlineModeState;
+    id <SPTCrashReporter> _crashReporter;
 }
 
+@property(retain, nonatomic) id <SPTCrashReporter> crashReporter; // @synthesize crashReporter=_crashReporter;
+@property(nonatomic) __weak id <SPTOfflineModeState> offlineModeState; // @synthesize offlineModeState=_offlineModeState;
+@property(retain, nonatomic) SPTInAppMessageFeedbackPresentationController *feedbackPresentationController; // @synthesize feedbackPresentationController=_feedbackPresentationController;
 @property(retain, nonatomic) id <SPTExternalIntegrationDriverDistractionController> driverDistractionController; // @synthesize driverDistractionController=_driverDistractionController;
 @property(retain, nonatomic) SPTInAppMessageServiceLogger *serviceLogger; // @synthesize serviceLogger=_serviceLogger;
 @property(retain, nonatomic) SPTInAppMessageActionFactory *actionFactory; // @synthesize actionFactory=_actionFactory;
-@property(retain, nonatomic) SPTInAppMessageCardMessagePresentationController *cardMessagePresentationController; // @synthesize cardMessagePresentationController=_cardMessagePresentationController;
 @property(retain, nonatomic) id <SPTSlateBuilderProvider> slateBuilderProvider; // @synthesize slateBuilderProvider=_slateBuilderProvider;
 @property(retain, nonatomic) id <SPTSlateManager> slateManager; // @synthesize slateManager=_slateManager;
 @property(retain, nonatomic) SPTInAppMessageCardMessageParser *cardMessageParser; // @synthesize cardMessageParser=_cardMessageParser;
+@property(retain, nonatomic) SPTInAppMessageCardMessagePresentationController *cardMessagePresentationController; // @synthesize cardMessagePresentationController=_cardMessagePresentationController;
 - (void).cxx_destruct;
 - (void)presentMessage:(id)arg1 forTrigger:(id)arg2;
 - (void)cardMessagePriorityDeciderDidFetchMessage:(id)arg1 forTrigger:(id)arg2;
-- (id)initWithParser:(id)arg1 slateManager:(id)arg2 slateBuilderProvider:(id)arg3 actionFactory:(id)arg4 serviceLogger:(id)arg5 driverDistractionController:(id)arg6;
+- (id)initWithParser:(id)arg1 slateManager:(id)arg2 slateBuilderProvider:(id)arg3 actionFactory:(id)arg4 serviceLogger:(id)arg5 driverDistractionController:(id)arg6 offlineModeState:(id)arg7 feedbackPresentationController:(id)arg8 crashReporter:(id)arg9;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

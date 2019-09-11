@@ -6,30 +6,36 @@
 
 #import "NSObject-Protocol.h"
 
-@class NSError, UIView;
-@protocol SPTVideoFormat, SPTVideoPlaybackIdentity, SPTVideoPlaybackTimeObservable, SPTVideoSubtitle, SPTVideoSurface;
+@class NSError, NSObject;
+@protocol OS_dispatch_queue, SPTAudioFormat, SPTVideoFormat, SPTVideoPlaybackIdentity, SPTVideoSeekableWindow, SPTVideoSubtitle, SPTVideoSurface;
 
 @protocol SPTVideoEventObserver <NSObject>
 
 @optional
-- (void)videoPlaybackSubtitleDidChange:(id <SPTVideoSubtitle>)arg1 atPosition:(double)arg2;
-- (void)videoPlaybackDidDropVideoFrames:(unsigned long long)arg1;
-- (void)videoPlaybackDidTransferBytes:(long long)arg1 bitrate:(double)arg2;
-- (void)videoPlaybackFormatDidChange:(id <SPTVideoFormat>)arg1 atPosition:(double)arg2;
-- (void)videoPlaybackSurfaceDidChange:(UIView<SPTVideoSurface> *)arg1 atPosition:(double)arg2;
-- (void)videoPlaybackBackgroundStateDidChange:(double)arg1 backgrounded:(_Bool)arg2;
-- (void)videoPlaybackDidFailWithRecoverableError:(NSError *)arg1 atPosition:(double)arg2;
-- (void)videoPlaybackDidFailWithError:(NSError *)arg1 atPosition:(double)arg2;
-- (void)videoPlaybackDidEndAtPosition:(double)arg1 withEndReason:(long long)arg2;
-- (void)videoPlaybackWillSeekToPosition:(double)arg1 fromPosition:(double)arg2;
-- (void)videoPlaybackRateDidChangeTo:(double)arg1 atPosition:(double)arg2;
-- (void)videoPlaybackReadyAtPosition:(double)arg1 duration:(double)arg2 playWhenReady:(_Bool)arg3;
-- (void)videoPlaybackDidStartBuffering:(double)arg1;
-- (void)videoPlaybackDidLoadDRMSession;
-- (void)videoPlaybackWillLoadDRMSession;
-- (void)videoPlaybackDidLoadManifest;
-- (void)videoPlaybackWillLoadManifest;
-- (void)videoPlaybackWillEndWithNextPlaybackIdentity:(id <SPTVideoPlaybackIdentity>)arg1;
-- (void)videoPlaybackDidCreateSessionWithIdentity:(id <SPTVideoPlaybackIdentity>)arg1 timeObservable:(id <SPTVideoPlaybackTimeObservable>)arg2 inBackground:(_Bool)arg3;
+@property(readonly, nonatomic) NSObject<OS_dispatch_queue> *dispatchQueue;
+- (void)didChangeSeekableWindow:(id <SPTVideoSeekableWindow>)arg1 timestamp:(double)arg2;
+- (void)didChangeSubtitle:(id <SPTVideoSubtitle>)arg1 atPosition:(double)arg2 timestamp:(double)arg3;
+- (void)didDropVideoFrames:(unsigned long long)arg1 timestamp:(double)arg2;
+- (void)didTransferBytes:(long long)arg1 forBitrate:(double)arg2 withElapsedTime:(double)arg3 timestamp:(double)arg4;
+- (void)didChangeAudioFormat:(id <SPTAudioFormat>)arg1 atPosition:(double)arg2 timestamp:(double)arg3;
+- (void)didChangeVideoFormat:(id <SPTVideoFormat>)arg1 atPosition:(double)arg2 timestamp:(double)arg3;
+- (void)didChangeSurface:(id <SPTVideoSurface>)arg1 atPosition:(double)arg2 timestamp:(double)arg3;
+- (void)didChangeBackgroundState:(_Bool)arg1 atPosition:(double)arg2 timestamp:(double)arg3;
+- (void)didFailWithRecoverableError:(NSError *)arg1 atPosition:(double)arg2 timestamp:(double)arg3;
+- (void)didFailWithFatalError:(NSError *)arg1 atPosition:(double)arg2 timestamp:(double)arg3;
+- (void)didEndPlaybackWithReason:(long long)arg1 atPosition:(double)arg2 timestamp:(double)arg3;
+- (void)willSeekToPosition:(double)arg1 fromPosition:(double)arg2 timestamp:(double)arg3;
+- (void)didChangePlaybackSpeed:(float)arg1 atPosition:(double)arg2 timestamp:(double)arg3;
+- (void)didResumeWithTimestamp:(double)arg1;
+- (void)didPauseAtPosition:(double)arg1 timestamp:(double)arg2;
+- (void)didChangeDuration:(double)arg1 timestamp:(double)arg2;
+- (void)didBecomeReadyAtPosition:(double)arg1 timestamp:(double)arg2;
+- (void)didStartBufferingAtPosition:(double)arg1 timestamp:(double)arg2;
+- (void)didLoadEncriptionKeyOfType:(long long)arg1 timestamp:(double)arg2;
+- (void)willLoadEncryptionKeyWithTimestamp:(double)arg1;
+- (void)didLoadManifestWithTimestamp:(double)arg1;
+- (void)willLoadManifestWithTimestamp:(double)arg1;
+- (void)willEndPlaybackWithNextIdentity:(id <SPTVideoPlaybackIdentity>)arg1 timestamp:(double)arg2;
+- (void)didCreatePlaybackInBackground:(_Bool)arg1 timestamp:(double)arg2;
 @end
 

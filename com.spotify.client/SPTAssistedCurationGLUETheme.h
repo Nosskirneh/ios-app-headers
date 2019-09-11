@@ -16,8 +16,10 @@
     double _cardsMargin;
     double _searchVerticalOffset;
     double _pageControlHeight;
+    double _minimumCardWidth;
 }
 
+@property(readonly, nonatomic) double minimumCardWidth; // @synthesize minimumCardWidth=_minimumCardWidth;
 @property(readonly, nonatomic) double pageControlHeight; // @synthesize pageControlHeight=_pageControlHeight;
 @property(readonly, nonatomic) double searchVerticalOffset; // @synthesize searchVerticalOffset=_searchVerticalOffset;
 @property(readonly, nonatomic) double cardsMargin; // @synthesize cardsMargin=_cardsMargin;

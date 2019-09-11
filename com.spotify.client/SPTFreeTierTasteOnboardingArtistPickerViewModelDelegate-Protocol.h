@@ -6,11 +6,15 @@
 
 #import "NSObject-Protocol.h"
 
-@class SPTFreeTierTasteOnboardingArtistPickerViewModel;
+@class NSIndexPath, SPTFreeTierTasteOnboardingArtistPickerViewModel, SPTFreeTierTasteOnboardingChangeset;
 
 @protocol SPTFreeTierTasteOnboardingArtistPickerViewModelDelegate <NSObject>
+- (void)hideCloseButton;
+- (void)showCloseButton;
+- (void)artistPickerViewModel:(SPTFreeTierTasteOnboardingArtistPickerViewModel *)arg1 requestSelectItemAtIndexPath:(NSIndexPath *)arg2;
+- (void)artistPickerViewModel:(SPTFreeTierTasteOnboardingArtistPickerViewModel *)arg1 updatedItemsWithChangeset:(SPTFreeTierTasteOnboardingChangeset *)arg2;
 - (void)artistPickerViewModelWillLoadItems:(SPTFreeTierTasteOnboardingArtistPickerViewModel *)arg1 isFreshData:(_Bool)arg2;
-- (void)artistPickerViewModel:(SPTFreeTierTasteOnboardingArtistPickerViewModel *)arg1 isOffline:(_Bool)arg2;
+- (void)artistPickerViewModel:(SPTFreeTierTasteOnboardingArtistPickerViewModel *)arg1 isOffline:(_Bool)arg2 isFreshData:(_Bool)arg3;
 - (void)artistPickerViewModelDidCancel:(SPTFreeTierTasteOnboardingArtistPickerViewModel *)arg1;
 - (void)artistPickerViewModel:(SPTFreeTierTasteOnboardingArtistPickerViewModel *)arg1 didSelectRequiredNumberOfItems:(_Bool)arg2;
 - (void)artistPickerViewModelShouldTriggerSecondaryFeedback:(SPTFreeTierTasteOnboardingArtistPickerViewModel *)arg1;

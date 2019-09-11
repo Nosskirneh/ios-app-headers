@@ -6,9 +6,9 @@
 
 #import "NSObject-Protocol.h"
 
-@class NSArray, NSData, SPTInAppMessageTriggerConfigurationsController;
+@class NSArray, NSData, NSString, SPTInAppMessageTriggerConfigurationsController;
 
 @protocol SPTInAppMessageTriggerConfigurationsControllerObserver <NSObject>
-- (void)triggerConfigurationsController:(SPTInAppMessageTriggerConfigurationsController *)arg1 didFetchMessage:(NSData *)arg2 forTriggers:(NSArray *)arg3;
+- (void)triggerConfigurationsController:(SPTInAppMessageTriggerConfigurationsController *)arg1 didFetchMessage:(NSData *)arg2 withMessageFormat:(NSString *)arg3 forTriggers:(NSArray *)arg4;
 @end
 

@@ -6,22 +6,24 @@
 
 #import <UIKit/UIViewController.h>
 
+#import "SPTPageController-Protocol.h"
 #import "SPTShareDataProviderDelegate-Protocol.h"
 
-@class NSString, SPTLayoutConstraintBuilder, SPTShareDataProvider, SPTShareLogger, SPTShareViewController, UIView;
+@class NSArray, NSString, NSURL, SPTShareDataProvider, SPTShareLogger, SPTShareViewController, UIView;
+@protocol SPTPageContainer;
 
-@interface SPTShareContainerViewController : UIViewController <SPTShareDataProviderDelegate>
+@interface SPTShareContainerViewController : UIViewController <SPTShareDataProviderDelegate, SPTPageController>
 {
     UIView *_contextMenuPopOverOriginView;
     SPTShareViewController *_shareViewController;
     SPTShareDataProvider *_shareDataProvider;
     SPTShareLogger *_shareLogger;
     UIView *_containerView;
-    SPTLayoutConstraintBuilder *_layout;
+    NSArray *_layoutConstraints;
     struct CGRect _contextMenuPopOverOriginRect;
 }
 
-@property(retain, nonatomic) SPTLayoutConstraintBuilder *layout; // @synthesize layout=_layout;
+@property(copy, nonatomic) NSArray *layoutConstraints; // @synthesize layoutConstraints=_layoutConstraints;
 @property(retain, nonatomic) UIView *containerView; // @synthesize containerView=_containerView;
 @property(retain, nonatomic) SPTShareLogger *shareLogger; // @synthesize shareLogger=_shareLogger;
 @property(retain, nonatomic) SPTShareDataProvider *shareDataProvider; // @synthesize shareDataProvider=_shareDataProvider;
@@ -29,6 +31,8 @@
 @property(nonatomic) struct CGRect contextMenuPopOverOriginRect; // @synthesize contextMenuPopOverOriginRect=_contextMenuPopOverOriginRect;
 @property(retain, nonatomic) UIView *contextMenuPopOverOriginView; // @synthesize contextMenuPopOverOriginView=_contextMenuPopOverOriginView;
 - (void).cxx_destruct;
+@property(readonly, nonatomic, getter=spt_pageURI) NSURL *pageURI;
+@property(readonly, nonatomic, getter=spt_pageIdentifier) NSString *pageIdentifier;
 - (void)shareDataProvider:(id)arg1 didUpdateShareData:(id)arg2;
 - (void)updateViewConstraints;
 - (void)addShareViewController;
@@ -44,6 +48,7 @@
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
 @property(readonly) unsigned long long hash;
+@property(readonly, nonatomic, getter=spt_pageContainer) id <SPTPageContainer> pageContainer;
 @property(readonly) Class superclass;
 
 @end

@@ -6,20 +6,16 @@
 
 #import <objc/NSObject.h>
 
-@protocol GLUETheme, HUGSStyleOverrider;
+@protocol GLUETheme;
 
 @interface HUGSThemableComponent : NSObject
 {
     id <GLUETheme> _theme;
-    id <HUGSStyleOverrider> _styleOverrider;
 }
 
-@property(readonly, nonatomic) id <HUGSStyleOverrider> styleOverrider; // @synthesize styleOverrider=_styleOverrider;
 @property(readonly, nonatomic) id <GLUETheme> theme; // @synthesize theme=_theme;
 - (void).cxx_destruct;
-- (void)applyThemeLayout;
-- (void)dealloc;
-- (id)initWithTheme:(id)arg1 styleOverrider:(id)arg2;
+- (id)initWithTheme:(id)arg1;
 
 @end
 

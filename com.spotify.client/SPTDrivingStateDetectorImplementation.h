@@ -14,18 +14,18 @@
 
 @interface SPTDrivingStateDetectorImplementation : NSObject <SPTAccessoryStateObserver, SPTDrivingStateDetector>
 {
-    SPTDrivingState *_currentState;
     id <SPTAccessoryStateManager> _accessoryManager;
     SPTDrivingState *_lastMotionState;
     NSHashTable *_observers;
     id <SPTExternalIntegrationDebugLog> _debugLog;
+    SPTDrivingState *_currentState;
 }
 
+@property(retain, nonatomic) SPTDrivingState *currentState; // @synthesize currentState=_currentState;
 @property(retain, nonatomic) id <SPTExternalIntegrationDebugLog> debugLog; // @synthesize debugLog=_debugLog;
 @property(retain, nonatomic) NSHashTable *observers; // @synthesize observers=_observers;
 @property(retain, nonatomic) SPTDrivingState *lastMotionState; // @synthesize lastMotionState=_lastMotionState;
 @property(readonly, nonatomic) id <SPTAccessoryStateManager> accessoryManager; // @synthesize accessoryManager=_accessoryManager;
-@property(readonly, nonatomic) SPTDrivingState *currentState; // @synthesize currentState=_currentState;
 - (void).cxx_destruct;
 - (_Bool)accessoriesContainCar:(id)arg1;
 - (void)accessoryStateManager:(id)arg1 accessoryDidDisconnect:(id)arg2;

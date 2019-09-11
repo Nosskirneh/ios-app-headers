@@ -4,33 +4,36 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import "EXP_HUBComponentView.h"
+#import "HUBComponentView.h"
 
-#import "EXP_HUBComponentViewWithChildren-Protocol.h"
+#import "HUBComponentViewWithChildren-Protocol.h"
 
-@class GLUELabel, SPTLayoutConstraintBuilder, UIView;
-@protocol EXP_HUBComponentViewChildDelegate, GLUETheme;
+@class GLUELabel, NSMutableArray, UIView;
+@protocol GLUETheme, HUBComponentViewChildDelegate;
 
-@interface SPTFreeTierUIServiceBeforeOnboardingWelcomeHeaderComponentView : EXP_HUBComponentView <EXP_HUBComponentViewWithChildren>
+@interface SPTFreeTierUIServiceBeforeOnboardingWelcomeHeaderComponentView : HUBComponentView <HUBComponentViewWithChildren>
 {
-    id <EXP_HUBComponentViewChildDelegate> childDelegate;
+    id <HUBComponentViewChildDelegate> childDelegate;
     id <GLUETheme> _theme;
     UIView *_textContainer;
     GLUELabel *_title;
     GLUELabel *_subtitle;
-    EXP_HUBComponentView *_primaryActionComponentView;
-    EXP_HUBComponentView *_secondaryActionComponentView;
-    SPTLayoutConstraintBuilder *_layoutBuilder;
+    HUBComponentView *_primaryActionComponentView;
+    HUBComponentView *_secondaryActionComponentView;
+    NSMutableArray *_layoutConstraints;
 }
 
-@property(retain, nonatomic) SPTLayoutConstraintBuilder *layoutBuilder; // @synthesize layoutBuilder=_layoutBuilder;
-@property(retain, nonatomic) EXP_HUBComponentView *secondaryActionComponentView; // @synthesize secondaryActionComponentView=_secondaryActionComponentView;
-@property(retain, nonatomic) EXP_HUBComponentView *primaryActionComponentView; // @synthesize primaryActionComponentView=_primaryActionComponentView;
++ (id)subtitleStyle:(id)arg1;
++ (id)titleStyle:(id)arg1;
++ (struct CGSize)preferredViewSizeForDisplayingModel:(id)arg1 containerViewSize:(struct CGSize)arg2 theme:(id)arg3;
+@property(retain, nonatomic) NSMutableArray *layoutConstraints; // @synthesize layoutConstraints=_layoutConstraints;
+@property(retain, nonatomic) HUBComponentView *secondaryActionComponentView; // @synthesize secondaryActionComponentView=_secondaryActionComponentView;
+@property(retain, nonatomic) HUBComponentView *primaryActionComponentView; // @synthesize primaryActionComponentView=_primaryActionComponentView;
 @property(retain, nonatomic) GLUELabel *subtitle; // @synthesize subtitle=_subtitle;
 @property(retain, nonatomic) GLUELabel *title; // @synthesize title=_title;
 @property(retain, nonatomic) UIView *textContainer; // @synthesize textContainer=_textContainer;
 @property(retain, nonatomic) id <GLUETheme> theme; // @synthesize theme=_theme;
-@property(nonatomic) __weak id <EXP_HUBComponentViewChildDelegate> childDelegate; // @synthesize childDelegate;
+@property(nonatomic) __weak id <HUBComponentViewChildDelegate> childDelegate; // @synthesize childDelegate;
 - (void).cxx_destruct;
 - (void)setupComponentView:(id)arg1 withModel:(id)arg2 relativeToView:(id)arg3 constraint:(double)arg4;
 - (void)setupChildComponentsForModel:(id)arg1;

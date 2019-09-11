@@ -6,9 +6,9 @@
 
 #import "NSObject-Protocol.h"
 
-@protocol EXP_HUBCommandHandler;
+@protocol HUBCommandHandler;
 
 @protocol SPTExplicitContentHubCommandHandlerFactory <NSObject>
-- (id <EXP_HUBCommandHandler>)playbackRestrictedVersionOfCommandHandler:(id <EXP_HUBCommandHandler>)arg1;
+- (id <HUBCommandHandler>)playbackRestrictedVersionOfCommandHandler:(id <HUBCommandHandler>)arg1;
 @end
 

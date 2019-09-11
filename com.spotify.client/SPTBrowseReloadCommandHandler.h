@@ -6,11 +6,11 @@
 
 #import <objc/NSObject.h>
 
-#import "EXP_HUBCommandHandler-Protocol.h"
+#import "HUBCommandHandler-Protocol.h"
 
 @protocol SPTBrowseViewModelProvider;
 
-@interface SPTBrowseReloadCommandHandler : NSObject <EXP_HUBCommandHandler>
+@interface SPTBrowseReloadCommandHandler : NSObject <HUBCommandHandler>
 {
     id <SPTBrowseViewModelProvider> _viewModelProvider;
 }

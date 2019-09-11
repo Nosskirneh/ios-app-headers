@@ -12,10 +12,12 @@
 {
     _Bool _backgrounded;
     _Bool _fullscreen;
+    float _playbackSpeed;
     id <SPTVideoSubtitle> _subtitle;
     long long _orientation;
 }
 
+@property(nonatomic) float playbackSpeed; // @synthesize playbackSpeed=_playbackSpeed;
 @property(nonatomic) long long orientation; // @synthesize orientation=_orientation;
 @property(retain, nonatomic) id <SPTVideoSubtitle> subtitle; // @synthesize subtitle=_subtitle;
 @property(nonatomic) _Bool fullscreen; // @synthesize fullscreen=_fullscreen;
@@ -25,6 +27,7 @@
 - (_Bool)isValidForTolerableEndPosition:(double)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)copyWithNewStartPosition:(double)arg1;
+@property(readonly, nonatomic) double wallTimeLength;
 - (id)initWithStartPosition:(double)arg1;
 
 @end

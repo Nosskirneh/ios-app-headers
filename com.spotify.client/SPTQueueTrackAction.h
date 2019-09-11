@@ -7,7 +7,7 @@
 #import "SPAction.h"
 
 @class SPTPlayerTrack;
-@protocol SPTAlertController, SPTPlayer, SPTPlayerQueue, SPTUpsellManager;
+@protocol SPTAlertController, SPTPlayer, SPTPlayerQueue;
 
 @interface SPTQueueTrackAction : SPAction
 {
@@ -15,13 +15,11 @@
     SPTPlayerTrack *_track;
     id <SPTPlayer> _player;
     id <SPTPlayerQueue> _playerQueue;
-    id <SPTUpsellManager> _upsellManager;
     id <SPTAlertController> _alertController;
 }
 
 @property(nonatomic) _Bool trackIsAvailable; // @synthesize trackIsAvailable=_trackIsAvailable;
 @property(retain, nonatomic) id <SPTAlertController> alertController; // @synthesize alertController=_alertController;
-@property(retain, nonatomic) id <SPTUpsellManager> upsellManager; // @synthesize upsellManager=_upsellManager;
 @property(retain, nonatomic) id <SPTPlayerQueue> playerQueue; // @synthesize playerQueue=_playerQueue;
 @property(retain, nonatomic) id <SPTPlayer> player; // @synthesize player=_player;
 @property(retain, nonatomic) SPTPlayerTrack *track; // @synthesize track=_track;
@@ -32,7 +30,7 @@
 - (id)logEventName;
 - (long long)icon;
 - (id)title;
-- (id)initWithTrack:(id)arg1 player:(id)arg2 playerQueue:(id)arg3 upsellManager:(id)arg4 logContext:(id)arg5 alertController:(id)arg6;
+- (id)initWithTrack:(id)arg1 player:(id)arg2 playerQueue:(id)arg3 logContext:(id)arg4 alertController:(id)arg5;
 
 @end
 

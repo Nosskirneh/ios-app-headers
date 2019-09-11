@@ -6,9 +6,13 @@
 
 #import "NSObject-Protocol.h"
 
+@class NSDate, NSURL;
 @protocol SPTYourLibraryModelObserver;
 
 @protocol SPTYourLibraryModel <NSObject>
+@property(readonly, nonatomic, getter=isLoaded) _Bool loaded;
+- (void)savePageURI:(NSURL *)arg1 visitedAt:(NSDate *)arg2;
+- (NSURL *)lastVisitedPageURI;
 - (void)removeObserver:(id <SPTYourLibraryModelObserver>)arg1;
 - (void)addObserver:(id <SPTYourLibraryModelObserver>)arg1;
 - (void)load;

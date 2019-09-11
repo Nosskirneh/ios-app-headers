@@ -35,6 +35,7 @@
 - (void).cxx_destruct;
 - (void)setupSelectorButton;
 - (void)touchUpInside:(id)arg1;
+- (void)updateSelectorAccessibilityLabel:(_Bool)arg1;
 - (void)glue_applyStyle:(id)arg1;
 - (void)setupConstraints;
 - (struct CGSize)intrinsicContentSize;

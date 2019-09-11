@@ -6,11 +6,9 @@
 
 #import "SPTService-Protocol.h"
 
-@protocol SPTLyricsOnboardingManager, SPTLyricsTrackChecker;
+@protocol SPTLyricsTrackChecker;
 
 @protocol SPTLyricsFeature <SPTService>
 - (id <SPTLyricsTrackChecker>)provideLyricsTrackChecker;
-- (id <SPTLyricsOnboardingManager>)provideLyricsOnboardingManager;
-- (_Bool)isLyricsEnabled;
 @end
 

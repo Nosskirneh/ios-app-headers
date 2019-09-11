@@ -10,32 +10,35 @@
 
 @interface SPTSnackbarViewPresenter : NSObject
 {
-    _Bool _isShowAnimationInProgress;
-    _Bool _isHideAnimationInProgress;
-    SPTSnackbarView *_currentPresentedSnackbar;
+    _Bool _isAnimationInProgress;
+    UIView *_containerView;
     NSLayoutConstraint *_bottomConstraint;
     NSLayoutConstraint *_leadingConstraint;
     NSLayoutConstraint *_trailingConstraint;
-    UIView *_containerView;
+    SPTSnackbarView *_currentPresentedSnackbar;
     double _snackBarHeight;
 }
 
 @property(nonatomic) double snackBarHeight; // @synthesize snackBarHeight=_snackBarHeight;
-@property(nonatomic) _Bool isHideAnimationInProgress; // @synthesize isHideAnimationInProgress=_isHideAnimationInProgress;
-@property(nonatomic) _Bool isShowAnimationInProgress; // @synthesize isShowAnimationInProgress=_isShowAnimationInProgress;
-@property(nonatomic) __weak UIView *containerView; // @synthesize containerView=_containerView;
+@property(nonatomic) _Bool isAnimationInProgress; // @synthesize isAnimationInProgress=_isAnimationInProgress;
+@property(nonatomic) __weak SPTSnackbarView *currentPresentedSnackbar; // @synthesize currentPresentedSnackbar=_currentPresentedSnackbar;
 @property(retain, nonatomic) NSLayoutConstraint *trailingConstraint; // @synthesize trailingConstraint=_trailingConstraint;
 @property(retain, nonatomic) NSLayoutConstraint *leadingConstraint; // @synthesize leadingConstraint=_leadingConstraint;
 @property(retain, nonatomic) NSLayoutConstraint *bottomConstraint; // @synthesize bottomConstraint=_bottomConstraint;
-@property(nonatomic) __weak SPTSnackbarView *currentPresentedSnackbar; // @synthesize currentPresentedSnackbar=_currentPresentedSnackbar;
+@property(nonatomic) __weak UIView *containerView; // @synthesize containerView=_containerView;
 - (void).cxx_destruct;
-- (void)updateSnackbarStyle:(id)arg1;
-- (void)runHorizontalAnimationWithDirection:(unsigned long long)arg1 completion:(CDUnknownBlockType)arg2;
+- (_Bool)animationView:(id)arg1 shouldHandleTouchAtPoint:(struct CGPoint)arg2;
+- (void)setUserInteractionEnabled:(_Bool)arg1;
+- (void)runHorizontalAnimationWithCompletion:(CDUnknownBlockType)arg1;
+- (void)runVerticalAnimationWithBottomConstant:(double)arg1 completion:(CDUnknownBlockType)arg2;
 - (void)runVerticalAnimationWithCompletion:(CDUnknownBlockType)arg1;
 - (void)hideSnackbarWithAnimatinType:(unsigned long long)arg1 completion:(CDUnknownBlockType)arg2;
 - (void)hideSnackbarWithSwipeDirection:(unsigned long long)arg1 completion:(CDUnknownBlockType)arg2;
 - (void)hideSnackbarWithCompletion:(CDUnknownBlockType)arg1;
-- (void)showSnackbarView:(id)arg1 inView:(id)arg2 completion:(CDUnknownBlockType)arg3;
+- (void)setupSnackbarViewConstraints;
+- (void)placeSnackbarBehindAnimationView;
+- (void)showSnackbarView:(id)arg1 completion:(CDUnknownBlockType)arg2;
+- (id)initWithContainerView:(id)arg1;
 
 @end
 

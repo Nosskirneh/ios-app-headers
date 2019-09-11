@@ -7,12 +7,11 @@
 #import <objc/NSObject.h>
 
 #import "SPSessionObserver-Protocol.h"
-#import "SPTGaiaOfflineModeState-Protocol.h"
 #import "SPTOfflineModeState-Protocol.h"
 
 @class NSHashTable, NSString, SPSession;
 
-@interface SPTOfflineModeNotifier : NSObject <SPSessionObserver, SPTOfflineModeState, SPTGaiaOfflineModeState>
+@interface SPTOfflineModeNotifier : NSObject <SPSessionObserver, SPTOfflineModeState>
 {
     SPSession *_session;
     NSHashTable *_observers;

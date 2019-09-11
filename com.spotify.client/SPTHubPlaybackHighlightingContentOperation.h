@@ -10,24 +10,26 @@
 #import "SPTPlayerObserver-Protocol.h"
 
 @class NSString, SPTPlayerState;
-@protocol HUBContentOperationDelegate, SPTPlayerFeature;
+@protocol HUBContentOperationDelegate, SPTHubComponentModelURIResolver, SPTPlayerFeature;
 
 @interface SPTHubPlaybackHighlightingContentOperation : NSObject <SPTPlayerObserver, HUBContentOperation>
 {
     id <HUBContentOperationDelegate> _delegate;
-    id <SPTPlayerFeature> _playerFeature;
+    id <SPTPlayerFeature> _playerService;
+    id <SPTHubComponentModelURIResolver> _componentModelURIResolver;
     SPTPlayerState *_playerState;
 }
 
 @property(retain, nonatomic) SPTPlayerState *playerState; // @synthesize playerState=_playerState;
-@property(readonly, nonatomic) __weak id <SPTPlayerFeature> playerFeature; // @synthesize playerFeature=_playerFeature;
+@property(readonly, nonatomic) id <SPTHubComponentModelURIResolver> componentModelURIResolver; // @synthesize componentModelURIResolver=_componentModelURIResolver;
+@property(readonly, nonatomic) __weak id <SPTPlayerFeature> playerService; // @synthesize playerService=_playerService;
 @property(nonatomic) __weak id <HUBContentOperationDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
-- (void)recursivelyUpdatePlaybackHighlightForComponentModel:(id)arg1;
+- (void)recursivelyUpdatePlaybackHighlightForComponentModelBuilder:(id)arg1;
 - (void)player:(id)arg1 stateDidChange:(id)arg2;
-- (void)performForViewURI:(id)arg1 featureInfo:(id)arg2 connectivityState:(unsigned long long)arg3 viewModelBuilder:(id)arg4 previousError:(id)arg5;
+- (void)performForViewModelBuilder:(id)arg1 previousError:(id)arg2;
 - (void)dealloc;
-- (id)initWithPlayerFeature:(id)arg1;
+- (id)initWithPlayerService:(id)arg1 componentModelURIResolver:(id)arg2;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

@@ -13,6 +13,7 @@
 {
     _Bool _enableMftRulesForPlayer;
     _Bool _isTablet;
+    _Bool _perfTracingEnabled;
     unsigned int _clientRevision;
     NSString *_cachePath;
     NSString *_volatileCachePath;
@@ -34,9 +35,12 @@
     NSString *_logConfigurationFilePath;
     CDUnknownBlockType _acceptLanguageCallback;
     id <SPTAudioDriverController> _audioDriverController;
+    NSString *_clientLanguage;
 }
 
 + (id)iosCoreCreateOptionsWithCachePath:(id)arg1 volatileCachePath:(id)arg2 settingsPath:(id)arg3 audioDriverController:(id)arg4;
+@property(copy, nonatomic) NSString *clientLanguage; // @synthesize clientLanguage=_clientLanguage;
+@property(nonatomic) _Bool perfTracingEnabled; // @synthesize perfTracingEnabled=_perfTracingEnabled;
 @property(retain, nonatomic) id <SPTAudioDriverController> audioDriverController; // @synthesize audioDriverController=_audioDriverController;
 @property(copy, nonatomic) CDUnknownBlockType acceptLanguageCallback; // @synthesize acceptLanguageCallback=_acceptLanguageCallback;
 @property(nonatomic) _Bool isTablet; // @synthesize isTablet=_isTablet;

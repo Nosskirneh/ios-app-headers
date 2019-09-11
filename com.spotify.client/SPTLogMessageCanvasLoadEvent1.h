@@ -18,11 +18,11 @@
 }
 
 + (id)messageWithCanvasId:(id)arg1 entityUri:(id)arg2 event:(id)arg3 errorReason:(id)arg4 errorDetail:(id)arg5;
-@property(retain, nonatomic) NSString *errorDetailValue; // @synthesize errorDetailValue=_errorDetailValue;
-@property(retain, nonatomic) NSString *errorReasonValue; // @synthesize errorReasonValue=_errorReasonValue;
-@property(retain, nonatomic) NSString *eventValue; // @synthesize eventValue=_eventValue;
-@property(retain, nonatomic) NSString *entityUriValue; // @synthesize entityUriValue=_entityUriValue;
-@property(retain, nonatomic) NSString *canvasIdValue; // @synthesize canvasIdValue=_canvasIdValue;
+@property(copy, nonatomic) NSString *errorDetailValue; // @synthesize errorDetailValue=_errorDetailValue;
+@property(copy, nonatomic) NSString *errorReasonValue; // @synthesize errorReasonValue=_errorReasonValue;
+@property(copy, nonatomic) NSString *eventValue; // @synthesize eventValue=_eventValue;
+@property(copy, nonatomic) NSString *entityUriValue; // @synthesize entityUriValue=_entityUriValue;
+@property(copy, nonatomic) NSString *canvasIdValue; // @synthesize canvasIdValue=_canvasIdValue;
 - (void).cxx_destruct;
 - (_Bool)isEqual:(id)arg1;
 - (unsigned long long)hash;

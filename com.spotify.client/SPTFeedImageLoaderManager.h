@@ -16,7 +16,6 @@
 @property(retain, nonatomic) id <GLUEImageLoader> imageLoader; // @synthesize imageLoader=_imageLoader;
 - (void).cxx_destruct;
 - (void)loadEntityImageWithURL:(id)arg1 creatorImageURL:(id)arg2 forMultiTrackCell:(id)arg3;
-- (void)loadEntityImageWithURL:(id)arg1 creatorImageURL:(id)arg2 forSingleTrackCell:(id)arg3;
 - (void)loadImagesForCell:(id)arg1 entity:(id)arg2;
 - (id)initWithImageLoader:(id)arg1;
 

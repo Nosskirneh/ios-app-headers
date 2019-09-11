@@ -6,25 +6,24 @@
 
 #import <objc/NSObject.h>
 
-@class EXP_HUBComponentRegistry;
-@protocol EXP_SPTHubsRendererFactory, SPTHubRemoteContentURLResolver, SPTHugsFactory;
+@class HUBComponentRegistry;
+@protocol SPTBrowseUIService, SPTHubsRendererFactory, SPTHugsFactory;
 
 @interface SPTFreeTierFindHubManager : NSObject
 {
-    id <EXP_SPTHubsRendererFactory> _hubsRendererFactory;
+    id <SPTHubsRendererFactory> _hubsRendererFactory;
     id <SPTHugsFactory> _hugsFactory;
-    id <SPTHubRemoteContentURLResolver> _remoteContentURLResolver;
-    EXP_HUBComponentRegistry *_componentRegistry;
+    id <SPTBrowseUIService> _uiService;
+    HUBComponentRegistry *_componentRegistry;
 }
 
-@property(retain, nonatomic) EXP_HUBComponentRegistry *componentRegistry; // @synthesize componentRegistry=_componentRegistry;
-@property(readonly, nonatomic) id <SPTHubRemoteContentURLResolver> remoteContentURLResolver; // @synthesize remoteContentURLResolver=_remoteContentURLResolver;
+@property(retain, nonatomic) HUBComponentRegistry *componentRegistry; // @synthesize componentRegistry=_componentRegistry;
+@property(readonly, nonatomic) __weak id <SPTBrowseUIService> uiService; // @synthesize uiService=_uiService;
 @property(readonly, nonatomic) id <SPTHugsFactory> hugsFactory; // @synthesize hugsFactory=_hugsFactory;
-@property(readonly, nonatomic) id <EXP_SPTHubsRendererFactory> hubsRendererFactory; // @synthesize hubsRendererFactory=_hubsRendererFactory;
+@property(readonly, nonatomic) id <SPTHubsRendererFactory> hubsRendererFactory; // @synthesize hubsRendererFactory=_hubsRendererFactory;
 - (void).cxx_destruct;
 - (id)createHubContainerViewWithURL:(id)arg1 referrerIdentifier:(id)arg2 viewModelProvider:(id)arg3;
-- (id)createViewModelProviderForURL:(id)arg1 sourceIdentifier:(id)arg2;
-- (id)initWithHubsRendererFactory:(id)arg1 hugsFactory:(id)arg2 remoteContentURLResolver:(id)arg3 browseComponentFactory:(id)arg4;
+- (id)initWithHubsRendererFactory:(id)arg1 hugsFactory:(id)arg2 uiService:(id)arg3;
 
 @end
 

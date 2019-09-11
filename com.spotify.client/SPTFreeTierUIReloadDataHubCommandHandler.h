@@ -6,16 +6,16 @@
 
 #import <objc/NSObject.h>
 
-#import "EXP_HUBCommandHandler-Protocol.h"
+#import "HUBCommandHandler-Protocol.h"
 
-@class EXP_SPTHubViewModelProvider;
+@class SPTHubViewModelProvider;
 
-@interface SPTFreeTierUIReloadDataHubCommandHandler : NSObject <EXP_HUBCommandHandler>
+@interface SPTFreeTierUIReloadDataHubCommandHandler : NSObject <HUBCommandHandler>
 {
-    EXP_SPTHubViewModelProvider *_viewModelProvider;
+    SPTHubViewModelProvider *_viewModelProvider;
 }
 
-@property(readonly, nonatomic) EXP_SPTHubViewModelProvider *viewModelProvider; // @synthesize viewModelProvider=_viewModelProvider;
+@property(readonly, nonatomic) SPTHubViewModelProvider *viewModelProvider; // @synthesize viewModelProvider=_viewModelProvider;
 - (void).cxx_destruct;
 - (void)handleCommand:(id)arg1 event:(id)arg2;
 - (id)initWithViewModelProvider:(id)arg1;

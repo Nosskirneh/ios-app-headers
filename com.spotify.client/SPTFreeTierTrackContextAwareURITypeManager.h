@@ -7,26 +7,20 @@
 #import <objc/NSObject.h>
 
 #import "SPTContextAwareURITypeManager-Protocol.h"
-#import "SPTFeatureFlagSignalObserver-Protocol.h"
 
 @class NSString;
-@protocol SPTEntityService, SPTFeatureFlagSignal;
+@protocol SPTEntityService;
 
-@interface SPTFreeTierTrackContextAwareURITypeManager : NSObject <SPTFeatureFlagSignalObserver, SPTContextAwareURITypeManager>
+@interface SPTFreeTierTrackContextAwareURITypeManager : NSObject <SPTContextAwareURITypeManager>
 {
-    _Bool _freeTierEnabled;
     id <SPTEntityService> _entityService;
-    id <SPTFeatureFlagSignal> _freeTierAlbumEnabledSignal;
 }
 
-@property(nonatomic, getter=isFreeTierAlbumEnabled) _Bool freeTierEnabled; // @synthesize freeTierEnabled=_freeTierEnabled;
-@property(retain, nonatomic) id <SPTFeatureFlagSignal> freeTierAlbumEnabledSignal; // @synthesize freeTierAlbumEnabledSignal=_freeTierAlbumEnabledSignal;
 @property(retain, nonatomic) id <SPTEntityService> entityService; // @synthesize entityService=_entityService;
 - (void).cxx_destruct;
-- (void)featureFlagSignal:(id)arg1 hasAssumedState:(long long)arg2;
 - (void)resolveDefaultContextForURI:(id)arg1 handler:(CDUnknownBlockType)arg2;
 - (_Bool)typeManagerRecognizesURI:(id)arg1;
-- (id)initWithEntityService:(id)arg1 freeTierAlbumEnabledSignal:(id)arg2;
+- (id)initWithEntityService:(id)arg1;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

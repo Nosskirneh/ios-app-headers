@@ -12,6 +12,7 @@
 
 @interface SPTPlayOptions : NSObject <NSCopying>
 {
+    _Bool _alwaysPlaySomething;
     _Bool _initiallyPaused;
     SPTSkipToTrack *_skipTo;
     NSNumber *_seekTo;
@@ -22,6 +23,7 @@
     NSDictionary *_configurationOverride;
 }
 
++ (id)playOptionsWithSuppressionsProviders:(id)arg1;
 @property(copy, nonatomic) NSDictionary *configurationOverride; // @synthesize configurationOverride=_configurationOverride;
 @property(nonatomic) unsigned long long trigger; // @synthesize trigger=_trigger;
 @property(nonatomic) unsigned long long operation; // @synthesize operation=_operation;
@@ -29,6 +31,7 @@
 @property(copy, nonatomic) SPTPlayerOptionOverrides *playerOptionsOverride; // @synthesize playerOptionsOverride=_playerOptionsOverride;
 @property(nonatomic) _Bool initiallyPaused; // @synthesize initiallyPaused=_initiallyPaused;
 @property(copy, nonatomic) NSNumber *seekTo; // @synthesize seekTo=_seekTo;
+@property(nonatomic) _Bool alwaysPlaySomething; // @synthesize alwaysPlaySomething=_alwaysPlaySomething;
 @property(copy, nonatomic) SPTSkipToTrack *skipTo; // @synthesize skipTo=_skipTo;
 - (void).cxx_destruct;
 - (unsigned long long)hash;

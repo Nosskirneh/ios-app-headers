@@ -7,12 +7,11 @@
 #import <objc/NSObject.h>
 
 #import "SPTDataSaverTestManager-Protocol.h"
-#import "SPTFeatureFlagSignalObserver-Protocol.h"
 
 @class NSString;
 @protocol SPTFeatureFlagSignal;
 
-@interface SPTDataSaverTestManagerImplementation : NSObject <SPTFeatureFlagSignalObserver, SPTDataSaverTestManager>
+@interface SPTDataSaverTestManagerImplementation : NSObject <SPTDataSaverTestManager>
 {
     id <SPTFeatureFlagSignal> _dataSaverFlagSignal;
     long long _dataSaverFlagState;

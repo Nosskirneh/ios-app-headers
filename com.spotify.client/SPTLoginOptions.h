@@ -10,13 +10,17 @@
 
 @interface SPTLoginOptions : NSObject
 {
+    _Bool _bootstrapRequired;
     NSString *_apSrvHostOverride;
     NSString *_apHostOverride;
     NSString *_apResolverHostOverride;
     NSString *_canonicalUsername;
+    long long _login5Setting;
 }
 
 + (id)defaultLoginOptions;
+@property(nonatomic) _Bool bootstrapRequired; // @synthesize bootstrapRequired=_bootstrapRequired;
+@property(nonatomic) long long login5Setting; // @synthesize login5Setting=_login5Setting;
 @property(retain, nonatomic) NSString *canonicalUsername; // @synthesize canonicalUsername=_canonicalUsername;
 @property(retain, nonatomic) NSString *apResolverHostOverride; // @synthesize apResolverHostOverride=_apResolverHostOverride;
 @property(retain, nonatomic) NSString *apHostOverride; // @synthesize apHostOverride=_apHostOverride;

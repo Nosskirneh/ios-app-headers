@@ -6,14 +6,15 @@
 
 #import <UIKit/UIView.h>
 
+#import "SPTSearchSearchBarProtocol-Protocol.h"
 #import "UISearchBarDelegate-Protocol.h"
 
 @class NSString, UIButton, UISearchBar, UIStackView;
-@protocol SPTSearch2SearchBarDelegate;
+@protocol SPTSearchSearchBarDelegate;
 
-@interface SPTSearch2SearchBar : UIView <UISearchBarDelegate>
+@interface SPTSearch2SearchBar : UIView <UISearchBarDelegate, SPTSearchSearchBarProtocol>
 {
-    id <SPTSearch2SearchBarDelegate> _delegate;
+    id <SPTSearchSearchBarDelegate> _delegate;
     UISearchBar *_searchBar;
     UIButton *_cancelButton;
     UIStackView *_stackView;
@@ -22,7 +23,7 @@
 @property(readonly, nonatomic) UIStackView *stackView; // @synthesize stackView=_stackView;
 @property(readonly, nonatomic) UIButton *cancelButton; // @synthesize cancelButton=_cancelButton;
 @property(readonly, nonatomic) UISearchBar *searchBar; // @synthesize searchBar=_searchBar;
-@property(nonatomic) __weak id <SPTSearch2SearchBarDelegate> delegate; // @synthesize delegate=_delegate;
+@property(nonatomic) __weak id <SPTSearchSearchBarDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
 - (void)searchBarSearchButtonClicked:(id)arg1;
 - (void)searchBar:(id)arg1 textDidChange:(id)arg2;

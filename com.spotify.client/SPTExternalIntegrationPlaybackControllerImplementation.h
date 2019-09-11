@@ -9,7 +9,7 @@
 #import "SPTExternalIntegrationPlaybackController-Protocol.h"
 #import "SPTPlayerObserver-Protocol.h"
 
-@class NSMutableSet, NSString, SPTExternalIntegrationPlatformLoggerImplementation, SPTExternalIntegrationPlayQueueContentFactory, SPTObserverManager, SPTPlayerState;
+@class NSMutableSet, NSString, NSUUID, SPTExternalIntegrationPlatformLoggerImplementation, SPTExternalIntegrationPlayQueueContentFactory, SPTObserverManager, SPTPlayerState;
 @protocol SPTAudioSessionController, SPTExternalIntegrationDebugLog, SPTFormatListPlatformResolver, SPTOnDemandSet, SPTPlayer, SPTPodcastSpeedControlManager;
 
 @interface SPTExternalIntegrationPlaybackControllerImplementation : NSObject <SPTPlayerObserver, SPTExternalIntegrationPlaybackController>
@@ -23,12 +23,14 @@
     SPTExternalIntegrationPlayQueueContentFactory *_queueContentFactory;
     id <SPTFormatListPlatformResolver> _formatListResolver;
     id <SPTOnDemandSet> _onDemandSet;
+    NSUUID *_lastPlaybackPreparationID;
     NSMutableSet *_playbackCoordinatorRegistry;
     NSMutableSet *_actionCoordinatorRegistry;
 }
 
 @property(readonly, nonatomic) NSMutableSet *actionCoordinatorRegistry; // @synthesize actionCoordinatorRegistry=_actionCoordinatorRegistry;
 @property(readonly, nonatomic) NSMutableSet *playbackCoordinatorRegistry; // @synthesize playbackCoordinatorRegistry=_playbackCoordinatorRegistry;
+@property(retain, nonatomic) NSUUID *lastPlaybackPreparationID; // @synthesize lastPlaybackPreparationID=_lastPlaybackPreparationID;
 @property(readonly, nonatomic) __weak id <SPTOnDemandSet> onDemandSet; // @synthesize onDemandSet=_onDemandSet;
 @property(readonly, nonatomic) __weak id <SPTFormatListPlatformResolver> formatListResolver; // @synthesize formatListResolver=_formatListResolver;
 @property(readonly, nonatomic) SPTExternalIntegrationPlayQueueContentFactory *queueContentFactory; // @synthesize queueContentFactory=_queueContentFactory;
@@ -64,7 +66,7 @@
 - (void)pauseWithAccessorySessionID:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (void)performActionWithURI:(id)arg1 currentAccessory:(id)arg2 completionHandler:(CDUnknownBlockType)arg3;
 - (_Bool)canPerformActionWithURI:(id)arg1;
-- (void)initiatePlaybackWithURI:(id)arg1 options:(id)arg2 origin:(id)arg3 requestOptions:(id)arg4 accessorySessionID:(id)arg5 completionHandler:(CDUnknownBlockType)arg6;
+- (void)initiatePlaybackWithURI:(id)arg1 options:(id)arg2 origin:(id)arg3 requestOptions:(id)arg4 completionHandler:(CDUnknownBlockType)arg5;
 - (void)preparePlaybackWithURI:(id)arg1 options:(id)arg2 origin:(id)arg3 requestOptions:(id)arg4 accessorySessionID:(id)arg5 completionHandler:(CDUnknownBlockType)arg6;
 - (void)playContentWithURI:(id)arg1 withOptions:(id)arg2 currentAccessory:(id)arg3 completionHandler:(CDUnknownBlockType)arg4;
 - (void)playContentWithURI:(id)arg1 withOptions:(id)arg2 origin:(id)arg3 currentAccessory:(id)arg4 completionHandler:(CDUnknownBlockType)arg5;

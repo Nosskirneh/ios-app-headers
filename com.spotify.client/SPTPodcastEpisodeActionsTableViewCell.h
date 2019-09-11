@@ -6,27 +6,25 @@
 
 #import <UIKit/UITableViewCell.h>
 
-@class GLUEButton, SPTPodcastAccessoryIconButton, UIStackView, UIView;
-@protocol SPTPodcastDownloadButton, SPTPodcastTestManager;
+@class GLUEAccessoryIconButton, GLUEButton, UIStackView, UIView;
+@protocol SPTPodcastUIDownloadButton;
 
 @interface SPTPodcastEpisodeActionsTableViewCell : UITableViewCell
 {
     GLUEButton *_mainActionButton;
-    SPTPodcastAccessoryIconButton *_shareButton;
-    SPTPodcastAccessoryIconButton<SPTPodcastDownloadButton> *_downloadButton;
+    GLUEAccessoryIconButton *_shareButton;
+    GLUEAccessoryIconButton<SPTPodcastUIDownloadButton> *_downloadButton;
     UIView *_mainActionContainer;
     UIStackView *_secondaryActionsStackView;
-    id <SPTPodcastTestManager> _testManager;
 }
 
-@property(retain, nonatomic) id <SPTPodcastTestManager> testManager; // @synthesize testManager=_testManager;
 @property(retain, nonatomic) UIStackView *secondaryActionsStackView; // @synthesize secondaryActionsStackView=_secondaryActionsStackView;
 @property(retain, nonatomic) UIView *mainActionContainer; // @synthesize mainActionContainer=_mainActionContainer;
-@property(retain, nonatomic) SPTPodcastAccessoryIconButton<SPTPodcastDownloadButton> *downloadButton; // @synthesize downloadButton=_downloadButton;
-@property(retain, nonatomic) SPTPodcastAccessoryIconButton *shareButton; // @synthesize shareButton=_shareButton;
+@property(retain, nonatomic) GLUEAccessoryIconButton<SPTPodcastUIDownloadButton> *downloadButton; // @synthesize downloadButton=_downloadButton;
+@property(retain, nonatomic) GLUEAccessoryIconButton *shareButton; // @synthesize shareButton=_shareButton;
 @property(retain, nonatomic) GLUEButton *mainActionButton; // @synthesize mainActionButton=_mainActionButton;
 - (void).cxx_destruct;
-- (id)initWithGlueTheme:(id)arg1 testManager:(id)arg2;
+- (id)initWithGlueTheme:(id)arg1 buttonsFactory:(id)arg2;
 
 @end
 

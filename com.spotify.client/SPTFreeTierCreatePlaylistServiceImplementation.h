@@ -9,7 +9,7 @@
 #import "SPTFreeTierCreatePlaylistService-Protocol.h"
 
 @class NSString, SPTAllocationContext, SPTFreeTierCreatePlaylistTestManagerImplementation;
-@protocol PlaylistFeature, SPContextMenuFeature, SPTContainerService, SPTFeatureFlaggingService, SPTFreeTierPresentationService, SPTGLUEService, SPTInAppMessageService, SPTPageRegistrationToken, SPTPlaylistPlatformService, SPTURIDispatchService;
+@protocol PlaylistFeature, SPContextMenuFeature, SPTAddToPlaylistService, SPTContainerService, SPTFeatureFlagSignal, SPTFeatureFlaggingService, SPTFreeTierPresentationService, SPTGLUEService, SPTInAppMessageService, SPTPageRegistrationToken, SPTPlaylistPlatformService, SPTURIDispatchService;
 
 @interface SPTFreeTierCreatePlaylistServiceImplementation : NSObject <SPTFreeTierCreatePlaylistService>
 {
@@ -22,13 +22,17 @@
     id <SPTFeatureFlaggingService> _featureFlaggingService;
     id <SPTGLUEService> _glueService;
     id <SPTInAppMessageService> _inAppMessageService;
+    id <SPTAddToPlaylistService> _addToPlaylistService;
     SPTFreeTierCreatePlaylistTestManagerImplementation *_testManager;
     id <SPTPageRegistrationToken> _createPlaylistServiceRegistrationToken;
+    id <SPTFeatureFlagSignal> _addToPlaylistFeatureEnabledSignal;
 }
 
 + (id)serviceIdentifier;
+@property(retain, nonatomic) id <SPTFeatureFlagSignal> addToPlaylistFeatureEnabledSignal; // @synthesize addToPlaylistFeatureEnabledSignal=_addToPlaylistFeatureEnabledSignal;
 @property(retain, nonatomic) id <SPTPageRegistrationToken> createPlaylistServiceRegistrationToken; // @synthesize createPlaylistServiceRegistrationToken=_createPlaylistServiceRegistrationToken;
 @property(retain, nonatomic) SPTFreeTierCreatePlaylistTestManagerImplementation *testManager; // @synthesize testManager=_testManager;
+@property(nonatomic) __weak id <SPTAddToPlaylistService> addToPlaylistService; // @synthesize addToPlaylistService=_addToPlaylistService;
 @property(nonatomic) __weak id <SPTInAppMessageService> inAppMessageService; // @synthesize inAppMessageService=_inAppMessageService;
 @property(nonatomic) __weak id <SPTGLUEService> glueService; // @synthesize glueService=_glueService;
 @property(nonatomic) __weak id <SPTFeatureFlaggingService> featureFlaggingService; // @synthesize featureFlaggingService=_featureFlaggingService;
@@ -39,6 +43,7 @@
 @property(nonatomic) __weak id <SPContextMenuFeature> contextMenuFeature; // @synthesize contextMenuFeature=_contextMenuFeature;
 @property(nonatomic) __weak id <SPTContainerService> containerService; // @synthesize containerService=_containerService;
 - (void).cxx_destruct;
+- (void)featureFlagSignal:(id)arg1 hasAssumedState:(long long)arg2;
 - (void)registerContextMenuActions;
 - (id)provideTestManager;
 - (id)provideLogger;
@@ -47,6 +52,8 @@
 - (id)provideRenamePlaylistControllerForPlaylistURL:(id)arg1 currentName:(id)arg2;
 - (id)provideCreatePlaylistControllerInFolder:(id)arg1;
 - (id)provideCreatePlaylistController;
+- (void)unregisterLegacyAddToPlaylistPage;
+- (void)registerLegacyAddToPlaylistPage;
 - (void)unregisterCreatePlaylist;
 - (void)registerCreatePlaylist;
 - (void)load;

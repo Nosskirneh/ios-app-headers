@@ -8,41 +8,43 @@
 
 #import "UIGestureRecognizerDelegate-Protocol.h"
 
-@class NSString, UIImageView, UILabel, UIView;
+@class GLUEAccessoryIconButton, NSLayoutConstraint, NSString, UIButton, UIImageView, UILabel, UIView;
 @protocol SPTSlate, SPTSlatePrivateViewControllerDelegate;
 
 @interface SPTSlatePrivateViewController : SPTSlateViewController <UIGestureRecognizerDelegate>
 {
     id <SPTSlatePrivateViewControllerDelegate> _privateViewControllerDelegate;
     id <SPTSlate> _slate;
-    UILabel *_dismissLabel;
+    GLUEAccessoryIconButton *_accessoryButton;
+    UIButton *_dismissButton;
     UILabel *_titleLabel;
     UIImageView *_iconImageView;
-    UIView *_headerView;
+    UIView *_containerView;
+    NSLayoutConstraint *_accessoryButtonCenterImageConstraint;
+    NSLayoutConstraint *_accessoryButtonCenterTitleConstraint;
 }
 
-@property(retain, nonatomic) UIView *headerView; // @synthesize headerView=_headerView;
+@property(retain, nonatomic) NSLayoutConstraint *accessoryButtonCenterTitleConstraint; // @synthesize accessoryButtonCenterTitleConstraint=_accessoryButtonCenterTitleConstraint;
+@property(retain, nonatomic) NSLayoutConstraint *accessoryButtonCenterImageConstraint; // @synthesize accessoryButtonCenterImageConstraint=_accessoryButtonCenterImageConstraint;
+@property(retain, nonatomic) UIView *containerView; // @synthesize containerView=_containerView;
 @property(retain, nonatomic) UIImageView *iconImageView; // @synthesize iconImageView=_iconImageView;
 @property(retain, nonatomic) UILabel *titleLabel; // @synthesize titleLabel=_titleLabel;
-@property(retain, nonatomic) UILabel *dismissLabel; // @synthesize dismissLabel=_dismissLabel;
+@property(retain, nonatomic) UIButton *dismissButton; // @synthesize dismissButton=_dismissButton;
+@property(retain, nonatomic) GLUEAccessoryIconButton *accessoryButton; // @synthesize accessoryButton=_accessoryButton;
 @property(nonatomic) __weak id <SPTSlate> slate; // @synthesize slate=_slate;
 @property(nonatomic) __weak id <SPTSlatePrivateViewControllerDelegate> privateViewControllerDelegate; // @synthesize privateViewControllerDelegate=_privateViewControllerDelegate;
 - (void).cxx_destruct;
-- (void)showDismissLabel:(_Bool)arg1 animated:(_Bool)arg2;
-- (id)createLabel;
-- (void)createHeaderView;
-- (id)createSpotifyImageHeader;
-- (void)layoutHeaderView;
-- (struct CGRect)dismissLabelTapArea;
-- (void)setShowsDismissLabel:(_Bool)arg1 animated:(_Bool)arg2;
-- (id)createDismissLabel;
-- (void)layoutDismissTextIfAvailable;
+- (void)showDismissButton:(_Bool)arg1 animated:(_Bool)arg2;
+- (void)updateHeaderView;
+- (struct CGRect)dismissButtonTapArea;
+- (void)setShowsDismissButton:(_Bool)arg1 animated:(_Bool)arg2;
+- (void)updateDismissButton;
 - (void)addChildViewController:(id)arg1;
 - (_Bool)gestureRecognizer:(id)arg1 shouldReceiveTouch:(id)arg2;
 - (void)viewTapRecognizer:(id)arg1;
+- (void)dismissButtonDidTap:(id)arg1;
+- (void)addConstraints;
 - (void)setNeedsContentUnitUpdate;
-- (void)viewDidAppear:(_Bool)arg1;
-- (void)viewWillAppear:(_Bool)arg1;
 - (void)viewDidLoad;
 - (id)initWithSlate:(id)arg1;
 

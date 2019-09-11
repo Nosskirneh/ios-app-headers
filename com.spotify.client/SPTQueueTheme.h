@@ -15,7 +15,6 @@
 @property(readonly, copy, nonatomic) GLUEEntityRowStyle *nowPlayingCellVideoStyle;
 @property(readonly, copy, nonatomic) GLUEEntityRowStyle *nowPlayingCellAudioStyle;
 @property(readonly, copy, nonatomic) SPTQueueLeadingViewStyle *queueLeadingViewStyle;
-@property(readonly, copy, nonatomic) GLUEEntityRowStyle *queueRowMFTStyle;
 @property(readonly, copy, nonatomic) GLUEEntityRowStyle *queueRowStyle;
 
 @end

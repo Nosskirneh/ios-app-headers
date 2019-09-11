@@ -30,6 +30,7 @@
 - (void)audioPreviewModelDidChangeStartTime:(id)arg1;
 - (void)audioPreviewModelDidChangePaused:(id)arg1;
 - (void)audioPreviewModelDidChangePlaying:(id)arg1;
+- (void)prepareForReuse;
 - (id)initWithModel:(id)arg1;
 
 // Remaining properties

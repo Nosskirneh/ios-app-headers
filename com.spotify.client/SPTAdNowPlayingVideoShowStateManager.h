@@ -6,28 +6,28 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTNowPlayingAdPlayerObserver-Protocol.h"
+#import "SPTAdPlayerObserver-Protocol.h"
 #import "SPTNowPlayingVideoControlsVisibilityDelegate-Protocol.h"
 
-@class NSString, SPTNowPlayingAdPlayerObservable, SPTNowPlayingVideoAdMode;
+@class NSString, SPTAdPlayerObservable, SPTNowPlayingVideoAdMode;
 @protocol SPTAdsManager;
 
-@interface SPTAdNowPlayingVideoShowStateManager : NSObject <SPTNowPlayingAdPlayerObserver, SPTNowPlayingVideoControlsVisibilityDelegate>
+@interface SPTAdNowPlayingVideoShowStateManager : NSObject <SPTAdPlayerObserver, SPTNowPlayingVideoControlsVisibilityDelegate>
 {
     _Bool _currentShowControlsState;
     SPTNowPlayingVideoAdMode *_videoAdMode;
-    SPTNowPlayingAdPlayerObservable *_observable;
+    SPTAdPlayerObservable *_observable;
     id <SPTAdsManager> _adsManager;
     struct SPTNowPlayingTrack _currentTrack;
 }
 
 @property(readonly, nonatomic) id <SPTAdsManager> adsManager; // @synthesize adsManager=_adsManager;
-@property(readonly, nonatomic) SPTNowPlayingAdPlayerObservable *observable; // @synthesize observable=_observable;
+@property(readonly, nonatomic) SPTAdPlayerObservable *observable; // @synthesize observable=_observable;
 @property(readonly, nonatomic) SPTNowPlayingVideoAdMode *videoAdMode; // @synthesize videoAdMode=_videoAdMode;
 @property(nonatomic) struct SPTNowPlayingTrack currentTrack; // @synthesize currentTrack=_currentTrack;
 @property(nonatomic) _Bool currentShowControlsState; // @synthesize currentShowControlsState=_currentShowControlsState;
 - (void).cxx_destruct;
-- (void)nowPlayingAdStateDidChangeToTrack:(struct SPTNowPlayingTrack)arg1;
+- (void)adPlayerStateDidChangeToTrack:(struct SPTNowPlayingTrack)arg1;
 - (void)npvUnitTapEvent;
 - (_Bool)shouldToggleUnitVisibility;
 - (void)dealloc;

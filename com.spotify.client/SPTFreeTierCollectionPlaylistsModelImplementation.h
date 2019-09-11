@@ -9,15 +9,17 @@
 #import "SPTFreeTierCollectionFavoriteMixModelDelegate-Protocol.h"
 #import "SPTFreeTierCollectionHiddenContentModelDelegate-Protocol.h"
 #import "SPTFreeTierCollectionPlaylistsModel-Protocol.h"
+#import "SPTOfflineModeStateObserver-Protocol.h"
 
 @class NSArray, NSString, NSURL, SPTFreeTierCollectionFilterSortManager, SPTPlaylistPlatformFolderResponse;
-@protocol SPTFreeTierCollectionFavoriteMixModel, SPTFreeTierCollectionFavoriteMixModelEntity, SPTFreeTierCollectionHiddenContentModel, SPTFreeTierCollectionPlaylistsModelDelegate, SPTFreeTierCollectionTestManager, SPTOnDemandSet, SPTPlaylistPlatformDataLoaderRequestToken, SPTPlaylistPlatformPlaylistDataLoader, SPTSortingFilteringSortRule;
+@protocol SPTFreeTierCollectionFavoriteMixModel, SPTFreeTierCollectionFavoriteMixModelEntity, SPTFreeTierCollectionHiddenContentModel, SPTFreeTierCollectionPlaylistsModelDelegate, SPTFreeTierCollectionTestManager, SPTOfflineModeState, SPTOnDemandSet, SPTPlaylistPlatformDataLoaderRequestToken, SPTPlaylistPlatformPlaylistDataLoader, SPTProductState, SPTSortingFilteringSortRule;
 
-@interface SPTFreeTierCollectionPlaylistsModelImplementation : NSObject <SPTFreeTierCollectionFavoriteMixModelDelegate, SPTFreeTierCollectionHiddenContentModelDelegate, SPTFreeTierCollectionPlaylistsModel>
+@interface SPTFreeTierCollectionPlaylistsModelImplementation : NSObject <SPTFreeTierCollectionFavoriteMixModelDelegate, SPTFreeTierCollectionHiddenContentModelDelegate, SPTOfflineModeStateObserver, SPTFreeTierCollectionPlaylistsModel>
 {
     _Bool _loaded;
     _Bool _hasMore;
     _Bool _needsReload;
+    _Bool _offline;
     NSString *_textFilter;
     NSArray *_activeFilters;
     NSArray *_availableFilters;
@@ -35,9 +37,14 @@
     id <SPTFreeTierCollectionTestManager> _testManager;
     SPTFreeTierCollectionFilterSortManager *_filterSortManager;
     NSURL *_uri;
+    id <SPTProductState> _productState;
+    id <SPTOfflineModeState> _offlineState;
     struct _NSRange _currentWindow;
 }
 
+@property(nonatomic) _Bool offline; // @synthesize offline=_offline;
+@property(readonly, nonatomic) id <SPTOfflineModeState> offlineState; // @synthesize offlineState=_offlineState;
+@property(readonly, nonatomic) id <SPTProductState> productState; // @synthesize productState=_productState;
 @property(retain, nonatomic) NSURL *uri; // @synthesize uri=_uri;
 @property(retain, nonatomic) SPTFreeTierCollectionFilterSortManager *filterSortManager; // @synthesize filterSortManager=_filterSortManager;
 @property(retain, nonatomic) id <SPTFreeTierCollectionTestManager> testManager; // @synthesize testManager=_testManager;
@@ -62,21 +69,26 @@
 - (void).cxx_destruct;
 - (_Bool)isPlaylistFolder;
 - (void)handleError:(id)arg1 withContext:(id)arg2;
+- (void)offlineModeState:(id)arg1 updated:(_Bool)arg2;
 - (void)hiddenContentModel:(id)arg1 didFailWithError:(id)arg2;
 - (void)hiddenContentModelDidUpdate:(id)arg1;
+- (_Bool)includeFavoriteMix;
 - (void)favoriteMixModel:(id)arg1 didUpdateFavoriteMixEntity:(id)arg2;
 - (void)favoriteMixModel:(id)arg1 didFailWithError:(id)arg2;
+- (void)removeFilterAtIndex:(long long)arg1;
 - (void)resetFilters;
 - (void)setTitle:(id)arg1;
 @property(readonly, nonatomic, getter=isContentFiltered) _Bool contentFiltered;
 - (void)filterAndSortSetCosmosOptions:(id)arg1;
+- (_Bool)shouldSortByAvailableOffline;
 - (void)setNeedsReload;
 - (void)reload;
 - (void)updateWithPlaylistResponse:(id)arg1 favoriteMixEntity:(id)arg2;
 - (void)subscribeToPlaylist;
 - (void)loadMore;
 - (void)loadModel;
-- (id)initWithPlaylistDataLoader:(id)arg1 favoriteMixModel:(id)arg2 hiddenContentModel:(id)arg3 folderURI:(id)arg4 onDemandSet:(id)arg5 testManager:(id)arg6 filterSortManager:(id)arg7;
+- (void)dealloc;
+- (id)initWithPlaylistDataLoader:(id)arg1 favoriteMixModel:(id)arg2 hiddenContentModel:(id)arg3 folderURI:(id)arg4 onDemandSet:(id)arg5 testManager:(id)arg6 filterSortManager:(id)arg7 productState:(id)arg8 offlineState:(id)arg9;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

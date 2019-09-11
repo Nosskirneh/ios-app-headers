@@ -8,14 +8,15 @@
 
 #import "INSMessageProtocol-Protocol.h"
 
-@class GPBMessage, NSData, NSString;
+@class NSData, NSString;
+@protocol SPTEventSenderMessage;
 
 @interface SPTEventMessage : NSObject <INSMessageProtocol>
 {
-    GPBMessage *_message;
+    id <SPTEventSenderMessage> _message;
 }
 
-@property(retain, nonatomic) GPBMessage *message; // @synthesize message=_message;
+@property(retain, nonatomic) id <SPTEventSenderMessage> message; // @synthesize message=_message;
 - (void).cxx_destruct;
 @property(readonly, nonatomic) NSData *data;
 @property(readonly, nonatomic) NSString *name;

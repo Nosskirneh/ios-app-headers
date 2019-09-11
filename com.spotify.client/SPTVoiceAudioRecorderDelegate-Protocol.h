@@ -11,7 +11,7 @@
 
 @protocol SPTVoiceAudioRecorderDelegate <NSObject>
 - (void)audioRecorder:(id <SPTVoiceAudioRecorder>)arg1 didFailWithError:(NSError *)arg2;
-- (void)audioRecorder:(id <SPTVoiceAudioRecorder>)arg1 didRecordAudioChunk:(void *)arg2 ofSize:(unsigned int)arg3;
+- (void)audioRecorder:(id <SPTVoiceAudioRecorder>)arg1 didRecordAudioChunk:(short **)arg2 ofSize:(unsigned int)arg3;
 - (void)audioRecorderDidStartRecording:(id <SPTVoiceAudioRecorder>)arg1;
 
 @optional

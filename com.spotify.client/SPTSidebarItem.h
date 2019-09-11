@@ -19,6 +19,8 @@
     NSString *_identifier;
 }
 
++ (void)setNavigationConfiguration:(id)arg1;
++ (id)navigationConfiguration;
 @property(readonly, nonatomic, getter=isBadgeDisplayed) _Bool badgeDisplayed; // @synthesize badgeDisplayed=_badgeDisplayed;
 @property(readonly, copy, nonatomic) NSString *identifier; // @synthesize identifier=_identifier;
 @property(readonly, copy, nonatomic) NSString *title; // @synthesize title=_title;

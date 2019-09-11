@@ -17,10 +17,10 @@
 }
 
 + (id)messageWithSessionId:(id)arg1 userIntent:(id)arg2 interactionOrigin:(id)arg3 destinationUri:(id)arg4;
-@property(retain, nonatomic) NSString *destinationUriValue; // @synthesize destinationUriValue=_destinationUriValue;
-@property(retain, nonatomic) NSString *interactionOriginValue; // @synthesize interactionOriginValue=_interactionOriginValue;
-@property(retain, nonatomic) NSString *userIntentValue; // @synthesize userIntentValue=_userIntentValue;
-@property(retain, nonatomic) NSString *sessionIdValue; // @synthesize sessionIdValue=_sessionIdValue;
+@property(copy, nonatomic) NSString *destinationUriValue; // @synthesize destinationUriValue=_destinationUriValue;
+@property(copy, nonatomic) NSString *interactionOriginValue; // @synthesize interactionOriginValue=_interactionOriginValue;
+@property(copy, nonatomic) NSString *userIntentValue; // @synthesize userIntentValue=_userIntentValue;
+@property(copy, nonatomic) NSString *sessionIdValue; // @synthesize sessionIdValue=_sessionIdValue;
 - (void).cxx_destruct;
 - (_Bool)isEqual:(id)arg1;
 - (unsigned long long)hash;

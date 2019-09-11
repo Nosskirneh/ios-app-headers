@@ -7,30 +7,46 @@
 #import <objc/NSObject.h>
 
 #import "SPTInAppMessageCardMessageWebViewContentDelegate-Protocol.h"
+#import "SPTOfflineModeStateObserver-Protocol.h"
 #import "SPTSlateDataSource-Protocol.h"
 #import "SPTSlateDelegate-Protocol.h"
 
-@class NSString, SPTInAppMessageCardMessageViewModel, SPTInAppMessageServiceLogger;
-@protocol SPTSlate, SPTSlateBuilderProvider, SPTSlateManager;
+@class NSDictionary, NSString, SPTInAppMessageCardMessageViewModel, SPTInAppMessageServiceLogger;
+@protocol SPTCrashReporter, SPTExternalIntegrationDriverDistractionController, SPTOfflineModeState, SPTSlate, SPTSlateBuilderProvider, SPTSlateManager;
 
-@interface SPTInAppMessageCardMessagePresentationController : NSObject <SPTSlateDelegate, SPTSlateDataSource, SPTInAppMessageCardMessageWebViewContentDelegate>
+@interface SPTInAppMessageCardMessagePresentationController : NSObject <SPTSlateDelegate, SPTSlateDataSource, SPTInAppMessageCardMessageWebViewContentDelegate, SPTOfflineModeStateObserver>
 {
-    _Bool _presented;
+    _Bool _presentingCard;
+    _Bool _offline;
     SPTInAppMessageCardMessageViewModel *_viewModel;
     id <SPTSlateManager> _slateManager;
     id <SPTSlateBuilderProvider> _slateBuilderProvider;
     id <SPTSlate> _slate;
+    id <SPTOfflineModeState> _offlineModeState;
+    id <SPTExternalIntegrationDriverDistractionController> _driverDistractionController;
     SPTInAppMessageServiceLogger *_serviceLogger;
+    NSDictionary *_cancelationInfo;
+    id <SPTCrashReporter> _crashReporter;
 }
 
+@property(readonly, nonatomic) id <SPTCrashReporter> crashReporter; // @synthesize crashReporter=_crashReporter;
+@property(copy, nonatomic) NSDictionary *cancelationInfo; // @synthesize cancelationInfo=_cancelationInfo;
+@property(nonatomic, getter=isOffline) _Bool offline; // @synthesize offline=_offline;
 @property(retain, nonatomic) SPTInAppMessageServiceLogger *serviceLogger; // @synthesize serviceLogger=_serviceLogger;
+@property(retain, nonatomic) id <SPTExternalIntegrationDriverDistractionController> driverDistractionController; // @synthesize driverDistractionController=_driverDistractionController;
+@property(nonatomic) __weak id <SPTOfflineModeState> offlineModeState; // @synthesize offlineModeState=_offlineModeState;
 @property(retain, nonatomic) id <SPTSlate> slate; // @synthesize slate=_slate;
 @property(retain, nonatomic) id <SPTSlateBuilderProvider> slateBuilderProvider; // @synthesize slateBuilderProvider=_slateBuilderProvider;
 @property(retain, nonatomic) id <SPTSlateManager> slateManager; // @synthesize slateManager=_slateManager;
 @property(retain, nonatomic) SPTInAppMessageCardMessageViewModel *viewModel; // @synthesize viewModel=_viewModel;
-@property(nonatomic, getter=isPresented) _Bool presented; // @synthesize presented=_presented;
+@property(nonatomic, getter=isPresentingCard) _Bool presentingCard; // @synthesize presentingCard=_presentingCard;
 - (void).cxx_destruct;
-- (void)logMessageDiscarded;
+- (id)messageFormat;
+- (void)dismissCardMessageIfAdPlaying;
+- (_Bool)canPresentSlate;
+- (void)cancelMessagePresentation:(id)arg1;
+- (void)logMessageDiscardedWithReason:(id)arg1;
+- (void)logMessagePresented;
 - (void)dismissCardMessageOverlayContentUnit;
 - (_Bool)present;
 - (_Bool)slateShouldOnlyDismissOnFooterTap:(id)arg1;
@@ -42,7 +58,9 @@
 - (id)contentUnitForSlateViewController:(id)arg1;
 - (id)provideSlate;
 - (_Bool)isIpad;
-- (id)initWithViewModel:(id)arg1 slateManager:(id)arg2 slateBuilderProvider:(id)arg3 serviceLogger:(id)arg4;
+- (void)offlineModeState:(id)arg1 updated:(_Bool)arg2;
+- (void)dealloc;
+- (id)initWithViewModel:(id)arg1 slateManager:(id)arg2 slateBuilderProvider:(id)arg3 offlineModeState:(id)arg4 driverDistractionController:(id)arg5 serviceLogger:(id)arg6 crashReporter:(id)arg7;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

@@ -31,6 +31,7 @@
 - (void)setupConstraints;
 @property(copy, nonatomic) NSString *ruleTitle;
 - (void)prepareForReuse;
+- (void)setHighlighted:(_Bool)arg1 animated:(_Bool)arg2;
 - (id)initWithStyle:(long long)arg1 reuseIdentifier:(id)arg2;
 
 // Remaining properties

@@ -23,13 +23,9 @@
     NSLayoutConstraint *_selectionIndicatorWidthConstraint;
     NSLayoutConstraint *_selectionIndicatorLeftConstraint;
     SPTYourLibraryTabControlCollectionViewCell *_calculationCell;
-    double _estimatedCollectionViewWidth;
-    double _estimatedMaxCollectionViewCellWidth;
 }
 
 + (_Bool)requiresConstraintBasedLayout;
-@property(nonatomic) double estimatedMaxCollectionViewCellWidth; // @synthesize estimatedMaxCollectionViewCellWidth=_estimatedMaxCollectionViewCellWidth;
-@property(nonatomic) double estimatedCollectionViewWidth; // @synthesize estimatedCollectionViewWidth=_estimatedCollectionViewWidth;
 @property(retain, nonatomic) SPTYourLibraryTabControlCollectionViewCell *calculationCell; // @synthesize calculationCell=_calculationCell;
 @property(retain, nonatomic) NSLayoutConstraint *selectionIndicatorLeftConstraint; // @synthesize selectionIndicatorLeftConstraint=_selectionIndicatorLeftConstraint;
 @property(retain, nonatomic) NSLayoutConstraint *selectionIndicatorWidthConstraint; // @synthesize selectionIndicatorWidthConstraint=_selectionIndicatorWidthConstraint;
@@ -42,13 +38,21 @@
 - (void).cxx_destruct;
 - (void)collectionView:(id)arg1 layoutDidUpdateLayoutParameters:(id)arg2;
 - (void)collectionView:(id)arg1 didSelectItemAtIndexPath:(id)arg2;
+- (void)collectionView:(id)arg1 didUnhighlightItemAtIndexPath:(id)arg2;
+- (void)collectionView:(id)arg1 didHighlightItemAtIndexPath:(id)arg2;
 - (id)collectionView:(id)arg1 cellForItemAtIndexPath:(id)arg2;
 - (struct CGSize)collectionView:(id)arg1 layout:(id)arg2 sizeForItemAtIndexPath:(id)arg3;
 - (long long)collectionView:(id)arg1 numberOfItemsInSection:(long long)arg2;
 - (_Bool)useRTLCompabilityMode;
+- (void)adjustScrollPositionIfNeeded;
 - (void)updateSelectedIndicatorWithFrame:(struct CGRect)arg1 animated:(_Bool)arg2;
 - (void)setSelectedSegmentFrom:(double)arg1 to:(double)arg2;
+- (id)cellForIndex:(long long)arg1;
 - (struct CGRect)rectForSegmentIndicatorAtIndex:(unsigned long long)arg1;
+- (id)indexPathForIndex:(long long)arg1;
+- (long long)adjustedIndex:(long long)arg1;
+- (void)setSelectedSegmentIndex:(unsigned long long)arg1 animated:(_Bool)arg2;
+- (void)resetSelectedStateToIndex:(long long)arg1;
 - (void)invalidateAndReload;
 - (void)insertSegments:(id)arg1;
 - (void)removeAllSegments;

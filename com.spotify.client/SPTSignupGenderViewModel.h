@@ -6,26 +6,22 @@
 
 #import <objc/NSObject.h>
 
-@class NSArray, SPTLoginSplitEmailSignupViewLogger, SPTLoginTheme, SPTSignupUserInfoModel;
-@protocol SPTLoginNavigationCoordinator, SPTNavigationRouter, SPTSignupGenderViewModelDelegate;
+@class NSArray, SPTLoginSplitEmailSignupViewLogger, SPTSignupUserInfoModel;
+@protocol SPTNavigationRouter, SPTSignupGenderViewModelDelegate;
 
 @interface SPTSignupGenderViewModel : NSObject
 {
     id <SPTSignupGenderViewModelDelegate> _delegate;
     SPTLoginSplitEmailSignupViewLogger *_logger;
     SPTSignupUserInfoModel *_userInfoModel;
-    SPTLoginTheme *_theme;
     NSArray *_localizedGenders;
     NSArray *_backendDefinedGenders;
     id <SPTNavigationRouter> _navigationRouter;
-    id <SPTLoginNavigationCoordinator> _navigationCoordinator;
 }
 
-@property(retain, nonatomic) id <SPTLoginNavigationCoordinator> navigationCoordinator; // @synthesize navigationCoordinator=_navigationCoordinator;
 @property(retain, nonatomic) id <SPTNavigationRouter> navigationRouter; // @synthesize navigationRouter=_navigationRouter;
 @property(retain, nonatomic) NSArray *backendDefinedGenders; // @synthesize backendDefinedGenders=_backendDefinedGenders;
 @property(retain, nonatomic) NSArray *localizedGenders; // @synthesize localizedGenders=_localizedGenders;
-@property(readonly, nonatomic) SPTLoginTheme *theme; // @synthesize theme=_theme;
 @property(readonly, nonatomic) SPTSignupUserInfoModel *userInfoModel; // @synthesize userInfoModel=_userInfoModel;
 @property(readonly, nonatomic) SPTLoginSplitEmailSignupViewLogger *logger; // @synthesize logger=_logger;
 @property(nonatomic) __weak id <SPTSignupGenderViewModelDelegate> delegate; // @synthesize delegate=_delegate;
@@ -37,10 +33,8 @@
 - (id)nextButtonText;
 - (id)fieldTitleLabelText;
 - (id)titleLabelText;
-- (id)pickerStyle;
-- (id)viewStyle;
 @property(nonatomic) long long selectedIndex;
-- (id)initWithLogger:(id)arg1 userInfoModel:(id)arg2 theme:(id)arg3 navigationRouter:(id)arg4 navigationCoordinator:(id)arg5;
+- (id)initWithLogger:(id)arg1 userInfoModel:(id)arg2 navigationRouter:(id)arg3;
 
 @end
 

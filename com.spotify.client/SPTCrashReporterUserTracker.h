@@ -7,14 +7,13 @@
 #import <objc/NSObject.h>
 
 #import "SPTDataLoaderDelegate-Protocol.h"
-#import "SPTFeatureFlagSignalObserver-Protocol.h"
 #import "SPTProductStateObserver-Protocol.h"
 #import "SPTThirdPartyUserTracker-Protocol.h"
 
 @class NSString, SPTDataLoader;
 @protocol SPTCrashReporter, SPTDataLoaderCancellationToken, SPTFeatureFlagSignal, SPTLocalSettings, SPTProductState;
 
-@interface SPTCrashReporterUserTracker : NSObject <SPTDataLoaderDelegate, SPTProductStateObserver, SPTFeatureFlagSignalObserver, SPTThirdPartyUserTracker>
+@interface SPTCrashReporterUserTracker : NSObject <SPTDataLoaderDelegate, SPTProductStateObserver, SPTThirdPartyUserTracker>
 {
     _Bool _enableUserTracker;
     _Bool _freeTierEnabled;

@@ -11,6 +11,7 @@
 
 @interface SPTNowPlayingEntityDecorationController : NSObject
 {
+    _Bool _contextAwareSharing;
     SPTPlayerState *_playerState;
     SPTPlayerContext *_stagedContext;
     unsigned long long _entityType;
@@ -34,6 +35,7 @@
 @property(retain, nonatomic) NSHashTable *observers; // @synthesize observers=_observers;
 @property(retain, nonatomic) NSURL *entityClickURI; // @synthesize entityClickURI=_entityClickURI;
 @property(retain, nonatomic) NSString *contextName; // @synthesize contextName=_contextName;
+@property(nonatomic, getter=isContextAwareSharing) _Bool contextAwareSharing; // @synthesize contextAwareSharing=_contextAwareSharing;
 @property(retain, nonatomic) NSString *entityDescription; // @synthesize entityDescription=_entityDescription;
 @property(retain, nonatomic) NSString *entityName; // @synthesize entityName=_entityName;
 @property(nonatomic) unsigned long long entityType; // @synthesize entityType=_entityType;
@@ -42,7 +44,7 @@
 - (void).cxx_destruct;
 - (void)entityUserDisplayableNameChanged;
 - (void)updateEntityInformationWithPlayerContext:(id)arg1;
-- (void)updateEntityInformationWithPlayerState:(id)arg1 contextNameAndDescription:(id)arg2;
+- (void)updateEntityInformationWithPlayerState:(id)arg1 contextNameAndDescription:(id)arg2 formatListType:(id)arg3;
 - (void)updateEntityInformationWithPlayerState:(id)arg1;
 - (id)entityNameAndDescriptionFromPlayerState:(id)arg1 name:(id)arg2 description:(id)arg3;
 - (id)clickURIFromPlayerstate:(id)arg1;

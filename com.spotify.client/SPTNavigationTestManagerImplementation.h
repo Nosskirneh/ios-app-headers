@@ -6,27 +6,29 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTFeatureFlagSignalObserver-Protocol.h"
 #import "SPTNavigationTestManager-Protocol.h"
 
-@class NSString, SPTNavigationSettingsRegistration;
-@protocol SPTFeatureFlagSignal;
+@class NSString, NSUserDefaults;
+@protocol SPTFeatureFlagFactory, SPTFeatureFlagSignal;
 
-@interface SPTNavigationTestManagerImplementation : NSObject <SPTFeatureFlagSignalObserver, SPTNavigationTestManager>
+@interface SPTNavigationTestManagerImplementation : NSObject <SPTNavigationTestManager>
 {
+    _Bool _sideBarNavigationEnabled;
     id <SPTFeatureFlagSignal> _stateRestorationDisabledSignal;
-    SPTNavigationSettingsRegistration *_navigationSettingsRegistration;
-    id <SPTFeatureFlagSignal> _threeTabNavigationSignal;
-    id <SPTFeatureFlagSignal> _threeTabNavigationRolloutSignal;
+    id <SPTFeatureFlagFactory> _featureFlagFactory;
+    id <SPTFeatureFlagSignal> _sideBarSignal;
+    NSUserDefaults *_userDefaults;
 }
 
-@property(readonly, nonatomic) id <SPTFeatureFlagSignal> threeTabNavigationRolloutSignal; // @synthesize threeTabNavigationRolloutSignal=_threeTabNavigationRolloutSignal;
-@property(readonly, nonatomic) id <SPTFeatureFlagSignal> threeTabNavigationSignal; // @synthesize threeTabNavigationSignal=_threeTabNavigationSignal;
-@property(retain, nonatomic) SPTNavigationSettingsRegistration *navigationSettingsRegistration; // @synthesize navigationSettingsRegistration=_navigationSettingsRegistration;
+@property(readonly, nonatomic) NSUserDefaults *userDefaults; // @synthesize userDefaults=_userDefaults;
+@property(nonatomic) _Bool sideBarNavigationEnabled; // @synthesize sideBarNavigationEnabled=_sideBarNavigationEnabled;
+@property(readonly, nonatomic) id <SPTFeatureFlagSignal> sideBarSignal; // @synthesize sideBarSignal=_sideBarSignal;
+@property(readonly, nonatomic) id <SPTFeatureFlagFactory> featureFlagFactory; // @synthesize featureFlagFactory=_featureFlagFactory;
 @property(readonly, nonatomic) id <SPTFeatureFlagSignal> stateRestorationDisabledSignal; // @synthesize stateRestorationDisabledSignal=_stateRestorationDisabledSignal;
 - (void).cxx_destruct;
 - (void)featureFlagSignal:(id)arg1 hasAssumedState:(long long)arg2;
-- (id)initWithAbbaService:(id)arg1 localSettings:(id)arg2 settingsRegistration:(id)arg3 featureFlagFactory:(id)arg4;
+- (void)setupSideBarSignal;
+- (id)initWithFeatureFlagFactory:(id)arg1 userDefaults:(id)arg2;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

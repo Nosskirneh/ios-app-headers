@@ -7,6 +7,6 @@
 #import <UIKit/UIColor.h>
 
 @interface UIColor (SPTExtensions)
-- (id)spt_colorByBlendingWithColor:(id)arg1 ratio:(double)arg2;
+- (id)search_colorByBlendingWithColor:(id)arg1 ratio:(double)arg2;
 @end
 

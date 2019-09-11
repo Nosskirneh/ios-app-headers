@@ -24,8 +24,8 @@
     NSLayoutConstraint *_contentViewBottomConstraint;
     NSLayoutConstraint *_contentViewLeadingConstraint;
     NSLayoutConstraint *_contentViewTrailingConstraint;
-    NSLayoutConstraint *_leadingViewLeftConstraint;
-    NSLayoutConstraint *_trailingViewRightConstraint;
+    NSLayoutConstraint *_leadingViewLeadingConstraint;
+    NSLayoutConstraint *_trailingViewTrailingConstraint;
     NSLayoutConstraint *_contentViewToLeadingViewConstraint;
     NSLayoutConstraint *_contentViewToTrailingViewConstraint;
     NSLayoutConstraint *_leadingAccessoryViewMaxWidthConstraint;
@@ -37,8 +37,8 @@
 @property(retain, nonatomic) NSLayoutConstraint *leadingAccessoryViewMaxWidthConstraint; // @synthesize leadingAccessoryViewMaxWidthConstraint=_leadingAccessoryViewMaxWidthConstraint;
 @property(retain, nonatomic) NSLayoutConstraint *contentViewToTrailingViewConstraint; // @synthesize contentViewToTrailingViewConstraint=_contentViewToTrailingViewConstraint;
 @property(retain, nonatomic) NSLayoutConstraint *contentViewToLeadingViewConstraint; // @synthesize contentViewToLeadingViewConstraint=_contentViewToLeadingViewConstraint;
-@property(retain, nonatomic) NSLayoutConstraint *trailingViewRightConstraint; // @synthesize trailingViewRightConstraint=_trailingViewRightConstraint;
-@property(retain, nonatomic) NSLayoutConstraint *leadingViewLeftConstraint; // @synthesize leadingViewLeftConstraint=_leadingViewLeftConstraint;
+@property(retain, nonatomic) NSLayoutConstraint *trailingViewTrailingConstraint; // @synthesize trailingViewTrailingConstraint=_trailingViewTrailingConstraint;
+@property(retain, nonatomic) NSLayoutConstraint *leadingViewLeadingConstraint; // @synthesize leadingViewLeadingConstraint=_leadingViewLeadingConstraint;
 @property(retain, nonatomic) NSLayoutConstraint *contentViewTrailingConstraint; // @synthesize contentViewTrailingConstraint=_contentViewTrailingConstraint;
 @property(retain, nonatomic) NSLayoutConstraint *contentViewLeadingConstraint; // @synthesize contentViewLeadingConstraint=_contentViewLeadingConstraint;
 @property(retain, nonatomic) NSLayoutConstraint *contentViewBottomConstraint; // @synthesize contentViewBottomConstraint=_contentViewBottomConstraint;

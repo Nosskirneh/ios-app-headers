@@ -46,7 +46,6 @@
 - (void).cxx_destruct;
 - (_Bool)isFollowed;
 - (unsigned long long)trackCount;
-@property(readonly, nonatomic) NSURL *previewURL;
 @property(readonly, copy, nonatomic) NSString *loggingContext;
 - (void)action;
 - (id)initWithName:(id)arg1 withURL:(id)arg2 withImageURL:(id)arg3 withUsername:(id)arg4 withSongCount:(unsigned long long)arg5 withOfflineSyncState:(unsigned long long)arg6 isFollowedArtist:(_Bool)arg7 collectionTestManager:(id)arg8 linkDispatcher:(id)arg9;

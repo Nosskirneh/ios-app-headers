@@ -8,22 +8,35 @@
 
 #import "SPTLoginKeychainManager-Protocol.h"
 
-@class NSString;
-@protocol SPTAdjustUserTrackerProtocol, SPTKeychainManager;
+@class NSString, SPTLoginCredentials;
+@protocol OS_dispatch_queue, SPTAppExtensionCredentialsManager, SPTKeychainManager, SPTLoginLogger;
 
 @interface SPTLoginKeychainManagerImplementation : NSObject <SPTLoginKeychainManager>
 {
     id <SPTKeychainManager> _keychainManager;
-    id <SPTAdjustUserTrackerProtocol> _adjustTracker;
+    id <SPTLoginLogger> _logger;
+    id <SPTAppExtensionCredentialsManager> _appExtensionCredentialsManager;
+    NSObject<OS_dispatch_queue> *_queue;
+    SPTLoginCredentials *_savedCredentials;
 }
 
-@property(retain, nonatomic) id <SPTAdjustUserTrackerProtocol> adjustTracker; // @synthesize adjustTracker=_adjustTracker;
+@property(copy, nonatomic) SPTLoginCredentials *savedCredentials; // @synthesize savedCredentials=_savedCredentials;
+@property(retain, nonatomic) NSObject<OS_dispatch_queue> *queue; // @synthesize queue=_queue;
+@property(retain, nonatomic) id <SPTAppExtensionCredentialsManager> appExtensionCredentialsManager; // @synthesize appExtensionCredentialsManager=_appExtensionCredentialsManager;
+@property(retain, nonatomic) id <SPTLoginLogger> logger; // @synthesize logger=_logger;
 @property(retain, nonatomic) id <SPTKeychainManager> keychainManager; // @synthesize keychainManager=_keychainManager;
 - (void).cxx_destruct;
+- (void)readStoredCredentialsWithCompletion:(CDUnknownBlockType)arg1;
+- (void)deleteStoredLoginSessionFromAppExtension;
+- (void)deleteCredentialsFromAppExtension;
+- (void)deleteCredentialsAndLog;
 - (void)deleteCredentials;
+- (void)bootstrapKeychainCredentials;
 - (id)storedCredentials;
+- (void)saveCredentialsToAppExtension:(id)arg1;
+- (void)saveCredentialsAndLog:(id)arg1;
 - (void)setCredentials:(id)arg1;
-- (id)initWithKeychainManager:(id)arg1 adjustTracker:(id)arg2;
+- (id)initWithKeychainManager:(id)arg1 appExtensionCredentialsManager:(id)arg2 logger:(id)arg3;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

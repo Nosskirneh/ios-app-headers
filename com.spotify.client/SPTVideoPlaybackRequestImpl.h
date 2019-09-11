@@ -12,32 +12,22 @@
 
 @interface SPTVideoPlaybackRequestImpl : NSObject <SPTVideoPlaybackRequest>
 {
-    _Bool _isAd;
-    _Bool _playWhenReady;
-    _Bool _royaltyVideo;
-    _Bool _backgroundable;
-    double _initialPosition;
-    NSString *_manifestID;
+    _Bool _royaltyMedia;
+    _Bool _audioOnlyAllowed;
     NSURL *_mediaURL;
     NSDictionary *_metadata;
-    NSURL *_syncWithAudioTrackURI;
 }
 
-@property(nonatomic, getter=isBackgroundable) _Bool backgroundable; // @synthesize backgroundable=_backgroundable;
-@property(nonatomic, getter=isRoyaltyVideo) _Bool royaltyVideo; // @synthesize royaltyVideo=_royaltyVideo;
-@property(copy, nonatomic, getter=audioTrackURI) NSURL *syncWithAudioTrackURI; // @synthesize syncWithAudioTrackURI=_syncWithAudioTrackURI;
-@property(nonatomic) _Bool playWhenReady; // @synthesize playWhenReady=_playWhenReady;
+@property(nonatomic, getter=isAudioOnlyAllowed) _Bool audioOnlyAllowed; // @synthesize audioOnlyAllowed=_audioOnlyAllowed;
+@property(nonatomic, getter=isRoyaltyMedia) _Bool royaltyMedia; // @synthesize royaltyMedia=_royaltyMedia;
 @property(copy, nonatomic) NSDictionary *metadata; // @synthesize metadata=_metadata;
-@property(copy, nonatomic) NSURL *mediaURL; // @synthesize mediaURL=_mediaURL;
-@property(retain, nonatomic) NSString *manifestID; // @synthesize manifestID=_manifestID;
-@property(nonatomic) double initialPosition; // @synthesize initialPosition=_initialPosition;
-@property(nonatomic) _Bool isAd; // @synthesize isAd=_isAd;
+@property(retain, nonatomic) NSURL *mediaURL; // @synthesize mediaURL=_mediaURL;
 - (void).cxx_destruct;
 @property(readonly, copy) NSString *debugDescription;
 - (_Bool)isEqual:(id)arg1;
 @property(readonly) unsigned long long hash;
 - (id)copyWithZone:(struct _NSZone *)arg1;
-- (id)initWithRoyaltyVideo:(_Bool)arg1 backgroundable:(_Bool)arg2;
+- (id)initWithMediaURL:(id)arg1 metadata:(id)arg2 royaltyMedia:(_Bool)arg3 audioOnlyAllowed:(_Bool)arg4;
 
 // Remaining properties
 @property(readonly, copy) NSString *description;

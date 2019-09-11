@@ -10,7 +10,7 @@
 #import "SPTRadioStationsObserver-Protocol.h"
 
 @class NSHashTable, NSString, NSURL, SPTRadioStation, SPTRadioStationsService;
-@protocol SPTDailyMixTestManager, SPTPlayer, SPTRadioTestManager;
+@protocol SPTPlayer, SPTRadioTestManager;
 
 @interface SPTRadioPlaybackService : NSObject <SPTPlayerObserver, SPTRadioStationsObserver>
 {
@@ -18,7 +18,6 @@
     NSURL *_currentContextURI;
     unsigned long long _playbackState;
     id <SPTRadioTestManager> _radioTestManager;
-    id <SPTDailyMixTestManager> _dailyMixTestManager;
     id <SPTPlayer> _player;
     SPTRadioStationsService *_stationService;
     NSHashTable *_delegates;
@@ -29,7 +28,6 @@
 @property(retain, nonatomic) NSHashTable *delegates; // @synthesize delegates=_delegates;
 @property(nonatomic) __weak SPTRadioStationsService *stationService; // @synthesize stationService=_stationService;
 @property(retain, nonatomic) id <SPTPlayer> player; // @synthesize player=_player;
-@property(retain, nonatomic) id <SPTDailyMixTestManager> dailyMixTestManager; // @synthesize dailyMixTestManager=_dailyMixTestManager;
 @property(retain, nonatomic) id <SPTRadioTestManager> radioTestManager; // @synthesize radioTestManager=_radioTestManager;
 @property(nonatomic) unsigned long long playbackState; // @synthesize playbackState=_playbackState;
 @property(retain, nonatomic) NSURL *currentContextURI; // @synthesize currentContextURI=_currentContextURI;
@@ -54,18 +52,18 @@
 - (id)contextForStation:(id)arg1;
 - (void)pauseRadioPlayback;
 - (_Bool)wouldPlaySameTrackWithoutShuffleRules:(id)arg1;
-- (void)startRadioStationWithSeedURL:(id)arg1 startedFromElement:(id)arg2 player:(id)arg3 createStation:(_Bool)arg4 previousTracks:(id)arg5 completion:(CDUnknownBlockType)arg6;
-- (void)startRadioStationWithSeedURL:(id)arg1 startedFromElement:(id)arg2 completion:(CDUnknownBlockType)arg3;
-- (void)startRadioStationWithURL:(id)arg1 startedFromElement:(id)arg2 completion:(CDUnknownBlockType)arg3;
-- (void)playStation:(id)arg1 context:(id)arg2 options:(id)arg3 player:(id)arg4 retries:(long long)arg5;
-- (void)startDecoratedRadioStation:(id)arg1 player:(id)arg2 startedFromElement:(id)arg3 atIndex:(long long)arg4 completion:(CDUnknownBlockType)arg5;
-- (void)startDecoratedRadioStation:(id)arg1 startedFromElement:(id)arg2 atIndex:(long long)arg3 completion:(CDUnknownBlockType)arg4;
+- (void)startRadioStationWithSeedURL:(id)arg1 startedFromElement:(id)arg2 player:(id)arg3 createStation:(_Bool)arg4 previousTracks:(id)arg5 referrerIdentifier:(id)arg6 completion:(CDUnknownBlockType)arg7;
+- (void)startRadioStationWithSeedURL:(id)arg1 startedFromElement:(id)arg2 referrerIdentifier:(id)arg3 completion:(CDUnknownBlockType)arg4;
+- (void)startRadioStationWithURL:(id)arg1 startedFromElement:(id)arg2 referrerIdentifier:(id)arg3 completion:(CDUnknownBlockType)arg4;
+- (void)playStation:(id)arg1 context:(id)arg2 options:(id)arg3 origin:(id)arg4 player:(id)arg5 retries:(long long)arg6;
+- (void)startDecoratedRadioStation:(id)arg1 player:(id)arg2 startedFromElement:(id)arg3 atIndex:(long long)arg4 referrerIdentifier:(id)arg5 completion:(CDUnknownBlockType)arg6;
+- (void)startDecoratedRadioStation:(id)arg1 startedFromElement:(id)arg2 atIndex:(long long)arg3 referrerIdentifier:(id)arg4 completion:(CDUnknownBlockType)arg5;
 - (long long)sanitizeStartIndex:(long long)arg1 forStation:(id)arg2;
 - (_Bool)shouldSetSkipToForIndex:(long long)arg1 inStation:(id)arg2;
 - (id)restrictionsForRadioPlayer;
-- (void)updateDailyMixTestManager:(id)arg1;
 - (void)dealloc;
-- (id)initWithPlayer:(id)arg1 stationsService:(id)arg2 radioTestManager:(id)arg3 dailyMixTestManager:(id)arg4;
+- (id)initWithPlayer:(id)arg1 stationsService:(id)arg2 radioTestManager:(id)arg3;
+- (void)startEntityPagelessPlaylistRadioFromStationURI:(id)arg1;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

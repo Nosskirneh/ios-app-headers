@@ -6,15 +6,16 @@
 
 #import <objc/NSObject.h>
 
-@class SPTAdCosmosBridge;
+@protocol SPTAdsBaseCosmosBridge;
 
 @interface SPTAdTestingHandler : NSObject
 {
-    SPTAdCosmosBridge *_cosmosBridge;
+    id <SPTAdsBaseCosmosBridge> _cosmosBridge;
 }
 
-@property(readonly, nonatomic) SPTAdCosmosBridge *cosmosBridge; // @synthesize cosmosBridge=_cosmosBridge;
+@property(readonly, nonatomic) id <SPTAdsBaseCosmosBridge> cosmosBridge; // @synthesize cosmosBridge=_cosmosBridge;
 - (void).cxx_destruct;
+- (void)overrideRequestCountry:(id)arg1 callback:(CDUnknownBlockType)arg2;
 - (void)changeFocusValue:(_Bool)arg1 callback:(CDUnknownBlockType)arg2;
 - (void)addStreamTime:(double)arg1 callback:(CDUnknownBlockType)arg2;
 - (id)initWithCosmosBridge:(id)arg1;

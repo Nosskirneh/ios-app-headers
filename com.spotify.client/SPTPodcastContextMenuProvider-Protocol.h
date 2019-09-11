@@ -6,10 +6,11 @@
 
 #import "NSObject-Protocol.h"
 
-@class NSDictionary, NSURL, SPTShowContextMenuControllerOptions, UIView, UIViewController;
+@class NSDictionary, NSURL, UIView, UIViewController;
+@protocol SPTShowContextMenuControllerOptions;
 
 @protocol SPTPodcastContextMenuProvider <NSObject>
-- (void)presentContextMenuForEpisodeURI:(NSURL *)arg1 withMetadata:(NSDictionary *)arg2 sourceContextURI:(NSURL *)arg3 inViewController:(UIViewController *)arg4 senderView:(UIView *)arg5;
-- (void)presentContextMenuForEpisodeURI:(NSURL *)arg1 withMetadata:(NSDictionary *)arg2 sourceContextURI:(NSURL *)arg3 inViewController:(UIViewController *)arg4 senderView:(UIView *)arg5 options:(SPTShowContextMenuControllerOptions *)arg6;
+- (id <SPTShowContextMenuControllerOptions>)provideShowContextMenuControllerOptions;
+- (void)presentContextMenuForEpisodeURI:(NSURL *)arg1 withMetadata:(NSDictionary *)arg2 sourceContextURI:(NSURL *)arg3 inViewController:(UIViewController *)arg4 senderView:(UIView *)arg5 options:(id <SPTShowContextMenuControllerOptions>)arg6;
 @end
 

@@ -8,7 +8,7 @@
 
 #import "UITextViewDelegate-Protocol.h"
 
-@class GLUEImageView, NSString, SPTLayoutConstraintBuilder, UIButton, UILabel, UITextView;
+@class GLUEImageView, NSArray, NSString, UIButton, UILabel, UITextView;
 @protocol SPTFeedCreatorViewDelegate;
 
 @interface SPTFeedItemCreatorView : UIView <UITextViewDelegate>
@@ -16,16 +16,16 @@
     GLUEImageView *_profileImageView;
     UIButton *_profileButton;
     UITextView *_titleLabel;
-    UILabel *_subtitleLabel;
     UILabel *_timestampLabel;
     id <SPTFeedCreatorViewDelegate> _delegate;
-    SPTLayoutConstraintBuilder *_layout;
+    UIView *_labelContainerView;
+    NSArray *_layoutConstraints;
 }
 
-@property(retain, nonatomic) SPTLayoutConstraintBuilder *layout; // @synthesize layout=_layout;
+@property(copy, nonatomic) NSArray *layoutConstraints; // @synthesize layoutConstraints=_layoutConstraints;
+@property(retain, nonatomic) UIView *labelContainerView; // @synthesize labelContainerView=_labelContainerView;
 @property(nonatomic) __weak id <SPTFeedCreatorViewDelegate> delegate; // @synthesize delegate=_delegate;
 @property(retain, nonatomic) UILabel *timestampLabel; // @synthesize timestampLabel=_timestampLabel;
-@property(retain, nonatomic) UILabel *subtitleLabel; // @synthesize subtitleLabel=_subtitleLabel;
 @property(retain, nonatomic) UITextView *titleLabel; // @synthesize titleLabel=_titleLabel;
 @property(retain, nonatomic) UIButton *profileButton; // @synthesize profileButton=_profileButton;
 @property(retain, nonatomic) GLUEImageView *profileImageView; // @synthesize profileImageView=_profileImageView;
@@ -33,6 +33,7 @@
 - (_Bool)textView:(id)arg1 shouldInteractWithURL:(id)arg2 inRange:(struct _NSRange)arg3 interaction:(long long)arg4;
 - (void)updateConstraints;
 - (void)addViewConstraints;
+- (void)setupLabelContainerView;
 - (void)setupViews;
 - (id)initWithFrame:(struct CGRect)arg1;
 

@@ -8,19 +8,18 @@
 
 #import "SPTDataLoaderDelegate-Protocol.h"
 
-@class NSString, SPTAdCosmosBridge, SPTAdFeatureFlagChecks, SPTDataLoader;
-@protocol SPTAdEventLogger, SPTCollectionPlatform, SPTFollowModelFactory, SPTLinkDispatcher, SPTPlayer, SPTPlaylistModel, SPTResolver;
+@class NSString, SPTAdFeatureFlagChecks, SPTDataLoader;
+@protocol SPTAdsBaseCosmosBridge, SPTCollectionPlatform, SPTFollowModelFactory, SPTLinkDispatcher, SPTPlayer, SPTPlaylistModel, SPTResolver;
 
 @interface SPTAdFeaturedActionHandler : NSObject <SPTDataLoaderDelegate>
 {
     _Bool _emailSent;
     id <SPTCollectionPlatform> _collectionPlatform;
     SPTDataLoader *_dataLoader;
-    id <SPTAdEventLogger> _eventLogger;
     id <SPTResolver> _adResolver;
     id <SPTLinkDispatcher> _linkDispatcher;
     SPTAdFeatureFlagChecks *_flagChecker;
-    SPTAdCosmosBridge *_cosmosBridge;
+    id <SPTAdsBaseCosmosBridge> _cosmosBridge;
     id <SPTPlayer> _player;
     id <SPTPlaylistModel> _playlistModel;
     id <SPTFollowModelFactory> _followFactory;
@@ -29,11 +28,10 @@
 @property(nonatomic) __weak id <SPTFollowModelFactory> followFactory; // @synthesize followFactory=_followFactory;
 @property(retain, nonatomic) id <SPTPlaylistModel> playlistModel; // @synthesize playlistModel=_playlistModel;
 @property(retain, nonatomic) id <SPTPlayer> player; // @synthesize player=_player;
-@property(retain, nonatomic) SPTAdCosmosBridge *cosmosBridge; // @synthesize cosmosBridge=_cosmosBridge;
+@property(retain, nonatomic) id <SPTAdsBaseCosmosBridge> cosmosBridge; // @synthesize cosmosBridge=_cosmosBridge;
 @property(retain, nonatomic) SPTAdFeatureFlagChecks *flagChecker; // @synthesize flagChecker=_flagChecker;
 @property(nonatomic) __weak id <SPTLinkDispatcher> linkDispatcher; // @synthesize linkDispatcher=_linkDispatcher;
 @property(nonatomic) __weak id <SPTResolver> adResolver; // @synthesize adResolver=_adResolver;
-@property(nonatomic) __weak id <SPTAdEventLogger> eventLogger; // @synthesize eventLogger=_eventLogger;
 @property(retain, nonatomic) SPTDataLoader *dataLoader; // @synthesize dataLoader=_dataLoader;
 @property(nonatomic) __weak id <SPTCollectionPlatform> collectionPlatform; // @synthesize collectionPlatform=_collectionPlatform;
 @property(nonatomic) _Bool emailSent; // @synthesize emailSent=_emailSent;
@@ -48,7 +46,7 @@
 - (_Bool)followPlaylistURL:(id)arg1;
 - (_Bool)saveURL:(id)arg1;
 - (_Bool)performFeaturedAction:(id)arg1 withAdURI:(id)arg2 adId:(id)arg3 creativeId:(id)arg4;
-- (id)initWithCollectionPlatform:(id)arg1 dataloader:(id)arg2 adEventLogger:(id)arg3 player:(id)arg4 playlistModel:(id)arg5 followFactory:(id)arg6 adResolver:(id)arg7 linkDispatcher:(id)arg8 flagChecker:(id)arg9 cosmosBridge:(id)arg10;
+- (id)initWithCollectionPlatform:(id)arg1 dataloader:(id)arg2 player:(id)arg3 playlistModel:(id)arg4 followFactory:(id)arg5 adResolver:(id)arg6 linkDispatcher:(id)arg7 flagChecker:(id)arg8 cosmosBridge:(id)arg9;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

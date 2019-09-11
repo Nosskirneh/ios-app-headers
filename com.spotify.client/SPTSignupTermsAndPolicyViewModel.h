@@ -6,44 +6,41 @@
 
 #import <objc/NSObject.h>
 
+#import "SFSafariViewControllerDelegate-Protocol.h"
 #import "SPTSignupTermsAndPolicyManagerDelegate-Protocol.h"
 #import "UITextViewDelegate-Protocol.h"
 
-@class NSString, SPTLoginTheme, SPTSignupTermsAndPolicyManager, SPTSignupUserInfoModel;
-@protocol SPTAdjustUserTrackerProtocol, SPTAlertController, SPTLinkDispatcher, SPTSignupTermsAndPolicyViewModelDelegate;
+@class NSString, SPTSignupTermsAndPolicyManager, SPTSignupTermsAndPolicyViewStyle;
+@protocol SPTLoginLogger, SPTSignupTermsAndPolicyViewConfiguration, SPTSignupTermsAndPolicyViewModelDelegate;
 
-@interface SPTSignupTermsAndPolicyViewModel : NSObject <SPTSignupTermsAndPolicyManagerDelegate, UITextViewDelegate>
+@interface SPTSignupTermsAndPolicyViewModel : NSObject <SPTSignupTermsAndPolicyManagerDelegate, SFSafariViewControllerDelegate, UITextViewDelegate>
 {
     id <SPTSignupTermsAndPolicyViewModelDelegate> _delegate;
     SPTSignupTermsAndPolicyManager *_termsAndPolicyManager;
-    SPTLoginTheme *_theme;
-    SPTSignupUserInfoModel *_userInfoModel;
-    id <SPTLinkDispatcher> _linkDispatcher;
-    id <SPTAlertController> _alertController;
-    id <SPTAdjustUserTrackerProtocol> _adjustTracker;
+    SPTSignupTermsAndPolicyViewStyle *_style;
+    id <SPTSignupTermsAndPolicyViewConfiguration> _termsViewConfiguration;
+    id <SPTLoginLogger> _logger;
 }
 
-@property(retain, nonatomic) id <SPTAdjustUserTrackerProtocol> adjustTracker; // @synthesize adjustTracker=_adjustTracker;
-@property(retain, nonatomic) id <SPTAlertController> alertController; // @synthesize alertController=_alertController;
-@property(retain, nonatomic) id <SPTLinkDispatcher> linkDispatcher; // @synthesize linkDispatcher=_linkDispatcher;
-@property(retain, nonatomic) SPTSignupUserInfoModel *userInfoModel; // @synthesize userInfoModel=_userInfoModel;
-@property(retain, nonatomic) SPTLoginTheme *theme; // @synthesize theme=_theme;
+@property(retain, nonatomic) id <SPTLoginLogger> logger; // @synthesize logger=_logger;
+@property(retain, nonatomic) id <SPTSignupTermsAndPolicyViewConfiguration> termsViewConfiguration; // @synthesize termsViewConfiguration=_termsViewConfiguration;
+@property(retain, nonatomic) SPTSignupTermsAndPolicyViewStyle *style; // @synthesize style=_style;
 @property(retain, nonatomic) SPTSignupTermsAndPolicyManager *termsAndPolicyManager; // @synthesize termsAndPolicyManager=_termsAndPolicyManager;
 @property(nonatomic) __weak id <SPTSignupTermsAndPolicyViewModelDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
+- (void)safariViewControllerDidFinish:(id)arg1;
 - (_Bool)textView:(id)arg1 shouldInteractWithURL:(id)arg2 inRange:(struct _NSRange)arg3 interaction:(long long)arg4;
 - (void)showTermsAndPolicyDialog;
 - (void)termsAndPolicyManagerDidAcceptAllLicences:(id)arg1;
 - (void)termsAndPolicyManagerDidSelectPrivacyAndPolicyDetails:(id)arg1;
 - (void)termsAndPolicyManagerDidSelectTermsAndConditionsDetails:(id)arg1;
 - (void)logUserDidTapLinkWith:(id)arg1;
-- (void)dismissBrowserView;
 - (void)presentTermsDetailsForURL:(id)arg1;
 - (_Bool)isTermsAndPolicyDialogRequired;
 - (id)linksForTermsAndConditionsText;
 - (id)localizedTextForTermsAndConditions;
 - (id)termsAndConditionsAttributedText;
-- (id)initWithUserInfoModel:(id)arg1 termsAndPolicyManager:(id)arg2 theme:(id)arg3 linkDispatcher:(id)arg4 alertController:(id)arg5 adjustTracker:(id)arg6;
+- (id)initWithTermsViewConfiguration:(id)arg1 termsAndPolicyManager:(id)arg2 style:(id)arg3 logger:(id)arg4;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

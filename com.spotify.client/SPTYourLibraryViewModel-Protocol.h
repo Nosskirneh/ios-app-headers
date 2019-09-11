@@ -6,16 +6,20 @@
 
 #import "NSObject-Protocol.h"
 
-@class NSIndexPath, NSString, UIViewController;
-@protocol SPTYourLibraryPage><SPTPageController, SPTYourLibraryViewModelDelegate;
+@class NSIndexPath, NSString, NSURL, UIViewController;
+@protocol SPTYourLibraryPage><SPTPageController, SPTYourLibraryViewModelObserver;
 
 @protocol SPTYourLibraryViewModel <NSObject>
-@property(nonatomic) __weak id <SPTYourLibraryViewModelDelegate> delegate;
+- (void)saveLastVisitedPageURI:(NSURL *)arg1;
+- (void)stateRestoreToLastVisitedURI;
+- (_Bool)stateRestoreToURI:(NSURL *)arg1;
 - (UIViewController<SPTYourLibraryPage><SPTPageController> *)pageViewControllerAtIndexPath:(NSIndexPath *)arg1;
 - (NSString *)groupTitleForSection:(unsigned long long)arg1;
 - (NSString *)pageTitleAtIndexPath:(NSIndexPath *)arg1;
 - (unsigned long long)numberPagesForSection:(unsigned long long)arg1;
 - (unsigned long long)numberOfSections;
 - (void)load;
+- (void)removeObserver:(id <SPTYourLibraryViewModelObserver>)arg1;
+- (void)addObserver:(id <SPTYourLibraryViewModelObserver>)arg1;
 @end
 

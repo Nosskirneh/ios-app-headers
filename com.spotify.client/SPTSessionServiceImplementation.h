@@ -6,12 +6,10 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTSessionService-Protocol.h"
-
 @class NSMapTable, NSString, SPTAllocationContext;
 @protocol SPTCoreService, SPTCrashReporterService, SPTNetworkService, SPTUIModeTransitionCoordinator;
 
-@interface SPTSessionServiceImplementation : NSObject <SPTSessionService>
+@interface SPTSessionServiceImplementation : NSObject
 {
     id <SPTCoreService> _coreService;
     id <SPTCrashReporterService> _crashReporterService;

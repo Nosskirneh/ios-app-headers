@@ -13,6 +13,8 @@
 @property(nonatomic) _Bool shouldDisableRightBarButton;
 @property(nonatomic) _Bool shouldDisableNavBarButtons;
 @property(readonly, nonatomic) _Bool isEntityRadio;
+@property(readonly, nonatomic) NSString *showsFormatNavigationBarTitle;
+@property(readonly, nonatomic) NSString *navigationBarSubtitle;
 @property(readonly, nonatomic) NSString *navigationBarTitle;
 @property(readonly, nonatomic) NSURL *entityClickURI;
 @property(readonly, copy, nonatomic) NSString *entityTimerDescription;

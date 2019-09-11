@@ -9,19 +9,21 @@
 #import "SPTBrowseUIComponentFactory-Protocol.h"
 
 @class NSString;
-@protocol GLUETheme;
+@protocol GLUETheme, SPTBrowseUITestManager;
 
 @interface SPTBrowseUIComponentFactoryImplementation : NSObject <SPTBrowseUIComponentFactory>
 {
     id <GLUETheme> _theme;
+    id <SPTBrowseUITestManager> _testManager;
 }
 
+@property(readonly, nonatomic) id <SPTBrowseUITestManager> testManager; // @synthesize testManager=_testManager;
 @property(readonly, nonatomic) id <GLUETheme> theme; // @synthesize theme=_theme;
 - (void).cxx_destruct;
 - (void)unregisterBrowseComponentsFromComponentRegistry:(id)arg1;
 - (void)registerBrowseComponentsToComponentRegistry:(id)arg1;
 - (id)browseHubComponents;
-- (id)initWithTheme:(id)arg1;
+- (id)initWithTheme:(id)arg1 testManager:(id)arg2;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

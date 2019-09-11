@@ -6,22 +6,24 @@
 
 #import <AVFoundation/AVSampleBufferDisplayLayer.h>
 
-@class NSObject;
+@class NSObject, NSURL;
 @protocol OS_dispatch_queue;
 
 @interface SPTShowsFormatLoopedAssetLayer : AVSampleBufferDisplayLayer
 {
     _Bool _looping;
     NSObject<OS_dispatch_queue> *_bufferQueue;
+    NSURL *_assetURL;
 }
 
+@property(retain) NSURL *assetURL; // @synthesize assetURL=_assetURL;
 @property(retain) NSObject<OS_dispatch_queue> *bufferQueue; // @synthesize bufferQueue=_bufferQueue;
 @property(getter=isLooping) _Bool looping; // @synthesize looping=_looping;
 - (void).cxx_destruct;
 - (id)videoTrackAssetReaderForAsset:(id)arg1;
 - (void)stop;
 - (void)dealloc;
-- (void)startWithAsset:(id)arg1;
+- (void)startWithAsset:(id)arg1 forAssetURL:(id)arg2;
 
 @end
 

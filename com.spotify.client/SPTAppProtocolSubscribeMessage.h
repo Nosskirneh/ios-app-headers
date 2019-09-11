@@ -26,7 +26,6 @@
 @property(readonly, nonatomic) NSArray *rawMessage;
 @property(readonly, nonatomic) long long messageType;
 - (id)initWithRequestID:(unsigned long long)arg1 options:(id)arg2 topic:(id)arg3;
-- (id)initWithRequestID:(unsigned long long)arg1 topic:(id)arg2;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

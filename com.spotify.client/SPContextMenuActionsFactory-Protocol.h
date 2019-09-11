@@ -6,7 +6,7 @@
 
 #import "NSObject-Protocol.h"
 
-@class FollowModel, NSArray, NSString, NSURL, SPTCollectionPlatformFetchOptions, SPTask;
+@class NSArray, NSString, NSURL, SPTCollectionPlatformFetchOptions, SPTask;
 @protocol SPTCollectionPlatform, SPTContributingArtistsService, SPTModalPresentationController, SPTPodcastSpeedControlManager, SPTUIPresentationService;
 
 @protocol SPContextMenuActionsFactory <NSObject>
@@ -16,18 +16,14 @@
 - (SPTask *)actionForURI:(NSURL *)arg1 logContext:(NSString *)arg2 sourceURL:(NSURL *)arg3 itemName:(NSString *)arg4 creatorName:(NSString *)arg5 sourceName:(NSString *)arg6 imageURL:(NSURL *)arg7 clipboardLinkTitle:(NSString *)arg8 actionIdentifier:(NSString *)arg9;
 - (SPTask *)actionForURI:(NSURL *)arg1 logContext:(NSString *)arg2 sourceURL:(NSURL *)arg3 contextURL:(NSURL *)arg4 actionIdentifier:(NSString *)arg5;
 - (SPTask *)actionForURI:(NSURL *)arg1 logContext:(NSString *)arg2 sourceURL:(NSURL *)arg3 actionIdentifier:(NSString *)arg4;
-- (SPTask *)actionForURIs:(NSArray *)arg1 logContext:(NSString *)arg2 sourceURL:(NSURL *)arg3 actionIdentifier:(NSString *)arg4 title:(NSString *)arg5 albumTitle:(NSString *)arg6 artistTitle:(NSString *)arg7 imageURL:(NSURL *)arg8 clipboardLinkTitle:(NSString *)arg9 tracks:(NSArray *)arg10 containerEntityURL:(NSURL *)arg11;
 - (void)registerActionForCarThingPredicate:(SPTask * (^)(NSURL *, NSString *, NSString *, NSURL *))arg1 actionIdentifier:(NSString *)arg2;
 - (void)registerActionForURIContainerPredicate:(SPTask * (^)(NSArray *, NSString *, NSURL *, NSURL *, NSURL *, NSString *))arg1 actionIdentifier:(NSString *)arg2;
 - (void)registerActionForTracksPredicate:(SPTask * (^)(NSURL *, NSString *, NSURL *, NSArray *))arg1 actionIdentifier:(NSString *)arg2;
 - (void)registerActionForSharePredicate:(SPTask * (^)(NSURL *, NSString *, NSURL *, NSString *, NSString *, NSString *, NSURL *, NSString *))arg1 actionIdentifier:(NSString *)arg2;
 - (void)registerActionForEntityInContextPredicate:(SPTask * (^)(NSURL *, NSString *, NSURL *, NSURL *))arg1 actionIdentifier:(NSString *)arg2;
 - (void)registerActionForShortPredicate:(SPTask * (^)(NSURL *, NSString *, NSURL *))arg1 actionIdentifier:(NSString *)arg2;
-- (void)registerActionForPredicate:(SPTask * (^)(NSArray *, NSString *, NSURL *, NSString *, NSString *, NSString *, NSURL *, NSString *, NSArray *, NSURL *))arg1 actionIdentifier:(NSString *)arg2;
-- (SPTask *)followArtist:(FollowModel *)arg1 logContext:(NSString *)arg2;
 - (SPTask *)offlineSync:(NSURL *)arg1 isOffline:(_Bool)arg2 collectionPlatform:(id <SPTCollectionPlatform>)arg3 collectionOptions:(SPTCollectionPlatformFetchOptions *)arg4 logContext:(NSString *)arg5;
 - (SPTask *)viewAlbumWithAlbumURL:(NSURL *)arg1 logContext:(NSString *)arg2;
-- (SPTask *)setArtistPickToURI:(NSURL *)arg1 logContext:(NSString *)arg2;
 - (SPTask *)viewSpeedControlOptionsWithPodcastSpeedControlManager:(id <SPTPodcastSpeedControlManager>)arg1 modalPresentationController:(id <SPTModalPresentationController>)arg2 episodeURI:(NSURL *)arg3 logContext:(NSString *)arg4;
 - (SPTask *)viewArtists:(NSArray *)arg1 logContext:(NSString *)arg2 presentationService:(id <SPTUIPresentationService>)arg3 contributingArtistsService:(id <SPTContributingArtistsService>)arg4;
 - (SPTask *)viewArtistWithURL:(NSURL *)arg1 logContext:(NSString *)arg2;

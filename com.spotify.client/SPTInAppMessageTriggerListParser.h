@@ -13,13 +13,9 @@
     SPTInAppMessageServiceLogger *_serviceLogger;
 }
 
-+ (id)formatToStringMap;
-+ (id)typeToStringMap;
 + (Class)modelClass;
 @property(retain, nonatomic) SPTInAppMessageServiceLogger *serviceLogger; // @synthesize serviceLogger=_serviceLogger;
 - (void).cxx_destruct;
-- (long long)triggerFormatFromString:(id)arg1;
-- (long long)triggerTypeFromString:(id)arg1;
 - (id)modelObjectFromJSONDictionary:(id)arg1 error:(out id *)arg2;
 - (id)triggerModelObjectsFromJSONData:(id)arg1;
 - (id)initWithServiceLogger:(id)arg1;

@@ -6,10 +6,13 @@
 
 #import "NSObject-Protocol.h"
 
-@class NSError;
+@class NSError, NSString;
 @protocol SPTFreeTierCollectionEntityViewModel;
 
 @protocol SPTFreeTierCollectionEntityViewModelDelegate <NSObject>
+- (void)entityViewModel:(id <SPTFreeTierCollectionEntityViewModel>)arg1 expandSection:(long long)arg2;
+- (void)entityViewModel:(id <SPTFreeTierCollectionEntityViewModel>)arg1 collapseSection:(long long)arg2 withCompletion:(void (^)(void))arg3;
+- (void)entityViewModel:(id <SPTFreeTierCollectionEntityViewModel>)arg1 showDisabledItemMessage:(NSString *)arg2;
 - (void)entityViewModel:(id <SPTFreeTierCollectionEntityViewModel>)arg1 error:(NSError *)arg2;
 - (void)entityViewModelDidUpdate:(id <SPTFreeTierCollectionEntityViewModel>)arg1;
 @end

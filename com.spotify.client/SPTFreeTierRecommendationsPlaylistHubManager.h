@@ -8,26 +8,26 @@
 
 #import "SPTFreeTierRecommendationsPlaylistHubViewProvider-Protocol.h"
 
-@class EXP_HUBCommandDispatcher, EXP_HUBComponentDefaults, NSString, SPTFreeTierRecommendationsPlaylistContentOperationsFactory;
-@protocol EXP_SPTHubCommandHandlerFactory, EXP_SPTHubsRendererFactory, SPTHugsFactory;
+@class HUBCommandDispatcher, HUBComponentDefaults, NSString, SPTFreeTierRecommendationsPlaylistContentOperationsFactory;
+@protocol SPTHubCommandHandlerFactory, SPTHubsRendererFactory, SPTHugsFactory;
 
 @interface SPTFreeTierRecommendationsPlaylistHubManager : NSObject <SPTFreeTierRecommendationsPlaylistHubViewProvider>
 {
     NSString *_serviceIdentifier;
-    id <EXP_SPTHubsRendererFactory> _hubsRendererFactory;
+    id <SPTHubsRendererFactory> _hubsRendererFactory;
     id <SPTHugsFactory> _hugsFactory;
     SPTFreeTierRecommendationsPlaylistContentOperationsFactory *_contentOperationFactory;
-    EXP_HUBComponentDefaults *_componentDefaults;
-    id <EXP_SPTHubCommandHandlerFactory> _commandHandlerFactory;
-    EXP_HUBCommandDispatcher *_commandDispatcher;
+    HUBComponentDefaults *_componentDefaults;
+    id <SPTHubCommandHandlerFactory> _commandHandlerFactory;
+    HUBCommandDispatcher *_commandDispatcher;
 }
 
-@property(retain, nonatomic) EXP_HUBCommandDispatcher *commandDispatcher; // @synthesize commandDispatcher=_commandDispatcher;
-@property(readonly, nonatomic) id <EXP_SPTHubCommandHandlerFactory> commandHandlerFactory; // @synthesize commandHandlerFactory=_commandHandlerFactory;
-@property(readonly, nonatomic) EXP_HUBComponentDefaults *componentDefaults; // @synthesize componentDefaults=_componentDefaults;
+@property(retain, nonatomic) HUBCommandDispatcher *commandDispatcher; // @synthesize commandDispatcher=_commandDispatcher;
+@property(readonly, nonatomic) id <SPTHubCommandHandlerFactory> commandHandlerFactory; // @synthesize commandHandlerFactory=_commandHandlerFactory;
+@property(readonly, nonatomic) HUBComponentDefaults *componentDefaults; // @synthesize componentDefaults=_componentDefaults;
 @property(readonly, nonatomic) SPTFreeTierRecommendationsPlaylistContentOperationsFactory *contentOperationFactory; // @synthesize contentOperationFactory=_contentOperationFactory;
 @property(readonly, nonatomic) id <SPTHugsFactory> hugsFactory; // @synthesize hugsFactory=_hugsFactory;
-@property(readonly, nonatomic) id <EXP_SPTHubsRendererFactory> hubsRendererFactory; // @synthesize hubsRendererFactory=_hubsRendererFactory;
+@property(readonly, nonatomic) id <SPTHubsRendererFactory> hubsRendererFactory; // @synthesize hubsRendererFactory=_hubsRendererFactory;
 @property(readonly, copy, nonatomic) NSString *serviceIdentifier; // @synthesize serviceIdentifier=_serviceIdentifier;
 - (void).cxx_destruct;
 - (void)setupCommandDispatcherForURL:(id)arg1 referrerIdentifier:(id)arg2;

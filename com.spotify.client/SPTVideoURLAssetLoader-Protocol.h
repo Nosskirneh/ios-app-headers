@@ -9,8 +9,10 @@
 @class NSString, NSURL, SPTNetworkConnectivityController, SPTRequestAccounting;
 
 @protocol SPTVideoURLAssetLoader <NSObject>
+- (_Bool)hasLocalAssetForURL:(NSURL *)arg1;
 - (void)cancelLoadAssetWithURL:(NSURL *)arg1;
-- (void)loadAssetWithURL:(NSURL *)arg1 onlyOnWifi:(_Bool)arg2 completion:(void (^)(AVAsset *))arg3;
+- (void)loadAssetWithURL:(NSURL *)arg1 onlyOnWifi:(_Bool)arg2 completion:(void (^)(AVAsset *, NSError *))arg3;
 - (id)initWithNetworkConnectivityController:(SPTNetworkConnectivityController *)arg1 requestAccountant:(SPTRequestAccounting *)arg2 serviceIdentifier:(NSString *)arg3;
+- (id)initWithNetworkConnectivityController:(SPTNetworkConnectivityController *)arg1 requestAccountant:(SPTRequestAccounting *)arg2 serviceIdentifier:(NSString *)arg3 HTTPMaximumConnectionsPerHost:(long long)arg4 timeoutIntervalForRequest:(double)arg5 timeoutIntervalForResource:(double)arg6;
 @end
 

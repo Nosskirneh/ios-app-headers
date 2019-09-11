@@ -6,22 +6,22 @@
 
 #import <objc/NSObject.h>
 
-#import "EXP_HUBContentOperation-Protocol.h"
+#import "HUBContentOperation-Protocol.h"
 #import "SPTPlayerObserver-Protocol.h"
 
 @class NSString;
-@protocol EXP_HUBContentOperationDelegate, SPTPlayer;
+@protocol HUBContentOperationDelegate, SPTPlayer;
 
-@interface SPTFreeTierEntityPlaybackToggleContentOperation : NSObject <SPTPlayerObserver, EXP_HUBContentOperation>
+@interface SPTFreeTierEntityPlaybackToggleContentOperation : NSObject <SPTPlayerObserver, HUBContentOperation>
 {
     _Bool _observing;
-    id <EXP_HUBContentOperationDelegate> _delegate;
+    id <HUBContentOperationDelegate> _delegate;
     id <SPTPlayer> _player;
 }
 
 @property(nonatomic, getter=isObserving) _Bool observing; // @synthesize observing=_observing;
 @property(readonly, nonatomic) id <SPTPlayer> player; // @synthesize player=_player;
-@property(nonatomic) __weak id <EXP_HUBContentOperationDelegate> delegate; // @synthesize delegate=_delegate;
+@property(nonatomic) __weak id <HUBContentOperationDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
 - (void)player:(id)arg1 stateDidChange:(id)arg2 fromState:(id)arg3;
 - (_Bool)determineIfPlayerState:(id)arg1 isPlayingContextWithURI:(id)arg2;

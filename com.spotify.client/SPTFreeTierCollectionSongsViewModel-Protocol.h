@@ -4,28 +4,40 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import "SPTFreeTierCollectionEntityViewModel-Protocol.h"
+#import "SPTFreeTierCollectionFilterableViewModel-Protocol.h"
 
 @class NSIndexPath, NSString, UIControl;
-@protocol SPTFreeTierCollectionPreviewableItemViewModel, SPTFreeTierCollectionSongsHeaderViewModel, SPTFreeTierCollectionSongsSectionViewModel;
+@protocol SPTFreeTierCollectionPreviewableItemViewModel, SPTFreeTierCollectionSongsHeaderViewModel, SPTFreeTierCollectionSongsSectionViewModel, SPTFreeTierCollectionSongsViewModelDelegate;
 
-@protocol SPTFreeTierCollectionSongsViewModel <SPTFreeTierCollectionEntityViewModel>
-@property(readonly, nonatomic, getter=isPreCurationEnabled) _Bool preCurationEnabled;
+@protocol SPTFreeTierCollectionSongsViewModel <SPTFreeTierCollectionFilterableViewModel>
+@property(readonly, nonatomic, getter=isEmpty) _Bool empty;
+@property(readonly, nonatomic, getter=isLoaded) _Bool loaded;
+@property(readonly, nonatomic, getter=isContentFiltered) _Bool contentFiltered;
 @property(readonly, nonatomic) unsigned long long offlineAvailability;
 @property(readonly, nonatomic, getter=isPreviewList) _Bool previewList;
 @property(readonly, nonatomic) unsigned long long numberSections;
 @property(readonly, nonatomic) id <SPTFreeTierCollectionSongsHeaderViewModel> headerViewModel;
+@property(nonatomic) __weak id <SPTFreeTierCollectionSongsViewModelDelegate> delegate;
+- (void)didScrollToTop;
+- (void)willScrollToTop;
 - (void)endObservingTrackStateAtIndexPath:(NSIndexPath *)arg1;
 - (void)startObservingTrackStateAtIndexPath:(NSIndexPath *)arg1;
 - (void)stopAudioPreviewViewPlayer;
+- (void)logCloseExtraSongsExplanation;
 - (void)logExtraSongsWhyAction;
+- (void)logSwipeCellActionForIndexPath:(NSIndexPath *)arg1;
 - (void)logPreviewWithAlbumCoverActionAtIndexPath:(NSIndexPath *)arg1;
+- (void)logFilterSortInteractionType:(unsigned long long)arg1;
 - (void)toggleTrackBanAtIndexPath:(NSIndexPath *)arg1;
 - (void)toggleTrackLikeAtIndexPath:(NSIndexPath *)arg1;
+- (void)presentEntitySectionViewModel:(id <SPTFreeTierCollectionSongsSectionViewModel>)arg1;
 - (void)presentMenuForSongAtIndexPath:(NSIndexPath *)arg1 withSenderControl:(UIControl *)arg2 andLogContext:(NSString *)arg3;
 - (void)setAvailableOffline:(_Bool)arg1;
 - (_Bool)isAdditionalControlsSection:(unsigned long long)arg1;
 - (id <SPTFreeTierCollectionSongsSectionViewModel>)sectionViewModelAtIndex:(unsigned long long)arg1;
+- (void)itemSelectedAtIndexPath:(NSIndexPath *)arg1;
 - (id <SPTFreeTierCollectionPreviewableItemViewModel>)itemAtIndexPath:(NSIndexPath *)arg1;
+- (long long)numberOfRowsInSections:(long long)arg1;
+- (void)loadViewModel;
 @end
 

@@ -7,7 +7,7 @@
 #import "NSObject-Protocol.h"
 
 @protocol SPTFreeTierFindViewControllerDelegate <NSObject>
-- (void)openVoiceSearchFromSender:(id)arg1;
+- (void)openVoiceSearch;
 - (void)openSearchPage;
 @end
 

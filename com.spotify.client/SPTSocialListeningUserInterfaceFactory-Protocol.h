@@ -7,8 +7,9 @@
 #import "NSObject-Protocol.h"
 
 @class UIViewController;
+@protocol SPTSocialListeningSessionViewController;
 
 @protocol SPTSocialListeningUserInterfaceFactory <NSObject>
-- (UIViewController *)createSocialListeningCard;
+- (UIViewController<SPTSocialListeningSessionViewController> *)createSocialListeningSessionView;
 @end
 

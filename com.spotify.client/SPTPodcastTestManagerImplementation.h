@@ -7,13 +7,12 @@
 #import <objc/NSObject.h>
 
 #import "SPTAbbaFeatureFlagsObserver-Protocol.h"
-#import "SPTFeatureFlagSignalObserver-Protocol.h"
 #import "SPTPodcastTestManager-Protocol.h"
 
 @class NSString, SPTObserverManager;
 @protocol SPTAbbaFeatureFlags, SPTFeatureFlagSignal, SPTFreeTierTestManager, SPTLocalSettings, SPTProductState;
 
-@interface SPTPodcastTestManagerImplementation : NSObject <SPTAbbaFeatureFlagsObserver, SPTFeatureFlagSignalObserver, SPTPodcastTestManager>
+@interface SPTPodcastTestManagerImplementation : NSObject <SPTAbbaFeatureFlagsObserver, SPTPodcastTestManager>
 {
     _Bool _podcastFeatureEnabled;
     _Bool _videoFeatureEnabled;
@@ -23,45 +22,45 @@
     id <SPTProductState> _productState;
     id <SPTFeatureFlagSignal> _freeTierSignal;
     id <SPTFeatureFlagSignal> _yourLibrarySignal;
-    id <SPTFeatureFlagSignal> _heartsEverywhereSignal;
     SPTObserverManager *_observerManager;
     id <SPTFreeTierTestManager> _freeTierTestManager;
-    id <SPTFeatureFlagSignal> _podcastEpisodeEntityPageSignal;
-    id <SPTFeatureFlagSignal> _podcastEpisodeEntityPageRecsSignal;
-    id <SPTFeatureFlagSignal> _podcastEpisodeEntityPageNextEpisodeSignal;
-    id <SPTFeatureFlagSignal> _podcastEpisodeEntityPageSimilarEpisodesSignal;
     id <SPTFeatureFlagSignal> _podcastContextMenuScannablesSignal;
     id <SPTFeatureFlagSignal> _podcastYourLibrarySignal;
+    id <SPTFeatureFlagSignal> _podcastMarkedAsUnplayedSignal;
+    id <SPTFeatureFlagSignal> _addToPlaylistEnabledSignal;
+    id <SPTFeatureFlagSignal> _podcastHeaderV2Signal;
+    id <SPTFeatureFlagSignal> _yourLibraryAnchorTestSignal;
+    id <SPTFeatureFlagSignal> _yourLibraryAnchorTestSignalPhase2;
     long long _freeTierState;
-    long long _podcastEpisodeEntityPageState;
-    long long _podcastEpisodeEntityPageRecsState;
-    long long _podcastEpisodeEntityPageNextEpisodeState;
-    long long _podcastEpisodeEntityPageSimilarEpisodesState;
     long long _podcastContextMenuScannablesState;
-    long long _podcastYourLibraryState;
     long long _yourLibraryState;
+    long long _podcastMarkedAsUnplayedState;
+    long long _addToPlaylistEnabledState;
+    long long _podcastHeaderV2State;
+    long long _yourLibraryAnchorTestState;
+    long long _yourLibraryAnchorTestStatePhase2;
 }
 
+@property(nonatomic) long long yourLibraryAnchorTestStatePhase2; // @synthesize yourLibraryAnchorTestStatePhase2=_yourLibraryAnchorTestStatePhase2;
+@property(nonatomic) long long yourLibraryAnchorTestState; // @synthesize yourLibraryAnchorTestState=_yourLibraryAnchorTestState;
+@property(nonatomic) long long podcastHeaderV2State; // @synthesize podcastHeaderV2State=_podcastHeaderV2State;
+@property(nonatomic) long long addToPlaylistEnabledState; // @synthesize addToPlaylistEnabledState=_addToPlaylistEnabledState;
+@property(nonatomic) long long podcastMarkedAsUnplayedState; // @synthesize podcastMarkedAsUnplayedState=_podcastMarkedAsUnplayedState;
 @property(nonatomic) long long yourLibraryState; // @synthesize yourLibraryState=_yourLibraryState;
-@property(nonatomic) long long podcastYourLibraryState; // @synthesize podcastYourLibraryState=_podcastYourLibraryState;
 @property(nonatomic) long long podcastContextMenuScannablesState; // @synthesize podcastContextMenuScannablesState=_podcastContextMenuScannablesState;
-@property(nonatomic) long long podcastEpisodeEntityPageSimilarEpisodesState; // @synthesize podcastEpisodeEntityPageSimilarEpisodesState=_podcastEpisodeEntityPageSimilarEpisodesState;
-@property(nonatomic) long long podcastEpisodeEntityPageNextEpisodeState; // @synthesize podcastEpisodeEntityPageNextEpisodeState=_podcastEpisodeEntityPageNextEpisodeState;
-@property(nonatomic) long long podcastEpisodeEntityPageRecsState; // @synthesize podcastEpisodeEntityPageRecsState=_podcastEpisodeEntityPageRecsState;
-@property(nonatomic) long long podcastEpisodeEntityPageState; // @synthesize podcastEpisodeEntityPageState=_podcastEpisodeEntityPageState;
 @property(nonatomic) long long freeTierState; // @synthesize freeTierState=_freeTierState;
 @property(nonatomic, getter=isVideoEntityPagesEnabled) _Bool videoEntityPagesEnabled; // @synthesize videoEntityPagesEnabled=_videoEntityPagesEnabled;
 @property(nonatomic, getter=isVideoFeatureEnabled) _Bool videoFeatureEnabled; // @synthesize videoFeatureEnabled=_videoFeatureEnabled;
 @property(nonatomic, getter=isPodcastFeatureEnabled) _Bool podcastFeatureEnabled; // @synthesize podcastFeatureEnabled=_podcastFeatureEnabled;
+@property(retain, nonatomic) id <SPTFeatureFlagSignal> yourLibraryAnchorTestSignalPhase2; // @synthesize yourLibraryAnchorTestSignalPhase2=_yourLibraryAnchorTestSignalPhase2;
+@property(retain, nonatomic) id <SPTFeatureFlagSignal> yourLibraryAnchorTestSignal; // @synthesize yourLibraryAnchorTestSignal=_yourLibraryAnchorTestSignal;
+@property(retain, nonatomic) id <SPTFeatureFlagSignal> podcastHeaderV2Signal; // @synthesize podcastHeaderV2Signal=_podcastHeaderV2Signal;
+@property(retain, nonatomic) id <SPTFeatureFlagSignal> addToPlaylistEnabledSignal; // @synthesize addToPlaylistEnabledSignal=_addToPlaylistEnabledSignal;
+@property(retain, nonatomic) id <SPTFeatureFlagSignal> podcastMarkedAsUnplayedSignal; // @synthesize podcastMarkedAsUnplayedSignal=_podcastMarkedAsUnplayedSignal;
 @property(retain, nonatomic) id <SPTFeatureFlagSignal> podcastYourLibrarySignal; // @synthesize podcastYourLibrarySignal=_podcastYourLibrarySignal;
 @property(retain, nonatomic) id <SPTFeatureFlagSignal> podcastContextMenuScannablesSignal; // @synthesize podcastContextMenuScannablesSignal=_podcastContextMenuScannablesSignal;
-@property(retain, nonatomic) id <SPTFeatureFlagSignal> podcastEpisodeEntityPageSimilarEpisodesSignal; // @synthesize podcastEpisodeEntityPageSimilarEpisodesSignal=_podcastEpisodeEntityPageSimilarEpisodesSignal;
-@property(retain, nonatomic) id <SPTFeatureFlagSignal> podcastEpisodeEntityPageNextEpisodeSignal; // @synthesize podcastEpisodeEntityPageNextEpisodeSignal=_podcastEpisodeEntityPageNextEpisodeSignal;
-@property(retain, nonatomic) id <SPTFeatureFlagSignal> podcastEpisodeEntityPageRecsSignal; // @synthesize podcastEpisodeEntityPageRecsSignal=_podcastEpisodeEntityPageRecsSignal;
-@property(retain, nonatomic) id <SPTFeatureFlagSignal> podcastEpisodeEntityPageSignal; // @synthesize podcastEpisodeEntityPageSignal=_podcastEpisodeEntityPageSignal;
 @property(readonly, nonatomic) __weak id <SPTFreeTierTestManager> freeTierTestManager; // @synthesize freeTierTestManager=_freeTierTestManager;
 @property(readonly, nonatomic) SPTObserverManager *observerManager; // @synthesize observerManager=_observerManager;
-@property(readonly, nonatomic) id <SPTFeatureFlagSignal> heartsEverywhereSignal; // @synthesize heartsEverywhereSignal=_heartsEverywhereSignal;
 @property(readonly, nonatomic) id <SPTFeatureFlagSignal> yourLibrarySignal; // @synthesize yourLibrarySignal=_yourLibrarySignal;
 @property(readonly, nonatomic) id <SPTFeatureFlagSignal> freeTierSignal; // @synthesize freeTierSignal=_freeTierSignal;
 @property(readonly, nonatomic) id <SPTProductState> productState; // @synthesize productState=_productState;
@@ -73,32 +72,33 @@
 - (_Bool)calculatePodcastFeatureEnabled;
 - (void)featureFlagSignal:(id)arg1 hasAssumedState:(long long)arg2;
 - (void)featureFlagsDidChange:(id)arg1;
+@property(readonly, nonatomic, getter=isYourLibraryAnchorTestEnabled) _Bool yourLibraryAnchorTestEnabled;
+@property(readonly, nonatomic, getter=isPodcastHeaderV2Enabled) _Bool podcastHeaderV2Enabled;
+@property(readonly, nonatomic, getter=isAddToPlaylistForAudioEpisodesEnabled) _Bool addToPlaylistForAudioEpisodesEnabled;
+@property(readonly, nonatomic, getter=isPodcastMarkedAsUnplayedEnabled) _Bool podcastMarkedAsUnplayedEnabled;
+@property(readonly, nonatomic, getter=isRefinedPodcastPageEnabled) _Bool refinedPodcastPageEnabled;
+@property(readonly, nonatomic, getter=isProductionisedYourLibraryEnabled) _Bool productionisedYourLibraryEnabled;
 @property(readonly, nonatomic, getter=isPodcastEpisodeCardV2Enabled) _Bool podcastEpisodeCardV2Enabled;
-@property(readonly, nonatomic, getter=isModernDownloadButtonEnabled) _Bool modernDownloadButtonEnabled;
-@property(readonly, nonatomic, getter=isPodcastReverseOrderEnabled) _Bool podcastReverseOrderEnabled;
+@property(readonly, nonatomic, getter=isPodcast3DTouchEnabled) _Bool podcast3DTouchEnabled;
+@property(readonly, nonatomic, getter=isPodcastPlaybackOrderEnabled) _Bool podcastPlaybackOrderEnabled;
 @property(readonly, nonatomic, getter=isPodcastShowAutoFollowDisabled) _Bool podcastShowAutoFollowDisabled;
-@property(readonly, nonatomic, getter=isPodcastEpisodeEntityPageSimilarEpisodesEnabled) _Bool podcastEpisodeEntityPageSimilarEpisodesEnabled;
-@property(readonly, nonatomic, getter=isPodcastEpisodeEntityPageNextEpisodeEnabled) _Bool podcastEpisodeEntityPageNextEpisodeEnabled;
-@property(readonly, nonatomic, getter=isPodcastEpisodeEntityPageRecommendationsEnabled) _Bool podcastEpisodeEntityPageRecommendationsEnabled;
 @property(readonly, nonatomic, getter=isScannablesEnabled) _Bool podcastContextMenuScannablesEnabled;
-@property(readonly, nonatomic, getter=isPodcastEpisodeEntityPageEnabled) _Bool podcastEpisodeEntityPageEnabled;
-@property(readonly, nonatomic, getter=isPodcastYourLibrarySubmenuEnabled) _Bool podcastYourLibrarySubmenuEnabled;
-@property(readonly, nonatomic, getter=isPodcastYourLibraryEnabled) _Bool podcastYourLibraryEnabled;
+- (_Bool)isPodcastYourLibraryEnabled;
 @property(readonly, nonatomic, getter=isLikeActionEnabled) _Bool likeActionEnabled;
-@property(readonly, nonatomic, getter=isFollowHeaderActionEnabled) _Bool followHeaderActionEnabled;
 @property(readonly, nonatomic, getter=isFollowActionEnabled) _Bool followActionEnabled;
 @property(readonly, nonatomic, getter=isOnboardingTabBarTooltipTestEnabled) _Bool onboardingTabBarTooltipTestEnabled;
 @property(readonly, nonatomic, getter=isOnboardingShowcaseTestEnabled) _Bool onboardingShowcaseTestEnabled;
-@property(readonly, nonatomic, getter=isActionsForVideoWithAudioEnabled) _Bool actionsForVideoWithAudioEnabled;
 @property(readonly, nonatomic, getter=isShowsCollectionFeatureEnabled) _Bool showsCollectionFeatureEnabled;
-@property(readonly, nonatomic, getter=isPodmarksEnabled) _Bool podmarksEnabled;
 - (void)removeObserver:(id)arg1;
 - (void)addObserver:(id)arg1;
-- (void)buildEpisodeEntityPageSignalWithFactory:(id)arg1;
-- (id)createYourLibrarySignalWithFactory:(id)arg1;
+- (id)createAnchorTestSignalPhase2:(id)arg1;
+- (id)createAnchorTestSignal:(id)arg1;
+- (id)createPodcastHeaderV2Signal:(id)arg1;
+- (id)createAddToPlaylistForAudioEpisodesEnabledSignal:(id)arg1;
+- (id)createMarkedAsUnplayedSignal:(id)arg1;
 - (id)createContextMenuScannableSignalWithFactory:(id)arg1;
 - (void)dealloc;
-- (id)initWithFeatureFlags:(id)arg1 localSettings:(id)arg2 productState:(id)arg3 freeTierSignal:(id)arg4 yourLibrarySignal:(id)arg5 heartsEverywhereSignal:(id)arg6 freeTierTestManager:(id)arg7 featureFlagFactory:(id)arg8;
+- (id)initWithFeatureFlags:(id)arg1 localSettings:(id)arg2 productState:(id)arg3 freeTierSignal:(id)arg4 yourLibrarySignal:(id)arg5 freeTierTestManager:(id)arg6 featureFlagFactory:(id)arg7;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

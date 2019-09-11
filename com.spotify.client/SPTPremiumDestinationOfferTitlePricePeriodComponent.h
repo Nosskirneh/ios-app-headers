@@ -6,11 +6,11 @@
 
 #import <objc/NSObject.h>
 
-#import "EXP_HUBComponent-Protocol.h"
+#import "HUBComponent-Protocol.h"
 
 @class NSSet, SPTPremiumDestinationGLUETheme;
 
-@interface SPTPremiumDestinationOfferTitlePricePeriodComponent : NSObject <EXP_HUBComponent>
+@interface SPTPremiumDestinationOfferTitlePricePeriodComponent : NSObject <HUBComponent>
 {
     SPTPremiumDestinationGLUETheme *_theme;
 }

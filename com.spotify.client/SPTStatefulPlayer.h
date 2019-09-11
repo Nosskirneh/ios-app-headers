@@ -10,13 +10,13 @@
 #import "SPTStatefulPlayerQueueObserver-Protocol.h"
 #import "SPTStatefulPlayerTrackPositionObserver-Protocol.h"
 
-@class NSHashTable, NSString, SPTPlayerRestrictions, SPTPlayerState, SPTStatefulPlayerPlaybackControls, SPTStatefulPlayerQueue, SPTStatefulPlayerTrackPosition;
+@class NSString, SPTObserverManager, SPTPlayerRestrictions, SPTPlayerState, SPTStatefulPlayerPlaybackControls, SPTStatefulPlayerQueue, SPTStatefulPlayerTrackPosition;
 @protocol SPTPlayer;
 
 @interface SPTStatefulPlayer : NSObject <SPTStatefulPlayerPlaybackControlsObserver, SPTStatefulPlayerQueueObserver, SPTStatefulPlayerTrackPositionObserver>
 {
     SPTPlayerState *_playerState;
-    NSHashTable *_observers;
+    SPTObserverManager *_observerManager;
     SPTStatefulPlayerQueue *_queue;
     SPTStatefulPlayerTrackPosition *_trackPosition;
     SPTStatefulPlayerPlaybackControls *_playbackControls;
@@ -29,9 +29,11 @@
 @property(retain, nonatomic) SPTStatefulPlayerPlaybackControls *playbackControls; // @synthesize playbackControls=_playbackControls;
 @property(retain, nonatomic) SPTStatefulPlayerTrackPosition *trackPosition; // @synthesize trackPosition=_trackPosition;
 @property(retain, nonatomic) SPTStatefulPlayerQueue *queue; // @synthesize queue=_queue;
-@property(retain, nonatomic) NSHashTable *observers; // @synthesize observers=_observers;
+@property(readonly, nonatomic) SPTObserverManager *observerManager; // @synthesize observerManager=_observerManager;
 @property(retain, nonatomic) SPTPlayerState *playerState; // @synthesize playerState=_playerState;
 - (void).cxx_destruct;
+- (long long)numberOfPreviousTracks;
+- (long long)numberOfNextTracks;
 - (void)playbackControlsDidChange:(id)arg1;
 - (void)setRepeatingTrack:(_Bool)arg1;
 - (_Bool)isRepeatingTrack;
@@ -50,11 +52,16 @@
 - (float)playbackSpeed;
 - (double)duration;
 - (double)position;
+- (void)playerQueueDidSynchronizeQueue:(id)arg1;
+- (void)playerQueuePreviousTrackDidChange:(id)arg1;
+- (void)playerQueueNextTrackDidChange:(id)arg1;
 - (void)playerQueue:(id)arg1 didMoveToRelativeTrack:(id)arg2;
 - (_Bool)disallowPeekingAtRelativeIndex:(long long)arg1;
 - (_Bool)disallowSkippingToRelativeIndex:(long long)arg1;
 - (id)queuedTrackAtRelativeIndex:(long long)arg1;
+- (void)skipToPreviousTrackTimes:(long long)arg1;
 - (void)skipToPreviousTrack;
+- (void)skipToNextTrackTimes:(long long)arg1;
 - (void)skipToNextTrack;
 - (_Bool)isQueueInSync;
 - (id)playingTrack;

@@ -18,11 +18,11 @@
 }
 
 + (id)messageWithTrackUri:(id)arg1 contextUri:(id)arg2 viewUri:(id)arg3 type:(id)arg4 action:(id)arg5;
-@property(retain, nonatomic) NSString *actionValue; // @synthesize actionValue=_actionValue;
-@property(retain, nonatomic) NSString *typeValue; // @synthesize typeValue=_typeValue;
-@property(retain, nonatomic) NSString *viewUriValue; // @synthesize viewUriValue=_viewUriValue;
-@property(retain, nonatomic) NSString *contextUriValue; // @synthesize contextUriValue=_contextUriValue;
-@property(retain, nonatomic) NSString *trackUriValue; // @synthesize trackUriValue=_trackUriValue;
+@property(copy, nonatomic) NSString *actionValue; // @synthesize actionValue=_actionValue;
+@property(copy, nonatomic) NSString *typeValue; // @synthesize typeValue=_typeValue;
+@property(copy, nonatomic) NSString *viewUriValue; // @synthesize viewUriValue=_viewUriValue;
+@property(copy, nonatomic) NSString *contextUriValue; // @synthesize contextUriValue=_contextUriValue;
+@property(copy, nonatomic) NSString *trackUriValue; // @synthesize trackUriValue=_trackUriValue;
 - (void).cxx_destruct;
 - (_Bool)isEqual:(id)arg1;
 - (unsigned long long)hash;

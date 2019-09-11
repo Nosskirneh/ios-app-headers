@@ -6,31 +6,36 @@
 
 #import <objc/NSObject.h>
 
+#import "SPTExternalIntegrationPlaybackControllerObserver-Protocol.h"
 #import "SPTGaiaVolumeControllerObserver-Protocol.h"
-#import "SPTPlayerObserver-Protocol.h"
 #import "SPTWatchPlatformPublisher-Protocol.h"
 
-@class NSString;
-@protocol SPTGaiaVolumeControllerInterface, SPTPlayer, SPTWatchConnectivityPubSubMessageQueue;
+@class NSString, SPTRadioPlaybackService;
+@protocol SPTExternalIntegrationContentController, SPTExternalIntegrationPlaybackController, SPTGaiaVolumeControllerInterface, SPTWatchConnectivityPubSubMessageQueue;
 
-@interface SPTWatchPlatformPlayerStatePublisher : NSObject <SPTPlayerObserver, SPTGaiaVolumeControllerObserver, SPTWatchPlatformPublisher>
+@interface SPTWatchPlatformPlayerStatePublisher : NSObject <SPTExternalIntegrationPlaybackControllerObserver, SPTGaiaVolumeControllerObserver, SPTWatchPlatformPublisher>
 {
     id <SPTWatchConnectivityPubSubMessageQueue> _pubSubMessageQueue;
-    id <SPTPlayer> _player;
+    id <SPTExternalIntegrationPlaybackController> _playbackController;
     id <SPTGaiaVolumeControllerInterface> _volumeController;
+    id <SPTExternalIntegrationContentController> _contentController;
+    SPTRadioPlaybackService *_radioPlaybackService;
 }
 
+@property(readonly, nonatomic) __weak SPTRadioPlaybackService *radioPlaybackService; // @synthesize radioPlaybackService=_radioPlaybackService;
+@property(readonly, nonatomic) id <SPTExternalIntegrationContentController> contentController; // @synthesize contentController=_contentController;
 @property(readonly, nonatomic) id <SPTGaiaVolumeControllerInterface> volumeController; // @synthesize volumeController=_volumeController;
-@property(readonly, nonatomic) id <SPTPlayer> player; // @synthesize player=_player;
+@property(readonly, nonatomic) id <SPTExternalIntegrationPlaybackController> playbackController; // @synthesize playbackController=_playbackController;
 @property(readonly, nonatomic) __weak id <SPTWatchConnectivityPubSubMessageQueue> pubSubMessageQueue; // @synthesize pubSubMessageQueue=_pubSubMessageQueue;
 - (void).cxx_destruct;
+- (void)decoratePlayerStateDictionary:(id)arg1 withMetadataForPlayerState:(id)arg2 completionHandler:(CDUnknownBlockType)arg3;
 - (void)volumeController:(id)arg1 didChangeVolume:(id)arg2;
-- (void)player:(id)arg1 stateDidChange:(id)arg2 fromState:(id)arg3;
+- (void)externalIntegrationPlaybackController:(id)arg1 didReceiveNewPlayerState:(id)arg2 oldPlayerState:(id)arg3;
 - (void)handlePublisherEvent:(long long)arg1;
 - (void)publishPlayerStateDictionary:(id)arg1 volume:(id)arg2;
 - (void)publishPlayerState:(id)arg1 volume:(id)arg2;
 - (void)publishPlayerState;
-- (id)initWithPubSubMessageQueue:(id)arg1 player:(id)arg2 volumeController:(id)arg3;
+- (id)initWithPubSubMessageQueue:(id)arg1 playbackController:(id)arg2 volumeController:(id)arg3 contentController:(id)arg4 radioPlayback:(id)arg5;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

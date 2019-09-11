@@ -10,17 +10,19 @@
 #import "SPTScannablesShortcutItemProvider-Protocol.h"
 
 @class NSString, SPTScannablesAuthorizationRequester, UIViewController;
-@protocol SPTScannablesShortcutItemProviderUpdateDelegate, SPTScannablesTestManager;
+@protocol SPTScannablesShortcutItemProviderUpdateDelegate, SPTScannablesTestManager, SPTScannablesUserInterfaceFactory;
 
 @interface SPTScannablesShortcutItemProviderImplementation : NSObject <SPTScannablesAuthorizationRequesterDelegate, SPTScannablesShortcutItemProvider>
 {
     id <SPTScannablesShortcutItemProviderUpdateDelegate> delegate;
     id <SPTScannablesTestManager> _testManager;
     SPTScannablesAuthorizationRequester *_authorizationRequester;
+    id <SPTScannablesUserInterfaceFactory> _userInterfaceFactory;
     UIViewController *_scanViewController;
 }
 
 @property(retain, nonatomic) UIViewController *scanViewController; // @synthesize scanViewController=_scanViewController;
+@property(retain, nonatomic) id <SPTScannablesUserInterfaceFactory> userInterfaceFactory; // @synthesize userInterfaceFactory=_userInterfaceFactory;
 @property(retain, nonatomic) SPTScannablesAuthorizationRequester *authorizationRequester; // @synthesize authorizationRequester=_authorizationRequester;
 @property(retain, nonatomic) id <SPTScannablesTestManager> testManager; // @synthesize testManager=_testManager;
 @property(nonatomic) __weak id <SPTScannablesShortcutItemProviderUpdateDelegate> delegate; // @synthesize delegate;
@@ -29,7 +31,7 @@
 - (id)targetURIForQuickActionItem;
 - (_Bool)handleShortcutItem;
 - (id)provideShortcutItem;
-- (id)initWithTestManager:(id)arg1 authorizationRequester:(id)arg2 scanViewContoller:(id)arg3;
+- (id)initWithTestManager:(id)arg1 authorizationRequester:(id)arg2 userInterfaceFactory:(id)arg3;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

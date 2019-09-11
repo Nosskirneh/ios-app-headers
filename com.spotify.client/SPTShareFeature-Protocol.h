@@ -7,9 +7,10 @@
 #import "SPTService-Protocol.h"
 
 @class SPTShareScreenshotObserverManager, UIViewController;
-@protocol SPTShareEntityData, SPTShareEntityDataFactory, SPTShareTestManager;
+@protocol SPTShareDragDelegateFactory, SPTShareEntityData, SPTShareEntityDataFactory, SPTShareTestManager;
 
 @protocol SPTShareFeature <SPTService>
+- (id <SPTShareDragDelegateFactory>)provideShareDragDelegateFactory;
 - (id <SPTShareEntityDataFactory>)provideShareEntityDataFactory;
 - (id <SPTShareTestManager>)provideTestManager;
 - (SPTShareScreenshotObserverManager *)provideShareScreenshotObserverManager;

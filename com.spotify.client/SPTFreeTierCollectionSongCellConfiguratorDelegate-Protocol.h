@@ -6,10 +6,13 @@
 
 #import "NSObject-Protocol.h"
 
-@class GLUEAccessoryIconButton, GLUETrackPreview, SPTFreeTierCollectionSongCellConfigurator;
+@class GLUEAccessoryIconButton, GLUETrackPreview, SPTFreeTierCollectionSongCellConfigurator, SPTFreeTierCollectionSongsEntitySectionHeaderView, UITableViewCell;
+@protocol SPTFreeTierCollectionSongsSectionViewModel;
 
 @protocol SPTFreeTierCollectionSongCellConfiguratorDelegate <NSObject>
+- (void)songCellConfigurator:(SPTFreeTierCollectionSongCellConfigurator *)arg1 didTapOnEntitySectionHeader:(SPTFreeTierCollectionSongsEntitySectionHeaderView *)arg2 withViewModel:(id <SPTFreeTierCollectionSongsSectionViewModel>)arg3;
 - (void)actionForSectionHeaderWithSongCellConfigurator:(SPTFreeTierCollectionSongCellConfigurator *)arg1;
+- (void)songCellConfigurator:(SPTFreeTierCollectionSongCellConfigurator *)arg1 didSwipeCell:(UITableViewCell *)arg2;
 - (void)songCellConfigurator:(SPTFreeTierCollectionSongCellConfigurator *)arg1 didEndAudioPreview:(GLUETrackPreview *)arg2;
 - (void)songCellConfigurator:(SPTFreeTierCollectionSongCellConfigurator *)arg1 didStartAudioPreview:(GLUETrackPreview *)arg2;
 - (void)songCellConfigurator:(SPTFreeTierCollectionSongCellConfigurator *)arg1 trackPreview:(GLUETrackPreview *)arg2;

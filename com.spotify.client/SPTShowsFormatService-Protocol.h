@@ -6,10 +6,9 @@
 
 #import "SPTService-Protocol.h"
 
-@protocol SPTNowPlayingInfoCenterArtworkDecorator, SPTShowsFormatVideoContextMenuProvider;
+@protocol SPTShowsFormatVideoContextMenuProvider;
 
 @protocol SPTShowsFormatService <SPTService>
-- (id <SPTNowPlayingInfoCenterArtworkDecorator>)provideArtworkDecorator;
 - (id <SPTShowsFormatVideoContextMenuProvider>)provideContextMenuProvider;
 @end
 

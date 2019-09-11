@@ -27,7 +27,7 @@
 - (void)authenticator:(id)arg1 didFailWithReason:(id)arg2 description:(id)arg3 andReply:(CDUnknownBlockType)arg4;
 - (void)authenticationDidSucceedWithAuthenticator:(id)arg1 andReply:(CDUnknownBlockType)arg2;
 - (void)startSessionAndReply:(CDUnknownBlockType)arg1;
-- (void)handleGoodbyeMessage:(id)arg1 andReply:(CDUnknownBlockType)arg2;
+- (void)handleReply:(CDUnknownBlockType)arg1;
 - (id)authenticatorForAuthMethods:(id)arg1;
 - (void)handleHelloMessage:(id)arg1 andReply:(CDUnknownBlockType)arg2;
 - (void)handleAuthenticateMessage:(id)arg1 andReply:(CDUnknownBlockType)arg2;

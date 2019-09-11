@@ -7,12 +7,14 @@
 #import "NSObject-Protocol.h"
 
 @class NSArray, NSIndexPath, NSString;
-@protocol SPTFreeTierCollectionRangeDataSourceDelegate, SPTSortingFilteringSortRule;
+@protocol SPTFreeTierCollectionRangeDataSourceDelegate;
 
 @protocol SPTFreeTierCollectionRangeDataSource <NSObject>
 @property(nonatomic) __weak id <SPTFreeTierCollectionRangeDataSourceDelegate> delegate;
+@property(readonly, nonatomic) NSArray *sectionIndices;
+@property(readonly, nonatomic) long long totalNumberOfItems;
 - (id)itemAtIndexPath:(NSIndexPath *)arg1;
-- (void)loadWithSortRule:(id <SPTSortingFilteringSortRule>)arg1 filterRules:(NSArray *)arg2 textFilter:(NSString *)arg3;
-- (long long)totalNumberOfItems;
+- (void)willDisplayItemAIndex:(long long)arg1;
+- (void)loadWithSortRules:(NSArray *)arg1 filterRules:(NSArray *)arg2 textFilter:(NSString *)arg3;
 @end
 

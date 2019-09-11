@@ -6,30 +6,34 @@
 
 #import <objc/NSObject.h>
 
+#import "SPTAudioPreviewModelDelegate-Protocol.h"
 #import "SPTFeedFollowHandlerDelegate-Protocol.h"
 #import "SPTOfflineModeStateObserver-Protocol.h"
 #import "SPTPlayerObserver-Protocol.h"
 
-@class NSArray, NSNumber, NSString, SPTFeedFilter, SPTFeedFollowHandler, SPTFeedFollowRecommendations, SPTFeedFollowRecommendationsNetworkService, SPTFeedLogger, SPTFeedNetworkService, SPTFeedPodcastEpisode, SPTFeedTrack;
-@protocol SPTFeedFeatureFlags, SPTFeedHeartBeatManager, SPTFeedViewModelDelegate, SPTLinkDispatcher, SPTOfflineModeState, SPTPlayer;
+@class NSArray, NSString, SPTFeedFilter, SPTFeedFollowHandler, SPTFeedFollowRecommendations, SPTFeedFollowRecommendationsNetworkService, SPTFeedLogger, SPTFeedNFTAudioPreviewNetworkService, SPTFeedNetworkService, SPTFeedPlaybackStatusManager, SPTFeedPodcastEpisode, SPTFeedTrack;
+@protocol SPTAudioPreviewModelFactory, SPTEntityService, SPTFeedHeartBeatManager, SPTFeedViewModelDelegate, SPTLinkDispatcher, SPTOfflineModeState, SPTPlayer;
 
-@interface SPTFeedViewModel : NSObject <SPTPlayerObserver, SPTOfflineModeStateObserver, SPTFeedFollowHandlerDelegate>
+@interface SPTFeedViewModel : NSObject <SPTPlayerObserver, SPTOfflineModeStateObserver, SPTFeedFollowHandlerDelegate, SPTAudioPreviewModelDelegate>
 {
     _Bool _filterActive;
     SPTFeedTrack *_playingTrack;
     NSString *_sessionID;
     SPTFeedLogger *_feedLogger;
     id <SPTFeedViewModelDelegate> _delegate;
+    SPTFeedPlaybackStatusManager *_playbackStatusManager;
     id <SPTPlayer> _player;
     id <SPTLinkDispatcher> _linkDispatcher;
     id <SPTOfflineModeState> _offlineModeState;
-    id <SPTFeedFeatureFlags> _feedFeatureFlags;
+    id <SPTEntityService> _entityService;
+    id <SPTAudioPreviewModelFactory> _audioPreviewModelFactory;
     SPTFeedPodcastEpisode *_playingPodcastEpisode;
-    NSNumber *_tableViewPlayingEntityIndex;
-    NSNumber *_collectionViewPlayingEntityIndex;
+    unsigned long long _tableViewPlayingEntityIndex;
+    unsigned long long _tableViewPreviewingEntityIndex;
     NSArray *_entities;
     SPTFeedNetworkService *_feedNetworkService;
     SPTFeedFollowRecommendationsNetworkService *_followNetworkService;
+    SPTFeedNFTAudioPreviewNetworkService *_audioPreviewNetworkService;
     SPTFeedFollowRecommendations *_followRecommendations;
     SPTFeedFollowHandler *_followHandler;
     id <SPTFeedHeartBeatManager> _heartBeatManager;
@@ -41,16 +45,19 @@
 @property(retain, nonatomic) id <SPTFeedHeartBeatManager> heartBeatManager; // @synthesize heartBeatManager=_heartBeatManager;
 @property(retain, nonatomic) SPTFeedFollowHandler *followHandler; // @synthesize followHandler=_followHandler;
 @property(retain, nonatomic) SPTFeedFollowRecommendations *followRecommendations; // @synthesize followRecommendations=_followRecommendations;
+@property(retain, nonatomic) SPTFeedNFTAudioPreviewNetworkService *audioPreviewNetworkService; // @synthesize audioPreviewNetworkService=_audioPreviewNetworkService;
 @property(retain, nonatomic) SPTFeedFollowRecommendationsNetworkService *followNetworkService; // @synthesize followNetworkService=_followNetworkService;
 @property(retain, nonatomic) SPTFeedNetworkService *feedNetworkService; // @synthesize feedNetworkService=_feedNetworkService;
-@property(retain, nonatomic) NSArray *entities; // @synthesize entities=_entities;
-@property(retain, nonatomic) NSNumber *collectionViewPlayingEntityIndex; // @synthesize collectionViewPlayingEntityIndex=_collectionViewPlayingEntityIndex;
-@property(retain, nonatomic) NSNumber *tableViewPlayingEntityIndex; // @synthesize tableViewPlayingEntityIndex=_tableViewPlayingEntityIndex;
+@property(copy, nonatomic) NSArray *entities; // @synthesize entities=_entities;
+@property(nonatomic) unsigned long long tableViewPreviewingEntityIndex; // @synthesize tableViewPreviewingEntityIndex=_tableViewPreviewingEntityIndex;
+@property(nonatomic) unsigned long long tableViewPlayingEntityIndex; // @synthesize tableViewPlayingEntityIndex=_tableViewPlayingEntityIndex;
 @property(retain, nonatomic) SPTFeedPodcastEpisode *playingPodcastEpisode; // @synthesize playingPodcastEpisode=_playingPodcastEpisode;
-@property(retain, nonatomic) id <SPTFeedFeatureFlags> feedFeatureFlags; // @synthesize feedFeatureFlags=_feedFeatureFlags;
+@property(retain, nonatomic) id <SPTAudioPreviewModelFactory> audioPreviewModelFactory; // @synthesize audioPreviewModelFactory=_audioPreviewModelFactory;
+@property(nonatomic) __weak id <SPTEntityService> entityService; // @synthesize entityService=_entityService;
 @property(retain, nonatomic) id <SPTOfflineModeState> offlineModeState; // @synthesize offlineModeState=_offlineModeState;
 @property(retain, nonatomic) id <SPTLinkDispatcher> linkDispatcher; // @synthesize linkDispatcher=_linkDispatcher;
 @property(retain, nonatomic) id <SPTPlayer> player; // @synthesize player=_player;
+@property(readonly, nonatomic) SPTFeedPlaybackStatusManager *playbackStatusManager; // @synthesize playbackStatusManager=_playbackStatusManager;
 @property(nonatomic) __weak id <SPTFeedViewModelDelegate> delegate; // @synthesize delegate=_delegate;
 @property(retain, nonatomic) SPTFeedLogger *feedLogger; // @synthesize feedLogger=_feedLogger;
 @property(readonly, nonatomic) NSString *sessionID; // @synthesize sessionID=_sessionID;
@@ -58,6 +65,9 @@
 - (void).cxx_destruct;
 - (void)offlineModeState:(id)arg1 updated:(_Bool)arg2;
 - (void)followDataDidUpdate:(id)arg1;
+- (void)tracksFromAlbum:(id)arg1 completion:(CDUnknownBlockType)arg2;
+- (void)trackPreviewModelForTrackURI:(id)arg1 completion:(CDUnknownBlockType)arg2;
+- (void)decorateAlbumFeedEntities:(id)arg1 completion:(CDUnknownBlockType)arg2;
 - (id)buildPlayerContextFromFeedEntities:(id)arg1;
 - (void)dismissFollowItemAtIndex:(unsigned long long)arg1 completionBlock:(CDUnknownBlockType)arg2;
 - (void)navigateToPageForFollowItemAtIndex:(unsigned long long)arg1;
@@ -66,6 +76,14 @@
 - (id)followItemAtIndex:(unsigned long long)arg1;
 - (void)removeFollowSuggestions;
 - (void)refreshFollowSuggestions:(CDUnknownBlockType)arg1;
+- (void)audioPreviewModelDidChangeTrackIdentifier:(id)arg1;
+- (void)audioPreviewModelDidChangeEndTime:(id)arg1;
+- (void)audioPreviewModelDidChangeStartTime:(id)arg1;
+- (void)audioPreviewModelDidStop:(id)arg1;
+- (void)audioPreviewModelDidChangePaused:(id)arg1;
+- (void)audioPreviewModelDidChangePlaying:(id)arg1;
+- (void)playNFTAudioPreviewFromContext:(id)arg1;
+- (void)pauseNFTAudioPreview;
 - (void)logPlaybackEventsForPlayerState:(id)arg1 newState:(id)arg2;
 - (void)handleNewTrackPlayback:(id)arg1 contextURI:(id)arg2;
 - (void)handleNewPodcastPlayback:(id)arg1 contextURI:(id)arg2;
@@ -75,7 +93,6 @@
 - (void)playPodcastEpisode:(id)arg1 fromContext:(id)arg2;
 - (void)playTrack:(id)arg1 fromContext:(id)arg2;
 - (void)pauseCurrentlyPlayingEntity;
-- (void)playSelectedInCollectionViewAtIndex:(unsigned long long)arg1 forTableViewCellIndex:(unsigned long long)arg2;
 - (void)playSelectedEntityInTableViewAtIndex:(unsigned long long)arg1;
 - (void)navigateToPageForURI:(id)arg1;
 - (id)entityAtIndex:(unsigned long long)arg1;
@@ -90,7 +107,7 @@
 - (void)removePlayerObserver;
 - (void)addPlayerObserver;
 - (void)dealloc;
-- (id)initWithFeedNetworkService:(id)arg1 followNetworkService:(id)arg2 followHandler:(id)arg3 player:(id)arg4 linkDispatcher:(id)arg5 offlineModeState:(id)arg6 heartBeatManager:(id)arg7 feedLogger:(id)arg8 feedFeatureFlags:(id)arg9;
+- (id)initWithFeedNetworkService:(id)arg1 followNetworkService:(id)arg2 audioPreviewNetworkService:(id)arg3 entityService:(id)arg4 followHandler:(id)arg5 player:(id)arg6 linkDispatcher:(id)arg7 offlineModeState:(id)arg8 heartBeatManager:(id)arg9 playbackStatusManager:(id)arg10 feedLogger:(id)arg11 audioPreviewModelFactory:(id)arg12;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

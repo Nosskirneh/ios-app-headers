@@ -9,45 +9,47 @@
 #import "SPTYourLibraryPageProvider-Protocol.h"
 
 @class NSString, NSURL, SPTFreeTierCollectionGLUETheme, SPTFreeTierCollectionLogger;
-@protocol SPTFreeTierCollectionPlaylistsModel, SPTFreeTierCollectionTestManager, SPTFreeTierCreatePlaylistController, SPTGLUEImageLoaderFactory, SPTPerformanceMetricsViewLoggerFactory, SPTPlaylistPlatformPlaylistSynchroniser, SPTSortingFilteringUIFactory;
+@protocol SPTFreeTierCollectionTestManager, SPTGLUEImageLoaderFactory, SPTPerformanceMetricsViewLoggerFactory, SPTPlaylistPlatformPlaylistSynchroniser, SPTShareDragDelegateFactory, SPTSortingFilteringUIFactory;
 
 @interface SPTFreeTierCollectionPlaylistsPageProvider : NSObject <SPTYourLibraryPageProvider>
 {
-    _Bool _compactMode;
     unsigned long long _groupIdentifier;
     unsigned long long _providerIdentifier;
     NSString *_title;
-    id <SPTFreeTierCollectionPlaylistsModel> _model;
+    CDUnknownBlockType _modelProvider;
     NSURL *_URI;
+    CDUnknownBlockType _styleFactoryBlock;
     id <SPTPlaylistPlatformPlaylistSynchroniser> _playlistSynchroniser;
-    id <SPTFreeTierCreatePlaylistController> _createPlaylistController;
+    CDUnknownBlockType _createPlaylistControllerProvider;
     SPTFreeTierCollectionLogger *_logger;
     id <SPTPerformanceMetricsViewLoggerFactory> _viewLoggerFactory;
     id <SPTGLUEImageLoaderFactory> _imageLoaderFactory;
     SPTFreeTierCollectionGLUETheme *_theme;
     id <SPTSortingFilteringUIFactory> _sortingFilteringUIFactory;
     id <SPTFreeTierCollectionTestManager> _testManager;
+    id <SPTShareDragDelegateFactory> _shareDragDelegateFactory;
 }
 
+@property(retain, nonatomic) id <SPTShareDragDelegateFactory> shareDragDelegateFactory; // @synthesize shareDragDelegateFactory=_shareDragDelegateFactory;
 @property(readonly, nonatomic) id <SPTFreeTierCollectionTestManager> testManager; // @synthesize testManager=_testManager;
 @property(readonly, nonatomic) id <SPTSortingFilteringUIFactory> sortingFilteringUIFactory; // @synthesize sortingFilteringUIFactory=_sortingFilteringUIFactory;
 @property(readonly, nonatomic) SPTFreeTierCollectionGLUETheme *theme; // @synthesize theme=_theme;
 @property(readonly, nonatomic) id <SPTGLUEImageLoaderFactory> imageLoaderFactory; // @synthesize imageLoaderFactory=_imageLoaderFactory;
-@property(readonly, nonatomic, getter=isCompactMode) _Bool compactMode; // @synthesize compactMode=_compactMode;
 @property(readonly, nonatomic) id <SPTPerformanceMetricsViewLoggerFactory> viewLoggerFactory; // @synthesize viewLoggerFactory=_viewLoggerFactory;
 @property(readonly, nonatomic) SPTFreeTierCollectionLogger *logger; // @synthesize logger=_logger;
-@property(readonly, nonatomic) id <SPTFreeTierCreatePlaylistController> createPlaylistController; // @synthesize createPlaylistController=_createPlaylistController;
+@property(readonly, copy, nonatomic) CDUnknownBlockType createPlaylistControllerProvider; // @synthesize createPlaylistControllerProvider=_createPlaylistControllerProvider;
 @property(readonly, nonatomic) id <SPTPlaylistPlatformPlaylistSynchroniser> playlistSynchroniser; // @synthesize playlistSynchroniser=_playlistSynchroniser;
+@property(readonly, copy, nonatomic) CDUnknownBlockType styleFactoryBlock; // @synthesize styleFactoryBlock=_styleFactoryBlock;
 @property(readonly, nonatomic) NSURL *URI; // @synthesize URI=_URI;
-@property(readonly, nonatomic) id <SPTFreeTierCollectionPlaylistsModel> model; // @synthesize model=_model;
+@property(readonly, copy, nonatomic) CDUnknownBlockType modelProvider; // @synthesize modelProvider=_modelProvider;
 @property(readonly, nonatomic) NSString *title; // @synthesize title=_title;
 @property(readonly, nonatomic) unsigned long long providerIdentifier; // @synthesize providerIdentifier=_providerIdentifier;
 @property(readonly, nonatomic) unsigned long long groupIdentifier; // @synthesize groupIdentifier=_groupIdentifier;
 - (void).cxx_destruct;
-- (id)playlistViewModel:(id)arg1 context:(id)arg2 compactMode:(_Bool)arg3 model:(id)arg4;
+- (id)playlistViewModel:(id)arg1 context:(id)arg2 model:(id)arg3;
 - (id)pageViewControllerForContext:(id)arg1;
 - (_Bool)claimsURI:(id)arg1;
-- (id)initWithPlaylistsModel:(id)arg1 URI:(id)arg2 playlistSynchroniser:(id)arg3 createPlaylistController:(id)arg4 logger:(id)arg5 viewLoggerFactory:(id)arg6 isCompatMode:(_Bool)arg7 imageLoaderFactory:(id)arg8 theme:(id)arg9 sortingFilteringUIFactory:(id)arg10 testManager:(id)arg11;
+- (id)initWithPlaylistsModelProvider:(CDUnknownBlockType)arg1 URI:(id)arg2 styleFactoryBlock:(CDUnknownBlockType)arg3 playlistSynchroniser:(id)arg4 createPlaylistControllerProvider:(CDUnknownBlockType)arg5 logger:(id)arg6 viewLoggerFactory:(id)arg7 imageLoaderFactory:(id)arg8 theme:(id)arg9 sortingFilteringUIFactory:(id)arg10 testManager:(id)arg11 shareDragDelegateFactory:(id)arg12;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

@@ -31,7 +31,7 @@
 - (void).cxx_destruct;
 - (id)additionalFilterString:(id)arg1;
 @property(readonly, copy, nonatomic) NSString *requestAction;
-- (id)initWithURL:(id)arg1 mediaType:(long long)arg2;
+- (id)initWithURL:(id)arg1 mediaType:(long long)arg2 podcastUITestManager:(id)arg3;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

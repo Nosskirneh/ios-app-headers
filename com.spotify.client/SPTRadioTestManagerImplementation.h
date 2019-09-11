@@ -6,85 +6,51 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTFeatureFlagSignalObserver-Protocol.h"
 #import "SPTRadioTestManager-Protocol.h"
 
 @class NSString;
-@protocol SPTAbbaService, SPTFeatureFlagFactory, SPTFeatureFlagSignal, SPTFreeTierTestManager, SPTLegacyFeatureFlag, SPTLocalSettings, SPTProductState;
+@protocol SPTAbbaService, SPTFeatureFlagFactory, SPTFeatureFlagSignal, SPTLegacyFeatureFlag, SPTLocalSettings, SPTProductState;
 
-@interface SPTRadioTestManagerImplementation : NSObject <SPTFeatureFlagSignalObserver, SPTRadioTestManager>
+@interface SPTRadioTestManagerImplementation : NSObject <SPTRadioTestManager>
 {
     _Bool contextMenuPlaylistRadioHidden;
-    _Bool radioSearchHidden;
     _Bool radioContextMenuUsingFormatListLinks;
-    _Bool stationsLibrarySectionHidden;
-    _Bool stationsSearchHidden;
-    _Bool stationsFollowButtonHidden;
     _Bool userOnFreeProduct;
-    _Bool _searchAutocompleteEnabled;
-    unsigned long long radioSearchBarButtonFlagState;
     id <SPTAbbaService> _abbaService;
     id <SPTProductState> _productState;
     id <SPTLocalSettings> _localSettings;
     id <SPTFeatureFlagFactory> _featureFlagFactory;
-    id <SPTFreeTierTestManager> _freeTierTestManager;
     id <SPTLegacyFeatureFlag> _dailyMixCollectionFlag;
     id <SPTLegacyFeatureFlag> _infinitePlaybackFlag;
     id <SPTLegacyFeatureFlag> _uriTransitionFlag;
-    id <SPTFeatureFlagSignal> _radioSearchBarButtonFlagObserver;
-    id <SPTFeatureFlagSignal> _radioSearchHiddenFlagObserver;
     id <SPTFeatureFlagSignal> _radioContextMenuFormatlistLinksObserver;
     id <SPTFeatureFlagSignal> _contextMenuPlaylistRadioHiddenObserver;
-    id <SPTFeatureFlagSignal> _radioSearchAutocompleteFlagObserver;
-    id <SPTFeatureFlagSignal> _stationsFollowHiddenFlagObserver;
-    id <SPTFeatureFlagSignal> _stationsSearchHiddenFlagObserver;
-    id <SPTFeatureFlagSignal> _stationsLibrarySectionHiddenFlagObserver;
     id <SPTFeatureFlagSignal> _freeTierEnabledSignal;
 }
 
 @property(retain, nonatomic) id <SPTFeatureFlagSignal> freeTierEnabledSignal; // @synthesize freeTierEnabledSignal=_freeTierEnabledSignal;
-@property(retain, nonatomic) id <SPTFeatureFlagSignal> stationsLibrarySectionHiddenFlagObserver; // @synthesize stationsLibrarySectionHiddenFlagObserver=_stationsLibrarySectionHiddenFlagObserver;
-@property(retain, nonatomic) id <SPTFeatureFlagSignal> stationsSearchHiddenFlagObserver; // @synthesize stationsSearchHiddenFlagObserver=_stationsSearchHiddenFlagObserver;
-@property(retain, nonatomic) id <SPTFeatureFlagSignal> stationsFollowHiddenFlagObserver; // @synthesize stationsFollowHiddenFlagObserver=_stationsFollowHiddenFlagObserver;
-@property(retain, nonatomic) id <SPTFeatureFlagSignal> radioSearchAutocompleteFlagObserver; // @synthesize radioSearchAutocompleteFlagObserver=_radioSearchAutocompleteFlagObserver;
 @property(retain, nonatomic) id <SPTFeatureFlagSignal> contextMenuPlaylistRadioHiddenObserver; // @synthesize contextMenuPlaylistRadioHiddenObserver=_contextMenuPlaylistRadioHiddenObserver;
 @property(retain, nonatomic) id <SPTFeatureFlagSignal> radioContextMenuFormatlistLinksObserver; // @synthesize radioContextMenuFormatlistLinksObserver=_radioContextMenuFormatlistLinksObserver;
-@property(retain, nonatomic) id <SPTFeatureFlagSignal> radioSearchHiddenFlagObserver; // @synthesize radioSearchHiddenFlagObserver=_radioSearchHiddenFlagObserver;
-@property(retain, nonatomic) id <SPTFeatureFlagSignal> radioSearchBarButtonFlagObserver; // @synthesize radioSearchBarButtonFlagObserver=_radioSearchBarButtonFlagObserver;
 @property(retain, nonatomic) id <SPTLegacyFeatureFlag> uriTransitionFlag; // @synthesize uriTransitionFlag=_uriTransitionFlag;
 @property(retain, nonatomic) id <SPTLegacyFeatureFlag> infinitePlaybackFlag; // @synthesize infinitePlaybackFlag=_infinitePlaybackFlag;
 @property(retain, nonatomic) id <SPTLegacyFeatureFlag> dailyMixCollectionFlag; // @synthesize dailyMixCollectionFlag=_dailyMixCollectionFlag;
-@property(nonatomic, getter=isSearchAutocompleteEnabled) _Bool searchAutocompleteEnabled; // @synthesize searchAutocompleteEnabled=_searchAutocompleteEnabled;
-@property(nonatomic) __weak id <SPTFreeTierTestManager> freeTierTestManager; // @synthesize freeTierTestManager=_freeTierTestManager;
 @property(readonly, nonatomic) id <SPTFeatureFlagFactory> featureFlagFactory; // @synthesize featureFlagFactory=_featureFlagFactory;
 @property(readonly, nonatomic) id <SPTLocalSettings> localSettings; // @synthesize localSettings=_localSettings;
 @property(readonly, nonatomic) id <SPTProductState> productState; // @synthesize productState=_productState;
 @property(readonly, nonatomic) __weak id <SPTAbbaService> abbaService; // @synthesize abbaService=_abbaService;
 @property(nonatomic, getter=isUserOnFreeProduct) _Bool userOnFreeProduct; // @synthesize userOnFreeProduct;
-@property(nonatomic, getter=isStationsFollowButtonHidden) _Bool stationsFollowButtonHidden; // @synthesize stationsFollowButtonHidden;
-@property(nonatomic, getter=isStationsSearchHidden) _Bool stationsSearchHidden; // @synthesize stationsSearchHidden;
-@property(nonatomic, getter=isStationsLibrarySectionHidden) _Bool stationsLibrarySectionHidden; // @synthesize stationsLibrarySectionHidden;
 @property(nonatomic, getter=isRadioContextMenuUsingFormatListLinks) _Bool radioContextMenuUsingFormatListLinks; // @synthesize radioContextMenuUsingFormatListLinks;
-@property(nonatomic, getter=isRadioSearchHidden) _Bool radioSearchHidden; // @synthesize radioSearchHidden;
-@property(nonatomic) unsigned long long radioSearchBarButtonFlagState; // @synthesize radioSearchBarButtonFlagState;
 @property(nonatomic, getter=isContextMenuPlaylistRadioHidden) _Bool contextMenuPlaylistRadioHidden; // @synthesize contextMenuPlaylistRadioHidden;
 - (void).cxx_destruct;
 - (_Bool)isNPTUser;
 - (void)featureFlagSignal:(id)arg1 hasAssumedState:(long long)arg2;
-- (void)configureRadioSearchAutocompleteFlag;
 - (void)configureContextMenuPlaylistRadioHiddenFlag;
 - (void)configureContextMenuLinksFlag;
-- (void)configureStationsHiddenFlag;
-- (void)configureStationsFollowFlag;
-- (void)configureStationsSearchFlag;
-- (void)configureRadioSearchFlag;
-- (void)configureSearchBarButtonFlag;
 @property(readonly, nonatomic, getter=isRadioURITransitionEnabled) _Bool radioURITransitionEnabled;
 @property(readonly, nonatomic, getter=isInfinitePlaybackEnabled) _Bool infinitePlaybackEnabled;
 @property(readonly, nonatomic, getter=isEnabled) _Bool enabled;
-@property(readonly, nonatomic, getter=isHeartsInEntityHeadersEnabled) _Bool heartsInEntityHeadersEnabled;
 - (void)dealloc;
-- (id)initWithAbbaFeature:(id)arg1 productState:(id)arg2 localSettings:(id)arg3 freeTierEnabledSignal:(id)arg4 freeTierTestManager:(id)arg5 featureFlagFactory:(id)arg6;
+- (id)initWithAbbaFeature:(id)arg1 productState:(id)arg2 localSettings:(id)arg3 freeTierEnabledSignal:(id)arg4 featureFlagFactory:(id)arg5;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

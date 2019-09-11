@@ -8,7 +8,7 @@
 
 #import "SPTThemableView-Protocol.h"
 
-@class NSString, NSURL, SPTAccountUpsellContent, SPTLayoutConstraintBuilder, UIImage, UIImageView, UILabel;
+@class NSMutableArray, NSString, NSURL, SPTAccountUpsellContent, UIImage, UIImageView, UILabel;
 @protocol SPTThemableViewLayoutDelegate;
 
 @interface SPTAccountUpsellCard : UIView <SPTThemableView>
@@ -20,14 +20,14 @@
     UIImage *_iconImage;
     SPTAccountUpsellContent *_content;
     UIImageView *_imageView;
-    SPTLayoutConstraintBuilder *_layout;
+    NSMutableArray *_layoutConstraints;
     UIView *_contentView;
     NSURL *_url;
 }
 
 @property(retain, nonatomic) NSURL *url; // @synthesize url=_url;
 @property(retain, nonatomic) UIView *contentView; // @synthesize contentView=_contentView;
-@property(retain, nonatomic) SPTLayoutConstraintBuilder *layout; // @synthesize layout=_layout;
+@property(retain, nonatomic) NSMutableArray *layoutConstraints; // @synthesize layoutConstraints=_layoutConstraints;
 @property(retain, nonatomic) UIImageView *imageView; // @synthesize imageView=_imageView;
 @property(retain, nonatomic) SPTAccountUpsellContent *content; // @synthesize content=_content;
 @property(retain, nonatomic) UIImage *iconImage; // @synthesize iconImage=_iconImage;

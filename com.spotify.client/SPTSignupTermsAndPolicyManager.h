@@ -7,7 +7,7 @@
 #import <objc/NSObject.h>
 
 @class SPTSignupMarketRestrictionsModel, SPTSignupTermsAndPolicyDialogCopyProvider, SPTSignupTermsAndPolicyDialogLogger;
-@protocol SPTAlertController, SPTSignupTermsAndPolicyManagerDelegate;
+@protocol SPTAlertInterface, SPTSignupTermsAndPolicyManagerDelegate;
 
 @interface SPTSignupTermsAndPolicyManager : NSObject
 {
@@ -16,18 +16,20 @@
     SPTSignupMarketRestrictionsModel *_marketingRestrictions;
     unsigned long long _acceptedPolicy;
     SPTSignupTermsAndPolicyDialogCopyProvider *_textCopyProvider;
-    id <SPTAlertController> _alertController;
+    id <SPTAlertInterface> _alertInterface;
     SPTSignupTermsAndPolicyDialogLogger *_logger;
 }
 
 @property(readonly, nonatomic) SPTSignupTermsAndPolicyDialogLogger *logger; // @synthesize logger=_logger;
-@property(readonly, nonatomic) id <SPTAlertController> alertController; // @synthesize alertController=_alertController;
+@property(readonly, nonatomic) id <SPTAlertInterface> alertInterface; // @synthesize alertInterface=_alertInterface;
 @property(readonly, nonatomic) SPTSignupTermsAndPolicyDialogCopyProvider *textCopyProvider; // @synthesize textCopyProvider=_textCopyProvider;
 @property(nonatomic) unsigned long long acceptedPolicy; // @synthesize acceptedPolicy=_acceptedPolicy;
 @property(readonly, nonatomic) SPTSignupMarketRestrictionsModel *marketingRestrictions; // @synthesize marketingRestrictions=_marketingRestrictions;
 @property(nonatomic, getter=isLicenseAcceptanceInProgress) _Bool licenseAcceptanceInProgress; // @synthesize licenseAcceptanceInProgress=_licenseAcceptanceInProgress;
 @property(nonatomic) __weak id <SPTSignupTermsAndPolicyManagerDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
+- (id)viewPolicyAlertActionButton;
+- (id)viewTermsAlertActionButton;
 - (void)notifyAboutLicenseAcceptanceState;
 - (void)acceptLicenseOption:(unsigned long long)arg1;
 - (void)declineLicenseOption:(unsigned long long)arg1;
@@ -38,7 +40,7 @@
 - (void)showTermsAndPolicyDialog;
 - (_Bool)isTermsAndPolicyDialogAccepted;
 - (_Bool)isTermsAndPolicyDialogRequired;
-- (id)initWithMarketRestrictions:(id)arg1 textCopyProvider:(id)arg2 alertController:(id)arg3 logger:(id)arg4;
+- (id)initWithMarketRestrictions:(id)arg1 textCopyProvider:(id)arg2 alertInterface:(id)arg3 logger:(id)arg4;
 
 @end
 

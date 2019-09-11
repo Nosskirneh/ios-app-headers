@@ -15,7 +15,6 @@
 {
     id <SPTLogCenter> _logCenter;
     id <SPTLinkDispatcher> _linkDispatcher;
-    NSMutableDictionary *_urlPredicates;
     NSMutableDictionary *_shortURLPredicates;
     NSMutableDictionary *_entityInURLPredicates;
     NSMutableDictionary *_shareURLPredicates;
@@ -30,7 +29,6 @@
 @property(readonly, nonatomic) NSMutableDictionary *shareURLPredicates; // @synthesize shareURLPredicates=_shareURLPredicates;
 @property(readonly, nonatomic) NSMutableDictionary *entityInURLPredicates; // @synthesize entityInURLPredicates=_entityInURLPredicates;
 @property(readonly, nonatomic) NSMutableDictionary *shortURLPredicates; // @synthesize shortURLPredicates=_shortURLPredicates;
-@property(readonly, nonatomic) NSMutableDictionary *urlPredicates; // @synthesize urlPredicates=_urlPredicates;
 @property(readonly, nonatomic) id <SPTLinkDispatcher> linkDispatcher; // @synthesize linkDispatcher=_linkDispatcher;
 @property(readonly, nonatomic) id <SPTLogCenter> logCenter; // @synthesize logCenter=_logCenter;
 - (void).cxx_destruct;
@@ -41,19 +39,14 @@
 - (id)actionForURI:(id)arg1 logContext:(id)arg2 sourceURL:(id)arg3 itemName:(id)arg4 creatorName:(id)arg5 sourceName:(id)arg6 imageURL:(id)arg7 clipboardLinkTitle:(id)arg8 actionIdentifier:(id)arg9;
 - (id)actionForURI:(id)arg1 logContext:(id)arg2 sourceURL:(id)arg3 contextURL:(id)arg4 actionIdentifier:(id)arg5;
 - (id)actionForURI:(id)arg1 logContext:(id)arg2 sourceURL:(id)arg3 actionIdentifier:(id)arg4;
-- (id)actionForURIs:(id)arg1 logContext:(id)arg2 sourceURL:(id)arg3 actionIdentifier:(id)arg4 title:(id)arg5 albumTitle:(id)arg6 artistTitle:(id)arg7 imageURL:(id)arg8 clipboardLinkTitle:(id)arg9 tracks:(id)arg10 containerEntityURL:(id)arg11;
 - (void)registerActionForCarThingPredicate:(CDUnknownBlockType)arg1 actionIdentifier:(id)arg2;
 - (void)registerActionForURIContainerPredicate:(CDUnknownBlockType)arg1 actionIdentifier:(id)arg2;
 - (void)registerActionForTracksPredicate:(CDUnknownBlockType)arg1 actionIdentifier:(id)arg2;
 - (void)registerActionForSharePredicate:(CDUnknownBlockType)arg1 actionIdentifier:(id)arg2;
 - (void)registerActionForEntityInContextPredicate:(CDUnknownBlockType)arg1 actionIdentifier:(id)arg2;
 - (void)registerActionForShortPredicate:(CDUnknownBlockType)arg1 actionIdentifier:(id)arg2;
-- (void)registerActionForPredicate:(CDUnknownBlockType)arg1 actionIdentifier:(id)arg2;
-- (id)followArtist:(id)arg1 logContext:(id)arg2;
 - (id)offlineSync:(id)arg1 isOffline:(_Bool)arg2 collectionPlatform:(id)arg3 collectionOptions:(id)arg4 logContext:(id)arg5;
-- (id)immediateTask:(id)arg1;
 - (id)viewAlbumWithAlbumURL:(id)arg1 logContext:(id)arg2;
-- (id)setArtistPickToURI:(id)arg1 logContext:(id)arg2;
 - (id)viewSpeedControlOptionsWithPodcastSpeedControlManager:(id)arg1 modalPresentationController:(id)arg2 episodeURI:(id)arg3 logContext:(id)arg4;
 - (id)viewArtists:(id)arg1 logContext:(id)arg2 presentationService:(id)arg3 contributingArtistsService:(id)arg4;
 - (id)viewArtistWithURL:(id)arg1 logContext:(id)arg2;

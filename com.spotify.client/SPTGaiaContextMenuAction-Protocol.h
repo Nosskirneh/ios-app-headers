@@ -6,7 +6,7 @@
 
 #import "SPTContextMenuAction-Protocol.h"
 
-@class NSString, SPTGaiaDevice;
+@class NSString, SPTGaiaConnectDevice;
 @protocol SPTGaiaContextMenuActionDelegate;
 
 @protocol SPTGaiaContextMenuAction <SPTContextMenuAction>
@@ -14,11 +14,10 @@
 @property(readonly, nonatomic) _Bool supportsAutomaticFiltering;
 @property(readonly, nonatomic) _Bool available;
 @property(readonly, nonatomic) NSString *identifier;
-@property(retain, nonatomic) SPTGaiaDevice *device;
+@property(retain, nonatomic) SPTGaiaConnectDevice *connectDevice;
 
 @optional
 + (NSString *)featureIdentifier;
 + (NSString *)featureTitle;
-- (SPTGaiaDevice *)incarnationForDevice:(SPTGaiaDevice *)arg1;
 @end
 

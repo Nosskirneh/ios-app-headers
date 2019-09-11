@@ -8,14 +8,14 @@
 
 #import "SPTLyricsTrackChecker-Protocol.h"
 
-@class NSString, SPTLyricsService;
+@class NSString, SPTLyricsV2Service;
 
 @interface SPTLyricsTrackCheckerImplementation : NSObject <SPTLyricsTrackChecker>
 {
-    SPTLyricsService *_lyricsService;
+    SPTLyricsV2Service *_lyricsService;
 }
 
-@property(readonly, nonatomic) SPTLyricsService *lyricsService; // @synthesize lyricsService=_lyricsService;
+@property(readonly, nonatomic) SPTLyricsV2Service *lyricsService; // @synthesize lyricsService=_lyricsService;
 - (void).cxx_destruct;
 - (_Bool)lyricsAvailableForTrack:(id)arg1;
 - (id)initWithLyricsService:(id)arg1;

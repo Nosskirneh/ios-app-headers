@@ -16,9 +16,9 @@
     NSArray *_tracks;
 }
 
-@property(retain, nonatomic) NSArray *tracks; // @synthesize tracks=_tracks;
+@property(copy, nonatomic) NSArray *tracks; // @synthesize tracks=_tracks;
 @property(retain, nonatomic) NSURL *imageURL; // @synthesize imageURL=_imageURL;
-@property(retain, nonatomic) NSString *name; // @synthesize name=_name;
+@property(copy, nonatomic) NSString *name; // @synthesize name=_name;
 @property(retain, nonatomic) NSURL *URI; // @synthesize URI;
 - (void).cxx_destruct;
 - (void)processDictionary:(id)arg1;

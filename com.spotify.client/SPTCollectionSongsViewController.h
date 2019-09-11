@@ -49,13 +49,13 @@
     id <SPTModalPresentationController> _modalPresentationController;
     SPTProgressView *_progressView;
     id <GLUETheme> _theme;
-    id <SPTViewLogger> _viewLogger;
     GLUEEntityRowStyle *_trackRowStyle;
+    id <SPTViewLogger> _viewLogger;
 }
 
-@property(retain, nonatomic) GLUEEntityRowStyle *trackRowStyle; // @synthesize trackRowStyle=_trackRowStyle;
 @property(nonatomic) _Bool hasLoggedDataDidLoad; // @synthesize hasLoggedDataDidLoad=_hasLoggedDataDidLoad;
 @property(retain, nonatomic) id <SPTViewLogger> viewLogger; // @synthesize viewLogger=_viewLogger;
+@property(readonly, nonatomic) GLUEEntityRowStyle *trackRowStyle; // @synthesize trackRowStyle=_trackRowStyle;
 @property(readonly, nonatomic) id <GLUETheme> theme; // @synthesize theme=_theme;
 @property(retain, nonatomic) SPTProgressView *progressView; // @synthesize progressView=_progressView;
 @property(retain, nonatomic) id <SPTModalPresentationController> modalPresentationController; // @synthesize modalPresentationController=_modalPresentationController;

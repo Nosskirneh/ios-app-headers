@@ -6,27 +6,20 @@
 
 #import <objc/NSObject.h>
 
-@class NSMapTable, NSOperationQueue, SPTDataLoaderFactory, SPTPersistentCache;
+@protocol SPTVideoDataLoader, SPTVideoPlayerConfiguration;
 
 @interface SPTVideoFairplayService : NSObject
 {
-    SPTDataLoaderFactory *_dataLoaderFactory;
-    SPTPersistentCache *_cache;
-    NSOperationQueue *_operationQueue;
-    NSMapTable *_pendingFairplayRequests;
+    id <SPTVideoDataLoader> _videoDataLoader;
+    id <SPTVideoPlayerConfiguration> _playerConfiguration;
 }
 
-@property(retain, nonatomic) NSMapTable *pendingFairplayRequests; // @synthesize pendingFairplayRequests=_pendingFairplayRequests;
-@property(retain, nonatomic) NSOperationQueue *operationQueue; // @synthesize operationQueue=_operationQueue;
-@property(retain, nonatomic) SPTPersistentCache *cache; // @synthesize cache=_cache;
-@property(retain, nonatomic) SPTDataLoaderFactory *dataLoaderFactory; // @synthesize dataLoaderFactory=_dataLoaderFactory;
+@property(retain, nonatomic) id <SPTVideoPlayerConfiguration> playerConfiguration; // @synthesize playerConfiguration=_playerConfiguration;
+@property(retain, nonatomic) id <SPTVideoDataLoader> videoDataLoader; // @synthesize videoDataLoader=_videoDataLoader;
 - (void).cxx_destruct;
-- (void)pruneCache;
-- (void)removeCacheForApplicationCertificate;
-- (id)fetchDataWithRequest:(id)arg1 cacheKey:(id)arg2 initiatingPlaybackID:(id)arg3;
-- (id)fetchLicenseKeyForAsset:(id)arg1 spcData:(id)arg2 initiatingPlaybackID:(id)arg3;
-- (id)fetchApplicationCertificateWithInitiatingPlaybackID:(id)arg1;
-- (id)initWithDataLoaderFactory:(id)arg1 cache:(id)arg2;
+- (void)fetchLicenseKeyForSpcData:(id)arg1 initiatingPlaybackID:(id)arg2 success:(CDUnknownBlockType)arg3 failure:(CDUnknownBlockType)arg4;
+- (void)fetchApplicationCertificateWithInitiatingPlaybackID:(id)arg1 success:(CDUnknownBlockType)arg2 failure:(CDUnknownBlockType)arg3;
+- (id)initWithVideoDataLoader:(id)arg1 playerConfiguration:(id)arg2;
 
 @end
 

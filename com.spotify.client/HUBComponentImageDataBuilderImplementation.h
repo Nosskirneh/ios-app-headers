@@ -9,24 +9,22 @@
 #import "HUBComponentImageDataBuilder-Protocol.h"
 #import "NSCopying-Protocol.h"
 
-@class NSBundle, NSDictionary, NSString, NSURL, UIImage;
-@protocol HUBIconImageResolver, HUBJSONSchema;
+@class NSBundle, NSMutableDictionary, NSString, NSURL, UIImage;
+@protocol HUBIconImageResolver;
 
 @interface HUBComponentImageDataBuilderImplementation : NSObject <HUBComponentImageDataBuilder, NSCopying>
 {
     NSURL *_URL;
     NSString *_placeholderIconIdentifier;
     UIImage *_localImage;
-    NSDictionary *_customData;
+    NSMutableDictionary *_customData;
     NSBundle *_bundle;
-    id <HUBJSONSchema> _JSONSchema;
     id <HUBIconImageResolver> _iconImageResolver;
 }
 
 @property(readonly, nonatomic) id <HUBIconImageResolver> iconImageResolver; // @synthesize iconImageResolver=_iconImageResolver;
-@property(readonly, nonatomic) id <HUBJSONSchema> JSONSchema; // @synthesize JSONSchema=_JSONSchema;
 @property(nonatomic) __weak NSBundle *bundle; // @synthesize bundle=_bundle;
-@property(retain, nonatomic) NSDictionary *customData; // @synthesize customData=_customData;
+@property(readonly, nonatomic) NSMutableDictionary *customData; // @synthesize customData=_customData;
 @property(retain, nonatomic) UIImage *localImage; // @synthesize localImage=_localImage;
 @property(copy, nonatomic) NSString *placeholderIconIdentifier; // @synthesize placeholderIconIdentifier=_placeholderIconIdentifier;
 @property(copy, nonatomic) NSURL *URL; // @synthesize URL=_URL;
@@ -36,7 +34,7 @@
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (void)addJSONDictionary:(id)arg1;
 - (_Bool)addJSONData:(id)arg1 error:(id *)arg2;
-- (id)initWithJSONSchema:(id)arg1 iconImageResolver:(id)arg2;
+- (id)initWithIconImageResolver:(id)arg1;
 
 @end
 

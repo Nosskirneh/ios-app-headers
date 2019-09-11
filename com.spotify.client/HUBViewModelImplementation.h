@@ -8,34 +8,36 @@
 
 #import "HUBViewModel-Protocol.h"
 
-@class NSArray, NSDate, NSDictionary, NSString, UINavigationItem;
+@class HUBViewModelBuilderImplementation, NSArray, NSDate, NSDictionary, NSString;
 @protocol HUBComponentModel;
 
 @interface HUBViewModelImplementation : HUBAutoEquatable <HUBViewModel>
 {
     NSString *_identifier;
-    UINavigationItem *_navigationItem;
+    NSString *_navigationBarTitle;
     id <HUBComponentModel> _headerComponentModel;
     NSArray *_bodyComponentModels;
     NSArray *_overlayComponentModels;
     NSDictionary *_customData;
     NSDate *_buildDate;
+    HUBViewModelBuilderImplementation *_builder;
 }
 
 + (id)ignoredAutoEquatablePropertyNames;
-@property(readonly, nonatomic) NSDate *buildDate; // @synthesize buildDate=_buildDate;
-@property(readonly, nonatomic) NSDictionary *customData; // @synthesize customData=_customData;
-@property(readonly, nonatomic) NSArray *overlayComponentModels; // @synthesize overlayComponentModels=_overlayComponentModels;
-@property(readonly, nonatomic) NSArray *bodyComponentModels; // @synthesize bodyComponentModels=_bodyComponentModels;
+@property(readonly, copy, nonatomic) HUBViewModelBuilderImplementation *builder; // @synthesize builder=_builder;
+@property(readonly, copy, nonatomic) NSDate *buildDate; // @synthesize buildDate=_buildDate;
+@property(readonly, copy, nonatomic) NSDictionary *customData; // @synthesize customData=_customData;
+@property(readonly, copy, nonatomic) NSArray *overlayComponentModels; // @synthesize overlayComponentModels=_overlayComponentModels;
+@property(readonly, copy, nonatomic) NSArray *bodyComponentModels; // @synthesize bodyComponentModels=_bodyComponentModels;
 @property(readonly, nonatomic) id <HUBComponentModel> headerComponentModel; // @synthesize headerComponentModel=_headerComponentModel;
-@property(readonly, copy, nonatomic) UINavigationItem *navigationItem; // @synthesize navigationItem=_navigationItem;
+@property(readonly, copy, nonatomic) NSString *navigationBarTitle; // @synthesize navigationBarTitle=_navigationBarTitle;
 @property(readonly, copy, nonatomic) NSString *identifier; // @synthesize identifier=_identifier;
 - (void).cxx_destruct;
 - (id)serializeComponentModels:(id)arg1;
 - (id)serialize;
 @property(readonly, copy) NSString *debugDescription;
-- (_Bool)isEqual:(id)arg1;
-- (id)initWithIdentifier:(id)arg1 navigationItem:(id)arg2 headerComponentModel:(id)arg3 bodyComponentModels:(id)arg4 overlayComponentModels:(id)arg5 customData:(id)arg6;
+- (id)createBuilder;
+- (id)initWithIdentifier:(id)arg1 navigationBarTitle:(id)arg2 headerComponentModel:(id)arg3 bodyComponentModels:(id)arg4 overlayComponentModels:(id)arg5 customData:(id)arg6 builder:(id)arg7;
 
 // Remaining properties
 @property(readonly, copy) NSString *description;

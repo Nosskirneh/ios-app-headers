@@ -6,10 +6,7 @@
 
 #import "NSObject-Protocol.h"
 
-@class NSURL;
-
 @protocol SPTNowPlayingContentViewModelDelegate <NSObject>
-- (void)contentViewModelDidStageContextImageURL:(NSURL *)arg1;
 - (void)contentViewModelDidChangeLoadingState;
 - (void)contentViewModelRequestsAnimation:(unsigned long long)arg1;
 @end

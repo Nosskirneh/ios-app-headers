@@ -29,10 +29,10 @@
 - (void)logDidLoadCardProviderId:(id)arg1 index:(long long)arg2;
 - (void)logBackButtonTapped;
 - (void)logSearchTap;
-- (void)logViewDidFailToLoadWithError:(id)arg1 pageIdentifier:(id)arg2;
-- (void)logViewLoadingCancelledWithPageIdentifier:(id)arg1;
-- (void)logViewDidLoadWithPageIdentifier:(id)arg1;
-- (void)logViewLoadingStartedWithPageIdentifier:(id)arg1;
+- (void)logViewDidFailToLoadWithPageIdentifier:(id)arg1 dataSource:(long long)arg2;
+- (void)logViewLoadingCancelledWithPageIdentifier:(id)arg1 dataSource:(long long)arg2;
+- (void)logViewDidLoadWithPageIdentifier:(id)arg1 dataSource:(long long)arg2;
+- (void)logViewLoadingStartedWithPageIdentifier:(id)arg1 reason:(long long)arg2;
 - (id)initWithLogCenter:(id)arg1 viewLogger:(id)arg2 playlistURI:(id)arg3;
 
 @end

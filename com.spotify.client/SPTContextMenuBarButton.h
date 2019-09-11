@@ -6,11 +6,24 @@
 
 #import <UIKit/UIButton.h>
 
-@interface SPTContextMenuBarButton : UIButton
+#import "SPTAdjustableAlignmentRectInsets-Protocol.h"
+
+@class NSString;
+
+@interface SPTContextMenuBarButton : UIButton <SPTAdjustableAlignmentRectInsets>
 {
+    struct UIEdgeInsets _spt_alignmentRectInsets;
 }
 
 + (id)contextMenuBarButtonWithTarget:(id)arg1 action:(SEL)arg2;
+@property(nonatomic) struct UIEdgeInsets spt_alignmentRectInsets; // @synthesize spt_alignmentRectInsets=_spt_alignmentRectInsets;
+- (struct UIEdgeInsets)alignmentRectInsets;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

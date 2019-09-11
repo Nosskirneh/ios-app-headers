@@ -8,70 +8,74 @@
 
 #import "GLUEThemeObserver-Protocol.h"
 #import "SPContentInsetViewController-Protocol.h"
-#import "SPTFreeTierCollectionEntityPage-Protocol.h"
-#import "SPTFreeTierCollectionEntityViewModelDelegate-Protocol.h"
 #import "SPTFreeTierCollectionSongCellConfiguratorDelegate-Protocol.h"
+#import "SPTFreeTierCollectionSongsViewModelDelegate-Protocol.h"
 #import "SPTNavigationControllerNavigationBarState-Protocol.h"
 #import "SPTOfflineSwitchDelegate-Protocol.h"
 #import "SPTPageController-Protocol.h"
 #import "UITableViewDataSource-Protocol.h"
 #import "UITableViewDelegate-Protocol.h"
 
-@class GLUEEmptyStateView, NSLayoutConstraint, NSString, NSURL, SPTEntityHeaderViewController, SPTFreeTierCollectionGLUETheme, SPTFreeTierCollectionOfflineSwitchFactory, SPTFreeTierCollectionSongCellConfigurator, SPTProgressView, SPTTableView, SPTTableViewOfflineSwitchCell;
-@protocol GLUEImageLoader, SPTAlertController, SPTFreeTierCollectionEntityPageDelegate, SPTFreeTierCollectionEntityPageScrollToTopDelegate, SPTFreeTierCollectionSongsViewModel, SPTPageContainer, SPTSortingFilteringUIFactory, SPTViewLogger;
+@class GLUEEmptyStateView, NSString, NSURL, SPTEntityHeaderViewController, SPTFreeTierCollectionGLUETheme, SPTFreeTierCollectionOfflineSwitchFactory, SPTFreeTierCollectionSongCellConfigurator, SPTFreeTierCollectionSongsHeaderViewController, SPTFreeTierCollectionSongsTableView, SPTProgressView, SPTTableViewOfflineSwitchCell;
+@protocol GLUEImageLoader, SPTAlertController, SPTFreeTierCollectionSongsViewModel, SPTPageContainer, SPTShareDragDelegateFactory, SPTSortingFilteringUIFactory, SPTViewLogger, UITableViewDragDelegate;
 
-@interface SPTFreeTierCollectionSongsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, SPTFreeTierCollectionSongCellConfiguratorDelegate, SPTNavigationControllerNavigationBarState, SPContentInsetViewController, SPTOfflineSwitchDelegate, GLUEThemeObserver, SPTFreeTierCollectionEntityPage, SPTFreeTierCollectionEntityViewModelDelegate, SPTPageController>
+@interface SPTFreeTierCollectionSongsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, SPTFreeTierCollectionSongCellConfiguratorDelegate, SPTNavigationControllerNavigationBarState, SPContentInsetViewController, SPTOfflineSwitchDelegate, GLUEThemeObserver, SPTFreeTierCollectionSongsViewModelDelegate, SPTPageController>
 {
     _Bool _contextMenuToBePresented;
-    id <SPTFreeTierCollectionEntityPageDelegate> delegate;
-    id <SPTFreeTierCollectionEntityPageScrollToTopDelegate> scrollDelegate;
-    SPTTableView *_tableView;
+    SPTFreeTierCollectionSongsTableView *_tableView;
     SPTProgressView *_progressView;
     SPTFreeTierCollectionGLUETheme *_theme;
     id <SPTFreeTierCollectionSongsViewModel> _viewModel;
     id <GLUEImageLoader> _imageLoader;
     SPTFreeTierCollectionSongCellConfigurator *_cellConfigurator;
+    SPTFreeTierCollectionSongsHeaderViewController *_headerViewController;
     SPTEntityHeaderViewController *_headerView;
     GLUEEmptyStateView *_emptyView;
     GLUEEmptyStateView *_noResultEmptyView;
     id <SPTViewLogger> _viewLogger;
-    NSLayoutConstraint *_bottomConstraint;
     id <SPTAlertController> _alertController;
     SPTFreeTierCollectionOfflineSwitchFactory *_offlineSwitchFactory;
     SPTTableViewOfflineSwitchCell *_offlineSwitchCell;
     id <SPTSortingFilteringUIFactory> _sortingFilteringUIFactory;
+    id <SPTShareDragDelegateFactory> _shareDragDelegateFactory;
+    id <UITableViewDragDelegate> _dragDelegateHolder;
 }
 
+@property(retain, nonatomic) id <UITableViewDragDelegate> dragDelegateHolder; // @synthesize dragDelegateHolder=_dragDelegateHolder;
+@property(retain, nonatomic) id <SPTShareDragDelegateFactory> shareDragDelegateFactory; // @synthesize shareDragDelegateFactory=_shareDragDelegateFactory;
 @property(nonatomic, getter=isContextMenuToBePresented) _Bool contextMenuToBePresented; // @synthesize contextMenuToBePresented=_contextMenuToBePresented;
 @property(retain, nonatomic) id <SPTSortingFilteringUIFactory> sortingFilteringUIFactory; // @synthesize sortingFilteringUIFactory=_sortingFilteringUIFactory;
 @property(retain, nonatomic) SPTTableViewOfflineSwitchCell *offlineSwitchCell; // @synthesize offlineSwitchCell=_offlineSwitchCell;
 @property(readonly, nonatomic) SPTFreeTierCollectionOfflineSwitchFactory *offlineSwitchFactory; // @synthesize offlineSwitchFactory=_offlineSwitchFactory;
 @property(retain, nonatomic) id <SPTAlertController> alertController; // @synthesize alertController=_alertController;
-@property(retain, nonatomic) NSLayoutConstraint *bottomConstraint; // @synthesize bottomConstraint=_bottomConstraint;
 @property(retain, nonatomic) id <SPTViewLogger> viewLogger; // @synthesize viewLogger=_viewLogger;
 @property(retain, nonatomic) GLUEEmptyStateView *noResultEmptyView; // @synthesize noResultEmptyView=_noResultEmptyView;
 @property(retain, nonatomic) GLUEEmptyStateView *emptyView; // @synthesize emptyView=_emptyView;
 @property(retain, nonatomic) SPTEntityHeaderViewController *headerView; // @synthesize headerView=_headerView;
+@property(retain, nonatomic) SPTFreeTierCollectionSongsHeaderViewController *headerViewController; // @synthesize headerViewController=_headerViewController;
 @property(retain, nonatomic) SPTFreeTierCollectionSongCellConfigurator *cellConfigurator; // @synthesize cellConfigurator=_cellConfigurator;
 @property(retain, nonatomic) id <GLUEImageLoader> imageLoader; // @synthesize imageLoader=_imageLoader;
 @property(retain, nonatomic) id <SPTFreeTierCollectionSongsViewModel> viewModel; // @synthesize viewModel=_viewModel;
 @property(retain, nonatomic) SPTFreeTierCollectionGLUETheme *theme; // @synthesize theme=_theme;
 @property(retain, nonatomic) SPTProgressView *progressView; // @synthesize progressView=_progressView;
-@property(retain, nonatomic) SPTTableView *tableView; // @synthesize tableView=_tableView;
-@property(nonatomic) __weak id <SPTFreeTierCollectionEntityPageScrollToTopDelegate> scrollDelegate; // @synthesize scrollDelegate;
-@property(nonatomic) __weak id <SPTFreeTierCollectionEntityPageDelegate> delegate; // @synthesize delegate;
+@property(retain, nonatomic) SPTFreeTierCollectionSongsTableView *tableView; // @synthesize tableView=_tableView;
 - (void).cxx_destruct;
-@property(readonly, nonatomic) NSString *logContext;
+- (void)closeRecommendedTracksExplanation;
+- (id)logContext;
 - (void)themeUpdated:(id)arg1;
 @property(readonly, nonatomic, getter=spt_pageURI) NSURL *pageURI;
 @property(readonly, nonatomic, getter=spt_pageIdentifier) NSString *pageIdentifier;
 - (unsigned long long)preferredNavigationBarState;
 - (unsigned long long)offlineSwitchCellOfflineAvailability:(id)arg1;
 - (void)offlineSwitchCellDidChangeState:(id)arg1 isOn:(_Bool)arg2;
-- (void)entityViewModel:(id)arg1 error:(id)arg2;
-- (void)entityViewModelDidUpdate:(id)arg1;
+- (void)songsViewModel:(id)arg1 error:(id)arg2;
+- (void)songsViewModelDidChange:(id)arg1;
 - (void)handleEmptyView;
+- (void)scrollViewDidScrollToTop:(id)arg1;
+- (_Bool)scrollViewShouldScrollToTop:(id)arg1;
 - (void)actionForSectionHeaderWithSongCellConfigurator:(id)arg1;
+- (void)songCellConfigurator:(id)arg1 didTapOnEntitySectionHeader:(id)arg2 withViewModel:(id)arg3;
+- (void)songCellConfigurator:(id)arg1 didSwipeCell:(id)arg2;
 - (void)songCellConfigurator:(id)arg1 didEndAudioPreview:(id)arg2;
 - (void)songCellConfigurator:(id)arg1 didStartAudioPreview:(id)arg2;
 - (void)songCellConfigurator:(id)arg1 trackPreview:(id)arg2;
@@ -98,7 +102,7 @@
 - (void)viewWillAppear:(_Bool)arg1;
 - (void)viewDidLoad;
 - (void)dealloc;
-- (id)initWithViewModel:(id)arg1 theme:(id)arg2 collectionConfiguration:(id)arg3 imageLoader:(id)arg4 audioPreviewModelFactory:(id)arg5 audioPreviewUIFactory:(id)arg6 emptyView:(id)arg7 viewLogger:(id)arg8 alertController:(id)arg9 offlineSwitchFactory:(id)arg10 sortingFilteringUIFactory:(id)arg11;
+- (id)initWithViewModel:(id)arg1 theme:(id)arg2 collectionConfiguration:(id)arg3 imageLoader:(id)arg4 audioPreviewModelFactory:(id)arg5 audioPreviewUIFactory:(id)arg6 preCurationUIFactory:(id)arg7 emptyView:(id)arg8 viewLogger:(id)arg9 alertController:(id)arg10 offlineSwitchFactory:(id)arg11 sortingFilteringUIFactory:(id)arg12 shelves:(id)arg13 shareDragDelegateFactory:(id)arg14;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

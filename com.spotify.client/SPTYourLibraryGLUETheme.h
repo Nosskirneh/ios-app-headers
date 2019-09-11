@@ -10,6 +10,7 @@
 {
 }
 
+- (id)offlineBannerStyle;
 - (id)tabControlStyle;
 - (id)groupTabControlStyle;
 - (id)headerViewStyle;

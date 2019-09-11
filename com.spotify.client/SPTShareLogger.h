@@ -21,6 +21,7 @@
 @property(retain, nonatomic) id <SPTLogCenter> logCenter; // @synthesize logCenter=_logCenter;
 - (void).cxx_destruct;
 - (void)logMessageWithSessionId:(id)arg1 userIntent:(id)arg2 interactionType:(id)arg3 result:(id)arg4 shareData:(id)arg5 textChanged:(_Bool)arg6 sourcePageId:(id)arg7 destinationId:(id)arg8 destinationIndex:(long long)arg9 shareBrowselinkId:(id)arg10;
+- (void)logDragDropActionSucceededWithShareURI:(id)arg1 logContext:(id)arg2;
 - (void)logOverflowMenuActionDeeplinkWithSessionId:(id)arg1 shareData:(id)arg2 shareBrowselinkId:(id)arg3 activityType:(id)arg4;
 - (void)logOverflowMenuActionCancelledWithSessionId:(id)arg1 shareData:(id)arg2;
 - (void)logTwitterActionCancelledWithSessionId:(id)arg1 shareData:(id)arg2;
@@ -39,6 +40,7 @@
 - (void)logFacebookActionTappedWithSessionId:(id)arg1 shareData:(id)arg2;
 - (void)logLINEActionTappedWithSessionId:(id)arg1 shareData:(id)arg2 shareBrowselinkId:(id)arg3;
 - (void)logFBMessengerActionTappedWithSessionId:(id)arg1 shareData:(id)arg2 shareBrowselinkId:(id)arg3;
+- (void)logTikTokAppActionTappedWithSessionId:(id)arg1 shareData:(id)arg2 shareBrowselinkId:(id)arg3;
 - (void)logWhatsAppActionTappedWithSessionId:(id)arg1 shareData:(id)arg2 shareBrowselinkId:(id)arg3;
 - (void)logSnapchatActionTappedWithSessionId:(id)arg1 shareData:(id)arg2 shareBrowselinkId:(id)arg3;
 - (void)logFacebookStoriesActionSucceededWithSessionId:(id)arg1 shareData:(id)arg2 shareBrowselinkId:(id)arg3;

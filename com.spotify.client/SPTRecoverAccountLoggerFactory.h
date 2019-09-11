@@ -6,20 +6,20 @@
 
 #import <objc/NSObject.h>
 
-@protocol SPTAdjustUserTrackerProtocol, SPTLogCenter;
+@protocol SPTLogCenter, SPTLoginLogger;
 
 @interface SPTRecoverAccountLoggerFactory : NSObject
 {
-    id <SPTAdjustUserTrackerProtocol> _adjustTracker;
+    id <SPTLoginLogger> _logger;
     id <SPTLogCenter> _logCenter;
 }
 
 @property(readonly, nonatomic) id <SPTLogCenter> logCenter; // @synthesize logCenter=_logCenter;
-@property(readonly, nonatomic) id <SPTAdjustUserTrackerProtocol> adjustTracker; // @synthesize adjustTracker=_adjustTracker;
+@property(readonly, nonatomic) id <SPTLoginLogger> logger; // @synthesize logger=_logger;
 - (void).cxx_destruct;
-- (id)provideCollectEmailLogger;
-- (id)provideResetPasswordLogger;
-- (id)initWithAdjustTracker:(id)arg1 logCenter:(id)arg2;
+- (id)provideBannerLogger;
+- (id)provideSetNewPasswordLogger;
+- (id)initWithLogger:(id)arg1 logCenter:(id)arg2;
 
 @end
 

@@ -6,10 +6,9 @@
 
 #import "SPTService-Protocol.h"
 
-@protocol SPTAccountAutoTrialStateManager, SPTAccountProductActivationController, SPTAccountProductInformationController;
+@protocol SPTAccountProductActivationController, SPTAccountProductInformationController;
 
 @protocol SPTAccountService <SPTService>
-- (id <SPTAccountAutoTrialStateManager>)provideAutoTrialStateManager;
 - (id <SPTAccountProductInformationController>)provideProductInformationController;
 - (id <SPTAccountProductActivationController>)provideProductActivationController;
 @end

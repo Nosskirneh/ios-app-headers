@@ -6,22 +6,29 @@
 
 #import <objc/NSObject.h>
 
-#import "EXP_SPTHubRemoteContentOperationURLResolver-Protocol.h"
+#import "SPTHubRemoteContentOperationURLResolver-Protocol.h"
 
 @class NSString, NSURL;
-@protocol SPTOnDemandSet;
+@protocol SPTOnDemandSet, SPTOnDemandTrialService, SPTProductState;
 
-@interface SPTFreeTierArtistHubRemoteURLResolver : NSObject <EXP_SPTHubRemoteContentOperationURLResolver>
+@interface SPTFreeTierArtistHubRemoteURLResolver : NSObject <SPTHubRemoteContentOperationURLResolver>
 {
     NSURL *_viewURI;
     id <SPTOnDemandSet> _onDemandSet;
+    id <SPTProductState> _productState;
+    id <SPTOnDemandTrialService> _onDemandTrialService;
 }
 
+@property(readonly, nonatomic) __weak id <SPTOnDemandTrialService> onDemandTrialService; // @synthesize onDemandTrialService=_onDemandTrialService;
+@property(readonly, nonatomic) id <SPTProductState> productState; // @synthesize productState=_productState;
 @property(readonly, nonatomic) id <SPTOnDemandSet> onDemandSet; // @synthesize onDemandSet=_onDemandSet;
 @property(readonly, copy, nonatomic) NSURL *viewURI; // @synthesize viewURI=_viewURI;
 - (void).cxx_destruct;
+- (_Bool)isOnDemandTrialEnabled;
+- (_Bool)isVideoFeatureEnabled;
+- (_Bool)isShowsCollectionFeatureEnabled;
 - (id)resolveContentURL;
-- (id)initWithViewURI:(id)arg1 onDemandSet:(id)arg2;
+- (id)initWithViewURI:(id)arg1 onDemandSet:(id)arg2 onDemandTrialService:(id)arg3 productState:(id)arg4;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

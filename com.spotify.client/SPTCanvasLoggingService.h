@@ -15,6 +15,7 @@
 
 @property(retain, nonatomic) id <SPTLogCenter> logCenter; // @synthesize logCenter=_logCenter;
 - (void).cxx_destruct;
+- (void)logSettingsMenuCanvasEnabled:(_Bool)arg1 itemIndex:(int)arg2;
 - (void)logDidDisplayCanvasVideoForContentURI:(id)arg1;
 - (void)logDidDisplayCanvasCoverForContentURI:(id)arg1;
 - (id)initWithLogCenter:(id)arg1;

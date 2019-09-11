@@ -6,11 +6,9 @@
 
 #import "IDService.h"
 
-#import "IDEtchSessionMapDelegate-Protocol.h"
+@class NSLock, NSOperationQueue;
 
-@class NSLock, NSOperationQueue, NSString;
-
-@interface IDMapService : IDService <IDEtchSessionMapDelegate>
+@interface IDMapService : IDService
 {
     NSLock *_mapOperationsQueueAccessLock;
     NSOperationQueue *_mapOperationsQueue;
@@ -21,7 +19,7 @@
 - (void).cxx_destruct;
 - (void)treadSafeAddOperations:(id)arg1;
 - (void)threadSafeAddOperation:(id)arg1;
-- (void)session:(id)arg1 mapService:(long long)arg2 handleMapEvent:(unsigned long long)arg3 transferId:(long long)arg4;
+- (void)session:(id)arg1 mapService:(long long)arg2 handleMapEvent:(id)arg3 transferId:(long long)arg4;
 - (void)blockQueueUntilReadyEvent;
 - (void)clearLocationHighlight;
 - (void)highlightLocation:(id)arg1;
@@ -33,12 +31,6 @@
 - (void)importOverlay:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (void)dealloc;
 - (id)initWithEtchSession:(id)arg1 handle:(long long)arg2;
-
-// Remaining properties
-@property(readonly, copy) NSString *debugDescription;
-@property(readonly, copy) NSString *description;
-@property(readonly) unsigned long long hash;
-@property(readonly) Class superclass;
 
 @end
 

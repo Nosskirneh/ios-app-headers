@@ -24,7 +24,6 @@
 - (void)setText:(id)arg1;
 - (void)glue_applyStyle:(id)arg1;
 - (id)initWithFrame:(struct CGRect)arg1;
-- (void)setText:(id)arg1 imageAttachment:(id)arg2;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

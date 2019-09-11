@@ -9,24 +9,26 @@
 #import "SPTAccessoryStateObserver-Protocol.h"
 #import "SPTAdContextManagerObserver-Protocol.h"
 #import "SPTAdFocusManagerObserver-Protocol.h"
-#import "SPTAdMovementObserver-Protocol.h"
+#import "SPTAdsBaseMovementObserver-Protocol.h"
 
-@class NSString, SPTAdContextManager, SPTAdCosmosBridge, SPTAdFocusManager, SPTAdMovementLogger;
-@protocol SPTAccessoryStateManager;
+@class NSString, NSURL, SPTAdContextManager, SPTAdFocusManager;
+@protocol SPTAccessoryStateManager, SPTAdsBaseCosmosBridge, SPTAdsBaseMovementLogger;
 
-@interface SPTAdStateLogger : NSObject <SPTAdContextManagerObserver, SPTAccessoryStateObserver, SPTAdFocusManagerObserver, SPTAdMovementObserver>
+@interface SPTAdStateLogger : NSObject <SPTAdContextManagerObserver, SPTAccessoryStateObserver, SPTAdFocusManagerObserver, SPTAdsBaseMovementObserver>
 {
     SPTAdContextManager *_adContextManager;
-    SPTAdCosmosBridge *_cosmosBridge;
+    id <SPTAdsBaseCosmosBridge> _cosmosBridge;
     id <SPTAccessoryStateManager> _accessoryStateManager;
     SPTAdFocusManager *_adFocusManager;
-    SPTAdMovementLogger *_movementLogger;
+    id <SPTAdsBaseMovementLogger> _movementLogger;
+    NSURL *_prerollContextURL;
 }
 
-@property(nonatomic) __weak SPTAdMovementLogger *movementLogger; // @synthesize movementLogger=_movementLogger;
+@property(retain, nonatomic) NSURL *prerollContextURL; // @synthesize prerollContextURL=_prerollContextURL;
+@property(nonatomic) __weak id <SPTAdsBaseMovementLogger> movementLogger; // @synthesize movementLogger=_movementLogger;
 @property(nonatomic) __weak SPTAdFocusManager *adFocusManager; // @synthesize adFocusManager=_adFocusManager;
 @property(nonatomic) __weak id <SPTAccessoryStateManager> accessoryStateManager; // @synthesize accessoryStateManager=_accessoryStateManager;
-@property(nonatomic) __weak SPTAdCosmosBridge *cosmosBridge; // @synthesize cosmosBridge=_cosmosBridge;
+@property(nonatomic) __weak id <SPTAdsBaseCosmosBridge> cosmosBridge; // @synthesize cosmosBridge=_cosmosBridge;
 @property(nonatomic) __weak SPTAdContextManager *adContextManager; // @synthesize adContextManager=_adContextManager;
 - (void).cxx_destruct;
 - (void)passAccessoryStateToCosmos;
@@ -34,8 +36,8 @@
 - (void)didReceiveDeviceMotionUpdate:(_Bool)arg1;
 - (void)accessoryStateManager:(id)arg1 accessoryDidDisconnect:(id)arg2;
 - (void)accessoryStateManager:(id)arg1 accessoryDidConnect:(id)arg2;
-- (void)adFocusManagerDidResignActive:(id)arg1;
-- (void)adFocusManagerDidBecomeActive:(id)arg1;
+- (void)adFocusManagerDidEnterBackground:(id)arg1;
+- (void)adFocusManagerWillEnterForeground:(id)arg1;
 - (void)adContextManager:(id)arg1 didChangeNavigationContext:(id)arg2 fromNavigationContext:(id)arg3;
 - (void)removeDeviceMovementObserver;
 - (void)addDeviceMovementObserver;

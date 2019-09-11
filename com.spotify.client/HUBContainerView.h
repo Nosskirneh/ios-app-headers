@@ -6,16 +6,36 @@
 
 #import <UIKit/UIView.h>
 
-@class UIScrollView;
+#import "HUBViewContentOffsetObserver-Protocol.h"
 
-@interface HUBContainerView : UIView
+@class HUBComponentRegistry, HUBHeaderView, HUBOverlayView, HUBView;
+@protocol HUBComponentLayoutManager, HUBViewModel;
+
+@interface HUBContainerView : UIView <HUBViewContentOffsetObserver>
 {
-    UIScrollView *_contentView;
+    HUBHeaderView *_headerView;
+    HUBView *_hubView;
+    HUBOverlayView *_overlayView;
+    id <HUBViewModel> _viewModel;
+    id <HUBComponentLayoutManager> _componentLayoutManager;
+    HUBComponentRegistry *_componentRegistry;
+    struct CGPoint _headerViewComponentContentOffset;
 }
 
-@property(readonly, nonatomic) UIScrollView *contentView; // @synthesize contentView=_contentView;
+@property(retain, nonatomic) HUBComponentRegistry *componentRegistry; // @synthesize componentRegistry=_componentRegistry;
+@property(retain, nonatomic) id <HUBComponentLayoutManager> componentLayoutManager; // @synthesize componentLayoutManager=_componentLayoutManager;
+@property(nonatomic) struct CGPoint headerViewComponentContentOffset; // @synthesize headerViewComponentContentOffset=_headerViewComponentContentOffset;
+@property(retain, nonatomic) id <HUBViewModel> viewModel; // @synthesize viewModel=_viewModel;
+@property(readonly, nonatomic) HUBOverlayView *overlayView; // @synthesize overlayView=_overlayView;
+@property(readonly, nonatomic) HUBView *hubView; // @synthesize hubView=_hubView;
+@property(readonly, nonatomic) HUBHeaderView *headerView; // @synthesize headerView=_headerView;
 - (void).cxx_destruct;
-@property(readonly, nonatomic, getter=isContentViewScrolling) _Bool contentViewScrolling;
+- (_Bool)isAccessibilityElement;
+- (void)hubView:(id)arg1 contentOffsetDidChange:(struct CGPoint)arg2;
+- (double)verticalMarginBetweenHeaderAndFirstBodyComponent;
+- (void)layoutSubviews;
+- (void)setBackgroundColor:(id)arg1;
+- (id)initWithFrame:(struct CGRect)arg1 imageLoaderFactory:(id)arg2 componentLayoutManager:(id)arg3 componentRegistry:(id)arg4 componentEventHandler:(id)arg5;
 
 @end
 

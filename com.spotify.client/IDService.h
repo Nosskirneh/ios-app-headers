@@ -6,17 +6,17 @@
 
 #import <objc/NSObject.h>
 
-@class IDEtchSession, NSOperationQueue;
+@class BMWRemotingSession, NSOperationQueue;
 
 @interface IDService : NSObject
 {
     long long _handle;
-    IDEtchSession *_etchSession;
+    BMWRemotingSession *_etchSession;
     NSOperationQueue *_queue;
 }
 
 @property(readonly) NSOperationQueue *queue; // @synthesize queue=_queue;
-@property(readonly) __weak IDEtchSession *etchSession; // @synthesize etchSession=_etchSession;
+@property(readonly) __weak BMWRemotingSession *etchSession; // @synthesize etchSession=_etchSession;
 @property(readonly) long long handle; // @synthesize handle=_handle;
 - (void).cxx_destruct;
 - (id)description;

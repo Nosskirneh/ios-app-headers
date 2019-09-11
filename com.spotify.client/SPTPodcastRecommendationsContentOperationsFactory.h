@@ -7,18 +7,18 @@
 #import <objc/NSObject.h>
 
 @class SPTPodcastRecommendationsSectionTitleContentOperation;
-@protocol EXP_SPTHubContentOperationFactory, EXP_SPTHubRemoteContentOperationURLResolver;
+@protocol SPTHubContentOperationFactory, SPTHubRemoteContentOperationURLResolver;
 
 @interface SPTPodcastRecommendationsContentOperationsFactory : NSObject
 {
-    id <EXP_SPTHubContentOperationFactory> _hubContentOperationFactory;
-    id <EXP_SPTHubRemoteContentOperationURLResolver> _URLResolver;
+    id <SPTHubContentOperationFactory> _hubContentOperationFactory;
+    id <SPTHubRemoteContentOperationURLResolver> _URLResolver;
     SPTPodcastRecommendationsSectionTitleContentOperation *_titleContentOperation;
 }
 
 @property(readonly, nonatomic) SPTPodcastRecommendationsSectionTitleContentOperation *titleContentOperation; // @synthesize titleContentOperation=_titleContentOperation;
-@property(readonly, nonatomic) id <EXP_SPTHubRemoteContentOperationURLResolver> URLResolver; // @synthesize URLResolver=_URLResolver;
-@property(readonly, nonatomic) id <EXP_SPTHubContentOperationFactory> hubContentOperationFactory; // @synthesize hubContentOperationFactory=_hubContentOperationFactory;
+@property(readonly, nonatomic) id <SPTHubRemoteContentOperationURLResolver> URLResolver; // @synthesize URLResolver=_URLResolver;
+@property(readonly, nonatomic) id <SPTHubContentOperationFactory> hubContentOperationFactory; // @synthesize hubContentOperationFactory=_hubContentOperationFactory;
 - (void).cxx_destruct;
 - (id)createContentOperationsForReferrerIdentifier:(id)arg1;
 - (id)initWithHubContentOperationFactory:(id)arg1 URLResolver:(id)arg2 titleContentOperation:(id)arg3;

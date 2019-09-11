@@ -28,21 +28,21 @@
 }
 
 + (id)messageWithCdnHost:(id)arg1 timestamp:(id)arg2 userAgent:(id)arg3 status:(long long)arg4 verb:(id)arg5 uri:(id)arg6 version:(id)arg7 xCache:(id)arg8 xCacheHits:(id)arg9 contentLength:(long long)arg10 requestTime:(long long)arg11 playbackId:(id)arg12 requestId:(id)arg13 requestType:(id)arg14 availableCdns:(id)arg15;
-@property(retain, nonatomic) NSString *availableCdnsValue; // @synthesize availableCdnsValue=_availableCdnsValue;
-@property(retain, nonatomic) NSString *requestTypeValue; // @synthesize requestTypeValue=_requestTypeValue;
-@property(retain, nonatomic) NSString *requestIdValue; // @synthesize requestIdValue=_requestIdValue;
-@property(retain, nonatomic) NSData *playbackIdValue; // @synthesize playbackIdValue=_playbackIdValue;
+@property(copy, nonatomic) NSString *availableCdnsValue; // @synthesize availableCdnsValue=_availableCdnsValue;
+@property(copy, nonatomic) NSString *requestTypeValue; // @synthesize requestTypeValue=_requestTypeValue;
+@property(copy, nonatomic) NSString *requestIdValue; // @synthesize requestIdValue=_requestIdValue;
+@property(copy, nonatomic) NSData *playbackIdValue; // @synthesize playbackIdValue=_playbackIdValue;
 @property(nonatomic) long long requestTimeValue; // @synthesize requestTimeValue=_requestTimeValue;
 @property(nonatomic) long long contentLengthValue; // @synthesize contentLengthValue=_contentLengthValue;
-@property(retain, nonatomic) NSString *xCacheHitsValue; // @synthesize xCacheHitsValue=_xCacheHitsValue;
-@property(retain, nonatomic) NSString *xCacheValue; // @synthesize xCacheValue=_xCacheValue;
-@property(retain, nonatomic) NSString *versionValue; // @synthesize versionValue=_versionValue;
-@property(retain, nonatomic) NSString *uriValue; // @synthesize uriValue=_uriValue;
-@property(retain, nonatomic) NSString *verbValue; // @synthesize verbValue=_verbValue;
+@property(copy, nonatomic) NSString *xCacheHitsValue; // @synthesize xCacheHitsValue=_xCacheHitsValue;
+@property(copy, nonatomic) NSString *xCacheValue; // @synthesize xCacheValue=_xCacheValue;
+@property(copy, nonatomic) NSString *versionValue; // @synthesize versionValue=_versionValue;
+@property(copy, nonatomic) NSString *uriValue; // @synthesize uriValue=_uriValue;
+@property(copy, nonatomic) NSString *verbValue; // @synthesize verbValue=_verbValue;
 @property(nonatomic) long long statusValue; // @synthesize statusValue=_statusValue;
-@property(retain, nonatomic) NSString *userAgentValue; // @synthesize userAgentValue=_userAgentValue;
-@property(retain, nonatomic) NSString *timestampValue; // @synthesize timestampValue=_timestampValue;
-@property(retain, nonatomic) NSString *cdnHostValue; // @synthesize cdnHostValue=_cdnHostValue;
+@property(copy, nonatomic) NSString *userAgentValue; // @synthesize userAgentValue=_userAgentValue;
+@property(copy, nonatomic) NSString *timestampValue; // @synthesize timestampValue=_timestampValue;
+@property(copy, nonatomic) NSString *cdnHostValue; // @synthesize cdnHostValue=_cdnHostValue;
 - (void).cxx_destruct;
 - (_Bool)isEqual:(id)arg1;
 - (unsigned long long)hash;

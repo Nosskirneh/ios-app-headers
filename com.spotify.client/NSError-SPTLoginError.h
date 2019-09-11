@@ -7,7 +7,8 @@
 #import <Foundation/NSError.h>
 
 @interface NSError (SPTLoginError)
-+ (id)spt_loginErrorWithCode:(unsigned long long)arg1;
+- (_Bool)spt_isFacebookUserDoesNotExistError;
+- (_Bool)spt_isUserDidCancelFacebookAuthenticationError;
 - (_Bool)spt_isNetworkDisabledError;
 - (_Bool)spt_isInAuthenticationErrorDomain;
 @end

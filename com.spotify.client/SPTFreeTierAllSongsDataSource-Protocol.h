@@ -6,12 +6,12 @@
 
 #import "NSObject-Protocol.h"
 
-@class NSArray, NSIndexPath, NSString, NSURL, UIView;
+@class NSIndexPath, NSString, NSURL, UIView;
 @protocol SPTFreeTierAllSongsDataSourceDelegate, SPTFreeTierAllSongsHeaderEntityViewModel;
 
 @protocol SPTFreeTierAllSongsDataSource <NSObject>
 @property(nonatomic) __weak id <SPTFreeTierAllSongsDataSourceDelegate> dataSourceDelegate;
-- (NSArray *)artistsForIndexPath:(NSIndexPath *)arg1;
+- (void)trackContextMenuDataForIndexPath:(NSIndexPath *)arg1 completion:(void (^)(id <SPTFreeTierAllSongsTrackContextMenuData>))arg2;
 - (NSString *)albumNameForIndexPath:(NSIndexPath *)arg1;
 - (NSURL *)trackURIForIndexPath:(NSIndexPath *)arg1;
 - (_Bool)isTrackPremiumOnlyForIndexPath:(NSIndexPath *)arg1;
@@ -35,8 +35,6 @@
 @optional
 @property(readonly, nonatomic) id <SPTFreeTierAllSongsHeaderEntityViewModel> headerEntityViewModel;
 @property(readonly, nonatomic) _Bool hasHeader;
-@property(readonly, copy, nonatomic) NSString *updateDialogMessageForAllSongs;
-@property(readonly, nonatomic) _Bool shouldDisplayUpdateDialogForAllSongs;
 - (void)playlistContainsTrackURL:(NSURL *)arg1 completion:(void (^)(_Bool))arg2;
 - (NSString *)toggleNegativeFeedbackForIndexPath:(NSIndexPath *)arg1;
 - (NSString *)togglePositiveFeedbackForIndexPath:(NSIndexPath *)arg1;

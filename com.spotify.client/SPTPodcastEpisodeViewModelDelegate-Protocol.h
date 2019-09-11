@@ -10,6 +10,6 @@
 
 @protocol SPTPodcastEpisodeViewModelDelegate <NSObject>
 - (void)viewModelUpdatedPlaybackState:(SPTPodcastEpisodeViewModel *)arg1;
-- (void)viewModel:(SPTPodcastEpisodeViewModel *)arg1 episodeDidFinishLoadingWithError:(NSError *)arg2;
+- (void)viewModel:(SPTPodcastEpisodeViewModel *)arg1 didUpdateWithError:(NSError *)arg2;
 @end
 

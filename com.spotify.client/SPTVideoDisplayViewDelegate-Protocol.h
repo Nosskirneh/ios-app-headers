@@ -10,6 +10,5 @@
 
 @protocol SPTVideoDisplayViewDelegate <NSObject>
 - (void)videoDisplayView:(SPTVideoDisplayView *)arg1 videoRectChanged:(struct CGRect)arg2;
-- (void)videoDisplayView:(SPTVideoDisplayView *)arg1 attachedStateChanged:(_Bool)arg2;
 @end
 

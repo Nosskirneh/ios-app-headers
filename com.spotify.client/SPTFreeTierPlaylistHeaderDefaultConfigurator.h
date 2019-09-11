@@ -13,7 +13,7 @@
 #import "SPTImageLoaderDelegate-Protocol.h"
 
 @class GLUEButton, GLUELabel, NSString, NSURL, SPTFreeTierPlaylistGLUETheme, SPTFreeTierPlaylistHeaderContentView, SPTFreeTierPlaylistHeaderGradientBackgroundView, SPTFreeTierPlaylistHeaderMetadataView, SPTFreeTierPlaylistLogger, UIView;
-@protocol SPTCollectionPlatformConfiguration, SPTFreeTierPlaylistViewModel, SPTGaiaUserInterfaceContextObserver, SPTImageLoader;
+@protocol SPTCollectionPlatformConfiguration, SPTFreeTierPlaylistDefaultHeaderViewModel, SPTFreeTierPlaylistFollowViewModel, SPTFreeTierPlaylistPlayViewModel, SPTImageLoader;
 
 @interface SPTFreeTierPlaylistHeaderDefaultConfigurator : NSObject <SPTImageLoaderDelegate, SPTFreeTierPlaylistHeaderContentViewDelegate, SPTFreeTierPlaylistHeaderMetadataViewDelegate, SPTFreeTierPlaylistHeaderPageContainerViewDelegate, SPTFreeTierPlaylistHeaderConfigurator>
 {
@@ -23,11 +23,12 @@
     GLUEButton *_playButton;
     id <SPTCollectionPlatformConfiguration> _collectionConfiguration;
     SPTFreeTierPlaylistGLUETheme *_theme;
-    id <SPTFreeTierPlaylistViewModel> _playlistViewModel;
     SPTFreeTierPlaylistLogger *_logger;
     id <SPTImageLoader> _imageLoader;
     UIView *_filterSearchBar;
-    id <SPTGaiaUserInterfaceContextObserver> _gaiaObserverService;
+    id <SPTFreeTierPlaylistDefaultHeaderViewModel> _defaultHeaderViewModel;
+    id <SPTFreeTierPlaylistPlayViewModel> _playViewModel;
+    id <SPTFreeTierPlaylistFollowViewModel> _followViewModel;
     NSURL *_lastImageURL;
     NSURL *_lastProfileImageURL;
     GLUELabel *_navigationTitleView;
@@ -36,11 +37,12 @@
 @property(retain, nonatomic) GLUELabel *navigationTitleView; // @synthesize navigationTitleView=_navigationTitleView;
 @property(retain, nonatomic) NSURL *lastProfileImageURL; // @synthesize lastProfileImageURL=_lastProfileImageURL;
 @property(retain, nonatomic) NSURL *lastImageURL; // @synthesize lastImageURL=_lastImageURL;
-@property(readonly, nonatomic) id <SPTGaiaUserInterfaceContextObserver> gaiaObserverService; // @synthesize gaiaObserverService=_gaiaObserverService;
+@property(readonly, nonatomic) id <SPTFreeTierPlaylistFollowViewModel> followViewModel; // @synthesize followViewModel=_followViewModel;
+@property(readonly, nonatomic) id <SPTFreeTierPlaylistPlayViewModel> playViewModel; // @synthesize playViewModel=_playViewModel;
+@property(readonly, nonatomic) id <SPTFreeTierPlaylistDefaultHeaderViewModel> defaultHeaderViewModel; // @synthesize defaultHeaderViewModel=_defaultHeaderViewModel;
 @property(readonly, nonatomic) UIView *filterSearchBar; // @synthesize filterSearchBar=_filterSearchBar;
 @property(readonly, nonatomic) id <SPTImageLoader> imageLoader; // @synthesize imageLoader=_imageLoader;
 @property(readonly, nonatomic) SPTFreeTierPlaylistLogger *logger; // @synthesize logger=_logger;
-@property(readonly, nonatomic) id <SPTFreeTierPlaylistViewModel> playlistViewModel; // @synthesize playlistViewModel=_playlistViewModel;
 @property(readonly, nonatomic) SPTFreeTierPlaylistGLUETheme *theme; // @synthesize theme=_theme;
 @property(readonly, nonatomic) id <SPTCollectionPlatformConfiguration> collectionConfiguration; // @synthesize collectionConfiguration=_collectionConfiguration;
 @property(retain, nonatomic) GLUEButton *playButton; // @synthesize playButton=_playButton;
@@ -53,21 +55,19 @@
 - (void)contentViewDelegateDidPressFollowButton:(id)arg1;
 - (void)contentViewDelegateDidTapShuffleBadge:(id)arg1;
 - (void)imageLoader:(id)arg1 didLoadImage:(id)arg2 forURL:(id)arg3 loadTime:(double)arg4 context:(id)arg5;
-- (void)notifyGaiaThatHeaderIsPresented;
 - (void)headerDidScroll;
 - (void)updateHeaderPlayButton;
 - (void)updateMetadataView;
 - (void)updateContentViewWithImage:(id)arg1;
 - (void)updateContentView;
 - (void)updateImageInBackgroundAndContentView;
-- (id)createHeaderConfiguration;
 - (void)setupTitleView;
 - (id)supplementaryView;
 - (void)headerDidAppear;
 - (id)title;
 - (void)updateHeaderView:(id)arg1;
 - (id)createHeaderView;
-- (id)initWithPlaylistViewModel:(id)arg1 imageLoader:(id)arg2 collectionConfiguration:(id)arg3 filterSearchBar:(id)arg4 theme:(id)arg5 logger:(id)arg6 gaiaObserverService:(id)arg7;
+- (id)initWithHeaderViewModel:(id)arg1 playViewModel:(id)arg2 followViewModel:(id)arg3 imageLoader:(id)arg4 collectionConfiguration:(id)arg5 filterSearchBar:(id)arg6 theme:(id)arg7 logger:(id)arg8;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

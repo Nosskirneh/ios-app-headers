@@ -6,18 +6,19 @@
 
 #import <Foundation/NSURL.h>
 
+@class NSString;
+
 @interface NSURL (Search)
-+ (id)spt_searchHistoryURIForSearchString:(id)arg1;
-+ (id)spt_searchURIForSearchString:(id)arg1;
-+ (id)spt_searchAllResultsURLForSectionWithIdentifier:(id)arg1 searchTag:(id)arg2 searchString:(id)arg3;
-- (unsigned long long)spt_searchAllResultsComponentIndex;
-- (_Bool)spt_isSearchAutocompleteURL;
-- (_Bool)spt_isSearchResultsHubified;
-- (_Bool)spt_isUsingTheNewSeeAllSearchResultsFormat;
-- (_Bool)spt_isSearchAllResultsURL;
-- (_Bool)spt_isSearchNavigationURL;
-- (id)spt_searchTag;
-- (id)spt_searchSectionIdentifier;
-- (id)spt_searchString;
++ (id)spt_searchAutocompleteURI;
++ (id)spt_searchDrilldownURIWithSectionIdentifier:(id)arg1 query:(id)arg2;
++ (id)spt_searchURIWithQuery:(id)arg1;
+- (_Bool)spt_searchGetDrilldownURISectionIdentifier:(id *)arg1 query:(id *)arg2;
+- (_Bool)spt_searchGetURIQuery:(id *)arg1;
+@property(readonly, nonatomic, getter=spt_isSearchAutocompleteURI) _Bool isSearchAutocompleteURI;
+@property(readonly, nonatomic, getter=spt_isSearchDrilldownURI) _Bool isSearchDrilldownURI;
+@property(readonly, nonatomic, getter=spt_isSearchURI) _Bool isSearchURI;
+@property(readonly, copy, nonatomic, getter=spt_searchSectionIdentifier) NSString *searchSectionIdentifier;
+@property(readonly, copy, nonatomic, getter=spt_searchDrilldownQuery) NSString *searchDrilldownQuery;
+@property(readonly, copy, nonatomic, getter=spt_searchQuery) NSString *searchQuery;
 @end
 

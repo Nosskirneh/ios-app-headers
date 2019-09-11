@@ -6,7 +6,10 @@
 
 #import "NSObject-Protocol.h"
 
+@class NSString;
+
 @protocol SPTInAppMessageQAToolCardMessageControllerDelegate <NSObject>
+- (void)actionReceivedWithValue:(NSString *)arg1;
 - (void)dismissTriggerMessageContentUnit;
 - (_Bool)presentMessage;
 @end

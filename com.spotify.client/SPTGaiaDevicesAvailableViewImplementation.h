@@ -37,11 +37,10 @@
 @property(nonatomic) __weak id <SPTGaiaDevicesAvailableViewDelegate> delegate; // @synthesize delegate=_delegate;
 @property(nonatomic) struct CGSize iconSize; // @synthesize iconSize=_iconSize;
 - (void).cxx_destruct;
-- (void)viewModelDidUpdate;
+- (void)viewModelDidUpdateWithShouldAnimate:(_Bool)arg1;
 - (id)hitTest:(struct CGPoint)arg1 withEvent:(id)arg2;
 - (void)animateUpdate:(CDUnknownBlockType)arg1;
 - (void)updateIconSize;
-- (struct CGSize)intrinsicContentSize;
 - (void)changeColor:(id)arg1;
 - (id)devicesFont;
 - (void)updateContent;

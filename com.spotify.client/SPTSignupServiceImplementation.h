@@ -8,12 +8,12 @@
 
 #import "SPTLoginServiceObserver-Protocol.h"
 #import "SPTPageRegistryObserver-Protocol.h"
-#import "SPTService-Protocol.h"
+#import "SPTSignupService-Protocol.h"
 
 @class NSString, SPTAllocationContext, SPTLoginPerformanceLogging, SPTSignupConfigurationDataLoader, SPTSignupUserInfoModel;
-@protocol SPTContainerService, SPTContainerUIService, SPTDebugService, SPTGLUEService, SPTLoginService, SPTNetworkService, SPTPreSignupExperimentationService, SPTServiceManagerService, SPTURIDispatchService, SPTUserTrackingService;
+@protocol SPTContainerService, SPTContainerUIService, SPTDebugService, SPTGLUEService, SPTLoginLoggingService, SPTLoginService, SPTNetworkService, SPTPreSignupExperimentationService, SPTServiceManagerService, SPTURIDispatchService;
 
-@interface SPTSignupServiceImplementation : NSObject <SPTPageRegistryObserver, SPTLoginServiceObserver, SPTService>
+@interface SPTSignupServiceImplementation : NSObject <SPTPageRegistryObserver, SPTLoginServiceObserver, SPTSignupService>
 {
     id <SPTURIDispatchService> _URIDispatchService;
     id <SPTLoginService> _loginService;
@@ -22,9 +22,9 @@
     id <SPTContainerUIService> _containerUIService;
     id <SPTNetworkService> _networkService;
     id <SPTServiceManagerService> _serviceManagerService;
-    id <SPTUserTrackingService> _userTrackingService;
     id <SPTPreSignupExperimentationService> _experimentationService;
     id <SPTDebugService> _debugService;
+    id <SPTLoginLoggingService> _loggerService;
     SPTSignupUserInfoModel *_userInfoModel;
     SPTSignupConfigurationDataLoader *_configurationDataLoader;
     SPTLoginPerformanceLogging *_performanceLogging;
@@ -34,9 +34,9 @@
 @property(retain, nonatomic) SPTLoginPerformanceLogging *performanceLogging; // @synthesize performanceLogging=_performanceLogging;
 @property(retain, nonatomic) SPTSignupConfigurationDataLoader *configurationDataLoader; // @synthesize configurationDataLoader=_configurationDataLoader;
 @property(retain, nonatomic) SPTSignupUserInfoModel *userInfoModel; // @synthesize userInfoModel=_userInfoModel;
+@property(nonatomic) __weak id <SPTLoginLoggingService> loggerService; // @synthesize loggerService=_loggerService;
 @property(nonatomic) __weak id <SPTDebugService> debugService; // @synthesize debugService=_debugService;
 @property(nonatomic) __weak id <SPTPreSignupExperimentationService> experimentationService; // @synthesize experimentationService=_experimentationService;
-@property(nonatomic) __weak id <SPTUserTrackingService> userTrackingService; // @synthesize userTrackingService=_userTrackingService;
 @property(nonatomic) __weak id <SPTServiceManagerService> serviceManagerService; // @synthesize serviceManagerService=_serviceManagerService;
 @property(nonatomic) __weak id <SPTNetworkService> networkService; // @synthesize networkService=_networkService;
 @property(nonatomic) __weak id <SPTContainerUIService> containerUIService; // @synthesize containerUIService=_containerUIService;
@@ -47,14 +47,15 @@
 - (void).cxx_destruct;
 - (void)loginServiceWillLaunchLoginUI;
 - (void)pageRegistryDidUnregisterFeaturePages:(id)arg1;
+- (void)fetchSignupConfiguration;
+- (id)provideAllowedCallingCodes;
+- (id)navigationRouter;
 - (void)loadSignupConfiguration;
 - (id)provideStepThreeViewController;
-- (id)provideStepTwoViewController;
-- (id)provideStepOneViewController;
 - (id)provideFacebookConfirmationViewController:(id)arg1 context:(id)arg2;
-- (id)provideTermsAndPolicyViewModelWithTheme:(id)arg1;
+- (id)provideTermsAndPolicyViewModelWithTheme:(id)arg1 screenIdentifier:(id)arg2;
 - (id)provideGenderForSignupViewController;
-- (id)provideBirthDateViewController;
+- (id)provideBirthDateViewController:(id)arg1 context:(id)arg2;
 - (id)providePasswordForSignupViewController;
 - (id)provideEmailForSignupViewController;
 - (void)registerSignupSplitFlowViewControllers;

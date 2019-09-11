@@ -4,30 +4,22 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import "SPTImageBlurView.h"
+#import <UIKit/UIView.h>
 
-@class UIView;
+@class UIVisualEffectView;
 
-@interface SPTUIBlurView : SPTImageBlurView
+@interface SPTUIBlurView : UIView
 {
-    _Bool _respondsToBlurUpdateNotifications;
-    long long _blurType;
+    long long _blurEffectStyle;
+    UIVisualEffectView *_blurView;
 }
 
-+ (id)blurViewForUIWithType:(long long)arg1 frame:(struct CGRect)arg2;
-@property(nonatomic, getter=isRespondingToBlurUpdateNotifications) _Bool respondsToBlurUpdateNotifications; // @synthesize respondsToBlurUpdateNotifications=_respondsToBlurUpdateNotifications;
-@property(nonatomic) long long blurType; // @synthesize blurType=_blurType;
-- (void)blurNeedsUpdate;
-- (void)configureForBlurType;
-@property(nonatomic) __weak UIView *underlyingView;
-- (void)setMaximumBlurRadius:(double)arg1;
-- (double)maximumBlurRadius;
-- (void)updateNotificationObservation;
-- (void)didMoveToSuperview;
-- (void)willMoveToSuperview:(id)arg1;
++ (id)blurViewWithBlurEffectStyle:(long long)arg1 frame:(struct CGRect)arg2;
+@property(retain, nonatomic) UIVisualEffectView *blurView; // @synthesize blurView=_blurView;
+@property(nonatomic) long long blurEffectStyle; // @synthesize blurEffectStyle=_blurEffectStyle;
+- (void).cxx_destruct;
 - (void)setFrame:(struct CGRect)arg1;
-- (void)dealloc;
-- (id)initWithType:(long long)arg1 frame:(struct CGRect)arg2;
+- (id)initWithBlurEffectStyle:(long long)arg1 frame:(struct CGRect)arg2;
 - (id)initWithFrame:(struct CGRect)arg1;
 
 @end

@@ -8,20 +8,22 @@
 
 #import "SPTSignupFieldValidator-Protocol.h"
 
-@class NSArray, NSString;
+@class NSArray, NSString, SPTSignupPasswordBackendValidator;
 
 @interface SPTSignupPasswordFieldValidator : NSObject <SPTSignupFieldValidator>
 {
+    SPTSignupPasswordBackendValidator *_backendValidator;
     NSArray *_passwordBlacklist;
 }
 
 @property(retain, nonatomic) NSArray *passwordBlacklist; // @synthesize passwordBlacklist=_passwordBlacklist;
+@property(retain, nonatomic) SPTSignupPasswordBackendValidator *backendValidator; // @synthesize backendValidator=_backendValidator;
 - (void).cxx_destruct;
 - (id)localValidationErrorWithObject:(id)arg1;
 - (id)errorForCode:(unsigned long long)arg1;
 - (void)validateObject:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
 - (id)createPasswordBlacklistArray;
-- (id)init;
+- (id)initWithPasswordBackendValidator:(id)arg1;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

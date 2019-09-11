@@ -9,10 +9,13 @@
 @class NSString, UIImage;
 
 @protocol SPTPartnerIntegration <NSObject>
-@property(readonly, nonatomic) unsigned long long category;
-@property(readonly, nonatomic) _Bool isEnabled;
+@property(readonly, nonatomic, getter=isInstalled) _Bool installed;
 @property(readonly, nonatomic) UIImage *icon;
+@property(readonly, nonatomic) NSString *redirectURIPath;
+@property(readonly, nonatomic) NSString *redirectURI;
+@property(readonly, nonatomic) NSString *applicationBundleIdentifier;
+@property(readonly, nonatomic) NSString *identifier;
+@property(readonly, nonatomic) NSString *descriptionText;
 @property(readonly, nonatomic) NSString *name;
-- (void)setEnabled:(_Bool)arg1 completion:(void (^)(NSError *))arg2;
 @end
 

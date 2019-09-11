@@ -22,9 +22,9 @@
     NSString *_sponsoredPlaylistAccessibilityHint;
 }
 
-@property(retain, nonatomic) NSString *sponsoredPlaylistAccessibilityHint; // @synthesize sponsoredPlaylistAccessibilityHint=_sponsoredPlaylistAccessibilityHint;
-@property(retain, nonatomic) NSString *sponsoredPlaylistAccessibilityLabel; // @synthesize sponsoredPlaylistAccessibilityLabel=_sponsoredPlaylistAccessibilityLabel;
-@property(retain, nonatomic) NSString *sponsoredMessage; // @synthesize sponsoredMessage=_sponsoredMessage;
+@property(copy, nonatomic) NSString *sponsoredPlaylistAccessibilityHint; // @synthesize sponsoredPlaylistAccessibilityHint=_sponsoredPlaylistAccessibilityHint;
+@property(copy, nonatomic) NSString *sponsoredPlaylistAccessibilityLabel; // @synthesize sponsoredPlaylistAccessibilityLabel=_sponsoredPlaylistAccessibilityLabel;
+@property(copy, nonatomic) NSString *sponsoredMessage; // @synthesize sponsoredMessage=_sponsoredMessage;
 @property(retain, nonatomic) UIImage *sponsoredImage; // @synthesize sponsoredImage=_sponsoredImage;
 @property(retain, nonatomic) id <SPTSponsoredContextViewModel> sponsoredContextModel; // @synthesize sponsoredContextModel=_sponsoredContextModel;
 @property(nonatomic) __weak id <SPTFreeTierPlaylistSponsoredViewModelDelegate> delegate; // @synthesize delegate;

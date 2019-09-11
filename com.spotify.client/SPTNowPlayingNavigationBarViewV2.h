@@ -6,7 +6,7 @@
 
 #import <UIKit/UIView.h>
 
-@class NSLayoutConstraint, SPTLayoutConstraintBuilder, SPTNowPlayingMarqueeLabel, SPTTheme, UIButton;
+@class NSLayoutConstraint, SPTNowPlayingMarqueeLabel, SPTTheme, UIButton;
 
 @interface SPTNowPlayingNavigationBarViewV2 : UIView
 {
@@ -15,12 +15,10 @@
     UIButton *_leftButton;
     UIButton *_rightButton;
     SPTTheme *_theme;
-    SPTLayoutConstraintBuilder *_layout;
     NSLayoutConstraint *_titleCenterConstraint;
 }
 
 @property(retain, nonatomic) NSLayoutConstraint *titleCenterConstraint; // @synthesize titleCenterConstraint=_titleCenterConstraint;
-@property(readonly, nonatomic) SPTLayoutConstraintBuilder *layout; // @synthesize layout=_layout;
 @property(readonly, nonatomic) SPTTheme *theme; // @synthesize theme=_theme;
 @property(retain, nonatomic) UIButton *rightButton; // @synthesize rightButton=_rightButton;
 @property(retain, nonatomic) UIButton *leftButton; // @synthesize leftButton=_leftButton;

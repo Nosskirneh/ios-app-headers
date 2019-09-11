@@ -4,24 +4,21 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <objc/NSObject.h>
+#import "SPTLoginTestManager.h"
 
-@protocol SPTPreSignupExperimentationFeatureFlagsLoader;
-
-@interface SPTLoginMagicLinkTestManager : NSObject
+@interface SPTLoginMagicLinkTestManager : SPTLoginTestManager
 {
-    id <SPTPreSignupExperimentationFeatureFlagsLoader> _featureFlagsLoader;
 }
 
-@property(readonly, nonatomic) id <SPTPreSignupExperimentationFeatureFlagsLoader> featureFlagsLoader; // @synthesize featureFlagsLoader=_featureFlagsLoader;
-- (void).cxx_destruct;
-@property(readonly, nonatomic, getter=isMagicLinkExperimentEnabled) _Bool magicLinkExperimentEnabled;
-@property(readonly, nonatomic, getter=isMagicLinkOnKeyboardCellTreeEnabled) _Bool magicLinkOnKeyboardCellThreeEnabled;
-@property(readonly, nonatomic, getter=isMagicLinkOnKeyboardCellTwoEnabled) _Bool magicLinkOnKeyboardCellTwoEnabled;
-@property(readonly, nonatomic, getter=isMagicLinkOnKeyboardCellOneEnabled) _Bool magicLinkOnKeyboardCellOneEnabled;
-@property(readonly, nonatomic, getter=isMagicLinkOnLoginScreenEnabled) _Bool magicLinkOnLoginScreenEnabled;
-@property(readonly, nonatomic, getter=isMagicLinkOnKeyboardEnabled) _Bool magicLinkOnKeyboardEnabled;
-- (id)initWithFeatureFlagsLoader:(id)arg1;
+@property(readonly, nonatomic, getter=isMagicLinkAutosendTwoCTAsEnabled) _Bool magicLinkAutosendTwoCTAsExperimentEnabled;
+@property(readonly, nonatomic, getter=isMagicLinkAutosendOneCTAEnabled) _Bool magicLinkAutosendOneCTAExperimentEnabled;
+@property(readonly, nonatomic, getter=isMagicLinkAutosendAfterThirdErrorExperimentEnabled) _Bool magicLinkAutosendAfterThirdErrorExperimentEnabled;
+@property(readonly, nonatomic, getter=isMagicLinkAutosendAfterSecondErrorExperimentEnabled) _Bool magicLinkAutosendAfterSecondErrorExperimentEnabled;
+@property(readonly, nonatomic, getter=isMagicLinkAutosendAfterFirstErrorExperimentEnabled) _Bool magicLinkAutosendAfterFirstErrorExperimentEnabled;
+@property(readonly, nonatomic, getter=isMagicLinkAutosendExperimentEnabled) _Bool magicLinkAutosendExperimentEnabled;
+@property(readonly, nonatomic, getter=isMagicLinkOtherAuthOptionsOnSecondFailExperimentEnabled) _Bool magicLinkOtherAuthOptionsOnSecondFailExperimentEnabled;
+@property(readonly, nonatomic, getter=isMagicLinkOtherAuthOptionsOnFirstFailExperimentEnabled) _Bool magicLinkOtherAuthOptionsOnFirstFailExperimentEnabled;
+@property(readonly, nonatomic, getter=isMagicLinkRequestOptimizationExperimentEnabled) _Bool magicLinkRequestOptimizationExperimentEnabled;
 
 @end
 

@@ -7,25 +7,37 @@
 #import <objc/NSObject.h>
 
 @class SPTNetworkConnectivityController;
-@protocol EXP_SPTHubContentOperationFactory, SPTOnDemandService, SPTPlayerFeature;
+@protocol SPTCollectionPlatformStateProvider, SPTCollectionPlatformTestManager, SPTExplicitContentAccessManager, SPTFollowModelFactory, SPTHubContentOperationFactory, SPTOnDemandService, SPTOnDemandTrialService, SPTPlayerFeature, SPTProductState;
 
 @interface SPTFreeTierArtistContentOperationFactory : NSObject
 {
-    id <EXP_SPTHubContentOperationFactory> _hubContentOperationFactory;
+    id <SPTHubContentOperationFactory> _hubContentOperationFactory;
     id <SPTPlayerFeature> _playerService;
     id <SPTOnDemandService> _onDemandService;
+    id <SPTOnDemandTrialService> _onDemandTrialService;
     SPTNetworkConnectivityController *_networkConnectivityController;
+    id <SPTFollowModelFactory> _followModelFactory;
+    id <SPTProductState> _productState;
+    id <SPTExplicitContentAccessManager> _explicitContentAccessManager;
+    id <SPTCollectionPlatformStateProvider> _collectionPlaformStateProvider;
+    id <SPTCollectionPlatformTestManager> _collectionPlatformTestManager;
 }
 
+@property(readonly, nonatomic) id <SPTCollectionPlatformTestManager> collectionPlatformTestManager; // @synthesize collectionPlatformTestManager=_collectionPlatformTestManager;
+@property(readonly, nonatomic) id <SPTCollectionPlatformStateProvider> collectionPlaformStateProvider; // @synthesize collectionPlaformStateProvider=_collectionPlaformStateProvider;
+@property(readonly, nonatomic) __weak id <SPTExplicitContentAccessManager> explicitContentAccessManager; // @synthesize explicitContentAccessManager=_explicitContentAccessManager;
+@property(readonly, nonatomic) __weak id <SPTProductState> productState; // @synthesize productState=_productState;
+@property(readonly, nonatomic) __weak id <SPTFollowModelFactory> followModelFactory; // @synthesize followModelFactory=_followModelFactory;
 @property(readonly, nonatomic) __weak SPTNetworkConnectivityController *networkConnectivityController; // @synthesize networkConnectivityController=_networkConnectivityController;
+@property(readonly, nonatomic) __weak id <SPTOnDemandTrialService> onDemandTrialService; // @synthesize onDemandTrialService=_onDemandTrialService;
 @property(readonly, nonatomic) __weak id <SPTOnDemandService> onDemandService; // @synthesize onDemandService=_onDemandService;
 @property(readonly, nonatomic) __weak id <SPTPlayerFeature> playerService; // @synthesize playerService=_playerService;
-@property(readonly, nonatomic) id <EXP_SPTHubContentOperationFactory> hubContentOperationFactory; // @synthesize hubContentOperationFactory=_hubContentOperationFactory;
+@property(readonly, nonatomic) id <SPTHubContentOperationFactory> hubContentOperationFactory; // @synthesize hubContentOperationFactory=_hubContentOperationFactory;
 - (void).cxx_destruct;
 - (id)createArtistReleasesContentOperationsForViewURI:(id)arg1 referrerIdentifier:(id)arg2 reloadPageSignal:(id)arg3;
 - (id)createArtistViewContentOperationsForViewURI:(id)arg1 referrerIdentifier:(id)arg2 reloadPageSignal:(id)arg3;
 - (id)createContentOperationsForViewURI:(id)arg1 referrerIdentifier:(id)arg2 reloadPageSignal:(id)arg3;
-- (id)initWithHubContentOperationFactory:(id)arg1 playerService:(id)arg2 onDemandService:(id)arg3 networkConnectivityController:(id)arg4;
+- (id)initWithHubContentOperationFactory:(id)arg1 playerService:(id)arg2 onDemandService:(id)arg3 onDemandTrialService:(id)arg4 networkConnectivityController:(id)arg5 followModelFactory:(id)arg6 productState:(id)arg7 explicitContentAccessManager:(id)arg8 collectionPlaformStateProvider:(id)arg9 collectionPlatformTestManager:(id)arg10;
 
 @end
 

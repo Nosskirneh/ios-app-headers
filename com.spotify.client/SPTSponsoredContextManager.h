@@ -8,29 +8,32 @@
 
 #import "SPTDataLoaderDelegate-Protocol.h"
 
-@class NSMutableDictionary, NSString, NSTimer, SPTAdCosmosBridge, SPTDataLoader;
-@protocol SPTAdEventLogger, SPTSponsoredContextManagerDelegate;
+@class NSMutableDictionary, NSString, NSTimer, NSURL, SPTDataLoader;
+@protocol SPTAdsBaseCosmosBridge, SPTDataLoaderCancellationToken, SPTSponsoredContextManagerDelegate;
 
 @interface SPTSponsoredContextManager : NSObject <SPTDataLoaderDelegate>
 {
     id <SPTSponsoredContextManagerDelegate> _delegate;
     SPTDataLoader *_dataLoader;
-    id <SPTAdEventLogger> _adEventLogger;
-    SPTAdCosmosBridge *_cosmosBridge;
+    id <SPTAdsBaseCosmosBridge> _cosmosBridge;
+    NSURL *_contextEndpointURL;
     NSMutableDictionary *_sponsoredContextsDictionary;
     NSTimer *_scheduleRequestTimer;
+    id <SPTDataLoaderCancellationToken> _requestCancellationToken;
 }
 
+@property(retain, nonatomic) id <SPTDataLoaderCancellationToken> requestCancellationToken; // @synthesize requestCancellationToken=_requestCancellationToken;
 @property(retain, nonatomic) NSTimer *scheduleRequestTimer; // @synthesize scheduleRequestTimer=_scheduleRequestTimer;
 @property(retain, nonatomic) NSMutableDictionary *sponsoredContextsDictionary; // @synthesize sponsoredContextsDictionary=_sponsoredContextsDictionary;
-@property(retain, nonatomic) SPTAdCosmosBridge *cosmosBridge; // @synthesize cosmosBridge=_cosmosBridge;
-@property(retain, nonatomic) id <SPTAdEventLogger> adEventLogger; // @synthesize adEventLogger=_adEventLogger;
+@property(retain, nonatomic) NSURL *contextEndpointURL; // @synthesize contextEndpointURL=_contextEndpointURL;
+@property(retain, nonatomic) id <SPTAdsBaseCosmosBridge> cosmosBridge; // @synthesize cosmosBridge=_cosmosBridge;
 @property(retain, nonatomic) SPTDataLoader *dataLoader; // @synthesize dataLoader=_dataLoader;
 @property(nonatomic) __weak id <SPTSponsoredContextManagerDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
 - (void)dataLoader:(id)arg1 didCancelRequest:(id)arg2;
 - (void)dataLoader:(id)arg1 didReceiveErrorResponse:(id)arg2;
 - (void)dataLoader:(id)arg1 didReceiveSuccessfulResponse:(id)arg2;
+- (unsigned long long)getRequestType:(id)arg1;
 - (void)subscribeToPreview:(id)arg1;
 - (void)clearRequestTimer;
 - (void)scheduleFutureRequest;
@@ -42,7 +45,7 @@
 - (void)fetchSponsoredContexts;
 - (_Bool)isContextSponsored:(id)arg1;
 @property(readonly, nonatomic) _Bool hasSponsoredContextPreview;
-- (id)initWithDataLoader:(id)arg1 adEventLogger:(id)arg2 cosmosBridge:(id)arg3;
+- (id)initWithDataLoader:(id)arg1 cosmosBridge:(id)arg2;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

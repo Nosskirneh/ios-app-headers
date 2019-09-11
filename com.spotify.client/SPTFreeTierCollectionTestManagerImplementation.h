@@ -6,69 +6,54 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTFeatureFlagSignalObserver-Protocol.h"
 #import "SPTFreeTierCollectionTestManager-Protocol.h"
 
 @class NSString;
-@protocol SPTCollectionPlatformTestManager, SPTFeatureFlagFactory, SPTFeatureFlagSignal, SPTProductState;
+@protocol SPTCollectionPlatformTestManager, SPTFeatureFlagFactory, SPTFeatureFlagSignal, SPTFreeTierPreCurationTestManager, SPTProductState;
 
-@interface SPTFreeTierCollectionTestManagerImplementation : NSObject <SPTFeatureFlagSignalObserver, SPTFreeTierCollectionTestManager>
+@interface SPTFreeTierCollectionTestManagerImplementation : NSObject <SPTFreeTierCollectionTestManager>
 {
     _Bool _premiumLabelEnabled;
-    _Bool _madeForSignalEnabled;
-    _Bool _madeForEmployeeSignalEnabled;
-    _Bool _sortingAndFilteringEnabled;
-    _Bool _sortingAndFilteringFavoriteSongsEnabled;
-    _Bool _frecencySortOrderInPlaylistsEnabled;
     _Bool _frecencySortOrderDefaultInPlaylistsEnabled;
-    _Bool _alternativeActionButtonsEnabled;
+    _Bool _doubleTabYourLibraryEnabled;
+    _Bool _consolidatedExperienceEnabled;
+    _Bool _groupsInLikedSongsEnabled;
     id <SPTFeatureFlagFactory> _featureFlagFactory;
     id <SPTProductState> _productState;
     id <SPTCollectionPlatformTestManager> _collectionPlatformTestManager;
+    id <SPTFreeTierPreCurationTestManager> _preCurationTestManager;
     id <SPTFeatureFlagSignal> _yourLibrarySignal;
     id <SPTFeatureFlagSignal> _windowedTrackTestSignal;
-    id <SPTFeatureFlagSignal> _madeForSignal;
-    id <SPTFeatureFlagSignal> _madeForEmployeeSignal;
-    id <SPTFeatureFlagSignal> _sortingAndFilteringYourLibrarySignal;
-    id <SPTFeatureFlagSignal> _sortingAndFilteringFavoriteSongsSignal;
-    id <SPTFeatureFlagSignal> _frecencySortOrderInPlaylistsSignal;
     id <SPTFeatureFlagSignal> _frecencySortOrderDefaultInPlaylistsSignal;
-    id <SPTFeatureFlagSignal> _alternativeActionButtonsSignal;
+    id <SPTFeatureFlagSignal> _consolidatedExperienceSignal;
+    id <SPTFeatureFlagSignal> _groupsInLikedSongsSignal;
 }
 
-@property(nonatomic, getter=isAlternativeActionButtonsEnabled) _Bool alternativeActionButtonsEnabled; // @synthesize alternativeActionButtonsEnabled=_alternativeActionButtonsEnabled;
-@property(retain, nonatomic) id <SPTFeatureFlagSignal> alternativeActionButtonsSignal; // @synthesize alternativeActionButtonsSignal=_alternativeActionButtonsSignal;
+@property(retain, nonatomic) id <SPTFeatureFlagSignal> groupsInLikedSongsSignal; // @synthesize groupsInLikedSongsSignal=_groupsInLikedSongsSignal;
+@property(nonatomic, getter=isGroupsInLikedSongsEnabled) _Bool groupsInLikedSongsEnabled; // @synthesize groupsInLikedSongsEnabled=_groupsInLikedSongsEnabled;
+@property(nonatomic, getter=isConsolidatedExperienceEnabled) _Bool consolidatedExperienceEnabled; // @synthesize consolidatedExperienceEnabled=_consolidatedExperienceEnabled;
+@property(retain, nonatomic) id <SPTFeatureFlagSignal> consolidatedExperienceSignal; // @synthesize consolidatedExperienceSignal=_consolidatedExperienceSignal;
+@property(nonatomic, getter=isDoubleTabYourLibraryEnabled) _Bool doubleTabYourLibraryEnabled; // @synthesize doubleTabYourLibraryEnabled=_doubleTabYourLibraryEnabled;
 @property(nonatomic, getter=isFrecencySortOrderDefaultInPlaylistsEnabled) _Bool frecencySortOrderDefaultInPlaylistsEnabled; // @synthesize frecencySortOrderDefaultInPlaylistsEnabled=_frecencySortOrderDefaultInPlaylistsEnabled;
-@property(nonatomic, getter=isFrecencySortOrderInPlaylistsEnabled) _Bool frecencySortOrderInPlaylistsEnabled; // @synthesize frecencySortOrderInPlaylistsEnabled=_frecencySortOrderInPlaylistsEnabled;
 @property(retain, nonatomic) id <SPTFeatureFlagSignal> frecencySortOrderDefaultInPlaylistsSignal; // @synthesize frecencySortOrderDefaultInPlaylistsSignal=_frecencySortOrderDefaultInPlaylistsSignal;
-@property(retain, nonatomic) id <SPTFeatureFlagSignal> frecencySortOrderInPlaylistsSignal; // @synthesize frecencySortOrderInPlaylistsSignal=_frecencySortOrderInPlaylistsSignal;
-@property(nonatomic, getter=isSortingAndFilteringFavoriteSongsEnabled) _Bool sortingAndFilteringFavoriteSongsEnabled; // @synthesize sortingAndFilteringFavoriteSongsEnabled=_sortingAndFilteringFavoriteSongsEnabled;
-@property(nonatomic, getter=isSortingAndFilteringEnabled) _Bool sortingAndFilteringEnabled; // @synthesize sortingAndFilteringEnabled=_sortingAndFilteringEnabled;
-@property(retain, nonatomic) id <SPTFeatureFlagSignal> sortingAndFilteringFavoriteSongsSignal; // @synthesize sortingAndFilteringFavoriteSongsSignal=_sortingAndFilteringFavoriteSongsSignal;
-@property(retain, nonatomic) id <SPTFeatureFlagSignal> sortingAndFilteringYourLibrarySignal; // @synthesize sortingAndFilteringYourLibrarySignal=_sortingAndFilteringYourLibrarySignal;
-@property(nonatomic, getter=isMadeForEmployeeSignalEnabled) _Bool madeForEmployeeSignalEnabled; // @synthesize madeForEmployeeSignalEnabled=_madeForEmployeeSignalEnabled;
-@property(retain, nonatomic) id <SPTFeatureFlagSignal> madeForEmployeeSignal; // @synthesize madeForEmployeeSignal=_madeForEmployeeSignal;
-@property(nonatomic, getter=isMadeForSignalEnabled) _Bool madeForSignalEnabled; // @synthesize madeForSignalEnabled=_madeForSignalEnabled;
-@property(retain, nonatomic) id <SPTFeatureFlagSignal> madeForSignal; // @synthesize madeForSignal=_madeForSignal;
 @property(nonatomic, getter=isPremiumLabelEnabled) _Bool premiumLabelEnabled; // @synthesize premiumLabelEnabled=_premiumLabelEnabled;
 @property(retain, nonatomic) id <SPTFeatureFlagSignal> windowedTrackTestSignal; // @synthesize windowedTrackTestSignal=_windowedTrackTestSignal;
 @property(readonly, nonatomic) id <SPTFeatureFlagSignal> yourLibrarySignal; // @synthesize yourLibrarySignal=_yourLibrarySignal;
+@property(readonly, nonatomic) id <SPTFreeTierPreCurationTestManager> preCurationTestManager; // @synthesize preCurationTestManager=_preCurationTestManager;
 @property(readonly, nonatomic) id <SPTCollectionPlatformTestManager> collectionPlatformTestManager; // @synthesize collectionPlatformTestManager=_collectionPlatformTestManager;
 @property(readonly, nonatomic) id <SPTProductState> productState; // @synthesize productState=_productState;
 @property(readonly, nonatomic) id <SPTFeatureFlagFactory> featureFlagFactory; // @synthesize featureFlagFactory=_featureFlagFactory;
 - (void).cxx_destruct;
+@property(readonly, nonatomic, getter=isQuickActionsInLikedSongsEnabled) _Bool quickActionsInLikedSongsEnabled;
 @property(readonly, nonatomic, getter=isBookmarkModelEnabled) _Bool bookmarkModelEnabled;
 - (_Bool)isNPTUser;
-- (void)setupAlternativeActionButtonsSignal;
-- (void)handleFilteringAndSortingSignal:(id)arg1 hasAssumedState:(long long)arg2;
+@property(readonly, nonatomic, getter=isShowAlbumArtistRecommendationsEnabled) _Bool showAlbumArtistRecommendationsEnabled;
+- (void)setupGroupsInLikedSongsSignal;
 - (void)setupFrecencySortingSignal;
-- (void)setupFilteringAndSortingSignal;
-- (void)setupMadeForSignals;
-@property(readonly, nonatomic, getter=isMadeForSubtitleEnabled) _Bool madeForSubtitleEnabled;
 - (void)handleWindowedTrackSignal:(id)arg1 hasAssumedState:(long long)arg2;
 - (void)featureFlagSignal:(id)arg1 hasAssumedState:(long long)arg2;
 - (void)setupIsPremiumOnlySignal;
-- (id)initWithFeatureFlagFactory:(id)arg1 productState:(id)arg2 collectionPlatformTestManager:(id)arg3 yourLibrarySignal:(id)arg4;
+- (id)initWithFeatureFlagFactory:(id)arg1 productState:(id)arg2 collectionPlatformTestManager:(id)arg3 preCurationTestManager:(id)arg4 yourLibrarySignal:(id)arg5 consolidatedExperienceSignal:(id)arg6;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

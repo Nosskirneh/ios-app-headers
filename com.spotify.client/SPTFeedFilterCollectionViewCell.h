@@ -6,15 +6,15 @@
 
 #import <UIKit/UICollectionViewCell.h>
 
-@class SPTLayoutConstraintBuilder, UILabel;
+@class NSArray, UILabel;
 
 @interface SPTFeedFilterCollectionViewCell : UICollectionViewCell
 {
     UILabel *_titleLabel;
-    SPTLayoutConstraintBuilder *_layout;
+    NSArray *_layoutConstraints;
 }
 
-@property(retain, nonatomic) SPTLayoutConstraintBuilder *layout; // @synthesize layout=_layout;
+@property(copy, nonatomic) NSArray *layoutConstraints; // @synthesize layoutConstraints=_layoutConstraints;
 @property(retain, nonatomic) UILabel *titleLabel; // @synthesize titleLabel=_titleLabel;
 - (void).cxx_destruct;
 - (void)updateConstraints;

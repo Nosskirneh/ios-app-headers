@@ -4,34 +4,39 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import "EXP_SPTHubViewController.h"
+#import "SPTHubViewController.h"
 
-#import "EXP_HUBViewContentOffsetObserver-Protocol.h"
+#import "HUBViewContentOffsetObserver-Protocol.h"
 
-@class SPTFreeTierArtistContextMenuButtonViewModel, SPTFreeTierArtistHeartBanButtonViewModel, SPTFreeTierEntityNavigationDecorator;
+@class SPTFreeTierArtistContextMenuButtonViewModel, SPTFreeTierArtistFeedbackButtonViewModel, SPTFreeTierEntityNavigationDecorator, SPTProgressView, UIBarButtonItem, VISREFIntegrationManager;
 
-@interface SPTFreeTierArtistViewController : EXP_SPTHubViewController <EXP_HUBViewContentOffsetObserver>
+@interface SPTFreeTierArtistViewController : SPTHubViewController <HUBViewContentOffsetObserver>
 {
-    _Bool _useFollowButton;
     _Bool _viewDidAppear;
-    SPTFreeTierArtistHeartBanButtonViewModel *_heartBanButtonViewModel;
+    SPTFreeTierArtistFeedbackButtonViewModel *_feedbackButtonViewModel;
     SPTFreeTierArtistContextMenuButtonViewModel *_contextMenuButtonViewModel;
     SPTFreeTierEntityNavigationDecorator *_navigationItemDecorator;
+    UIBarButtonItem *_contextMenuBarButtonItem;
+    SPTProgressView *_progressView;
+    VISREFIntegrationManager *_visualRefreshIntegrationManager;
 }
 
+@property(retain, nonatomic) VISREFIntegrationManager *visualRefreshIntegrationManager; // @synthesize visualRefreshIntegrationManager=_visualRefreshIntegrationManager;
+@property(retain, nonatomic) SPTProgressView *progressView; // @synthesize progressView=_progressView;
+@property(retain, nonatomic) UIBarButtonItem *contextMenuBarButtonItem; // @synthesize contextMenuBarButtonItem=_contextMenuBarButtonItem;
 @property(nonatomic) _Bool viewDidAppear; // @synthesize viewDidAppear=_viewDidAppear;
-@property(readonly, nonatomic) _Bool useFollowButton; // @synthesize useFollowButton=_useFollowButton;
 @property(readonly, nonatomic) SPTFreeTierEntityNavigationDecorator *navigationItemDecorator; // @synthesize navigationItemDecorator=_navigationItemDecorator;
 @property(readonly, nonatomic) SPTFreeTierArtistContextMenuButtonViewModel *contextMenuButtonViewModel; // @synthesize contextMenuButtonViewModel=_contextMenuButtonViewModel;
-@property(readonly, nonatomic) SPTFreeTierArtistHeartBanButtonViewModel *heartBanButtonViewModel; // @synthesize heartBanButtonViewModel=_heartBanButtonViewModel;
+@property(readonly, nonatomic) SPTFreeTierArtistFeedbackButtonViewModel *feedbackButtonViewModel; // @synthesize feedbackButtonViewModel=_feedbackButtonViewModel;
 - (void).cxx_destruct;
 - (id)URI;
 - (void)hubView:(id)arg1 contentOffsetDidChange:(struct CGPoint)arg2;
 - (void)hubView:(id)arg1 componentViewWillAppear:(id)arg2;
+- (void)viewDidDisappear:(_Bool)arg1;
+- (void)viewWillAppear:(_Bool)arg1;
 - (void)viewDidAppear:(_Bool)arg1;
 - (void)viewModelDidLoad:(id)arg1;
-- (void)setupNavigationItems;
-- (id)initWithTheme:(id)arg1 pageIdentifier:(id)arg2 pageURI:(id)arg3 componentRegistry:(id)arg4 componentLayoutManager:(id)arg5 imageLoaderFactory:(id)arg6 commandHandler:(id)arg7 viewModelProvider:(id)arg8 impressionLogger:(id)arg9 loadingLogger:(id)arg10 heartBanButtonViewModel:(id)arg11 contextMenuButtonViewModel:(id)arg12 navigationItemDecorator:(id)arg13 useFollowButton:(_Bool)arg14;
+- (id)initWithTheme:(id)arg1 pageIdentifier:(id)arg2 pageURI:(id)arg3 componentRegistry:(id)arg4 componentLayoutManager:(id)arg5 imageLoaderFactory:(id)arg6 commandHandler:(id)arg7 viewModelProvider:(id)arg8 impressionLogger:(id)arg9 loadingLogger:(id)arg10 feedbackButtonViewModel:(id)arg11 contextMenuButtonViewModel:(id)arg12 navigationItemDecorator:(id)arg13 visualRefreshIntegrationManager:(id)arg14 shareDragDelegateFactory:(id)arg15;
 
 @end
 

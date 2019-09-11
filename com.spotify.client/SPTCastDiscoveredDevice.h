@@ -25,16 +25,16 @@
 }
 
 @property(nonatomic) _Bool isAudioGroup; // @synthesize isAudioGroup=_isAudioGroup;
-@property(retain, nonatomic) NSString *ipAddress; // @synthesize ipAddress=_ipAddress;
-@property(retain, nonatomic) NSString *libraryVersion; // @synthesize libraryVersion=_libraryVersion;
-@property(retain, nonatomic) NSString *modelDisplayName; // @synthesize modelDisplayName=_modelDisplayName;
-@property(retain, nonatomic) NSString *brandDisplayName; // @synthesize brandDisplayName=_brandDisplayName;
-@property(retain, nonatomic) NSString *deviceType; // @synthesize deviceType=_deviceType;
-@property(retain, nonatomic) NSString *accountReq; // @synthesize accountReq=_accountReq;
-@property(retain, nonatomic) NSString *remoteName; // @synthesize remoteName=_remoteName;
-@property(retain, nonatomic) NSString *publicKey; // @synthesize publicKey=_publicKey;
-@property(retain, nonatomic) NSString *deviceId; // @synthesize deviceId=_deviceId;
-@property(retain, nonatomic) NSString *version; // @synthesize version=_version;
+@property(copy, nonatomic) NSString *ipAddress; // @synthesize ipAddress=_ipAddress;
+@property(copy, nonatomic) NSString *libraryVersion; // @synthesize libraryVersion=_libraryVersion;
+@property(copy, nonatomic) NSString *modelDisplayName; // @synthesize modelDisplayName=_modelDisplayName;
+@property(copy, nonatomic) NSString *brandDisplayName; // @synthesize brandDisplayName=_brandDisplayName;
+@property(copy, nonatomic) NSString *deviceType; // @synthesize deviceType=_deviceType;
+@property(copy, nonatomic) NSString *accountReq; // @synthesize accountReq=_accountReq;
+@property(copy, nonatomic) NSString *remoteName; // @synthesize remoteName=_remoteName;
+@property(copy, nonatomic) NSString *publicKey; // @synthesize publicKey=_publicKey;
+@property(copy, nonatomic) NSString *deviceId; // @synthesize deviceId=_deviceId;
+@property(copy, nonatomic) NSString *version; // @synthesize version=_version;
 @property(nonatomic) long long status; // @synthesize status=_status;
 - (void).cxx_destruct;
 - (id)payloadDictionary;

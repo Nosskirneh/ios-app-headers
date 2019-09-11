@@ -6,8 +6,8 @@
 
 #import <objc/NSObject.h>
 
-@class GLUEEntityRowStyle, GLUETrackCloudStyle, SPTFreeTierPlaylistButtonSectionHeaderViewStyle, SPTFreeTierPlaylistGLUETheme, SPTFreeTierPlaylistSponsoredLogoCellStyle, SPTFreeTierPreCurationQuickActionViewStyle;
-@protocol SPTBrowseRedirectButtonProvider, SPTFreeTierPlaylistCellConfiguratorDelegate, SPTFreeTierPlaylistViewModel, SPTShelves;
+@class GLUEEntityRowStyle, GLUETrackCloudStyle, SPTFreeTierPlaylistButtonSectionHeaderViewStyle, SPTFreeTierPlaylistGLUETheme, SPTFreeTierPlaylistSponsoredLogoCellStyle;
+@protocol GLUEImageLoader, SPTBrowseRedirectButtonProvider, SPTFreeTierPlaylistCellConfiguratorDelegate, SPTFreeTierPlaylistViewModel, SPTFreeTierPreCurationUIFactory, SPTShelves;
 
 @interface SPTFreeTierPlaylistCellConfigurator : NSObject
 {
@@ -22,18 +22,14 @@
     GLUETrackCloudStyle *_noTitleCloudStyle;
     GLUETrackCloudStyle *_recommendationsCloudStyle;
     SPTFreeTierPlaylistSponsoredLogoCellStyle *_sponsorshipStyle;
-    SPTFreeTierPreCurationQuickActionViewStyle *_defaultQuickActionViewStyle;
-    SPTFreeTierPreCurationQuickActionViewStyle *_banQuickActionViewStyle;
-    SPTFreeTierPreCurationQuickActionViewStyle *_likedQuickActionViewStyle;
-    SPTFreeTierPreCurationQuickActionViewStyle *_likedAndBannedQuickActionViewStyle;
+    id <SPTFreeTierPreCurationUIFactory> _preCurationUIFactory;
     id <SPTBrowseRedirectButtonProvider> _browseRedirectButtonProvider;
+    id <GLUEImageLoader> _glueImageLoader;
 }
 
+@property(retain, nonatomic) id <GLUEImageLoader> glueImageLoader; // @synthesize glueImageLoader=_glueImageLoader;
 @property(retain, nonatomic) id <SPTBrowseRedirectButtonProvider> browseRedirectButtonProvider; // @synthesize browseRedirectButtonProvider=_browseRedirectButtonProvider;
-@property(retain, nonatomic) SPTFreeTierPreCurationQuickActionViewStyle *likedAndBannedQuickActionViewStyle; // @synthesize likedAndBannedQuickActionViewStyle=_likedAndBannedQuickActionViewStyle;
-@property(retain, nonatomic) SPTFreeTierPreCurationQuickActionViewStyle *likedQuickActionViewStyle; // @synthesize likedQuickActionViewStyle=_likedQuickActionViewStyle;
-@property(retain, nonatomic) SPTFreeTierPreCurationQuickActionViewStyle *banQuickActionViewStyle; // @synthesize banQuickActionViewStyle=_banQuickActionViewStyle;
-@property(retain, nonatomic) SPTFreeTierPreCurationQuickActionViewStyle *defaultQuickActionViewStyle; // @synthesize defaultQuickActionViewStyle=_defaultQuickActionViewStyle;
+@property(retain, nonatomic) id <SPTFreeTierPreCurationUIFactory> preCurationUIFactory; // @synthesize preCurationUIFactory=_preCurationUIFactory;
 @property(retain, nonatomic) SPTFreeTierPlaylistSponsoredLogoCellStyle *sponsorshipStyle; // @synthesize sponsorshipStyle=_sponsorshipStyle;
 @property(retain, nonatomic) GLUETrackCloudStyle *recommendationsCloudStyle; // @synthesize recommendationsCloudStyle=_recommendationsCloudStyle;
 @property(retain, nonatomic) GLUETrackCloudStyle *noTitleCloudStyle; // @synthesize noTitleCloudStyle=_noTitleCloudStyle;
@@ -54,10 +50,11 @@
 - (void)setupTrailingAccessoryForCell:(id)arg1 trackViewModel:(id)arg2;
 - (void)setupQuickActionsTrailingAccessoryForCell:(id)arg1 trackViewModel:(id)arg2;
 - (void)configureMultipleAccessoriesViewForCell:(id)arg1 trackViewModel:(id)arg2;
+- (void)configureImageViewForCell:(id)arg1 trackViewModel:(id)arg2;
 - (id)contentViewForCell:(id)arg1;
 - (void)configurePlexCell:(id)arg1 withTrackViewModel:(id)arg2;
 - (void)configureSponsorshipCell:(id)arg1 withSponsoredViewModel:(id)arg2;
-- (id)currentCloudStyleWithCloudTitle:(id)arg1;
+- (id)currentCloudStyleWithViewModel:(id)arg1;
 - (void)configureCloudCell:(id)arg1 withCloudViewModel:(id)arg2 andContainerWidth:(double)arg3;
 - (void)configureCell:(id)arg1 withTrackViewModel:(id)arg2;
 - (double)preferredCellHeightAtIndexPath:(id)arg1 andContainerWidth:(double)arg2;
@@ -66,7 +63,7 @@
 - (void)configureSectionFooter:(id)arg1 section:(unsigned long long)arg2;
 - (double)preferredFooterHeightForSection:(unsigned long long)arg1;
 - (double)preferredHeaderHeightForSection:(unsigned long long)arg1;
-- (id)initWithViewModel:(id)arg1 trackRowStyle:(id)arg2 sponsorshipStyle:(id)arg3 shelves:(id)arg4 theme:(id)arg5 browseRedirectButtonProvider:(id)arg6;
+- (id)initWithViewModel:(id)arg1 trackRowStyle:(id)arg2 sponsorshipStyle:(id)arg3 shelves:(id)arg4 theme:(id)arg5 browseRedirectButtonProvider:(id)arg6 glueImageLoader:(id)arg7 preCurationUIFactory:(id)arg8;
 
 @end
 

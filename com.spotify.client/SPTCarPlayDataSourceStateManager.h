@@ -45,7 +45,7 @@
 - (void)carplaySessionDidDisconnect;
 - (void)applyRestricedDataSourceForReason:(unsigned long long)arg1;
 - (void)setDataSourceAccessory:(id)arg1;
-- (void)setupLoggedInDataSourcesWithTestManager:(id)arg1 externalIntegrationPlatform:(id)arg2 imageLoaderFactor:(id)arg3 gaiaFeature:(id)arg4 offlineModeState:(id)arg5 networkConnectivityController:(id)arg6;
+- (void)setupLoggedInDataSourcesWithTestManager:(id)arg1 externalIntegrationPlatform:(id)arg2 imageLoaderFactor:(id)arg3 connectManager:(id)arg4 offlineModeState:(id)arg5 networkConnectivityController:(id)arg6;
 - (void)tearDownForRestricedDataSource;
 - (void)dealloc;
 - (id)initWithMediaPlayerBridge:(id)arg1 debugLog:(id)arg2;

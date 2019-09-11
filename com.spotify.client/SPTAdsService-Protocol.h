@@ -7,11 +7,10 @@
 #import "SPTService-Protocol.h"
 
 @class NSURL;
-@protocol SPTAdEventLogger, SPTAdsManager, SPTSponsoredContextViewModel;
+@protocol SPTAdsManager, SPTSponsoredContextViewModel;
 
 @protocol SPTAdsService <SPTService>
 - (id <SPTSponsoredContextViewModel>)provideSponsoredContextViewModelForContext:(NSURL *)arg1;
-- (id <SPTAdEventLogger>)provideAdEventLogger;
 - (id <SPTAdsManager>)provideAdsManager;
 @end
 

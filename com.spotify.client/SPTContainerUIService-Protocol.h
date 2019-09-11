@@ -6,12 +6,14 @@
 
 #import "SPTService-Protocol.h"
 
-@class MessageBarController, UIView, UIViewController, UIWindow;
-@protocol SPTAlertController;
+@class MessageBarController, UILayoutGuide, UIView, UIViewController, UIWindow;
+@protocol SPTAlertController, SPTAlertInterface;
 
 @protocol SPTContainerUIService <SPTService>
+- (UILayoutGuide *)provideMainContentLayoutGuide;
 - (void)showPopupWithViewController:(UIViewController *)arg1;
 - (id <SPTAlertController>)provideAlertController;
+- (id <SPTAlertInterface>)provideAlertInterface;
 - (UIView *)provideAnimationView;
 - (UIViewController *)provideRootViewController;
 - (UIWindow *)provideMainWindow;

@@ -16,9 +16,9 @@
     NSString *_duration;
 }
 
-@property(retain, nonatomic) NSString *duration; // @synthesize duration=_duration;
+@property(copy, nonatomic) NSString *duration; // @synthesize duration=_duration;
 @property(retain, nonatomic) NSURL *imageURL; // @synthesize imageURL=_imageURL;
-@property(retain, nonatomic) NSString *name; // @synthesize name=_name;
+@property(copy, nonatomic) NSString *name; // @synthesize name=_name;
 @property(retain, nonatomic) NSURL *URI; // @synthesize URI;
 - (void).cxx_destruct;
 - (id)stringFromTimeInterval:(double)arg1;

@@ -8,18 +8,15 @@
 
 #import "SPTCanvasIdleMonitorObserverDelegate-Protocol.h"
 #import "SPTCanvasService-Protocol.h"
-#import "SPTFeatureFlagSignalObserver-Protocol.h"
+#import "SPTCanvasTestManagerObserver-Protocol.h"
 #import "SPTNowPlayingCarouselContentProviderFactory-Protocol.h"
 #import "SPTNowPlayingShowsFormatOverrider-Protocol.h"
 
-@class NSString, SPTAllocationContext, SPTCanvasBackendService, SPTCanvasLoadStateTracker, SPTCanvasLogger, SPTCanvasLoggingService, SPTCanvasNowPlayingRegistrator, SPTCanvasTrackCheckerImplementation, SPTCanvasViewControllerFactory;
-@protocol GaiaFeature, SPContextMenuFeature, SPTContainerService, SPTCoreService, SPTDataSaverService, SPTFeatureFlagSignal, SPTFeatureFlaggingService, SPTNetworkService, SPTNowPlayingContainerIdleMonitorObservable, SPTNowPlayingPlatformService, SPTNowPlayingService, SPTPlayerFeature, SPTSessionService, SPTVideoFeature;
+@class NSString, SPTAllocationContext, SPTCanvasLoadStateTracker, SPTCanvasLogger, SPTCanvasLoggingService, SPTCanvasNowPlayingContentLayerProvider, SPTCanvasNowPlayingRegistrator, SPTCanvasNowPlayingViewState, SPTCanvasTestManager, SPTCanvasTrackCheckerImplementation, SPTCanvasViewControllerFactory;
+@protocol GaiaFeature, SPContextMenuFeature, SPTContainerService, SPTCoreService, SPTDataSaverService, SPTEntityService, SPTFeatureFlaggingService, SPTModerationService, SPTNetworkService, SPTNowPlayingContainerIdleMonitorObservable, SPTNowPlayingPlatformService, SPTNowPlayingService, SPTPlayerFeature, SPTSessionService, SPTSettingsFeature, SPTURIDispatchService, SPTVideoFeature;
 
-@interface SPTCanvasServiceImplementation : NSObject <SPTNowPlayingCarouselContentProviderFactory, SPTNowPlayingShowsFormatOverrider, SPTFeatureFlagSignalObserver, SPTCanvasIdleMonitorObserverDelegate, SPTCanvasService>
+@interface SPTCanvasServiceImplementation : NSObject <SPTNowPlayingCarouselContentProviderFactory, SPTNowPlayingShowsFormatOverrider, SPTCanvasIdleMonitorObserverDelegate, SPTCanvasTestManagerObserver, SPTCanvasService>
 {
-    _Bool _shouldAddFullSyncTestData;
-    _Bool _canvasEnabled;
-    _Bool _canvasBackendServiceEnabled;
     _Bool _hasRegisteredContextMenu;
     id <SPTSessionService> _clientSessionService;
     id <SPTCoreService> _coreService;
@@ -28,43 +25,48 @@
     id <SPTNowPlayingPlatformService> _nowPlayingPlatformService;
     id <SPTVideoFeature> _videoFeature;
     id <SPTPlayerFeature> _playerFeature;
-    id <SPContextMenuFeature> _contextMenu;
+    id <SPContextMenuFeature> _contextMenuFeature;
     id <GaiaFeature> _gaiaFeature;
     id <SPTDataSaverService> _dataSaverService;
     id <SPTContainerService> _containerService;
-    id <SPTNowPlayingContainerIdleMonitorObservable> _idleMonitorObservable;
     id <SPTFeatureFlaggingService> _featureFlaggingService;
-    id <SPTFeatureFlagSignal> _featureFlagSignal;
-    id <SPTFeatureFlagSignal> _contexResolverFlagSignal;
+    id <SPTSettingsFeature> _settingsFeature;
+    id <SPTModerationService> _moderationFeature;
+    id <SPTEntityService> _entityService;
+    id <SPTURIDispatchService> _URIDispatchService;
+    id <SPTNowPlayingContainerIdleMonitorObservable> _idleMonitorObservable;
+    SPTCanvasTestManager *_testManager;
     SPTCanvasTrackCheckerImplementation *_trackChecker;
     SPTCanvasNowPlayingRegistrator *_nowPlayingRegistrator;
     SPTCanvasViewControllerFactory *_canvasViewControllerFactory;
     SPTCanvasLoggingService *_loggingService;
-    SPTCanvasBackendService *_backendService;
     SPTCanvasLogger *_canvasLogger;
     SPTCanvasLoadStateTracker *_canvasLoadStateTracker;
+    SPTCanvasNowPlayingContentLayerProvider *_nowPlayingContentLayerProvider;
+    SPTCanvasNowPlayingViewState *_nowPlayingState;
 }
 
 + (id)serviceIdentifier;
+@property(retain, nonatomic) SPTCanvasNowPlayingViewState *nowPlayingState; // @synthesize nowPlayingState=_nowPlayingState;
+@property(retain, nonatomic) SPTCanvasNowPlayingContentLayerProvider *nowPlayingContentLayerProvider; // @synthesize nowPlayingContentLayerProvider=_nowPlayingContentLayerProvider;
 @property(retain, nonatomic) SPTCanvasLoadStateTracker *canvasLoadStateTracker; // @synthesize canvasLoadStateTracker=_canvasLoadStateTracker;
 @property(retain, nonatomic) SPTCanvasLogger *canvasLogger; // @synthesize canvasLogger=_canvasLogger;
-@property(retain, nonatomic) SPTCanvasBackendService *backendService; // @synthesize backendService=_backendService;
 @property(retain, nonatomic) SPTCanvasLoggingService *loggingService; // @synthesize loggingService=_loggingService;
 @property(retain, nonatomic) SPTCanvasViewControllerFactory *canvasViewControllerFactory; // @synthesize canvasViewControllerFactory=_canvasViewControllerFactory;
 @property(retain, nonatomic) SPTCanvasNowPlayingRegistrator *nowPlayingRegistrator; // @synthesize nowPlayingRegistrator=_nowPlayingRegistrator;
 @property(nonatomic) _Bool hasRegisteredContextMenu; // @synthesize hasRegisteredContextMenu=_hasRegisteredContextMenu;
 @property(retain, nonatomic) SPTCanvasTrackCheckerImplementation *trackChecker; // @synthesize trackChecker=_trackChecker;
-@property(nonatomic, getter=isCanvasBackendServiceEnabled) _Bool canvasBackendServiceEnabled; // @synthesize canvasBackendServiceEnabled=_canvasBackendServiceEnabled;
-@property(nonatomic) _Bool canvasEnabled; // @synthesize canvasEnabled=_canvasEnabled;
-@property(nonatomic) _Bool shouldAddFullSyncTestData; // @synthesize shouldAddFullSyncTestData=_shouldAddFullSyncTestData;
-@property(retain, nonatomic) id <SPTFeatureFlagSignal> contexResolverFlagSignal; // @synthesize contexResolverFlagSignal=_contexResolverFlagSignal;
-@property(retain, nonatomic) id <SPTFeatureFlagSignal> featureFlagSignal; // @synthesize featureFlagSignal=_featureFlagSignal;
-@property(nonatomic) __weak id <SPTFeatureFlaggingService> featureFlaggingService; // @synthesize featureFlaggingService=_featureFlaggingService;
+@property(retain, nonatomic) SPTCanvasTestManager *testManager; // @synthesize testManager=_testManager;
 @property(retain, nonatomic) id <SPTNowPlayingContainerIdleMonitorObservable> idleMonitorObservable; // @synthesize idleMonitorObservable=_idleMonitorObservable;
+@property(nonatomic) __weak id <SPTURIDispatchService> URIDispatchService; // @synthesize URIDispatchService=_URIDispatchService;
+@property(nonatomic) __weak id <SPTEntityService> entityService; // @synthesize entityService=_entityService;
+@property(nonatomic) __weak id <SPTModerationService> moderationFeature; // @synthesize moderationFeature=_moderationFeature;
+@property(nonatomic) __weak id <SPTSettingsFeature> settingsFeature; // @synthesize settingsFeature=_settingsFeature;
+@property(nonatomic) __weak id <SPTFeatureFlaggingService> featureFlaggingService; // @synthesize featureFlaggingService=_featureFlaggingService;
 @property(nonatomic) __weak id <SPTContainerService> containerService; // @synthesize containerService=_containerService;
 @property(nonatomic) __weak id <SPTDataSaverService> dataSaverService; // @synthesize dataSaverService=_dataSaverService;
 @property(nonatomic) __weak id <GaiaFeature> gaiaFeature; // @synthesize gaiaFeature=_gaiaFeature;
-@property(nonatomic) __weak id <SPContextMenuFeature> contextMenu; // @synthesize contextMenu=_contextMenu;
+@property(nonatomic) __weak id <SPContextMenuFeature> contextMenuFeature; // @synthesize contextMenuFeature=_contextMenuFeature;
 @property(nonatomic) __weak id <SPTPlayerFeature> playerFeature; // @synthesize playerFeature=_playerFeature;
 @property(nonatomic) __weak id <SPTVideoFeature> videoFeature; // @synthesize videoFeature=_videoFeature;
 @property(nonatomic) __weak id <SPTNowPlayingPlatformService> nowPlayingPlatformService; // @synthesize nowPlayingPlatformService=_nowPlayingPlatformService;
@@ -73,26 +75,30 @@
 @property(nonatomic) __weak id <SPTCoreService> coreService; // @synthesize coreService=_coreService;
 @property(nonatomic) __weak id <SPTSessionService> clientSessionService; // @synthesize clientSessionService=_clientSessionService;
 - (void).cxx_destruct;
+- (id)provideCanvasSettingsSection:(id)arg1;
+- (void)registerCanvasSettingsSection;
 - (void)registerContextMenuActions;
+- (void)registerCanvasDecorator;
+- (_Bool)shouldPresentShowsFormatNPVForTrack:(id)arg1;
+- (void)unregisterNowPlayingContentLayer;
+- (void)registerNowPlayingContentLayer;
 - (void)disableCanvas;
 - (void)enableCanvas;
-- (void)updateCanvasFeatureRegistration;
-- (_Bool)shouldPresentShowsFormatNPVForTrack:(id)arg1;
-@property(readonly, nonatomic) _Bool isCanvasEnabled;
-- (_Bool)shouldEnableCanvasForDevice;
-- (void)featureSignalHasReceivedState:(long long)arg1;
-- (void)contexResolverFlagSignalHasReceivedState:(long long)arg1;
-- (void)featureFlagSignal:(id)arg1 hasAssumedState:(long long)arg2;
+- (void)didDisableCanvas:(id)arg1;
+- (void)didEnableCanvas:(id)arg1;
 - (void)unloadCanvasLogger;
-- (void)unload;
 - (void)loadCanvasLogger;
-- (void)loadFeatureFlagBuilder;
+- (void)unloadTestManager;
+- (void)loadTestManager;
+- (void)unload;
 - (void)load;
 - (void)configureWithServices:(id)arg1;
 - (void)unRegisterNowPlayingIdleMonitorWithObserver:(id)arg1;
 - (void)registerNowPlayingIdleMonitorWithObserver:(id)arg1;
+- (_Bool)isCanvasEnabled;
 - (id)provideCanvasTrackChecker;
 - (id)createProvider;
+- (id)createImageResolverFactory;
 
 // Remaining properties
 @property(retain, nonatomic) SPTAllocationContext *allocationContext;

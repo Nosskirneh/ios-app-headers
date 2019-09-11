@@ -6,87 +6,87 @@
 
 #import <UIKit/UIViewController.h>
 
-#import "SPTNowPlayingContainerIdleMonitorDelegate-Protocol.h"
 #import "SPTNowPlayingContainerIdleMonitorReceiving-Protocol.h"
+#import "SPTNowPlayingContentViewControllerObserver-Protocol.h"
 #import "SPTNowPlayingScrollViewModelDelegate-Protocol.h"
 #import "UICollectionViewDataSource-Protocol.h"
 #import "UICollectionViewDelegate-Protocol.h"
 
-@class NSNotificationCenter, NSString, SPTCarouselBackgroundBlurController, SPTCarouselBlurBackgroundView, SPTNowPlayingBackgroundGradientView, SPTNowPlayingContainerIdleMonitor, SPTNowPlayingContentCornersView, SPTNowPlayingScrollViewModel, SPTTheme, UICollectionView, UICollectionViewFlowLayout;
-@protocol SPTNowPlayingAuxiliaryActionsHandler, SPTNowPlayingContentContainingViewController;
+@class GLUEGradientView, NSLayoutConstraint, NSNotificationCenter, NSString, SPTNowPlayingCarouselBackgroundBlurController, SPTNowPlayingCarouselBackgroundBlurView, SPTNowPlayingContainerIdleMonitor, SPTNowPlayingContentCornersView, SPTNowPlayingScrollViewModel, SPTTheme, UICollectionView, UICollectionViewFlowLayout;
+@protocol SPTNowPlayingContentContainingViewController;
 
-@interface SPTNowPlayingScrollViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, SPTNowPlayingScrollViewModelDelegate, SPTNowPlayingContainerIdleMonitorDelegate, SPTNowPlayingContainerIdleMonitorReceiving>
+@interface SPTNowPlayingScrollViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, SPTNowPlayingScrollViewModelDelegate, SPTNowPlayingContentViewControllerObserver, SPTNowPlayingContainerIdleMonitorReceiving>
 {
-    _Bool _scrollEnabled;
-    _Bool _idlePeriodBegan;
-    _Bool _wantsIdleMonitorExclusivity;
-    _Bool _viewVisible;
-    _Bool _shouldDimissNowPlayingView;
     _Bool _isShowingScrollComponents;
-    _Bool _isUpdating;
-    _Bool _hasSentPageImpressionForCurrentTrack;
+    _Bool _scrollViewIsAnimating;
     UICollectionView *_collectionView;
     UICollectionViewFlowLayout *_collectionViewLayout;
     UIViewController<SPTNowPlayingContentContainingViewController> *_nowPlayingViewController;
+    UIViewController *_backgroundViewController;
+    NSLayoutConstraint *_npvHeightConstraint;
     SPTNowPlayingScrollViewModel *_scrollViewModel;
     SPTTheme *_theme;
     NSNotificationCenter *_notificationCenter;
-    id <SPTNowPlayingAuxiliaryActionsHandler> _auxiliaryActionsHandler;
     SPTNowPlayingContainerIdleMonitor *_idleMonitor;
-    SPTCarouselBlurBackgroundView *_backgroundView;
-    SPTCarouselBackgroundBlurController *_blurController;
-    SPTNowPlayingBackgroundGradientView *_backgroundGradientView;
+    SPTNowPlayingCarouselBackgroundBlurView *_backgroundView;
+    SPTNowPlayingCarouselBackgroundBlurController *_blurController;
+    GLUEGradientView *_scrollBackgroundGradientLayer;
     SPTNowPlayingContentCornersView *_contentCornersView;
 }
 
 @property(retain, nonatomic) SPTNowPlayingContentCornersView *contentCornersView; // @synthesize contentCornersView=_contentCornersView;
-@property(retain, nonatomic) SPTNowPlayingBackgroundGradientView *backgroundGradientView; // @synthesize backgroundGradientView=_backgroundGradientView;
-@property(retain, nonatomic) SPTCarouselBackgroundBlurController *blurController; // @synthesize blurController=_blurController;
-@property(retain, nonatomic) SPTCarouselBlurBackgroundView *backgroundView; // @synthesize backgroundView=_backgroundView;
-@property(nonatomic) _Bool hasSentPageImpressionForCurrentTrack; // @synthesize hasSentPageImpressionForCurrentTrack=_hasSentPageImpressionForCurrentTrack;
-@property(nonatomic) _Bool isUpdating; // @synthesize isUpdating=_isUpdating;
+@property(retain, nonatomic) GLUEGradientView *scrollBackgroundGradientLayer; // @synthesize scrollBackgroundGradientLayer=_scrollBackgroundGradientLayer;
+@property(retain, nonatomic) SPTNowPlayingCarouselBackgroundBlurController *blurController; // @synthesize blurController=_blurController;
+@property(retain, nonatomic) SPTNowPlayingCarouselBackgroundBlurView *backgroundView; // @synthesize backgroundView=_backgroundView;
+@property(nonatomic) _Bool scrollViewIsAnimating; // @synthesize scrollViewIsAnimating=_scrollViewIsAnimating;
 @property(nonatomic) _Bool isShowingScrollComponents; // @synthesize isShowingScrollComponents=_isShowingScrollComponents;
-@property(nonatomic) _Bool shouldDimissNowPlayingView; // @synthesize shouldDimissNowPlayingView=_shouldDimissNowPlayingView;
-@property(nonatomic, getter=isViewVisible) _Bool viewVisible; // @synthesize viewVisible=_viewVisible;
-@property(nonatomic) _Bool wantsIdleMonitorExclusivity; // @synthesize wantsIdleMonitorExclusivity=_wantsIdleMonitorExclusivity;
-@property(nonatomic) _Bool idlePeriodBegan; // @synthesize idlePeriodBegan=_idlePeriodBegan;
 @property(nonatomic) __weak SPTNowPlayingContainerIdleMonitor *idleMonitor; // @synthesize idleMonitor=_idleMonitor;
-@property(readonly, nonatomic) id <SPTNowPlayingAuxiliaryActionsHandler> auxiliaryActionsHandler; // @synthesize auxiliaryActionsHandler=_auxiliaryActionsHandler;
 @property(readonly, nonatomic) NSNotificationCenter *notificationCenter; // @synthesize notificationCenter=_notificationCenter;
 @property(readonly, nonatomic) SPTTheme *theme; // @synthesize theme=_theme;
 @property(retain, nonatomic) SPTNowPlayingScrollViewModel *scrollViewModel; // @synthesize scrollViewModel=_scrollViewModel;
+@property(retain, nonatomic) NSLayoutConstraint *npvHeightConstraint; // @synthesize npvHeightConstraint=_npvHeightConstraint;
+@property(readonly, nonatomic) UIViewController *backgroundViewController; // @synthesize backgroundViewController=_backgroundViewController;
 @property(retain, nonatomic) UIViewController<SPTNowPlayingContentContainingViewController> *nowPlayingViewController; // @synthesize nowPlayingViewController=_nowPlayingViewController;
 @property(retain, nonatomic) UICollectionViewFlowLayout *collectionViewLayout; // @synthesize collectionViewLayout=_collectionViewLayout;
 @property(retain, nonatomic) UICollectionView *collectionView; // @synthesize collectionView=_collectionView;
-@property(nonatomic, getter=isScrollEnabled) _Bool scrollEnabled; // @synthesize scrollEnabled=_scrollEnabled;
 - (void).cxx_destruct;
+- (struct CGSize)sizeForItemAtIndex:(unsigned long long)arg1;
+- (void)updateCornerRadius;
+- (void)updateLayout;
 - (double)viewWidth;
+- (double)nowPlayingViewHeight;
 - (double)viewHeight;
-- (void)notifyVisibleCellsOfAppearance:(_Bool)arg1;
 - (void)resetIdleCountdown;
 - (void)applicationDidBecomeActive;
-- (void)applicationWillResignActive;
 - (void)removeApplicationStateObservers;
 - (void)addApplicationStateObservers;
-- (_Bool)shouldPreventObserverNotifications;
-- (void)idlePeriodDidEnd:(_Bool)arg1;
-- (void)idlePeriodDidBegin:(_Bool)arg1;
-- (void)nowPlayingScrollViewModelDidHideBanner:(id)arg1;
-- (void)nowPlayingScrollViewModelDidChangeComponentProviders:(id)arg1;
-- (void)nowPlayingScrollViewModelDidLoadFirstComponentProvider:(id)arg1 forTrack:(id)arg2;
-- (void)nowPlayingScrollViewModel:(id)arg1 didMoveToRelativeTrack:(id)arg2;
+- (void)contentViewControllerDidUpdateOverlayAlpha:(double)arg1;
+- (void)contentViewControllerDidReloadData:(id)arg1;
+- (void)nowPlayingScrollViewModelDidChangeBannerStatus:(id)arg1;
+- (void)nowPlayingScrollViewModelDidChangeScrollEnabledStatus:(id)arg1;
+- (void)nowPlayingScrollViewModel:(id)arg1 didMoveToRelativeTrack:(id)arg2 withDifferentProviders:(_Bool)arg3;
+- (void)viewSafeAreaInsetsDidChange;
+- (void)updateSafeAreaInsets;
+- (void)notifyFullyShownComponents;
+- (void)scrollViewDidScroll:(id)arg1;
+- (void)scrollViewDidEndScrollingAnimation:(id)arg1;
+- (void)scrollViewDidEndDecelerating:(id)arg1;
 - (void)scrollViewWillBeginDragging:(id)arg1;
-- (void)reloadCollectionViewDataDidFinish;
-- (void)deleteScrollComponentsAtIndexPaths:(id)arg1;
+- (void)collectionView:(id)arg1 didSelectItemAtIndexPath:(id)arg2;
+- (void)refreshScrollBackgroundGradientVisibility;
 - (void)reloadCollectionViewData;
-- (void)collectionView:(id)arg1 didEndDisplayingCell:(id)arg2 forItemAtIndexPath:(id)arg3;
 - (void)animateScrollPeekIfNeeded:(id)arg1 forItemAtIndexPath:(id)arg2;
 - (void)collectionView:(id)arg1 willDisplayCell:(id)arg2 forItemAtIndexPath:(id)arg3;
+- (void)collectionView:(id)arg1 willDisplaySupplementaryView:(id)arg2 forElementKind:(id)arg3 atIndexPath:(id)arg4;
 - (id)collectionView:(id)arg1 viewForSupplementaryElementOfKind:(id)arg2 atIndexPath:(id)arg3;
+- (void)setupNowPlayingViewControllerInView:(id)arg1;
 - (struct CGSize)collectionView:(id)arg1 layout:(id)arg2 sizeForItemAtIndexPath:(id)arg3;
 - (id)collectionView:(id)arg1 cellForItemAtIndexPath:(id)arg2;
 - (long long)collectionView:(id)arg1 numberOfItemsInSection:(long long)arg2;
+- (void)viewWillTransitionToSize:(struct CGSize)arg1 withTransitionCoordinator:(id)arg2;
+- (void)traitCollectionDidChange:(id)arg1;
 - (void)viewWillDisappear:(_Bool)arg1;
+- (void)viewWillAppear:(_Bool)arg1;
 - (void)viewDidAppear:(_Bool)arg1;
 - (void)setupCollectionViewContentInset;
 - (void)updateNPVSize;
@@ -94,7 +94,7 @@
 - (void)setupBackgroundViews;
 - (void)setupUI;
 - (void)viewDidLoad;
-- (id)initWithNowPlayingViewController:(id)arg1 scrollViewModel:(id)arg2 theme:(id)arg3 notificationCenter:(id)arg4 auxiliaryActionsHandler:(id)arg5;
+- (id)initWithNowPlayingViewController:(id)arg1 scrollViewModel:(id)arg2 theme:(id)arg3 notificationCenter:(id)arg4 backgroundViewController:(id)arg5;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

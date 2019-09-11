@@ -6,18 +6,18 @@
 
 #import <objc/NSObject.h>
 
-#import "EXP_HUBCommandHandler-Protocol.h"
+#import "HUBCommandHandler-Protocol.h"
 
 @class NSURL;
-@protocol SPTSearchFancyRecentsDataSource;
+@protocol SPTSearchRecentsDataSource;
 
-@interface SPTAssistedCurationSaveToRecentsCommandHandler : NSObject <EXP_HUBCommandHandler>
+@interface SPTAssistedCurationSaveToRecentsCommandHandler : NSObject <HUBCommandHandler>
 {
     NSURL *_playlistURI;
-    id <SPTSearchFancyRecentsDataSource> _searchRecentsDataSource;
+    id <SPTSearchRecentsDataSource> _searchRecentsDataSource;
 }
 
-@property(readonly, nonatomic) id <SPTSearchFancyRecentsDataSource> searchRecentsDataSource; // @synthesize searchRecentsDataSource=_searchRecentsDataSource;
+@property(readonly, nonatomic) id <SPTSearchRecentsDataSource> searchRecentsDataSource; // @synthesize searchRecentsDataSource=_searchRecentsDataSource;
 @property(readonly, nonatomic) NSURL *playlistURI; // @synthesize playlistURI=_playlistURI;
 - (void).cxx_destruct;
 - (void)handleCommand:(id)arg1 event:(id)arg2;

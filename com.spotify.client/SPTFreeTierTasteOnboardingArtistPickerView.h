@@ -8,36 +8,44 @@
 
 #import "GLUEStyleable-Protocol.h"
 
-@class GLUEButton, GLUEGradientView, NSLayoutConstraint, NSString, SPTFreeTierTasteOnboardingArtistPickerCollectionViewLayout, UICollectionView, UIStackView;
+@class GLUEButton, GLUEGradientView, NSLayoutConstraint, NSString, SPTFreeTierTasteOnboardingArtistPickerCollectionViewLayout, SPTFreeTierTasteOnboardingArtistPickerHeaderView, SPTFreeTierTasteOnboardingArtistPickerViewStyle, UICollectionView, UIStackView;
 
 @interface SPTFreeTierTasteOnboardingArtistPickerView : UIView <GLUEStyleable>
 {
+    _Bool _headerEnabled;
     SPTFreeTierTasteOnboardingArtistPickerCollectionViewLayout *_collectionViewLayout;
     UICollectionView *_collectionView;
     GLUEGradientView *_overlayGradientView;
     GLUEButton *_actionButton;
+    SPTFreeTierTasteOnboardingArtistPickerHeaderView *_headerView;
+    UIStackView *_stackView;
     GLUEGradientView *_backgroundGradientView;
     GLUEGradientView *_backgroundOverlayGradientView;
-    UIStackView *_stackView;
     UIView *_searchBarContainerView;
+    UIView *_navigationBarBackgroundView;
     NSLayoutConstraint *_stackViewTopConstraint;
     NSLayoutConstraint *_collectionViewTopConstraint;
     NSLayoutConstraint *_collectionViewBottomConstraint;
     NSLayoutConstraint *_searchBarContainerViewHeightConstraint;
     NSLayoutConstraint *_actionButtonBottomConstraint;
     NSLayoutConstraint *_actionButtonTopConstraint;
+    SPTFreeTierTasteOnboardingArtistPickerViewStyle *_style;
 }
 
+@property(retain, nonatomic) SPTFreeTierTasteOnboardingArtistPickerViewStyle *style; // @synthesize style=_style;
+@property(nonatomic, getter=isHeaderEnabled) _Bool headerEnabled; // @synthesize headerEnabled=_headerEnabled;
 @property(retain, nonatomic) NSLayoutConstraint *actionButtonTopConstraint; // @synthesize actionButtonTopConstraint=_actionButtonTopConstraint;
 @property(retain, nonatomic) NSLayoutConstraint *actionButtonBottomConstraint; // @synthesize actionButtonBottomConstraint=_actionButtonBottomConstraint;
 @property(retain, nonatomic) NSLayoutConstraint *searchBarContainerViewHeightConstraint; // @synthesize searchBarContainerViewHeightConstraint=_searchBarContainerViewHeightConstraint;
 @property(retain, nonatomic) NSLayoutConstraint *collectionViewBottomConstraint; // @synthesize collectionViewBottomConstraint=_collectionViewBottomConstraint;
 @property(retain, nonatomic) NSLayoutConstraint *collectionViewTopConstraint; // @synthesize collectionViewTopConstraint=_collectionViewTopConstraint;
 @property(retain, nonatomic) NSLayoutConstraint *stackViewTopConstraint; // @synthesize stackViewTopConstraint=_stackViewTopConstraint;
+@property(retain, nonatomic) UIView *navigationBarBackgroundView; // @synthesize navigationBarBackgroundView=_navigationBarBackgroundView;
 @property(readonly, nonatomic) UIView *searchBarContainerView; // @synthesize searchBarContainerView=_searchBarContainerView;
-@property(readonly, nonatomic) UIStackView *stackView; // @synthesize stackView=_stackView;
 @property(readonly, nonatomic) GLUEGradientView *backgroundOverlayGradientView; // @synthesize backgroundOverlayGradientView=_backgroundOverlayGradientView;
 @property(readonly, nonatomic) GLUEGradientView *backgroundGradientView; // @synthesize backgroundGradientView=_backgroundGradientView;
+@property(readonly, nonatomic) UIStackView *stackView; // @synthesize stackView=_stackView;
+@property(readonly, nonatomic) SPTFreeTierTasteOnboardingArtistPickerHeaderView *headerView; // @synthesize headerView=_headerView;
 @property(readonly, nonatomic) GLUEButton *actionButton; // @synthesize actionButton=_actionButton;
 @property(readonly, nonatomic) GLUEGradientView *overlayGradientView; // @synthesize overlayGradientView=_overlayGradientView;
 @property(readonly, nonatomic) UICollectionView *collectionView; // @synthesize collectionView=_collectionView;
@@ -45,6 +53,10 @@
 - (void).cxx_destruct;
 - (void)glue_applyStyle:(id)arg1;
 - (void)activateConstraints;
+- (void)updateContentInset;
+- (void)updateHeaderWithOffset:(struct CGPoint)arg1;
+- (double)headerViewMaxYOffset;
+- (void)addNavigationBarBackgroundViewOnTopGuideLayout:(id)arg1;
 - (void)updateLayoutMarginsWithTopAnchor:(id)arg1 bottomAnchor:(id)arg2;
 - (void)addSearchBar:(id)arg1;
 - (id)initWithFrame:(struct CGRect)arg1;

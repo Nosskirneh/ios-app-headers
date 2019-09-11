@@ -8,7 +8,7 @@
 
 #import "SPTThemableView-Protocol.h"
 
-@class NSString, SPTLayoutConstraintBuilder, UIActivityIndicatorView, UIImageView, UILabel, UITableView;
+@class NSString, UIActivityIndicatorView, UIImageView, UILabel, UITableView;
 @protocol SPTThemableViewLayoutDelegate;
 
 @interface SPTStationEntityPullToRefreshView : UIView <SPTThemableView>
@@ -20,10 +20,8 @@
     UILabel *_message;
     UITableView *_tableView;
     UIActivityIndicatorView *_activityIndicator;
-    SPTLayoutConstraintBuilder *_constraintBuilder;
 }
 
-@property(retain, nonatomic) SPTLayoutConstraintBuilder *constraintBuilder; // @synthesize constraintBuilder=_constraintBuilder;
 @property(retain, nonatomic) UIActivityIndicatorView *activityIndicator; // @synthesize activityIndicator=_activityIndicator;
 @property(retain, nonatomic) UITableView *tableView; // @synthesize tableView=_tableView;
 @property(retain, nonatomic) UILabel *message; // @synthesize message=_message;
@@ -42,7 +40,7 @@
 - (void)beginActivating;
 - (id)arrowIconWhite;
 - (id)arrowIcon;
-- (id)layoutConstraints;
+- (void)setupConstraints;
 - (id)initWithFrame:(struct CGRect)arg1;
 
 // Remaining properties

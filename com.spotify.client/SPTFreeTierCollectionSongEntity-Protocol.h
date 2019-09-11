@@ -6,10 +6,11 @@
 
 #import "SPTCollectionPlatformFieldName-Protocol.h"
 #import "SPTCollectionPlatformFieldURL-Protocol.h"
+#import "SPTCollectionPlatformTrackAlbumArtistURL-Protocol.h"
 #import "SPTCollectionPlatformTrackAlbumCovers-Protocol.h"
 #import "SPTCollectionPlatformTrackAlbumName-Protocol.h"
 #import "SPTCollectionPlatformTrackAlbumURL-Protocol.h"
-#import "SPTCollectionPlatformTrackArtists-Protocol.h"
+#import "SPTCollectionPlatformTrackArtistsPortraits-Protocol.h"
 #import "SPTCollectionPlatformTrackInCollection-Protocol.h"
 #import "SPTCollectionPlatformTrackIsBanned-Protocol.h"
 #import "SPTCollectionPlatformTrackIsExplicit-Protocol.h"
@@ -21,6 +22,6 @@
 #import "SPTCollectionPlatformTrackPreviewId-Protocol.h"
 #import "SPTFreeTierCollectionEntity-Protocol.h"
 
-@protocol SPTFreeTierCollectionSongEntity <SPTFreeTierCollectionEntity, SPTCollectionPlatformFieldURL, SPTCollectionPlatformFieldName, SPTCollectionPlatformTrackArtists, SPTCollectionPlatformTrackAlbumName, SPTCollectionPlatformTrackAlbumURL, SPTCollectionPlatformTrackAlbumCovers, SPTCollectionPlatformTrackOfflineState, SPTCollectionPlatformTrackInCollection, SPTCollectionPlatformTrackIsBanned, SPTCollectionPlatformTrackIsExplicit, SPTCollectionPlatformTrackIsLocalTrack, SPTCollectionPlatformTrackPlayable, SPTCollectionPlatformTrackLocallyPlayable, SPTCollectionPlatformTrackIsPremiumOnly, SPTCollectionPlatformTrackPreviewId>
+@protocol SPTFreeTierCollectionSongEntity <SPTFreeTierCollectionEntity, SPTCollectionPlatformFieldURL, SPTCollectionPlatformFieldName, SPTCollectionPlatformTrackArtistsPortraits, SPTCollectionPlatformTrackAlbumName, SPTCollectionPlatformTrackAlbumURL, SPTCollectionPlatformTrackAlbumArtistURL, SPTCollectionPlatformTrackAlbumCovers, SPTCollectionPlatformTrackOfflineState, SPTCollectionPlatformTrackInCollection, SPTCollectionPlatformTrackIsBanned, SPTCollectionPlatformTrackIsExplicit, SPTCollectionPlatformTrackIsLocalTrack, SPTCollectionPlatformTrackPlayable, SPTCollectionPlatformTrackLocallyPlayable, SPTCollectionPlatformTrackIsPremiumOnly, SPTCollectionPlatformTrackPreviewId>
 @end
 

@@ -12,7 +12,7 @@
 #import "SPTPlayerObserver-Protocol.h"
 
 @class NSArray, NSDictionary, NSString, NSURL, SPTPlayOrigin;
-@protocol SPTClientSettings, SPTCollectionPlatform, SPTCollectionPlatformDataLoader, SPTCollectionPlatformDataLoaderRequestToken, SPTCollectionSongsModelDelegate, SPTOfflineModeState, SPTPlayer, SPTProductState, SPTUpsellManager;
+@protocol SPTClientSettings, SPTCollectionPlatform, SPTCollectionPlatformDataLoader, SPTCollectionPlatformDataLoaderRequestToken, SPTCollectionSongsModelDelegate, SPTOfflineModeState, SPTPlayer, SPTProductState;
 
 @interface SPTCollectionPagedSongsCosmosModel : NSObject <SPTPlayerObserver, SPTOfflineModeStateObserver, SPTCollectionSongItemPlaying, SPTCollectionSongsModel>
 {
@@ -38,14 +38,12 @@
     id <SPTOfflineModeState> _offlineNotifier;
     id <SPTClientSettings> _clientSettings;
     id <SPTProductState> _productState;
-    id <SPTUpsellManager> _upsellManager;
     NSURL *_currentlyPlayingURL;
     struct _NSRange _currentWindow;
 }
 
 @property(retain, nonatomic) NSURL *currentlyPlayingURL; // @synthesize currentlyPlayingURL=_currentlyPlayingURL;
 @property(nonatomic) struct _NSRange currentWindow; // @synthesize currentWindow=_currentWindow;
-@property(readonly, nonatomic) __weak id <SPTUpsellManager> upsellManager; // @synthesize upsellManager=_upsellManager;
 @property(retain, nonatomic) id <SPTProductState> productState; // @synthesize productState=_productState;
 @property(retain, nonatomic) id <SPTClientSettings> clientSettings; // @synthesize clientSettings=_clientSettings;
 @property(retain, nonatomic) id <SPTOfflineModeState> offlineNotifier; // @synthesize offlineNotifier=_offlineNotifier;
@@ -94,7 +92,7 @@
 - (unsigned long long)offlineSyncStateForTrackAtIndexPath:(id)arg1;
 @property(readonly, nonatomic, getter=isEmpty) _Bool empty;
 - (long long)totalCountOfItems;
-- (id)initWithCollectionPlatformDataLoader:(id)arg1 collectionPlatform:(id)arg2 player:(id)arg3 offlineNotifier:(id)arg4 clientSettings:(id)arg5 productState:(id)arg6 upsellManager:(id)arg7 playOrigin:(id)arg8;
+- (id)initWithCollectionPlatformDataLoader:(id)arg1 collectionPlatform:(id)arg2 player:(id)arg3 offlineNotifier:(id)arg4 clientSettings:(id)arg5 productState:(id)arg6 playOrigin:(id)arg7;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

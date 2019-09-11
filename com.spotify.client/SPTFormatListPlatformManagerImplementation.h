@@ -10,7 +10,7 @@
 #import "SPTOfflineObserver-Protocol.h"
 
 @class NSString, NSURL;
-@protocol SPTFormatListPlatformManagerOfflineDelegate, SPTOfflineManager, SPTPlaylistModel, SPTPlaylistPlatformPlaylistDataLoader, SPTProductState, SPTUpsellManager;
+@protocol SPTFormatListPlatformManagerOfflineDelegate, SPTOfflineManager, SPTPlaylistModel, SPTPlaylistPlatformPlaylistDataLoader, SPTProductState;
 
 @interface SPTFormatListPlatformManagerImplementation : NSObject <SPTOfflineObserver, SPTFormatListPlatformManager>
 {
@@ -18,19 +18,18 @@
     NSURL *_URL;
     id <SPTProductState> _productState;
     id <SPTOfflineManager> _offlineManager;
-    id <SPTUpsellManager> _upsellManager;
     id <SPTPlaylistPlatformPlaylistDataLoader> _playlistDataLoader;
     id <SPTPlaylistModel> _playlistModel;
 }
 
 @property(readonly, nonatomic) id <SPTPlaylistModel> playlistModel; // @synthesize playlistModel=_playlistModel;
 @property(readonly, nonatomic) id <SPTPlaylistPlatformPlaylistDataLoader> playlistDataLoader; // @synthesize playlistDataLoader=_playlistDataLoader;
-@property(readonly, nonatomic) __weak id <SPTUpsellManager> upsellManager; // @synthesize upsellManager=_upsellManager;
 @property(readonly, nonatomic) __weak id <SPTOfflineManager> offlineManager; // @synthesize offlineManager=_offlineManager;
 @property(readonly, nonatomic) id <SPTProductState> productState; // @synthesize productState=_productState;
 @property(readonly, nonatomic) NSURL *URL; // @synthesize URL=_URL;
 @property(nonatomic) __weak id <SPTFormatListPlatformManagerOfflineDelegate> delegate; // @synthesize delegate;
 - (void).cxx_destruct;
+- (void)presentEducationPopup;
 - (void)offlineStateChangedForEntity:(id)arg1 withURL:(id)arg2;
 - (long long)offlineStatusForItemURL:(id)arg1;
 - (void)invokeCompletion:(CDUnknownBlockType)arg1 withFollowState:(_Bool)arg2 error:(id)arg3;
@@ -44,7 +43,7 @@
 - (void)fetchFollowedStateWithCompletion:(CDUnknownBlockType)arg1;
 @property(readonly, nonatomic, getter=isCurrentUserAllowedToOffline) _Bool currentUserAllowedToOffline;
 - (void)dealloc;
-- (id)initWithURL:(id)arg1 productState:(id)arg2 offlineManager:(id)arg3 upsellManager:(id)arg4 playlistDataLoader:(id)arg5 playlistModel:(id)arg6;
+- (id)initWithURL:(id)arg1 productState:(id)arg2 offlineManager:(id)arg3 playlistDataLoader:(id)arg4 playlistModel:(id)arg5;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

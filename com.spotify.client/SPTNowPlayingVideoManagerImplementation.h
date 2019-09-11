@@ -6,7 +6,7 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTGaiaManagerObserver-Protocol.h"
+#import "SPTGaiaConnectObserver-Protocol.h"
 #import "SPTNowPlayingDeviceOrientationManagerObserver-Protocol.h"
 #import "SPTNowPlayingVideoManager-Protocol.h"
 #import "SPTNowPlayingVideoViewControllerDelegate-Protocol.h"
@@ -14,9 +14,9 @@
 #import "UIViewControllerTransitioningDelegate-Protocol.h"
 
 @class NSString, SPTNowPlayingDeviceOrientationManager, SPTNowPlayingVideoViewController, SPTPlayerState;
-@protocol SPTAdEventLogger, SPTGaiaManager, SPTMetaViewController, SPTNowPlayingFullscreenVideoRegistry, SPTPlayer, SPTUpsellTrialManager;
+@protocol SPTAdsBaseCosmosBridge, SPTGaiaConnectAPI, SPTMetaViewController, SPTNowPlayingFullscreenVideoRegistry, SPTPlayer;
 
-@interface SPTNowPlayingVideoManagerImplementation : NSObject <SPTPlayerObserver, SPTNowPlayingDeviceOrientationManagerObserver, UIViewControllerTransitioningDelegate, SPTGaiaManagerObserver, SPTNowPlayingVideoViewControllerDelegate, SPTNowPlayingVideoManager>
+@interface SPTNowPlayingVideoManagerImplementation : NSObject <SPTPlayerObserver, SPTNowPlayingDeviceOrientationManagerObserver, UIViewControllerTransitioningDelegate, SPTGaiaConnectObserver, SPTNowPlayingVideoViewControllerDelegate, SPTNowPlayingVideoManager>
 {
     _Bool _fullscreenVideoDismissalProhibited;
     _Bool _wantsFullscreenVideoDismissal;
@@ -26,29 +26,24 @@
     SPTNowPlayingVideoViewController *_videoViewController;
     id <SPTMetaViewController> _metaViewController;
     SPTNowPlayingDeviceOrientationManager *_deviceOrientationManager;
-    id <SPTUpsellTrialManager> _trialManager;
     SPTPlayerState *_lastPlayerState;
-    id <SPTAdEventLogger> _adLogger;
-    id <SPTGaiaManager> _gaiaManager;
+    id <SPTAdsBaseCosmosBridge> _cosmosBridge;
+    id <SPTGaiaConnectAPI> _connectManager;
 }
 
 @property(nonatomic, getter=isFullscreenVideoPresented) _Bool fullscreenVideoPresented; // @synthesize fullscreenVideoPresented=_fullscreenVideoPresented;
 @property(nonatomic) _Bool wantsFullscreenVideoDismissal; // @synthesize wantsFullscreenVideoDismissal=_wantsFullscreenVideoDismissal;
 @property(nonatomic) _Bool fullscreenVideoDismissalProhibited; // @synthesize fullscreenVideoDismissalProhibited=_fullscreenVideoDismissalProhibited;
-@property(retain, nonatomic) id <SPTGaiaManager> gaiaManager; // @synthesize gaiaManager=_gaiaManager;
-@property(retain, nonatomic) id <SPTAdEventLogger> adLogger; // @synthesize adLogger=_adLogger;
+@property(retain, nonatomic) id <SPTGaiaConnectAPI> connectManager; // @synthesize connectManager=_connectManager;
+@property(retain, nonatomic) id <SPTAdsBaseCosmosBridge> cosmosBridge; // @synthesize cosmosBridge=_cosmosBridge;
 @property(retain, nonatomic) SPTPlayerState *lastPlayerState; // @synthesize lastPlayerState=_lastPlayerState;
-@property(readonly, nonatomic) id <SPTUpsellTrialManager> trialManager; // @synthesize trialManager=_trialManager;
 @property(readonly, nonatomic) SPTNowPlayingDeviceOrientationManager *deviceOrientationManager; // @synthesize deviceOrientationManager=_deviceOrientationManager;
 @property(readonly, nonatomic) id <SPTMetaViewController> metaViewController; // @synthesize metaViewController=_metaViewController;
 @property(readonly, nonatomic) SPTNowPlayingVideoViewController *videoViewController; // @synthesize videoViewController=_videoViewController;
 @property(readonly, nonatomic) id <SPTPlayer> player; // @synthesize player=_player;
 @property(readonly, nonatomic) id <SPTNowPlayingFullscreenVideoRegistry> fullscreenRegistry; // @synthesize fullscreenRegistry=_fullscreenRegistry;
 - (void).cxx_destruct;
-- (void)gaiaManagerDidChangeConnectionTypesAvailable:(id)arg1;
-- (void)gaiaManagerDidChangeAvailable:(id)arg1;
-- (void)gaiaManagerDidChangeActiveDeviceName:(id)arg1;
-- (void)gaiaManagerDidChangeRemoteConnectionState:(id)arg1;
+- (void)connectActiveDeviceDidChange:(id)arg1;
 - (void)presentAnimated:(_Bool)arg1;
 - (void)dismissAnimated:(_Bool)arg1;
 @property(readonly, nonatomic, getter=isFullscreenViewControllerPresented) _Bool fullscreenViewControllerPresented;
@@ -64,7 +59,7 @@
 - (void)dismissFullscreenVideo:(_Bool)arg1;
 - (void)presentFullscreenVideo:(_Bool)arg1;
 - (void)dealloc;
-- (id)initWithPlayer:(id)arg1 videoViewController:(id)arg2 metaViewController:(id)arg3 deviceOrientationManager:(id)arg4 gaiaManager:(id)arg5 adLogger:(id)arg6 upsellManager:(id)arg7 upsellTrialManager:(id)arg8;
+- (id)initWithPlayer:(id)arg1 videoViewController:(id)arg2 metaViewController:(id)arg3 deviceOrientationManager:(id)arg4 connectManager:(id)arg5 cosmosBridge:(id)arg6 inAppMessageRequester:(id)arg7;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

@@ -26,8 +26,6 @@
 - (void)addRow:(id)arg1;
 - (id)initWithCapacity:(unsigned long long)arg1 columns:(unsigned long long)arg2;
 - (id)init;
-- (shared_ptr_cdcbacd5)etchObject;
-- (shared_ptr_2c7d29fd)etchRhmiTableData;
 
 @end
 

@@ -8,7 +8,7 @@
 
 #import "SPTThemableView-Protocol.h"
 
-@class NSString, SPTGaiaDevicePickerMaskView, SPTTableView;
+@class NSLayoutConstraint, NSString, SPTGaiaDevicePickerMaskView, SPTTableView;
 @protocol SPTGaiaDevicePickerDeviceSpecificConfigurationProvider, SPTThemableViewLayoutDelegate;
 
 @interface SPTGaiaDevicePickerView : UIView <SPTThemableView>
@@ -16,24 +16,23 @@
     id <SPTThemableViewLayoutDelegate> _layoutDelegate;
     SPTTableView *_tableView;
     UIView *_accessoryView;
-    UIView *_contentView;
     UIView *_accessoryContainerView;
-    SPTGaiaDevicePickerMaskView *_maskView;
     id <SPTGaiaDevicePickerDeviceSpecificConfigurationProvider> _deviceConfiguration;
+    NSLayoutConstraint *_accessoryViewVisibleConstraint;
+    SPTGaiaDevicePickerMaskView *_contentView;
 }
 
+@property(retain, nonatomic) SPTGaiaDevicePickerMaskView *contentView; // @synthesize contentView=_contentView;
+@property(retain, nonatomic) NSLayoutConstraint *accessoryViewVisibleConstraint; // @synthesize accessoryViewVisibleConstraint=_accessoryViewVisibleConstraint;
 @property(readonly, nonatomic) id <SPTGaiaDevicePickerDeviceSpecificConfigurationProvider> deviceConfiguration; // @synthesize deviceConfiguration=_deviceConfiguration;
-@property(retain, nonatomic) SPTGaiaDevicePickerMaskView *maskView; // @synthesize maskView=_maskView;
 @property(retain, nonatomic) UIView *accessoryContainerView; // @synthesize accessoryContainerView=_accessoryContainerView;
-@property(retain, nonatomic) UIView *contentView; // @synthesize contentView=_contentView;
 @property(retain, nonatomic) UIView *accessoryView; // @synthesize accessoryView=_accessoryView;
 @property(retain, nonatomic) SPTTableView *tableView; // @synthesize tableView=_tableView;
 @property(nonatomic) __weak id <SPTThemableViewLayoutDelegate> layoutDelegate; // @synthesize layoutDelegate=_layoutDelegate;
 - (void).cxx_destruct;
 - (void)setAccessoryView:(id)arg1 animated:(_Bool)arg2;
-- (struct CGRect)frameForAccessoryContainerView;
-- (struct CGRect)frameForContent;
-- (void)layoutSubviews;
+- (void)addAccessoryViewInContainer:(id)arg1;
+- (void)setupConstraints;
 - (void)applyThemeLayout;
 - (id)initWithDeviceConfiguration:(id)arg1;
 

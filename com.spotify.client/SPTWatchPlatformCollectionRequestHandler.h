@@ -8,32 +8,26 @@
 
 #import "SPTWatchConnectivityRequestHandler-Protocol.h"
 
-@class NSString, SPTWatchConnectivityDataLoader, SPTWatchConnectivitySession;
-@protocol GLUEImageLoader, SPTCollectionPlatform;
+@class NSString, SPTWatchConnectivityDataLoader;
+@protocol SPTCollectionPlatform;
 
 @interface SPTWatchPlatformCollectionRequestHandler : NSObject <SPTWatchConnectivityRequestHandler>
 {
     SPTWatchConnectivityDataLoader *_dataLoader;
     id <SPTCollectionPlatform> _collectionPlatform;
-    id <GLUEImageLoader> _glueImageLoader;
-    SPTWatchConnectivitySession *_watchConnectivitySession;
 }
 
-@property(readonly, nonatomic) __weak SPTWatchConnectivitySession *watchConnectivitySession; // @synthesize watchConnectivitySession=_watchConnectivitySession;
-@property(readonly, nonatomic) id <GLUEImageLoader> glueImageLoader; // @synthesize glueImageLoader=_glueImageLoader;
 @property(readonly, nonatomic) id <SPTCollectionPlatform> collectionPlatform; // @synthesize collectionPlatform=_collectionPlatform;
 @property(readonly, nonatomic) SPTWatchConnectivityDataLoader *dataLoader; // @synthesize dataLoader=_dataLoader;
 - (void).cxx_destruct;
-- (struct CGSize)pointSizeFromPixelSize:(struct CGSize)arg1;
 - (id)stringFromCollectionPlatformState:(unsigned long long)arg1;
-- (void)handleCollectionTransterItemImageRequest:(id)arg1;
 - (void)handleCollectionRemoveRequest:(id)arg1;
 - (void)handleCollectionAddRequest:(id)arg1;
 - (void)handleCollectionItemStateRequest:(id)arg1;
 - (void)handleRequest:(id)arg1;
 - (_Bool)canHandleRequest:(id)arg1;
 - (void)sendCompletionResponseForRequest:(id)arg1 body:(id)arg2 error:(id)arg3;
-- (id)initWithDataLoader:(id)arg1 collectionPlatform:(id)arg2 glueImageLoader:(id)arg3 watchConnectivitySession:(id)arg4;
+- (id)initWithDataLoader:(id)arg1 collectionPlatform:(id)arg2;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

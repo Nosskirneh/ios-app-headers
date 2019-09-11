@@ -18,11 +18,11 @@
 }
 
 + (id)messageWithEvent:(id)arg1 bannerSeen:(long long)arg2 testName:(id)arg3 testVariant:(id)arg4 extras:(id)arg5;
-@property(retain, nonatomic) NSString *extrasValue; // @synthesize extrasValue=_extrasValue;
-@property(retain, nonatomic) NSString *testVariantValue; // @synthesize testVariantValue=_testVariantValue;
-@property(retain, nonatomic) NSString *testNameValue; // @synthesize testNameValue=_testNameValue;
+@property(copy, nonatomic) NSString *extrasValue; // @synthesize extrasValue=_extrasValue;
+@property(copy, nonatomic) NSString *testVariantValue; // @synthesize testVariantValue=_testVariantValue;
+@property(copy, nonatomic) NSString *testNameValue; // @synthesize testNameValue=_testNameValue;
 @property(nonatomic) long long bannerSeenValue; // @synthesize bannerSeenValue=_bannerSeenValue;
-@property(retain, nonatomic) NSString *eventValue; // @synthesize eventValue=_eventValue;
+@property(copy, nonatomic) NSString *eventValue; // @synthesize eventValue=_eventValue;
 - (void).cxx_destruct;
 - (_Bool)isEqual:(id)arg1;
 - (unsigned long long)hash;

@@ -13,7 +13,7 @@
 + (id)stringWithMapEvent:(unsigned long long)arg1;
 + (id)stringWithRhmiVersion:(long long)arg1;
 + (id)stringWithVoiceRecorderEvent:(unsigned long long)arg1;
-+ (id)stringWithApplicationManagementServiceEvent:(int)arg1;
++ (id)stringWithApplicationManagementServiceEvent:(unsigned long long)arg1;
 + (id)stringWithPiaRequestReturnCode:(int)arg1;
 + (id)stringWithPiaEvent:(int)arg1;
 + (id)stringWithPiaDataType:(int)arg1;

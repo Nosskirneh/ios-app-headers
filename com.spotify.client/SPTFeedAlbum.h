@@ -7,6 +7,7 @@
 #import "SPTFeedEntity.h"
 
 @class NSArray, NSString, NSURL;
+@protocol SPTAudioPreviewModel;
 
 @interface SPTFeedAlbum : SPTFeedEntity
 {
@@ -15,15 +16,18 @@
     NSURL *_imageURL;
     unsigned long long _trackCount;
     NSArray *_tracks;
+    id <SPTAudioPreviewModel> _audioPreviewModel;
 }
 
-@property(retain, nonatomic) NSArray *tracks; // @synthesize tracks=_tracks;
+@property(retain, nonatomic) id <SPTAudioPreviewModel> audioPreviewModel; // @synthesize audioPreviewModel=_audioPreviewModel;
+@property(copy, nonatomic) NSArray *tracks; // @synthesize tracks=_tracks;
 @property(nonatomic) unsigned long long trackCount; // @synthesize trackCount=_trackCount;
 @property(retain, nonatomic) NSURL *imageURL; // @synthesize imageURL=_imageURL;
-@property(retain, nonatomic) NSString *name; // @synthesize name=_name;
+@property(copy, nonatomic) NSString *name; // @synthesize name=_name;
 @property(retain, nonatomic) NSURL *URI; // @synthesize URI;
 - (void).cxx_destruct;
 - (void)processDictionary:(id)arg1;
+- (void)updateTrackListWithNewTracks:(id)arg1;
 - (id)initWithDictionary:(id)arg1;
 
 @end

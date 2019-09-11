@@ -16,9 +16,9 @@
     NSCache *_avatarURICache;
 }
 
-@property(retain, nonatomic) NSCache *avatarURICache; // @synthesize avatarURICache=_avatarURICache;
-@property(retain, nonatomic) NSMutableDictionary *fetchArtistImageCompletionBlocks; // @synthesize fetchArtistImageCompletionBlocks=_fetchArtistImageCompletionBlocks;
-@property(retain, nonatomic) id <SPTEntityService> entityService; // @synthesize entityService=_entityService;
+@property(readonly, nonatomic) NSCache *avatarURICache; // @synthesize avatarURICache=_avatarURICache;
+@property(readonly, nonatomic) NSMutableDictionary *fetchArtistImageCompletionBlocks; // @synthesize fetchArtistImageCompletionBlocks=_fetchArtistImageCompletionBlocks;
+@property(readonly, nonatomic) __weak id <SPTEntityService> entityService; // @synthesize entityService=_entityService;
 - (void).cxx_destruct;
 - (void)fetchAvatarURIForArtistURI:(id)arg1 didCompleteWithImageURI:(id)arg2 orError:(id)arg3;
 - (void)handleFetchAvatarURIResponse:(id)arg1 forArtistURI:(id)arg2;

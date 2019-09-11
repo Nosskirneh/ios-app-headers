@@ -9,7 +9,10 @@
 @class NSString;
 
 @interface NSURL (Playlist)
++ (id)spt_freeTierAddToPlaylistURIWithEntityURI:(id)arg1;
++ (id)spt_freeTierAddToPlaylistURI;
 + (id)spt_playlistRootlistURI;
+- (_Bool)spt_isFreeTierAddToPlaylistURI;
 - (id)spt_playlistV2URI;
 @property(readonly, nonatomic, getter=spt_isPlaylistRootlistURL) _Bool isPlaylistRootlistURL;
 - (id)playlistFolderURL;

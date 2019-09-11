@@ -14,7 +14,6 @@
 + (id)spt_dailymixApolloDailyMixPositiveSongFeedbackForTrack:(id)arg1 station:(id)arg2;
 + (id)spt_feedbackURIForFeedbackTypeComponent:(id)arg1 entityTypeComponent:(id)arg2 track:(id)arg3 station:(id)arg4;
 + (id)spt_radioApolloMixesFeedbackAll;
-+ (id)spt_radioApolloDeleteSingleFeedbackWithScope:(long long)arg1 contextID:(id)arg2 trackID:(id)arg3;
 + (id)spt_radioApolloEntityForEntityURI:(id)arg1;
 @property(readonly, nonatomic, getter=spt_isRadioApolloEntity) _Bool radioApolloEntity;
 @end

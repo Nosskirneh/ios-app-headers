@@ -16,7 +16,10 @@
     _Bool folder;
     _Bool offlineAvailable;
     _Bool isShuffle;
+    _Bool _inCollection;
+    _Bool _showCollectionQuickActions;
     _Bool _showOverlayMask;
+    _Bool _enabled;
     NSURL *imageURL;
     NSString *_title;
     NSString *_subtitle;
@@ -27,19 +30,23 @@
 }
 
 @property(readonly, nonatomic) unsigned long long placeholderType; // @synthesize placeholderType=_placeholderType;
+@property(readonly, nonatomic, getter=isEnabled) _Bool enabled; // @synthesize enabled=_enabled;
 @property(readonly, nonatomic) long long offlineStatus; // @synthesize offlineStatus=_offlineStatus;
 @property(readonly, nonatomic) _Bool showOverlayMask; // @synthesize showOverlayMask=_showOverlayMask;
 @property(readonly, nonatomic) long long icon; // @synthesize icon=_icon;
 @property(readonly, nonatomic) NSURL *URL; // @synthesize URL=_URL;
 @property(readonly, nonatomic) NSString *subtitle; // @synthesize subtitle=_subtitle;
 @property(readonly, nonatomic) NSString *title; // @synthesize title=_title;
+@property(readonly, nonatomic) _Bool showCollectionQuickActions; // @synthesize showCollectionQuickActions=_showCollectionQuickActions;
+@property(readonly, nonatomic) _Bool inCollection; // @synthesize inCollection=_inCollection;
 @property(readonly, nonatomic) NSURL *imageURL; // @synthesize imageURL;
 @property(readonly, nonatomic, getter=isShuffle) _Bool isShuffle; // @synthesize isShuffle;
 @property(readonly, nonatomic, getter=isOfflineAvailable) _Bool offlineAvailable; // @synthesize offlineAvailable;
 @property(readonly, nonatomic, getter=isFolder) _Bool folder; // @synthesize folder;
 @property(readonly, nonatomic) _Bool showDecorationOverlay; // @synthesize showDecorationOverlay;
 - (void).cxx_destruct;
-- (id)initWithPlaceholderType:(unsigned long long)arg1 testManager:(id)arg2;
+@property(readonly, nonatomic, getter=isQuickActionsEnabled) _Bool quickActionsEnabled;
+- (id)initWithPlaceholderType:(unsigned long long)arg1 testManager:(id)arg2 enabled:(_Bool)arg3;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

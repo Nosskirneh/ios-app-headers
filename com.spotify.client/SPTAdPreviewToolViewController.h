@@ -11,7 +11,7 @@
 #import "UITableViewDelegate-Protocol.h"
 #import "UITextFieldDelegate-Protocol.h"
 
-@class GLUEButton, NSArray, NSString, NSURL, SPTAdPreviewToolDataLoader, SPTInfoView, SPTLayoutConstraintBuilder, SPTProgressView, SPTTableView, SPTTheme, UISegmentedControl, UITextField;
+@class GLUEButton, NSArray, NSString, NSURL, SPTAdPreviewToolDataLoader, SPTInfoView, SPTProgressView, SPTTableView, SPTTheme, UISegmentedControl, UITextField;
 @protocol SPTLinkDispatcher, SPTPageContainer;
 
 @interface SPTAdPreviewToolViewController : UIViewController <SPTPageController, UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate>
@@ -21,7 +21,7 @@
     SPTTableView *_resultsTableView;
     GLUEButton *_fetchCreativesButton;
     SPTTheme *_theme;
-    SPTLayoutConstraintBuilder *_layout;
+    NSArray *_layoutConstraints;
     SPTAdPreviewToolDataLoader *_previewDataloader;
     id <SPTLinkDispatcher> _linkDispatcher;
     SPTProgressView *_progressIndicator;
@@ -34,7 +34,7 @@
 @property(retain, nonatomic) SPTProgressView *progressIndicator; // @synthesize progressIndicator=_progressIndicator;
 @property(retain, nonatomic) id <SPTLinkDispatcher> linkDispatcher; // @synthesize linkDispatcher=_linkDispatcher;
 @property(retain, nonatomic) SPTAdPreviewToolDataLoader *previewDataloader; // @synthesize previewDataloader=_previewDataloader;
-@property(retain, nonatomic) SPTLayoutConstraintBuilder *layout; // @synthesize layout=_layout;
+@property(copy, nonatomic) NSArray *layoutConstraints; // @synthesize layoutConstraints=_layoutConstraints;
 @property(retain, nonatomic) SPTTheme *theme; // @synthesize theme=_theme;
 @property(retain, nonatomic) GLUEButton *fetchCreativesButton; // @synthesize fetchCreativesButton=_fetchCreativesButton;
 @property(retain, nonatomic) SPTTableView *resultsTableView; // @synthesize resultsTableView=_resultsTableView;

@@ -9,11 +9,12 @@
 #import "SPTVoiceDynamicCommandSuggestionsGeneratorDelegate-Protocol.h"
 #import "SPTVoiceRecognitionTaskDelegate-Protocol.h"
 #import "SPTVoiceSession-Protocol.h"
+#import "SPTVoiceSessionInternal-Protocol.h"
 
-@class NSString, SPTObserverManager, SPTVoiceCommand, SPTVoiceDynamicCommandSuggestionsGenerator, SPTVoiceRecognitionTask, SPTask;
+@class NSString, SPTObserverManager, SPTVoiceCommand, SPTVoiceDynamicCommandSuggestionsGenerator, SPTVoiceRecognitionTask, SPTVoiceSessionHandlingOptions, SPTVoiceTestManagerImplementation, SPTask;
 @protocol SPTPlayer, SPTVoiceAudioSession, SPTVoiceCommandHandler, SPTVoiceRecognitionTaskFactory, SPTVoiceUtteranceIdentifierProvider;
 
-@interface SPTVoiceSessionImplementation : NSObject <SPTVoiceRecognitionTaskDelegate, SPTVoiceDynamicCommandSuggestionsGeneratorDelegate, SPTVoiceSession>
+@interface SPTVoiceSessionImplementation : NSObject <SPTVoiceRecognitionTaskDelegate, SPTVoiceDynamicCommandSuggestionsGeneratorDelegate, SPTVoiceSession, SPTVoiceSessionInternal>
 {
     _Bool _wasPlayingBeforeSessionStart;
     _Bool _didStartFirstUtterance;
@@ -28,8 +29,12 @@
     id <SPTVoiceUtteranceIdentifierProvider> _utteranceIdProvider;
     NSString *_utteranceIdentifier;
     SPTVoiceDynamicCommandSuggestionsGenerator *_suggestionGenerator;
+    SPTVoiceSessionHandlingOptions *_sessionHandlingOptions;
+    SPTVoiceTestManagerImplementation *_testManager;
 }
 
+@property(readonly, nonatomic) SPTVoiceTestManagerImplementation *testManager; // @synthesize testManager=_testManager;
+@property(readonly, nonatomic) SPTVoiceSessionHandlingOptions *sessionHandlingOptions; // @synthesize sessionHandlingOptions=_sessionHandlingOptions;
 @property(retain, nonatomic) SPTVoiceDynamicCommandSuggestionsGenerator *suggestionGenerator; // @synthesize suggestionGenerator=_suggestionGenerator;
 @property(retain, nonatomic) NSString *utteranceIdentifier; // @synthesize utteranceIdentifier=_utteranceIdentifier;
 @property(retain, nonatomic) id <SPTVoiceUtteranceIdentifierProvider> utteranceIdProvider; // @synthesize utteranceIdProvider=_utteranceIdProvider;
@@ -47,6 +52,7 @@
 - (void)resumePlaybackIfNeeded;
 - (_Bool)shouldResumePlaybackAfterSuccessfulHandlingOfCommand:(id)arg1;
 - (void)suggestionDidUpdate:(id)arg1;
+- (void)firstUtteranceTimedOut;
 - (_Bool)pausePlaybackIfNeeded;
 - (void)voiceRecognitionTaskDidSendFirstAudioData:(id)arg1;
 - (void)voiceRecognitionTask:(id)arg1 didUpdateMeanAudioLevel:(double)arg2 peakAudioLevel:(double)arg3;
@@ -64,7 +70,7 @@
 - (void)stopSession;
 - (void)startSession;
 - (id)currentUtteranceId;
-- (id)initWithVoiceRecognitionTaskFactory:(id)arg1 audioSessionManager:(id)arg2 voiceCommandHandler:(id)arg3 player:(id)arg4 utteranceIdProvider:(id)arg5 initialUtteranceId:(id)arg6 suggestionGenerator:(id)arg7;
+- (id)initWithVoiceRecognitionTaskFactory:(id)arg1 audioSessionManager:(id)arg2 voiceCommandHandler:(id)arg3 player:(id)arg4 utteranceIdProvider:(id)arg5 initialUtteranceId:(id)arg6 suggestionGenerator:(id)arg7 sessionHandlingOptions:(id)arg8 testManager:(id)arg9;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

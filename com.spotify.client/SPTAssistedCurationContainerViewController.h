@@ -45,7 +45,7 @@
 - (void)removeViewController:(id)arg1;
 - (void)addViewController:(id)arg1;
 - (void)viewDidLoad;
-- (id)initWithPageURI:(id)arg1 assistedCurationViewController:(id)arg2 searchViewContoller:(id)arg3 theme:(id)arg4 logger:(id)arg5;
+- (id)initWithPageURI:(id)arg1 assistedCurationViewController:(id)arg2 searchViewController:(id)arg3 theme:(id)arg4 logger:(id)arg5;
 @property(readonly, nonatomic, getter=spt_pageURI) NSURL *pageURI;
 @property(readonly, nonatomic, getter=spt_pageIdentifier) NSString *pageIdentifier;
 @property(readonly, nonatomic, getter=spt_pageContainer) id <SPTPageContainer> pageContainer;

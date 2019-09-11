@@ -22,18 +22,15 @@
 }
 
 + (id)messageWithRequestId:(id)arg1 featureId:(id)arg2 pageuri:(id)arg3 sectionId:(id)arg4 itemIndex:(long long)arg5 targetUri:(id)arg6 impressionType:(id)arg7 renderType:(id)arg8 timestamp:(double)arg9;
-+ (id)spt_secctionIDForModel:(id)arg1;
-+ (long long)spt_hubLoggingDataItemIndexForModel:(id)arg1;
-+ (id)spt_impression5LogMessageWithComponentModel:(id)arg1;
 @property(nonatomic) double timestampValue; // @synthesize timestampValue=_timestampValue;
-@property(retain, nonatomic) NSString *renderTypeValue; // @synthesize renderTypeValue=_renderTypeValue;
-@property(retain, nonatomic) NSString *impressionTypeValue; // @synthesize impressionTypeValue=_impressionTypeValue;
-@property(retain, nonatomic) NSString *targetUriValue; // @synthesize targetUriValue=_targetUriValue;
+@property(copy, nonatomic) NSString *renderTypeValue; // @synthesize renderTypeValue=_renderTypeValue;
+@property(copy, nonatomic) NSString *impressionTypeValue; // @synthesize impressionTypeValue=_impressionTypeValue;
+@property(copy, nonatomic) NSString *targetUriValue; // @synthesize targetUriValue=_targetUriValue;
 @property(nonatomic) long long itemIndexValue; // @synthesize itemIndexValue=_itemIndexValue;
-@property(retain, nonatomic) NSString *sectionIdValue; // @synthesize sectionIdValue=_sectionIdValue;
-@property(retain, nonatomic) NSString *pageuriValue; // @synthesize pageuriValue=_pageuriValue;
-@property(retain, nonatomic) NSString *featureIdValue; // @synthesize featureIdValue=_featureIdValue;
-@property(retain, nonatomic) NSString *requestIdValue; // @synthesize requestIdValue=_requestIdValue;
+@property(copy, nonatomic) NSString *sectionIdValue; // @synthesize sectionIdValue=_sectionIdValue;
+@property(copy, nonatomic) NSString *pageuriValue; // @synthesize pageuriValue=_pageuriValue;
+@property(copy, nonatomic) NSString *featureIdValue; // @synthesize featureIdValue=_featureIdValue;
+@property(copy, nonatomic) NSString *requestIdValue; // @synthesize requestIdValue=_requestIdValue;
 - (void).cxx_destruct;
 - (_Bool)isEqual:(id)arg1;
 - (unsigned long long)hash;

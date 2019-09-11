@@ -11,16 +11,16 @@
 @interface SPTFreeTierPlaylistEditPlaylistAction : SPAction
 {
     id <SPTModalPresentationController> _modalPresenter;
-    CDUnknownBlockType _createEditViewContoller;
+    CDUnknownBlockType _createEditViewController;
 }
 
-@property(readonly, copy, nonatomic) CDUnknownBlockType createEditViewContoller; // @synthesize createEditViewContoller=_createEditViewContoller;
+@property(readonly, copy, nonatomic) CDUnknownBlockType createEditViewController; // @synthesize createEditViewController=_createEditViewController;
 @property(readonly, nonatomic) id <SPTModalPresentationController> modalPresenter; // @synthesize modalPresenter=_modalPresenter;
 - (void).cxx_destruct;
 - (id)execute:(id)arg1;
 - (long long)icon;
 - (id)title;
-- (id)initWithModalPresenter:(id)arg1 logContext:(id)arg2 createEditViewContollerBlock:(CDUnknownBlockType)arg3;
+- (id)initWithModalPresenter:(id)arg1 logContext:(id)arg2 createEditViewControllerBlock:(CDUnknownBlockType)arg3;
 
 @end
 

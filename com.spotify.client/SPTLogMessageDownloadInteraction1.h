@@ -18,9 +18,9 @@
 
 + (id)messageWithViewUri:(id)arg1 downloadUri:(id)arg2 elementType:(id)arg3 requestedState:(_Bool)arg4;
 @property(nonatomic) _Bool requestedStateValue; // @synthesize requestedStateValue=_requestedStateValue;
-@property(retain, nonatomic) NSString *elementTypeValue; // @synthesize elementTypeValue=_elementTypeValue;
-@property(retain, nonatomic) NSString *downloadUriValue; // @synthesize downloadUriValue=_downloadUriValue;
-@property(retain, nonatomic) NSString *viewUriValue; // @synthesize viewUriValue=_viewUriValue;
+@property(copy, nonatomic) NSString *elementTypeValue; // @synthesize elementTypeValue=_elementTypeValue;
+@property(copy, nonatomic) NSString *downloadUriValue; // @synthesize downloadUriValue=_downloadUriValue;
+@property(copy, nonatomic) NSString *viewUriValue; // @synthesize viewUriValue=_viewUriValue;
 - (void).cxx_destruct;
 - (_Bool)isEqual:(id)arg1;
 - (unsigned long long)hash;

@@ -7,20 +7,19 @@
 #import <UIKit/UIViewController.h>
 
 #import "SPTNowPlayingContainedViewController-Protocol.h"
-#import "SPTNowPlayingContainerIdleMonitorObserver-Protocol.h"
 #import "SPTNowPlayingDurationUnitViewModelDelegate-Protocol.h"
 #import "SPTNowPlayingDurationViewV2DataSource-Protocol.h"
 #import "SPTNowPlayingDurationViewV2Delegate-Protocol.h"
 #import "SPTNowPlayingSliderV2DataSource-Protocol.h"
 
-@class NSString, SPTNowPlayingDurationUnitViewModel, SPTNowPlayingDurationViewV2, SPTTheme, UIView;
+@class NSString, SPTNowPlayingDurationUnitViewModelImplementation, SPTNowPlayingDurationViewV2, SPTTheme, UIView;
 @protocol SPTNowPlayingContainingViewController;
 
-@interface SPTNowPlayingDurationUnitViewController : UIViewController <SPTNowPlayingSliderV2DataSource, SPTNowPlayingDurationViewV2DataSource, SPTNowPlayingDurationViewV2Delegate, SPTNowPlayingContainerIdleMonitorObserver, SPTNowPlayingContainedViewController, SPTNowPlayingDurationUnitViewModelDelegate>
+@interface SPTNowPlayingDurationUnitViewController : UIViewController <SPTNowPlayingSliderV2DataSource, SPTNowPlayingDurationViewV2DataSource, SPTNowPlayingDurationViewV2Delegate, SPTNowPlayingContainedViewController, SPTNowPlayingDurationUnitViewModelDelegate>
 {
     _Bool _hasShownLabelsAfterTrackChange;
     SPTTheme *_theme;
-    SPTNowPlayingDurationUnitViewModel *_viewModel;
+    SPTNowPlayingDurationUnitViewModelImplementation *_viewModel;
     SPTNowPlayingDurationViewV2 *_durationView;
     UIView *_animationView;
 }
@@ -28,11 +27,9 @@
 @property(retain, nonatomic) UIView *animationView; // @synthesize animationView=_animationView;
 @property(retain, nonatomic) SPTNowPlayingDurationViewV2 *durationView; // @synthesize durationView=_durationView;
 @property(nonatomic) _Bool hasShownLabelsAfterTrackChange; // @synthesize hasShownLabelsAfterTrackChange=_hasShownLabelsAfterTrackChange;
-@property(readonly, nonatomic) SPTNowPlayingDurationUnitViewModel *viewModel; // @synthesize viewModel=_viewModel;
+@property(readonly, nonatomic) SPTNowPlayingDurationUnitViewModelImplementation *viewModel; // @synthesize viewModel=_viewModel;
 @property(readonly, nonatomic) SPTTheme *theme; // @synthesize theme=_theme;
 - (void).cxx_destruct;
-- (void)idlePeriodDidEnd;
-- (void)idlePeriodDidBegin;
 - (void)trackMetadataDidFinishUpdating;
 - (void)trackMetadataDidMove:(_Bool)arg1;
 - (void)trackPositionDidChange;

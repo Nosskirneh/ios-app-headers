@@ -7,19 +7,23 @@
 #import "GLUEThemeBase.h"
 
 @class GLUEEntityRowStyle, SPTFreeTierPreCurationChunkyRowStyle, SPTFreeTierPreCurationQuickActionViewStyle;
-@protocol SPTCollectionPlatformConfiguration;
+@protocol SPTCollectionPlatformConfiguration, SPTFreeTierPreCurationTestManager;
 
 @interface SPTFreeTierPreCurationTheme : GLUEThemeBase
 {
     id <SPTCollectionPlatformConfiguration> _collectionConfiguration;
+    id <SPTFreeTierPreCurationTestManager> _testManager;
 }
 
+@property(retain, nonatomic) id <SPTFreeTierPreCurationTestManager> testManager; // @synthesize testManager=_testManager;
 @property(retain, nonatomic) id <SPTCollectionPlatformConfiguration> collectionConfiguration; // @synthesize collectionConfiguration=_collectionConfiguration;
 - (void).cxx_destruct;
 - (id)colorForLikeState:(_Bool)arg1;
 - (long long)iconForLikeState:(_Bool)arg1;
 - (id)colorForBanState:(_Bool)arg1;
 - (long long)iconForBanState:(_Bool)arg1;
+- (_Bool)shouldHideQuickActions;
+- (void)applyStyleToQuickActionsView:(id)arg1 isLiked:(_Bool)arg2 isBanned:(_Bool)arg3;
 @property(readonly, copy, nonatomic) GLUEEntityRowStyle *trackRowPreCurationStyle;
 @property(readonly, copy, nonatomic) SPTFreeTierPreCurationQuickActionViewStyle *likedAndBannedQuickActionViewStyle;
 @property(readonly, copy, nonatomic) SPTFreeTierPreCurationQuickActionViewStyle *banQuickActionViewStyle;
@@ -28,7 +32,7 @@
 @property(readonly, copy, nonatomic) SPTFreeTierPreCurationQuickActionViewStyle *defaultQuickActionAddBanViewStyle;
 @property(readonly, copy, nonatomic) SPTFreeTierPreCurationChunkyRowStyle *bannedChunkyTrackRowStyle;
 @property(readonly, copy, nonatomic) SPTFreeTierPreCurationChunkyRowStyle *defaultChunkyTrackRowStyle;
-- (id)initWithParentTheme:(id)arg1 collectionConfiguration:(id)arg2;
+- (id)initWithParentTheme:(id)arg1 testManager:(id)arg2 collectionConfiguration:(id)arg3;
 
 @end
 

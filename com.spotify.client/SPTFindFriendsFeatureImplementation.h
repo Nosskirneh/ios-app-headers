@@ -18,7 +18,7 @@
     id <SPTContainerUIService> _containerUIService;
     id <SPTCoreService> _coreService;
     id <SPTNetworkService> _networkService;
-    id <FollowFeature> _follow;
+    id <FollowFeature> _followFeature;
     SPTFindFriendsLogger *_logger;
     id <SPTURIDispatchService> _uriDispatchService;
     id <SPTGLUEService> _glueService;
@@ -28,7 +28,7 @@
 @property(nonatomic) __weak id <SPTGLUEService> glueService; // @synthesize glueService=_glueService;
 @property(nonatomic) __weak id <SPTURIDispatchService> uriDispatchService; // @synthesize uriDispatchService=_uriDispatchService;
 @property(retain, nonatomic) SPTFindFriendsLogger *logger; // @synthesize logger=_logger;
-@property(nonatomic) __weak id <FollowFeature> follow; // @synthesize follow=_follow;
+@property(nonatomic) __weak id <FollowFeature> followFeature; // @synthesize followFeature=_followFeature;
 @property(nonatomic) __weak id <SPTNetworkService> networkService; // @synthesize networkService=_networkService;
 @property(nonatomic) __weak id <SPTCoreService> coreService; // @synthesize coreService=_coreService;
 @property(nonatomic) __weak id <SPTContainerUIService> containerUIService; // @synthesize containerUIService=_containerUIService;

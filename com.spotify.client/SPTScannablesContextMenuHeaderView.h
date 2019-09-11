@@ -8,14 +8,14 @@
 
 #import "SPTContextMenuHeader-Protocol.h"
 
-@class NSString, NSURL, SPTLayoutConstraintBuilder, SPTScannablesDependencies, SPTScannablesImageView, UILabel;
+@class NSArray, NSString, NSURL, SPTScannablesDependencies, SPTScannablesImageView, UILabel;
 
 @interface SPTScannablesContextMenuHeaderView : UIView <SPTContextMenuHeader>
 {
     NSString *_title;
     NSString *_headerSubtitle;
     SPTScannablesDependencies *_dependencies;
-    SPTLayoutConstraintBuilder *_builder;
+    NSArray *_layoutConstraints;
     SPTScannablesImageView *_imageView;
     UILabel *_titleLabel;
     UILabel *_subtitleLabel;
@@ -24,7 +24,7 @@
 @property(readonly, nonatomic) UILabel *subtitleLabel; // @synthesize subtitleLabel=_subtitleLabel;
 @property(readonly, nonatomic) UILabel *titleLabel; // @synthesize titleLabel=_titleLabel;
 @property(readonly, nonatomic) SPTScannablesImageView *imageView; // @synthesize imageView=_imageView;
-@property(retain, nonatomic) SPTLayoutConstraintBuilder *builder; // @synthesize builder=_builder;
+@property(copy, nonatomic) NSArray *layoutConstraints; // @synthesize layoutConstraints=_layoutConstraints;
 @property(readonly, nonatomic) SPTScannablesDependencies *dependencies; // @synthesize dependencies=_dependencies;
 @property(readonly, nonatomic) NSString *headerSubtitle; // @synthesize headerSubtitle=_headerSubtitle;
 @property(retain, nonatomic) NSString *title; // @synthesize title=_title;

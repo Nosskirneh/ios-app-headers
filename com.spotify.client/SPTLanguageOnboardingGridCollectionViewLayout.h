@@ -12,20 +12,19 @@
 
 @interface SPTLanguageOnboardingGridCollectionViewLayout : UICollectionViewFlowLayout <GLUEStyleable>
 {
-    unsigned long long _itemsPerRow;
     unsigned long long _additionalItemHeight;
     double _interitemSpacing;
     double _itemAspectRadio;
-    struct CGSize _firstItemSize;
-    struct CGSize _otherItemSize;
+    struct CGSize _wideItemSize;
+    struct CGSize _normalItemSize;
 }
 
+@property(nonatomic) struct CGSize normalItemSize; // @synthesize normalItemSize=_normalItemSize;
+@property(nonatomic) struct CGSize wideItemSize; // @synthesize wideItemSize=_wideItemSize;
 @property(nonatomic) double itemAspectRadio; // @synthesize itemAspectRadio=_itemAspectRadio;
 @property(nonatomic) double interitemSpacing; // @synthesize interitemSpacing=_interitemSpacing;
 @property(nonatomic) unsigned long long additionalItemHeight; // @synthesize additionalItemHeight=_additionalItemHeight;
-@property(nonatomic) unsigned long long itemsPerRow; // @synthesize itemsPerRow=_itemsPerRow;
-@property(nonatomic) struct CGSize otherItemSize; // @synthesize otherItemSize=_otherItemSize;
-@property(nonatomic) struct CGSize firstItemSize; // @synthesize firstItemSize=_firstItemSize;
+- (struct CGSize)sizeForItemAtIndex:(long long)arg1;
 - (void)glue_applyStyle:(id)arg1;
 - (void)prepareLayout;
 

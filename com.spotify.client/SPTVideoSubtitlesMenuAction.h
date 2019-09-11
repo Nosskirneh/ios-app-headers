@@ -8,26 +8,30 @@
 
 #import "SPTContextMenuAction-Protocol.h"
 
-@class NSString, UIView;
+@class NSString, SPTVideoCoordinatorCosmosSender, SPTVideoSubtitleConfigurator, UIView;
+@protocol SPTVideoSubtitle;
 
 @interface SPTVideoSubtitlesMenuAction : NSObject <SPTContextMenuAction>
 {
-    NSString *_title;
-    long long _accessoryIcon;
-    CDUnknownBlockType _action;
+    _Bool _selected;
+    SPTVideoCoordinatorCosmosSender *_cosmosSender;
+    SPTVideoSubtitleConfigurator *_subtitleConfigurator;
+    id <SPTVideoSubtitle> _subtitle;
     UIView *_accessoryViewCache;
 }
 
 @property(retain, nonatomic) UIView *accessoryViewCache; // @synthesize accessoryViewCache=_accessoryViewCache;
-@property(copy, nonatomic) CDUnknownBlockType action; // @synthesize action=_action;
-@property(nonatomic) long long accessoryIcon; // @synthesize accessoryIcon=_accessoryIcon;
-@property(retain, nonatomic) NSString *title; // @synthesize title=_title;
+@property(nonatomic, getter=isSelected) _Bool selected; // @synthesize selected=_selected;
+@property(retain, nonatomic) id <SPTVideoSubtitle> subtitle; // @synthesize subtitle=_subtitle;
+@property(retain, nonatomic) SPTVideoSubtitleConfigurator *subtitleConfigurator; // @synthesize subtitleConfigurator=_subtitleConfigurator;
+@property(retain, nonatomic) SPTVideoCoordinatorCosmosSender *cosmosSender; // @synthesize cosmosSender=_cosmosSender;
 - (void).cxx_destruct;
 - (id)accessoryView;
 - (id)catIcon:(long long)arg1 withColor:(id)arg2;
 - (id)performAction;
-- (_Bool)isEnabled;
-- (id)initWithTitle:(id)arg1 accessoryIcon:(long long)arg2 action:(CDUnknownBlockType)arg3;
+@property(readonly, nonatomic) long long accessoryIcon;
+- (id)title;
+- (id)initWithSubtitle:(id)arg1 cosmosSender:(id)arg2 subtitleConfigurator:(id)arg3 selected:(_Bool)arg4;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

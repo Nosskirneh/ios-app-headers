@@ -10,8 +10,5 @@
 
 @protocol SPTNowPlayingCoverArtContentViewDelegate <NSObject>
 - (void)contentViewIsReadyForDisplay:(id <SPTNowPlayingCoverArtContentView>)arg1;
-
-@optional
-- (void)contentViewDidFailLoading:(id <SPTNowPlayingCoverArtContentView>)arg1;
 @end
 

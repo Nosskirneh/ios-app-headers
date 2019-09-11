@@ -6,11 +6,9 @@
 
 #import "SPTFeatureFlagSignalImplementation.h"
 
-#import "SPTFeatureFlagSignalObserver-Protocol.h"
-
 @class NSMapTable, NSString;
 
-@interface SPTCompoundFeatureFlagSignal : SPTFeatureFlagSignalImplementation <SPTFeatureFlagSignalObserver>
+@interface SPTCompoundFeatureFlagSignal : SPTFeatureFlagSignalImplementation
 {
     NSMapTable *_signals;
 }

@@ -9,11 +9,11 @@
 #import "SPTFreeTierRecommendationsService-Protocol.h"
 
 @class NSString, SPTAllocationContext;
-@protocol EXP_SPTHubFrameworkService, SPTFreeTierRecommendationsPlaylistViewProvider, SPTGLUEService, SPTNetworkService, SPTOnDemandService, SPTSessionService;
+@protocol SPTFreeTierRecommendationsPlaylistViewProvider, SPTGLUEService, SPTHubFrameworkService, SPTNetworkService, SPTOnDemandService, SPTSessionService;
 
 @interface SPTFreeTierRecommendationsServiceImplementation : NSObject <SPTFreeTierRecommendationsService>
 {
-    id <EXP_SPTHubFrameworkService> _hubFrameworkService;
+    id <SPTHubFrameworkService> _hubFrameworkService;
     id <SPTGLUEService> _glueService;
     id <SPTOnDemandService> _onDemandService;
     id <SPTSessionService> _clientSessionService;
@@ -27,7 +27,7 @@
 @property(nonatomic) __weak id <SPTSessionService> clientSessionService; // @synthesize clientSessionService=_clientSessionService;
 @property(nonatomic) __weak id <SPTOnDemandService> onDemandService; // @synthesize onDemandService=_onDemandService;
 @property(nonatomic) __weak id <SPTGLUEService> glueService; // @synthesize glueService=_glueService;
-@property(nonatomic) __weak id <EXP_SPTHubFrameworkService> hubFrameworkService; // @synthesize hubFrameworkService=_hubFrameworkService;
+@property(nonatomic) __weak id <SPTHubFrameworkService> hubFrameworkService; // @synthesize hubFrameworkService=_hubFrameworkService;
 - (void).cxx_destruct;
 - (id)provideRecommendedTracksDataLoader;
 - (id)recommenedPlaylistViewProvider;

@@ -7,14 +7,14 @@
 #import "SettingsViewController.h"
 
 #import "SPTAbbaFeatureFlagsObserver-Protocol.h"
-#import "SPTGaiaDeviceStateManagerObserver-Protocol.h"
+#import "SPTGaiaConnectObserver-Protocol.h"
 #import "SPTProductStateObserver-Protocol.h"
 #import "UITableViewDelegate-Protocol.h"
 
 @class NSArray, NSMutableArray, NSObject, NSString, SPSession, SettingsErrorHeaderView;
-@protocol GaiaFeature, SPTAbbaFeatureFlags, SPTLoginStateController;
+@protocol SPTAbbaFeatureFlags, SPTGaiaConnectAPI, SPTLoginStateController;
 
-@interface RootSettingsViewController : SettingsViewController <SPTGaiaDeviceStateManagerObserver, SPTProductStateObserver, SPTAbbaFeatureFlagsObserver, UITableViewDelegate>
+@interface RootSettingsViewController : SettingsViewController <SPTGaiaConnectObserver, SPTProductStateObserver, SPTAbbaFeatureFlagsObserver, UITableViewDelegate>
 {
     _Bool _isPlayingRemotely;
     _Bool _isAdsEnabled;
@@ -24,13 +24,13 @@
     NSObject<SPTLoginStateController> *_loginStateController;
     NSMutableArray *_settingsSectionsForConnectObserving;
     NSArray *_settingsSectionsForLocalPlayback;
-    id <GaiaFeature> _gaia;
+    id <SPTGaiaConnectAPI> _connectManager;
     long long _disabledSettingsIndex;
     id <SPTAbbaFeatureFlags> _featureFlags;
     SPSession *_session;
 }
 
-+ (id)rootSettingsViewControllerWithDictionaryRepresentation:(id)arg1 loginStateController:(id)arg2 gaia:(id)arg3 isDataSaverEnabled:(_Bool)arg4 isLanguageOnboardingEnabled:(_Bool)arg5 productState:(id)arg6 featureFlags:(id)arg7 session:(id)arg8 navigationItem:(id)arg9 navigationRouter:(id)arg10 linkDispatcher:(id)arg11;
++ (id)rootSettingsViewControllerWithDictionaryRepresentation:(id)arg1 loginStateController:(id)arg2 connectManager:(id)arg3 isDataSaverEnabled:(_Bool)arg4 isLanguageOnboardingEnabled:(_Bool)arg5 productState:(id)arg6 featureFlags:(id)arg7 session:(id)arg8 navigationItem:(id)arg9 navigationRouter:(id)arg10 linkDispatcher:(id)arg11;
 @property(nonatomic) __weak SPSession *session; // @synthesize session=_session;
 @property(nonatomic) __weak id <SPTAbbaFeatureFlags> featureFlags; // @synthesize featureFlags=_featureFlags;
 @property(nonatomic) _Bool isLanguageOnboardingEnabled; // @synthesize isLanguageOnboardingEnabled=_isLanguageOnboardingEnabled;
@@ -38,7 +38,7 @@
 @property(nonatomic) _Bool isAdsEnabled; // @synthesize isAdsEnabled=_isAdsEnabled;
 @property(nonatomic) long long disabledSettingsIndex; // @synthesize disabledSettingsIndex=_disabledSettingsIndex;
 @property(nonatomic) _Bool isPlayingRemotely; // @synthesize isPlayingRemotely=_isPlayingRemotely;
-@property(nonatomic) __weak id <GaiaFeature> gaia; // @synthesize gaia=_gaia;
+@property(retain, nonatomic) id <SPTGaiaConnectAPI> connectManager; // @synthesize connectManager=_connectManager;
 @property(retain, nonatomic) NSArray *settingsSectionsForLocalPlayback; // @synthesize settingsSectionsForLocalPlayback=_settingsSectionsForLocalPlayback;
 @property(retain, nonatomic) NSMutableArray *settingsSectionsForConnectObserving; // @synthesize settingsSectionsForConnectObserving=_settingsSectionsForConnectObserving;
 @property(nonatomic) __weak NSObject<SPTLoginStateController> *loginStateController; // @synthesize loginStateController=_loginStateController;
@@ -48,8 +48,6 @@
 - (_Bool)isLanguageOnboardingRow:(id)arg1;
 - (_Bool)shouldShowDataSaverRow;
 - (_Bool)isDataSaverRow:(id)arg1;
-- (_Bool)shouldShowSponsoredContentRow;
-- (_Bool)isSponsoredContentRow:(id)arg1;
 - (void)popAdsViewController;
 - (_Bool)shouldShowAdsRow;
 - (_Bool)isAdsRow:(id)arg1;
@@ -70,8 +68,8 @@
 - (void)viewDidLoad;
 - (void)featureFlagsDidChange:(id)arg1;
 - (void)productState:(id)arg1 stateDidChange:(id)arg2;
-- (void)deviceStateManager:(id)arg1 activeDeviceDidChange:(id)arg2;
-- (id)initWithDictionaryRepresentation:(id)arg1 loginStateController:(id)arg2 gaia:(id)arg3 isDataSaverEnabled:(_Bool)arg4 isLanguageOnboardingEnabled:(_Bool)arg5 productState:(id)arg6 featureFlags:(id)arg7 session:(id)arg8 navigationItem:(id)arg9 navigationRouter:(id)arg10 linkDispatcher:(id)arg11;
+- (void)connectActiveDeviceDidChange:(id)arg1;
+- (id)initWithDictionaryRepresentation:(id)arg1 loginStateController:(id)arg2 connectManager:(id)arg3 isDataSaverEnabled:(_Bool)arg4 isLanguageOnboardingEnabled:(_Bool)arg5 productState:(id)arg6 featureFlags:(id)arg7 session:(id)arg8 navigationItem:(id)arg9 navigationRouter:(id)arg10 linkDispatcher:(id)arg11;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

@@ -7,6 +7,7 @@
 #import "SPTCollectionPlatformFieldAlbumCovers-Protocol.h"
 #import "SPTCollectionPlatformFieldAlbumIsComplete-Protocol.h"
 #import "SPTCollectionPlatformFieldAlbumTracksCount-Protocol.h"
+#import "SPTCollectionPlatformFieldAlbumYear-Protocol.h"
 #import "SPTCollectionPlatformFieldArtists-Protocol.h"
 #import "SPTCollectionPlatformFieldAvailableOfflineStatus-Protocol.h"
 #import "SPTCollectionPlatformFieldCollectionAlbumTracksCount-Protocol.h"
@@ -14,6 +15,6 @@
 #import "SPTCollectionPlatformFieldName-Protocol.h"
 #import "SPTCollectionPlatformFieldURL-Protocol.h"
 
-@protocol SPTFreeTierAlbumCosmosMetadataFields <SPTCollectionPlatformFieldName, SPTCollectionPlatformFieldURL, SPTCollectionPlatformFieldCollectionURL, SPTCollectionPlatformFieldAlbumCovers, SPTCollectionPlatformFieldArtists, SPTCollectionPlatformFieldAlbumTracksCount, SPTCollectionPlatformFieldCollectionAlbumTracksCount, SPTCollectionPlatformFieldAvailableOfflineStatus, SPTCollectionPlatformFieldAlbumIsComplete>
+@protocol SPTFreeTierAlbumCosmosMetadataFields <SPTCollectionPlatformFieldName, SPTCollectionPlatformFieldURL, SPTCollectionPlatformFieldCollectionURL, SPTCollectionPlatformFieldAlbumCovers, SPTCollectionPlatformFieldArtists, SPTCollectionPlatformFieldAlbumTracksCount, SPTCollectionPlatformFieldCollectionAlbumTracksCount, SPTCollectionPlatformFieldAvailableOfflineStatus, SPTCollectionPlatformFieldAlbumIsComplete, SPTCollectionPlatformFieldAlbumYear>
 @end
 

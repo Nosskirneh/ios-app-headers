@@ -7,35 +7,39 @@
 #import <objc/NSObject.h>
 
 #import "SPTInAppMessageBannerMessagePriorityDeciderDelegate-Protocol.h"
-#import "SPTInAppMessageNowPlayingManagerRegistryObserver-Protocol.h"
 
-@class NSString, SPTInAppMessageActionFactory, SPTInAppMessageBannerMessageParser, SPTInAppMessageBannerMessageViewModel, SPTInAppMessageBannerPresentationController, SPTInAppMessageServiceLogger;
-@protocol SPTBannerPresentationManager, SPTExternalIntegrationDriverDistractionController, SPTNowPlayingManager;
+@class NSString, SPTInAppMessageActionFactory, SPTInAppMessageBannerMessageParser, SPTInAppMessageBannerMessageViewModel, SPTInAppMessageBannerPresentationController, SPTInAppMessageNotePresentationManagerImplementation, SPTInAppMessageNowPlayingManagerRegistryImplementation, SPTInAppMessageServiceLogger;
+@protocol SPTBannerPresentationManager, SPTCrashReporter, SPTExternalIntegrationDriverDistractionController, SPTOfflineModeState;
 
-@interface SPTInAppMessageBannerMessageController : NSObject <SPTInAppMessageBannerMessagePriorityDeciderDelegate, SPTInAppMessageNowPlayingManagerRegistryObserver>
+@interface SPTInAppMessageBannerMessageController : NSObject <SPTInAppMessageBannerMessagePriorityDeciderDelegate>
 {
+    SPTInAppMessageBannerPresentationController *_bannerPresentationController;
     id <SPTBannerPresentationManager> _bannerPresentationManager;
     SPTInAppMessageBannerMessageParser *_bannerMessageParser;
     SPTInAppMessageActionFactory *_actionFactory;
     SPTInAppMessageServiceLogger *_serviceLogger;
     SPTInAppMessageBannerMessageViewModel *_bannerMessageViewModel;
-    SPTInAppMessageBannerPresentationController *_bannerPresentationController;
     id <SPTExternalIntegrationDriverDistractionController> _driverDistractionController;
-    id <SPTNowPlayingManager> _nowPlayingManager;
+    SPTInAppMessageNowPlayingManagerRegistryImplementation *_nowPlayingManagerRegistry;
+    id <SPTOfflineModeState> _offlineModeState;
+    SPTInAppMessageNotePresentationManagerImplementation *_notePresentationManager;
+    id <SPTCrashReporter> _crashReporter;
 }
 
-@property(retain, nonatomic) id <SPTNowPlayingManager> nowPlayingManager; // @synthesize nowPlayingManager=_nowPlayingManager;
+@property(retain, nonatomic) id <SPTCrashReporter> crashReporter; // @synthesize crashReporter=_crashReporter;
+@property(retain, nonatomic) SPTInAppMessageNotePresentationManagerImplementation *notePresentationManager; // @synthesize notePresentationManager=_notePresentationManager;
+@property(nonatomic) __weak id <SPTOfflineModeState> offlineModeState; // @synthesize offlineModeState=_offlineModeState;
+@property(retain, nonatomic) SPTInAppMessageNowPlayingManagerRegistryImplementation *nowPlayingManagerRegistry; // @synthesize nowPlayingManagerRegistry=_nowPlayingManagerRegistry;
 @property(retain, nonatomic) id <SPTExternalIntegrationDriverDistractionController> driverDistractionController; // @synthesize driverDistractionController=_driverDistractionController;
-@property(retain, nonatomic) SPTInAppMessageBannerPresentationController *bannerPresentationController; // @synthesize bannerPresentationController=_bannerPresentationController;
 @property(retain, nonatomic) SPTInAppMessageBannerMessageViewModel *bannerMessageViewModel; // @synthesize bannerMessageViewModel=_bannerMessageViewModel;
 @property(retain, nonatomic) SPTInAppMessageServiceLogger *serviceLogger; // @synthesize serviceLogger=_serviceLogger;
 @property(retain, nonatomic) SPTInAppMessageActionFactory *actionFactory; // @synthesize actionFactory=_actionFactory;
 @property(retain, nonatomic) SPTInAppMessageBannerMessageParser *bannerMessageParser; // @synthesize bannerMessageParser=_bannerMessageParser;
 @property(retain, nonatomic) id <SPTBannerPresentationManager> bannerPresentationManager; // @synthesize bannerPresentationManager=_bannerPresentationManager;
+@property(retain, nonatomic) SPTInAppMessageBannerPresentationController *bannerPresentationController; // @synthesize bannerPresentationController=_bannerPresentationController;
 - (void).cxx_destruct;
-- (void)nowPlayingManagerWasSet:(id)arg1;
 - (void)bannerMessagePriorityDeciderDidFetchMessage:(id)arg1 forTrigger:(id)arg2;
-- (id)initWithBannerPresentationManager:(id)arg1 bannerMessageParser:(id)arg2 actionFactory:(id)arg3 serviceLogger:(id)arg4 driverDistractionController:(id)arg5 nowPlayingManager:(id)arg6;
+- (id)initWithBannerPresentationManager:(id)arg1 bannerMessageParser:(id)arg2 actionFactory:(id)arg3 serviceLogger:(id)arg4 driverDistractionController:(id)arg5 nowPlayingManagerRegistry:(id)arg6 offlineModeState:(id)arg7 notePresentationManager:(id)arg8 crashReporter:(id)arg9;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

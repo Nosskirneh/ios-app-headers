@@ -11,7 +11,9 @@
 @protocol SPTAdFocusManagerObserver <NSObject>
 
 @optional
-- (void)adFocusManagerDidResignActive:(SPTAdFocusManager *)arg1;
+- (void)adFocusManagerDidEnterBackground:(SPTAdFocusManager *)arg1;
+- (void)adFocusManagerWillEnterForeground:(SPTAdFocusManager *)arg1;
+- (void)adFocusManagerWillResignActive:(SPTAdFocusManager *)arg1;
 - (void)adFocusManagerDidBecomeActive:(SPTAdFocusManager *)arg1;
 @end
 

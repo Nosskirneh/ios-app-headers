@@ -8,17 +8,23 @@
 
 #import "SPTBannerFeature-Protocol.h"
 
-@class NSString, SPTAllocationContext, SPTBannerPresentationManagerImplementation;
-@protocol SPTContainerService;
+@class NSString, SPTAllocationContext, SPTBannerPresentationManagerImplementation, SPTBannerSettingsManager;
+@protocol SPTContainerService, SPTContainerUIService, SPTFeatureFlaggingService;
 
 @interface SPTBannerFeatureImplementation : NSObject <SPTBannerFeature>
 {
     id <SPTContainerService> _containerService;
+    id <SPTFeatureFlaggingService> _featureFlaggingService;
+    id <SPTContainerUIService> _containerUIService;
     SPTBannerPresentationManagerImplementation *_bannerPresentationManager;
+    SPTBannerSettingsManager *_bannerSettingsManager;
 }
 
 + (id)serviceIdentifier;
+@property(retain, nonatomic) SPTBannerSettingsManager *bannerSettingsManager; // @synthesize bannerSettingsManager=_bannerSettingsManager;
 @property(retain, nonatomic) SPTBannerPresentationManagerImplementation *bannerPresentationManager; // @synthesize bannerPresentationManager=_bannerPresentationManager;
+@property(nonatomic) __weak id <SPTContainerUIService> containerUIService; // @synthesize containerUIService=_containerUIService;
+@property(nonatomic) __weak id <SPTFeatureFlaggingService> featureFlaggingService; // @synthesize featureFlaggingService=_featureFlaggingService;
 @property(nonatomic) __weak id <SPTContainerService> containerService; // @synthesize containerService=_containerService;
 - (void).cxx_destruct;
 - (id)provideBannerPresentationManager;

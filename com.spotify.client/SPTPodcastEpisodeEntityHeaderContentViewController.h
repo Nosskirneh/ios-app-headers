@@ -11,7 +11,7 @@
 #import "SPTPodcastEpisodeEntityHeaderContentViewDelegate-Protocol.h"
 #import "SPTPodcastEpisodeViewModelDelegate-Protocol.h"
 
-@class NSString, NSURL, SPTPodcastEpisodeEntityHeaderContentView, SPTPodcastEpisodeTheme, SPTPodcastEpisodeViewModel, UIColor;
+@class NSString, NSURL, SPTPodcastEpisodeEntityHeaderContentView, SPTPodcastEpisodeLogger, SPTPodcastEpisodeTheme, SPTPodcastEpisodeViewModel, UIColor;
 @protocol SPTImageLoader;
 
 @interface SPTPodcastEpisodeEntityHeaderContentViewController : UIViewController <SPTImageLoaderDelegate, SPTEntityHeaderContentController, SPTPodcastEpisodeViewModelDelegate, SPTPodcastEpisodeEntityHeaderContentViewDelegate>
@@ -20,12 +20,14 @@
     SPTPodcastEpisodeViewModel *_viewModel;
     SPTPodcastEpisodeTheme *_theme;
     SPTPodcastEpisodeEntityHeaderContentView *_headerView;
+    SPTPodcastEpisodeLogger *_logger;
     UIColor *_backgroundGradientColor;
     NSURL *_lastImageURL;
 }
 
 @property(retain, nonatomic) NSURL *lastImageURL; // @synthesize lastImageURL=_lastImageURL;
 @property(retain, nonatomic) UIColor *backgroundGradientColor; // @synthesize backgroundGradientColor=_backgroundGradientColor;
+@property(nonatomic) __weak SPTPodcastEpisodeLogger *logger; // @synthesize logger=_logger;
 @property(retain, nonatomic) SPTPodcastEpisodeEntityHeaderContentView *headerView; // @synthesize headerView=_headerView;
 @property(retain, nonatomic) SPTPodcastEpisodeTheme *theme; // @synthesize theme=_theme;
 @property(retain, nonatomic) SPTPodcastEpisodeViewModel *viewModel; // @synthesize viewModel=_viewModel;
@@ -33,15 +35,17 @@
 - (void).cxx_destruct;
 - (void)didTapSubtitle;
 - (void)didTapImage;
+- (void)imageLoader:(id)arg1 didFailToLoadImageForURL:(id)arg2 error:(id)arg3 context:(id)arg4;
 - (void)imageLoader:(id)arg1 didLoadImage:(id)arg2 forURL:(id)arg3 loadTime:(double)arg4 context:(id)arg5;
 - (void)applyThemeLayout;
 - (void)viewModelUpdatedPlaybackState:(id)arg1;
-- (void)viewModel:(id)arg1 episodeDidFinishLoadingWithError:(id)arg2;
+- (void)viewModel:(id)arg1 didUpdateWithError:(id)arg2;
+- (void)useCoverArtFallback;
 - (double)entityHeaderViewControllerMinimumHeight:(id)arg1;
 - (void)entityHeaderViewController:(id)arg1 didUpdateBounceOffsets:(struct UIEdgeInsets)arg2;
 - (void)entityHeaderViewController:(id)arg1 didUpdateVisibleRect:(struct CGRect)arg2;
 - (void)viewDidLoad;
-- (id)initWithViewModel:(id)arg1 theme:(id)arg2 imageLoader:(id)arg3;
+- (id)initWithViewModel:(id)arg1 theme:(id)arg2 imageLoader:(id)arg3 logger:(id)arg4;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

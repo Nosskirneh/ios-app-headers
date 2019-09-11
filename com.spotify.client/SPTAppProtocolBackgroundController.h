@@ -10,12 +10,12 @@
 #import "SPTAppProtocolBackgroundTaskDelegate-Protocol.h"
 #import "SPTAudioSessionControllerObserver-Protocol.h"
 #import "SPTExternalIntegrationPlaybackControllerObserver-Protocol.h"
-#import "SPTGaiaDeviceStateManagerObserver-Protocol.h"
+#import "SPTGaiaConnectObserver-Protocol.h"
 
 @class NSString, SPTAppProtocolBackgroundTask, SPTAudioSessionActivator, UIApplication;
-@protocol SPTAccessoryStateManager, SPTAppProtocolBackgroundControllerDelegate, SPTAudioSessionController, SPTExternalIntegrationPlaybackController, SPTGaiaDeviceStateManager;
+@protocol SPTAccessoryStateManager, SPTAppProtocolBackgroundControllerDelegate, SPTAudioSessionController, SPTExternalIntegrationPlaybackController, SPTGaiaConnectAPI;
 
-@interface SPTAppProtocolBackgroundController : NSObject <SPTAccessoryStateObserver, SPTAudioSessionControllerObserver, SPTExternalIntegrationPlaybackControllerObserver, SPTAppProtocolBackgroundTaskDelegate, SPTGaiaDeviceStateManagerObserver>
+@interface SPTAppProtocolBackgroundController : NSObject <SPTAccessoryStateObserver, SPTAudioSessionControllerObserver, SPTExternalIntegrationPlaybackControllerObserver, SPTAppProtocolBackgroundTaskDelegate, SPTGaiaConnectObserver>
 {
     _Bool _appRemoteConnected;
     _Bool _wasPlayingWhenInterruptionBegan;
@@ -24,7 +24,7 @@
     id <SPTAccessoryStateManager> _accessoryStateManager;
     id <SPTExternalIntegrationPlaybackController> _playbackController;
     id <SPTAudioSessionController> _audioSessionController;
-    id <SPTGaiaDeviceStateManager> _gaiaDeviceStateManager;
+    id <SPTGaiaConnectAPI> _connectManager;
     UIApplication *_application;
     SPTAudioSessionActivator *_audioSessionActivator;
     SPTAppProtocolBackgroundTask *_backgroundTask;
@@ -38,7 +38,7 @@
 @property(readonly, nonatomic) SPTAppProtocolBackgroundTask *backgroundTask; // @synthesize backgroundTask=_backgroundTask;
 @property(retain, nonatomic) SPTAudioSessionActivator *audioSessionActivator; // @synthesize audioSessionActivator=_audioSessionActivator;
 @property(readonly, nonatomic) __weak UIApplication *application; // @synthesize application=_application;
-@property(readonly, nonatomic) __weak id <SPTGaiaDeviceStateManager> gaiaDeviceStateManager; // @synthesize gaiaDeviceStateManager=_gaiaDeviceStateManager;
+@property(readonly, nonatomic) __weak id <SPTGaiaConnectAPI> connectManager; // @synthesize connectManager=_connectManager;
 @property(readonly, nonatomic) __weak id <SPTAudioSessionController> audioSessionController; // @synthesize audioSessionController=_audioSessionController;
 @property(readonly, nonatomic) __weak id <SPTExternalIntegrationPlaybackController> playbackController; // @synthesize playbackController=_playbackController;
 @property(readonly, nonatomic) __weak id <SPTAccessoryStateManager> accessoryStateManager; // @synthesize accessoryStateManager=_accessoryStateManager;
@@ -49,7 +49,7 @@
 - (void)updateIsAppRemoteConnected;
 - (void)accessoryStateManager:(id)arg1 accessoryDidDisconnect:(id)arg2;
 - (void)accessoryStateManager:(id)arg1 accessoryDidConnect:(id)arg2;
-- (void)deviceStateManager:(id)arg1 playingRemotelyDidChange:(_Bool)arg2;
+- (void)connectActiveDeviceDidChange:(id)arg1;
 - (void)updateWithPlayerState:(id)arg1;
 - (void)externalIntegrationPlaybackController:(id)arg1 didReceiveNewPlayerState:(id)arg2 oldPlayerState:(id)arg3;
 - (void)updateHandlingAudioInterruptionStatusWithNotification:(id)arg1 hasBeenHandled:(_Bool)arg2;
@@ -64,7 +64,7 @@
 - (void)restart;
 - (void)shutdown;
 - (void)dealloc;
-- (id)initWithApplication:(id)arg1 playbackController:(id)arg2 accessoryStateManager:(id)arg3 gaiaDeviceStateManager:(id)arg4 backgroundTask:(id)arg5;
+- (id)initWithApplication:(id)arg1 playbackController:(id)arg2 accessoryStateManager:(id)arg3 connectManager:(id)arg4 backgroundTask:(id)arg5;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

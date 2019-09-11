@@ -24,6 +24,8 @@
 - (void)addRemoteControlStateUpdateObserver:(id)arg1;
 - (void)bookmarkButtonPressedWithCompletion:(CDUnknownBlockType)arg1;
 @property(readonly, nonatomic) NSString *localizedTitleForBookmarkCommand;
+@property(readonly, nonatomic) _Bool shouldPlaybackSpeedControlBeEnabled;
+@property(readonly, nonatomic) _Bool shouldPlaybackSpeedControlBeAvailable;
 @property(readonly, nonatomic) _Bool shouldBookmarkCommandBeEnabled;
 @property(readonly, nonatomic) _Bool shouldBookmarkCommandBeAvailable;
 - (void)dislikeButtonPressedWithCompletion:(CDUnknownBlockType)arg1 identifier:(id)arg2;
@@ -42,6 +44,7 @@
 @property(readonly, nonatomic) _Bool shouldLikeCommandBeSelected;
 @property(readonly, nonatomic) _Bool shouldLikeCommandBeEnabled;
 @property(readonly, nonatomic) _Bool shouldLikeCommandBeAvailable;
+@property(readonly, nonatomic) _Bool shouldPauseCommandBeEnabled;
 @property(readonly, nonatomic) _Bool shouldChangePlaybackPositionCommandBeEnabled;
 @property(readonly, nonatomic) _Bool shouldChangePlaybackPositionCommandBeAvailable;
 @property(readonly, nonatomic) _Bool shouldSeekBackwardCommandBeEnabled;

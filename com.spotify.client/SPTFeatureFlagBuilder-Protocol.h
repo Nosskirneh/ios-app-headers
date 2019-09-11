@@ -7,7 +7,7 @@
 #import "NSObject-Protocol.h"
 
 @class NSArray, NSString;
-@protocol SPTFeatureFlagSignal;
+@protocol SPTFeatureFlagBuilder, SPTFeatureFlagSignal;
 
 @protocol SPTFeatureFlagBuilder <NSObject>
 @property(retain, nonatomic) NSArray *dependencies;
@@ -26,6 +26,17 @@
 @property(copy, nonatomic) NSString *abbaDisabledValue;
 @property(copy, nonatomic) NSString *abbaEnabledValue;
 @property(copy, nonatomic) NSString *abbaKey;
+- (id <SPTFeatureFlagBuilder>)swift_withSettingsPageTitle:(NSString *)arg1 settingsItemTitle:(NSString *)arg2 settingsItemDescription:(NSString *)arg3 requiresRestart:(_Bool)arg4;
+- (id <SPTFeatureFlagBuilder>)swift_withDefaultState:(long long)arg1;
+- (id <SPTFeatureFlagBuilder>)swift_withDependencies:(NSArray *)arg1;
+- (id <SPTFeatureFlagBuilder>)swift_withBaseSignal:(id <SPTFeatureFlagSignal>)arg1;
+- (id <SPTFeatureFlagBuilder>)swift_withLocalSettingsKey:(NSString *)arg1;
+- (id <SPTFeatureFlagBuilder>)swift_withProductStateKey:(NSString *)arg1 signalMapper:(long long (^)(id))arg2;
+- (id <SPTFeatureFlagBuilder>)swift_withProductStateKey:(NSString *)arg1 enabledValue:(NSString *)arg2 disabledValue:(NSString *)arg3;
+- (id <SPTFeatureFlagBuilder>)swift_withProductStateKey:(NSString *)arg1;
+- (id <SPTFeatureFlagBuilder>)swift_withAbbaKey:(NSString *)arg1 signalMapper:(long long (^)(id))arg2;
+- (id <SPTFeatureFlagBuilder>)swift_withAbbaKey:(NSString *)arg1 enabledValue:(NSString *)arg2 disabledValue:(NSString *)arg3;
+- (id <SPTFeatureFlagBuilder>)swift_withAbbaKey:(NSString *)arg1;
 - (id <SPTFeatureFlagSignal>)buildSignal;
 @end
 

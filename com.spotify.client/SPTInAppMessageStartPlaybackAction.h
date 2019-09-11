@@ -6,25 +6,23 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTInAppMessageAction-Protocol.h"
+#import "SPTInAppMessageActionHandler-Protocol.h"
 
-@class NSString, NSURL;
+@class NSString;
 @protocol SPTOnDemandSet, SPTPlayer;
 
-@interface SPTInAppMessageStartPlaybackAction : NSObject <SPTInAppMessageAction>
+@interface SPTInAppMessageStartPlaybackAction : NSObject <SPTInAppMessageActionHandler>
 {
-    NSURL *_entityURI;
     id <SPTPlayer> _player;
     id <SPTOnDemandSet> _onDemandSet;
 }
 
 @property(retain, nonatomic) id <SPTOnDemandSet> onDemandSet; // @synthesize onDemandSet=_onDemandSet;
 @property(retain, nonatomic) id <SPTPlayer> player; // @synthesize player=_player;
-@property(retain, nonatomic) NSURL *entityURI; // @synthesize entityURI=_entityURI;
 - (void).cxx_destruct;
-- (_Bool)isValidURL;
-- (void)perform;
-- (id)initWithEntityURI:(id)arg1 player:(id)arg2 onDemandSet:(id)arg3;
+- (_Bool)isValidURL:(id)arg1;
+- (void)executeActionWithURL:(id)arg1;
+- (id)initWithPlayer:(id)arg1 onDemandSet:(id)arg2;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

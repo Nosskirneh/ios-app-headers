@@ -6,22 +6,22 @@
 
 #import "IDMapServiceOverlayAsyncBaseOperation.h"
 
-@class NSError;
+@class IDInternalMapMode, NSError;
 
 @interface IDMapServiceOverlaySelectMapModeOperation : IDMapServiceOverlayAsyncBaseOperation
 {
     NSError *_error;
     CDUnknownBlockType _completionHandler;
-    unsigned long long _mapMode;
+    IDInternalMapMode *_mapMode;
 }
 
-@property unsigned long long mapMode; // @synthesize mapMode=_mapMode;
+@property(retain) IDInternalMapMode *mapMode; // @synthesize mapMode=_mapMode;
 @property(copy) CDUnknownBlockType completionHandler; // @synthesize completionHandler=_completionHandler;
 @property(retain) NSError *error; // @synthesize error=_error;
 - (void).cxx_destruct;
 - (void)asyncMain;
 - (id)initWithEtchSession:(id)arg1 mapServiceHandle:(long long)arg2;
-- (id)initWithEtchSession:(id)arg1 mapServiceHandle:(long long)arg2 mapMode:(unsigned long long)arg3 completionHandler:(CDUnknownBlockType)arg4;
+- (id)initWithEtchSession:(id)arg1 mapServiceHandle:(long long)arg2 mapMode:(id)arg3 completionHandler:(CDUnknownBlockType)arg4;
 
 @end
 

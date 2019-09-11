@@ -6,12 +6,12 @@
 
 #import "NSObject-Protocol.h"
 
-@class NSString, NSURL, UIViewController;
+@class NSDictionary, NSString, NSURL, UIViewController;
 @protocol SPTPageController;
 
 @protocol SPTContextDispatchPageFactory <NSObject>
 - (UIViewController<SPTPageController> *)offlinePageForURI:(NSURL *)arg1;
 - (UIViewController<SPTPageController> *)errorPageForError:(unsigned long long)arg1 URI:(NSURL *)arg2;
-- (UIViewController<SPTPageController> *)pageForURI:(NSURL *)arg1 referrer:(NSString *)arg2;
+- (UIViewController<SPTPageController> *)pageForURI:(NSURL *)arg1 queryParameters:(NSDictionary *)arg2 referrer:(NSString *)arg3;
 @end
 

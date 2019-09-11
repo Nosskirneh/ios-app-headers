@@ -6,89 +6,79 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTFeatureFlagSignalObserver-Protocol.h"
 #import "SPTFreeTierPlaylistTestManager-Protocol.h"
 
-@class NSString;
-@protocol SPTFeatureFlagFactory, SPTFeatureFlagSignal, SPTFreeTierPreCurationTestManager, SPTProductState;
+@class NSString, SPTFreeTierPlaylistFeatureProperties;
+@protocol SPTFeatureFlagFactory, SPTFeatureFlagSignal, SPTFreeTierPreCurationTestManager, SPTProductState, SPTRemoteConfigurationResolver;
 
-@interface SPTFreeTierPlaylistTestManagerImplementation : NSObject <SPTFeatureFlagSignalObserver, SPTFreeTierPlaylistTestManager>
+@interface SPTFreeTierPlaylistTestManagerImplementation : NSObject <SPTFreeTierPlaylistTestManager>
 {
     _Bool _weigthedShufflePlayDisabled;
-    _Bool _editPlaylistEnabled;
     _Bool _premiumLabelEnabled;
-    _Bool _consolidatedViewEnabled;
-    _Bool _customPlaylistHeaderSignalEnabled;
-    _Bool _addSongsDisabled;
-    _Bool _madeForSignalEnabled;
-    _Bool _madeForEmployeeSignalEnabled;
     _Bool _freeTierEnabled;
-    _Bool _ntfSortingAndFilteringEnabled;
     _Bool _editAnnotationEnabled;
+    _Bool _contextAwareEditorialTrackSharingEnabled;
+    _Bool _episodesInPlaylistDisabled;
+    _Bool _accessibilityHeaderEnabled;
+    _Bool _scrollPerformanceTrackingEnabled;
+    _Bool _updatedFilterUXPremiumEnabled;
     id <SPTFeatureFlagFactory> _featureFlagFactory;
     id <SPTProductState> _productState;
     id <SPTFeatureFlagSignal> _freeTierEnabledSignal;
     id <SPTFreeTierPreCurationTestManager> _preCurationTestManager;
     id <SPTFeatureFlagSignal> _weigthedShufflePlaySignal;
-    id <SPTFeatureFlagSignal> _editPlaylistSignal;
     id <SPTFeatureFlagSignal> _windowedTrackTestSignal;
-    id <SPTFeatureFlagSignal> _consolidatedViewEnabledSignal;
-    id <SPTFeatureFlagSignal> _customHeaderSignal;
-    id <SPTFeatureFlagSignal> _addSongsDisabledSignal;
-    id <SPTFeatureFlagSignal> _nftSortingAndFilteringSignal;
     id <SPTFeatureFlagSignal> _editAnnotationSignal;
-    id <SPTFeatureFlagSignal> _madeForSignal;
-    id <SPTFeatureFlagSignal> _madeForEmployeeSignal;
+    id <SPTFeatureFlagSignal> _contextAwareEditorialTrackSharingSignal;
+    id <SPTFeatureFlagSignal> _ignoreProductStateForEpisodesAvailableSignal;
+    id <SPTFeatureFlagSignal> _accessibilityHeaderSignal;
+    id <SPTFeatureFlagSignal> _scrollPerformanceSignal;
+    id <SPTFeatureFlagSignal> _updatedFilterUXPremiumSignal;
+    SPTFreeTierPlaylistFeatureProperties *_properties;
+    id <SPTRemoteConfigurationResolver> _remoteConfigurationResolver;
 }
 
+@property(retain, nonatomic) id <SPTRemoteConfigurationResolver> remoteConfigurationResolver; // @synthesize remoteConfigurationResolver=_remoteConfigurationResolver;
+@property(retain, nonatomic) SPTFreeTierPlaylistFeatureProperties *properties; // @synthesize properties=_properties;
+@property(nonatomic, getter=isUpdatedFilterUXPremiumEnabled) _Bool updatedFilterUXPremiumEnabled; // @synthesize updatedFilterUXPremiumEnabled=_updatedFilterUXPremiumEnabled;
+@property(nonatomic, getter=isScrollPerformanceTrackingEnabled) _Bool scrollPerformanceTrackingEnabled; // @synthesize scrollPerformanceTrackingEnabled=_scrollPerformanceTrackingEnabled;
+@property(nonatomic, getter=isAccessibilityHeaderEnabled) _Bool accessibilityHeaderEnabled; // @synthesize accessibilityHeaderEnabled=_accessibilityHeaderEnabled;
+@property(nonatomic, getter=isEpisodesInPlaylistDisabled) _Bool episodesInPlaylistDisabled; // @synthesize episodesInPlaylistDisabled=_episodesInPlaylistDisabled;
+@property(nonatomic, getter=isContextAwareEditorialTrackSharingEnabled) _Bool contextAwareEditorialTrackSharingEnabled; // @synthesize contextAwareEditorialTrackSharingEnabled=_contextAwareEditorialTrackSharingEnabled;
 @property(nonatomic, getter=isEditAnnotationEnabled) _Bool editAnnotationEnabled; // @synthesize editAnnotationEnabled=_editAnnotationEnabled;
-@property(nonatomic, getter=isNFTSortingAndFilteringEnabled) _Bool ntfSortingAndFilteringEnabled; // @synthesize ntfSortingAndFilteringEnabled=_ntfSortingAndFilteringEnabled;
 @property(nonatomic, getter=isFreeTierEnabled) _Bool freeTierEnabled; // @synthesize freeTierEnabled=_freeTierEnabled;
-@property(nonatomic, getter=isMadeForEmployeeSignalEnabled) _Bool madeForEmployeeSignalEnabled; // @synthesize madeForEmployeeSignalEnabled=_madeForEmployeeSignalEnabled;
-@property(retain, nonatomic) id <SPTFeatureFlagSignal> madeForEmployeeSignal; // @synthesize madeForEmployeeSignal=_madeForEmployeeSignal;
-@property(nonatomic, getter=isMadeForSignalEnabled) _Bool madeForSignalEnabled; // @synthesize madeForSignalEnabled=_madeForSignalEnabled;
-@property(retain, nonatomic) id <SPTFeatureFlagSignal> madeForSignal; // @synthesize madeForSignal=_madeForSignal;
-@property(nonatomic, getter=isAddSongsDisabled) _Bool addSongsDisabled; // @synthesize addSongsDisabled=_addSongsDisabled;
-@property(nonatomic, getter=isCustomPlaylistHeaderSignalEnabled) _Bool customPlaylistHeaderSignalEnabled; // @synthesize customPlaylistHeaderSignalEnabled=_customPlaylistHeaderSignalEnabled;
-@property(nonatomic, getter=isConsolidatedViewEnabled) _Bool consolidatedViewEnabled; // @synthesize consolidatedViewEnabled=_consolidatedViewEnabled;
 @property(nonatomic, getter=isPremiumLabelEnabled) _Bool premiumLabelEnabled; // @synthesize premiumLabelEnabled=_premiumLabelEnabled;
-@property(nonatomic, getter=isEditPlaylistEnabled) _Bool editPlaylistEnabled; // @synthesize editPlaylistEnabled=_editPlaylistEnabled;
 @property(nonatomic, getter=isWeigthedShufflePlayDisabled) _Bool weigthedShufflePlayDisabled; // @synthesize weigthedShufflePlayDisabled=_weigthedShufflePlayDisabled;
+@property(retain, nonatomic) id <SPTFeatureFlagSignal> updatedFilterUXPremiumSignal; // @synthesize updatedFilterUXPremiumSignal=_updatedFilterUXPremiumSignal;
+@property(retain, nonatomic) id <SPTFeatureFlagSignal> scrollPerformanceSignal; // @synthesize scrollPerformanceSignal=_scrollPerformanceSignal;
+@property(retain, nonatomic) id <SPTFeatureFlagSignal> accessibilityHeaderSignal; // @synthesize accessibilityHeaderSignal=_accessibilityHeaderSignal;
+@property(retain, nonatomic) id <SPTFeatureFlagSignal> ignoreProductStateForEpisodesAvailableSignal; // @synthesize ignoreProductStateForEpisodesAvailableSignal=_ignoreProductStateForEpisodesAvailableSignal;
+@property(retain, nonatomic) id <SPTFeatureFlagSignal> contextAwareEditorialTrackSharingSignal; // @synthesize contextAwareEditorialTrackSharingSignal=_contextAwareEditorialTrackSharingSignal;
 @property(retain, nonatomic) id <SPTFeatureFlagSignal> editAnnotationSignal; // @synthesize editAnnotationSignal=_editAnnotationSignal;
-@property(retain, nonatomic) id <SPTFeatureFlagSignal> nftSortingAndFilteringSignal; // @synthesize nftSortingAndFilteringSignal=_nftSortingAndFilteringSignal;
-@property(retain, nonatomic) id <SPTFeatureFlagSignal> addSongsDisabledSignal; // @synthesize addSongsDisabledSignal=_addSongsDisabledSignal;
-@property(retain, nonatomic) id <SPTFeatureFlagSignal> customHeaderSignal; // @synthesize customHeaderSignal=_customHeaderSignal;
-@property(retain, nonatomic) id <SPTFeatureFlagSignal> consolidatedViewEnabledSignal; // @synthesize consolidatedViewEnabledSignal=_consolidatedViewEnabledSignal;
 @property(retain, nonatomic) id <SPTFeatureFlagSignal> windowedTrackTestSignal; // @synthesize windowedTrackTestSignal=_windowedTrackTestSignal;
-@property(retain, nonatomic) id <SPTFeatureFlagSignal> editPlaylistSignal; // @synthesize editPlaylistSignal=_editPlaylistSignal;
 @property(retain, nonatomic) id <SPTFeatureFlagSignal> weigthedShufflePlaySignal; // @synthesize weigthedShufflePlaySignal=_weigthedShufflePlaySignal;
 @property(readonly, nonatomic) id <SPTFreeTierPreCurationTestManager> preCurationTestManager; // @synthesize preCurationTestManager=_preCurationTestManager;
 @property(readonly, nonatomic) id <SPTFeatureFlagSignal> freeTierEnabledSignal; // @synthesize freeTierEnabledSignal=_freeTierEnabledSignal;
 @property(readonly, nonatomic) id <SPTProductState> productState; // @synthesize productState=_productState;
 @property(readonly, nonatomic) id <SPTFeatureFlagFactory> featureFlagFactory; // @synthesize featureFlagFactory=_featureFlagFactory;
 - (void).cxx_destruct;
-- (void)setupMadeForSignals;
-@property(readonly, nonatomic, getter=isMadeForSubtitleEnabled) _Bool madeForSubtitleEnabled;
-- (_Bool)isNPTUser;
+- (id)createSignalForAnyFiveSignalsWithAbbaKey:(id)arg1 pageTitle:(id)arg2 itemTitle:(id)arg3 itemDescription:(id)arg4;
+- (void)setupRemoteConfigurationProperties;
+@property(readonly, nonatomic, getter=isAssistedCurationPremiumEnabled) _Bool assistedCurationPremiumEnabled;
+@property(readonly, nonatomic, getter=isConsolidatedExperienceEnabled) _Bool consolidatedExperienceEnabled;
 - (void)featureFlagSignal:(id)arg1 hasAssumedState:(long long)arg2;
-@property(readonly, nonatomic, getter=isPreCurationOnDemandEnabled) _Bool preCurationOnDemandEnabled;
-@property(readonly, nonatomic, getter=isPreCurationTrackCloudEnabled) _Bool preCurationTrackCloudEnabled;
-@property(readonly, nonatomic, getter=isCustomPlaylistHeaderEnabled) _Bool customPlaylistHeaderEnabled;
-@property(readonly, nonatomic, getter=isNewSortingAndFilteringEnabled) _Bool newSortingAndFilteringEnabled;
+- (void)setupUpdatedFilterUXPremiumSignal;
+- (void)setupEpisodesAvailable;
+@property(readonly, nonatomic, getter=isTrackItemQuickActionsEnabled) _Bool trackItemQuickActionsEnabled;
+- (void)setupScrollPerformanceSignal;
+- (void)setupAccessibilityHeaderSignal;
 - (id)editAnnotationAbbaSignal;
 - (id)editAnnotationRolloutSignal;
+- (void)setupContextAwareEditorialTrackSharingSignal;
 - (void)setupEditAnnotationSignal;
-- (void)setupSortingAndFiltering;
-- (void)setupAddSongs;
-- (id)customHeaderRolloutSignalForiOS10;
-- (id)customHeaderRolloutSignal;
-- (id)customPlaylistHeaderSignal;
-- (void)setupCustomPlaylistHeader;
-- (void)setupEditPlaylist;
-- (void)setupConsolidatedViewEnabledSignal;
 - (void)setupIsPremiumOnlySignal;
 - (void)setupWeightedShufflePlay;
-- (id)initWithFeatureFlagFactory:(id)arg1 productState:(id)arg2 freeTierEnabledSignal:(id)arg3 preCurationTestManager:(id)arg4;
+- (id)initWithFeatureFlagFactory:(id)arg1 productState:(id)arg2 freeTierEnabledSignal:(id)arg3 preCurationTestManager:(id)arg4 remoteConfigurationResolver:(id)arg5;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

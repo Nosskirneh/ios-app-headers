@@ -9,6 +9,7 @@
 @class SPTNowPlayingContentView;
 
 @protocol SPTNowPlayingContentViewDelegate <NSObject>
+- (void)forceDisplayControls;
 - (void)contentViewDidReloadData:(SPTNowPlayingContentView *)arg1;
 @end
 

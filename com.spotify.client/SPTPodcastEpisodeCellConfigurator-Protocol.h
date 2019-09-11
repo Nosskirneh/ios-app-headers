@@ -6,12 +6,13 @@
 
 #import "NSObject-Protocol.h"
 
-@class NSIndexPath, SPTPodcastEpisodeCellState, UITableViewCell;
+@class NSIndexPath, UITableViewCell;
+@protocol SPTPodcastEpisodeCellActionTarget, SPTPodcastEpisodeCellState;
 
 @protocol SPTPodcastEpisodeCellConfigurator <NSObject>
 - (Class)cellClass;
 
 @optional
-- (UITableViewCell *)configureCell:(UITableViewCell *)arg1 atIndexPath:(NSIndexPath *)arg2 episodeCellState:(SPTPodcastEpisodeCellState *)arg3 target:(id)arg4;
+- (UITableViewCell *)configureEpisodeCell:(UITableViewCell *)arg1 atIndexPath:(NSIndexPath *)arg2 episodeCellState:(id <SPTPodcastEpisodeCellState>)arg3 target:(id <SPTPodcastEpisodeCellActionTarget>)arg4;
 @end
 

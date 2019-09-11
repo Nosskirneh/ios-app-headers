@@ -8,20 +8,25 @@
 
 #import "SPTViewLogger-Protocol.h"
 
-@class NSArray, NSMutableDictionary, NSNumber, NSSet, NSString, NSURL;
-@protocol SPTViewLoggerTransport;
+@class NSArray, NSMutableDictionary, NSNumber, NSSet, NSString, NSURL, NSUUID, SPTObserverManager;
+@protocol SPTLogCenter, SPTPerformanceKitUUIDProvider, SPTViewLoggerConnectionTypeProvider;
 
 @interface SPTViewLogger : NSObject <SPTViewLogger>
 {
+    NSString *_pageIdentifier;
     long long _state;
-    id <SPTViewLoggerTransport> _transport;
+    NSUUID *_uuid;
+    id <SPTLogCenter> _logCenter;
     NSURL *_viewURI;
-    NSString *_pageId;
-    NSString *_connectionType;
-    struct __CFRunLoopObserver *_observer;
+    id <SPTViewLoggerConnectionTypeProvider> _connectionTypeProvider;
+    id <SPTPerformanceKitUUIDProvider> _uuidProvider;
+    long long _initialConnectionType;
+    long long _terminalConnectionType;
+    struct __CFRunLoopObserver *_runLoopObserver;
     NSMutableDictionary *_steps;
     NSString *_terminalState;
     NSMutableDictionary *_metaData;
+    SPTObserverManager *_observerManager;
     NSNumber *_viewStartedLoadingAt;
     NSSet *_pendingImageLoadingRequests;
     NSArray *_finishedImageLoadingRequests;
@@ -30,32 +35,39 @@
 @property(copy, nonatomic) NSArray *finishedImageLoadingRequests; // @synthesize finishedImageLoadingRequests=_finishedImageLoadingRequests;
 @property(copy, nonatomic) NSSet *pendingImageLoadingRequests; // @synthesize pendingImageLoadingRequests=_pendingImageLoadingRequests;
 @property(retain, nonatomic) NSNumber *viewStartedLoadingAt; // @synthesize viewStartedLoadingAt=_viewStartedLoadingAt;
+@property(readonly, nonatomic) SPTObserverManager *observerManager; // @synthesize observerManager=_observerManager;
 @property(retain, nonatomic) NSMutableDictionary *metaData; // @synthesize metaData=_metaData;
 @property(copy, nonatomic) NSString *terminalState; // @synthesize terminalState=_terminalState;
 @property(retain, nonatomic) NSMutableDictionary *steps; // @synthesize steps=_steps;
-@property(nonatomic) struct __CFRunLoopObserver *observer; // @synthesize observer=_observer;
-@property(copy, nonatomic) NSString *connectionType; // @synthesize connectionType=_connectionType;
-@property(copy, nonatomic) NSString *pageId; // @synthesize pageId=_pageId;
+@property(nonatomic) struct __CFRunLoopObserver *runLoopObserver; // @synthesize runLoopObserver=_runLoopObserver;
+@property(nonatomic) long long terminalConnectionType; // @synthesize terminalConnectionType=_terminalConnectionType;
+@property(nonatomic) long long initialConnectionType; // @synthesize initialConnectionType=_initialConnectionType;
+@property(readonly, nonatomic) __weak id <SPTPerformanceKitUUIDProvider> uuidProvider; // @synthesize uuidProvider=_uuidProvider;
+@property(readonly, nonatomic) id <SPTViewLoggerConnectionTypeProvider> connectionTypeProvider; // @synthesize connectionTypeProvider=_connectionTypeProvider;
 @property(copy, nonatomic) NSURL *viewURI; // @synthesize viewURI=_viewURI;
-@property(nonatomic) __weak id <SPTViewLoggerTransport> transport; // @synthesize transport=_transport;
+@property(nonatomic) __weak id <SPTLogCenter> logCenter; // @synthesize logCenter=_logCenter;
 @property long long state; // @synthesize state=_state;
+@property(copy, nonatomic) NSString *pageIdentifier; // @synthesize pageIdentifier=_pageIdentifier;
 - (void).cxx_destruct;
 - (void)removeImageLoadingRequest:(id)arg1;
 - (void)addImageLoadingRequest:(id)arg1;
+- (void)notifyObserversOfStateChange:(long long)arg1 timeSinceStart:(double)arg2;
+- (void)removeObserver:(id)arg1;
+- (void)addObserver:(id)arg1;
 - (void)logViewLoadingRendered;
-- (void)logViewLoadingCancelledWithPageIdentifier:(id)arg1;
-- (void)logViewDataDidFailToLoadWithError:(id)arg1 pageIdentifier:(id)arg2;
+- (void)logViewLoadingCancelledWithPageIdentifier:(id)arg1 dataSource:(long long)arg2;
+- (void)logViewDataDidFailToLoadWithPageIdentifier:(id)arg1 dataSource:(long long)arg2;
 - (void)logImageLoadingEndedForImageWithURI:(id)arg1;
 - (void)logImageLoadingStartedForImageWithURI:(id)arg1;
-- (void)logViewDataDidLoadWithPageIdentifier:(id)arg1;
-- (void)logViewLoadingStartedWithPageIdentifier:(id)arg1;
-- (_Bool)isViewLoadingInProgress;
-- (void)reset;
-- (void)terminateSequence;
-- (void)logViewLoadWithStepName:(id)arg1 timeSinceStart:(double)arg2 isTerminalStep:(_Bool)arg3 terminateSequence:(_Bool)arg4;
+- (void)logViewDataDidLoadWithPageIdentifier:(id)arg1 dataSource:(long long)arg2;
+- (void)logViewLoadingStartedWithPageIdentifier:(id)arg1 reason:(long long)arg2;
+@property(readonly, nonatomic) NSUUID *uuid; // @synthesize uuid=_uuid;
+@property(readonly, nonatomic, getter=isViewLoadingInProgress) _Bool viewLoadingInProgress;
+- (void)deliverSequence;
+- (void)logViewLoadWithStepName:(id)arg1 timeSinceStart:(double)arg2 isTerminalStep:(_Bool)arg3 deliverSequence:(_Bool)arg4;
 - (double)durationSinceStart:(id)arg1;
 - (void)dealloc;
-- (id)initWithTransport:(id)arg1 viewURI:(id)arg2 connectionType:(id)arg3;
+- (id)initWithLogCenter:(id)arg1 viewURI:(id)arg2 connectionTypeProvider:(id)arg3 uuidProvider:(id)arg4;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

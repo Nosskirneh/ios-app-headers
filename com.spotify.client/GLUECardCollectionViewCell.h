@@ -8,16 +8,16 @@
 
 #import "GLUEStatefulItem-Protocol.h"
 
-@class NSString, SPTLayoutConstraintBuilder, UIView;
+@class NSArray, NSString, UIView;
 @protocol GLUEStatefulItem><GLUEReusable><GLUEStyleable;
 
 @interface GLUECardCollectionViewCell : UICollectionViewCell <GLUEStatefulItem>
 {
     UIView<GLUEStatefulItem><GLUEReusable><GLUEStyleable> *_cardView;
-    SPTLayoutConstraintBuilder *_layout;
+    NSArray *_layoutConstraints;
 }
 
-@property(retain, nonatomic) SPTLayoutConstraintBuilder *layout; // @synthesize layout=_layout;
+@property(copy, nonatomic) NSArray *layoutConstraints; // @synthesize layoutConstraints=_layoutConstraints;
 @property(retain, nonatomic) UIView<GLUEStatefulItem><GLUEReusable><GLUEStyleable> *cardView; // @synthesize cardView=_cardView;
 - (void).cxx_destruct;
 @property(nonatomic, getter=isDisabled) _Bool disabled;

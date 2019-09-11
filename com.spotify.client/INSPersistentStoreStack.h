@@ -6,22 +6,39 @@
 
 #import <objc/NSObject.h>
 
-@class NSManagedObjectContext, NSManagedObjectModel, NSPersistentStoreCoordinator;
+#import "INSPersistentStoreStackProtocol-Protocol.h"
 
-@interface INSPersistentStoreStack : NSObject
+@class NSManagedObjectContext, NSManagedObjectModel, NSPersistentContainer, NSString;
+@protocol INSLogger;
+
+@interface INSPersistentStoreStack : NSObject <INSPersistentStoreStackProtocol>
 {
-    NSManagedObjectContext *_managedObjectContext;
     NSManagedObjectModel *_managedObjectModel;
-    NSPersistentStoreCoordinator *_persistentStoreCoordinator;
+    NSManagedObjectContext *_mainQueueMOC;
+    NSManagedObjectContext *_privateMOC;
+    NSPersistentContainer *_persistentContainer;
+    NSString *_storeName;
+    id <INSLogger> _logger;
 }
 
-@property(retain, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator; // @synthesize persistentStoreCoordinator=_persistentStoreCoordinator;
++ (id)currentCoreDataModel;
+@property(retain, nonatomic) id <INSLogger> logger; // @synthesize logger=_logger;
+@property(retain, nonatomic) NSString *storeName; // @synthesize storeName=_storeName;
+@property(retain, nonatomic) NSPersistentContainer *persistentContainer; // @synthesize persistentContainer=_persistentContainer;
+@property(retain, nonatomic) NSManagedObjectContext *privateMOC; // @synthesize privateMOC=_privateMOC;
+@property(retain, nonatomic) NSManagedObjectContext *mainQueueMOC; // @synthesize mainQueueMOC=_mainQueueMOC;
 @property(retain, nonatomic) NSManagedObjectModel *managedObjectModel; // @synthesize managedObjectModel=_managedObjectModel;
-@property(retain, nonatomic) NSManagedObjectContext *managedObjectContext; // @synthesize managedObjectContext=_managedObjectContext;
 - (void).cxx_destruct;
-- (id)coreDataModel;
 - (id)storeUrl;
 - (id)documentsDirectory;
+- (id)initWithLogger:(id)arg1 managedObjectModel:(id)arg2 storeName:(id)arg3;
+- (id)initWithLogger:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

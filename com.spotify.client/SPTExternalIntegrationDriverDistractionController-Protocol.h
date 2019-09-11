@@ -6,15 +6,15 @@
 
 #import "NSObject-Protocol.h"
 
-@class UIImage;
+@class NSString, UIImage;
 @protocol SPTExternalIntegrationDriverDistractionObserver;
 
 @protocol SPTExternalIntegrationDriverDistractionController <NSObject>
 @property(readonly, nonatomic, getter=isDriverDistractionEnabled) _Bool driverDistractionEnabled;
 - (void)removeObserver:(id <SPTExternalIntegrationDriverDistractionObserver>)arg1;
 - (void)addObserver:(id <SPTExternalIntegrationDriverDistractionObserver>)arg1;
-- (void)disableDriverDistraction;
-- (void)enableDriverDistractionWithoutLockscreen;
-- (void)enableDriverDistractionWithLockscreenImage:(UIImage *)arg1 dismissibleLockscreen:(_Bool)arg2;
+- (void)disableDriverDistractionWithIdentifier:(NSString *)arg1;
+- (void)enableDriverDistractionWithoutLockscreenWithIdentifier:(NSString *)arg1;
+- (void)enableDriverDistractionWithIdentifier:(NSString *)arg1 withLockscreenImage:(UIImage *)arg2 dismissibleLockscreen:(_Bool)arg3;
 @end
 

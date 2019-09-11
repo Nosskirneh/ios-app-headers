@@ -6,21 +6,21 @@
 
 #import <objc/NSObject.h>
 
-@protocol SPTAdjustUserTrackerProtocol;
+@protocol SPTLoginLogger;
 
 @interface SPTLoginRecoverAccountViewLogger : NSObject
 {
-    id <SPTAdjustUserTrackerProtocol> _adjustTracker;
+    id <SPTLoginLogger> _logger;
 }
 
-@property(retain, nonatomic) id <SPTAdjustUserTrackerProtocol> adjustTracker; // @synthesize adjustTracker=_adjustTracker;
+@property(retain, nonatomic) id <SPTLoginLogger> logger; // @synthesize logger=_logger;
 - (void).cxx_destruct;
 - (void)logErrorWithCode:(long long)arg1;
 - (void)logUserDidTapStillNeedHelpLabel;
 - (void)logUserDidTapSendButton;
 - (void)logUserDidInteractWithInputField;
 - (void)logUserDidSeeView;
-- (id)initWithAdjustTracker:(id)arg1;
+- (id)initWithLogger:(id)arg1;
 
 @end
 

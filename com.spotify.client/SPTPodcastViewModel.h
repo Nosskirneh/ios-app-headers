@@ -8,99 +8,98 @@
 
 #import "SPTCollectionFiltering-Protocol.h"
 #import "SPTCollectionSorting-Protocol.h"
-#import "SPTEpisodeContextMenuControllerDelegate-Protocol.h"
 #import "SPTExplicitContentEnabledStateObserver-Protocol.h"
+#import "SPTPodcastEpisodeProgressPolling-Protocol.h"
 #import "SPTPodcastPlayerDelegate-Protocol.h"
 
-@class NSArray, NSPredicate, NSSortDescriptor, NSString, NSURL, SPTPodcast, SPTPodcastContextMenuDelegateObject, SPTPodcastLogger, SPTPodcastSortingService;
-@protocol SPTAbbaFeatureFlags, SPTCollectionPlatform, SPTExplicitContentAccessManager, SPTFreeTierEntityHeartBanButtonViewModel, SPTOfflineManager, SPTPodcastDataLoader, SPTPodcastDataLoaderRequestToken, SPTPodcastFeature, SPTPodcastPlayer, SPTPodcastViewModelDelegate;
+@class NSArray, NSCache, NSPredicate, NSSortDescriptor, NSString, NSURL, SPTPodcastSortingService;
+@protocol SPTCollectionPlatform, SPTExplicitContentAccessManager, SPTFreeTierEntityFeedbackButtonViewModel, SPTPodcast, SPTPodcastDataLoader, SPTPodcastDataLoaderRequestToken, SPTPodcastFactory, SPTPodcastLogger, SPTPodcastPlayer, SPTPodcastTestManager, SPTPodcastUITestManager, SPTPodcastViewModelDelegate;
 
-@interface SPTPodcastViewModel : NSObject <SPTExplicitContentEnabledStateObserver, SPTPodcastPlayerDelegate, SPTCollectionSorting, SPTCollectionFiltering, SPTEpisodeContextMenuControllerDelegate>
+@interface SPTPodcastViewModel : NSObject <SPTExplicitContentEnabledStateObserver, SPTPodcastPlayerDelegate, SPTCollectionSorting, SPTCollectionFiltering, SPTPodcastEpisodeProgressPolling>
 {
+    _Bool contentFiltered;
     _Bool _isLoading;
     _Bool _isLoaded;
     _Bool _filtered;
     _Bool _ascendingSortOrder;
-    _Bool _contentFiltered;
     _Bool _initialLoadComplete;
-    _Bool _reversePlaybackOrder;
+    NSString *textFilter;
+    NSCache *_progressCache;
     id <SPTPodcastViewModelDelegate> _delegate;
     NSURL *_URL;
     NSString *_appliedFilterText;
-    SPTPodcast *_podcast;
-    id <SPTFreeTierEntityHeartBanButtonViewModel> _heartBanButtonViewModel;
+    id <SPTPodcast> _podcast;
+    id <SPTFreeTierEntityFeedbackButtonViewModel> _feedbackButtonViewModel;
+    id <SPTPodcastFactory> _podcastFactory;
     id <SPTPodcastDataLoader> _dataLoader;
     id <SPTPodcastPlayer> _player;
-    id <SPTPodcastFeature> _podcastFeature;
-    id <SPTOfflineManager> _offlineManager;
+    id <SPTPodcastTestManager> _testManager;
+    id <SPTPodcastUITestManager> _uiTestManager;
     SPTPodcastSortingService *_sortingService;
-    SPTPodcastLogger *_logger;
-    id <SPTAbbaFeatureFlags> _featureFlags;
+    id <SPTPodcastLogger> _logger;
     id <SPTCollectionPlatform> _collectionPlatform;
     id <SPTExplicitContentAccessManager> _explicitContentAccessManager;
-    NSURL *_loadedFromEpisodeURL;
     unsigned long long _sortColumn;
     NSSortDescriptor *_sortDescriptor;
     NSString *_filter;
     NSString *_filterOnLastUpdate;
     NSPredicate *_filterPredicate;
-    SPTPodcastContextMenuDelegateObject *_contextMenuDelegate;
     id <SPTPodcastDataLoaderRequestToken> _podcastRequestToken;
 }
 
 @property(retain, nonatomic) id <SPTPodcastDataLoaderRequestToken> podcastRequestToken; // @synthesize podcastRequestToken=_podcastRequestToken;
-@property(nonatomic) _Bool reversePlaybackOrder; // @synthesize reversePlaybackOrder=_reversePlaybackOrder;
 @property(nonatomic, getter=isInitialLoadComplete) _Bool initialLoadComplete; // @synthesize initialLoadComplete=_initialLoadComplete;
-@property(retain, nonatomic) SPTPodcastContextMenuDelegateObject *contextMenuDelegate; // @synthesize contextMenuDelegate=_contextMenuDelegate;
 @property(retain, nonatomic) NSPredicate *filterPredicate; // @synthesize filterPredicate=_filterPredicate;
 @property(copy, nonatomic) NSString *filterOnLastUpdate; // @synthesize filterOnLastUpdate=_filterOnLastUpdate;
 @property(copy, nonatomic) NSString *filter; // @synthesize filter=_filter;
-@property(nonatomic, getter=isContentFiltered) _Bool contentFiltered; // @synthesize contentFiltered=_contentFiltered;
 @property(retain, nonatomic) NSSortDescriptor *sortDescriptor; // @synthesize sortDescriptor=_sortDescriptor;
 @property(nonatomic) _Bool ascendingSortOrder; // @synthesize ascendingSortOrder=_ascendingSortOrder;
 @property(nonatomic) unsigned long long sortColumn; // @synthesize sortColumn=_sortColumn;
-@property(retain, nonatomic) NSURL *loadedFromEpisodeURL; // @synthesize loadedFromEpisodeURL=_loadedFromEpisodeURL;
 @property(readonly, nonatomic) id <SPTExplicitContentAccessManager> explicitContentAccessManager; // @synthesize explicitContentAccessManager=_explicitContentAccessManager;
 @property(nonatomic) __weak id <SPTCollectionPlatform> collectionPlatform; // @synthesize collectionPlatform=_collectionPlatform;
-@property(retain, nonatomic) id <SPTAbbaFeatureFlags> featureFlags; // @synthesize featureFlags=_featureFlags;
-@property(retain, nonatomic) SPTPodcastLogger *logger; // @synthesize logger=_logger;
+@property(retain, nonatomic) id <SPTPodcastLogger> logger; // @synthesize logger=_logger;
 @property(nonatomic) __weak SPTPodcastSortingService *sortingService; // @synthesize sortingService=_sortingService;
-@property(nonatomic) __weak id <SPTOfflineManager> offlineManager; // @synthesize offlineManager=_offlineManager;
-@property(readonly, nonatomic) __weak id <SPTPodcastFeature> podcastFeature; // @synthesize podcastFeature=_podcastFeature;
+@property(retain, nonatomic) id <SPTPodcastUITestManager> uiTestManager; // @synthesize uiTestManager=_uiTestManager;
+@property(retain, nonatomic) id <SPTPodcastTestManager> testManager; // @synthesize testManager=_testManager;
 @property(retain, nonatomic) id <SPTPodcastPlayer> player; // @synthesize player=_player;
 @property(retain, nonatomic) id <SPTPodcastDataLoader> dataLoader; // @synthesize dataLoader=_dataLoader;
-@property(readonly, nonatomic) id <SPTFreeTierEntityHeartBanButtonViewModel> heartBanButtonViewModel; // @synthesize heartBanButtonViewModel=_heartBanButtonViewModel;
-@property(retain) SPTPodcast *podcast; // @synthesize podcast=_podcast;
+@property(retain, nonatomic) id <SPTPodcastFactory> podcastFactory; // @synthesize podcastFactory=_podcastFactory;
+@property(readonly, nonatomic) id <SPTFreeTierEntityFeedbackButtonViewModel> feedbackButtonViewModel; // @synthesize feedbackButtonViewModel=_feedbackButtonViewModel;
+@property(retain) id <SPTPodcast> podcast; // @synthesize podcast=_podcast;
 @property(retain, nonatomic) NSString *appliedFilterText; // @synthesize appliedFilterText=_appliedFilterText;
 @property(nonatomic, getter=isFiltered) _Bool filtered; // @synthesize filtered=_filtered;
 @property(nonatomic) _Bool isLoaded; // @synthesize isLoaded=_isLoaded;
 @property(nonatomic) _Bool isLoading; // @synthesize isLoading=_isLoading;
 @property(retain, nonatomic) NSURL *URL; // @synthesize URL=_URL;
 @property(nonatomic) __weak id <SPTPodcastViewModelDelegate> delegate; // @synthesize delegate=_delegate;
+@property(readonly, nonatomic) NSCache *progressCache; // @synthesize progressCache=_progressCache;
+@property(readonly, nonatomic, getter=isContentFiltered) _Bool contentFiltered; // @synthesize contentFiltered;
+@property(copy, nonatomic) NSString *textFilter; // @synthesize textFilter;
 - (void).cxx_destruct;
 - (void)explicitContentEnabledStateDidChange:(_Bool)arg1;
 - (id)additionalFilters;
-@property(readonly, nonatomic) _Bool shouldHaveDownloadFilter;
 - (id)filterDataWithTitle:(id)arg1 filter:(id)arg2 position:(long long)arg3;
 - (void)applyFilter:(id)arg1;
 - (void)loadAppliedFilter;
 - (void)updateFilterState;
-- (id)textForFilter:(id)arg1;
-@property(copy, nonatomic) NSString *textFilter;
 - (void)resetFilters;
-- (id)defaultTextFilter;
 @property(nonatomic) _Bool showsOnlyOfflinedContent;
 - (void)setSortProperties;
 @property(readonly, nonatomic) NSArray *supportedSortColumns;
 - (void)setSortOrderWithColumn:(unsigned long long)arg1 ascending:(_Bool)arg2;
+- (void)updateProgressWithPlayer:(id)arg1;
+- (void)podcastPlayer:(id)arg1 didUpdateProgressForTrackURL:(id)arg2;
+- (double)podcastPlayer:(id)arg1 updateProgressIntervalForTrackURL:(id)arg2;
+- (void)podcastPlayerStateDidChange:(id)arg1;
 - (void)podcastPlayer:(id)arg1 didChangePlayingTrackURL:(id)arg2;
-- (void)offlineEpisode:(id)arg1 offline:(_Bool)arg2;
 - (void)unfollowPodcast;
 - (void)followPodcast;
-- (void)handleModelLoadedFromEpisode;
-@property(readonly, nonatomic) _Bool shouldAutoplayEpisode;
+- (id)cachedProgressForEpisode:(id)arg1;
+- (void)updateCurrentProgress:(double)arg1 position:(double)arg2 duration:(double)arg3 forEpisode:(id)arg4;
+- (_Bool)shouldAutoplayEpisode;
 - (void)handleLatestPlayedEpisode;
 - (id)indexPathOfEpisodeURL:(id)arg1;
+- (id)allEpisodes;
 - (void)pauseEpisodeAtIndexPath:(id)arg1;
 - (void)playEpisodeWithURI:(id)arg1;
 - (_Bool)canPlayEpisode:(id)arg1;
@@ -110,10 +109,10 @@
 - (_Bool)isPlayingAnyEpisode;
 - (_Bool)isPlayingEpisodeAtIndexPath:(id)arg1;
 - (_Bool)isEpisodeDisabledAtIndexPath:(id)arg1;
+- (void)handleFirstLoadUpdates;
 - (void)unsubscribe;
 - (void)loadAndSubscribe;
 - (id)deserializationQueue;
-- (void)parseJSONData:(id)arg1;
 - (id)episodeForIndexPath:(id)arg1;
 - (void)playEpisodeAtIndexPath:(id)arg1;
 - (long long)numberOfRowsInSection:(long long)arg1;
@@ -127,7 +126,7 @@
 @property(readonly, nonatomic) NSString *publisher;
 @property(readonly, nonatomic) NSString *title;
 - (void)dealloc;
-- (id)initWithPodcastURL:(id)arg1 dataLoader:(id)arg2 player:(id)arg3 podcastFeature:(id)arg4 offlineManager:(id)arg5 showEntityService:(id)arg6 sortingService:(id)arg7 featureFlags:(id)arg8 logger:(id)arg9 collectionLogger:(id)arg10 collectionPlatform:(id)arg11 episodeURL:(id)arg12 logCenter:(id)arg13 collectionConfiguration:(id)arg14 explicitContentAccessManager:(id)arg15 podcastContextMenuDelegate:(id)arg16;
+- (id)initWithPodcastURL:(id)arg1 dataLoader:(id)arg2 player:(id)arg3 sortingService:(id)arg4 logger:(id)arg5 collectionPlatform:(id)arg6 explicitContentAccessManager:(id)arg7 testManager:(id)arg8 uiTestManager:(id)arg9;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

@@ -6,11 +6,7 @@
 
 #import "NSObject-Protocol.h"
 
-@class UIView;
-
 @protocol SPTFreeTierPlaylistHeader <NSObject>
-@property(readonly, nonatomic) UIView *filterSearchBar;
-- (void)tableViewContentOffsetChanged:(struct CGPoint)arg1;
 - (void)update;
 
 @optional

@@ -24,10 +24,12 @@
     UIImage *_searchBarSearchIcon;
     UIImage *_searchBarClearIcon;
     UIImage *_searchBarClearIconHighlighted;
+    long long _searchBarKeyboardAppearance;
     struct UIOffset _searchBarTextOffset;
     struct UIOffset _searchBarClearIconOffset;
 }
 
+@property(nonatomic) long long searchBarKeyboardAppearance; // @synthesize searchBarKeyboardAppearance=_searchBarKeyboardAppearance;
 @property(nonatomic) struct UIOffset searchBarClearIconOffset; // @synthesize searchBarClearIconOffset=_searchBarClearIconOffset;
 @property(nonatomic) struct UIOffset searchBarTextOffset; // @synthesize searchBarTextOffset=_searchBarTextOffset;
 @property(retain, nonatomic) UIImage *searchBarClearIconHighlighted; // @synthesize searchBarClearIconHighlighted=_searchBarClearIconHighlighted;

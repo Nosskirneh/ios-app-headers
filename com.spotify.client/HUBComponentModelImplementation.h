@@ -8,7 +8,7 @@
 
 #import "HUBComponentModel-Protocol.h"
 
-@class HUBIdentifier, NSArray, NSDictionary, NSIndexPath, NSString;
+@class HUBIdentifier, NSArray, NSDictionary, NSString;
 @protocol HUBComponentImageData, HUBComponentModel, HUBComponentTarget, HUBIcon;
 
 @interface HUBComponentModelImplementation : HUBAutoEquatable <HUBComponentModel>
@@ -28,6 +28,7 @@
     NSDictionary *_customImageData;
     id <HUBIcon> _icon;
     id <HUBComponentTarget> _target;
+    NSDictionary *_events;
     NSDictionary *_metadata;
     NSDictionary *_loggingData;
     NSDictionary *_customData;
@@ -38,16 +39,17 @@
 }
 
 + (id)ignoredAutoEquatablePropertyNames;
-@property(retain, nonatomic) NSDictionary *childrenByGroupIdentifier; // @synthesize childrenByGroupIdentifier=_childrenByGroupIdentifier;
-@property(retain, nonatomic) NSDictionary *childIdentifierToIndexMap; // @synthesize childIdentifierToIndexMap=_childIdentifierToIndexMap;
-@property(retain, nonatomic) NSArray *children; // @synthesize children=_children;
+@property(copy, nonatomic) NSDictionary *childrenByGroupIdentifier; // @synthesize childrenByGroupIdentifier=_childrenByGroupIdentifier;
+@property(copy, nonatomic) NSDictionary *childIdentifierToIndexMap; // @synthesize childIdentifierToIndexMap=_childIdentifierToIndexMap;
+@property(copy, nonatomic) NSArray *children; // @synthesize children=_children;
 @property(readonly, nonatomic) __weak id <HUBComponentModel> parent; // @synthesize parent=_parent;
-@property(readonly, nonatomic) NSDictionary *customData; // @synthesize customData=_customData;
-@property(readonly, nonatomic) NSDictionary *loggingData; // @synthesize loggingData=_loggingData;
-@property(readonly, nonatomic) NSDictionary *metadata; // @synthesize metadata=_metadata;
+@property(readonly, copy, nonatomic) NSDictionary *customData; // @synthesize customData=_customData;
+@property(readonly, copy, nonatomic) NSDictionary *loggingData; // @synthesize loggingData=_loggingData;
+@property(readonly, copy, nonatomic) NSDictionary *metadata; // @synthesize metadata=_metadata;
+@property(readonly, copy, nonatomic) NSDictionary *events; // @synthesize events=_events;
 @property(readonly, nonatomic) id <HUBComponentTarget> target; // @synthesize target=_target;
 @property(readonly, nonatomic) id <HUBIcon> icon; // @synthesize icon=_icon;
-@property(readonly, nonatomic) NSDictionary *customImageData; // @synthesize customImageData=_customImageData;
+@property(readonly, copy, nonatomic) NSDictionary *customImageData; // @synthesize customImageData=_customImageData;
 @property(readonly, nonatomic) id <HUBComponentImageData> backgroundImageData; // @synthesize backgroundImageData=_backgroundImageData;
 @property(readonly, nonatomic) id <HUBComponentImageData> mainImageData; // @synthesize mainImageData=_mainImageData;
 @property(readonly, copy, nonatomic) NSString *descriptionText; // @synthesize descriptionText=_descriptionText;
@@ -62,17 +64,17 @@
 @property(readonly, copy, nonatomic) NSString *identifier; // @synthesize identifier=_identifier;
 - (void).cxx_destruct;
 - (id)serializedChildren;
+- (id)serializedEvents;
 - (id)serializedImageData;
 - (id)serializedTextData;
 - (id)serializedComponentData;
 - (id)childrenInGroupWithIdentifier:(id)arg1;
 - (id)childWithIdentifier:(id)arg1;
 - (id)childAtIndex:(unsigned long long)arg1;
-@property(readonly, nonatomic) NSIndexPath *indexPath;
 - (id)serialize;
 @property(readonly, copy) NSString *debugDescription;
 - (id)valueForKey:(id)arg1;
-- (id)initWithIdentifier:(id)arg1 type:(unsigned long long)arg2 index:(unsigned long long)arg3 groupIdentifier:(id)arg4 componentIdentifier:(id)arg5 componentCategory:(id)arg6 title:(id)arg7 subtitle:(id)arg8 accessoryTitle:(id)arg9 descriptionText:(id)arg10 mainImageData:(id)arg11 backgroundImageData:(id)arg12 customImageData:(id)arg13 icon:(id)arg14 target:(id)arg15 metadata:(id)arg16 loggingData:(id)arg17 customData:(id)arg18 parent:(id)arg19;
+- (id)initWithIdentifier:(id)arg1 type:(unsigned long long)arg2 index:(unsigned long long)arg3 groupIdentifier:(id)arg4 componentIdentifier:(id)arg5 componentCategory:(id)arg6 title:(id)arg7 subtitle:(id)arg8 accessoryTitle:(id)arg9 descriptionText:(id)arg10 mainImageData:(id)arg11 backgroundImageData:(id)arg12 customImageData:(id)arg13 icon:(id)arg14 target:(id)arg15 events:(id)arg16 metadata:(id)arg17 loggingData:(id)arg18 customData:(id)arg19 parent:(id)arg20;
 
 // Remaining properties
 @property(readonly, copy) NSString *description;

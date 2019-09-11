@@ -6,13 +6,13 @@
 
 #import <objc/NSObject.h>
 
-@class EXP_HUBComponentDefaults, EXP_HUBComponentRegistry, SPTDataLoader, SPTFreeTierAlbumBarButtonFactory, SPTFreeTierAlbumCommandHandlerFactory, SPTFreeTierAlbumContentOperationFactory, SPTFreeTierAlbumOfflineModelFactory;
-@protocol EXP_SPTHubsRendererFactory, GLUETheme, SPTCollectionPlatform, SPTHugsFactory, SPTOfflineModeState, SPTPermissionsOnDemandState, SPTPlayerFeature, SPTProductState;
+@class HUBComponentDefaults, HUBComponentRegistry, SPTDataLoader, SPTFreeTierAlbumBarButtonFactory, SPTFreeTierAlbumCommandHandlerFactory, SPTFreeTierAlbumContentOperationFactory, SPTFreeTierAlbumOfflineModelFactory;
+@protocol GLUETheme, SPTCollectionPlatform, SPTHubsRendererFactory, SPTHugsFactory, SPTOfflineModeState, SPTPermissionsOnDemandState, SPTPlayerFeature, SPTProductState, SPTShelves, SPTUpsellExperimentationFreetierAlbumTestConfiguration, SPTVISREFFlagsService;
 
 @interface SPTFreeTierAlbumHubManager : NSObject
 {
-    EXP_HUBComponentRegistry *_componentRegistry;
-    id <EXP_SPTHubsRendererFactory> _hubsRendererFactory;
+    HUBComponentRegistry *_componentRegistry;
+    id <SPTHubsRendererFactory> _hubsRendererFactory;
     id <SPTHugsFactory> _hugsFactory;
     SPTFreeTierAlbumContentOperationFactory *_contentOperationFactory;
     SPTFreeTierAlbumCommandHandlerFactory *_commandHandlerFactory;
@@ -24,12 +24,18 @@
     id <SPTProductState> _productState;
     SPTDataLoader *_dataLoader;
     id <SPTCollectionPlatform> _collectionPlatform;
-    EXP_HUBComponentDefaults *_componentDefaults;
+    id <SPTUpsellExperimentationFreetierAlbumTestConfiguration> _upsellExperimentConfiguration;
+    HUBComponentDefaults *_componentDefaults;
     SPTFreeTierAlbumOfflineModelFactory *_offlineModelFactory;
+    id <SPTVISREFFlagsService> _visualRefreshService;
+    id <SPTShelves> _shelves;
 }
 
+@property(readonly, nonatomic) id <SPTShelves> shelves; // @synthesize shelves=_shelves;
+@property(nonatomic) __weak id <SPTVISREFFlagsService> visualRefreshService; // @synthesize visualRefreshService=_visualRefreshService;
 @property(readonly, nonatomic) SPTFreeTierAlbumOfflineModelFactory *offlineModelFactory; // @synthesize offlineModelFactory=_offlineModelFactory;
-@property(readonly, nonatomic) EXP_HUBComponentDefaults *componentDefaults; // @synthesize componentDefaults=_componentDefaults;
+@property(readonly, nonatomic) HUBComponentDefaults *componentDefaults; // @synthesize componentDefaults=_componentDefaults;
+@property(readonly, nonatomic) id <SPTUpsellExperimentationFreetierAlbumTestConfiguration> upsellExperimentConfiguration; // @synthesize upsellExperimentConfiguration=_upsellExperimentConfiguration;
 @property(readonly, nonatomic) id <SPTCollectionPlatform> collectionPlatform; // @synthesize collectionPlatform=_collectionPlatform;
 @property(readonly, nonatomic) SPTDataLoader *dataLoader; // @synthesize dataLoader=_dataLoader;
 @property(readonly, nonatomic) id <SPTProductState> productState; // @synthesize productState=_productState;
@@ -41,13 +47,13 @@
 @property(readonly, nonatomic) SPTFreeTierAlbumCommandHandlerFactory *commandHandlerFactory; // @synthesize commandHandlerFactory=_commandHandlerFactory;
 @property(readonly, nonatomic) SPTFreeTierAlbumContentOperationFactory *contentOperationFactory; // @synthesize contentOperationFactory=_contentOperationFactory;
 @property(readonly, nonatomic) id <SPTHugsFactory> hugsFactory; // @synthesize hugsFactory=_hugsFactory;
-@property(readonly, nonatomic) id <EXP_SPTHubsRendererFactory> hubsRendererFactory; // @synthesize hubsRendererFactory=_hubsRendererFactory;
-@property(readonly, nonatomic) EXP_HUBComponentRegistry *componentRegistry; // @synthesize componentRegistry=_componentRegistry;
+@property(readonly, nonatomic) id <SPTHubsRendererFactory> hubsRendererFactory; // @synthesize hubsRendererFactory=_hubsRendererFactory;
+@property(readonly, nonatomic) HUBComponentRegistry *componentRegistry; // @synthesize componentRegistry=_componentRegistry;
 - (void).cxx_destruct;
 - (id)createViewModelLoaderForViewURI:(id)arg1 referrerIdentifier:(id)arg2 offlineModel:(id)arg3 reloadPageSignal:(id)arg4;
 - (id)createViewControllerForViewURI:(id)arg1 referrerIdentifier:(id)arg2;
 - (_Bool)canCreateViewControllerForViewURI:(id)arg1;
-- (id)initWithComponentRegistry:(id)arg1 hubsRendererFactory:(id)arg2 hugsFactory:(id)arg3 contentOperationFactory:(id)arg4 commandHandlerFactory:(id)arg5 barButtonFactory:(id)arg6 glueTheme:(id)arg7 onDemandState:(id)arg8 offlineModelFactory:(id)arg9 playerService:(id)arg10 offlineModeState:(id)arg11 productState:(id)arg12 dataLoader:(id)arg13 collectionPlatform:(id)arg14;
+- (id)initWithComponentRegistry:(id)arg1 hubsRendererFactory:(id)arg2 hugsFactory:(id)arg3 contentOperationFactory:(id)arg4 commandHandlerFactory:(id)arg5 barButtonFactory:(id)arg6 glueTheme:(id)arg7 onDemandState:(id)arg8 offlineModelFactory:(id)arg9 playerService:(id)arg10 offlineModeState:(id)arg11 productState:(id)arg12 dataLoader:(id)arg13 collectionPlatform:(id)arg14 visualRefreshService:(id)arg15 shelves:(id)arg16 upsellExperimentConfiguration:(id)arg17;
 
 @end
 

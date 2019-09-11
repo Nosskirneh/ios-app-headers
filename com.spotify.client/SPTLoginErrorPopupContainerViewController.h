@@ -16,8 +16,8 @@
 }
 
 @property(retain, nonatomic) SPTLoginTheme *theme; // @synthesize theme=_theme;
-@property(retain, nonatomic) NSString *messageString; // @synthesize messageString=_messageString;
-@property(retain, nonatomic) NSString *titleString; // @synthesize titleString=_titleString;
+@property(copy, nonatomic) NSString *messageString; // @synthesize messageString=_messageString;
+@property(copy, nonatomic) NSString *titleString; // @synthesize titleString=_titleString;
 - (void).cxx_destruct;
 - (void)viewDidLoad;
 - (void)loadView;

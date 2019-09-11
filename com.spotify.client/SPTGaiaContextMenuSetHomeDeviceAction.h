@@ -8,14 +8,14 @@
 
 #import "SPTGaiaContextMenuAction-Protocol.h"
 
-@class NSString, SPTGaiaDevice, SPTGaiaSavedDeviceManager, UIImage;
+@class NSString, SPTGaiaConnectDevice, SPTGaiaHomeDeviceManager, UIImage;
 @protocol SPTGaiaContextMenuActionDelegate;
 
 @interface SPTGaiaContextMenuSetHomeDeviceAction : NSObject <SPTGaiaContextMenuAction>
 {
     id <SPTGaiaContextMenuActionDelegate> _delegate;
-    SPTGaiaDevice *_device;
-    SPTGaiaSavedDeviceManager *_savedDeviceManager;
+    SPTGaiaConnectDevice *_connectDevice;
+    SPTGaiaHomeDeviceManager *_homeDeviceManager;
     UIImage *_iconImageSet;
     UIImage *_iconImageUnSet;
 }
@@ -24,11 +24,11 @@
 + (id)featureTitle;
 @property(retain, nonatomic) UIImage *iconImageUnSet; // @synthesize iconImageUnSet=_iconImageUnSet;
 @property(retain, nonatomic) UIImage *iconImageSet; // @synthesize iconImageSet=_iconImageSet;
-@property(retain, nonatomic) SPTGaiaSavedDeviceManager *savedDeviceManager; // @synthesize savedDeviceManager=_savedDeviceManager;
-@property(retain, nonatomic) SPTGaiaDevice *device; // @synthesize device=_device;
+@property(retain, nonatomic) SPTGaiaHomeDeviceManager *homeDeviceManager; // @synthesize homeDeviceManager=_homeDeviceManager;
+@property(retain, nonatomic) SPTGaiaConnectDevice *connectDevice; // @synthesize connectDevice=_connectDevice;
 @property(nonatomic) __weak id <SPTGaiaContextMenuActionDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
-- (_Bool)deviceIsSavedDevice;
+- (_Bool)deviceIsHomeDevice;
 @property(readonly, nonatomic) _Bool supportsAutomaticFiltering;
 - (id)iconColor;
 - (long long)icon;
@@ -36,7 +36,7 @@
 @property(readonly, nonatomic) _Bool available;
 - (id)title;
 @property(readonly, nonatomic) NSString *identifier;
-- (id)initWithSavedDeviceManager:(id)arg1;
+- (id)initWithHomeDeviceManager:(id)arg1;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

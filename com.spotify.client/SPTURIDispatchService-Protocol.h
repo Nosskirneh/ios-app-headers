@@ -6,12 +6,11 @@
 
 #import "SPTService-Protocol.h"
 
-@protocol SPTDeprecatedLegacyLinkDispatcher, SPTExternalLinkController, SPTLinkDispatcher, SPTURISchemeRegistry, SPTURISubtypeRegistry;
+@protocol SPTExternalLinkController, SPTLinkDispatcher, SPTURISchemeRegistry, SPTURISubtypeRegistry;
 
 @protocol SPTURIDispatchService <SPTService>
 - (id <SPTURISubtypeRegistry>)provideURISubtypeRegistry;
 - (id <SPTURISchemeRegistry>)provideURISchemeRegistry;
-- (id <SPTDeprecatedLegacyLinkDispatcher>)provideDeprecatedLegacyLinkDispatcher;
 - (id <SPTLinkDispatcher>)provideLinkDispatcher;
 - (id <SPTLinkDispatcher>)provideDefaultLinkDispatcher;
 - (id <SPTExternalLinkController>)provideExternalLinkController;

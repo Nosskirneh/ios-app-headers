@@ -18,11 +18,11 @@
 }
 
 + (id)messageWithTriggerMessageId:(id)arg1 performanceTime:(id)arg2 messageFormat:(id)arg3 triggerPattern:(id)arg4 triggerType:(id)arg5;
-@property(retain, nonatomic) NSString *triggerTypeValue; // @synthesize triggerTypeValue=_triggerTypeValue;
-@property(retain, nonatomic) NSString *triggerPatternValue; // @synthesize triggerPatternValue=_triggerPatternValue;
-@property(retain, nonatomic) NSString *messageFormatValue; // @synthesize messageFormatValue=_messageFormatValue;
-@property(retain, nonatomic) NSString *performanceTimeValue; // @synthesize performanceTimeValue=_performanceTimeValue;
-@property(retain, nonatomic) NSString *triggerMessageIdValue; // @synthesize triggerMessageIdValue=_triggerMessageIdValue;
+@property(copy, nonatomic) NSString *triggerTypeValue; // @synthesize triggerTypeValue=_triggerTypeValue;
+@property(copy, nonatomic) NSString *triggerPatternValue; // @synthesize triggerPatternValue=_triggerPatternValue;
+@property(copy, nonatomic) NSString *messageFormatValue; // @synthesize messageFormatValue=_messageFormatValue;
+@property(copy, nonatomic) NSString *performanceTimeValue; // @synthesize performanceTimeValue=_performanceTimeValue;
+@property(copy, nonatomic) NSString *triggerMessageIdValue; // @synthesize triggerMessageIdValue=_triggerMessageIdValue;
 - (void).cxx_destruct;
 - (_Bool)isEqual:(id)arg1;
 - (unsigned long long)hash;

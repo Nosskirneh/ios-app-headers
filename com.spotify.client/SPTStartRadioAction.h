@@ -6,11 +6,12 @@
 
 #import "SPAction.h"
 
-@class NSURL, SPSession, SPTRadioFormatListMapper;
+@class NSString, NSURL, SPSession, SPTRadioFormatListMapper;
 @protocol SPTAlertController, SPTLinkDispatcher;
 
 @interface SPTStartRadioAction : SPAction
 {
+    NSString *_title;
     unsigned long long _state;
     NSURL *_seedURI;
     SPSession *_session;
@@ -27,6 +28,7 @@
 @property(nonatomic) __weak SPSession *session; // @synthesize session=_session;
 @property(retain, nonatomic) NSURL *seedURI; // @synthesize seedURI=_seedURI;
 @property(nonatomic) unsigned long long state; // @synthesize state=_state;
+- (id)title;
 - (void).cxx_destruct;
 - (void)navigateToResolvedURI;
 - (void)showError;
@@ -36,9 +38,8 @@
 - (id)logEntityURL;
 - (id)logEventName;
 - (long long)icon;
-- (id)title;
 - (void)start;
-- (id)initWithSeedURI:(id)arg1 session:(id)arg2 linkDispatcher:(id)arg3 logContext:(id)arg4 mapper:(id)arg5 alertController:(id)arg6;
+- (id)initWithSeedURI:(id)arg1 localizedTitle:(id)arg2 session:(id)arg3 linkDispatcher:(id)arg4 logContext:(id)arg5 mapper:(id)arg6 alertController:(id)arg7;
 
 @end
 

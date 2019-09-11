@@ -6,20 +6,20 @@
 
 #import <objc/NSObject.h>
 
-#import "EXP_HUBComponent-Protocol.h"
-#import "EXP_HUBComponentWithChildren-Protocol.h"
+#import "HUBComponent-Protocol.h"
+#import "HUBComponentWithChildren-Protocol.h"
 
 @class NSSet;
-@protocol EXP_HUBComponentChildDelegate, GLUETheme;
+@protocol GLUETheme, HUBComponentChildDelegate;
 
-@interface SPTFreeTierUIServiceWelcomeHeaderContainerComponent : NSObject <EXP_HUBComponent, EXP_HUBComponentWithChildren>
+@interface SPTFreeTierUIServiceWelcomeHeaderContainerComponent : NSObject <HUBComponent, HUBComponentWithChildren>
 {
-    id <EXP_HUBComponentChildDelegate> childDelegate;
+    id <HUBComponentChildDelegate> childDelegate;
     id <GLUETheme> _theme;
 }
 
 @property(retain, nonatomic) id <GLUETheme> theme; // @synthesize theme=_theme;
-@property(nonatomic) __weak id <EXP_HUBComponentChildDelegate> childDelegate; // @synthesize childDelegate;
+@property(nonatomic) __weak id <HUBComponentChildDelegate> childDelegate; // @synthesize childDelegate;
 - (void).cxx_destruct;
 - (struct CGSize)preferredViewSizeForDisplayingModel:(id)arg1 containerViewSize:(struct CGSize)arg2;
 @property(readonly, copy, nonatomic) NSSet *layoutTraits;

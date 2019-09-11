@@ -7,12 +7,14 @@
 #import "GLUEStyle-Protocol.h"
 
 @class UIColor;
-@protocol SPTSortingFilteringFilterBarSortButtonStyle, SPTSortingFilteringSearchFieldStyle;
+@protocol SPTSortingFilteringClearFiltersControlStyle, SPTSortingFilteringFilterBarSortButtonStyle, SPTSortingFilteringSearchFieldStyle;
 
 @protocol SPTSortingFilteringFilterBarStyle <GLUEStyle>
+@property(copy, nonatomic) id <SPTSortingFilteringClearFiltersControlStyle> clearFiltersControlStyle;
 @property(copy, nonatomic) id <SPTSortingFilteringSearchFieldStyle> searchFieldStyle;
 @property(nonatomic) double height;
 @property(nonatomic) double spacing;
+@property(nonatomic) double topMargin;
 @property(nonatomic) double margin;
 @property(copy, nonatomic) UIColor *backgroundColor;
 @property(copy, nonatomic) id <SPTSortingFilteringFilterBarSortButtonStyle> contextMenuButtonStyle;

@@ -13,6 +13,7 @@
 @property(readonly, nonatomic, getter=isContentFiltered) _Bool contentFiltered;
 @property(copy, nonatomic) NSArray *activeFilters;
 @property(readonly, nonatomic) NSArray *availableFilters;
+- (void)removeFilterAtIndex:(long long)arg1;
 - (void)resetFilters;
 @end
 

@@ -29,10 +29,6 @@
     NSString *_platform;
 }
 
-+ (id)identifierForAdvertisingWithManager:(id)arg1;
-+ (id)identifierForAdvertising;
-+ (_Bool)trackingForAdvertisingEnabled;
-+ (_Bool)advertisingSupportFrameworkLinked;
 + (id)ASManager;
 @property(readonly, nonatomic) NSString *platform; // @synthesize platform=_platform;
 @property(readonly, nonatomic) NSString *OSDisplayVersion; // @synthesize OSDisplayVersion=_OSDisplayVersion;

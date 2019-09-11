@@ -8,24 +8,26 @@
 
 #import "UIScrollViewDelegate-Protocol.h"
 
-@class NSMutableOrderedSet, NSString, UIScrollView;
+@class NSMutableArray, NSMutableOrderedSet, NSNumber, NSString, SPTYourLibraryPageViewControllerPage, UIScrollView;
 @protocol SPTYourLibraryPageViewControllerDataSource, SPTYourLibraryPageViewControllerDelegate;
 
 @interface SPTYourLibraryPageViewController : UIViewController <UIScrollViewDelegate>
 {
     _Bool _pageNavigationDisabled;
     _Bool _ready;
-    _Bool _needReload;
+    _Bool _respondsToDidChangeViewController;
     id <SPTYourLibraryPageViewControllerDataSource> _dataSource;
     id <SPTYourLibraryPageViewControllerDelegate> _delegate;
     UIScrollView *_scrollView;
     NSMutableOrderedSet *_visiblePages;
-    CDUnknownBlockType _selectPageCompletionBlock;
+    NSNumber *_needReloadAtIndex;
+    NSMutableArray *_animationEndBlocks;
     struct CGSize _currentSize;
 }
 
-@property(copy, nonatomic) CDUnknownBlockType selectPageCompletionBlock; // @synthesize selectPageCompletionBlock=_selectPageCompletionBlock;
-@property(nonatomic) _Bool needReload; // @synthesize needReload=_needReload;
+@property(retain, nonatomic) NSMutableArray *animationEndBlocks; // @synthesize animationEndBlocks=_animationEndBlocks;
+@property(retain, nonatomic) NSNumber *needReloadAtIndex; // @synthesize needReloadAtIndex=_needReloadAtIndex;
+@property(nonatomic) _Bool respondsToDidChangeViewController; // @synthesize respondsToDidChangeViewController=_respondsToDidChangeViewController;
 @property(nonatomic, getter=isReady) _Bool ready; // @synthesize ready=_ready;
 @property(retain, nonatomic) NSMutableOrderedSet *visiblePages; // @synthesize visiblePages=_visiblePages;
 @property(retain, nonatomic) UIScrollView *scrollView; // @synthesize scrollView=_scrollView;
@@ -36,8 +38,13 @@
 - (void).cxx_destruct;
 - (void)scrollViewDidEndScrollingAnimation:(id)arg1;
 - (void)scrollViewDidScroll:(id)arg1;
+- (void)scrollViewDidEndDecelerating:(id)arg1;
+- (double)offsetForIndex:(unsigned long long)arg1;
+- (_Bool)stopped;
 - (double)calculateVisibilityFactorForRect:(struct CGRect)arg1;
 - (void)sortVisiblePages;
+- (void)internalTilePagesRTL;
+- (void)internalTilePages;
 - (void)tilePages;
 - (_Bool)configurePage:(id)arg1 forIndex:(long long)arg2;
 - (void)removeInvisiblePages:(id)arg1;
@@ -46,9 +53,15 @@
 - (void)viewWillTransitionToSize:(struct CGSize)arg1 withTransitionCoordinator:(id)arg2;
 - (unsigned long long)totalPages;
 - (void)reload;
+- (void)reloadAtIndex:(unsigned long long)arg1;
 - (void)selectPageAtIndex:(unsigned long long)arg1 animated:(_Bool)arg2 completionBlock:(CDUnknownBlockType)arg3;
-- (void)viewDidLoad;
-- (void)initializeInterface;
+- (void)setHorizontalPageOffset:(double)arg1;
+- (void)viewDidAppear:(_Bool)arg1;
+- (void)viewDidLayoutSubviews;
+- (void)loadView;
+@property(readonly, nonatomic) SPTYourLibraryPageViewControllerPage *firstVisiblePage;
+@property(readonly, nonatomic) _Bool singleVisiblePage;
+@property(readonly, nonatomic) long long currentPageIndex;
 - (id)init;
 
 // Remaining properties

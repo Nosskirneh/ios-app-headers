@@ -9,8 +9,9 @@
 @protocol SPTDrivingModeTestManagerObserver;
 
 @protocol SPTDrivingModeTestManager <NSObject>
-@property(readonly, nonatomic, getter=isCarNowPlayingViewEnabled) _Bool carNowPlayingViewEnabled;
+@property(readonly, nonatomic, getter=isCarViewEnabled) _Bool carViewEnabled;
 - (void)removeObserver:(id <SPTDrivingModeTestManagerObserver>)arg1;
 - (void)addObserver:(id <SPTDrivingModeTestManagerObserver>)arg1;
+- (void)setCarViewEnabledInSettings:(_Bool)arg1;
 @end
 

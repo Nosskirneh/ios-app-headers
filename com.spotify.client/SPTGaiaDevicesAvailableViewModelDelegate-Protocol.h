@@ -7,6 +7,6 @@
 #import "NSObject-Protocol.h"
 
 @protocol SPTGaiaDevicesAvailableViewModelDelegate <NSObject>
-- (void)viewModelDidUpdate;
+- (void)viewModelDidUpdateWithShouldAnimate:(_Bool)arg1;
 @end
 

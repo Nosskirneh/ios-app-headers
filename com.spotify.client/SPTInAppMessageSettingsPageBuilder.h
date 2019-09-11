@@ -8,7 +8,7 @@
 
 #import "SPTFeatureSettingsUIProvider-Protocol.h"
 
-@class NSString, SPTDataLoader, SPTInAppMessageActionFactory, SPTInAppMessageQAToolBannerMessageController, SPTInAppMessageQAToolCardMessageController, SPTInAppMessageQAToolCardPresentationController, SPTInAppMessageQAToolViewController, SPTInAppMessageQAToolViewModel;
+@class NSString, SPTDataLoader, SPTInAppMessageActionFactory, SPTInAppMessageNotePresentationManagerImplementation, SPTInAppMessageQAToolBannerMessageController, SPTInAppMessageQAToolCardMessageController, SPTInAppMessageQAToolCardPresentationController, SPTInAppMessageQAToolNoteMessageController, SPTInAppMessageQAToolViewController, SPTInAppMessageQAToolViewModel;
 @protocol SPTAlertController, SPTBannerPresentationManager, SPTFeatureSettingsItemFactory, SPTLocalSettings, SPTSlateBuilderProvider, SPTSlateManager;
 
 @interface SPTInAppMessageSettingsPageBuilder : NSObject <SPTFeatureSettingsUIProvider>
@@ -26,8 +26,12 @@
     SPTInAppMessageQAToolBannerMessageController *_bannerMessageController;
     id <SPTBannerPresentationManager> _bannerPresentationManager;
     SPTInAppMessageQAToolCardMessageController *_cardMessageController;
+    SPTInAppMessageQAToolNoteMessageController *_noteMessageController;
+    SPTInAppMessageNotePresentationManagerImplementation *_notePresentationManager;
 }
 
+@property(retain, nonatomic) SPTInAppMessageNotePresentationManagerImplementation *notePresentationManager; // @synthesize notePresentationManager=_notePresentationManager;
+@property(retain, nonatomic) SPTInAppMessageQAToolNoteMessageController *noteMessageController; // @synthesize noteMessageController=_noteMessageController;
 @property(retain, nonatomic) SPTInAppMessageQAToolCardMessageController *cardMessageController; // @synthesize cardMessageController=_cardMessageController;
 @property(retain, nonatomic) id <SPTBannerPresentationManager> bannerPresentationManager; // @synthesize bannerPresentationManager=_bannerPresentationManager;
 @property(retain, nonatomic) SPTInAppMessageQAToolBannerMessageController *bannerMessageController; // @synthesize bannerMessageController=_bannerMessageController;
@@ -47,11 +51,12 @@
 - (void)connectDelegates;
 - (id)setupQATool;
 - (id)featureSettingsPresentation:(id)arg1 cellForRow:(unsigned long long)arg2;
+- (id)itemForPreviewButtonToggle;
 - (id)itemForDevProdToggle;
 - (id)itemForPresentingQATool;
 - (void)itemizeSettingsPage:(id)arg1;
 - (void)dealloc;
-- (id)initWithFeatureSettingsItemFactory:(id)arg1 slateManager:(id)arg2 slateBuilderProvider:(id)arg3 actionFactory:(id)arg4 alertController:(id)arg5 qaToolDataLoader:(id)arg6 localSettings:(id)arg7 bannerPresentationManager:(id)arg8;
+- (id)initWithFeatureSettingsItemFactory:(id)arg1 slateManager:(id)arg2 slateBuilderProvider:(id)arg3 actionFactory:(id)arg4 alertController:(id)arg5 qaToolDataLoader:(id)arg6 localSettings:(id)arg7 bannerPresentationManager:(id)arg8 notePresentationManager:(id)arg9;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

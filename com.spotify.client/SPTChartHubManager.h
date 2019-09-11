@@ -6,28 +6,28 @@
 
 #import <objc/NSObject.h>
 
-@class EXP_HUBComponentDefaults, NSString, SPTTheme;
-@protocol EXP_HUBIconImageResolver, EXP_SPTHubCommandHandlerFactory, EXP_SPTHubsRendererFactory, SPTHugsFactory, SPTShelves;
+@class HUBComponentDefaults, NSString, SPTTheme;
+@protocol HUBIconImageResolver, SPTHubCommandHandlerFactory, SPTHubsRendererFactory, SPTHugsFactory, SPTShelves;
 
 @interface SPTChartHubManager : NSObject
 {
     NSString *_serviceIdentifier;
-    id <EXP_SPTHubsRendererFactory> _hubsRendererFactory;
+    id <SPTHubsRendererFactory> _hubsRendererFactory;
     id <SPTHugsFactory> _hugsFactory;
     SPTTheme *_theme;
-    id <EXP_SPTHubCommandHandlerFactory> _commandHandlerFactory;
-    EXP_HUBComponentDefaults *_componentDefaults;
-    id <EXP_HUBIconImageResolver> _iconImageResolver;
+    id <SPTHubCommandHandlerFactory> _commandHandlerFactory;
+    HUBComponentDefaults *_componentDefaults;
+    id <HUBIconImageResolver> _iconImageResolver;
     id <SPTShelves> _shelves;
 }
 
 @property(readonly, nonatomic) id <SPTShelves> shelves; // @synthesize shelves=_shelves;
-@property(readonly, nonatomic) id <EXP_HUBIconImageResolver> iconImageResolver; // @synthesize iconImageResolver=_iconImageResolver;
-@property(readonly, nonatomic) EXP_HUBComponentDefaults *componentDefaults; // @synthesize componentDefaults=_componentDefaults;
-@property(readonly, nonatomic) id <EXP_SPTHubCommandHandlerFactory> commandHandlerFactory; // @synthesize commandHandlerFactory=_commandHandlerFactory;
+@property(readonly, nonatomic) id <HUBIconImageResolver> iconImageResolver; // @synthesize iconImageResolver=_iconImageResolver;
+@property(readonly, nonatomic) HUBComponentDefaults *componentDefaults; // @synthesize componentDefaults=_componentDefaults;
+@property(readonly, nonatomic) id <SPTHubCommandHandlerFactory> commandHandlerFactory; // @synthesize commandHandlerFactory=_commandHandlerFactory;
 @property(readonly, nonatomic) SPTTheme *theme; // @synthesize theme=_theme;
 @property(readonly, nonatomic) id <SPTHugsFactory> hugsFactory; // @synthesize hugsFactory=_hugsFactory;
-@property(readonly, nonatomic) id <EXP_SPTHubsRendererFactory> hubsRendererFactory; // @synthesize hubsRendererFactory=_hubsRendererFactory;
+@property(readonly, nonatomic) id <SPTHubsRendererFactory> hubsRendererFactory; // @synthesize hubsRendererFactory=_hubsRendererFactory;
 @property(readonly, copy, nonatomic) NSString *serviceIdentifier; // @synthesize serviceIdentifier=_serviceIdentifier;
 - (void).cxx_destruct;
 - (id)createContentOperationForURL:(id)arg1 referrerIdentifier:(id)arg2 decorationOperation:(id)arg3 cardAccessibilityContentOperation:(id)arg4;

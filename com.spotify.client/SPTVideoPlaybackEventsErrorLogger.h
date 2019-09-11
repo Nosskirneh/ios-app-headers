@@ -6,21 +6,24 @@
 
 #import "SPTVideoBaseTracker.h"
 
-@protocol SPTLogCenter;
+@protocol SPTVideoLogger;
 
 @interface SPTVideoPlaybackEventsErrorLogger : SPTVideoBaseTracker
 {
     _Bool _playbackStarted;
-    id <SPTLogCenter> _logCenter;
+    id <SPTVideoLogger> _logger;
 }
 
 @property(nonatomic) _Bool playbackStarted; // @synthesize playbackStarted=_playbackStarted;
-@property(retain, nonatomic) id <SPTLogCenter> logCenter; // @synthesize logCenter=_logCenter;
+@property(retain, nonatomic) id <SPTVideoLogger> logger; // @synthesize logger=_logger;
 - (void).cxx_destruct;
 - (id)makeErrorDictionary;
-- (void)videoPlaybackDidEndAtPosition:(double)arg1 withEndReason:(long long)arg2;
-- (void)videoPlaybackReadyAtPosition:(double)arg1 duration:(double)arg2 playWhenReady:(_Bool)arg3;
-- (id)initWithLogCenter:(id)arg1;
+- (void)logVideoError:(id)arg1;
+- (void)didFailWithFatalError:(id)arg1 atPosition:(double)arg2 timestamp:(double)arg3;
+- (void)didFailWithRecoverableError:(id)arg1 atPosition:(double)arg2 timestamp:(double)arg3;
+- (void)didEndPlaybackWithReason:(long long)arg1 atPosition:(double)arg2 timestamp:(double)arg3;
+- (void)didBecomeReadyAtPosition:(double)arg1 timestamp:(double)arg2;
+- (id)initWithLogger:(id)arg1 identity:(id)arg2;
 
 @end
 

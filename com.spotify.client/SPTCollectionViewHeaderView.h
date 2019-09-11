@@ -35,7 +35,6 @@
 @property(retain, nonatomic) NSString *title;
 - (void)dealloc;
 - (id)initWithFrame:(struct CGRect)arg1;
-- (void)populateHeaderWithBlock:(id)arg1;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

@@ -12,13 +12,12 @@
 
 @interface SPTPaletteFilter : NSObject <SPTPaletteFiltering>
 {
-    CDUnknownBlockType _shouldAllowBlock;
+    CDUnknownBlockType _filterBlock;
 }
 
 + (id)defaultFilter;
-@property(readonly, copy, nonatomic) CDUnknownBlockType shouldAllowBlock; // @synthesize shouldAllowBlock=_shouldAllowBlock;
+@property(readonly, copy, nonatomic) CDUnknownBlockType filterBlock; // @synthesize filterBlock=_filterBlock;
 - (void).cxx_destruct;
-- (_Bool)shouldAllowColor:(union SPTColor)arg1;
 - (id)initWithBlock:(CDUnknownBlockType)arg1;
 
 // Remaining properties

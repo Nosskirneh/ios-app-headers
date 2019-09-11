@@ -8,7 +8,7 @@
 
 #import "SPTScannablesUserInterfaceFactory-Protocol.h"
 
-@class NSString, SPTScannablesAuthorizationRequester, SPTScannablesDependencies, SPTScannablesScanViewController, SPTScannablesScanViewModelFactory;
+@class NSString, SPTScannablesAuthorizationRequester, SPTScannablesDependencies, SPTScannablesScanViewModelFactory;
 @protocol SPTAlertController, SPTScannablesDataSource, SPTScannablesOnboardingPresenter;
 
 @interface SPTScannablesUserInterfaceFactoryImplementation : NSObject <SPTScannablesUserInterfaceFactory>
@@ -18,12 +18,10 @@
     SPTScannablesAuthorizationRequester *_authorizationRequester;
     id <SPTScannablesOnboardingPresenter> _onboardingPresenter;
     SPTScannablesDependencies *_dependencies;
-    SPTScannablesScanViewController *_scanViewController;
     id <SPTAlertController> _alertController;
 }
 
 @property(retain, nonatomic) id <SPTAlertController> alertController; // @synthesize alertController=_alertController;
-@property(retain, nonatomic) SPTScannablesScanViewController *scanViewController; // @synthesize scanViewController=_scanViewController;
 @property(readonly, nonatomic) SPTScannablesDependencies *dependencies; // @synthesize dependencies=_dependencies;
 @property(readonly, nonatomic) id <SPTScannablesOnboardingPresenter> onboardingPresenter; // @synthesize onboardingPresenter=_onboardingPresenter;
 @property(readonly, nonatomic) SPTScannablesAuthorizationRequester *authorizationRequester; // @synthesize authorizationRequester=_authorizationRequester;
@@ -32,7 +30,7 @@
 - (void).cxx_destruct;
 - (id)provideImagePickerController;
 - (id)createScannableImageViewForEntityURL:(id)arg1;
-- (id)provideScanViewContoller;
+- (id)provideScanViewControllerWithSourceIdentifier:(id)arg1;
 - (id)createContextMenuViewHeaderWithTitle:(id)arg1 subtitle:(id)arg2 entityURL:(id)arg3 imageURL:(id)arg4 fallbackHeader:(id)arg5;
 - (id)initWithScanViewModelFactory:(id)arg1 dataSource:(id)arg2 authorizationRequester:(id)arg3 onboardingPresenter:(id)arg4 dependencies:(id)arg5 alertController:(id)arg6;
 

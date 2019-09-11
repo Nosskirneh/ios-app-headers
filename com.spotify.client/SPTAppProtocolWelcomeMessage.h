@@ -26,7 +26,6 @@
 @property(readonly, nonatomic) NSString *appVersion;
 @property(readonly, nonatomic) NSDictionary *roles;
 - (id)initWithSessionID:(unsigned long long)arg1 details:(id)arg2;
-- (id)initWithSessionID:(unsigned long long)arg1 roles:(id)arg2;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

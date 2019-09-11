@@ -39,6 +39,7 @@
 @property(nonatomic) __weak id <SPTGLUEService> glueService; // @synthesize glueService=_glueService;
 @property(nonatomic) __weak id <SPTContainerService> containerService; // @synthesize containerService=_containerService;
 - (void).cxx_destruct;
+- (id)provideSettingsExplanationSection:(id)arg1;
 - (id)provideSettingsSection:(id)arg1;
 - (void)registerSettingsSection;
 - (id)provideHubContentOperationFactory;

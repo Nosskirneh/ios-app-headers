@@ -6,17 +6,16 @@
 
 #import "NSObject-Protocol.h"
 
-@class SPTGaiaDeviceManager;
-@protocol SPTGaiaDeviceStateManager, SPTGaiaDevicesAvailableViewProvider, SPTGaiaLockScreenControlsStateProvider, SPTGaiaManager, SPTGaiaUserInterfaceContextObserver, SPTGaiaVolumeControllerInterface;
+@protocol SPTGaiaConnectAPI, SPTGaiaDevicePickerPresenter, SPTGaiaDevicesAvailableViewProvider, SPTGaiaIconProvider, SPTGaiaLockScreenControlsStateProvider, SPTGaiaPopupPresenter, SPTGaiaSystemVolumeManager, SPTGaiaVolumeControllerInterface;
 
 @protocol GaiaFeature <NSObject>
-@property(nonatomic) _Bool airplayHidden;
-- (id <SPTGaiaUserInterfaceContextObserver>)provideUserInterfaceContextObserver;
-- (SPTGaiaDeviceManager *)deviceManager;
+- (id <SPTGaiaIconProvider>)provideIconProvider;
+- (id <SPTGaiaPopupPresenter>)providePopupPresenter;
+- (id <SPTGaiaDevicePickerPresenter>)provideDevicePresenter;
+- (id <SPTGaiaConnectAPI>)provideConnectAPI;
 - (id <SPTGaiaDevicesAvailableViewProvider>)provideDevicesAvailableViewProvider;
-- (id <SPTGaiaManager>)provideGaiaManager;
+- (id <SPTGaiaSystemVolumeManager>)provideSystemVolumeManager;
 - (id <SPTGaiaVolumeControllerInterface>)provideGaiaVolumeController;
 - (id <SPTGaiaLockScreenControlsStateProvider>)provideLockScreenControlsStateProvider;
-- (id <SPTGaiaDeviceStateManager>)provideGaiaDeviceStateManager;
 @end
 

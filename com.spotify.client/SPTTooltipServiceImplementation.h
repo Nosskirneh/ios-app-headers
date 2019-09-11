@@ -6,22 +6,21 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTFeatureFlagSignalObserver-Protocol.h"
 #import "SPTService-Protocol.h"
 #import "SPTTooltipService-Protocol.h"
 
 @class NSString, SPTAllocationContext;
 @protocol SPTFeatureFlagSignal, SPTFeatureFlaggingService, SPTFreeTierService;
 
-@interface SPTTooltipServiceImplementation : NSObject <SPTFeatureFlagSignalObserver, SPTService, SPTTooltipService>
+@interface SPTTooltipServiceImplementation : NSObject <SPTService, SPTTooltipService>
 {
     id <SPTFreeTierService> _freeTierService;
     id <SPTFeatureFlaggingService> _featureFlaggingService;
-    id <SPTFeatureFlagSignal> _legacyTooltipSeviceEnabledSignal;
+    id <SPTFeatureFlagSignal> _legacyTooltipServiceEnabledSignal;
 }
 
 + (id)serviceIdentifier;
-@property(retain, nonatomic) id <SPTFeatureFlagSignal> legacyTooltipSeviceEnabledSignal; // @synthesize legacyTooltipSeviceEnabledSignal=_legacyTooltipSeviceEnabledSignal;
+@property(retain, nonatomic) id <SPTFeatureFlagSignal> legacyTooltipServiceEnabledSignal; // @synthesize legacyTooltipServiceEnabledSignal=_legacyTooltipServiceEnabledSignal;
 @property(nonatomic) __weak id <SPTFeatureFlaggingService> featureFlaggingService; // @synthesize featureFlaggingService=_featureFlaggingService;
 @property(nonatomic) __weak id <SPTFreeTierService> freeTierService; // @synthesize freeTierService=_freeTierService;
 - (void).cxx_destruct;

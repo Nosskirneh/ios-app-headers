@@ -8,37 +8,56 @@
 
 #import "INSSchedulerDelegate-Protocol.h"
 
-@class INSPersistentStoreStack, INSScheduler, INSSchedulerConfiguration, NSMutableArray, NSString;
-@protocol INSLogger, INSTransport;
+@class INSContextRegistry, INSEventSenderStatsDataSource, INSPersistentStoreDataDelegate, INSPersistentStoreDataSource, INSScheduler, INSSchedulerDataSourceComposition, NSHashTable, NSString;
+@protocol INSLogger, INSTimer, INSTransport;
 
 @interface INSEventSender : NSObject <INSSchedulerDelegate>
 {
     id <INSTransport> _transport;
     INSScheduler *_scheduler;
-    INSPersistentStoreStack *_persistenceStoreStack;
     id <INSLogger> _logger;
-    INSSchedulerConfiguration *_configuration;
-    NSMutableArray *_observers;
+    id <INSTimer> _timer;
+    NSHashTable *_observers;
+    INSContextRegistry *_contextRegistry;
+    INSPersistentStoreDataSource *_authenticatedPersistentStoreDataSource;
+    INSPersistentStoreDataSource *_nonAuthenticatedPersistentStoreDataSource;
+    INSEventSenderStatsDataSource *_eventSenderStatsDataSource;
+    INSPersistentStoreDataDelegate *_persistentStoreDataDelegate;
+    INSSchedulerDataSourceComposition *_composition;
 }
 
-@property(retain, nonatomic) NSMutableArray *observers; // @synthesize observers=_observers;
-@property(retain, nonatomic) INSSchedulerConfiguration *configuration; // @synthesize configuration=_configuration;
++ (id)defaultContexts;
+@property(retain, nonatomic) INSSchedulerDataSourceComposition *composition; // @synthesize composition=_composition;
+@property(retain, nonatomic) INSPersistentStoreDataDelegate *persistentStoreDataDelegate; // @synthesize persistentStoreDataDelegate=_persistentStoreDataDelegate;
+@property(retain, nonatomic) INSEventSenderStatsDataSource *eventSenderStatsDataSource; // @synthesize eventSenderStatsDataSource=_eventSenderStatsDataSource;
+@property(retain, nonatomic) INSPersistentStoreDataSource *nonAuthenticatedPersistentStoreDataSource; // @synthesize nonAuthenticatedPersistentStoreDataSource=_nonAuthenticatedPersistentStoreDataSource;
+@property(retain, nonatomic) INSPersistentStoreDataSource *authenticatedPersistentStoreDataSource; // @synthesize authenticatedPersistentStoreDataSource=_authenticatedPersistentStoreDataSource;
+@property(retain, nonatomic) INSContextRegistry *contextRegistry; // @synthesize contextRegistry=_contextRegistry;
+@property(retain, nonatomic) NSHashTable *observers; // @synthesize observers=_observers;
+@property(retain, nonatomic) id <INSTimer> timer; // @synthesize timer=_timer;
 @property(retain, nonatomic) id <INSLogger> logger; // @synthesize logger=_logger;
-@property(retain, nonatomic) INSPersistentStoreStack *persistenceStoreStack; // @synthesize persistenceStoreStack=_persistenceStoreStack;
 @property(retain, nonatomic) INSScheduler *scheduler; // @synthesize scheduler=_scheduler;
 @property(retain, nonatomic) id <INSTransport> transport; // @synthesize transport=_transport;
 - (void).cxx_destruct;
 - (void)removeEventObserver:(id)arg1;
 - (void)addEventObserver:(id)arg1;
-- (void)schedulerDidFailWithErrorBatch:(id)arg1;
+- (id)errorInfoWithMessage:(id)arg1;
+- (_Bool)validateMessage:(id)arg1;
+- (void)schedulerDidRequestBackOff;
+- (void)schedulerDidRetryBatch:(id)arg1;
+- (void)schedulerDidFailBatch:(id)arg1;
 - (void)schedulerDidFinishWithSuccessBatch:(id)arg1;
 - (void)schedulerDidStartBatch:(id)arg1;
 - (void)schedulerDidAddMessageNode:(id)arg1;
 - (void)schedulerDidScheduleTimerWithInterval:(double)arg1 attempt:(unsigned long long)arg2;
 - (id)version;
-- (void)removeConfigurationOverride:(id)arg1;
-- (void)addConfigurationOverride:(id)arg1;
+- (void)removeCustomContext:(id)arg1;
+- (void)addCustomContext:(id)arg1;
+- (void)sendNonAuthenticatedMessage:(id)arg1;
 - (void)sendMessage:(id)arg1;
+- (void)sendMessage:(id)arg1 authenticated:(_Bool)arg2;
+- (void)dealloc;
+- (id)initWithTransport:(id)arg1 logger:(id)arg2 timer:(id)arg3;
 - (id)initWithTransport:(id)arg1 logger:(id)arg2;
 
 // Remaining properties

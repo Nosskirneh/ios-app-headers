@@ -21,13 +21,12 @@
 #import "UIScrollViewDelegate-Protocol.h"
 #import "UISearchBarDelegate-Protocol.h"
 
-@class GLUEButton, NSLayoutConstraint, NSNotificationCenter, NSString, NSURL, SPTEntityTableHeaderView, SPTInfoView, SPTLayoutConstraintBuilder, SPTNetworkConnectivityController, SPTPSXLogger, SPTProgressView, SPTSearchBar, SPTTableAdapter, SPTTableView, UIBarButtonItem, UIButton, UIView;
-@protocol GLUETheme, SPContextMenuActionsFactory, SPTCollectionPlatformTestManager, SPTContextMenuOptions, SPTContextMenuOptionsFactory, SPTContextMenuPresenter, SPTContextMenuPresenterFactory, SPTExplicitContentAccessManager, SPTFollowShelfFactory, SPTFormatListPlatformManager, SPTImageLoader, SPTOnDemandUpsell, SPTPSXTestManager, SPTPSXViewModel, SPTPageContainer, SPTPlaylistMetadataView, SPTProductState, SPTShelves, SPTUpsellManager;
+@class GLUEButton, NSArray, NSLayoutConstraint, NSNotificationCenter, NSString, NSURL, SPTEntityTableHeaderView, SPTInfoView, SPTNetworkConnectivityController, SPTPSXLogger, SPTProgressView, SPTSearchBar, SPTTableAdapter, SPTTableView, UIButton, UIView;
+@protocol GLUETheme, SPContextMenuActionsFactory, SPTCollectionPlatformTestManager, SPTContextMenuOptions, SPTContextMenuOptionsFactory, SPTContextMenuPresenter, SPTContextMenuPresenterFactory, SPTExplicitContentAccessManager, SPTFollowShelfFactory, SPTFormatListPlatformManager, SPTImageLoader, SPTPSXMetadataView, SPTPSXTestManager, SPTPSXViewModel, SPTPageContainer, SPTProductState, SPTShelves;
 
 @interface SPTPSXViewController : UIViewController <SPContentInsetViewController, UIScrollViewDelegate, UISearchBarDelegate, SPTImageLoaderDelegate, SPTNavigationControllerNavigationBarState, SPTPSXViewModelDelegate, SPTPSXViewModelBanningDelegate, SPTTableViewContinuousSwipeDelegate, SPTContextMenuViewControllerDelegate, SPTTableAdapterDataSource, SPTTableAdapterAppearanceDelegate, SPTPSXTrackRowDelegate, SPTExplicitContentEnabledStateObserver, SPTPageController>
 {
     _Bool _filterActive;
-    _Bool _heartsInEntityHeadersEnabled;
     id <SPTProductState> _productState;
     id <SPTContextMenuPresenterFactory> _contextMenuPresenterFactory;
     id <SPTImageLoader> _imageLoader;
@@ -35,7 +34,7 @@
     id <SPTCollectionPlatformTestManager> _collectionTestManager;
     id <SPTPSXViewModel> _viewModel;
     id <SPTFormatListPlatformManager> _platformManager;
-    UIView<SPTPlaylistMetadataView> *_metadataView;
+    UIView<SPTPSXMetadataView> *_metadataView;
     UIButton *_sortContextMenuButton;
     id <SPContextMenuActionsFactory> _contextMenuActionsFactory;
     id <SPTContextMenuOptionsFactory> _contextMenuOptionsFactory;
@@ -54,25 +53,18 @@
     SPTSearchBar *_filterField;
     UIButton *_filterCancelButton;
     GLUEButton *_followButton;
-    SPTLayoutConstraintBuilder *_filterAndSortLayout;
+    NSArray *_filterAndSortLayoutConstraints;
     NSLayoutConstraint *_filterAndSortContainerWidthContraint;
     SPTTableAdapter *_tableAdapter;
-    id <SPTOnDemandUpsell> _onDemandUpsell;
-    id <SPTUpsellManager> _upsellManager;
     id <SPTPSXTestManager> _psxTestManager;
     SPTInfoView *_infoView;
-    UIBarButtonItem *_likeBarButtonItem;
 }
 
-@property(retain, nonatomic) UIBarButtonItem *likeBarButtonItem; // @synthesize likeBarButtonItem=_likeBarButtonItem;
-@property(nonatomic) _Bool heartsInEntityHeadersEnabled; // @synthesize heartsInEntityHeadersEnabled=_heartsInEntityHeadersEnabled;
 @property(retain, nonatomic) SPTInfoView *infoView; // @synthesize infoView=_infoView;
 @property(retain, nonatomic) id <SPTPSXTestManager> psxTestManager; // @synthesize psxTestManager=_psxTestManager;
-@property(retain, nonatomic) id <SPTUpsellManager> upsellManager; // @synthesize upsellManager=_upsellManager;
-@property(retain, nonatomic) id <SPTOnDemandUpsell> onDemandUpsell; // @synthesize onDemandUpsell=_onDemandUpsell;
 @property(retain, nonatomic) SPTTableAdapter *tableAdapter; // @synthesize tableAdapter=_tableAdapter;
 @property(retain, nonatomic) NSLayoutConstraint *filterAndSortContainerWidthContraint; // @synthesize filterAndSortContainerWidthContraint=_filterAndSortContainerWidthContraint;
-@property(retain, nonatomic) SPTLayoutConstraintBuilder *filterAndSortLayout; // @synthesize filterAndSortLayout=_filterAndSortLayout;
+@property(copy, nonatomic) NSArray *filterAndSortLayoutConstraints; // @synthesize filterAndSortLayoutConstraints=_filterAndSortLayoutConstraints;
 @property(retain, nonatomic) GLUEButton *followButton; // @synthesize followButton=_followButton;
 @property(nonatomic, getter=isFilterActive) _Bool filterActive; // @synthesize filterActive=_filterActive;
 @property(retain, nonatomic) UIButton *filterCancelButton; // @synthesize filterCancelButton=_filterCancelButton;
@@ -92,7 +84,7 @@
 @property(readonly, nonatomic) id <SPTContextMenuOptionsFactory> contextMenuOptionsFactory; // @synthesize contextMenuOptionsFactory=_contextMenuOptionsFactory;
 @property(readonly, nonatomic) id <SPContextMenuActionsFactory> contextMenuActionsFactory; // @synthesize contextMenuActionsFactory=_contextMenuActionsFactory;
 @property(readonly, nonatomic) UIButton *sortContextMenuButton; // @synthesize sortContextMenuButton=_sortContextMenuButton;
-@property(readonly, nonatomic) UIView<SPTPlaylistMetadataView> *metadataView; // @synthesize metadataView=_metadataView;
+@property(readonly, nonatomic) UIView<SPTPSXMetadataView> *metadataView; // @synthesize metadataView=_metadataView;
 @property(readonly, nonatomic) id <SPTFormatListPlatformManager> platformManager; // @synthesize platformManager=_platformManager;
 @property(readonly, nonatomic) id <SPTPSXViewModel> viewModel; // @synthesize viewModel=_viewModel;
 @property(readonly, nonatomic) id <SPTCollectionPlatformTestManager> collectionTestManager; // @synthesize collectionTestManager=_collectionTestManager;
@@ -101,7 +93,6 @@
 @property(readonly, nonatomic) id <SPTContextMenuPresenterFactory> contextMenuPresenterFactory; // @synthesize contextMenuPresenterFactory=_contextMenuPresenterFactory;
 @property(readonly, nonatomic) id <SPTProductState> productState; // @synthesize productState=_productState;
 - (void).cxx_destruct;
-- (void)updateNavigationHeartButton:(_Bool)arg1;
 - (void)explicitContentEnabledStateDidChange:(_Bool)arg1;
 - (void)trackRowAdapterWantsBouncedShuffleButton:(id)arg1;
 - (void)searchBarSearchButtonClicked:(id)arg1;
@@ -154,7 +145,7 @@
 - (void)viewWillAppear:(_Bool)arg1;
 - (void)viewDidLoad;
 - (void)dealloc;
-- (id)initWithProductState:(id)arg1 contextMenuPresenterFactory:(id)arg2 imageLoader:(id)arg3 logger:(id)arg4 networkConnectivityController:(id)arg5 collectionTestManager:(id)arg6 viewModel:(id)arg7 platformManager:(id)arg8 playlistMetadataView:(id)arg9 sortMenuButton:(id)arg10 contextMenuActionsFactory:(id)arg11 contextMenuOptionsFactory:(id)arg12 theme:(id)arg13 notificationCentre:(id)arg14 shelves:(id)arg15 upsellManager:(id)arg16 onDemandUpsell:(id)arg17 psxTestManager:(id)arg18 explicitContentAccessManager:(id)arg19 heartsInEntityHeadersEnabled:(_Bool)arg20;
+- (id)initWithProductState:(id)arg1 contextMenuPresenterFactory:(id)arg2 imageLoader:(id)arg3 logger:(id)arg4 networkConnectivityController:(id)arg5 collectionTestManager:(id)arg6 viewModel:(id)arg7 platformManager:(id)arg8 playlistMetadataView:(id)arg9 sortMenuButton:(id)arg10 contextMenuActionsFactory:(id)arg11 contextMenuOptionsFactory:(id)arg12 theme:(id)arg13 notificationCentre:(id)arg14 shelves:(id)arg15 psxTestManager:(id)arg16 explicitContentAccessManager:(id)arg17;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

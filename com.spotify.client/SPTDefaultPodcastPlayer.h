@@ -14,6 +14,7 @@
 
 @interface SPTDefaultPodcastPlayer : NSObject <SPTPlayerObserver, SPTPodcastPlayer>
 {
+    _Bool _sortPlaybackOrder;
     id <SPTPodcastPlayerDelegate> _delegate;
     id <SPTPlayer> _player;
     NSURL *_currentlyPlayingTrack;
@@ -27,6 +28,7 @@
 @property(retain, nonatomic) SPTPlayerState *lastState; // @synthesize lastState=_lastState;
 @property(retain, nonatomic) NSURL *currentlyPlayingTrack; // @synthesize currentlyPlayingTrack=_currentlyPlayingTrack;
 @property(retain, nonatomic) id <SPTPlayer> player; // @synthesize player=_player;
+@property(nonatomic) _Bool sortPlaybackOrder; // @synthesize sortPlaybackOrder=_sortPlaybackOrder;
 @property(nonatomic) __weak id <SPTPodcastPlayerDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
 - (void)fetchProgressState:(id)arg1;
@@ -35,9 +37,13 @@
 - (_Bool)isActiveContextURI:(id)arg1;
 - (_Bool)isActiveEpisodeURL:(id)arg1 inEntityURL:(id)arg2;
 - (void)player:(id)arg1 stateDidChange:(id)arg2 fromState:(id)arg3;
-- (void)playPodcast:(id)arg1 withEpisodes:(id)arg2 startEpisodeUrl:(id)arg3 fromTimestamp:(id)arg4 resetPlay:(_Bool)arg5 reverseOrder:(_Bool)arg6;
+- (_Bool)resumePodcast:(id)arg1 episodeUrl:(id)arg2;
+- (void)playPodcastWithContextURI:(id)arg1 itemID:(id)arg2 fromTimestamp:(id)arg3;
+- (void)playPodcast:(id)arg1 withEpisodes:(id)arg2 startEpisodeUrl:(id)arg3 fromTimestamp:(id)arg4 resetPlay:(_Bool)arg5;
 - (void)pausePodcast:(id)arg1 startEpisodeUrl:(id)arg2;
 @property(readonly, nonatomic) _Bool isPlayingPodcastEpisode;
+@property(readonly, nonatomic) double currentTrackDuration;
+- (_Bool)seekInPodcast:(id)arg1 episodeUrl:(id)arg2 toPosition:(double)arg3;
 @property(readonly, nonatomic) double currentTrackPosition;
 @property(readonly, nonatomic) double currentTrackProgress;
 @property(readonly, nonatomic) NSURL *lastStateContextURI;

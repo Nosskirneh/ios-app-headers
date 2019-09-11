@@ -6,11 +6,9 @@
 
 #import "NSObject-Protocol.h"
 
-@class NSData;
+@protocol SPTRemoteConfigurationEventLoggerMessage;
 
 @protocol SPTRemoteConfigurationEventLogger <NSObject>
-- (void)logFetchErrorWithData:(NSData *)arg1;
-- (void)logAppliedWithData:(NSData *)arg1;
-- (void)logAppliedDefault;
+- (void)logMessage:(id <SPTRemoteConfigurationEventLoggerMessage>)arg1;
 @end
 

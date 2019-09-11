@@ -6,13 +6,13 @@
 
 #import <objc/NSObject.h>
 
-#import "GLUEImageLoader-Protocol.h"
+#import "SPTGLUEObservableImageLoader-Protocol.h"
 #import "SPTImageLoaderDelegate-Protocol.h"
 
 @class NSMutableDictionary, NSString;
 @protocol SPTImageLoader;
 
-@interface SPTGLUEImageLoader : NSObject <SPTImageLoaderDelegate, GLUEImageLoader>
+@interface SPTGLUEImageLoader : NSObject <SPTImageLoaderDelegate, SPTGLUEObservableImageLoader>
 {
     id <SPTImageLoader> _imageLoader;
     NSString *_sourceIdentifier;
@@ -23,6 +23,8 @@
 @property(copy, nonatomic) NSString *sourceIdentifier; // @synthesize sourceIdentifier=_sourceIdentifier;
 @property(retain, nonatomic) id <SPTImageLoader> imageLoader; // @synthesize imageLoader=_imageLoader;
 - (void).cxx_destruct;
+- (void)removeInstrumentationObserver:(id)arg1;
+- (void)addInstrumentationObserver:(id)arg1;
 - (void)imageLoader:(id)arg1 didFailToLoadImageForURL:(id)arg2 error:(id)arg3 context:(id)arg4;
 - (void)imageLoader:(id)arg1 didLoadImage:(id)arg2 forURL:(id)arg3 loadTime:(double)arg4 context:(id)arg5;
 - (id)loadImageForURL:(id)arg1 imageSize:(struct CGSize)arg2 completion:(CDUnknownBlockType)arg3;

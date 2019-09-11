@@ -4,55 +4,27 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import "SPTVideoPlayerMessage.h"
+#import <objc/NSObject.h>
 
-#import "SPTVideoPlaybackRequest-Protocol.h"
+@class NSString;
+@protocol SPTVideoPlayOptions, SPTVideoPlaybackRequest;
 
-@class NSDictionary, NSString, NSURL;
-
-@interface SPTVideoStartCommand : SPTVideoPlayerMessage <SPTVideoPlaybackRequest>
+@interface SPTVideoStartCommand : NSObject
 {
-    _Bool _isAd;
-    _Bool _playWhenReady;
     _Bool _deferPlayback;
-    _Bool _royaltyVideo;
-    _Bool _backgroundable;
-    NSString *_manifestID;
-    NSURL *_mediaURL;
-    double _initialPosition;
-    NSDictionary *_metadata;
-    NSURL *_syncWithAudioTrackURI;
+    id <SPTVideoPlaybackRequest> _request;
+    id <SPTVideoPlayOptions> _options;
     NSString *_playbackID;
     double _maxAllowedStallTimeout;
-    NSDictionary *_serializedDictionary;
 }
 
-@property(retain, nonatomic) NSDictionary *serializedDictionary; // @synthesize serializedDictionary=_serializedDictionary;
-@property(nonatomic, getter=isBackgroundable) _Bool backgroundable; // @synthesize backgroundable=_backgroundable;
-@property(nonatomic, getter=isRoyaltyVideo) _Bool royaltyVideo; // @synthesize royaltyVideo=_royaltyVideo;
-@property(nonatomic) double maxAllowedStallTimeout; // @synthesize maxAllowedStallTimeout=_maxAllowedStallTimeout;
+@property(readonly, nonatomic) double maxAllowedStallTimeout; // @synthesize maxAllowedStallTimeout=_maxAllowedStallTimeout;
 @property(readonly, nonatomic) _Bool deferPlayback; // @synthesize deferPlayback=_deferPlayback;
 @property(readonly, nonatomic) NSString *playbackID; // @synthesize playbackID=_playbackID;
-@property(copy, nonatomic, getter=audioTrackURI) NSURL *syncWithAudioTrackURI; // @synthesize syncWithAudioTrackURI=_syncWithAudioTrackURI;
-@property(copy, nonatomic) NSDictionary *metadata; // @synthesize metadata=_metadata;
-@property(nonatomic) _Bool playWhenReady; // @synthesize playWhenReady=_playWhenReady;
-@property(nonatomic) double initialPosition; // @synthesize initialPosition=_initialPosition;
-@property(copy, nonatomic) NSURL *mediaURL; // @synthesize mediaURL=_mediaURL;
-@property(retain, nonatomic) NSString *manifestID; // @synthesize manifestID=_manifestID;
-@property(nonatomic) _Bool isAd; // @synthesize isAd=_isAd;
+@property(readonly, nonatomic) id <SPTVideoPlayOptions> options; // @synthesize options=_options;
+@property(readonly, nonatomic) id <SPTVideoPlaybackRequest> request; // @synthesize request=_request;
 - (void).cxx_destruct;
-- (_Bool)isEqual:(id)arg1;
-@property(readonly) unsigned long long hash;
-- (_Bool)isSupportedMediaManifest:(id)arg1;
-- (id)parseManifest:(id)arg1;
-- (id)copyWithZone:(struct _NSZone *)arg1;
-- (id)dateFromTimestampMS:(id)arg1;
-- (id)initWithDictionary:(id)arg1;
-
-// Remaining properties
-@property(readonly, copy) NSString *debugDescription;
-@property(readonly, copy) NSString *description;
-@property(readonly) Class superclass;
+- (id)initWithRequest:(id)arg1 options:(id)arg2 playbackID:(id)arg3 deferPlayback:(_Bool)arg4 maxAllowedStallTimeout:(double)arg5;
 
 @end
 

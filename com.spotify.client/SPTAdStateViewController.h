@@ -8,20 +8,20 @@
 
 #import "MFMailComposeViewControllerDelegate-Protocol.h"
 
-@class NSString, SPTAdCosmosBridge, SPTAdsViewModel, UITextView;
-@protocol SPTAdsManager;
+@class NSString, SPTAdsViewModel, UITextView;
+@protocol SPTAdsBaseCosmosBridge, SPTAdsManager;
 
 @interface SPTAdStateViewController : UIViewController <MFMailComposeViewControllerDelegate>
 {
     SPTAdsViewModel *_adsViewModel;
     UITextView *_textView;
     id <SPTAdsManager> _adsManager;
-    SPTAdCosmosBridge *_cosmosBridge;
+    id <SPTAdsBaseCosmosBridge> _cosmosBridge;
     NSString *_username;
 }
 
 @property(copy, nonatomic) NSString *username; // @synthesize username=_username;
-@property(retain, nonatomic) SPTAdCosmosBridge *cosmosBridge; // @synthesize cosmosBridge=_cosmosBridge;
+@property(retain, nonatomic) id <SPTAdsBaseCosmosBridge> cosmosBridge; // @synthesize cosmosBridge=_cosmosBridge;
 @property(nonatomic) __weak id <SPTAdsManager> adsManager; // @synthesize adsManager=_adsManager;
 @property(retain, nonatomic) UITextView *textView; // @synthesize textView=_textView;
 @property(nonatomic) __weak SPTAdsViewModel *adsViewModel; // @synthesize adsViewModel=_adsViewModel;

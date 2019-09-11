@@ -9,20 +9,22 @@
 #import "SPTPodcastRecommendationsService-Protocol.h"
 
 @class NSString, SPTAllocationContext;
-@protocol EXP_SPTHubFrameworkService, SPTGLUEService, SPTPodcastRecommendationsViewProvider, SPTSessionService;
+@protocol SPTFeatureFlaggingService, SPTGLUEService, SPTHubFrameworkService, SPTPodcastRecommendationsViewProvider, SPTSessionService;
 
 @interface SPTPodcastRecommendationsServiceImplementation : NSObject <SPTPodcastRecommendationsService>
 {
     id <SPTSessionService> _clientSessionService;
-    id <EXP_SPTHubFrameworkService> _hubFrameworkService;
+    id <SPTHubFrameworkService> _hubFrameworkService;
     id <SPTGLUEService> _glueService;
+    id <SPTFeatureFlaggingService> _featureFlaggingService;
     id <SPTPodcastRecommendationsViewProvider> _recommendationsViewProvider;
 }
 
 + (id)serviceIdentifier;
 @property(retain, nonatomic) id <SPTPodcastRecommendationsViewProvider> recommendationsViewProvider; // @synthesize recommendationsViewProvider=_recommendationsViewProvider;
+@property(nonatomic) __weak id <SPTFeatureFlaggingService> featureFlaggingService; // @synthesize featureFlaggingService=_featureFlaggingService;
 @property(nonatomic) __weak id <SPTGLUEService> glueService; // @synthesize glueService=_glueService;
-@property(nonatomic) __weak id <EXP_SPTHubFrameworkService> hubFrameworkService; // @synthesize hubFrameworkService=_hubFrameworkService;
+@property(nonatomic) __weak id <SPTHubFrameworkService> hubFrameworkService; // @synthesize hubFrameworkService=_hubFrameworkService;
 @property(nonatomic) __weak id <SPTSessionService> clientSessionService; // @synthesize clientSessionService=_clientSessionService;
 - (void).cxx_destruct;
 - (id)provideRecommendationsViewProvider;

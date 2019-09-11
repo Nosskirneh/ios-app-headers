@@ -9,7 +9,6 @@
 @interface NSURL (PersonalisedSets)
 + (id)spt_artistDismissRecommendationURLForDimissUri:(id)arg1;
 + (id)spt_artistFollowRecommendationsURL;
-+ (id)spt_personalizedSetHubURI;
 + (id)spt_personalisedSetsPrefixComponents;
 + (id)spt_personalisedSetURLWithPlaylistURL:(id)arg1;
 @property(readonly, nonatomic, getter=spt_personalisedSetEmbeddedPlaylistURL) NSURL *personalisedSetEmbeddedPlaylistURL;

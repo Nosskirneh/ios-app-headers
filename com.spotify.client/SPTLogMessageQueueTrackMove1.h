@@ -24,9 +24,9 @@
 @property(nonatomic) long long trackSectionAfterValue; // @synthesize trackSectionAfterValue=_trackSectionAfterValue;
 @property(nonatomic) long long trackPositionBeforeValue; // @synthesize trackPositionBeforeValue=_trackPositionBeforeValue;
 @property(nonatomic) long long trackSectionBeforeValue; // @synthesize trackSectionBeforeValue=_trackSectionBeforeValue;
-@property(retain, nonatomic) NSString *targetTrackUriValue; // @synthesize targetTrackUriValue=_targetTrackUriValue;
-@property(retain, nonatomic) NSString *currentTrackUriValue; // @synthesize currentTrackUriValue=_currentTrackUriValue;
-@property(retain, nonatomic) NSString *contextUriValue; // @synthesize contextUriValue=_contextUriValue;
+@property(copy, nonatomic) NSString *targetTrackUriValue; // @synthesize targetTrackUriValue=_targetTrackUriValue;
+@property(copy, nonatomic) NSString *currentTrackUriValue; // @synthesize currentTrackUriValue=_currentTrackUriValue;
+@property(copy, nonatomic) NSString *contextUriValue; // @synthesize contextUriValue=_contextUriValue;
 - (void).cxx_destruct;
 - (_Bool)isEqual:(id)arg1;
 - (unsigned long long)hash;

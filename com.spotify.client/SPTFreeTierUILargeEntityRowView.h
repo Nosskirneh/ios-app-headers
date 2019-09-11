@@ -41,6 +41,8 @@
 @property(readonly, nonatomic) GLUELabel *subtitleLabel; // @synthesize subtitleLabel=_subtitleLabel;
 @property(readonly, nonatomic) GLUELabel *titleLabel; // @synthesize titleLabel=_titleLabel;
 - (void).cxx_destruct;
+- (id)stringStartingWithString:(id)arg1 stringToAppend:(id)arg2;
+- (id)accessibilityLabel;
 - (void)prepareForReuse;
 - (struct CGSize)intrinsicContentSize;
 - (void)applyStateStyle:(id)arg1;

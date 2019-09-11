@@ -4,21 +4,21 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import "EXP_HUBViewController.h"
+#import "HUBViewController.h"
 
-#import "EXP_HUBOverlayViewComponentDelegate-Protocol.h"
-#import "EXP_HUBViewComponentDelegate-Protocol.h"
-#import "EXP_HUBViewScrollDelegate-Protocol.h"
+#import "HUBOverlayViewComponentDelegate-Protocol.h"
+#import "HUBViewComponentDelegate-Protocol.h"
+#import "HUBViewScrollDelegate-Protocol.h"
 #import "SPContentInsetViewController-Protocol.h"
 #import "SPTNavigationControllerNavigationBarState-Protocol.h"
 #import "SPTPageController-Protocol.h"
 #import "SPTScrollToTopViewController-Protocol.h"
 #import "SPTSearchKeyboardManagerDelegate-Protocol.h"
 
-@class EXP_SPTHubShelvesManager, NSString, NSURL, SPTSearchKeyboardManager, SPTTheme;
-@protocol EXP_SPTHubImpressionLogger, EXP_SPTHubLoadingLogger, SPTPageContainer;
+@class NSMutableDictionary, NSString, NSURL, SPTHubShelvesManager, SPTSearchKeyboardManager, SPTTheme;
+@protocol SPTHubImpressionLogger, SPTPageContainer, SPTShareDragDelegateFactory;
 
-@interface SPTSearchHubBaseViewController : EXP_HUBViewController <SPTScrollToTopViewController, EXP_HUBViewScrollDelegate, SPTSearchKeyboardManagerDelegate, SPContentInsetViewController, SPTPageController, SPTNavigationControllerNavigationBarState, EXP_HUBViewComponentDelegate, EXP_HUBOverlayViewComponentDelegate>
+@interface SPTSearchHubBaseViewController : HUBViewController <SPTScrollToTopViewController, HUBViewScrollDelegate, SPTSearchKeyboardManagerDelegate, SPContentInsetViewController, SPTPageController, SPTNavigationControllerNavigationBarState, HUBViewComponentDelegate, HUBOverlayViewComponentDelegate>
 {
     NSString *_pageIdentifier;
     NSURL *_pageURI;
@@ -26,15 +26,17 @@
     unsigned long long _preferredNavigationBarState;
     SPTSearchKeyboardManager *_keyboardManager;
     SPTTheme *_theme;
-    EXP_SPTHubShelvesManager *_shelvesManager;
-    id <EXP_SPTHubImpressionLogger> _impressionLogger;
-    id <EXP_SPTHubLoadingLogger> _loadingLogger;
+    SPTHubShelvesManager *_shelvesManager;
+    id <SPTHubImpressionLogger> _impressionLogger;
+    NSMutableDictionary *_dragDelegateHolders;
+    id <SPTShareDragDelegateFactory> _shareDragDelegateFactory;
     struct UIEdgeInsets _contentInsets;
 }
 
-@property(readonly, nonatomic) id <EXP_SPTHubLoadingLogger> loadingLogger; // @synthesize loadingLogger=_loadingLogger;
-@property(readonly, nonatomic) id <EXP_SPTHubImpressionLogger> impressionLogger; // @synthesize impressionLogger=_impressionLogger;
-@property(retain, nonatomic) EXP_SPTHubShelvesManager *shelvesManager; // @synthesize shelvesManager=_shelvesManager;
+@property(readonly, nonatomic) id <SPTShareDragDelegateFactory> shareDragDelegateFactory; // @synthesize shareDragDelegateFactory=_shareDragDelegateFactory;
+@property(readonly, nonatomic) NSMutableDictionary *dragDelegateHolders; // @synthesize dragDelegateHolders=_dragDelegateHolders;
+@property(readonly, nonatomic) id <SPTHubImpressionLogger> impressionLogger; // @synthesize impressionLogger=_impressionLogger;
+@property(retain, nonatomic) SPTHubShelvesManager *shelvesManager; // @synthesize shelvesManager=_shelvesManager;
 @property(readonly, nonatomic) SPTTheme *theme; // @synthesize theme=_theme;
 @property(nonatomic) struct UIEdgeInsets contentInsets; // @synthesize contentInsets=_contentInsets;
 @property(retain, nonatomic) SPTSearchKeyboardManager *keyboardManager; // @synthesize keyboardManager=_keyboardManager;
@@ -43,6 +45,7 @@
 @property(readonly, nonatomic, getter=spt_pageURI) NSURL *pageURI; // @synthesize pageURI=_pageURI;
 @property(readonly, nonatomic, getter=spt_pageIdentifier) NSString *pageIdentifier; // @synthesize pageIdentifier=_pageIdentifier;
 - (void).cxx_destruct;
+- (void)configureDragDelegateForComponentView:(id)arg1;
 - (unsigned long long)animationOptionsWithCurve:(long long)arg1;
 - (void)keyBoardAnimateWithDuration:(double)arg1 curve:(long long)arg2;
 - (id)provideNavigationBar;
@@ -56,7 +59,7 @@
 - (void)viewWillDisappear:(_Bool)arg1;
 - (void)viewWillAppear:(_Bool)arg1;
 - (void)viewDidLoad;
-- (id)initWithTheme:(id)arg1 viewURI:(id)arg2 componentRegistry:(id)arg3 componentLayoutManager:(id)arg4 imageLoaderFactory:(id)arg5 commandHandler:(id)arg6 impressionLogger:(id)arg7 loadingLogger:(id)arg8 pageIdentifier:(id)arg9 pageURI:(id)arg10;
+- (id)initWithTheme:(id)arg1 viewURI:(id)arg2 componentRegistry:(id)arg3 componentLayoutManager:(id)arg4 imageLoaderFactory:(id)arg5 commandHandler:(id)arg6 impressionLogger:(id)arg7 pageIdentifier:(id)arg8 pageURI:(id)arg9 shareDragDelegateFactory:(id)arg10;
 - (void)spt_scrollToTopAnimated:(_Bool)arg1;
 - (void)spt_scrollToTop;
 

@@ -37,7 +37,6 @@
 - (void)startInteractiveTransition:(id)arg1;
 - (void)interactionEndedInView:(id)arg1 translation:(struct CGPoint)arg2 velocity:(struct CGPoint)arg3;
 - (void)interactionChangedInView:(id)arg1 translation:(struct CGPoint)arg2;
-- (id)presentationControllerForPresentedViewController:(id)arg1 presentingViewController:(id)arg2 sourceViewController:(id)arg3;
 - (void)interactionBeganInView:(id)arg1 translation:(struct CGPoint)arg2;
 - (double)transitionCrossfadeDuration;
 - (void)animationEnded:(_Bool)arg1;

@@ -13,7 +13,7 @@
 
 @interface SPTOnDemandSetImplementation : NSObject <SPTOnDemandSet>
 {
-    _Bool _shuffleEnabled;
+    CDUnknownBlockType _shuffleEnabledCallback;
     SPTPersistentCache *_persistentCache;
     SPTOnDemandSetTestManager *_testManager;
     NSObject<OS_dispatch_queue> *_persistentCacheQueue;
@@ -23,10 +23,10 @@
 
 @property(readonly, nonatomic) SPTObserverManager *observerManager; // @synthesize observerManager=_observerManager;
 @property(copy, nonatomic) NSSet *onDemandURLs; // @synthesize onDemandURLs=_onDemandURLs;
-@property(nonatomic) _Bool shuffleEnabled; // @synthesize shuffleEnabled=_shuffleEnabled;
 @property(retain, nonatomic) NSObject<OS_dispatch_queue> *persistentCacheQueue; // @synthesize persistentCacheQueue=_persistentCacheQueue;
 @property(readonly, nonatomic) SPTOnDemandSetTestManager *testManager; // @synthesize testManager=_testManager;
 @property(readonly, nonatomic) SPTPersistentCache *persistentCache; // @synthesize persistentCache=_persistentCache;
+@property(readonly, nonatomic) CDUnknownBlockType shuffleEnabledCallback; // @synthesize shuffleEnabledCallback=_shuffleEnabledCallback;
 - (void).cxx_destruct;
 - (id)convertPlaylistURLToV2:(id)arg1;
 - (id)convertToPlaylistV2Set:(id)arg1;
@@ -36,7 +36,7 @@
 - (_Bool)containsURL:(id)arg1;
 - (void)cacheOnDemandSet:(id)arg1;
 - (void)loadFromCacheIfNecessesary;
-- (id)initWithPersistentCache:(id)arg1 shuffleEnabled:(_Bool)arg2 testManager:(id)arg3;
+- (id)initWithPersistentCache:(id)arg1 shuffleEnabledCallback:(CDUnknownBlockType)arg2 testManager:(id)arg3;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

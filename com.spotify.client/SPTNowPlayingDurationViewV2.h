@@ -6,12 +6,14 @@
 
 #import <UIKit/UIView.h>
 
-@class CADisplayLink, NSLayoutConstraint, SPTNowPlayingSliderV2, UILabel;
+@class CADisplayLink, NSLayoutConstraint, SPTNowPlayingLiveVideoView, SPTNowPlayingSliderV2, UILabel;
 @protocol SPTNowPlayingDurationViewV2DataSource, SPTNowPlayingDurationViewV2Delegate;
 
 @interface SPTNowPlayingDurationViewV2 : UIView
 {
     _Bool _labelsHidden;
+    _Bool _liveViewHidden;
+    long long _sliderAppearance;
     id <SPTNowPlayingDurationViewV2Delegate> _delegate;
     SPTNowPlayingSliderV2 *_progressSlider;
     UILabel *_timeRemainingLabel;
@@ -19,14 +21,22 @@
     id <SPTNowPlayingDurationViewV2DataSource> _dataSource;
     CADisplayLink *_displayLink;
     UIView *_animationView;
+    SPTNowPlayingLiveVideoView *_liveVideoView;
+    NSLayoutConstraint *_sliderWidthConstraint;
     NSLayoutConstraint *_sliderHeightConstraint;
+    NSLayoutConstraint *_sliderTopConstraint;
+    NSLayoutConstraint *_sliderCenterYConstraint;
     NSLayoutConstraint *_timeTakenCenterYConstraint;
     NSLayoutConstraint *_timeRemainingCenterYConstraint;
 }
 
 @property(retain, nonatomic) NSLayoutConstraint *timeRemainingCenterYConstraint; // @synthesize timeRemainingCenterYConstraint=_timeRemainingCenterYConstraint;
 @property(retain, nonatomic) NSLayoutConstraint *timeTakenCenterYConstraint; // @synthesize timeTakenCenterYConstraint=_timeTakenCenterYConstraint;
+@property(retain, nonatomic) NSLayoutConstraint *sliderCenterYConstraint; // @synthesize sliderCenterYConstraint=_sliderCenterYConstraint;
+@property(retain, nonatomic) NSLayoutConstraint *sliderTopConstraint; // @synthesize sliderTopConstraint=_sliderTopConstraint;
 @property(retain, nonatomic) NSLayoutConstraint *sliderHeightConstraint; // @synthesize sliderHeightConstraint=_sliderHeightConstraint;
+@property(retain, nonatomic) NSLayoutConstraint *sliderWidthConstraint; // @synthesize sliderWidthConstraint=_sliderWidthConstraint;
+@property(retain, nonatomic) SPTNowPlayingLiveVideoView *liveVideoView; // @synthesize liveVideoView=_liveVideoView;
 @property(readonly, nonatomic) UIView *animationView; // @synthesize animationView=_animationView;
 @property(retain, nonatomic) CADisplayLink *displayLink; // @synthesize displayLink=_displayLink;
 @property(nonatomic) __weak id <SPTNowPlayingDurationViewV2DataSource> dataSource; // @synthesize dataSource=_dataSource;
@@ -34,6 +44,8 @@
 @property(retain, nonatomic) UILabel *timeRemainingLabel; // @synthesize timeRemainingLabel=_timeRemainingLabel;
 @property(retain, nonatomic) SPTNowPlayingSliderV2 *progressSlider; // @synthesize progressSlider=_progressSlider;
 @property(nonatomic) __weak id <SPTNowPlayingDurationViewV2Delegate> delegate; // @synthesize delegate=_delegate;
+@property(nonatomic) long long sliderAppearance; // @synthesize sliderAppearance=_sliderAppearance;
+@property(nonatomic) _Bool liveViewHidden; // @synthesize liveViewHidden=_liveViewHidden;
 @property(nonatomic) _Bool labelsHidden; // @synthesize labelsHidden=_labelsHidden;
 - (void).cxx_destruct;
 - (id)viewForLastBaselineLayout;
@@ -57,6 +69,7 @@
 - (void)updateDurationLabels;
 - (void)modifyLabelAppearance;
 - (void)applyThemeLayout;
+- (double)sliderViewHeight;
 - (void)reloadData;
 - (void)setupConstraints;
 - (id)initWithFrame:(struct CGRect)arg1 animationView:(id)arg2 dataSource:(id)arg3;

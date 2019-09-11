@@ -6,55 +6,75 @@
 
 #import <UIKit/UIViewController.h>
 
+#import "SPContentInsetViewController-Protocol.h"
 #import "SPTFreeTierFindViewControllerDelegate-Protocol.h"
 #import "SPTNavigationControllerNavigationBarState-Protocol.h"
 #import "SPTPageContainer-Protocol.h"
 #import "SPTPageController-Protocol.h"
 #import "SPTScrollToTopViewController-Protocol.h"
+#import "SPTSearch2RootViewControllerDelegate-Protocol.h"
+#import "SPTSearchUISearchControlsDelegate-Protocol.h"
 #import "SPTViewControllerContainer-Protocol.h"
 #import "SPViewController-Protocol.h"
 
-@class NSArray, NSString, NSURL, SPNavigationController, SPTFreeTierFindFadeTransitionAnimator, SPTFreeTierFindLogger, UIView;
-@protocol SPTFreeTierFindInterfaceFactory, SPTFreeTierFindViewController><SPTPageController, SPTPageContainer, SPTPageController, SPTSearch2RootViewControllerProtocol, SPTVoiceService;
+@class NSArray, NSLayoutConstraint, NSString, NSURL, SPTFreeTierFindLogger, SPTSearchUISearchControls, UILayoutGuide, UIView;
+@protocol GLUETheme, SPTFreeTierFindInterfaceFactory, SPTFreeTierFindViewController><SPTPageController, SPTPageContainer, SPTPageController, SPTScannablesService, SPTSearch2RootViewControllerProtocol><SPTPageController, SPTVoiceService;
 
-@interface SPTFreeTierFindContainerViewController : UIViewController <SPTNavigationControllerNavigationBarState, SPTFreeTierFindViewControllerDelegate, SPTScrollToTopViewController, SPViewController, SPTPageContainer, SPTPageController, SPTViewControllerContainer>
+@interface SPTFreeTierFindContainerViewController : UIViewController <SPTNavigationControllerNavigationBarState, SPTFreeTierFindViewControllerDelegate, SPTScrollToTopViewController, SPViewController, SPContentInsetViewController, SPTSearchUISearchControlsDelegate, SPTSearch2RootViewControllerDelegate, SPTPageContainer, SPTPageController, SPTViewControllerContainer>
 {
     NSArray *_viewControllers;
     UIViewController *_topViewController;
+    UIViewController<SPTSearch2RootViewControllerProtocol><SPTPageController> *_searchViewController;
     UIViewController<SPTFreeTierFindViewController><SPTPageController> *_findViewController;
     id <SPTFreeTierFindInterfaceFactory> _interfaceFactory;
-    NSArray *_barButtonItems;
-    SPTFreeTierFindFadeTransitionAnimator *_transitionAnimator;
     SPTFreeTierFindLogger *_logger;
     id <SPTVoiceService> _voiceService;
-    SPNavigationController *_searchNavigationController;
-    UIViewController<SPTSearch2RootViewControllerProtocol> *_searchViewController;
-    UIView *_searchTitleView;
+    id <SPTScannablesService> _scannablesService;
     id <SPTPageController> _currentPageController;
+    unsigned long long _mode;
+    UILayoutGuide *_mainContentLayoutGuide;
+    UIView *_searchControlsContainer;
+    SPTSearchUISearchControls *_searchControls;
+    NSLayoutConstraint *_mainContentGuideConstraint;
+    id <GLUETheme> _theme;
+    struct CGRect _lastKnownFrame;
 }
 
+@property(nonatomic) struct CGRect lastKnownFrame; // @synthesize lastKnownFrame=_lastKnownFrame;
+@property(readonly, nonatomic) id <GLUETheme> theme; // @synthesize theme=_theme;
+@property(retain, nonatomic) NSLayoutConstraint *mainContentGuideConstraint; // @synthesize mainContentGuideConstraint=_mainContentGuideConstraint;
+@property(retain, nonatomic) SPTSearchUISearchControls *searchControls; // @synthesize searchControls=_searchControls;
+@property(retain, nonatomic) UIView *searchControlsContainer; // @synthesize searchControlsContainer=_searchControlsContainer;
+@property(readonly, nonatomic) UILayoutGuide *mainContentLayoutGuide; // @synthesize mainContentLayoutGuide=_mainContentLayoutGuide;
+@property(nonatomic) unsigned long long mode; // @synthesize mode=_mode;
 @property(retain, nonatomic, getter=spt_currentPageController) id <SPTPageController> currentPageController; // @synthesize currentPageController=_currentPageController;
-@property(retain, nonatomic) UIView *searchTitleView; // @synthesize searchTitleView=_searchTitleView;
-@property(retain, nonatomic) UIViewController<SPTSearch2RootViewControllerProtocol> *searchViewController; // @synthesize searchViewController=_searchViewController;
-@property(retain, nonatomic) SPNavigationController *searchNavigationController; // @synthesize searchNavigationController=_searchNavigationController;
+@property(nonatomic) __weak id <SPTScannablesService> scannablesService; // @synthesize scannablesService=_scannablesService;
 @property(nonatomic) __weak id <SPTVoiceService> voiceService; // @synthesize voiceService=_voiceService;
 @property(readonly, nonatomic) SPTFreeTierFindLogger *logger; // @synthesize logger=_logger;
-@property(readonly, nonatomic) SPTFreeTierFindFadeTransitionAnimator *transitionAnimator; // @synthesize transitionAnimator=_transitionAnimator;
-@property(readonly, copy, nonatomic) NSArray *barButtonItems; // @synthesize barButtonItems=_barButtonItems;
 @property(readonly, nonatomic) id <SPTFreeTierFindInterfaceFactory> interfaceFactory; // @synthesize interfaceFactory=_interfaceFactory;
 @property(readonly, nonatomic) UIViewController<SPTFreeTierFindViewController><SPTPageController> *findViewController; // @synthesize findViewController=_findViewController;
+@property(readonly, nonatomic) UIViewController<SPTSearch2RootViewControllerProtocol><SPTPageController> *searchViewController; // @synthesize searchViewController=_searchViewController;
 @property(readonly, nonatomic) __weak UIViewController *topViewController; // @synthesize topViewController=_topViewController;
 @property(readonly, copy, nonatomic) NSArray *viewControllers; // @synthesize viewControllers=_viewControllers;
 - (void).cxx_destruct;
+- (void)searchRootViewController:(id)arg1 didUpdateQueryFrom:(id)arg2;
+- (void)searchControlsDidPressReturnKey:(id)arg1;
+- (void)searchControlsDidPressScannablesButton:(id)arg1;
+- (void)searchControlsDidPressCancelButton:(id)arg1;
+- (void)searchControls:(id)arg1 didChangeTextFrom:(id)arg2;
 - (void)setFocusedViewController:(id)arg1;
 - (void)spt_scrollToTop;
+- (void)resetSearch;
+- (void)updateMainContentGuideConstraintConstantIfNeeded;
+- (struct CGRect)statusBarFrame;
+- (void)updateSearchControlsStyle;
+- (void)loadSearchControlsContainer;
 - (void)cancelButtonPressed;
-- (id)makeCancelBarButtonItem;
 - (void)removeViewController:(id)arg1;
 - (void)addViewController:(id)arg1;
-- (void)performTransitionFromViewController:(id)arg1 toViewController:(id)arg2 onCompletion:(CDUnknownBlockType)arg3;
 - (void)navigateToFindPage;
-- (void)openVoiceSearchFromSender:(id)arg1;
+- (void)setMode:(unsigned long long)arg1 animated:(_Bool)arg2;
+- (void)openVoiceSearch;
 - (void)openSearchPage;
 - (unsigned long long)preferredNavigationBarState;
 @property(readonly, nonatomic) NSURL *URI;
@@ -62,14 +82,15 @@
 @property(readonly, nonatomic, getter=spt_pageIdentifier) NSString *pageIdentifier;
 @property(readonly, nonatomic, getter=spt_pageContainer) id <SPTPageContainer> pageContainer;
 - (void)sp_updateContentInsets;
-- (void)viewWillTransitionToSize:(struct CGSize)arg1 withTransitionCoordinator:(id)arg2;
 - (void)adjustChildViewInsets;
+- (void)viewWillDisappear:(_Bool)arg1;
 - (void)viewDidLayoutSubviews;
-- (void)viewDidAppear:(_Bool)arg1;
 - (void)viewDidLoad;
-- (id)initWithFindViewController:(id)arg1 interfaceFactory:(id)arg2 barbuttonItems:(id)arg3 transitionAnimator:(id)arg4 voiceService:(id)arg5 logger:(id)arg6;
+- (void)loadView;
+- (id)initWithFindViewController:(id)arg1 interfaceFactory:(id)arg2 voiceService:(id)arg3 scannablesService:(id)arg4 logger:(id)arg5 mainContentLayoutGuide:(id)arg6 theme:(id)arg7;
 
 // Remaining properties
+@property(nonatomic) _Bool automaticallyAdjustsScrollViewInsets;
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
 @property(readonly) unsigned long long hash;

@@ -6,15 +6,9 @@
 
 #import "SPTService-Protocol.h"
 
-@class SPTSearch2Configuration, SPTSearch2RequestParametersProvider, UIViewController;
-@protocol SPTSearch2EmptyStatePropertiesProvider, SPTSearch2FancyRecentsDataSourceProviding, SPTSearch2RootViewControllerProtocol><SPTPageController, SPTSearch2ViewControllerProtocol><SPTPageController;
+@protocol SPTSearchTestManager;
 
 @protocol SPTSearchService <SPTService>
-@property(readonly, nonatomic) id <SPTSearch2FancyRecentsDataSourceProviding> fancyRecentsDataSourceProvider;
-- (id <SPTSearch2EmptyStatePropertiesProvider>)makeEmptyStatePropertiesProviderWithOfflineSearchEnabled:(_Bool)arg1;
-- (SPTSearch2RequestParametersProvider *)searchRequestParametersProvider;
-- (SPTSearch2Configuration *)makeConfiguration;
-- (UIViewController<SPTSearch2ViewControllerProtocol><SPTPageController> *)makeViewControllerWithConfiguration:(SPTSearch2Configuration *)arg1;
-- (UIViewController<SPTSearch2RootViewControllerProtocol><SPTPageController> *)makeRootViewControllerWithConfiguration:(SPTSearch2Configuration *)arg1;
+@property(readonly, nonatomic) id <SPTSearchTestManager> testManager;
 @end
 

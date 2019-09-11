@@ -18,11 +18,11 @@
 }
 
 + (id)messageWithReason:(id)arg1 triggerPattern:(id)arg2 triggerType:(id)arg3 messageFormat:(id)arg4 messageIdentifier:(id)arg5;
-@property(retain, nonatomic) NSString *messageIdentifierValue; // @synthesize messageIdentifierValue=_messageIdentifierValue;
-@property(retain, nonatomic) NSString *messageFormatValue; // @synthesize messageFormatValue=_messageFormatValue;
-@property(retain, nonatomic) NSString *triggerTypeValue; // @synthesize triggerTypeValue=_triggerTypeValue;
-@property(retain, nonatomic) NSString *triggerPatternValue; // @synthesize triggerPatternValue=_triggerPatternValue;
-@property(retain, nonatomic) NSString *reasonValue; // @synthesize reasonValue=_reasonValue;
+@property(copy, nonatomic) NSString *messageIdentifierValue; // @synthesize messageIdentifierValue=_messageIdentifierValue;
+@property(copy, nonatomic) NSString *messageFormatValue; // @synthesize messageFormatValue=_messageFormatValue;
+@property(copy, nonatomic) NSString *triggerTypeValue; // @synthesize triggerTypeValue=_triggerTypeValue;
+@property(copy, nonatomic) NSString *triggerPatternValue; // @synthesize triggerPatternValue=_triggerPatternValue;
+@property(copy, nonatomic) NSString *reasonValue; // @synthesize reasonValue=_reasonValue;
 - (void).cxx_destruct;
 - (_Bool)isEqual:(id)arg1;
 - (unsigned long long)hash;

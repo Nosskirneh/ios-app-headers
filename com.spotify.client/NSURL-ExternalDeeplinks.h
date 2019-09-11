@@ -7,9 +7,9 @@
 #import <Foundation/NSURL.h>
 
 @interface NSURL (ExternalDeeplinks)
++ (id)spt_snapchatDeeplink;
 + (id)spt_facebookStoriesDeeplink;
 + (id)spt_instagramStoriesScreenshotDeeplinkForIdentifier:(id)arg1;
 + (id)spt_instagramStoriesDeeplink;
-+ (id)spt_snapchatDeeplinkForURI:(id)arg1 withContextURI:(id)arg2;
 @end
 

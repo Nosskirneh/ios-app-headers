@@ -8,12 +8,13 @@
 
 #import "GLUEStyle-Protocol.h"
 
-@class GLUELabelStyle, NSString;
+@class GLUELabelStyle, GLUETrackAccessoryLabelStyle, NSString;
 
 @interface SPTPodcastEpisodeContentViewStyle : NSObject <GLUEStyle>
 {
     GLUELabelStyle *_descriptionStyle;
     GLUELabelStyle *_titleStyle;
+    GLUETrackAccessoryLabelStyle *_accessoryLabelStyle;
     double _imageCornerRadius;
     double _playButtonBottomConstraintConstant;
     struct CGSize _playButtonSize;
@@ -22,6 +23,7 @@
 @property(nonatomic) double playButtonBottomConstraintConstant; // @synthesize playButtonBottomConstraintConstant=_playButtonBottomConstraintConstant;
 @property(nonatomic) double imageCornerRadius; // @synthesize imageCornerRadius=_imageCornerRadius;
 @property(nonatomic) struct CGSize playButtonSize; // @synthesize playButtonSize=_playButtonSize;
+@property(copy, nonatomic) GLUETrackAccessoryLabelStyle *accessoryLabelStyle; // @synthesize accessoryLabelStyle=_accessoryLabelStyle;
 @property(copy, nonatomic) GLUELabelStyle *titleStyle; // @synthesize titleStyle=_titleStyle;
 @property(copy, nonatomic) GLUELabelStyle *descriptionStyle; // @synthesize descriptionStyle=_descriptionStyle;
 - (void).cxx_destruct;

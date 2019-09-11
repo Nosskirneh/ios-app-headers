@@ -21,6 +21,7 @@
 - (id)footerText;
 - (id)headerText;
 - (void)didSelectRow:(long long)arg1;
+- (double)headerHeight;
 - (double)heightForRow:(long long)arg1;
 - (id)cellForRow:(long long)arg1;
 @property(readonly, nonatomic) long long numberOfRows;

@@ -25,6 +25,8 @@
 - (void)logEducationInteractionWithPageIdentifier:(id)arg1 pageURI:(id)arg2;
 - (void)logDeviceContextMenuItemInteractionWithIndex:(long long)arg1 andActionIdentifier:(id)arg2;
 - (void)logDeviceContextMenuInteractionWithIndex:(long long)arg1 andDeviceType:(id)arg2;
+- (void)logMoreDevicesSelectedInteraction;
+- (void)logEducationSelectedInteractionWithIndex:(long long)arg1 andEducationType:(id)arg2;
 - (void)logDeviceSelectedInteractionWithIndex:(long long)arg1 andDeviceType:(id)arg2;
 - (void)logDevicePickerOpenInteractionWithDevicesAvailableState:(id)arg1;
 - (void)logDevicePickerInteractionEventWithDevicesAvailableState:(id)arg1;

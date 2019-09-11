@@ -8,7 +8,7 @@
 
 #import "SPTThemableViewLayoutDelegate-Protocol.h"
 
-@class GLUELabel, NSString, SPTLayoutConstraintBuilder, SPTNetworkConnectivityController, UISwitch;
+@class GLUELabel, NSArray, NSDictionary, NSString, SPTNetworkConnectivityController, UISwitch;
 @protocol SPTModalPresentationController, SPTProductState, SPTViewOfflineSwitchDelegate;
 
 @interface SPTViewOfflineSwitch : UIView <SPTThemableViewLayoutDelegate>
@@ -23,10 +23,12 @@
     unsigned long long _lastAvailability;
     id <SPTProductState> _productState;
     id <SPTModalPresentationController> _modalPresentationController;
-    SPTLayoutConstraintBuilder *_layoutConstraintBuilder;
+    NSArray *_layoutConstraints;
+    NSDictionary *_customTitles;
 }
 
-@property(retain, nonatomic) SPTLayoutConstraintBuilder *layoutConstraintBuilder; // @synthesize layoutConstraintBuilder=_layoutConstraintBuilder;
+@property(copy, nonatomic) NSDictionary *customTitles; // @synthesize customTitles=_customTitles;
+@property(copy, nonatomic) NSArray *layoutConstraints; // @synthesize layoutConstraints=_layoutConstraints;
 @property(retain, nonatomic) id <SPTModalPresentationController> modalPresentationController; // @synthesize modalPresentationController=_modalPresentationController;
 @property(retain, nonatomic) id <SPTProductState> productState; // @synthesize productState=_productState;
 @property(nonatomic) unsigned long long lastAvailability; // @synthesize lastAvailability=_lastAvailability;
@@ -50,7 +52,9 @@
 - (void)reload;
 @property(nonatomic, getter=isOn) _Bool on;
 - (void)dealloc;
+- (void)setCustomTitle:(id)arg1 forAvailability:(unsigned long long)arg2;
 - (id)currentTitleForAvailability:(unsigned long long)arg1;
+- (void)updateAccessibilityElements;
 - (id)initWithProductState:(id)arg1 modalPresentationController:(id)arg2;
 
 // Remaining properties

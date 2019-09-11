@@ -10,12 +10,13 @@
 #import "SPTFreeTierCollectionPlaylistsViewModel-Protocol.h"
 #import "SPTSortingFilteringPickerDelegate-Protocol.h"
 
-@class NSOrderedSet, NSString, SPTFreeTierCollectionLogger;
+@class NSArray, NSOrderedSet, NSString, SPTFreeTierCollectionLogger;
 @protocol SPTFreeTierCollectionFavoriteMixModelEntity, SPTFreeTierCollectionPlaylistsModel, SPTFreeTierCollectionPlaylistsModelEntity, SPTFreeTierCollectionPlaylistsViewModelDelegate, SPTFreeTierCollectionTestManager, SPTFreeTierCreatePlaylistController, SPTLinkDispatcher, SPTPlaylistPlatformPlaylistSynchroniser, SPTSortingFilteringUIFactory;
 
 @interface SPTFreeTierCollectionPlaylistsViewModelImplementation : NSObject <SPTSortingFilteringPickerDelegate, SPTFreeTierCollectionPlaylistsViewModel, SPTFreeTierCollectionPlaylistsModelDelegate>
 {
-    _Bool _compactMode;
+    _Bool _textFilteringMode;
+    _Bool _didLogScrollIndexSelected;
     id <SPTFreeTierCollectionPlaylistsViewModelDelegate> delegate;
     id <SPTFreeTierCollectionPlaylistsModel> _model;
     id <SPTLinkDispatcher> _linkDispatcher;
@@ -27,10 +28,10 @@
     id <SPTFreeTierCollectionFavoriteMixModelEntity> _favoriteMixEntity;
     id <SPTSortingFilteringUIFactory> _sortingFilteringPickerFactory;
     NSOrderedSet *_sections;
-    CDUnknownBlockType _createPlaylistBlock;
 }
 
-@property(copy, nonatomic) CDUnknownBlockType createPlaylistBlock; // @synthesize createPlaylistBlock=_createPlaylistBlock;
+@property(nonatomic) _Bool didLogScrollIndexSelected; // @synthesize didLogScrollIndexSelected=_didLogScrollIndexSelected;
+@property(nonatomic) _Bool textFilteringMode; // @synthesize textFilteringMode=_textFilteringMode;
 @property(retain, nonatomic) NSOrderedSet *sections; // @synthesize sections=_sections;
 @property(retain, nonatomic) id <SPTSortingFilteringUIFactory> sortingFilteringPickerFactory; // @synthesize sortingFilteringPickerFactory=_sortingFilteringPickerFactory;
 @property(retain, nonatomic) id <SPTFreeTierCollectionFavoriteMixModelEntity> favoriteMixEntity; // @synthesize favoriteMixEntity=_favoriteMixEntity;
@@ -41,7 +42,6 @@
 @property(retain, nonatomic) id <SPTPlaylistPlatformPlaylistSynchroniser> playlistSynchroniser; // @synthesize playlistSynchroniser=_playlistSynchroniser;
 @property(retain, nonatomic) id <SPTLinkDispatcher> linkDispatcher; // @synthesize linkDispatcher=_linkDispatcher;
 @property(retain, nonatomic) id <SPTFreeTierCollectionPlaylistsModel> model; // @synthesize model=_model;
-@property(readonly, nonatomic, getter=isCompactMode) _Bool compactMode; // @synthesize compactMode=_compactMode;
 @property(nonatomic) __weak id <SPTFreeTierCollectionPlaylistsViewModelDelegate> delegate; // @synthesize delegate;
 - (void).cxx_destruct;
 - (void)didCancelSortingFilteringPicker:(id)arg1;
@@ -51,18 +51,27 @@
 - (void)playlistsModel:(id)arg1 error:(id)arg2;
 - (void)playlistsModel:(id)arg1 didUpdateEntity:(id)arg2;
 - (id)modelItemEntityAtIndexPath:(id)arg1;
+- (unsigned long long)sectionIndexForSection:(unsigned long long)arg1;
 - (_Bool)isPlaylistsSection:(unsigned long long)arg1;
 - (_Bool)isHiddenContentSection:(unsigned long long)arg1;
 - (_Bool)isFavoriteMixSection:(unsigned long long)arg1;
 - (_Bool)isCreatePlaylistSection:(unsigned long long)arg1;
 - (void)buildSectionsMap;
+- (void)createPlaylistActionInInfoView:(_Bool)arg1;
 - (id)playlistEntityForRowAtIndexPath:(id)arg1;
 - (void)endObservingRowAtIndexPath:(id)arg1;
 - (void)beginObservingRowAtIndexPath:(id)arg1;
+- (void)willEndTextFiltering;
+- (void)willBeginTextFiltering;
+- (id)indexPathForScrollSectionIndex:(unsigned long long)arg1;
+@property(readonly, nonatomic) NSArray *sectionIndexTitles;
+- (void)removeFilterAtIndex:(long long)arg1;
+- (void)logSectionIndexSelected;
 - (void)logFilterSortInteractionType:(unsigned long long)arg1;
 - (void)resetFilters;
 - (id)sortingAndFilteringPickerViewController;
 @property(copy, nonatomic) NSString *textFilter;
+- (_Bool)showSeparatorForSection:(long long)arg1;
 @property(readonly, nonatomic, getter=isSortingAndFilteringEnabled) _Bool sortingAndFilteringEnabled;
 @property(readonly, nonatomic) unsigned long long countOfSections;
 - (unsigned long long)countOfItemsInSection:(unsigned long long)arg1;
@@ -72,11 +81,13 @@
 @property(readonly, nonatomic) NSString *title;
 - (_Bool)hasMoreInSection:(unsigned long long)arg1;
 - (void)loadMoreInSection:(unsigned long long)arg1;
+- (void)viewWillAppear;
 - (void)loadViewModel;
 @property(readonly, nonatomic, getter=isEmpty) _Bool empty;
+@property(readonly, nonatomic) NSArray *activeFilterTitles;
 @property(readonly, nonatomic) unsigned long long filteredContentState;
 @property(readonly, nonatomic, getter=isLoaded) _Bool loaded;
-- (id)initWithModel:(id)arg1 linkDispatcher:(id)arg2 playlistSynchroniser:(id)arg3 createPlaylistController:(id)arg4 logger:(id)arg5 testManager:(id)arg6 sortingFilteringPickerFactory:(id)arg7 compactMode:(_Bool)arg8;
+- (id)initWithModel:(id)arg1 linkDispatcher:(id)arg2 playlistSynchroniser:(id)arg3 createPlaylistController:(id)arg4 logger:(id)arg5 testManager:(id)arg6 sortingFilteringPickerFactory:(id)arg7;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

@@ -7,32 +7,30 @@
 #import <objc/NSObject.h>
 
 #import "SPTCollectionPlatformConfiguration-Protocol.h"
+#import "SPTCollectionPlatformTestManagerUpdateDelegate-Protocol.h"
 
-@class NSString, NSURL, UIImage;
-@protocol SPTFreeTierEducationSnackBarPresenter;
+@class NSString, NSURL;
+@protocol SPTSnackbarConditionalPresenter;
 
-@interface SPTCollectionPlatformFreeTierConfiguration : NSObject <SPTCollectionPlatformConfiguration>
+@interface SPTCollectionPlatformFreeTierConfiguration : NSObject <SPTCollectionPlatformConfiguration, SPTCollectionPlatformTestManagerUpdateDelegate>
 {
-    _Bool _shouldUsePodcastYourLibraryTitle;
-    _Bool _heartsEverywhereEnabled;
     _Bool _useHideWhenBanningTracks;
+    _Bool _usePodcastYourLibraryTitle;
     NSURL *_collectionSongsImageURL;
-    UIImage *_selectedOverlayImage;
-    UIImage *_overlayImage;
-    id <SPTFreeTierEducationSnackBarPresenter> _educationPresenter;
+    id <SPTSnackbarConditionalPresenter> _snackbarPresenter;
 }
 
-@property(readonly, nonatomic) _Bool useHideWhenBanningTracks; // @synthesize useHideWhenBanningTracks=_useHideWhenBanningTracks;
-@property(readonly, nonatomic) _Bool heartsEverywhereEnabled; // @synthesize heartsEverywhereEnabled=_heartsEverywhereEnabled;
-@property(retain, nonatomic) id <SPTFreeTierEducationSnackBarPresenter> educationPresenter; // @synthesize educationPresenter=_educationPresenter;
-@property(retain, nonatomic) UIImage *overlayImage; // @synthesize overlayImage=_overlayImage;
-@property(retain, nonatomic) UIImage *selectedOverlayImage; // @synthesize selectedOverlayImage=_selectedOverlayImage;
-@property(nonatomic) _Bool shouldUsePodcastYourLibraryTitle; // @synthesize shouldUsePodcastYourLibraryTitle=_shouldUsePodcastYourLibraryTitle;
+@property(readonly, nonatomic) _Bool usePodcastYourLibraryTitle; // @synthesize usePodcastYourLibraryTitle=_usePodcastYourLibraryTitle;
+@property(nonatomic) _Bool useHideWhenBanningTracks; // @synthesize useHideWhenBanningTracks=_useHideWhenBanningTracks;
+@property(retain, nonatomic) id <SPTSnackbarConditionalPresenter> snackbarPresenter; // @synthesize snackbarPresenter=_snackbarPresenter;
 @property(readonly, nonatomic) NSURL *collectionSongsImageURL; // @synthesize collectionSongsImageURL=_collectionSongsImageURL;
 - (void).cxx_destruct;
 - (id)trackURI;
+- (_Bool)isFollowURL:(id)arg1;
 - (id)actionAccessibilityHintWithBanState:(_Bool)arg1 entityURL:(id)arg2;
 - (id)actionAccessibilityHintWithCollectionState:(_Bool)arg1 entityURL:(id)arg2;
+- (void)collectionPlatformTestManager:(id)arg1 useHideWhenBanningTracks:(_Bool)arg2;
+- (unsigned long long)banActionTypeForURL:(id)arg1 contextURL:(id)arg2;
 - (id)localfilesImportDialogForPlaylistCount:(unsigned long long)arg1 songsCount:(unsigned long long)arg2;
 - (id)entityNuxTitleForType:(unsigned long long)arg1 entityName:(id)arg2;
 - (id)nuxTitleForType:(unsigned long long)arg1;
@@ -46,23 +44,28 @@
 - (id)provideShelfViewForItemWithCollectionState:(_Bool)arg1;
 - (id)actionNameForArtistWithBanState:(_Bool)arg1;
 - (long long)actionIconForArtistWithBanState:(_Bool)arg1;
+- (id)actionNameForItemWithCollectionLocalBanState:(_Bool)arg1 entityURL:(id)arg2;
 - (id)actionNameForItemWithCollectionBanState:(_Bool)arg1 entityURL:(id)arg2;
 - (id)actionIconColorForItemWithCollectionBanState:(_Bool)arg1;
+- (long long)actionIconForItemWithCollectionLocalBanState:(_Bool)arg1 entityURL:(id)arg2;
 - (long long)actionIconForItemWithCollectionBanState:(_Bool)arg1 entityURL:(id)arg2;
 - (id)actionNameForItemWithFollowState:(_Bool)arg1 entityURL:(id)arg2;
 - (long long)actionIconForItemWithFollowState:(_Bool)arg1 entityURL:(id)arg2;
 - (id)actionNameForTrackWithCollectionState:(_Bool)arg1;
+- (id)actionNameForItemsWithCollectionState:(_Bool)arg1 entityURL:(id)arg2;
 - (id)actionNameForItemWithCollectionState:(_Bool)arg1 entityURL:(id)arg2;
 - (long long)actionIconForItemWithCollectionState:(_Bool)arg1 entityURL:(id)arg2;
 - (id)actionIconColorForItemWithCollectionState:(_Bool)arg1;
 - (long long)iconForItemInCollection:(_Bool)arg1 entityURL:(id)arg2;
 @property(readonly, nonatomic, getter=isRemoveActionPresentInPlaylist) _Bool removeActionPresentInPlaylist;
 @property(readonly, nonatomic) long long collectionIcon;
+@property(readonly, nonatomic) NSString *collectionSongsSearchPlaceholder;
 @property(readonly, nonatomic) NSString *collectionRecentlyPlayedSongsTitle;
+@property(readonly, nonatomic) NSString *collectionSongsTitle;
 @property(readonly, nonatomic) NSString *collectionPlayingFromTitle;
 @property(readonly, nonatomic) long long contentInCollectionIcon;
 @property(readonly, nonatomic) NSString *collectionTitle;
-- (id)initWithEducationPresenter:(id)arg1 heartsEverywhereEnabled:(_Bool)arg2 useHideWhenBanningTracks:(_Bool)arg3;
+- (id)initWithSnackbarPresenter:(id)arg1 useHideWhenBanningTracks:(_Bool)arg2 usePodcastYourLibraryTitle:(_Bool)arg3;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

@@ -6,9 +6,9 @@
 
 #import "NSObject-Protocol.h"
 
-@class SPTRecoverAccountURIHandler;
+@class NSURL, SPTRecoverAccountURIHandler;
 
 @protocol SPTRecoverAccountURIHandlerObserver <NSObject>
-- (void)URIHandlerDidFinishLoggingIn:(SPTRecoverAccountURIHandler *)arg1;
+- (void)URIHandler:(SPTRecoverAccountURIHandler *)arg1 didFinishLoggingInWithURI:(NSURL *)arg2;
 @end
 

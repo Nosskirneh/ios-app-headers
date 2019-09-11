@@ -8,84 +8,58 @@
 
 #import "SPTDataLoaderDelegate-Protocol.h"
 #import "SPTOfflineModeStateObserver-Protocol.h"
-#import "SPTPlayerObserver-Protocol.h"
 
-@class NSCache, NSMutableArray, NSMutableDictionary, NSSet, NSString, NSTimer, NSURL, SPTDataLoader, SPTGeniusLegacyCache, SPTGeniusProxyTrackEnabledChecker, SPTGeniusServiceEnabledResourcesLoadingState;
-@protocol SPTAbbaService, SPTLocalSettings, SPTLyricsTrackChecker, SPTMetaViewController, SPTOfflineModeState, SPTPlayer;
+@class NSCache, NSMutableDictionary, NSMutableSet, NSString, NSTimer, SPTDataLoader, SPTGeniusLegacyCache, SPTGeniusServiceEnabledResourcesLoadingState;
+@protocol SPTLocalSettings, SPTLyricsTrackChecker, SPTOfflineModeState;
 
-@interface SPTGeniusService : NSObject <SPTDataLoaderDelegate, SPTOfflineModeStateObserver, SPTPlayerObserver>
+@interface SPTGeniusService : NSObject <SPTDataLoaderDelegate, SPTOfflineModeStateObserver>
 {
-    _Bool _enabled;
-    _Bool _displayAnnotationsAutomatically;
+    SPTGeniusLegacyCache *_diskCache;
+    id <SPTOfflineModeState> _offlineModeState;
+    id <SPTLocalSettings> _localSettings;
+    id <SPTLyricsTrackChecker> _lyricsTrackChecker;
     SPTDataLoader *_dataLoader;
     NSCache *_memoryCache;
     NSCache *_trackIDsWithNoAnnotations;
-    SPTGeniusLegacyCache *_diskCache;
     NSMutableDictionary *_requestCallbacks;
-    NSSet *_enabledTrackURIs;
-    NSSet *_enabledPlaylistAndAlbumURIs;
+    NSMutableSet *_enabledTrackURIs;
     SPTGeniusServiceEnabledResourcesLoadingState *_enabledResourcesLoadingState;
     NSTimer *_refreshEnabledURIsTimer;
-    id <SPTOfflineModeState> _offlineModeState;
-    id <SPTLocalSettings> _localSettings;
-    id <SPTPlayer> _player;
-    NSURL *_currentContextURI;
-    id <SPTAbbaService> _abbaService;
-    NSMutableArray *_enabledResourcesLoadedCompletions;
-    SPTGeniusProxyTrackEnabledChecker *_proxyTrackEnabledChecker;
-    id <SPTMetaViewController> _metaViewController;
-    id <SPTLyricsTrackChecker> _lyricsTrackChecker;
 }
 
-@property(nonatomic) __weak id <SPTLyricsTrackChecker> lyricsTrackChecker; // @synthesize lyricsTrackChecker=_lyricsTrackChecker;
-@property(nonatomic) __weak id <SPTMetaViewController> metaViewController; // @synthesize metaViewController=_metaViewController;
-@property(retain, nonatomic) SPTGeniusProxyTrackEnabledChecker *proxyTrackEnabledChecker; // @synthesize proxyTrackEnabledChecker=_proxyTrackEnabledChecker;
-@property(retain, nonatomic) NSMutableArray *enabledResourcesLoadedCompletions; // @synthesize enabledResourcesLoadedCompletions=_enabledResourcesLoadedCompletions;
-@property(nonatomic) __weak id <SPTAbbaService> abbaService; // @synthesize abbaService=_abbaService;
-@property(retain, nonatomic) NSURL *currentContextURI; // @synthesize currentContextURI=_currentContextURI;
-@property(retain, nonatomic) id <SPTPlayer> player; // @synthesize player=_player;
-@property(retain, nonatomic) id <SPTLocalSettings> localSettings; // @synthesize localSettings=_localSettings;
-@property(retain, nonatomic) id <SPTOfflineModeState> offlineModeState; // @synthesize offlineModeState=_offlineModeState;
 @property(retain, nonatomic) NSTimer *refreshEnabledURIsTimer; // @synthesize refreshEnabledURIsTimer=_refreshEnabledURIsTimer;
-@property(retain, nonatomic) SPTGeniusServiceEnabledResourcesLoadingState *enabledResourcesLoadingState; // @synthesize enabledResourcesLoadingState=_enabledResourcesLoadingState;
-@property(copy, nonatomic) NSSet *enabledPlaylistAndAlbumURIs; // @synthesize enabledPlaylistAndAlbumURIs=_enabledPlaylistAndAlbumURIs;
-@property(copy, nonatomic) NSSet *enabledTrackURIs; // @synthesize enabledTrackURIs=_enabledTrackURIs;
-@property(retain, nonatomic) NSMutableDictionary *requestCallbacks; // @synthesize requestCallbacks=_requestCallbacks;
-@property(retain, nonatomic) SPTGeniusLegacyCache *diskCache; // @synthesize diskCache=_diskCache;
-@property(retain, nonatomic) NSCache *trackIDsWithNoAnnotations; // @synthesize trackIDsWithNoAnnotations=_trackIDsWithNoAnnotations;
-@property(retain, nonatomic) NSCache *memoryCache; // @synthesize memoryCache=_memoryCache;
-@property(retain, nonatomic) SPTDataLoader *dataLoader; // @synthesize dataLoader=_dataLoader;
-@property(nonatomic) _Bool displayAnnotationsAutomatically; // @synthesize displayAnnotationsAutomatically=_displayAnnotationsAutomatically;
-@property(nonatomic, getter=isEnabled) _Bool enabled; // @synthesize enabled=_enabled;
+@property(readonly, nonatomic) SPTGeniusServiceEnabledResourcesLoadingState *enabledResourcesLoadingState; // @synthesize enabledResourcesLoadingState=_enabledResourcesLoadingState;
+@property(readonly, nonatomic) NSMutableSet *enabledTrackURIs; // @synthesize enabledTrackURIs=_enabledTrackURIs;
+@property(readonly, nonatomic) NSMutableDictionary *requestCallbacks; // @synthesize requestCallbacks=_requestCallbacks;
+@property(readonly, nonatomic) NSCache *trackIDsWithNoAnnotations; // @synthesize trackIDsWithNoAnnotations=_trackIDsWithNoAnnotations;
+@property(readonly, nonatomic) NSCache *memoryCache; // @synthesize memoryCache=_memoryCache;
+@property(readonly, nonatomic) SPTDataLoader *dataLoader; // @synthesize dataLoader=_dataLoader;
+@property(readonly, nonatomic) id <SPTLyricsTrackChecker> lyricsTrackChecker; // @synthesize lyricsTrackChecker=_lyricsTrackChecker;
+@property(readonly, nonatomic) id <SPTLocalSettings> localSettings; // @synthesize localSettings=_localSettings;
+@property(readonly, nonatomic) id <SPTOfflineModeState> offlineModeState; // @synthesize offlineModeState=_offlineModeState;
+@property(readonly, nonatomic) SPTGeniusLegacyCache *diskCache; // @synthesize diskCache=_diskCache;
 - (void).cxx_destruct;
-- (void)player:(id)arg1 stateDidChange:(id)arg2 fromState:(id)arg3;
-- (void)invalidateTimers;
 - (void)offlineModeState:(id)arg1 updated:(_Bool)arg2;
 - (id)geniusErrorWithCode:(long long)arg1 description:(id)arg2;
+- (void)fireFailureCallbacksForTrackId:(id)arg1 withError:(id)arg2;
 - (void)dataLoader:(id)arg1 didCancelRequest:(id)arg2;
 - (void)dataLoader:(id)arg1 didReceiveErrorResponse:(id)arg2;
 - (void)dataLoader:(id)arg1 didReceiveSuccessfulResponse:(id)arg2;
-- (void)fireFailureCallbacksForTrackId:(id)arg1 withError:(id)arg2;
 - (void)handleBackendResponseAnnotations:(id)arg1;
 - (void)handleBackendResponseEnabledResources:(id)arg1;
-- (void)loadCachedEnabledResources;
-- (void)flushEnabledResourcesLoadedCompletions;
-- (void)fireEnabledResourcesLoadedCompletions;
 - (id)geniusEnabledResourcesURL;
 - (void)refreshEnabledURIs;
-- (void)startRefreshingEnabledURIs;
-- (void)fetchAllGeniusEnabledURIs;
-- (void)isContextURIGeniusEnabled:(id)arg1 completion:(CDUnknownBlockType)arg2;
-- (void)isTrackGeniusEnabled:(id)arg1 completion:(CDUnknownBlockType)arg2;
-- (long long)contextTypeForURI:(id)arg1;
-- (void)prefetchAnnotationsForTrackURLs:(id)arg1;
-- (void)fetchAnnotationsForTrackURL:(id)arg1 completion:(CDUnknownBlockType)arg2;
-- (void)fetchAnnotationsForTrackId:(id)arg1 completion:(CDUnknownBlockType)arg2;
+- (void)scheduleRefreshEnabledURIs;
+- (void)loadCachedEnabledResources;
 - (id)geniusAnnotationsURLForTrackID:(id)arg1;
 - (void)fetchFromServerAnnotationsForTrackId:(id)arg1 completion:(CDUnknownBlockType)arg2;
-- (_Bool)contentStartsImmediately;
-- (_Bool)geniusProxyIsEnabled;
-- (id)initWithDiskCache:(id)arg1 dataLoaderFactory:(id)arg2 offlineModeState:(id)arg3 localSettings:(id)arg4 abbaService:(id)arg5 player:(id)arg6 metaViewController:(id)arg7 enabled:(_Bool)arg8 lyricsTrackChecker:(id)arg9;
+- (_Bool)isGeniusProxyEnabled;
+- (void)invalidateTimers;
+- (void)fetchAnnotationsForTrackID:(id)arg1 completion:(CDUnknownBlockType)arg2;
+- (_Bool)canFetchAnnotationsForTrack:(id)arg1;
+- (_Bool)isTrackGeniusEnabled:(id)arg1;
+- (void)dealloc;
+- (id)initWithDiskCache:(id)arg1 dataLoaderFactory:(id)arg2 offlineModeState:(id)arg3 localSettings:(id)arg4 lyricsTrackChecker:(id)arg5;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

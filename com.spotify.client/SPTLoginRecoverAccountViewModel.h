@@ -6,41 +6,45 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTSignupDataLoaderDelegate-Protocol.h"
+#import "SPTLoginRecoverAccountDataLoaderDelegate-Protocol.h"
 
-@class NSString, SPTLoginRecoverAccountDataLoader, SPTLoginRecoverAccountViewLogger, SPTLoginSpinnerButtonTestManager, SPTLoginTheme;
+@class NSString, SPTLoginFailedLinkRequestHandler, SPTLoginMagicLinkTestManager, SPTLoginRecoverAccountDataLoader, SPTLoginRecoverAccountViewLogger, SPTLoginTheme;
 @protocol SPTLinkDispatcher, SPTLoginRecoverAccountViewModelDelegate, SPTNavigationRouter;
 
-@interface SPTLoginRecoverAccountViewModel : NSObject <SPTSignupDataLoaderDelegate>
+@interface SPTLoginRecoverAccountViewModel : NSObject <SPTLoginRecoverAccountDataLoaderDelegate>
 {
     id <SPTLoginRecoverAccountViewModelDelegate> _delegate;
     SPTLoginRecoverAccountViewLogger *_logger;
     NSString *_userEmail;
-    SPTLoginSpinnerButtonTestManager *_spinnerButtonTestManager;
     SPTLoginTheme *_theme;
     id <SPTNavigationRouter> _navigationRouter;
     SPTLoginRecoverAccountDataLoader *_dataLoader;
     id <SPTLinkDispatcher> _linkDispatcher;
+    SPTLoginMagicLinkTestManager *_magicLinkTestManager;
+    SPTLoginFailedLinkRequestHandler *_failedLoginLinkRequestHandler;
 }
 
-@property(retain, nonatomic) id <SPTLinkDispatcher> linkDispatcher; // @synthesize linkDispatcher=_linkDispatcher;
-@property(retain, nonatomic) SPTLoginRecoverAccountDataLoader *dataLoader; // @synthesize dataLoader=_dataLoader;
-@property(retain, nonatomic) id <SPTNavigationRouter> navigationRouter; // @synthesize navigationRouter=_navigationRouter;
+@property(readonly, nonatomic) SPTLoginFailedLinkRequestHandler *failedLoginLinkRequestHandler; // @synthesize failedLoginLinkRequestHandler=_failedLoginLinkRequestHandler;
+@property(readonly, nonatomic) SPTLoginMagicLinkTestManager *magicLinkTestManager; // @synthesize magicLinkTestManager=_magicLinkTestManager;
+@property(readonly, nonatomic) id <SPTLinkDispatcher> linkDispatcher; // @synthesize linkDispatcher=_linkDispatcher;
+@property(readonly, nonatomic) SPTLoginRecoverAccountDataLoader *dataLoader; // @synthesize dataLoader=_dataLoader;
+@property(readonly, nonatomic) id <SPTNavigationRouter> navigationRouter; // @synthesize navigationRouter=_navigationRouter;
 @property(readonly, nonatomic) SPTLoginTheme *theme; // @synthesize theme=_theme;
-@property(readonly, nonatomic) SPTLoginSpinnerButtonTestManager *spinnerButtonTestManager; // @synthesize spinnerButtonTestManager=_spinnerButtonTestManager;
 @property(readonly, nonatomic) NSString *userEmail; // @synthesize userEmail=_userEmail;
 @property(readonly, nonatomic) SPTLoginRecoverAccountViewLogger *logger; // @synthesize logger=_logger;
 @property(nonatomic) __weak id <SPTLoginRecoverAccountViewModelDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
-- (void)dataLoaderFinishLoadingWithSuccess:(id)arg1;
-- (void)dataLoader:(id)arg1 didFinishLoadingWithError:(id)arg2;
+- (void)dataLoader:(id)arg1 didFinishLoadingWithSuccessForEmail:(id)arg2;
+- (void)dataLoader:(id)arg1 didFinishLoadingWithError:(id)arg2 forEmail:(id)arg3;
+- (_Bool)showKeyboardOnAppear;
 - (void)presentSupportPage;
-- (void)navigateToNextStep;
+- (void)navigateToNextStepWithEmail:(id)arg1;
 - (void)sendRecoveryRequestForInput:(id)arg1;
 - (_Bool)isValidInput:(id)arg1;
 - (id)localizedDescriptionForErrorCode:(long long)arg1;
 - (unsigned long long)invalidTextFieldState;
 - (unsigned long long)unknownTextFieldState;
+- (_Bool)isStillNeedHelpLabelHidden;
 - (id)stillNeedHelpLabelText;
 - (id)sendButtonLoadingText;
 - (id)sendButtonText;
@@ -48,7 +52,7 @@
 - (id)messageText;
 - (id)titleText;
 - (id)viewStyle;
-- (id)initWithTheme:(id)arg1 navigationRouter:(id)arg2 dataLoader:(id)arg3 logger:(id)arg4 linkDispatcher:(id)arg5 userEmail:(id)arg6 spinnerButtonTestManager:(id)arg7;
+- (id)initWithTheme:(id)arg1 navigationRouter:(id)arg2 dataLoader:(id)arg3 logger:(id)arg4 linkDispatcher:(id)arg5 userEmail:(id)arg6 magicLinkTestManager:(id)arg7 failedLoginLinkRequestHandler:(id)arg8;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

@@ -23,7 +23,7 @@
 @property(nonatomic) __weak id <SPTInAppMessageBannerMessagePriorityDeciderDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
 - (id)unlockDictionary:(id)arg1;
-- (void)triggerConfigurationsController:(id)arg1 didFetchMessage:(id)arg2 forTriggers:(id)arg3;
+- (void)triggerConfigurationsController:(id)arg1 didFetchMessage:(id)arg2 withMessageFormat:(id)arg3 forTriggers:(id)arg4;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

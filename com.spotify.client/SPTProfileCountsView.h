@@ -8,7 +8,7 @@
 
 #import "SPTThemableView-Protocol.h"
 
-@class NSString, SPTLayoutConstraintBuilder, SPTProfileCounterWithLabelView, SPTTheme, UIButton, UIStackView;
+@class NSMutableArray, NSString, SPTProfileCounterWithLabelView, SPTTheme, UIButton, UIStackView;
 @protocol SPTProfileCountsViewDelegate, SPTThemableViewLayoutDelegate;
 
 @interface SPTProfileCountsView : UIView <SPTThemableView>
@@ -22,12 +22,12 @@
     SPTProfileCounterWithLabelView *_playlistsCounterWithLabelView;
     SPTProfileCounterWithLabelView *_followersCounterWithLabelView;
     SPTProfileCounterWithLabelView *_followingCounterWithLabelView;
-    SPTLayoutConstraintBuilder *_layout;
+    NSMutableArray *_layoutConstraints;
     SPTTheme *_theme;
 }
 
 @property(retain, nonatomic) SPTTheme *theme; // @synthesize theme=_theme;
-@property(retain, nonatomic) SPTLayoutConstraintBuilder *layout; // @synthesize layout=_layout;
+@property(retain, nonatomic) NSMutableArray *layoutConstraints; // @synthesize layoutConstraints=_layoutConstraints;
 @property(retain, nonatomic) SPTProfileCounterWithLabelView *followingCounterWithLabelView; // @synthesize followingCounterWithLabelView=_followingCounterWithLabelView;
 @property(retain, nonatomic) SPTProfileCounterWithLabelView *followersCounterWithLabelView; // @synthesize followersCounterWithLabelView=_followersCounterWithLabelView;
 @property(retain, nonatomic) SPTProfileCounterWithLabelView *playlistsCounterWithLabelView; // @synthesize playlistsCounterWithLabelView=_playlistsCounterWithLabelView;

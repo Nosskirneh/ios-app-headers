@@ -31,6 +31,7 @@
 @property(nonatomic) _Bool performLogout; // @synthesize performLogout;
 - (void).cxx_destruct;
 - (void)showLoadingState:(_Bool)arg1;
+- (void)viewModel:(id)arg1 shouldShowKeyboard:(_Bool)arg2;
 - (void)viewModel:(id)arg1 didFinishLoadingDataWithError:(id)arg2;
 - (void)viewModelDidFinishLoadingDataWithSuccess:(id)arg1;
 @property(readonly, nonatomic, getter=spt_pageIdentifier) NSString *pageIdentifier;
@@ -40,7 +41,7 @@
 - (_Bool)textFieldShouldReturn:(id)arg1;
 - (void)textFieldDidBeginEditing:(id)arg1;
 - (void)userDidTapStillNeedHelpLabel:(id)arg1;
-- (void)userDidTouchUpInsideSendButton:(id)arg1;
+- (void)sendButtonTapped:(id)arg1;
 - (void)viewDidAppear:(_Bool)arg1;
 - (void)viewDidLoad;
 - (void)loadView;

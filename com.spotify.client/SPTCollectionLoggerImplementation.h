@@ -31,6 +31,7 @@
 - (void)logUIInteractionOnPageURI:(id)arg1 sectionId:(id)arg2 itemIndex:(long long)arg3 targetURI:(id)arg4 interactionType:(id)arg5 userIntent:(id)arg6;
 - (void)logUIInteractionUserIntent:(id)arg1 pageURI:(id)arg2 interactionType:(id)arg3;
 - (void)logAlertOnPageURI:(id)arg1 alertId:(id)arg2;
+- (void)logNewSaveState:(_Bool)arg1 pageURI:(id)arg2 targetURL:(id)arg3;
 - (void)logButtonInteractionOnPageURI:(id)arg1 buttonId:(id)arg2 targetURL:(id)arg3 intent:(id)arg4;
 - (void)logEditModeChangedOnPageURI:(id)arg1 editMode:(_Bool)arg2;
 - (void)logListItemInteraction:(id)arg1 onPageURI:(id)arg2 flatIndex:(unsigned long long)arg3 targetURL:(id)arg4;

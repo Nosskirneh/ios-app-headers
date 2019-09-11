@@ -6,9 +6,12 @@
 
 #import "NSObject-Protocol.h"
 
-@protocol SPTHomeMixHeaderViewModel;
+@class SPTHomeMixHeaderViewModel;
 
 @protocol SPTHomeMixHeaderViewModelDelegate <NSObject>
-- (void)headerViewModel:(id <SPTHomeMixHeaderViewModel>)arg1 didUpdateActionButtonSelectedState:(_Bool)arg2;
+- (void)headerViewModelShouldResetJoinButton:(SPTHomeMixHeaderViewModel *)arg1;
+- (void)headerViewModel:(SPTHomeMixHeaderViewModel *)arg1 shouldShowMoodChangedTooltip:(unsigned long long)arg2;
+- (void)headerViewModel:(SPTHomeMixHeaderViewModel *)arg1 didChangeToDisplayMode:(unsigned long long)arg2;
+- (void)headerViewModelDidRequestButtonRefresh:(SPTHomeMixHeaderViewModel *)arg1;
 @end
 

@@ -71,6 +71,7 @@
 - (_Bool)shouldAutorotate;
 - (void)viewDidAppear:(_Bool)arg1;
 - (void)viewWillAppear:(_Bool)arg1;
+- (void)viewWillLayoutSubviews;
 - (void)viewDidLoad;
 - (void)replaceSections:(id)arg1;
 - (id)initWithNavigationRouter:(id)arg1 linkDispatcher:(id)arg2;

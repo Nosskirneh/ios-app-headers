@@ -6,7 +6,7 @@
 
 #import "NSObject-Protocol.h"
 
-@class NSIndexPath, NSString, SPTContextMenuView, UIView;
+@class NSAttributedString, NSIndexPath, NSString, SPTContextMenuView, UIView;
 @protocol GLUEImageLoader, SPTContextMenuAction;
 
 @protocol SPTContextMenuViewDataSource <NSObject>
@@ -19,6 +19,8 @@
 - (unsigned long long)contextMenuView:(SPTContextMenuView *)arg1 numberOfActionsInSection:(unsigned long long)arg2;
 - (double)contextMenuView:(SPTContextMenuView *)arg1 heightForHeaderInSection:(unsigned long long)arg2;
 - (UIView *)contextMenuView:(SPTContextMenuView *)arg1 viewForHeaderInSection:(unsigned long long)arg2;
+- (_Bool)contextMenuView:(SPTContextMenuView *)arg1 allowMultipleLineTitleInSection:(unsigned long long)arg2;
 - (NSString *)contextMenuView:(SPTContextMenuView *)arg1 titleForHeaderInSection:(unsigned long long)arg2;
+- (NSAttributedString *)contextMenuView:(SPTContextMenuView *)arg1 attributedTitleForHeaderInSection:(unsigned long long)arg2;
 @end
 

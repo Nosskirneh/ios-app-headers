@@ -7,11 +7,11 @@
 #import "SPTUIPageService.h"
 
 @class SPTFreeTierTrackHubManager;
-@protocol EXP_SPTHubFrameworkService, GaiaFeature, SPContextMenuFeature, SPTCollectionPlatformService, SPTEntitySeeAllSongsService, SPTFreeTierService, SPTFreeTierUIService, SPTGLUEService, SPTNetworkService, SPTOnDemandService, SPTPlayerFeature, SPTURIDispatchService;
+@protocol SPContextMenuFeature, SPTCollectionPlatformService, SPTEntitySeeAllSongsService, SPTFreeTierService, SPTFreeTierUIService, SPTGLUEService, SPTHubFrameworkService, SPTNetworkService, SPTOnDemandService, SPTPlayerFeature, SPTURIDispatchService;
 
 @interface SPTFreeTierTrackService : SPTUIPageService
 {
-    id <EXP_SPTHubFrameworkService> _hubFrameworkService;
+    id <SPTHubFrameworkService> _hubFrameworkService;
     id <SPTGLUEService> _glueService;
     id <SPTFreeTierService> _freeTierService;
     id <SPTFreeTierUIService> _freeTierUIService;
@@ -22,13 +22,11 @@
     id <SPTOnDemandService> _onDemandService;
     id <SPTNetworkService> _networkService;
     id <SPTPlayerFeature> _playerService;
-    id <GaiaFeature> _gaiaFeature;
     SPTFreeTierTrackHubManager *_hubManager;
 }
 
 + (id)serviceIdentifier;
 @property(retain, nonatomic) SPTFreeTierTrackHubManager *hubManager; // @synthesize hubManager=_hubManager;
-@property(nonatomic) __weak id <GaiaFeature> gaiaFeature; // @synthesize gaiaFeature=_gaiaFeature;
 @property(nonatomic) __weak id <SPTPlayerFeature> playerService; // @synthesize playerService=_playerService;
 @property(nonatomic) __weak id <SPTNetworkService> networkService; // @synthesize networkService=_networkService;
 @property(nonatomic) __weak id <SPTOnDemandService> onDemandService; // @synthesize onDemandService=_onDemandService;
@@ -39,7 +37,7 @@
 @property(nonatomic) __weak id <SPTFreeTierUIService> freeTierUIService; // @synthesize freeTierUIService=_freeTierUIService;
 @property(nonatomic) __weak id <SPTFreeTierService> freeTierService; // @synthesize freeTierService=_freeTierService;
 @property(nonatomic) __weak id <SPTGLUEService> glueService; // @synthesize glueService=_glueService;
-@property(nonatomic) __weak id <EXP_SPTHubFrameworkService> hubFrameworkService; // @synthesize hubFrameworkService=_hubFrameworkService;
+@property(nonatomic) __weak id <SPTHubFrameworkService> hubFrameworkService; // @synthesize hubFrameworkService=_hubFrameworkService;
 - (void).cxx_destruct;
 - (void)configureMasterFeatureFlag:(id)arg1;
 - (id)provideViewControllerForURI:(id)arg1 context:(id)arg2;

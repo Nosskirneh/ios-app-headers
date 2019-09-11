@@ -14,7 +14,7 @@
 #import "SPTSignupTermsAndPolicyViewModelDelegate-Protocol.h"
 #import "UITextFieldDelegate-Protocol.h"
 
-@class NSError, NSString, NSURL, SPTSignupAnimatedTransitioning, SPTSignupStepThreeView, SPTSignupStepThreeViewModel;
+@class NSError, NSString, NSURL, SPTLoginTheme, SPTSignupAnimatedTransitioning, SPTSignupStepThreeView, SPTSignupStepThreeViewModel;
 @protocol SPTPageContainer;
 
 @interface SPTSignupStepThreeViewController : UIViewController <SPTNavigationControllerNavigationBarState, SPTNavigationControllerTransitioning, UITextFieldDelegate, SPTSignupTermsAndPolicyViewModelDelegate, SPTPageController, SPTSignupStepThreeViewModelDelegate, SPTLoginViewControllerProtocol>
@@ -24,8 +24,10 @@
     NSError *error;
     SPTSignupStepThreeViewModel *_viewModel;
     SPTSignupAnimatedTransitioning *_animatedTransitioning;
+    SPTLoginTheme *_theme;
 }
 
+@property(retain, nonatomic) SPTLoginTheme *theme; // @synthesize theme=_theme;
 @property(retain, nonatomic) SPTSignupAnimatedTransitioning *animatedTransitioning; // @synthesize animatedTransitioning=_animatedTransitioning;
 @property(retain, nonatomic) SPTSignupStepThreeViewModel *viewModel; // @synthesize viewModel=_viewModel;
 @property(copy, nonatomic) NSError *error; // @synthesize error;
@@ -37,7 +39,7 @@
 - (id)navigationController:(id)arg1 animationControllerForPushOperationFromViewController:(id)arg2;
 - (unsigned long long)preferredNavigationBarState;
 - (void)userDidAcceptAllLicences:(id)arg1;
-@property(readonly, nonatomic) long long presentingControllerAdjustIdentifier;
+@property(readonly, nonatomic) NSString *presentingControllerAdjustIdentifier;
 @property(readonly, nonatomic) UIViewController *presentingController;
 - (void)createUserRequestDidFinishWithError:(id)arg1;
 - (void)createUserRequestDidStart;
@@ -48,11 +50,11 @@
 @property(readonly, nonatomic, getter=spt_pageIdentifier) NSString *pageIdentifier;
 @property(readonly, nonatomic, getter=spt_pageURI) NSURL *pageURI;
 - (void)signupViewModelDidValidateFieldWithIdentifier:(id)arg1 error:(id)arg2;
-- (void)userDidTouchUpInsideNextButton:(id)arg1;
+- (void)nextButtonTapped:(id)arg1;
 - (void)viewDidAppear:(_Bool)arg1;
 - (void)viewDidLoad;
 - (void)loadView;
-- (id)initWithViewModel:(id)arg1;
+- (id)initWithTheme:(id)arg1 viewModel:(id)arg2;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

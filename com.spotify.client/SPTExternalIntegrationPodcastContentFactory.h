@@ -11,7 +11,7 @@
 }
 
 - (id)playerTracksFromEpisodes:(id)arg1;
-- (id)contentFromEpisodes:(id)arg1 requestOptions:(id)arg2;
+- (id)contentFromEpisodes:(id)arg1 podcastStringFormatter:(id)arg2;
 - (id)contentFromShow:(id)arg1 requestOptions:(id)arg2;
 
 @end

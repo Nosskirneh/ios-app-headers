@@ -9,6 +9,7 @@
 @protocol SPTFreeTierCollectionAlbumEntity;
 
 @protocol SPTFreeTierCollectionAlbumModelItemEntity <SPTFreeTierCollectionModelItemEntity>
+@property(readonly, nonatomic) _Bool inCollection;
 @property(readonly, nonatomic) id <SPTFreeTierCollectionAlbumEntity> albumEntity;
 @end
 

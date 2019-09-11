@@ -18,6 +18,7 @@
 @property(readonly, nonatomic, getter=isVideoMediaType) _Bool videoMediaType;
 @property(readonly, nonatomic, getter=isAudioMediaType) _Bool audioMediaType;
 @property(readonly, copy, nonatomic) NSString *manifestId;
+@property(readonly, copy, nonatomic) NSURL *largePodcastImageURL;
 @property(readonly, copy, nonatomic) NSURL *podcastImageURL;
 @property(readonly, copy, nonatomic) NSURL *largeImageURL;
 @property(readonly, copy, nonatomic) NSURL *imageURL;

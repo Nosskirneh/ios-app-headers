@@ -7,24 +7,28 @@
 #import <objc/NSObject.h>
 
 #import "SPTCarPlayAppFeature-Protocol.h"
+#import "SPTLoginServiceObserver-Protocol.h"
 
 @class NSString, SPTAllocationContext, SPTCarPlayDataSourceStateManager;
-@protocol SPTExternalIntegrationDebugLogService, SPTMediaPlayerService;
+@protocol SPTExternalIntegrationDebugLogService, SPTLoginService, SPTMediaPlayerService;
 
-@interface SPTCarPlayAppFeatureImplementation : NSObject <SPTCarPlayAppFeature>
+@interface SPTCarPlayAppFeatureImplementation : NSObject <SPTLoginServiceObserver, SPTCarPlayAppFeature>
 {
     SPTCarPlayDataSourceStateManager *_stateManager;
     id <SPTExternalIntegrationDebugLogService> _debugLogService;
+    id <SPTLoginService> _loginService;
     id <SPTMediaPlayerService> _mediaPlayerService;
 }
 
 + (id)serviceIdentifier;
 @property(nonatomic) __weak id <SPTMediaPlayerService> mediaPlayerService; // @synthesize mediaPlayerService=_mediaPlayerService;
+@property(nonatomic) __weak id <SPTLoginService> loginService; // @synthesize loginService=_loginService;
 @property(nonatomic) __weak id <SPTExternalIntegrationDebugLogService> debugLogService; // @synthesize debugLogService=_debugLogService;
 - (void).cxx_destruct;
-- (void)updateStateManagerIfLoggedOut;
+- (void)loginServiceWillLaunchLoginUI;
 - (id)provideDataSourceStateManager;
 @property(readonly, nonatomic) SPTCarPlayDataSourceStateManager *stateManager; // @synthesize stateManager=_stateManager;
+- (void)unload;
 - (void)load;
 - (void)configureWithServices:(id)arg1;
 

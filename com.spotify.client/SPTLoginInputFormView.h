@@ -8,13 +8,12 @@
 
 #import "GLUEStyleable-Protocol.h"
 
-@class GLUELabel, NSLayoutConstraint, NSString, SPTLoginTextField, UIStackView;
+@class GLUELabel, NSLayoutConstraint, NSString, SPTLoginTextField;
 
 @interface SPTLoginInputFormView : UIView <GLUEStyleable>
 {
     GLUELabel *_firstFieldTitleLabel;
     GLUELabel *_secondFieldTitleLabel;
-    GLUELabel *_secondFieldTitleExtraLabel;
     SPTLoginTextField *_firstField;
     SPTLoginTextField *_secondField;
     GLUELabel *_firstFieldDisclosureLabel;
@@ -29,10 +28,8 @@
     NSLayoutConstraint *_firstFieldDisclosureLabelBottomMargin;
     NSLayoutConstraint *_secondFieldDisclosureLabelHeight;
     NSLayoutConstraint *_firstFieldDisclosureLabelHeight;
-    UIStackView *_titleStackView;
 }
 
-@property(retain, nonatomic) UIStackView *titleStackView; // @synthesize titleStackView=_titleStackView;
 @property(retain, nonatomic) NSLayoutConstraint *firstFieldDisclosureLabelHeight; // @synthesize firstFieldDisclosureLabelHeight=_firstFieldDisclosureLabelHeight;
 @property(retain, nonatomic) NSLayoutConstraint *secondFieldDisclosureLabelHeight; // @synthesize secondFieldDisclosureLabelHeight=_secondFieldDisclosureLabelHeight;
 @property(retain, nonatomic) NSLayoutConstraint *firstFieldDisclosureLabelBottomMargin; // @synthesize firstFieldDisclosureLabelBottomMargin=_firstFieldDisclosureLabelBottomMargin;
@@ -47,7 +44,6 @@
 @property(readonly, nonatomic) GLUELabel *firstFieldDisclosureLabel; // @synthesize firstFieldDisclosureLabel=_firstFieldDisclosureLabel;
 @property(readonly, nonatomic) SPTLoginTextField *secondField; // @synthesize secondField=_secondField;
 @property(readonly, nonatomic) SPTLoginTextField *firstField; // @synthesize firstField=_firstField;
-@property(readonly, nonatomic) GLUELabel *secondFieldTitleExtraLabel; // @synthesize secondFieldTitleExtraLabel=_secondFieldTitleExtraLabel;
 @property(readonly, nonatomic) GLUELabel *secondFieldTitleLabel; // @synthesize secondFieldTitleLabel=_secondFieldTitleLabel;
 @property(readonly, nonatomic) GLUELabel *firstFieldTitleLabel; // @synthesize firstFieldTitleLabel=_firstFieldTitleLabel;
 - (void).cxx_destruct;

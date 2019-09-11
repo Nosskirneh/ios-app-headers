@@ -8,6 +8,7 @@
 
 @interface UILabel (TKNTypeStyle)
 - (void)disableDynamicTypeMonitoring;
+- (void)applyStyle:(id)arg1 withAccessibilityScale:(double)arg2 useDynamicTypeMonitor:(_Bool)arg3;
 - (void)applyStyle:(id)arg1 withAccessibilityScale:(double)arg2;
 - (void)applyStyle:(id)arg1;
 @end

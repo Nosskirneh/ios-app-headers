@@ -6,12 +6,12 @@
 
 #import <objc/NSObject.h>
 
-#import "EXP_HUBCommandHandler-Protocol.h"
+#import "HUBCommandHandler-Protocol.h"
 
 @class NSURL;
 @protocol SPTLinkDispatcher;
 
-@interface SPTAssistedCurationNavigateCommandHandler : NSObject <EXP_HUBCommandHandler>
+@interface SPTAssistedCurationNavigateCommandHandler : NSObject <HUBCommandHandler>
 {
     NSURL *_playlistURI;
     id <SPTLinkDispatcher> _linkDispatcher;

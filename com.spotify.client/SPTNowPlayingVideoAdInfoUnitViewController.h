@@ -6,14 +6,14 @@
 
 #import <UIKit/UIViewController.h>
 
-#import "SPTNowPlayingAdPlayerObserver-Protocol.h"
+#import "SPTAdPlayerObserver-Protocol.h"
 #import "SPTNowPlayingAdUnitViewController-Protocol.h"
 #import "SPTNowPlayingContainedViewController-Protocol.h"
 
-@class GLUEButton, GLUELabel, NSLayoutConstraint, NSString, NSURL, SPTNowPlayingAdPlayerObservable, SPTTheme;
+@class GLUEButton, GLUELabel, NSLayoutConstraint, NSString, NSURL, SPTAdPlayerObservable, SPTTheme;
 @protocol GLUETheme, SPTAdsManager, SPTNowPlayingContainingViewController, SPTNowPlayingVideoControlsVisibilityDelegate;
 
-@interface SPTNowPlayingVideoAdInfoUnitViewController : UIViewController <SPTNowPlayingAdPlayerObserver, SPTNowPlayingContainedViewController, SPTNowPlayingAdUnitViewController>
+@interface SPTNowPlayingVideoAdInfoUnitViewController : UIViewController <SPTAdPlayerObserver, SPTNowPlayingContainedViewController, SPTNowPlayingAdUnitViewController>
 {
     _Bool _verticalVideo;
     UIViewController<SPTNowPlayingContainingViewController> *container;
@@ -29,11 +29,11 @@
     NSLayoutConstraint *_actionButtonTopConstraintWithLabel;
     NSLayoutConstraint *_actionButtonTopConstraintNoLabel;
     double _animationDuration;
-    SPTNowPlayingAdPlayerObservable *_observer;
+    SPTAdPlayerObservable *_observer;
 }
 
 @property(nonatomic) _Bool verticalVideo; // @synthesize verticalVideo=_verticalVideo;
-@property(readonly, nonatomic) SPTNowPlayingAdPlayerObservable *observer; // @synthesize observer=_observer;
+@property(readonly, nonatomic) SPTAdPlayerObservable *observer; // @synthesize observer=_observer;
 @property(nonatomic) double animationDuration; // @synthesize animationDuration=_animationDuration;
 @property(retain, nonatomic) NSLayoutConstraint *actionButtonTopConstraintNoLabel; // @synthesize actionButtonTopConstraintNoLabel=_actionButtonTopConstraintNoLabel;
 @property(retain, nonatomic) NSLayoutConstraint *actionButtonTopConstraintWithLabel; // @synthesize actionButtonTopConstraintWithLabel=_actionButtonTopConstraintWithLabel;
@@ -48,8 +48,8 @@
 @property(nonatomic) __weak id <SPTNowPlayingVideoControlsVisibilityDelegate> visibilityDelegate; // @synthesize visibilityDelegate=_visibilityDelegate;
 @property(nonatomic) __weak UIViewController<SPTNowPlayingContainingViewController> *container; // @synthesize container;
 - (void).cxx_destruct;
-- (void)nowPlayingAdStateDidChangeToTrack:(struct SPTNowPlayingTrack)arg1;
-- (void)nowPlayingAdDisplayLinkFiredWithTrack:(struct SPTNowPlayingTrack)arg1;
+- (void)adPlayerStateDidChangeToTrack:(struct SPTNowPlayingTrack)arg1;
+- (void)adPlayerDisplayLinkFiredWithTrack:(struct SPTNowPlayingTrack)arg1;
 - (void)didTapVideoView:(id)arg1;
 - (void)setShowsVideoControls:(_Bool)arg1 animated:(_Bool)arg2;
 - (void)reloadViewControllerWithAdEntity:(id)arg1;
@@ -65,7 +65,6 @@
 - (void)configureTitleLabelWithEntity:(id)arg1;
 - (void)configureSubviewsWithEntity:(id)arg1;
 - (void)setupConstraints;
-- (void)viewWillDisappear:(_Bool)arg1;
 - (void)dealloc;
 - (id)initWithAdManager:(id)arg1 playerObservable:(id)arg2 theme:(id)arg3;
 

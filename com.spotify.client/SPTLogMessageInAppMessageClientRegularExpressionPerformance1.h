@@ -15,7 +15,7 @@
 }
 
 + (id)messageWithTriggersCount:(long long)arg1 performanceTime:(id)arg2;
-@property(retain, nonatomic) NSString *performanceTimeValue; // @synthesize performanceTimeValue=_performanceTimeValue;
+@property(copy, nonatomic) NSString *performanceTimeValue; // @synthesize performanceTimeValue=_performanceTimeValue;
 @property(nonatomic) long long triggersCountValue; // @synthesize triggersCountValue=_triggersCountValue;
 - (void).cxx_destruct;
 - (_Bool)isEqual:(id)arg1;

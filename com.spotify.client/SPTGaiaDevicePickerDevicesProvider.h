@@ -8,45 +8,50 @@
 
 #import "SPTAccountProductInformationObserver-Protocol.h"
 #import "SPTGaiaActiveDeviceProvider-Protocol.h"
-#import "SPTGaiaDeviceStateManagerObserver-Protocol.h"
+#import "SPTGaiaConnectManagerObserver-Protocol.h"
+#import "SPTGaiaSettingsObserver-Protocol.h"
 #import "SPTOfflineModeStateObserver-Protocol.h"
 #import "SPTProductStateObserver-Protocol.h"
 
-@class NSArray, NSString, SPTGaiaDevice, SPTGaiaDeviceManager, SPTGaiaDevicePickerAppearanceManager;
-@protocol SPTAccountProductInformationController, SPTGaiaDevicePickerDevicesProviderDelegate, SPTOfflineModeState, SPTProductState;
+@class NSArray, NSString, SPTGaiaConnectDevice, SPTGaiaDevicePickerAppearanceManager;
+@protocol SPTAccountProductInformationController, SPTGaiaConnectManager, SPTGaiaDevicePickerDevicesProviderDelegate, SPTGaiaSettingsProvider, SPTOfflineModeState, SPTProductState;
 
-@interface SPTGaiaDevicePickerDevicesProvider : NSObject <SPTGaiaDeviceStateManagerObserver, SPTProductStateObserver, SPTAccountProductInformationObserver, SPTOfflineModeStateObserver, SPTGaiaActiveDeviceProvider>
+@interface SPTGaiaDevicePickerDevicesProvider : NSObject <SPTProductStateObserver, SPTAccountProductInformationObserver, SPTOfflineModeStateObserver, SPTGaiaSettingsObserver, SPTGaiaConnectManagerObserver, SPTGaiaActiveDeviceProvider>
 {
     id <SPTGaiaDevicePickerDevicesProviderDelegate> _delegate;
-    SPTGaiaDeviceManager *_deviceManager;
     id <SPTOfflineModeState> _offlineModeState;
     id <SPTProductState> _productState;
     id <SPTAccountProductInformationController> _productInformationController;
     SPTGaiaDevicePickerAppearanceManager *_appearanceManager;
+    id <SPTGaiaConnectManager> _connectManager;
+    id <SPTGaiaSettingsProvider> _settingsProvider;
     NSArray *_cachedSections;
 }
 
-@property(retain, nonatomic) NSArray *cachedSections; // @synthesize cachedSections=_cachedSections;
+@property(copy, nonatomic) NSArray *cachedSections; // @synthesize cachedSections=_cachedSections;
+@property(retain, nonatomic) id <SPTGaiaSettingsProvider> settingsProvider; // @synthesize settingsProvider=_settingsProvider;
+@property(retain, nonatomic) id <SPTGaiaConnectManager> connectManager; // @synthesize connectManager=_connectManager;
 @property(retain, nonatomic) SPTGaiaDevicePickerAppearanceManager *appearanceManager; // @synthesize appearanceManager=_appearanceManager;
 @property(retain, nonatomic) id <SPTAccountProductInformationController> productInformationController; // @synthesize productInformationController=_productInformationController;
 @property(nonatomic) __weak id <SPTProductState> productState; // @synthesize productState=_productState;
 @property(retain, nonatomic) id <SPTOfflineModeState> offlineModeState; // @synthesize offlineModeState=_offlineModeState;
-@property(retain, nonatomic) SPTGaiaDeviceManager *deviceManager; // @synthesize deviceManager=_deviceManager;
 @property(nonatomic) __weak id <SPTGaiaDevicePickerDevicesProviderDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
+- (void)localDevicesOnlySettingsChanged:(_Bool)arg1;
+- (void)lockScreenControlsSettingsChanged:(_Bool)arg1;
 - (void)currentProductDidChangeForProductInformationController:(id)arg1;
 - (void)productState:(id)arg1 stateDidChange:(id)arg2;
 - (void)offlineModeState:(id)arg1 updated:(_Bool)arg2;
-- (void)deviceStateManager:(id)arg1 playingRemotelyDidChange:(_Bool)arg2;
-- (void)deviceStateManager:(id)arg1 deviceBeingActivatedDidChange:(id)arg2 error:(id)arg3;
-- (void)deviceStateManager:(id)arg1 activeDeviceDidChange:(id)arg2;
-- (void)deviceStateManager:(id)arg1 availableDevicesDidChange:(id)arg2;
-- (void)removeAllBonjourDevices;
+- (void)connectManager:(id)arg1 deviceBeingActivatedDidChange:(id)arg2;
+- (void)connectManager:(id)arg1 activeDeviceDidChange:(id)arg2;
+- (void)connectManager:(id)arg1 availableDevicesDidChange:(id)arg2;
+- (void)activeOrConnectingDeviceDidChange;
 @property(readonly, nonatomic, getter=isOffline) _Bool offline;
+- (id)connectDevicesExcludingRemote;
 @property(readonly, nonatomic) NSArray *allDevices;
-@property(readonly) SPTGaiaDevice *connectingDevice;
-@property(readonly) SPTGaiaDevice *activeDevice;
-- (void)searchForDevicesWithSortingMethod:(long long)arg1;
+@property(readonly) SPTGaiaConnectDevice *connectingDevice;
+@property(readonly) SPTGaiaConnectDevice *activeDevice;
+- (void)searchForDevices;
 - (void)deactivateCurrentDevice;
 - (void)activateDeviceAtIndexPath:(id)arg1;
 - (id)deviceAtIndexPath:(id)arg1;
@@ -56,7 +61,7 @@
 - (void)invalidateCachedSections;
 - (id)buildSectionCache;
 - (void)dealloc;
-- (id)initWithDeviceManager:(id)arg1 offlineModeState:(id)arg2 productState:(id)arg3 productInformationController:(id)arg4 appearanceManager:(id)arg5;
+- (id)initWithOfflineModeState:(id)arg1 productState:(id)arg2 productInformationController:(id)arg3 appearanceManager:(id)arg4 connectManager:(id)arg5 settingsProvider:(id)arg6;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

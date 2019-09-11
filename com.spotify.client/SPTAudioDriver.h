@@ -22,6 +22,7 @@
 @property(retain) NSObject *audioDriverMutex; // @synthesize audioDriverMutex=_audioDriverMutex;
 - (void).cxx_destruct;
 - (void)audioSessionMediaServicesWereResetNotification:(id)arg1;
+- (void)audioDriverDidReset:(struct IOSAudioDriver *)arg1;
 - (void)audioDriverWillStartRunning:(struct IOSAudioDriver *)arg1;
 - (void)audioDriver:(struct IOSAudioDriver *)arg1 didFailWithError:(id)arg2;
 - (void)audioDriverDidStopRunning:(struct IOSAudioDriver *)arg1;

@@ -7,20 +7,19 @@
 #import <objc/NSObject.h>
 
 #import "SPTCollectionPlatformTestManager-Protocol.h"
-#import "SPTFeatureFlagSignalObserver-Protocol.h"
 
-@class NSNumber, NSString;
-@protocol SPTAbbaFeatureFlags, SPTCollectionPlatformConfiguration, SPTFeatureFlagFactory, SPTFeatureFlagSignal, SPTFeatureSettingsItemFactory, SPTFreeTierEducationSnackBarPresenter, SPTFreeTierTestManager, SPTLocalSettings, SPTProductState, SettingsRegistry;
+@class NSString;
+@protocol SPTAbbaFeatureFlags, SPTCollectionPlatformConfiguration, SPTCollectionPlatformTestManagerUpdateDelegate, SPTFeatureFlagFactory, SPTFeatureFlagSignal, SPTFeatureSettingsItemFactory, SPTLocalSettings, SPTNowPlayingTestManager, SPTProductState, SPTSnackbarConditionalPresenter, SettingsRegistry;
 
-@interface SPTCollectionPlatformTestManagerImplementation : NSObject <SPTFeatureFlagSignalObserver, SPTCollectionPlatformTestManager>
+@interface SPTCollectionPlatformTestManagerImplementation : NSObject <SPTCollectionPlatformTestManager>
 {
     _Bool _incompleteAlbumsUsedForCollectionState;
     _Bool _freeTierEnabled;
-    _Bool _heartsEverywhereEnabled;
     _Bool _madeForPublicEnabled;
     _Bool _madeForEmployeeEnabled;
     _Bool _localBansEnabled;
     id <SPTCollectionPlatformConfiguration> _collectionConfiguration;
+    id <SPTCollectionPlatformTestManagerUpdateDelegate> _updateDelegate;
     id <SPTProductState> _productState;
     id <SPTAbbaFeatureFlags> _abbaFeatureFlags;
     id <SPTLocalSettings> _localSettings;
@@ -28,32 +27,23 @@
     id <SPTFeatureSettingsItemFactory> _featureSettingsItemFactory;
     id <SPTFeatureFlagFactory> _featureFlagFactory;
     id <SPTFeatureFlagSignal> _freeTierEnabledSignal;
-    id <SPTFeatureFlagSignal> _heartsEverywhereSignal;
-    id <SPTFreeTierEducationSnackBarPresenter> _snackbarEducationPresenter;
-    id <SPTFeatureFlagSignal> _lajkaAAEnabledSignal;
-    id <SPTFeatureFlagSignal> _lajkaAANewUsersEnabledSignal;
+    id <SPTSnackbarConditionalPresenter> _snackbarPresenter;
     id <SPTFeatureFlagSignal> _madeForPublicSignal;
     id <SPTFeatureFlagSignal> _madeForEmployeeSignal;
     id <SPTFeatureFlagSignal> _localBansEnabledSignal;
-    id <SPTFreeTierTestManager> _freeTierTestManager;
-    NSNumber *_newNowPlayingViewEnabledStartupValue;
+    id <SPTNowPlayingTestManager> _nowPlayingTestManager;
 }
 
-@property(retain, nonatomic) NSNumber *newNowPlayingViewEnabledStartupValue; // @synthesize newNowPlayingViewEnabledStartupValue=_newNowPlayingViewEnabledStartupValue;
-@property(retain, nonatomic) id <SPTFreeTierTestManager> freeTierTestManager; // @synthesize freeTierTestManager=_freeTierTestManager;
+@property(retain, nonatomic) id <SPTNowPlayingTestManager> nowPlayingTestManager; // @synthesize nowPlayingTestManager=_nowPlayingTestManager;
 @property(nonatomic, getter=isLocalBansEnabled) _Bool localBansEnabled; // @synthesize localBansEnabled=_localBansEnabled;
 @property(nonatomic, getter=isMadeForEmployeeEnabled) _Bool madeForEmployeeEnabled; // @synthesize madeForEmployeeEnabled=_madeForEmployeeEnabled;
 @property(nonatomic, getter=isMadeForPublicEnabled) _Bool madeForPublicEnabled; // @synthesize madeForPublicEnabled=_madeForPublicEnabled;
 @property(retain, nonatomic) id <SPTFeatureFlagSignal> localBansEnabledSignal; // @synthesize localBansEnabledSignal=_localBansEnabledSignal;
 @property(retain, nonatomic) id <SPTFeatureFlagSignal> madeForEmployeeSignal; // @synthesize madeForEmployeeSignal=_madeForEmployeeSignal;
 @property(retain, nonatomic) id <SPTFeatureFlagSignal> madeForPublicSignal; // @synthesize madeForPublicSignal=_madeForPublicSignal;
-@property(retain, nonatomic) id <SPTFeatureFlagSignal> lajkaAANewUsersEnabledSignal; // @synthesize lajkaAANewUsersEnabledSignal=_lajkaAANewUsersEnabledSignal;
-@property(retain, nonatomic) id <SPTFeatureFlagSignal> lajkaAAEnabledSignal; // @synthesize lajkaAAEnabledSignal=_lajkaAAEnabledSignal;
-@property(retain, nonatomic) id <SPTFreeTierEducationSnackBarPresenter> snackbarEducationPresenter; // @synthesize snackbarEducationPresenter=_snackbarEducationPresenter;
-@property(nonatomic, getter=isHeartsEverywhereEnabled) _Bool heartsEverywhereEnabled; // @synthesize heartsEverywhereEnabled=_heartsEverywhereEnabled;
+@property(retain, nonatomic) id <SPTSnackbarConditionalPresenter> snackbarPresenter; // @synthesize snackbarPresenter=_snackbarPresenter;
 @property(nonatomic, getter=isFreeTierEnabled) _Bool freeTierEnabled; // @synthesize freeTierEnabled=_freeTierEnabled;
 @property(nonatomic, getter=isIncompleteAlbumsUsedForCollectionState) _Bool incompleteAlbumsUsedForCollectionState; // @synthesize incompleteAlbumsUsedForCollectionState=_incompleteAlbumsUsedForCollectionState;
-@property(readonly, nonatomic) id <SPTFeatureFlagSignal> heartsEverywhereSignal; // @synthesize heartsEverywhereSignal=_heartsEverywhereSignal;
 @property(readonly, nonatomic) id <SPTFeatureFlagSignal> freeTierEnabledSignal; // @synthesize freeTierEnabledSignal=_freeTierEnabledSignal;
 @property(readonly, nonatomic) id <SPTFeatureFlagFactory> featureFlagFactory; // @synthesize featureFlagFactory=_featureFlagFactory;
 @property(readonly, nonatomic) id <SPTFeatureSettingsItemFactory> featureSettingsItemFactory; // @synthesize featureSettingsItemFactory=_featureSettingsItemFactory;
@@ -61,6 +51,7 @@
 @property(readonly, nonatomic) id <SPTLocalSettings> localSettings; // @synthesize localSettings=_localSettings;
 @property(readonly, nonatomic) id <SPTAbbaFeatureFlags> abbaFeatureFlags; // @synthesize abbaFeatureFlags=_abbaFeatureFlags;
 @property(readonly, nonatomic) id <SPTProductState> productState; // @synthesize productState=_productState;
+@property(nonatomic) __weak id <SPTCollectionPlatformTestManagerUpdateDelegate> updateDelegate; // @synthesize updateDelegate=_updateDelegate;
 @property(retain, nonatomic) id <SPTCollectionPlatformConfiguration> collectionConfiguration; // @synthesize collectionConfiguration=_collectionConfiguration;
 - (void).cxx_destruct;
 - (void)setupMadeForFlags;
@@ -68,18 +59,13 @@
 - (void)setUpLocalSettings;
 - (id)objectForKeyedSubscript:(id)arg1;
 - (_Bool)isPodcastYourLibraryTestEnabled;
-- (_Bool)isNewNowPlayingViewEnabledOnFree;
-- (_Bool)isNewNowPlayingViewEnabledOnPremium;
-@property(readonly, nonatomic, getter=isNewNowPlayingViewEnabled) _Bool newNowPlayingViewEnabled;
 @property(readonly, nonatomic, getter=isPremiumLabelEnabled) _Bool premiumLabelEnabled;
 @property(readonly, getter=isFollowedArtistsOnlyEnabled) _Bool followedArtistsOnlyEnabled;
-@property(readonly, getter=isBookmarkModelEnabled) _Bool bookmarkModelEnabled;
 - (void)setupLocalBansSignal;
 - (void)featureFlagSignal:(id)arg1 hasAssumedState:(long long)arg2;
-- (void)setupLajkaAATestFlagUsedForVerifyingTestSetup;
 @property(readonly, nonatomic, getter=isYourLibraryFeatureEnabled) _Bool yourLibraryFeatureEnabled;
 - (void)dealloc;
-- (id)initWithProductState:(id)arg1 abbaFeatureFlags:(id)arg2 localSettings:(id)arg3 settingsRegistry:(id)arg4 featureSettingsItemFactory:(id)arg5 featureFlagFactory:(id)arg6 freeTierEnabledSignal:(id)arg7 heartsEverywhereSignal:(id)arg8 freeTierTestManager:(id)arg9 educationPresenter:(id)arg10;
+- (id)initWithProductState:(id)arg1 abbaFeatureFlags:(id)arg2 localSettings:(id)arg3 settingsRegistry:(id)arg4 featureSettingsItemFactory:(id)arg5 featureFlagFactory:(id)arg6 freeTierEnabledSignal:(id)arg7 snackbarPresenter:(id)arg8 nowPlayingTestManager:(id)arg9;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

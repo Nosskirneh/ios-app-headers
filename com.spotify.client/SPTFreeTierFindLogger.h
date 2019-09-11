@@ -19,7 +19,7 @@
 - (void).cxx_destruct;
 - (void)logUIImpression5ForHUBComponentModel:(id)arg1;
 - (void)logViewLoadingCancelledWithPageIdentifier:(id)arg1;
-- (void)logViewDataDidFailToLoadWithError:(id)arg1 pageIdentifier:(id)arg2;
+- (void)logViewDataDidFailToLoadWithPageIdentifier:(id)arg1;
 - (void)logViewDidLoadWithPageIdentifier:(id)arg1;
 - (void)logViewLoadingStartedWithPageIdentifier:(id)arg1;
 - (void)logDidTapCancelButtonWithRequestID:(id)arg1;

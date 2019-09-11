@@ -6,10 +6,12 @@
 
 #import <objc/NSObject.h>
 
-@class SPTRequest;
+#import "SPTPodcastRequest-Protocol.h"
+
+@class NSString, SPTRequest;
 @protocol SPTPodcastRequestData;
 
-@interface SPTPodcastRequest : NSObject
+@interface SPTPodcastRequest : NSObject <SPTPodcastRequest>
 {
     SPTRequest *_request;
     id <SPTPodcastRequestData> _requestData;
@@ -25,6 +27,12 @@
 - (void)replaceParameter:(id)arg1 withString:(id)arg2 inRequestString:(id)arg3;
 - (void)setupRequest;
 - (id)initWithRequestData:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

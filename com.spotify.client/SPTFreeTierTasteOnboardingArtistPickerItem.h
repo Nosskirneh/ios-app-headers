@@ -17,8 +17,12 @@
     NSArray *_relatedItems;
     NSString *_moreURI;
     SPTFreeTierTasteOnboardingLogging *_logging;
+    NSString *_relatedMedia;
+    NSString *_imageColorCode;
 }
 
+@property(readonly, copy, nonatomic) NSString *imageColorCode; // @synthesize imageColorCode=_imageColorCode;
+@property(readonly, copy, nonatomic) NSString *relatedMedia; // @synthesize relatedMedia=_relatedMedia;
 @property(readonly, copy, nonatomic) SPTFreeTierTasteOnboardingLogging *logging; // @synthesize logging=_logging;
 @property(readonly, nonatomic) _Bool isArtist; // @synthesize isArtist=_isArtist;
 @property(copy, nonatomic) NSString *moreURI; // @synthesize moreURI=_moreURI;
@@ -28,8 +32,9 @@
 @property(readonly, copy, nonatomic) NSString *identifier; // @synthesize identifier=_identifier;
 - (void).cxx_destruct;
 - (_Bool)isEqual:(id)arg1;
+- (_Bool)isExtendedItem;
 - (id)createItemWithLogging:(id)arg1;
-- (id)initWithIdentifier:(id)arg1 name:(id)arg2 imageURL:(id)arg3 relatedItems:(id)arg4 moreURI:(id)arg5 logging:(id)arg6;
+- (id)initWithIdentifier:(id)arg1 name:(id)arg2 imageURL:(id)arg3 imageColorCode:(id)arg4 relatedItems:(id)arg5 moreURI:(id)arg6 logging:(id)arg7 relatedMedia:(id)arg8;
 
 @end
 

@@ -7,6 +7,8 @@
 #import <Foundation/NSURL.h>
 
 @interface NSURL (OnDemand)
+@property(readonly, nonatomic, getter=spt_isRemoteOnDemandDecoratableURL) _Bool isRemoteOnDemandDecoratableURL;
+@property(readonly, nonatomic, getter=spt_isLocalOnDemandDecoratableURL) _Bool isLocalOnDemandDecoratableURL;
 @property(readonly, nonatomic, getter=spt_isOnDemandDecoratableURL) _Bool isOnDemandDecoratableURL;
 @end
 

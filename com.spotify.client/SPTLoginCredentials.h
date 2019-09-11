@@ -15,7 +15,9 @@
 
 - (id).cxx_construct;
 - (void).cxx_destruct;
+- (int)credentialsType;
 - (_Bool)isEmptyCredentials;
+- (id)authBlob;
 - (id)username;
 - (const struct LoginCredentials *)cpp;
 - (id)copyWithZone:(struct _NSZone *)arg1;

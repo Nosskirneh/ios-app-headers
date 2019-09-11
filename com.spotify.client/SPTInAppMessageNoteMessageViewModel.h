@@ -6,53 +6,41 @@
 
 #import <objc/NSObject.h>
 
-#import "WKScriptMessageHandler-Protocol.h"
+@class SPTInAppMessageActionFactory, SPTInAppMessageNoteMessage, SPTInAppMessageScriptMessageHandler, SPTInAppMessageServiceLogger, SPTInAppMessageTrigger, WKWebView, WKWebViewConfiguration;
+@protocol SPTInAppMessageNoteMessageWebViewContentDelegate;
 
-@class NSDictionary, NSString, SPTInAppMessageActionFactory, SPTInAppMessageNoteMessage, SPTInAppMessageServiceLogger, SPTInAppMessageTrigger, WKWebView, WKWebViewConfiguration;
-@protocol SPTExternalIntegrationDriverDistractionController, SPTInAppMessageNoteMessageWebViewContentDelegate;
-
-@interface SPTInAppMessageNoteMessageViewModel : NSObject <WKScriptMessageHandler>
+@interface SPTInAppMessageNoteMessageViewModel : NSObject
 {
-    _Bool _cancelPresention;
     id <SPTInAppMessageNoteMessageWebViewContentDelegate> _delegate;
-    double _presentationStartTime;
-    WKWebView *_webview;
     SPTInAppMessageNoteMessage *_noteMessage;
+    WKWebView *_webview;
+    double _noteHeight;
     SPTInAppMessageTrigger *_trigger;
+    double _presentationStartTime;
+    SPTInAppMessageScriptMessageHandler *_messageHandler;
     SPTInAppMessageActionFactory *_actionFactory;
     SPTInAppMessageServiceLogger *_serviceLogger;
     WKWebViewConfiguration *_webViewConfiguration;
-    id <SPTExternalIntegrationDriverDistractionController> _driverDistractionController;
-    NSDictionary *_cancelationInfo;
-    double _noteHeight;
 }
 
-@property(nonatomic) double noteHeight; // @synthesize noteHeight=_noteHeight;
-@property(copy, nonatomic) NSDictionary *cancelationInfo; // @synthesize cancelationInfo=_cancelationInfo;
-@property(retain, nonatomic) id <SPTExternalIntegrationDriverDistractionController> driverDistractionController; // @synthesize driverDistractionController=_driverDistractionController;
-@property(nonatomic) _Bool cancelPresention; // @synthesize cancelPresention=_cancelPresention;
 @property(retain, nonatomic) WKWebViewConfiguration *webViewConfiguration; // @synthesize webViewConfiguration=_webViewConfiguration;
 @property(retain, nonatomic) SPTInAppMessageServiceLogger *serviceLogger; // @synthesize serviceLogger=_serviceLogger;
 @property(retain, nonatomic) SPTInAppMessageActionFactory *actionFactory; // @synthesize actionFactory=_actionFactory;
-@property(retain, nonatomic) SPTInAppMessageTrigger *trigger; // @synthesize trigger=_trigger;
-@property(readonly, nonatomic) SPTInAppMessageNoteMessage *noteMessage; // @synthesize noteMessage=_noteMessage;
-@property(retain, nonatomic) WKWebView *webview; // @synthesize webview=_webview;
+@property(retain, nonatomic) SPTInAppMessageScriptMessageHandler *messageHandler; // @synthesize messageHandler=_messageHandler;
 @property(nonatomic) double presentationStartTime; // @synthesize presentationStartTime=_presentationStartTime;
+@property(retain, nonatomic) SPTInAppMessageTrigger *trigger; // @synthesize trigger=_trigger;
+@property(nonatomic) double noteHeight; // @synthesize noteHeight=_noteHeight;
+@property(readonly, nonatomic) WKWebView *webview; // @synthesize webview=_webview;
+@property(readonly, nonatomic) SPTInAppMessageNoteMessage *noteMessage; // @synthesize noteMessage=_noteMessage;
 @property(nonatomic) __weak id <SPTInAppMessageNoteMessageWebViewContentDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
-- (void)cancelNoteMessagePresentation:(id)arg1;
-- (void)logMessageDiscarded;
 - (void)logTriggerMessagePresentationPerformace;
-- (void)didReceieveNotification:(id)arg1;
-- (void)userContentController:(id)arg1 didReceiveScriptMessage:(id)arg2;
+- (void)didReceiveWebviewEvent:(id)arg1;
+- (void)didReceieveActionNotification:(id)arg1;
+- (void)didReceiveNotification:(id)arg1;
 - (void)setupWebview;
-- (id)initWithNoteMessage:(id)arg1 trigger:(id)arg2 actionFactory:(id)arg3 serviceLogger:(id)arg4 driverDistractionController:(id)arg5;
-
-// Remaining properties
-@property(readonly, copy) NSString *debugDescription;
-@property(readonly, copy) NSString *description;
-@property(readonly) unsigned long long hash;
-@property(readonly) Class superclass;
+- (void)dealloc;
+- (id)initWithNoteMessage:(id)arg1 trigger:(id)arg2 actionFactory:(id)arg3 serviceLogger:(id)arg4;
 
 @end
 

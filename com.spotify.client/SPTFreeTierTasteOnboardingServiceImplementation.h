@@ -6,14 +6,13 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTFeatureFlagSignalObserver-Protocol.h"
 #import "SPTFreeTierTasteOnboardingService-Protocol.h"
 #import "SPTURISubtypeHandler-Protocol.h"
 
-@class NSString, SPTAllocationContext, SPTFreeTierTasteOnboardingCurator, SPTFreeTierTasteOnboardingFlowCoordinator, SPTFreeTierTasteOnboardingOfflineStateAggregateManager, SPTFreeTierTasteOnboardingTestManagerImplementation;
-@protocol FollowFeature, SPTAudioPreviewService, SPTCollectionPlatformService, SPTContainerService, SPTFeatureFlagSignal, SPTFeatureFlaggingService, SPTFreeTierService, SPTGLUEService, SPTLoginService, SPTNetworkService, SPTSessionService, SPTSettingsFeature, SPTUIPresentationService, SPTURIDispatchService;
+@class NSString, SPTAllocationContext, SPTFreeTierTasteOnboardingCurator, SPTFreeTierTasteOnboardingDeeplinkServiceImplementation, SPTFreeTierTasteOnboardingFlowCoordinator, SPTFreeTierTasteOnboardingTestManagerImplementation;
+@protocol FollowFeature, SPTAudioPreviewService, SPTCollectionPlatformService, SPTContainerService, SPTFeatureFlaggingService, SPTFreeTierService, SPTGLUEService, SPTHomeMixUIService, SPTInstrumentationService, SPTLoginService, SPTMandatoryPremiumTrialService, SPTNetworkService, SPTPerformanceMetricsService, SPTPodcastOnboardingService, SPTSessionService, SPTSettingsFeature, SPTUIPresentationService, SPTURIDispatchService;
 
-@interface SPTFreeTierTasteOnboardingServiceImplementation : NSObject <SPTFeatureFlagSignalObserver, SPTFreeTierTasteOnboardingService, SPTURISubtypeHandler>
+@interface SPTFreeTierTasteOnboardingServiceImplementation : NSObject <SPTFreeTierTasteOnboardingService, SPTURISubtypeHandler>
 {
     id <SPTAudioPreviewService> _audioPreviewService;
     id <SPTSessionService> _clientSessionService;
@@ -23,31 +22,37 @@
     id <SPTFreeTierService> _freeTierService;
     id <FollowFeature> _followService;
     id <SPTGLUEService> _glueService;
+    id <SPTHomeMixUIService> _homeMixUIService;
     id <SPTLoginService> _loginService;
     id <SPTNetworkService> _networkService;
-    id <SPTSettingsFeature> _settings;
+    id <SPTSettingsFeature> _settingsFeature;
     id <SPTUIPresentationService> _uiPresentationService;
     id <SPTURIDispatchService> _uriDispatchService;
+    id <SPTInstrumentationService> _instrumentationService;
+    id <SPTPerformanceMetricsService> _performanceMetricsService;
+    SPTFreeTierTasteOnboardingDeeplinkServiceImplementation *_onboardingDeeplinkService;
+    id <SPTMandatoryPremiumTrialService> _mandatoryPremiumTrialService;
+    id <SPTPodcastOnboardingService> _podcastOnboardingService;
     SPTFreeTierTasteOnboardingCurator *_curator;
-    SPTFreeTierTasteOnboardingOfflineStateAggregateManager *_offlineStateAggregateManager;
     SPTFreeTierTasteOnboardingFlowCoordinator *_flowCoordinator;
     SPTFreeTierTasteOnboardingTestManagerImplementation *_testManager;
-    id <SPTFeatureFlagSignal> _freeTierEnabledSignal;
-    id <SPTFeatureFlagSignal> _onboardingIPadEnabledFlagSignal;
 }
 
 + (id)serviceIdentifier;
-@property(retain, nonatomic) id <SPTFeatureFlagSignal> onboardingIPadEnabledFlagSignal; // @synthesize onboardingIPadEnabledFlagSignal=_onboardingIPadEnabledFlagSignal;
-@property(retain, nonatomic) id <SPTFeatureFlagSignal> freeTierEnabledSignal; // @synthesize freeTierEnabledSignal=_freeTierEnabledSignal;
 @property(retain, nonatomic) SPTFreeTierTasteOnboardingTestManagerImplementation *testManager; // @synthesize testManager=_testManager;
 @property(retain, nonatomic) SPTFreeTierTasteOnboardingFlowCoordinator *flowCoordinator; // @synthesize flowCoordinator=_flowCoordinator;
-@property(retain, nonatomic) SPTFreeTierTasteOnboardingOfflineStateAggregateManager *offlineStateAggregateManager; // @synthesize offlineStateAggregateManager=_offlineStateAggregateManager;
 @property(retain, nonatomic) SPTFreeTierTasteOnboardingCurator *curator; // @synthesize curator=_curator;
+@property(nonatomic) __weak id <SPTPodcastOnboardingService> podcastOnboardingService; // @synthesize podcastOnboardingService=_podcastOnboardingService;
+@property(nonatomic) __weak id <SPTMandatoryPremiumTrialService> mandatoryPremiumTrialService; // @synthesize mandatoryPremiumTrialService=_mandatoryPremiumTrialService;
+@property(nonatomic) __weak SPTFreeTierTasteOnboardingDeeplinkServiceImplementation *onboardingDeeplinkService; // @synthesize onboardingDeeplinkService=_onboardingDeeplinkService;
+@property(nonatomic) __weak id <SPTPerformanceMetricsService> performanceMetricsService; // @synthesize performanceMetricsService=_performanceMetricsService;
+@property(nonatomic) __weak id <SPTInstrumentationService> instrumentationService; // @synthesize instrumentationService=_instrumentationService;
 @property(nonatomic) __weak id <SPTURIDispatchService> uriDispatchService; // @synthesize uriDispatchService=_uriDispatchService;
 @property(nonatomic) __weak id <SPTUIPresentationService> uiPresentationService; // @synthesize uiPresentationService=_uiPresentationService;
-@property(nonatomic) __weak id <SPTSettingsFeature> settings; // @synthesize settings=_settings;
+@property(nonatomic) __weak id <SPTSettingsFeature> settingsFeature; // @synthesize settingsFeature=_settingsFeature;
 @property(nonatomic) __weak id <SPTNetworkService> networkService; // @synthesize networkService=_networkService;
 @property(nonatomic) __weak id <SPTLoginService> loginService; // @synthesize loginService=_loginService;
+@property(nonatomic) __weak id <SPTHomeMixUIService> homeMixUIService; // @synthesize homeMixUIService=_homeMixUIService;
 @property(nonatomic) __weak id <SPTGLUEService> glueService; // @synthesize glueService=_glueService;
 @property(nonatomic) __weak id <FollowFeature> followService; // @synthesize followService=_followService;
 @property(nonatomic) __weak id <SPTFreeTierService> freeTierService; // @synthesize freeTierService=_freeTierService;
@@ -57,22 +62,19 @@
 @property(nonatomic) __weak id <SPTSessionService> clientSessionService; // @synthesize clientSessionService=_clientSessionService;
 @property(nonatomic) __weak id <SPTAudioPreviewService> audioPreviewService; // @synthesize audioPreviewService=_audioPreviewService;
 - (void).cxx_destruct;
-- (void)featureFlagSignal:(id)arg1 hasAssumedState:(long long)arg2;
 - (long long)URISubtypeHandlerOpenURI:(id)arg1 context:(id)arg2;
 - (_Bool)URISubtypeHandlerCanHandleURI:(id)arg1;
 - (void)unregisterLinkHandler;
 - (void)registerLinkHandler;
 - (unsigned long long)tasteOnboardingFlowCoordinatorStateForURI:(id)arg1;
 - (void)initializeFlowCoordinator;
-- (void)initializeOfflineStateAggregateManager;
 - (void)initializeCurator;
 - (void)setupTestManager;
 - (id)provideCoordinator;
 - (id)provideCurator;
 - (_Bool)isMinimumTasteGatheringCompleted;
 @property(readonly, nonatomic, getter=isOnboardingCoordinationEnabled) _Bool onboardingCoordinationEnabled;
-- (void)disableFreeTierTasteOnboardingService;
-- (void)enableFreeTierTasteOnboardingService;
+- (void)unload;
 - (void)load;
 - (void)configureWithServices:(id)arg1;
 

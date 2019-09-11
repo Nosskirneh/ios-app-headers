@@ -6,18 +6,18 @@
 
 #import <objc/NSObject.h>
 
-#import "EXP_HUBComponent-Protocol.h"
+#import "HUBComponent-Protocol.h"
 
 @class NSSet;
-@protocol EXP_HUGSStyleOverrider, GLUETheme;
+@protocol GLUETheme, HUGSStyleOverrider;
 
-@interface SPTFreeTierUILargeEntityRowComponent : NSObject <EXP_HUBComponent>
+@interface SPTFreeTierUILargeEntityRowComponent : NSObject <HUBComponent>
 {
     id <GLUETheme> _theme;
-    id <EXP_HUGSStyleOverrider> _styleOverrider;
+    id <HUGSStyleOverrider> _styleOverrider;
 }
 
-@property(readonly, nonatomic) id <EXP_HUGSStyleOverrider> styleOverrider; // @synthesize styleOverrider=_styleOverrider;
+@property(readonly, nonatomic) id <HUGSStyleOverrider> styleOverrider; // @synthesize styleOverrider=_styleOverrider;
 @property(readonly, nonatomic) id <GLUETheme> theme; // @synthesize theme=_theme;
 - (void).cxx_destruct;
 - (struct CGSize)preferredViewSizeForDisplayingModel:(id)arg1 containerViewSize:(struct CGSize)arg2;

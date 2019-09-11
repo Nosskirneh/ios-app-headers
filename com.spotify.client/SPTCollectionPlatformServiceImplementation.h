@@ -10,7 +10,7 @@
 #import "SPTService-Protocol.h"
 
 @class NSString, SPTAllocationContext, SPTCollectionLoggerImplementation;
-@protocol CosmosFeature, SPTAbbaService, SPTCollectionPlatform, SPTCollectionPlatformConfiguration, SPTCollectionPlatformStateProvider, SPTCollectionPlatformTestManager, SPTContainerService, SPTContainerUIService, SPTCosmosDataLoaderService, SPTFeatureFlaggingService, SPTFreeTierEducationService, SPTFreeTierService, SPTResolver, SPTSessionService, SPTSettingsFeature;
+@protocol CosmosFeature, SPTAbbaService, SPTCollectionPlatform, SPTCollectionPlatformConfiguration, SPTCollectionPlatformStateProvider, SPTCollectionPlatformTestManager, SPTContainerService, SPTContainerUIService, SPTCosmosDataLoaderService, SPTFeatureFlaggingService, SPTFreeTierService, SPTNowPlayingPlatformService, SPTResolver, SPTSessionService, SPTSettingsFeature, SPTSnackbarService;
 
 @interface SPTCollectionPlatformServiceImplementation : NSObject <SPTService, SPTCollectionPlatformService>
 {
@@ -20,10 +20,11 @@
     id <SPTCosmosDataLoaderService> _cosmosDataLoaderService;
     id <SPTFreeTierService> _freeTierService;
     id <SPTFeatureFlaggingService> _featureFlaggingService;
-    id <SPTSettingsFeature> _settings;
+    id <SPTSettingsFeature> _settingsFeature;
     id <SPTContainerService> _containerService;
     id <SPTContainerUIService> _containerUIService;
-    id <SPTFreeTierEducationService> _freeTierEducationService;
+    id <SPTSnackbarService> _snackbarService;
+    id <SPTNowPlayingPlatformService> _nowPlayingPlatformService;
     id <SPTCollectionPlatformTestManager> _testManager;
     id <SPTCollectionPlatformConfiguration> _collectionConfiguration;
     id <SPTCollectionPlatform> _collectionPlatform;
@@ -39,10 +40,11 @@
 @property(retain, nonatomic) id <SPTCollectionPlatform> collectionPlatform; // @synthesize collectionPlatform=_collectionPlatform;
 @property(retain, nonatomic) id <SPTCollectionPlatformConfiguration> collectionConfiguration; // @synthesize collectionConfiguration=_collectionConfiguration;
 @property(retain, nonatomic) id <SPTCollectionPlatformTestManager> testManager; // @synthesize testManager=_testManager;
-@property(nonatomic) __weak id <SPTFreeTierEducationService> freeTierEducationService; // @synthesize freeTierEducationService=_freeTierEducationService;
+@property(nonatomic) __weak id <SPTNowPlayingPlatformService> nowPlayingPlatformService; // @synthesize nowPlayingPlatformService=_nowPlayingPlatformService;
+@property(nonatomic) __weak id <SPTSnackbarService> snackbarService; // @synthesize snackbarService=_snackbarService;
 @property(nonatomic) __weak id <SPTContainerUIService> containerUIService; // @synthesize containerUIService=_containerUIService;
 @property(nonatomic) __weak id <SPTContainerService> containerService; // @synthesize containerService=_containerService;
-@property(nonatomic) __weak id <SPTSettingsFeature> settings; // @synthesize settings=_settings;
+@property(nonatomic) __weak id <SPTSettingsFeature> settingsFeature; // @synthesize settingsFeature=_settingsFeature;
 @property(nonatomic) __weak id <SPTFeatureFlaggingService> featureFlaggingService; // @synthesize featureFlaggingService=_featureFlaggingService;
 @property(nonatomic) __weak id <SPTFreeTierService> freeTierService; // @synthesize freeTierService=_freeTierService;
 @property(nonatomic) __weak id <SPTCosmosDataLoaderService> cosmosDataLoaderService; // @synthesize cosmosDataLoaderService=_cosmosDataLoaderService;

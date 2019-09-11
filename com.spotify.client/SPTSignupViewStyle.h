@@ -12,8 +12,6 @@
 
 @interface SPTSignupViewStyle : NSObject <GLUEStyle>
 {
-    GLUEGradientStyle *_stepOneBackgroundGradientStyle;
-    GLUEGradientStyle *_stepTwoBackgroundGradientStyle;
     GLUEGradientStyle *_stepThreeBackgroundGradientStyle;
     GLUELabelStyle *_titleLabelStyle;
     SPTLoginInputFormViewStyle *_inputFormStyle;
@@ -24,14 +22,12 @@
     double _actionButtonTopMargin;
     UIColor *_stepTwoPickerButtonColor;
     UIFont *_stepTwoPickerButtonFont;
-    UIColor *_stepTwoPickerViewBackgroundColor;
     double _stepThreeTermsViewMargin;
     SPTSignupTermsAndPolicyViewStyle *_termsViewStyle;
 }
 
 @property(copy, nonatomic) SPTSignupTermsAndPolicyViewStyle *termsViewStyle; // @synthesize termsViewStyle=_termsViewStyle;
 @property(nonatomic) double stepThreeTermsViewMargin; // @synthesize stepThreeTermsViewMargin=_stepThreeTermsViewMargin;
-@property(copy, nonatomic) UIColor *stepTwoPickerViewBackgroundColor; // @synthesize stepTwoPickerViewBackgroundColor=_stepTwoPickerViewBackgroundColor;
 @property(copy, nonatomic) UIFont *stepTwoPickerButtonFont; // @synthesize stepTwoPickerButtonFont=_stepTwoPickerButtonFont;
 @property(copy, nonatomic) UIColor *stepTwoPickerButtonColor; // @synthesize stepTwoPickerButtonColor=_stepTwoPickerButtonColor;
 @property(nonatomic) double actionButtonTopMargin; // @synthesize actionButtonTopMargin=_actionButtonTopMargin;
@@ -42,8 +38,6 @@
 @property(copy, nonatomic) SPTLoginInputFormViewStyle *inputFormStyle; // @synthesize inputFormStyle=_inputFormStyle;
 @property(copy, nonatomic) GLUELabelStyle *titleLabelStyle; // @synthesize titleLabelStyle=_titleLabelStyle;
 @property(copy, nonatomic) GLUEGradientStyle *stepThreeBackgroundGradientStyle; // @synthesize stepThreeBackgroundGradientStyle=_stepThreeBackgroundGradientStyle;
-@property(copy, nonatomic) GLUEGradientStyle *stepTwoBackgroundGradientStyle; // @synthesize stepTwoBackgroundGradientStyle=_stepTwoBackgroundGradientStyle;
-@property(copy, nonatomic) GLUEGradientStyle *stepOneBackgroundGradientStyle; // @synthesize stepOneBackgroundGradientStyle=_stepOneBackgroundGradientStyle;
 - (void).cxx_destruct;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 

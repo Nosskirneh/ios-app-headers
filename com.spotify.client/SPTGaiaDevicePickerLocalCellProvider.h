@@ -8,14 +8,14 @@
 
 #import "SPTGaiaDevicePickerCellProvider-Protocol.h"
 
-@class NSString, SPTGaiaAirplayManager, SPTGaiaDeviceAppearanceMapping, SPTGaiaDevicePickerAppearanceManager, SPTPlayerState, UIDevice;
-@protocol SPTGaiaActiveDeviceProvider;
+@class NSString, SPTGaiaDeviceAppearanceMapping, SPTGaiaDevicePickerAppearanceManager, SPTPlayerState, UIDevice;
+@protocol SPTGaiaActiveDeviceProvider, SPTGaiaWirelessRoutesAPI;
 
 @interface SPTGaiaDevicePickerLocalCellProvider : NSObject <SPTGaiaDevicePickerCellProvider>
 {
     _Bool _playbackRestricted;
     UIDevice *_localDevice;
-    SPTGaiaAirplayManager *_airplayManager;
+    id <SPTGaiaWirelessRoutesAPI> _wirelessRoutesManager;
     id <SPTGaiaActiveDeviceProvider> _activeDeviceProvider;
     SPTPlayerState *_playerState;
     SPTGaiaDeviceAppearanceMapping *_deviceIconMapper;
@@ -27,7 +27,7 @@
 @property(readonly, nonatomic) _Bool playbackRestricted; // @synthesize playbackRestricted=_playbackRestricted;
 @property(readonly, nonatomic) SPTPlayerState *playerState; // @synthesize playerState=_playerState;
 @property(readonly, nonatomic) id <SPTGaiaActiveDeviceProvider> activeDeviceProvider; // @synthesize activeDeviceProvider=_activeDeviceProvider;
-@property(readonly, nonatomic) SPTGaiaAirplayManager *airplayManager; // @synthesize airplayManager=_airplayManager;
+@property(readonly, nonatomic) id <SPTGaiaWirelessRoutesAPI> wirelessRoutesManager; // @synthesize wirelessRoutesManager=_wirelessRoutesManager;
 @property(readonly, nonatomic) UIDevice *localDevice; // @synthesize localDevice=_localDevice;
 - (void).cxx_destruct;
 - (id)cellForTableView:(id)arg1 atIndexPath:(id)arg2;
@@ -36,10 +36,12 @@
 - (_Bool)shouldDisplayDeviceAsShuffleOnly;
 - (id)subtitle;
 - (id)title;
+- (id)inlineDeviceDisplayName;
 - (id)deviceDisplayName;
 - (_Bool)isDeviceDisabled;
 - (_Bool)isDeviceActive;
-- (id)initWithLocalDevice:(id)arg1 airplayManager:(id)arg2 activeDeviceProvider:(id)arg3 playerState:(id)arg4 playbackRestricted:(_Bool)arg5 deviceIconMapper:(id)arg6 appearanceManager:(id)arg7;
+- (_Bool)isNotConnected;
+- (id)initWithLocalDevice:(id)arg1 wirelessRoutesManager:(id)arg2 activeDeviceProvider:(id)arg3 playerState:(id)arg4 playbackRestricted:(_Bool)arg5 deviceIconMapper:(id)arg6 appearanceManager:(id)arg7;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

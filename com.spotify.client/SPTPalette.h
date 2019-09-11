@@ -8,11 +8,11 @@
 
 #import "NSCopying-Protocol.h"
 
-@class NSDictionary, NSOrderedSet, SPTPaletteSwatch;
+@class NSDictionary, NSSet, SPTPaletteSwatch;
 
 @interface SPTPalette : NSObject <NSCopying>
 {
-    NSOrderedSet *_allSwatches;
+    NSSet *_allSwatches;
     NSDictionary *_selectedSwatches;
 }
 
@@ -22,7 +22,7 @@
 + (id)maxScoredSwatchForTarget:(id)arg1 swatches:(id)arg2 usedColors:(id)arg3;
 + (id)dominantSwatchFromSwatches:(id)arg1;
 @property(readonly, copy, nonatomic) NSDictionary *selectedSwatches; // @synthesize selectedSwatches=_selectedSwatches;
-@property(readonly, copy, nonatomic) NSOrderedSet *allSwatches; // @synthesize allSwatches=_allSwatches;
+@property(readonly, copy, nonatomic) NSSet *allSwatches; // @synthesize allSwatches=_allSwatches;
 - (void).cxx_destruct;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (unsigned long long)hash;

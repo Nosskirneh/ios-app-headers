@@ -10,7 +10,7 @@
 {
 }
 
-+ (id)eventSequenceIDForDeviceID:(id)arg1 installID:(id)arg2;
++ (id)eventSequenceIDWithInstallID:(id)arg1;
 
 @end
 

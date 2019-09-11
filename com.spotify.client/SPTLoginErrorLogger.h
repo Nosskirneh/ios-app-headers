@@ -6,19 +6,19 @@
 
 #import <objc/NSObject.h>
 
-@protocol SPTAdjustUserTrackerProtocol;
+@protocol SPTLoginLogger;
 
 @interface SPTLoginErrorLogger : NSObject
 {
-    id <SPTAdjustUserTrackerProtocol> _adjustTracker;
+    id <SPTLoginLogger> _logger;
 }
 
-@property(retain, nonatomic) id <SPTAdjustUserTrackerProtocol> adjustTracker; // @synthesize adjustTracker=_adjustTracker;
+@property(retain, nonatomic) id <SPTLoginLogger> logger; // @synthesize logger=_logger;
 - (void).cxx_destruct;
-- (long long)adjustErrorIdentifierForErrorCode:(unsigned long long)arg1;
-- (void)logFacebookErrorWithCode:(unsigned long long)arg1 screenIdentifier:(unsigned long long)arg2;
-- (void)logErrorWithCode:(unsigned long long)arg1 fieldIdentifier:(unsigned long long)arg2 screenIdentifier:(unsigned long long)arg3;
-- (id)initWithAdjustTracker:(id)arg1;
+- (id)adjustErrorIdentifierForErrorCode:(unsigned long long)arg1;
+- (void)logFacebookErrorWithCode:(unsigned long long)arg1 screenIdentifier:(id)arg2;
+- (void)logErrorWithCode:(unsigned long long)arg1 fieldIdentifier:(id)arg2 screenIdentifier:(id)arg3;
+- (id)initWithLogger:(id)arg1;
 
 @end
 

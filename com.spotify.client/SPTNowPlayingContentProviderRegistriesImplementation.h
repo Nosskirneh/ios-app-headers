@@ -8,22 +8,18 @@
 
 #import "SPTNowPlayingContentProviderRegistries-Protocol.h"
 
-@class NSString, SPTNowPlayingBarContentProviderRegistryImplementation, SPTNowPlayingCarouselContentProviderRegistryImplementation, SPTNowPlayingScrollDataSourceImplementation, SPTNowPlayingShowsFormatDecorationContentProviderRegistryImplementation;
+@class NSString, SPTNowPlayingCarouselContentProviderRegistryImplementation, SPTNowPlayingScrollDataSourceImplementation;
 
 @interface SPTNowPlayingContentProviderRegistriesImplementation : NSObject <SPTNowPlayingContentProviderRegistries>
 {
-    SPTNowPlayingBarContentProviderRegistryImplementation *_barContentProviderRegistry;
     SPTNowPlayingCarouselContentProviderRegistryImplementation *_carouselContentProviderRegistry;
     SPTNowPlayingScrollDataSourceImplementation *_trackModuleProviderRegistry;
     SPTNowPlayingCarouselContentProviderRegistryImplementation *_showsFormatCarouselContentProviderRegistry;
-    SPTNowPlayingShowsFormatDecorationContentProviderRegistryImplementation *_showsFormatDecorationContentProviderRegistry;
 }
 
-@property(retain, nonatomic) SPTNowPlayingShowsFormatDecorationContentProviderRegistryImplementation *showsFormatDecorationContentProviderRegistry; // @synthesize showsFormatDecorationContentProviderRegistry=_showsFormatDecorationContentProviderRegistry;
 @property(retain, nonatomic) SPTNowPlayingCarouselContentProviderRegistryImplementation *showsFormatCarouselContentProviderRegistry; // @synthesize showsFormatCarouselContentProviderRegistry=_showsFormatCarouselContentProviderRegistry;
 @property(retain, nonatomic) SPTNowPlayingScrollDataSourceImplementation *trackModuleProviderRegistry; // @synthesize trackModuleProviderRegistry=_trackModuleProviderRegistry;
 @property(retain, nonatomic) SPTNowPlayingCarouselContentProviderRegistryImplementation *carouselContentProviderRegistry; // @synthesize carouselContentProviderRegistry=_carouselContentProviderRegistry;
-@property(retain, nonatomic) SPTNowPlayingBarContentProviderRegistryImplementation *barContentProviderRegistry; // @synthesize barContentProviderRegistry=_barContentProviderRegistry;
 - (void).cxx_destruct;
 - (id)init;
 

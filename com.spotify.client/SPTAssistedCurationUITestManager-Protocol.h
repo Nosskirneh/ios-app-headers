@@ -7,6 +7,7 @@
 #import "NSObject-Protocol.h"
 
 @protocol SPTAssistedCurationUITestManager <NSObject>
+@property(readonly, nonatomic) _Bool shouldUseSnackBar;
 @property(readonly, nonatomic, getter=isAssistedCurationSearchAutocompleteEnabled) _Bool assistedCurationSearchAutocompleteEnabled;
 @end
 

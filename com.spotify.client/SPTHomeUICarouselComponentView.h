@@ -4,21 +4,21 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import "EXP_HUGSThemableComponentView.h"
+#import "HUGSThemableComponentView.h"
 
-#import "EXP_HUBComponentViewObserver-Protocol.h"
-#import "EXP_HUBComponentViewWithChildren-Protocol.h"
-#import "EXP_HUBComponentViewWithRestorableUIState-Protocol.h"
+#import "HUBComponentViewObserver-Protocol.h"
+#import "HUBComponentViewWithDraggableChildren-Protocol.h"
+#import "HUBComponentViewWithRestorableUIState-Protocol.h"
 #import "SPTHomeUICarouselLayoutDelegate-Protocol.h"
 #import "UICollectionViewDataSource-Protocol.h"
 #import "UICollectionViewDelegate-Protocol.h"
 
 @class NSString, SPTHomeUICarouselLayout, UICollectionView;
-@protocol EXP_HUBComponentViewChildDelegate, SPTHomeUICarouselChildSizingDelegate;
+@protocol HUBComponentViewChildDelegate, SPTHomeUICarouselChildSizingDelegate, UICollectionViewDragDelegate;
 
-@interface SPTHomeUICarouselComponentView : EXP_HUGSThemableComponentView <UICollectionViewDataSource, UICollectionViewDelegate, SPTHomeUICarouselLayoutDelegate, EXP_HUBComponentViewWithChildren, EXP_HUBComponentViewObserver, EXP_HUBComponentViewWithRestorableUIState>
+@interface SPTHomeUICarouselComponentView : HUGSThemableComponentView <UICollectionViewDataSource, UICollectionViewDelegate, SPTHomeUICarouselLayoutDelegate, HUBComponentViewWithDraggableChildren, HUBComponentViewObserver, HUBComponentViewWithRestorableUIState>
 {
-    id <EXP_HUBComponentViewChildDelegate> _childDelegate;
+    id <HUBComponentViewChildDelegate> _childDelegate;
     UICollectionView *_collectionView;
     SPTHomeUICarouselLayout *_layout;
     id <SPTHomeUICarouselChildSizingDelegate> _childSizingDelegate;
@@ -29,7 +29,7 @@
 @property(readonly, nonatomic) __weak id <SPTHomeUICarouselChildSizingDelegate> childSizingDelegate; // @synthesize childSizingDelegate=_childSizingDelegate;
 @property(readonly, nonatomic) SPTHomeUICarouselLayout *layout; // @synthesize layout=_layout;
 @property(readonly, nonatomic) UICollectionView *collectionView; // @synthesize collectionView=_collectionView;
-@property(nonatomic) __weak id <EXP_HUBComponentViewChildDelegate> childDelegate; // @synthesize childDelegate=_childDelegate;
+@property(nonatomic) __weak id <HUBComponentViewChildDelegate> childDelegate; // @synthesize childDelegate=_childDelegate;
 - (void).cxx_destruct;
 - (double)spacing;
 - (double)carouselLayoutTrailingSpace:(id)arg1;
@@ -42,9 +42,11 @@
 - (long long)collectionView:(id)arg1 numberOfItemsInSection:(long long)arg2;
 - (void)restoreUIState:(id)arg1;
 - (id)currentUIState;
+@property(nonatomic) __weak id <UICollectionViewDragDelegate> dragDelegate;
 - (void)viewDidDisappear;
 - (void)viewWillAppear;
 - (void)configureWithModel:(id)arg1;
+- (void)prepareForReuse;
 - (void)layoutSubviews;
 - (id)initWithTheme:(id)arg1 frame:(struct CGRect)arg2 childSizingDelegate:(id)arg3;
 

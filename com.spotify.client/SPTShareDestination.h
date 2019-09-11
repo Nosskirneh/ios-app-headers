@@ -17,6 +17,7 @@
     long long _destinationId;
 }
 
++ (id)iconForShareDestinationID:(long long)arg1;
 + (id)localizationMapping;
 @property(nonatomic) long long destinationId; // @synthesize destinationId=_destinationId;
 @property(readonly, nonatomic) NSString *URLFormat; // @synthesize URLFormat=_URLFormat;

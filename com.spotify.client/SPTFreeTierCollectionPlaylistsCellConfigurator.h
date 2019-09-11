@@ -28,15 +28,12 @@
 @property(readonly, nonatomic) SPTFreeTierCollectionGLUETheme *theme; // @synthesize theme=_theme;
 @property(retain, nonatomic) id <GLUEImageLoader> glueImageLoader; // @synthesize glueImageLoader=_glueImageLoader;
 - (void).cxx_destruct;
-- (void)updateStyles;
 - (void)setupTrailingAccessoryForCell:(id)arg1 withViewModel:(id)arg2;
 - (void)setupLeadingAccessoryForCell:(id)arg1 withViewModel:(id)arg2;
 - (void)setupContentViewForCell:(id)arg1;
 - (void)configureCell:(id)arg1 withViewModel:(id)arg2;
-- (void)configureSectionHeader:(id)arg1 withViewModel:(id)arg2;
-- (double)preferredHeaderHeightForSectionViewModel:(id)arg1;
 @property(readonly, nonatomic) double preferredCellHeight;
-- (id)initWithImageLoader:(id)arg1 theme:(id)arg2 compactMode:(_Bool)arg3;
+- (id)initWithImageLoader:(id)arg1 theme:(id)arg2 style:(id)arg3;
 
 @end
 

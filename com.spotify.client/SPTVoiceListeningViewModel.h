@@ -8,8 +8,8 @@
 
 #import "SPTVoiceSessionObserver-Protocol.h"
 
-@class NSString, NSTimer, SPTVoiceSessionPresentationOptions;
-@protocol SPTLocalSettings, SPTVoiceCommandAudioCuePlayer, SPTVoiceListeningViewModelDelegate, SPTVoiceListeningViewModelPresentationDelegate, SPTVoiceLoggerProtocol, SPTVoiceSession;
+@class NSString, NSTimer, SPTVoiceAudioRouteDetector, SPTVoiceSessionPresentationOptions;
+@protocol SPTLocalSettings, SPTVoiceCommandAudioCuePlayer, SPTVoiceListeningViewModelDelegate, SPTVoiceListeningViewModelPresentationDelegate, SPTVoiceLoggerProtocol, SPTVoiceSession><SPTVoiceSessionInternal;
 
 @interface SPTVoiceListeningViewModel : NSObject <SPTVoiceSessionObserver>
 {
@@ -26,7 +26,7 @@
     NSString *_transcriptsLabelText;
     NSString *_trySayingLabelText;
     unsigned long long _interactionMode;
-    id <SPTVoiceSession> _voiceSession;
+    id <SPTVoiceSession><SPTVoiceSessionInternal> _voiceSession;
     SPTVoiceSessionPresentationOptions *_options;
     id <SPTVoiceCommandAudioCuePlayer> _audioCuePlayer;
     id <SPTVoiceLoggerProtocol> _logger;
@@ -34,10 +34,16 @@
     NSTimer *_suggestionTimer;
     NSString *_suggestionText;
     unsigned long long _audioCueToPlay;
+    NSTimer *_firstUtteranceTimer;
+    double _noUtteranceIntervalTimeout;
+    SPTVoiceAudioRouteDetector *_audioRouteDetector;
     unsigned long long _listeningMode;
 }
 
 @property(nonatomic) unsigned long long listeningMode; // @synthesize listeningMode=_listeningMode;
+@property(retain, nonatomic) SPTVoiceAudioRouteDetector *audioRouteDetector; // @synthesize audioRouteDetector=_audioRouteDetector;
+@property(nonatomic) double noUtteranceIntervalTimeout; // @synthesize noUtteranceIntervalTimeout=_noUtteranceIntervalTimeout;
+@property(retain, nonatomic) NSTimer *firstUtteranceTimer; // @synthesize firstUtteranceTimer=_firstUtteranceTimer;
 @property(nonatomic) unsigned long long audioCueToPlay; // @synthesize audioCueToPlay=_audioCueToPlay;
 @property(retain, nonatomic) NSString *suggestionText; // @synthesize suggestionText=_suggestionText;
 @property(retain, nonatomic) NSTimer *suggestionTimer; // @synthesize suggestionTimer=_suggestionTimer;
@@ -45,7 +51,7 @@
 @property(readonly, nonatomic) id <SPTVoiceLoggerProtocol> logger; // @synthesize logger=_logger;
 @property(readonly, nonatomic) id <SPTVoiceCommandAudioCuePlayer> audioCuePlayer; // @synthesize audioCuePlayer=_audioCuePlayer;
 @property(readonly, nonatomic) SPTVoiceSessionPresentationOptions *options; // @synthesize options=_options;
-@property(readonly, nonatomic) id <SPTVoiceSession> voiceSession; // @synthesize voiceSession=_voiceSession;
+@property(readonly, nonatomic) id <SPTVoiceSession><SPTVoiceSessionInternal> voiceSession; // @synthesize voiceSession=_voiceSession;
 @property(nonatomic) unsigned long long interactionMode; // @synthesize interactionMode=_interactionMode;
 @property(retain, nonatomic) NSString *trySayingLabelText; // @synthesize trySayingLabelText=_trySayingLabelText;
 @property(retain, nonatomic) NSString *transcriptsLabelText; // @synthesize transcriptsLabelText=_transcriptsLabelText;
@@ -60,9 +66,10 @@
 @property(nonatomic) __weak id <SPTVoiceListeningViewModelPresentationDelegate> presentationDelegate; // @synthesize presentationDelegate=_presentationDelegate;
 @property(nonatomic) __weak id <SPTVoiceListeningViewModelDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
-- (void)stopVoiceSessionAndStopListening;
+- (void)timerFired;
+- (void)scheduleFirstUtteranceTimer;
+- (void)cancelFirstUtteranceTimer;
 - (void)applicationWillResign:(id)arg1;
-- (void)applicationDidEnterBackground:(id)arg1;
 - (void)logListeningMode:(unsigned long long)arg1;
 - (_Bool)shouldAnimateListeningInteraction;
 - (_Bool)shouldCenterPulsatingAnimation;
@@ -87,7 +94,7 @@
 - (void)voiceSessionWillStartListening:(id)arg1;
 - (void)logVoiceConsent;
 - (void)startListening;
-- (id)initWithSession:(id)arg1 options:(id)arg2 audioCuePlayer:(id)arg3 logger:(id)arg4 localSettings:(id)arg5;
+- (id)initWithSession:(id)arg1 options:(id)arg2 audioCuePlayer:(id)arg3 logger:(id)arg4 localSettings:(id)arg5 audioRouteDetector:(id)arg6;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

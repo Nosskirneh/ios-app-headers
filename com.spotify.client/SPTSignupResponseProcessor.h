@@ -21,6 +21,7 @@
 - (void).cxx_destruct;
 - (void)dataLoader:(id)arg1 didReceiveErrorResponse:(id)arg2;
 - (void)dataLoader:(id)arg1 didReceiveSuccessfulResponse:(id)arg2;
+- (id)extractLocalizedDescriptionFromResponseDictionary:(id)arg1 usingKey:(id)arg2 defaultDescription:(id)arg3;
 - (void)handleSuccesfulResponseDictionary:(id)arg1 validationCompletionBlock:(CDUnknownBlockType)arg2;
 - (id)errorForResponseError:(id)arg1 errorDomain:(id)arg2;
 - (id)errorForResponseDictionary:(id)arg1 errorDomain:(id)arg2;

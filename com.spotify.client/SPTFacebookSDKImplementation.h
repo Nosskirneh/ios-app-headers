@@ -28,7 +28,7 @@
 - (void)requestFacebookAccessToken:(CDUnknownBlockType)arg1;
 - (void)clearFacebookData;
 - (void)setAppID:(id)arg1;
-- (id)init;
+- (id)initWithFacebookLoginManager:(id)arg1;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

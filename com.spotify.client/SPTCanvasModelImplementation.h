@@ -20,9 +20,11 @@
     NSString *_artistName;
     NSURL *_entityURI;
     NSURL *_placeholderURI;
+    NSURL *_canvasURI;
 }
 
 + (unsigned long long)canvasContentTypeFromString:(id)arg1;
+@property(readonly, copy, nonatomic) NSURL *canvasURI; // @synthesize canvasURI=_canvasURI;
 @property(readonly, copy, nonatomic) NSURL *placeholderURI; // @synthesize placeholderURI=_placeholderURI;
 @property(readonly, copy, nonatomic) NSURL *entityURI; // @synthesize entityURI=_entityURI;
 @property(readonly, nonatomic) NSString *artistName; // @synthesize artistName=_artistName;
@@ -33,7 +35,7 @@
 @property(readonly, copy, nonatomic) NSString *canvasId; // @synthesize canvasId=_canvasId;
 - (void).cxx_destruct;
 - (_Bool)isEqual:(id)arg1;
-- (id)initWithCanvasId:(id)arg1 contentURL:(id)arg2 contentId:(id)arg3 type:(unsigned long long)arg4 artistURI:(id)arg5 artistName:(id)arg6 entityURI:(id)arg7 placeholderURI:(id)arg8;
+- (id)initWithCanvasId:(id)arg1 canvasURI:(id)arg2 contentURL:(id)arg3 contentId:(id)arg4 type:(unsigned long long)arg5 artistURI:(id)arg6 artistName:(id)arg7 entityURI:(id)arg8 placeholderURI:(id)arg9;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

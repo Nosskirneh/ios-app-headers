@@ -6,23 +6,32 @@
 
 #import <objc/NSObject.h>
 
-@protocol SPTLogCenter, SPTNowPlayingModeResolver, SPTNowPlayingTestManager;
+@protocol SPTInteractionLogger, SPTLogCenter, SPTNowPlayingBarInteractionEventFactory, SPTNowPlayingModeResolver, SPTNowPlayingViewPremiumDefaultInteractionEventFactory;
 
 @interface SPTNowPlayingLogger : NSObject
 {
     id <SPTLogCenter> _logCenter;
-    id <SPTNowPlayingTestManager> _testManager;
+    id <SPTInteractionLogger> _interactionLogger;
+    id <SPTNowPlayingBarInteractionEventFactory> _nowPlayingBarInteractionFactory;
+    id <SPTNowPlayingViewPremiumDefaultInteractionEventFactory> _nowPlayingViewInteractionFactory;
     id <SPTNowPlayingModeResolver> _modeResolver;
+    CDUnknownBlockType _likeActionResolver;
 }
 
-@property(readonly, nonatomic) id <SPTNowPlayingModeResolver> modeResolver; // @synthesize modeResolver=_modeResolver;
-@property(readonly, nonatomic) id <SPTNowPlayingTestManager> testManager; // @synthesize testManager=_testManager;
+@property(readonly, copy, nonatomic) CDUnknownBlockType likeActionResolver; // @synthesize likeActionResolver=_likeActionResolver;
+@property(readonly, nonatomic) __weak id <SPTNowPlayingModeResolver> modeResolver; // @synthesize modeResolver=_modeResolver;
+@property(retain, nonatomic) id <SPTNowPlayingViewPremiumDefaultInteractionEventFactory> nowPlayingViewInteractionFactory; // @synthesize nowPlayingViewInteractionFactory=_nowPlayingViewInteractionFactory;
+@property(retain, nonatomic) id <SPTNowPlayingBarInteractionEventFactory> nowPlayingBarInteractionFactory; // @synthesize nowPlayingBarInteractionFactory=_nowPlayingBarInteractionFactory;
+@property(retain, nonatomic) id <SPTInteractionLogger> interactionLogger; // @synthesize interactionLogger=_interactionLogger;
 @property(retain, nonatomic) id <SPTLogCenter> logCenter; // @synthesize logCenter=_logCenter;
 - (void).cxx_destruct;
-- (void)logInteractionRequestId:(id)arg1 featureId:(id)arg2 pageURI:(id)arg3 section:(id)arg4 targetURI:(id)arg5 type:(id)arg6 intent:(id)arg7;
+- (id)nowPlayingFeatureID;
+- (id)nowPlayingPageURI;
+- (void)logInteractionRequestId:(id)arg1 featureId:(id)arg2 pageURI:(id)arg3 section:(id)arg4 targetURI:(id)arg5 type:(id)arg6 intent:(id)arg7 action:(id)arg8;
+- (void)logSettingsPlayFeedBackSoundEnabled:(_Bool)arg1 itemIndex:(long long)arg2;
 - (void)logHideButtonTappedWithFeedbackButtonBehavior:(long long)arg1 playerState:(id)arg2;
+- (void)logBarHeartButtonTapped:(long long)arg1 playerState:(id)arg2;
 - (void)logHeartButtonTappedWithFeedbackButtonBehavior:(long long)arg1 playerState:(id)arg2;
-- (void)logNowPlayingScrollScrollWithModuleName:(id)arg1 moduleIndex:(long long)arg2 moduleLeadingEdge:(long long)arg3 modulePercentInView:(double)arg4 trackURI:(id)arg5;
 - (void)logNowPlayingRotatedPortraitWithPlayerState:(id)arg1;
 - (void)logNowPlayingRotatedLandscapeWithPlayerState:(id)arg1;
 - (void)logTapToOpenArtist:(id)arg1 playerState:(id)arg2;
@@ -32,7 +41,6 @@
 - (void)logBarTappedWithPlayerState:(id)arg1;
 - (void)logShuffleButtonTappedEnableShuffle:(_Bool)arg1 playerState:(id)arg2;
 - (void)logRepeatButtonTappedWithMode:(unsigned long long)arg1 playerState:(id)arg2;
-- (void)logCollectionButtonTappedWithBehavior:(long long)arg1 playerState:(id)arg2;
 - (void)logGoToAlbum:(id)arg1 playerState:(id)arg2;
 - (void)logOpenConnectButtonTappedWithPlayerState:(id)arg1;
 - (void)logGoToPlayContextButtonTappedWithPlayerState:(id)arg1 contextURI:(id)arg2;
@@ -47,13 +55,19 @@
 - (void)logSkipToNextTappedWithPlayerState:(id)arg1;
 - (void)logSkipToPreviousTappedWithPlayerState:(id)arg1;
 - (void)logPlayButtonTappedWithBehavior:(long long)arg1 playerState:(id)arg2;
-- (id)sectionIdForSection:(id)arg1;
+- (id)stringByPrependingModeToString:(id)arg1;
 - (id)intentForHidingControls:(_Bool)arg1;
 - (id)intentForShufflingState:(_Bool)arg1;
 - (id)intentForRepeatMode:(unsigned long long)arg1;
-- (id)intentForCollectionButtonBehavior:(long long)arg1;
 - (id)intentForPlayButtonBehavior:(long long)arg1;
-- (id)initWithLogCenter:(id)arg1 testManager:(id)arg2 modeResolver:(id)arg3;
+- (id)initWithLogCenter:(id)arg1 modeResolver:(id)arg2 likeActionResolver:(CDUnknownBlockType)arg3 interactionLogger:(id)arg4 nowPlayingBarInteractionFactory:(id)arg5 nowPlayingViewInteractionFactory:(id)arg6;
+- (void)ubi_logRemainingTimeLabelTapped;
+- (void)ubi_logTapToOpenArtist:(id)arg1 playerState:(id)arg2;
+- (void)ubi_logBarHeartButtonTapped:(long long)arg1 playerState:(id)arg2;
+- (void)ubi_logBarSwipeToOpenWithPlayerState:(id)arg1;
+- (void)ubi_logBarSwipeToPreviousWithPlayerState:(id)arg1;
+- (void)ubi_logBarSwipeToNextWithPlayerState:(id)arg1;
+- (void)ubi_logBarPlayButtonTappedWithBehavior:(long long)arg1 playerState:(id)arg2;
 
 @end
 

@@ -6,46 +6,46 @@
 
 #import <objc/NSObject.h>
 
-@class EXP_HUBComponentDefaults, EXP_HUBComponentRegistry, NSString, SPTAssistedCurationComponentModelURIResolver, SPTAssistedCurationGLUETheme;
-@protocol EXP_HUBIconImageResolver, EXP_SPTHubCommandHandlerFactory, EXP_SPTHubContentOperationFactory, EXP_SPTHubsRendererFactory, GLUEImageLoader, SPTAudioPreviewModelFactory, SPTAudioPreviewUIFactory, SPTExplicitContentAccessManager, SPTHubRemoteContentURLResolver, SPTHugsFactory, SPTLinkDispatcher, SPTSearchFancyRecentsDataSource;
+@class HUBComponentDefaults, HUBComponentRegistry, NSString, SPTAssistedCurationComponentModelURIResolver, SPTAssistedCurationDrillDownRemoteContentURLResolver, SPTAssistedCurationGLUETheme;
+@protocol GLUEImageLoader, HUBIconImageResolver, SPTAudioPreviewModelFactory, SPTAudioPreviewUIFactory, SPTExplicitContentAccessManager, SPTHubCommandHandlerFactory, SPTHubContentOperationFactory, SPTHubsRendererFactory, SPTHugsFactory, SPTLinkDispatcher, SPTSearchRecentsDataSource;
 
 @interface SPTAssistedCurationSearchResultDrillDownHubManager : NSObject
 {
     NSString *_serviceIdentifier;
-    id <EXP_SPTHubsRendererFactory> _hubsRendererFactory;
+    id <SPTHubsRendererFactory> _hubsRendererFactory;
     id <SPTHugsFactory> _hugsFactory;
-    id <SPTHubRemoteContentURLResolver> _remoteContentURLResolver;
+    SPTAssistedCurationDrillDownRemoteContentURLResolver *_remoteContentURLResolver;
     SPTAssistedCurationGLUETheme *_theme;
     id <SPTAudioPreviewModelFactory> _audioPreviewModelFactory;
     id <SPTAudioPreviewUIFactory> _audioPreviewUIFactory;
     id <SPTExplicitContentAccessManager> _explicitContentAccessManager;
     id <GLUEImageLoader> _glueImageLoader;
     id <SPTLinkDispatcher> _linkDispatcher;
-    id <SPTSearchFancyRecentsDataSource> _recentDataSource;
-    EXP_HUBComponentDefaults *_componentDefaults;
-    id <EXP_HUBIconImageResolver> _iconImageResolver;
+    id <SPTSearchRecentsDataSource> _recentDataSource;
+    HUBComponentDefaults *_componentDefaults;
+    id <HUBIconImageResolver> _iconImageResolver;
     SPTAssistedCurationComponentModelURIResolver *_componentModelURIResolver;
-    id <EXP_SPTHubCommandHandlerFactory> _commandHandlerFactory;
-    id <EXP_SPTHubContentOperationFactory> _contentOperationFactory;
-    EXP_HUBComponentRegistry *_componentRegistry;
+    id <SPTHubCommandHandlerFactory> _commandHandlerFactory;
+    id <SPTHubContentOperationFactory> _contentOperationFactory;
+    HUBComponentRegistry *_componentRegistry;
 }
 
-@property(readonly, nonatomic) EXP_HUBComponentRegistry *componentRegistry; // @synthesize componentRegistry=_componentRegistry;
-@property(readonly, nonatomic) id <EXP_SPTHubContentOperationFactory> contentOperationFactory; // @synthesize contentOperationFactory=_contentOperationFactory;
-@property(readonly, nonatomic) id <EXP_SPTHubCommandHandlerFactory> commandHandlerFactory; // @synthesize commandHandlerFactory=_commandHandlerFactory;
+@property(readonly, nonatomic) HUBComponentRegistry *componentRegistry; // @synthesize componentRegistry=_componentRegistry;
+@property(readonly, nonatomic) id <SPTHubContentOperationFactory> contentOperationFactory; // @synthesize contentOperationFactory=_contentOperationFactory;
+@property(readonly, nonatomic) id <SPTHubCommandHandlerFactory> commandHandlerFactory; // @synthesize commandHandlerFactory=_commandHandlerFactory;
 @property(readonly, nonatomic) SPTAssistedCurationComponentModelURIResolver *componentModelURIResolver; // @synthesize componentModelURIResolver=_componentModelURIResolver;
-@property(readonly, nonatomic) id <EXP_HUBIconImageResolver> iconImageResolver; // @synthesize iconImageResolver=_iconImageResolver;
-@property(readonly, nonatomic) EXP_HUBComponentDefaults *componentDefaults; // @synthesize componentDefaults=_componentDefaults;
-@property(readonly, nonatomic) id <SPTSearchFancyRecentsDataSource> recentDataSource; // @synthesize recentDataSource=_recentDataSource;
+@property(readonly, nonatomic) id <HUBIconImageResolver> iconImageResolver; // @synthesize iconImageResolver=_iconImageResolver;
+@property(readonly, nonatomic) HUBComponentDefaults *componentDefaults; // @synthesize componentDefaults=_componentDefaults;
+@property(readonly, nonatomic) id <SPTSearchRecentsDataSource> recentDataSource; // @synthesize recentDataSource=_recentDataSource;
 @property(readonly, nonatomic) id <SPTLinkDispatcher> linkDispatcher; // @synthesize linkDispatcher=_linkDispatcher;
 @property(readonly, nonatomic) id <GLUEImageLoader> glueImageLoader; // @synthesize glueImageLoader=_glueImageLoader;
 @property(readonly, nonatomic) id <SPTExplicitContentAccessManager> explicitContentAccessManager; // @synthesize explicitContentAccessManager=_explicitContentAccessManager;
 @property(readonly, nonatomic) id <SPTAudioPreviewUIFactory> audioPreviewUIFactory; // @synthesize audioPreviewUIFactory=_audioPreviewUIFactory;
 @property(readonly, nonatomic) id <SPTAudioPreviewModelFactory> audioPreviewModelFactory; // @synthesize audioPreviewModelFactory=_audioPreviewModelFactory;
 @property(readonly, nonatomic) SPTAssistedCurationGLUETheme *theme; // @synthesize theme=_theme;
-@property(readonly, nonatomic) id <SPTHubRemoteContentURLResolver> remoteContentURLResolver; // @synthesize remoteContentURLResolver=_remoteContentURLResolver;
+@property(readonly, nonatomic) SPTAssistedCurationDrillDownRemoteContentURLResolver *remoteContentURLResolver; // @synthesize remoteContentURLResolver=_remoteContentURLResolver;
 @property(readonly, nonatomic) id <SPTHugsFactory> hugsFactory; // @synthesize hugsFactory=_hugsFactory;
-@property(readonly, nonatomic) id <EXP_SPTHubsRendererFactory> hubsRendererFactory; // @synthesize hubsRendererFactory=_hubsRendererFactory;
+@property(readonly, nonatomic) id <SPTHubsRendererFactory> hubsRendererFactory; // @synthesize hubsRendererFactory=_hubsRendererFactory;
 @property(readonly, copy, nonatomic) NSString *serviceIdentifier; // @synthesize serviceIdentifier=_serviceIdentifier;
 - (void).cxx_destruct;
 - (id)provideCommandDispatcherWithViewURI:(id)arg1 referrerIdentifier:(id)arg2 interactionLogger:(id)arg3 commandRegistry:(id)arg4;

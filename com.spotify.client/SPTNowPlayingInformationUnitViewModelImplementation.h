@@ -6,22 +6,31 @@
 
 #import <objc/NSObject.h>
 
+#import "SPTNowPlayingAuxiliaryActionsHandlerObserver-Protocol.h"
 #import "SPTNowPlayingInformationUnitViewModel-Protocol.h"
 #import "SPTNowPlayingModelObserver-Protocol.h"
 
 @class NSString, SPTNowPlayingLogger, SPTNowPlayingModel;
-@protocol SPTLinkDispatcher, SPTNowPlayingInformationUnitViewModelDelegate;
+@protocol SPTLinkDispatcher, SPTNowPlayingAuxiliaryActionsHandler, SPTNowPlayingInformationUnitViewModelDelegate, SPTNowPlayingTestManager;
 
-@interface SPTNowPlayingInformationUnitViewModelImplementation : NSObject <SPTNowPlayingModelObserver, SPTNowPlayingInformationUnitViewModel>
+@interface SPTNowPlayingInformationUnitViewModelImplementation : NSObject <SPTNowPlayingModelObserver, SPTNowPlayingAuxiliaryActionsHandlerObserver, SPTNowPlayingInformationUnitViewModel>
 {
+    _Bool _shouldShowPositiveFeedback;
+    _Bool _centerAlignText;
     id <SPTNowPlayingInformationUnitViewModelDelegate> _delegate;
     SPTNowPlayingModel *_model;
     NSString *_title;
     NSString *_subtitle;
     SPTNowPlayingLogger *_logger;
     id <SPTLinkDispatcher> _linkDispatcher;
+    id <SPTNowPlayingAuxiliaryActionsHandler> _auxiliaryActionsHandler;
+    id <SPTNowPlayingTestManager> _testManager;
 }
 
+@property(nonatomic) _Bool centerAlignText; // @synthesize centerAlignText=_centerAlignText;
+@property(nonatomic) _Bool shouldShowPositiveFeedback; // @synthesize shouldShowPositiveFeedback=_shouldShowPositiveFeedback;
+@property(readonly, nonatomic) id <SPTNowPlayingTestManager> testManager; // @synthesize testManager=_testManager;
+@property(readonly, nonatomic) id <SPTNowPlayingAuxiliaryActionsHandler> auxiliaryActionsHandler; // @synthesize auxiliaryActionsHandler=_auxiliaryActionsHandler;
 @property(readonly, nonatomic) id <SPTLinkDispatcher> linkDispatcher; // @synthesize linkDispatcher=_linkDispatcher;
 @property(readonly, nonatomic) SPTNowPlayingLogger *logger; // @synthesize logger=_logger;
 @property(copy, nonatomic) NSString *subtitle; // @synthesize subtitle=_subtitle;
@@ -29,20 +38,21 @@
 @property(readonly, nonatomic) SPTNowPlayingModel *model; // @synthesize model=_model;
 @property(nonatomic) __weak id <SPTNowPlayingInformationUnitViewModelDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
-- (id)getContributingArtistNameAtIndex:(unsigned long long)arg1 fromTrackMetadata:(id)arg2;
-- (id)getMainArtistNameFromTrackMetadata:(id)arg1;
-- (id)getArtistsFromTrackMetadata:(id)arg1;
+- (void)auxiliaryActionsHandlerDidToggleCollectionState:(id)arg1;
 - (id)getCurrentSubtitleWithNowPlayingModel:(id)arg1;
 - (void)updateWithNowPlayingModel:(id)arg1;
 - (void)navigateToCurrentArtist;
 - (void)nowPlayingModel:(id)arg1 didMoveToRelativeTrack:(id)arg2;
 - (void)nowPlayingModelDidUpdateMetadata:(id)arg1;
+@property(readonly, nonatomic, getter=isFeedbackButtonSelected) _Bool feedbackButtonSelected;
+@property(readonly, nonatomic, getter=isFeedbackButtonEnabled) _Bool feedbackButtonEnabled;
+- (void)toggleCollectionStateFromViewController:(id)arg1 andActionControl:(id)arg2;
 - (void)navigateToSubtitleLink;
 - (void)navigateToCurrentAlbum;
 - (void)dealloc;
 - (void)stopObservers;
 - (void)startObservers;
-- (id)initWithNowPlayingModel:(id)arg1 linkDispatcher:(id)arg2 logger:(id)arg3;
+- (id)initWithNowPlayingModel:(id)arg1 linkDispatcher:(id)arg2 logger:(id)arg3 auxiliaryActionsHandler:(id)arg4 shouldShowPositiveFeedback:(_Bool)arg5 centerAlignText:(_Bool)arg6 testManager:(id)arg7;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

@@ -12,14 +12,13 @@
 #import "SPTPlayerObserver-Protocol.h"
 #import "SPTSortingFilteringPickerDelegate-Protocol.h"
 
-@class NSString, NSURL, SPTFreeTierCollectionLogger, SPTFreeTierCollectionSongsHeaderViewModelImplementation, SPTPlayOrigin, SPTPlayerState;
-@protocol SPContextMenuFeature, SPTAudioPreviewPlayer, SPTFreeTierCollectionEntityViewModelDelegate, SPTFreeTierCollectionSongsModel, SPTFreeTierCollectionTestManager, SPTFreeTierPreCurationTestManager, SPTOfflineModeState, SPTPlayer, SPTSortingFilteringUIFactory;
+@class NSArray, NSMutableDictionary, NSString, NSURL, SPTFreeTierCollectionLogger, SPTFreeTierCollectionSongsHeaderViewModelImplementation, SPTPlayOrigin, SPTPlayerState;
+@protocol SPContextMenuFeature, SPTAudioPreviewPlayer, SPTCollectionPlatformDataLoader, SPTFreeTierCollectionSongsModel, SPTFreeTierCollectionSongsViewModelDelegate, SPTFreeTierCollectionTestManager, SPTLinkDispatcher, SPTOfflineModeState, SPTPlayer, SPTSortingFilteringUIFactory;
 
 @interface SPTFreeTierCollectionSongsViewModelImplementation : NSObject <SPTFreeTierCollectionSongsHeaderViewModelActionDelegate, SPTPlayerObserver, SPTSortingFilteringPickerDelegate, SPTFreeTierCollectionSongsViewModel, SPTFreeTierCollectionSongsModelDelegate>
 {
-    _Bool _compactMode;
-    NSString *_title;
-    id <SPTFreeTierCollectionEntityViewModelDelegate> _delegate;
+    _Bool _scrollingToTop;
+    id <SPTFreeTierCollectionSongsViewModelDelegate> _delegate;
     id <SPTFreeTierCollectionSongsModel> _model;
     id <SPContextMenuFeature> _contextMenuFeature;
     SPTPlayOrigin *_playOrigin;
@@ -31,14 +30,19 @@
     unsigned long long _offlineAvailability;
     NSURL *_URL;
     id <SPTFreeTierCollectionTestManager> _testManager;
-    id <SPTFreeTierPreCurationTestManager> _preCurationTestManager;
     id <SPTSortingFilteringUIFactory> _sortingFilteringPickerFactory;
     id <SPTAudioPreviewPlayer> _audioPreviewPlayer;
+    id <SPTLinkDispatcher> _linkDispatcher;
+    id <SPTCollectionPlatformDataLoader> _collectionPlatformDataLoader;
+    NSMutableDictionary *_cachedArtistsMetadata;
 }
 
+@property(retain, nonatomic) NSMutableDictionary *cachedArtistsMetadata; // @synthesize cachedArtistsMetadata=_cachedArtistsMetadata;
+@property(readonly, nonatomic) id <SPTCollectionPlatformDataLoader> collectionPlatformDataLoader; // @synthesize collectionPlatformDataLoader=_collectionPlatformDataLoader;
+@property(readonly, nonatomic) id <SPTLinkDispatcher> linkDispatcher; // @synthesize linkDispatcher=_linkDispatcher;
+@property(nonatomic) _Bool scrollingToTop; // @synthesize scrollingToTop=_scrollingToTop;
 @property(readonly, nonatomic) id <SPTAudioPreviewPlayer> audioPreviewPlayer; // @synthesize audioPreviewPlayer=_audioPreviewPlayer;
 @property(retain, nonatomic) id <SPTSortingFilteringUIFactory> sortingFilteringPickerFactory; // @synthesize sortingFilteringPickerFactory=_sortingFilteringPickerFactory;
-@property(readonly, nonatomic) id <SPTFreeTierPreCurationTestManager> preCurationTestManager; // @synthesize preCurationTestManager=_preCurationTestManager;
 @property(readonly, nonatomic) id <SPTFreeTierCollectionTestManager> testManager; // @synthesize testManager=_testManager;
 @property(readonly, nonatomic) NSURL *URL; // @synthesize URL=_URL;
 @property(nonatomic) unsigned long long offlineAvailability; // @synthesize offlineAvailability=_offlineAvailability;
@@ -50,54 +54,68 @@
 @property(readonly, nonatomic) SPTPlayOrigin *playOrigin; // @synthesize playOrigin=_playOrigin;
 @property(readonly, nonatomic) __weak id <SPContextMenuFeature> contextMenuFeature; // @synthesize contextMenuFeature=_contextMenuFeature;
 @property(readonly, nonatomic) id <SPTFreeTierCollectionSongsModel> model; // @synthesize model=_model;
-@property(readonly, nonatomic, getter=isCompactMode) _Bool compactMode; // @synthesize compactMode=_compactMode;
-@property(nonatomic) __weak id <SPTFreeTierCollectionEntityViewModelDelegate> delegate; // @synthesize delegate=_delegate;
-@property(readonly, copy, nonatomic) NSString *title; // @synthesize title=_title;
+@property(nonatomic) __weak id <SPTFreeTierCollectionSongsViewModelDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
 - (void)player:(id)arg1 stateDidChange:(id)arg2 fromState:(id)arg3;
 - (void)songsHeaderViewModel:(id)arg1 presentSortingFilterPicker:(id)arg2;
 - (void)songsHeaderViewModel:(id)arg1 interactionType:(unsigned long long)arg2;
 - (void)songsHeaderViewModel:(id)arg1 textFilter:(id)arg2;
 - (void)playActionForSongsHeaderViewModel:(id)arg1;
-- (void)songsModelDidUpdate:(id)arg1;
+- (void)songsModelDidUpdate:(id)arg1 itemsCountChanged:(_Bool)arg2;
 - (void)songsModel:(id)arg1 error:(id)arg2;
+- (unsigned long long)globalIndexFromIndexPath:(id)arg1;
 - (id)trackURIAtIndexPath:(id)arg1;
-- (id)sectionIdForSectionType:(long long)arg1;
+- (id)sectionIdForSection:(long long)arg1;
 - (_Bool)isPlaying;
 - (void)didCancelSortingFilteringPicker:(id)arg1;
 - (void)sortingFilteringPicker:(id)arg1 deselectedFilterRule:(id)arg2;
 - (void)sortingFilteringPicker:(id)arg1 selectedFilterRule:(id)arg2;
 - (void)sortingFilteringPicker:(id)arg1 selectedSortRule:(id)arg2;
+- (void)didScrollToTop;
+- (void)willScrollToTop;
 - (id)sortingAndFilteringPickerViewController;
+@property(readonly, nonatomic) NSArray *activeFilterTitles;
 @property(readonly, nonatomic) unsigned long long filteredContentState;
 @property(copy, nonatomic) NSString *textFilter;
+- (unsigned long long)trailingAccessoryType;
 - (void)logFilterSortInteractionType:(unsigned long long)arg1;
+- (void)removeFilterAtIndex:(long long)arg1;
 - (void)resetFilters;
+- (_Bool)isSnackBarsUsedForMessaging;
 - (void)stopAudioPreviewViewPlayerForTrackURI:(id)arg1;
 - (void)stopAudioPreviewViewPlayer;
+- (void)logSwipeCellActionForIndexPath:(id)arg1;
+- (void)logCloseExtraSongsExplanation;
 - (void)logExtraSongsWhyAction;
 - (void)logPreviewWithAlbumCoverActionAtIndexPath:(id)arg1;
 - (void)endObservingTrackStateAtIndexPath:(id)arg1;
 - (void)startObservingTrackStateAtIndexPath:(id)arg1;
 - (void)toggleTrackBanAtIndexPath:(id)arg1;
 - (void)toggleTrackLikeAtIndexPath:(id)arg1;
+- (void)presentEntitySectionViewModel:(id)arg1;
 - (void)presentMenuForSongAtIndexPath:(id)arg1 withSenderControl:(id)arg2 andLogContext:(id)arg3;
+- (void)loadMetadataForArtistURL:(id)arg1 completion:(CDUnknownBlockType)arg2;
+- (id)artistsImageURLfromEntity:(id)arg1;
 - (void)setAvailableOffline:(_Bool)arg1;
 - (_Bool)isAdditionalControlsSection:(unsigned long long)arg1;
-- (_Bool)showSeparatorForSection:(long long)arg1;
 - (_Bool)showOfflineSyncControl;
+- (id)modelItemAtIndexPath:(id)arg1;
+- (long long)modelItemsSectionFromViewModelSection:(long long)arg1;
+- (_Bool)isRecommendedSection:(unsigned long long)arg1;
+- (_Bool)isSongsSections:(unsigned long long)arg1;
 - (long long)numberOfRowsInSections:(long long)arg1;
 - (id)sectionViewModelAtIndex:(unsigned long long)arg1;
 - (void)itemSelectedAtIndexPath:(id)arg1;
 - (id)itemAtIndexPath:(id)arg1;
 - (void)loadViewModel;
+@property(readonly, nonatomic, getter=isContentFiltered) _Bool contentFiltered;
 @property(readonly, nonatomic, getter=isSortingAndFilteringEnabled) _Bool sortingAndFilteringEnabled;
-@property(readonly, nonatomic, getter=isPreCurationEnabled) _Bool preCurationEnabled;
 @property(readonly, nonatomic, getter=isPreviewList) _Bool previewList;
 @property(readonly, nonatomic) unsigned long long numberSections;
+@property(readonly, nonatomic, getter=isGroupingEnabled) _Bool groupingEnabled;
 @property(readonly, nonatomic, getter=isEmpty) _Bool empty;
 @property(readonly, nonatomic, getter=isLoaded) _Bool loaded;
-- (id)initWithModel:(id)arg1 contextMenuFeature:(id)arg2 playOrigin:(id)arg3 player:(id)arg4 offlineModeState:(id)arg5 logger:(id)arg6 testManager:(id)arg7 preCurationTestManager:(id)arg8 sortingFilteringPickerFactory:(id)arg9 audioPreviewPlayer:(id)arg10;
+- (id)initWithModel:(id)arg1 contextMenuFeature:(id)arg2 playOrigin:(id)arg3 player:(id)arg4 offlineModeState:(id)arg5 logger:(id)arg6 testManager:(id)arg7 sortingFilteringPickerFactory:(id)arg8 audioPreviewPlayer:(id)arg9 collectionPlatformConfigurator:(id)arg10 linkDispatcher:(id)arg11 collectionPlatformDataLoader:(id)arg12;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

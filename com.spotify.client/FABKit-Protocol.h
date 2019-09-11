@@ -13,6 +13,7 @@
 + (NSString *)bundleIdentifier;
 
 @optional
++ (void)disableUninitializedKitMessaging;
 + (void)initializeIfNeeded;
 + (NSString *)kitBuildVersion;
 @end

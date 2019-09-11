@@ -13,6 +13,7 @@
 @interface SPTArtistAboutPreviewViewStyle : NSObject <GLUEStyle>
 {
     double _viewHeight;
+    double _noBiographyViewHeight;
     UIColor *_backgroundColor;
     GLUELabelStyle *_biographyLabelStyle;
     SPTArtistAboutMonthlyListenersViewStyle *_monthlyListenersViewStyle;
@@ -23,6 +24,7 @@
 @property(copy, nonatomic) SPTArtistAboutMonthlyListenersViewStyle *monthlyListenersViewStyle; // @synthesize monthlyListenersViewStyle=_monthlyListenersViewStyle;
 @property(copy, nonatomic) GLUELabelStyle *biographyLabelStyle; // @synthesize biographyLabelStyle=_biographyLabelStyle;
 @property(copy, nonatomic) UIColor *backgroundColor; // @synthesize backgroundColor=_backgroundColor;
+@property(nonatomic) double noBiographyViewHeight; // @synthesize noBiographyViewHeight=_noBiographyViewHeight;
 @property(nonatomic) double viewHeight; // @synthesize viewHeight=_viewHeight;
 - (void).cxx_destruct;
 - (id)copyWithZone:(struct _NSZone *)arg1;

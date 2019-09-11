@@ -9,7 +9,7 @@
 #import "SPTExternalIntegrationContentController-Protocol.h"
 
 @class NSMutableDictionary, NSSet, NSString, SPTExternalIntegrationPlatformLoggerImplementation, SPTObserverManager;
-@protocol SPTExternalIntegrationDebugLog, SPTReachabilityMonitor;
+@protocol SPTExplicitContentAccessManager, SPTExternalIntegrationDebugLog, SPTReachabilityMonitor;
 
 @interface SPTExternalIntegrationContentControllerImplementation : NSObject <SPTExternalIntegrationContentController>
 {
@@ -20,8 +20,10 @@
     id <SPTReachabilityMonitor> _reachabilityMonitor;
     id <SPTExternalIntegrationDebugLog> _debugLog;
     SPTExternalIntegrationPlatformLoggerImplementation *_logger;
+    id <SPTExplicitContentAccessManager> _explicitContentManager;
 }
 
+@property(readonly, nonatomic) id <SPTExplicitContentAccessManager> explicitContentManager; // @synthesize explicitContentManager=_explicitContentManager;
 @property(readonly, nonatomic) SPTExternalIntegrationPlatformLoggerImplementation *logger; // @synthesize logger=_logger;
 @property(readonly, nonatomic) id <SPTExternalIntegrationDebugLog> debugLog; // @synthesize debugLog=_debugLog;
 @property(readonly, nonatomic) id <SPTReachabilityMonitor> reachabilityMonitor; // @synthesize reachabilityMonitor=_reachabilityMonitor;
@@ -35,12 +37,14 @@
 - (id)contentProviderForChildContentWithParentURI:(id)arg1;
 - (id)contentProviderForContentWithURI:(id)arg1;
 - (void)requestRecommendedRootItemsFromSpacesWithIdentifier:(id)arg1 accessorySessionID:(id)arg2 withCompletionHandler:(CDUnknownBlockType)arg3;
+- (void)resolveChildContentAsFlatListOfParentsWithURIs:(id)arg1 options:(id)arg2 accessorySessionID:(id)arg3 withCompletionHandler:(CDUnknownBlockType)arg4;
 - (void)resolveChildContentOfParentWithURI:(id)arg1 options:(id)arg2 accessorySessionID:(id)arg3 withCompletionHandler:(CDUnknownBlockType)arg4;
 - (_Bool)canResolveChildContentWithParentURI:(id)arg1;
 - (id)sorterdArrayOfContent:(id)arg1 byRequestedURIs:(id)arg2;
 - (void)resolveContentWithURIs:(id)arg1 options:(id)arg2 withCompletionHandler:(CDUnknownBlockType)arg3;
 - (void)resolveContentWithURI:(id)arg1 options:(id)arg2 withCompletionHandler:(CDUnknownBlockType)arg3;
-- (id)initWithContentProviderRegistry:(id)arg1 reachabilityMonitor:(id)arg2 logger:(id)arg3 debugLog:(id)arg4;
+- (id)createPlaceholderContentItemForURI:(id)arg1 options:(id)arg2;
+- (id)initWithContentProviderRegistry:(id)arg1 reachabilityMonitor:(id)arg2 logger:(id)arg3 debugLog:(id)arg4 explicitContentManager:(id)arg5;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

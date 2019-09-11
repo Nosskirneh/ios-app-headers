@@ -6,16 +6,13 @@
 
 #import "NSObject-Protocol.h"
 
-@protocol SPTVideoPlaybackIdentity, SPTVideoSurface;
+@protocol SPTVideoSurface;
 
 @protocol SPTVideoSurfaceDelegate <NSObject>
 
 @optional
 - (void)videoSurfaceDidChangeVideoRect:(id <SPTVideoSurface>)arg1;
 - (void)videoSurfaceDidDetachVideo:(id <SPTVideoSurface>)arg1;
-- (void)videoSurfaceWillDetachVideo:(id <SPTVideoSurface>)arg1;
 - (void)videoSurfaceDidAttachVideo:(id <SPTVideoSurface>)arg1;
-- (void)videoSurfaceWillAttachVideo:(id <SPTVideoSurface>)arg1;
-- (_Bool)videoSurface:(id <SPTVideoSurface>)arg1 shouldDisplayVideoForIdentity:(id <SPTVideoPlaybackIdentity>)arg2;
 @end
 

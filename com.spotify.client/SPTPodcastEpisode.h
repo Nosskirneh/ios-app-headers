@@ -6,12 +6,11 @@
 
 #import <objc/NSObject.h>
 
-#import "NSCopying-Protocol.h"
-#import "SPTEpisode-Protocol.h"
+#import "SPTPodcastEpisode-Protocol.h"
 
 @class NSDate, NSString, NSURL;
 
-@interface SPTPodcastEpisode : NSObject <SPTEpisode, NSCopying>
+@interface SPTPodcastEpisode : NSObject <SPTPodcastEpisode>
 {
     _Bool _inCollection;
     _Bool _newEpisode;
@@ -21,7 +20,6 @@
     _Bool _played;
     _Bool _explicit;
     _Bool _followingPodcast;
-    unsigned long long _syncProgress;
     NSString *_title;
     NSString *_longDescription;
     NSString *_podcastTitle;
@@ -34,21 +32,27 @@
     NSURL *_imageURL;
     NSURL *_largeImageURL;
     NSURL *_podcastImageURL;
+    NSURL *_largePodcastImageURL;
     NSString *_manifestId;
     long long _offlineSyncStatus;
+    unsigned long long _syncProgress;
     double _lastPlayedAt;
 }
 
 + (id)stringFromTimeInterval:(double)arg1;
-+ (id)podcastEpisodeWithDictionary:(id)arg1 podcast:(id)arg2;
 @property(nonatomic, getter=isFollowingPodcast) _Bool followingPodcast; // @synthesize followingPodcast=_followingPodcast;
 @property(nonatomic, getter=isExplicit) _Bool explicit; // @synthesize explicit=_explicit;
 @property(nonatomic) double lastPlayedAt; // @synthesize lastPlayedAt=_lastPlayedAt;
+@property(nonatomic) unsigned long long syncProgress; // @synthesize syncProgress=_syncProgress;
 @property(nonatomic) long long offlineSyncStatus; // @synthesize offlineSyncStatus=_offlineSyncStatus;
 @property(nonatomic, getter=isPlayed) _Bool played; // @synthesize played=_played;
 @property(nonatomic, getter=isAvailable) _Bool available; // @synthesize available=_available;
 @property(nonatomic, getter=isPlayable) _Bool playable; // @synthesize playable=_playable;
+@property(nonatomic, getter=isUnplayed) _Bool unplayedEpisode; // @synthesize unplayedEpisode=_unplayedEpisode;
+@property(nonatomic, getter=isNewEpisode) _Bool newEpisode; // @synthesize newEpisode=_newEpisode;
+@property(nonatomic) _Bool inCollection; // @synthesize inCollection=_inCollection;
 @property(copy, nonatomic) NSString *manifestId; // @synthesize manifestId=_manifestId;
+@property(copy, nonatomic) NSURL *largePodcastImageURL; // @synthesize largePodcastImageURL=_largePodcastImageURL;
 @property(copy, nonatomic) NSURL *podcastImageURL; // @synthesize podcastImageURL=_podcastImageURL;
 @property(copy, nonatomic) NSURL *largeImageURL; // @synthesize largeImageURL=_largeImageURL;
 @property(copy, nonatomic) NSURL *imageURL; // @synthesize imageURL=_imageURL;
@@ -61,10 +65,6 @@
 @property(copy, nonatomic) NSString *podcastTitle; // @synthesize podcastTitle=_podcastTitle;
 @property(copy, nonatomic) NSString *longDescription; // @synthesize longDescription=_longDescription;
 @property(copy, nonatomic) NSString *title; // @synthesize title=_title;
-@property(nonatomic) unsigned long long syncProgress; // @synthesize syncProgress=_syncProgress;
-@property(nonatomic, getter=isUnplayed) _Bool unplayedEpisode; // @synthesize unplayedEpisode=_unplayedEpisode;
-@property(nonatomic, getter=isNewEpisode) _Bool newEpisode; // @synthesize newEpisode=_newEpisode;
-@property(nonatomic) _Bool inCollection; // @synthesize inCollection=_inCollection;
 - (void).cxx_destruct;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 @property(readonly) unsigned long long hash;

@@ -5,6 +5,8 @@
 //
 
 @protocol GLUEFeatureController
+@property _Bool leftAlignedTrackCloudEnabled;
+@property _Bool leftAlignedSectionHeadersEnabled;
 @property _Bool motionEnabled;
 - (void)enableModernFeatures;
 - (void)resetRolloutStatuses;

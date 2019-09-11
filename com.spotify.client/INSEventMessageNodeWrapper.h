@@ -8,19 +8,22 @@
 
 #import "INSEventMessageNode-Protocol.h"
 
-@class NSString;
+@class NSNumber, NSString;
 
 @interface INSEventMessageNodeWrapper : NSObject <INSEventMessageNode>
 {
     NSString *_name;
     long long _sequenceNumber;
+    NSNumber *_authenticated;
 }
 
 + (id)wrapperWithEnvelope:(id)arg1;
++ (id)wrapperWithEnvelope:(id)arg1 authenticated:(id)arg2;
+@property(copy, nonatomic) NSNumber *authenticated; // @synthesize authenticated=_authenticated;
 @property(nonatomic) long long sequenceNumber; // @synthesize sequenceNumber=_sequenceNumber;
 @property(copy, nonatomic) NSString *name; // @synthesize name=_name;
 - (void).cxx_destruct;
-- (id)initWithEnvelope:(id)arg1;
+- (id)initWithEnvelope:(id)arg1 authenticated:(id)arg2;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

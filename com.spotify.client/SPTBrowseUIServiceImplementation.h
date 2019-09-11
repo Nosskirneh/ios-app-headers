@@ -9,18 +9,27 @@
 #import "SPTBrowseUIService-Protocol.h"
 
 @class NSString, SPTAllocationContext;
-@protocol SPTBrowseUIComponentFactory, SPTGLUEService;
+@protocol SPTBrowseUIComponentFactory, SPTBrowseUITestManager, SPTFeatureFlaggingService, SPTGLUEService, SPTHubFrameworkService, SPTSettingsFeature;
 
 @interface SPTBrowseUIServiceImplementation : NSObject <SPTBrowseUIService>
 {
+    id <SPTBrowseUITestManager> _testManager;
     id <SPTGLUEService> _glueService;
+    id <SPTHubFrameworkService> _hubFrameworkService;
+    id <SPTFeatureFlaggingService> _featureFlaggingService;
+    id <SPTSettingsFeature> _settingsFeature;
 }
 
 + (id)serviceIdentifier;
+@property(nonatomic) __weak id <SPTSettingsFeature> settingsFeature; // @synthesize settingsFeature=_settingsFeature;
+@property(nonatomic) __weak id <SPTFeatureFlaggingService> featureFlaggingService; // @synthesize featureFlaggingService=_featureFlaggingService;
+@property(nonatomic) __weak id <SPTHubFrameworkService> hubFrameworkService; // @synthesize hubFrameworkService=_hubFrameworkService;
 @property(nonatomic) __weak id <SPTGLUEService> glueService; // @synthesize glueService=_glueService;
 - (void).cxx_destruct;
+@property(readonly, nonatomic) id <SPTBrowseUITestManager> testManager; // @synthesize testManager=_testManager;
+@property(readonly, nonatomic) CDUnknownBlockType cardsTransformer;
+- (id)provideBrowseMockHubData;
 @property(readonly, nonatomic) id <SPTBrowseUIComponentFactory> componentFactory;
-- (void)load;
 - (void)configureWithServices:(id)arg1;
 
 // Remaining properties

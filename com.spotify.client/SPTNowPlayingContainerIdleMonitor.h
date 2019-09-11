@@ -7,42 +7,42 @@
 #import <objc/NSObject.h>
 
 #import "SPTNowPlayingContainerIdleMonitorObservable-Protocol.h"
-#import "SPTNowPlayingIgnoringGestureRecognizerDelegate-Protocol.h"
+#import "UIGestureRecognizerDelegate-Protocol.h"
 
-@class NSString, SPTNowPlayingIgnoringGestureRecognizer, SPTObserverManager;
-@protocol SPTNowPlayingContainerIdleMonitorDelegate, SPTNowPlayingContainerIdleMonitorLoggingDelegate;
+@class NSString, SPTObserverManager, UITapGestureRecognizer;
+@protocol SPTNowPlayingContainerIdleMonitorLoggingDelegate;
 
-@interface SPTNowPlayingContainerIdleMonitor : NSObject <SPTNowPlayingIgnoringGestureRecognizerDelegate, SPTNowPlayingContainerIdleMonitorObservable>
+@interface SPTNowPlayingContainerIdleMonitor : NSObject <UIGestureRecognizerDelegate, SPTNowPlayingContainerIdleMonitorObservable>
 {
-    _Bool _countdownEnabled;
-    id <SPTNowPlayingContainerIdleMonitorDelegate> _delegate;
+    _Bool _idle;
+    _Bool _monitoring;
     id <SPTNowPlayingContainerIdleMonitorLoggingDelegate> _loggingDelegate;
-    SPTNowPlayingIgnoringGestureRecognizer *_gestureRecognizer;
-    double _waitInterval;
+    UITapGestureRecognizer *_gestureRecognizer;
     SPTObserverManager *_observerManager;
 }
 
 @property(retain, nonatomic) SPTObserverManager *observerManager; // @synthesize observerManager=_observerManager;
-@property(nonatomic) double waitInterval; // @synthesize waitInterval=_waitInterval;
-@property(retain, nonatomic) SPTNowPlayingIgnoringGestureRecognizer *gestureRecognizer; // @synthesize gestureRecognizer=_gestureRecognizer;
-@property(nonatomic) _Bool countdownEnabled; // @synthesize countdownEnabled=_countdownEnabled;
+@property(retain, nonatomic) UITapGestureRecognizer *gestureRecognizer; // @synthesize gestureRecognizer=_gestureRecognizer;
 @property(nonatomic) __weak id <SPTNowPlayingContainerIdleMonitorLoggingDelegate> loggingDelegate; // @synthesize loggingDelegate=_loggingDelegate;
-@property(nonatomic) __weak id <SPTNowPlayingContainerIdleMonitorDelegate> delegate; // @synthesize delegate=_delegate;
+@property(nonatomic, getter=isMonitoring) _Bool monitoring; // @synthesize monitoring=_monitoring;
+@property(nonatomic, getter=isIdle) _Bool idle; // @synthesize idle=_idle;
 - (void).cxx_destruct;
-- (double)idleWaitInterval;
+- (_Bool)gestureRecognizer:(id)arg1 shouldRecognizeSimultaneouslyWithGestureRecognizer:(id)arg2;
 - (void)notifyIdlePeriodDidEnd:(_Bool)arg1;
 - (void)notifyIdlePeriodDidBegin:(_Bool)arg1;
 - (void)notifyCurrentStateToObserver:(id)arg1;
 - (void)removeObserver:(id)arg1;
 - (void)addObserver:(id)arg1;
 - (void)forceIdle:(_Bool)arg1 userInitiated:(_Bool)arg2;
+- (void)endIdlePeriod:(_Bool)arg1;
+- (void)beginIdlePeriod:(_Bool)arg1;
 - (void)updateForVoiceOverStatus;
 - (_Bool)isIdleMonitoringEnabled;
-- (void)resetMonitoring;
 - (void)pauseMonitoring;
 - (_Bool)startMonitoring;
+- (void)tap;
 - (void)dealloc;
-- (id)initWithIdleWaitInterval:(double)arg1 view:(id)arg2;
+- (id)initWithView:(id)arg1;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

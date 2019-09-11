@@ -19,23 +19,23 @@
     double _blurRadius;
     id <SPTImageCache> _blurredImageCache;
     NSArray *_gradientColors;
+    UIView *_blurView;
+    UIView *_tintView;
     UIImageView *_originalImageView;
     UIImage *_processedImage;
     id _currentCacheKey;
     CAGradientLayer *_gradientLayer;
-    UIView *_blurView;
-    UIView *_tintView;
 }
 
 + (id)blurViewForImage:(id)arg1 withFrame:(struct CGRect)arg2;
 + (id)blurViewForImage:(id)arg1 withFrame:(struct CGRect)arg2 blurredImageCache:(id)arg3 cacheKey:(id)arg4;
-@property(retain, nonatomic) UIView *tintView; // @synthesize tintView=_tintView;
-@property(retain, nonatomic) UIView *blurView; // @synthesize blurView=_blurView;
 @property(retain, nonatomic) CAGradientLayer *gradientLayer; // @synthesize gradientLayer=_gradientLayer;
 @property(nonatomic) _Bool needsUpdatedBlur; // @synthesize needsUpdatedBlur=_needsUpdatedBlur;
 @property(copy, nonatomic) id currentCacheKey; // @synthesize currentCacheKey=_currentCacheKey;
 @property(retain, nonatomic) UIImage *processedImage; // @synthesize processedImage=_processedImage;
 @property(retain, nonatomic) UIImageView *originalImageView; // @synthesize originalImageView=_originalImageView;
+@property(retain, nonatomic) UIView *tintView; // @synthesize tintView=_tintView;
+@property(retain, nonatomic) UIView *blurView; // @synthesize blurView=_blurView;
 @property(retain, nonatomic) NSArray *gradientColors; // @synthesize gradientColors=_gradientColors;
 @property(nonatomic) __weak id <SPTImageCache> blurredImageCache; // @synthesize blurredImageCache=_blurredImageCache;
 @property(readonly, nonatomic) double blurRadius; // @synthesize blurRadius=_blurRadius;

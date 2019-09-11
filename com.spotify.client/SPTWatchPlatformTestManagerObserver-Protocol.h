@@ -11,6 +11,9 @@
 @protocol SPTWatchPlatformTestManagerObserver <NSObject>
 
 @optional
+- (void)testManager:(SPTWatchPlatformTestManager *)arg1 didUpdateWatchAppOfflineEnabledState:(_Bool)arg2;
+- (void)testManager:(SPTWatchPlatformTestManager *)arg1 didUpdateWatchAppLibraryOnboardingEnabledState:(_Bool)arg2;
+- (void)testManager:(SPTWatchPlatformTestManager *)arg1 didUpdateWatchAppLibraryEnabledState:(_Bool)arg2;
 - (void)testManager:(SPTWatchPlatformTestManager *)arg1 didUpdateWatchIntegrationEnabledState:(_Bool)arg2;
 - (void)testManager:(SPTWatchPlatformTestManager *)arg1 didUpdateWatchAccessoryLoggingEnabledState:(_Bool)arg2;
 @end

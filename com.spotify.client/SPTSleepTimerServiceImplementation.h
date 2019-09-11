@@ -6,15 +6,13 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTFeatureFlagSignalObserver-Protocol.h"
 #import "SPTSleepTimerService-Protocol.h"
 
 @class NSString, SPTAllocationContext;
-@protocol GaiaFeature, SPContextMenuFeature, SPTContainerService, SPTContainerUIService, SPTFeatureFlagSignal, SPTFeatureFlaggingService, SPTPlayerFeature, SPTSessionService, SPTSleepTimerContextMenuActionsProvider, SPTSleepTimerController;
+@protocol GaiaFeature, SPContextMenuFeature, SPTContainerService, SPTContainerUIService, SPTFeatureFlaggingService, SPTPlayerFeature, SPTSessionService, SPTSleepTimerContextMenuActionsProvider, SPTSleepTimerController;
 
-@interface SPTSleepTimerServiceImplementation : NSObject <SPTFeatureFlagSignalObserver, SPTSleepTimerService>
+@interface SPTSleepTimerServiceImplementation : NSObject <SPTSleepTimerService>
 {
-    _Bool _sleepTimerEnabled;
     id <SPTSessionService> _clientSessionService;
     id <SPTPlayerFeature> _playerFeature;
     id <GaiaFeature> _gaiaFeature;
@@ -22,7 +20,6 @@
     id <SPTSleepTimerController> _sleepTimerController;
     id <SPTSleepTimerContextMenuActionsProvider> _sleepTimerContextMenuActionsProvider;
     id <SPTFeatureFlaggingService> _featureFlaggingService;
-    id <SPTFeatureFlagSignal> _sleepTimerFlagSignal;
     id <SPTContainerUIService> _containerUIService;
     id <SPTContainerService> _containerService;
 }
@@ -30,8 +27,6 @@
 + (id)serviceIdentifier;
 @property(nonatomic) __weak id <SPTContainerService> containerService; // @synthesize containerService=_containerService;
 @property(nonatomic) __weak id <SPTContainerUIService> containerUIService; // @synthesize containerUIService=_containerUIService;
-@property(nonatomic) _Bool sleepTimerEnabled; // @synthesize sleepTimerEnabled=_sleepTimerEnabled;
-@property(retain, nonatomic) id <SPTFeatureFlagSignal> sleepTimerFlagSignal; // @synthesize sleepTimerFlagSignal=_sleepTimerFlagSignal;
 @property(nonatomic) __weak id <SPTFeatureFlaggingService> featureFlaggingService; // @synthesize featureFlaggingService=_featureFlaggingService;
 @property(retain, nonatomic) id <SPTSleepTimerContextMenuActionsProvider> sleepTimerContextMenuActionsProvider; // @synthesize sleepTimerContextMenuActionsProvider=_sleepTimerContextMenuActionsProvider;
 @property(retain, nonatomic) id <SPTSleepTimerController> sleepTimerController; // @synthesize sleepTimerController=_sleepTimerController;
@@ -40,13 +35,9 @@
 @property(nonatomic) __weak id <SPTPlayerFeature> playerFeature; // @synthesize playerFeature=_playerFeature;
 @property(nonatomic) __weak id <SPTSessionService> clientSessionService; // @synthesize clientSessionService=_clientSessionService;
 - (void).cxx_destruct;
-- (void)featureFlagSignal:(id)arg1 hasAssumedState:(long long)arg2;
-- (_Bool)isSleepTimerEnabled;
+- (id)provideSleepTimerContextMenuPresenterForPodcast:(_Bool)arg1;
 - (id)provideSleepTimerContextMenuActionsProvider;
 - (id)provideSleepTimerController;
-- (void)unload;
-- (id)setUpSleepTimerFlag:(id)arg1;
-- (void)load;
 - (void)configureWithServices:(id)arg1;
 
 // Remaining properties

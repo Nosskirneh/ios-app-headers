@@ -10,5 +10,6 @@
 - (unsigned long long)spt_premiumDestinationCacheTTLFromHTTPResponseHeaders;
 - (id)spt_premiumDestinationGradientDirectionValue;
 - (id)spt_premiumDestinationGradientColorArray;
+- (id)spt_premiumDestinationGradientStyle;
 @end
 

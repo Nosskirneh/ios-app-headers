@@ -6,6 +6,9 @@
 
 #import "SPTService-Protocol.h"
 
+@protocol SPTWatchPlatformOfflineManager;
+
 @protocol SPTWatchPlatformService <SPTService>
+- (id <SPTWatchPlatformOfflineManager>)provideOfflineManager;
 @end
 

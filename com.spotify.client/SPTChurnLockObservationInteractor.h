@@ -6,13 +6,12 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTFeatureFlagSignalObserver-Protocol.h"
 #import "SPTUICompletionNotifierObserver-Protocol.h"
 
 @class NSString;
 @protocol SPTChurnLockObservationInteractorDelegate, SPTFeatureFlagFactory, SPTFeatureFlagSignal, SPTUICompletionNotifier;
 
-@interface SPTChurnLockObservationInteractor : NSObject <SPTUICompletionNotifierObserver, SPTFeatureFlagSignalObserver>
+@interface SPTChurnLockObservationInteractor : NSObject <SPTUICompletionNotifierObserver>
 {
     id <SPTChurnLockObservationInteractorDelegate> _delegate;
     id <SPTFeatureFlagFactory> _featureFlagFactory;
@@ -25,6 +24,7 @@
 @property(retain, nonatomic) id <SPTFeatureFlagFactory> featureFlagFactory; // @synthesize featureFlagFactory=_featureFlagFactory;
 @property(nonatomic) __weak id <SPTChurnLockObservationInteractorDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
+- (_Bool)isBlockedForTA;
 - (void)loggedInUIDidBecomeLoaded;
 - (void)featureFlagSignal:(id)arg1 hasAssumedState:(long long)arg2;
 - (id)createFeatureEnabledStateSignalWithFactory:(id)arg1;

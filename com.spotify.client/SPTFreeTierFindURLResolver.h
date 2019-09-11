@@ -6,28 +6,22 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTHubRemoteContentURLResolver-Protocol.h"
+@class SPTFreeTierFindEndpointFactory, SPTFreeTierFindTestManager;
+@protocol SPTFreeTierTestManager;
 
-@class NSString, SPTFreeTierFindEndpointFactory, SPTFreeTierFindTestManager;
-
-@interface SPTFreeTierFindURLResolver : NSObject <SPTHubRemoteContentURLResolver>
+@interface SPTFreeTierFindURLResolver : NSObject
 {
     SPTFreeTierFindEndpointFactory *_endpointFactory;
     SPTFreeTierFindTestManager *_testManager;
+    id <SPTFreeTierTestManager> _freeTierTestManager;
 }
 
+@property(readonly, nonatomic) id <SPTFreeTierTestManager> freeTierTestManager; // @synthesize freeTierTestManager=_freeTierTestManager;
 @property(readonly, nonatomic) SPTFreeTierFindTestManager *testManager; // @synthesize testManager=_testManager;
 @property(readonly, nonatomic) SPTFreeTierFindEndpointFactory *endpointFactory; // @synthesize endpointFactory=_endpointFactory;
 - (void).cxx_destruct;
-- (id)remoteHubContentURLForEndpointPath:(id)arg1 forExternalData:(_Bool)arg2;
 - (id)remoteHubContentURLForViewURI:(id)arg1;
-- (id)initWithEndpointFactory:(id)arg1 testManager:(id)arg2;
-
-// Remaining properties
-@property(readonly, copy) NSString *debugDescription;
-@property(readonly, copy) NSString *description;
-@property(readonly) unsigned long long hash;
-@property(readonly) Class superclass;
+- (id)initWithEndpointFactory:(id)arg1 testManager:(id)arg2 freeTierTestManager:(id)arg3;
 
 @end
 

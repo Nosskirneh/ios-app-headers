@@ -6,19 +6,11 @@
 
 #import <UIKit/UIView.h>
 
-@class SPTNowPlayingShowsFormatOverlayLinearGradientView, SPTNowPlayingShowsFormatOverlayRadialGradientView;
-
 @interface SPTNowPlayingShowsFormatOverlayView : UIView
 {
-    SPTNowPlayingShowsFormatOverlayLinearGradientView *_linearGradientView;
-    SPTNowPlayingShowsFormatOverlayRadialGradientView *_radialGradientView;
 }
 
-@property(readonly, nonatomic) SPTNowPlayingShowsFormatOverlayRadialGradientView *radialGradientView; // @synthesize radialGradientView=_radialGradientView;
-@property(readonly, nonatomic) SPTNowPlayingShowsFormatOverlayLinearGradientView *linearGradientView; // @synthesize linearGradientView=_linearGradientView;
-- (void).cxx_destruct;
-- (void)layoutSubviews;
-- (void)setFrame:(struct CGRect)arg1;
+- (void)drawRect:(struct CGRect)arg1;
 - (id)initWithFrame:(struct CGRect)arg1;
 
 @end

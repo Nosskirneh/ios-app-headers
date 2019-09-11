@@ -6,7 +6,8 @@
 
 #import "GLUEButton.h"
 
-@class LOTAnimationView, NSLayoutConstraint, NSString;
+@class NSLayoutConstraint, NSString, UIView;
+@protocol GLUEAnimationLoading><GLUEAnimationControlling;
 
 @interface SPTLoginLoadingActionButton : GLUEButton
 {
@@ -14,10 +15,10 @@
     unsigned long long _loadingState;
     NSString *_initialTitle;
     NSLayoutConstraint *_widthConstraint;
-    LOTAnimationView *_spinnerAnimationView;
+    struct UIView *_spinnerAnimationView;
 }
 
-@property(retain, nonatomic) LOTAnimationView *spinnerAnimationView; // @synthesize spinnerAnimationView=_spinnerAnimationView;
+@property(retain, nonatomic) UIView<GLUEAnimationLoading><GLUEAnimationControlling> *spinnerAnimationView; // @synthesize spinnerAnimationView=_spinnerAnimationView;
 @property(retain, nonatomic) NSLayoutConstraint *widthConstraint; // @synthesize widthConstraint=_widthConstraint;
 @property(copy, nonatomic) NSString *initialTitle; // @synthesize initialTitle=_initialTitle;
 @property(nonatomic) unsigned long long loadingState; // @synthesize loadingState=_loadingState;

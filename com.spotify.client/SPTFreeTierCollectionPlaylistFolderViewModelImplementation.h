@@ -9,13 +9,12 @@
 #import "SPTFreeTierCollectionPlaylistsModelDelegate-Protocol.h"
 #import "SPTFreeTierCollectionPlaylistsViewModel-Protocol.h"
 
-@class NSString, SPTFreeTierCollectionLogger;
+@class NSArray, NSString, SPTFreeTierCollectionLogger;
 @protocol SPTFreeTierCollectionPlaylistsModel, SPTFreeTierCollectionPlaylistsModelEntity, SPTFreeTierCollectionPlaylistsViewModelDelegate, SPTFreeTierCollectionTestManager, SPTFreeTierCreatePlaylistController, SPTLinkDispatcher, SPTPlaylistPlatformPlaylistSynchroniser, SPTSortingFilteringUIFactory;
 
 @interface SPTFreeTierCollectionPlaylistFolderViewModelImplementation : NSObject <SPTFreeTierCollectionPlaylistsViewModel, SPTFreeTierCollectionPlaylistsModelDelegate>
 {
-    _Bool compactMode;
-    _Bool empty;
+    _Bool _didLogScrollIndexSelected;
     id <SPTFreeTierCollectionPlaylistsViewModelDelegate> delegate;
     NSString *textFilter;
     id <SPTFreeTierCollectionPlaylistsModel> _model;
@@ -28,6 +27,7 @@
     id <SPTSortingFilteringUIFactory> _sortingFilteringPickerFactory;
 }
 
+@property(nonatomic) _Bool didLogScrollIndexSelected; // @synthesize didLogScrollIndexSelected=_didLogScrollIndexSelected;
 @property(retain, nonatomic) id <SPTSortingFilteringUIFactory> sortingFilteringPickerFactory; // @synthesize sortingFilteringPickerFactory=_sortingFilteringPickerFactory;
 @property(retain, nonatomic) id <SPTFreeTierCollectionPlaylistsModelEntity> modelEntity; // @synthesize modelEntity=_modelEntity;
 @property(retain, nonatomic) id <SPTFreeTierCollectionTestManager> testManager; // @synthesize testManager=_testManager;
@@ -37,21 +37,25 @@
 @property(retain, nonatomic) id <SPTLinkDispatcher> linkDispatcher; // @synthesize linkDispatcher=_linkDispatcher;
 @property(retain, nonatomic) id <SPTFreeTierCollectionPlaylistsModel> model; // @synthesize model=_model;
 @property(copy, nonatomic) NSString *textFilter; // @synthesize textFilter;
-@property(readonly, nonatomic, getter=isEmpty) _Bool empty; // @synthesize empty;
 @property(nonatomic) __weak id <SPTFreeTierCollectionPlaylistsViewModelDelegate> delegate; // @synthesize delegate;
-@property(readonly, nonatomic, getter=isCompactMode) _Bool compactMode; // @synthesize compactMode;
 - (void).cxx_destruct;
 - (void)playlistsModel:(id)arg1 error:(id)arg2;
 - (void)playlistsModel:(id)arg1 didUpdateEntity:(id)arg2;
 - (id)modelItemEntityAtIndexPath:(id)arg1;
 - (id)playlistEntityForRowAtIndexPath:(id)arg1;
+- (_Bool)showSeparatorForSection:(long long)arg1;
+- (void)logSectionIndexSelected;
 - (void)logFilterSortInteractionType:(unsigned long long)arg1;
+- (void)removeFilterAtIndex:(long long)arg1;
 - (void)resetFilters;
 - (id)sortingAndFilteringPickerViewController;
 - (void)searchWillEnd;
 - (void)searchWillBegan;
 - (void)endObservingRowAtIndexPath:(id)arg1;
 - (void)beginObservingRowAtIndexPath:(id)arg1;
+- (id)indexPathForScrollSectionIndex:(unsigned long long)arg1;
+@property(readonly, nonatomic) NSArray *sectionIndexTitles;
+- (void)createPlaylistActionInInfoView:(_Bool)arg1;
 @property(readonly, nonatomic) unsigned long long countOfSections;
 - (unsigned long long)countOfItemsInSection:(unsigned long long)arg1;
 - (void)itemSelectedAtIndexPath:(id)arg1;
@@ -60,11 +64,14 @@
 @property(readonly, nonatomic) NSString *title;
 - (_Bool)hasMoreInSection:(unsigned long long)arg1;
 - (void)loadMoreInSection:(unsigned long long)arg1;
+- (void)viewWillAppear;
 - (void)loadViewModel;
+@property(readonly, nonatomic, getter=isEmpty) _Bool empty;
 @property(readonly, nonatomic, getter=isLoaded) _Bool loaded;
+@property(readonly, nonatomic) NSArray *activeFilterTitles;
 @property(readonly, nonatomic) unsigned long long filteredContentState;
 @property(readonly, nonatomic, getter=isSortingAndFilteringEnabled) _Bool sortingAndFilteringEnabled;
-- (id)initWithModel:(id)arg1 linkDispatcher:(id)arg2 playlistSynchroniser:(id)arg3 createPlaylistController:(id)arg4 logger:(id)arg5 testManager:(id)arg6 sortingFilteringPickerFactory:(id)arg7 compactMode:(_Bool)arg8;
+- (id)initWithModel:(id)arg1 linkDispatcher:(id)arg2 playlistSynchroniser:(id)arg3 createPlaylistController:(id)arg4 logger:(id)arg5 testManager:(id)arg6 sortingFilteringPickerFactory:(id)arg7;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

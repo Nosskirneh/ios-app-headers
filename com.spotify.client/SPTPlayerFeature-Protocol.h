@@ -7,11 +7,10 @@
 #import "SPTService-Protocol.h"
 
 @class NSObject, NSString, NSURL;
-@protocol OS_dispatch_queue, SPObjectRepresentation, SPTAudioSessionController, SPTPlaybackErrorDialogs, SPTPlayer, SPTPlayerObserver, SPTPlayerQueue;
+@protocol OS_dispatch_queue, SPTAudioSessionController, SPTPlaybackErrorDialogs, SPTPlayer, SPTPlayerObserver, SPTPlayerQueue;
 
 @protocol SPTPlayerFeature <SPTService>
 - (id <SPTPlaybackErrorDialogs>)providePlaybackErrorDialogs;
-- (id <SPObjectRepresentation>)providePlaybackRepresentation;
 - (id <SPTAudioSessionController>)provideAudioSessionController;
 - (id <SPTPlayerQueue>)providePlayerQueue;
 - (void)removePlayerObserver:(id <SPTPlayerObserver>)arg1;

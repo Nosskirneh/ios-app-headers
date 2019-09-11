@@ -7,16 +7,16 @@
 #import "NSObject-Protocol.h"
 
 @protocol SPTFreeTierPlaylistTestManager <NSObject>
+@property(readonly, nonatomic, getter=isScrollPerformanceTrackingEnabled) _Bool scrollPerformanceTrackingEnabled;
+@property(readonly, nonatomic, getter=isAccessibilityHeaderEnabled) _Bool accessibilityHeaderEnabled;
+@property(readonly, nonatomic, getter=isTrackItemQuickActionsEnabled) _Bool trackItemQuickActionsEnabled;
+@property(readonly, nonatomic, getter=isUpdatedFilterUXPremiumEnabled) _Bool updatedFilterUXPremiumEnabled;
+@property(readonly, nonatomic, getter=isAssistedCurationPremiumEnabled) _Bool assistedCurationPremiumEnabled;
+@property(readonly, nonatomic, getter=isEpisodesInPlaylistDisabled) _Bool episodesInPlaylistDisabled;
+@property(readonly, nonatomic, getter=isContextAwareEditorialTrackSharingEnabled) _Bool contextAwareEditorialTrackSharingEnabled;
+@property(readonly, nonatomic, getter=isConsolidatedExperienceEnabled) _Bool consolidatedExperienceEnabled;
 @property(readonly, nonatomic, getter=isEditAnnotationEnabled) _Bool editAnnotationEnabled;
-@property(readonly, nonatomic, getter=isNewSortingAndFilteringEnabled) _Bool newSortingAndFilteringEnabled;
-@property(readonly, nonatomic, getter=isMadeForSubtitleEnabled) _Bool madeForSubtitleEnabled;
-@property(readonly, nonatomic, getter=isPreCurationOnDemandEnabled) _Bool preCurationOnDemandEnabled;
-@property(readonly, nonatomic, getter=isPreCurationTrackCloudEnabled) _Bool preCurationTrackCloudEnabled;
-@property(readonly, nonatomic, getter=isAddSongsDisabled) _Bool addSongsDisabled;
-@property(readonly, nonatomic, getter=isCustomPlaylistHeaderEnabled) _Bool customPlaylistHeaderEnabled;
-@property(readonly, nonatomic, getter=isConsolidatedViewEnabled) _Bool consolidatedViewEnabled;
 @property(readonly, nonatomic, getter=isPremiumLabelEnabled) _Bool premiumLabelEnabled;
-@property(readonly, nonatomic, getter=isEditPlaylistEnabled) _Bool editPlaylistEnabled;
 @property(readonly, nonatomic, getter=isWeigthedShufflePlayDisabled) _Bool weigthedShufflePlayDisabled;
 @end
 

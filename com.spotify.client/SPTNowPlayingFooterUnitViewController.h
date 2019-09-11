@@ -8,47 +8,33 @@
 
 #import "SPTGaiaDevicesAvailableViewDelegate-Protocol.h"
 #import "SPTNowPlayingContainedViewController-Protocol.h"
-#import "SPTNowPlayingContainerIdleMonitorObserver-Protocol.h"
 
-@class NSLayoutConstraint, NSString, SPTNowPlayingButton, SPTTheme, UIView;
+@class NSString, SPTNowPlayingButton, SPTTheme, UIView;
 @protocol SPTGaiaDevicesAvailableView, SPTGaiaDevicesAvailableViewProvider, SPTNowPlayingAuxiliaryActionsHandler, SPTNowPlayingContainingViewController;
 
-@interface SPTNowPlayingFooterUnitViewController : UIViewController <SPTNowPlayingContainerIdleMonitorObserver, SPTGaiaDevicesAvailableViewDelegate, SPTNowPlayingContainedViewController>
+@interface SPTNowPlayingFooterUnitViewController : UIViewController <SPTGaiaDevicesAvailableViewDelegate, SPTNowPlayingContainedViewController>
 {
     id <SPTGaiaDevicesAvailableViewProvider> _devicesAvailableViewProvider;
     id <SPTNowPlayingAuxiliaryActionsHandler> _auxiliaryActionsHandler;
     SPTTheme *_theme;
     UIView<SPTGaiaDevicesAvailableView> *_devicesAvailableView;
-    SPTNowPlayingButton *_shareButton;
-    NSLayoutConstraint *_devicesAvailableWidthConstraint;
-    NSLayoutConstraint *_connectButtonLeftMarginConstraint;
-    NSLayoutConstraint *_shareButtonRightMarginConstraint;
-    double _nowPlayingConnectButtonLeftMarginDecrease;
+    SPTNowPlayingButton *_rightButton;
 }
 
-@property(nonatomic) double nowPlayingConnectButtonLeftMarginDecrease; // @synthesize nowPlayingConnectButtonLeftMarginDecrease=_nowPlayingConnectButtonLeftMarginDecrease;
-@property(retain, nonatomic) NSLayoutConstraint *shareButtonRightMarginConstraint; // @synthesize shareButtonRightMarginConstraint=_shareButtonRightMarginConstraint;
-@property(retain, nonatomic) NSLayoutConstraint *connectButtonLeftMarginConstraint; // @synthesize connectButtonLeftMarginConstraint=_connectButtonLeftMarginConstraint;
-@property(retain, nonatomic) NSLayoutConstraint *devicesAvailableWidthConstraint; // @synthesize devicesAvailableWidthConstraint=_devicesAvailableWidthConstraint;
-@property(retain, nonatomic) SPTNowPlayingButton *shareButton; // @synthesize shareButton=_shareButton;
+@property(retain, nonatomic) SPTNowPlayingButton *rightButton; // @synthesize rightButton=_rightButton;
 @property(retain, nonatomic) UIView<SPTGaiaDevicesAvailableView> *devicesAvailableView; // @synthesize devicesAvailableView=_devicesAvailableView;
 @property(readonly, nonatomic) SPTTheme *theme; // @synthesize theme=_theme;
 @property(readonly, nonatomic) id <SPTNowPlayingAuxiliaryActionsHandler> auxiliaryActionsHandler; // @synthesize auxiliaryActionsHandler=_auxiliaryActionsHandler;
 @property(readonly, nonatomic) id <SPTGaiaDevicesAvailableViewProvider> devicesAvailableViewProvider; // @synthesize devicesAvailableViewProvider=_devicesAvailableViewProvider;
 - (void).cxx_destruct;
-- (void)didUpdateDevicesAvailableText:(id)arg1;
-- (void)idlePeriodDidEnd;
-- (void)idlePeriodDidBegin;
-- (long long)nowPlayingConnectButtonLeftMargin;
+- (void)didUpdateDevicesAvailableText:(id)arg1 withAccessibilityLabel:(id)arg2;
 - (double)viewControllerPriority;
 - (unsigned long long)leadingEdge;
 - (struct CGSize)preferredContentSize;
-- (void)updateViewConstraints;
 - (void)setupViewConstraints;
-- (void)setupShareButton;
 - (void)setupDevicesAvailableView;
 - (void)viewDidLoad;
-- (id)initWithAuxiliaryActionsHandler:(id)arg1 devicesAvailableViewProvider:(id)arg2 theme:(id)arg3;
+- (id)initWithAuxiliaryActionsHandler:(id)arg1 devicesAvailableViewProvider:(id)arg2 rightButton:(id)arg3 theme:(id)arg4;
 
 // Remaining properties
 @property(nonatomic) __weak UIViewController<SPTNowPlayingContainingViewController> *container;

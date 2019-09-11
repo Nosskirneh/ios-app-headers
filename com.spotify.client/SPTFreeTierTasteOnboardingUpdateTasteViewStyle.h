@@ -8,15 +8,19 @@
 
 #import "GLUEStyle-Protocol.h"
 
-@class GLUEGradientStyle, GLUELabelStyle, NSString;
+@class GLUEGradientStyle, GLUELabelStyle, NSNumber, NSString;
 
 @interface SPTFreeTierTasteOnboardingUpdateTasteViewStyle : NSObject <GLUEStyle>
 {
     GLUEGradientStyle *_backgroundGradientStyle;
     GLUEGradientStyle *_backgroundOverlayGradientStyle;
     GLUELabelStyle *_messageLabelStyle;
+    double _messageLabelMargins;
+    NSNumber *_messageLabelDistanceFromTop;
 }
 
+@property(copy, nonatomic) NSNumber *messageLabelDistanceFromTop; // @synthesize messageLabelDistanceFromTop=_messageLabelDistanceFromTop;
+@property(nonatomic) double messageLabelMargins; // @synthesize messageLabelMargins=_messageLabelMargins;
 @property(copy, nonatomic) GLUELabelStyle *messageLabelStyle; // @synthesize messageLabelStyle=_messageLabelStyle;
 @property(copy, nonatomic) GLUEGradientStyle *backgroundOverlayGradientStyle; // @synthesize backgroundOverlayGradientStyle=_backgroundOverlayGradientStyle;
 @property(copy, nonatomic) GLUEGradientStyle *backgroundGradientStyle; // @synthesize backgroundGradientStyle=_backgroundGradientStyle;

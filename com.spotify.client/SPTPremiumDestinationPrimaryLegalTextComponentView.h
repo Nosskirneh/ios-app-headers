@@ -4,16 +4,16 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import "EXP_HUBComponentView.h"
+#import "HUBComponentView.h"
 
-#import "EXP_HUBComponentViewWithEvents-Protocol.h"
+#import "HUBComponentViewWithEvents-Protocol.h"
 
 @class SPTPremiumDestinationGLUETheme, SPTPremiumDestinationLegalTextStyle, SPTPremiumDestinationLegalTextView, UITapGestureRecognizer;
-@protocol EXP_HUBComponentEventHandler;
+@protocol HUBComponentEventHandler;
 
-@interface SPTPremiumDestinationPrimaryLegalTextComponentView : EXP_HUBComponentView <EXP_HUBComponentViewWithEvents>
+@interface SPTPremiumDestinationPrimaryLegalTextComponentView : HUBComponentView <HUBComponentViewWithEvents>
 {
-    id <EXP_HUBComponentEventHandler> _eventHandler;
+    id <HUBComponentEventHandler> _eventHandler;
     SPTPremiumDestinationGLUETheme *_theme;
     SPTPremiumDestinationLegalTextStyle *_style;
     SPTPremiumDestinationLegalTextView *_legalTextView;
@@ -25,7 +25,7 @@
 @property(retain, nonatomic) SPTPremiumDestinationLegalTextView *legalTextView; // @synthesize legalTextView=_legalTextView;
 @property(retain, nonatomic) SPTPremiumDestinationLegalTextStyle *style; // @synthesize style=_style;
 @property(retain, nonatomic) SPTPremiumDestinationGLUETheme *theme; // @synthesize theme=_theme;
-@property(retain, nonatomic) id <EXP_HUBComponentEventHandler> eventHandler; // @synthesize eventHandler=_eventHandler;
+@property(retain, nonatomic) id <HUBComponentEventHandler> eventHandler; // @synthesize eventHandler=_eventHandler;
 - (void).cxx_destruct;
 - (void)tapGestureRecognized:(id)arg1;
 - (void)prepareForReuse;

@@ -17,6 +17,7 @@
 
 @property(readonly, nonatomic) SPTSortingFilteringGLUETheme *theme; // @synthesize theme=_theme;
 - (void).cxx_destruct;
+- (id)createClearFiltersControlWithFilterTitles:(id)arg1;
 - (id)createSortingFilteringPickerWithAvailableFilterRules:(id)arg1 availableSortRules:(id)arg2 selectedFilterRules:(id)arg3 selectedSortRule:(id)arg4;
 - (id)createFilterBarWithPlaceholder:(id)arg1;
 - (id)createSearchFieldWithFrame:(struct CGRect)arg1;

@@ -6,32 +6,22 @@
 
 #import "HUGSThemableComponent.h"
 
-#import "HUBComponentWithImageHandling-Protocol.h"
+#import "HUBComponent-Protocol.h"
 
-@class NSSet, UIView;
-@protocol HUBComponentModel;
+@class NSSet;
+@protocol HUGSStyleOverrider;
 
-@interface HUGSEntityCardComponent : HUGSThemableComponent <HUBComponentWithImageHandling>
+@interface HUGSEntityCardComponent : HUGSThemableComponent <HUBComponent>
 {
-    UIView *_view;
-    id <HUBComponentModel> _componentModel;
+    id <HUGSStyleOverrider> _styleOverrider;
 }
 
-@property(retain, nonatomic) id <HUBComponentModel> componentModel; // @synthesize componentModel=_componentModel;
-@property(retain, nonatomic) UIView *view; // @synthesize view=_view;
+@property(readonly, nonatomic) id <HUGSStyleOverrider> styleOverrider; // @synthesize styleOverrider=_styleOverrider;
 - (void).cxx_destruct;
-- (void)applyThemeLayout;
-- (struct CGSize)mainImageSizeForContainerViewSize:(struct CGSize)arg1;
-- (double)widthForContainerViewSize:(struct CGSize)arg1;
-- (void)configurePlaceholderWithIcon:(id)arg1 containerViewSize:(struct CGSize)arg2;
-- (id)styleForComponentModel:(id)arg1;
-- (void)updateViewForLoadedImage:(id)arg1 fromData:(id)arg2 model:(id)arg3 animated:(_Bool)arg4;
-- (struct CGSize)preferredSizeForImageFromData:(id)arg1 model:(id)arg2 containerViewSize:(struct CGSize)arg3;
-- (void)configureViewWithModel:(id)arg1 containerViewSize:(struct CGSize)arg2;
-- (void)prepareViewForReuse;
 - (struct CGSize)preferredViewSizeForDisplayingModel:(id)arg1 containerViewSize:(struct CGSize)arg2;
-- (void)loadView;
-@property(readonly, nonatomic) NSSet *layoutTraits;
+@property(readonly, copy, nonatomic) NSSet *layoutTraits;
+- (id)createViewWithFrame:(struct CGRect)arg1;
+- (id)initWithTheme:(id)arg1 styleOverrider:(id)arg2;
 
 @end
 

@@ -9,7 +9,7 @@
 @class SPTFreeTierFindHeaderView;
 
 @protocol SPTFreeTierFindHeaderViewDelegate <NSObject>
-- (void)didTapMicrophoneButtonInHeaderView:(SPTFreeTierFindHeaderView *)arg1 sender:(id)arg2;
+- (void)didTapMicrophoneButtonInHeaderView:(SPTFreeTierFindHeaderView *)arg1;
 - (void)didTapSearchButtonInHeaderView:(SPTFreeTierFindHeaderView *)arg1;
 @end
 

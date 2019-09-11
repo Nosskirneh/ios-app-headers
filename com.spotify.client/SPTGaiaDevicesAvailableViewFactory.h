@@ -8,22 +8,24 @@
 
 #import "SPTGaiaDevicesAvailableViewProvider-Protocol.h"
 
-@class NSString, SPTGaiaDevicePickerAppearanceManager, SPTTheme;
-@protocol SPTGaiaManager;
+@class NSString, SPTGaiaDevicePickerAppearanceManager, SPTGaiaSocialListeningIntegrationManager, SPTTheme;
+@protocol SPTGaiaConnectAPI;
 
 @interface SPTGaiaDevicesAvailableViewFactory : NSObject <SPTGaiaDevicesAvailableViewProvider>
 {
-    id <SPTGaiaManager> _gaiaManager;
+    id <SPTGaiaConnectAPI> _connectManager;
     SPTTheme *_theme;
     SPTGaiaDevicePickerAppearanceManager *_appearanceManager;
+    SPTGaiaSocialListeningIntegrationManager *_socialListeningManager;
 }
 
+@property(readonly, nonatomic) SPTGaiaSocialListeningIntegrationManager *socialListeningManager; // @synthesize socialListeningManager=_socialListeningManager;
 @property(retain, nonatomic) SPTGaiaDevicePickerAppearanceManager *appearanceManager; // @synthesize appearanceManager=_appearanceManager;
 @property(retain, nonatomic) SPTTheme *theme; // @synthesize theme=_theme;
-@property(retain, nonatomic) id <SPTGaiaManager> gaiaManager; // @synthesize gaiaManager=_gaiaManager;
+@property(retain, nonatomic) id <SPTGaiaConnectAPI> connectManager; // @synthesize connectManager=_connectManager;
 - (void).cxx_destruct;
-- (id)createGaiaDevicesAvailableView:(_Bool)arg1;
-- (id)initWithGaiaManager:(id)arg1 theme:(id)arg2 appearanceManager:(id)arg3;
+- (id)createGaiaDevicesAvailableViewWithRules:(long long)arg1;
+- (id)initWithConnectManager:(id)arg1 theme:(id)arg2 appearanceManager:(id)arg3 socialListeningManager:(id)arg4;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

@@ -22,7 +22,7 @@
 @property(readonly, nonatomic) SPTTheme *theme; // @synthesize theme=_theme;
 @property(readonly, copy, nonatomic) NSString *friendlyName; // @synthesize friendlyName=_friendlyName;
 - (void).cxx_destruct;
-- (id)createTabBarContainerWithTabBarController:(struct UIViewController *)arg1;
+- (id)createTabBarContainerWithTabBarController:(struct UIViewController *)arg1 logCenter:(id)arg2;
 - (struct UIViewController *)createTabBarControllerWithLogCenter:(id)arg1;
 - (id)initWithFriendlyName:(id)arg1 theme:(id)arg2 navigationConfiguration:(id)arg3;
 

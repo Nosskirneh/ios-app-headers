@@ -46,6 +46,7 @@
 - (void)playlistSponsorshipDidChange;
 - (void)freeTierPlaylistViewModel:(id)arg1 error:(id)arg2;
 - (void)freeTierPlaylistViewModel:(id)arg1 initialFollowCount:(unsigned long long)arg2;
+- (void)freeTierPlaylistViewModelDidChangeEmptyState:(id)arg1;
 - (void)freeTierPlaylistViewModelDidChange:(id)arg1;
 - (void)scrollViewWillBeginDragging:(id)arg1;
 - (void)searchBar:(id)arg1 textDidChange:(id)arg2;
@@ -56,6 +57,7 @@
 - (void)cellConfigurator:(id)arg1 contextMenuIconButtonTapped:(id)arg2;
 - (id)indexPathForIconButton:(id)arg1;
 - (unsigned long long)preferredNavigationBarState;
+- (void)didPressCancel;
 - (void)viewWillDisappear:(_Bool)arg1;
 - (void)viewWillAppear:(_Bool)arg1;
 - (void)viewDidLoad;
@@ -68,7 +70,7 @@
 - (long long)numberOfSectionsInTableView:(id)arg1;
 @property(readonly, nonatomic, getter=spt_pageURI) NSURL *pageURI;
 @property(readonly, nonatomic, getter=spt_pageIdentifier) NSString *pageIdentifier;
-- (id)initWithPlaylistViewModel:(id)arg1 theme:(id)arg2 contextMenuService:(id)arg3 logger:(id)arg4;
+- (id)initWithPlaylistViewModel:(id)arg1 theme:(id)arg2 contextMenuService:(id)arg3 logger:(id)arg4 preCurationUIFactory:(id)arg5;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

@@ -26,6 +26,7 @@
 @property(retain, nonatomic) GLUELabel *titleLabel; // @synthesize titleLabel=_titleLabel;
 - (void).cxx_destruct;
 - (void)setSelected:(_Bool)arg1;
+- (id)accessibilityLabel;
 - (void)glue_applyStyle:(id)arg1;
 - (void)setupConstraints;
 - (id)initWithFrame:(struct CGRect)arg1;

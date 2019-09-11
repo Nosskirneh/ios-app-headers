@@ -6,7 +6,7 @@
 
 #import "SettingsSection.h"
 
-@class SettingsSwitchTableViewCell;
+@class SPTSettingsLogger, SettingsSwitchTableViewCell;
 @protocol SPTPlaybackPreferencesProtocol, SPTPreferences;
 
 @interface SPTAudioNormalisationSettingsSection : SettingsSection
@@ -14,8 +14,10 @@
     id <SPTPlaybackPreferencesProtocol> _delegate;
     id <SPTPreferences> _preferences;
     SettingsSwitchTableViewCell *_cell;
+    SPTSettingsLogger *_logger;
 }
 
+@property(retain, nonatomic) SPTSettingsLogger *logger; // @synthesize logger=_logger;
 @property(readonly, nonatomic) SettingsSwitchTableViewCell *cell; // @synthesize cell=_cell;
 @property(readonly, nonatomic) id <SPTPreferences> preferences; // @synthesize preferences=_preferences;
 @property(nonatomic) __weak id <SPTPlaybackPreferencesProtocol> delegate; // @synthesize delegate=_delegate;
@@ -24,7 +26,7 @@
 - (long long)numberOfRows;
 - (void)audioNormalisedChanged:(id)arg1;
 - (void)dealloc;
-- (id)initWithSettingsViewController:(id)arg1 preferences:(id)arg2 playbackPreferencesDelegate:(id)arg3;
+- (id)initWithSettingsViewController:(id)arg1 preferences:(id)arg2 playbackPreferencesDelegate:(id)arg3 logger:(id)arg4;
 
 @end
 

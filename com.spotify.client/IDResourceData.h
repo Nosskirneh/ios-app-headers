@@ -6,29 +6,22 @@
 
 #import <objc/NSObject.h>
 
-@class NSData;
+@class IDResourceType, NSData;
 
 @interface IDResourceData : NSObject
 {
-    int _type;
+    IDResourceType *_type;
     NSData *_data;
 }
 
-+ (id)new;
-+ (id)resourceDataWithType:(int)arg1 data:(id)arg2;
-@property(readonly, nonatomic) NSData *data; // @synthesize data=_data;
-@property(readonly, nonatomic) int type; // @synthesize type=_type;
++ (id)objectWithCustom:(id)arg1;
++ (id)fullQualifiedName;
+@property(retain) NSData *data; // @synthesize data=_data;
+@property(retain) IDResourceType *type; // @synthesize type=_type;
 - (void).cxx_destruct;
-- (id)stringWithResourceType:(int)arg1;
-- (_Bool)isEqualToResourceData:(id)arg1;
-- (_Bool)isEqual:(id)arg1;
-- (unsigned long long)hash;
-- (id)debugDescription;
 - (id)description;
-- (id)init;
-- (id)initWithType:(int)arg1 data:(id)arg2;
-- (shared_ptr_9280a9be)rhmiResourceData;
-- (shared_ptr_585487b4)rhmiResourceType;
+- (id)BMW_etchObject;
+- (id)initWithType:(id)arg1 data:(id)arg2;
 
 @end
 

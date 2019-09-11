@@ -6,13 +6,12 @@
 
 #import "SPTTableRowAdapter.h"
 
-#import "SPTOnDemandUpsellProtocol-Protocol.h"
 #import "SPTPlayerObserver-Protocol.h"
 
 @class NSString, SPTPSXLogger;
-@protocol GLUETheme, SPTContextMenuOptionsFactory, SPTContextMenuPresenterFactory, SPTExplicitContentAccessManager, SPTFormatListItemModel, SPTFormatListPlatformManager, SPTOnDemandUpsell, SPTPSXTestManager, SPTPSXTrackRowDelegate, SPTPSXViewModel, SPTShelves, SPTUpsellManager;
+@protocol GLUETheme, SPTContextMenuOptionsFactory, SPTContextMenuPresenterFactory, SPTExplicitContentAccessManager, SPTFormatListItemModel, SPTFormatListPlatformManager, SPTPSXTestManager, SPTPSXTrackRowDelegate, SPTPSXViewModel, SPTShelves;
 
-@interface SPTPSXTrackRowAdapter : SPTTableRowAdapter <SPTPlayerObserver, SPTOnDemandUpsellProtocol>
+@interface SPTPSXTrackRowAdapter : SPTTableRowAdapter <SPTPlayerObserver>
 {
     id <SPTPSXTrackRowDelegate> _delegate;
     id <SPTFormatListItemModel> _track;
@@ -21,8 +20,6 @@
     id <SPTContextMenuPresenterFactory> _contextMenuPresenterFactory;
     id <SPTContextMenuOptionsFactory> _contextMenuOptionsFactory;
     id <SPTShelves> _shelves;
-    id <SPTUpsellManager> _upsellManager;
-    id <SPTOnDemandUpsell> _onDemandUpsell;
     id <SPTPSXTestManager> _testManager;
     id <SPTExplicitContentAccessManager> _explicitContentAccessManager;
     SPTPSXLogger *_logger;
@@ -33,8 +30,6 @@
 @property(retain, nonatomic) SPTPSXLogger *logger; // @synthesize logger=_logger;
 @property(retain, nonatomic) id <SPTExplicitContentAccessManager> explicitContentAccessManager; // @synthesize explicitContentAccessManager=_explicitContentAccessManager;
 @property(retain, nonatomic) id <SPTPSXTestManager> testManager; // @synthesize testManager=_testManager;
-@property(retain, nonatomic) id <SPTOnDemandUpsell> onDemandUpsell; // @synthesize onDemandUpsell=_onDemandUpsell;
-@property(retain, nonatomic) id <SPTUpsellManager> upsellManager; // @synthesize upsellManager=_upsellManager;
 @property(retain, nonatomic) id <SPTShelves> shelves; // @synthesize shelves=_shelves;
 @property(retain, nonatomic) id <SPTContextMenuOptionsFactory> contextMenuOptionsFactory; // @synthesize contextMenuOptionsFactory=_contextMenuOptionsFactory;
 @property(retain, nonatomic) id <SPTContextMenuPresenterFactory> contextMenuPresenterFactory; // @synthesize contextMenuPresenterFactory=_contextMenuPresenterFactory;
@@ -43,12 +38,6 @@
 @property(retain, nonatomic) id <SPTFormatListItemModel> track; // @synthesize track=_track;
 @property(nonatomic) __weak id <SPTPSXTrackRowDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
-- (void)playTrackOnDemandFromAutoTrial;
-- (id)currentContextURI;
-- (void)shufflePlayFromOnDemand;
-- (void)defaultShuffleBounceFromOnDemand;
-- (void)triggerAutoTrialOverlayFromOnDemand;
-- (void)shufflePlayAndUpsellFromOnDemand;
 - (void)player:(id)arg1 stateDidChange:(id)arg2;
 - (void)banBanButtonTapped:(id)arg1;
 - (void)contextMenuButtonTapped:(id)arg1;
@@ -57,13 +46,13 @@
 - (void)configureSubtitleAccessoryViewOnCell:(id)arg1;
 - (void)configureTrailingAccessoryViewOnCell:(id)arg1;
 - (void)configureCell:(id)arg1;
-- (_Bool)shouldDisplayRecsplanation;
 - (void)didSelectCell;
+- (_Bool)shouldHighlightCell:(id)arg1;
 - (void)didEndDisplayingCell:(id)arg1;
 - (void)willDisplayCell:(id)arg1;
 - (id)tableCell;
 - (double)tableCellHeight;
-- (id)initWithTrack:(id)arg1 viewModel:(id)arg2 platformManager:(id)arg3 theme:(id)arg4 contextMenuPresenterFactory:(id)arg5 contextMenuOptionsFactory:(id)arg6 shelves:(id)arg7 upsellManager:(id)arg8 onDemandUpsell:(id)arg9 testManager:(id)arg10 explicitContentAccessManager:(id)arg11 logger:(id)arg12;
+- (id)initWithTrack:(id)arg1 viewModel:(id)arg2 platformManager:(id)arg3 theme:(id)arg4 contextMenuPresenterFactory:(id)arg5 contextMenuOptionsFactory:(id)arg6 shelves:(id)arg7 testManager:(id)arg8 explicitContentAccessManager:(id)arg9 logger:(id)arg10;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

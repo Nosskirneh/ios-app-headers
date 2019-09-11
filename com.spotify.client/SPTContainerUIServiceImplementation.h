@@ -6,23 +6,27 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTContainerUIService-Protocol.h"
+@class MessageBarController, NSString, SPTAlertControllerImplementation, SPTAlertQueueImplementation, SPTAllocationContext, SPTMainContentLayoutGuideController, SPTMainWindow;
 
-@class MessageBarController, NSString, SPTAlertPresenter, SPTAllocationContext, SPTMainWindow;
-
-@interface SPTContainerUIServiceImplementation : NSObject <SPTContainerUIService>
+@interface SPTContainerUIServiceImplementation : NSObject
 {
     MessageBarController *_messageBarController;
     SPTMainWindow *_mainWindow;
-    SPTAlertPresenter *_alertPresenter;
+    SPTAlertQueueImplementation *_alertInterface;
+    SPTAlertControllerImplementation *_alertController;
+    SPTMainContentLayoutGuideController *_mainContentLayoutGuideController;
 }
 
 + (id)serviceIdentifier;
-@property(retain, nonatomic) SPTAlertPresenter *alertPresenter; // @synthesize alertPresenter=_alertPresenter;
+@property(retain, nonatomic) SPTMainContentLayoutGuideController *mainContentLayoutGuideController; // @synthesize mainContentLayoutGuideController=_mainContentLayoutGuideController;
+@property(retain, nonatomic) SPTAlertControllerImplementation *alertController; // @synthesize alertController=_alertController;
+@property(retain, nonatomic) SPTAlertQueueImplementation *alertInterface; // @synthesize alertInterface=_alertInterface;
 @property(retain, nonatomic) SPTMainWindow *mainWindow; // @synthesize mainWindow=_mainWindow;
 @property(retain, nonatomic) MessageBarController *messageBarController; // @synthesize messageBarController=_messageBarController;
 - (void).cxx_destruct;
+- (id)provideMainContentLayoutGuide;
 - (id)provideAlertController;
+- (id)provideAlertInterface;
 - (id)provideAnimationView;
 - (void)showPopupWithViewController:(id)arg1;
 - (id)provideRootPresenterViewController;

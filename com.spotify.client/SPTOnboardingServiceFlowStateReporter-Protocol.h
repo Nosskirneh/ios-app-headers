@@ -9,6 +9,7 @@
 @class UINavigationController, UIViewController;
 
 @protocol SPTOnboardingServiceFlowStateReporter <NSObject>
+- (void)onboardingFlowDidSkip;
 - (void)onboardingFlowDidFinish;
 - (UINavigationController *)onboardingFlowNavigationControllerWithViewController:(UIViewController *)arg1 animated:(_Bool)arg2;
 @end

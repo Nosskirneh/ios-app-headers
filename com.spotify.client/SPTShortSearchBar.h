@@ -8,42 +8,28 @@
 
 #import "SPTThemableView-Protocol.h"
 
-@class NSString, UIColor, UIFont;
+@class NSString;
 @protocol SPTThemableViewLayoutDelegate;
 
 @interface SPTShortSearchBar : UISearchBar <SPTThemableView>
 {
     id <SPTThemableViewLayoutDelegate> _layoutDelegate;
-    UIFont *_font;
-    UIColor *_placeholderColor;
-    UIColor *_textColor;
-    UIColor *_textBackgroundColor;
 }
 
-+ (id)appearanceProxyForSubviewsOfClass:(Class)arg1;
 + (id)searchBar;
-@property(retain, nonatomic) UIColor *textBackgroundColor; // @synthesize textBackgroundColor=_textBackgroundColor;
-@property(retain, nonatomic) UIColor *textColor; // @synthesize textColor=_textColor;
-@property(retain, nonatomic) UIColor *placeholderColor; // @synthesize placeholderColor=_placeholderColor;
-@property(retain, nonatomic) UIFont *font; // @synthesize font=_font;
 @property(nonatomic) __weak id <SPTThemableViewLayoutDelegate> layoutDelegate; // @synthesize layoutDelegate=_layoutDelegate;
 - (void).cxx_destruct;
 - (id)textField;
+- (void)setPlaceholder:(id)arg1;
 - (void)setupDefaultSearchIcons;
 - (void)setInternalTextBackgroundColor:(id)arg1 withCornerRadius:(double)arg2;
-- (void)applyThemeForBarButtonItem;
 - (void)applyThemeForTextBackground;
 - (void)applyThemeForPlaceholder;
-- (void)applyThemeForText;
-- (void)applyThemeForKeyboard;
+- (void)applyThemeForTextField;
 - (void)applyThemeLayout;
-- (void)setSearchIconHidden:(_Bool)arg1;
-- (void)layoutSubviews;
 - (void)didMoveToSuperview;
-- (void)dealloc;
 - (void)configureSearchBar;
 - (id)initWithFrame:(struct CGRect)arg1;
-- (id)initWithCoder:(id)arg1;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

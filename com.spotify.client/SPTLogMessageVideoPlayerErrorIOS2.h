@@ -24,17 +24,17 @@
 }
 
 + (id)messageWithFileId:(id)arg1 uri:(id)arg2 playbackId:(id)arg3 sessionId:(id)arg4 localTime:(long long)arg5 errorCode:(long long)arg6 errorDomain:(id)arg7 errorComment:(id)arg8 underlyingErrorCode:(long long)arg9 underlyingErrorDomain:(id)arg10 underlyingErrorComment:(id)arg11;
-@property(retain, nonatomic) NSString *underlyingErrorCommentValue; // @synthesize underlyingErrorCommentValue=_underlyingErrorCommentValue;
-@property(retain, nonatomic) NSString *underlyingErrorDomainValue; // @synthesize underlyingErrorDomainValue=_underlyingErrorDomainValue;
+@property(copy, nonatomic) NSString *underlyingErrorCommentValue; // @synthesize underlyingErrorCommentValue=_underlyingErrorCommentValue;
+@property(copy, nonatomic) NSString *underlyingErrorDomainValue; // @synthesize underlyingErrorDomainValue=_underlyingErrorDomainValue;
 @property(nonatomic) long long underlyingErrorCodeValue; // @synthesize underlyingErrorCodeValue=_underlyingErrorCodeValue;
-@property(retain, nonatomic) NSString *errorCommentValue; // @synthesize errorCommentValue=_errorCommentValue;
-@property(retain, nonatomic) NSString *errorDomainValue; // @synthesize errorDomainValue=_errorDomainValue;
+@property(copy, nonatomic) NSString *errorCommentValue; // @synthesize errorCommentValue=_errorCommentValue;
+@property(copy, nonatomic) NSString *errorDomainValue; // @synthesize errorDomainValue=_errorDomainValue;
 @property(nonatomic) long long errorCodeValue; // @synthesize errorCodeValue=_errorCodeValue;
 @property(nonatomic) long long localTimeValue; // @synthesize localTimeValue=_localTimeValue;
-@property(retain, nonatomic) NSString *sessionIdValue; // @synthesize sessionIdValue=_sessionIdValue;
-@property(retain, nonatomic) NSData *playbackIdValue; // @synthesize playbackIdValue=_playbackIdValue;
-@property(retain, nonatomic) NSString *uriValue; // @synthesize uriValue=_uriValue;
-@property(retain, nonatomic) NSData *fileIdValue; // @synthesize fileIdValue=_fileIdValue;
+@property(copy, nonatomic) NSString *sessionIdValue; // @synthesize sessionIdValue=_sessionIdValue;
+@property(copy, nonatomic) NSData *playbackIdValue; // @synthesize playbackIdValue=_playbackIdValue;
+@property(copy, nonatomic) NSString *uriValue; // @synthesize uriValue=_uriValue;
+@property(copy, nonatomic) NSData *fileIdValue; // @synthesize fileIdValue=_fileIdValue;
 - (void).cxx_destruct;
 - (_Bool)isEqual:(id)arg1;
 - (unsigned long long)hash;

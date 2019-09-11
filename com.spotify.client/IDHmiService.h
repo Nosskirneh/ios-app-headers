@@ -6,12 +6,10 @@
 
 #import "IDService.h"
 
-#import "IDEtchSessionHmiDelegate-Protocol.h"
-
-@class NSDictionary, NSMutableSet, NSString;
+@class NSDictionary, NSMutableSet;
 @protocol IDHmiServiceDelegate;
 
-@interface IDHmiService : IDService <IDEtchSessionHmiDelegate>
+@interface IDHmiService : IDService
 {
     NSDictionary *_hmiCapabilities;
     NSMutableSet *_hmiEventObservers;
@@ -45,12 +43,6 @@
 - (_Bool)startWithHmiDescription:(id)arg1 textDatabases:(id)arg2 imageDatabases:(id)arg3 widgetDatabase:(id)arg4 error:(id *)arg5;
 - (_Bool)startWithHmiDescription:(id)arg1 textDatabases:(id)arg2 imageDatabases:(id)arg3 error:(id *)arg4;
 - (id)initWithEtchSession:(id)arg1 handle:(long long)arg2 hmiCapabilities:(id)arg3;
-
-// Remaining properties
-@property(readonly, copy) NSString *debugDescription;
-@property(readonly, copy) NSString *description;
-@property(readonly) unsigned long long hash;
-@property(readonly) Class superclass;
 
 @end
 

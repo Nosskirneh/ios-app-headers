@@ -6,10 +6,10 @@
 
 #import "NSObject-Protocol.h"
 
-@class SPTSignupTermsAndPolicyViewModel, UIViewController;
+@class NSString, SPTSignupTermsAndPolicyViewModel, UIViewController;
 
 @protocol SPTSignupTermsAndPolicyViewModelDelegate <NSObject>
-@property(readonly, nonatomic) long long presentingControllerAdjustIdentifier;
+@property(readonly, nonatomic) NSString *presentingControllerAdjustIdentifier;
 @property(readonly, nonatomic) UIViewController *presentingController;
 - (void)userDidAcceptAllLicences:(SPTSignupTermsAndPolicyViewModel *)arg1;
 @end

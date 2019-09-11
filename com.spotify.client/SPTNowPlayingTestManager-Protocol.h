@@ -6,18 +6,21 @@
 
 #import "NSObject-Protocol.h"
 
-@class SPTPlayerState;
+@class SPTNowPlayingScrollConfiguration, SPTPlayerState;
 
 @protocol SPTNowPlayingTestManager <NSObject>
+@property(readonly, nonatomic) SPTNowPlayingScrollConfiguration *scrollConfiguration;
+@property(readonly, nonatomic, getter=isContextAwareEditorialTrackSharingEnabled) _Bool contextAwareEditorialTrackSharingEnabled;
 @property(readonly, nonatomic, getter=isLocalBansEnabled) _Bool localBansEnabled;
-@property(readonly, nonatomic, getter=isHeartsInTracksEnabled) _Bool heartsInTracksEnabled;
 @property(readonly, nonatomic, getter=isFreeTierEnabled) _Bool freeTierEnabled;
+@property(readonly, nonatomic, getter=isVoiceCompanionEnabled) _Bool voiceCompanionEnabled;
+@property(readonly, nonatomic, getter=isNoSkipLimitEnabled) _Bool noSkipLimitEnabled;
 @property(readonly, nonatomic, getter=isShowsFormatContextAwareSharingEnabled) _Bool showsFormatContextAwareSharingEnabled;
-@property(readonly, nonatomic, getter=isScrollingNowPlayingViewEnabled) _Bool scrollingNowPlayingViewEnabled;
-@property(readonly, nonatomic, getter=isOpenGLOverlayEnabled) _Bool openGLOverlayEnabled;
-@property(readonly, nonatomic, getter=isNewNowPlayingViewEnabled) _Bool newNowPlayingViewEnabled;
+@property(readonly, nonatomic, getter=isNowPlayingBarImprovementsEnabled) _Bool nowPlayingBarImprovementsEnabled;
+@property(readonly, nonatomic, getter=isMusicSleepTimerEnabled) _Bool musicSleepTimerEnabled;
+@property(readonly, nonatomic, getter=isNewContentLayerEnabled) _Bool newContentLayerEnabled;
+- (_Bool)setLocalBansEnabled:(_Bool)arg1;
 - (_Bool)isShowsFormatEnabledForPlayerState:(SPTPlayerState *)arg1;
 - (_Bool)isPodcast:(SPTPlayerState *)arg1;
-- (_Bool)isContentEngagementOptionsTestEnabled;
 @end
 

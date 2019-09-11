@@ -8,15 +8,14 @@
 
 #import "GLUETheme-Protocol.h"
 
-@class NSString, SPTTheme;
-@protocol SPTFreeTierSimpleTooltipStyle, SPTFreeTierTooltipStyle;
+@class NSString, SPTFreeTierSimpleTooltipStyle, SPTFreeTierTooltipStyle, SPTTheme;
 
 @interface SPTFreeTierTooltipTheme : GLUEThemeBase <GLUETheme>
 {
 }
 
-@property(readonly, copy, nonatomic) id <SPTFreeTierTooltipStyle> defaultTooltipStyle;
-@property(readonly, copy, nonatomic) id <SPTFreeTierSimpleTooltipStyle> simpleTooltipStyle;
+@property(readonly, copy, nonatomic) SPTFreeTierTooltipStyle *defaultTooltipStyle;
+@property(readonly, copy, nonatomic) SPTFreeTierSimpleTooltipStyle *simpleTooltipStyle;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

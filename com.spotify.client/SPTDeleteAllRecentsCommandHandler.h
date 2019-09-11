@@ -6,18 +6,18 @@
 
 #import <objc/NSObject.h>
 
-#import "EXP_HUBCommandHandler-Protocol.h"
+#import "HUBCommandHandler-Protocol.h"
 
-@protocol SPTSearchFancyRecentsDataSource, SPTSearchLogger;
+@protocol SPTSearchLogger, SPTSearchRecentsDataSource;
 
-@interface SPTDeleteAllRecentsCommandHandler : NSObject <EXP_HUBCommandHandler>
+@interface SPTDeleteAllRecentsCommandHandler : NSObject <HUBCommandHandler>
 {
-    id <SPTSearchFancyRecentsDataSource> _dataSource;
+    id <SPTSearchRecentsDataSource> _dataSource;
     id <SPTSearchLogger> _searchLogger;
 }
 
 @property(readonly, nonatomic) id <SPTSearchLogger> searchLogger; // @synthesize searchLogger=_searchLogger;
-@property(readonly, nonatomic) id <SPTSearchFancyRecentsDataSource> dataSource; // @synthesize dataSource=_dataSource;
+@property(readonly, nonatomic) id <SPTSearchRecentsDataSource> dataSource; // @synthesize dataSource=_dataSource;
 - (void).cxx_destruct;
 - (void)handleCommand:(id)arg1 event:(id)arg2;
 - (id)initWithRecentsDataSource:(id)arg1 searchLogger:(id)arg2;

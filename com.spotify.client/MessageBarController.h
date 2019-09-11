@@ -18,6 +18,8 @@
     _Bool _messageBarForceHidden;
     NSMutableArray *_messageBarItems;
     UIViewController *_contentViewController;
+    CDUnknownBlockType _didReceiveKeyCommandAction;
+    CDUnknownBlockType _keyCommandsBlock;
     id <MessageBarControllerDelegate> _delegate;
     NSHashTable *_observers;
     MessageBarView *_messageBarView;
@@ -29,6 +31,8 @@
 @property(retain, nonatomic) NSHashTable *observers; // @synthesize observers=_observers;
 @property(nonatomic) __weak id <MessageBarControllerDelegate> delegate; // @synthesize delegate=_delegate;
 @property(readonly, nonatomic, getter=isMessageBarForceHidden) _Bool messageBarForceHidden; // @synthesize messageBarForceHidden=_messageBarForceHidden;
+@property(copy, nonatomic) CDUnknownBlockType keyCommandsBlock; // @synthesize keyCommandsBlock=_keyCommandsBlock;
+@property(copy, nonatomic) CDUnknownBlockType didReceiveKeyCommandAction; // @synthesize didReceiveKeyCommandAction=_didReceiveKeyCommandAction;
 @property(readonly, nonatomic) UIViewController *contentViewController; // @synthesize contentViewController=_contentViewController;
 @property(readonly, nonatomic) NSMutableArray *messageBarItems; // @synthesize messageBarItems=_messageBarItems;
 - (void).cxx_destruct;
@@ -37,6 +41,8 @@
 - (void)setContentViewController:(id)arg1 animation:(long long)arg2 completion:(CDUnknownBlockType)arg3;
 - (void)messageBarItemDidChange:(id)arg1;
 - (void)dismissMessageBarItem:(id)arg1;
+- (void)didReceiveKeyCommand:(id)arg1;
+- (id)keyCommands;
 - (void)hiddenChanged;
 - (void)messageChanged:(id)arg1 onObject:(id)arg2;
 - (void)dismissMessageBarItem:(id)arg1 animated:(_Bool)arg2;

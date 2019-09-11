@@ -7,21 +7,31 @@
 #import <objc/NSObject.h>
 
 #import "SPTAdNPVModeGeneratorProtocol-Protocol.h"
+#import "SPTAdPlayerObserver-Protocol.h"
 
-@class NSString, SPTAdNowPlayingVideoShowStateManager, SPTNowPlayingVideoAdMode;
+@class NSString, SPTAdNowPlayingVideoShowStateManager, SPTAdPlayerObservable, SPTNowPlayingVideoAdMode;
 
-@interface SPTAdNowPlayingVideoAdModeGenerator : NSObject <SPTAdNPVModeGeneratorProtocol>
+@interface SPTAdNowPlayingVideoAdModeGenerator : NSObject <SPTAdPlayerObserver, SPTAdNPVModeGeneratorProtocol>
 {
     SPTNowPlayingVideoAdMode *_videoAdMode;
     SPTAdNowPlayingVideoShowStateManager *_showStateManager;
+    SPTAdPlayerObservable *_playerObserver;
 }
 
+@property(retain, nonatomic) SPTAdPlayerObservable *playerObserver; // @synthesize playerObserver=_playerObserver;
 @property(retain, nonatomic) SPTAdNowPlayingVideoShowStateManager *showStateManager; // @synthesize showStateManager=_showStateManager;
 @property(retain, nonatomic) SPTNowPlayingVideoAdMode *videoAdMode; // @synthesize videoAdMode=_videoAdMode;
 - (void).cxx_destruct;
+- (void)adPlayerStateDidChangeToTrack:(struct SPTNowPlayingTrack)arg1;
+- (id)contentDecorationController;
+- (id)infoController;
+- (id)durationController;
+- (id)navigationController;
+- (void)updateVisibilityDelegate;
 - (void)updateAdModeWithAdEntity:(id)arg1;
 - (id)getNPVAdMode;
-- (id)initWithAdManager:(id)arg1 videoSurfaceManager:(id)arg2 player:(id)arg3 playerObserver:(id)arg4 theme:(id)arg5 eventLogger:(id)arg6 featureChecker:(id)arg7;
+- (void)dealloc;
+- (id)initWithAdManager:(id)arg1 playerObserver:(id)arg2 theme:(id)arg3 adNowPlayingManager:(id)arg4;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

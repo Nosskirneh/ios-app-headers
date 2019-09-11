@@ -7,8 +7,10 @@
 #import "NSObject-Protocol.h"
 
 @class NSString;
+@protocol SPTSearch2RootViewControllerDelegate;
 
 @protocol SPTSearch2RootViewControllerProtocol <NSObject>
+@property(nonatomic) __weak id <SPTSearch2RootViewControllerDelegate> delegate;
 @property(nonatomic) _Bool shouldFocusSearchBarOnViewDidAppear;
 @property(nonatomic) _Bool voiceSearchAllowed;
 @property(readonly, copy, nonatomic) NSString *requestID;
@@ -16,6 +18,8 @@
 @property(nonatomic) _Bool automaticallyAdjustsInsets;
 @property(nonatomic) struct UIEdgeInsets insets;
 @property(nonatomic) unsigned long long cancelButtonVisibility;
+- (void)logQueryClear;
+- (void)returnKeyPressed;
 - (void)resetSearch;
 - (void)focusSearchBar;
 @end

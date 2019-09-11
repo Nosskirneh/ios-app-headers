@@ -10,6 +10,11 @@
 {
 }
 
++ (struct UIEdgeInsets)spt_adjustEdgeInsets:(struct UIEdgeInsets)arg1;
++ (id)filterAdjustableButtonsFromBarButtonItems:(id)arg1;
++ (id)fixedSpaceBeforeBarButtonItemAtIndex:(long long)arg1 withFixedSpaceWidth:(double)arg2;
++ (void)increaseTouchAreaForButton:(id)arg1 atIndex:(long long)arg2 itemsCount:(long long)arg3 fixedSpaceWidth:(double)arg4;
++ (id)increasedTouchForBarButtonItems:(id)arg1 withFixedSpaceWidth:(double)arg2;
 + (id)toolBarButtonItemWithTarget:(id)arg1 action:(SEL)arg2 normalTitle:(id)arg3 selectedTitle:(id)arg4;
 + (id)textBarButtonItemWithTarget:(id)arg1 action:(SEL)arg2 normalTitle:(id)arg3 selectedTitle:(id)arg4;
 + (id)contextMenuBarButtonItemWithTarget:(id)arg1 action:(SEL)arg2;

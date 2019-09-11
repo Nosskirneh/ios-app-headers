@@ -6,15 +6,24 @@
 
 #import "SettingsSection.h"
 
+@class SPTSettingsLogger;
+@protocol SPTLoginLogoutHandler;
+
 @interface LogoutSettingsSection : SettingsSection
 {
+    id <SPTLoginLogoutHandler> _logoutHandler;
+    SPTSettingsLogger *_logger;
 }
 
+@property(retain, nonatomic) SPTSettingsLogger *logger; // @synthesize logger=_logger;
+@property(readonly, nonatomic) id <SPTLoginLogoutHandler> logoutHandler; // @synthesize logoutHandler=_logoutHandler;
+- (void).cxx_destruct;
 - (void)logoutUser;
 - (void)didSelectRow:(long long)arg1;
 - (double)heightForRow:(long long)arg1;
 - (id)cellForRow:(long long)arg1;
 - (long long)numberOfRows;
+- (id)initWithSettingsViewController:(id)arg1 logoutHandler:(id)arg2 logger:(id)arg3;
 
 @end
 

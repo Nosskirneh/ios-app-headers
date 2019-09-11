@@ -13,10 +13,8 @@
     struct scoped_connection _user_data_connection;
     _Bool _loaded;
     NSString *_username;
-    NSString *_canonicalUsername;
     NSString *_displayableName;
     NSString *_displayableShortName;
-    NSString *_fullName;
     NSURL *_link;
     NSURL *_profilePictureURL;
     NSURL *_profilePictureThumbnailURL;
@@ -26,10 +24,8 @@
 @property(readonly, nonatomic) NSURL *profilePictureThumbnailURL; // @synthesize profilePictureThumbnailURL=_profilePictureThumbnailURL;
 @property(readonly, nonatomic) NSURL *profilePictureURL; // @synthesize profilePictureURL=_profilePictureURL;
 @property(readonly, nonatomic) NSURL *link; // @synthesize link=_link;
-@property(readonly, nonatomic) NSString *fullName; // @synthesize fullName=_fullName;
 @property(readonly, nonatomic) NSString *displayableShortName; // @synthesize displayableShortName=_displayableShortName;
 @property(readonly, nonatomic) NSString *displayableName; // @synthesize displayableName=_displayableName;
-@property(readonly, nonatomic) NSString *canonicalUsername; // @synthesize canonicalUsername=_canonicalUsername;
 @property(readonly, nonatomic) NSString *username; // @synthesize username=_username;
 - (id).cxx_construct;
 - (void).cxx_destruct;

@@ -6,12 +6,9 @@
 
 #import "IDService.h"
 
-#import "IDEtchSessionPiaDelegate-Protocol.h"
-
-@class NSString;
 @protocol IDPiaServiceDelegate;
 
-@interface IDPiaService : IDService <IDEtchSessionPiaDelegate>
+@interface IDPiaService : IDService
 {
     int _piaServiceState;
     id <IDPiaServiceDelegate> _delegate;
@@ -31,12 +28,6 @@
 - (_Bool)requestWithData:(id)arg1 error:(id *)arg2;
 - (_Bool)requestWithType:(int)arg1 error:(id *)arg2;
 - (id)initWithEtchSession:(id)arg1 handle:(long long)arg2;
-
-// Remaining properties
-@property(readonly, copy) NSString *debugDescription;
-@property(readonly, copy) NSString *description;
-@property(readonly) unsigned long long hash;
-@property(readonly) Class superclass;
 
 @end
 

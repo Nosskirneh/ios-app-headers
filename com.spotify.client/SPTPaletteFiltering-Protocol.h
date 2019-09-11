@@ -7,6 +7,6 @@
 #import "NSObject-Protocol.h"
 
 @protocol SPTPaletteFiltering <NSObject>
-- (_Bool)shouldAllowColor:(union SPTColor)arg1;
+@property(readonly, copy, nonatomic) CDUnknownBlockType filterBlock;
 @end
 

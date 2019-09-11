@@ -6,27 +6,27 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTFreeTierTooltipStyle-Protocol.h"
+#import "GLUEStyle-Protocol.h"
 
 @class NSString, UIColor;
 @protocol GLUEStyle;
 
-@interface SPTFreeTierTooltipStyle : NSObject <SPTFreeTierTooltipStyle>
+@interface SPTFreeTierTooltipStyle : NSObject <GLUEStyle>
 {
-    double contentHorizontalInset;
-    double contentVerticalInset;
-    double cornerRadius;
-    double arrowHeight;
-    id <GLUEStyle> contentViewStyle;
-    UIColor *backgroundColor;
+    double _contentHorizontalInset;
+    double _contentVerticalInset;
+    double _arrowHeight;
+    double _cornerRadius;
+    id <GLUEStyle> _contentViewStyle;
+    UIColor *_backgroundColor;
 }
 
-@property(copy, nonatomic) UIColor *backgroundColor; // @synthesize backgroundColor;
-@property(copy, nonatomic) id <GLUEStyle> contentViewStyle; // @synthesize contentViewStyle;
-@property(nonatomic) double arrowHeight; // @synthesize arrowHeight;
-@property(nonatomic) double cornerRadius; // @synthesize cornerRadius;
-@property(nonatomic) double contentVerticalInset; // @synthesize contentVerticalInset;
-@property(nonatomic) double contentHorizontalInset; // @synthesize contentHorizontalInset;
+@property(copy, nonatomic) UIColor *backgroundColor; // @synthesize backgroundColor=_backgroundColor;
+@property(copy, nonatomic) id <GLUEStyle> contentViewStyle; // @synthesize contentViewStyle=_contentViewStyle;
+@property(nonatomic) double cornerRadius; // @synthesize cornerRadius=_cornerRadius;
+@property(nonatomic) double arrowHeight; // @synthesize arrowHeight=_arrowHeight;
+@property(nonatomic) double contentVerticalInset; // @synthesize contentVerticalInset=_contentVerticalInset;
+@property(nonatomic) double contentHorizontalInset; // @synthesize contentHorizontalInset=_contentHorizontalInset;
 - (void).cxx_destruct;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 

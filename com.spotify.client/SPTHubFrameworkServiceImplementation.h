@@ -6,61 +6,44 @@
 
 #import <objc/NSObject.h>
 
-#import "HUBLiveServiceDelegate-Protocol.h"
-#import "SPTHubFeatureRegistry-Protocol.h"
 #import "SPTHubFrameworkService-Protocol.h"
 #import "SPTService-Protocol.h"
 
-@class HUBManager, NSString, SPTAllocationContext, SPTHubViewControllerFactoryWrapper;
-@protocol HUBAction, HUBActionHandler, SPTContainerService, SPTGLUEService, SPTHUBCustomUtilityIdentifierRegistry, SPTLogCenter, SPTNavigationFeature, SPTNetworkService, SPTPerformanceMetricsService, SPTPlayerFeature, SPTSessionService, SPTShelfService, SPTURIDispatchService;
+@class NSString, SPTAllocationContext, SPTHubsRendererFactoryImplementation;
+@protocol CosmosFeature, SPContextMenuFeature, SPTContainerService, SPTGLUEService, SPTInteractionSenderService, SPTNetworkService, SPTPerformanceMetricsService, SPTPlayerFeature, SPTSessionService, SPTShareFeature, SPTURIDispatchService;
 
-@interface SPTHubFrameworkServiceImplementation : NSObject <HUBLiveServiceDelegate, SPTHubFeatureRegistry, SPTService, SPTHubFrameworkService>
+@interface SPTHubFrameworkServiceImplementation : NSObject <SPTService, SPTHubFrameworkService>
 {
-    HUBManager *_hubManager;
-    SPTHubViewControllerFactoryWrapper *_viewControllerFactory;
-    id <SPTHUBCustomUtilityIdentifierRegistry> _hubCustomIdentifierRegistry;
-    id <SPTNavigationFeature> _navigationService;
-    id <SPTNetworkService> _networkFeature;
-    id <SPTSessionService> _sessionService;
-    id <SPTContainerService> _containerService;
-    id <SPTGLUEService> _GLUEFeature;
-    id <SPTPlayerFeature> _playerFeature;
-    id <SPTShelfService> _shelfService;
-    id <SPTPerformanceMetricsService> _performanceMetricsService;
+    id <SPTGLUEService> _glueService;
+    id <SPTNetworkService> _networkService;
+    id <SPTPlayerFeature> _playerService;
+    id <SPContextMenuFeature> _contextMenuService;
     id <SPTURIDispatchService> _URIDispatchService;
-    id <SPTLogCenter> _logCenter;
+    id <SPTContainerService> _containerService;
+    id <SPTSessionService> _sessionService;
+    id <SPTPerformanceMetricsService> _performanceMetricsService;
+    id <CosmosFeature> _cosmosFeature;
+    id <SPTInteractionSenderService> _interactionSenderService;
+    id <SPTShareFeature> _shareService;
+    SPTHubsRendererFactoryImplementation *_hubsRendererFactory;
 }
 
 + (id)serviceIdentifier;
-@property(retain, nonatomic) id <SPTLogCenter> logCenter; // @synthesize logCenter=_logCenter;
-@property(nonatomic) __weak id <SPTURIDispatchService> URIDispatchService; // @synthesize URIDispatchService=_URIDispatchService;
+@property(retain, nonatomic) SPTHubsRendererFactoryImplementation *hubsRendererFactory; // @synthesize hubsRendererFactory=_hubsRendererFactory;
+@property(nonatomic) __weak id <SPTShareFeature> shareService; // @synthesize shareService=_shareService;
+@property(nonatomic) __weak id <SPTInteractionSenderService> interactionSenderService; // @synthesize interactionSenderService=_interactionSenderService;
+@property(nonatomic) __weak id <CosmosFeature> cosmosFeature; // @synthesize cosmosFeature=_cosmosFeature;
 @property(nonatomic) __weak id <SPTPerformanceMetricsService> performanceMetricsService; // @synthesize performanceMetricsService=_performanceMetricsService;
-@property(nonatomic) __weak id <SPTShelfService> shelfService; // @synthesize shelfService=_shelfService;
-@property(nonatomic) __weak id <SPTPlayerFeature> playerFeature; // @synthesize playerFeature=_playerFeature;
-@property(nonatomic) __weak id <SPTGLUEService> GLUEFeature; // @synthesize GLUEFeature=_GLUEFeature;
-@property(nonatomic) __weak id <SPTContainerService> containerService; // @synthesize containerService=_containerService;
 @property(nonatomic) __weak id <SPTSessionService> sessionService; // @synthesize sessionService=_sessionService;
-@property(nonatomic) __weak id <SPTNetworkService> networkFeature; // @synthesize networkFeature=_networkFeature;
-@property(nonatomic) __weak id <SPTNavigationFeature> navigationService; // @synthesize navigationService=_navigationService;
-@property(retain, nonatomic) id <SPTHUBCustomUtilityIdentifierRegistry> hubCustomIdentifierRegistry; // @synthesize hubCustomIdentifierRegistry=_hubCustomIdentifierRegistry;
+@property(nonatomic) __weak id <SPTContainerService> containerService; // @synthesize containerService=_containerService;
+@property(nonatomic) __weak id <SPTURIDispatchService> URIDispatchService; // @synthesize URIDispatchService=_URIDispatchService;
+@property(nonatomic) __weak id <SPContextMenuFeature> contextMenuService; // @synthesize contextMenuService=_contextMenuService;
+@property(nonatomic) __weak id <SPTPlayerFeature> playerService; // @synthesize playerService=_playerService;
+@property(nonatomic) __weak id <SPTNetworkService> networkService; // @synthesize networkService=_networkService;
+@property(nonatomic) __weak id <SPTGLUEService> glueService; // @synthesize glueService=_glueService;
 - (void).cxx_destruct;
-- (void)startLiveService;
-- (void)liveService:(id)arg1 didCreateContentOperation:(id)arg2;
-- (id)createViewControllerForViewURI:(id)arg1 context:(id)arg2;
-@property(readonly, nonatomic) id <HUBAction> selectionAction;
-@property(readonly, nonatomic) id <HUBActionHandler> defaultActionHandler;
-- (void)unregisterFeatureWithIdentifier:(id)arg1;
-- (void)registerFeatureWithIdentifier:(id)arg1 viewURIPredicate:(id)arg2 title:(id)arg3 contentOperationFactories:(id)arg4 contentReloadPolicy:(id)arg5 customJSONSchemaIdentifier:(id)arg6 actionHandler:(id)arg7 viewControllerScrollHandler:(id)arg8 options:(id)arg9;
-- (void)registerFeatureWithIdentifier:(id)arg1 viewURIPredicate:(id)arg2 title:(id)arg3 contentOperationFactories:(id)arg4 contentReloadPolicy:(id)arg5 customJSONSchemaIdentifier:(id)arg6 actionHandler:(id)arg7 viewControllerScrollHandler:(id)arg8;
-- (void)registerFeatureWithIdentifier:(id)arg1 viewURIPredicate:(id)arg2 title:(id)arg3 pageIdentifier:(id)arg4 contentOperationFactories:(id)arg5 contentReloadPolicy:(id)arg6 customJSONSchemaIdentifier:(id)arg7 actionHandler:(id)arg8 viewControllerScrollHandler:(id)arg9 options:(id)arg10;
-- (id)createRemoteContentOperationFactoryWithURLResolver:(id)arg1;
-- (id)provideHubCustomUtilityIdentifierRegistry;
-- (id)provideViewControllerFactory;
-- (id)provideActionRegistry;
-- (id)provideComponentRegistry;
-- (id)provideFeatureRegistry;
-@property(readonly, nonatomic) SPTHubViewControllerFactoryWrapper *viewControllerFactory; // @synthesize viewControllerFactory=_viewControllerFactory;
-@property(readonly, nonatomic) HUBManager *hubManager; // @synthesize hubManager=_hubManager;
+- (id)provideHubsEventFactory;
+- (id)provideHubsRendererFactory;
 - (void)load;
 - (void)configureWithServices:(id)arg1;
 

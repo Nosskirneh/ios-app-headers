@@ -13,6 +13,7 @@
 @property(nonatomic, getter=isHidden) _Bool hidden;
 @property(readonly, nonatomic) UIViewController *nowPlayingViewController;
 @property(readonly, nonatomic) _Bool barHidden;
+@property(readonly, nonatomic) _Bool shouldHideBar;
 - (void)setCurrentToggleMode:(unsigned long long)arg1 animated:(_Bool)arg2;
 - (unsigned long long)currentToggleMode;
 - (void)setHidden:(_Bool)arg1 animated:(_Bool)arg2 completion:(void (^)(void))arg3;

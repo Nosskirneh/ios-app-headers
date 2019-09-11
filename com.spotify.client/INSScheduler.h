@@ -8,48 +8,51 @@
 
 #import "INSMessageOperationDelegate-Protocol.h"
 #import "INSSchedulerProtocol-Protocol.h"
+#import "INSTimerObserver-Protocol.h"
 
-@class NSOperationQueue, NSString, NSTimer;
-@protocol INSLogger, INSPersistentStore, INSSchedulerConfigurationProtocol, INSSchedulerDelegate, INSTransport;
+@class NSMutableSet, NSOperationQueue, NSString;
+@protocol INSEventEnvelopeFactoryProtocol, INSLogger, INSSchedulerDataDelegate, INSSchedulerDataSource, INSSchedulerDelegate, INSTransport;
 
-@interface INSScheduler : NSObject <INSMessageOperationDelegate, INSSchedulerProtocol>
+@interface INSScheduler : NSObject <INSMessageOperationDelegate, INSSchedulerProtocol, INSTimerObserver>
 {
     NSOperationQueue *_executionQueue;
+    NSMutableSet *_operationsInFlight;
     id <INSTransport> _transport;
-    id <INSPersistentStore> _store;
-    NSTimer *_timer;
-    id <INSSchedulerConfigurationProtocol> _configuration;
     id <INSLogger> _logger;
+    id <INSEventEnvelopeFactoryProtocol> _eventEnvelopeFactory;
     id <INSSchedulerDelegate> _delegate;
+    id <INSSchedulerDataSource> _dataSource;
+    id <INSSchedulerDataDelegate> _dataDelegate;
 }
 
+@property(nonatomic) __weak id <INSSchedulerDataDelegate> dataDelegate; // @synthesize dataDelegate=_dataDelegate;
+@property(nonatomic) __weak id <INSSchedulerDataSource> dataSource; // @synthesize dataSource=_dataSource;
 @property(nonatomic) __weak id <INSSchedulerDelegate> delegate; // @synthesize delegate=_delegate;
+@property(retain, nonatomic) id <INSEventEnvelopeFactoryProtocol> eventEnvelopeFactory; // @synthesize eventEnvelopeFactory=_eventEnvelopeFactory;
 @property(retain, nonatomic) id <INSLogger> logger; // @synthesize logger=_logger;
-@property(retain, nonatomic) id <INSSchedulerConfigurationProtocol> configuration; // @synthesize configuration=_configuration;
-@property(retain, nonatomic) NSTimer *timer; // @synthesize timer=_timer;
-@property(retain, nonatomic) id <INSPersistentStore> store; // @synthesize store=_store;
 @property(retain, nonatomic) id <INSTransport> transport; // @synthesize transport=_transport;
+@property(retain, nonatomic) NSMutableSet *operationsInFlight; // @synthesize operationsInFlight=_operationsInFlight;
 @property(retain, nonatomic) NSOperationQueue *executionQueue; // @synthesize executionQueue=_executionQueue;
 - (void).cxx_destruct;
 - (void)messageOperationDidFinish:(id)arg1;
-- (void)handleSuccessfulEventEnvelopes:(id)arg1 failedEventEnvelopes:(id)arg2 shouldBackoff:(_Bool)arg3;
-- (void)handleEnvelopes:(id)arg1 withResponseCode:(long long)arg2 responseHeaders:(id)arg3 responseBody:(id)arg4;
-- (void)markEnvelopeFailed:(id)arg1;
+- (id)eventsDescriptionWithEnvelopes:(id)arg1;
+- (void)handleShouldBackoff;
+- (void)handleRetryEventEnvelopes:(id)arg1;
+- (void)handleDeliveredEventEnvelopes:(id)arg1;
+- (void)handleFailedEventEnvelopes:(id)arg1 responseCode:(long long)arg2;
+- (void)logFailedEnvelopes:(id)arg1 responseCode:(long long)arg2;
+- (void)handleMessageOperationResponse:(id)arg1;
+- (void)handleMessageOperation:(id)arg1;
 - (void)scheduleQueueBackoff;
-- (id)wrapMessage:(id)arg1;
-- (_Bool)messageEntityExpired:(id)arg1;
+- (void)addBatchToExecutionQueue:(id)arg1 route:(long long)arg2;
+- (void)batchAndAddToExecutionQueue:(id)arg1 queuedEnvelopes:(id)arg2 route:(long long)arg3;
 - (id)queuedEnvelopes;
-- (void)checkPersistentStoreWithImmediateness:(unsigned long long)arg1;
 - (void)scheduleAllMessages;
-- (id)fallbackConfigurationForMessage:(id)arg1;
-- (unsigned long long)immediatenessForMessage:(id)arg1;
-- (id)timerForImmediateness:(unsigned long long)arg1 interval:(double)arg2 selector:(SEL)arg3 retryCount:(unsigned long long)arg4;
-- (id)timerForImmediateness:(unsigned long long)arg1 selector:(SEL)arg2;
-- (id)retryTimerForTimer:(id)arg1;
 - (id)wrappedNodesFromEnvelopes:(id)arg1;
-- (void)dealloc;
-- (void)scheduleMessage:(id)arg1;
-- (id)initWithTransport:(id)arg1 persistentStore:(id)arg2 logger:(id)arg3 configuration:(id)arg4 delegate:(id)arg5;
+- (void)timerDidFire:(id)arg1;
+- (void)timer:(id)arg1 didScheduleWithInterval:(double)arg2 attempt:(unsigned long long)arg3;
+- (void)scheduleMessage:(id)arg1 authenticated:(_Bool)arg2;
+- (id)initWithTransport:(id)arg1 dataSource:(id)arg2 dataDelegate:(id)arg3 logger:(id)arg4 eventEnvelopeFactory:(id)arg5 delegate:(id)arg6;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

@@ -11,7 +11,7 @@
 + (id)spt_abbaMakeURLForPathComponents:(id)arg1;
 + (id)spt_abbaMakeURLForPathComponents:(id)arg1 format:(id)arg2;
 + (id)spt_abbaFormatDictionary;
-+ (id)spt_abbaConfig;
-+ (id)spt_abbaResolve;
++ (id)spt_abbaConfigurationURI;
++ (id)spt_abbaResolveURI;
 @end
 

@@ -6,23 +6,25 @@
 
 #import "MultipleChoiceSettingsSection.h"
 
-@protocol SPTPreferences, SPTProductState, SPTSettingsUpsellDelegate;
+@class SPTSettingsLogger;
+@protocol SPTInAppMessageMessageRequester, SPTPreferences, SPTProductState;
 
 @interface StreamQualitySettingsSection : MultipleChoiceSettingsSection
 {
     _Bool _dataSaverActivated;
-    id <SPTSettingsUpsellDelegate> _upsellDelegate;
+    id <SPTInAppMessageMessageRequester> _inAppMessageRequester;
     id <SPTProductState> _productState;
     id <SPTPreferences> _preferences;
+    SPTSettingsLogger *_logger;
 }
 
 + (id)productState;
 + (void)setProductState:(id)arg1;
-+ (_Bool)shouldDisplayInSettingsViewController:(id)arg1;
+@property(retain, nonatomic) SPTSettingsLogger *logger; // @synthesize logger=_logger;
 @property(readonly, nonatomic) _Bool dataSaverActivated; // @synthesize dataSaverActivated=_dataSaverActivated;
 @property(readonly, nonatomic) id <SPTPreferences> preferences; // @synthesize preferences=_preferences;
 @property(readonly, nonatomic) __weak id <SPTProductState> productState; // @synthesize productState=_productState;
-@property(nonatomic) __weak id <SPTSettingsUpsellDelegate> upsellDelegate; // @synthesize upsellDelegate=_upsellDelegate;
+@property(readonly, nonatomic) id <SPTInAppMessageMessageRequester> inAppMessageRequester; // @synthesize inAppMessageRequester=_inAppMessageRequester;
 - (void).cxx_destruct;
 - (_Bool)shouldCellBeDisabledForIndex:(long long)arg1;
 - (unsigned long long)indexForBitrateSetting:(long long)arg1;
@@ -33,7 +35,7 @@
 - (id)footerText;
 - (id)headerText;
 - (void)selectedChoiceIndexChanged;
-- (id)initWithSettingsViewController:(id)arg1 productState:(id)arg2 upsellDelegate:(id)arg3 preferences:(id)arg4 dataSaverActivated:(_Bool)arg5;
+- (id)initWithSettingsViewController:(id)arg1 productState:(id)arg2 inAppMessageRequester:(id)arg3 preferences:(id)arg4 dataSaverActivated:(_Bool)arg5 logger:(id)arg6;
 
 @end
 

@@ -23,6 +23,7 @@
 @property(readonly, copy, nonatomic) NSString *title; // @synthesize title=_title;
 @property(readonly, copy, nonatomic) NSString *identifier; // @synthesize identifier=_identifier;
 - (void).cxx_destruct;
+- (_Bool)isEqual:(id)arg1;
 - (void)applyRuleToOptions:(id)arg1;
 - (id)initWithIdentifier:(id)arg1 title:(id)arg2 applyRule:(CDUnknownBlockType)arg3;
 

@@ -15,6 +15,8 @@
 
 @property(retain, nonatomic) id <SPTShareTestManager> testManager; // @synthesize testManager=_testManager;
 - (void).cxx_destruct;
+- (_Bool)tikTokSharingAllowedForEntityURI:(id)arg1;
+- (_Bool)legacyFacebookAllowedForEntityURI:(id)arg1;
 - (_Bool)facebookStoriesAllowedForEntityURI:(id)arg1;
 - (_Bool)instagramAllowedForEntityURI:(id)arg1;
 - (_Bool)snapchatAllowedForEntityURI:(id)arg1;

@@ -6,26 +6,26 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTArtistEntity-Protocol.h"
+#import "SPTFreeTierArtistEntity-Protocol.h"
 
 @class NSString, NSURL;
-@protocol SPTArtistImage;
+@protocol SPTFreeTierArtistImage;
 
-@interface SPTContributingArtistsTestArtistEntityImplementation : NSObject <SPTArtistEntity>
+@interface SPTContributingArtistsTestArtistEntityImplementation : NSObject <SPTFreeTierArtistEntity>
 {
     NSString *_name;
     NSURL *_uri;
-    id <SPTArtistImage> _image;
-    id <SPTArtistImage> _headerImage;
+    id <SPTFreeTierArtistImage> _image;
+    id <SPTFreeTierArtistImage> _headerImage;
     NSString *_fileId;
 }
 
 + (id)provideTestArtistEntities:(unsigned long long)arg1;
-@property(retain, nonatomic) NSString *fileId; // @synthesize fileId=_fileId;
-@property(readonly, nonatomic) id <SPTArtistImage> headerImage; // @synthesize headerImage=_headerImage;
-@property(readonly, nonatomic) id <SPTArtistImage> image; // @synthesize image=_image;
+@property(copy, nonatomic) NSString *fileId; // @synthesize fileId=_fileId;
+@property(readonly, nonatomic) id <SPTFreeTierArtistImage> headerImage; // @synthesize headerImage=_headerImage;
+@property(readonly, nonatomic) id <SPTFreeTierArtistImage> image; // @synthesize image=_image;
 @property(readonly, nonatomic) NSURL *uri; // @synthesize uri=_uri;
-@property(readonly, nonatomic) NSString *name; // @synthesize name=_name;
+@property(readonly, copy, nonatomic) NSString *name; // @synthesize name=_name;
 - (void).cxx_destruct;
 - (id)initWithName:(id)arg1 URI:(id)arg2 imageURL:(id)arg3;
 

@@ -6,42 +6,43 @@
 
 #import <UIKit/UIViewController.h>
 
-#import "MessageBarControllerObserver-Protocol.h"
 #import "SPTBarInteractivePresentationControllerDelegate-Protocol.h"
 
-@class NSHashTable, NSMutableArray, NSString, SPTBarAttachmentContainerViewController, SPTBarInteractivePresentationController;
+@class NSArray, NSHashTable, NSLayoutConstraint, NSString, SPTBarAttachmentContainerViewController, SPTBarInteractivePresentationController;
 @protocol SPTBarInteractiveTransitionParticipant, SPTBarOverlayViewController, SPTModalPresentationController;
 
-@interface SPBarViewController : UIViewController <SPTBarInteractivePresentationControllerDelegate, MessageBarControllerObserver>
+@interface SPBarViewController : UIViewController <SPTBarInteractivePresentationControllerDelegate>
 {
     _Bool _barHidden;
+    _Bool _barVisibilityLocked;
     UIViewController *_contentViewController;
-    UIViewController<SPTBarInteractiveTransitionParticipant> *_barViewController;
+    UIViewController<SPTBarInteractiveTransitionParticipant> *_nowPlayingBarViewController;
     UIViewController<SPTBarOverlayViewController> *_overlayViewController;
-    double _barHeight;
-    double _barOffset;
+    double _nowPlayingBarHeight;
     SPTBarInteractivePresentationController *_interactivePresentationController;
     id <SPTModalPresentationController> _modalPresentationController;
-    SPTBarAttachmentContainerViewController *_containerViewController;
-    NSMutableArray *_barConstraints;
-    double _barBottomMargin;
+    SPTBarAttachmentContainerViewController *_barAttachmentViewController;
+    NSArray *_barAttachmentConstraints;
     NSHashTable *_layoutGuideObservers;
+    NSLayoutConstraint *_barAttachmentHeightConstraint;
+    NSLayoutConstraint *_barAttachmentBottomConstraint;
 }
 
-@property(retain, nonatomic) NSHashTable *layoutGuideObservers; // @synthesize layoutGuideObservers=_layoutGuideObservers;
-@property(nonatomic) double barBottomMargin; // @synthesize barBottomMargin=_barBottomMargin;
-@property(retain, nonatomic) NSMutableArray *barConstraints; // @synthesize barConstraints=_barConstraints;
-@property(retain, nonatomic) SPTBarAttachmentContainerViewController *containerViewController; // @synthesize containerViewController=_containerViewController;
-@property(retain, nonatomic) id <SPTModalPresentationController> modalPresentationController; // @synthesize modalPresentationController=_modalPresentationController;
-@property(retain, nonatomic) SPTBarInteractivePresentationController *interactivePresentationController; // @synthesize interactivePresentationController=_interactivePresentationController;
-@property(nonatomic) double barOffset; // @synthesize barOffset=_barOffset;
-@property(nonatomic) double barHeight; // @synthesize barHeight=_barHeight;
+@property(retain, nonatomic) NSLayoutConstraint *barAttachmentBottomConstraint; // @synthesize barAttachmentBottomConstraint=_barAttachmentBottomConstraint;
+@property(retain, nonatomic) NSLayoutConstraint *barAttachmentHeightConstraint; // @synthesize barAttachmentHeightConstraint=_barAttachmentHeightConstraint;
+@property(readonly, nonatomic) NSHashTable *layoutGuideObservers; // @synthesize layoutGuideObservers=_layoutGuideObservers;
+@property(copy, nonatomic) NSArray *barAttachmentConstraints; // @synthesize barAttachmentConstraints=_barAttachmentConstraints;
+@property(readonly, nonatomic) SPTBarAttachmentContainerViewController *barAttachmentViewController; // @synthesize barAttachmentViewController=_barAttachmentViewController;
+@property(readonly, nonatomic) id <SPTModalPresentationController> modalPresentationController; // @synthesize modalPresentationController=_modalPresentationController;
+@property(readonly, nonatomic) SPTBarInteractivePresentationController *interactivePresentationController; // @synthesize interactivePresentationController=_interactivePresentationController;
+@property(nonatomic) double nowPlayingBarHeight; // @synthesize nowPlayingBarHeight=_nowPlayingBarHeight;
+@property(nonatomic) _Bool barVisibilityLocked; // @synthesize barVisibilityLocked=_barVisibilityLocked;
 @property(nonatomic, getter=isBarHidden) _Bool barHidden; // @synthesize barHidden=_barHidden;
 @property(retain, nonatomic) UIViewController<SPTBarOverlayViewController> *overlayViewController; // @synthesize overlayViewController=_overlayViewController;
-@property(retain, nonatomic) UIViewController<SPTBarInteractiveTransitionParticipant> *barViewController; // @synthesize barViewController=_barViewController;
+@property(retain, nonatomic) UIViewController<SPTBarInteractiveTransitionParticipant> *nowPlayingBarViewController; // @synthesize nowPlayingBarViewController=_nowPlayingBarViewController;
 @property(retain, nonatomic) UIViewController *contentViewController; // @synthesize contentViewController=_contentViewController;
 - (void).cxx_destruct;
-- (void)messageBarController:(id)arg1 willChangeContentInset:(struct UIEdgeInsets)arg2;
+- (void)messageBarController:(id)arg1 didChangeContentInset:(struct UIEdgeInsets)arg2;
 - (double)tabBarHeight;
 - (void)notifyObserversOfBottomLayoutGuideChange;
 - (void)removeContentBottomLayoutGuideObserver:(id)arg1;
@@ -53,21 +54,25 @@
 - (void)interactivePresentationControllerNeedsPresentation:(id)arg1;
 - (double)panHeightForInteractivePresentationController:(id)arg1;
 - (void)applicationStatusBarFrameDidChangeNotification;
-- (id)recreateBarConstraints;
-- (void)tearDownAndRecreateBarConstraints;
-- (void)layoutBarAnimated:(_Bool)arg1 completion:(CDUnknownBlockType)arg2;
+- (void)createBarConstraints;
+- (void)updateViewConstraints;
+- (double)barAttachmentBottomMargin;
+- (void)layoutBar;
 @property(readonly, nonatomic) double contentBottomLayoutGuide;
-- (void)setBarOffset:(double)arg1 animated:(_Bool)arg2;
-- (void)setBarHeight:(double)arg1 animated:(_Bool)arg2;
 - (void)setOverlayHidden:(_Bool)arg1 animated:(_Bool)arg2 completionHandler:(CDUnknownBlockType)arg3;
 @property(nonatomic) _Bool overlayHidden;
 - (void)setBarHidden:(_Bool)arg1 animated:(_Bool)arg2;
+- (void)showBarAnimated:(_Bool)arg1 completion:(CDUnknownBlockType)arg2;
+- (void)tearDownTabBarSnapshot:(id)arg1;
+- (id)setupTabBarSnapshot;
+- (void)bounceBar;
+- (void)hideBarAnimated:(_Bool)arg1;
+- (void)bounceBarWithCompletion:(CDUnknownBlockType)arg1;
 - (void)removeBarAttachmentViewController:(id)arg1 animated:(_Bool)arg2;
 - (void)addBarAttachmentViewController:(id)arg1 atIndex:(unsigned long long)arg2 height:(double)arg3 animated:(_Bool)arg4;
 - (void)addViewController:(id)arg1;
 - (void)addViewForViewController:(id)arg1;
 - (void)viewDidLoad;
-- (void)dealloc;
 - (id)initWithContentViewController:(id)arg1 modalPresentationController:(id)arg2;
 
 // Remaining properties

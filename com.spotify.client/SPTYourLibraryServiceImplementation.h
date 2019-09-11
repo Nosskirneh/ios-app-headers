@@ -9,12 +9,13 @@
 #import "SPTYourLibraryService-Protocol.h"
 
 @class NSString, SPTAllocationContext, SPTYourLibraryModelImplementation, SPTYourLibraryTestManagerImplementation;
-@protocol SPTFeatureFlaggingService, SPTFreeTierService;
+@protocol SPTFeatureFlaggingService, SPTFreeTierService, SPTSessionService;
 
 @interface SPTYourLibraryServiceImplementation : NSObject <SPTYourLibraryService>
 {
     id <SPTFeatureFlaggingService> _featureFlagService;
     id <SPTFreeTierService> _freeTierService;
+    id <SPTSessionService> _clientSessionService;
     SPTYourLibraryTestManagerImplementation *_testManager;
     SPTYourLibraryModelImplementation *_model;
 }
@@ -22,6 +23,7 @@
 + (id)serviceIdentifier;
 @property(retain, nonatomic) SPTYourLibraryModelImplementation *model; // @synthesize model=_model;
 @property(retain, nonatomic) SPTYourLibraryTestManagerImplementation *testManager; // @synthesize testManager=_testManager;
+@property(nonatomic) __weak id <SPTSessionService> clientSessionService; // @synthesize clientSessionService=_clientSessionService;
 @property(nonatomic) __weak id <SPTFreeTierService> freeTierService; // @synthesize freeTierService=_freeTierService;
 @property(nonatomic) __weak id <SPTFeatureFlaggingService> featureFlagService; // @synthesize featureFlagService=_featureFlagService;
 - (void).cxx_destruct;

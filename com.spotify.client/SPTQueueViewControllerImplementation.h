@@ -6,9 +6,7 @@
 
 #import <UIKit/UIViewController.h>
 
-#import "SPTImageLoaderDelegate-Protocol.h"
 #import "SPTNowPlayingModeResolverObserver-Protocol.h"
-#import "SPTNowPlayingUnitProviderObserver-Protocol.h"
 #import "SPTPageController-Protocol.h"
 #import "SPTProductStateObserver-Protocol.h"
 #import "SPTQueueAnimation-Protocol.h"
@@ -20,10 +18,10 @@
 #import "SPTUITableViewExtendedDelegate-Protocol.h"
 #import "UITableViewDataSource-Protocol.h"
 
-@class GLUEEntityRowStyle, NSIndexPath, NSMapTable, NSMutableDictionary, NSMutableSet, NSNotificationCenter, NSObject, NSString, NSURL, SPTEntityHeaderViewController, SPTQueueTableViewSectionHeaderView, SPTQueueTheme, SPTQueueViewModelDataSource, SPTTableView, UIButton, UIView;
-@protocol GLUEImageLoader, OS_dispatch_queue, OS_dispatch_semaphore, SPTCrashReporter, SPTImageLoader, SPTNowPlayingModeResolver, SPTNowPlayingUnitProvider, SPTPageContainer, SPTQueueHeadUnitRegistry, SPTQueueHeadUnitViewController, SPTQueueLogger, SPTQueueTableHeaderViewController, SPTQueueViewControllerDelegate, SPTQueueViewModel, SPTShowEntityService;
+@class GLUEEntityRowStyle, NSIndexPath, NSMapTable, NSMutableArray, NSMutableDictionary, NSMutableSet, NSNotificationCenter, NSObject, NSString, NSURL, SPTQueueTableViewSectionHeaderView, SPTQueueTheme, SPTQueueViewModelDataSource, SPTTableView, UIButton, UIView;
+@protocol GLUEImageLoader, OS_dispatch_queue, OS_dispatch_semaphore, SPTCrashReporter, SPTNowPlayingModeResolver, SPTPageContainer, SPTQueueLogger, SPTQueueViewControllerDelegate, SPTQueueViewModel, SPTShowEntityService;
 
-@interface SPTQueueViewControllerImplementation : UIViewController <UITableViewDataSource, SPTUITableViewExtendedDelegate, SPTImageLoaderDelegate, SPTQueueSelectableLeadingViewDelegate, SPTQueueTableViewSectionHeaderViewDelegate, SPTQueueViewModelDelegate, SPTNowPlayingUnitProviderObserver, SPTProductStateObserver, SPTNowPlayingModeResolverObserver, SPTQueueAnimation, SPTQueueEnabling, SPTQueueFooter, SPTPageController>
+@interface SPTQueueViewControllerImplementation : UIViewController <UITableViewDataSource, SPTUITableViewExtendedDelegate, SPTQueueSelectableLeadingViewDelegate, SPTQueueTableViewSectionHeaderViewDelegate, SPTQueueViewModelDelegate, SPTProductStateObserver, SPTNowPlayingModeResolverObserver, SPTQueueAnimation, SPTQueueEnabling, SPTQueueFooter, SPTPageController>
 {
     _Bool _footerHidden;
     _Bool _hideNowPlayingCoverArt;
@@ -32,31 +30,23 @@
     _Bool _insertingAndDeletingRows;
     id <SPTQueueViewModel> _viewModel;
     id <SPTQueueViewControllerDelegate> _delegate;
-    id <SPTImageLoader> _imageLoader;
     id <GLUEImageLoader> _glueImageLoader;
     id <SPTShowEntityService> _entityService;
     CDUnknownBlockType _presentContextMenuBlock;
     id <SPTNowPlayingModeResolver> _modeResolver;
-    id <SPTNowPlayingUnitProvider> _headUnitProvider;
-    id <SPTNowPlayingUnitProvider> _navigationBarUnitProvider;
-    id <SPTNowPlayingUnitProvider> _navigationBarButtonsUnitProvider;
-    id <SPTQueueHeadUnitRegistry> _headUnitRegistry;
     NSURL *_pageURI;
     SPTQueueTheme *_queueTheme;
     NSMutableSet *_selectedTracks;
-    NSMutableSet *_constraints;
+    NSMutableArray *_layoutConstraints;
     NSMapTable *_tableViewSectionHeaderViews;
     NSMutableDictionary *_tableViewSectionHeaderHeights;
     SPTQueueTableViewSectionHeaderView *_tableViewSectionHeaderSizingView;
     NSObject<OS_dispatch_queue> *_tableUpdateQueue;
     NSObject<OS_dispatch_semaphore> *_tableUpdateSemaphore;
-    SPTEntityHeaderViewController *_entityHeaderVC;
-    UIViewController<SPTQueueTableHeaderViewController> *_currentTableHeaderVC;
     UIView *_actionBarView;
     SPTTableView *_tableView;
     UIViewController *_footerViewController;
     SPTQueueViewModelDataSource *_dataSource;
-    UIViewController<SPTQueueHeadUnitViewController> *_currentHeadUnitVC;
     UIButton *_upNextButton;
     UIButton *_removeButton;
     NSIndexPath *_draggingRowPreviousIndexPath;
@@ -69,12 +59,10 @@
     GLUEEntityRowStyle *_audioStyle;
     GLUEEntityRowStyle *_videoStyle;
     GLUEEntityRowStyle *_queueStyle;
-    GLUEEntityRowStyle *_queueMFTStyle;
     NSNotificationCenter *_notificationCenter;
 }
 
 @property(readonly, nonatomic) NSNotificationCenter *notificationCenter; // @synthesize notificationCenter=_notificationCenter;
-@property(readonly, nonatomic) GLUEEntityRowStyle *queueMFTStyle; // @synthesize queueMFTStyle=_queueMFTStyle;
 @property(readonly, nonatomic) GLUEEntityRowStyle *queueStyle; // @synthesize queueStyle=_queueStyle;
 @property(readonly, nonatomic) GLUEEntityRowStyle *videoStyle; // @synthesize videoStyle=_videoStyle;
 @property(readonly, nonatomic) GLUEEntityRowStyle *audioStyle; // @synthesize audioStyle=_audioStyle;
@@ -90,32 +78,24 @@
 @property(nonatomic, getter=isInsertingAndDeletingRows) _Bool insertingAndDeletingRows; // @synthesize insertingAndDeletingRows=_insertingAndDeletingRows;
 @property(nonatomic, getter=isDraggingRows) _Bool draggingRows; // @synthesize draggingRows=_draggingRows;
 @property(nonatomic, getter=areUpdatesEnabled) _Bool updatesEnabled; // @synthesize updatesEnabled=_updatesEnabled;
-@property(retain, nonatomic) UIViewController<SPTQueueHeadUnitViewController> *currentHeadUnitVC; // @synthesize currentHeadUnitVC=_currentHeadUnitVC;
 @property(retain, nonatomic) SPTQueueViewModelDataSource *dataSource; // @synthesize dataSource=_dataSource;
 @property(retain, nonatomic) UIViewController *footerViewController; // @synthesize footerViewController=_footerViewController;
 @property(retain, nonatomic) SPTTableView *tableView; // @synthesize tableView=_tableView;
 @property(nonatomic) _Bool hideNowPlayingCoverArt; // @synthesize hideNowPlayingCoverArt=_hideNowPlayingCoverArt;
 @property(retain, nonatomic) UIView *actionBarView; // @synthesize actionBarView=_actionBarView;
-@property(retain, nonatomic) UIViewController<SPTQueueTableHeaderViewController> *currentTableHeaderVC; // @synthesize currentTableHeaderVC=_currentTableHeaderVC;
-@property(retain, nonatomic) SPTEntityHeaderViewController *entityHeaderVC; // @synthesize entityHeaderVC=_entityHeaderVC;
 @property(retain, nonatomic) NSObject<OS_dispatch_semaphore> *tableUpdateSemaphore; // @synthesize tableUpdateSemaphore=_tableUpdateSemaphore;
 @property(retain, nonatomic) NSObject<OS_dispatch_queue> *tableUpdateQueue; // @synthesize tableUpdateQueue=_tableUpdateQueue;
 @property(retain, nonatomic) SPTQueueTableViewSectionHeaderView *tableViewSectionHeaderSizingView; // @synthesize tableViewSectionHeaderSizingView=_tableViewSectionHeaderSizingView;
 @property(retain, nonatomic) NSMutableDictionary *tableViewSectionHeaderHeights; // @synthesize tableViewSectionHeaderHeights=_tableViewSectionHeaderHeights;
 @property(retain, nonatomic) NSMapTable *tableViewSectionHeaderViews; // @synthesize tableViewSectionHeaderViews=_tableViewSectionHeaderViews;
-@property(retain, nonatomic) NSMutableSet *constraints; // @synthesize constraints=_constraints;
+@property(retain, nonatomic) NSMutableArray *layoutConstraints; // @synthesize layoutConstraints=_layoutConstraints;
 @property(retain, nonatomic) NSMutableSet *selectedTracks; // @synthesize selectedTracks=_selectedTracks;
 @property(readonly, nonatomic) SPTQueueTheme *queueTheme; // @synthesize queueTheme=_queueTheme;
 @property(retain, nonatomic, getter=spt_pageURI) NSURL *pageURI; // @synthesize pageURI=_pageURI;
-@property(readonly, nonatomic) id <SPTQueueHeadUnitRegistry> headUnitRegistry; // @synthesize headUnitRegistry=_headUnitRegistry;
-@property(readonly, nonatomic) id <SPTNowPlayingUnitProvider> navigationBarButtonsUnitProvider; // @synthesize navigationBarButtonsUnitProvider=_navigationBarButtonsUnitProvider;
-@property(readonly, nonatomic) id <SPTNowPlayingUnitProvider> navigationBarUnitProvider; // @synthesize navigationBarUnitProvider=_navigationBarUnitProvider;
-@property(readonly, nonatomic) id <SPTNowPlayingUnitProvider> headUnitProvider; // @synthesize headUnitProvider=_headUnitProvider;
 @property(readonly, nonatomic) id <SPTNowPlayingModeResolver> modeResolver; // @synthesize modeResolver=_modeResolver;
 @property(readonly, nonatomic) CDUnknownBlockType presentContextMenuBlock; // @synthesize presentContextMenuBlock=_presentContextMenuBlock;
 @property(readonly, nonatomic) id <SPTShowEntityService> entityService; // @synthesize entityService=_entityService;
 @property(readonly, nonatomic) id <GLUEImageLoader> glueImageLoader; // @synthesize glueImageLoader=_glueImageLoader;
-@property(readonly, nonatomic) id <SPTImageLoader> imageLoader; // @synthesize imageLoader=_imageLoader;
 @property(readonly, nonatomic) __weak id <SPTQueueViewControllerDelegate> delegate; // @synthesize delegate=_delegate;
 @property(readonly, nonatomic) id <SPTQueueViewModel> viewModel; // @synthesize viewModel=_viewModel;
 @property(nonatomic, getter=isFooterHidden) _Bool footerHidden; // @synthesize footerHidden=_footerHidden;
@@ -125,12 +105,6 @@
 - (void)productState:(id)arg1 stateDidChange:(id)arg2;
 - (void)modeResolver:(id)arg1 didChangeToMode:(id)arg2 fromMode:(id)arg3;
 - (void)replaceOldFooterViewController:(id)arg1 withNewViewController:(id)arg2;
-- (void)provider:(id)arg1 willReplaceViewController:(id)arg2 with:(id)arg3;
-- (_Bool)adjustTableHeaderForCurrentContextWithDataSource:(id)arg1 animated:(_Bool)arg2;
-- (_Bool)adjustHeadUnitForCurrentContextWithDataSource:(id)arg1 animated:(_Bool)arg2;
-- (void)adjustHeadersForCurrentContextWithDataSource:(id)arg1 animated:(_Bool)arg2 completion:(CDUnknownBlockType)arg3;
-- (id)tableHeaderForCurrentContext;
-- (id)headUnitForCurrentContext;
 - (void)disableUpdates;
 - (void)enableUpdates;
 - (void)queueViewModelDidUpdate:(id)arg1 dataSource:(id)arg2;
@@ -174,7 +148,6 @@
 - (_Bool)tableView:(id)arg1 shouldIndentWhileEditingRowAtIndexPath:(id)arg2;
 - (long long)tableView:(id)arg1 numberOfRowsInSection:(long long)arg2;
 - (long long)numberOfSectionsInTableView:(id)arg1;
-- (void)imageLoader:(id)arg1 didLoadImage:(id)arg2 forURL:(id)arg3 loadTime:(double)arg4 context:(id)arg5;
 - (void)reloadPlayingTrackCell;
 - (void)animationDidFinish;
 - (void)animationDidStart;
@@ -213,7 +186,6 @@
 - (unsigned long long)queueSectionForTableSection:(unsigned long long)arg1;
 - (void)scrollToTopAnimated:(_Bool)arg1;
 - (void)viewWillTransitionToSize:(struct CGSize)arg1 withTransitionCoordinator:(id)arg2;
-- (void)viewDidLayoutSubviews;
 - (void)viewDidDisappear:(_Bool)arg1;
 - (void)viewDidAppear:(_Bool)arg1;
 - (void)fontSizeDidChange:(id)arg1;
@@ -223,7 +195,7 @@
 - (void)updateViewConstraints;
 - (void)viewDidLoad;
 - (void)dealloc;
-- (id)initWithViewModel:(id)arg1 delegate:(id)arg2 imageLoader:(id)arg3 glueImageLoader:(id)arg4 entityService:(id)arg5 presentContextMenuBlock:(CDUnknownBlockType)arg6 headUnitProvider:(id)arg7 modeResolver:(id)arg8 navigationBarUnitProvider:(id)arg9 navigationBarButtonsUnitProvider:(id)arg10 navigationBarViewControllerV2:(id)arg11 headUnitRegistry:(id)arg12 pageURI:(id)arg13 queueTheme:(id)arg14 logger:(id)arg15 crashReporter:(id)arg16 notificationCenter:(id)arg17;
+- (id)initWithViewModel:(id)arg1 delegate:(id)arg2 glueImageLoader:(id)arg3 entityService:(id)arg4 presentContextMenuBlock:(CDUnknownBlockType)arg5 modeResolver:(id)arg6 navigationBarViewControllerV2:(id)arg7 pageURI:(id)arg8 queueTheme:(id)arg9 logger:(id)arg10 crashReporter:(id)arg11 notificationCenter:(id)arg12;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

@@ -4,50 +4,37 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import "EXP_HUGSThemableComponentView.h"
+#import "HUGSThemableComponentView.h"
 
-#import "EXP_HUBComponentViewWithEvents-Protocol.h"
-#import "EXP_HUBComponentViewWithImageHandling-Protocol.h"
-#import "EXP_HUGSSelectableComponentView-Protocol.h"
+#import "HUBComponentViewWithEvents-Protocol.h"
+#import "HUBComponentViewWithImageHandling-Protocol.h"
 
-@class GLUEEntityRowTableViewCell, NSString, UIGestureRecognizer, UIView;
-@protocol EXP_HUBComponentEventHandler;
+@class GLUEEntityRowTableViewCell, HUGSCustomViewControl;
+@protocol HUBComponentEventHandler;
 
-@interface SPTSearchRecentsItemComponentView : EXP_HUGSThemableComponentView <EXP_HUBComponentViewWithImageHandling, EXP_HUBComponentViewWithEvents, EXP_HUGSSelectableComponentView>
+@interface SPTSearchRecentsItemComponentView : HUGSThemableComponentView <HUBComponentViewWithImageHandling, HUBComponentViewWithEvents>
 {
-    id <EXP_HUBComponentEventHandler> _eventHandler;
-    UIGestureRecognizer *_selectionGestureRecognizer;
-    unsigned long long _type;
-    UIView *_view;
+    id <HUBComponentEventHandler> _eventHandler;
+    GLUEEntityRowTableViewCell *_cell;
+    HUGSCustomViewControl *_control;
 }
 
-@property(readonly, nonatomic) UIView *view; // @synthesize view=_view;
-@property(readonly, nonatomic) unsigned long long type; // @synthesize type=_type;
-@property(retain, nonatomic) UIGestureRecognizer *selectionGestureRecognizer; // @synthesize selectionGestureRecognizer=_selectionGestureRecognizer;
-@property(retain, nonatomic) id <EXP_HUBComponentEventHandler> eventHandler; // @synthesize eventHandler=_eventHandler;
+@property(readonly, nonatomic) HUGSCustomViewControl *control; // @synthesize control=_control;
+@property(readonly, nonatomic) GLUEEntityRowTableViewCell *cell; // @synthesize cell=_cell;
+@property(retain, nonatomic) id <HUBComponentEventHandler> eventHandler; // @synthesize eventHandler=_eventHandler;
 - (void).cxx_destruct;
 - (struct CGSize)imageSize;
 - (void)deleteButtonPressed;
-- (void)pressed;
+- (void)sendSelectionEvent;
 - (id)styleForModel:(id)arg1;
-@property(readonly, nonatomic) GLUEEntityRowTableViewCell *cell;
-@property(readonly, nonatomic) UIView *selectionView;
 - (void)updateViewForLoadedImage:(id)arg1 fromData:(id)arg2 model:(id)arg3 animated:(_Bool)arg4;
 - (struct CGSize)preferredSizeForImageFromData:(id)arg1 model:(id)arg2 containerViewSize:(struct CGSize)arg3;
-- (void)setupVideoLeadingAccessoryForCell:(id)arg1;
 - (void)setupImageLeadingAccessoryForCell:(id)arg1 model:(id)arg2;
 - (void)setupTrailingAccessoryForCell:(id)arg1;
 - (void)setupContentViewForCell:(id)arg1;
-- (void)configureForVideoTypeViewWithModel:(id)arg1;
 - (void)configureForDefaultTypeViewWithModel:(id)arg1;
 - (void)configureWithModel:(id)arg1;
-- (id)initWithTheme:(id)arg1 frame:(struct CGRect)arg2 type:(unsigned long long)arg3;
-
-// Remaining properties
-@property(readonly, copy) NSString *debugDescription;
-@property(readonly, copy) NSString *description;
-@property(readonly) unsigned long long hash;
-@property(readonly) Class superclass;
+- (id)initWithTheme:(id)arg1 frame:(struct CGRect)arg2;
 
 @end
 

@@ -7,27 +7,24 @@
 #import <objc/NSObject.h>
 
 #import "SPTBrowseTestManager-Protocol.h"
-#import "SPTFeatureFlagSignalObserver-Protocol.h"
 
 @class NSString;
-@protocol SPTFeatureFlagFactory, SPTFeatureFlagSignal, SPTNavigationConfiguration;
+@protocol SPTFeatureFlagFactory, SPTFeatureFlagSignal;
 
-@interface SPTBrowseTestManagerImplementation : NSObject <SPTFeatureFlagSignalObserver, SPTBrowseTestManager>
+@interface SPTBrowseTestManagerImplementation : NSObject <SPTBrowseTestManager>
 {
-    _Bool _hubsRendererBrowseEnabled;
-    id <SPTNavigationConfiguration> _navigationConfiguration;
+    _Bool playableHeroCardEnabled;
     id <SPTFeatureFlagFactory> _featureFlagFactory;
-    id <SPTFeatureFlagSignal> _hubsRendererSignal;
+    id <SPTFeatureFlagSignal> _playableHeroCardSignal;
 }
 
-@property(readonly, nonatomic) id <SPTFeatureFlagSignal> hubsRendererSignal; // @synthesize hubsRendererSignal=_hubsRendererSignal;
+@property(readonly, nonatomic) id <SPTFeatureFlagSignal> playableHeroCardSignal; // @synthesize playableHeroCardSignal=_playableHeroCardSignal;
 @property(readonly, nonatomic) id <SPTFeatureFlagFactory> featureFlagFactory; // @synthesize featureFlagFactory=_featureFlagFactory;
-@property(readonly, nonatomic) id <SPTNavigationConfiguration> navigationConfiguration; // @synthesize navigationConfiguration=_navigationConfiguration;
-@property(readonly, nonatomic, getter=isHubsRendererBrowseEnabled) _Bool hubsRendererBrowseEnabled; // @synthesize hubsRendererBrowseEnabled=_hubsRendererBrowseEnabled;
+@property(nonatomic, getter=isPlayableHeroCardEnabled) _Bool playableHeroCardEnabled; // @synthesize playableHeroCardEnabled;
 - (void).cxx_destruct;
 - (void)featureFlagSignal:(id)arg1 hasAssumedState:(long long)arg2;
-@property(readonly, copy, nonatomic) NSString *customSpacesIdentifier;
-- (id)initWithNavigationConfiguration:(id)arg1 featureFlagFactory:(id)arg2;
+- (void)setupHeroCardQuickActionSignal;
+- (id)initWithFeatureFlagFactory:(id)arg1;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

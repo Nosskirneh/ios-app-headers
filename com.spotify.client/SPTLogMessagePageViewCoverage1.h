@@ -17,8 +17,8 @@
 
 + (id)messageWithPage:(id)arg1 viewClass:(id)arg2 covered:(_Bool)arg3;
 @property(nonatomic) _Bool coveredValue; // @synthesize coveredValue=_coveredValue;
-@property(retain, nonatomic) NSString *viewClassValue; // @synthesize viewClassValue=_viewClassValue;
-@property(retain, nonatomic) NSString *pageValue; // @synthesize pageValue=_pageValue;
+@property(copy, nonatomic) NSString *viewClassValue; // @synthesize viewClassValue=_viewClassValue;
+@property(copy, nonatomic) NSString *pageValue; // @synthesize pageValue=_pageValue;
 - (void).cxx_destruct;
 - (_Bool)isEqual:(id)arg1;
 - (unsigned long long)hash;

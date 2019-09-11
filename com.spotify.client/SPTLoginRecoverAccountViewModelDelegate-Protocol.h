@@ -9,6 +9,7 @@
 @class NSError, SPTLoginRecoverAccountViewModel;
 
 @protocol SPTLoginRecoverAccountViewModelDelegate <NSObject>
+- (void)viewModel:(SPTLoginRecoverAccountViewModel *)arg1 shouldShowKeyboard:(_Bool)arg2;
 - (void)viewModel:(SPTLoginRecoverAccountViewModel *)arg1 didFinishLoadingDataWithError:(NSError *)arg2;
 - (void)viewModelDidFinishLoadingDataWithSuccess:(SPTLoginRecoverAccountViewModel *)arg1;
 @end

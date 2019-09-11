@@ -8,7 +8,7 @@
 
 #import "GLUEStyle-Protocol.h"
 
-@class GLUEButtonStyle, GLUECollectionViewStyle, GLUEGradientStyle, GLUELabelStyle, NSString, SPTFreeTierTasteOnboardingArtistPickerCollectionViewLayoutStyle;
+@class GLUEButtonStyle, GLUECollectionViewStyle, GLUEGradientStyle, GLUELabelStyle, NSString, SPTFreeTierTasteOnboardingArtistPickerCollectionViewLayoutStyle, SPTFreeTierTasteOnboardingArtistPickerHeaderViewStyle, UIColor;
 @protocol GLUEStyle;
 
 @interface SPTFreeTierTasteOnboardingArtistPickerViewStyle : NSObject <GLUEStyle>
@@ -25,8 +25,12 @@
     double _actionButtonAppearanceAnimationDuration;
     double _actionButtonAppearanceAnimationSpringDamping;
     double _actionButtonAppearanceAnimationSpringVelocity;
+    SPTFreeTierTasteOnboardingArtistPickerHeaderViewStyle<GLUEStyle> *_headerViewStyle;
+    UIColor *_navigationBarBackgroundViewColor;
 }
 
+@property(copy, nonatomic) UIColor *navigationBarBackgroundViewColor; // @synthesize navigationBarBackgroundViewColor=_navigationBarBackgroundViewColor;
+@property(copy, nonatomic) SPTFreeTierTasteOnboardingArtistPickerHeaderViewStyle<GLUEStyle> *headerViewStyle; // @synthesize headerViewStyle=_headerViewStyle;
 @property(nonatomic) double actionButtonAppearanceAnimationSpringVelocity; // @synthesize actionButtonAppearanceAnimationSpringVelocity=_actionButtonAppearanceAnimationSpringVelocity;
 @property(nonatomic) double actionButtonAppearanceAnimationSpringDamping; // @synthesize actionButtonAppearanceAnimationSpringDamping=_actionButtonAppearanceAnimationSpringDamping;
 @property(nonatomic) double actionButtonAppearanceAnimationDuration; // @synthesize actionButtonAppearanceAnimationDuration=_actionButtonAppearanceAnimationDuration;

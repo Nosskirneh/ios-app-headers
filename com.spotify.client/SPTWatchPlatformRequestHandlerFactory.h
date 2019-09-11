@@ -6,36 +6,38 @@
 
 #import <objc/NSObject.h>
 
-@class SPTGaiaDeviceManager, SPTWatchConnectivityDataLoader, SPTWatchConnectivitySession;
-@protocol GLUEImageLoader, SPTCollectionPlatform, SPTExternalIntegrationPlaybackController, SPTGaiaVolumeControllerInterface, SPTLogCenter, SPTPodcastSpeedControlManager, SPTStateController;
+@class SPTWatchConnectivityDataLoader, SPTWatchConnectivitySession;
+@protocol GLUEImageLoader, SPTCollectionPlatform, SPTExternalIntegrationContentController, SPTExternalIntegrationPlaybackController, SPTGaiaConnectAPI, SPTGaiaVolumeControllerInterface, SPTLogCenter, SPTPodcastSpeedControlManager, SPTUICompletionNotifier;
 
 @interface SPTWatchPlatformRequestHandlerFactory : NSObject
 {
     SPTWatchConnectivityDataLoader *_dataLoader;
     id <SPTCollectionPlatform> _collectionPlatform;
     id <SPTExternalIntegrationPlaybackController> _playbackController;
-    SPTGaiaDeviceManager *_gaiaDeviceManager;
+    id <SPTGaiaConnectAPI> _connectManager;
     id <GLUEImageLoader> _glueImageLoader;
     SPTWatchConnectivitySession *_watchConnectivitySession;
     id <SPTGaiaVolumeControllerInterface> _volumeController;
     id <SPTPodcastSpeedControlManager> _podcastSpeedControlManager;
     id <SPTLogCenter> _logCenter;
-    id <SPTStateController> _stateController;
+    id <SPTExternalIntegrationContentController> _contentController;
+    id <SPTUICompletionNotifier> _UICompletionNotifier;
 }
 
-@property(readonly, nonatomic) __weak id <SPTStateController> stateController; // @synthesize stateController=_stateController;
+@property(readonly, nonatomic) __weak id <SPTUICompletionNotifier> UICompletionNotifier; // @synthesize UICompletionNotifier=_UICompletionNotifier;
+@property(readonly, nonatomic) __weak id <SPTExternalIntegrationContentController> contentController; // @synthesize contentController=_contentController;
 @property(readonly, nonatomic) id <SPTLogCenter> logCenter; // @synthesize logCenter=_logCenter;
 @property(readonly, nonatomic) __weak id <SPTPodcastSpeedControlManager> podcastSpeedControlManager; // @synthesize podcastSpeedControlManager=_podcastSpeedControlManager;
 @property(readonly, nonatomic) id <SPTGaiaVolumeControllerInterface> volumeController; // @synthesize volumeController=_volumeController;
 @property(readonly, nonatomic) __weak SPTWatchConnectivitySession *watchConnectivitySession; // @synthesize watchConnectivitySession=_watchConnectivitySession;
 @property(readonly, nonatomic) id <GLUEImageLoader> glueImageLoader; // @synthesize glueImageLoader=_glueImageLoader;
-@property(readonly, nonatomic) __weak SPTGaiaDeviceManager *gaiaDeviceManager; // @synthesize gaiaDeviceManager=_gaiaDeviceManager;
+@property(readonly, nonatomic) __weak id <SPTGaiaConnectAPI> connectManager; // @synthesize connectManager=_connectManager;
 @property(readonly, nonatomic) __weak id <SPTExternalIntegrationPlaybackController> playbackController; // @synthesize playbackController=_playbackController;
 @property(readonly, nonatomic) id <SPTCollectionPlatform> collectionPlatform; // @synthesize collectionPlatform=_collectionPlatform;
 @property(readonly, nonatomic) SPTWatchConnectivityDataLoader *dataLoader; // @synthesize dataLoader=_dataLoader;
 - (void).cxx_destruct;
 - (id)createRequestHandlers;
-- (id)initWithDataLoader:(id)arg1 collectionPlatform:(id)arg2 playbackController:(id)arg3 gaiaDeviceManager:(id)arg4 glueImageLoader:(id)arg5 watchConnectivitySession:(id)arg6 volumeController:(id)arg7 podcastSpeedControlManager:(id)arg8 logCenter:(id)arg9 stateController:(id)arg10;
+- (id)initWithDataLoader:(id)arg1 collectionPlatform:(id)arg2 playbackController:(id)arg3 connectManager:(id)arg4 glueImageLoader:(id)arg5 watchConnectivitySession:(id)arg6 volumeController:(id)arg7 podcastSpeedControlManager:(id)arg8 logCenter:(id)arg9 contentController:(id)arg10 UICompletionNotifier:(id)arg11;
 
 @end
 

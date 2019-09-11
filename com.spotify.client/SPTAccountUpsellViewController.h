@@ -12,7 +12,7 @@
 #import "SPTPageController-Protocol.h"
 #import "SPTScrollToTopViewController-Protocol.h"
 
-@class NSArray, NSString, NSURL, SPTAccountErrorDialog, SPTAccountUpsellHeaderView, SPTAccountUpsellViewModel, SPTEntityHeaderContentViewController, SPTEntityHeaderViewController, SPTLayoutConstraintBuilder, UIScrollView;
+@class NSArray, NSString, NSURL, SPTAccountErrorDialog, SPTAccountUpsellHeaderView, SPTAccountUpsellViewModel, SPTEntityHeaderContentViewController, SPTEntityHeaderViewController, UIScrollView;
 @protocol SPTNavigationListProvider, SPTPageContainer;
 
 @interface SPTAccountUpsellViewController : SPViewController <SPTNavigationControllerNavigationBarState, SPTAccountUpsellViewModelDelegate, SPTAccountErrorDialogDelegate, SPTPageController, SPTScrollToTopViewController>
@@ -22,7 +22,7 @@
     SPTAccountUpsellViewModel *_viewModel;
     SPTEntityHeaderViewController *_headerViewController;
     UIScrollView *_scrollView;
-    SPTLayoutConstraintBuilder *_contentLayout;
+    NSArray *_contentLayoutConstraints;
     NSArray *_contentViews;
     SPTAccountUpsellHeaderView *_headerView;
     SPTAccountErrorDialog *_presentedErrorDialog;
@@ -33,7 +33,7 @@
 @property(retain, nonatomic) SPTAccountErrorDialog *presentedErrorDialog; // @synthesize presentedErrorDialog=_presentedErrorDialog;
 @property(retain, nonatomic) SPTAccountUpsellHeaderView *headerView; // @synthesize headerView=_headerView;
 @property(copy, nonatomic) NSArray *contentViews; // @synthesize contentViews=_contentViews;
-@property(retain, nonatomic) SPTLayoutConstraintBuilder *contentLayout; // @synthesize contentLayout=_contentLayout;
+@property(copy, nonatomic) NSArray *contentLayoutConstraints; // @synthesize contentLayoutConstraints=_contentLayoutConstraints;
 @property(retain, nonatomic) UIScrollView *scrollView; // @synthesize scrollView=_scrollView;
 @property(retain, nonatomic) SPTEntityHeaderViewController *headerViewController; // @synthesize headerViewController=_headerViewController;
 @property(retain, nonatomic) SPTAccountUpsellViewModel *viewModel; // @synthesize viewModel=_viewModel;

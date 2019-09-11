@@ -9,7 +9,7 @@
 #import "SPTSortingFilteringFilterBarStyle-Protocol.h"
 
 @class NSString, UIColor;
-@protocol SPTSortingFilteringFilterBarSortButtonStyle, SPTSortingFilteringSearchFieldStyle;
+@protocol SPTSortingFilteringClearFiltersControlStyle, SPTSortingFilteringFilterBarSortButtonStyle, SPTSortingFilteringSearchFieldStyle;
 
 @interface SPTSortingFilteringFilterBarViewStyle : NSObject <SPTSortingFilteringFilterBarStyle>
 {
@@ -17,12 +17,16 @@
     double height;
     id <SPTSortingFilteringFilterBarSortButtonStyle> contextMenuButtonStyle;
     double margin;
+    double topMargin;
     double spacing;
     id <SPTSortingFilteringSearchFieldStyle> searchFieldStyle;
+    id <SPTSortingFilteringClearFiltersControlStyle> clearFiltersControlStyle;
 }
 
+@property(copy, nonatomic) id <SPTSortingFilteringClearFiltersControlStyle> clearFiltersControlStyle; // @synthesize clearFiltersControlStyle;
 @property(copy, nonatomic) id <SPTSortingFilteringSearchFieldStyle> searchFieldStyle; // @synthesize searchFieldStyle;
 @property(nonatomic) double spacing; // @synthesize spacing;
+@property(nonatomic) double topMargin; // @synthesize topMargin;
 @property(nonatomic) double margin; // @synthesize margin;
 @property(copy, nonatomic) id <SPTSortingFilteringFilterBarSortButtonStyle> contextMenuButtonStyle; // @synthesize contextMenuButtonStyle;
 @property(nonatomic) double height; // @synthesize height;
