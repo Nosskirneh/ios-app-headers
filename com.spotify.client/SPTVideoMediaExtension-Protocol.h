@@ -6,10 +6,10 @@
 
 #import "NSObject-Protocol.h"
 
-@protocol SPTVideoPlaybackIdentity, SPTVideoResourceLoaderInternal;
+@protocol BMPlaybackIdentity, SPTVideoResourceLoaderInternal;
 
 @protocol SPTVideoMediaExtension <NSObject>
-- (id <SPTVideoResourceLoaderInternal>)resourceLoaderForIdentity:(id <SPTVideoPlaybackIdentity>)arg1;
-- (_Bool)isPlayableForIdentity:(id <SPTVideoPlaybackIdentity>)arg1;
+- (id <SPTVideoResourceLoaderInternal>)resourceLoaderForIdentity:(id <BMPlaybackIdentity>)arg1;
+- (_Bool)isPlayableForIdentity:(id <BMPlaybackIdentity>)arg1;
 @end
 

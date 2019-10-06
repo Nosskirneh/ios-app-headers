@@ -9,22 +9,17 @@
 #import "SPTDrivingStateObserver-Protocol.h"
 #import "SPTWazeDeepLinkObserver-Protocol.h"
 #import "SPTWazeNavigationStateObserver-Protocol.h"
-#import "SPTWazeSlateViewModelDelegate-Protocol.h"
 #import "SPTWazeTestManagerObserver-Protocol.h"
 
-@class NSString, SPTAutoLockController, SPTWazeNavigationBannerViewModel, SPTWazeSlateViewModel, SPTWazeTransportManager;
+@class NSString, SPTAutoLockController, SPTWazeNavigationBannerViewModel, SPTWazeTransportManager;
 @protocol SPTAutoLockOverrideToken, SPTDrivingStateDetector, SPTExternalIntegrationDebugLog, SPTLinkDispatcher, SPTPartnerTestManager, SPTWazeTestManager, SPTWazeViewModelDelegate;
 
-@interface SPTWazeViewModel : NSObject <SPTDrivingStateObserver, SPTWazeNavigationStateObserver, SPTWazeSlateViewModelDelegate, SPTWazeTestManagerObserver, SPTWazeDeepLinkObserver>
+@interface SPTWazeViewModel : NSObject <SPTDrivingStateObserver, SPTWazeNavigationStateObserver, SPTWazeTestManagerObserver, SPTWazeDeepLinkObserver>
 {
     _Bool _shouldShowBanner;
-    _Bool _shouldShowOnboarding;
-    _Bool _shouldShowOptOut;
     id <SPTWazeViewModelDelegate> _delegate;
     long long _state;
     SPTWazeNavigationBannerViewModel *_navigationViewModel;
-    SPTWazeSlateViewModel *_onboardingSlateViewModel;
-    SPTWazeSlateViewModel *_optoutSlateViewModel;
     SPTWazeTransportManager *_wazeTransportManager;
     id <SPTDrivingStateDetector> _drivingStateDetector;
     id <SPTPartnerTestManager> _partnerTestManager;
@@ -36,8 +31,6 @@
 }
 
 @property(retain, nonatomic) id <SPTAutoLockOverrideToken> autoLockToken; // @synthesize autoLockToken=_autoLockToken;
-@property(nonatomic) _Bool shouldShowOptOut; // @synthesize shouldShowOptOut=_shouldShowOptOut;
-@property(nonatomic) _Bool shouldShowOnboarding; // @synthesize shouldShowOnboarding=_shouldShowOnboarding;
 @property(nonatomic) _Bool shouldShowBanner; // @synthesize shouldShowBanner=_shouldShowBanner;
 @property(readonly, nonatomic) SPTAutoLockController *autoLockController; // @synthesize autoLockController=_autoLockController;
 @property(readonly, nonatomic) id <SPTWazeTestManager> testManager; // @synthesize testManager=_testManager;
@@ -46,8 +39,6 @@
 @property(readonly, nonatomic) __weak id <SPTPartnerTestManager> partnerTestManager; // @synthesize partnerTestManager=_partnerTestManager;
 @property(readonly, nonatomic) __weak id <SPTDrivingStateDetector> drivingStateDetector; // @synthesize drivingStateDetector=_drivingStateDetector;
 @property(readonly, nonatomic) SPTWazeTransportManager *wazeTransportManager; // @synthesize wazeTransportManager=_wazeTransportManager;
-@property(readonly, nonatomic) SPTWazeSlateViewModel *optoutSlateViewModel; // @synthesize optoutSlateViewModel=_optoutSlateViewModel;
-@property(readonly, nonatomic) SPTWazeSlateViewModel *onboardingSlateViewModel; // @synthesize onboardingSlateViewModel=_onboardingSlateViewModel;
 @property(retain, nonatomic) SPTWazeNavigationBannerViewModel *navigationViewModel; // @synthesize navigationViewModel=_navigationViewModel;
 @property(nonatomic) long long state; // @synthesize state=_state;
 @property(nonatomic) __weak id <SPTWazeViewModelDelegate> delegate; // @synthesize delegate=_delegate;
@@ -62,8 +53,6 @@
 - (void)openWazeApp;
 - (void)openWazeAppOrAppStorePage;
 - (_Bool)canOpenWaze;
-- (void)didDismissSlateWithViewModel:(id)arg1 dismissType:(unsigned long long)arg2;
-- (void)didTapSlateAcceptButtonWithViewModel:(id)arg1;
 - (id)currentPresentationStateToString;
 - (void)evaluateBannerPresentationBannerIsShown:(_Bool)arg1;
 - (void)didRequestToCloseBanner;

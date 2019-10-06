@@ -11,7 +11,7 @@
 #import "SPTPlayerObserver-Protocol.h"
 
 @class NSNotificationCenter, NSString, SPTGaiaDeviceAppearanceMapping, SPTGaiaLogger, SPTGaiaPopupContentViewController, SPTGaiaSocialListeningIntegrationManager, SPTPopupDialog, SPTTheme, UIApplication;
-@protocol SPTAlertController, SPTGaiaConnectManager, SPTPlayer, SPTProductState;
+@protocol SPTAlertInterface, SPTGaiaConnectManager, SPTPlayer, SPTProductState;
 
 @interface SPTGaiaPopupController : NSObject <SPTPlayerObserver, SPTGaiaConnectManagerObserver, SPTGaiaPopupPresenter>
 {
@@ -19,7 +19,7 @@
     _Bool _delayedPopup;
     id <SPTProductState> _productState;
     id <SPTPlayer> _player;
-    id <SPTAlertController> _alertController;
+    id <SPTAlertInterface> _alertInterface;
     SPTGaiaDeviceAppearanceMapping *_deviceIconMapper;
     NSNotificationCenter *_notificationCenter;
     SPTGaiaLogger *_logger;
@@ -44,7 +44,7 @@
 @property(readonly, nonatomic) SPTGaiaLogger *logger; // @synthesize logger=_logger;
 @property(readonly, nonatomic) NSNotificationCenter *notificationCenter; // @synthesize notificationCenter=_notificationCenter;
 @property(readonly, nonatomic) SPTGaiaDeviceAppearanceMapping *deviceIconMapper; // @synthesize deviceIconMapper=_deviceIconMapper;
-@property(readonly, nonatomic) id <SPTAlertController> alertController; // @synthesize alertController=_alertController;
+@property(readonly, nonatomic) id <SPTAlertInterface> alertInterface; // @synthesize alertInterface=_alertInterface;
 @property(readonly, nonatomic) __weak id <SPTPlayer> player; // @synthesize player=_player;
 @property(readonly, nonatomic) __weak id <SPTProductState> productState; // @synthesize productState=_productState;
 - (void).cxx_destruct;
@@ -53,6 +53,7 @@
 - (_Bool)activeDeviceIsSocialListening;
 - (_Bool)activeDeviceIsAttached;
 - (id)activeDevice;
+- (void)presentSimpleAlertWithTitle:(id)arg1 message:(id)arg2 buttonText:(id)arg3;
 - (void)presentTransferFailedPopup:(id)arg1;
 - (void)presentContextUnavailablePopup;
 - (void)playHereButtonAction:(id)arg1;
@@ -71,7 +72,7 @@
 - (void)devicePickerDidAppear:(id)arg1;
 - (void)applicationDidEnterBackground;
 - (void)dealloc;
-- (id)initWithAlertController:(id)arg1 player:(id)arg2 productState:(id)arg3 theme:(id)arg4 deviceIconMapper:(id)arg5 notificationCenter:(id)arg6 logger:(id)arg7 connectManager:(id)arg8 socialListeningManager:(id)arg9 application:(id)arg10;
+- (id)initWithAlertInterface:(id)arg1 player:(id)arg2 productState:(id)arg3 theme:(id)arg4 deviceIconMapper:(id)arg5 notificationCenter:(id)arg6 logger:(id)arg7 connectManager:(id)arg8 socialListeningManager:(id)arg9 application:(id)arg10;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

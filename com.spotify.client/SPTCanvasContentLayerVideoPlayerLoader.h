@@ -7,13 +7,13 @@
 #import <objc/NSObject.h>
 
 @class NSString, NSURL, UIView;
-@protocol SPTCanvasContentLayerVideoPlaybackObserverDelegate, SPTCanvasModel, SPTVideoFeaturePlayerFactory, SPTVideoPlayer, SPTVideoSurface;
+@protocol BMBetamaxPlayer, BMVideoSurface, SPTCanvasContentLayerVideoPlaybackObserverDelegate, SPTCanvasModel, SPTVideoFeaturePlayerFactory;
 
 @interface SPTCanvasContentLayerVideoPlayerLoader : NSObject
 {
     _Bool _loading;
-    id <SPTVideoPlayer> _videoPlayer;
-    UIView<SPTVideoSurface> *_surfaceView;
+    id <BMBetamaxPlayer> _videoPlayer;
+    UIView<BMVideoSurface> *_surfaceView;
     id <SPTCanvasContentLayerVideoPlaybackObserverDelegate> _delegate;
     id <SPTVideoFeaturePlayerFactory> _videoPlayerFactory;
     id <SPTCanvasModel> _canvasModel;
@@ -30,8 +30,8 @@
 @property(readonly, nonatomic) id <SPTCanvasModel> canvasModel; // @synthesize canvasModel=_canvasModel;
 @property(readonly, nonatomic) id <SPTVideoFeaturePlayerFactory> videoPlayerFactory; // @synthesize videoPlayerFactory=_videoPlayerFactory;
 @property(nonatomic) __weak id <SPTCanvasContentLayerVideoPlaybackObserverDelegate> delegate; // @synthesize delegate=_delegate;
-@property(retain, nonatomic) UIView<SPTVideoSurface> *surfaceView; // @synthesize surfaceView=_surfaceView;
-@property(retain, nonatomic) id <SPTVideoPlayer> videoPlayer; // @synthesize videoPlayer=_videoPlayer;
+@property(retain, nonatomic) UIView<BMVideoSurface> *surfaceView; // @synthesize surfaceView=_surfaceView;
+@property(retain, nonatomic) id <BMBetamaxPlayer> videoPlayer; // @synthesize videoPlayer=_videoPlayer;
 - (void).cxx_destruct;
 - (_Bool)shouldRepeatVideo:(long long)arg1;
 - (long long)playbackOption:(id)arg1;

@@ -11,6 +11,7 @@
 @protocol SPTNowPlayingBarModelObserver <NSObject>
 
 @optional
+- (void)nowPlayingBarModelDidUpdateVoiceCompanionState:(SPTNowPlayingBarModel *)arg1;
 - (void)nowPlayingBarModelDidUpdateTrackMetaData:(SPTNowPlayingBarModel *)arg1;
 - (void)nowPlayingBarModelDidUpdatePlayingState:(SPTNowPlayingBarModel *)arg1;
 @end

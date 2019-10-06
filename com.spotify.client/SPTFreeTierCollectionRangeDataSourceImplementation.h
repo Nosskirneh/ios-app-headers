@@ -9,7 +9,7 @@
 #import "SPTFreeTierCollectionRangeDataLoaderDelegate-Protocol.h"
 #import "SPTFreeTierCollectionRangeDataSource-Protocol.h"
 
-@class NSArray, NSString, NSTimer;
+@class NSArray, NSMutableOrderedSet, NSString, NSTimer;
 @protocol SPTFreeTierCollectionRangeDataLoader, SPTFreeTierCollectionRangeDataSourceDelegate;
 
 @interface SPTFreeTierCollectionRangeDataSourceImplementation : NSObject <SPTFreeTierCollectionRangeDataLoaderDelegate, SPTFreeTierCollectionRangeDataSource>
@@ -26,12 +26,14 @@
     NSArray *_filterRules;
     NSString *_textFilter;
     NSTimer *_updateTimer;
+    NSMutableOrderedSet *_lastUnavailableIndexes;
     struct _NSRange _requestedRange;
     struct _NSRange _currentRange;
     struct _NSRange _itemsRange;
 }
 
 + (id)defaultRangedDataSourceWithDataLoader:(id)arg1;
+@property(retain, nonatomic) NSMutableOrderedSet *lastUnavailableIndexes; // @synthesize lastUnavailableIndexes=_lastUnavailableIndexes;
 @property(nonatomic) _Bool forceReload; // @synthesize forceReload=_forceReload;
 @property(retain, nonatomic) NSTimer *updateTimer; // @synthesize updateTimer=_updateTimer;
 @property(copy, nonatomic) NSString *textFilter; // @synthesize textFilter=_textFilter;
@@ -54,6 +56,8 @@
 - (_Bool)isThresholdHitTopForIndexPath:(id)arg1;
 - (void)updateDataLoaderRangeForIndexPath:(id)arg1;
 - (id)itemAtIndexPath:(id)arg1;
+- (_Bool)recentlyUnavailableRequestedIndex:(long long)arg1;
+- (void)addUnavailableIndex:(long long)arg1;
 - (void)willDisplayItemAIndex:(long long)arg1;
 @property(readonly, nonatomic) NSArray *sectionIndices;
 @property(readonly, nonatomic) long long totalNumberOfItems;

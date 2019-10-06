@@ -19,6 +19,7 @@
 }
 
 + (id)showWithContent:(id)arg1 delegate:(id)arg2;
++ (id)dialogWithContent:(id)arg1 delegate:(id)arg2;
 + (void)initialize;
 @property(nonatomic) _Bool shouldFailOnDataError; // @synthesize shouldFailOnDataError=_shouldFailOnDataError;
 @property(copy, nonatomic) id <FBSDKSharingContent> shareContent; // @synthesize shareContent=_shareContent;
@@ -32,7 +33,7 @@
 - (_Bool)_canShowNative;
 - (_Bool)validateWithError:(id *)arg1;
 - (_Bool)show;
-- (_Bool)canShow;
+@property(readonly, nonatomic) _Bool canShow;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

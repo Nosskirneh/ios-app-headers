@@ -6,11 +6,11 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTVideoContentInformation-Protocol.h"
+#import "BMContentInformation-Protocol.h"
 
 @class NSString;
 
-@interface SPTVideoContentInformation : NSObject <SPTVideoContentInformation>
+@interface SPTVideoContentInformation : NSObject <BMContentInformation>
 {
     _Bool _byteRangeAccessSupported;
     NSString *_key;

@@ -6,15 +6,15 @@
 
 #import <UIKit/UIView.h>
 
+#import "BMVideoSurfaceDelegate-Protocol.h"
 #import "SPTNowPlayingCarouselContentProviderDelegate-Protocol.h"
 #import "SPTNowPlayingCoverArtContentViewDelegate-Protocol.h"
 #import "SPTNowPlayingVideoTimerDelegate-Protocol.h"
-#import "SPTVideoSurfaceDelegate-Protocol.h"
 
 @class NSArray, NSString, NSURL, SPTNowPlayingCarouselGradientView, SPTNowPlayingVideoTimer, SPTPlayerTrack, UIActivityIndicatorView, UIButton, UIImage, UIImageView;
-@protocol SPTNowPlayingContentCellDelegate, SPTNowPlayingContentCellRefreshDelegate, SPTNowPlayingCoverArtContentView, SPTVideoSurface, SPTVideoSurfaceManager;
+@protocol BMVideoSurface, BMVideoSurfaceManager, SPTNowPlayingContentCellDelegate, SPTNowPlayingContentCellRefreshDelegate, SPTNowPlayingCoverArtContentView;
 
-@interface SPTNowPlayingContentCell : UIView <SPTVideoSurfaceDelegate, SPTNowPlayingCoverArtContentViewDelegate, SPTNowPlayingVideoTimerDelegate, SPTNowPlayingCarouselContentProviderDelegate>
+@interface SPTNowPlayingContentCell : UIView <BMVideoSurfaceDelegate, SPTNowPlayingCoverArtContentViewDelegate, SPTNowPlayingVideoTimerDelegate, SPTNowPlayingCarouselContentProviderDelegate>
 {
     _Bool _shouldOverrideVideoAppearance;
     _Bool _selected;
@@ -32,8 +32,8 @@
     UIView *_contentView;
     UIView *_contentUnitView;
     UIImageView *_placeholderImageView;
-    UIView<SPTVideoSurface> *_videoSurfaceView;
-    id <SPTVideoSurfaceManager> _videoSurfaceManager;
+    UIView<BMVideoSurface> *_videoSurfaceView;
+    id <BMVideoSurfaceManager> _videoSurfaceManager;
     UIActivityIndicatorView *_activityView;
     long long _placeholderIconType;
     SPTNowPlayingCarouselGradientView *_gradientView;
@@ -50,8 +50,8 @@
 @property(nonatomic) long long placeholderIconType; // @synthesize placeholderIconType=_placeholderIconType;
 @property(nonatomic) _Bool fullscreen; // @synthesize fullscreen=_fullscreen;
 @property(readonly, nonatomic) UIActivityIndicatorView *activityView; // @synthesize activityView=_activityView;
-@property(readonly, nonatomic) id <SPTVideoSurfaceManager> videoSurfaceManager; // @synthesize videoSurfaceManager=_videoSurfaceManager;
-@property(readonly, nonatomic) UIView<SPTVideoSurface> *videoSurfaceView; // @synthesize videoSurfaceView=_videoSurfaceView;
+@property(readonly, nonatomic) id <BMVideoSurfaceManager> videoSurfaceManager; // @synthesize videoSurfaceManager=_videoSurfaceManager;
+@property(readonly, nonatomic) UIView<BMVideoSurface> *videoSurfaceView; // @synthesize videoSurfaceView=_videoSurfaceView;
 @property(retain, nonatomic) UIImageView *placeholderImageView; // @synthesize placeholderImageView=_placeholderImageView;
 @property(readonly, nonatomic) UIView *contentUnitView; // @synthesize contentUnitView=_contentUnitView;
 @property(readonly, nonatomic) UIView *contentView; // @synthesize contentView=_contentView;
@@ -95,7 +95,7 @@
 - (void)setTransitioning:(_Bool)arg1 animated:(_Bool)arg2;
 - (void)updateContentUnitFrame:(struct CGRect)arg1;
 - (void)accessoryButtonTapped:(id)arg1;
-@property(readonly, nonatomic) id <SPTVideoSurface> videoSurface;
+@property(readonly, nonatomic) id <BMVideoSurface> videoSurface;
 - (void)invalidatePlaceholderImage;
 - (void)updateLayerVisibilities:(_Bool)arg1;
 - (_Bool)isOverlayViewVisible;

@@ -35,6 +35,7 @@
 - (void)setupWebViewWithConfiguration:(id)arg1;
 - (void)setupAndLoadWebView;
 - (void)setupLoadingIndicator;
+- (_Bool)isModalInPresentation;
 - (void)viewDidDisappear:(_Bool)arg1;
 - (void)viewDidLoad;
 - (id)initWithViewModel:(id)arg1;

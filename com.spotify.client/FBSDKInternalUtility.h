@@ -10,9 +10,7 @@
 {
 }
 
-+ (Class)resolveBoltsClassWithName:(id)arg1;
-+ (_Bool)areAllPermissionsPublishPermissions:(id)arg1;
-+ (_Bool)areAllPermissionsReadPermissions:(id)arg1;
++ (_Bool)isUnity;
 + (_Bool)isPublishPermission:(id)arg1;
 + (_Bool)isRegisteredCanOpenURLScheme:(id)arg1;
 + (void)checkRegisteredCanOpenURLScheme:(id)arg1;
@@ -25,7 +23,6 @@
 + (id)validateRequiredClientAccessToken;
 + (void)validateAppID;
 + (_Bool)_canOpenURLScheme:(id)arg1;
-+ (id)_convertObjectToJSONObject:(id)arg1 invalidObjectHandler:(CDUnknownBlockType)arg2 stop:(_Bool *)arg3;
 + (long long)_compareOperatingSystemVersion:(CDStruct_2ec95fd7)arg1 toVersion:(CDStruct_2ec95fd7)arg2;
 + (_Bool)isMSQRDPlayerAppInstalled;
 + (_Bool)isMessengerAppInstalled;
@@ -36,11 +33,9 @@
 + (void)deleteFacebookCookies;
 + (id)URLWithScheme:(id)arg1 host:(id)arg2 path:(id)arg3 queryParameters:(id)arg4 error:(id *)arg5;
 + (_Bool)shouldManuallyAdjustOrientation;
-+ (id)queryStringWithDictionary:(id)arg1 error:(id *)arg2 invalidObjectHandler:(CDUnknownBlockType)arg3;
 + (CDStruct_2ec95fd7)operatingSystemVersion;
-+ (id)objectForJSONString:(id)arg1 error:(id *)arg2;
 + (_Bool)object:(id)arg1 isEqualToObject:(id)arg2;
-+ (id)JSONStringForObject:(id)arg1 error:(id *)arg2 invalidObjectHandler:(CDUnknownBlockType)arg3;
++ (int)getMajorVersionFromFullLibraryVersion:(int)arg1;
 + (_Bool)isUIKitRunTimeVersionAtLeast:(int)arg1;
 + (_Bool)isUIKitLinkTimeVersionAtLeast:(int)arg1;
 + (_Bool)isSafariBundleIdentifier:(id)arg1;
@@ -49,17 +44,12 @@
 + (_Bool)isBrowserURL:(id)arg1;
 + (id)facebookURLWithHostPrefix:(id)arg1 path:(id)arg2 queryParameters:(id)arg3 defaultVersion:(id)arg4 error:(id *)arg5;
 + (id)facebookURLWithHostPrefix:(id)arg1 path:(id)arg2 queryParameters:(id)arg3 error:(id *)arg4;
-+ (void)extractPermissionsFromResponse:(id)arg1 grantedPermissions:(id)arg2 declinedPermissions:(id)arg3;
-+ (void)dictionary:(id)arg1 setObject:(id)arg2 forKey:(id)arg3;
-+ (_Bool)dictionary:(id)arg1 setJSONStringForObject:(id)arg2 forKey:(id)arg3 error:(id *)arg4;
++ (void)extractPermissionsFromResponse:(id)arg1 grantedPermissions:(id)arg2 declinedPermissions:(id)arg3 expiredPermissions:(id)arg4;
 + (unsigned long long)currentTimeInMilliseconds;
-+ (id)convertRequestValue:(id)arg1;
 + (id)bundleForStrings;
-+ (void)array:(id)arg1 addObject:(id)arg2;
 + (id)dictionaryFromFBURL:(id)arg1;
 + (id)appURLWithHost:(id)arg1 path:(id)arg2 queryParameters:(id)arg3 error:(id *)arg4;
 + (id)appURLScheme;
-- (id)init;
 
 @end
 

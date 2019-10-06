@@ -31,6 +31,7 @@
 - (id)createPromoComponent;
 - (id)createCarouselComponent;
 - (id)createLargeCardComponent;
+- (id)createMediumCardComponent;
 - (id)createSmallCardComponent;
 - (void)unregisterHomeComponentsFromComponentRegistry:(id)arg1;
 - (void)registerHomeComponentsToComponentRegistry:(id)arg1;

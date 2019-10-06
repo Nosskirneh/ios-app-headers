@@ -6,17 +6,17 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTVideoEventObserver-Protocol.h"
+#import "BMEventObserver-Protocol.h"
 
 @class NSString;
-@protocol OS_dispatch_queue, SPTAdsBaseCosmosBridge, SPTVideoPlaybackIdentity, SPTVideoPlaybackTimeObservable;
+@protocol BMPlaybackIdentity, BMPlaybackTimeObservable, OS_dispatch_queue, SPTAdsBaseCosmosBridge;
 
-@interface SPTInterruptionNewVideoEventReporter : NSObject <SPTVideoEventObserver>
+@interface SPTInterruptionNewVideoEventReporter : NSObject <BMEventObserver>
 {
     _Bool _started;
     id <SPTAdsBaseCosmosBridge> _cosmosBridge;
-    id <SPTVideoPlaybackIdentity> _currentIdentity;
-    id <SPTVideoPlaybackTimeObservable> _timeObservable;
+    id <BMPlaybackIdentity> _currentIdentity;
+    id <BMPlaybackTimeObservable> _timeObservable;
     double _trackDuration;
     unsigned long long _quartilesPlayed;
 }
@@ -25,8 +25,8 @@
 @property(nonatomic) _Bool started; // @synthesize started=_started;
 @property(nonatomic) unsigned long long quartilesPlayed; // @synthesize quartilesPlayed=_quartilesPlayed;
 @property(nonatomic) double trackDuration; // @synthesize trackDuration=_trackDuration;
-@property(nonatomic) __weak id <SPTVideoPlaybackTimeObservable> timeObservable; // @synthesize timeObservable=_timeObservable;
-@property(retain, nonatomic) id <SPTVideoPlaybackIdentity> currentIdentity; // @synthesize currentIdentity=_currentIdentity;
+@property(nonatomic) __weak id <BMPlaybackTimeObservable> timeObservable; // @synthesize timeObservable=_timeObservable;
+@property(retain, nonatomic) id <BMPlaybackIdentity> currentIdentity; // @synthesize currentIdentity=_currentIdentity;
 @property(readonly, nonatomic) id <SPTAdsBaseCosmosBridge> cosmosBridge; // @synthesize cosmosBridge=_cosmosBridge;
 - (void).cxx_destruct;
 - (void)logCompleteEvent;

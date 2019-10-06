@@ -26,6 +26,7 @@
 @property(copy, nonatomic) NSArray *sections; // @synthesize sections=_sections;
 @property(nonatomic) __weak id <SPTPartnerIntegrationSettingsViewModelDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
+- (_Bool)isOffline;
 - (id)sectionsFromCategories:(id)arg1;
 - (void)loadData;
 - (id)initWithIntegrationStateLoader:(id)arg1 authorizer:(id)arg2 testManager:(id)arg3;

@@ -49,7 +49,6 @@
 - (void)textFieldDidBeginEditing:(id)arg1;
 @property(readonly, nonatomic, getter=spt_pageIdentifier) NSString *pageIdentifier;
 @property(readonly, nonatomic, getter=spt_pageURI) NSURL *pageURI;
-- (void)signupViewModelDidValidateFieldWithIdentifier:(id)arg1 error:(id)arg2;
 - (void)nextButtonTapped:(id)arg1;
 - (void)viewDidAppear:(_Bool)arg1;
 - (void)viewDidLoad;

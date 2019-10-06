@@ -12,12 +12,16 @@
 
 @interface SPTRemoteConfigurationFeatureProperties : NSObject <SPTRemoteConfigurationProperties>
 {
+    _Bool _exampleBoolean;
+    long long _exampleInteger;
     NSString *_remoteconfigSystemTestPropertyEnum;
     NSString *_simpleMessage;
 }
 
 @property(readonly, nonatomic) NSString *simpleMessage; // @synthesize simpleMessage=_simpleMessage;
 @property(readonly, nonatomic) NSString *remoteconfigSystemTestPropertyEnum; // @synthesize remoteconfigSystemTestPropertyEnum=_remoteconfigSystemTestPropertyEnum;
+@property(readonly, nonatomic) long long exampleInteger; // @synthesize exampleInteger=_exampleInteger;
+@property(readonly, nonatomic) _Bool exampleBoolean; // @synthesize exampleBoolean=_exampleBoolean;
 - (void).cxx_destruct;
 - (id)propertyModels;
 - (id)initWithPropertyValuesDictionary:(id)arg1;

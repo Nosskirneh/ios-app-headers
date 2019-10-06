@@ -10,8 +10,9 @@
 @class FBSDKShareOpenGraphObject, FBSDKSharePhoto, NSArray, NSDictionary, NSEnumerator, NSNumber, NSString, NSURL;
 
 @protocol FBSDKShareOpenGraphValueContaining <NSObject, NSSecureCoding>
-- (NSURL *)URLForKey:(NSString *)arg1;
-- (NSString *)stringForKey:(NSString *)arg1;
+@property(readonly, nonatomic) NSEnumerator *objectEnumerator;
+@property(readonly, nonatomic) NSEnumerator *keyEnumerator;
+@property(readonly, nonatomic) NSDictionary *allProperties;
 - (void)setURL:(NSURL *)arg1 forKey:(NSString *)arg2;
 - (void)setString:(NSString *)arg1 forKey:(NSString *)arg2;
 - (void)setPhoto:(FBSDKSharePhoto *)arg1 forKey:(NSString *)arg2;
@@ -23,9 +24,9 @@
 - (void)parseProperties:(NSDictionary *)arg1;
 - (id)objectForKeyedSubscript:(NSString *)arg1;
 - (FBSDKShareOpenGraphObject *)objectForKey:(NSString *)arg1;
-- (NSEnumerator *)objectEnumerator;
+- (NSURL *)URLForKey:(NSString *)arg1;
+- (NSString *)stringForKey:(NSString *)arg1;
 - (NSNumber *)numberForKey:(NSString *)arg1;
-- (NSEnumerator *)keyEnumerator;
 - (void)enumerateKeysAndObjectsUsingBlock:(void (^)(NSString *, id, _Bool *))arg1;
 - (NSArray *)arrayForKey:(NSString *)arg1;
 @end

@@ -8,7 +8,7 @@
 
 #import "SPTGaiaDeviceProtocol-Protocol.h"
 
-@class NSArray, NSDictionary, NSString;
+@class NSArray, NSString;
 
 @interface SPTGaiaConnectDevice : NSObject <SPTGaiaDeviceProtocol>
 {
@@ -21,10 +21,10 @@
     _Bool _socialConnect;
     _Bool _isZeroconf;
     _Bool _supportsVolume;
-    _Bool _supportsOnDemand;
     _Bool _supportsLogout;
     _Bool _supportsRename;
     _Bool _isAvailableOnLocalNetwork;
+    _Bool _shuffleDevice;
     float _volume;
     NSString *_deviceId;
     NSString *_physicalDeviceId;
@@ -33,20 +33,20 @@
     NSString *_model;
     NSString *_brand;
     NSArray *_incarnations;
+    NSArray *_capabilities;
     unsigned long long _deviceType;
     unsigned long long _deviceState;
-    NSArray *_capabilitiesArray;
     long long _volumeSteps;
 }
 
 @property(nonatomic) long long volumeSteps; // @synthesize volumeSteps=_volumeSteps;
-@property(copy, nonatomic) NSArray *capabilitiesArray; // @synthesize capabilitiesArray=_capabilitiesArray;
+@property(nonatomic, getter=isShuffleDevice) _Bool shuffleDevice; // @synthesize shuffleDevice=_shuffleDevice;
 @property(nonatomic) unsigned long long deviceState; // @synthesize deviceState=_deviceState;
 @property(nonatomic) unsigned long long deviceType; // @synthesize deviceType=_deviceType;
+@property(copy, nonatomic) NSArray *capabilities; // @synthesize capabilities=_capabilities;
 @property(nonatomic) _Bool isAvailableOnLocalNetwork; // @synthesize isAvailableOnLocalNetwork=_isAvailableOnLocalNetwork;
 @property(nonatomic) _Bool supportsRename; // @synthesize supportsRename=_supportsRename;
 @property(nonatomic) _Bool supportsLogout; // @synthesize supportsLogout=_supportsLogout;
-@property(nonatomic) _Bool supportsOnDemand; // @synthesize supportsOnDemand=_supportsOnDemand;
 @property(nonatomic) _Bool supportsVolume; // @synthesize supportsVolume=_supportsVolume;
 @property(nonatomic) float volume; // @synthesize volume=_volume;
 @property(nonatomic) _Bool isZeroconf; // @synthesize isZeroconf=_isZeroconf;
@@ -65,18 +65,16 @@
 @property(readonly, nonatomic) NSString *physicalDeviceId; // @synthesize physicalDeviceId=_physicalDeviceId;
 @property(copy, nonatomic) NSString *deviceId; // @synthesize deviceId=_deviceId;
 - (void).cxx_destruct;
+- (void)updateVolumeToNewValue:(float)arg1;
+- (void)updateVolumeAfterVolumeDecrease;
+- (void)updateVolumeAfterVolumeIncrease;
+- (_Bool)isEqual:(id)arg1;
+- (id)initWithDictionary:(id)arg1 requiresOnboarding:(_Bool)arg2;
+- (id)incarnationOfType:(unsigned long long)arg1;
 - (id)deviceTypeString;
 - (id)deviceTypeName;
 - (id)specificNameWithSeparator:(id)arg1;
 - (id)brandAndTypeStringWithSeparator:(id)arg1;
-- (void)updateVolumeToNewValue:(float)arg1;
-- (void)updateVolumeAfterVolumeDecrease;
-- (void)updateVolumeAfterVolumeIncrease;
-@property(readonly, nonatomic) NSDictionary *capabilities;
-@property(readonly, nonatomic, getter=isShuffleDevice) _Bool shuffleDevice;
-- (_Bool)isEqual:(id)arg1;
-- (id)initWithDictionary:(id)arg1 requiresOnboarding:(_Bool)arg2;
-- (id)incarnationOfType:(unsigned long long)arg1;
 - (_Bool)isDiscoveredLocally;
 - (_Bool)isAlwaysLocallyDiscoverable;
 

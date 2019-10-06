@@ -29,6 +29,7 @@
     id <SPTFeatureFlagSignal> _podcastMarkedAsUnplayedSignal;
     id <SPTFeatureFlagSignal> _addToPlaylistEnabledSignal;
     id <SPTFeatureFlagSignal> _podcastHeaderV2Signal;
+    id <SPTFeatureFlagSignal> _podcastHeaderV2CondensedSizeSignal;
     id <SPTFeatureFlagSignal> _yourLibraryAnchorTestSignal;
     id <SPTFeatureFlagSignal> _yourLibraryAnchorTestSignalPhase2;
     long long _freeTierState;
@@ -37,12 +38,16 @@
     long long _podcastMarkedAsUnplayedState;
     long long _addToPlaylistEnabledState;
     long long _podcastHeaderV2State;
+    long long _podcastHeaderV2CondensedSizeState;
+    long long _podcastHeaderV2IterationsState;
     long long _yourLibraryAnchorTestState;
     long long _yourLibraryAnchorTestStatePhase2;
 }
 
 @property(nonatomic) long long yourLibraryAnchorTestStatePhase2; // @synthesize yourLibraryAnchorTestStatePhase2=_yourLibraryAnchorTestStatePhase2;
 @property(nonatomic) long long yourLibraryAnchorTestState; // @synthesize yourLibraryAnchorTestState=_yourLibraryAnchorTestState;
+@property(nonatomic) long long podcastHeaderV2IterationsState; // @synthesize podcastHeaderV2IterationsState=_podcastHeaderV2IterationsState;
+@property(nonatomic) long long podcastHeaderV2CondensedSizeState; // @synthesize podcastHeaderV2CondensedSizeState=_podcastHeaderV2CondensedSizeState;
 @property(nonatomic) long long podcastHeaderV2State; // @synthesize podcastHeaderV2State=_podcastHeaderV2State;
 @property(nonatomic) long long addToPlaylistEnabledState; // @synthesize addToPlaylistEnabledState=_addToPlaylistEnabledState;
 @property(nonatomic) long long podcastMarkedAsUnplayedState; // @synthesize podcastMarkedAsUnplayedState=_podcastMarkedAsUnplayedState;
@@ -54,6 +59,7 @@
 @property(nonatomic, getter=isPodcastFeatureEnabled) _Bool podcastFeatureEnabled; // @synthesize podcastFeatureEnabled=_podcastFeatureEnabled;
 @property(retain, nonatomic) id <SPTFeatureFlagSignal> yourLibraryAnchorTestSignalPhase2; // @synthesize yourLibraryAnchorTestSignalPhase2=_yourLibraryAnchorTestSignalPhase2;
 @property(retain, nonatomic) id <SPTFeatureFlagSignal> yourLibraryAnchorTestSignal; // @synthesize yourLibraryAnchorTestSignal=_yourLibraryAnchorTestSignal;
+@property(retain, nonatomic) id <SPTFeatureFlagSignal> podcastHeaderV2CondensedSizeSignal; // @synthesize podcastHeaderV2CondensedSizeSignal=_podcastHeaderV2CondensedSizeSignal;
 @property(retain, nonatomic) id <SPTFeatureFlagSignal> podcastHeaderV2Signal; // @synthesize podcastHeaderV2Signal=_podcastHeaderV2Signal;
 @property(retain, nonatomic) id <SPTFeatureFlagSignal> addToPlaylistEnabledSignal; // @synthesize addToPlaylistEnabledSignal=_addToPlaylistEnabledSignal;
 @property(retain, nonatomic) id <SPTFeatureFlagSignal> podcastMarkedAsUnplayedSignal; // @synthesize podcastMarkedAsUnplayedSignal=_podcastMarkedAsUnplayedSignal;
@@ -73,6 +79,7 @@
 - (void)featureFlagSignal:(id)arg1 hasAssumedState:(long long)arg2;
 - (void)featureFlagsDidChange:(id)arg1;
 @property(readonly, nonatomic, getter=isYourLibraryAnchorTestEnabled) _Bool yourLibraryAnchorTestEnabled;
+@property(readonly, nonatomic, getter=isPodcastHeaderV2CondensedSizeEnabled) _Bool podcastHeaderV2CondensedSizeEnabled;
 @property(readonly, nonatomic, getter=isPodcastHeaderV2Enabled) _Bool podcastHeaderV2Enabled;
 @property(readonly, nonatomic, getter=isAddToPlaylistForAudioEpisodesEnabled) _Bool addToPlaylistForAudioEpisodesEnabled;
 @property(readonly, nonatomic, getter=isPodcastMarkedAsUnplayedEnabled) _Bool podcastMarkedAsUnplayedEnabled;
@@ -81,7 +88,6 @@
 @property(readonly, nonatomic, getter=isPodcastEpisodeCardV2Enabled) _Bool podcastEpisodeCardV2Enabled;
 @property(readonly, nonatomic, getter=isPodcast3DTouchEnabled) _Bool podcast3DTouchEnabled;
 @property(readonly, nonatomic, getter=isPodcastPlaybackOrderEnabled) _Bool podcastPlaybackOrderEnabled;
-@property(readonly, nonatomic, getter=isPodcastShowAutoFollowDisabled) _Bool podcastShowAutoFollowDisabled;
 @property(readonly, nonatomic, getter=isScannablesEnabled) _Bool podcastContextMenuScannablesEnabled;
 - (_Bool)isPodcastYourLibraryEnabled;
 @property(readonly, nonatomic, getter=isLikeActionEnabled) _Bool likeActionEnabled;
@@ -93,7 +99,7 @@
 - (void)addObserver:(id)arg1;
 - (id)createAnchorTestSignalPhase2:(id)arg1;
 - (id)createAnchorTestSignal:(id)arg1;
-- (id)createPodcastHeaderV2Signal:(id)arg1;
+- (void)createPodcastHeaderV2IterationsSignal:(id)arg1;
 - (id)createAddToPlaylistForAudioEpisodesEnabledSignal:(id)arg1;
 - (id)createMarkedAsUnplayedSignal:(id)arg1;
 - (id)createContextMenuScannableSignalWithFactory:(id)arg1;

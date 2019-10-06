@@ -6,12 +6,12 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTVideoEventObserver-Protocol.h"
+#import "BMEventObserver-Protocol.h"
 
 @class NSArray, NSString;
 @protocol OS_dispatch_queue;
 
-@interface SPTVideoDynamicEventObserver : NSObject <SPTVideoEventObserver>
+@interface SPTVideoDynamicEventObserver : NSObject <BMEventObserver>
 {
     NSArray *_eventObservers;
 }
@@ -37,7 +37,7 @@
 - (void)didStartBufferingAtPosition:(double)arg1 timestamp:(double)arg2;
 - (void)didLoadEncriptionKeyOfType:(long long)arg1 timestamp:(double)arg2;
 - (void)willLoadEncryptionKeyWithTimestamp:(double)arg1;
-- (void)didLoadManifestWithTimestamp:(double)arg1;
+- (void)didLoadManifestWithAvailableSubtitles:(id)arg1 timestamp:(double)arg2;
 - (void)willLoadManifestWithTimestamp:(double)arg1;
 - (void)willEndPlaybackWithNextIdentity:(id)arg1 timestamp:(double)arg2;
 - (void)didCreatePlaybackInBackground:(_Bool)arg1 timestamp:(double)arg2;

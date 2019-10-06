@@ -7,13 +7,12 @@
 #import <objc/NSObject.h>
 
 #import "SPTCollectionArtistsModel-Protocol.h"
-#import "SPTCollectionOfflineObserver-Protocol.h"
 #import "SPTOfflineObserver-Protocol.h"
 
 @class NSArray, NSHashTable, NSString;
 @protocol SPTCollectionArtistsModelDelegate, SPTCollectionPlatform, SPTCollectionPlatformDataLoaderRequestToken, SPTCollectionPlatformTestManager, SPTLinkDispatcher, SPTLocalSettings;
 
-@interface SPTCollectionArtistsCosmosModel : NSObject <SPTOfflineObserver, SPTCollectionOfflineObserver, SPTCollectionArtistsModel>
+@interface SPTCollectionArtistsCosmosModel : NSObject <SPTOfflineObserver, SPTCollectionArtistsModel>
 {
     _Bool _showsOnlyOfflinedContent;
     _Bool _ascendingSortOrder;

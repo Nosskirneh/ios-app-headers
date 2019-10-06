@@ -10,6 +10,7 @@
 
 @protocol SPTGaiaDeviceProtocol <NSObject>
 @property(readonly, nonatomic, getter=isSocialConnect) _Bool socialConnect;
+@property(readonly, nonatomic) long long volumeSteps;
 @property(readonly, nonatomic) _Bool supportsVolume;
 @property(readonly, nonatomic) float volume;
 @property(readonly, nonatomic, getter=isShuffleDevice) _Bool shuffleDevice;
@@ -19,7 +20,5 @@
 @property(readonly, nonatomic) NSString *name;
 @property(readonly, nonatomic) NSString *physicalDeviceId;
 @property(readonly, nonatomic) NSString *deviceId;
-- (NSString *)deviceTypeString;
-- (NSString *)brandAndTypeStringWithSeparator:(NSString *)arg1;
 @end
 

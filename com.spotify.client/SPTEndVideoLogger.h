@@ -7,16 +7,16 @@
 #import "SPTVideoBaseTracker.h"
 
 @class NSString, SPTVideoPlayRange;
-@protocol SPTEndVideoMessageIdentity, SPTVideoLogger, SPTVideoLoggerDataProvider, SPTVideoPlaybackIdentity, SPTVideoPlaybackTimeObservable;
+@protocol BMEndVideoMessageIdentity, BMLogger, BMLoggerDataProvider, BMPlaybackIdentity, BMPlaybackTimeObservable;
 
 @interface SPTEndVideoLogger : SPTVideoBaseTracker
 {
     _Bool _paused;
-    id <SPTVideoLogger> _logger;
-    id <SPTVideoLoggerDataProvider> _videoLoggerDataProvider;
-    id <SPTVideoPlaybackTimeObservable> _timeObservable;
-    id <SPTEndVideoMessageIdentity> _messageIdentity;
-    id <SPTVideoPlaybackIdentity> _nextIdentity;
+    id <BMLogger> _logger;
+    id <BMLoggerDataProvider> _loggerDataProvider;
+    id <BMPlaybackTimeObservable> _timeObservable;
+    id <BMEndVideoMessageIdentity> _messageIdentity;
+    id <BMPlaybackIdentity> _nextIdentity;
     long long _endEventReason;
     NSString *_connectionTypeStart;
     NSString *_connectionTypeEnd;
@@ -28,11 +28,11 @@
 @property(copy, nonatomic) NSString *connectionTypeStart; // @synthesize connectionTypeStart=_connectionTypeStart;
 @property(nonatomic) _Bool paused; // @synthesize paused=_paused;
 @property(nonatomic) long long endEventReason; // @synthesize endEventReason=_endEventReason;
-@property(retain, nonatomic) id <SPTVideoPlaybackIdentity> nextIdentity; // @synthesize nextIdentity=_nextIdentity;
-@property(retain, nonatomic) id <SPTEndVideoMessageIdentity> messageIdentity; // @synthesize messageIdentity=_messageIdentity;
-@property(nonatomic) __weak id <SPTVideoPlaybackTimeObservable> timeObservable; // @synthesize timeObservable=_timeObservable;
-@property(retain, nonatomic) id <SPTVideoLoggerDataProvider> videoLoggerDataProvider; // @synthesize videoLoggerDataProvider=_videoLoggerDataProvider;
-@property(retain, nonatomic) id <SPTVideoLogger> logger; // @synthesize logger=_logger;
+@property(retain, nonatomic) id <BMPlaybackIdentity> nextIdentity; // @synthesize nextIdentity=_nextIdentity;
+@property(retain, nonatomic) id <BMEndVideoMessageIdentity> messageIdentity; // @synthesize messageIdentity=_messageIdentity;
+@property(nonatomic) __weak id <BMPlaybackTimeObservable> timeObservable; // @synthesize timeObservable=_timeObservable;
+@property(retain, nonatomic) id <BMLoggerDataProvider> loggerDataProvider; // @synthesize loggerDataProvider=_loggerDataProvider;
+@property(retain, nonatomic) id <BMLogger> logger; // @synthesize logger=_logger;
 - (void).cxx_destruct;
 - (long long)timeWeightedBitrate;
 - (id)keySystem;
@@ -55,7 +55,7 @@
 - (void)willEndPlaybackWithNextIdentity:(id)arg1 timestamp:(double)arg2;
 - (void)didCreatePlaybackInBackground:(_Bool)arg1 timestamp:(double)arg2;
 - (void)dealloc;
-- (id)initWithLogger:(id)arg1 videoLoggerDataProvider:(id)arg2 identity:(id)arg3 timeObservable:(id)arg4 paused:(_Bool)arg5;
+- (id)initWithLogger:(id)arg1 loggerDataProvider:(id)arg2 identity:(id)arg3 timeObservable:(id)arg4 paused:(_Bool)arg5;
 
 @end
 

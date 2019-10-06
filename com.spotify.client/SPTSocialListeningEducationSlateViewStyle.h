@@ -13,6 +13,7 @@
 @interface SPTSocialListeningEducationSlateViewStyle : NSObject <GLUEStyle>
 {
     UIColor *_backgroundColor;
+    UIColor *_overlayBackgroundColor;
     double _cornerRadius;
     GLUELabelStyle *_titleLabelStyle;
     GLUELabelStyle *_messageLabelStyle;
@@ -27,6 +28,7 @@
 @property(copy, nonatomic) GLUELabelStyle *messageLabelStyle; // @synthesize messageLabelStyle=_messageLabelStyle;
 @property(copy, nonatomic) GLUELabelStyle *titleLabelStyle; // @synthesize titleLabelStyle=_titleLabelStyle;
 @property(nonatomic) double cornerRadius; // @synthesize cornerRadius=_cornerRadius;
+@property(copy, nonatomic) UIColor *overlayBackgroundColor; // @synthesize overlayBackgroundColor=_overlayBackgroundColor;
 @property(copy, nonatomic) UIColor *backgroundColor; // @synthesize backgroundColor=_backgroundColor;
 - (void).cxx_destruct;
 @property(readonly) unsigned long long hash;

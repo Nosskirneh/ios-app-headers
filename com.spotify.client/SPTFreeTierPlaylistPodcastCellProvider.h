@@ -38,8 +38,10 @@
 - (id)reuseIdentifiers;
 - (id)identifierForCellForRowAtIndexPath:(id)arg1;
 - (double)heightForRowAtIndexPath:(id)arg1;
-- (_Bool)tableView:(id)arg1 didSelectRowAtIndexPath:(id)arg2;
-- (void)configureCell:(id)arg1 forRowAtIndexPath:(id)arg2;
+- (void)didEndDisplayingPlaylistCell:(id)arg1 forRowAtIndexPath:(id)arg2;
+- (void)willDisplayPlaylistCell:(id)arg1 forRowAtIndexPath:(id)arg2;
+- (_Bool)didSelectPlaylistCell:(id)arg1 atIndexPath:(id)arg2;
+- (void)configurePlaylistCell:(id)arg1 forRowAtIndexPath:(id)arg2;
 - (id)initWithCellConfigurator:(id)arg1 cellStateFactory:(id)arg2 player:(id)arg3 itemsViewModel:(id)arg4 offlineManager:(id)arg5;
 
 // Remaining properties

@@ -8,10 +8,8 @@
 
 @interface _TtC17FollowFeedFeature14FollowFeedView : UIView
 {
-    // Error parsing type: , name: button
 }
 
-- (void).cxx_destruct;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithFrame:(struct CGRect)arg1;
 

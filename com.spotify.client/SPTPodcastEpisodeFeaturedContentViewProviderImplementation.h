@@ -8,27 +8,25 @@
 
 #import "SPTPodcastEpisodeFeaturedContentViewProvider-Protocol.h"
 
-@class NSString;
-@protocol SPTHubsRendererFactory, SPTHugsFactory, SPTOnDemandSet, SPTPodcastEpisodeFeaturedContentTestManager, SPTProductState;
+@class NSString, SPTPodcastEpisodeFeaturedContentContentOperationFactory;
+@protocol SPTHubsRendererFactory, SPTHugsFactory, SPTPodcastEpisodeFeaturedContentTestManager;
 
 @interface SPTPodcastEpisodeFeaturedContentViewProviderImplementation : NSObject <SPTPodcastEpisodeFeaturedContentViewProvider>
 {
     id <SPTHubsRendererFactory> _hubsRendererFactory;
     id <SPTHugsFactory> _hugsFactory;
-    id <SPTProductState> _productState;
     id <SPTPodcastEpisodeFeaturedContentTestManager> _testManager;
-    id <SPTOnDemandSet> _onDemandSet;
+    SPTPodcastEpisodeFeaturedContentContentOperationFactory *_contentOperationsFactory;
 }
 
-@property(readonly, nonatomic) id <SPTOnDemandSet> onDemandSet; // @synthesize onDemandSet=_onDemandSet;
+@property(readonly, nonatomic) SPTPodcastEpisodeFeaturedContentContentOperationFactory *contentOperationsFactory; // @synthesize contentOperationsFactory=_contentOperationsFactory;
 @property(readonly, nonatomic) id <SPTPodcastEpisodeFeaturedContentTestManager> testManager; // @synthesize testManager=_testManager;
-@property(readonly, nonatomic) id <SPTProductState> productState; // @synthesize productState=_productState;
 @property(readonly, nonatomic) id <SPTHugsFactory> hugsFactory; // @synthesize hugsFactory=_hugsFactory;
 @property(readonly, nonatomic) id <SPTHubsRendererFactory> hubsRendererFactory; // @synthesize hubsRendererFactory=_hubsRendererFactory;
 - (void).cxx_destruct;
-- (id)managerForURL:(id)arg1 URLResolver:(id)arg2 referrerIdentifier:(id)arg3;
+- (id)managerForURL:(id)arg1 referrerIdentifier:(id)arg2;
 - (id)featuredContentForEpisodeURL:(id)arg1 withContext:(id)arg2;
-- (id)initWithHubsRendererFactory:(id)arg1 hugsFactory:(id)arg2 productState:(id)arg3 testManager:(id)arg4 onDemandSet:(id)arg5;
+- (id)initWithHubsRendererFactory:(id)arg1 hugsFactory:(id)arg2 testManager:(id)arg3 contentOperationFactory:(id)arg4;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

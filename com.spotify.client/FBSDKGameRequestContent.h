@@ -7,11 +7,12 @@
 #import <objc/NSObject.h>
 
 #import "FBSDKCopying-Protocol.h"
+#import "FBSDKSharingValidation-Protocol.h"
 #import "NSSecureCoding-Protocol.h"
 
 @class NSArray, NSString;
 
-@interface FBSDKGameRequestContent : NSObject <FBSDKCopying, NSSecureCoding>
+@interface FBSDKGameRequestContent : NSObject <FBSDKCopying, FBSDKSharingValidation, NSSecureCoding>
 {
     unsigned long long _actionType;
     NSString *_data;
@@ -39,8 +40,11 @@
 - (_Bool)isEqualToGameRequestContent:(id)arg1;
 - (_Bool)isEqual:(id)arg1;
 @property(readonly) unsigned long long hash;
-@property(copy, nonatomic) NSArray *to;
-@property(copy, nonatomic) NSArray *suggestions;
+- (_Bool)validateWithOptions:(unsigned long long)arg1 error:(id *)arg2;
+- (void)setTo:(id)arg1;
+- (id)to;
+- (void)setSuggestions:(id)arg1;
+- (id)suggestions;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

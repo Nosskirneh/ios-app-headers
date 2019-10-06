@@ -6,12 +6,10 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTFreeTierPreCurationService-Protocol.h"
-
 @class NSString, SPTAllocationContext, SPTFreeTierPreCurationTestManagerImplementation, SPTFreeTierPreCurationTheme;
 @protocol SPTCollectionPlatformService, SPTFeatureFlaggingService, SPTFreeTierPreCurationUIFactory, SPTFreeTierService, SPTGLUEService;
 
-@interface SPTFreeTierPreCurationServiceImplementation : NSObject <SPTFreeTierPreCurationService>
+@interface SPTFreeTierPreCurationServiceImplementation : NSObject
 {
     id <SPTCollectionPlatformService> _collectionPlatformService;
     id <SPTFeatureFlaggingService> _featureFlaggingService;

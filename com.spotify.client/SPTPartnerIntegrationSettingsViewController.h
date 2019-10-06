@@ -13,16 +13,16 @@
 #import "UICollectionViewDelegateFlowLayout-Protocol.h"
 
 @class NSString, NSURL, SPTPartnerIntegrationSettingsViewModel, UICollectionView;
-@protocol SPTAlertController, SPTPageContainer;
+@protocol SPTAlertInterface, SPTPageContainer;
 
 @interface SPTPartnerIntegrationSettingsViewController : UIViewController <UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, SPTPartnerIntegrationSettingsViewModelDelegate, SPTPageController, SPContentInsetViewController>
 {
     UICollectionView *_collectionView;
     SPTPartnerIntegrationSettingsViewModel *_viewModel;
-    id <SPTAlertController> _alertController;
+    id <SPTAlertInterface> _alertInterface;
 }
 
-@property(readonly, nonatomic) id <SPTAlertController> alertController; // @synthesize alertController=_alertController;
+@property(readonly, nonatomic) id <SPTAlertInterface> alertInterface; // @synthesize alertInterface=_alertInterface;
 @property(readonly, nonatomic) SPTPartnerIntegrationSettingsViewModel *viewModel; // @synthesize viewModel=_viewModel;
 @property(retain, nonatomic) UICollectionView *collectionView; // @synthesize collectionView=_collectionView;
 - (void).cxx_destruct;
@@ -40,7 +40,7 @@
 - (void)setupConstraints;
 - (void)setupViews;
 - (void)viewDidLoad;
-- (id)initWithIntegrationSettingsViewModel:(id)arg1 alertController:(id)arg2;
+- (id)initWithIntegrationSettingsViewModel:(id)arg1 alertInterface:(id)arg2;
 
 // Remaining properties
 @property(nonatomic) _Bool automaticallyAdjustsScrollViewInsets;

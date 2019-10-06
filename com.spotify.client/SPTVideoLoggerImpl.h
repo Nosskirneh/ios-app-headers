@@ -6,19 +6,22 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTVideoLogger-Protocol.h"
+#import "BMLogger-Protocol.h"
 
 @class NSString;
-@protocol SPTLogCenter;
+@protocol SPTEventSender, SPTLogCenter;
 
-@interface SPTVideoLoggerImpl : NSObject <SPTVideoLogger>
+@interface SPTVideoLoggerImpl : NSObject <BMLogger>
 {
     id <SPTLogCenter> _logCenter;
+    id <SPTEventSender> _eventSender;
 }
 
+@property(retain, nonatomic) id <SPTEventSender> eventSender; // @synthesize eventSender=_eventSender;
 @property(retain, nonatomic) id <SPTLogCenter> logCenter; // @synthesize logCenter=_logCenter;
 - (void).cxx_destruct;
-- (id)mapToPlaybackErrorMessage:(id)arg1;
+- (id)mapToGabitoPlaybackErrorMessage:(id)arg1;
+- (id)mapToGaboPlaybackErrorMessage:(id)arg1;
 - (id)mapToPlaybackSessionMessage:(id)arg1;
 - (id)mapToEndVideoMessage:(id)arg1;
 - (void)sendPlaybackErrorMessage:(id)arg1;
@@ -26,7 +29,7 @@
 - (_Bool)updatePendingEndVideoMessage:(id)arg1;
 - (_Bool)sendPendingEndVideoMessage:(id)arg1;
 - (id)createPendingEndVideoMessage;
-- (id)initWithLogCenter:(id)arg1;
+- (id)initWithLogCenter:(id)arg1 eventSender:(id)arg2;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

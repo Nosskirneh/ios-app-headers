@@ -10,10 +10,8 @@
 {
 }
 
-+ (void)addToParameters:(id)arg1 forShareMessengerOpenGraphMusicTemplateContent:(id)arg2;
-+ (void)addToParameters:(id)arg1 forShareMessengerMediaTemplateContent:(id)arg2;
-+ (void)addToParameters:(id)arg1 forShareMessengerGenericTemplateContent:(id)arg2;
-+ (void)_addToParameters:(id)arg1 contentForShare:(id)arg2 contentForPreview:(id)arg3;
++ (_Bool)validateMessengerActionButton:(id)arg1 isDefaultActionButton:(_Bool)arg2 pageID:(id)arg3 error:(id *)arg4;
++ (void)addToParameters:(id)arg1 contentForShare:(id)arg2 contentForPreview:(id)arg3;
 
 @end
 

@@ -22,6 +22,7 @@
     _Bool _showTrackThumbnail;
     _Bool _formatList;
     _Bool _ownedBySelf;
+    _Bool _isPublished;
     _Bool _followed;
     _Bool _reportAbuseEnabled;
     _Bool _editModeEnabled;
@@ -118,6 +119,7 @@
 @property(nonatomic, getter=isEditModeEnabled) _Bool editModeEnabled; // @synthesize editModeEnabled=_editModeEnabled;
 @property(nonatomic, getter=isReportAbuseEnabled) _Bool reportAbuseEnabled; // @synthesize reportAbuseEnabled=_reportAbuseEnabled;
 @property(nonatomic, getter=isFollowed) _Bool followed; // @synthesize followed=_followed;
+@property(nonatomic) _Bool isPublished; // @synthesize isPublished=_isPublished;
 @property(nonatomic, getter=isOwnedBySelf) _Bool ownedBySelf; // @synthesize ownedBySelf=_ownedBySelf;
 @property(copy, nonatomic) NSString *madeForName; // @synthesize madeForName=_madeForName;
 @property(copy, nonatomic) NSString *numberOfLikesText; // @synthesize numberOfLikesText=_numberOfLikesText;
@@ -136,7 +138,6 @@
 @property(nonatomic) __weak id <SPTFreeTierPlaylistViewModelDelegate> delegate; // @synthesize delegate=_delegate;
 @property(readonly, copy, nonatomic) NSURL *playlistURL; // @synthesize playlistURL=_playlistURL;
 - (void).cxx_destruct;
-- (_Bool)isPlaylistExtenderSection:(long long)arg1;
 - (_Bool)isRecomendationsLoading;
 - (_Bool)shouldDisplayFooterForSection:(unsigned long long)arg1;
 - (void)refreshRecommendations;
@@ -144,7 +145,6 @@
 - (void)playlistExtenderModelDidUpdate:(id)arg1;
 - (void)playlistExtenderModel:(id)arg1 didFailWithError:(id)arg2;
 @property(copy, nonatomic) NSString *textFilter;
-@property(readonly, nonatomic) unsigned long long searchBarType;
 @property(readonly, nonatomic) _Bool showSearchBar;
 - (void)playlistViewModelSponsorshipDidChange:(id)arg1;
 - (void)player:(id)arg1 stateDidChange:(id)arg2 fromState:(id)arg3;
@@ -155,9 +155,6 @@
 - (void)navigateToAllSongs;
 - (_Bool)showBrowseSectionHeaderButton;
 - (_Bool)showAddSongsSectionHeaderButton;
-- (_Bool)isTracksSection:(unsigned long long)arg1;
-- (_Bool)isAdditionalControlsSection:(unsigned long long)arg1;
-- (_Bool)isSponsoredPlaylistSection:(unsigned long long)arg1;
 - (id)trackEntityAtIndexPath:(id)arg1;
 - (void)playTrackAtIndex:(unsigned long long)arg1;
 - (_Bool)cellProviderSupportedForSection:(long long)arg1;
@@ -165,7 +162,6 @@
 - (_Bool)shouldDisplayBrowseRedirectButtonForSection:(unsigned long long)arg1;
 - (void)navigateToPlaylistOwnerPage;
 - (_Bool)isApproachingEndIndexPath:(id)arg1;
-@property(readonly, nonatomic) unsigned long long countOfSections;
 @property(readonly, nonatomic) unsigned long long countOfTracks;
 - (id)titleOfSectionFooter:(unsigned long long)arg1;
 - (id)subTitleOfSectionHeader:(unsigned long long)arg1;

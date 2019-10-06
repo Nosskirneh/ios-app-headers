@@ -9,8 +9,9 @@
 @class NSData, SPTDataLoaderResponse, SPTInAppMessageQAToolConfigurationsController;
 
 @protocol SPTInAppMessageQAToolConfigurationsControllerDelegate <NSObject>
+- (void)qaToolConfigurationsController:(SPTInAppMessageQAToolConfigurationsController *)arg1 didFetchLocalesData:(NSData *)arg2;
 - (void)qaToolConfigurationsController:(SPTInAppMessageQAToolConfigurationsController *)arg1 returnedEmptyListWithResponse:(SPTDataLoaderResponse *)arg2;
-- (void)qaToolConfigurationsController:(SPTInAppMessageQAToolConfigurationsController *)arg1 failedtoFetchCreativesWithResponse:(SPTDataLoaderResponse *)arg2;
+- (void)qaToolConfigurationsController:(SPTInAppMessageQAToolConfigurationsController *)arg1 failedtoFetchDataWithResponse:(SPTDataLoaderResponse *)arg2;
 - (void)qaToolConfigurationsController:(SPTInAppMessageQAToolConfigurationsController *)arg1 didFetchMessageCreativesData:(NSData *)arg2 ofType:(long long)arg3;
 @end
 

@@ -6,18 +6,19 @@
 
 #import "SPTVideoPlayerMessage.h"
 
-@protocol SPTVideoSubtitle;
+@class NSString;
 
 @interface SPTVideoPreferredSubtitleMessage : SPTVideoPlayerMessage
 {
-    id <SPTVideoSubtitle> _subtitle;
+    _Bool _isClosedCaption;
+    NSString *_languageTag;
 }
 
-@property(retain, nonatomic) id <SPTVideoSubtitle> subtitle; // @synthesize subtitle=_subtitle;
+@property(readonly, nonatomic) _Bool isClosedCaption; // @synthesize isClosedCaption=_isClosedCaption;
+@property(readonly, copy, nonatomic) NSString *languageTag; // @synthesize languageTag=_languageTag;
 - (void).cxx_destruct;
 - (id)serializedDictionary;
-- (id)initWithSubtitle:(id)arg1;
-- (id)initWithDictionary:(id)arg1 subtitleFactory:(id)arg2;
+- (id)initWithLanguageTag:(id)arg1 isClosedCaption:(_Bool)arg2;
 
 @end
 

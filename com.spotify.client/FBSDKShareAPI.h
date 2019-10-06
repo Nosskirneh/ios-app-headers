@@ -27,6 +27,7 @@
 + (void)initialize;
 + (id)defaultAssetsLibrary;
 + (id)shareWithContent:(id)arg1 delegate:(id)arg2;
++ (id)apiWithContent:(id)arg1 delegate:(id)arg2;
 @property(copy, nonatomic) NSString *graphNode; // @synthesize graphNode=_graphNode;
 @property(copy, nonatomic) NSString *message; // @synthesize message=_message;
 @property(retain, nonatomic) FBSDKAccessToken *accessToken; // @synthesize accessToken=_accessToken;
@@ -56,7 +57,7 @@
 - (_Bool)validateWithError:(id *)arg1;
 - (_Bool)share;
 - (_Bool)createOpenGraphObject:(id)arg1;
-- (_Bool)canShare;
+@property(readonly, nonatomic) _Bool canShare;
 - (id)init;
 
 // Remaining properties

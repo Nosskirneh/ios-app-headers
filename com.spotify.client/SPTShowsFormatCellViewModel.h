@@ -20,6 +20,7 @@
     long long _icon;
     UIColor *_iconColor;
     NSURL *_imageURL;
+    NSURL *_videoThumbnailURL;
     NSString *_sourceName;
     NSURL *_sourceLink;
     id <GLUEStyle> _rowStyle;
@@ -40,6 +41,7 @@
 @property(retain, nonatomic) id <GLUEStyle> rowStyle; // @synthesize rowStyle=_rowStyle;
 @property(retain, nonatomic) NSURL *sourceLink; // @synthesize sourceLink=_sourceLink;
 @property(retain, nonatomic) NSString *sourceName; // @synthesize sourceName=_sourceName;
+@property(retain, nonatomic) NSURL *videoThumbnailURL; // @synthesize videoThumbnailURL=_videoThumbnailURL;
 @property(retain, nonatomic) NSURL *imageURL; // @synthesize imageURL=_imageURL;
 @property(retain, nonatomic) UIColor *iconColor; // @synthesize iconColor=_iconColor;
 @property(nonatomic) long long icon; // @synthesize icon=_icon;

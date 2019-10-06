@@ -7,16 +7,16 @@
 #import <objc/NSObject.h>
 
 @class SPTVideoManifestProfileFactory;
-@protocol SPTVideoSubtitleFactory;
+@protocol BMSubtitleFactory;
 
 @interface SPTVideoManifestFactory : NSObject
 {
     SPTVideoManifestProfileFactory *_manifestProfileFactory;
-    id <SPTVideoSubtitleFactory> _subtitleFactory;
+    id <BMSubtitleFactory> _subtitleFactory;
 }
 
 + (id)errorWithCode:(long long)arg1 underlyingError:(id)arg2;
-@property(retain, nonatomic) id <SPTVideoSubtitleFactory> subtitleFactory; // @synthesize subtitleFactory=_subtitleFactory;
+@property(retain, nonatomic) id <BMSubtitleFactory> subtitleFactory; // @synthesize subtitleFactory=_subtitleFactory;
 @property(retain, nonatomic) SPTVideoManifestProfileFactory *manifestProfileFactory; // @synthesize manifestProfileFactory=_manifestProfileFactory;
 - (void).cxx_destruct;
 - (id)sanitizeTemplateString:(id)arg1;

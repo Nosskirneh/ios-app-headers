@@ -10,8 +10,9 @@
 
 @interface _TtC24EncoreIntegrationFeature24EncoreIntegrationService : NSObject <SPTEncoreIntegrationService>
 {
-    // Error parsing type: , name: objCComponentFactory.storage
+    // Error parsing type: , name: objCComponentFactory
     // Error parsing type: , name: containerService
+    // Error parsing type: , name: glueService
 }
 
 + (id)serviceIdentifier;

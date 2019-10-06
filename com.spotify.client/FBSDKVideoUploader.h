@@ -36,7 +36,6 @@
 - (void)_postStartRequest;
 - (void)start;
 - (id)initWithVideoName:(id)arg1 videoSize:(unsigned long long)arg2 parameters:(id)arg3 delegate:(id)arg4;
-- (id)init;
 
 @end
 

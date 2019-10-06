@@ -37,12 +37,14 @@
 @property(nonatomic) __weak id <SPTLogCenter> logCenter; // @synthesize logCenter=_logCenter;
 @property(copy, nonatomic) NSString *connectionType; // @synthesize connectionType=_connectionType;
 - (void).cxx_destruct;
+- (id)coreFeatureDurations;
 - (id)serviceDurations;
 - (id)deferredBlockDurations;
 - (id)scopeDurations;
 - (id)rootUIDurations;
 - (id)metadataWithDurations;
 - (void)viewLogger:(id)arg1 didTransitionToState:(long long)arg2 after:(double)arg3;
+- (void)logFinishedLoadingCoreFeature:(id)arg1 duration:(double)arg2;
 - (void)logFinishedDeferredBlockForScope:(id)arg1 identifier:(id)arg2;
 - (void)logStartDeferredBlockForScope:(id)arg1 identifier:(id)arg2;
 - (void)logFinishedSetupRootUIForURI:(id)arg1;
@@ -75,6 +77,7 @@
 - (void)logCoreLogin;
 - (void)logApplicationInitDidFinish;
 - (void)logApplicationInitDidStart;
+- (_Bool)isStartupDurationTrackingEnabled;
 - (_Bool)isStartupTracingEnabled;
 - (id)initWithLogCenter:(id)arg1 applicationStateProvider:(id)arg2 terminalStateCallback:(CDUnknownBlockType)arg3;
 

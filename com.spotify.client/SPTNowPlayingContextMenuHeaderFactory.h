@@ -22,7 +22,7 @@
 @property(readonly, nonatomic) id <SPTNowPlayingPlaybackActionsHandler> playbackActionsHandler; // @synthesize playbackActionsHandler=_playbackActionsHandler;
 @property(readonly, nonatomic) SPTNowPlayingModel *model; // @synthesize model=_model;
 - (void).cxx_destruct;
-- (id)createContextMenuSectionHeaderDelegateWithQueueHidden:(_Bool)arg1;
+- (id)createContextMenuSectionHeaderDelegate;
 - (id)initWithModel:(id)arg1 playbackActionsHandler:(id)arg2 auxiliaryActionsHandler:(id)arg3 theme:(id)arg4;
 
 @end

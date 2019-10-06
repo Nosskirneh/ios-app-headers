@@ -10,25 +10,29 @@
 
 @interface FBSDKLoginCompletionParameters : NSObject
 {
-    _Bool _systemAccount;
     NSString *_accessTokenString;
+    NSString *_nonceString;
     NSSet *_permissions;
     NSSet *_declinedPermissions;
+    NSSet *_expiredPermissions;
     NSString *_appID;
     NSString *_userID;
     NSError *_error;
     NSDate *_expirationDate;
+    NSDate *_dataAccessExpirationDate;
     NSString *_challenge;
 }
 
 @property(copy, nonatomic) NSString *challenge; // @synthesize challenge=_challenge;
+@property(copy, nonatomic) NSDate *dataAccessExpirationDate; // @synthesize dataAccessExpirationDate=_dataAccessExpirationDate;
 @property(copy, nonatomic) NSDate *expirationDate; // @synthesize expirationDate=_expirationDate;
-@property(nonatomic, getter=isSystemAccount) _Bool systemAccount; // @synthesize systemAccount=_systemAccount;
 @property(copy, nonatomic) NSError *error; // @synthesize error=_error;
 @property(copy, nonatomic) NSString *userID; // @synthesize userID=_userID;
 @property(copy, nonatomic) NSString *appID; // @synthesize appID=_appID;
+@property(copy, nonatomic) NSSet *expiredPermissions; // @synthesize expiredPermissions=_expiredPermissions;
 @property(copy, nonatomic) NSSet *declinedPermissions; // @synthesize declinedPermissions=_declinedPermissions;
 @property(copy, nonatomic) NSSet *permissions; // @synthesize permissions=_permissions;
+@property(copy, nonatomic) NSString *nonceString; // @synthesize nonceString=_nonceString;
 @property(copy, nonatomic) NSString *accessTokenString; // @synthesize accessTokenString=_accessTokenString;
 - (void).cxx_destruct;
 - (id)initWithError:(id)arg1;

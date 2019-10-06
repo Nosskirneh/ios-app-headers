@@ -7,13 +7,13 @@
 #import <objc/NSObject.h>
 
 @class NSString;
-@protocol SPTVideoPlayOptions, SPTVideoPlaybackRequest;
+@protocol BMPlayOptions, BMPlaybackRequest;
 
 @interface SPTVideoStartCommand : NSObject
 {
     _Bool _deferPlayback;
-    id <SPTVideoPlaybackRequest> _request;
-    id <SPTVideoPlayOptions> _options;
+    id <BMPlaybackRequest> _request;
+    id <BMPlayOptions> _options;
     NSString *_playbackID;
     double _maxAllowedStallTimeout;
 }
@@ -21,8 +21,8 @@
 @property(readonly, nonatomic) double maxAllowedStallTimeout; // @synthesize maxAllowedStallTimeout=_maxAllowedStallTimeout;
 @property(readonly, nonatomic) _Bool deferPlayback; // @synthesize deferPlayback=_deferPlayback;
 @property(readonly, nonatomic) NSString *playbackID; // @synthesize playbackID=_playbackID;
-@property(readonly, nonatomic) id <SPTVideoPlayOptions> options; // @synthesize options=_options;
-@property(readonly, nonatomic) id <SPTVideoPlaybackRequest> request; // @synthesize request=_request;
+@property(readonly, nonatomic) id <BMPlayOptions> options; // @synthesize options=_options;
+@property(readonly, nonatomic) id <BMPlaybackRequest> request; // @synthesize request=_request;
 - (void).cxx_destruct;
 - (id)initWithRequest:(id)arg1 options:(id)arg2 playbackID:(id)arg3 deferPlayback:(_Bool)arg4 maxAllowedStallTimeout:(double)arg5;
 

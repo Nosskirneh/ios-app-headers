@@ -19,7 +19,6 @@
 @property(readonly, nonatomic) NSData *data; // @synthesize data=_data;
 @property(readonly, copy, nonatomic) NSString *contentType; // @synthesize contentType=_contentType;
 - (void).cxx_destruct;
-- (id)init;
 - (id)initWithData:(id)arg1 filename:(id)arg2 contentType:(id)arg3;
 
 @end

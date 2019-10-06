@@ -13,6 +13,7 @@
 
 @interface SPTDataSaverServiceImplementation : NSObject <SPTDataSaverService>
 {
+    _Bool canvasEnabled;
     id <SPTSettingsFeature> _settingsFeature;
     id <SPTCoreService> _coreService;
     id <SPTSessionService> _clientSessionService;
@@ -36,6 +37,7 @@
 @property(nonatomic) __weak id <SPTSessionService> clientSessionService; // @synthesize clientSessionService=_clientSessionService;
 @property(nonatomic) __weak id <SPTCoreService> coreService; // @synthesize coreService=_coreService;
 @property(nonatomic) __weak id <SPTSettingsFeature> settingsFeature; // @synthesize settingsFeature=_settingsFeature;
+@property(nonatomic) _Bool canvasEnabled; // @synthesize canvasEnabled;
 - (void).cxx_destruct;
 - (void)setupInitialSettings:(_Bool)arg1;
 - (id)provideDataSaverActivatedSignal;

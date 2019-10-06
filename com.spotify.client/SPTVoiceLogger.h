@@ -27,7 +27,7 @@
 - (void)logUIInteractionWithSessionIdentifier:(id)arg1 pageURI:(id)arg2 targetURI:(id)arg3 sectionId:(id)arg4 interactionType:(id)arg5 userIntent:(id)arg6;
 - (void)logUIInteractionWithSessionIdentifier:(id)arg1 featureIdentifier:(id)arg2 pageURI:(id)arg3 targetURI:(id)arg4 sectionId:(id)arg5 interactionType:(id)arg6 userIntent:(id)arg7;
 - (void)logNaturalLanguageErrorWithSessionIdentifier:(id)arg1 errorType:(id)arg2 errorText:(id)arg3;
-- (void)logVoiceActionWithVoiceCommand:(id)arg1 playbackIdentifier:(id)arg2 hasValidPlayerState:(_Bool)arg3 isPlaying:(_Bool)arg4;
+- (void)logVoiceActionWithVoiceCommand:(id)arg1 playbackIdentifier:(id)arg2 hasValidPlayerState:(_Bool)arg3 isPlaying:(_Bool)arg4 trackUri:(id)arg5;
 - (void)updateReferrerIdentifier:(id)arg1;
 - (id)initWithLogCenter:(id)arg1 referrerIdentifier:(id)arg2;
 

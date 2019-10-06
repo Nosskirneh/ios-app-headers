@@ -7,10 +7,10 @@
 #import "NSObject-Protocol.h"
 
 @class NSError;
-@protocol SPTVideoPlayer;
+@protocol BMBetamaxPlayer;
 
 @protocol SPTVideoContextPlayerCoordinatorErrorHandler <NSObject>
-- (void)handleUnrecoverableError:(NSError *)arg1 atPlayer:(id <SPTVideoPlayer>)arg2;
-- (void)handleRecoverableError:(NSError *)arg1 atPlayer:(id <SPTVideoPlayer>)arg2;
+- (void)handleUnrecoverableError:(NSError *)arg1 atPlayer:(id <BMBetamaxPlayer>)arg2;
+- (void)handleRecoverableError:(NSError *)arg1 atPlayer:(id <BMBetamaxPlayer>)arg2;
 @end
 

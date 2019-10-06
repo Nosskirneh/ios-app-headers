@@ -8,7 +8,7 @@
 
 #import "SPTArtistAboutService-Protocol.h"
 
-@class NSString, SPTAllocationContext, SPTArtistAboutGLUETheme, SPTArtistAboutHubComponentFactoryImplementation;
+@class NSString, SPTAllocationContext, SPTArtistAboutGLUETheme, SPTArtistAboutHubComponentFactoryImplementation, SPTArtistAboutModerationRegistrar;
 @protocol SPContextMenuFeature, SPTContainerService, SPTCoreService, SPTFeatureFlaggingService, SPTGLUEService, SPTModerationService, SPTNetworkService, SPTPerformanceMetricsService, SPTURIDispatchService;
 
 @interface SPTArtistAboutServiceImplementation : NSObject <SPTArtistAboutService>
@@ -24,9 +24,11 @@
     id <SPTModerationService> _moderationService;
     SPTArtistAboutGLUETheme *_glueTheme;
     SPTArtistAboutHubComponentFactoryImplementation *_hubComponentFactory;
+    SPTArtistAboutModerationRegistrar *_moderationRegistrar;
 }
 
 + (id)serviceIdentifier;
+@property(retain, nonatomic) SPTArtistAboutModerationRegistrar *moderationRegistrar; // @synthesize moderationRegistrar=_moderationRegistrar;
 @property(retain, nonatomic) SPTArtistAboutHubComponentFactoryImplementation *hubComponentFactory; // @synthesize hubComponentFactory=_hubComponentFactory;
 @property(retain, nonatomic) SPTArtistAboutGLUETheme *glueTheme; // @synthesize glueTheme=_glueTheme;
 @property(nonatomic) __weak id <SPTModerationService> moderationService; // @synthesize moderationService=_moderationService;

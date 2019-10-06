@@ -15,6 +15,7 @@
 
 @property(readonly, nonatomic) id <SPTLogCenter> logCenter; // @synthesize logCenter=_logCenter;
 - (void).cxx_destruct;
+- (void)logVolumeHardwareButtonPressedWithDirection:(id)arg1;
 - (void)logTooltipChooseDeviceInteractionWithPageId:(id)arg1 pageUri:(id)arg2;
 - (void)logTooltipImpressionWithItemId:(id)arg1 pageUri:(id)arg2;
 - (void)logOverlayImpressionWithItemId:(id)arg1 pageUri:(id)arg2;

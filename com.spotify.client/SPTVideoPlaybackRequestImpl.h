@@ -6,11 +6,11 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTVideoPlaybackRequest-Protocol.h"
+#import "BMPlaybackRequest-Protocol.h"
 
 @class NSDictionary, NSString, NSURL;
 
-@interface SPTVideoPlaybackRequestImpl : NSObject <SPTVideoPlaybackRequest>
+@interface SPTVideoPlaybackRequestImpl : NSObject <BMPlaybackRequest>
 {
     _Bool _royaltyMedia;
     _Bool _audioOnlyAllowed;
@@ -23,13 +23,13 @@
 @property(copy, nonatomic) NSDictionary *metadata; // @synthesize metadata=_metadata;
 @property(retain, nonatomic) NSURL *mediaURL; // @synthesize mediaURL=_mediaURL;
 - (void).cxx_destruct;
-@property(readonly, copy) NSString *debugDescription;
 - (_Bool)isEqual:(id)arg1;
 @property(readonly) unsigned long long hash;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)initWithMediaURL:(id)arg1 metadata:(id)arg2 royaltyMedia:(_Bool)arg3 audioOnlyAllowed:(_Bool)arg4;
 
 // Remaining properties
+@property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
 @property(readonly) Class superclass;
 

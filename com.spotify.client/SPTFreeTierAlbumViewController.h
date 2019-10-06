@@ -9,8 +9,8 @@
 #import "SPTShareableContext-Protocol.h"
 #import "SPViewController-Protocol.h"
 
-@class NSString, NSURL, SPTFreeTierAlbumContextMenuButtonViewModel, SPTFreeTierAlbumFeedbackButtonViewModel, SPTProgressView, VISREFIntegrationManager;
-@protocol SPTPlayer;
+@class NSString, NSURL, SPTFreeTierAlbumContextMenuButtonViewModel, SPTFreeTierAlbumFeedbackButtonViewModel, SPTProgressView;
+@protocol SPTPlayer, VISREFIntegrationManager;
 
 @interface SPTFreeTierAlbumViewController : SPTHubViewController <SPTShareableContext, SPViewController>
 {
@@ -18,10 +18,10 @@
     SPTFreeTierAlbumContextMenuButtonViewModel *_contextMenuButtonViewModel;
     id <SPTPlayer> _player;
     SPTProgressView *_progressView;
-    VISREFIntegrationManager *_visualRefreshIntegrationManager;
+    id <VISREFIntegrationManager> _visualRefreshIntegrationManager;
 }
 
-@property(retain, nonatomic) VISREFIntegrationManager *visualRefreshIntegrationManager; // @synthesize visualRefreshIntegrationManager=_visualRefreshIntegrationManager;
+@property(retain, nonatomic) id <VISREFIntegrationManager> visualRefreshIntegrationManager; // @synthesize visualRefreshIntegrationManager=_visualRefreshIntegrationManager;
 @property(retain, nonatomic) SPTProgressView *progressView; // @synthesize progressView=_progressView;
 @property(readonly, nonatomic) id <SPTPlayer> player; // @synthesize player=_player;
 @property(readonly, nonatomic) SPTFreeTierAlbumContextMenuButtonViewModel *contextMenuButtonViewModel; // @synthesize contextMenuButtonViewModel=_contextMenuButtonViewModel;

@@ -10,13 +10,14 @@
 #import "SPForegroundObserverDelegate-Protocol.h"
 #import "SPTNowPlayingBarModelObserver-Protocol.h"
 #import "SPTNowPlayingBarViewControllerObservable-Protocol.h"
+#import "SPTNowPlayingBarVoiceCompanionDelegate-Protocol.h"
 #import "SPTPlayerTrackScrollDataSourceDelegate-Protocol.h"
 #import "SPTPlayerTrackScrollViewOffsetDelegate-Protocol.h"
 
 @class NSString, SPForegroundObserver, SPTNowPlayingBarContentView, SPTNowPlayingBarModel, SPTNowPlayingLogger, SPTNowPlayingSkipLimitReachedMessageRequester, SPTObserverManager, SPTPlayerTrackScrollDataSource, SPTTheme, UIView;
 @protocol NSObject, SPTGaiaConnectAPI, SPTGaiaDevicePickerPresenter, SPTGaiaDevicesAvailableView, SPTNowPlayingManager, SPTNowPlayingTestManager;
 
-@interface SPTNowPlayingBarViewController : SPViewController <SPBarTransitableViewController, SPForegroundObserverDelegate, SPTPlayerTrackScrollDataSourceDelegate, SPTPlayerTrackScrollViewOffsetDelegate, SPTNowPlayingBarModelObserver, SPTNowPlayingBarViewControllerObservable>
+@interface SPTNowPlayingBarViewController : SPViewController <SPBarTransitableViewController, SPForegroundObserverDelegate, SPTPlayerTrackScrollDataSourceDelegate, SPTPlayerTrackScrollViewOffsetDelegate, SPTNowPlayingBarModelObserver, SPTNowPlayingBarVoiceCompanionDelegate, SPTNowPlayingBarViewControllerObservable>
 {
     _Bool _barShown;
     _Bool _revealTriggeredByTap;
@@ -59,8 +60,10 @@
 @property(readonly, nonatomic) SPTNowPlayingSkipLimitReachedMessageRequester *skipLimitReachedMessageRequester; // @synthesize skipLimitReachedMessageRequester=_skipLimitReachedMessageRequester;
 @property(retain, nonatomic) SPTNowPlayingBarModel *nowPlayingModel; // @synthesize nowPlayingModel=_nowPlayingModel;
 - (void).cxx_destruct;
+- (void)didTapVoiceCompanionView;
 - (void)playerTrackScrollView:(id)arg1 scrolledToRelativeIndex:(long long)arg2;
 - (void)playerTrackScrollViewChangedOffset:(id)arg1;
+- (void)nowPlayingBarModelDidUpdateVoiceCompanionState:(id)arg1;
 - (void)nowPlayingBarModelDidUpdateTrackMetaData:(id)arg1;
 - (void)nowPlayingBarModelDidUpdatePlayingState:(id)arg1;
 - (void)foregroundObserverDidHibernate:(id)arg1;

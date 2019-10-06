@@ -6,11 +6,11 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTVideoEventObserverFactory-Protocol.h"
+#import "BMEventObserverFactory-Protocol.h"
 
 @class NSMutableOrderedSet, NSString;
 
-@interface SPTVideoDynamicEventObserverFactory : NSObject <SPTVideoEventObserverFactory>
+@interface SPTVideoDynamicEventObserverFactory : NSObject <BMEventObserverFactory>
 {
     NSMutableOrderedSet *_observerFactories;
 }

@@ -9,7 +9,7 @@
 #import "SPTHomeService-Protocol.h"
 
 @class NSString, SPTAllocationContext, SPTHomeContentCache, SPTHomeHubManager;
-@protocol SPTDrivingStateDetectionService, SPTFeatureFlagFactory, SPTFeedHeartBeatManager, SPTFeedService, SPTFreeTierUIService, SPTGLUEService, SPTHomeTestManager, SPTHomeUIService, SPTHubFrameworkService, SPTNavigationFeature, SPTNetworkService, SPTOnDemandService, SPTPlayerFeature, SPTPodcastUIContinueListeningService, SPTPodcastUIService, SPTRecentlyPlayedService, SPTSessionService, SPTShareFeature;
+@protocol SPTDrivingStateDetectionService, SPTFeatureFlagFactory, SPTFeedHeartBeatManager, SPTFeedService, SPTFreeTierTasteOnboardingService, SPTFreeTierUIService, SPTGLUEService, SPTHomeTestManager, SPTHomeUIService, SPTHubFrameworkService, SPTNavigationFeature, SPTNetworkService, SPTOfflineService, SPTOnDemandService, SPTPlayerFeature, SPTPodcastUIContinueListeningService, SPTPodcastUIService, SPTRecentlyPlayedService, SPTSessionService, SPTShareFeature;
 
 @interface SPTHomeServiceImplementation : SPTUIPageService <SPTHomeService>
 {
@@ -19,6 +19,7 @@
     id <SPTFreeTierUIService> _freeTierUIService;
     id <SPTHomeUIService> _homeUIService;
     id <SPTNavigationFeature> _navigationFeature;
+    id <SPTOfflineService> _offlineService;
     id <SPTOnDemandService> _onDemandService;
     id <SPTPlayerFeature> _playerService;
     id <SPTPodcastUIService> _podcastUIService;
@@ -28,6 +29,7 @@
     id <SPTFeedService> _feedService;
     id <SPTDrivingStateDetectionService> _drivingStateDetectionService;
     id <SPTShareFeature> _shareService;
+    id <SPTFreeTierTasteOnboardingService> _tasteOnboardingService;
     id <SPTHomeTestManager> _testManager;
     SPTHomeHubManager *_hubManager;
     SPTHomeContentCache *_homeContentCache;
@@ -41,6 +43,7 @@
 @property(retain, nonatomic) SPTHomeContentCache *homeContentCache; // @synthesize homeContentCache=_homeContentCache;
 @property(retain, nonatomic) SPTHomeHubManager *hubManager; // @synthesize hubManager=_hubManager;
 @property(retain, nonatomic) id <SPTHomeTestManager> testManager; // @synthesize testManager=_testManager;
+@property(nonatomic) __weak id <SPTFreeTierTasteOnboardingService> tasteOnboardingService; // @synthesize tasteOnboardingService=_tasteOnboardingService;
 @property(nonatomic) __weak id <SPTShareFeature> shareService; // @synthesize shareService=_shareService;
 @property(nonatomic) __weak id <SPTDrivingStateDetectionService> drivingStateDetectionService; // @synthesize drivingStateDetectionService=_drivingStateDetectionService;
 @property(nonatomic) __weak id <SPTFeedService> feedService; // @synthesize feedService=_feedService;
@@ -50,6 +53,7 @@
 @property(nonatomic) __weak id <SPTPodcastUIService> podcastUIService; // @synthesize podcastUIService=_podcastUIService;
 @property(nonatomic) __weak id <SPTPlayerFeature> playerService; // @synthesize playerService=_playerService;
 @property(nonatomic) __weak id <SPTOnDemandService> onDemandService; // @synthesize onDemandService=_onDemandService;
+@property(nonatomic) __weak id <SPTOfflineService> offlineService; // @synthesize offlineService=_offlineService;
 @property(nonatomic) __weak id <SPTNavigationFeature> navigationFeature; // @synthesize navigationFeature=_navigationFeature;
 @property(nonatomic) __weak id <SPTHomeUIService> homeUIService; // @synthesize homeUIService=_homeUIService;
 @property(nonatomic) __weak id <SPTFreeTierUIService> freeTierUIService; // @synthesize freeTierUIService=_freeTierUIService;

@@ -19,8 +19,6 @@
 @property(retain, nonatomic) NSArray *contexts; // @synthesize contexts=_contexts;
 - (void).cxx_destruct;
 - (void)enumerateContextsUsingBlock:(CDUnknownBlockType)arg1;
-- (void)removeContext:(id)arg1;
-- (_Bool)addContext:(id)arg1;
 - (id)initWithContexts:(id)arg1 logger:(id)arg2;
 
 @end

@@ -14,6 +14,8 @@
 - (void)configureWithServices:(id <SPTServiceProvider>)arg1;
 
 @optional
+- (void)idleStateWasReached;
+- (void)initialViewDidAppear;
 - (void)load;
 - (void)unload;
 @property(retain, nonatomic) SPTAllocationContext *allocationContext;

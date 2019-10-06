@@ -18,7 +18,7 @@
 
 @property(retain, nonatomic) id <SPTShareTestManager> testManager; // @synthesize testManager=_testManager;
 - (void).cxx_destruct;
-- (id)provideEntityDataWithItemURI:(id)arg1 contextSourceURI:(id)arg2 itemName:(id)arg3 creatorName:(id)arg4 sourceName:(id)arg5 imageURL:(id)arg6 shareScreenshotImage:(id)arg7 itemType:(unsigned long long)arg8 clipboardLinkTitle:(id)arg9 logContext:(id)arg10;
+- (id)provideEntityDataWithItemURI:(id)arg1 contextSourceURI:(id)arg2 itemName:(id)arg3 creatorName:(id)arg4 sourceName:(id)arg5 imageURL:(id)arg6 shareScreenshotImage:(id)arg7 itemType:(long long)arg8 clipboardLinkTitle:(id)arg9 logContext:(id)arg10;
 - (id)initWithTestManager:(id)arg1;
 
 // Remaining properties

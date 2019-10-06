@@ -9,7 +9,7 @@
 #import "FBSDKButtonImpressionTracking-Protocol.h"
 #import "FBSDKSharingButton-Protocol.h"
 
-@class FBSDKMessageDialog, NSString;
+@class FBSDKMessageDialog, NSDictionary, NSString;
 @protocol FBSDKSharingContent;
 
 @interface FBSDKSendButton : FBSDKButton <FBSDKButtonImpressionTracking, FBSDKSharingButton>
@@ -21,9 +21,9 @@
 - (void)_share:(id)arg1;
 - (_Bool)isImplicitlyDisabled;
 - (void)configureButton;
-- (id)impressionTrackingIdentifier;
-- (id)impressionTrackingEventName;
-- (id)analyticsParameters;
+@property(readonly, copy, nonatomic) NSString *impressionTrackingIdentifier;
+@property(readonly, copy, nonatomic) NSString *impressionTrackingEventName;
+@property(readonly, copy, nonatomic) NSDictionary *analyticsParameters;
 @property(copy, nonatomic) id <FBSDKSharingContent> shareContent;
 
 // Remaining properties

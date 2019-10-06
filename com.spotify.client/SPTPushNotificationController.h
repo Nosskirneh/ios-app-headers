@@ -10,7 +10,7 @@
 #import "SPTPushNotificationController-Protocol.h"
 
 @class NSDictionary, NSString, SPCore, SPTAccesspointWebTokenRequest, SPTPushNotificationActionRegistryImplementation, SPTPushNotificationBackendEnroller, SPTPushNotificationsControllerLogger, UIApplication;
-@protocol SPTAlertController, SPTContainerUIService, SPTLinkDispatcher, SPTOfflineModeState;
+@protocol SPTAlertInterface, SPTContainerUIService, SPTLinkDispatcher, SPTOfflineModeState;
 
 @interface SPTPushNotificationController : NSObject <SPTOfflineModeStateObserver, SPTPushNotificationController>
 {
@@ -18,7 +18,7 @@
     NSString *_trackerUserID;
     id <SPTContainerUIService> _containerUIService;
     id <SPTLinkDispatcher> _linkDispatcher;
-    id <SPTAlertController> _alertController;
+    id <SPTAlertInterface> _alertInterface;
     NSDictionary *_lastNotificationReceived;
     NSString *_apnsToken;
     SPCore *_core;
@@ -37,7 +37,7 @@
 @property(readonly, nonatomic) __weak SPCore *core; // @synthesize core=_core;
 @property(retain, nonatomic) NSString *apnsToken; // @synthesize apnsToken=_apnsToken;
 @property(retain, nonatomic) NSDictionary *lastNotificationReceived; // @synthesize lastNotificationReceived=_lastNotificationReceived;
-@property(retain, nonatomic) id <SPTAlertController> alertController; // @synthesize alertController=_alertController;
+@property(retain, nonatomic) id <SPTAlertInterface> alertInterface; // @synthesize alertInterface=_alertInterface;
 @property(retain, nonatomic) id <SPTLinkDispatcher> linkDispatcher; // @synthesize linkDispatcher=_linkDispatcher;
 @property(nonatomic) __weak id <SPTContainerUIService> containerUIService; // @synthesize containerUIService=_containerUIService;
 @property(readonly, nonatomic) NSString *trackerUserID; // @synthesize trackerUserID=_trackerUserID;
@@ -55,7 +55,7 @@
 - (void)didFailToRegisterForRemoteNotificationsWithError:(id)arg1;
 - (void)setPushNotificationsDeviceToken:(id)arg1;
 @property(readonly, nonatomic) id <SPTOfflineModeState> offlineModeState;
-- (id)initWithCore:(id)arg1 actionRegistry:(id)arg2 linkDispatcher:(id)arg3 alertController:(id)arg4 pushNotificationsLogger:(id)arg5 pushNotificationsBackendEnroller:(id)arg6 application:(id)arg7 containerUIService:(id)arg8;
+- (id)initWithCore:(id)arg1 actionRegistry:(id)arg2 linkDispatcher:(id)arg3 alertInterface:(id)arg4 pushNotificationsLogger:(id)arg5 pushNotificationsBackendEnroller:(id)arg6 application:(id)arg7 containerUIService:(id)arg8;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

@@ -45,7 +45,6 @@
 - (id)getWithClass:(Class)arg1;
 - (void)sendEventsForConfiguration:(id)arg1;
 - (id)clientAttributes;
-- (id)parseData:(id)arg1;
 - (void)activateConfiguration:(id)arg1;
 - (id)updatePropertyModel:(id)arg1;
 - (void)removeLocalOverrides:(id)arg1;

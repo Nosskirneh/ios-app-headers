@@ -16,7 +16,7 @@
 - (void)logUIInteractionWithSessionIdentifier:(NSString *)arg1 pageURI:(NSString *)arg2 targetURI:(NSString *)arg3 sectionId:(NSString *)arg4 interactionType:(NSString *)arg5 userIntent:(NSString *)arg6;
 - (void)logUIInteractionWithSessionIdentifier:(NSString *)arg1 featureIdentifier:(NSString *)arg2 pageURI:(NSString *)arg3 targetURI:(NSString *)arg4 sectionId:(NSString *)arg5 interactionType:(NSString *)arg6 userIntent:(NSString *)arg7;
 - (void)logNaturalLanguageErrorWithSessionIdentifier:(NSString *)arg1 errorType:(NSString *)arg2 errorText:(NSString *)arg3;
-- (void)logVoiceActionWithVoiceCommand:(SPTVoiceCommand *)arg1 playbackIdentifier:(NSString *)arg2 hasValidPlayerState:(_Bool)arg3 isPlaying:(_Bool)arg4;
+- (void)logVoiceActionWithVoiceCommand:(SPTVoiceCommand *)arg1 playbackIdentifier:(NSString *)arg2 hasValidPlayerState:(_Bool)arg3 isPlaying:(_Bool)arg4 trackUri:(NSString *)arg5;
 - (void)updateReferrerIdentifier:(NSString *)arg1;
 @end
 

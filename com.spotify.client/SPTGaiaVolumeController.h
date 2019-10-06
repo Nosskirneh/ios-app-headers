@@ -13,7 +13,7 @@
 #import "SPTGaiaVolumeControllerInterface-Protocol.h"
 
 @class AVAudioSession, GaiaRemoteDeviceVolumeOverlayViewController, NSNotificationCenter, NSNumber, NSString, SPTCastManager, SPTGaiaDeviceAppearanceMapping, SPTGaiaLogger, SPTGaiaVolumeButtonController, SPTObserverManager, SPTTheme;
-@protocol SPTGaiaConnectManager, SPTGaiaLockScreenControlsStateProvider, SPTGaiaSystemVolumeManager;
+@protocol SPTGaiaConnectManager, SPTGaiaLockScreenControlsStateProvider, SPTGaiaSystemVolumeManager, SPTGaiaVolumeFeatureRefactorFlagsProvider;
 
 @interface SPTGaiaVolumeController : NSObject <SPTCastManagerObserver, SPTGaiaVolumeButtonControllerDelegate, SPTGaiaConnectManagerObserver, SPTGaiaSystemVolumeObserver, SPTGaiaVolumeControllerInterface>
 {
@@ -28,14 +28,17 @@
     NSNotificationCenter *_notificationCenter;
     AVAudioSession *_audioSession;
     id <SPTGaiaSystemVolumeManager> _systemVolumeManager;
+    id <SPTGaiaVolumeFeatureRefactorFlagsProvider> _featureFlagManager;
     GaiaRemoteDeviceVolumeOverlayViewController *_remoteVolumeOverlay;
     SPTGaiaLogger *_logger;
     SPTObserverManager *_observerManager;
 }
 
+@property(nonatomic) _Bool disableRemoteVolumePopup; // @synthesize disableRemoteVolumePopup=_disableRemoteVolumePopup;
 @property(readonly, nonatomic) SPTObserverManager *observerManager; // @synthesize observerManager=_observerManager;
 @property(readonly, nonatomic) SPTGaiaLogger *logger; // @synthesize logger=_logger;
 @property(retain, nonatomic) GaiaRemoteDeviceVolumeOverlayViewController *remoteVolumeOverlay; // @synthesize remoteVolumeOverlay=_remoteVolumeOverlay;
+@property(retain, nonatomic) id <SPTGaiaVolumeFeatureRefactorFlagsProvider> featureFlagManager; // @synthesize featureFlagManager=_featureFlagManager;
 @property(retain, nonatomic) id <SPTGaiaSystemVolumeManager> systemVolumeManager; // @synthesize systemVolumeManager=_systemVolumeManager;
 @property(retain, nonatomic) AVAudioSession *audioSession; // @synthesize audioSession=_audioSession;
 @property(retain, nonatomic) NSNotificationCenter *notificationCenter; // @synthesize notificationCenter=_notificationCenter;
@@ -45,7 +48,6 @@
 @property(retain, nonatomic) id <SPTGaiaConnectManager> connectManager; // @synthesize connectManager=_connectManager;
 @property(nonatomic) __weak SPTCastManager *castDeviceManager; // @synthesize castDeviceManager=_castDeviceManager;
 @property(retain, nonatomic) SPTGaiaVolumeButtonController *volumeButtonController; // @synthesize volumeButtonController=_volumeButtonController;
-@property(nonatomic) _Bool disableRemoteVolumePopup; // @synthesize disableRemoteVolumePopup=_disableRemoteVolumePopup;
 @property(retain, nonatomic) NSNumber *currentVolume; // @synthesize currentVolume=_currentVolume;
 - (void).cxx_destruct;
 - (void)removeVolumeControllerObserver:(id)arg1;
@@ -63,6 +65,8 @@
 - (float)volumeButtonControllerDidStealVolumeUp:(id)arg1;
 - (void)observeCastVolume;
 - (void)observeLocalVolume;
+- (void)disableRemotePopup;
+- (void)enableRemotePopup;
 - (void)audioSessionInterruptionNotification:(id)arg1;
 - (_Bool)isRemoteVolumeAllowedForDevice:(id)arg1;
 - (void)updateRemoteVolumeAvailabilityWithCompletion:(CDUnknownBlockType)arg1;
@@ -85,7 +89,8 @@
 - (void)setupNotificationCenterObserving;
 - (void)setupObserving;
 - (void)dealloc;
-- (id)initWithCastDeviceManager:(id)arg1 connectManager:(id)arg2 theme:(id)arg3 deviceIconMapper:(id)arg4 lockScreenControlsStateProvider:(id)arg5 notificationCenter:(id)arg6 audioSession:(id)arg7 logger:(id)arg8 volumeButtonController:(id)arg9 systemVolumeManager:(id)arg10;
+- (void)start;
+- (id)initWithCastDeviceManager:(id)arg1 connectManager:(id)arg2 theme:(id)arg3 deviceIconMapper:(id)arg4 lockScreenControlsStateProvider:(id)arg5 notificationCenter:(id)arg6 audioSession:(id)arg7 logger:(id)arg8 volumeButtonController:(id)arg9 systemVolumeManager:(id)arg10 featureFlagManager:(id)arg11;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

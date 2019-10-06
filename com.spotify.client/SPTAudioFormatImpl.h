@@ -6,11 +6,11 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTAudioFormat-Protocol.h"
+#import "BMAudioFormat-Protocol.h"
 
 @class AVPlayerItemAccessLogEvent, NSString, SPTVideoManifestProfile;
 
-@interface SPTAudioFormatImpl : NSObject <SPTAudioFormat>
+@interface SPTAudioFormatImpl : NSObject <BMAudioFormat>
 {
     SPTVideoManifestProfile *_audioProfile;
     AVPlayerItemAccessLogEvent *_accessLogEvent;

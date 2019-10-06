@@ -6,16 +6,16 @@
 
 #import <objc/NSObject.h>
 
-@protocol SPTVideoDataLoader, SPTVideoPlayerConfiguration;
+@protocol BMDataLoader, BMPlayerConfiguration;
 
 @interface SPTVideoFairplayService : NSObject
 {
-    id <SPTVideoDataLoader> _videoDataLoader;
-    id <SPTVideoPlayerConfiguration> _playerConfiguration;
+    id <BMDataLoader> _videoDataLoader;
+    id <BMPlayerConfiguration> _playerConfiguration;
 }
 
-@property(retain, nonatomic) id <SPTVideoPlayerConfiguration> playerConfiguration; // @synthesize playerConfiguration=_playerConfiguration;
-@property(retain, nonatomic) id <SPTVideoDataLoader> videoDataLoader; // @synthesize videoDataLoader=_videoDataLoader;
+@property(retain, nonatomic) id <BMPlayerConfiguration> playerConfiguration; // @synthesize playerConfiguration=_playerConfiguration;
+@property(retain, nonatomic) id <BMDataLoader> videoDataLoader; // @synthesize videoDataLoader=_videoDataLoader;
 - (void).cxx_destruct;
 - (void)fetchLicenseKeyForSpcData:(id)arg1 initiatingPlaybackID:(id)arg2 success:(CDUnknownBlockType)arg3 failure:(CDUnknownBlockType)arg4;
 - (void)fetchApplicationCertificateWithInitiatingPlaybackID:(id)arg1 success:(CDUnknownBlockType)arg2 failure:(CDUnknownBlockType)arg3;

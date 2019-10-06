@@ -12,6 +12,7 @@
 
 @interface SPTNowPlayingBarInteractionEvent : NSObject <SPTInteractionEvent>
 {
+    NSString *_applicationId;
     NSString *_interactionType;
     NSString *_specificationId;
     NSArray *_components;
@@ -30,8 +31,9 @@
 @property(copy, nonatomic) NSArray *components; // @synthesize components=_components;
 @property(copy, nonatomic) NSString *specificationId; // @synthesize specificationId=_specificationId;
 @property(copy, nonatomic) NSString *interactionType; // @synthesize interactionType=_interactionType;
+@property(copy, nonatomic) NSString *applicationId; // @synthesize applicationId=_applicationId;
 - (void).cxx_destruct;
-- (id)initWithType:(id)arg1 specificationId:(id)arg2 components:(id)arg3 action:(id)arg4 actionParameters:(id)arg5 errors:(id)arg6;
+- (id)initWithType:(id)arg1 components:(id)arg2 action:(id)arg3 actionParameters:(id)arg4 errors:(id)arg5;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

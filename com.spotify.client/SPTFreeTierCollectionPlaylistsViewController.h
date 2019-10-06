@@ -20,7 +20,7 @@
 @class NSString, NSURL, SPTFreeTierCollectionEmptyView, SPTFreeTierCollectionFilterBarViewController, SPTFreeTierCollectionGLUETheme, SPTFreeTierCollectionPlaylistsCellConfigurator, SPTProgressView, SPTTableView;
 @protocol GLUEImageLoader, SPTFreeTierCollectionPlaylistsViewModel, SPTPageContainer, SPTShareDragDelegateFactory, SPTSortingFilteringUIFactory, SPTViewLogger, SPTYourLibraryPageDelegate, UITableViewDragDelegate;
 
-@interface SPTFreeTierCollectionPlaylistsViewController : UIViewController <SPTFreeTierCollectionFilterBarViewControllerDelegate, SPContentInsetViewController, SPTScrollToTopViewController, UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate, SPTPageController, SPTYourLibraryPage, SPTFreeTierCollectionPlaylistsViewModelDelegate, SPViewController>
+@interface SPTFreeTierCollectionPlaylistsViewController : UIViewController <SPTFreeTierCollectionFilterBarViewControllerDelegate, SPTScrollToTopViewController, SPContentInsetViewController, UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate, SPTPageController, SPTYourLibraryPage, SPTFreeTierCollectionPlaylistsViewModelDelegate, SPViewController>
 {
     id <SPTYourLibraryPageDelegate> pageDelegate;
     id <SPTFreeTierCollectionPlaylistsViewModel> _viewModel;
@@ -78,6 +78,7 @@
 - (void)scrollViewDidEndDragging:(id)arg1 willDecelerate:(_Bool)arg2;
 - (void)scrollViewDidEndDecelerating:(id)arg1;
 - (void)scrollViewDidScroll:(id)arg1;
+- (void)sp_updateContentInsets;
 - (void)spt_scrollToTop;
 - (void)freeTierFilterSearchBar:(id)arg1 didSelectFilterRuleAtIndex:(long long)arg2;
 - (void)freeTierFilterSearchBarTextWillEndEditing:(id)arg1;
@@ -90,7 +91,6 @@
 - (void)viewModel:(id)arg1 error:(id)arg2;
 - (void)viewModelDidUpdate:(id)arg1;
 @property(nonatomic) _Bool automaticallyAdjustsScrollViewInsets;
-- (void)sp_updateContentInsets;
 - (void)applyThemeLayout;
 - (void)setupCellConfigurator;
 - (void)hideProgressViewWithError:(id)arg1;

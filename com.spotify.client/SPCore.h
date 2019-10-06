@@ -8,7 +8,7 @@
 
 #import "SPTCoreLoginController-Protocol.h"
 
-@class NSString, SPSession, SPTConnectivityManager, SPTCoreCreateOptions, SPTCoreSchedulerThread, SPTPreferencesImplementation, SPTStorageSystem;
+@class NSString, SPSession, SPTConnectivityManager, SPTCoreCreateOptions, SPTCoreSchedulerThread, SPTEventSenderBridge, SPTPreferencesImplementation, SPTStorageSystem;
 @protocol SPTCoreLoginControllerDelegate, SPTCoreLoginIdentifierControllerDelegate, SPTOfflineModeState, SPTSessionBootstrapDelegate;
 
 @interface SPCore : NSObject <SPTCoreLoginController>
@@ -25,6 +25,7 @@
     id <SPTOfflineModeState> _offlineNotifier;
     SPTStorageSystem *_storageSystem;
     SPTCoreSchedulerThread *_coreScheduler;
+    SPTEventSenderBridge *_eventSenderBridge;
     SPSession *_internalSession;
     SPTCoreCreateOptions *_createOptions;
     id <SPTSessionBootstrapDelegate> _bootstrapDelegate;
@@ -33,6 +34,7 @@
     optional_b0104c67 _loginCodeRequiredResendCallback;
 }
 
++ (id)coreWithCreateOptions:(id)arg1 bootstrapDelegate:(id)arg2 scheduler:(id)arg3 eventSender:(id)arg4 error:(id *)arg5;
 + (id)coreWithCreateOptions:(id)arg1 bootstrapDelegate:(id)arg2 scheduler:(id)arg3 error:(id *)arg4;
 + (id)coreWithCreateOptions:(id)arg1 scheduler:(id)arg2 error:(id *)arg3;
 @property(nonatomic) unsigned long long loginWithPhoneNumberRetryNumber; // @synthesize loginWithPhoneNumberRetryNumber=_loginWithPhoneNumberRetryNumber;
@@ -41,6 +43,7 @@
 @property(nonatomic) __weak id <SPTSessionBootstrapDelegate> bootstrapDelegate; // @synthesize bootstrapDelegate=_bootstrapDelegate;
 @property(retain, nonatomic) SPTCoreCreateOptions *createOptions; // @synthesize createOptions=_createOptions;
 @property(retain, nonatomic) SPSession *internalSession; // @synthesize internalSession=_internalSession;
+@property(retain, nonatomic) SPTEventSenderBridge *eventSenderBridge; // @synthesize eventSenderBridge=_eventSenderBridge;
 @property(retain, nonatomic) SPTCoreSchedulerThread *coreScheduler; // @synthesize coreScheduler=_coreScheduler;
 @property(retain, nonatomic) SPTStorageSystem *storageSystem; // @synthesize storageSystem=_storageSystem;
 @property(nonatomic) __weak id <SPTOfflineModeState> offlineNotifier; // @synthesize offlineNotifier=_offlineNotifier;
@@ -73,7 +76,7 @@
 - (_Bool)hasStoredCredentials;
 - (id)serializableCredentialsAndCanonicalUsername:(id *)arg1;
 - (id)storedCredentialsAndCanonicalUsername:(id *)arg1;
-- (void)loginWithCppCredentials:(variant_5d3576ba)arg1 options:(struct LoginOptions)arg2;
+- (void)loginWithCppCredentials:(variant_3911a704)arg1 options:(struct LoginOptions)arg2;
 - (void)loginWithCredentials:(id)arg1 options:(id)arg2;
 - (void)loginWithParentChild:(id)arg1 options:(id)arg2;
 - (void)notifyChallengeSucceededWithIdentifierToken:(basic_string_7c0a1c0b)arg1;
@@ -88,7 +91,7 @@
 - (struct Core *)cpp;
 - (void)invalidate;
 - (void)dealloc;
-- (id)initWithCreateOptions:(id)arg1 bootstrapDelegate:(id)arg2 scheduler:(id)arg3 error:(id *)arg4;
+- (id)initWithCreateOptions:(id)arg1 bootstrapDelegate:(id)arg2 scheduler:(id)arg3 eventSender:(id)arg4 error:(id *)arg5;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

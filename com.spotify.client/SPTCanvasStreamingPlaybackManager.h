@@ -7,13 +7,13 @@
 #import <objc/NSObject.h>
 
 @class NSString, NSURL;
-@protocol SPTCanvasStreamingPlaybackManagerLoadDelegate, SPTVideoPlaybackRequestFactory, SPTVideoPlayer, SPTVideoURLAssetLoader;
+@protocol BMBetamaxPlayer, BMPlaybackRequestFactory, SPTCanvasStreamingPlaybackManagerLoadDelegate, SPTVideoURLAssetLoader;
 
 @interface SPTCanvasStreamingPlaybackManager : NSObject
 {
     id <SPTCanvasStreamingPlaybackManagerLoadDelegate> _loadDelegate;
-    id <SPTVideoPlaybackRequestFactory> _videoPlaybackRequestFactory;
-    id <SPTVideoPlayer> _videoPlayer;
+    id <BMPlaybackRequestFactory> _videoPlaybackRequestFactory;
+    id <BMBetamaxPlayer> _videoPlayer;
     id <SPTVideoURLAssetLoader> _videoManager;
     NSURL *_assetURL;
     NSString *_playbackIdentifier;
@@ -22,8 +22,8 @@
 @property(copy, nonatomic) NSString *playbackIdentifier; // @synthesize playbackIdentifier=_playbackIdentifier;
 @property(retain, nonatomic) NSURL *assetURL; // @synthesize assetURL=_assetURL;
 @property(readonly, nonatomic) id <SPTVideoURLAssetLoader> videoManager; // @synthesize videoManager=_videoManager;
-@property(readonly, nonatomic) id <SPTVideoPlayer> videoPlayer; // @synthesize videoPlayer=_videoPlayer;
-@property(readonly, nonatomic) id <SPTVideoPlaybackRequestFactory> videoPlaybackRequestFactory; // @synthesize videoPlaybackRequestFactory=_videoPlaybackRequestFactory;
+@property(readonly, nonatomic) id <BMBetamaxPlayer> videoPlayer; // @synthesize videoPlayer=_videoPlayer;
+@property(readonly, nonatomic) id <BMPlaybackRequestFactory> videoPlaybackRequestFactory; // @synthesize videoPlaybackRequestFactory=_videoPlaybackRequestFactory;
 @property(nonatomic) __weak id <SPTCanvasStreamingPlaybackManagerLoadDelegate> loadDelegate; // @synthesize loadDelegate=_loadDelegate;
 - (void).cxx_destruct;
 - (void)resume;

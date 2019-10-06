@@ -10,6 +10,6 @@
 @protocol SPTShareEntityData;
 
 @protocol SPTShareEntityDataFactory <NSObject>
-- (id <SPTShareEntityData>)provideEntityDataWithItemURI:(NSURL *)arg1 contextSourceURI:(NSURL *)arg2 itemName:(NSString *)arg3 creatorName:(NSString *)arg4 sourceName:(NSString *)arg5 imageURL:(NSURL *)arg6 shareScreenshotImage:(UIImage *)arg7 itemType:(unsigned long long)arg8 clipboardLinkTitle:(NSString *)arg9 logContext:(NSString *)arg10;
+- (id <SPTShareEntityData>)provideEntityDataWithItemURI:(NSURL *)arg1 contextSourceURI:(NSURL *)arg2 itemName:(NSString *)arg3 creatorName:(NSString *)arg4 sourceName:(NSString *)arg5 imageURL:(NSURL *)arg6 shareScreenshotImage:(UIImage *)arg7 itemType:(long long)arg8 clipboardLinkTitle:(NSString *)arg9 logContext:(NSString *)arg10;
 @end
 

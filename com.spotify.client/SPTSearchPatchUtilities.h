@@ -12,9 +12,6 @@
 
 + (void)transformExplicitLabelDataInComponentModelBuilder:(id)arg1;
 + (void)replaceRowWithHugs2ImageRowInComponentModelBuilder:(id)arg1;
-+ (void)replaceRowWithHugs2TrackRowInComponentModelBuilder:(id)arg1 nftExperience:(_Bool)arg2;
-+ (void)replaceVideoRowWithHugs2VideoRowInComponentModelBuilder:(id)arg1 nftExperience:(_Bool)arg2;
-+ (void)replaceEntityCardWithHugs2CardInComponentModelBuilder:(id)arg1;
 + (void)addNoResultsViewWithProperties:(id)arg1 toViewModelBuilder:(id)arg2;
 + (id)emptyviewComponentsInViewModelBuilder:(id)arg1;
 + (void)removeEmptyviewComponentsFromViewModelBuilder:(id)arg1;

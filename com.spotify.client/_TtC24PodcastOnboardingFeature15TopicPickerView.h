@@ -8,6 +8,7 @@
 
 @interface _TtC24PodcastOnboardingFeature15TopicPickerView : UIView
 {
+    // Error parsing type: , name: collectionViewLayout.storage
     // Error parsing type: , name: collectionView.storage
     // Error parsing type: , name: overlayGradientView
     // Error parsing type: , name: userInteractionBlockerView.storage

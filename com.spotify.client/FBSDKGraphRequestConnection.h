@@ -9,7 +9,7 @@
 #import "FBSDKGraphErrorRecoveryProcessorDelegate-Protocol.h"
 #import "NSURLSessionDataDelegate-Protocol.h"
 
-@class FBSDKGraphErrorRecoveryProcessor, FBSDKGraphRequestMetadata, FBSDKLogger, FBSDKURLSessionTask, NSHTTPURLResponse, NSMutableArray, NSOperationQueue, NSString, NSURLSession;
+@class FBSDKGraphErrorRecoveryProcessor, FBSDKGraphRequestMetadata, FBSDKLogger, FBSDKURLSession, NSHTTPURLResponse, NSMutableArray, NSOperationQueue, NSString;
 @protocol FBSDKGraphRequestConnectionDelegate;
 
 @interface FBSDKGraphRequestConnection : NSObject <NSURLSessionDataDelegate, FBSDKGraphErrorRecoveryProcessorDelegate>
@@ -21,9 +21,8 @@
     FBSDKGraphErrorRecoveryProcessor *_errorRecoveryProcessor;
     id <FBSDKGraphRequestConnectionDelegate> _delegate;
     double _timeout;
-    NSHTTPURLResponse *_URLResponse;
-    NSURLSession *_session;
-    FBSDKURLSessionTask *_task;
+    NSHTTPURLResponse *_urlResponse;
+    FBSDKURLSession *_session;
     NSMutableArray *_requests;
     unsigned long long _state;
     FBSDKLogger *_logger;
@@ -31,25 +30,29 @@
 }
 
 + (id)userAgent;
++ (double)defaultConnectionTimeout;
 + (void)setDefaultConnectionTimeout:(double)arg1;
 @property(nonatomic) unsigned long long requestStartTime; // @synthesize requestStartTime=_requestStartTime;
 @property(retain, nonatomic) FBSDKLogger *logger; // @synthesize logger=_logger;
 @property(nonatomic) unsigned long long state; // @synthesize state=_state;
 @property(retain, nonatomic) NSMutableArray *requests; // @synthesize requests=_requests;
-@property(retain, nonatomic) FBSDKURLSessionTask *task; // @synthesize task=_task;
-@property(retain, nonatomic) NSURLSession *session; // @synthesize session=_session;
-@property(readonly, retain, nonatomic) NSHTTPURLResponse *URLResponse; // @synthesize URLResponse=_URLResponse;
+@property(retain, nonatomic) FBSDKURLSession *session; // @synthesize session=_session;
+@property(readonly, retain, nonatomic) NSHTTPURLResponse *urlResponse; // @synthesize urlResponse=_urlResponse;
 @property(nonatomic) double timeout; // @synthesize timeout=_timeout;
 @property(nonatomic) __weak id <FBSDKGraphRequestConnectionDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
 @property(readonly, copy) NSString *description;
 - (void)processorDidAttemptRecovery:(id)arg1 didRecover:(_Bool)arg2 error:(id)arg3;
 - (void)URLSession:(id)arg1 task:(id)arg2 didSendBodyData:(long long)arg3 totalBytesSent:(long long)arg4 totalBytesExpectedToSend:(long long)arg5;
-- (void)cleanUpSession;
-- (id)defaultSession;
 - (void)registerTokenToOmitFromLog:(id)arg1;
 - (id)accessTokenWithRequest:(id)arg1;
 - (void)logRequest:(id)arg1 bodyLength:(unsigned long long)arg2 bodyLogger:(id)arg3 attachmentLogger:(id)arg4;
+- (void)taskDidCompleteWithError:(id)arg1 handler:(CDUnknownBlockType)arg2;
+- (void)taskDidCompleteWithResponse:(id)arg1 data:(id)arg2 requestStartTime:(unsigned long long)arg3 handler:(CDUnknownBlockType)arg4;
+- (void)logMessage:(id)arg1;
+- (void)invokeHandler:(CDUnknownBlockType)arg1 error:(id)arg2 response:(id)arg3 responseData:(id)arg4;
+- (void)logAndInvokeHandler:(CDUnknownBlockType)arg1 response:(id)arg2 responseData:(id)arg3 requestStartTime:(unsigned long long)arg4;
+- (void)logAndInvokeHandler:(CDUnknownBlockType)arg1 error:(id)arg2;
 - (id)errorWithCode:(long long)arg1 statusCode:(long long)arg2 parsedJSONResponse:(id)arg3 innerError:(id)arg4 message:(id)arg5;
 - (id)errorFromResult:(id)arg1 request:(id)arg2;
 - (void)processResultDebugDictionary:(id)arg1;
@@ -65,12 +68,12 @@
 - (void)appendJSONRequests:(id)arg1 toBody:(id)arg2 andNameAttachments:(id)arg3 logger:(id)arg4;
 - (void)appendAttachments:(id)arg1 toBody:(id)arg2 addFormData:(_Bool)arg3 logger:(id)arg4;
 - (void)addRequest:(id)arg1 toBatch:(id)arg2 attachments:(id)arg3 batchToken:(id)arg4;
-- (void)setDelegateQueue:(id)arg1;
+@property(retain, nonatomic) NSOperationQueue *delegateQueue;
 - (void)start;
-- (void)overrideVersionPartWith:(id)arg1;
+- (void)overrideGraphAPIVersion:(id)arg1;
 - (void)cancel;
-- (void)addRequest:(id)arg1 completionHandler:(CDUnknownBlockType)arg2 batchParameters:(id)arg3;
-- (void)addRequest:(id)arg1 completionHandler:(CDUnknownBlockType)arg2 batchEntryName:(id)arg3;
+- (void)addRequest:(id)arg1 batchParameters:(id)arg2 completionHandler:(CDUnknownBlockType)arg3;
+- (void)addRequest:(id)arg1 batchEntryName:(id)arg2 completionHandler:(CDUnknownBlockType)arg3;
 - (void)addRequest:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (void)dealloc;
 - (id)init;

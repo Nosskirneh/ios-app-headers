@@ -10,6 +10,7 @@
 @protocol SPTEncoreComponentContainer;
 
 @protocol SPTEncoreComponentContainerFactory <NSObject>
+- (Class)classForTableViewCell;
 - (SPTSwipeableTableViewCell<SPTEncoreComponentContainer> *)createTableViewCellWithStyle:(long long)arg1 reuseIdentifier:(NSString *)arg2;
 @end
 

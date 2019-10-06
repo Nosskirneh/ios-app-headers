@@ -11,6 +11,7 @@
 
 @interface SPTShareAction : SPAction
 {
+    _Bool _shouldHideShareSnapchatDestination;
     NSURL *_itemURL;
     NSURL *_imageURL;
     NSURL *_sourceURL;
@@ -18,14 +19,15 @@
     NSString *_creatorName;
     NSString *_sourceName;
     NSString *_shareDescription;
-    unsigned long long _shareType;
+    long long _shareType;
     NSString *_clipboardLinkTitle;
     id <SPTShareFeature> _shareFeature;
 }
 
+@property(nonatomic) _Bool shouldHideShareSnapchatDestination; // @synthesize shouldHideShareSnapchatDestination=_shouldHideShareSnapchatDestination;
 @property(nonatomic) __weak id <SPTShareFeature> shareFeature; // @synthesize shareFeature=_shareFeature;
 @property(retain, nonatomic) NSString *clipboardLinkTitle; // @synthesize clipboardLinkTitle=_clipboardLinkTitle;
-@property(nonatomic) unsigned long long shareType; // @synthesize shareType=_shareType;
+@property(nonatomic) long long shareType; // @synthesize shareType=_shareType;
 @property(retain, nonatomic) NSString *shareDescription; // @synthesize shareDescription=_shareDescription;
 @property(retain, nonatomic) NSString *sourceName; // @synthesize sourceName=_sourceName;
 @property(retain, nonatomic) NSString *creatorName; // @synthesize creatorName=_creatorName;
@@ -39,7 +41,7 @@
 - (id)logEventName;
 - (long long)icon;
 - (id)title;
-- (id)initWithItemURL:(id)arg1 itemName:(id)arg2 creatorName:(id)arg3 sourceName:(id)arg4 imageURL:(id)arg5 sourceUrl:(id)arg6 shareType:(unsigned long long)arg7 clipboardLinkTitle:(id)arg8 shareFeature:(id)arg9 logContext:(id)arg10;
+- (id)initWithItemURL:(id)arg1 itemName:(id)arg2 creatorName:(id)arg3 sourceName:(id)arg4 imageURL:(id)arg5 sourceUrl:(id)arg6 shareType:(long long)arg7 clipboardLinkTitle:(id)arg8 shareFeature:(id)arg9 logContext:(id)arg10 shouldHideShareSnapchatDestination:(_Bool)arg11;
 
 @end
 

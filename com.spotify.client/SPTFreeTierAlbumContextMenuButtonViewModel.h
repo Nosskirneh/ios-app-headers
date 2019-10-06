@@ -15,20 +15,20 @@
 {
     id <SPTFreeTierEntityContextMenuButtonViewModelDelegate> _delegate;
     unsigned long long _state;
+    SPTFreeTierAlbumViewModel *_albumViewModel;
     id <SPTContextMenuPresenterFactory> _presenterFactory;
     id <SPTContextMenuActionsProvider> _actionFactory;
     id <SPTCollectionPlatformTestManager> _collectionTestManager;
-    SPTFreeTierAlbumViewModel *_albumViewModel;
     NSURL *_viewURI;
     NSDictionary *_metadata;
 }
 
 @property(retain, nonatomic) NSDictionary *metadata; // @synthesize metadata=_metadata;
 @property(retain, nonatomic) NSURL *viewURI; // @synthesize viewURI=_viewURI;
-@property(readonly, nonatomic) SPTFreeTierAlbumViewModel *albumViewModel; // @synthesize albumViewModel=_albumViewModel;
 @property(readonly, nonatomic) id <SPTCollectionPlatformTestManager> collectionTestManager; // @synthesize collectionTestManager=_collectionTestManager;
 @property(readonly, nonatomic) id <SPTContextMenuActionsProvider> actionFactory; // @synthesize actionFactory=_actionFactory;
 @property(readonly, nonatomic) id <SPTContextMenuPresenterFactory> presenterFactory; // @synthesize presenterFactory=_presenterFactory;
+@property(readonly, nonatomic) SPTFreeTierAlbumViewModel *albumViewModel; // @synthesize albumViewModel=_albumViewModel;
 @property(readonly, nonatomic) unsigned long long state; // @synthesize state=_state;
 @property(nonatomic) __weak id <SPTFreeTierEntityContextMenuButtonViewModelDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;

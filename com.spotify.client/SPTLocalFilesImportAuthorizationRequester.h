@@ -11,7 +11,6 @@
 }
 
 - (void)requestAuthorization:(CDUnknownBlockType)arg1;
-- (_Bool)isFirstTime;
 
 @end
 

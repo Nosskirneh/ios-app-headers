@@ -10,20 +10,19 @@
 {
 }
 
-+ (void *)loadkSecClass;
-+ (void *)loadkSecReturnData;
-+ (void *)loadkSecMatchLimit;
-+ (void *)loadkSecMatchLimitOne;
-+ (void *)loadkSecAttrAccessGroup;
-+ (void *)loadkSecClassGenericPassword;
-+ (void *)loadkSecValueData;
-+ (void *)loadkSecAttrGeneric;
-+ (void *)loadkSecAttrService;
-+ (void *)loadkSecAttrAccount;
-+ (void *)loadkSecAttrAccessibleAfterFirstUnlockThisDeviceOnly;
-+ (void *)loadkSecAttrAccessible;
-+ (struct __SecRandom *)loadkSecRandomDefault;
-- (id)init;
++ (const void *)loadkSecClass;
++ (const void *)loadkSecReturnData;
++ (const void *)loadkSecMatchLimit;
++ (const void *)loadkSecMatchLimitOne;
++ (const void *)loadkSecAttrAccessGroup;
++ (const void *)loadkSecClassGenericPassword;
++ (const void *)loadkSecValueData;
++ (const void *)loadkSecAttrGeneric;
++ (const void *)loadkSecAttrService;
++ (const void *)loadkSecAttrAccount;
++ (const void *)loadkSecAttrAccessibleAfterFirstUnlockThisDeviceOnly;
++ (const void *)loadkSecAttrAccessible;
++ (const struct __SecRandom *)loadkSecRandomDefault;
 
 @end
 

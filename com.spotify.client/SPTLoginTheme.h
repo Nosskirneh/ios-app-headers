@@ -15,12 +15,11 @@
 - (id)login_primaryActionButtonStyle;
 - (id)delayedSignup_signupButtonStyle;
 - (id)delayedSignup_loginButtonStyle;
+- (id)delayedSignupYourLibraryDialogStyle;
 - (id)delayedSignupShutDownDialogStyle;
 - (id)delayedSignupWelcomeDialogStyle;
 - (id)delayedSignupBannerStyle;
 - (id)autosendLinkSecondVersionViewStyle;
-- (id)autosendLinkFirstVersionViewStyle;
-- (id)authOptionsViewStyle;
 - (id)setNewPasswordViewStyle;
 - (id)continueWithEmailViewStyle;
 - (id)continueWithWelcomeViewStyle;

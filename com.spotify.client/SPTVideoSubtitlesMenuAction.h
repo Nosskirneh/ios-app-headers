@@ -8,21 +8,23 @@
 
 #import "SPTContextMenuAction-Protocol.h"
 
-@class NSString, SPTVideoCoordinatorCosmosSender, SPTVideoSubtitleConfigurator, UIView;
-@protocol SPTVideoSubtitle;
+@class NSString, SPTVideoCoordinatorCosmosSender, SPTVideoPreferredSubtitleMessageFactory, SPTVideoSubtitleConfigurator, UIView;
+@protocol BMSubtitle;
 
 @interface SPTVideoSubtitlesMenuAction : NSObject <SPTContextMenuAction>
 {
     _Bool _selected;
     SPTVideoCoordinatorCosmosSender *_cosmosSender;
     SPTVideoSubtitleConfigurator *_subtitleConfigurator;
-    id <SPTVideoSubtitle> _subtitle;
+    id <BMSubtitle> _subtitleOption;
+    SPTVideoPreferredSubtitleMessageFactory *_preferredSubtitleMessageFactory;
     UIView *_accessoryViewCache;
 }
 
 @property(retain, nonatomic) UIView *accessoryViewCache; // @synthesize accessoryViewCache=_accessoryViewCache;
 @property(nonatomic, getter=isSelected) _Bool selected; // @synthesize selected=_selected;
-@property(retain, nonatomic) id <SPTVideoSubtitle> subtitle; // @synthesize subtitle=_subtitle;
+@property(retain, nonatomic) SPTVideoPreferredSubtitleMessageFactory *preferredSubtitleMessageFactory; // @synthesize preferredSubtitleMessageFactory=_preferredSubtitleMessageFactory;
+@property(retain, nonatomic) id <BMSubtitle> subtitleOption; // @synthesize subtitleOption=_subtitleOption;
 @property(retain, nonatomic) SPTVideoSubtitleConfigurator *subtitleConfigurator; // @synthesize subtitleConfigurator=_subtitleConfigurator;
 @property(retain, nonatomic) SPTVideoCoordinatorCosmosSender *cosmosSender; // @synthesize cosmosSender=_cosmosSender;
 - (void).cxx_destruct;
@@ -31,7 +33,7 @@
 - (id)performAction;
 @property(readonly, nonatomic) long long accessoryIcon;
 - (id)title;
-- (id)initWithSubtitle:(id)arg1 cosmosSender:(id)arg2 subtitleConfigurator:(id)arg3 selected:(_Bool)arg4;
+- (id)initWithSubtitle:(id)arg1 cosmosSender:(id)arg2 subtitleConfigurator:(id)arg3 preferredSubtitleMessageFactory:(id)arg4 selected:(_Bool)arg5;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

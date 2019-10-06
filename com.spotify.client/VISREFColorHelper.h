@@ -17,6 +17,7 @@
 + (_Bool)isHue:(double)arg1 withinMargin:(double)arg2 ofOtherHue:(double)arg3;
 + (double)normalizedAverageHue:(double)arg1 inHues:(id)arg2;
 + (id)adjustedBrightnessColor:(id)arg1 minimumFirstContrastRatio:(double)arg2 firstReferenceColor:(id)arg3 minimumSecondContrastRatio:(double)arg4 secondReferenceColor:(id)arg5;
++ (id)adjustedColor:(id)arg1 toMinimumConstrastRatio:(double)arg2 comparedToReferenceColor:(id)arg3;
 + (id)adjustedColor:(id)arg1 toMatchConstrastRatio:(double)arg2 comparedToReferenceColor:(id)arg3;
 + (double)sRGBFromChannel:(double)arg1;
 + (double)relativeLuminanceOfColor:(id)arg1;

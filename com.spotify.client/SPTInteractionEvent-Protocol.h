@@ -15,7 +15,8 @@
 @property(readonly, copy, nonatomic) NSDictionary *actionParameters;
 @property(readonly, copy, nonatomic) NSString *action;
 @property(readonly, copy, nonatomic) NSArray *components;
-@property(readonly, copy, nonatomic) NSString *specificationId;
 @property(readonly, copy, nonatomic) NSString *interactionType;
+@property(readonly, copy, nonatomic) NSString *specificationId;
+@property(readonly, copy, nonatomic) NSString *applicationId;
 @end
 

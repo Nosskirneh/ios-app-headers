@@ -7,16 +7,16 @@
 #import <objc/NSObject.h>
 
 @class SPTVideoApplicationStateObservable, SPTVideoPlayerSource;
-@protocol SPTKVOControllerFactory;
+@protocol BMKVOControllerFactory;
 
 @interface SPTVideoDisplayViewFactory : NSObject
 {
     SPTVideoApplicationStateObservable *_applicationStateObservable;
     SPTVideoPlayerSource *_playerSource;
-    id <SPTKVOControllerFactory> _kvoControllerFactory;
+    id <BMKVOControllerFactory> _kvoControllerFactory;
 }
 
-@property(retain, nonatomic) id <SPTKVOControllerFactory> kvoControllerFactory; // @synthesize kvoControllerFactory=_kvoControllerFactory;
+@property(retain, nonatomic) id <BMKVOControllerFactory> kvoControllerFactory; // @synthesize kvoControllerFactory=_kvoControllerFactory;
 @property(retain, nonatomic) SPTVideoPlayerSource *playerSource; // @synthesize playerSource=_playerSource;
 @property(retain, nonatomic) SPTVideoApplicationStateObservable *applicationStateObservable; // @synthesize applicationStateObservable=_applicationStateObservable;
 - (void).cxx_destruct;

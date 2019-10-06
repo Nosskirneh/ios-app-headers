@@ -8,12 +8,11 @@
 
 #import "SPTServiceProvider-Protocol.h"
 
-@class NSArray, NSMutableDictionary, NSOperation, NSString;
-@protocol SPTServiceInstanceInteractor, SPTServiceManagerDelegate;
+@class NSArray, NSMutableDictionary, NSString;
+@protocol OS_dispatch_queue, SPTServiceInstanceInteractor, SPTServiceManagerDelegate;
 
 @interface SPTServiceManager : NSObject <SPTServiceProvider>
 {
-    NSOperation *_lastLoadOperation;
     SPTServiceManager *_parent;
     id <SPTServiceManagerDelegate> _delegate;
     NSArray *_enabledServices;
@@ -23,8 +22,10 @@
     NSArray *_serviceLoadOrder;
     NSString *_currentlyConfiguringService;
     id <SPTServiceInstanceInteractor> _instanceInteractor;
+    NSObject<OS_dispatch_queue> *_lifecycleHooksQueue;
 }
 
+@property(readonly, nonatomic) NSObject<OS_dispatch_queue> *lifecycleHooksQueue; // @synthesize lifecycleHooksQueue=_lifecycleHooksQueue;
 @property(readonly, copy, nonatomic) id <SPTServiceInstanceInteractor> instanceInteractor; // @synthesize instanceInteractor=_instanceInteractor;
 @property(retain, nonatomic) NSString *currentlyConfiguringService; // @synthesize currentlyConfiguringService=_currentlyConfiguringService;
 @property(retain, nonatomic) NSArray *serviceLoadOrder; // @synthesize serviceLoadOrder=_serviceLoadOrder;
@@ -34,11 +35,12 @@
 @property(copy, nonatomic) NSArray *enabledServices; // @synthesize enabledServices=_enabledServices;
 @property(nonatomic) __weak id <SPTServiceManagerDelegate> delegate; // @synthesize delegate=_delegate;
 @property(retain, nonatomic) SPTServiceManager *parent; // @synthesize parent=_parent;
-@property(readonly, nonatomic) NSOperation *lastLoadOperation; // @synthesize lastLoadOperation=_lastLoadOperation;
 - (void).cxx_destruct;
 - (_Bool)canProvideServiceWithIdentifier:(id)arg1;
 - (id)provideOptionalServiceForIdentifier:(id)arg1;
 - (id)provideServiceForIdentifier:(id)arg1;
+- (void)notifyAllServicesThatIdleStateWasReached;
+- (void)notifyAllServicesThatInitialViewDidAppear;
 - (void)unloadServices;
 - (void)loadServices;
 - (id)serviceWithIdentifier:(id)arg1;
@@ -49,7 +51,7 @@
 - (void)instantiateAllServices;
 @property(readonly, copy) NSString *description;
 - (void)dealloc;
-- (id)initWithScope:(id)arg1 enabledServices:(id)arg2 instanceInteractor:(id)arg3 parent:(id)arg4;
+- (id)initWithScope:(id)arg1 enabledServices:(id)arg2 instanceInteractor:(id)arg3 lifecycleHooksQueue:(id)arg4 parent:(id)arg5;
 - (id)graphVizForDependencyGraph:(id)arg1 loadOrder:(id)arg2;
 - (void)dumpGraphVizToFile:(id)arg1 forDependencyGraph:(id)arg2 loadOrder:(id)arg3;
 - (void)maybeDumpDependencyGraphAndExit:(id)arg1 loadOrder:(id)arg2;

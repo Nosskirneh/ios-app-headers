@@ -6,19 +6,19 @@
 
 #import <UIKit/UICollectionViewCell.h>
 
-#import "SPTVideoSurfaceDelegate-Protocol.h"
+#import "BMVideoSurfaceDelegate-Protocol.h"
 
-@class NSMutableArray, NSString, SPTNowPlayingCoverArtImageView, SPTNowPlayingHorizontalVideoOverlayViewController, SPTVideoSurfaceFactory, UIActivityIndicatorView, UIView;
-@protocol SPTNowPlayingVideoManager, SPTVideoSurface, SPTVideoSurfaceManager;
+@class BMVideoSurfaceFactory, NSMutableArray, NSString, SPTNowPlayingCoverArtImageView, SPTNowPlayingHorizontalVideoOverlayViewController, UIActivityIndicatorView, UIView;
+@protocol BMVideoSurface, BMVideoSurfaceManager, SPTNowPlayingVideoManager;
 
-@interface SPTNowPlayingVideoCell : UICollectionViewCell <SPTVideoSurfaceDelegate>
+@interface SPTNowPlayingVideoCell : UICollectionViewCell <BMVideoSurfaceDelegate>
 {
     _Bool _shouldDisplayVideoSurface;
     _Bool _showHorizontalVideoOverlay;
     SPTNowPlayingCoverArtImageView *_imageView;
-    UIView<SPTVideoSurface> *_videoSurfaceView;
-    id <SPTVideoSurfaceManager> _videoSurfaceManager;
-    SPTVideoSurfaceFactory *_videoSurfaceFactory;
+    UIView<BMVideoSurface> *_videoSurfaceView;
+    id <BMVideoSurfaceManager> _videoSurfaceManager;
+    BMVideoSurfaceFactory *_videoSurfaceFactory;
     id <SPTNowPlayingVideoManager> _nowPlayingVideoManager;
     NSString *_playerTrackURI;
     UIView *_windowedContentView;
@@ -37,9 +37,9 @@
 @property(copy, nonatomic) NSString *playerTrackURI; // @synthesize playerTrackURI=_playerTrackURI;
 @property(nonatomic) struct UIEdgeInsets windowedContentInsets; // @synthesize windowedContentInsets=_windowedContentInsets;
 @property(retain, nonatomic) id <SPTNowPlayingVideoManager> nowPlayingVideoManager; // @synthesize nowPlayingVideoManager=_nowPlayingVideoManager;
-@property(retain, nonatomic) SPTVideoSurfaceFactory *videoSurfaceFactory; // @synthesize videoSurfaceFactory=_videoSurfaceFactory;
-@property(retain, nonatomic) id <SPTVideoSurfaceManager> videoSurfaceManager; // @synthesize videoSurfaceManager=_videoSurfaceManager;
-@property(retain, nonatomic) UIView<SPTVideoSurface> *videoSurfaceView; // @synthesize videoSurfaceView=_videoSurfaceView;
+@property(retain, nonatomic) BMVideoSurfaceFactory *videoSurfaceFactory; // @synthesize videoSurfaceFactory=_videoSurfaceFactory;
+@property(retain, nonatomic) id <BMVideoSurfaceManager> videoSurfaceManager; // @synthesize videoSurfaceManager=_videoSurfaceManager;
+@property(retain, nonatomic) UIView<BMVideoSurface> *videoSurfaceView; // @synthesize videoSurfaceView=_videoSurfaceView;
 @property(retain, nonatomic) SPTNowPlayingCoverArtImageView *imageView; // @synthesize imageView=_imageView;
 - (void).cxx_destruct;
 - (void)updateViewHierarchy;

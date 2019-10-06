@@ -19,7 +19,7 @@
 #import "UITableViewDelegate-Protocol.h"
 
 @class GLUEEntityRowStyle, NSObject, NSString, NSURL, SPTCollectionFilterSearchBar, SPTCollectionShuffleButtonContainer, SPTInfoView, SPTNetworkConnectivityController, SPTProgressView, SPTTableViewOfflineSwitchCell, UITableView;
-@protocol GLUETheme, SPContextMenuFeature, SPTAbbaFeatureFlags, SPTBarButtonItemManager, SPTBrowseRedirectButtonProvider, SPTCollectionLogger, SPTCollectionPlatformTestManager, SPTCollectionSongsModel, SPTContextMenuPresenter, SPTExplicitContentAccessManager, SPTLocalSettings, SPTModalPresentationController, SPTNUXModifying, SPTPageContainer, SPTProductState, SPTShelves, SPTViewLogger;
+@protocol GLUETheme, SPContextMenuFeature, SPTAbbaFeatureFlags, SPTBarButtonItemManager, SPTBrowseRedirectButtonProvider, SPTCollectionLogger, SPTCollectionPlatformTestManager, SPTCollectionSongsModel, SPTContextMenuPresenter, SPTExplicitContentAccessManager, SPTLocalSettings, SPTModalPresentationController, SPTPageContainer, SPTProductState, SPTShelves, SPTViewLogger;
 
 @interface SPTCollectionSongsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, SPObjectRepresentation, SPTProductStateObserver, SPTOfflineSwitchDelegate, SPTBarButtonItemManagerObserver, SPTCollectionFilterSearchBarDelegate, SPTExplicitContentEnabledStateObserver, SPTCollectionSongsModelDelegate, SPContentInsetViewController, SPTPageController>
 {
@@ -39,7 +39,6 @@
     SPTCollectionShuffleButtonContainer *_shuffleButtonContainer;
     SPTTableViewOfflineSwitchCell *_offlineSwitchCell;
     id <SPTCollectionLogger> _logger;
-    id <SPTNUXModifying> _NUXModifier;
     id <SPTAbbaFeatureFlags> _abbaFeatureFlags;
     id <SPTBarButtonItemManager> _barButtonItemManager;
     id <SPTBrowseRedirectButtonProvider> _browseRedirectButtonProvider;
@@ -66,7 +65,6 @@
 @property(readonly, nonatomic) __weak id <SPTBarButtonItemManager> barButtonItemManager; // @synthesize barButtonItemManager=_barButtonItemManager;
 @property(nonatomic) _Bool shouldShowLocalFilesFilter; // @synthesize shouldShowLocalFilesFilter=_shouldShowLocalFilesFilter;
 @property(readonly, nonatomic) id <SPTAbbaFeatureFlags> abbaFeatureFlags; // @synthesize abbaFeatureFlags=_abbaFeatureFlags;
-@property(retain, nonatomic) id <SPTNUXModifying> NUXModifier; // @synthesize NUXModifier=_NUXModifier;
 @property(retain, nonatomic) id <SPTCollectionLogger> logger; // @synthesize logger=_logger;
 @property(retain, nonatomic) SPTTableViewOfflineSwitchCell *offlineSwitchCell; // @synthesize offlineSwitchCell=_offlineSwitchCell;
 @property(retain, nonatomic) SPTCollectionShuffleButtonContainer *shuffleButtonContainer; // @synthesize shuffleButtonContainer=_shuffleButtonContainer;
@@ -141,7 +139,7 @@
 - (void)viewWillAppear:(_Bool)arg1;
 - (void)viewDidLoad;
 - (void)dealloc;
-- (id)initWithModel:(id)arg1 contextMenuFeature:(id)arg2 productState:(id)arg3 shelves:(id)arg4 localSettings:(id)arg5 networkConnectivityController:(id)arg6 collectionLogger:(id)arg7 NUXModifier:(id)arg8 abbaFeatureFlags:(id)arg9 shouldShowLocalFilesFilter:(_Bool)arg10 barButtonItemManager:(id)arg11 browseRedirectButtonProvider:(id)arg12 collectionTestManager:(id)arg13 modalPresentationController:(id)arg14 viewLogger:(id)arg15 explicitContentAccessManager:(id)arg16;
+- (id)initWithModel:(id)arg1 contextMenuFeature:(id)arg2 productState:(id)arg3 shelves:(id)arg4 localSettings:(id)arg5 networkConnectivityController:(id)arg6 collectionLogger:(id)arg7 abbaFeatureFlags:(id)arg8 shouldShowLocalFilesFilter:(_Bool)arg9 barButtonItemManager:(id)arg10 browseRedirectButtonProvider:(id)arg11 collectionTestManager:(id)arg12 modalPresentationController:(id)arg13 viewLogger:(id)arg14 explicitContentAccessManager:(id)arg15;
 
 // Remaining properties
 @property(nonatomic) _Bool automaticallyAdjustsScrollViewInsets;

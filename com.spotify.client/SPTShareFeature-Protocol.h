@@ -6,15 +6,18 @@
 
 #import "SPTService-Protocol.h"
 
-@class SPTShareScreenshotObserverManager, UIViewController;
-@protocol SPTShareDragDelegateFactory, SPTShareEntityData, SPTShareEntityDataFactory, SPTShareTestManager;
+@class NSArray, NSURL, SPTShareScreenshotObserverManager, UIViewController;
+@protocol SPTShareDestination, SPTShareDragDelegateFactory, SPTShareEntityData, SPTShareEntityDataFactory, SPTShareTestManager;
 
 @protocol SPTShareFeature <SPTService>
+- (void)performShareToDestination:(id <SPTShareDestination>)arg1 withShareEntityData:(id <SPTShareEntityData>)arg2 completion:(void (^)(_Bool, NSError *))arg3;
+- (NSArray *)provideShareDestinationsForEntityURI:(NSURL *)arg1;
 - (id <SPTShareDragDelegateFactory>)provideShareDragDelegateFactory;
 - (id <SPTShareEntityDataFactory>)provideShareEntityDataFactory;
 - (id <SPTShareTestManager>)provideTestManager;
 - (SPTShareScreenshotObserverManager *)provideShareScreenshotObserverManager;
 - (void)presentShareViewController:(UIViewController *)arg1;
+- (UIViewController *)provideShareViewControllerForShareEntityData:(id <SPTShareEntityData>)arg1 withShareDestinations:(NSArray *)arg2;
 - (UIViewController *)provideShareViewControllerForShareEntityData:(id <SPTShareEntityData>)arg1;
 @end
 

@@ -12,10 +12,13 @@
 
 + (id)observers;
 + (id)bundleIds;
++ (void)handleIncomingURL:(id)arg1 sourceApp:(id)arg2;
 + (void)removeObserver:(id)arg1;
 + (void)addObserver:(id)arg1;
 + (void)didReceiveAppLaunchedWithURLNotification:(id)arg1;
 + (void)load;
++ (id)sta_currentContext;
+- (void)sta_didReceiveAppLaunchedWithURLNotificationUserInfo:(id)arg1;
 
 @end
 

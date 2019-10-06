@@ -6,21 +6,20 @@
 
 #import <objc/NSObject.h>
 
+#import "BMEventObserver-Protocol.h"
 #import "SPTExternalIntegrationDriverDistractionObserver-Protocol.h"
 #import "SPTVideoCoordinatorCosmosReceiverDelegate-Protocol.h"
-#import "SPTVideoEventObserver-Protocol.h"
 
 @class NSString, NSTimer, SPTVideoCoordinatorCosmosReceiver, SPTVideoCoordinatorCosmosSender, SPTVideoPlaybackStateFactory, SPTVideoStartCommand;
-@protocol OS_dispatch_queue, SPTExternalIntegrationDriverDistractionController, SPTVideoContextPlayerCoordinatorErrorHandler, SPTVideoEventObserverFactory, SPTVideoFeaturePlayerFactory, SPTVideoPlaybackIdentity, SPTVideoPlayer, SPTVideoSubtitleManager, SPTVideoSurfaceManager;
+@protocol BMBetamaxPlayer, BMEventObserverFactory, BMPlaybackIdentity, BMVideoSurfaceManager, OS_dispatch_queue, SPTExternalIntegrationDriverDistractionController, SPTVideoContextPlayerCoordinatorErrorHandler, SPTVideoFeaturePlayerFactory;
 
-@interface SPTVideoContextPlayerCoordinator : NSObject <SPTVideoCoordinatorCosmosReceiverDelegate, SPTVideoEventObserver, SPTExternalIntegrationDriverDistractionObserver>
+@interface SPTVideoContextPlayerCoordinator : NSObject <SPTVideoCoordinatorCosmosReceiverDelegate, BMEventObserver, SPTExternalIntegrationDriverDistractionObserver>
 {
     _Bool _stalled;
-    id <SPTVideoPlayer> _player;
-    id <SPTVideoSurfaceManager> _surfaceManager;
-    id <SPTVideoSubtitleManager> _subtitleManager;
+    id <BMBetamaxPlayer> _player;
+    id <BMVideoSurfaceManager> _surfaceManager;
     id <SPTVideoFeaturePlayerFactory> _playerFactory;
-    id <SPTVideoEventObserverFactory> _dynamicEventObserverFactory;
+    id <BMEventObserverFactory> _dynamicEventObserverFactory;
     SPTVideoCoordinatorCosmosReceiver *_cosmosReceiver;
     SPTVideoCoordinatorCosmosSender *_cosmosSender;
     SPTVideoPlaybackStateFactory *_playbackStateFactory;
@@ -30,10 +29,10 @@
     SPTVideoStartCommand *_deferredStartCommand;
     double _maxAllowedStallTimeout;
     NSTimer *_maxStalledTimer;
-    id <SPTVideoPlaybackIdentity> _currentIdentity;
+    id <BMPlaybackIdentity> _currentIdentity;
 }
 
-@property(retain, nonatomic) id <SPTVideoPlaybackIdentity> currentIdentity; // @synthesize currentIdentity=_currentIdentity;
+@property(retain, nonatomic) id <BMPlaybackIdentity> currentIdentity; // @synthesize currentIdentity=_currentIdentity;
 @property(retain, nonatomic) NSTimer *maxStalledTimer; // @synthesize maxStalledTimer=_maxStalledTimer;
 @property(nonatomic) double maxAllowedStallTimeout; // @synthesize maxAllowedStallTimeout=_maxAllowedStallTimeout;
 @property(nonatomic, getter=isStalled) _Bool stalled; // @synthesize stalled=_stalled;
@@ -44,11 +43,10 @@
 @property(retain, nonatomic) SPTVideoPlaybackStateFactory *playbackStateFactory; // @synthesize playbackStateFactory=_playbackStateFactory;
 @property(retain, nonatomic) SPTVideoCoordinatorCosmosSender *cosmosSender; // @synthesize cosmosSender=_cosmosSender;
 @property(retain, nonatomic) SPTVideoCoordinatorCosmosReceiver *cosmosReceiver; // @synthesize cosmosReceiver=_cosmosReceiver;
-@property(retain, nonatomic) id <SPTVideoEventObserverFactory> dynamicEventObserverFactory; // @synthesize dynamicEventObserverFactory=_dynamicEventObserverFactory;
+@property(retain, nonatomic) id <BMEventObserverFactory> dynamicEventObserverFactory; // @synthesize dynamicEventObserverFactory=_dynamicEventObserverFactory;
 @property(retain, nonatomic) id <SPTVideoFeaturePlayerFactory> playerFactory; // @synthesize playerFactory=_playerFactory;
-@property(retain, nonatomic) id <SPTVideoSubtitleManager> subtitleManager; // @synthesize subtitleManager=_subtitleManager;
-@property(retain, nonatomic) id <SPTVideoSurfaceManager> surfaceManager; // @synthesize surfaceManager=_surfaceManager;
-@property(retain, nonatomic) id <SPTVideoPlayer> player; // @synthesize player=_player;
+@property(retain, nonatomic) id <BMVideoSurfaceManager> surfaceManager; // @synthesize surfaceManager=_surfaceManager;
+@property(retain, nonatomic) id <BMBetamaxPlayer> player; // @synthesize player=_player;
 - (void).cxx_destruct;
 - (void)externalIntegrationDriverDistractionController:(id)arg1 didChangeEnabledState:(_Bool)arg2;
 - (void)advanceWithReasonStallTimeoutExceeded:(id)arg1;

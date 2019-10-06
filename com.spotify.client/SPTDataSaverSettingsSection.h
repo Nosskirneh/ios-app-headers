@@ -11,12 +11,14 @@
 
 @interface SPTDataSaverSettingsSection : SettingsSection
 {
+    _Bool _canvasEnabled;
     id <SPTPreferences> _preferences;
     id <SPTLocalSettings> _localSettings;
     SettingsSwitchTableViewCell *_dataSaverCell;
     SPTDataSaverLogger *_logger;
 }
 
+@property(nonatomic) _Bool canvasEnabled; // @synthesize canvasEnabled=_canvasEnabled;
 @property(readonly, nonatomic) SPTDataSaverLogger *logger; // @synthesize logger=_logger;
 @property(retain, nonatomic) SettingsSwitchTableViewCell *dataSaverCell; // @synthesize dataSaverCell=_dataSaverCell;
 @property(retain, nonatomic) id <SPTLocalSettings> localSettings; // @synthesize localSettings=_localSettings;
@@ -28,7 +30,7 @@
 - (long long)numberOfRows;
 - (void)dataSaverSwitchChanged:(id)arg1;
 - (void)dealloc;
-- (id)initWithSettingsViewController:(id)arg1 preferences:(id)arg2 localSettings:(id)arg3 logger:(id)arg4;
+- (id)initWithSettingsViewController:(id)arg1 preferences:(id)arg2 localSettings:(id)arg3 canvasEnabled:(_Bool)arg4 logger:(id)arg5;
 
 @end
 

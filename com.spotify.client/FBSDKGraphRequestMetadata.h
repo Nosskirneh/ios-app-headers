@@ -21,7 +21,6 @@
 - (void).cxx_destruct;
 - (id)description;
 - (void)invokeCompletionHandlerForConnection:(id)arg1 withResults:(id)arg2 error:(id)arg3;
-- (id)init;
 - (id)initWithRequest:(id)arg1 completionHandler:(CDUnknownBlockType)arg2 batchParameters:(id)arg3;
 
 @end

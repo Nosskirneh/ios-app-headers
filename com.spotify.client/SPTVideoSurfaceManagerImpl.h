@@ -6,12 +6,12 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTVideoSurfaceContextDelegate-Protocol.h"
-#import "SPTVideoSurfaceManager-Protocol.h"
+#import "BMVideoSurfaceContextDelegate-Protocol.h"
+#import "BMVideoSurfaceManager-Protocol.h"
 
 @class NSHashTable, NSString;
 
-@interface SPTVideoSurfaceManagerImpl : NSObject <SPTVideoSurfaceContextDelegate, SPTVideoSurfaceManager>
+@interface SPTVideoSurfaceManagerImpl : NSObject <BMVideoSurfaceContextDelegate, BMVideoSurfaceManager>
 {
     NSHashTable *_surfaces;
     NSHashTable *_observers;

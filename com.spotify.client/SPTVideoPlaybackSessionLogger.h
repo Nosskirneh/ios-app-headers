@@ -7,12 +7,12 @@
 #import "SPTVideoBaseTracker.h"
 
 @class NSMutableArray, NSString;
-@protocol SPTVideoLogger, SPTVideoLoggerDataProvider;
+@protocol BMLogger, BMLoggerDataProvider;
 
 @interface SPTVideoPlaybackSessionLogger : SPTVideoBaseTracker
 {
-    id <SPTVideoLogger> _logger;
-    id <SPTVideoLoggerDataProvider> _videoLoggerDataProvider;
+    id <BMLogger> _logger;
+    id <BMLoggerDataProvider> _loggerDataProvider;
     NSMutableArray *_bitrateEvents;
     NSString *_connectionTypeStart;
     NSString *_connectionTypeEnd;
@@ -29,8 +29,8 @@
 @property(copy, nonatomic) NSString *connectionTypeEnd; // @synthesize connectionTypeEnd=_connectionTypeEnd;
 @property(copy, nonatomic) NSString *connectionTypeStart; // @synthesize connectionTypeStart=_connectionTypeStart;
 @property(retain, nonatomic) NSMutableArray *bitrateEvents; // @synthesize bitrateEvents=_bitrateEvents;
-@property(retain, nonatomic) id <SPTVideoLoggerDataProvider> videoLoggerDataProvider; // @synthesize videoLoggerDataProvider=_videoLoggerDataProvider;
-@property(retain, nonatomic) id <SPTVideoLogger> logger; // @synthesize logger=_logger;
+@property(retain, nonatomic) id <BMLoggerDataProvider> loggerDataProvider; // @synthesize loggerDataProvider=_loggerDataProvider;
+@property(retain, nonatomic) id <BMLogger> logger; // @synthesize logger=_logger;
 - (void).cxx_destruct;
 - (id)encryptionType;
 - (long long)kbpsAverageBandwidth;
@@ -43,7 +43,7 @@
 - (void)didChangeSurface:(id)arg1 atPosition:(double)arg2 timestamp:(double)arg3;
 - (void)didCreatePlaybackInBackground:(_Bool)arg1 timestamp:(double)arg2;
 - (void)dealloc;
-- (id)initWithLogger:(id)arg1 videoLoggerDataProvider:(id)arg2 identity:(id)arg3;
+- (id)initWithLogger:(id)arg1 loggerDataProvider:(id)arg2 identity:(id)arg3;
 
 @end
 

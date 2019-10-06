@@ -6,18 +6,18 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTVideoEventObserver-Protocol.h"
+#import "BMEventObserver-Protocol.h"
 
 @class NSMutableArray, NSString, SPTAudioFormatEvent, SPTVideoBufferEvent, SPTVideoFormatEvent, SPTVideoPlayRange, SPTVideoPlayRangeState;
-@protocol OS_dispatch_queue, SPTVideoPlaybackIdentity;
+@protocol BMPlaybackIdentity, OS_dispatch_queue;
 
-@interface SPTVideoBaseTracker : NSObject <SPTVideoEventObserver>
+@interface SPTVideoBaseTracker : NSObject <BMEventObserver>
 {
     // Error parsing type: {atomic_flag="_Value"AB}, name: _initialBufferingFlag
     // Error parsing type: {atomic_flag="_Value"AB}, name: _playbackStartedFlag
     _Bool _messageSent;
     _Bool _seekOngoing;
-    id <SPTVideoPlaybackIdentity> _identity;
+    id <BMPlaybackIdentity> _identity;
     SPTVideoPlayRangeState *_currentPlayRangeState;
     NSMutableArray *_playedRanges;
     double _duration;
@@ -52,7 +52,7 @@
 @property(nonatomic) double duration; // @synthesize duration=_duration;
 @property(retain, nonatomic) NSMutableArray *playedRanges; // @synthesize playedRanges=_playedRanges;
 @property(retain, nonatomic) SPTVideoPlayRangeState *currentPlayRangeState; // @synthesize currentPlayRangeState=_currentPlayRangeState;
-@property(retain, nonatomic) id <SPTVideoPlaybackIdentity> identity; // @synthesize identity=_identity;
+@property(retain, nonatomic) id <BMPlaybackIdentity> identity; // @synthesize identity=_identity;
 - (void).cxx_destruct;
 - (long long)currentDeviceOrientation;
 - (void)endCurrentAudioFormatEventAtPosition:(double)arg1;
@@ -82,7 +82,7 @@
 - (void)didStartBufferingAtPosition:(double)arg1 timestamp:(double)arg2;
 - (void)didLoadEncriptionKeyOfType:(long long)arg1 timestamp:(double)arg2;
 - (void)willLoadEncryptionKeyWithTimestamp:(double)arg1;
-- (void)didLoadManifestWithTimestamp:(double)arg1;
+- (void)didLoadManifestWithAvailableSubtitles:(id)arg1 timestamp:(double)arg2;
 - (void)willLoadManifestWithTimestamp:(double)arg1;
 - (void)willEndPlaybackWithNextIdentity:(id)arg1 timestamp:(double)arg2;
 - (void)didCreatePlaybackInBackground:(_Bool)arg1 timestamp:(double)arg2;

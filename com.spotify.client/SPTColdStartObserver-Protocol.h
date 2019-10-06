@@ -9,6 +9,7 @@
 @class NSString;
 
 @protocol SPTColdStartObserver <NSObject>
+- (void)logFinishedLoadingCoreFeature:(NSString *)arg1 duration:(double)arg2;
 - (void)logAppStartupWithStepName:(NSString *)arg1 categories:(NSString *)arg2 eventType:(long long)arg3 level:(long long)arg4;
 
 @optional

@@ -24,7 +24,6 @@
 - (void)parseArray:(id)arg1;
 - (id)recoveryConfigurationForCode:(id)arg1 subcode:(id)arg2 request:(id)arg3;
 - (id)initWithDictionary:(id)arg1;
-- (id)init;
 
 @end
 

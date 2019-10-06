@@ -6,11 +6,11 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTVideoChunk-Protocol.h"
+#import "BMChunk-Protocol.h"
 
 @class NSData, NSString;
 
-@interface SPTVideoChunk : NSObject <SPTVideoChunk>
+@interface SPTVideoChunk : NSObject <BMChunk>
 {
     NSString *_key;
     unsigned long long _startPosition;

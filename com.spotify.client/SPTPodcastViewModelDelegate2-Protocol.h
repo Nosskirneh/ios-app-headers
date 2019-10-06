@@ -9,6 +9,7 @@
 @class NSError, NSIndexPath, SPTPodcastFilterContextViewController, SPTPodcastViewModel2, UIView;
 
 @protocol SPTPodcastViewModelDelegate2 <NSObject>
+- (void)viewModel:(SPTPodcastViewModel2 *)arg1 scrollToLatestPlayedEpisodeAtIndexPath:(NSIndexPath *)arg2;
 - (void)podcastViewModelDidUpdatePlaybackRestrictions:(SPTPodcastViewModel2 *)arg1;
 - (void)viewModel:(SPTPodcastViewModel2 *)arg1 didUpdateFilteredState:(_Bool)arg2;
 - (void)viewModelPodcastDidUpdatePlayingEpisode:(SPTPodcastViewModel2 *)arg1 atIndexPath:(NSIndexPath *)arg2;

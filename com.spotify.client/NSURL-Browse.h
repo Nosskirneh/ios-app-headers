@@ -7,7 +7,6 @@
 #import <Foundation/NSURL.h>
 
 @interface NSURL (Browse)
-+ (id)spt_genreURLWithGenre:(id)arg1;
 + (id)spt_browseRootURL;
 - (id)spt_browseGenre;
 - (_Bool)spt_isBrowseDeprecatedURL;

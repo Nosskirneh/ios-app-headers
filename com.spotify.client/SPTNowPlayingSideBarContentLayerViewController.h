@@ -16,6 +16,7 @@
 
 @interface SPTNowPlayingSideBarContentLayerViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, SPTNowPlayingContentLayerViewModelDelegate, SPTNowPlayingContentLayerResolverDelegate>
 {
+    _Bool _isScrolling;
     UICollectionView *_collectionView;
     SPTNowPlayingContentLayerViewModel *_viewModel;
     SPTTheme *_theme;
@@ -26,6 +27,7 @@
     struct UIEdgeInsets _windowedContentInsets;
 }
 
+@property(nonatomic) _Bool isScrolling; // @synthesize isScrolling=_isScrolling;
 @property(retain, nonatomic) id <UICollectionViewDragDelegate> dragDelegateHolder; // @synthesize dragDelegateHolder=_dragDelegateHolder;
 @property(retain, nonatomic) id <SPTShareDragDelegateFactory> shareDragDelegateFactory; // @synthesize shareDragDelegateFactory=_shareDragDelegateFactory;
 @property(retain, nonatomic) NSMutableSet *unconfiguredIndexPaths; // @synthesize unconfiguredIndexPaths=_unconfiguredIndexPaths;
@@ -53,7 +55,7 @@
 - (void)collectionView:(id)arg1 willDisplayCell:(id)arg2 forItemAtIndexPath:(id)arg3;
 - (id)collectionView:(id)arg1 cellForItemAtIndexPath:(id)arg2;
 - (long long)collectionView:(id)arg1 numberOfItemsInSection:(long long)arg2;
-- (void)reloadLayoutForCurrentScreenSizeForIndexPath:(id)arg1 relativeMovement:(double)arg2;
+- (void)reloadDataAndLayoutForIndexPath:(id)arg1 relativeMovement:(double)arg2;
 - (void)refreshLeftInset;
 - (void)reloadDataMovingToIndexPath:(id)arg1 relativeMovement:(long long)arg2;
 - (id)cellAsCoverArtCell:(id)arg1;

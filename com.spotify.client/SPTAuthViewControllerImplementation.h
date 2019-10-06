@@ -36,6 +36,7 @@
 - (void)spt_popupNavigationControllerCancelButtonTouched:(id)arg1;
 - (void)redirectToURL:(id)arg1;
 - (void)loadWebView;
+- (_Bool)isModalInPresentation;
 - (void)viewWillAppear:(_Bool)arg1;
 - (void)viewDidDisappear:(_Bool)arg1;
 - (void)viewDidLoad;

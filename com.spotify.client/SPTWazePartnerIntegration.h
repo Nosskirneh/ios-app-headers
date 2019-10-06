@@ -9,7 +9,7 @@
 #import "SPTPartnerNavigationIntegration-Protocol.h"
 #import "SPTWazeNavigationStateObserver-Protocol.h"
 
-@class NSString, SPTObserverManager, SPTWazeViewModel, UIImage;
+@class NSString, SPTObserverManager, SPTWazePresenter, SPTWazeViewModel, UIImage;
 @protocol SPTWazeTestManager;
 
 @interface SPTWazePartnerIntegration : NSObject <SPTWazeNavigationStateObserver, SPTPartnerNavigationIntegration>
@@ -17,8 +17,10 @@
     SPTWazeViewModel *_viewModel;
     id <SPTWazeTestManager> _testManager;
     SPTObserverManager *_observerManager;
+    SPTWazePresenter *_presenter;
 }
 
+@property(retain, nonatomic) SPTWazePresenter *presenter; // @synthesize presenter=_presenter;
 @property(readonly, nonatomic) SPTObserverManager *observerManager; // @synthesize observerManager=_observerManager;
 @property(readonly, nonatomic) id <SPTWazeTestManager> testManager; // @synthesize testManager=_testManager;
 @property(retain, nonatomic) SPTWazeViewModel *viewModel; // @synthesize viewModel=_viewModel;
@@ -30,8 +32,9 @@
 - (void)addObserver:(id)arg1;
 - (void)openAppStore;
 - (void)openApp;
-@property(readonly, nonatomic) NSString *sentToReasonForLogging;
-@property(readonly, nonatomic) NSString *appNameForLogging;
+@property(readonly, copy, nonatomic) NSString *sentToReasonForLogging;
+@property(readonly, copy, nonatomic) NSString *appNameForLogging;
+@property(readonly, nonatomic) _Bool isPresentingActiveBanner;
 @property(readonly, nonatomic, getter=isNavigating) _Bool navigating;
 @property(readonly, nonatomic) UIImage *icon;
 @property(readonly, nonatomic) NSString *redirectURIPath;
@@ -40,7 +43,7 @@
 @property(readonly, nonatomic) NSString *identifier;
 @property(readonly, nonatomic) NSString *descriptionText;
 @property(readonly, nonatomic) NSString *name;
-- (id)initWithViewModel:(id)arg1 testManager:(id)arg2;
+- (id)initWithViewModel:(id)arg1 testManager:(id)arg2 presenter:(id)arg3;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

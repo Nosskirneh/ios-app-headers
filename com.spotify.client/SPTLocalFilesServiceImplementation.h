@@ -9,13 +9,12 @@
 #import "SPTService-Protocol.h"
 
 @class NSString, SPTAllocationContext, SPTLocalFilesImportManager;
-@protocol CollectionFeature, CosmosFeature, PlaylistFeature, SPTCollectionPlatformService, SPTContainerService, SPTContainerUIService, SPTNetworkService, SPTNuxService, SPTPlaylistPlatformService, SPTResolver, SPTSessionService, SPTSettingsFeature, SPTURIDispatchService;
+@protocol CollectionFeature, CosmosFeature, SPTCollectionPlatformService, SPTContainerService, SPTContainerUIService, SPTNetworkService, SPTNuxService, SPTPlaylistPlatformService, SPTResolver, SPTSessionService, SPTSettingsFeature, SPTURIDispatchService;
 
 @interface SPTLocalFilesServiceImplementation : NSObject <SPTService>
 {
     id <CollectionFeature> _collectionService;
     id <SPTCollectionPlatformService> _collectionPlatformService;
-    id <PlaylistFeature> _playlistService;
     id <SPTSessionService> _clientSessionService;
     id <SPTContainerService> _containerService;
     id <SPTPlaylistPlatformService> _playlistPlatformService;
@@ -41,7 +40,6 @@
 @property(readonly, nonatomic) __weak id <SPTPlaylistPlatformService> playlistPlatformService; // @synthesize playlistPlatformService=_playlistPlatformService;
 @property(readonly, nonatomic) __weak id <SPTContainerService> containerService; // @synthesize containerService=_containerService;
 @property(readonly, nonatomic) __weak id <SPTSessionService> clientSessionService; // @synthesize clientSessionService=_clientSessionService;
-@property(nonatomic) __weak id <PlaylistFeature> playlistService; // @synthesize playlistService=_playlistService;
 @property(nonatomic) __weak id <SPTCollectionPlatformService> collectionPlatformService; // @synthesize collectionPlatformService=_collectionPlatformService;
 @property(nonatomic) __weak id <CollectionFeature> collectionService; // @synthesize collectionService=_collectionService;
 - (void).cxx_destruct;

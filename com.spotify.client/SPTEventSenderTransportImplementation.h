@@ -8,20 +8,28 @@
 
 #import "INSTransport-Protocol.h"
 #import "SPTDataLoaderDelegate-Protocol.h"
+#import "SPTEventSenderSatelliteServiceResponder-Protocol.h"
 
 @class NSString, SPTDataLoader;
+@protocol SPTNetworkService;
 
-@interface SPTEventSenderTransportImplementation : NSObject <SPTDataLoaderDelegate, INSTransport>
+@interface SPTEventSenderTransportImplementation : NSObject <SPTDataLoaderDelegate, INSTransport, SPTEventSenderSatelliteServiceResponder>
 {
+    _Bool _needsDataLoaderUpdate;
+    id <SPTNetworkService> _networkService;
     SPTDataLoader *_dataLoader;
 }
 
+@property(nonatomic) _Bool needsDataLoaderUpdate; // @synthesize needsDataLoaderUpdate=_needsDataLoaderUpdate;
 @property(retain, nonatomic) SPTDataLoader *dataLoader; // @synthesize dataLoader=_dataLoader;
+@property(nonatomic) __weak id <SPTNetworkService> networkService; // @synthesize networkService=_networkService;
 - (void).cxx_destruct;
+- (void)satelliteServiceDidUnload;
+- (void)satelliteServiceDidLoad;
 - (void)dataLoader:(id)arg1 didReceiveErrorResponse:(id)arg2;
 - (void)dataLoader:(id)arg1 didReceiveSuccessfulResponse:(id)arg2;
 - (void)postData:(id)arg1 path:(id)arg2 authenticate:(_Bool)arg3 success:(CDUnknownBlockType)arg4 failure:(CDUnknownBlockType)arg5;
-- (id)initWithDataLoader:(id)arg1;
+- (id)initWithNetworkService:(id)arg1;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

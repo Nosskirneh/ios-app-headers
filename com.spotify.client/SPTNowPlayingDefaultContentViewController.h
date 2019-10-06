@@ -16,8 +16,8 @@
 #import "SPTPlayerObserver-Protocol.h"
 #import "UIGestureRecognizerDelegate-Protocol.h"
 
-@class NSString, SPTNowPlayingCarouselBackgroundBlurController, SPTNowPlayingCarouselContentProviderRegistryImplementation, SPTNowPlayingContainerIdleMonitor, SPTNowPlayingContentView, SPTNowPlayingContentViewModel, SPTNowPlayingLogger, SPTNowPlayingModel, SPTNowPlayingShowsFormatOverlayView, SPTNowPlayingSkipLimitReachedMessageRequester, SPTObserverManager, SPTTheme, SPTVideoSurfaceFactory;
-@protocol SPTAdsManager, SPTImageLoaderFactory, SPTNowPlayingContentViewControllerObserver, SPTNowPlayingTestManager, SPTNowPlayingVideoManager, SPTPlayer, SPTVideoSurfaceManager;
+@class BMVideoSurfaceFactory, NSString, SPTNowPlayingCarouselBackgroundBlurController, SPTNowPlayingCarouselContentProviderRegistryImplementation, SPTNowPlayingContainerIdleMonitor, SPTNowPlayingContentView, SPTNowPlayingContentViewModel, SPTNowPlayingLogger, SPTNowPlayingModel, SPTNowPlayingShowsFormatOverlayView, SPTNowPlayingSkipLimitReachedMessageRequester, SPTObserverManager, SPTTheme;
+@protocol BMVideoSurfaceManager, SPTAdsManager, SPTImageLoaderFactory, SPTNowPlayingContentViewControllerObserver, SPTNowPlayingTestManager, SPTNowPlayingVideoManager, SPTPlayer;
 
 @interface SPTNowPlayingDefaultContentViewController : UIViewController <SPTNowPlayingContainerIdleMonitorObserver, SPTNowPlayingCarouselBackgroundBlurDelegate, SPTPlayerObserver, UIGestureRecognizerDelegate, SPTNowPlayingContentViewDataSource, SPTNowPlayingCarouselContentProviderRegistryImplementationDelegate, SPTNowPlayingContentViewDelegate, SPTNowPlayingContentViewController, SPTNowPlayingContainerIdleMonitorReceiving>
 {
@@ -33,8 +33,8 @@
     SPTNowPlayingLogger *_logger;
     SPTNowPlayingContentViewModel *_contentViewModel;
     id <SPTImageLoaderFactory> _imageLoaderFactory;
-    id <SPTVideoSurfaceManager> _videoSurfaceManager;
-    SPTVideoSurfaceFactory *_surfaceFactory;
+    id <BMVideoSurfaceManager> _videoSurfaceManager;
+    BMVideoSurfaceFactory *_surfaceFactory;
     id <SPTNowPlayingVideoManager> _nowPlayingVideoManager;
     id <SPTNowPlayingTestManager> _testManager;
     SPTNowPlayingSkipLimitReachedMessageRequester *_skipLimitReachedMessageRequester;
@@ -57,8 +57,8 @@
 @property(readonly, nonatomic) SPTNowPlayingSkipLimitReachedMessageRequester *skipLimitReachedMessageRequester; // @synthesize skipLimitReachedMessageRequester=_skipLimitReachedMessageRequester;
 @property(readonly, nonatomic) id <SPTNowPlayingTestManager> testManager; // @synthesize testManager=_testManager;
 @property(readonly, nonatomic) id <SPTNowPlayingVideoManager> nowPlayingVideoManager; // @synthesize nowPlayingVideoManager=_nowPlayingVideoManager;
-@property(readonly, nonatomic) SPTVideoSurfaceFactory *surfaceFactory; // @synthesize surfaceFactory=_surfaceFactory;
-@property(readonly, nonatomic) id <SPTVideoSurfaceManager> videoSurfaceManager; // @synthesize videoSurfaceManager=_videoSurfaceManager;
+@property(readonly, nonatomic) BMVideoSurfaceFactory *surfaceFactory; // @synthesize surfaceFactory=_surfaceFactory;
+@property(readonly, nonatomic) id <BMVideoSurfaceManager> videoSurfaceManager; // @synthesize videoSurfaceManager=_videoSurfaceManager;
 @property(readonly, nonatomic) id <SPTImageLoaderFactory> imageLoaderFactory; // @synthesize imageLoaderFactory=_imageLoaderFactory;
 @property(retain, nonatomic) SPTNowPlayingContentViewModel *contentViewModel; // @synthesize contentViewModel=_contentViewModel;
 @property(readonly, nonatomic) SPTNowPlayingLogger *logger; // @synthesize logger=_logger;

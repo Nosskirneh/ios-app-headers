@@ -8,7 +8,8 @@
 
 @interface _TtC24EncoreIntegrationFeature18ComponentFactories : _TtCs12_SwiftObject
 {
-    // Error parsing type: , name: trackRow
+    // Error parsing type: , name: imageLoader
+    // Error parsing type: , name: trackRow.storage
 }
 
 @end

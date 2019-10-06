@@ -10,7 +10,7 @@
 #import "SPTNavigationRouter-Protocol.h"
 
 @class MessageBarController, NSMutableArray, NSMutableDictionary, NSOrderedSet, NSString, NSURL, NSUserDefaults, SPBarViewController, SPTMenuController, SPTNavigationManager, SPTObserverManager, SPTStartupTracer, StateController, UIViewController;
-@protocol MetaViewControllerDelegate, SPTBarInteractiveTransitionParticipant, SPTBarOverlayViewController, SPTFullscreenPlaybackPresentationManager, SPTLinkDispatcher, SPTLogCenter, SPTModalPresentationController, SPTNavigationItemsDataSource, SPTPageRegistry, SPTTabBarControllerProtocol;
+@protocol MetaViewControllerDelegate, SPTAppStartupController, SPTBarInteractiveTransitionParticipant, SPTBarOverlayViewController, SPTFullscreenPlaybackPresentationManager, SPTLinkDispatcher, SPTLogCenter, SPTModalPresentationController, SPTNavigationItemsDataSource, SPTPageRegistry, SPTTabBarControllerProtocol;
 
 @interface MetaViewController : NSObject <SPTMetaViewController, SPTNavigationRouter>
 {
@@ -31,6 +31,7 @@
     id <SPTModalPresentationController> _modalPresentationController;
     NSOrderedSet *_defaultTabPriorityList;
     id <SPTPageRegistry> _pageRegistry;
+    id <SPTAppStartupController> _appStartupController;
     SPTStartupTracer *_startupTracer;
     id <SPTLogCenter> _logCenter;
     StateController *_stateController;
@@ -47,6 +48,7 @@
 @property(retain, nonatomic) StateController *stateController; // @synthesize stateController=_stateController;
 @property(retain, nonatomic) id <SPTLogCenter> logCenter; // @synthesize logCenter=_logCenter;
 @property(nonatomic) __weak SPTStartupTracer *startupTracer; // @synthesize startupTracer=_startupTracer;
+@property(readonly, nonatomic) __weak id <SPTAppStartupController> appStartupController; // @synthesize appStartupController=_appStartupController;
 @property(retain, nonatomic) id <SPTPageRegistry> pageRegistry; // @synthesize pageRegistry=_pageRegistry;
 @property(retain, nonatomic) NSOrderedSet *defaultTabPriorityList; // @synthesize defaultTabPriorityList=_defaultTabPriorityList;
 @property(nonatomic) __weak id <SPTModalPresentationController> modalPresentationController; // @synthesize modalPresentationController=_modalPresentationController;
@@ -114,7 +116,7 @@
 - (void)removeObserver:(id)arg1;
 - (void)addObserver:(id)arg1;
 - (void)setupRootUI;
-- (id)initWithWelcomeURL:(id)arg1 userDefaults:(id)arg2 logCenter:(id)arg3 startupTracer:(id)arg4 pageRegistry:(id)arg5 stateController:(id)arg6 messageBarController:(id)arg7 defaultLinkDispatcher:(id)arg8 navigationManager:(id)arg9 notificationCenter:(id)arg10;
+- (id)initWithWelcomeURL:(id)arg1 userDefaults:(id)arg2 logCenter:(id)arg3 appStartupController:(id)arg4 startupTracer:(id)arg5 pageRegistry:(id)arg6 stateController:(id)arg7 messageBarController:(id)arg8 defaultLinkDispatcher:(id)arg9 navigationManager:(id)arg10 notificationCenter:(id)arg11;
 @property(readonly, nonatomic) UIViewController *top;
 @property(readonly, nonatomic) UIViewController<SPTTabBarControllerProtocol> *tabs;
 

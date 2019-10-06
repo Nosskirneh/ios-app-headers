@@ -9,7 +9,7 @@
 #import "SPTDrivingModeViewControllerFactory-Protocol.h"
 
 @class NSString, SPTDrivingModeLogger;
-@protocol SPTContainerService, SPTExternalIntegrationContentService, SPTExternalIntegrationDriverDistractionService, SPTExternalIntegrationPlaybackService, SPTFeatureFlaggingService, SPTGLUEService, SPTNetworkService, SPTNowPlayingPlatformService, SPTNowPlayingService, SPTPlayer, SPTPlayerFeature, SPTPlaylistPlatformService, SPTService, SPTSessionService, SPTSettingsFeature, SPTUIPresentationService;
+@protocol SPTContainerService, SPTExternalIntegrationContentService, SPTExternalIntegrationDriverDistractionService, SPTExternalIntegrationPlaybackService, SPTFeatureFlaggingService, SPTGLUEService, SPTNetworkService, SPTNowPlayingPlatformService, SPTNowPlayingService, SPTOnDemandService, SPTPlayer, SPTPlayerFeature, SPTPlaylistPlatformService, SPTService, SPTSessionService, SPTSettingsFeature, SPTUIPresentationService;
 
 @interface SPTDrivingModeFactory : NSObject <SPTDrivingModeViewControllerFactory>
 {
@@ -29,10 +29,12 @@
     id <SPTNetworkService> _networkService;
     id <SPTSessionService> _sessionService;
     id <SPTPlaylistPlatformService> _playlistPlatformService;
+    id <SPTOnDemandService> _onDemandSetService;
     id <SPTService> _drivingModeService;
 }
 
 @property(readonly, nonatomic) __weak id <SPTService> drivingModeService; // @synthesize drivingModeService=_drivingModeService;
+@property(readonly, nonatomic) __weak id <SPTOnDemandService> onDemandSetService; // @synthesize onDemandSetService=_onDemandSetService;
 @property(readonly, nonatomic) __weak id <SPTPlaylistPlatformService> playlistPlatformService; // @synthesize playlistPlatformService=_playlistPlatformService;
 @property(readonly, nonatomic) __weak id <SPTSessionService> sessionService; // @synthesize sessionService=_sessionService;
 @property(nonatomic) __weak id <SPTNetworkService> networkService; // @synthesize networkService=_networkService;

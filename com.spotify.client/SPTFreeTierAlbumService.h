@@ -7,7 +7,7 @@
 #import "SPTUIPageService.h"
 
 @class SPTFreeTierAlbumHubManager, SPTFreeTierTrackContextAwareURITypeManager;
-@protocol SPContextMenuFeature, SPTCollectionPlatformService, SPTContextDispatchService, SPTCoreService, SPTEntitySeeAllSongsService, SPTExplicitContentService, SPTFreeTierUIService, SPTGLUEService, SPTHubFrameworkService, SPTNetworkService, SPTOnDemandService, SPTOnDemandTrialService, SPTPermissionsService, SPTPlayerFeature, SPTSessionService, SPTShelfService, SPTUpsellExperimentationService, SPTVISREFFlagsService;
+@protocol SPContextMenuFeature, SPTCollectionPlatformService, SPTContextDispatchService, SPTCoreService, SPTEntitySeeAllSongsService, SPTExplicitContentService, SPTFreeTierUIService, SPTGLUEService, SPTHubFrameworkService, SPTNetworkService, SPTOnDemandService, SPTOnDemandTrialService, SPTPermissionsService, SPTPlayerFeature, SPTSessionService, SPTShelfService, SPTUpsellExperimentationService, SPTVisualRefreshIntegrationService;
 
 @interface SPTFreeTierAlbumService : SPTUIPageService
 {
@@ -29,13 +29,13 @@
     id <SPTUpsellExperimentationService> _upsellExperimentationService;
     SPTFreeTierAlbumHubManager *_hubManager;
     SPTFreeTierTrackContextAwareURITypeManager *_nptTrackURITypeManager;
-    id <SPTVISREFFlagsService> _visualRefreshService;
+    id <SPTVisualRefreshIntegrationService> _visualRefreshIntegrationService;
     id <SPTExplicitContentService> _explicitContentService;
 }
 
 + (id)serviceIdentifier;
 @property(nonatomic) __weak id <SPTExplicitContentService> explicitContentService; // @synthesize explicitContentService=_explicitContentService;
-@property(nonatomic) __weak id <SPTVISREFFlagsService> visualRefreshService; // @synthesize visualRefreshService=_visualRefreshService;
+@property(nonatomic) __weak id <SPTVisualRefreshIntegrationService> visualRefreshIntegrationService; // @synthesize visualRefreshIntegrationService=_visualRefreshIntegrationService;
 @property(retain, nonatomic) SPTFreeTierTrackContextAwareURITypeManager *nptTrackURITypeManager; // @synthesize nptTrackURITypeManager=_nptTrackURITypeManager;
 @property(retain, nonatomic) SPTFreeTierAlbumHubManager *hubManager; // @synthesize hubManager=_hubManager;
 @property(nonatomic) __weak id <SPTUpsellExperimentationService> upsellExperimentationService; // @synthesize upsellExperimentationService=_upsellExperimentationService;

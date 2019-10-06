@@ -10,8 +10,8 @@
 #import "SPTAuthService-Protocol.h"
 #import "SPTURISubtypeHandler-Protocol.h"
 
-@class NSString, SPTAllocationContext, SPTAuthCache, SPTAuthCacheEnvironmentObserver, SPTAuthControllerImplementation;
-@protocol GaiaFeature, SPTAuthTestManager, SPTContainerService, SPTContainerUIService, SPTExternalIntegrationPlatformService, SPTFeatureFlaggingService, SPTNetworkService, SPTSessionService, SPTSpotifyAppProtocolService, SPTURIDispatchService;
+@class NSString, SPTAllocationContext, SPTAuthCache, SPTAuthCacheEnvironmentObserver, SPTAuthControllerImplementation, SPTAuthLogger;
+@protocol GaiaFeature, SPTAuthTestManager, SPTContainerService, SPTContainerUIService, SPTExternalIntegrationPlatformService, SPTFeatureFlaggingService, SPTLogCenter, SPTNetworkService, SPTSessionService, SPTSpotifyAppProtocolService, SPTURIDispatchService;
 
 @interface AuthFeatureImplementation : NSObject <SPTURISubtypeHandler, SPTAuthService, SPSessionObserver>
 {
@@ -25,15 +25,19 @@
     id <SPTURIDispatchService> _URIDispatchService;
     id <SPTFeatureFlaggingService> _featureFlaggingService;
     id <SPTSpotifyAppProtocolService> _appProtocolService;
+    id <SPTLogCenter> _logcenter;
     id <SPTAuthTestManager> _testManager;
     SPTAuthCacheEnvironmentObserver *_environmentObserver;
     SPTAuthCache *_authCache;
+    SPTAuthLogger *_authLogger;
 }
 
 + (id)serviceIdentifier;
+@property(retain, nonatomic) SPTAuthLogger *authLogger; // @synthesize authLogger=_authLogger;
 @property(retain, nonatomic) SPTAuthCache *authCache; // @synthesize authCache=_authCache;
 @property(retain, nonatomic) SPTAuthCacheEnvironmentObserver *environmentObserver; // @synthesize environmentObserver=_environmentObserver;
 @property(retain, nonatomic) id <SPTAuthTestManager> testManager; // @synthesize testManager=_testManager;
+@property(retain, nonatomic) id <SPTLogCenter> logcenter; // @synthesize logcenter=_logcenter;
 @property(nonatomic) __weak id <SPTSpotifyAppProtocolService> appProtocolService; // @synthesize appProtocolService=_appProtocolService;
 @property(nonatomic) __weak id <SPTFeatureFlaggingService> featureFlaggingService; // @synthesize featureFlaggingService=_featureFlaggingService;
 @property(nonatomic) __weak id <SPTURIDispatchService> URIDispatchService; // @synthesize URIDispatchService=_URIDispatchService;

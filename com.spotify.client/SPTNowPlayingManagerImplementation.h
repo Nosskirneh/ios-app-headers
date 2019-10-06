@@ -10,13 +10,14 @@
 #import "SPTMetaViewControllerObserver-Protocol.h"
 #import "SPTNowPlayingManager-Protocol.h"
 #import "SPTNowPlayingModelObserver-Protocol.h"
+#import "SPTNowPlayingTestManagerObserver-Protocol.h"
 #import "SPTPlayerObserver-Protocol.h"
 #import "SPTURISubtypeHandler-Protocol.h"
 
 @class NSMapTable, NSNotificationCenter, NSString, NSTimer, SPTNowPlayingModel, UIViewController;
 @protocol SPTLocalSettings, SPTMetaViewController, SPTNowPlayingTestManager, SPTPlayer;
 
-@interface SPTNowPlayingManagerImplementation : NSObject <SPTPlayerObserver, MessageBarControllerDelegate, SPTMetaViewControllerObserver, SPTNowPlayingModelObserver, SPTNowPlayingManager, SPTURISubtypeHandler>
+@interface SPTNowPlayingManagerImplementation : NSObject <SPTPlayerObserver, MessageBarControllerDelegate, SPTMetaViewControllerObserver, SPTNowPlayingModelObserver, SPTNowPlayingTestManagerObserver, SPTNowPlayingManager, SPTURISubtypeHandler>
 {
     SPTNowPlayingModel *_model;
     id <SPTMetaViewController> _metaViewController;
@@ -63,6 +64,7 @@
 - (void)invalidate;
 - (_Bool)shouldBounceBar;
 - (void)addNotificationsObserversIfNeeded;
+- (void)nowPlayingTestManagerDidEnableBarImprovements:(id)arg1;
 - (void)dealloc;
 - (id)initWithModel:(id)arg1 metaViewController:(id)arg2 player:(id)arg3 messageBarController:(id)arg4 testManager:(id)arg5 localSettings:(id)arg6 notificationCenter:(id)arg7;
 

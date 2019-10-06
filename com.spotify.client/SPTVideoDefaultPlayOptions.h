@@ -6,11 +6,11 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTVideoPlayOptions-Protocol.h"
+#import "BMPlayOptions-Protocol.h"
 
 @class NSString;
 
-@interface SPTVideoDefaultPlayOptions : NSObject <SPTVideoPlayOptions>
+@interface SPTVideoDefaultPlayOptions : NSObject <BMPlayOptions>
 {
 }
 

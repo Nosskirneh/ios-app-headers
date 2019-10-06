@@ -7,7 +7,7 @@
 #import "SPTUIPageService.h"
 
 @class SPTFreeTierArtistHubManager;
-@protocol FollowFeature, SPContextMenuFeature, SPTArtistAboutService, SPTCollectionPlatformService, SPTEntitySeeAllSongsService, SPTExplicitContentService, SPTFreeTierUIService, SPTGLUEService, SPTHubFrameworkService, SPTModerationService, SPTNavigationFeature, SPTNetworkService, SPTOnDemandService, SPTOnDemandTrialService, SPTPermissionsService, SPTPlayerFeature, SPTSessionService, SPTShelfService, SPTVISREFFlagsService;
+@protocol FollowFeature, SPContextMenuFeature, SPTArtistAboutService, SPTCollectionPlatformService, SPTEntitySeeAllSongsService, SPTExplicitContentService, SPTFreeTierUIService, SPTGLUEService, SPTHubFrameworkService, SPTModerationService, SPTNavigationFeature, SPTNetworkService, SPTOnDemandService, SPTOnDemandTrialService, SPTPermissionsService, SPTPlayerFeature, SPTPodcastEpisodeFeaturedContentService, SPTSessionService, SPTShelfService, SPTVisualRefreshIntegrationService;
 
 @interface SPTFreeTierArtistService : SPTUIPageService
 {
@@ -27,17 +27,19 @@
     id <SPTPermissionsService> _permissionService;
     id <SPTNavigationFeature> _navigationFeature;
     id <SPTShelfService> _shelfService;
-    id <SPTVISREFFlagsService> _visualRefreshService;
+    id <SPTVisualRefreshIntegrationService> _visualRefreshIntegrationService;
     id <SPTExplicitContentService> _explicitContentService;
     id <SPTModerationService> _moderationFeature;
+    id <SPTPodcastEpisodeFeaturedContentService> _podcastFeaturedService;
     SPTFreeTierArtistHubManager *_hubManager;
 }
 
 + (id)serviceIdentifier;
 @property(retain, nonatomic) SPTFreeTierArtistHubManager *hubManager; // @synthesize hubManager=_hubManager;
+@property(nonatomic) __weak id <SPTPodcastEpisodeFeaturedContentService> podcastFeaturedService; // @synthesize podcastFeaturedService=_podcastFeaturedService;
 @property(nonatomic) __weak id <SPTModerationService> moderationFeature; // @synthesize moderationFeature=_moderationFeature;
 @property(nonatomic) __weak id <SPTExplicitContentService> explicitContentService; // @synthesize explicitContentService=_explicitContentService;
-@property(nonatomic) __weak id <SPTVISREFFlagsService> visualRefreshService; // @synthesize visualRefreshService=_visualRefreshService;
+@property(nonatomic) __weak id <SPTVisualRefreshIntegrationService> visualRefreshIntegrationService; // @synthesize visualRefreshIntegrationService=_visualRefreshIntegrationService;
 @property(nonatomic) __weak id <SPTShelfService> shelfService; // @synthesize shelfService=_shelfService;
 @property(nonatomic) __weak id <SPTNavigationFeature> navigationFeature; // @synthesize navigationFeature=_navigationFeature;
 @property(nonatomic) __weak id <SPTPermissionsService> permissionService; // @synthesize permissionService=_permissionService;

@@ -36,7 +36,6 @@
 - (id)provideAdsResolver;
 - (id)provideAdsCosmosBridge;
 - (void)unload;
-- (void)load;
 - (void)configureWithServices:(id)arg1;
 
 // Remaining properties

@@ -6,7 +6,7 @@
 
 #import "GPBMessage.h"
 
-@class NSString;
+@class NSMutableDictionary, NSString;
 
 @interface VoiceAdLog : GPBMessage
 {
@@ -15,11 +15,17 @@
 + (id)descriptor;
 
 // Remaining properties
+@property(retain, nonatomic) NSMutableDictionary *adInfo; // @dynamic adInfo;
+@property(readonly, nonatomic) unsigned long long adInfo_Count; // @dynamic adInfo_Count;
+@property(retain, nonatomic) NSMutableDictionary *deviceInfo; // @dynamic deviceInfo;
+@property(readonly, nonatomic) unsigned long long deviceInfo_Count; // @dynamic deviceInfo_Count;
 @property(copy, nonatomic) NSString *eventData; // @dynamic eventData;
 @property(copy, nonatomic) NSString *eventName; // @dynamic eventName;
 @property(nonatomic) _Bool hasEventData; // @dynamic hasEventData;
 @property(nonatomic) _Bool hasEventName; // @dynamic hasEventName;
+@property(nonatomic) _Bool hasPlaybackTime; // @dynamic hasPlaybackTime;
 @property(nonatomic) _Bool hasTimeStamp; // @dynamic hasTimeStamp;
+@property(nonatomic) double playbackTime; // @dynamic playbackTime;
 @property(nonatomic) long long timeStamp; // @dynamic timeStamp;
 
 @end

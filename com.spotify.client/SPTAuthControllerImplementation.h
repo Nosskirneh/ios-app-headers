@@ -9,7 +9,7 @@
 #import "SPTAuthController-Protocol.h"
 #import "SPTAuthRequestDelegate-Protocol.h"
 
-@class NSString, SPSession, SPTAuthCache, SPTAuthPostAuthPlayerController, SPTAuthRequest, SPTHermesController, SPTNetworkConnectivityController, SPTObserverManager, SPTProgressView;
+@class NSString, SPSession, SPTAuthCache, SPTAuthLogger, SPTAuthPostAuthPlayerController, SPTAuthRequest, SPTHermesController, SPTNetworkConnectivityController, SPTObserverManager, SPTProgressView;
 @protocol SPTAlertInterface, SPTAuthTestManager, SPTContainerUIService, SPTLinkDispatcher;
 
 @interface SPTAuthControllerImplementation : NSObject <SPTAuthRequestDelegate, SPTAuthController>
@@ -26,10 +26,12 @@
     id <SPTLinkDispatcher> _linkDispatcher;
     SPTAuthRequest *_request;
     CDUnknownBlockType _completionHandler;
+    SPTAuthLogger *_authLogger;
     SPTAuthPostAuthPlayerController *_postAuthPlayerController;
 }
 
 @property(retain, nonatomic) SPTAuthPostAuthPlayerController *postAuthPlayerController; // @synthesize postAuthPlayerController=_postAuthPlayerController;
+@property(readonly, nonatomic) SPTAuthLogger *authLogger; // @synthesize authLogger=_authLogger;
 @property(copy, nonatomic) CDUnknownBlockType completionHandler; // @synthesize completionHandler=_completionHandler;
 @property(retain, nonatomic) SPTAuthRequest *request; // @synthesize request=_request;
 @property(readonly, nonatomic) id <SPTLinkDispatcher> linkDispatcher; // @synthesize linkDispatcher=_linkDispatcher;
@@ -39,7 +41,7 @@
 @property(readonly, nonatomic) SPTProgressView *progressView; // @synthesize progressView=_progressView;
 @property(readonly, nonatomic) id <SPTAlertInterface> alertController; // @synthesize alertController=_alertController;
 @property(readonly, nonatomic) SPTNetworkConnectivityController *connectivityController; // @synthesize connectivityController=_connectivityController;
-@property(readonly, nonatomic) id <SPTContainerUIService> containerUIService; // @synthesize containerUIService=_containerUIService;
+@property(readonly, nonatomic) __weak id <SPTContainerUIService> containerUIService; // @synthesize containerUIService=_containerUIService;
 @property(readonly, nonatomic) SPTHermesController *hermesController; // @synthesize hermesController=_hermesController;
 @property(readonly, nonatomic) __weak SPSession *session; // @synthesize session=_session;
 - (void).cxx_destruct;
@@ -47,14 +49,14 @@
 - (void)authRequestDidStart:(id)arg1;
 - (void)handleAuthorizationResultWithResponseURI:(id)arg1 silent:(_Bool)arg2;
 - (void)showOfflineAlert;
-- (void)playIfNeccessary:(id)arg1 responseURI:(id)arg2 silent:(_Bool)arg3;
+- (void)playIfNeccessary:(id)arg1 options:(id)arg2 responseURI:(id)arg3 silent:(_Bool)arg4;
 - (void)handleOfflineWithURL:(id)arg1 bundleId:(id)arg2 handleSilently:(_Bool)arg3;
 - (_Bool)isOffline;
 - (_Bool)shouldDoNetworklessAuthorizationWithClientId:(id)arg1 scopes:(id)arg2 redirectUri:(id)arg3 bundleId:(id)arg4;
 - (void)removeObserver:(id)arg1;
 - (void)addObserver:(id)arg1;
 - (void)authenticateWithURL:(id)arg1 sourceApplication:(id)arg2 shouldDoSilentAuth:(_Bool)arg3 completionHandler:(CDUnknownBlockType)arg4;
-- (id)initWithSession:(id)arg1 hermesController:(id)arg2 containerUIService:(id)arg3 connectivityController:(id)arg4 alertController:(id)arg5 testManager:(id)arg6 authCache:(id)arg7 linkDispatcher:(id)arg8 postAuthPlayerController:(id)arg9;
+- (id)initWithSession:(id)arg1 hermesController:(id)arg2 containerUIService:(id)arg3 connectivityController:(id)arg4 alertController:(id)arg5 testManager:(id)arg6 authCache:(id)arg7 linkDispatcher:(id)arg8 postAuthPlayerController:(id)arg9 authLogger:(id)arg10;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

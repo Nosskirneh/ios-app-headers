@@ -10,7 +10,7 @@
 {
 }
 
-+ (id)legacyShareItemTypeStringForShareType:(unsigned long long)arg1;
++ (id)legacyShareItemTypeStringForShareType:(long long)arg1;
 + (id)concertShareDescriptionWithConcertTitle:(id)arg1 venueName:(id)arg2 dateText:(id)arg3;
 + (id)profileShareDescriptionWithProfileName:(id)arg1;
 + (id)episodeShareDescriptionWithEpisodeName:(id)arg1 publisherName:(id)arg2 showName:(id)arg3;
@@ -19,7 +19,7 @@
 + (id)playlistShareDescriptionWithPlaylistName:(id)arg1 ownerName:(id)arg2;
 + (id)artistShareDescriptionWithArtistName:(id)arg1;
 + (id)albumShareDescriptionWithAlbumName:(id)arg1 artistName:(id)arg2;
-+ (id)shareDescriptionWithShareType:(unsigned long long)arg1 itemName:(id)arg2 creatorName:(id)arg3 sourceName:(id)arg4;
++ (id)shareDescriptionWithShareType:(long long)arg1 itemName:(id)arg2 creatorName:(id)arg3 sourceName:(id)arg4;
 
 @end
 

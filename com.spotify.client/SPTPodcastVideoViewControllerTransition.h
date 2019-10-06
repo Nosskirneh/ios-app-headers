@@ -9,15 +9,15 @@
 #import "UIViewControllerAnimatedTransitioning-Protocol.h"
 
 @class NSString, UIView;
-@protocol SPTPodcastVideoViewControllerTransitionDelegate, SPTVideoSurface;
+@protocol BMVideoSurface, SPTPodcastVideoViewControllerTransitionDelegate;
 
 @interface SPTPodcastVideoViewControllerTransition : NSObject <UIViewControllerAnimatedTransitioning>
 {
     long long _navigationControllerOperation;
     id <SPTPodcastVideoViewControllerTransitionDelegate> _delegate;
-    UIView<SPTVideoSurface> *_originVideoSurface;
+    UIView<BMVideoSurface> *_originVideoSurface;
     UIView *_originVideoSurfaceContainer;
-    UIView<SPTVideoSurface> *_targetVideoSurface;
+    UIView<BMVideoSurface> *_targetVideoSurface;
     UIView *_targetVideoSurfaceContainer;
     UIView *_transitionView;
     struct CGRect _targetVideoSurfaceFrame;
@@ -26,9 +26,9 @@
 @property(readonly, nonatomic) UIView *transitionView; // @synthesize transitionView=_transitionView;
 @property(readonly, nonatomic) struct CGRect targetVideoSurfaceFrame; // @synthesize targetVideoSurfaceFrame=_targetVideoSurfaceFrame;
 @property(readonly, nonatomic) UIView *targetVideoSurfaceContainer; // @synthesize targetVideoSurfaceContainer=_targetVideoSurfaceContainer;
-@property(readonly, nonatomic) UIView<SPTVideoSurface> *targetVideoSurface; // @synthesize targetVideoSurface=_targetVideoSurface;
+@property(readonly, nonatomic) UIView<BMVideoSurface> *targetVideoSurface; // @synthesize targetVideoSurface=_targetVideoSurface;
 @property(readonly, nonatomic) UIView *originVideoSurfaceContainer; // @synthesize originVideoSurfaceContainer=_originVideoSurfaceContainer;
-@property(readonly, nonatomic) UIView<SPTVideoSurface> *originVideoSurface; // @synthesize originVideoSurface=_originVideoSurface;
+@property(readonly, nonatomic) UIView<BMVideoSurface> *originVideoSurface; // @synthesize originVideoSurface=_originVideoSurface;
 @property(nonatomic) __weak id <SPTPodcastVideoViewControllerTransitionDelegate> delegate; // @synthesize delegate=_delegate;
 @property(readonly, nonatomic) long long navigationControllerOperation; // @synthesize navigationControllerOperation=_navigationControllerOperation;
 - (void).cxx_destruct;

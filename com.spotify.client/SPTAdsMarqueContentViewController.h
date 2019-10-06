@@ -24,7 +24,7 @@
 - (void).cxx_destruct;
 - (void)didTapInformationText:(id)arg1;
 - (void)navigateToAlbum:(id)arg1;
-- (id)initWithTheme:(id)arg1 marqueeEntity:(id)arg2 imageLoader:(id)arg3 productState:(id)arg4;
+- (id)initWithTheme:(id)arg1 marqueeEntity:(id)arg2 albumImage:(id)arg3 productState:(id)arg4;
 
 @end
 

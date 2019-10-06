@@ -11,7 +11,7 @@
 #import "UITableViewDataSource-Protocol.h"
 #import "UITableViewDelegate-Protocol.h"
 
-@class GLUELabel, NSArray, NSLayoutConstraint, NSString, SPTShareDataProvider, SPTShareItemView, SPTShareLogger, SPTShareScreenshotObserverManager, SPTShareViewModel, UIButton, UITableView, UIView;
+@class GLUELabel, NSArray, NSLayoutConstraint, NSString, SPTShareDataProvider, SPTShareItemView, SPTShareLogger, SPTShareScreenshotObserverManager, UIButton, UITableView, UIView;
 @protocol GLUETheme, SPTImageLoader, SPTShareViewControllerDelegate;
 
 @interface SPTShareViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, SPTImageLoaderDelegate, SPTShareViewControllerProtocol>
@@ -19,7 +19,6 @@
     _Bool _isInPopover;
     _Bool _hidden;
     id <SPTShareViewControllerDelegate> _delegate;
-    SPTShareViewModel *_shareViewModel;
     SPTShareDataProvider *_shareDataProvider;
     SPTShareLogger *_shareLogger;
     SPTShareScreenshotObserverManager *_screenshotObserverManager;
@@ -54,7 +53,6 @@
 @property(retain, nonatomic) SPTShareScreenshotObserverManager *screenshotObserverManager; // @synthesize screenshotObserverManager=_screenshotObserverManager;
 @property(retain, nonatomic) SPTShareLogger *shareLogger; // @synthesize shareLogger=_shareLogger;
 @property(retain, nonatomic) SPTShareDataProvider *shareDataProvider; // @synthesize shareDataProvider=_shareDataProvider;
-@property(retain, nonatomic) SPTShareViewModel *shareViewModel; // @synthesize shareViewModel=_shareViewModel;
 @property(nonatomic) __weak id <SPTShareViewControllerDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
 - (void)imageLoader:(id)arg1 didLoadImage:(id)arg2 forURL:(id)arg3 loadTime:(double)arg4 context:(id)arg5;
@@ -79,7 +77,7 @@
 - (void)setupMainView;
 - (void)viewDidAppear:(_Bool)arg1;
 - (void)viewDidLoad;
-- (id)initWithShareLogger:(id)arg1 shareDataProvider:(id)arg2 shareViewModel:(id)arg3 screenshotObserverManager:(id)arg4 imageLoader:(id)arg5;
+- (id)initWithShareLogger:(id)arg1 shareDataProvider:(id)arg2 screenshotObserverManager:(id)arg3 imageLoader:(id)arg4;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

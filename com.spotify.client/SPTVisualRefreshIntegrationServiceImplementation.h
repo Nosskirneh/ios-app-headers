@@ -25,6 +25,7 @@
 @property(nonatomic) __weak id <SPTGLUEService> glueService; // @synthesize glueService=_glueService;
 @property(nonatomic) __weak id <SPTContainerService> containerService; // @synthesize containerService=_containerService;
 - (void).cxx_destruct;
+- (id)visrefIntegrationManager;
 - (id)visrefPlaylistFullBleedHeaderProvider;
 - (id)visrefPlaylistHeaderProvider;
 - (void)unload;

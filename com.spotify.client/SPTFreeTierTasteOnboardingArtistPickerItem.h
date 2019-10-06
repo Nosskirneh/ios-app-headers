@@ -19,8 +19,10 @@
     SPTFreeTierTasteOnboardingLogging *_logging;
     NSString *_relatedMedia;
     NSString *_imageColorCode;
+    unsigned long long _checkmark;
 }
 
+@property(readonly, nonatomic) unsigned long long checkmark; // @synthesize checkmark=_checkmark;
 @property(readonly, copy, nonatomic) NSString *imageColorCode; // @synthesize imageColorCode=_imageColorCode;
 @property(readonly, copy, nonatomic) NSString *relatedMedia; // @synthesize relatedMedia=_relatedMedia;
 @property(readonly, copy, nonatomic) SPTFreeTierTasteOnboardingLogging *logging; // @synthesize logging=_logging;
@@ -34,7 +36,7 @@
 - (_Bool)isEqual:(id)arg1;
 - (_Bool)isExtendedItem;
 - (id)createItemWithLogging:(id)arg1;
-- (id)initWithIdentifier:(id)arg1 name:(id)arg2 imageURL:(id)arg3 imageColorCode:(id)arg4 relatedItems:(id)arg5 moreURI:(id)arg6 logging:(id)arg7 relatedMedia:(id)arg8;
+- (id)initWithIdentifier:(id)arg1 name:(id)arg2 imageURL:(id)arg3 imageColorCode:(id)arg4 relatedItems:(id)arg5 moreURI:(id)arg6 logging:(id)arg7 relatedMedia:(id)arg8 checkmark:(unsigned long long)arg9;
 
 @end
 

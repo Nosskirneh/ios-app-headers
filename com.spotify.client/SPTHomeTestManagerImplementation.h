@@ -15,12 +15,16 @@
 {
     _Bool _quickPlayEnabled;
     _Bool _consolidatedRecentlyPlayedEnabled;
+    _Bool _downloadSectionsEnabled;
     id <SPTFeatureFlagFactory> _featureFlagFactory;
     id <SPTProductState> _productState;
     id <SPTFeatureFlagSignal> _quickPlayEnabledSignal;
     id <SPTFeatureFlagSignal> _consolidatedRecentlyPlayedEnabledSignal;
+    id <SPTFeatureFlagSignal> _downloadSectionsEnabledSignal;
 }
 
+@property(nonatomic, getter=isDownloadSectionsEnabled) _Bool downloadSectionsEnabled; // @synthesize downloadSectionsEnabled=_downloadSectionsEnabled;
+@property(retain, nonatomic) id <SPTFeatureFlagSignal> downloadSectionsEnabledSignal; // @synthesize downloadSectionsEnabledSignal=_downloadSectionsEnabledSignal;
 @property(nonatomic, getter=isConsolidatedRecentlyPlayedEnabled) _Bool consolidatedRecentlyPlayedEnabled; // @synthesize consolidatedRecentlyPlayedEnabled=_consolidatedRecentlyPlayedEnabled;
 @property(readonly, nonatomic) id <SPTFeatureFlagSignal> consolidatedRecentlyPlayedEnabledSignal; // @synthesize consolidatedRecentlyPlayedEnabledSignal=_consolidatedRecentlyPlayedEnabledSignal;
 @property(nonatomic, getter=isQuickPlayEnabled) _Bool quickPlayEnabled; // @synthesize quickPlayEnabled=_quickPlayEnabled;
@@ -29,6 +33,7 @@
 @property(readonly, nonatomic) id <SPTFeatureFlagFactory> featureFlagFactory; // @synthesize featureFlagFactory=_featureFlagFactory;
 - (void).cxx_destruct;
 - (void)featureFlagSignal:(id)arg1 hasAssumedState:(long long)arg2;
+- (void)setupDownloadSectionsSignal;
 - (void)setupQuickPlaySignal;
 - (void)setupConsolidatedRecentlyPlayedSignal;
 @property(readonly, nonatomic, getter=isProductStateNPT) _Bool productStateNPT;

@@ -8,7 +8,7 @@
 
 #import "SPTInAppMessagePreviewViewModelObserver-Protocol.h"
 
-@class NSString, SPTInAppMessageActionFactory, SPTInAppMessageBannerMessageParser, SPTInAppMessageBannerMessageViewModel, SPTInAppMessageBannerPresentationController, SPTInAppMessageNotePresentationManagerImplementation, SPTInAppMessageNowPlayingManagerRegistryImplementation;
+@class NSString, SPTInAppMessageActionFactory, SPTInAppMessageBannerMessageParser, SPTInAppMessageBannerMessageViewModel, SPTInAppMessageBannerPresentationController, SPTInAppMessageNotePresentationManager, SPTInAppMessageNowPlayingManagerRegistryImplementation;
 @protocol SPTAlertInterface, SPTBannerPresentationManager, SPTExternalIntegrationDriverDistractionController, SPTOfflineModeState;
 
 @interface SPTInAppMessagePreviewBannerMessageController : NSObject <SPTInAppMessagePreviewViewModelObserver>
@@ -21,12 +21,12 @@
     SPTInAppMessageBannerPresentationController *_bannerPresentationController;
     SPTInAppMessageNowPlayingManagerRegistryImplementation *_nowPlayingManagerRegistry;
     id <SPTOfflineModeState> _offlineModeState;
-    SPTInAppMessageNotePresentationManagerImplementation *_notePresentationManager;
+    SPTInAppMessageNotePresentationManager *_notePresentationManager;
     id <SPTAlertInterface> _alertInterface;
 }
 
 @property(retain, nonatomic) id <SPTAlertInterface> alertInterface; // @synthesize alertInterface=_alertInterface;
-@property(retain, nonatomic) SPTInAppMessageNotePresentationManagerImplementation *notePresentationManager; // @synthesize notePresentationManager=_notePresentationManager;
+@property(retain, nonatomic) SPTInAppMessageNotePresentationManager *notePresentationManager; // @synthesize notePresentationManager=_notePresentationManager;
 @property(nonatomic) __weak id <SPTOfflineModeState> offlineModeState; // @synthesize offlineModeState=_offlineModeState;
 @property(retain, nonatomic) SPTInAppMessageNowPlayingManagerRegistryImplementation *nowPlayingManagerRegistry; // @synthesize nowPlayingManagerRegistry=_nowPlayingManagerRegistry;
 @property(retain, nonatomic) SPTInAppMessageBannerPresentationController *bannerPresentationController; // @synthesize bannerPresentationController=_bannerPresentationController;

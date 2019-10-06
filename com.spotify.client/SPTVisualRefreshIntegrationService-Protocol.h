@@ -6,9 +6,10 @@
 
 #import "SPTService-Protocol.h"
 
-@protocol SPTFreeTierPlaylistHeaderProvider;
+@protocol SPTFreeTierPlaylistHeaderProvider, VISREFIntegrationManager;
 
 @protocol SPTVisualRefreshIntegrationService <SPTService>
+- (id <VISREFIntegrationManager>)visrefIntegrationManager;
 - (id <SPTFreeTierPlaylistHeaderProvider>)visrefPlaylistFullBleedHeaderProvider;
 - (id <SPTFreeTierPlaylistHeaderProvider>)visrefPlaylistHeaderProvider;
 @end

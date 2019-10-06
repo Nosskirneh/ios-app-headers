@@ -9,7 +9,7 @@
 #import "SPTVideoResourceLoaderInternal-Protocol.h"
 
 @class NSMutableSet, NSString, NSURL, SPTVideoManifest;
-@protocol SPTVideoPlaybackIdentity, SPTVideoResourceLoaderInternalDelegate, SPTVideoResourceRequestFactory;
+@protocol BMPlaybackIdentity, SPTVideoResourceLoaderInternalDelegate, SPTVideoResourceRequestFactory;
 
 @interface SPTVideoDefaultResourceLoader : NSObject <SPTVideoResourceLoaderInternal>
 {
@@ -18,14 +18,14 @@
     SPTVideoManifest *manifest;
     unsigned long long connectionMode;
     id <SPTVideoResourceLoaderInternalDelegate> delegate;
-    id <SPTVideoPlaybackIdentity> _identity;
+    id <BMPlaybackIdentity> _identity;
     id <SPTVideoResourceRequestFactory> _resourceRequestFactory;
     NSMutableSet *_requests;
 }
 
 @property(retain, nonatomic) NSMutableSet *requests; // @synthesize requests=_requests;
 @property(retain, nonatomic) id <SPTVideoResourceRequestFactory> resourceRequestFactory; // @synthesize resourceRequestFactory=_resourceRequestFactory;
-@property(retain, nonatomic) id <SPTVideoPlaybackIdentity> identity; // @synthesize identity=_identity;
+@property(retain, nonatomic) id <BMPlaybackIdentity> identity; // @synthesize identity=_identity;
 @property(nonatomic) __weak id <SPTVideoResourceLoaderInternalDelegate> delegate; // @synthesize delegate;
 @property(nonatomic) unsigned long long connectionMode; // @synthesize connectionMode;
 @property(nonatomic) _Bool shouldHandleLoadingRequests; // @synthesize shouldHandleLoadingRequests;
@@ -36,7 +36,6 @@
 - (_Bool)resourceLoader:(id)arg1 shouldWaitForLoadingOfRequestedResource:(id)arg2;
 - (id)videoProfileForURL:(id)arg1;
 - (id)selectedAudioProfile;
-- (void)prepareManifestResource:(CDUnknownBlockType)arg1;
 - (id)URLForAsset;
 - (id)initWithIdentity:(id)arg1 resourceRequestFactory:(id)arg2;
 

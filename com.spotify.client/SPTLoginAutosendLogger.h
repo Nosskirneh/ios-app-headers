@@ -17,9 +17,7 @@
 - (void).cxx_destruct;
 - (void)logUserDidTapTryAnotherPasswordButton;
 - (void)logUserDidTapOpenEmailButton;
-- (void)logUserDidTapOKButton;
 - (void)logUserDidSeeDualButtonSlideUp;
-- (void)logUserDidSeeSingleButtonSlideUp;
 - (id)initWithLogger:(id)arg1;
 
 @end

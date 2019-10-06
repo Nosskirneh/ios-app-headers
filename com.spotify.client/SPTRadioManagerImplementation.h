@@ -11,19 +11,21 @@
 #import "SPTRadioStationsObserver-Protocol.h"
 
 @class NSHashTable, NSString, SPTRadioPlaybackService, SPTRadioStationsService;
-@protocol SPTLocalSettings, SPTProductState;
+@protocol SPTLocalSettings, SPTProductState, SPTRadioRemoteConfigService;
 
 @interface SPTRadioManagerImplementation : NSObject <SPTRadioPlaybackObserver, SPTRadioStationsObserver, SPTRadioManager>
 {
     id <SPTLocalSettings> _localSettings;
     SPTRadioPlaybackService *_playbackService;
     SPTRadioStationsService *_stationsService;
+    id <SPTRadioRemoteConfigService> _radioRemoteConfigService;
     NSHashTable *_observers;
     id <SPTProductState> _productState;
 }
 
 @property(retain, nonatomic) id <SPTProductState> productState; // @synthesize productState=_productState;
 @property(retain, nonatomic) NSHashTable *observers; // @synthesize observers=_observers;
+@property(nonatomic) __weak id <SPTRadioRemoteConfigService> radioRemoteConfigService; // @synthesize radioRemoteConfigService=_radioRemoteConfigService;
 @property(nonatomic) __weak SPTRadioStationsService *stationsService; // @synthesize stationsService=_stationsService;
 @property(nonatomic) __weak SPTRadioPlaybackService *playbackService; // @synthesize playbackService=_playbackService;
 @property(retain, nonatomic) id <SPTLocalSettings> localSettings; // @synthesize localSettings=_localSettings;
@@ -39,7 +41,7 @@
 - (_Bool)startRadioStationWithSeedURL:(id)arg1 startedFromElement:(id)arg2 referrerIdentifier:(id)arg3;
 - (id)playbackDescriptionForURL:(id)arg1;
 - (void)configureWithPlaybackService:(id)arg1 stationsService:(id)arg2;
-- (id)initWithLocalSettings:(id)arg1 productState:(id)arg2;
+- (id)initWithLocalSettings:(id)arg1 radioRemoteConfigService:(id)arg2 productState:(id)arg3;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

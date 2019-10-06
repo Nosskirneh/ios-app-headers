@@ -6,14 +6,11 @@
 
 #import "NSObject-Protocol.h"
 
-@class NSArray, NSString, NSURL, UIButton, UIView, UIViewController;
-@protocol SPTCollectionSortingEntityManager, SPTPlaylistDismissableViewController;
+@class NSArray, NSString, NSURL, UIView, UIViewController;
+@protocol SPTPlaylistDismissableViewController;
 
 @protocol PlaylistFeature <NSObject>
 @property(readonly, nonatomic) NSURL *rootlistURL;
-@property(nonatomic, getter=isLocalFilesImportEnabled) _Bool localFilesImportEnabled;
-- (UIButton *)provideSortMenuButton;
-- (id <SPTCollectionSortingEntityManager>)provideSortingEntityManager;
 - (UIViewController<SPTPlaylistDismissableViewController> *)provideAddToPlaylistViewControllerWithTrackURLs:(NSArray *)arg1 inFolderURL:(NSURL *)arg2 addEntityURL:(NSURL *)arg3 defaultPlaylistName:(NSString *)arg4 logContext:(NSString *)arg5 sourceURL:(NSURL *)arg6 contextSourceURL:(NSURL *)arg7;
 - (void)presentAddToPlaylistViewControllerWithTrackURLs:(NSArray *)arg1 addEntityURL:(NSURL *)arg2 defaultPlaylistName:(NSString *)arg3 senderView:(UIView *)arg4 logContext:(NSString *)arg5 sourceURL:(NSURL *)arg6 contextSourceURL:(NSURL *)arg7;
 @end

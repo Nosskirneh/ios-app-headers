@@ -22,7 +22,7 @@
 @property(copy, nonatomic) NSString *isoCountryCode; // @synthesize isoCountryCode=_isoCountryCode;
 @property(copy, nonatomic) NSString *number; // @synthesize number=_number;
 - (void).cxx_destruct;
-- (variant_5d3576ba)credentials;
+- (variant_3911a704)credentials;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (unsigned long long)type;
 - (id)initWithNumber:(id)arg1 isoCountryCode:(id)arg2 countryCallingCode:(id)arg3;

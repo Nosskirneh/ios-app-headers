@@ -11,7 +11,7 @@
 #import "SPTCanvasContentLayerVideoPreloaderDelegate-Protocol.h"
 #import "SPTNowPlayingContainerIdleMonitorObserver-Protocol.h"
 
-@class NSString, SPTCanvasContentLayerImagePreloader, SPTCanvasContentLayerVideoPlayerLoader, SPTCanvasContentLayerVideoPreloader, SPTCanvasImageResolver, SPTPlayerTrack;
+@class NSString, SPTCanvasContentLayerImagePreloader, SPTCanvasContentLayerVideoPlayerLoader, SPTCanvasContentLayerVideoPreloader, SPTCanvasImageResolver, SPTCanvasTooltipPresentationManager, SPTPlayerTrack;
 @protocol SPTCanvasContentLayerViewControllerViewModelDelegate, SPTCanvasContentLayerViewControllerViewModelLoadDelegate, SPTCanvasIdleMonitorObserverDelegate, SPTCanvasModel, SPTLinkDispatcher, SPTVideoFeaturePlayerFactory, SPTVideoURLAssetLoader;
 
 @interface SPTCanvasContentLayerViewControllerViewModel : NSObject <SPTCanvasContentLayerVideoPlaybackObserverDelegate, SPTCanvasContentLayerVideoPreloaderDelegate, SPTCanvasContentLayerImagePreloaderDelegate, SPTNowPlayingContainerIdleMonitorObserver>
@@ -24,6 +24,7 @@
     id <SPTVideoURLAssetLoader> _videoAssetLoader;
     id <SPTLinkDispatcher> _linkDispatcher;
     SPTCanvasImageResolver *_imageResolver;
+    SPTCanvasTooltipPresentationManager *_tooltipManager;
     SPTCanvasContentLayerImagePreloader *_avatarLoader;
     SPTCanvasContentLayerImagePreloader *_imagePreloader;
     SPTCanvasContentLayerVideoPreloader *_videoPreloader;
@@ -37,7 +38,8 @@
 @property(retain, nonatomic) SPTCanvasContentLayerVideoPreloader *videoPreloader; // @synthesize videoPreloader=_videoPreloader;
 @property(retain, nonatomic) SPTCanvasContentLayerImagePreloader *imagePreloader; // @synthesize imagePreloader=_imagePreloader;
 @property(retain, nonatomic) SPTCanvasContentLayerImagePreloader *avatarLoader; // @synthesize avatarLoader=_avatarLoader;
-@property(retain, nonatomic) SPTCanvasImageResolver *imageResolver; // @synthesize imageResolver=_imageResolver;
+@property(readonly, nonatomic) SPTCanvasTooltipPresentationManager *tooltipManager; // @synthesize tooltipManager=_tooltipManager;
+@property(readonly, nonatomic) SPTCanvasImageResolver *imageResolver; // @synthesize imageResolver=_imageResolver;
 @property(readonly, nonatomic) id <SPTLinkDispatcher> linkDispatcher; // @synthesize linkDispatcher=_linkDispatcher;
 @property(readonly, nonatomic) id <SPTVideoURLAssetLoader> videoAssetLoader; // @synthesize videoAssetLoader=_videoAssetLoader;
 @property(readonly, nonatomic) id <SPTVideoFeaturePlayerFactory> videoPlayerFactory; // @synthesize videoPlayerFactory=_videoPlayerFactory;
@@ -63,6 +65,8 @@
 - (void)addVideoPlayerView;
 - (void)removeContent;
 - (void)addContent;
+- (void)dismissToolTipFromViewController:(id)arg1;
+- (void)presentToolTipFromViewController:(id)arg1;
 - (void)loadVideoPlayerWithVideoPreloaderResult:(id)arg1;
 - (void)loadVideoPlayer;
 - (id)preloadVideo;
@@ -71,7 +75,7 @@
 - (void)loadAvatarImage;
 - (id)preloadContent;
 - (void)navigateToArtistattribution;
-- (id)initWithCanvasModel:(id)arg1 track:(id)arg2 videoPlayerFactory:(id)arg3 videoAssetLoader:(id)arg4 imageResolver:(id)arg5 linkDispatcher:(id)arg6 idleMonitorDelegate:(id)arg7;
+- (id)initWithCanvasModel:(id)arg1 track:(id)arg2 videoPlayerFactory:(id)arg3 videoAssetLoader:(id)arg4 imageResolver:(id)arg5 linkDispatcher:(id)arg6 idleMonitorDelegate:(id)arg7 tooltipManager:(id)arg8;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

@@ -18,6 +18,7 @@
 - (SPTask *)actionForURI:(NSURL *)arg1 logContext:(NSString *)arg2 sourceURL:(NSURL *)arg3 actionIdentifier:(NSString *)arg4;
 - (SPTask *)offlineSync:(NSURL *)arg1 isOffline:(_Bool)arg2 collectionPlatform:(id <SPTCollectionPlatform>)arg3 collectionOptions:(SPTCollectionPlatformFetchOptions *)arg4 logContext:(NSString *)arg5;
 - (SPTask *)viewAlbumWithAlbumURL:(NSURL *)arg1 logContext:(NSString *)arg2;
+- (SPTask *)viewArtists:(NSArray *)arg1 logContext:(NSString *)arg2;
 - (SPTask *)viewArtistWithURL:(NSURL *)arg1 logContext:(NSString *)arg2;
 @end
 

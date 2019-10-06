@@ -12,7 +12,9 @@
 
 @interface SPTInteractionEventFactoryImplementation : NSObject <SPTInteractionEventFactory>
 {
+    NSString *_applicationId;
     NSString *_specificationId;
+    NSString *_specificationCommitHash;
     NSArray *_components;
     NSString *_interactionType;
     NSArray *_errors;
@@ -21,30 +23,46 @@
 @property(readonly, copy, nonatomic) NSArray *errors; // @synthesize errors=_errors;
 @property(readonly, copy, nonatomic) NSString *interactionType; // @synthesize interactionType=_interactionType;
 @property(readonly, copy, nonatomic) NSArray *components; // @synthesize components=_components;
+@property(readonly, copy, nonatomic) NSString *specificationCommitHash; // @synthesize specificationCommitHash=_specificationCommitHash;
 @property(readonly, copy, nonatomic) NSString *specificationId; // @synthesize specificationId=_specificationId;
+@property(readonly, copy, nonatomic) NSString *applicationId; // @synthesize applicationId=_applicationId;
 - (void).cxx_destruct;
+- (id)deletePlaylistWithPlaylistToBeDeleted:(id)arg1;
+- (id)addItemToQueueWithItemToAddToQueue:(id)arg1;
 - (id)shuffleDisable;
-- (id)skipToPreviousWithItemToBeSkipped:(id)arg1;
 - (id)unfollowWithItemToBeUnfollowed:(id)arg1;
-- (id)addToPlaylistWithPlaylist:(id)arg1 withItemToBeAdded:(id)arg2;
-- (id)uiHide;
+- (id)addToPlaylistWithPlaylist:(id)arg1 itemToBeAdded:(id)arg2;
 - (id)uiElementToggle;
-- (id)skipToNextWithItemToBeSkipped:(id)arg1;
 - (id)uiReveal;
-- (id)unlikeWithItemToBeUnliked:(id)arg1;
-- (id)shufflePlayWithContextToBePlayed:(id)arg1;
-- (id)repeatEnable;
-- (id)seekToTimeWithMsToSeekTo:(long long)arg1;
-- (id)repeatOneEnable;
+- (id)makePlaylistCollaborativeWithPlaylistToBeMadeCollaborative:(id)arg1;
+- (id)removeItemFromPlaylistWithItemRoRemoveFromPlaylist:(id)arg1;
+- (id)makePlaylistPublicWithPlaylistToBeMadePublic:(id)arg1;
+- (id)unbanWithItemToUnban:(id)arg1;
+- (id)openOsSettings;
 - (id)pauseWithItemToBePaused:(id)arg1;
+- (id)repeatOneEnable;
 - (id)followWithItemToBeFollowed:(id)arg1;
 - (id)repeatDisable;
 - (id)uiNavigateWithDestination:(id)arg1;
 - (id)likeWithItemToBeLiked:(id)arg1;
-- (id)shuffleEnable;
+- (id)makePlaylistSecretWithPlaylistToBeMadeSecret:(id)arg1;
 - (id)resumeWithItemToBeResumed:(id)arg1;
+- (id)shuffleEnable;
+- (id)skipToPreviousWithItemToBeSkipped:(id)arg1;
+- (id)noAction;
+- (id)uiHide;
+- (id)skipToNextWithItemToBeSkipped:(id)arg1;
+- (id)unlikeWithItemToBeUnliked:(id)arg1;
+- (id)makePlaylistNonCollaborativeWithPlaylistToBeMadeNonCollaborative:(id)arg1;
+- (id)shufflePlayWithContextToBePlayed:(id)arg1;
+- (id)repeatEnable;
+- (id)seekToTimeWithMsToSeekTo:(long long)arg1;
+- (id)downloadWithItemToDownload:(id)arg1;
+- (id)textClear;
+- (id)banWithItemToBan:(id)arg1;
+- (id)removeDownloadWithItemToRemoveFromDownloads:(id)arg1;
 - (id)playWithItemToBePlayed:(id)arg1;
-- (id)initWithSpecificationId:(id)arg1 components:(id)arg2 interactionType:(id)arg3 errors:(id)arg4;
+- (id)initWithApplicationId:(id)arg1 specificationId:(id)arg2 specificationCommitHash:(id)arg3 components:(id)arg4 interactionType:(id)arg5 errors:(id)arg6;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

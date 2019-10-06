@@ -27,11 +27,14 @@
 @property(nonatomic) __weak id <SPTCanvasContentLayerVideoPreloaderDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
 - (id)load;
-- (void)didLoadAsset:(id)arg1 error:(id)arg2;
+- (void)didLoadAsset:(id)arg1 withError:(id)arg2;
+- (void)loadAsset:(id)arg1 withError:(id)arg2;
 - (void)loadAssetWithURL:(id)arg1;
 - (id)resultForAsset:(id)arg1 error:(id)arg2;
 - (void)dealloc;
-- (id)preloadError;
+- (id)preloadErrorUnknown;
+- (id)preloadErrorLoadingKeys;
+- (id)preloadErrorNotSupported;
 - (id)initWithVideoAssetLoader:(id)arg1 canvasModel:(id)arg2;
 
 @end

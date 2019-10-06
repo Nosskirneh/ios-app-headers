@@ -9,7 +9,7 @@
 #import "SPTVideoPlaybackTimeObservableInternal-Protocol.h"
 
 @class NSMutableArray, NSString, SPTVideoPlayerSource;
-@protocol OS_dispatch_queue, SPTKVOController;
+@protocol BMKVOController, OS_dispatch_queue;
 
 @interface SPTVideoPlaybackTimeObservableImpl : NSObject <SPTVideoPlaybackTimeObservableInternal>
 {
@@ -18,10 +18,10 @@
     NSMutableArray *_addObserverClosures;
     NSMutableArray *_registeredObserverTokens;
     NSObject<OS_dispatch_queue> *_timeObserverQueue;
-    id <SPTKVOController> _kvoController;
+    id <BMKVOController> _kvoController;
 }
 
-@property(retain, nonatomic) id <SPTKVOController> kvoController; // @synthesize kvoController=_kvoController;
+@property(retain, nonatomic) id <BMKVOController> kvoController; // @synthesize kvoController=_kvoController;
 @property(retain, nonatomic) NSObject<OS_dispatch_queue> *timeObserverQueue; // @synthesize timeObserverQueue=_timeObserverQueue;
 @property(retain, nonatomic) NSMutableArray *registeredObserverTokens; // @synthesize registeredObserverTokens=_registeredObserverTokens;
 @property(retain, nonatomic) NSMutableArray *addObserverClosures; // @synthesize addObserverClosures=_addObserverClosures;

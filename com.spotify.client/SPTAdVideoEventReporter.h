@@ -6,13 +6,13 @@
 
 #import <objc/NSObject.h>
 
+#import "BMPlaybackEventObserver-Protocol.h"
 #import "SPTAdsBaseRegistryObserver-Protocol.h"
-#import "SPTVideoPlaybackEventObserver-Protocol.h"
 
 @class NSString;
-@protocol SPTAdsBaseCosmosBridge, SPTAdsBaseRegistry, SPTResolver, SPTVideoPlaybackIdentity;
+@protocol BMPlaybackIdentity, SPTAdsBaseCosmosBridge, SPTAdsBaseRegistry, SPTResolver;
 
-@interface SPTAdVideoEventReporter : NSObject <SPTAdsBaseRegistryObserver, SPTVideoPlaybackEventObserver>
+@interface SPTAdVideoEventReporter : NSObject <SPTAdsBaseRegistryObserver, BMPlaybackEventObserver>
 {
     _Bool _firedOnThreshold;
     _Bool _shouldFireImpressionOnStart;
@@ -21,12 +21,12 @@
     id <SPTAdsBaseRegistry> _registry;
     double _trackDuration;
     unsigned long long _quartilesPlayed;
-    id <SPTVideoPlaybackIdentity> _currentIdentity;
+    id <BMPlaybackIdentity> _currentIdentity;
     CDStruct_1b6d18a9 _currentTime;
 }
 
 @property(nonatomic) CDStruct_1b6d18a9 currentTime; // @synthesize currentTime=_currentTime;
-@property(retain, nonatomic) id <SPTVideoPlaybackIdentity> currentIdentity; // @synthesize currentIdentity=_currentIdentity;
+@property(retain, nonatomic) id <BMPlaybackIdentity> currentIdentity; // @synthesize currentIdentity=_currentIdentity;
 @property(nonatomic) _Bool shouldFireImpressionOnStart; // @synthesize shouldFireImpressionOnStart=_shouldFireImpressionOnStart;
 @property(nonatomic) unsigned long long quartilesPlayed; // @synthesize quartilesPlayed=_quartilesPlayed;
 @property(nonatomic) double trackDuration; // @synthesize trackDuration=_trackDuration;

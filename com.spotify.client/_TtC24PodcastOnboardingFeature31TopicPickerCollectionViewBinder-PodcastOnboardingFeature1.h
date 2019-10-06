@@ -8,6 +8,7 @@
 
 @interface _TtC24PodcastOnboardingFeature31TopicPickerCollectionViewBinder (PodcastOnboardingFeature1)
 - (void)scrollViewDidScroll:(id)arg1;
+- (struct CGSize)collectionView:(id)arg1 layout:(id)arg2 sizeForItemAtIndexPath:(id)arg3;
 - (struct CGSize)collectionView:(id)arg1 layout:(id)arg2 referenceSizeForHeaderInSection:(long long)arg3;
 - (void)collectionView:(id)arg1 didDeselectItemAtIndexPath:(id)arg2;
 - (void)collectionView:(id)arg1 didSelectItemAtIndexPath:(id)arg2;

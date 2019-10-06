@@ -7,6 +7,8 @@
 #import <UIKit/UIColor.h>
 
 @interface UIColor (GLUEHex)
++ (unsigned int)rgbValueFromHexString:(id)arg1;
++ (id)glue_colorFromHexString:(id)arg1;
 + (id)glue_colorFromHexString:(id)arg1 alpha:(double)arg2;
 @end
 

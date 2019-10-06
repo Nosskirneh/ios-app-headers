@@ -21,7 +21,7 @@
 #import "UITableViewDelegate-Protocol.h"
 
 @class GLUEButton, NSLayoutConstraint, NSString, NSURL, SPTEntityTableHeaderView, SPTFreeTierEntityNavigationDecorator, SPTInfoView, SPTPodcastEpisodeCellActionHandler, SPTPodcastHeaderDescriptionView, SPTPodcastToolbarHeaderView, SPTPodcastVideoPlayerView, SPTPodcastVideoViewControllerTransition, SPTProgressView, SPTShowContextMenuController, SPTTableView, SPTTheme, SPTVideoShowViewModel, UIBarButtonItem, UIImage, UIView;
-@protocol GLUEImageLoader, GLUETheme, SPTAlertInterface, SPTCollectionLogger, SPTCollectionPlatformTestManager, SPTImageLoader, SPTLinkDispatcher, SPTNavigationTestManager, SPTPageContainer, SPTPodcastContextMenuProvider, SPTPodcastEpisodeCellConfigurator, SPTPodcastLogger, SPTPodcastTestManager, SPTShareFeature, SPTUIPresentationService, SPTVideoSurfaceManager;
+@protocol BMVideoSurfaceManager, GLUEImageLoader, GLUETheme, SPTAlertInterface, SPTCollectionLogger, SPTCollectionPlatformTestManager, SPTImageLoader, SPTLinkDispatcher, SPTNavigationTestManager, SPTPageContainer, SPTPodcastContextMenuProvider, SPTPodcastEpisodeCellConfigurator, SPTPodcastLogger, SPTPodcastTestManager, SPTShareFeature, SPTUIPresentationService;
 
 @interface SPTVideoShowViewController : UIViewController <SPTNavigationControllerNavigationBarState, SPTVideoShowViewModelDelegate, SPTImageLoaderDelegate, SPTShowContextMenuControllerDelegate, SPTPodcastVideoViewControllerTransitionDelegate, SPTShareableContext, SPTPodcastHeaderDescriptionViewDelegate, SPTPodcastTestManagerObserver, UITableViewDelegate, UITableViewDataSource, SPTNavigationControllerTransitioning, SPTPageController, SPViewController>
 {
@@ -37,7 +37,7 @@
     id <SPTUIPresentationService> _presentationService;
     id <SPTLinkDispatcher> _linkDispatcher;
     SPTFreeTierEntityNavigationDecorator *_navigationItemDecorator;
-    id <SPTVideoSurfaceManager> _surfaceManager;
+    id <BMVideoSurfaceManager> _surfaceManager;
     id <SPTPodcastLogger> _logger;
     id <SPTCollectionLogger> _collectionLogger;
     SPTShowContextMenuController *_showContextMenuController;
@@ -107,7 +107,7 @@
 @property(retain, nonatomic) SPTShowContextMenuController *showContextMenuController; // @synthesize showContextMenuController=_showContextMenuController;
 @property(retain, nonatomic) id <SPTCollectionLogger> collectionLogger; // @synthesize collectionLogger=_collectionLogger;
 @property(retain, nonatomic) id <SPTPodcastLogger> logger; // @synthesize logger=_logger;
-@property(retain, nonatomic) id <SPTVideoSurfaceManager> surfaceManager; // @synthesize surfaceManager=_surfaceManager;
+@property(retain, nonatomic) id <BMVideoSurfaceManager> surfaceManager; // @synthesize surfaceManager=_surfaceManager;
 @property(retain, nonatomic) SPTFreeTierEntityNavigationDecorator *navigationItemDecorator; // @synthesize navigationItemDecorator=_navigationItemDecorator;
 @property(retain, nonatomic) id <SPTLinkDispatcher> linkDispatcher; // @synthesize linkDispatcher=_linkDispatcher;
 @property(nonatomic) __weak id <SPTUIPresentationService> presentationService; // @synthesize presentationService=_presentationService;
@@ -187,7 +187,6 @@
 - (id)playStateViewForVideo:(id)arg1;
 - (void)cellContextMenuTapped:(id)arg1;
 - (void)invokeHeaderContextMenu:(id)arg1;
-- (void)invokeContextMenu:(id)arg1 withEpisode:(id)arg2 atIndexPath:(id)arg3;
 - (void)updateBarButtons;
 - (void)setupBarButtons;
 - (void)setTitle:(id)arg1;

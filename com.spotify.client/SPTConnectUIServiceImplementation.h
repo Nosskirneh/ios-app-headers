@@ -8,8 +8,8 @@
 
 #import "SPTConnectUIService-Protocol.h"
 
-@class NSString, SPTAllocationContext, SPTConnectAccessButtonContainerViewController, SPTConnectAccessButtonTestProperties;
-@protocol GaiaFeature, SPTContainerService, SPTPlayerFeature, SPTRemoteConfigurationService;
+@class NSString, SPTAllocationContext, SPTConnectAccessButtonContainerViewController, SPTConnectAccessButtonTestManagerImplementation;
+@protocol GaiaFeature, SPTAbbaService, SPTContainerService, SPTPlayerFeature, SPTRemoteConfigurationService;
 
 @interface SPTConnectUIServiceImplementation : NSObject <SPTConnectUIService>
 {
@@ -17,13 +17,15 @@
     id <SPTRemoteConfigurationService> _remoteConfigurationService;
     id <GaiaFeature> _gaiaService;
     id <SPTPlayerFeature> _playerService;
-    SPTConnectAccessButtonTestProperties *_featureProperties;
+    id <SPTAbbaService> _abbaService;
+    SPTConnectAccessButtonTestManagerImplementation *_testManager;
     SPTConnectAccessButtonContainerViewController *_accessButtonContainerViewController;
 }
 
 + (id)serviceIdentifier;
 @property(retain, nonatomic) SPTConnectAccessButtonContainerViewController *accessButtonContainerViewController; // @synthesize accessButtonContainerViewController=_accessButtonContainerViewController;
-@property(retain, nonatomic) SPTConnectAccessButtonTestProperties *featureProperties; // @synthesize featureProperties=_featureProperties;
+@property(retain, nonatomic) SPTConnectAccessButtonTestManagerImplementation *testManager; // @synthesize testManager=_testManager;
+@property(nonatomic) __weak id <SPTAbbaService> abbaService; // @synthesize abbaService=_abbaService;
 @property(nonatomic) __weak id <SPTPlayerFeature> playerService; // @synthesize playerService=_playerService;
 @property(nonatomic) __weak id <GaiaFeature> gaiaService; // @synthesize gaiaService=_gaiaService;
 @property(nonatomic) __weak id <SPTRemoteConfigurationService> remoteConfigurationService; // @synthesize remoteConfigurationService=_remoteConfigurationService;

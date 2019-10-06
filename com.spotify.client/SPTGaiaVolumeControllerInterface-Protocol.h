@@ -10,7 +10,6 @@
 @protocol SPTGaiaVolumeControllerObserver;
 
 @protocol SPTGaiaVolumeControllerInterface <NSObject>
-@property(nonatomic) _Bool disableRemoteVolumePopup;
 @property(readonly, nonatomic) NSNumber *currentVolume;
 - (void)removeVolumeControllerObserver:(id <SPTGaiaVolumeControllerObserver>)arg1;
 - (void)addVolumeControllerObserver:(id <SPTGaiaVolumeControllerObserver>)arg1;

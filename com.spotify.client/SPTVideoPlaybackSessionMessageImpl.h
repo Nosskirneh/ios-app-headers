@@ -6,14 +6,14 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTVideoPlaybackSessionMessage-Protocol.h"
+#import "BMPlaybackSessionMessage-Protocol.h"
 
 @class NSString;
-@protocol SPTVideoPlaybackIdentity;
+@protocol BMPlaybackIdentity;
 
-@interface SPTVideoPlaybackSessionMessageImpl : NSObject <SPTVideoPlaybackSessionMessage>
+@interface SPTVideoPlaybackSessionMessageImpl : NSObject <BMPlaybackSessionMessage>
 {
-    id <SPTVideoPlaybackIdentity> _identity;
+    id <BMPlaybackIdentity> _identity;
     NSString *_featureIdentifier;
     long long _msStartPosition;
     long long _startBitrate;
@@ -82,7 +82,7 @@
 @property(nonatomic) long long startBitrate; // @synthesize startBitrate=_startBitrate;
 @property(nonatomic) long long msStartPosition; // @synthesize msStartPosition=_msStartPosition;
 @property(copy, nonatomic) NSString *featureIdentifier; // @synthesize featureIdentifier=_featureIdentifier;
-@property(retain, nonatomic) id <SPTVideoPlaybackIdentity> identity; // @synthesize identity=_identity;
+@property(retain, nonatomic) id <BMPlaybackIdentity> identity; // @synthesize identity=_identity;
 - (void).cxx_destruct;
 - (id)initWithIdentity:(id)arg1 featureIdentifier:(id)arg2 msStartPosition:(long long)arg3 startBitrate:(long long)arg4 msDuration:(long long)arg5 msStartTime:(long long)arg6 msManifestLoadTime:(long long)arg7 msEncryptionLoadTime:(long long)arg8 msInitialBuffering:(long long)arg9 msBufferingSeek:(long long)arg10 msBufferingSeekLongest:(long long)arg11 msBufferingStall:(long long)arg12 msBufferingStallLongest:(long long)arg13 nStalls:(long long)arg14 nSeekback:(long long)arg15 nSeekforward:(long long)arg16 msPlayed:(long long)arg17 msPlayedBackground:(long long)arg18 msPlayedFullscreen:(long long)arg19 msPlayedSubtitles:(long long)arg20 connectionTypeStart:(id)arg21 connectionTypeEnd:(id)arg22 kbpsAverageBandwidth:(long long)arg23 encryptionType:(id)arg24 kbytesDownloaded:(long long)arg25 nViewTransitions:(long long)arg26 nDroppedFrames:(long long)arg27 averageDeviceOrientation:(double)arg28 exitReason:(id)arg29 aspectRatio:(double)arg30 lastUsedSubtitle:(id)arg31;
 

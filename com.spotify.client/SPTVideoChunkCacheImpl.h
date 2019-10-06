@@ -6,18 +6,18 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTVideoChunkCache-Protocol.h"
+#import "BMChunkCache-Protocol.h"
 
 @class NSString;
-@protocol SPTVideoCache;
+@protocol BMCache;
 
-@interface SPTVideoChunkCacheImpl : NSObject <SPTVideoChunkCache>
+@interface SPTVideoChunkCacheImpl : NSObject <BMChunkCache>
 {
-    id <SPTVideoCache> _persistentCache;
+    id <BMCache> _persistentCache;
 }
 
 + (id)cacheWithVideoCache:(id)arg1;
-@property(retain, nonatomic) id <SPTVideoCache> persistentCache; // @synthesize persistentCache=_persistentCache;
+@property(retain, nonatomic) id <BMCache> persistentCache; // @synthesize persistentCache=_persistentCache;
 - (void).cxx_destruct;
 - (void)saveContentInformationWithKey:(id)arg1 contentType:(id)arg2 contentLength:(unsigned long long)arg3 byteRangeAccessSupported:(_Bool)arg4 completion:(CDUnknownBlockType)arg5 onQueue:(id)arg6;
 - (void)readContentInformationWithKey:(id)arg1 completion:(CDUnknownBlockType)arg2 onQueue:(id)arg3;

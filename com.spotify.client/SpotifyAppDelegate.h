@@ -6,16 +6,18 @@
 
 #import <objc/NSObject.h>
 
+#import "SPTAppStartupControllerDelegate-Protocol.h"
 #import "SPTServiceOrchestratorDelegate-Protocol.h"
 #import "SPTSessionServicesLoader-Protocol.h"
 #import "UIApplicationDelegate-Protocol.h"
 #import "UNUserNotificationCenterDelegate-Protocol.h"
 
 @class NSMutableDictionary, NSString, SPTAppLogModel, SPTApplicationDelegateLogger, SPTCommandLineProcessor, SPTCookieStorageManager, SPTDebugLogService, SPTPerfTracingSignpostObserver, SPTPlayModeMonitor, SPTServiceOrchestrator, SPTStartupTracer, SPTURLCacheManager, StateController, UIWindow;
-@protocol SPTCrashReporter, SPTLinkDispatcher, SPTLogCenter, SPTMetaViewController, SPTNavigationRouter, SPTReminderHandlerService, SPTThirdPartyTrackerBroadcaster, SPTUserActivityController;
+@protocol SPTAppStartupController, SPTCrashReporter, SPTLinkDispatcher, SPTLogCenter, SPTMetaViewController, SPTNavigationRouter, SPTReminderHandlerService, SPTThirdPartyTrackerBroadcaster, SPTUserActivityController;
 
-@interface SpotifyAppDelegate : NSObject <SPTServiceOrchestratorDelegate, UNUserNotificationCenterDelegate, SPTSessionServicesLoader, UIApplicationDelegate>
+@interface SpotifyAppDelegate : NSObject <SPTServiceOrchestratorDelegate, SPTAppStartupControllerDelegate, UNUserNotificationCenterDelegate, SPTSessionServicesLoader, UIApplicationDelegate>
 {
+    id <SPTAppStartupController> _appStartupController;
     UIWindow *_window;
     id <SPTNavigationRouter> _navigationRouter;
     id <SPTCrashReporter> _crashReporter;
@@ -63,6 +65,8 @@
 @property(retain, nonatomic) UIWindow *window; // @synthesize window=_window;
 - (void).cxx_destruct;
 - (void)loadSessionScopeServices;
+- (void)idleStateWasReachedForAppStartupController:(id)arg1;
+- (void)initialViewDidAppearForAppStartupController:(id)arg1;
 - (void)serviceOrchestrator:(id)arg1 didUnloadServicesForScope:(id)arg2;
 - (void)serviceOrchestrator:(id)arg1 willUnloadServicesForScope:(id)arg2;
 - (void)serviceOrchestrator:(id)arg1 didLoadServicesForScope:(id)arg2;
@@ -77,6 +81,7 @@
 - (void)userWillLogOut;
 - (void)applyThemeAppearance;
 - (void)setupTheme;
+@property(readonly, nonatomic) id <SPTAppStartupController> appStartupController; // @synthesize appStartupController=_appStartupController;
 - (void)removePlainTextFBToken;
 - (void)performVersionMigrations;
 - (void)setupAndShowMainWindow;

@@ -6,9 +6,6 @@
 
 #import "SPTService-Protocol.h"
 
-@protocol SPTBrowseTestManager;
-
 @protocol SPTBrowseService <SPTService>
-@property(readonly, nonatomic) id <SPTBrowseTestManager> testManager;
 @end
 

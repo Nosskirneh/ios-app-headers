@@ -19,6 +19,8 @@
 @property(readonly, nonatomic) SPTStartupTracer *startupTracer; // @synthesize startupTracer=_startupTracer;
 @property(readonly, nonatomic) SPTDefaultServiceInstanceInteractor *defaultInteractor; // @synthesize defaultInteractor=_defaultInteractor;
 - (void).cxx_destruct;
+- (void)notifyServiceThatIdleStateWasReached:(id)arg1 scope:(id)arg2;
+- (void)notifyServiceThatInitialViewDidAppear:(id)arg1 scope:(id)arg2;
 - (void)unloadService:(id)arg1 scope:(id)arg2;
 - (void)loadService:(id)arg1 scope:(id)arg2;
 - (void)configureService:(id)arg1 scope:(id)arg2 serviceProvider:(id)arg3;

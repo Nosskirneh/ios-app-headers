@@ -9,16 +9,19 @@
 #import "SPTRemoteConfigurationResolver-Protocol.h"
 
 @class NSString, SPTRemoteConfiguration;
+@protocol SPTRemoteConfigurationIntegration;
 
 @interface SPTRemoteConfigurationResolverImplementation : NSObject <SPTRemoteConfigurationResolver>
 {
     SPTRemoteConfiguration *_remoteConfiguration;
+    id <SPTRemoteConfigurationIntegration> _integration;
 }
 
+@property(nonatomic) __weak id <SPTRemoteConfigurationIntegration> integration; // @synthesize integration=_integration;
 @property(retain, nonatomic) SPTRemoteConfiguration *remoteConfiguration; // @synthesize remoteConfiguration=_remoteConfiguration;
 - (void).cxx_destruct;
 - (id)getWithClass:(Class)arg1;
-- (id)initWithRemoteConfiguration:(id)arg1;
+- (id)initWithRemoteConfiguration:(id)arg1 integration:(id)arg2;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

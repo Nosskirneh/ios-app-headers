@@ -6,27 +6,27 @@
 
 #import "SPAction.h"
 
-@class SPTVideoSubtitleConfigurator, SPTVideoSubtitlesMenuActionFactory;
-@protocol SPTUIPresentationService, SPTVideoPlayerSubtitleModule;
+@class SPTVideoSubtitleConfigurator, SPTVideoSubtitleProvider, SPTVideoSubtitlesMenuActionFactory;
+@protocol SPTUIPresentationService;
 
 @interface SPTVideoSubtitlesAction : SPAction
 {
     id <SPTUIPresentationService> _presentationService;
-    id <SPTVideoPlayerSubtitleModule> _subtitleManager;
+    SPTVideoSubtitleProvider *_subtitleProvider;
     SPTVideoSubtitlesMenuActionFactory *_subtitlesMenuActionFactory;
     SPTVideoSubtitleConfigurator *_subtitleConfigurator;
 }
 
 @property(retain, nonatomic) SPTVideoSubtitleConfigurator *subtitleConfigurator; // @synthesize subtitleConfigurator=_subtitleConfigurator;
 @property(retain, nonatomic) SPTVideoSubtitlesMenuActionFactory *subtitlesMenuActionFactory; // @synthesize subtitlesMenuActionFactory=_subtitlesMenuActionFactory;
-@property(retain, nonatomic) id <SPTVideoPlayerSubtitleModule> subtitleManager; // @synthesize subtitleManager=_subtitleManager;
+@property(retain, nonatomic) SPTVideoSubtitleProvider *subtitleProvider; // @synthesize subtitleProvider=_subtitleProvider;
 @property(nonatomic) __weak id <SPTUIPresentationService> presentationService; // @synthesize presentationService=_presentationService;
 - (void).cxx_destruct;
 - (id)execute:(id)arg1;
 - (_Bool)isEnabled;
 - (long long)icon;
 - (id)title;
-- (id)initWithLogContext:(id)arg1 presentationService:(id)arg2 subtitleManager:(id)arg3 subtitlesMenuActionFactory:(id)arg4 subtitleConfigurator:(id)arg5;
+- (id)initWithLogContext:(id)arg1 presentationService:(id)arg2 subtitleProvider:(id)arg3 subtitlesMenuActionFactory:(id)arg4 subtitleConfigurator:(id)arg5;
 
 @end
 

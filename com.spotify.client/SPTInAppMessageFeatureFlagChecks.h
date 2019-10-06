@@ -20,6 +20,7 @@
     _Bool _clientEventEnabled;
     _Bool _feedbackEnabled;
     _Bool _creativeV3Enabled;
+    _Bool _inAppMessageSDKEnabled;
     id <SPTFeatureFlagSignal> _inAppMessagingFlagSignal;
     id <SPTFeatureFlagSignal> _cardFlagSignal;
     id <SPTFeatureFlagSignal> _bannerFlagSignal;
@@ -29,10 +30,12 @@
     id <SPTFeatureFlagSignal> _clientEventFlagSignal;
     id <SPTFeatureFlagSignal> _feedbackFlagSignal;
     id <SPTFeatureFlagSignal> _creativeV3FlagSignal;
+    id <SPTFeatureFlagSignal> _inAppMessagingSDKFlagSignal;
     id <SPTFeatureFlagFactory> _featureFlagFactory;
 }
 
 @property(readonly, nonatomic) id <SPTFeatureFlagFactory> featureFlagFactory; // @synthesize featureFlagFactory=_featureFlagFactory;
+@property(nonatomic, getter=isInAppMessageSDKEnabled) _Bool inAppMessageSDKEnabled; // @synthesize inAppMessageSDKEnabled=_inAppMessageSDKEnabled;
 @property(nonatomic, getter=isCreativeV3Enabled) _Bool creativeV3Enabled; // @synthesize creativeV3Enabled=_creativeV3Enabled;
 @property(nonatomic, getter=isFeedbackEnabled) _Bool feedbackEnabled; // @synthesize feedbackEnabled=_feedbackEnabled;
 @property(nonatomic, getter=isClientEventEnabled) _Bool clientEventEnabled; // @synthesize clientEventEnabled=_clientEventEnabled;
@@ -42,6 +45,7 @@
 @property(nonatomic, getter=isBannerEnabled) _Bool bannerEnabled; // @synthesize bannerEnabled=_bannerEnabled;
 @property(nonatomic, getter=isCardEnabled) _Bool cardEnabled; // @synthesize cardEnabled=_cardEnabled;
 @property(nonatomic, getter=isInAppMessageEnabled) _Bool inAppMessageEnabled; // @synthesize inAppMessageEnabled=_inAppMessageEnabled;
+@property(readonly, nonatomic) id <SPTFeatureFlagSignal> inAppMessagingSDKFlagSignal; // @synthesize inAppMessagingSDKFlagSignal=_inAppMessagingSDKFlagSignal;
 @property(readonly, nonatomic) id <SPTFeatureFlagSignal> creativeV3FlagSignal; // @synthesize creativeV3FlagSignal=_creativeV3FlagSignal;
 @property(readonly, nonatomic) id <SPTFeatureFlagSignal> feedbackFlagSignal; // @synthesize feedbackFlagSignal=_feedbackFlagSignal;
 @property(readonly, nonatomic) id <SPTFeatureFlagSignal> clientEventFlagSignal; // @synthesize clientEventFlagSignal=_clientEventFlagSignal;

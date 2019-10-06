@@ -7,28 +7,25 @@
 #import "FBSDKButton.h"
 
 #import "FBSDKButtonImpressionTracking-Protocol.h"
-#import "UIActionSheetDelegate-Protocol.h"
 
-@class FBSDKLoginManager, NSArray, NSString;
+@class FBSDKLoginManager, NSArray, NSDictionary, NSString;
 @protocol FBSDKLoginButtonDelegate;
 
-@interface FBSDKLoginButton : FBSDKButton <FBSDKButtonImpressionTracking, UIActionSheetDelegate>
+@interface FBSDKLoginButton : FBSDKButton <FBSDKButtonImpressionTracking>
 {
     _Bool _hasShownTooltipBubble;
     FBSDKLoginManager *_loginManager;
     NSString *_userID;
     NSString *_userName;
     id <FBSDKLoginButtonDelegate> _delegate;
-    NSArray *_publishPermissions;
-    NSArray *_readPermissions;
+    NSArray *_permissions;
     unsigned long long _tooltipBehavior;
     unsigned long long _tooltipColorStyle;
 }
 
 @property(nonatomic) unsigned long long tooltipColorStyle; // @synthesize tooltipColorStyle=_tooltipColorStyle;
 @property(nonatomic) unsigned long long tooltipBehavior; // @synthesize tooltipBehavior=_tooltipBehavior;
-@property(copy, nonatomic) NSArray *readPermissions; // @synthesize readPermissions=_readPermissions;
-@property(copy, nonatomic) NSArray *publishPermissions; // @synthesize publishPermissions=_publishPermissions;
+@property(copy, nonatomic) NSArray *permissions; // @synthesize permissions=_permissions;
 @property(nonatomic) __weak id <FBSDKLoginButtonDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
 - (void)_updateContent;
@@ -39,16 +36,14 @@
 - (void)_buttonPressed:(id)arg1;
 - (void)_accessTokenDidChangeNotification:(id)arg1;
 - (void)configureButton;
-- (id)impressionTrackingIdentifier;
-- (id)impressionTrackingEventName;
-- (id)analyticsParameters;
-- (void)actionSheet:(id)arg1 didDismissWithButtonIndex:(long long)arg2;
+@property(readonly, copy, nonatomic) NSString *impressionTrackingIdentifier;
+@property(readonly, copy, nonatomic) NSString *impressionTrackingEventName;
+@property(readonly, copy, nonatomic) NSDictionary *analyticsParameters;
 - (struct CGSize)sizeThatFits:(struct CGSize)arg1;
 - (void)layoutSubviews;
 - (struct CGRect)titleRectForContentRect:(struct CGRect)arg1;
 - (struct CGRect)imageRectForContentRect:(struct CGRect)arg1;
 - (void)didMoveToWindow;
-- (id)backgroundColor;
 - (id)defaultFont;
 @property(nonatomic) unsigned long long loginBehavior;
 @property(nonatomic) unsigned long long defaultAudience;

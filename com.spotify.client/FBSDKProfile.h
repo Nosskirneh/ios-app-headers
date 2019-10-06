@@ -45,10 +45,8 @@
 - (_Bool)isEqual:(id)arg1;
 - (unsigned long long)hash;
 - (id)copyWithZone:(struct _NSZone *)arg1;
-- (id)imagePathForPictureMode:(unsigned long long)arg1 size:(struct CGSize)arg2;
 - (id)imageURLForPictureMode:(unsigned long long)arg1 size:(struct CGSize)arg2;
 - (id)initWithUserID:(id)arg1 firstName:(id)arg2 middleName:(id)arg3 lastName:(id)arg4 name:(id)arg5 linkURL:(id)arg6 refreshDate:(id)arg7;
-- (id)init;
 
 @end
 

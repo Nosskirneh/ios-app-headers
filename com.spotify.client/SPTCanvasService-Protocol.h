@@ -6,9 +6,11 @@
 
 #import "SPTService-Protocol.h"
 
-@protocol SPTCanvasTrackChecker;
+@protocol SPTCanvasMetadataResolverFactory, SPTCanvasTrackChecker, SPTCanvasVideoLoaderFactory;
 
 @protocol SPTCanvasService <SPTService>
+- (id <SPTCanvasMetadataResolverFactory>)provideCanvasMetadataResolverFactory;
+- (id <SPTCanvasVideoLoaderFactory>)provideCanvasVideoLoaderFactory;
 - (id <SPTCanvasTrackChecker>)provideCanvasTrackChecker;
 @end
 

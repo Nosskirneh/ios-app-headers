@@ -22,7 +22,8 @@
 - (id)_backgroundImageWithColor:(id)arg1 cornerRadius:(double)arg2 scale:(double)arg3;
 - (void)_applicationDidBecomeActiveNotification:(id)arg1;
 - (struct CGSize)sizeThatFits:(struct CGSize)arg1 title:(id)arg2;
-- (_Bool)isImplicitlyDisabled;
+@property(readonly, nonatomic, getter=isImplicitlyDisabled) _Bool implicitlyDisabled;
+- (id)highlightedContentColor;
 - (id)defaultSelectedColor;
 - (id)defaultIcon;
 - (id)defaultHighlightedColor;

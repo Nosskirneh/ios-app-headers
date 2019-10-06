@@ -8,18 +8,20 @@
 
 #import "SPTFreeTierCollectionTestManager-Protocol.h"
 
-@class NSString;
-@protocol SPTCollectionPlatformTestManager, SPTFeatureFlagFactory, SPTFeatureFlagSignal, SPTFreeTierPreCurationTestManager, SPTProductState;
+@class NSString, SPTFreeTierCollectionFeatureProperties;
+@protocol SPTCollectionPlatformTestManager, SPTFeatureFlagFactory, SPTFeatureFlagSignal, SPTFreeTierPreCurationTestManager, SPTProductState, SPTRemoteConfigurationResolver;
 
 @interface SPTFreeTierCollectionTestManagerImplementation : NSObject <SPTFreeTierCollectionTestManager>
 {
     _Bool _premiumLabelEnabled;
-    _Bool _frecencySortOrderDefaultInPlaylistsEnabled;
+    _Bool _frecencySortOrderDefaultInPlaylistsEnabledViaAbba;
     _Bool _doubleTabYourLibraryEnabled;
     _Bool _consolidatedExperienceEnabled;
     _Bool _groupsInLikedSongsEnabled;
+    _Bool _searchFieldInLikedSongsVisible;
     id <SPTFeatureFlagFactory> _featureFlagFactory;
     id <SPTProductState> _productState;
+    id <SPTRemoteConfigurationResolver> _remoteConfigurationResolver;
     id <SPTCollectionPlatformTestManager> _collectionPlatformTestManager;
     id <SPTFreeTierPreCurationTestManager> _preCurationTestManager;
     id <SPTFeatureFlagSignal> _yourLibrarySignal;
@@ -27,33 +29,40 @@
     id <SPTFeatureFlagSignal> _frecencySortOrderDefaultInPlaylistsSignal;
     id <SPTFeatureFlagSignal> _consolidatedExperienceSignal;
     id <SPTFeatureFlagSignal> _groupsInLikedSongsSignal;
+    SPTFreeTierCollectionFeatureProperties *_remoteConfigurationProperties;
 }
 
+@property(nonatomic, getter=isSearchFieldInLikedSongsVisible) _Bool searchFieldInLikedSongsVisible; // @synthesize searchFieldInLikedSongsVisible=_searchFieldInLikedSongsVisible;
+@property(retain, nonatomic) SPTFreeTierCollectionFeatureProperties *remoteConfigurationProperties; // @synthesize remoteConfigurationProperties=_remoteConfigurationProperties;
 @property(retain, nonatomic) id <SPTFeatureFlagSignal> groupsInLikedSongsSignal; // @synthesize groupsInLikedSongsSignal=_groupsInLikedSongsSignal;
 @property(nonatomic, getter=isGroupsInLikedSongsEnabled) _Bool groupsInLikedSongsEnabled; // @synthesize groupsInLikedSongsEnabled=_groupsInLikedSongsEnabled;
 @property(nonatomic, getter=isConsolidatedExperienceEnabled) _Bool consolidatedExperienceEnabled; // @synthesize consolidatedExperienceEnabled=_consolidatedExperienceEnabled;
 @property(retain, nonatomic) id <SPTFeatureFlagSignal> consolidatedExperienceSignal; // @synthesize consolidatedExperienceSignal=_consolidatedExperienceSignal;
 @property(nonatomic, getter=isDoubleTabYourLibraryEnabled) _Bool doubleTabYourLibraryEnabled; // @synthesize doubleTabYourLibraryEnabled=_doubleTabYourLibraryEnabled;
-@property(nonatomic, getter=isFrecencySortOrderDefaultInPlaylistsEnabled) _Bool frecencySortOrderDefaultInPlaylistsEnabled; // @synthesize frecencySortOrderDefaultInPlaylistsEnabled=_frecencySortOrderDefaultInPlaylistsEnabled;
+@property(nonatomic, getter=isFrecencySortOrderDefaultInPlaylistsEnabledViaAbba) _Bool frecencySortOrderDefaultInPlaylistsEnabledViaAbba; // @synthesize frecencySortOrderDefaultInPlaylistsEnabledViaAbba=_frecencySortOrderDefaultInPlaylistsEnabledViaAbba;
 @property(retain, nonatomic) id <SPTFeatureFlagSignal> frecencySortOrderDefaultInPlaylistsSignal; // @synthesize frecencySortOrderDefaultInPlaylistsSignal=_frecencySortOrderDefaultInPlaylistsSignal;
 @property(nonatomic, getter=isPremiumLabelEnabled) _Bool premiumLabelEnabled; // @synthesize premiumLabelEnabled=_premiumLabelEnabled;
 @property(retain, nonatomic) id <SPTFeatureFlagSignal> windowedTrackTestSignal; // @synthesize windowedTrackTestSignal=_windowedTrackTestSignal;
 @property(readonly, nonatomic) id <SPTFeatureFlagSignal> yourLibrarySignal; // @synthesize yourLibrarySignal=_yourLibrarySignal;
 @property(readonly, nonatomic) id <SPTFreeTierPreCurationTestManager> preCurationTestManager; // @synthesize preCurationTestManager=_preCurationTestManager;
 @property(readonly, nonatomic) id <SPTCollectionPlatformTestManager> collectionPlatformTestManager; // @synthesize collectionPlatformTestManager=_collectionPlatformTestManager;
+@property(readonly, nonatomic) id <SPTRemoteConfigurationResolver> remoteConfigurationResolver; // @synthesize remoteConfigurationResolver=_remoteConfigurationResolver;
 @property(readonly, nonatomic) id <SPTProductState> productState; // @synthesize productState=_productState;
 @property(readonly, nonatomic) id <SPTFeatureFlagFactory> featureFlagFactory; // @synthesize featureFlagFactory=_featureFlagFactory;
 - (void).cxx_destruct;
+@property(readonly, nonatomic, getter=isFrecencySortOrderDefaultInPlaylistsEnabled) _Bool frecencySortOrderDefaultInPlaylistsEnabled;
 @property(readonly, nonatomic, getter=isQuickActionsInLikedSongsEnabled) _Bool quickActionsInLikedSongsEnabled;
 @property(readonly, nonatomic, getter=isBookmarkModelEnabled) _Bool bookmarkModelEnabled;
 - (_Bool)isNPTUser;
 @property(readonly, nonatomic, getter=isShowAlbumArtistRecommendationsEnabled) _Bool showAlbumArtistRecommendationsEnabled;
+@property(readonly, nonatomic, getter=isCollectionTrackMetadataEnabled) _Bool collectionTrackMetadataEnabled;
 - (void)setupGroupsInLikedSongsSignal;
 - (void)setupFrecencySortingSignal;
 - (void)handleWindowedTrackSignal:(id)arg1 hasAssumedState:(long long)arg2;
 - (void)featureFlagSignal:(id)arg1 hasAssumedState:(long long)arg2;
+- (void)setupRemoteConfigurationProperties;
 - (void)setupIsPremiumOnlySignal;
-- (id)initWithFeatureFlagFactory:(id)arg1 productState:(id)arg2 collectionPlatformTestManager:(id)arg3 preCurationTestManager:(id)arg4 yourLibrarySignal:(id)arg5 consolidatedExperienceSignal:(id)arg6;
+- (id)initWithFeatureFlagFactory:(id)arg1 productState:(id)arg2 remoteConfigurationResolver:(id)arg3 collectionPlatformTestManager:(id)arg4 preCurationTestManager:(id)arg5 yourLibrarySignal:(id)arg6 consolidatedExperienceSignal:(id)arg7;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

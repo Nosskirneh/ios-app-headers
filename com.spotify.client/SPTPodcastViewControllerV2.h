@@ -18,8 +18,8 @@
 #import "UITableViewDataSource-Protocol.h"
 #import "UITableViewDelegate-Protocol.h"
 
-@class NSString, NSURL, SPTFreeTierEntityNavigationDecorator, SPTInfoView, SPTPodcastEpisodeCellActionHandler, SPTPodcastFilterTableFooterView, SPTPodcastFollowSectionTableViewCell, SPTPodcastHeaderController, SPTPodcastViewModel2, SPTProgressView, SPTShowContextMenuController, SPTTableView, SPTTheme, VISREFTableHeaderView;
-@protocol GLUEImageLoader, GLUETheme, SPTCollectionLogger, SPTCollectionPlatformTestManager, SPTLinkDispatcher, SPTPageContainer, SPTPodcastContextMenuProvider, SPTPodcastEpisodeCellConfigurator, SPTPodcastLogger, SPTPodcastTestManager, SPTShareFeature, SPTUIPresentationService;
+@class NSString, NSURL, SPTFreeTierEntityNavigationDecorator, SPTInfoView, SPTPodcastEpisodeCellActionHandler, SPTPodcastFilterTableFooterView, SPTPodcastHeaderController, SPTPodcastViewModel2, SPTProgressView, SPTShowContextMenuController, SPTTableView, SPTTheme, VISREFTableHeaderView;
+@protocol GLUEImageLoader, GLUETheme, SPTCollectionLogger, SPTCollectionPlatformTestManager, SPTLinkDispatcher, SPTPageContainer, SPTPodcastContextMenuProvider, SPTPodcastEpisodeCellConfigurator, SPTPodcastFollowSectionTableViewCellCommonInterface, SPTPodcastLogger, SPTPodcastTestManager, SPTShareFeature, SPTUIPresentationService;
 
 @interface SPTPodcastViewControllerV2 : UIViewController <SPTNavigationControllerNavigationBarState, SPTPodcastViewModelDelegate2, SPTShowContextMenuControllerDelegate, SPTShareableContext, UITableViewDelegate, UITableViewDataSource, SPTPodcastChipsSectionTableViewCellDelegate, SPTPodcastDescriptionTableViewCellDelegate, SPContentInsetViewController, SPTPageController, SPViewController>
 {
@@ -48,10 +48,10 @@
     NSURL *_firstRowImpressionEpisode;
     SPTPodcastHeaderController *_headerController;
     VISREFTableHeaderView *_podcastTableViewHeader;
-    SPTPodcastFollowSectionTableViewCell *_followSectionTableViewCell;
+    id <SPTPodcastFollowSectionTableViewCellCommonInterface> _followSectionTableViewCell;
 }
 
-@property(retain, nonatomic) SPTPodcastFollowSectionTableViewCell *followSectionTableViewCell; // @synthesize followSectionTableViewCell=_followSectionTableViewCell;
+@property(retain, nonatomic) id <SPTPodcastFollowSectionTableViewCellCommonInterface> followSectionTableViewCell; // @synthesize followSectionTableViewCell=_followSectionTableViewCell;
 @property(retain, nonatomic) VISREFTableHeaderView *podcastTableViewHeader; // @synthesize podcastTableViewHeader=_podcastTableViewHeader;
 @property(retain, nonatomic) SPTPodcastHeaderController *headerController; // @synthesize headerController=_headerController;
 @property(copy, nonatomic) NSURL *firstRowImpressionEpisode; // @synthesize firstRowImpressionEpisode=_firstRowImpressionEpisode;
@@ -84,14 +84,15 @@
 - (void)determineIfContextContainsURI:(id)arg1 responseHandler:(CDUnknownBlockType)arg2;
 @property(readonly, nonatomic, getter=spt_pageURI) NSURL *pageURI;
 @property(readonly, nonatomic, getter=spt_pageIdentifier) NSString *pageIdentifier;
+@property(nonatomic) _Bool automaticallyAdjustsScrollViewInsets;
 - (void)sp_updateContentInsets;
 @property(readonly, nonatomic) NSURL *URI;
 - (void)episodeDescriptionDidExpand;
 - (void)chipsSectionTableViewCell:(id)arg1 didSelectTopicCategory:(id)arg2;
+- (void)viewModel:(id)arg1 scrollToLatestPlayedEpisodeAtIndexPath:(id)arg2;
 - (void)viewModel:(id)arg1 requestsShowContextMenuPresentationFromSenderView:(id)arg2;
 - (void)podcastViewModelDidUpdatePlaybackRestrictions:(id)arg1;
 - (void)viewModel:(id)arg1 didUpdateFilteredState:(_Bool)arg2;
-- (void)viewModelPodcastLatestPlayedEpisode:(id)arg1 atIndexPath:(id)arg2;
 - (void)showInfoViewWithError:(id)arg1;
 - (void)viewModel:(id)arg1 willPresentFilterContextViewController:(id)arg2 fromSender:(id)arg3;
 - (void)viewModel:(id)arg1 podcastDidFinishLoadingWithError:(id)arg2;
@@ -100,9 +101,7 @@
 - (unsigned long long)preferredNavigationBarState;
 - (void)didSelectResetFiltersButton:(id)arg1;
 - (void)scrollViewDidScroll:(id)arg1;
-- (_Bool)cellIsVisibleAtIndexPath:(id)arg1;
 - (void)reloadActiveRow;
-- (void)adjustTableViewContentInset;
 - (void)setupTableView;
 - (void)tableView:(id)arg1 didSelectRowAtIndexPath:(id)arg2;
 - (void)tableView:(id)arg1 willDisplayCell:(id)arg2 forRowAtIndexPath:(id)arg3;
@@ -113,7 +112,6 @@
 - (double)tableView:(id)arg1 heightForHeaderInSection:(long long)arg2;
 - (id)tableView:(id)arg1 viewForHeaderInSection:(long long)arg2;
 - (void)showContextMenuController:(id)arg1 didUpdateFollowedState:(_Bool)arg2 forShow:(id)arg3;
-- (void)invokeContextMenu:(id)arg1 withEpisode:(id)arg2 atIndexPath:(id)arg3;
 - (void)updateBarButtons;
 - (void)setupBarButtons;
 - (void)setupConstraints;
@@ -123,7 +121,6 @@
 - (id)initWithPodcastViewModel:(id)arg1 glueImageLoader:(id)arg2 logger:(id)arg3 collectionLogger:(id)arg4 showContextMenuController:(id)arg5 episodeCellConfigurator:(id)arg6 collectionTestManager:(id)arg7 podcastTestManager:(id)arg8 podcastContextMenuProvider:(id)arg9 shareFeature:(id)arg10 linkDispatcher:(id)arg11 navigationDecorator:(id)arg12 cellActionHandler:(id)arg13 presentationService:(id)arg14;
 
 // Remaining properties
-@property(nonatomic) _Bool automaticallyAdjustsScrollViewInsets;
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
 @property(readonly) unsigned long long hash;

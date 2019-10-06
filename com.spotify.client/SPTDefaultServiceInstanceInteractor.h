@@ -14,6 +14,8 @@
 {
 }
 
+- (void)notifyServiceThatIdleStateWasReached:(id)arg1 scope:(id)arg2;
+- (void)notifyServiceThatInitialViewDidAppear:(id)arg1 scope:(id)arg2;
 - (void)unloadService:(id)arg1 scope:(id)arg2;
 - (void)loadService:(id)arg1 scope:(id)arg2;
 - (void)configureService:(id)arg1 scope:(id)arg2 serviceProvider:(id)arg3;

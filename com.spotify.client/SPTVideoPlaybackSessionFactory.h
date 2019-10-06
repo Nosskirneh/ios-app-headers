@@ -7,39 +7,41 @@
 #import <objc/NSObject.h>
 
 @class NSArray, SPTVideoAVFactory, SPTVideoApplicationStateObservable, SPTVideoCDNSelector, SPTVideoPlayerSource;
-@protocol SPTConnectionModeObservable, SPTKVOControllerFactory, SPTNotificationCenter, SPTVideoPlaybackErrorFormatter, SPTVideoPlayerConfiguration, SPTVideoResourceLoaderFactory, SPTVideoSubtitleFactory;
+@protocol BMChunkCache, BMConnectionModeObservable, BMDataLoader, BMKVOControllerFactory, BMPlayerConfiguration, SPTNotificationCenter, SPTVideoMediaExtension, SPTVideoPlaybackErrorFormatter;
 
 @interface SPTVideoPlaybackSessionFactory : NSObject
 {
     SPTVideoCDNSelector *_cdnSelector;
     SPTVideoPlayerSource *_playerSource;
-    id <SPTVideoPlayerConfiguration> _playerConfiguration;
-    id <SPTVideoResourceLoaderFactory> _resourceLoaderFactory;
-    id <SPTKVOControllerFactory> _kvoControllerFactory;
-    id <SPTConnectionModeObservable> _connectionModeObservable;
+    id <BMPlayerConfiguration> _playerConfiguration;
+    id <BMKVOControllerFactory> _kvoControllerFactory;
+    id <BMConnectionModeObservable> _connectionModeObservable;
     id <SPTNotificationCenter> _notificationCenter;
     id <SPTVideoPlaybackErrorFormatter> _videoPlaybackErrorFormatter;
-    id <SPTVideoSubtitleFactory> _subtitleFactory;
     SPTVideoApplicationStateObservable *_appStateObservable;
     SPTVideoAVFactory *_avFactory;
     NSArray *_eventObserverFactories;
+    id <BMDataLoader> _dataLoader;
+    id <BMChunkCache> _videoChunkCache;
+    id <SPTVideoMediaExtension> _spotifyVideoMediaExtension;
 }
 
+@property(retain, nonatomic) id <SPTVideoMediaExtension> spotifyVideoMediaExtension; // @synthesize spotifyVideoMediaExtension=_spotifyVideoMediaExtension;
+@property(retain, nonatomic) id <BMChunkCache> videoChunkCache; // @synthesize videoChunkCache=_videoChunkCache;
+@property(retain, nonatomic) id <BMDataLoader> dataLoader; // @synthesize dataLoader=_dataLoader;
 @property(copy, nonatomic) NSArray *eventObserverFactories; // @synthesize eventObserverFactories=_eventObserverFactories;
 @property(retain, nonatomic) SPTVideoAVFactory *avFactory; // @synthesize avFactory=_avFactory;
 @property(retain, nonatomic) SPTVideoApplicationStateObservable *appStateObservable; // @synthesize appStateObservable=_appStateObservable;
-@property(retain, nonatomic) id <SPTVideoSubtitleFactory> subtitleFactory; // @synthesize subtitleFactory=_subtitleFactory;
 @property(retain, nonatomic) id <SPTVideoPlaybackErrorFormatter> videoPlaybackErrorFormatter; // @synthesize videoPlaybackErrorFormatter=_videoPlaybackErrorFormatter;
 @property(retain, nonatomic) id <SPTNotificationCenter> notificationCenter; // @synthesize notificationCenter=_notificationCenter;
-@property(retain, nonatomic) id <SPTConnectionModeObservable> connectionModeObservable; // @synthesize connectionModeObservable=_connectionModeObservable;
-@property(retain, nonatomic) id <SPTKVOControllerFactory> kvoControllerFactory; // @synthesize kvoControllerFactory=_kvoControllerFactory;
-@property(retain, nonatomic) id <SPTVideoResourceLoaderFactory> resourceLoaderFactory; // @synthesize resourceLoaderFactory=_resourceLoaderFactory;
-@property(retain, nonatomic) id <SPTVideoPlayerConfiguration> playerConfiguration; // @synthesize playerConfiguration=_playerConfiguration;
+@property(retain, nonatomic) id <BMConnectionModeObservable> connectionModeObservable; // @synthesize connectionModeObservable=_connectionModeObservable;
+@property(retain, nonatomic) id <BMKVOControllerFactory> kvoControllerFactory; // @synthesize kvoControllerFactory=_kvoControllerFactory;
+@property(retain, nonatomic) id <BMPlayerConfiguration> playerConfiguration; // @synthesize playerConfiguration=_playerConfiguration;
 @property(retain, nonatomic) SPTVideoPlayerSource *playerSource; // @synthesize playerSource=_playerSource;
 @property(retain, nonatomic) SPTVideoCDNSelector *cdnSelector; // @synthesize cdnSelector=_cdnSelector;
 - (void).cxx_destruct;
 - (id)createSessionWithPlaybackIdentity:(id)arg1 options:(id)arg2 playerSource:(id)arg3;
-- (id)initWithCDNSelector:(id)arg1 resourceLoaderFactory:(id)arg2 connectionModeObservable:(id)arg3 playerConfiguration:(id)arg4 kvoControllerFactory:(id)arg5 notificationCenter:(id)arg6 videoPlaybackErrorFormatter:(id)arg7 subtitleFactory:(id)arg8 playerSource:(id)arg9 appStateObservable:(id)arg10 avFactory:(id)arg11 eventObserverFactories:(id)arg12;
+- (id)initWithCDNSelector:(id)arg1 connectionModeObservable:(id)arg2 playerConfiguration:(id)arg3 kvoControllerFactory:(id)arg4 notificationCenter:(id)arg5 videoPlaybackErrorFormatter:(id)arg6 playerSource:(id)arg7 appStateObservable:(id)arg8 avFactory:(id)arg9 eventObserverFactories:(id)arg10 dataLoader:(id)arg11 videoChunkCache:(id)arg12 spotifyVideoMediaExtension:(id)arg13;
 
 @end
 

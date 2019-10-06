@@ -9,17 +9,20 @@
 #import "SPTHomeMixEffectHandler-Protocol.h"
 
 @class NSString;
-@protocol SPTSnackbarConditionalPresenter;
+@protocol SPTHomeMixSnackbarEffectHandlerDelegate, SPTSnackbarConditionalPresenter;
 
 @interface SPTHomeMixSnackbarEffectHandler : NSObject <SPTHomeMixEffectHandler>
 {
     id <SPTSnackbarConditionalPresenter> _snackBarPresenter;
+    id <SPTHomeMixSnackbarEffectHandlerDelegate> _delegate;
 }
 
+@property(nonatomic) __weak id <SPTHomeMixSnackbarEffectHandlerDelegate> delegate; // @synthesize delegate=_delegate;
 @property(readonly, nonatomic) id <SPTSnackbarConditionalPresenter> snackBarPresenter; // @synthesize snackBarPresenter=_snackBarPresenter;
 - (void).cxx_destruct;
 - (void)handlePresentingErrorForSwitchingMood:(id)arg1 model:(id)arg2;
 - (void)handlePresentPartnerNeedsTOSnackbarEffect:(id)arg1 model:(id)arg2;
+- (void)handlePresentJoinMixSnackbar:(id)arg1 model:(id)arg2;
 - (void)handlePresentAloneSnackbarEffect:(id)arg1 model:(id)arg2;
 - (void)acceptNext:(id)arg1;
 - (void)acceptEffect:(id)arg1 model:(id)arg2;

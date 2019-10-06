@@ -6,23 +6,23 @@
 
 #import <objc/NSObject.h>
 
-@protocol SPTInteractionLogger, SPTLogCenter, SPTNowPlayingBarInteractionEventFactory, SPTNowPlayingModeResolver, SPTNowPlayingViewPremiumDefaultInteractionEventFactory;
+@protocol SPTLogCenter, SPTNowPlayingBarEventFactory, SPTNowPlayingModeResolver, SPTNowPlayingViewDefaultEventFactory, SPTUserBehaviourInstrumentationLogger;
 
 @interface SPTNowPlayingLogger : NSObject
 {
     id <SPTLogCenter> _logCenter;
-    id <SPTInteractionLogger> _interactionLogger;
-    id <SPTNowPlayingBarInteractionEventFactory> _nowPlayingBarInteractionFactory;
-    id <SPTNowPlayingViewPremiumDefaultInteractionEventFactory> _nowPlayingViewInteractionFactory;
+    id <SPTUserBehaviourInstrumentationLogger> _ubiLogger;
+    id <SPTNowPlayingBarEventFactory> _nowPlayingBarInteractionFactory;
+    id <SPTNowPlayingViewDefaultEventFactory> _nowPlayingViewInteractionFactory;
     id <SPTNowPlayingModeResolver> _modeResolver;
     CDUnknownBlockType _likeActionResolver;
 }
 
 @property(readonly, copy, nonatomic) CDUnknownBlockType likeActionResolver; // @synthesize likeActionResolver=_likeActionResolver;
 @property(readonly, nonatomic) __weak id <SPTNowPlayingModeResolver> modeResolver; // @synthesize modeResolver=_modeResolver;
-@property(retain, nonatomic) id <SPTNowPlayingViewPremiumDefaultInteractionEventFactory> nowPlayingViewInteractionFactory; // @synthesize nowPlayingViewInteractionFactory=_nowPlayingViewInteractionFactory;
-@property(retain, nonatomic) id <SPTNowPlayingBarInteractionEventFactory> nowPlayingBarInteractionFactory; // @synthesize nowPlayingBarInteractionFactory=_nowPlayingBarInteractionFactory;
-@property(retain, nonatomic) id <SPTInteractionLogger> interactionLogger; // @synthesize interactionLogger=_interactionLogger;
+@property(retain, nonatomic) id <SPTNowPlayingViewDefaultEventFactory> nowPlayingViewInteractionFactory; // @synthesize nowPlayingViewInteractionFactory=_nowPlayingViewInteractionFactory;
+@property(retain, nonatomic) id <SPTNowPlayingBarEventFactory> nowPlayingBarInteractionFactory; // @synthesize nowPlayingBarInteractionFactory=_nowPlayingBarInteractionFactory;
+@property(retain, nonatomic) id <SPTUserBehaviourInstrumentationLogger> ubiLogger; // @synthesize ubiLogger=_ubiLogger;
 @property(retain, nonatomic) id <SPTLogCenter> logCenter; // @synthesize logCenter=_logCenter;
 - (void).cxx_destruct;
 - (id)nowPlayingFeatureID;
@@ -50,6 +50,8 @@
 - (void)logSwipeToCloseWithPlayerState:(id)arg1;
 - (void)logCloseButtonTappedWithPlayerState:(id)arg1;
 - (void)logProgressSliderScrubbedWithPlayerState:(id)arg1;
+- (void)logSkip15SecondsForwardTappedWithPlayerState:(id)arg1;
+- (void)logSkip15SecondsBackwardTappedWithPlayerState:(id)arg1;
 - (void)logSwipeToNextWithPlayerState:(id)arg1;
 - (void)logSwipeToPreviousWithPlayerState:(id)arg1;
 - (void)logSkipToNextTappedWithPlayerState:(id)arg1;
@@ -60,7 +62,7 @@
 - (id)intentForShufflingState:(_Bool)arg1;
 - (id)intentForRepeatMode:(unsigned long long)arg1;
 - (id)intentForPlayButtonBehavior:(long long)arg1;
-- (id)initWithLogCenter:(id)arg1 modeResolver:(id)arg2 likeActionResolver:(CDUnknownBlockType)arg3 interactionLogger:(id)arg4 nowPlayingBarInteractionFactory:(id)arg5 nowPlayingViewInteractionFactory:(id)arg6;
+- (id)initWithLogCenter:(id)arg1 modeResolver:(id)arg2 likeActionResolver:(CDUnknownBlockType)arg3 ubiLogger:(id)arg4 nowPlayingBarInteractionFactory:(id)arg5 nowPlayingViewInteractionFactory:(id)arg6;
 - (void)ubi_logRemainingTimeLabelTapped;
 - (void)ubi_logTapToOpenArtist:(id)arg1 playerState:(id)arg2;
 - (void)ubi_logBarHeartButtonTapped:(long long)arg1 playerState:(id)arg2;

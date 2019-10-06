@@ -6,17 +6,17 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTEndVideoMessage-Protocol.h"
+#import "BMEndVideoMessage-Protocol.h"
 
 @class NSNumber, NSString;
-@protocol SPTVideoPlaybackIdentity;
+@protocol BMPlaybackIdentity;
 
-@interface SPTEndVideoMessageImpl : NSObject <SPTEndVideoMessage>
+@interface SPTEndVideoMessageImpl : NSObject <BMEndVideoMessage>
 {
     _Bool _incognitoMode;
     NSNumber *_sequenceNumber;
     NSString *_sequenceId;
-    id <SPTVideoPlaybackIdentity> _identity;
+    id <BMPlaybackIdentity> _identity;
     NSString *_reasonStart;
     NSString *_reasonEnd;
     long long _msPlayed;
@@ -84,7 +84,7 @@
 @property(nonatomic) long long msPlayed; // @synthesize msPlayed=_msPlayed;
 @property(copy, nonatomic) NSString *reasonEnd; // @synthesize reasonEnd=_reasonEnd;
 @property(copy, nonatomic) NSString *reasonStart; // @synthesize reasonStart=_reasonStart;
-@property(retain, nonatomic) id <SPTVideoPlaybackIdentity> identity; // @synthesize identity=_identity;
+@property(retain, nonatomic) id <BMPlaybackIdentity> identity; // @synthesize identity=_identity;
 @property(copy, nonatomic) NSString *sequenceId; // @synthesize sequenceId=_sequenceId;
 @property(retain, nonatomic) NSNumber *sequenceNumber; // @synthesize sequenceNumber=_sequenceNumber;
 - (void).cxx_destruct;

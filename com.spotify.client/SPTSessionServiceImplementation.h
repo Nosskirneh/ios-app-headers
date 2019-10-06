@@ -6,21 +6,27 @@
 
 #import <objc/NSObject.h>
 
-@class NSMapTable, NSString, SPTAllocationContext;
-@protocol SPTCoreService, SPTCrashReporterService, SPTNetworkService, SPTUIModeTransitionCoordinator;
+@class NSMapTable, NSString, SPTAllocationContext, SPTSessionObserver;
+@protocol SPTContainerService, SPTContainerUIService, SPTCoreService, SPTCrashReporterService, SPTNetworkService, SPTUIModeTransitionCoordinator;
 
 @interface SPTSessionServiceImplementation : NSObject
 {
     id <SPTCoreService> _coreService;
     id <SPTCrashReporterService> _crashReporterService;
     id <SPTNetworkService> _networkFeature;
+    id <SPTContainerService> _containerService;
+    id <SPTContainerUIService> _containerUIService;
     NSMapTable *_localSettingsCache;
     id <SPTUIModeTransitionCoordinator> _transitionCoordinator;
+    SPTSessionObserver *_sessionObserver;
 }
 
 + (id)serviceIdentifier;
+@property(retain, nonatomic) SPTSessionObserver *sessionObserver; // @synthesize sessionObserver=_sessionObserver;
 @property(retain, nonatomic) id <SPTUIModeTransitionCoordinator> transitionCoordinator; // @synthesize transitionCoordinator=_transitionCoordinator;
 @property(retain, nonatomic) NSMapTable *localSettingsCache; // @synthesize localSettingsCache=_localSettingsCache;
+@property(nonatomic) __weak id <SPTContainerUIService> containerUIService; // @synthesize containerUIService=_containerUIService;
+@property(nonatomic) __weak id <SPTContainerService> containerService; // @synthesize containerService=_containerService;
 @property(nonatomic) __weak id <SPTNetworkService> networkFeature; // @synthesize networkFeature=_networkFeature;
 @property(nonatomic) __weak id <SPTCrashReporterService> crashReporterService; // @synthesize crashReporterService=_crashReporterService;
 @property(nonatomic) __weak id <SPTCoreService> coreService; // @synthesize coreService=_coreService;

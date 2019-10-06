@@ -6,12 +6,9 @@
 
 #import <UIKit/UIView.h>
 
-#import "SPTAdsPromotedContentImageViewDelegate-Protocol.h"
+@class GLUEButton, GLUELabel, NSArray, SPTAdsPromotedContentImageView, SPTTheme, UIButton, UIStackView;
 
-@class GLUEButton, GLUELabel, NSArray, NSString, SPTAdsPromotedContentImageView, SPTTheme, UIButton, UIStackView;
-@protocol GLUEImageLoader;
-
-@interface SPTAdsMarqueeContentView : UIView <SPTAdsPromotedContentImageViewDelegate>
+@interface SPTAdsMarqueeContentView : UIView
 {
     GLUEButton *_actionButton;
     UIButton *_optOutButton;
@@ -23,14 +20,12 @@
     GLUELabel *_albumTitleLabel;
     GLUELabel *_informationTextLabel;
     UIStackView *_informationContainerView;
-    id <GLUEImageLoader> _glueImageLoader;
     NSArray *_adsDisabledConstraints;
     NSArray *_adsEnabledConstraints;
 }
 
 @property(copy, nonatomic) NSArray *adsEnabledConstraints; // @synthesize adsEnabledConstraints=_adsEnabledConstraints;
 @property(copy, nonatomic) NSArray *adsDisabledConstraints; // @synthesize adsDisabledConstraints=_adsDisabledConstraints;
-@property(readonly, nonatomic) id <GLUEImageLoader> glueImageLoader; // @synthesize glueImageLoader=_glueImageLoader;
 @property(readonly, nonatomic) UIStackView *informationContainerView; // @synthesize informationContainerView=_informationContainerView;
 @property(readonly, nonatomic) GLUELabel *informationTextLabel; // @synthesize informationTextLabel=_informationTextLabel;
 @property(readonly, nonatomic) GLUELabel *albumTitleLabel; // @synthesize albumTitleLabel=_albumTitleLabel;
@@ -43,16 +38,9 @@
 @property(readonly, nonatomic) GLUEButton *actionButton; // @synthesize actionButton=_actionButton;
 - (void).cxx_destruct;
 - (_Bool)isAccessibilityElement;
-- (void)didLoadContentImage:(id)arg1;
 - (void)applyThemeLayout;
 - (void)addConstraintsWithAdsEnabled:(_Bool)arg1;
-- (id)initWithArtistTitle:(id)arg1 albumTitle:(id)arg2 albumImageURL:(id)arg3 promotedText:(id)arg4 adsEnabled:(_Bool)arg5 theme:(id)arg6 glueImageLoader:(id)arg7;
-
-// Remaining properties
-@property(readonly, copy) NSString *debugDescription;
-@property(readonly, copy) NSString *description;
-@property(readonly) unsigned long long hash;
-@property(readonly) Class superclass;
+- (id)initWithArtistTitle:(id)arg1 albumTitle:(id)arg2 albumImage:(id)arg3 adsEnabled:(_Bool)arg4 theme:(id)arg5;
 
 @end
 

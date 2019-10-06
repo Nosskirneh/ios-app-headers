@@ -57,13 +57,13 @@
 @property(readonly, nonatomic) id <SPTSearch2URLProviding> urlProvider; // @synthesize urlProvider=_urlProvider;
 - (void).cxx_destruct;
 - (id)makeProtobufResponseParserWithQuery:(id)arg1 isDrillDown:(_Bool)arg2;
-- (id)makeHubsResponseParserWithURL:(id)arg1;
+- (id)makeAssistedCurationHubsResponseParser;
 - (id)makePostProcessContentOperations;
 - (id)makeHUBS2MigrationContentOperation;
 - (id)makeConnectivityMonitor;
 - (id)makeViewModelBuilderFactory;
 - (id)makeOfflineFetcherForQuery:(id)arg1;
-- (id)patcherForURL:(id)arg1;
+- (id)assistedCurationPatcher;
 - (id)makeOnlineFetcherForQuery:(id)arg1 autoCompleteRequestID:(id)arg2;
 - (id)makeOfflineResultsContextForQuery:(id)arg1;
 - (id)makeOnlineResultsContextForQuery:(id)arg1 autoCompleteRequestID:(id)arg2;

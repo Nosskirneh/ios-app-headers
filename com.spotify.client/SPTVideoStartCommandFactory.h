@@ -6,14 +6,14 @@
 
 #import <objc/NSObject.h>
 
-@protocol SPTVideoPlaybackRequestFactory;
+@protocol BMPlaybackRequestFactory;
 
 @interface SPTVideoStartCommandFactory : NSObject
 {
-    id <SPTVideoPlaybackRequestFactory> _requestFactory;
+    id <BMPlaybackRequestFactory> _requestFactory;
 }
 
-@property(retain, nonatomic) id <SPTVideoPlaybackRequestFactory> requestFactory; // @synthesize requestFactory=_requestFactory;
+@property(retain, nonatomic) id <BMPlaybackRequestFactory> requestFactory; // @synthesize requestFactory=_requestFactory;
 - (void).cxx_destruct;
 - (_Bool)isSupportedMediaManifest:(id)arg1;
 - (id)parseManifest:(id)arg1;

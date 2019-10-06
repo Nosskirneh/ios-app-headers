@@ -6,18 +6,18 @@
 
 #import <objc/NSObject.h>
 
-@protocol SPTVideoFormat;
+@protocol BMVideoFormat;
 
 @interface SPTVideoFormatEvent : NSObject
 {
-    id <SPTVideoFormat> _format;
+    id <BMVideoFormat> _format;
     double _position;
     double _length;
 }
 
 @property(nonatomic) double length; // @synthesize length=_length;
 @property(nonatomic) double position; // @synthesize position=_position;
-@property(readonly, nonatomic) id <SPTVideoFormat> format; // @synthesize format=_format;
+@property(readonly, nonatomic) id <BMVideoFormat> format; // @synthesize format=_format;
 - (void).cxx_destruct;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)copyWithNewStartPosition:(double)arg1 format:(id)arg2;

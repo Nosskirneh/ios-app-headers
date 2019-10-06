@@ -19,7 +19,7 @@
 @property(readonly, nonatomic) __weak HUBComponentView *componentView; // @synthesize componentView=_componentView;
 - (void).cxx_destruct;
 - (_Bool)isComponentInWindow:(id)arg1 componentView:(id)arg2;
-- (_Bool)needsLoggingWhenScrollViewDidScroll:(id)arg1;
+- (_Bool)needsLoggingWhenComponentIsVisibleInWindow:(id)arg1;
 @property(readonly, nonatomic) id <HUBComponentModel> model;
 - (id)initWithComponentView:(id)arg1;
 

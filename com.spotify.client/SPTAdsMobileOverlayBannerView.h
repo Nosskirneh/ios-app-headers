@@ -6,36 +6,46 @@
 
 #import "SPTBannerView.h"
 
-@class GLUELabel, SPTAdsPromotedContentImageView, SPTTheme, UIButton, UIView;
+@class GLUELabel, NSLayoutConstraint, SPTAdsPromotedContentImageView, SPTTheme, UIButton, UIView;
 @protocol GLUEImageLoader;
 
 @interface SPTAdsMobileOverlayBannerView : SPTBannerView
 {
     SPTAdsPromotedContentImageView *_imageView;
     UIView *_backgroundOverlayView;
+    UIView *_actionView;
     GLUELabel *_headerLabel;
     GLUELabel *_advertiserLabel;
     UIButton *_learnMoreButton;
     UIButton *_closeBannerButton;
     SPTTheme *_theme;
     id <GLUEImageLoader> _glueImageLoader;
+    NSLayoutConstraint *_imageViewSizeContraint;
+    NSLayoutConstraint *_imageViewMarginConstraint;
+    NSLayoutConstraint *_closeButtonTrailingConstraint;
     double _safeAreaMargin;
 }
 
 @property(nonatomic) double safeAreaMargin; // @synthesize safeAreaMargin=_safeAreaMargin;
+@property(retain, nonatomic) NSLayoutConstraint *closeButtonTrailingConstraint; // @synthesize closeButtonTrailingConstraint=_closeButtonTrailingConstraint;
+@property(retain, nonatomic) NSLayoutConstraint *imageViewMarginConstraint; // @synthesize imageViewMarginConstraint=_imageViewMarginConstraint;
+@property(retain, nonatomic) NSLayoutConstraint *imageViewSizeContraint; // @synthesize imageViewSizeContraint=_imageViewSizeContraint;
 @property(readonly, nonatomic) id <GLUEImageLoader> glueImageLoader; // @synthesize glueImageLoader=_glueImageLoader;
 @property(readonly, nonatomic) SPTTheme *theme; // @synthesize theme=_theme;
 @property(readonly, nonatomic) UIButton *closeBannerButton; // @synthesize closeBannerButton=_closeBannerButton;
 @property(readonly, nonatomic) UIButton *learnMoreButton; // @synthesize learnMoreButton=_learnMoreButton;
 @property(readonly, nonatomic) GLUELabel *advertiserLabel; // @synthesize advertiserLabel=_advertiserLabel;
 @property(readonly, nonatomic) GLUELabel *headerLabel; // @synthesize headerLabel=_headerLabel;
+@property(readonly, nonatomic) UIView *actionView; // @synthesize actionView=_actionView;
 @property(readonly, nonatomic) UIView *backgroundOverlayView; // @synthesize backgroundOverlayView=_backgroundOverlayView;
 @property(readonly, nonatomic) SPTAdsPromotedContentImageView *imageView; // @synthesize imageView=_imageView;
 - (void).cxx_destruct;
+- (void)traitCollectionDidChange:(id)arg1;
 - (void)applyThemeLayout;
 - (void)actionButtonTapped;
 - (void)closeButtonAction;
-- (_Bool)isIPad;
+- (_Bool)useCompactMode;
+- (void)updateConstraints;
 - (struct CGSize)sizeThatFits:(struct CGSize)arg1;
 - (void)addConstraints;
 - (void)removeUnusedSubviews;

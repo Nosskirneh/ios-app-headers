@@ -38,6 +38,8 @@
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
+- (_Bool)validateWithOptions:(unsigned long long)arg1 error:(id *)arg2;
+- (id)addParameters:(id)arg1 bridgeOptions:(unsigned long long)arg2;
 - (id)init;
 
 // Remaining properties

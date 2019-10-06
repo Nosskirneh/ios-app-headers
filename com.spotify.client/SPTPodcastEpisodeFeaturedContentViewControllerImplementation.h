@@ -17,21 +17,23 @@
 {
     _Bool _loaded;
     id <SPTPodcastEpisodeFeaturedContentViewControllerDelegate> _delegate;
+    NSMutableSet *_episodeFeaturedContentComponents;
     id <SPTPodcastEpisodeFeaturedContentHubViewProvider> _hubViewProvider;
     SPTHubViewModelProvider *_hubViewModelProvider;
     HUBView *_hubView;
     id <SPTHubImpressionLogger> _impressionLogger;
-    NSMutableSet *_episodeFeaturedContentComponents;
 }
 
-@property(retain, nonatomic) NSMutableSet *episodeFeaturedContentComponents; // @synthesize episodeFeaturedContentComponents=_episodeFeaturedContentComponents;
 @property(readonly, nonatomic) id <SPTHubImpressionLogger> impressionLogger; // @synthesize impressionLogger=_impressionLogger;
 @property(retain, nonatomic) HUBView *hubView; // @synthesize hubView=_hubView;
 @property(nonatomic, getter=isLoaded) _Bool loaded; // @synthesize loaded=_loaded;
 @property(readonly, nonatomic) SPTHubViewModelProvider *hubViewModelProvider; // @synthesize hubViewModelProvider=_hubViewModelProvider;
 @property(readonly, nonatomic) id <SPTPodcastEpisodeFeaturedContentHubViewProvider> hubViewProvider; // @synthesize hubViewProvider=_hubViewProvider;
+@property(retain, nonatomic) NSMutableSet *episodeFeaturedContentComponents; // @synthesize episodeFeaturedContentComponents=_episodeFeaturedContentComponents;
 @property(nonatomic) __weak id <SPTPodcastEpisodeFeaturedContentViewControllerDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
+- (void)logImpressionIfNeccessary:(id)arg1;
+- (void)superScrollViewDidAppear:(id)arg1;
 - (void)superScrollViewDidScroll:(id)arg1;
 - (void)hubView:(id)arg1 componentViewDidDisappear:(id)arg2;
 - (void)hubView:(id)arg1 componentViewWillAppear:(id)arg2;

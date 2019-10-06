@@ -6,9 +6,11 @@
 
 #import "SPTService-Protocol.h"
 
+@class SPTBannerView, SPTPartnerActiveSessionBannerViewModel;
 @protocol SPTPartnerIntegrationRegistry, SPTPartnerLogger, SPTPartnerTestManager;
 
 @protocol SPTPartnerService <SPTService>
+- (SPTBannerView *)provideActiveSessionBannerViewWithViewModel:(SPTPartnerActiveSessionBannerViewModel *)arg1;
 - (id <SPTPartnerLogger>)provideLogger;
 - (id <SPTPartnerTestManager>)provideTestManager;
 - (id <SPTPartnerIntegrationRegistry>)providePartnerIntegrationRegistry;

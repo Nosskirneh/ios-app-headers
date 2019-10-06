@@ -7,11 +7,12 @@
 #import "NSObject-Protocol.h"
 
 @class AVPlayerItem, NSError, SPTVideoPlayerSource;
-@protocol SPTVideoSeekableWindow;
+@protocol BMSeekableWindow, BMSubtitle;
 
 @protocol SPTVideoPlayerSourceObserver <NSObject>
-- (void)playerSource:(SPTVideoPlayerSource *)arg1 didUpdateSeekableWindow:(id <SPTVideoSeekableWindow>)arg2;
+- (void)playerSource:(SPTVideoPlayerSource *)arg1 didUpdateSeekableWindow:(id <BMSeekableWindow>)arg2;
 - (void)playerSource:(SPTVideoPlayerSource *)arg1 playerItem:(AVPlayerItem *)arg2 failedToPlayToEndWithError:(NSError *)arg3;
+- (void)playerSource:(SPTVideoPlayerSource *)arg1 didChangeSubtitle:(id <BMSubtitle>)arg2;
 - (void)playerSource:(SPTVideoPlayerSource *)arg1 didReachEndForPlayerItem:(AVPlayerItem *)arg2;
 - (void)playerSource:(SPTVideoPlayerSource *)arg1 playerItem:(AVPlayerItem *)arg2 likelyToKeepUp:(_Bool)arg3;
 - (void)playerSource:(SPTVideoPlayerSource *)arg1 playerItem:(AVPlayerItem *)arg2 statusChanged:(long long)arg3;

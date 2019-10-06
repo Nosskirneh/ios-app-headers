@@ -6,12 +6,12 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTVideoEventObserverFactory-Protocol.h"
+#import "BMEventObserverFactory-Protocol.h"
 
 @class NSString;
 @protocol SPTAudioPlayerMediaClockService;
 
-@interface SPTVideoAudioStackMediaSynchronizerFactory : NSObject <SPTVideoEventObserverFactory>
+@interface SPTVideoAudioStackMediaSynchronizerFactory : NSObject <BMEventObserverFactory>
 {
     CDUnknownBlockType _playerProvider;
     id <SPTAudioPlayerMediaClockService> _audioPlayerMediaClockService;

@@ -14,14 +14,12 @@
 
 @interface SPTNowPlayingContextMenuHeaderViewController : UIViewController <SPTNowPlayingPlaybackActionsHandlerObserver, SPTContextMenuSectionHeaderDelegate>
 {
-    _Bool _queueHidden;
     SPTNowPlayingModel *_model;
     id <SPTNowPlayingPlaybackActionsHandler> _playbackActionsHandler;
     id <SPTNowPlayingAuxiliaryActionsHandler> _auxiliaryActionsHandler;
     SPTTheme *_theme;
 }
 
-@property(readonly, nonatomic) _Bool queueHidden; // @synthesize queueHidden=_queueHidden;
 @property(readonly, nonatomic) SPTTheme *theme; // @synthesize theme=_theme;
 @property(readonly, nonatomic) id <SPTNowPlayingAuxiliaryActionsHandler> auxiliaryActionsHandler; // @synthesize auxiliaryActionsHandler=_auxiliaryActionsHandler;
 @property(readonly, nonatomic) id <SPTNowPlayingPlaybackActionsHandler> playbackActionsHandler; // @synthesize playbackActionsHandler=_playbackActionsHandler;
@@ -34,7 +32,7 @@
 - (double)contextMenuHeightForSectionHeader;
 - (void)loadView;
 - (void)viewDidLoad;
-- (id)initWithModel:(id)arg1 playbackActionsHandler:(id)arg2 auxiliaryActionsHandler:(id)arg3 theme:(id)arg4 queueHidden:(_Bool)arg5;
+- (id)initWithModel:(id)arg1 playbackActionsHandler:(id)arg2 auxiliaryActionsHandler:(id)arg3 theme:(id)arg4;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

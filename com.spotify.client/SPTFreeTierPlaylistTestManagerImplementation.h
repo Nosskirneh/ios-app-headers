@@ -21,7 +21,6 @@
     _Bool _episodesInPlaylistDisabled;
     _Bool _accessibilityHeaderEnabled;
     _Bool _scrollPerformanceTrackingEnabled;
-    _Bool _updatedFilterUXPremiumEnabled;
     id <SPTFeatureFlagFactory> _featureFlagFactory;
     id <SPTProductState> _productState;
     id <SPTFeatureFlagSignal> _freeTierEnabledSignal;
@@ -33,14 +32,12 @@
     id <SPTFeatureFlagSignal> _ignoreProductStateForEpisodesAvailableSignal;
     id <SPTFeatureFlagSignal> _accessibilityHeaderSignal;
     id <SPTFeatureFlagSignal> _scrollPerformanceSignal;
-    id <SPTFeatureFlagSignal> _updatedFilterUXPremiumSignal;
     SPTFreeTierPlaylistFeatureProperties *_properties;
     id <SPTRemoteConfigurationResolver> _remoteConfigurationResolver;
 }
 
 @property(retain, nonatomic) id <SPTRemoteConfigurationResolver> remoteConfigurationResolver; // @synthesize remoteConfigurationResolver=_remoteConfigurationResolver;
 @property(retain, nonatomic) SPTFreeTierPlaylistFeatureProperties *properties; // @synthesize properties=_properties;
-@property(nonatomic, getter=isUpdatedFilterUXPremiumEnabled) _Bool updatedFilterUXPremiumEnabled; // @synthesize updatedFilterUXPremiumEnabled=_updatedFilterUXPremiumEnabled;
 @property(nonatomic, getter=isScrollPerformanceTrackingEnabled) _Bool scrollPerformanceTrackingEnabled; // @synthesize scrollPerformanceTrackingEnabled=_scrollPerformanceTrackingEnabled;
 @property(nonatomic, getter=isAccessibilityHeaderEnabled) _Bool accessibilityHeaderEnabled; // @synthesize accessibilityHeaderEnabled=_accessibilityHeaderEnabled;
 @property(nonatomic, getter=isEpisodesInPlaylistDisabled) _Bool episodesInPlaylistDisabled; // @synthesize episodesInPlaylistDisabled=_episodesInPlaylistDisabled;
@@ -49,7 +46,6 @@
 @property(nonatomic, getter=isFreeTierEnabled) _Bool freeTierEnabled; // @synthesize freeTierEnabled=_freeTierEnabled;
 @property(nonatomic, getter=isPremiumLabelEnabled) _Bool premiumLabelEnabled; // @synthesize premiumLabelEnabled=_premiumLabelEnabled;
 @property(nonatomic, getter=isWeigthedShufflePlayDisabled) _Bool weigthedShufflePlayDisabled; // @synthesize weigthedShufflePlayDisabled=_weigthedShufflePlayDisabled;
-@property(retain, nonatomic) id <SPTFeatureFlagSignal> updatedFilterUXPremiumSignal; // @synthesize updatedFilterUXPremiumSignal=_updatedFilterUXPremiumSignal;
 @property(retain, nonatomic) id <SPTFeatureFlagSignal> scrollPerformanceSignal; // @synthesize scrollPerformanceSignal=_scrollPerformanceSignal;
 @property(retain, nonatomic) id <SPTFeatureFlagSignal> accessibilityHeaderSignal; // @synthesize accessibilityHeaderSignal=_accessibilityHeaderSignal;
 @property(retain, nonatomic) id <SPTFeatureFlagSignal> ignoreProductStateForEpisodesAvailableSignal; // @synthesize ignoreProductStateForEpisodesAvailableSignal=_ignoreProductStateForEpisodesAvailableSignal;
@@ -67,7 +63,6 @@
 @property(readonly, nonatomic, getter=isAssistedCurationPremiumEnabled) _Bool assistedCurationPremiumEnabled;
 @property(readonly, nonatomic, getter=isConsolidatedExperienceEnabled) _Bool consolidatedExperienceEnabled;
 - (void)featureFlagSignal:(id)arg1 hasAssumedState:(long long)arg2;
-- (void)setupUpdatedFilterUXPremiumSignal;
 - (void)setupEpisodesAvailable;
 @property(readonly, nonatomic, getter=isTrackItemQuickActionsEnabled) _Bool trackItemQuickActionsEnabled;
 - (void)setupScrollPerformanceSignal;

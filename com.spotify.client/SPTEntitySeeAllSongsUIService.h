@@ -10,7 +10,7 @@
 #import "SPTURISubtypeHandler-Protocol.h"
 
 @class NSString, SPNavigationController, SPTAllocationContext;
-@protocol SPContextMenuFeature, SPTAudioPreviewService, SPTCollectionPlatformService, SPTContainerService, SPTEntitySeeAllSongsRegistry, SPTEntitySeeAllSongsService, SPTExplicitContentService, SPTFeatureFlagSignal, SPTFeatureFlaggingService, SPTFreeTierPreCurationService, SPTFreeTierPresentationService, SPTGLUEService, SPTPerformanceMetricsService, SPTSelfPresentingViewController, SPTSwiftAllSongsService, SPTURIDispatchService;
+@protocol SPContextMenuFeature, SPTAudioPreviewService, SPTCollectionPlatformService, SPTContainerService, SPTEntityAllSongsService, SPTEntitySeeAllSongsRegistry, SPTEntitySeeAllSongsService, SPTExplicitContentService, SPTFeatureFlagSignal, SPTFeatureFlaggingService, SPTFreeTierPreCurationService, SPTFreeTierPresentationService, SPTGLUEService, SPTPerformanceMetricsService, SPTSelfPresentingViewController, SPTURIDispatchService;
 
 @interface SPTEntitySeeAllSongsUIService : NSObject <SPTService, SPTURISubtypeHandler>
 {
@@ -26,7 +26,7 @@
     id <SPTPerformanceMetricsService> _performanceMetricsService;
     id <SPTExplicitContentService> _explicitContentService;
     id <SPTFreeTierPreCurationService> _preCurationService;
-    id <SPTSwiftAllSongsService> _swiftAllSongsService;
+    id <SPTEntityAllSongsService> _entityAllSongsService;
     id <SPTFeatureFlagSignal> _masterFeatureFlagSignal;
     id <SPTEntitySeeAllSongsRegistry> _registry;
     SPNavigationController<SPTSelfPresentingViewController> *_navigationController;
@@ -36,7 +36,7 @@
 @property(retain, nonatomic) SPNavigationController<SPTSelfPresentingViewController> *navigationController; // @synthesize navigationController=_navigationController;
 @property(retain, nonatomic) id <SPTEntitySeeAllSongsRegistry> registry; // @synthesize registry=_registry;
 @property(retain, nonatomic) id <SPTFeatureFlagSignal> masterFeatureFlagSignal; // @synthesize masterFeatureFlagSignal=_masterFeatureFlagSignal;
-@property(nonatomic) __weak id <SPTSwiftAllSongsService> swiftAllSongsService; // @synthesize swiftAllSongsService=_swiftAllSongsService;
+@property(nonatomic) __weak id <SPTEntityAllSongsService> entityAllSongsService; // @synthesize entityAllSongsService=_entityAllSongsService;
 @property(nonatomic) __weak id <SPTFreeTierPreCurationService> preCurationService; // @synthesize preCurationService=_preCurationService;
 @property(nonatomic) __weak id <SPTExplicitContentService> explicitContentService; // @synthesize explicitContentService=_explicitContentService;
 @property(nonatomic) __weak id <SPTPerformanceMetricsService> performanceMetricsService; // @synthesize performanceMetricsService=_performanceMetricsService;

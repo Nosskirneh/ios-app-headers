@@ -9,7 +9,7 @@
 #import "SPTHubLogger-Protocol.h"
 
 @class NSString, SPTHubImageLoadingLoggerImplementation, SPTHubImpressionLoggerImplementation, SPTHubInteractionLoggerImplementation, SPTHubLoadingLoggerImplementation;
-@protocol SPTInteractionLogger;
+@protocol SPTUserBehaviourInstrumentationLogger;
 
 @interface SPTHubLoggerImplementation : NSObject <SPTHubLogger>
 {
@@ -17,10 +17,10 @@
     SPTHubImpressionLoggerImplementation *_impressionLogger;
     SPTHubInteractionLoggerImplementation *_interactionLogger;
     SPTHubLoadingLoggerImplementation *_loadingLogger;
-    id <SPTInteractionLogger> _ubiInteractionLogger;
+    id <SPTUserBehaviourInstrumentationLogger> _ubiLogger;
 }
 
-@property(retain, nonatomic) id <SPTInteractionLogger> ubiInteractionLogger; // @synthesize ubiInteractionLogger=_ubiInteractionLogger;
+@property(retain, nonatomic) id <SPTUserBehaviourInstrumentationLogger> ubiLogger; // @synthesize ubiLogger=_ubiLogger;
 @property(readonly, nonatomic) SPTHubLoadingLoggerImplementation *loadingLogger; // @synthesize loadingLogger=_loadingLogger;
 @property(readonly, nonatomic) SPTHubInteractionLoggerImplementation *interactionLogger; // @synthesize interactionLogger=_interactionLogger;
 @property(readonly, nonatomic) SPTHubImpressionLoggerImplementation *impressionLogger; // @synthesize impressionLogger=_impressionLogger;
@@ -36,7 +36,7 @@
 - (id)logInteraction:(id)arg1;
 - (void)logInteractionWithURI:(id)arg1 event:(id)arg2 userIntent:(id)arg3;
 - (void)logImpressionWithComponentModel:(id)arg1;
-- (id)initWithLogCenter:(id)arg1 featureIdentifier:(id)arg2 pageIdentifier:(id)arg3 pageURI:(id)arg4 componentModelURIResolver:(id)arg5 viewLogger:(id)arg6 ubiInteractionLogger:(id)arg7;
+- (id)initWithLogCenter:(id)arg1 featureIdentifier:(id)arg2 pageIdentifier:(id)arg3 pageURI:(id)arg4 componentModelURIResolver:(id)arg5 viewLogger:(id)arg6 ubiLogger:(id)arg7;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

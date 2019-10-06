@@ -40,6 +40,8 @@
 - (_Bool)isEqualToShareOpenGraphContent:(id)arg1;
 - (_Bool)isEqual:(id)arg1;
 @property(readonly) unsigned long long hash;
+- (_Bool)validateWithOptions:(unsigned long long)arg1 error:(id *)arg2;
+- (id)addParameters:(id)arg1 bridgeOptions:(unsigned long long)arg2;
 - (id)init;
 
 // Remaining properties

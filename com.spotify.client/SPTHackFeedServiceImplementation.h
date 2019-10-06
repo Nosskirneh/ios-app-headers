@@ -9,7 +9,7 @@
 #import "SPTFeedService-Protocol.h"
 
 @class NSString, SPTAllocationContext, SPTFeedFeatureFlagExposureLoggerImplementation, SPTFeedFeatureFlagsManager, SPTFeedHeartBeatManagerImplementation, SPTFeedHeartBeatRefreshStore, SPTFeedPlaybackStatusManager;
-@protocol CollectionFeature, FollowFeature, SPContextMenuFeature, SPTAudioPreviewService, SPTContainerService, SPTCoreService, SPTFeatureFlaggingService, SPTGLUEService, SPTNetworkService, SPTPlayerFeature, SPTSessionService, SPTURIDispatchService;
+@protocol FollowFeature, SPContextMenuFeature, SPTAudioPreviewService, SPTContainerService, SPTCoreService, SPTFeatureFlaggingService, SPTGLUEService, SPTNetworkService, SPTPlayerFeature, SPTSessionService, SPTURIDispatchService;
 
 @interface SPTHackFeedServiceImplementation : NSObject <SPTFeedService>
 {
@@ -21,7 +21,6 @@
     id <SPTGLUEService> _glueService;
     id <SPTFeatureFlaggingService> _featureFlaggingService;
     id <SPTSessionService> _clientSessionService;
-    id <CollectionFeature> _collectionService;
     id <FollowFeature> _followFeature;
     id <SPContextMenuFeature> _contextMenuService;
     id <SPTCoreService> _coreService;
@@ -44,7 +43,6 @@
 @property(nonatomic) __weak id <SPTCoreService> coreService; // @synthesize coreService=_coreService;
 @property(nonatomic) __weak id <SPContextMenuFeature> contextMenuService; // @synthesize contextMenuService=_contextMenuService;
 @property(nonatomic) __weak id <FollowFeature> followFeature; // @synthesize followFeature=_followFeature;
-@property(nonatomic) __weak id <CollectionFeature> collectionService; // @synthesize collectionService=_collectionService;
 @property(nonatomic) __weak id <SPTSessionService> clientSessionService; // @synthesize clientSessionService=_clientSessionService;
 @property(nonatomic) __weak id <SPTFeatureFlaggingService> featureFlaggingService; // @synthesize featureFlaggingService=_featureFlaggingService;
 @property(nonatomic) __weak id <SPTGLUEService> glueService; // @synthesize glueService=_glueService;
@@ -55,7 +53,6 @@
 - (void).cxx_destruct;
 - (void)setupFeatureFlagManager;
 - (void)registerFeedPage;
-- (void)registerFeedWithCollectionService;
 - (id)provideFeatureFlagExposureLogger;
 - (id)provideHeartbeatManager;
 - (id)provideFeatureFlagsManager;

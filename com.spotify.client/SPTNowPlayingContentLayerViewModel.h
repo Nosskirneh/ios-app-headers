@@ -8,7 +8,7 @@
 
 #import "SPTNowPlayingModelObserver-Protocol.h"
 
-@class NSArray, NSIndexPath, NSMapTable, NSString, SPTNowPlayingModel, SPTNowPlayingSkipLimitReachedMessageRequester;
+@class NSArray, NSIndexPath, NSMapTable, NSString, SPTNowPlayingLogger, SPTNowPlayingModel, SPTNowPlayingSkipLimitReachedMessageRequester;
 @protocol SPTNowPlayingContentLayerResolver, SPTNowPlayingContentLayerViewModelDelegate;
 
 @interface SPTNowPlayingContentLayerViewModel : NSObject <SPTNowPlayingModelObserver>
@@ -18,12 +18,14 @@
     NSIndexPath *_currentItemIndexPath;
     SPTNowPlayingModel *_nowPlayingModel;
     SPTNowPlayingSkipLimitReachedMessageRequester *_skipLimitReachedMessageRequester;
+    SPTNowPlayingLogger *_logger;
     long long _movementOffset;
     NSMapTable *_cellToProviderMap;
 }
 
 @property(readonly, nonatomic) NSMapTable *cellToProviderMap; // @synthesize cellToProviderMap=_cellToProviderMap;
 @property(nonatomic) long long movementOffset; // @synthesize movementOffset=_movementOffset;
+@property(readonly, nonatomic) SPTNowPlayingLogger *logger; // @synthesize logger=_logger;
 @property(readonly, nonatomic) SPTNowPlayingSkipLimitReachedMessageRequester *skipLimitReachedMessageRequester; // @synthesize skipLimitReachedMessageRequester=_skipLimitReachedMessageRequester;
 @property(readonly, nonatomic) SPTNowPlayingModel *nowPlayingModel; // @synthesize nowPlayingModel=_nowPlayingModel;
 @property(retain, nonatomic) NSIndexPath *currentItemIndexPath; // @synthesize currentItemIndexPath=_currentItemIndexPath;
@@ -55,7 +57,7 @@
 - (void)nowPlayingModel:(id)arg1 didMoveToRelativeTrack:(id)arg2;
 @property(readonly, nonatomic) long long numberOfItems;
 - (void)resetMovementOffset;
-- (id)initWithNowPlayingModel:(id)arg1 skipLimitReachedMessageRequester:(id)arg2 contentLayerResolver:(id)arg3;
+- (id)initWithNowPlayingModel:(id)arg1 skipLimitReachedMessageRequester:(id)arg2 contentLayerResolver:(id)arg3 logger:(id)arg4;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

@@ -8,7 +8,7 @@
 
 #import "FBSDKShareOpenGraphValueContaining-Protocol.h"
 
-@class NSMutableDictionary, NSString;
+@class NSDictionary, NSEnumerator, NSMutableDictionary, NSString;
 
 @interface FBSDKShareOpenGraphValueContainer : NSObject <FBSDKShareOpenGraphValueContaining>
 {
@@ -25,8 +25,8 @@
 - (_Bool)isEqualToShareOpenGraphValueContainer:(id)arg1;
 - (_Bool)isEqual:(id)arg1;
 @property(readonly) unsigned long long hash;
-- (_Bool)requireKeyNamespace;
-- (id)allProperties;
+@property(readonly, nonatomic) _Bool requireKeyNamespace;
+@property(readonly, nonatomic) NSDictionary *allProperties;
 - (id)valueForKey:(id)arg1;
 - (id)URLForKey:(id)arg1;
 - (id)stringForKey:(id)arg1;
@@ -41,9 +41,9 @@
 - (void)parseProperties:(id)arg1;
 - (id)objectForKeyedSubscript:(id)arg1;
 - (id)objectForKey:(id)arg1;
-- (id)objectEnumerator;
+@property(readonly, nonatomic) NSEnumerator *objectEnumerator;
 - (id)numberForKey:(id)arg1;
-- (id)keyEnumerator;
+@property(readonly, nonatomic) NSEnumerator *keyEnumerator;
 - (void)enumerateKeysAndObjectsUsingBlock:(CDUnknownBlockType)arg1;
 - (id)arrayForKey:(id)arg1;
 - (id)allData;

@@ -9,11 +9,12 @@
 #import "SPTCoreService-Protocol.h"
 
 @class NSString, SPCore, SPTAllocationContext, SPTLog;
-@protocol SPTAudioDriverController;
+@protocol SPTAudioDriverController, SPTBootstrapService;
 
 @interface SPTCoreServiceImplementation : NSObject <SPTCoreService>
 {
     id <SPTAudioDriverController> _audioDriverController;
+    id <SPTBootstrapService> _bootstrapService;
     SPTLog *_log;
     SPCore *_core;
 }
@@ -21,6 +22,7 @@
 + (id)serviceIdentifier;
 @property(retain, nonatomic) SPCore *core; // @synthesize core=_core;
 @property(retain, nonatomic) SPTLog *log; // @synthesize log=_log;
+@property(nonatomic) __weak id <SPTBootstrapService> bootstrapService; // @synthesize bootstrapService=_bootstrapService;
 @property(retain, nonatomic) id <SPTAudioDriverController> audioDriverController; // @synthesize audioDriverController=_audioDriverController;
 - (void).cxx_destruct;
 - (id)settingsPath;

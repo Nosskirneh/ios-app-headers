@@ -6,23 +6,23 @@
 
 #import <objc/NSObject.h>
 
+#import "BMEventObserver-Protocol.h"
 #import "SPTAudioPlayerMediaClockObserver-Protocol.h"
-#import "SPTVideoEventObserver-Protocol.h"
 
 @class NSString, NSTimer;
-@protocol OS_dispatch_queue, SPTAudioPlayerMediaClock, SPTAudioPlayerMediaClockService, SPTVideoPlaybackIdentity;
+@protocol BMPlaybackIdentity, OS_dispatch_queue, SPTAudioPlayerMediaClock, SPTAudioPlayerMediaClockService;
 
-@interface SPTVideoAudioStackMediaSynchronizer : NSObject <SPTAudioPlayerMediaClockObserver, SPTVideoEventObserver>
+@interface SPTVideoAudioStackMediaSynchronizer : NSObject <SPTAudioPlayerMediaClockObserver, BMEventObserver>
 {
     CDUnknownBlockType _videoPlayerProvider;
     NSTimer *_pollingTimer;
     id <SPTAudioPlayerMediaClockService> _audioPlayerMediaClockService;
     id <SPTAudioPlayerMediaClock> _audioClock;
     double _lastSeekDelay;
-    id <SPTVideoPlaybackIdentity> _identity;
+    id <BMPlaybackIdentity> _identity;
 }
 
-@property(retain, nonatomic) id <SPTVideoPlaybackIdentity> identity; // @synthesize identity=_identity;
+@property(retain, nonatomic) id <BMPlaybackIdentity> identity; // @synthesize identity=_identity;
 @property(nonatomic) double lastSeekDelay; // @synthesize lastSeekDelay=_lastSeekDelay;
 @property(retain, nonatomic) id <SPTAudioPlayerMediaClock> audioClock; // @synthesize audioClock=_audioClock;
 @property(retain, nonatomic) id <SPTAudioPlayerMediaClockService> audioPlayerMediaClockService; // @synthesize audioPlayerMediaClockService=_audioPlayerMediaClockService;
@@ -39,7 +39,7 @@
 - (void)syncUsingPlaybackSpeed:(float)arg1 timeDifference:(double)arg2;
 - (void)seekVideoTo:(double)arg1 playbackSpeed:(float)arg2;
 - (void)syncIfNeeded;
-- (id)videoPlayer;
+- (id)betamaxPlayer;
 - (void)dealloc;
 - (id)initWithVideoPlayerProvider:(CDUnknownBlockType)arg1 audioPlayerMediaClockService:(id)arg2 identity:(id)arg3;
 

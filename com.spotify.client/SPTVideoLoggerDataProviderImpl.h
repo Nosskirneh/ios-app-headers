@@ -6,11 +6,11 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTVideoLoggerDataProvider-Protocol.h"
+#import "BMLoggerDataProvider-Protocol.h"
 
 @class NSString, SPSession, SPTNetworkConnectivityController;
 
-@interface SPTVideoLoggerDataProviderImpl : NSObject <SPTVideoLoggerDataProvider>
+@interface SPTVideoLoggerDataProviderImpl : NSObject <BMLoggerDataProvider>
 {
     NSString *_featureIdentifier;
     SPSession *_loginSession;

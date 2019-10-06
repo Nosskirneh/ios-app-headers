@@ -14,24 +14,14 @@
 @interface SPTSearchTestManagerImplementation : NSObject <SPTSearchTestManager>
 {
     _Bool _playRecentTracksEnabled;
-    _Bool _protobufSearchEnabled;
-    _Bool _protobufSearchDrillDownEnabled;
     id <SPTFeatureFlagFactory> _featureFlagFactory;
     id <SPTFeatureFlagSignal> _playRecentTracksSignal;
-    id <SPTFeatureFlagSignal> _protobufSearchSignal;
-    id <SPTFeatureFlagSignal> _protobufSearchDrillDownSignal;
 }
 
-@property(nonatomic, getter=isProtobufSearchDrillDownEnabled) _Bool protobufSearchDrillDownEnabled; // @synthesize protobufSearchDrillDownEnabled=_protobufSearchDrillDownEnabled;
-@property(readonly, nonatomic) id <SPTFeatureFlagSignal> protobufSearchDrillDownSignal; // @synthesize protobufSearchDrillDownSignal=_protobufSearchDrillDownSignal;
-@property(nonatomic, getter=isProtobufSearchEnabled) _Bool protobufSearchEnabled; // @synthesize protobufSearchEnabled=_protobufSearchEnabled;
-@property(readonly, nonatomic) id <SPTFeatureFlagSignal> protobufSearchSignal; // @synthesize protobufSearchSignal=_protobufSearchSignal;
 @property(nonatomic, getter=isPlayRecentTracksEnabled) _Bool playRecentTracksEnabled; // @synthesize playRecentTracksEnabled=_playRecentTracksEnabled;
 @property(readonly, nonatomic) id <SPTFeatureFlagSignal> playRecentTracksSignal; // @synthesize playRecentTracksSignal=_playRecentTracksSignal;
 @property(readonly, nonatomic) id <SPTFeatureFlagFactory> featureFlagFactory; // @synthesize featureFlagFactory=_featureFlagFactory;
 - (void).cxx_destruct;
-- (void)setupProtobufSearchDrillDownSignal;
-- (void)setupProtobufSearchSignal;
 - (void)setupPlayRecentTracksSignal;
 - (void)featureFlagSignal:(id)arg1 hasAssumedState:(long long)arg2;
 - (id)initWithFeatureFlagFactory:(id)arg1;

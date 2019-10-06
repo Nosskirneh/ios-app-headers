@@ -11,6 +11,5 @@
 @protocol SPTFacebookSDK <NSObject>
 - (void)requestFacebookUserIdentifierForAccessToken:(NSString *)arg1 completion:(void (^)(NSDictionary *, NSError *))arg2;
 - (void)requestFacebookAccessToken:(void (^)(NSString *, NSError *))arg1;
-- (void)setAppID:(NSString *)arg1;
 @end
 

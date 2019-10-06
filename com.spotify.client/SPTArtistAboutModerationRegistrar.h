@@ -18,6 +18,7 @@
 @property(retain, nonatomic) id <SPTModerationReportDecorationRegistry> moderationDecorationRegistry; // @synthesize moderationDecorationRegistry=_moderationDecorationRegistry;
 @property(readonly, nonatomic) SPTArtistAboutStateProvider *stateProvider; // @synthesize stateProvider=_stateProvider;
 - (void).cxx_destruct;
+- (void)unregisterGalleryModerationDecorator;
 - (void)registerGalleryModerationDecorator;
 - (id)initWithStateProvider:(id)arg1 moderationDecorationRegistry:(id)arg2;
 

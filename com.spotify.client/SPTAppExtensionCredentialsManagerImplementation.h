@@ -13,18 +13,23 @@
 @interface SPTAppExtensionCredentialsManagerImplementation : NSObject <SPTAppExtensionCredentialsManager>
 {
     NSString *_domain;
+    NSString *_accessGroup;
 }
 
+@property(copy, nonatomic) NSString *accessGroup; // @synthesize accessGroup=_accessGroup;
 @property(copy, nonatomic) NSString *domain; // @synthesize domain=_domain;
 - (void).cxx_destruct;
-- (id)accessGroup;
+- (id)accessGroup:(long long)arg1;
+- (void)setHermesAccessToken:(id)arg1;
+- (_Bool)deleteHermesAccessToken;
+- (id)hermesAccessToken;
 - (id)storedLoginSession;
 - (_Bool)deleteStoredLoginSession;
 - (void)setStoredLoginSession:(id)arg1;
 - (id)appExtensionCredentials;
 - (_Bool)deleteAppExtensionCredentials;
 - (void)setAppExtensionCredentials:(id)arg1;
-- (id)init;
+- (id)initWithAccessGroup:(long long)arg1;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

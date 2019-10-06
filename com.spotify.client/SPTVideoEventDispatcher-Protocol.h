@@ -6,17 +6,17 @@
 
 #import "NSObject-Protocol.h"
 
-@class NSError;
-@protocol SPTAudioFormat, SPTVideoFormat, SPTVideoPlaybackIdentity, SPTVideoSeekableWindow, SPTVideoSubtitle, SPTVideoSurface;
+@class NSArray, NSError;
+@protocol BMAudioFormat, BMPlaybackIdentity, BMSeekableWindow, BMSubtitle, BMVideoFormat, BMVideoSurface;
 
 @protocol SPTVideoEventDispatcher <NSObject>
-- (void)didChangeSeekableWindow:(id <SPTVideoSeekableWindow>)arg1;
-- (void)didChangeSubtitle:(id <SPTVideoSubtitle>)arg1 atPosition:(double)arg2;
+- (void)didChangeSeekableWindow:(id <BMSeekableWindow>)arg1;
+- (void)didChangeSubtitle:(id <BMSubtitle>)arg1 atPosition:(double)arg2;
 - (void)didDropVideoFrames:(unsigned long long)arg1;
 - (void)didTransferBytes:(long long)arg1 forBitrate:(double)arg2 withElapsedTime:(double)arg3;
-- (void)didChangeAudioFormat:(id <SPTAudioFormat>)arg1 atPosition:(double)arg2;
-- (void)didChangeVideoFormat:(id <SPTVideoFormat>)arg1 atPosition:(double)arg2;
-- (void)didChangeSurface:(id <SPTVideoSurface>)arg1 atPosition:(double)arg2;
+- (void)didChangeAudioFormat:(id <BMAudioFormat>)arg1 atPosition:(double)arg2;
+- (void)didChangeVideoFormat:(id <BMVideoFormat>)arg1 atPosition:(double)arg2;
+- (void)didChangeSurface:(id <BMVideoSurface>)arg1 atPosition:(double)arg2;
 - (void)didChangeBackgroundState:(_Bool)arg1 atPosition:(double)arg2;
 - (void)didFailWithRecoverableError:(NSError *)arg1 atPosition:(double)arg2;
 - (void)didFailWithFatalError:(NSError *)arg1 atPosition:(double)arg2;
@@ -30,9 +30,9 @@
 - (void)didStartBufferingAtPosition:(double)arg1;
 - (void)didLoadEncriptionKeyOfType:(long long)arg1;
 - (void)willLoadEncryptionKey;
-- (void)didLoadManifest;
+- (void)didLoadManifestWithAvailableSubtitles:(NSArray *)arg1;
 - (void)willLoadManifest;
-- (void)willEndPlaybackWithNextIdentity:(id <SPTVideoPlaybackIdentity>)arg1;
+- (void)willEndPlaybackWithNextIdentity:(id <BMPlaybackIdentity>)arg1;
 - (void)didCreatePlaybackInBackground:(_Bool)arg1;
 @end
 

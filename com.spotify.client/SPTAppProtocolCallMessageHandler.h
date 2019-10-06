@@ -40,6 +40,7 @@
 - (id)propertyListRepresentationOfItem:(id)arg1;
 - (id)propertyListRepresentationOfRootItem:(id)arg1;
 - (id)rootContentIdentifiersForContentType;
+- (void)resolveChildContentOfParentURI:(id)arg1 getChildrenMessage:(id)arg2 reply:(CDUnknownBlockType)arg3;
 - (void)handleGetCrossfadeStateCallMessage:(id)arg1 andReply:(CDUnknownBlockType)arg2;
 - (void)handleLogMessage:(id)arg1;
 - (void)handleQueueUriMessage:(id)arg1 andReply:(CDUnknownBlockType)arg2;
@@ -52,6 +53,7 @@
 - (void)handlePlayUriMessage:(id)arg1 andReply:(CDUnknownBlockType)arg2;
 - (void)handlePlayItemMessage:(id)arg1 andReply:(CDUnknownBlockType)arg2;
 - (void)handleGetChildrenOfItemMessage:(id)arg1 andReply:(CDUnknownBlockType)arg2;
+- (void)handleGetRecommendedContentForTypMessage:(id)arg1 andReply:(CDUnknownBlockType)arg2;
 - (void)handleGetRootItemMessage:(id)arg1 andReply:(CDUnknownBlockType)arg2;
 - (void)handleGetItemForURIMessage:(id)arg1 andReply:(CDUnknownBlockType)arg2;
 - (void)handleGetRecommendedRootItemsMessage:(id)arg1 andReply:(CDUnknownBlockType)arg2;

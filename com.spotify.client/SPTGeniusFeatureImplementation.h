@@ -42,6 +42,8 @@
 - (void)unregisterScrollProvider;
 - (void)registerScrollProvider;
 - (void)registerFeatureSettingsPage;
+- (void)idleStateWasReached;
+- (void)initialViewDidAppear;
 - (void)unload;
 - (void)load;
 - (void)configureWithServices:(id)arg1;

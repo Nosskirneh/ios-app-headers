@@ -6,11 +6,11 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTVideoSeekableWindow-Protocol.h"
+#import "BMSeekableWindow-Protocol.h"
 
 @class NSString;
 
-@interface SPTVideoSeekableWindowImpl : NSObject <SPTVideoSeekableWindow>
+@interface SPTVideoSeekableWindowImpl : NSObject <BMSeekableWindow>
 {
     double _start;
     double _duration;

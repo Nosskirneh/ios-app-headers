@@ -14,8 +14,8 @@
 #import "SPTSlateViewDataSource-Protocol.h"
 #import "SPTSlateWireframeCustomPresentationDelegate-Protocol.h"
 
-@class NSString, NSURL, SPTAdsMarqueContentViewController, SPTAdsMarqueeContextMenuFactory, SPTAdsMarqueeContextMenuTransition, SPTAdsMarqueeContextMenuView, SPTAdsMarqueeContextMenuViewController, SPTNavigationManager, SPTProgressView, SPTTheme;
-@protocol GLUEImageLoader, SPTAdsBaseCosmosBridge, SPTAdsBaseMarqueeEntity, SPTAdsBaseRegistry, SPTInAppMessageMessageRequester, SPTLinkDispatcher, SPTLogCenter, SPTProductState, SPTSlate, SPTSlateBuilderProvider, SPTSlateManager, SPTUIPresentationService, SPTWebViewFactory;
+@class NSString, NSURL, SPTAdsMarqueContentViewController, SPTAdsMarqueeContextMenuFactory, SPTAdsMarqueeContextMenuTransition, SPTAdsMarqueeContextMenuView, SPTAdsMarqueeContextMenuViewController, SPTNavigationManager, SPTProgressView, SPTTheme, UIImage;
+@protocol GLUEImageLoader, SPTAdsBaseCosmosBridge, SPTAdsBaseMarqueeEntity, SPTAdsBaseRegistry, SPTInAppMessagePresentationMonitor, SPTLinkDispatcher, SPTLogCenter, SPTProductState, SPTSlate, SPTSlateBuilderProvider, SPTSlateManager, SPTUIPresentationService, SPTWebViewFactory;
 
 @interface SPTAdsMarqueeController : NSObject <SPTAdsBaseRegistryObserver, SPTNavigationManagerDelegate, SPTSlateDataSource, SPTSlateDelegate, SPTSlateViewDataSource, SPTSlateWireframeCustomPresentationDelegate, SPTAdsMarqueContentViewControllerDelegate>
 {
@@ -31,7 +31,7 @@
     id <SPTSlateManager> _slateManager;
     id <SPTWebViewFactory> _webViewFactory;
     id <SPTLinkDispatcher> _linkDispatcher;
-    id <SPTInAppMessageMessageRequester> _inAppMessageRequester;
+    id <SPTInAppMessagePresentationMonitor> _inAppMessagePresentationMonitor;
     id <SPTUIPresentationService> _presentationService;
     SPTAdsMarqueeContextMenuTransition *_transition;
     SPTAdsMarqueContentViewController *_marqueeContentViewController;
@@ -41,6 +41,7 @@
     SPTAdsMarqueeContextMenuView *_secondaryContextMenu;
     id <SPTAdsBaseMarqueeEntity> _adEntity;
     id <SPTSlate> _slate;
+    UIImage *_albumImage;
     id <SPTLogCenter> _logCenter;
     SPTProgressView *_progressView;
     NSURL *_currentContextURL;
@@ -53,6 +54,7 @@
 @property(retain, nonatomic) NSURL *currentContextURL; // @synthesize currentContextURL=_currentContextURL;
 @property(retain, nonatomic) SPTProgressView *progressView; // @synthesize progressView=_progressView;
 @property(readonly, nonatomic) id <SPTLogCenter> logCenter; // @synthesize logCenter=_logCenter;
+@property(retain, nonatomic) UIImage *albumImage; // @synthesize albumImage=_albumImage;
 @property(retain, nonatomic) id <SPTSlate> slate; // @synthesize slate=_slate;
 @property(retain, nonatomic) id <SPTAdsBaseMarqueeEntity> adEntity; // @synthesize adEntity=_adEntity;
 @property(retain, nonatomic) SPTAdsMarqueeContextMenuView *secondaryContextMenu; // @synthesize secondaryContextMenu=_secondaryContextMenu;
@@ -62,7 +64,7 @@
 @property(retain, nonatomic) SPTAdsMarqueContentViewController *marqueeContentViewController; // @synthesize marqueeContentViewController=_marqueeContentViewController;
 @property(readonly, nonatomic) SPTAdsMarqueeContextMenuTransition *transition; // @synthesize transition=_transition;
 @property(readonly, nonatomic) __weak id <SPTUIPresentationService> presentationService; // @synthesize presentationService=_presentationService;
-@property(readonly, nonatomic) id <SPTInAppMessageMessageRequester> inAppMessageRequester; // @synthesize inAppMessageRequester=_inAppMessageRequester;
+@property(readonly, nonatomic) id <SPTInAppMessagePresentationMonitor> inAppMessagePresentationMonitor; // @synthesize inAppMessagePresentationMonitor=_inAppMessagePresentationMonitor;
 @property(readonly, nonatomic) id <SPTLinkDispatcher> linkDispatcher; // @synthesize linkDispatcher=_linkDispatcher;
 @property(readonly, nonatomic) id <SPTWebViewFactory> webViewFactory; // @synthesize webViewFactory=_webViewFactory;
 @property(readonly, nonatomic) id <SPTSlateManager> slateManager; // @synthesize slateManager=_slateManager;
@@ -74,11 +76,13 @@
 @property(readonly, nonatomic) id <SPTAdsBaseCosmosBridge> cosmosBridge; // @synthesize cosmosBridge=_cosmosBridge;
 @property(readonly, nonatomic) id <SPTAdsBaseRegistry> registry; // @synthesize registry=_registry;
 - (void).cxx_destruct;
+- (void)loadImageURL:(id)arg1 imageSize:(struct CGSize)arg2;
+- (id)secondaryActionsForContextMenu;
+- (id)primaryActionsForContextMenu;
 - (void)performOptOutAction;
 - (void)showConfirmationWithMessage:(id)arg1;
 - (_Bool)isIPad;
-- (id)secondaryActionsForContextMenu;
-- (id)primaryActionsForContextMenu;
+- (id)randomizedArrayFromArray:(id)arg1;
 - (void)didTapInformationLabelText:(id)arg1 withSender:(id)arg2;
 - (void)didTapAlbumActionButton:(id)arg1;
 - (void)dismissSlateViewControllerInCustomMode:(id)arg1 animated:(_Bool)arg2 completion:(CDUnknownBlockType)arg3;
@@ -96,7 +100,7 @@
 - (_Bool)isCurrentContextURLHome;
 - (void)forcePresentMarquee;
 - (void)dealloc;
-- (id)initWithRegistry:(id)arg1 cosmosBridge:(id)arg2 imageLoader:(id)arg3 slateBuilderProvider:(id)arg4 slateManager:(id)arg5 contextMenuFactory:(id)arg6 presentationService:(id)arg7 navigationManager:(id)arg8 linkDispatcher:(id)arg9 inAppMessageRequester:(id)arg10 logCenter:(id)arg11 theme:(id)arg12 productState:(id)arg13;
+- (id)initWithRegistry:(id)arg1 cosmosBridge:(id)arg2 imageLoader:(id)arg3 slateBuilderProvider:(id)arg4 slateManager:(id)arg5 contextMenuFactory:(id)arg6 presentationService:(id)arg7 navigationManager:(id)arg8 linkDispatcher:(id)arg9 inAppMessagePresentationMonitor:(id)arg10 logCenter:(id)arg11 theme:(id)arg12 productState:(id)arg13;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

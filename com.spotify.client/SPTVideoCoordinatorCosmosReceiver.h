@@ -6,8 +6,8 @@
 
 #import <objc/NSObject.h>
 
-@class NSMutableDictionary, SPTVideoStartCommandFactory;
-@protocol SPTResolver, SPTVideoCoordinatorCosmosReceiverDelegate, SPTVideoSubtitleFactory;
+@class NSMutableDictionary, SPTVideoPreferredSubtitleMessageFactory, SPTVideoStartCommandFactory;
+@protocol SPTResolver, SPTVideoCoordinatorCosmosReceiverDelegate;
 
 @interface SPTVideoCoordinatorCosmosReceiver : NSObject
 {
@@ -15,13 +15,13 @@
     id <SPTVideoCoordinatorCosmosReceiverDelegate> _delegate;
     id <SPTResolver> _resolver;
     SPTVideoStartCommandFactory *_startCommandFactory;
-    id <SPTVideoSubtitleFactory> _subtitleFactory;
+    SPTVideoPreferredSubtitleMessageFactory *_preferredSubtitleMessageFactory;
     NSMutableDictionary *_handlers;
 }
 
 @property(nonatomic, getter=isSubscribed) _Bool subscribed; // @synthesize subscribed=_subscribed;
 @property(retain, nonatomic) NSMutableDictionary *handlers; // @synthesize handlers=_handlers;
-@property(retain, nonatomic) id <SPTVideoSubtitleFactory> subtitleFactory; // @synthesize subtitleFactory=_subtitleFactory;
+@property(retain, nonatomic) SPTVideoPreferredSubtitleMessageFactory *preferredSubtitleMessageFactory; // @synthesize preferredSubtitleMessageFactory=_preferredSubtitleMessageFactory;
 @property(retain, nonatomic) SPTVideoStartCommandFactory *startCommandFactory; // @synthesize startCommandFactory=_startCommandFactory;
 @property(retain, nonatomic) id <SPTResolver> resolver; // @synthesize resolver=_resolver;
 @property(nonatomic) __weak id <SPTVideoCoordinatorCosmosReceiverDelegate> delegate; // @synthesize delegate=_delegate;
@@ -34,7 +34,7 @@
 - (void)unsubscribe;
 - (void)subscribe;
 - (void)dealloc;
-- (id)initWithResolver:(id)arg1 startCommandFactory:(id)arg2 subtitleFactory:(id)arg3;
+- (id)initWithResolver:(id)arg1 startCommandFactory:(id)arg2 preferredSubtitleMessageFactory:(id)arg3;
 
 @end
 

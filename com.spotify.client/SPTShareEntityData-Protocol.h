@@ -18,7 +18,7 @@
 @property(readonly, nonatomic) UIImage *shareScreenshotImage;
 @property(readonly, nonatomic) NSString *shareBrowselinkId;
 @property(readonly, nonatomic) NSString *clipboardLinkTitle;
-@property(readonly, nonatomic) unsigned long long itemType;
+@property(readonly, nonatomic) long long itemType;
 @property(readonly, nonatomic) NSURL *imageURL;
 @property(readonly, nonatomic) NSString *sourceName;
 @property(readonly, nonatomic) NSString *creatorName;

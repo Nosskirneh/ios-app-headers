@@ -36,8 +36,9 @@
 - (void)thumbDownTrackInPlayerState:(id)arg1 accessorySessionID:(id)arg2 completionHandler:(CDUnknownBlockType)arg3;
 - (void)thumbUpTrackInPlayerState:(id)arg1 accessorySessionID:(id)arg2 completionHandler:(CDUnknownBlockType)arg3;
 - (_Bool)isPlayingRadioInPlayerState:(id)arg1;
+- (_Bool)canStartRadioSeededByTrackURI:(id)arg1;
 - (_Bool)canStartTrackRadioSeededByPlayerState:(id)arg1;
-- (void)startTrackRadioSeededByPlayerState:(id)arg1 accessorySessionID:(id)arg2 completionHandler:(CDUnknownBlockType)arg3;
+- (void)startRadioForTrackURI:(id)arg1 playerState:(id)arg2 accessorySessionID:(id)arg3 completionHandler:(CDUnknownBlockType)arg4;
 - (void)dealloc;
 - (id)initWithPlaybackController:(id)arg1 radioManager:(id)arg2 debugLog:(id)arg3 logger:(id)arg4;
 

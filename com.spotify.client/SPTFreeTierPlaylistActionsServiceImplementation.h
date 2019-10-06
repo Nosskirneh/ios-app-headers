@@ -9,11 +9,13 @@
 #import "SPTFreeTierPlaylistActionsService-Protocol.h"
 
 @class NSString, SPTAllocationContext;
-@protocol SPContextMenuFeature, SPTCollectionLogger, SPTContainerService, SPTPlaylistPlatformService;
+@protocol SPContextMenuFeature, SPTCollectionLogger, SPTCollectionPlatformService, SPTContainerService, SPTContainerUIService, SPTPlaylistPlatformService;
 
 @interface SPTFreeTierPlaylistActionsServiceImplementation : NSObject <SPTFreeTierPlaylistActionsService>
 {
+    id <SPTCollectionPlatformService> _collectionPlatformService;
     id <SPTContainerService> _containerService;
+    id <SPTContainerUIService> _containerUIService;
     id <SPContextMenuFeature> _contextMenuService;
     id <SPTPlaylistPlatformService> _playlistPlatformService;
     id <SPTCollectionLogger> _collectionLogger;
@@ -23,11 +25,18 @@
 @property(retain, nonatomic) id <SPTCollectionLogger> collectionLogger; // @synthesize collectionLogger=_collectionLogger;
 @property(nonatomic) __weak id <SPTPlaylistPlatformService> playlistPlatformService; // @synthesize playlistPlatformService=_playlistPlatformService;
 @property(nonatomic) __weak id <SPContextMenuFeature> contextMenuService; // @synthesize contextMenuService=_contextMenuService;
+@property(nonatomic) __weak id <SPTContainerUIService> containerUIService; // @synthesize containerUIService=_containerUIService;
 @property(nonatomic) __weak id <SPTContainerService> containerService; // @synthesize containerService=_containerService;
+@property(nonatomic) __weak id <SPTCollectionPlatformService> collectionPlatformService; // @synthesize collectionPlatformService=_collectionPlatformService;
 - (void).cxx_destruct;
 - (id)selectedActionIconColor;
 - (id)provideCollectionLogger;
 - (void)registerDownloadAction;
+- (void)registerFollowAction;
+- (void)registerRemoveTrackAction;
+- (void)registerRenameAction;
+- (void)collaborativeAction;
+- (void)registerPrivacyAction;
 - (void)load;
 - (void)configureWithServices:(id)arg1;
 

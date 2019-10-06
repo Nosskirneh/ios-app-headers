@@ -13,14 +13,13 @@
 #import "UITableViewDataSource-Protocol.h"
 #import "UITableViewDelegate-Protocol.h"
 
-@class NSNotificationCenter, NSString, NSURL, SPTGaiaDevicePickerBackgroundView, SPTGaiaDevicePickerView, SPTGaiaDevicePickerViewModel, SPTGaiaLogger, SPTGaiaSocialListeningIntegrationManager, SPTGaiaVolumeController, SPTGaiaVolumeSliderView, SPTGaiaVolumeSliderViewFactory, SPTObserverManager, SPTStatusBarManager, SPTStatusBarToken, UIView;
-@protocol SPTGaiaDevicePickerDeviceSpecificConfigurationProvider, SPTGaiaDevicePickerHeader, SPTModalPresentationController, SPTPageContainer;
+@class NSNotificationCenter, NSString, NSURL, SPTGaiaDevicePickerBackgroundView, SPTGaiaDevicePickerView, SPTGaiaDevicePickerViewModel, SPTGaiaLogger, SPTGaiaSocialListeningIntegrationManager, SPTObserverManager, SPTStatusBarManager, SPTStatusBarToken, UIView;
+@protocol SPTGaiaDevicePickerDeviceSpecificConfigurationProvider, SPTGaiaDevicePickerHeader, SPTGaiaDevicePickerViewInjector, SPTModalPresentationController, SPTPageContainer;
 
 @interface SPTGaiaDevicePickerViewController : UIViewController <SPTGaiaDevicePickerViewModelDelegate, UITableViewDelegate, UITableViewDataSource, SPTGaiaContextMenuViewControllerDelegate, SPTGaiaDevicePicker, SPTPageController>
 {
     _Bool _pickerVisible;
     SPTGaiaDevicePickerViewModel *_viewModel;
-    SPTGaiaVolumeController *_volumeController;
     SPTObserverManager *_contentOffsetObserverManager;
     NSNotificationCenter *_notificationCenter;
     id <SPTModalPresentationController> _modalPresentationController;
@@ -28,11 +27,11 @@
     id <SPTGaiaDevicePickerDeviceSpecificConfigurationProvider> _deviceConfiguration;
     SPTStatusBarManager *_statusBarManager;
     SPTGaiaSocialListeningIntegrationManager *_socialListeningManager;
-    SPTGaiaVolumeSliderViewFactory *_volumeSliderViewFactory;
+    id <SPTGaiaDevicePickerViewInjector> _viewInjector;
     SPTGaiaDevicePickerView *_devicePickerView;
     SPTGaiaDevicePickerBackgroundView *_devicePickerBackgroundView;
     UIView<SPTGaiaDevicePickerHeader> *_headerView;
-    SPTGaiaVolumeSliderView *_volumeSliderView;
+    UIView *_volumeSliderView;
     long long _pickerContext;
     SPTStatusBarToken *_statusBarToken;
 }
@@ -40,11 +39,11 @@
 @property(retain, nonatomic) SPTStatusBarToken *statusBarToken; // @synthesize statusBarToken=_statusBarToken;
 @property(nonatomic, getter=isPickerVisible) _Bool pickerVisible; // @synthesize pickerVisible=_pickerVisible;
 @property(nonatomic) long long pickerContext; // @synthesize pickerContext=_pickerContext;
-@property(retain, nonatomic) SPTGaiaVolumeSliderView *volumeSliderView; // @synthesize volumeSliderView=_volumeSliderView;
+@property(retain, nonatomic) UIView *volumeSliderView; // @synthesize volumeSliderView=_volumeSliderView;
 @property(retain, nonatomic) UIView<SPTGaiaDevicePickerHeader> *headerView; // @synthesize headerView=_headerView;
 @property(retain, nonatomic) SPTGaiaDevicePickerBackgroundView *devicePickerBackgroundView; // @synthesize devicePickerBackgroundView=_devicePickerBackgroundView;
 @property(retain, nonatomic) SPTGaiaDevicePickerView *devicePickerView; // @synthesize devicePickerView=_devicePickerView;
-@property(readonly, nonatomic) SPTGaiaVolumeSliderViewFactory *volumeSliderViewFactory; // @synthesize volumeSliderViewFactory=_volumeSliderViewFactory;
+@property(readonly, nonatomic) id <SPTGaiaDevicePickerViewInjector> viewInjector; // @synthesize viewInjector=_viewInjector;
 @property(readonly, nonatomic) SPTGaiaSocialListeningIntegrationManager *socialListeningManager; // @synthesize socialListeningManager=_socialListeningManager;
 @property(readonly, nonatomic) SPTStatusBarManager *statusBarManager; // @synthesize statusBarManager=_statusBarManager;
 @property(readonly, nonatomic) id <SPTGaiaDevicePickerDeviceSpecificConfigurationProvider> deviceConfiguration; // @synthesize deviceConfiguration=_deviceConfiguration;
@@ -52,7 +51,6 @@
 @property(readonly, nonatomic) id <SPTModalPresentationController> modalPresentationController; // @synthesize modalPresentationController=_modalPresentationController;
 @property(readonly, nonatomic) NSNotificationCenter *notificationCenter; // @synthesize notificationCenter=_notificationCenter;
 @property(readonly, nonatomic) SPTObserverManager *contentOffsetObserverManager; // @synthesize contentOffsetObserverManager=_contentOffsetObserverManager;
-@property(readonly, nonatomic) SPTGaiaVolumeController *volumeController; // @synthesize volumeController=_volumeController;
 @property(readonly, nonatomic) SPTGaiaDevicePickerViewModel *viewModel; // @synthesize viewModel=_viewModel;
 - (void).cxx_destruct;
 - (void)removeContentOffsetObserver:(id)arg1;
@@ -100,7 +98,7 @@
 - (void)createBackgroundView;
 - (void)createDevicePickerView;
 - (void)dealloc;
-- (id)initWithViewModel:(id)arg1 volumeController:(id)arg2 devicePickerContext:(long long)arg3 notificationCenter:(id)arg4 modalPresentationController:(id)arg5 logger:(id)arg6 deviceConfiguration:(id)arg7 statusBarManager:(id)arg8 socialListeningManager:(id)arg9 volumeSliderViewFactory:(id)arg10;
+- (id)initWithViewModel:(id)arg1 devicePickerContext:(long long)arg2 notificationCenter:(id)arg3 modalPresentationController:(id)arg4 logger:(id)arg5 deviceConfiguration:(id)arg6 statusBarManager:(id)arg7 socialListeningManager:(id)arg8 viewInjector:(id)arg9;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

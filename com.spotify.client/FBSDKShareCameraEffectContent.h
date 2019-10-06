@@ -7,10 +7,11 @@
 #import <objc/NSObject.h>
 
 #import "FBSDKSharingContent-Protocol.h"
+#import "FBSDKSharingScheme-Protocol.h"
 
 @class FBSDKCameraEffectArguments, FBSDKCameraEffectTextures, FBSDKHashtag, NSArray, NSString, NSURL;
 
-@interface FBSDKShareCameraEffectContent : NSObject <FBSDKSharingContent>
+@interface FBSDKShareCameraEffectContent : NSObject <FBSDKSharingContent, FBSDKSharingScheme>
 {
     NSString *_effectID;
     FBSDKCameraEffectArguments *_effectArguments;
@@ -42,6 +43,9 @@
 - (_Bool)isEqualToShareCameraEffectContent:(id)arg1;
 - (_Bool)isEqual:(id)arg1;
 @property(readonly) unsigned long long hash;
+- (_Bool)validateWithOptions:(unsigned long long)arg1 error:(id *)arg2;
+- (id)schemeForMode:(unsigned long long)arg1;
+- (id)addParameters:(id)arg1 bridgeOptions:(unsigned long long)arg2;
 - (id)init;
 
 // Remaining properties

@@ -7,13 +7,14 @@
 #import "SPPageView.h"
 
 #import "SPTNowPlayingBarPageModelDelegate-Protocol.h"
+#import "SPTNowPlayingTestManagerObserver-Protocol.h"
 #import "SPTPlayerTrackScrollPageView-Protocol.h"
 #import "SPTThemableView-Protocol.h"
 
 @class NSString, NSURL, SPTNowPlayingBarPageModel, SPTTheme, UILabel;
 @protocol SPTNowPlayingTestManager, SPTThemableViewLayoutDelegate;
 
-@interface SPTNowPlayingBarPageView : SPPageView <SPTNowPlayingBarPageModelDelegate, SPTPlayerTrackScrollPageView, SPTThemableView>
+@interface SPTNowPlayingBarPageView : SPPageView <SPTNowPlayingBarPageModelDelegate, SPTNowPlayingTestManagerObserver, SPTPlayerTrackScrollPageView, SPTThemableView>
 {
     _Bool _coverArtHidden;
     NSURL *_trackURL;
@@ -42,6 +43,7 @@
 @property(copy, nonatomic) NSString *title; // @synthesize title=_title;
 @property(retain, nonatomic) NSURL *trackURL; // @synthesize trackURL=_trackURL;
 - (void).cxx_destruct;
+- (void)nowPlayingTestManagerDidEnableBarImprovements:(id)arg1;
 - (void)calculateLabelTexts;
 - (id)bottomLabelTextAttributes;
 - (id)topLabelTextAttributes;

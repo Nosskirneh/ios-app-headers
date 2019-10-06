@@ -17,6 +17,8 @@
 - (void).cxx_destruct;
 - (id)editURL;
 - (_Bool)isEditCell:(id)arg1;
+- (id)urlForItem:(id)arg1;
+- (_Bool)canSelect:(id)arg1;
 - (id)titleForItem:(id)arg1;
 - (id)titleForSection:(long long)arg1;
 - (long long)numberOfRowsForSection:(long long)arg1;

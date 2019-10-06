@@ -7,7 +7,7 @@
 #import "FBSDKSharing-Protocol.h"
 
 @protocol FBSDKSharingDialog <FBSDKSharing>
+@property(readonly, nonatomic) _Bool canShow;
 - (_Bool)show;
-- (_Bool)canShow;
 @end
 

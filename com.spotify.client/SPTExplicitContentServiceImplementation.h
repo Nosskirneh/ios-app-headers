@@ -6,12 +6,10 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTExplicitContentService-Protocol.h"
-
 @class NSString, SPTAllocationContext, SPTExplicitContentAccessManagerImplementation, SPTExplicitContentHubCommandHandlerFactoryImplementation, SPTExplicitContentHubContentOperationFactoryImplementation, SPTExplicitContentLogger, SPTExplicitContentPopupPresenter;
 @protocol SPTContainerService, SPTGLUEService, SPTPlayerFeature, SPTSessionService, SPTSettingsFeature, SPTURIDispatchService;
 
-@interface SPTExplicitContentServiceImplementation : NSObject <SPTExplicitContentService>
+@interface SPTExplicitContentServiceImplementation : NSObject
 {
     id <SPTContainerService> _containerService;
     id <SPTGLUEService> _glueService;

@@ -22,6 +22,7 @@
     // Error parsing type: , name: userDefaultsController
     // Error parsing type: , name: logCenter
     // Error parsing type: , name: viewLoggerFactory
+    // Error parsing type: , name: imageLoader
     // Error parsing type: , name: isEnabledInFirstTimeFlow
 }
 

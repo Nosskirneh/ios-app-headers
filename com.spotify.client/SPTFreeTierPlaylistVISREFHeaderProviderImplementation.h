@@ -8,18 +8,18 @@
 
 #import "SPTFreeTierPlaylistHeaderProvider-Protocol.h"
 
-@class NSString, SPTFreeTierPlaylistVISREFHeaderControllerImplementation, VISREFIntegrationManager;
-@protocol GLUETheme, SPTImageLoader;
+@class NSString, SPTFreeTierPlaylistVISREFHeaderControllerImplementation;
+@protocol GLUETheme, SPTImageLoader, VISREFIntegrationManager;
 
 @interface SPTFreeTierPlaylistVISREFHeaderProviderImplementation : NSObject <SPTFreeTierPlaylistHeaderProvider>
 {
     id <GLUETheme> _theme;
     id <SPTImageLoader> _imageLoader;
     SPTFreeTierPlaylistVISREFHeaderControllerImplementation *_visrefHeaderController;
-    VISREFIntegrationManager *_visrefIntegrationManager;
+    id <VISREFIntegrationManager> _visrefIntegrationManager;
 }
 
-@property(retain, nonatomic) VISREFIntegrationManager *visrefIntegrationManager; // @synthesize visrefIntegrationManager=_visrefIntegrationManager;
+@property(retain, nonatomic) id <VISREFIntegrationManager> visrefIntegrationManager; // @synthesize visrefIntegrationManager=_visrefIntegrationManager;
 @property(retain, nonatomic) SPTFreeTierPlaylistVISREFHeaderControllerImplementation *visrefHeaderController; // @synthesize visrefHeaderController=_visrefHeaderController;
 @property(readonly, nonatomic) id <SPTImageLoader> imageLoader; // @synthesize imageLoader=_imageLoader;
 @property(readonly, nonatomic) id <GLUETheme> theme; // @synthesize theme=_theme;

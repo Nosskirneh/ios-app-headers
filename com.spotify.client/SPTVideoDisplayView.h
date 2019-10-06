@@ -9,7 +9,7 @@
 #import "SPTVideoApplicationStateObserver-Protocol.h"
 
 @class AVPlayer, NSString, SPTVideoApplicationStateObservable, SPTVideoPlayerSource;
-@protocol SPTKVOController, SPTVideoDisplayViewDelegate;
+@protocol BMKVOController, SPTVideoDisplayViewDelegate;
 
 @interface SPTVideoDisplayView : UIView <SPTVideoApplicationStateObserver>
 {
@@ -17,12 +17,12 @@
     id <SPTVideoDisplayViewDelegate> _delegate;
     SPTVideoPlayerSource *_playerSource;
     SPTVideoApplicationStateObservable *_appStateObservable;
-    id <SPTKVOController> _kvoController;
+    id <BMKVOController> _kvoController;
     struct CGRect _videoRect;
 }
 
 + (Class)layerClass;
-@property(retain, nonatomic) id <SPTKVOController> kvoController; // @synthesize kvoController=_kvoController;
+@property(retain, nonatomic) id <BMKVOController> kvoController; // @synthesize kvoController=_kvoController;
 @property(retain, nonatomic) SPTVideoApplicationStateObservable *appStateObservable; // @synthesize appStateObservable=_appStateObservable;
 @property(nonatomic) __weak SPTVideoPlayerSource *playerSource; // @synthesize playerSource=_playerSource;
 @property(nonatomic) __weak id <SPTVideoDisplayViewDelegate> delegate; // @synthesize delegate=_delegate;

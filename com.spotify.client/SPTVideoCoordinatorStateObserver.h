@@ -6,25 +6,25 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTVideoEventObserver-Protocol.h"
+#import "BMEventObserver-Protocol.h"
 
 @class NSString, SPTVideoCoordinatorCosmosSender, SPTVideoPlaybackState, SPTVideoPlaybackStateFactory;
-@protocol OS_dispatch_queue, SPTVideoPlayOptions, SPTVideoPlaybackIdentity;
+@protocol BMPlayOptions, BMPlaybackIdentity, OS_dispatch_queue;
 
-@interface SPTVideoCoordinatorStateObserver : NSObject <SPTVideoEventObserver>
+@interface SPTVideoCoordinatorStateObserver : NSObject <BMEventObserver>
 {
     SPTVideoCoordinatorCosmosSender *_cosmosSender;
     SPTVideoPlaybackStateFactory *_playbackStateFactory;
-    id <SPTVideoPlaybackIdentity> _identity;
-    id <SPTVideoPlayOptions> _options;
+    id <BMPlaybackIdentity> _identity;
+    id <BMPlayOptions> _options;
     SPTVideoPlaybackState *_state;
     double _playbackSpeed;
 }
 
 @property(nonatomic) double playbackSpeed; // @synthesize playbackSpeed=_playbackSpeed;
 @property(retain, nonatomic) SPTVideoPlaybackState *state; // @synthesize state=_state;
-@property(retain, nonatomic) id <SPTVideoPlayOptions> options; // @synthesize options=_options;
-@property(retain, nonatomic) id <SPTVideoPlaybackIdentity> identity; // @synthesize identity=_identity;
+@property(retain, nonatomic) id <BMPlayOptions> options; // @synthesize options=_options;
+@property(retain, nonatomic) id <BMPlaybackIdentity> identity; // @synthesize identity=_identity;
 @property(retain, nonatomic) SPTVideoPlaybackStateFactory *playbackStateFactory; // @synthesize playbackStateFactory=_playbackStateFactory;
 @property(retain, nonatomic) SPTVideoCoordinatorCosmosSender *cosmosSender; // @synthesize cosmosSender=_cosmosSender;
 - (void).cxx_destruct;

@@ -6,9 +6,10 @@
 
 #import "SPTService-Protocol.h"
 
-@protocol SPTInAppMessageActionsRegistry, SPTInAppMessageMessageRequester, SPTInAppMessageNowPlayingManagerRegistry;
+@protocol SPTInAppMessageActionsRegistry, SPTInAppMessageMessageRequester, SPTInAppMessageNowPlayingManagerRegistry, SPTInAppMessagePresentationMonitor;
 
 @protocol SPTInAppMessageService <SPTService>
+- (id <SPTInAppMessagePresentationMonitor>)providePresentationMonitor;
 - (id <SPTInAppMessageActionsRegistry>)provideActionsRegistry;
 - (id <SPTInAppMessageNowPlayingManagerRegistry>)provideNowPlayingManagerRegistry;
 - (id <SPTInAppMessageMessageRequester>)provideMessageRequester;

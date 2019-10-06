@@ -6,28 +6,18 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTDataLoaderDelegate-Protocol.h"
+@class SPTDataLoader;
 
-@class NSString, SPTDataLoader;
-
-@interface SPTDrivingDetectionFeedbackLoader : NSObject <SPTDataLoaderDelegate>
+@interface SPTDrivingDetectionFeedbackLoader : NSObject
 {
     SPTDataLoader *_dataLoader;
 }
 
 @property(readonly, nonatomic) SPTDataLoader *dataLoader; // @synthesize dataLoader=_dataLoader;
 - (void).cxx_destruct;
-- (void)dataLoader:(id)arg1 didReceiveSuccessfulResponse:(id)arg2;
-- (void)dataLoader:(id)arg1 didReceiveErrorResponse:(id)arg2;
 - (id)createRequestWithDetectionResult:(id)arg1 userResponse:(unsigned long long)arg2;
 - (void)deliverDrivingDetectionSurveyUserResponse:(unsigned long long)arg1 forDetectionResult:(id)arg2;
 - (id)initWithDataLoader:(id)arg1;
-
-// Remaining properties
-@property(readonly, copy) NSString *debugDescription;
-@property(readonly, copy) NSString *description;
-@property(readonly) unsigned long long hash;
-@property(readonly) Class superclass;
 
 @end
 

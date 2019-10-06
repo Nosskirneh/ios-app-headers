@@ -7,15 +7,13 @@
 #import <objc/NSObject.h>
 
 #import "SPTSignupDataLoaderDelegate-Protocol.h"
-#import "SPTSignupViewModel-Protocol.h"
 
-@class NSDictionary, NSString, SPTAuthenticationHandler, SPTLoginDialogController, SPTLoginErrorDialogLogger, SPTSignupCreateUserDataLoader, SPTSignupStepThreeViewLogger, SPTSignupTermsAndPolicyViewModel, SPTSignupUserInfoModel;
+@class NSString, SPTAuthenticationHandler, SPTLoginDialogController, SPTLoginErrorDialogLogger, SPTSignupCreateUserDataLoader, SPTSignupStepThreeViewLogger, SPTSignupTermsAndPolicyViewModel, SPTSignupUserInfoModel;
 @protocol SPTSignupStepThreeViewModelDelegate;
 
-@interface SPTSignupStepThreeViewModel : NSObject <SPTSignupDataLoaderDelegate, SPTSignupViewModel>
+@interface SPTSignupStepThreeViewModel : NSObject <SPTSignupDataLoaderDelegate>
 {
     _Bool _accountCreated;
-    NSDictionary *_validators;
     id <SPTSignupStepThreeViewModelDelegate> _delegate;
     SPTSignupTermsAndPolicyViewModel *_termsAndPolicyViewModel;
     SPTSignupStepThreeViewLogger *_logger;
@@ -35,12 +33,10 @@
 @property(readonly, nonatomic) SPTSignupStepThreeViewLogger *logger; // @synthesize logger=_logger;
 @property(readonly, nonatomic) SPTSignupTermsAndPolicyViewModel *termsAndPolicyViewModel; // @synthesize termsAndPolicyViewModel=_termsAndPolicyViewModel;
 @property(nonatomic) __weak id <SPTSignupStepThreeViewModelDelegate> delegate; // @synthesize delegate=_delegate;
-@property(readonly, nonatomic) NSDictionary *validators; // @synthesize validators=_validators;
 - (void).cxx_destruct;
 - (void)dataLoader:(id)arg1 didFinishLoadingWithError:(id)arg2;
 - (void)authenticateWithCredentials;
 - (void)dataLoader:(id)arg1 didFinishLoadingWithSuccessResponse:(id)arg2;
-- (void)validateFieldWithIdentifier:(id)arg1 value:(id)arg2;
 - (void)textFieldUpdated:(id)arg1;
 - (void)setDisplayName:(id)arg1;
 - (void)createUserAndPresentMainScreen;

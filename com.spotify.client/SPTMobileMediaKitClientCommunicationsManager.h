@@ -12,7 +12,7 @@
 #import "SPTGaiaConnectObserver-Protocol.h"
 
 @class KeychainItemWrapper, MMKClientManager, NSString, SPTAccessory, SPTDataLoader, SPTMobileMediaKitAPKeepAliveHandler, SPTMobileMediaKitAudioPlaybackManager;
-@protocol MMKLogging, SPTAccessoryStateManager, SPTGaiaConnectAPI;
+@protocol MMKAuthorizationDelegate, MMKLogging, SPTAccessoryStateManager, SPTGaiaConnectAPI;
 
 @interface SPTMobileMediaKitClientCommunicationsManager : NSObject <SPTExternalIntegrationPlaybackControllerObserver, MMKAuthorizationDelegate, SPTDataLoaderDelegate, SPTGaiaConnectObserver>
 {
@@ -26,8 +26,10 @@
     SPTDataLoader *_dataLoader;
     id <MMKLogging> _logger;
     KeychainItemWrapper *_keychainItem;
+    id <MMKAuthorizationDelegate> _mmkDelegateWrapper;
 }
 
+@property(retain, nonatomic) id <MMKAuthorizationDelegate> mmkDelegateWrapper; // @synthesize mmkDelegateWrapper=_mmkDelegateWrapper;
 @property(retain, nonatomic) KeychainItemWrapper *keychainItem; // @synthesize keychainItem=_keychainItem;
 @property(retain, nonatomic) id <MMKLogging> logger; // @synthesize logger=_logger;
 @property(retain, nonatomic) SPTDataLoader *dataLoader; // @synthesize dataLoader=_dataLoader;

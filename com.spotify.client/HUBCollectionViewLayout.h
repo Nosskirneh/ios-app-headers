@@ -37,6 +37,7 @@
 - (_Bool)shouldInvalidateLayoutForBoundsChange:(struct CGRect)arg1;
 - (id)layoutAttributesForItemAtIndexPath:(id)arg1;
 - (id)layoutAttributesForElementsInRect:(struct CGRect)arg1;
+- (_Bool)flipsHorizontallyInOppositeLayoutDirection;
 - (struct CGPoint)targetContentOffsetForProposedContentOffset:(struct CGPoint)arg1;
 - (void)prepareLayout;
 - (id)initWithComponentLayoutManager:(id)arg1;

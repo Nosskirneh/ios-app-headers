@@ -7,29 +7,34 @@
 #import <objc/NSObject.h>
 
 @class SPTDataLoaderFactory, SPTHomeContentCache;
-@protocol SPTHomeTestManager, SPTOfflineModeState, SPTOnDemandService, SPTPlayer, SPTPodcastUIContinueListeningService, SPTRecentlyPlayedService;
+@protocol SPTFreeTierTasteOnboardingCurationProvider, SPTHomeTestManager, SPTOfflineModeState, SPTOfflineService, SPTOnDemandService, SPTPlayer, SPTPodcastUIContinueListeningService, SPTRecentlyPlayedService;
 
 @interface SPTHomeContentOperationFactory : NSObject
 {
     id <SPTOnDemandService> _onDemandService;
     id <SPTPodcastUIContinueListeningService> _podcastUIContinueListeningService;
     id <SPTRecentlyPlayedService> _recentlyPlayedService;
+    id <SPTOfflineService> _offlineService;
     id <SPTOfflineModeState> _offlineModeState;
     SPTHomeContentCache *_homeContentCache;
     SPTDataLoaderFactory *_dataLoaderFactory;
     id <SPTHomeTestManager> _testManager;
     id <SPTPlayer> _player;
+    id <SPTFreeTierTasteOnboardingCurationProvider> _tasteOnboardingCurationProvider;
 }
 
+@property(readonly, nonatomic) id <SPTFreeTierTasteOnboardingCurationProvider> tasteOnboardingCurationProvider; // @synthesize tasteOnboardingCurationProvider=_tasteOnboardingCurationProvider;
 @property(readonly, nonatomic) id <SPTPlayer> player; // @synthesize player=_player;
 @property(readonly, nonatomic) id <SPTHomeTestManager> testManager; // @synthesize testManager=_testManager;
 @property(readonly, nonatomic) SPTDataLoaderFactory *dataLoaderFactory; // @synthesize dataLoaderFactory=_dataLoaderFactory;
 @property(readonly, nonatomic) SPTHomeContentCache *homeContentCache; // @synthesize homeContentCache=_homeContentCache;
 @property(readonly, nonatomic) __weak id <SPTOfflineModeState> offlineModeState; // @synthesize offlineModeState=_offlineModeState;
+@property(readonly, nonatomic) __weak id <SPTOfflineService> offlineService; // @synthesize offlineService=_offlineService;
 @property(readonly, nonatomic) __weak id <SPTRecentlyPlayedService> recentlyPlayedService; // @synthesize recentlyPlayedService=_recentlyPlayedService;
 @property(readonly, nonatomic) __weak id <SPTPodcastUIContinueListeningService> podcastUIContinueListeningService; // @synthesize podcastUIContinueListeningService=_podcastUIContinueListeningService;
 @property(readonly, nonatomic) __weak id <SPTOnDemandService> onDemandService; // @synthesize onDemandService=_onDemandService;
 - (void).cxx_destruct;
+- (id)provideDownloadsContentOperation;
 - (id)provideHabitsContentOperation;
 - (id)provideQuickPlayRecentlyPlayedDecoratorContentOperation;
 - (id)provideQuickPlayContentOperation;
@@ -42,7 +47,7 @@
 - (id)provideOnDemandDecoratorContentOperation;
 - (id)provideCardAccessibilityContentOperation;
 - (id)provideRecentlyPlayedContentOperation;
-- (id)initWithOnDemandService:(id)arg1 recentlyPlayedService:(id)arg2 podcastUIContinueListeningService:(id)arg3 offlineModeState:(id)arg4 homeContentCache:(id)arg5 dataLoaderFactory:(id)arg6 testManager:(id)arg7 player:(id)arg8;
+- (id)initWithOnDemandService:(id)arg1 recentlyPlayedService:(id)arg2 podcastUIContinueListeningService:(id)arg3 offlineService:(id)arg4 offlineModeState:(id)arg5 homeContentCache:(id)arg6 dataLoaderFactory:(id)arg7 testManager:(id)arg8 player:(id)arg9 tasteOnboardingCurationProvider:(id)arg10;
 
 @end
 

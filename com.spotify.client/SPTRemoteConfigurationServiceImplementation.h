@@ -9,7 +9,7 @@
 #import "SPTRemoteConfigurationService-Protocol.h"
 
 @class NSString, SPTAllocationContext, SPTRemoteConfigurationFeatureProperties;
-@protocol SPTEventSenderService, SPTFeatureFlagSignal, SPTFeatureFlaggingService, SPTNetworkService, SPTRemoteConfigurationIntegration, SPTRemoteConfigurationResolver;
+@protocol SPTEventSenderService, SPTNetworkService, SPTRemoteConfigurationIntegration, SPTRemoteConfigurationResolver;
 
 @interface SPTRemoteConfigurationServiceImplementation : NSObject <SPTRemoteConfigurationService>
 {
@@ -17,24 +17,17 @@
     id <SPTEventSenderService> _eventSenderService;
     id <SPTRemoteConfigurationResolver> _remoteConfigurationResolver;
     id <SPTRemoteConfigurationIntegration> _remoteConfigurationIntegration;
-    id <SPTFeatureFlaggingService> _featureFlaggingService;
-    id <SPTFeatureFlagSignal> _enabledSignal;
     SPTRemoteConfigurationFeatureProperties *_properties;
 }
 
 + (id)serviceIdentifier;
 @property(retain, nonatomic) SPTRemoteConfigurationFeatureProperties *properties; // @synthesize properties=_properties;
-@property(retain, nonatomic) id <SPTFeatureFlagSignal> enabledSignal; // @synthesize enabledSignal=_enabledSignal;
-@property(nonatomic) __weak id <SPTFeatureFlaggingService> featureFlaggingService; // @synthesize featureFlaggingService=_featureFlaggingService;
 @property(retain, nonatomic) id <SPTRemoteConfigurationIntegration> remoteConfigurationIntegration; // @synthesize remoteConfigurationIntegration=_remoteConfigurationIntegration;
 @property(retain, nonatomic) id <SPTRemoteConfigurationResolver> remoteConfigurationResolver; // @synthesize remoteConfigurationResolver=_remoteConfigurationResolver;
 @property(nonatomic) __weak id <SPTEventSenderService> eventSenderService; // @synthesize eventSenderService=_eventSenderService;
 @property(nonatomic) __weak id <SPTNetworkService> networkService; // @synthesize networkService=_networkService;
 - (void).cxx_destruct;
-- (void)disableService;
-- (void)enableService;
-- (void)enabledSignalHasAssumedState:(long long)arg1;
-- (void)featureFlagSignal:(id)arg1 hasAssumedState:(long long)arg2;
+- (void)setupRemoteConfiguration;
 - (void)scheduleInitialFetch;
 - (void)userWillLogoutNotificationReceived:(id)arg1;
 - (void)unload;

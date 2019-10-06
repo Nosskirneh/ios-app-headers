@@ -9,15 +9,15 @@
 #import "SPTFreeTierPlaylistHeader-Protocol.h"
 #import "SPTFreeTierPlaylistVISREFHeaderControllerDelegate-Protocol.h"
 
-@class NSString, VISREFBaseHeaderController, VISREFIntegrationManager;
-@protocol SPTFreeTierPlaylistVISREFHeaderController;
+@class NSString, VISREFBaseHeaderController;
+@protocol SPTFreeTierPlaylistVISREFHeaderController, VISREFIntegrationManager;
 
 @interface SPTFreeTierPlaylistVISREFHeaderViewController : VISREFEntityHeaderContentViewController <SPTFreeTierPlaylistVISREFHeaderControllerDelegate, SPTFreeTierPlaylistHeader>
 {
-    VISREFIntegrationManager *_visrefIntegrationManager;
+    id <VISREFIntegrationManager> _visrefIntegrationManager;
 }
 
-@property(retain, nonatomic) VISREFIntegrationManager *visrefIntegrationManager; // @synthesize visrefIntegrationManager=_visrefIntegrationManager;
+@property(retain, nonatomic) id <VISREFIntegrationManager> visrefIntegrationManager; // @synthesize visrefIntegrationManager=_visrefIntegrationManager;
 - (void).cxx_destruct;
 - (void)popViewController;
 - (struct CGPoint)snapOffset;

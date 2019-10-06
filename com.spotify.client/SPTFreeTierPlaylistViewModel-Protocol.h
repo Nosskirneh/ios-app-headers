@@ -20,7 +20,6 @@
 @property(readonly, nonatomic) unsigned long long type;
 @property(readonly, nonatomic) id <SPTFreeTierPlaylistSortingFiltering> sortingFiltering;
 @property(copy, nonatomic) NSString *textFilter;
-@property(readonly, nonatomic) unsigned long long countOfSections;
 @property(readonly, nonatomic) unsigned long long countOfTracks;
 @property(readonly, nonatomic) unsigned long long offlineAvailability;
 @property(readonly, nonatomic, getter=isEmpty) _Bool empty;
@@ -31,6 +30,7 @@
 @property(readonly, nonatomic, getter=isOfflineSyncAvailable) _Bool offlineSyncAvailable;
 @property(readonly, nonatomic, getter=isReportAbuseEnabled) _Bool reportAbuseEnabled;
 @property(readonly, nonatomic, getter=isLikeActionPlacedInsideHeader) _Bool likeActionPlacedInsideHeader;
+@property(readonly, nonatomic) _Bool isPublished;
 @property(readonly, nonatomic, getter=isOwnedBySelf) _Bool ownedBySelf;
 @property(readonly, copy, nonatomic) NSString *playlistName;
 @property(readonly, copy, nonatomic) NSURL *playlistURL;
@@ -39,7 +39,6 @@
 - (_Bool)isRecomendationsLoading;
 - (void)refreshRecommendations;
 - (void)addRecommendationAtIndex:(long long)arg1;
-- (_Bool)isPlaylistExtenderSection:(long long)arg1;
 - (void)sectionHeaderButtonTapped;
 - (void)deletePlaylist;
 - (void)load;
@@ -62,8 +61,5 @@
 - (_Bool)hasMoreInSection:(unsigned long long)arg1;
 - (void)loadMoreInSection:(unsigned long long)arg1;
 - (unsigned long long)countOfItemsInSection:(unsigned long long)arg1;
-- (_Bool)isTracksSection:(unsigned long long)arg1;
-- (_Bool)isAdditionalControlsSection:(unsigned long long)arg1;
-- (_Bool)isSponsoredPlaylistSection:(unsigned long long)arg1;
 @end
 

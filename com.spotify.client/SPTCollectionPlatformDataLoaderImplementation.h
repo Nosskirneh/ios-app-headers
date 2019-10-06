@@ -36,6 +36,7 @@
 - (void)fetchPodcastsMetadataWithPolicyProtocols:(id)arg1 options:(id)arg2 completion:(CDUnknownBlockType)arg3 onError:(CDUnknownBlockType)arg4;
 - (id)subscribeBansWithWithOptions:(id)arg1 completion:(CDUnknownBlockType)arg2 onError:(CDUnknownBlockType)arg3;
 - (void)fetchBansWithOptions:(id)arg1 completion:(CDUnknownBlockType)arg2 onError:(CDUnknownBlockType)arg3;
+- (id)subscribeAllTracksMetadataWithOptions:(id)arg1 onCompletion:(CDUnknownBlockType)arg2 onError:(CDUnknownBlockType)arg3;
 - (id)subscribeAllTracksWithPolicyProtocols:(id)arg1 options:(id)arg2 completion:(CDUnknownBlockType)arg3 onError:(CDUnknownBlockType)arg4;
 - (void)fetchAllTracksWithPolicyProtocols:(id)arg1 options:(id)arg2 completion:(CDUnknownBlockType)arg3 onError:(CDUnknownBlockType)arg4;
 - (id)subscribeArtistTracksForArtistURL:(id)arg1 withPolicyProtocols:(id)arg2 options:(id)arg3 completion:(CDUnknownBlockType)arg4 onError:(CDUnknownBlockType)arg5;

@@ -42,7 +42,7 @@
 - (void)didStartBufferingAtPosition:(double)arg1;
 - (void)didLoadEncriptionKeyOfType:(long long)arg1;
 - (void)willLoadEncryptionKey;
-- (void)didLoadManifest;
+- (void)didLoadManifestWithAvailableSubtitles:(id)arg1;
 - (void)willLoadManifest;
 - (void)willEndPlaybackWithNextIdentity:(id)arg1;
 - (void)didCreatePlaybackInBackground:(_Bool)arg1;

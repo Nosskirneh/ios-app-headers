@@ -61,6 +61,8 @@
 - (long long)handleChangePlaybackPosition:(id)arg1;
 - (long long)handleSkipForward:(id)arg1;
 - (long long)handleSkipBackward:(id)arg1;
+- (long long)handlePreviousTrackCommand:(id)arg1;
+- (long long)handleNextTrackCommand:(id)arg1;
 - (long long)doNothing:(id)arg1;
 - (void)applyRemoteControlPolicy:(id)arg1;
 - (void)applyPolicyToCommand:(id)arg1 shouldBeAvailable:(_Bool)arg2 shouldBeEnabled:(_Bool)arg3 action:(SEL)arg4;

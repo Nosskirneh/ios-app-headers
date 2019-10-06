@@ -6,12 +6,9 @@
 
 #import "NSObject-Protocol.h"
 
-@class SPTInAppMessageMessageRequest;
+@class NSString;
 
 @protocol SPTInAppMessageMessageRequester <NSObject>
-@property(readonly, nonatomic, getter=isPresentingInAppMessageNote) _Bool presentingInAppMessageNote;
-@property(readonly, nonatomic, getter=isPresentingInAppMessageBanner) _Bool presentingInAppMessageBanner;
-@property(readonly, nonatomic, getter=isPresentingInAppMessageCard) _Bool presentingInAppMessageCard;
-- (void)requestMessage:(SPTInAppMessageMessageRequest *)arg1;
+- (void)requestMessageWithFeatureName:(NSString *)arg1 eventName:(NSString *)arg2 eventID:(NSString *)arg3 eventVersion:(NSString *)arg4;
 @end
 

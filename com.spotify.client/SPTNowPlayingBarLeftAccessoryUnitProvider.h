@@ -6,10 +6,12 @@
 
 #import "SPTNowPlayingBaseUnitProvider.h"
 
-@class SPTNowPlayingBarModel, SPTNowPlayingLogger, SPTNowPlayingModel, SPTTheme, UIViewController;
+#import "SPTNowPlayingTestManagerObserver-Protocol.h"
+
+@class NSString, SPTNowPlayingBarModel, SPTNowPlayingLogger, SPTNowPlayingModel, SPTTheme, UIViewController;
 @protocol SPTGLUEImageLoaderFactory, SPTNowPlayingAuxiliaryActionsHandler, SPTNowPlayingManager, SPTNowPlayingTestManager;
 
-@interface SPTNowPlayingBarLeftAccessoryUnitProvider : SPTNowPlayingBaseUnitProvider
+@interface SPTNowPlayingBarLeftAccessoryUnitProvider : SPTNowPlayingBaseUnitProvider <SPTNowPlayingTestManagerObserver>
 {
     id <SPTNowPlayingManager> _nowPlayingManager;
     SPTTheme *_theme;
@@ -32,12 +34,19 @@
 @property(readonly, nonatomic) SPTTheme *theme; // @synthesize theme=_theme;
 @property(readonly, nonatomic) id <SPTNowPlayingManager> nowPlayingManager; // @synthesize nowPlayingManager=_nowPlayingManager;
 - (void).cxx_destruct;
+- (void)nowPlayingTestManagerDidEnableBarImprovements:(id)arg1;
 - (void)processPlayerStateChange:(id)arg1 toggleMode:(unsigned long long)arg2;
 - (void)createCoverArtImageUnit;
 - (void)createHeartUnit;
 - (void)createOpenUnit;
 - (void)createEmptyUnit;
 - (id)initWithPlayer:(id)arg1 nowPlayingManager:(id)arg2 theme:(id)arg3 nowPlayingModel:(id)arg4 auxiliaryActionsHandler:(id)arg5 logger:(id)arg6 testManager:(id)arg7 imageLoaderFactory:(id)arg8 nowPlayingBarModel:(id)arg9;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

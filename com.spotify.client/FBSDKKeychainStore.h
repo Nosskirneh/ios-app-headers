@@ -24,7 +24,6 @@
 - (_Bool)setString:(id)arg1 forKey:(id)arg2 accessibility:(void *)arg3;
 - (id)dictionaryForKey:(id)arg1;
 - (_Bool)setDictionary:(id)arg1 forKey:(id)arg2 accessibility:(void *)arg3;
-- (id)init;
 - (id)initWithService:(id)arg1 accessGroup:(id)arg2;
 
 @end

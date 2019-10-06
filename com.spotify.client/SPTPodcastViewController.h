@@ -120,7 +120,6 @@
 - (double)tableView:(id)arg1 heightForFooterInSection:(long long)arg2;
 - (id)tableView:(id)arg1 viewForFooterInSection:(long long)arg2;
 - (void)invokeHeaderContextMenu:(id)arg1;
-- (void)invokeContextMenu:(id)arg1 withEpisode:(id)arg2 atIndexPath:(id)arg3;
 - (void)updateBarButtons;
 - (void)setupBarButtons;
 - (void)setupConstraints;

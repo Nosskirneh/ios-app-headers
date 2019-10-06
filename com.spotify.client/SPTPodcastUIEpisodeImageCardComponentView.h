@@ -10,7 +10,7 @@
 #import "HUBComponentViewWithImageHandling-Protocol.h"
 #import "UIGestureRecognizerDelegate-Protocol.h"
 
-@class NSString, SPTPodcastUIEpisodeImageCardView, UILongPressGestureRecognizer, UITapGestureRecognizer;
+@class NSString, SPTPodcastUIEpisodeImageCardView, UITapGestureRecognizer;
 @protocol HUBComponentEventHandler;
 
 @interface SPTPodcastUIEpisodeImageCardComponentView : HUGSThemableComponentView <UIGestureRecognizerDelegate, HUBComponentViewWithImageHandling, HUBComponentViewWithEvents>
@@ -18,17 +18,14 @@
     id <HUBComponentEventHandler> _eventHandler;
     SPTPodcastUIEpisodeImageCardView *_imageCardView;
     UITapGestureRecognizer *_tapGestureRecognizer;
-    UILongPressGestureRecognizer *_highlightGestureRecognizer;
 }
 
-@property(retain, nonatomic) UILongPressGestureRecognizer *highlightGestureRecognizer; // @synthesize highlightGestureRecognizer=_highlightGestureRecognizer;
 @property(retain, nonatomic) UITapGestureRecognizer *tapGestureRecognizer; // @synthesize tapGestureRecognizer=_tapGestureRecognizer;
 @property(retain, nonatomic) SPTPodcastUIEpisodeImageCardView *imageCardView; // @synthesize imageCardView=_imageCardView;
 @property(retain, nonatomic) id <HUBComponentEventHandler> eventHandler; // @synthesize eventHandler=_eventHandler;
 - (void).cxx_destruct;
 - (void)applyThemeLayout;
 - (_Bool)gestureRecognizer:(id)arg1 shouldRecognizeSimultaneouslyWithGestureRecognizer:(id)arg2;
-- (void)highlightGestureRecognizerChangedState:(id)arg1;
 - (void)sendSelectionEvent;
 - (struct CGSize)preferredSizeForImageFromData:(id)arg1 model:(id)arg2 containerViewSize:(struct CGSize)arg3;
 - (void)updateViewForLoadedImage:(id)arg1 fromData:(id)arg2 model:(id)arg3 animated:(_Bool)arg4;

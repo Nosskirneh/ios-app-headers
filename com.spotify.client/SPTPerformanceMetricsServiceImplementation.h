@@ -7,12 +7,11 @@
 #import <objc/NSObject.h>
 
 #import "SPTNavigationManagerDelegate-Protocol.h"
-#import "SPTPerformanceMetricsService-Protocol.h"
 
 @class NSString, SPTAllocationContext, SPTPerformanceMetricsViewLoggerFactoryImplementation, SPTStartupTracer;
 @protocol CosmosFeature, SPTContainerService, SPTNetworkService, SPTPerformanceKitUUIDProvider, SPTResolver, SPTViewLoggerConnectionTypeProvider;
 
-@interface SPTPerformanceMetricsServiceImplementation : NSObject <SPTNavigationManagerDelegate, SPTPerformanceMetricsService>
+@interface SPTPerformanceMetricsServiceImplementation : NSObject <SPTNavigationManagerDelegate>
 {
     id <CosmosFeature> _cosmosFeature;
     id <SPTContainerService> _containerService;

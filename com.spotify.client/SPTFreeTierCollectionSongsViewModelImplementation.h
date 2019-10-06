@@ -104,6 +104,7 @@
 - (_Bool)isRecommendedSection:(unsigned long long)arg1;
 - (_Bool)isSongsSections:(unsigned long long)arg1;
 - (long long)numberOfRowsInSections:(long long)arg1;
+- (_Bool)hasSectionViewModelAtIndex:(unsigned long long)arg1;
 - (id)sectionViewModelAtIndex:(unsigned long long)arg1;
 - (void)itemSelectedAtIndexPath:(id)arg1;
 - (id)itemAtIndexPath:(id)arg1;

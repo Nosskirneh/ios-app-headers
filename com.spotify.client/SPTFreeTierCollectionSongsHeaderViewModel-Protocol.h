@@ -10,6 +10,7 @@
 @protocol SPTFreeTierCollectionSongsHeaderViewModelActionDelegate, SPTFreeTierCollectionSongsHeaderViewModelDelegate;
 
 @protocol SPTFreeTierCollectionSongsHeaderViewModel <NSObject>
+@property(readonly, nonatomic, getter=isForceFilterBarVisible) _Bool forceFilterBarVisible;
 @property(readonly, nonatomic, getter=isFilterAndSortingHidden) _Bool filterAndSortingHidden;
 @property(readonly, nonatomic, getter=isPlayButtonHiddenWhenFiltering) _Bool playButtonHiddenWhenFiltering;
 @property(readonly, nonatomic, getter=isPlayButtonHidden) _Bool playButtonHidden;

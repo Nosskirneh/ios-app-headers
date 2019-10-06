@@ -8,7 +8,7 @@
 
 #import "FBSDKSharingContent-Protocol.h"
 
-@class FBSDKHashtag, NSArray, NSDictionary, NSString, NSURL;
+@class FBSDKHashtag, NSArray, NSString, NSURL;
 
 @interface FBSDKShareLinkContent : NSObject <FBSDKSharingContent>
 {
@@ -18,21 +18,13 @@
     NSString *_placeID;
     NSString *_ref;
     NSString *_pageID;
-    NSDictionary *_feedParameters;
     NSString *_quote;
     NSString *_shareUUID;
-    NSString *_contentDescription;
-    NSString *_contentTitle;
-    NSURL *_imageURL;
 }
 
 + (_Bool)supportsSecureCoding;
-@property(readonly, nonatomic) NSURL *imageURL; // @synthesize imageURL=_imageURL;
-@property(readonly, nonatomic) NSString *contentTitle; // @synthesize contentTitle=_contentTitle;
-@property(readonly, nonatomic) NSString *contentDescription; // @synthesize contentDescription=_contentDescription;
 @property(readonly, copy, nonatomic) NSString *shareUUID; // @synthesize shareUUID=_shareUUID;
 @property(copy, nonatomic) NSString *quote; // @synthesize quote=_quote;
-@property(copy, nonatomic) NSDictionary *feedParameters; // @synthesize feedParameters=_feedParameters;
 @property(copy, nonatomic) NSString *pageID; // @synthesize pageID=_pageID;
 @property(copy, nonatomic) NSString *ref; // @synthesize ref=_ref;
 @property(copy, nonatomic) NSString *placeID; // @synthesize placeID=_placeID;
@@ -46,6 +38,8 @@
 - (_Bool)isEqualToShareLinkContent:(id)arg1;
 - (_Bool)isEqual:(id)arg1;
 @property(readonly) unsigned long long hash;
+- (_Bool)validateWithOptions:(unsigned long long)arg1 error:(id *)arg2;
+- (id)addParameters:(id)arg1 bridgeOptions:(unsigned long long)arg2;
 - (id)init;
 
 // Remaining properties

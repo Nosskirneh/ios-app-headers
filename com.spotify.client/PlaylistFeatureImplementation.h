@@ -14,7 +14,6 @@
 
 @interface PlaylistFeatureImplementation : NSObject <SPTService, PlaylistFeature>
 {
-    _Bool _localFilesImportEnabled;
     id <SPTAddToPlaylistService> _addToPlaylistService;
     id <SPTContainerService> _containerService;
     id <SPTContainerUIService> _containerUIService;
@@ -64,14 +63,11 @@
 @property(nonatomic) __weak id <SPTContainerUIService> containerUIService; // @synthesize containerUIService=_containerUIService;
 @property(nonatomic) __weak id <SPTContainerService> containerService; // @synthesize containerService=_containerService;
 @property(nonatomic) __weak id <SPTAddToPlaylistService> addToPlaylistService; // @synthesize addToPlaylistService=_addToPlaylistService;
-@property(nonatomic, getter=isLocalFilesImportEnabled) _Bool localFilesImportEnabled; // @synthesize localFilesImportEnabled=_localFilesImportEnabled;
 - (void).cxx_destruct;
 - (void)featureFlagSignal:(id)arg1 hasAssumedState:(long long)arg2;
-- (id)provideSortMenuButton;
 - (id)provideTestManager;
 - (id)provideLogger;
 @property(readonly, nonatomic) NSURL *rootlistURL;
-- (id)provideSortingEntityManager;
 - (id)providePlaylistFolderViewModelForFolderURL:(id)arg1;
 - (id)providePlaylistFolderViewModelForRootList;
 - (id)provideAddToPlaylistViewControllerWithTrackURLs:(id)arg1 inFolderURL:(id)arg2 addEntityURL:(id)arg3 defaultPlaylistName:(id)arg4 logContext:(id)arg5 sourceURL:(id)arg6 contextSourceURL:(id)arg7;

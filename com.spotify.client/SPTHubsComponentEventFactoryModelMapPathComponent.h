@@ -6,11 +6,11 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTInteractionEventComponent-Protocol.h"
+#import "SPTUBIEventComponent-Protocol.h"
 
 @class NSNumber, NSString, NSURL;
 
-@interface SPTHubsComponentEventFactoryModelMapPathComponent : NSObject <SPTInteractionEventComponent>
+@interface SPTHubsComponentEventFactoryModelMapPathComponent : NSObject <SPTUBIEventComponent>
 {
     NSString *_name;
     NSString *_identifier;

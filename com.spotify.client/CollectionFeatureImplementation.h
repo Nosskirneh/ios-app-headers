@@ -9,12 +9,11 @@
 #import "CollectionFeature-Protocol.h"
 #import "SPTService-Protocol.h"
 
-@class NSString, SPTAllocationContext, SPTCollectionLoggerImplementation, SPTCollectionOverviewNavigationModel, SPTSaveToCollectionPushNotificationAction;
-@protocol FollowFeature, SPContextMenuFeature, SPTAbbaService, SPTBrowsePlatformService, SPTBrowseRedirectButtonProvider, SPTCollectionPlatformService, SPTContainerService, SPTCoreService, SPTExplicitContentService, SPTFeatureFlagSignal, SPTFeatureFlaggingService, SPTFreeTierService, SPTGLUEService, SPTNavigationFeature, SPTNetworkService, SPTNuxService, SPTOfflineService, SPTPageRegistrationToken, SPTPerformanceMetricsService, SPTPlayerFeature, SPTPushNotificationsService, SPTRecentlyPlayedService, SPTSessionService, SPTSettingsFeature, SPTShareFeature, SPTShelfService, SPTUIPresentationService, SPTURIDispatchService, SPTYourLibraryService;
+@class NSString, SPTAllocationContext, SPTCollectionLoggerImplementation, SPTCollectionOverviewNavigationModel;
+@protocol FollowFeature, SPContextMenuFeature, SPTAbbaService, SPTBrowsePlatformService, SPTBrowseRedirectButtonProvider, SPTCollectionPlatformService, SPTContainerService, SPTCoreService, SPTExplicitContentService, SPTFeatureFlagSignal, SPTFeatureFlaggingService, SPTFreeTierService, SPTGLUEService, SPTNavigationFeature, SPTNetworkService, SPTOfflineService, SPTPageRegistrationToken, SPTPerformanceMetricsService, SPTPlayerFeature, SPTRecentlyPlayedService, SPTSessionService, SPTSettingsFeature, SPTShareFeature, SPTShelfService, SPTUIPresentationService, SPTURIDispatchService, SPTYourLibraryService;
 
 @interface CollectionFeatureImplementation : NSObject <SPTService, CollectionFeature>
 {
-    _Bool _localFilesImportEnabled;
     id <SPTSessionService> _clientSessionService;
     id <SPTCollectionPlatformService> _collectionPlatformService;
     id <SPTContainerService> _containerService;
@@ -22,13 +21,11 @@
     id <SPTFeatureFlaggingService> _featureFlaggingService;
     id <SPTFreeTierService> _freeTierService;
     id <SPTNetworkService> _networkFeature;
-    id <SPTPushNotificationsService> _pushNotificationsService;
     id <SPTPlayerFeature> _playerFeature;
     id <SPContextMenuFeature> _contextMenuFeature;
     id <SPTAbbaService> _abbaService;
     id <SPTSettingsFeature> _settingsFeature;
     id <FollowFeature> _followFeature;
-    id <SPTNuxService> _nuxService;
     id <SPTNavigationFeature> _navigationFeature;
     id <SPTBrowsePlatformService> _browsePlatformService;
     id <SPTRecentlyPlayedService> _recentlyPlayedService;
@@ -41,7 +38,6 @@
     id <SPTPerformanceMetricsService> _performanceMetricsService;
     id <SPTOfflineService> _offlineService;
     id <SPTYourLibraryService> _yourLibraryService;
-    SPTSaveToCollectionPushNotificationAction *_saveToCollectionPushNotificationAction;
     SPTCollectionOverviewNavigationModel *_collectionListModel;
     SPTCollectionLoggerImplementation *_collectionLogger;
     id <SPTBrowseRedirectButtonProvider> _browseRedirectButtonProvider;
@@ -65,7 +61,6 @@
 @property(retain, nonatomic) id <SPTBrowseRedirectButtonProvider> browseRedirectButtonProvider; // @synthesize browseRedirectButtonProvider=_browseRedirectButtonProvider;
 @property(retain, nonatomic) SPTCollectionLoggerImplementation *collectionLogger; // @synthesize collectionLogger=_collectionLogger;
 @property(retain, nonatomic) SPTCollectionOverviewNavigationModel *collectionListModel; // @synthesize collectionListModel=_collectionListModel;
-@property(retain, nonatomic) SPTSaveToCollectionPushNotificationAction *saveToCollectionPushNotificationAction; // @synthesize saveToCollectionPushNotificationAction=_saveToCollectionPushNotificationAction;
 @property(nonatomic) __weak id <SPTYourLibraryService> yourLibraryService; // @synthesize yourLibraryService=_yourLibraryService;
 @property(nonatomic) __weak id <SPTOfflineService> offlineService; // @synthesize offlineService=_offlineService;
 @property(nonatomic) __weak id <SPTPerformanceMetricsService> performanceMetricsService; // @synthesize performanceMetricsService=_performanceMetricsService;
@@ -78,13 +73,11 @@
 @property(nonatomic) __weak id <SPTRecentlyPlayedService> recentlyPlayedService; // @synthesize recentlyPlayedService=_recentlyPlayedService;
 @property(nonatomic) __weak id <SPTBrowsePlatformService> browsePlatformService; // @synthesize browsePlatformService=_browsePlatformService;
 @property(nonatomic) __weak id <SPTNavigationFeature> navigationFeature; // @synthesize navigationFeature=_navigationFeature;
-@property(nonatomic) __weak id <SPTNuxService> nuxService; // @synthesize nuxService=_nuxService;
 @property(nonatomic) __weak id <FollowFeature> followFeature; // @synthesize followFeature=_followFeature;
 @property(nonatomic) __weak id <SPTSettingsFeature> settingsFeature; // @synthesize settingsFeature=_settingsFeature;
 @property(nonatomic) __weak id <SPTAbbaService> abbaService; // @synthesize abbaService=_abbaService;
 @property(nonatomic) __weak id <SPContextMenuFeature> contextMenuFeature; // @synthesize contextMenuFeature=_contextMenuFeature;
 @property(nonatomic) __weak id <SPTPlayerFeature> playerFeature; // @synthesize playerFeature=_playerFeature;
-@property(nonatomic) __weak id <SPTPushNotificationsService> pushNotificationsService; // @synthesize pushNotificationsService=_pushNotificationsService;
 @property(nonatomic) __weak id <SPTNetworkService> networkFeature; // @synthesize networkFeature=_networkFeature;
 @property(nonatomic) __weak id <SPTFreeTierService> freeTierService; // @synthesize freeTierService=_freeTierService;
 @property(nonatomic) __weak id <SPTFeatureFlaggingService> featureFlaggingService; // @synthesize featureFlaggingService=_featureFlaggingService;
@@ -92,7 +85,6 @@
 @property(nonatomic) __weak id <SPTContainerService> containerService; // @synthesize containerService=_containerService;
 @property(nonatomic) __weak id <SPTCollectionPlatformService> collectionPlatformService; // @synthesize collectionPlatformService=_collectionPlatformService;
 @property(nonatomic) __weak id <SPTSessionService> clientSessionService; // @synthesize clientSessionService=_clientSessionService;
-@property(nonatomic, getter=isLocalFilesImportEnabled) _Bool localFilesImportEnabled; // @synthesize localFilesImportEnabled=_localFilesImportEnabled;
 - (void).cxx_destruct;
 - (void)featureFlagSignal:(id)arg1 hasAssumedState:(long long)arg2;
 - (id)provideCollectionOverviewPage:(id)arg1 context:(id)arg2;
@@ -117,7 +109,6 @@
 - (void)unload;
 - (void)registerCollectionArtistPage;
 - (void)registerPages;
-- (void)setUpManagers;
 - (void)load;
 - (void)configureWithServices:(id)arg1;
 

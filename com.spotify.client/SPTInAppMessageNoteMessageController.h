@@ -8,14 +8,14 @@
 
 #import "SPTInAppMessageNoteMessagePriorityDeciderDelegate-Protocol.h"
 
-@class NSString, SPTInAppMessageActionFactory, SPTInAppMessageNoteMessageParser, SPTInAppMessageNoteMessagePresentationController, SPTInAppMessageNoteMessageViewModel, SPTInAppMessageNotePresentationManagerImplementation, SPTInAppMessageNowPlayingManagerRegistryImplementation, SPTInAppMessageServiceLogger;
+@class NSString, SPTInAppMessageActionFactory, SPTInAppMessageNoteMessageParser, SPTInAppMessageNoteMessagePresentationController, SPTInAppMessageNoteMessageViewModel, SPTInAppMessageNotePresentationManager, SPTInAppMessageNowPlayingManagerRegistryImplementation, SPTInAppMessageServiceLogger;
 @protocol SPTBannerPresentationManager, SPTCrashReporter, SPTExternalIntegrationDriverDistractionController, SPTFreeTierTooltipConditionalPresenter, SPTOfflineModeState, SPTSlateManager, SPTSnackbarConditionalPresenter, SPTTooltipPresentationManager;
 
 @interface SPTInAppMessageNoteMessageController : NSObject <SPTInAppMessageNoteMessagePriorityDeciderDelegate>
 {
     SPTInAppMessageNoteMessageParser *_noteMessageParser;
     id <SPTSlateManager> _slateManager;
-    SPTInAppMessageNotePresentationManagerImplementation *_notePresentationManager;
+    SPTInAppMessageNotePresentationManager *_notePresentationManager;
     id <SPTBannerPresentationManager> _bannerPresentationManager;
     id <SPTTooltipPresentationManager> _tooltipPresentationManager;
     id <SPTFreeTierTooltipConditionalPresenter> _freeTierTooltipPresenter;
@@ -42,7 +42,7 @@
 @property(retain, nonatomic) id <SPTFreeTierTooltipConditionalPresenter> freeTierTooltipPresenter; // @synthesize freeTierTooltipPresenter=_freeTierTooltipPresenter;
 @property(retain, nonatomic) id <SPTTooltipPresentationManager> tooltipPresentationManager; // @synthesize tooltipPresentationManager=_tooltipPresentationManager;
 @property(retain, nonatomic) id <SPTBannerPresentationManager> bannerPresentationManager; // @synthesize bannerPresentationManager=_bannerPresentationManager;
-@property(retain, nonatomic) SPTInAppMessageNotePresentationManagerImplementation *notePresentationManager; // @synthesize notePresentationManager=_notePresentationManager;
+@property(retain, nonatomic) SPTInAppMessageNotePresentationManager *notePresentationManager; // @synthesize notePresentationManager=_notePresentationManager;
 @property(retain, nonatomic) id <SPTSlateManager> slateManager; // @synthesize slateManager=_slateManager;
 @property(retain, nonatomic) SPTInAppMessageNoteMessageParser *noteMessageParser; // @synthesize noteMessageParser=_noteMessageParser;
 - (void).cxx_destruct;

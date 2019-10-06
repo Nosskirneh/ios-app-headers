@@ -8,12 +8,11 @@
 
 #import "SPTBrowseConnectivityMonitorObserver-Protocol.h"
 #import "SPTBrowseViewModelProvider-Protocol.h"
-#import "SPTPlayerObserver-Protocol.h"
 
 @class NSString, SPTObserverManager;
-@protocol HUBViewModel, SPTBrowseConnectivityMonitor, SPTBrowseViewModelFetcher, SPTDataLoaderCancellationToken, SPTPlayer;
+@protocol HUBViewModel, SPTBrowseConnectivityMonitor, SPTBrowseViewModelFetcher, SPTDataLoaderCancellationToken;
 
-@interface SPTBrowseViewModelProviderImplementation : NSObject <SPTBrowseConnectivityMonitorObserver, SPTPlayerObserver, SPTBrowseViewModelProvider>
+@interface SPTBrowseViewModelProviderImplementation : NSObject <SPTBrowseConnectivityMonitorObserver, SPTBrowseViewModelProvider>
 {
     _Bool _refreshDisallowed;
     id <HUBViewModel> _viewModel;
@@ -26,11 +25,9 @@
     id <HUBViewModel> _initialViewModel;
     id <HUBViewModel> _offlineViewModel;
     id <HUBViewModel> _errorViewModel;
-    id <SPTPlayer> _player;
 }
 
 @property(nonatomic, getter=isRefreshDisallowed) _Bool refreshDisallowed; // @synthesize refreshDisallowed=_refreshDisallowed;
-@property(readonly, nonatomic) id <SPTPlayer> player; // @synthesize player=_player;
 @property(readonly, nonatomic) id <HUBViewModel> errorViewModel; // @synthesize errorViewModel=_errorViewModel;
 @property(readonly, nonatomic) id <HUBViewModel> offlineViewModel; // @synthesize offlineViewModel=_offlineViewModel;
 @property(readonly, nonatomic) id <HUBViewModel> initialViewModel; // @synthesize initialViewModel=_initialViewModel;
@@ -44,16 +41,13 @@
 - (void).cxx_destruct;
 - (id)viewModelByAppendingViewModel:(id)arg1 toViewModel:(id)arg2;
 - (void)cancelLoadingNextPage;
-- (_Bool)updatePlayableHeroCardModelBuilder:(id)arg1 playerState:(id)arg2;
-- (void)updatePlayableHeroCardsWithPlayerState:(id)arg1;
-- (void)player:(id)arg1 stateDidChange:(id)arg2;
 - (void)connectivityMonitorDidChangeState:(id)arg1;
 - (void)removeObserver:(id)arg1;
 - (void)addObserver:(id)arg1;
 - (void)loadNextPage;
 - (void)refresh;
 - (void)reload;
-- (id)initWithViewModelFetcher:(id)arg1 connectivityMonitor:(id)arg2 initialViewModel:(id)arg3 offlineViewModel:(id)arg4 errorViewModel:(id)arg5 player:(id)arg6;
+- (id)initWithViewModelFetcher:(id)arg1 connectivityMonitor:(id)arg2 initialViewModel:(id)arg3 offlineViewModel:(id)arg4 errorViewModel:(id)arg5;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

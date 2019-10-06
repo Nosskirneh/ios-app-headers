@@ -9,11 +9,11 @@
 #import "GLUEEntityRowContent-Protocol.h"
 #import "GLUEReusable-Protocol.h"
 #import "SPTCellImageLoadingContextCompatibleCell-Protocol.h"
-#import "SPTShowsFormatCellViewModelConfigurable-Protocol.h"
 
 @class GLUEImageView, GLUELabel, GLUETrackAccessoryLabel, NSArray, NSLayoutConstraint, NSString, SPTShowsFormatCellViewModel, SPTShowsFormatLoopedAssetLayer, SPTShowsFormatVideoRowContentStyle, UIStackView;
+@protocol BMBetamaxPlayer, BMVideoSurface;
 
-@interface SPTShowsFormatVideoRowContentView : UIView <GLUEEntityRowContent, GLUEReusable, SPTCellImageLoadingContextCompatibleCell, SPTShowsFormatCellViewModelConfigurable>
+@interface SPTShowsFormatVideoRowContentView : UIView <GLUEEntityRowContent, GLUEReusable, SPTCellImageLoadingContextCompatibleCell>
 {
     _Bool _didSetupConstraints;
     UIView *subtitleAccessoryView;
@@ -27,6 +27,8 @@
     UIStackView *_labelStackView;
     GLUETrackAccessoryLabel *_trackAccessoryLabel;
     UIView *_animationContentView;
+    UIView<BMVideoSurface> *_videoSurface;
+    id <BMBetamaxPlayer> _player;
     NSLayoutConstraint *_stackVerticalConstraint;
     NSArray *_accessoryViewLayoutConstraints;
     SPTShowsFormatCellViewModel *_viewModel;
@@ -36,6 +38,8 @@
 @property(retain, nonatomic) SPTShowsFormatCellViewModel *viewModel; // @synthesize viewModel=_viewModel;
 @property(copy, nonatomic) NSArray *accessoryViewLayoutConstraints; // @synthesize accessoryViewLayoutConstraints=_accessoryViewLayoutConstraints;
 @property(retain, nonatomic) NSLayoutConstraint *stackVerticalConstraint; // @synthesize stackVerticalConstraint=_stackVerticalConstraint;
+@property(readonly, nonatomic) id <BMBetamaxPlayer> player; // @synthesize player=_player;
+@property(readonly, nonatomic) UIView<BMVideoSurface> *videoSurface; // @synthesize videoSurface=_videoSurface;
 @property(readonly, nonatomic) UIView *animationContentView; // @synthesize animationContentView=_animationContentView;
 @property(readonly, nonatomic) GLUETrackAccessoryLabel *trackAccessoryLabel; // @synthesize trackAccessoryLabel=_trackAccessoryLabel;
 @property(readonly, nonatomic) UIStackView *labelStackView; // @synthesize labelStackView=_labelStackView;
@@ -55,8 +59,12 @@
 - (void)updateAccessoryViewConstraints;
 - (void)updateConstraints;
 - (void)prepareForReuse;
+- (void)pauseVideo;
+- (void)resumeVideo;
 - (void)didTapContextMenuButton:(id)arg1;
-- (void)configureWithViewModel:(id)arg1 glueImageLoader:(id)arg2;
+- (void)configureWithViewModel:(id)arg1 glueImageLoader:(id)arg2 useBetamaxPlayer:(_Bool)arg3 playerFactory:(id)arg4 playbackRequestFactory:(id)arg5 isCellularConnection:(_Bool)arg6;
+- (void)setupBetamaxVideoSurfaceWithPlayerFactory:(id)arg1;
+- (void)setupLegacyVideoLayer;
 - (id)initWithFrame:(struct CGRect)arg1;
 
 // Remaining properties

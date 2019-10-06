@@ -22,6 +22,7 @@
 - (void).cxx_destruct;
 - (void)loadImageURL:(id)arg1 imageSize:(struct CGSize)arg2;
 - (id)initWithTheme:(id)arg1 glueImageLoader:(id)arg2;
+- (id)initWithTheme:(id)arg1;
 
 @end
 

@@ -7,21 +7,26 @@
 #import <objc/NSObject.h>
 
 #import "NSCopying-Protocol.h"
+#import "NSMutableCopying-Protocol.h"
 
-@class NSDictionary, NSMutableDictionary, NSString, NSURL;
+@class NSDictionary, NSString, NSURL;
 
-@interface SPTHubsKitImageData : NSObject <NSCopying>
+@interface SPTHubsKitImageData : NSObject <NSCopying, NSMutableCopying>
 {
     NSURL *_url;
     NSString *_placeholderIconIdentifier;
-    NSMutableDictionary *_customData;
+    NSDictionary *_customData;
 }
 
-@property(readonly, nonatomic) NSMutableDictionary *customData; // @synthesize customData=_customData;
+@property(copy, nonatomic) NSDictionary *customData; // @synthesize customData=_customData;
 @property(copy, nonatomic) NSString *placeholderIconIdentifier; // @synthesize placeholderIconIdentifier=_placeholderIconIdentifier;
 @property(copy, nonatomic) NSURL *url; // @synthesize url=_url;
 - (void).cxx_destruct;
+- (_Bool)isEqualToImageData:(id)arg1;
 @property(readonly, nonatomic) NSDictionary *dictionaryRepresentation;
+- (unsigned long long)hash;
+- (_Bool)isEqual:(id)arg1;
+- (id)mutableCopyWithZone:(struct _NSZone *)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)initWithURL:(id)arg1 placeholderIconIdentifier:(id)arg2 customData:(id)arg3;
 - (id)initWithURL:(id)arg1;

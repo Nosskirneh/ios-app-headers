@@ -6,9 +6,10 @@
 
 #import "SPTService-Protocol.h"
 
-@protocol SPTPodcastEpisodeFeaturedContentViewProvider;
+@protocol HUBContentOperation, SPTPodcastEpisodeFeaturedContentViewProvider;
 
 @protocol SPTPodcastEpisodeFeaturedContentService <SPTService>
+- (id <HUBContentOperation>)provideSubtitleDecoratorContentOperation;
 - (id <SPTPodcastEpisodeFeaturedContentViewProvider>)providePodcastEpisodeFeaturedContentViewProvider;
 @end
 

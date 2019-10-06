@@ -6,11 +6,11 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTVideoPlaybackRequestFactory-Protocol.h"
+#import "BMPlaybackRequestFactory-Protocol.h"
 
 @class NSString, SPTVideoMediaURLConverter;
 
-@interface SPTVideoPlaybackRequestFactoryImpl : NSObject <SPTVideoPlaybackRequestFactory>
+@interface SPTVideoPlaybackRequestFactoryImpl : NSObject <BMPlaybackRequestFactory>
 {
     SPTVideoMediaURLConverter *_mediaURLConverter;
 }

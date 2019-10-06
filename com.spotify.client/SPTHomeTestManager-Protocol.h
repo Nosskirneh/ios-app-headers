@@ -7,6 +7,7 @@
 #import "NSObject-Protocol.h"
 
 @protocol SPTHomeTestManager <NSObject>
+@property(readonly, nonatomic, getter=isDownloadSectionsEnabled) _Bool downloadSectionsEnabled;
 @property(readonly, nonatomic, getter=isConsolidatedRecentlyPlayedEnabled) _Bool consolidatedRecentlyPlayedEnabled;
 @property(readonly, nonatomic, getter=isQuickPlayEnabled) _Bool quickPlayEnabled;
 @property(readonly, nonatomic, getter=isProductStateNPT) _Bool productStateNPT;

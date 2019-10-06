@@ -8,7 +8,7 @@
 
 #import "SPTLoginRecoverAccountDataLoaderDelegate-Protocol.h"
 
-@class NSString, SPTLoginFailedLinkRequestHandler, SPTLoginMagicLinkTestManager, SPTLoginRecoverAccountDataLoader, SPTLoginRecoverAccountViewLogger, SPTLoginTheme;
+@class NSString, SPTLoginMagicLinkTestManager, SPTLoginRecoverAccountDataLoader, SPTLoginRecoverAccountViewLogger, SPTLoginTheme;
 @protocol SPTLinkDispatcher, SPTLoginRecoverAccountViewModelDelegate, SPTNavigationRouter;
 
 @interface SPTLoginRecoverAccountViewModel : NSObject <SPTLoginRecoverAccountDataLoaderDelegate>
@@ -21,10 +21,8 @@
     SPTLoginRecoverAccountDataLoader *_dataLoader;
     id <SPTLinkDispatcher> _linkDispatcher;
     SPTLoginMagicLinkTestManager *_magicLinkTestManager;
-    SPTLoginFailedLinkRequestHandler *_failedLoginLinkRequestHandler;
 }
 
-@property(readonly, nonatomic) SPTLoginFailedLinkRequestHandler *failedLoginLinkRequestHandler; // @synthesize failedLoginLinkRequestHandler=_failedLoginLinkRequestHandler;
 @property(readonly, nonatomic) SPTLoginMagicLinkTestManager *magicLinkTestManager; // @synthesize magicLinkTestManager=_magicLinkTestManager;
 @property(readonly, nonatomic) id <SPTLinkDispatcher> linkDispatcher; // @synthesize linkDispatcher=_linkDispatcher;
 @property(readonly, nonatomic) SPTLoginRecoverAccountDataLoader *dataLoader; // @synthesize dataLoader=_dataLoader;
@@ -52,7 +50,7 @@
 - (id)messageText;
 - (id)titleText;
 - (id)viewStyle;
-- (id)initWithTheme:(id)arg1 navigationRouter:(id)arg2 dataLoader:(id)arg3 logger:(id)arg4 linkDispatcher:(id)arg5 userEmail:(id)arg6 magicLinkTestManager:(id)arg7 failedLoginLinkRequestHandler:(id)arg8;
+- (id)initWithTheme:(id)arg1 navigationRouter:(id)arg2 dataLoader:(id)arg3 logger:(id)arg4 linkDispatcher:(id)arg5 userEmail:(id)arg6 magicLinkTestManager:(id)arg7;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

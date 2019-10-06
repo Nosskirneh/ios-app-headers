@@ -7,12 +7,12 @@
 #import <objc/NSObject.h>
 
 @class SPTVideoManifestFactory;
-@protocol SPTVideoDataLoader, SPTVideoPlayerConfiguration;
+@protocol BMDataLoader, BMPlayerConfiguration;
 
 @interface SPTVideoManifestService : NSObject
 {
-    id <SPTVideoDataLoader> _videoDataLoader;
-    id <SPTVideoPlayerConfiguration> _playerConfiguration;
+    id <BMDataLoader> _videoDataLoader;
+    id <BMPlayerConfiguration> _playerConfiguration;
     SPTVideoManifestFactory *_manifestFactory;
     unsigned long long _retryCount;
     unsigned long long _max500ErrorRetryCount;
@@ -21,8 +21,8 @@
 @property(nonatomic) unsigned long long max500ErrorRetryCount; // @synthesize max500ErrorRetryCount=_max500ErrorRetryCount;
 @property(nonatomic) unsigned long long retryCount; // @synthesize retryCount=_retryCount;
 @property(retain, nonatomic) SPTVideoManifestFactory *manifestFactory; // @synthesize manifestFactory=_manifestFactory;
-@property(retain, nonatomic) id <SPTVideoPlayerConfiguration> playerConfiguration; // @synthesize playerConfiguration=_playerConfiguration;
-@property(retain, nonatomic) id <SPTVideoDataLoader> videoDataLoader; // @synthesize videoDataLoader=_videoDataLoader;
+@property(retain, nonatomic) id <BMPlayerConfiguration> playerConfiguration; // @synthesize playerConfiguration=_playerConfiguration;
+@property(retain, nonatomic) id <BMDataLoader> videoDataLoader; // @synthesize videoDataLoader=_videoDataLoader;
 - (void).cxx_destruct;
 - (id)reasonFromErrorResponseJSON:(id)arg1;
 - (id)manifestErrorFromResponse:(unsigned long long)arg1 error:(id)arg2 body:(id)arg3;

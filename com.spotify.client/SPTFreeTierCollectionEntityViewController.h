@@ -6,7 +6,6 @@
 
 #import <UIKit/UIViewController.h>
 
-#import "SPContentInsetViewController-Protocol.h"
 #import "SPTFreeTierCollectionEntityCellConfiguratorDelegate-Protocol.h"
 #import "SPTFreeTierCollectionEntityViewModelDelegate-Protocol.h"
 #import "SPTFreeTierCollectionFilterBarViewControllerDelegate-Protocol.h"
@@ -20,7 +19,7 @@
 @class NSString, NSURL, SPTFreeTierCollectionEmptyView, SPTFreeTierCollectionFilterBarViewController, SPTFreeTierCollectionGLUETheme, SPTProgressView, SPTTableView;
 @protocol GLUEImageLoader, SPTFreeTierCollectionEntityCellConfigurator, SPTFreeTierCollectionEntityViewModel, SPTPageContainer, SPTShareDragDelegateFactory, SPTSnackbarConditionalPresenter, SPTSortingFilteringUIFactory, SPTViewLogger, SPTYourLibraryPageDelegate, UITableViewDragDelegate;
 
-@interface SPTFreeTierCollectionEntityViewController : UIViewController <SPTFreeTierCollectionFilterBarViewControllerDelegate, SPTFreeTierCollectionEntityCellConfiguratorDelegate, SPContentInsetViewController, UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate, SPTYourLibraryPage, SPTFreeTierCollectionEntityViewModelDelegate, SPTScrollToTopViewController, SPTPageController>
+@interface SPTFreeTierCollectionEntityViewController : UIViewController <SPTFreeTierCollectionFilterBarViewControllerDelegate, SPTFreeTierCollectionEntityCellConfiguratorDelegate, UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate, SPTYourLibraryPage, SPTFreeTierCollectionEntityViewModelDelegate, SPTScrollToTopViewController, SPTPageController>
 {
     id <SPTYourLibraryPageDelegate> pageDelegate;
     SPTTableView *_tableView;
@@ -92,8 +91,7 @@
 - (void)scrollViewDidEndDragging:(id)arg1 willDecelerate:(_Bool)arg2;
 - (void)scrollViewDidEndDecelerating:(id)arg1;
 - (void)scrollViewDidScroll:(id)arg1;
-@property(nonatomic) _Bool automaticallyAdjustsScrollViewInsets;
-- (void)sp_updateContentInsets;
+- (_Bool)automaticallyAdjustsScrollViewInsets;
 - (void)spt_scrollToTop;
 - (long long)tableView:(id)arg1 sectionForSectionIndexTitle:(id)arg2 atIndex:(long long)arg3;
 - (id)sectionIndexTitlesForTableView:(id)arg1;

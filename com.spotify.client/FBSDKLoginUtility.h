@@ -13,7 +13,6 @@
 + (id)userIDFromSignedRequest:(id)arg1;
 + (id)queryParamsFromLoginURL:(id)arg1;
 + (id)stringForAudience:(unsigned long long)arg1;
-- (id)init;
 
 @end
 

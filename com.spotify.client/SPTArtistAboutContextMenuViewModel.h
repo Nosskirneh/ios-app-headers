@@ -6,7 +6,7 @@
 
 #import <objc/NSObject.h>
 
-@class SPTArtistAboutStateProvider;
+@class SPTArtistAboutModerationRegistrar, SPTArtistAboutStateProvider;
 @protocol SPTContextMenuActionsProvider, SPTContextMenuOptionsFactory, SPTContextMenuPresenter, SPTContextMenuPresenterFactory, SPTModerationServiceState;
 
 @interface SPTArtistAboutContextMenuViewModel : NSObject
@@ -17,8 +17,10 @@
     id <SPTContextMenuOptionsFactory> _contextMenuOptionsFactory;
     id <SPTModerationServiceState> _moderationServiceState;
     SPTArtistAboutStateProvider *_stateProvider;
+    SPTArtistAboutModerationRegistrar *_artistAboutModerationRegistrar;
 }
 
+@property(retain, nonatomic) SPTArtistAboutModerationRegistrar *artistAboutModerationRegistrar; // @synthesize artistAboutModerationRegistrar=_artistAboutModerationRegistrar;
 @property(retain, nonatomic) SPTArtistAboutStateProvider *stateProvider; // @synthesize stateProvider=_stateProvider;
 @property(retain, nonatomic) id <SPTModerationServiceState> moderationServiceState; // @synthesize moderationServiceState=_moderationServiceState;
 @property(readonly, nonatomic) id <SPTContextMenuOptionsFactory> contextMenuOptionsFactory; // @synthesize contextMenuOptionsFactory=_contextMenuOptionsFactory;
@@ -28,7 +30,8 @@
 - (void).cxx_destruct;
 - (void)presentContextMenuInViewController:(id)arg1;
 - (id)createContextMenuTasks;
-- (id)initWithContextMenuPresenterFactory:(id)arg1 moderationServiceState:(id)arg2 actionFactory:(id)arg3 contextMenuOptionsFactory:(id)arg4 stateProvider:(id)arg5;
+- (void)dealloc;
+- (id)initWithContextMenuPresenterFactory:(id)arg1 moderationServiceState:(id)arg2 actionFactory:(id)arg3 contextMenuOptionsFactory:(id)arg4 stateProvider:(id)arg5 artistAboutModerationRegistrar:(id)arg6;
 
 @end
 

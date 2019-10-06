@@ -6,18 +6,18 @@
 
 #import <UIKit/UIView.h>
 
-@protocol SPTVideoSurface;
+@protocol BMVideoSurface;
 
 @interface SPTPodcastVideoViewControllerTransitionView : UIView
 {
-    UIView<SPTVideoSurface> *_videoSurface;
+    UIView<BMVideoSurface> *_videoSurface;
     UIView *_shadowView;
     struct CGVector _shadowViewScalingVector;
 }
 
 @property(readonly, nonatomic) struct CGVector shadowViewScalingVector; // @synthesize shadowViewScalingVector=_shadowViewScalingVector;
 @property(readonly, nonatomic) UIView *shadowView; // @synthesize shadowView=_shadowView;
-@property(readonly, nonatomic) UIView<SPTVideoSurface> *videoSurface; // @synthesize videoSurface=_videoSurface;
+@property(readonly, nonatomic) UIView<BMVideoSurface> *videoSurface; // @synthesize videoSurface=_videoSurface;
 - (void).cxx_destruct;
 - (void)setFrame:(struct CGRect)arg1;
 - (id)initWithVideoSurface:(id)arg1 shadowView:(id)arg2;

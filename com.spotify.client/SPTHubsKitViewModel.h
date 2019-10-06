@@ -7,27 +7,32 @@
 #import <objc/NSObject.h>
 
 #import "NSCopying-Protocol.h"
+#import "NSMutableCopying-Protocol.h"
 
-@class NSDictionary, NSMutableArray, NSMutableDictionary, NSString, SPTHubsKitComponentModel;
+@class NSArray, NSDictionary, NSString, SPTHubsKitComponentModel;
 
-@interface SPTHubsKitViewModel : NSObject <NSCopying>
+@interface SPTHubsKitViewModel : NSObject <NSCopying, NSMutableCopying>
 {
     SPTHubsKitComponentModel *_header;
-    NSMutableArray *_body;
-    NSMutableArray *_overlay;
-    NSMutableDictionary *_customData;
+    NSArray *_body;
+    NSArray *_overlay;
+    NSDictionary *_customData;
     NSString *_navigationBarTitle;
     NSString *_identifier;
 }
 
 @property(copy, nonatomic) NSString *identifier; // @synthesize identifier=_identifier;
 @property(copy, nonatomic) NSString *navigationBarTitle; // @synthesize navigationBarTitle=_navigationBarTitle;
-@property(readonly, nonatomic) NSMutableDictionary *customData; // @synthesize customData=_customData;
-@property(readonly, nonatomic) NSMutableArray *overlay; // @synthesize overlay=_overlay;
-@property(readonly, nonatomic) NSMutableArray *body; // @synthesize body=_body;
+@property(copy, nonatomic) NSDictionary *customData; // @synthesize customData=_customData;
+@property(copy, nonatomic) NSArray *overlay; // @synthesize overlay=_overlay;
+@property(copy, nonatomic) NSArray *body; // @synthesize body=_body;
 @property(copy, nonatomic) SPTHubsKitComponentModel *header; // @synthesize header=_header;
 - (void).cxx_destruct;
-@property(readonly, nonatomic) NSDictionary *dictionaryRepresentation;
+- (_Bool)isEqualToViewModel:(id)arg1;
+@property(readonly, copy, nonatomic) NSDictionary *dictionaryRepresentation;
+- (unsigned long long)hash;
+- (_Bool)isEqual:(id)arg1;
+- (id)mutableCopyWithZone:(struct _NSZone *)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)init;
 - (id)initWithIdentifier:(id)arg1 navigationBarTitle:(id)arg2 header:(id)arg3 body:(id)arg4 overlay:(id)arg5 customData:(id)arg6;

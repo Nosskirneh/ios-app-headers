@@ -7,12 +7,12 @@
 #import "NSObject-Protocol.h"
 
 @class NSArray, NSString, UIView;
-@protocol SPTVideoCacheOptions, SPTVideoPlaybackRequestFactory, SPTVideoPlayer, SPTVideoSubtitleFactory, SPTVideoSubtitleManager, SPTVideoSurface, SPTVideoSurfaceManager;
+@protocol BMBetamaxPlayer, BMPlaybackRequestFactory, BMSubtitleFactory, BMVideoSurface, BMVideoSurfaceManager, SPTVideoCacheOptions;
 
 @protocol SPTVideoFeaturePlayerFactory <NSObject>
-- (id <SPTVideoSubtitleFactory>)provideSubtitleFactory;
-- (id <SPTVideoPlaybackRequestFactory>)providePlaybackRequestFactory;
-- (id <SPTVideoPlayer>)createVideoPlayerWithFeatureIdentifier:(NSString *)arg1 eventObserverFactories:(NSArray *)arg2 surface:(UIView<SPTVideoSurface> *)arg3 subtitleManager:(id <SPTVideoSubtitleManager>)arg4 videoCacheOptions:(id <SPTVideoCacheOptions>)arg5 withRoyaltyMediaEnabled:(_Bool)arg6 preventDisplaySleepDuringVideoPlayback:(_Bool)arg7;
-- (id <SPTVideoPlayer>)createVideoPlayerWithFeatureIdentifier:(NSString *)arg1 eventObserverFactories:(NSArray *)arg2 surfaceManager:(id <SPTVideoSurfaceManager>)arg3 subtitleManager:(id <SPTVideoSubtitleManager>)arg4 videoCacheOptions:(id <SPTVideoCacheOptions>)arg5 withRoyaltyMediaEnabled:(_Bool)arg6 preventDisplaySleepDuringVideoPlayback:(_Bool)arg7;
+- (id <BMSubtitleFactory>)provideSubtitleFactory;
+- (id <BMPlaybackRequestFactory>)providePlaybackRequestFactory;
+- (id <BMBetamaxPlayer>)createVideoPlayerWithFeatureIdentifier:(NSString *)arg1 eventObserverFactories:(NSArray *)arg2 surface:(UIView<BMVideoSurface> *)arg3 videoCacheOptions:(id <SPTVideoCacheOptions>)arg4 withRoyaltyMediaEnabled:(_Bool)arg5 preventDisplaySleepDuringVideoPlayback:(_Bool)arg6;
+- (id <BMBetamaxPlayer>)createVideoPlayerWithFeatureIdentifier:(NSString *)arg1 eventObserverFactories:(NSArray *)arg2 surfaceManager:(id <BMVideoSurfaceManager>)arg3 videoCacheOptions:(id <SPTVideoCacheOptions>)arg4 withRoyaltyMediaEnabled:(_Bool)arg5 preventDisplaySleepDuringVideoPlayback:(_Bool)arg6;
 @end
 

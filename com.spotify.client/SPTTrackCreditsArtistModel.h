@@ -12,8 +12,10 @@
 {
     NSString *_name;
     NSURL *_uri;
+    NSURL *_externalUrl;
 }
 
+@property(readonly, nonatomic) NSURL *externalUrl; // @synthesize externalUrl=_externalUrl;
 @property(readonly, nonatomic) NSURL *uri; // @synthesize uri=_uri;
 @property(readonly, nonatomic) NSString *name; // @synthesize name=_name;
 - (void).cxx_destruct;

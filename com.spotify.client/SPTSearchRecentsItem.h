@@ -10,6 +10,7 @@
 
 @interface SPTSearchRecentsItem : NSObject
 {
+    _Bool _explicitContent;
     NSURL *_originURI;
     NSURL *_targetURI;
     NSString *_title;
@@ -18,6 +19,7 @@
     NSString *_placeholderIconIdentifier;
 }
 
+@property(readonly, nonatomic, getter=isExplicitContent) _Bool explicitContent; // @synthesize explicitContent=_explicitContent;
 @property(readonly, copy, nonatomic) NSString *placeholderIconIdentifier; // @synthesize placeholderIconIdentifier=_placeholderIconIdentifier;
 @property(readonly, copy, nonatomic) NSURL *imageURI; // @synthesize imageURI=_imageURI;
 @property(readonly, copy, nonatomic) NSString *subtitle; // @synthesize subtitle=_subtitle;
@@ -33,7 +35,7 @@
 - (id)dictionaryRepresentation;
 - (id)initWithDictionaryRepresentation:(id)arg1;
 - (id)initWithOriginURI:(id)arg1 componentModel:(id)arg2;
-- (id)initWithOriginURI:(id)arg1 targetURI:(id)arg2 title:(id)arg3 subtitle:(id)arg4 imageURI:(id)arg5 placeholderIconIdentifier:(id)arg6;
+- (id)initWithOriginURI:(id)arg1 targetURI:(id)arg2 title:(id)arg3 subtitle:(id)arg4 imageURI:(id)arg5 placeholderIconIdentifier:(id)arg6 explicitContent:(_Bool)arg7;
 
 @end
 

@@ -11,12 +11,16 @@
 
 @interface SPTConnectAccessButtonAnimationCoordinator : NSObject
 {
+    _Bool _isButtonCurrentlyVisible;
+    _Bool _shouldPerformNudgeOnAppear;
     id <SPTConnectAccessButtonAnimationCoordinatorDelegate> _delegate;
     SPTTheme *_theme;
     id <SPTGaiaConnectAPI> _connectManager;
     NSTimer *_animationStepTimer;
 }
 
+@property(nonatomic) _Bool shouldPerformNudgeOnAppear; // @synthesize shouldPerformNudgeOnAppear=_shouldPerformNudgeOnAppear;
+@property(nonatomic) _Bool isButtonCurrentlyVisible; // @synthesize isButtonCurrentlyVisible=_isButtonCurrentlyVisible;
 @property(retain, nonatomic) NSTimer *animationStepTimer; // @synthesize animationStepTimer=_animationStepTimer;
 @property(readonly, nonatomic) id <SPTGaiaConnectAPI> connectManager; // @synthesize connectManager=_connectManager;
 @property(readonly, nonatomic) SPTTheme *theme; // @synthesize theme=_theme;
@@ -25,8 +29,10 @@
 - (void)invalidateCurrentAnimation;
 - (void)executeAfterDelay:(double)arg1 animation:(CDUnknownBlockType)arg2;
 - (void)requestCompactAnimationAfterDelay:(double)arg1;
+- (void)performDelayedNudgeIfNeeded;
+- (void)updateButtonVisibilityWithoutNudging:(_Bool)arg1;
+- (void)updateButtonToVisibleWithNudgingIfNeeded;
 - (void)performNudge;
-- (void)applicationStateDidChangeToActive:(_Bool)arg1;
 - (void)buttonVisibilityDidChangeToVisible:(_Bool)arg1;
 - (void)connectionStateDidChange:(long long)arg1;
 - (id)initWithTheme:(id)arg1 connectManager:(id)arg2;

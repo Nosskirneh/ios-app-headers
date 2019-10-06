@@ -16,6 +16,7 @@
 - (NSString *)fixedPublicationAndDurationWithEpisodePublicationDate:(NSDate *)arg1 currentDate:(NSDate *)arg2 episodeDuration:(double)arg3;
 - (NSString *)relativePublicationAndTimeLeftWithPublicationDate:(NSDate *)arg1 currentDate:(NSDate *)arg2 duration:(double)arg3 listenedDuration:(double)arg4;
 - (NSString *)relativePublicationAndDurationWithEpisodePublicationDate:(NSDate *)arg1 currentDate:(NSDate *)arg2 episodeDuration:(double)arg3 listenedDuration:(double)arg4 isPlayed:(_Bool)arg5 isAudioMediaType:(_Bool)arg6;
+- (NSString *)lowercaseRelativePublicationAndFixedDurationWithPublicationDate:(NSDate *)arg1 currentDate:(NSDate *)arg2 duration:(double)arg3;
 - (NSString *)relativePublicationAndFixedDurationWithPublicationDate:(NSDate *)arg1 currentDate:(NSDate *)arg2 duration:(double)arg3;
 @end
 

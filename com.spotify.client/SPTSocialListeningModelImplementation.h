@@ -11,36 +11,33 @@
 #import "SPTSocialListeningModel-Protocol.h"
 
 @class NSString, SPTObserverManager, SPTSocialListeningDataLoader, SPTSocialListeningSession;
-@protocol GLUEImageLoader, SPTLocalSettings, SPTPlayer, SPTScannablesDataSource;
+@protocol GLUEImageLoader, SPTPlayer, SPTScannablesDataSource;
 
 @interface SPTSocialListeningModelImplementation : NSObject <SPTSocialListeningModel, SPTSocialListeningDataLoaderDelegate, SPTScannablesDataSourceDelegate>
 {
-    _Bool currentActiveDeviceIsSocialConnectDevice;
+    _Bool _currentActiveDeviceIsSocialConnectDevice;
     SPTObserverManager *_observers;
     SPTSocialListeningDataLoader *_dataLoader;
     SPTSocialListeningSession *_session;
     id <SPTScannablesDataSource> _scannablesDataSource;
     id <GLUEImageLoader> _imageLoader;
     long long _state;
-    id <SPTLocalSettings> _localSettings;
     id <SPTPlayer> _player;
 }
 
 @property(readonly, nonatomic) id <SPTPlayer> player; // @synthesize player=_player;
-@property(readonly, nonatomic) id <SPTLocalSettings> localSettings; // @synthesize localSettings=_localSettings;
 @property(nonatomic) long long state; // @synthesize state=_state;
 @property(retain, nonatomic) id <GLUEImageLoader> imageLoader; // @synthesize imageLoader=_imageLoader;
 @property(nonatomic) __weak id <SPTScannablesDataSource> scannablesDataSource; // @synthesize scannablesDataSource=_scannablesDataSource;
 @property(retain, nonatomic) SPTSocialListeningSession *session; // @synthesize session=_session;
 @property(retain, nonatomic) SPTSocialListeningDataLoader *dataLoader; // @synthesize dataLoader=_dataLoader;
 @property(readonly, nonatomic) SPTObserverManager *observers; // @synthesize observers=_observers;
-@property(nonatomic) _Bool currentActiveDeviceIsSocialConnectDevice; // @synthesize currentActiveDeviceIsSocialConnectDevice;
+@property(nonatomic) _Bool currentActiveDeviceIsSocialConnectDevice; // @synthesize currentActiveDeviceIsSocialConnectDevice=_currentActiveDeviceIsSocialConnectDevice;
 - (void).cxx_destruct;
-- (void)writeSessionStateToLocalSettings;
 - (void)scannablesDataSource:(id)arg1 didFinishFetchingScannable:(id)arg2;
 - (void)scannablesDataSource:(id)arg1 didFailFetchingScannableWithError:(id)arg2;
 - (void)socialListeningDataLoader:(id)arg1 didFailWithError:(id)arg2;
-- (void)socialListeningDataLoaderDidDeleteSession:(id)arg1;
+- (void)socialListeningDataLoader:(id)arg1 didDeleteSession:(id)arg2;
 - (void)socialListeningDataLoader:(id)arg1 didEndSession:(id)arg2;
 - (void)socialListeningDataLoader:(id)arg1 didObtainSession:(id)arg2;
 - (void)updateCoreSocialListeningState;
@@ -55,8 +52,8 @@
 - (void)pauseCurrentPlayback;
 - (void)leaveSession;
 - (void)joinSession:(id)arg1;
-- (void)load;
-- (id)initWithDataLoader:(id)arg1 scannablesDataSource:(id)arg2 player:(id)arg3 imageLoader:(id)arg4 localSettings:(id)arg5;
+- (void)loadSession:(_Bool)arg1;
+- (id)initWithDataLoader:(id)arg1 scannablesDataSource:(id)arg2 player:(id)arg3 imageLoader:(id)arg4;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

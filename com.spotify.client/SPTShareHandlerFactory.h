@@ -7,7 +7,7 @@
 #import <objc/NSObject.h>
 
 @class SPTDataLoaderFactory, SPTShareLogger;
-@protocol SPTShareDeeplinkHandler, SPTShareHandler, SPTShareTestManager, SPTVideoFeaturePlayerFactory;
+@protocol SPTShareDeeplinkHandler, SPTShareTestManager, SPTVideoFeaturePlayerFactory;
 
 @interface SPTShareHandlerFactory : NSObject
 {
@@ -16,50 +16,15 @@
     id <SPTVideoFeaturePlayerFactory> _videoPlayerFactory;
     id <SPTShareDeeplinkHandler> _deeplinkHandler;
     id <SPTShareTestManager> _testManager;
-    id <SPTShareHandler> _instagramStoriesShareHandler;
-    id <SPTShareHandler> _spt_copyLinkShareHandler;
-    id <SPTShareHandler> _whatsAppShareHandler;
-    id <SPTShareHandler> _snapchatShareHandler;
-    id <SPTShareHandler> _messagesShareHandler;
-    id <SPTShareHandler> _facebookStoriesShareHandler;
-    id <SPTShareHandler> _lineShareHandler;
-    id <SPTShareHandler> _facebookMessengerShareHandler;
-    id <SPTShareHandler> _facebookShareHandler;
-    id <SPTShareHandler> _twitterShareHandler;
-    id <SPTShareHandler> _tikTokShareHandler;
-    id <SPTShareHandler> _moreShareHandler;
 }
 
-@property(retain, nonatomic) id <SPTShareHandler> moreShareHandler; // @synthesize moreShareHandler=_moreShareHandler;
-@property(retain, nonatomic) id <SPTShareHandler> tikTokShareHandler; // @synthesize tikTokShareHandler=_tikTokShareHandler;
-@property(retain, nonatomic) id <SPTShareHandler> twitterShareHandler; // @synthesize twitterShareHandler=_twitterShareHandler;
-@property(retain, nonatomic) id <SPTShareHandler> facebookShareHandler; // @synthesize facebookShareHandler=_facebookShareHandler;
-@property(retain, nonatomic) id <SPTShareHandler> facebookMessengerShareHandler; // @synthesize facebookMessengerShareHandler=_facebookMessengerShareHandler;
-@property(retain, nonatomic) id <SPTShareHandler> lineShareHandler; // @synthesize lineShareHandler=_lineShareHandler;
-@property(retain, nonatomic) id <SPTShareHandler> facebookStoriesShareHandler; // @synthesize facebookStoriesShareHandler=_facebookStoriesShareHandler;
-@property(retain, nonatomic) id <SPTShareHandler> messagesShareHandler; // @synthesize messagesShareHandler=_messagesShareHandler;
-@property(retain, nonatomic) id <SPTShareHandler> snapchatShareHandler; // @synthesize snapchatShareHandler=_snapchatShareHandler;
-@property(retain, nonatomic) id <SPTShareHandler> whatsAppShareHandler; // @synthesize whatsAppShareHandler=_whatsAppShareHandler;
-@property(retain, nonatomic) id <SPTShareHandler> spt_copyLinkShareHandler; // @synthesize spt_copyLinkShareHandler=_spt_copyLinkShareHandler;
-@property(retain, nonatomic) id <SPTShareHandler> instagramStoriesShareHandler; // @synthesize instagramStoriesShareHandler=_instagramStoriesShareHandler;
 @property(retain, nonatomic) id <SPTShareTestManager> testManager; // @synthesize testManager=_testManager;
 @property(retain, nonatomic) id <SPTShareDeeplinkHandler> deeplinkHandler; // @synthesize deeplinkHandler=_deeplinkHandler;
 @property(copy, nonatomic) id <SPTVideoFeaturePlayerFactory> videoPlayerFactory; // @synthesize videoPlayerFactory=_videoPlayerFactory;
 @property(retain, nonatomic) SPTShareLogger *shareLogger; // @synthesize shareLogger=_shareLogger;
 @property(retain, nonatomic) SPTDataLoaderFactory *dataLoaderFactory; // @synthesize dataLoaderFactory=_dataLoaderFactory;
 - (void).cxx_destruct;
-- (id)provideTikTokShareHandler;
-- (id)provideMoreShareHandler;
-- (id)provideTwitterShareHandler;
-- (id)provideFacebookShareHandler;
-- (id)provideFacebookMessengerShareHandler;
-- (id)provideLineShareHandler;
-- (id)provideFacebookStoriesShareHandler;
-- (id)provideMessagesShareHandler;
-- (id)provideSnapchatShareHandler;
-- (id)provideWhatsAppShareHandler;
-- (id)provideCopyLinkShareHandler;
-- (id)provideInstagramStoriesShareHandler;
+- (id)provideShareHandlerForShareDestination:(id)arg1;
 - (id)initWithDataLoaderFactory:(id)arg1 shareLogger:(id)arg2 deeplinkHandler:(id)arg3 videoPlayerFactory:(id)arg4 testManager:(id)arg5;
 
 @end

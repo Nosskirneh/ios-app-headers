@@ -9,7 +9,6 @@
 #import "GCKDiscoveryManagerListener-Protocol.h"
 #import "GCKLoggerDelegate-Protocol.h"
 #import "GCKSessionManagerListener-Protocol.h"
-#import "NSCopying-Protocol.h"
 #import "SPTCastCustomChannelDelegate-Protocol.h"
 #import "SPTGaiaCastCoreInteractorDelegate-Protocol.h"
 #import "SPTGaiaConnectManagerObserver-Protocol.h"
@@ -17,7 +16,7 @@
 @class GCKCastContext, GCKDevice, NSArray, NSDate, NSString, SPTCastCustomChannel, SPTCastReceiverAppIDManager, SPTGaiaCastCoreInteractor, SPTObserverManager;
 @protocol SPTGaiaConnectManager, SPTProductState;
 
-@interface SPTCastManager : NSObject <GCKDiscoveryManagerListener, GCKSessionManagerListener, GCKLoggerDelegate, SPTCastCustomChannelDelegate, SPTGaiaConnectManagerObserver, SPTGaiaCastCoreInteractorDelegate, NSCopying>
+@interface SPTCastManager : NSObject <GCKDiscoveryManagerListener, GCKSessionManagerListener, GCKLoggerDelegate, SPTCastCustomChannelDelegate, SPTGaiaConnectManagerObserver, SPTGaiaCastCoreInteractorDelegate>
 {
     float _volume;
     id <SPTProductState> _productState;
@@ -82,10 +81,8 @@
 - (void)didUpdateDeviceList;
 - (void)sessionManager:(id)arg1 castSession:(id)arg2 didReceiveDeviceVolume:(float)arg3 muted:(_Bool)arg4;
 - (void)notifyVolumeChanged;
-- (float)getVolume;
 - (void)volumeDown;
 - (void)volumeUp;
-- (_Bool)deviceManagerExists;
 - (id)castModelName:(id)arg1;
 - (long long)deviceTypeForGaiaDevice:(id)arg1;
 - (id)activeDevice;
@@ -98,7 +95,6 @@
 - (void)startScanning;
 - (void)stopScanningInternal;
 - (void)startScanningInternal;
-- (id)copyWithZone:(struct _NSZone *)arg1;
 - (void)tearDown;
 - (void)setupCoreInteractor;
 - (void)setupDeviceManager;

@@ -8,7 +8,7 @@
 
 #import "NSCopying-Protocol.h"
 
-@class NSDictionary, NSNumber, SPTPlayerOptionOverrides, SPTPlayerSuppressions, SPTSkipToTrack;
+@class NSDictionary, NSNumber, NSString, SPTPlayerOptionOverrides, SPTPlayerSuppressions, SPTSkipToTrack;
 
 @interface SPTPlayOptions : NSObject <NSCopying>
 {
@@ -21,9 +21,12 @@
     unsigned long long _operation;
     unsigned long long _trigger;
     NSDictionary *_configurationOverride;
+    NSString *_playbackId;
 }
 
++ (id)entityPagelessRadioPlayOptions;
 + (id)playOptionsWithSuppressionsProviders:(id)arg1;
+@property(copy, nonatomic) NSString *playbackId; // @synthesize playbackId=_playbackId;
 @property(copy, nonatomic) NSDictionary *configurationOverride; // @synthesize configurationOverride=_configurationOverride;
 @property(nonatomic) unsigned long long trigger; // @synthesize trigger=_trigger;
 @property(nonatomic) unsigned long long operation; // @synthesize operation=_operation;

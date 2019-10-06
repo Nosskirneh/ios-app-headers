@@ -9,16 +9,16 @@
 #import "SPTNowPlayingContentLayerProvider-Protocol.h"
 #import "SPTPlayerObserver-Protocol.h"
 
-@class NSString, SPTTheme, SPTVideoSurfaceFactory;
-@protocol SPTGLUEImageLoaderFactory, SPTNowPlayingContentLayerProviderDelegate, SPTPlayer, SPTVideoSurfaceManager;
+@class BMVideoSurfaceFactory, NSString, SPTTheme;
+@protocol BMVideoSurfaceManager, SPTGLUEImageLoaderFactory, SPTNowPlayingContentLayerProviderDelegate, SPTPlayer;
 
 @interface SPTNowPlayingVerticalVideoProvider : NSObject <SPTPlayerObserver, SPTNowPlayingContentLayerProvider>
 {
     _Bool _isShowsFormat;
     id <SPTNowPlayingContentLayerProviderDelegate> delegate;
     SPTTheme *_theme;
-    id <SPTVideoSurfaceManager> _videoSurfaceManager;
-    SPTVideoSurfaceFactory *_surfaceFactory;
+    id <BMVideoSurfaceManager> _videoSurfaceManager;
+    BMVideoSurfaceFactory *_surfaceFactory;
     id <SPTGLUEImageLoaderFactory> _imageLoaderFactory;
     id <SPTPlayer> _player;
 }
@@ -26,8 +26,8 @@
 @property(nonatomic) _Bool isShowsFormat; // @synthesize isShowsFormat=_isShowsFormat;
 @property(readonly, nonatomic) id <SPTPlayer> player; // @synthesize player=_player;
 @property(readonly, nonatomic) id <SPTGLUEImageLoaderFactory> imageLoaderFactory; // @synthesize imageLoaderFactory=_imageLoaderFactory;
-@property(readonly, nonatomic) SPTVideoSurfaceFactory *surfaceFactory; // @synthesize surfaceFactory=_surfaceFactory;
-@property(readonly, nonatomic) id <SPTVideoSurfaceManager> videoSurfaceManager; // @synthesize videoSurfaceManager=_videoSurfaceManager;
+@property(readonly, nonatomic) BMVideoSurfaceFactory *surfaceFactory; // @synthesize surfaceFactory=_surfaceFactory;
+@property(readonly, nonatomic) id <BMVideoSurfaceManager> videoSurfaceManager; // @synthesize videoSurfaceManager=_videoSurfaceManager;
 @property(readonly, nonatomic) SPTTheme *theme; // @synthesize theme=_theme;
 @property(nonatomic) __weak id <SPTNowPlayingContentLayerProviderDelegate> delegate; // @synthesize delegate;
 - (void).cxx_destruct;

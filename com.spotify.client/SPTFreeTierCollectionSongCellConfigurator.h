@@ -60,7 +60,6 @@
 - (void)setupLeadingViewForCell:(id)arg1 withViewModel:(id)arg2;
 - (void)setupContentViewForCell:(id)arg1;
 - (void)handleAudioPreviewOnCell:(id)arg1;
-- (double)heightForSectionHeaderWithViewModel:(id)arg1;
 - (void)configureEntitySectionHeader:(id)arg1 withViewModel:(id)arg2;
 - (void)configureSectionHeader:(id)arg1 withViewModel:(id)arg2;
 - (void)configurePreviewCell:(id)arg1 withViewModel:(id)arg2;

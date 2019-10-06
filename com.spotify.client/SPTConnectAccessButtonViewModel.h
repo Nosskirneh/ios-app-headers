@@ -15,6 +15,7 @@
 
 @interface SPTConnectAccessButtonViewModel : NSObject <SPTGaiaConnectObserver, SPTPlayerObserver, SPTConnectAccessButtonAnimationCoordinatorDelegate>
 {
+    _Bool _isButtonContainerVisible;
     _Bool _hasPerformedNudgeForCurrentSession;
     id <SPTConnectAccessButtonViewModelDelegate> _delegate;
     id <SPTGaiaDevicePickerPresenter> _devicePickerPresenter;
@@ -28,6 +29,7 @@
 }
 
 @property(nonatomic) _Bool hasPerformedNudgeForCurrentSession; // @synthesize hasPerformedNudgeForCurrentSession=_hasPerformedNudgeForCurrentSession;
+@property(nonatomic) _Bool isButtonContainerVisible; // @synthesize isButtonContainerVisible=_isButtonContainerVisible;
 @property(retain, nonatomic) SPTTheme *theme; // @synthesize theme=_theme;
 @property(readonly, nonatomic) SPTConnectAccessButtonAnimationCoordinator *animationCoordinator; // @synthesize animationCoordinator=_animationCoordinator;
 @property(readonly, nonatomic) SPTConnectAccessButtonLogger *logger; // @synthesize logger=_logger;

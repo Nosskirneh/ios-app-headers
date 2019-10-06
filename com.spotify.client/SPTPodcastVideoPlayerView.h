@@ -7,20 +7,20 @@
 #import <UIKit/UIView.h>
 
 @class CAGradientLayer;
-@protocol SPTVideoSurface, SPTVideoSurfaceManager;
+@protocol BMVideoSurface, BMVideoSurfaceManager;
 
 @interface SPTPodcastVideoPlayerView : UIView
 {
     _Bool _enableDarkShade;
-    UIView<SPTVideoSurface> *_surface;
-    id <SPTVideoSurfaceManager> _surfaceManager;
+    UIView<BMVideoSurface> *_surface;
+    id <BMVideoSurfaceManager> _surfaceManager;
     CAGradientLayer *_gradient;
 }
 
 @property(retain, nonatomic) CAGradientLayer *gradient; // @synthesize gradient=_gradient;
-@property(retain, nonatomic) id <SPTVideoSurfaceManager> surfaceManager; // @synthesize surfaceManager=_surfaceManager;
+@property(retain, nonatomic) id <BMVideoSurfaceManager> surfaceManager; // @synthesize surfaceManager=_surfaceManager;
 @property(nonatomic) _Bool enableDarkShade; // @synthesize enableDarkShade=_enableDarkShade;
-@property(readonly, nonatomic) UIView<SPTVideoSurface> *surface; // @synthesize surface=_surface;
+@property(readonly, nonatomic) UIView<BMVideoSurface> *surface; // @synthesize surface=_surface;
 - (void).cxx_destruct;
 - (void)setHidden:(_Bool)arg1;
 - (void)layoutSubviews;

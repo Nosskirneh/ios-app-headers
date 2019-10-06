@@ -48,7 +48,7 @@
 @property(readonly, copy, nonatomic) NSDate *lastUpdateTime; // @synthesize lastUpdateTime=_lastUpdateTime;
 - (void).cxx_destruct;
 - (_Bool)_useOGLike;
-- (void)_updateWithObjectIsLiked:(long long)arg1 likeCountStringWithLike:(id)arg2 likeCountStringWithoutLike:(id)arg3 socialSentenceWithLike:(id)arg4 socialSentenceWithoutLike:(id)arg5 unlikeToken:(id)arg6 soundEnabled:(_Bool)arg7 animated:(_Bool)arg8 deferred:(_Bool)arg9;
+- (void)_updateWithObjectIsLiked:(long long)arg1 likeCountStringWithLike:(id)arg2 likeCountStringWithoutLike:(id)arg3 socialSentenceWithLike:(id)arg4 socialSentenceWithoutLike:(id)arg5 unlikeToken:(id)arg6 animated:(_Bool)arg7 deferred:(_Bool)arg8;
 - (void)_setExecuting:(_Bool)arg1 forKey:(id)arg2;
 - (void)_refreshWithMode:(unsigned long long)arg1;
 - (void)_publishUnlikeWithUpdateBlock:(CDUnknownBlockType)arg1 analyticsParameters:(id)arg2 fromViewController:(id)arg3;
@@ -63,7 +63,6 @@
 - (void)discardContentIfPossible;
 - (void)endContentAccess;
 - (_Bool)beginContentAccess;
-- (void)toggleLikeWithSoundEnabled:(_Bool)arg1 analyticsParameters:(id)arg2 fromViewController:(id)arg3;
 - (void)refresh;
 @property(readonly, copy, nonatomic) NSString *socialSentence;
 @property(readonly, copy, nonatomic) NSString *likeCountString;

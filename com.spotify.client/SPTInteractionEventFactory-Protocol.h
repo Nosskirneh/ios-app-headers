@@ -10,26 +10,40 @@
 @protocol SPTInteractionEvent;
 
 @protocol SPTInteractionEventFactory <NSObject>
+- (id <SPTInteractionEvent>)deletePlaylistWithPlaylistToBeDeleted:(NSURL *)arg1;
+- (id <SPTInteractionEvent>)addItemToQueueWithItemToAddToQueue:(NSURL *)arg1;
 - (id <SPTInteractionEvent>)shuffleDisable;
-- (id <SPTInteractionEvent>)skipToPreviousWithItemToBeSkipped:(NSURL *)arg1;
 - (id <SPTInteractionEvent>)unfollowWithItemToBeUnfollowed:(NSURL *)arg1;
-- (id <SPTInteractionEvent>)addToPlaylistWithPlaylist:(NSURL *)arg1 withItemToBeAdded:(NSURL *)arg2;
-- (id <SPTInteractionEvent>)uiHide;
+- (id <SPTInteractionEvent>)addToPlaylistWithPlaylist:(NSURL *)arg1 itemToBeAdded:(NSURL *)arg2;
 - (id <SPTInteractionEvent>)uiElementToggle;
-- (id <SPTInteractionEvent>)skipToNextWithItemToBeSkipped:(NSURL *)arg1;
 - (id <SPTInteractionEvent>)uiReveal;
-- (id <SPTInteractionEvent>)unlikeWithItemToBeUnliked:(NSURL *)arg1;
-- (id <SPTInteractionEvent>)shufflePlayWithContextToBePlayed:(NSURL *)arg1;
-- (id <SPTInteractionEvent>)repeatEnable;
-- (id <SPTInteractionEvent>)seekToTimeWithMsToSeekTo:(long long)arg1;
-- (id <SPTInteractionEvent>)repeatOneEnable;
+- (id <SPTInteractionEvent>)makePlaylistCollaborativeWithPlaylistToBeMadeCollaborative:(NSURL *)arg1;
+- (id <SPTInteractionEvent>)removeItemFromPlaylistWithItemRoRemoveFromPlaylist:(NSURL *)arg1;
+- (id <SPTInteractionEvent>)makePlaylistPublicWithPlaylistToBeMadePublic:(NSURL *)arg1;
+- (id <SPTInteractionEvent>)unbanWithItemToUnban:(NSURL *)arg1;
+- (id <SPTInteractionEvent>)openOsSettings;
 - (id <SPTInteractionEvent>)pauseWithItemToBePaused:(NSURL *)arg1;
+- (id <SPTInteractionEvent>)repeatOneEnable;
 - (id <SPTInteractionEvent>)followWithItemToBeFollowed:(NSURL *)arg1;
 - (id <SPTInteractionEvent>)repeatDisable;
 - (id <SPTInteractionEvent>)uiNavigateWithDestination:(NSURL *)arg1;
 - (id <SPTInteractionEvent>)likeWithItemToBeLiked:(NSURL *)arg1;
-- (id <SPTInteractionEvent>)shuffleEnable;
+- (id <SPTInteractionEvent>)makePlaylistSecretWithPlaylistToBeMadeSecret:(NSURL *)arg1;
 - (id <SPTInteractionEvent>)resumeWithItemToBeResumed:(NSURL *)arg1;
+- (id <SPTInteractionEvent>)shuffleEnable;
+- (id <SPTInteractionEvent>)skipToPreviousWithItemToBeSkipped:(NSURL *)arg1;
+- (id <SPTInteractionEvent>)noAction;
+- (id <SPTInteractionEvent>)uiHide;
+- (id <SPTInteractionEvent>)skipToNextWithItemToBeSkipped:(NSURL *)arg1;
+- (id <SPTInteractionEvent>)unlikeWithItemToBeUnliked:(NSURL *)arg1;
+- (id <SPTInteractionEvent>)makePlaylistNonCollaborativeWithPlaylistToBeMadeNonCollaborative:(NSURL *)arg1;
+- (id <SPTInteractionEvent>)shufflePlayWithContextToBePlayed:(NSURL *)arg1;
+- (id <SPTInteractionEvent>)repeatEnable;
+- (id <SPTInteractionEvent>)seekToTimeWithMsToSeekTo:(long long)arg1;
+- (id <SPTInteractionEvent>)downloadWithItemToDownload:(NSURL *)arg1;
+- (id <SPTInteractionEvent>)textClear;
+- (id <SPTInteractionEvent>)banWithItemToBan:(NSURL *)arg1;
+- (id <SPTInteractionEvent>)removeDownloadWithItemToRemoveFromDownloads:(NSURL *)arg1;
 - (id <SPTInteractionEvent>)playWithItemToBePlayed:(NSURL *)arg1;
 @end
 

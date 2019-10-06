@@ -11,14 +11,13 @@
 #import "SPTNowPlayingStateObserver-Protocol.h"
 #import "SPTWazeViewModelDelegate-Protocol.h"
 
-@class NSString, SPTWazeSlateItem, SPTWazeViewModel;
-@protocol GLUETheme, SPTBannerPresentationManager, SPTBannerPresentationManagerTicket, SPTExternalIntegrationDebugLog, SPTNowPlayingManager, SPTNowPlayingMode, SPTNowPlayingModeResolver, SPTNowPlayingStateObservable, SPTPartnerLogger, SPTPartnerTestManager, SPTSlateBuilderProvider, SPTSlateManager;
+@class NSString, SPTWazeViewModel;
+@protocol GLUETheme, SPTBannerPresentationManager, SPTBannerPresentationManagerTicket, SPTExternalIntegrationDebugLog, SPTNowPlayingManager, SPTNowPlayingMode, SPTNowPlayingModeResolver, SPTNowPlayingStateObservable, SPTPartnerLogger, SPTPartnerService, SPTPartnerTestManager, SPTSlateBuilderProvider, SPTSlateManager;
 
 @interface SPTWazePresenter : NSObject <SPTBannerViewDelegate, SPTNowPlayingModeResolverObserver, SPTNowPlayingStateObserver, SPTWazeViewModelDelegate>
 {
     id <SPTBannerPresentationManagerTicket> _bannerTicket;
     id <SPTBannerPresentationManager> _bannerPresentationManager;
-    SPTWazeSlateItem *_slateItem;
     id <SPTSlateManager> _slateManager;
     id <SPTSlateBuilderProvider> _slateBuilderProvider;
     id <SPTNowPlayingManager> _nowPlayingManager;
@@ -30,8 +29,10 @@
     id <GLUETheme> _glueTheme;
     id <SPTPartnerTestManager> _partnerTestManager;
     id <SPTPartnerLogger> _partnerLogger;
+    id <SPTPartnerService> _partnerService;
 }
 
+@property(readonly, nonatomic) __weak id <SPTPartnerService> partnerService; // @synthesize partnerService=_partnerService;
 @property(readonly, nonatomic) id <SPTPartnerLogger> partnerLogger; // @synthesize partnerLogger=_partnerLogger;
 @property(readonly, nonatomic) id <SPTPartnerTestManager> partnerTestManager; // @synthesize partnerTestManager=_partnerTestManager;
 @property(readonly, nonatomic) id <GLUETheme> glueTheme; // @synthesize glueTheme=_glueTheme;
@@ -43,7 +44,6 @@
 @property(readonly, nonatomic) __weak id <SPTNowPlayingManager> nowPlayingManager; // @synthesize nowPlayingManager=_nowPlayingManager;
 @property(readonly, nonatomic) id <SPTSlateBuilderProvider> slateBuilderProvider; // @synthesize slateBuilderProvider=_slateBuilderProvider;
 @property(readonly, nonatomic) id <SPTSlateManager> slateManager; // @synthesize slateManager=_slateManager;
-@property(retain, nonatomic) SPTWazeSlateItem *slateItem; // @synthesize slateItem=_slateItem;
 @property(readonly, nonatomic) id <SPTBannerPresentationManager> bannerPresentationManager; // @synthesize bannerPresentationManager=_bannerPresentationManager;
 @property(retain, nonatomic) id <SPTBannerPresentationManagerTicket> bannerTicket; // @synthesize bannerTicket=_bannerTicket;
 - (void).cxx_destruct;
@@ -55,12 +55,10 @@
 - (void)actionButtonTappedInBannerView:(id)arg1;
 - (_Bool)isNowPlayingViewInDrivingMode;
 - (void)dismiss;
-- (void)dismissCurrentSlate;
-- (void)presentSlateItem:(id)arg1;
 - (void)dismissCurrentWazeBanner;
 - (void)presentWazeBannerItem:(id)arg1;
 - (void)updatePresentation;
-- (id)initWithBannerPresentationManager:(id)arg1 slateManager:(id)arg2 slateBuilderProvider:(id)arg3 glueTheme:(id)arg4 viewModel:(id)arg5 nowPlayingManager:(id)arg6 nowPlayingModeResolver:(id)arg7 nowPlayingStateObservable:(id)arg8 partnerTestManager:(id)arg9 debugLog:(id)arg10 partnerLogger:(id)arg11;
+- (id)initWithBannerPresentationManager:(id)arg1 slateManager:(id)arg2 slateBuilderProvider:(id)arg3 glueTheme:(id)arg4 viewModel:(id)arg5 nowPlayingManager:(id)arg6 nowPlayingModeResolver:(id)arg7 nowPlayingStateObservable:(id)arg8 partnerTestManager:(id)arg9 debugLog:(id)arg10 partnerLogger:(id)arg11 partnerService:(id)arg12;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

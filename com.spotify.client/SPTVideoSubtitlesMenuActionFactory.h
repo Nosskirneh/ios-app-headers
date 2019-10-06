@@ -6,19 +6,21 @@
 
 #import <objc/NSObject.h>
 
-@class SPTVideoCoordinatorCosmosSender, SPTVideoSubtitleConfigurator;
+@class SPTVideoCoordinatorCosmosSender, SPTVideoPreferredSubtitleMessageFactory, SPTVideoSubtitleConfigurator;
 
 @interface SPTVideoSubtitlesMenuActionFactory : NSObject
 {
     SPTVideoCoordinatorCosmosSender *_cosmosSender;
     SPTVideoSubtitleConfigurator *_subtitleConfigurator;
+    SPTVideoPreferredSubtitleMessageFactory *_preferredSubtitleMessageFactory;
 }
 
+@property(retain, nonatomic) SPTVideoPreferredSubtitleMessageFactory *preferredSubtitleMessageFactory; // @synthesize preferredSubtitleMessageFactory=_preferredSubtitleMessageFactory;
 @property(retain, nonatomic) SPTVideoSubtitleConfigurator *subtitleConfigurator; // @synthesize subtitleConfigurator=_subtitleConfigurator;
 @property(retain, nonatomic) SPTVideoCoordinatorCosmosSender *cosmosSender; // @synthesize cosmosSender=_cosmosSender;
 - (void).cxx_destruct;
 - (id)createMenuActionWithSubtitle:(id)arg1 selected:(_Bool)arg2;
-- (id)initWithCosmosSender:(id)arg1 subtitleConfigurator:(id)arg2;
+- (id)initWithCosmosSender:(id)arg1 subtitleConfigurator:(id)arg2 preferredSubtitleMessageFactory:(id)arg3;
 
 @end
 

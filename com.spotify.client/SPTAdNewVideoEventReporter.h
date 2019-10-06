@@ -6,13 +6,13 @@
 
 #import <objc/NSObject.h>
 
+#import "BMEventObserver-Protocol.h"
 #import "SPTAdsBaseRegistryObserver-Protocol.h"
-#import "SPTVideoEventObserver-Protocol.h"
 
 @class NSString;
-@protocol OS_dispatch_queue, SPTAdsBaseCosmosBridge, SPTAdsBaseRegistry, SPTResolver, SPTVideoPlaybackIdentity, SPTVideoPlaybackTimeObservable;
+@protocol BMPlaybackIdentity, BMPlaybackTimeObservable, OS_dispatch_queue, SPTAdsBaseCosmosBridge, SPTAdsBaseRegistry, SPTResolver;
 
-@interface SPTAdNewVideoEventReporter : NSObject <SPTAdsBaseRegistryObserver, SPTVideoEventObserver>
+@interface SPTAdNewVideoEventReporter : NSObject <SPTAdsBaseRegistryObserver, BMEventObserver>
 {
     _Bool _firedOnThreshold;
     _Bool _shouldFireImpressionOnStart;
@@ -23,8 +23,8 @@
     id <SPTAdsBaseRegistry> _registry;
     double _trackDuration;
     unsigned long long _quartilesPlayed;
-    id <SPTVideoPlaybackIdentity> _currentIdentity;
-    id <SPTVideoPlaybackTimeObservable> _timeObservable;
+    id <BMPlaybackIdentity> _currentIdentity;
+    id <BMPlaybackTimeObservable> _timeObservable;
     double _currentPosition;
 }
 
@@ -32,8 +32,8 @@
 @property(nonatomic) _Bool ended; // @synthesize ended=_ended;
 @property(nonatomic) _Bool started; // @synthesize started=_started;
 @property(nonatomic) double currentPosition; // @synthesize currentPosition=_currentPosition;
-@property(nonatomic) __weak id <SPTVideoPlaybackTimeObservable> timeObservable; // @synthesize timeObservable=_timeObservable;
-@property(retain, nonatomic) id <SPTVideoPlaybackIdentity> currentIdentity; // @synthesize currentIdentity=_currentIdentity;
+@property(nonatomic) __weak id <BMPlaybackTimeObservable> timeObservable; // @synthesize timeObservable=_timeObservable;
+@property(retain, nonatomic) id <BMPlaybackIdentity> currentIdentity; // @synthesize currentIdentity=_currentIdentity;
 @property(nonatomic) _Bool shouldFireImpressionOnStart; // @synthesize shouldFireImpressionOnStart=_shouldFireImpressionOnStart;
 @property(nonatomic) unsigned long long quartilesPlayed; // @synthesize quartilesPlayed=_quartilesPlayed;
 @property(nonatomic) double trackDuration; // @synthesize trackDuration=_trackDuration;

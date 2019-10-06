@@ -13,6 +13,12 @@
 
 @interface SPTUpsellExperimentationTestManagerImplementation : NSObject <SPTUpsellExperimentationTestManager>
 {
+    _Bool _isNewControlVariantActive;
+    _Bool _isNewSubtextButtonVariantActive;
+    _Bool _isNewSecondaryCTAVariantActive;
+    _Bool _isExistingControlVariantActive;
+    _Bool _isExistingSubtextButtonVariantActive;
+    _Bool _isExistingSecondaryCTAVariantActive;
     id <SPTFeatureFlagFactory> _featureFlagFactory;
     long long _downloadOnAlbumTestState;
     id <SPTFeatureFlagSignal> _existingUserControlSignal;
@@ -23,6 +29,12 @@
     id <SPTFeatureFlagSignal> _brandNewUserSecondaryCTAButtonVariantSignal;
 }
 
+@property(nonatomic) _Bool isExistingSecondaryCTAVariantActive; // @synthesize isExistingSecondaryCTAVariantActive=_isExistingSecondaryCTAVariantActive;
+@property(nonatomic) _Bool isExistingSubtextButtonVariantActive; // @synthesize isExistingSubtextButtonVariantActive=_isExistingSubtextButtonVariantActive;
+@property(nonatomic) _Bool isExistingControlVariantActive; // @synthesize isExistingControlVariantActive=_isExistingControlVariantActive;
+@property(nonatomic) _Bool isNewSecondaryCTAVariantActive; // @synthesize isNewSecondaryCTAVariantActive=_isNewSecondaryCTAVariantActive;
+@property(nonatomic) _Bool isNewSubtextButtonVariantActive; // @synthesize isNewSubtextButtonVariantActive=_isNewSubtextButtonVariantActive;
+@property(nonatomic) _Bool isNewControlVariantActive; // @synthesize isNewControlVariantActive=_isNewControlVariantActive;
 @property(retain, nonatomic) id <SPTFeatureFlagSignal> brandNewUserSecondaryCTAButtonVariantSignal; // @synthesize brandNewUserSecondaryCTAButtonVariantSignal=_brandNewUserSecondaryCTAButtonVariantSignal;
 @property(retain, nonatomic) id <SPTFeatureFlagSignal> brandNewUserSubtextButtonVariantSignal; // @synthesize brandNewUserSubtextButtonVariantSignal=_brandNewUserSubtextButtonVariantSignal;
 @property(retain, nonatomic) id <SPTFeatureFlagSignal> brandNewUserControlSignal; // @synthesize brandNewUserControlSignal=_brandNewUserControlSignal;
@@ -32,7 +44,7 @@
 @property(nonatomic) long long downloadOnAlbumTestState; // @synthesize downloadOnAlbumTestState=_downloadOnAlbumTestState;
 @property(retain, nonatomic) id <SPTFeatureFlagFactory> featureFlagFactory; // @synthesize featureFlagFactory=_featureFlagFactory;
 - (void).cxx_destruct;
-- (long long)downloadOnAlbumTestStateForEnabledFlagSignal:(id)arg1;
+- (void)updateTestState;
 - (void)featureFlagSignal:(id)arg1 hasAssumedState:(long long)arg2;
 - (void)dealloc;
 - (void)loadFlags;

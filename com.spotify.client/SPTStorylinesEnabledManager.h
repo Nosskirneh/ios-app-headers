@@ -9,13 +9,12 @@
 #import "SPTOfflineModeStateObserver-Protocol.h"
 
 @class NSString, SPTStorylinesDataLoader, SPTStorylinesEnabledTracks, SPTStorylinesEnabledTracksCache, SPTStorylinesEnabledTracksLoadingState, SPTStorylinesEntitiesLoadEventLogger;
-@protocol SPTNowPlayingTestManager, SPTOfflineModeState;
+@protocol SPTOfflineModeState;
 
 @interface SPTStorylinesEnabledManager : NSObject <SPTOfflineModeStateObserver>
 {
     SPTStorylinesEnabledTracksLoadingState *_loadingState;
     SPTStorylinesDataLoader *_dataLoader;
-    id <SPTNowPlayingTestManager> _nowPlayingTestManager;
     id <SPTOfflineModeState> _offlineModeState;
     SPTStorylinesEnabledTracksCache *_enabledTracksCache;
     SPTStorylinesEntitiesLoadEventLogger *_entitiesLogger;
@@ -26,7 +25,6 @@
 @property(readonly, nonatomic) SPTStorylinesEntitiesLoadEventLogger *entitiesLogger; // @synthesize entitiesLogger=_entitiesLogger;
 @property(retain, nonatomic) SPTStorylinesEnabledTracksCache *enabledTracksCache; // @synthesize enabledTracksCache=_enabledTracksCache;
 @property(retain, nonatomic) id <SPTOfflineModeState> offlineModeState; // @synthesize offlineModeState=_offlineModeState;
-@property(retain, nonatomic) id <SPTNowPlayingTestManager> nowPlayingTestManager; // @synthesize nowPlayingTestManager=_nowPlayingTestManager;
 @property(retain, nonatomic) SPTStorylinesDataLoader *dataLoader; // @synthesize dataLoader=_dataLoader;
 @property(readonly, nonatomic) SPTStorylinesEnabledTracksLoadingState *loadingState; // @synthesize loadingState=_loadingState;
 - (void).cxx_destruct;
@@ -35,8 +33,7 @@
 - (void)loadEnabledUris;
 - (id)identifierForEntityUri:(id)arg1;
 - (_Bool)storylinesEnabledForTrack:(id)arg1;
-@property(readonly, nonatomic, getter=isStorylinesEnabled) _Bool storylinesEnabled;
-- (id)initWithDataLoader:(id)arg1 offlineModeState:(id)arg2 nowPlayingTestManager:(id)arg3 enabledTracksCache:(id)arg4 entitiesLogger:(id)arg5;
+- (id)initWithDataLoader:(id)arg1 offlineModeState:(id)arg2 enabledTracksCache:(id)arg3 entitiesLogger:(id)arg4;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

@@ -39,7 +39,9 @@
 - (void)addObserver:(id)arg1;
 - (void)updateWithLyricsLineSet:(id)arg1 forTrack:(id)arg2;
 - (void)player:(id)arg1 stateDidChange:(id)arg2;
-- (void)showNextLineWithDelay:(double)arg1;
+- (void)showDataUsingTimer:(id)arg1;
+- (void)showSyllable:(long long)arg1 inLine:(long long)arg2 withDelay:(double)arg3;
+- (void)showLine:(long long)arg1 withDelay:(double)arg2;
 - (void)scheduleNextLineWithPlayerState:(id)arg1;
 - (void)updateWithPlayerState:(id)arg1;
 - (void)updateState;

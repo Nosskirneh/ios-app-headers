@@ -9,12 +9,13 @@
 #import "FBSDKSharingDialog-Protocol.h"
 #import "FBSDKWebDialogDelegate-Protocol.h"
 
-@class FBSDKWebDialog, NSString, UIViewController;
+@class FBSDKWebDialog, NSMutableArray, NSString, UIViewController;
 @protocol FBSDKSharingContent, FBSDKSharingDelegate;
 
 @interface FBSDKShareDialog : NSObject <FBSDKWebDialogDelegate, FBSDKSharingDialog>
 {
     FBSDKWebDialog *_webDialog;
+    NSMutableArray *_temporaryFiles;
     _Bool _shouldFailOnDataError;
     id <FBSDKSharingDelegate> _delegate;
     id <FBSDKSharingContent> _shareContent;
@@ -23,6 +24,7 @@
 }
 
 + (id)showFromViewController:(id)arg1 withContent:(id)arg2 delegate:(id)arg3;
++ (id)dialogWithViewController:(id)arg1 withContent:(id)arg2 delegate:(id)arg3;
 + (void)initialize;
 @property(nonatomic) unsigned long long mode; // @synthesize mode=_mode;
 @property(nonatomic) __weak UIViewController *fromViewController; // @synthesize fromViewController=_fromViewController;
@@ -30,18 +32,16 @@
 @property(copy, nonatomic) id <FBSDKSharingContent> shareContent; // @synthesize shareContent=_shareContent;
 @property(nonatomic) __weak id <FBSDKSharingDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
-- (id)_calculatePreJSONInitialTextWithHashtag:(id)arg1;
 - (id)_calculateInitialText;
 - (void)_logDialogShow;
 - (void)_invokeDelegateDidFailWithError:(id)arg1;
 - (void)_invokeDelegateDidCompleteWithResults:(id)arg1;
 - (void)_invokeDelegateDidCancel;
 - (_Bool)_validateShareMediaContentAvailability:(id)arg1 error:(id *)arg2;
-- (_Bool)_validateVideoURL:(id)arg1 error:(id *)arg2;
 - (_Bool)_validateShareContentForShareSheet:(id *)arg1;
 - (_Bool)_validateShareContentForNative:(id *)arg1;
 - (_Bool)_validateShareContentForFeed:(id *)arg1;
-- (_Bool)_validateShareContentForBrowser:(id *)arg1;
+- (_Bool)_validateShareContentForBrowserWithOptions:(unsigned long long)arg1 error:(id *)arg2;
 - (_Bool)_validateFullyCompatibleWithError:(id *)arg1;
 - (_Bool)_validateWithError:(id *)arg1;
 - (_Bool)_useSafariViewController;
@@ -56,6 +56,7 @@
 - (void)_handleWebResponseParameters:(id)arg1 error:(id)arg2 cancelled:(_Bool)arg3;
 - (id)_contentURLs;
 - (id)_contentVideoURLs;
+- (id)_contentVideoURL:(id)arg1;
 - (id)_contentImages;
 - (void)_cleanUpWebDialog;
 - (_Bool)_supportsShareSheetMinimumVersion:(id)arg1;
@@ -66,7 +67,6 @@
 - (_Bool)_canShowShareSheet;
 - (_Bool)_canShowNative;
 - (void)_loadNativeMethodName:(id *)arg1 methodVersion:(id *)arg2;
-- (id)_nativeScheme;
 - (_Bool)_showAutomatic:(id *)arg1;
 - (_Bool)_isOpenGraphURLShare:(id)arg1;
 - (_Bool)_isDefaultToShareSheet;
@@ -75,7 +75,7 @@
 - (void)webDialog:(id)arg1 didCompleteWithResults:(id)arg2;
 - (_Bool)validateWithError:(id *)arg1;
 - (_Bool)show;
-- (_Bool)canShow;
+@property(readonly, nonatomic) _Bool canShow;
 - (void)dealloc;
 
 // Remaining properties

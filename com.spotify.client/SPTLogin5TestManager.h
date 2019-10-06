@@ -10,6 +10,7 @@
 {
 }
 
+@property(readonly, nonatomic, getter=isLogin5BootstrapEnabled) _Bool login5BootstrapEnabled;
 @property(readonly, nonatomic, getter=isLogin5DarkloadEnabled) _Bool login5DarkloadEnabled;
 @property(readonly, nonatomic, getter=isLogin5Enabled) _Bool login5Enabled;
 

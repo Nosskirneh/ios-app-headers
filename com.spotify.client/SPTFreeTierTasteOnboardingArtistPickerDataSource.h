@@ -25,10 +25,12 @@
     UICollectionViewFlowLayout *_collectionViewFlowLayout;
     SPTFreeTierTasteOnboardingArtistCellStyle<GLUEStyle> *_artistCellStyle;
     SPTFreeTierTasteOnboardingGenreCellStyle<GLUEStyle> *_genreCellStyle;
-    UIImage *_badgeImage;
+    UIImage *_badgeCheckmarkImage;
+    UIImage *_badgeHornsImage;
 }
 
-@property(retain, nonatomic) UIImage *badgeImage; // @synthesize badgeImage=_badgeImage;
+@property(retain, nonatomic) UIImage *badgeHornsImage; // @synthesize badgeHornsImage=_badgeHornsImage;
+@property(retain, nonatomic) UIImage *badgeCheckmarkImage; // @synthesize badgeCheckmarkImage=_badgeCheckmarkImage;
 @property(retain, nonatomic) SPTFreeTierTasteOnboardingGenreCellStyle<GLUEStyle> *genreCellStyle; // @synthesize genreCellStyle=_genreCellStyle;
 @property(retain, nonatomic) SPTFreeTierTasteOnboardingArtistCellStyle<GLUEStyle> *artistCellStyle; // @synthesize artistCellStyle=_artistCellStyle;
 @property(nonatomic) __weak UICollectionViewFlowLayout *collectionViewFlowLayout; // @synthesize collectionViewFlowLayout=_collectionViewFlowLayout;

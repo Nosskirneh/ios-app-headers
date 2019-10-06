@@ -10,7 +10,7 @@
 #import "SPTInAppMessageQAToolNoteViewDelegate-Protocol.h"
 #import "SPTInAppMessageQAToolViewModelObserver-Protocol.h"
 
-@class NSMutableArray, NSString, SPTInAppMessageActionFactory, SPTInAppMessageNoteMessageViewModel, SPTInAppMessageNotePresentationManagerImplementation, SPTInAppMessageQAToolNoteMessageParser, SPTInAppMessageQAToolNoteMessageViewController;
+@class NSMutableArray, NSString, SPTInAppMessageActionFactory, SPTInAppMessageNoteMessageViewModel, SPTInAppMessageNotePresentationManager, SPTInAppMessageQAToolNoteMessageParser, SPTInAppMessageQAToolNoteMessageViewController;
 @protocol SPTInAppMessageQAToolFormatMessageControllerDelegate;
 
 @interface SPTInAppMessageQAToolNoteMessageController : NSObject <SPTInAppMessageNoteMessageWebViewContentDelegate, SPTInAppMessageQAToolNoteViewDelegate, SPTInAppMessageQAToolViewModelObserver>
@@ -20,12 +20,12 @@
     SPTInAppMessageQAToolNoteMessageParser *_parser;
     NSMutableArray *_noteMessagesQueue;
     SPTInAppMessageNoteMessageViewModel *_noteMessageViewModel;
-    SPTInAppMessageNotePresentationManagerImplementation *_notePresentationManager;
+    SPTInAppMessageNotePresentationManager *_notePresentationManager;
     SPTInAppMessageQAToolNoteMessageViewController *_noteMessageViewController;
 }
 
 @property(retain, nonatomic) SPTInAppMessageQAToolNoteMessageViewController *noteMessageViewController; // @synthesize noteMessageViewController=_noteMessageViewController;
-@property(retain, nonatomic) SPTInAppMessageNotePresentationManagerImplementation *notePresentationManager; // @synthesize notePresentationManager=_notePresentationManager;
+@property(retain, nonatomic) SPTInAppMessageNotePresentationManager *notePresentationManager; // @synthesize notePresentationManager=_notePresentationManager;
 @property(retain, nonatomic) SPTInAppMessageNoteMessageViewModel *noteMessageViewModel; // @synthesize noteMessageViewModel=_noteMessageViewModel;
 @property(retain, nonatomic) NSMutableArray *noteMessagesQueue; // @synthesize noteMessagesQueue=_noteMessagesQueue;
 @property(retain, nonatomic) SPTInAppMessageQAToolNoteMessageParser *parser; // @synthesize parser=_parser;

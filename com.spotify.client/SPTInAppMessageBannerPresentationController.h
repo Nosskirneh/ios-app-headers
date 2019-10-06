@@ -9,7 +9,7 @@
 #import "SPTInAppMessageBannerMessageWebViewContentDelegate-Protocol.h"
 #import "SPTOfflineModeStateObserver-Protocol.h"
 
-@class NSDictionary, NSString, SPTInAppMessageBannerMessageViewModel, SPTInAppMessageNotePresentationManagerImplementation, SPTInAppMessageNowPlayingManagerRegistryImplementation, SPTInAppMessageServiceLogger;
+@class NSDictionary, NSString, SPTInAppMessageBannerMessageViewModel, SPTInAppMessageNotePresentationManager, SPTInAppMessageNowPlayingManagerRegistryImplementation, SPTInAppMessageServiceLogger;
 @protocol SPTBannerPresentationManager, SPTBannerPresentationManagerTicket, SPTCrashReporter, SPTExternalIntegrationDriverDistractionController, SPTOfflineModeState;
 
 @interface SPTInAppMessageBannerPresentationController : NSObject <SPTInAppMessageBannerMessageWebViewContentDelegate, SPTOfflineModeStateObserver>
@@ -24,12 +24,12 @@
     SPTInAppMessageServiceLogger *_serviceLogger;
     id <SPTBannerPresentationManagerTicket> _bannerTicket;
     NSDictionary *_cancelationInfo;
-    SPTInAppMessageNotePresentationManagerImplementation *_notePresentationManager;
+    SPTInAppMessageNotePresentationManager *_notePresentationManager;
     id <SPTCrashReporter> _crashReporter;
 }
 
 @property(readonly, nonatomic) id <SPTCrashReporter> crashReporter; // @synthesize crashReporter=_crashReporter;
-@property(retain, nonatomic) SPTInAppMessageNotePresentationManagerImplementation *notePresentationManager; // @synthesize notePresentationManager=_notePresentationManager;
+@property(retain, nonatomic) SPTInAppMessageNotePresentationManager *notePresentationManager; // @synthesize notePresentationManager=_notePresentationManager;
 @property(nonatomic, getter=isOffline) _Bool offline; // @synthesize offline=_offline;
 @property(copy, nonatomic) NSDictionary *cancelationInfo; // @synthesize cancelationInfo=_cancelationInfo;
 @property(retain, nonatomic) id <SPTBannerPresentationManagerTicket> bannerTicket; // @synthesize bannerTicket=_bannerTicket;

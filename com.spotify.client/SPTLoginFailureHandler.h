@@ -30,7 +30,6 @@
 - (void).cxx_destruct;
 - (void)dataLoader:(id)arg1 didFinishLoadingWithSuccessForEmail:(id)arg2;
 - (void)dataLoader:(id)arg1 didFinishLoadingWithError:(id)arg2 forEmail:(id)arg3;
-- (unsigned long long)failureCountThreshold;
 - (_Bool)hasFailedEnoughTimesForUser:(id)arg1;
 - (void)handleLoginFailureForUser:(id)arg1;
 - (id)initWithConfirmationPresenter:(id)arg1 requestTracker:(id)arg2 loginFailureCounter:(id)arg3 testManager:(id)arg4 dataLoader:(id)arg5;

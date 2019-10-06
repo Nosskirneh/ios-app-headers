@@ -14,17 +14,20 @@
     UIColor *_backgroundColor;
     NSString *_accessibilityText;
     NSURL *_imageURL;
+    NSURL *_imageURLLarge;
     unsigned long long _visualStyle;
 }
 
 @property(nonatomic) unsigned long long visualStyle; // @synthesize visualStyle=_visualStyle;
+@property(readonly, copy, nonatomic) NSURL *imageURLLarge; // @synthesize imageURLLarge=_imageURLLarge;
 @property(readonly, copy, nonatomic) NSURL *imageURL; // @synthesize imageURL=_imageURL;
 @property(readonly, copy, nonatomic) NSString *accessibilityText; // @synthesize accessibilityText=_accessibilityText;
 @property(readonly, copy, nonatomic) UIColor *backgroundColor; // @synthesize backgroundColor=_backgroundColor;
 @property(readonly, copy, nonatomic) NSString *text; // @synthesize text=_text;
 - (void).cxx_destruct;
+- (id)imageURLPreferringLarge:(_Bool)arg1;
 - (unsigned long long)defaultVisualStyle;
-- (id)initWithImageURL:(id)arg1 text:(id)arg2 backgroundColor:(id)arg3 accessibilityText:(id)arg4;
+- (id)initWithImageURL:(id)arg1 imageURLLarge:(id)arg2 text:(id)arg3 backgroundColor:(id)arg4 accessibilityText:(id)arg5;
 
 @end
 

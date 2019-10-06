@@ -7,15 +7,15 @@
 #import <objc/NSObject.h>
 
 @class AVQueuePlayer;
-@protocol SPTKVOController;
+@protocol BMKVOController;
 
 @interface SPTVideoPlayerLooper : NSObject
 {
     AVQueuePlayer *_playerQueue;
-    id <SPTKVOController> _kvoController;
+    id <BMKVOController> _kvoController;
 }
 
-@property(readonly, nonatomic) id <SPTKVOController> kvoController; // @synthesize kvoController=_kvoController;
+@property(readonly, nonatomic) id <BMKVOController> kvoController; // @synthesize kvoController=_kvoController;
 @property(readonly, nonatomic) AVQueuePlayer *playerQueue; // @synthesize playerQueue=_playerQueue;
 - (void).cxx_destruct;
 - (void)currentItemDidChange:(id)arg1 playerQueue:(id)arg2;

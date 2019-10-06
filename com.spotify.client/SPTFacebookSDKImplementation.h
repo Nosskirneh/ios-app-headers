@@ -27,7 +27,6 @@
 - (void)requestFacebookUserIdentifierForAccessToken:(id)arg1 completion:(CDUnknownBlockType)arg2;
 - (void)requestFacebookAccessToken:(CDUnknownBlockType)arg1;
 - (void)clearFacebookData;
-- (void)setAppID:(id)arg1;
 - (id)initWithFacebookLoginManager:(id)arg1;
 
 // Remaining properties

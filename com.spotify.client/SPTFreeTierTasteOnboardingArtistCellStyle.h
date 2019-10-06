@@ -36,6 +36,7 @@
     double _nameToSubtitlePadding;
     struct CGSize _badgeImageSize;
     struct CGSize _badgeImageIconSize;
+    struct CGSize _hornsBadgeImageIconSize;
     struct CGSize _badgeViewAppearanceAnimationInitialScale;
     struct CGSize _badgeViewDisappearanceAnimationFinalScale;
 }
@@ -56,6 +57,7 @@
 @property(retain, nonatomic) UIColor *badgeImageFollowIconColor; // @synthesize badgeImageFollowIconColor=_badgeImageFollowIconColor;
 @property(retain, nonatomic) UIColor *badgeImageBorderColor; // @synthesize badgeImageBorderColor=_badgeImageBorderColor;
 @property(retain, nonatomic) UIColor *badgeImageColor; // @synthesize badgeImageColor=_badgeImageColor;
+@property(nonatomic) struct CGSize hornsBadgeImageIconSize; // @synthesize hornsBadgeImageIconSize=_hornsBadgeImageIconSize;
 @property(nonatomic) struct CGSize badgeImageIconSize; // @synthesize badgeImageIconSize=_badgeImageIconSize;
 @property(nonatomic) double badgeImageBorderWidth; // @synthesize badgeImageBorderWidth=_badgeImageBorderWidth;
 @property(nonatomic) struct CGSize badgeImageSize; // @synthesize badgeImageSize=_badgeImageSize;

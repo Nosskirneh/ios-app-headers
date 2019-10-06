@@ -6,15 +6,15 @@
 
 #import <objc/NSObject.h>
 
-@class SPTNowPlayingContentLayerViewModel, SPTNowPlayingCoverArtProvider, SPTNowPlayingHorizontalVideoProvider, SPTNowPlayingSideBarContentLayerViewController, SPTTheme, SPTVideoSurfaceFactory;
-@protocol SPTGLUEImageLoaderFactory, SPTNowPlayingContentLayerResolver, SPTNowPlayingVideoManager, SPTShareDragDelegateFactory, SPTVideoSurfaceManager;
+@class BMVideoSurfaceFactory, SPTNowPlayingContentLayerViewModel, SPTNowPlayingCoverArtProvider, SPTNowPlayingHorizontalVideoProvider, SPTNowPlayingSideBarContentLayerViewController, SPTTheme;
+@protocol BMVideoSurfaceManager, SPTGLUEImageLoaderFactory, SPTNowPlayingContentLayerResolver, SPTNowPlayingVideoManager, SPTShareDragDelegateFactory;
 
 @interface SPTNowPlayingSideBarContentViewProvider : NSObject
 {
     SPTTheme *_theme;
     id <SPTGLUEImageLoaderFactory> _glueImageLoaderFactory;
-    id <SPTVideoSurfaceManager> _videoSurfaceManager;
-    SPTVideoSurfaceFactory *_surfaceFactory;
+    id <BMVideoSurfaceManager> _videoSurfaceManager;
+    BMVideoSurfaceFactory *_surfaceFactory;
     id <SPTNowPlayingVideoManager> _nowPlayingVideoManager;
     SPTNowPlayingContentLayerViewModel *_contentLayerViewModel;
     id <SPTNowPlayingContentLayerResolver> _contentLayerResolver;
@@ -31,8 +31,8 @@
 @property(readonly, nonatomic) id <SPTNowPlayingContentLayerResolver> contentLayerResolver; // @synthesize contentLayerResolver=_contentLayerResolver;
 @property(readonly, nonatomic) SPTNowPlayingContentLayerViewModel *contentLayerViewModel; // @synthesize contentLayerViewModel=_contentLayerViewModel;
 @property(readonly, nonatomic) id <SPTNowPlayingVideoManager> nowPlayingVideoManager; // @synthesize nowPlayingVideoManager=_nowPlayingVideoManager;
-@property(readonly, nonatomic) SPTVideoSurfaceFactory *surfaceFactory; // @synthesize surfaceFactory=_surfaceFactory;
-@property(readonly, nonatomic) id <SPTVideoSurfaceManager> videoSurfaceManager; // @synthesize videoSurfaceManager=_videoSurfaceManager;
+@property(readonly, nonatomic) BMVideoSurfaceFactory *surfaceFactory; // @synthesize surfaceFactory=_surfaceFactory;
+@property(readonly, nonatomic) id <BMVideoSurfaceManager> videoSurfaceManager; // @synthesize videoSurfaceManager=_videoSurfaceManager;
 @property(readonly, nonatomic) id <SPTGLUEImageLoaderFactory> glueImageLoaderFactory; // @synthesize glueImageLoaderFactory=_glueImageLoaderFactory;
 @property(readonly, nonatomic) SPTTheme *theme; // @synthesize theme=_theme;
 - (void).cxx_destruct;

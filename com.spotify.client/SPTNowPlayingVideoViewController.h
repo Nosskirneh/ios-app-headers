@@ -14,7 +14,7 @@
 #import "SPTNowPlayingVideoViewV2Delegate-Protocol.h"
 
 @class NSString, SPTNowPlayingLogger, SPTNowPlayingSkipLimitReachedMessageRequester, SPTNowPlayingVideoHeadUnitViewController, SPTNowPlayingVideoTimer, SPTNowPlayingVideoView, SPTNowPlayingVideoViewModel, SPTStatusBarToken, SPTTheme, UIView;
-@protocol SPTLinkDispatcher, SPTLocalSettings, SPTNowPlayingVideoViewControllerDelegate, SPTPodcastContextMenuProvider, SPTQueueLogger, SPTVideoSurfaceManager;
+@protocol BMVideoSurfaceManager, SPTLinkDispatcher, SPTLocalSettings, SPTNowPlayingVideoViewControllerDelegate, SPTPodcastContextMenuProvider, SPTQueueLogger;
 
 @interface SPTNowPlayingVideoViewController : UIViewController <SPTNowPlayingDurationViewV2DataSource, SPTNowPlayingDurationViewV2Delegate, SPTNowPlayingTrackPositionObserver, SPTNowPlayingVideoViewV2Delegate, SPTNowPlayingVideoTimerDelegate, SPTNowPlayingTrackMetadataQueueObserver>
 {
@@ -24,7 +24,7 @@
     UIView *_animationView;
     SPTTheme *_theme;
     SPTNowPlayingVideoViewModel *_viewModel;
-    id <SPTVideoSurfaceManager> _videoSurfaceManager;
+    id <BMVideoSurfaceManager> _videoSurfaceManager;
     id <SPTPodcastContextMenuProvider> _podcastContextMenuProvider;
     id <SPTLocalSettings> _localSettings;
     SPTNowPlayingSkipLimitReachedMessageRequester *_skipLimitReachedMessageRequester;
@@ -49,7 +49,7 @@
 @property(readonly, nonatomic) SPTNowPlayingSkipLimitReachedMessageRequester *skipLimitReachedMessageRequester; // @synthesize skipLimitReachedMessageRequester=_skipLimitReachedMessageRequester;
 @property(readonly, nonatomic) id <SPTLocalSettings> localSettings; // @synthesize localSettings=_localSettings;
 @property(readonly, nonatomic) id <SPTPodcastContextMenuProvider> podcastContextMenuProvider; // @synthesize podcastContextMenuProvider=_podcastContextMenuProvider;
-@property(readonly, nonatomic) id <SPTVideoSurfaceManager> videoSurfaceManager; // @synthesize videoSurfaceManager=_videoSurfaceManager;
+@property(readonly, nonatomic) id <BMVideoSurfaceManager> videoSurfaceManager; // @synthesize videoSurfaceManager=_videoSurfaceManager;
 @property(readonly, nonatomic) SPTNowPlayingVideoViewModel *viewModel; // @synthesize viewModel=_viewModel;
 @property(readonly, nonatomic) SPTTheme *theme; // @synthesize theme=_theme;
 @property(retain, nonatomic) UIView *animationView; // @synthesize animationView=_animationView;

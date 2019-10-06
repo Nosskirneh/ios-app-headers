@@ -9,14 +9,13 @@
 #import "SPTVideoMediaExtension-Protocol.h"
 
 @class NSString, SPTSpotifyVideoHLSDataFactory, SPTVideoApplicationStateObservable, SPTVideoCDNSelector, SPTVideoManifestService, SPTVideoMediaURLConverter;
-@protocol SPTVideoResourceRequestFactory, SPTVideoSubtitleManager;
+@protocol SPTVideoResourceRequestFactory;
 
 @interface SPTSpotifyVideoMediaExtension : NSObject <SPTVideoMediaExtension>
 {
     SPTVideoMediaURLConverter *_mediaURLConverter;
     SPTVideoManifestService *_manifestService;
     id <SPTVideoResourceRequestFactory> _resourceRequestFactory;
-    id <SPTVideoSubtitleManager> _subtitleManager;
     SPTVideoApplicationStateObservable *_appStateObservable;
     SPTSpotifyVideoHLSDataFactory *_hlsDataFactory;
     SPTVideoCDNSelector *_cdnSelector;
@@ -25,14 +24,13 @@
 @property(retain, nonatomic) SPTVideoCDNSelector *cdnSelector; // @synthesize cdnSelector=_cdnSelector;
 @property(retain, nonatomic) SPTSpotifyVideoHLSDataFactory *hlsDataFactory; // @synthesize hlsDataFactory=_hlsDataFactory;
 @property(retain, nonatomic) SPTVideoApplicationStateObservable *appStateObservable; // @synthesize appStateObservable=_appStateObservable;
-@property(retain, nonatomic) id <SPTVideoSubtitleManager> subtitleManager; // @synthesize subtitleManager=_subtitleManager;
 @property(retain, nonatomic) id <SPTVideoResourceRequestFactory> resourceRequestFactory; // @synthesize resourceRequestFactory=_resourceRequestFactory;
 @property(retain, nonatomic) SPTVideoManifestService *manifestService; // @synthesize manifestService=_manifestService;
 @property(retain, nonatomic) SPTVideoMediaURLConverter *mediaURLConverter; // @synthesize mediaURLConverter=_mediaURLConverter;
 - (void).cxx_destruct;
 - (id)resourceLoaderForIdentity:(id)arg1;
 - (_Bool)isPlayableForIdentity:(id)arg1;
-- (id)initWithManifestService:(id)arg1 resourceRequestFactory:(id)arg2 cdnSelector:(id)arg3 subtitleManager:(id)arg4 appStateObservable:(id)arg5 hlsDataFactory:(id)arg6;
+- (id)initWithManifestService:(id)arg1 resourceRequestFactory:(id)arg2 cdnSelector:(id)arg3 appStateObservable:(id)arg4 hlsDataFactory:(id)arg5;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

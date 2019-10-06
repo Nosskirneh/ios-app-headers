@@ -20,7 +20,7 @@
 
 + (void)clearData:(id)arg1 fromPasteboardOnApplicationDidBecomeActive:(id)arg2;
 @property(readonly, nonatomic) UIPasteboard *pasteboard; // @synthesize pasteboard=_pasteboard;
-@property(readonly, nonatomic) _Bool includeAppIcon; // @synthesize includeAppIcon=_includeAppIcon;
+@property(readonly, nonatomic, getter=shouldIncludeAppIcon) _Bool includeAppIcon; // @synthesize includeAppIcon=_includeAppIcon;
 @property(readonly, nonatomic) unsigned long long dataLengthThreshold; // @synthesize dataLengthThreshold=_dataLengthThreshold;
 @property(readonly, copy, nonatomic) NSString *appScheme; // @synthesize appScheme=_appScheme;
 - (void).cxx_destruct;
@@ -30,7 +30,6 @@
 - (id)_appIcon;
 - (id)responseParametersForActionID:(id)arg1 queryParameters:(id)arg2 cancelled:(_Bool *)arg3 error:(id *)arg4;
 - (id)requestURLWithActionID:(id)arg1 scheme:(id)arg2 methodName:(id)arg3 methodVersion:(id)arg4 parameters:(id)arg5 error:(id *)arg6;
-- (id)init;
 - (id)initWithAppScheme:(id)arg1 pasteboard:(id)arg2 dataLengthThreshold:(unsigned long long)arg3 includeAppIcon:(_Bool)arg4;
 - (id)initWithAppScheme:(id)arg1;
 

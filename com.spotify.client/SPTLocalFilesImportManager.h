@@ -9,7 +9,7 @@
 #import "SPTNUXModifying-Protocol.h"
 #import "SPTProductStateObserver-Protocol.h"
 
-@class NSDate, NSString, NSURL, SPTFilePickerViewController, SPTLocalFilesLogger;
+@class NSDate, NSString, NSURL, SPTFilePickerViewController, SPTLocalFilesImportAuthorizationRequester, SPTLocalFilesLogger;
 @protocol SPTCollectionPlatform, SPTCollectionPlatformTestManager, SPTContainerUIService, SPTImageLoaderFactory, SPTLinkDispatcher, SPTLocalFilesPlaylistsDataSource, SPTLocalFilesTracksDataSource, SPTLocalSettings, SPTNavigationRouter, SPTPlaylistModel, SPTProductState;
 
 @interface SPTLocalFilesImportManager : NSObject <SPTProductStateObserver, SPTNUXModifying>
@@ -32,10 +32,12 @@
     id <SPTNavigationRouter> _navigationRouter;
     SPTLocalFilesLogger *_logger;
     id <SPTLinkDispatcher> _linkDispatcher;
+    SPTLocalFilesImportAuthorizationRequester *_importAuthorizationRequester;
     NSDate *_importStartedTimestamp;
 }
 
 @property(retain, nonatomic) NSDate *importStartedTimestamp; // @synthesize importStartedTimestamp=_importStartedTimestamp;
+@property(readonly, nonatomic) SPTLocalFilesImportAuthorizationRequester *importAuthorizationRequester; // @synthesize importAuthorizationRequester=_importAuthorizationRequester;
 @property(nonatomic) __weak id <SPTLinkDispatcher> linkDispatcher; // @synthesize linkDispatcher=_linkDispatcher;
 @property(retain, nonatomic) SPTLocalFilesLogger *logger; // @synthesize logger=_logger;
 @property(nonatomic) __weak id <SPTNavigationRouter> navigationRouter; // @synthesize navigationRouter=_navigationRouter;

@@ -10,21 +10,20 @@
 #import "MPPlayableContentDelegate-Protocol.h"
 #import "SPTMediaPlayerContentBridge-Protocol.h"
 
-@class MPPlayableContentManager, NSMutableArray, NSString;
-@protocol MPPlayableContentDataSource, MPPlayableContentDelegate, OS_dispatch_queue, SPTPlaybackQueueInitializer;
+@class MPContentItem, MPPlayableContentManager, NSMutableIndexSet, NSString;
+@protocol MPPlayableContentDataSource, MPPlayableContentDelegate, SPTPlaybackQueueInitializer;
 
 @interface SPTMediaPlayerContentBridgeImplementation : NSObject <SPTMediaPlayerContentBridge, MPPlayableContentDataSource, MPPlayableContentDelegate>
 {
     id <MPPlayableContentDelegate> _playableContentSubDelegate;
     id <MPPlayableContentDataSource> _playableContentDataSource;
     id <SPTPlaybackQueueInitializer> _playbackQueueInitializer;
+    MPContentItem *_tabMenuDummyItem;
     MPPlayableContentManager *_contentManager;
-    NSObject<OS_dispatch_queue> *_playableContentDataSourceWaitForAvailabilityQueue;
-    NSMutableArray *_playableContentDataSourceAvailabilitySemaphores;
+    NSMutableIndexSet *_startLoadTaskIdentifiers;
 }
 
-@property(retain, nonatomic) NSMutableArray *playableContentDataSourceAvailabilitySemaphores; // @synthesize playableContentDataSourceAvailabilitySemaphores=_playableContentDataSourceAvailabilitySemaphores;
-@property(retain, nonatomic) NSObject<OS_dispatch_queue> *playableContentDataSourceWaitForAvailabilityQueue; // @synthesize playableContentDataSourceWaitForAvailabilityQueue=_playableContentDataSourceWaitForAvailabilityQueue;
+@property(retain, nonatomic) NSMutableIndexSet *startLoadTaskIdentifiers; // @synthesize startLoadTaskIdentifiers=_startLoadTaskIdentifiers;
 @property(retain, nonatomic) MPPlayableContentManager *contentManager; // @synthesize contentManager=_contentManager;
 @property(nonatomic) __weak id <SPTPlaybackQueueInitializer> playbackQueueInitializer; // @synthesize playbackQueueInitializer=_playbackQueueInitializer;
 @property(nonatomic) __weak id <MPPlayableContentDataSource> playableContentDataSource; // @synthesize playableContentDataSource=_playableContentDataSource;
@@ -38,6 +37,11 @@
 - (_Bool)childItemsDisplayPlaybackProgressAtIndexPath:(id)arg1;
 - (void)beginLoadingChildItemsAtIndexPath:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (_Bool)respondsToSelector:(SEL)arg1;
+- (void)endBackgroundTask:(unsigned long long)arg1;
+- (void)endLoadDataSourceBackgroundTask;
+- (unsigned long long)startBackgroundTask;
+- (void)startLoadDataSourceBackgroundTask;
+@property(readonly, nonatomic) MPContentItem *tabMenuDummyItem; // @synthesize tabMenuDummyItem=_tabMenuDummyItem;
 - (id)initWithContentManager:(id)arg1;
 
 // Remaining properties

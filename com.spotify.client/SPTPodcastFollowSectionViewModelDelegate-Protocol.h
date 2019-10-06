@@ -9,6 +9,7 @@
 @class SPTPodcastFollowSectionViewModel, UIView;
 
 @protocol SPTPodcastFollowSectionViewModelDelegate <NSObject>
+- (void)followSectionViewModelDidUpdatePlaybackState:(SPTPodcastFollowSectionViewModel *)arg1;
 - (void)followSectionViewModel:(SPTPodcastFollowSectionViewModel *)arg1 didSelectContextMenuButton:(UIView *)arg2;
 - (void)followSectionViewModelDidUpdateFollowedState:(SPTPodcastFollowSectionViewModel *)arg1;
 @end

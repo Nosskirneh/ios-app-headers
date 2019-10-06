@@ -15,6 +15,7 @@
 
 @interface SPTSignupTermsAndPolicyViewModel : NSObject <SPTSignupTermsAndPolicyManagerDelegate, SFSafariViewControllerDelegate, UITextViewDelegate>
 {
+    _Bool _guestModeEnabled;
     id <SPTSignupTermsAndPolicyViewModelDelegate> _delegate;
     SPTSignupTermsAndPolicyManager *_termsAndPolicyManager;
     SPTSignupTermsAndPolicyViewStyle *_style;
@@ -22,6 +23,7 @@
     id <SPTLoginLogger> _logger;
 }
 
+@property(readonly, nonatomic, getter=isGuestModeEnabled) _Bool guestModeEnabled; // @synthesize guestModeEnabled=_guestModeEnabled;
 @property(retain, nonatomic) id <SPTLoginLogger> logger; // @synthesize logger=_logger;
 @property(retain, nonatomic) id <SPTSignupTermsAndPolicyViewConfiguration> termsViewConfiguration; // @synthesize termsViewConfiguration=_termsViewConfiguration;
 @property(retain, nonatomic) SPTSignupTermsAndPolicyViewStyle *style; // @synthesize style=_style;
@@ -40,7 +42,7 @@
 - (id)linksForTermsAndConditionsText;
 - (id)localizedTextForTermsAndConditions;
 - (id)termsAndConditionsAttributedText;
-- (id)initWithTermsViewConfiguration:(id)arg1 termsAndPolicyManager:(id)arg2 style:(id)arg3 logger:(id)arg4;
+- (id)initWithTermsViewConfiguration:(id)arg1 termsAndPolicyManager:(id)arg2 style:(id)arg3 logger:(id)arg4 guestModeEnabled:(_Bool)arg5;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

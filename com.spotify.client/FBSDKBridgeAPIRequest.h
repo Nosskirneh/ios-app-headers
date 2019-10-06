@@ -37,7 +37,6 @@
 - (void).cxx_destruct;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)requestURL:(id *)arg1;
-- (id)init;
 - (id)initWithProtocol:(id)arg1 protocolType:(unsigned long long)arg2 scheme:(id)arg3 methodName:(id)arg4 methodVersion:(id)arg5 parameters:(id)arg6 userInfo:(id)arg7;
 
 // Remaining properties

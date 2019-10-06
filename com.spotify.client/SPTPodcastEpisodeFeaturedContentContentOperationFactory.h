@@ -6,21 +6,22 @@
 
 #import <objc/NSObject.h>
 
-@protocol SPTHubContentOperationFactory, SPTHubRemoteContentOperationURLResolver, SPTOnDemandSet;
+@protocol SPTHubContentOperationFactory, SPTOnDemandSet, SPTProductState;
 
 @interface SPTPodcastEpisodeFeaturedContentContentOperationFactory : NSObject
 {
     id <SPTHubContentOperationFactory> _hubContentOperationFactory;
-    id <SPTHubRemoteContentOperationURLResolver> _URLResolver;
     id <SPTOnDemandSet> _onDemandSet;
+    id <SPTProductState> _productState;
 }
 
+@property(readonly, nonatomic) id <SPTProductState> productState; // @synthesize productState=_productState;
 @property(readonly, nonatomic) id <SPTOnDemandSet> onDemandSet; // @synthesize onDemandSet=_onDemandSet;
-@property(readonly, nonatomic) id <SPTHubRemoteContentOperationURLResolver> URLResolver; // @synthesize URLResolver=_URLResolver;
 @property(readonly, nonatomic) id <SPTHubContentOperationFactory> hubContentOperationFactory; // @synthesize hubContentOperationFactory=_hubContentOperationFactory;
 - (void).cxx_destruct;
-- (id)createContentOperationsForReferrerIdentifier:(id)arg1;
-- (id)initWithHubContentOperationFactory:(id)arg1 URLResolver:(id)arg2 onDemandSet:(id)arg3;
+- (id)createSubtitleDecoratorContentOperation;
+- (id)createContentOperationsForViewURI:(id)arg1 referrerIdentifier:(id)arg2;
+- (id)initWithHubContentOperationFactory:(id)arg1 onDemandSet:(id)arg2 productState:(id)arg3;
 
 @end
 

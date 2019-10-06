@@ -9,7 +9,7 @@
 #import "SPTDrivingMotionBasedStateDetectorDelegate-Protocol.h"
 #import "SPTDrivingStateObserver-Protocol.h"
 
-@class NSString, NSUserDefaults, SPTDrivingDetectionFeedbackLoader, SPTDrivingDetectionFeedbackPresenter, SPTDrivingMotionBasedStateDetector, SPTDrivingMotionDetectionLoaderResult;
+@class NSString, NSUserDefaults, SPTDrivingDetectionFeedbackLoader, SPTDrivingDetectionFeedbackPresenter, SPTDrivingMotionBasedStateDetector, SPTDrivingMotionDetectionLoaderResult, UIApplication;
 
 @interface SPTDrivingDetectionFeedbackController : NSObject <SPTDrivingStateObserver, SPTDrivingMotionBasedStateDetectorDelegate>
 {
@@ -17,10 +17,12 @@
     SPTDrivingDetectionFeedbackLoader *_feedbackLoader;
     SPTDrivingDetectionFeedbackPresenter *_surveyPresenter;
     NSUserDefaults *_standardUserDefaults;
+    UIApplication *_application;
     SPTDrivingMotionDetectionLoaderResult *_predictionResult;
 }
 
 @property(retain, nonatomic) SPTDrivingMotionDetectionLoaderResult *predictionResult; // @synthesize predictionResult=_predictionResult;
+@property(readonly, nonatomic) __weak UIApplication *application; // @synthesize application=_application;
 @property(readonly, nonatomic) NSUserDefaults *standardUserDefaults; // @synthesize standardUserDefaults=_standardUserDefaults;
 @property(readonly, nonatomic) SPTDrivingDetectionFeedbackPresenter *surveyPresenter; // @synthesize surveyPresenter=_surveyPresenter;
 @property(readonly, nonatomic) SPTDrivingDetectionFeedbackLoader *feedbackLoader; // @synthesize feedbackLoader=_feedbackLoader;
@@ -32,7 +34,7 @@
 - (void)saveLastSurveyPresentationTimestamp;
 - (_Bool)shouldPresentDrivingSurveyWithDrivingState:(id)arg1;
 - (void)presentSurveyWithDrivingState:(id)arg1;
-- (id)initWithMotionBasedDetector:(id)arg1 feedbackPresenter:(id)arg2 feedbackLoader:(id)arg3 standardUserDefaults:(id)arg4;
+- (id)initWithMotionBasedDetector:(id)arg1 feedbackPresenter:(id)arg2 feedbackLoader:(id)arg3 standardUserDefaults:(id)arg4 application:(id)arg5;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

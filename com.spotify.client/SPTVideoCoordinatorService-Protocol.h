@@ -6,15 +6,14 @@
 
 #import "SPTService-Protocol.h"
 
-@protocol SPTAVPlayerSource, SPTVideoEventObserverFactory, SPTVideoPlaybackEventObserver, SPTVideoSubtitleManager, SPTVideoSurfaceManager;
+@protocol BMEventObserverFactory, BMPlaybackEventObserver, BMVideoSurfaceManager, SPTAVPlayerSource;
 
 @protocol SPTVideoCoordinatorService <SPTService>
-- (void)removeVideoPlaybackEventObserver:(id <SPTVideoPlaybackEventObserver>)arg1;
-- (void)addVideoPlaybackEventObserver:(id <SPTVideoPlaybackEventObserver>)arg1;
-- (void)registerPlaybackEventObserverFactoryBlock:(id <SPTVideoEventObserver> (^)(id <SPTVideoPlaybackIdentity>, id <SPTVideoPlayOptions>, id <SPTVideoPlaybackTimeObservable>))arg1;
-- (void)registerPlaybackEventObserverFactory:(id <SPTVideoEventObserverFactory>)arg1;
+- (void)removeVideoPlaybackEventObserver:(id <BMPlaybackEventObserver>)arg1;
+- (void)addVideoPlaybackEventObserver:(id <BMPlaybackEventObserver>)arg1;
+- (void)registerPlaybackEventObserverFactoryBlock:(id <BMEventObserver> (^)(id <BMPlaybackIdentity>, id <BMPlayOptions>, id <BMPlaybackTimeObservable>))arg1;
+- (void)registerPlaybackEventObserverFactory:(id <BMEventObserverFactory>)arg1;
 - (id <SPTAVPlayerSource>)providePlayerSource;
-- (id <SPTVideoSubtitleManager>)provideSubtitleManager;
-- (id <SPTVideoSurfaceManager>)provideSurfaceManager;
+- (id <BMVideoSurfaceManager>)provideSurfaceManager;
 @end
 

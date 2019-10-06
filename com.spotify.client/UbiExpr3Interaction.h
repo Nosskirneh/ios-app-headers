@@ -20,6 +20,7 @@
 @property(readonly, nonatomic) unsigned long long actionParameterNamesArray_Count; // @dynamic actionParameterNamesArray_Count;
 @property(retain, nonatomic) NSMutableArray *actionParameterValuesArray; // @dynamic actionParameterValuesArray;
 @property(readonly, nonatomic) unsigned long long actionParameterValuesArray_Count; // @dynamic actionParameterValuesArray_Count;
+@property(copy, nonatomic) NSString *app; // @dynamic app;
 @property(retain, nonatomic) NSMutableArray *elementPathIdsArray; // @dynamic elementPathIdsArray;
 @property(readonly, nonatomic) unsigned long long elementPathIdsArray_Count; // @dynamic elementPathIdsArray_Count;
 @property(retain, nonatomic) NSMutableArray *elementPathNamesArray; // @dynamic elementPathNamesArray;
@@ -32,6 +33,7 @@
 @property(readonly, nonatomic) unsigned long long errorsArray_Count; // @dynamic errorsArray_Count;
 @property(copy, nonatomic) NSString *generatorCommitHash; // @dynamic generatorCommitHash;
 @property(nonatomic) _Bool hasAction; // @dynamic hasAction;
+@property(nonatomic) _Bool hasApp; // @dynamic hasApp;
 @property(nonatomic) _Bool hasGeneratorCommitHash; // @dynamic hasGeneratorCommitHash;
 @property(nonatomic) _Bool hasInteractionId; // @dynamic hasInteractionId;
 @property(nonatomic) _Bool hasInteractionType; // @dynamic hasInteractionType;

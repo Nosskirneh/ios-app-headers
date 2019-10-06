@@ -9,6 +9,7 @@
 @class NSDictionary, NSString, NSURL;
 
 @protocol SPTInAppMessageSDKMessage <NSObject>
+@property(readonly, copy, nonatomic) NSString *messageFormat;
 @property(readonly, nonatomic) NSURL *impressionURL;
 @property(readonly, copy, nonatomic) NSString *uuid;
 @property(readonly, copy, nonatomic) NSString *identifier;

@@ -7,15 +7,17 @@
 #import "GLUEThemeBase.h"
 
 @class GLUEAccessoryIconButtonStyle, SPTFreeTierCollectionFollowButtonStyle, SPTFreeTierCollectionSongsImageStyle, SPTFreeTierPreCurationTheme;
-@protocol SPTSortingFilteringTheme;
+@protocol SPTFreeTierCollectionTestManager, SPTSortingFilteringTheme;
 
 @interface SPTFreeTierCollectionGLUETheme : GLUEThemeBase
 {
     _Bool _preCurationEnabled;
     SPTFreeTierPreCurationTheme *_preCurationTheme;
     id <SPTSortingFilteringTheme> _sortingFilteringTheme;
+    id <SPTFreeTierCollectionTestManager> _testManager;
 }
 
+@property(readonly, nonatomic) id <SPTFreeTierCollectionTestManager> testManager; // @synthesize testManager=_testManager;
 @property(retain, nonatomic) id <SPTSortingFilteringTheme> sortingFilteringTheme; // @synthesize sortingFilteringTheme=_sortingFilteringTheme;
 @property(nonatomic, getter=isPreCurationEnabled) _Bool preCurationEnabled; // @synthesize preCurationEnabled=_preCurationEnabled;
 @property(retain, nonatomic) SPTFreeTierPreCurationTheme *preCurationTheme; // @synthesize preCurationTheme=_preCurationTheme;
@@ -46,7 +48,7 @@
 - (id)overlayImageViewStyleWithImageStyle:(id)arg1;
 - (id)entityRowCollectionStyleWithRowSize:(long long)arg1;
 - (id)songsHeaderContentViewStyle;
-- (id)initWithParentTheme:(id)arg1 andPreCurationTheme:(id)arg2 preCurationEnabled:(_Bool)arg3 sortingFilteringTheme:(id)arg4;
+- (id)initWithParentTheme:(id)arg1 andPreCurationTheme:(id)arg2 preCurationEnabled:(_Bool)arg3 sortingFilteringTheme:(id)arg4 testManager:(id)arg5;
 
 @end
 

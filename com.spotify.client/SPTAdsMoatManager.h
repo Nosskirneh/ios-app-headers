@@ -6,19 +6,19 @@
 
 #import <objc/NSObject.h>
 
+#import "BMVideoSurfaceDelegate-Protocol.h"
 #import "SPTAdFocusManagerObserver-Protocol.h"
-#import "SPTVideoSurfaceDelegate-Protocol.h"
 
 @class AVPlayer, FBKVOController, NSDictionary, NSString, SPOTMoatVideoTracker, SPTAdFocusManager;
-@protocol SPTAVPlayerSource, SPTAdsBaseCosmosBridge, SPTVideoSurfaceManager;
+@protocol BMVideoSurfaceManager, SPTAVPlayerSource, SPTAdsBaseCosmosBridge;
 
-@interface SPTAdsMoatManager : NSObject <SPTVideoSurfaceDelegate, SPTAdFocusManagerObserver>
+@interface SPTAdsMoatManager : NSObject <BMVideoSurfaceDelegate, SPTAdFocusManagerObserver>
 {
     _Bool _observing;
     _Bool _tracking;
     SPOTMoatVideoTracker *_videoTracker;
     id <SPTAdsBaseCosmosBridge> _cosmosBridge;
-    NSObject<SPTVideoSurfaceManager> *_surfaceManager;
+    NSObject<BMVideoSurfaceManager> *_surfaceManager;
     NSObject<SPTAVPlayerSource> *_avPlayerSource;
     FBKVOController *_kvoController;
     AVPlayer *_player;
@@ -39,7 +39,7 @@
 @property(nonatomic, getter=isObserving) _Bool observing; // @synthesize observing=_observing;
 @property(retain, nonatomic) FBKVOController *kvoController; // @synthesize kvoController=_kvoController;
 @property(nonatomic) __weak NSObject<SPTAVPlayerSource> *avPlayerSource; // @synthesize avPlayerSource=_avPlayerSource;
-@property(nonatomic) __weak NSObject<SPTVideoSurfaceManager> *surfaceManager; // @synthesize surfaceManager=_surfaceManager;
+@property(nonatomic) __weak NSObject<BMVideoSurfaceManager> *surfaceManager; // @synthesize surfaceManager=_surfaceManager;
 @property(retain, nonatomic) id <SPTAdsBaseCosmosBridge> cosmosBridge; // @synthesize cosmosBridge=_cosmosBridge;
 @property(retain, nonatomic) SPOTMoatVideoTracker *videoTracker; // @synthesize videoTracker=_videoTracker;
 - (void).cxx_destruct;

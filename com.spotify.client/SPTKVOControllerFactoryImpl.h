@@ -6,11 +6,11 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTKVOControllerFactory-Protocol.h"
+#import "BMKVOControllerFactory-Protocol.h"
 
 @class NSString;
 
-@interface SPTKVOControllerFactoryImpl : NSObject <SPTKVOControllerFactory>
+@interface SPTKVOControllerFactoryImpl : NSObject <BMKVOControllerFactory>
 {
 }
 

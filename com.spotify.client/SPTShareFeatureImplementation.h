@@ -9,7 +9,7 @@
 #import "SPTShareFeature-Protocol.h"
 #import "SPTShareScreenshotObserverManagerDelegate-Protocol.h"
 
-@class NSString, SPTAllocationContext, SPTDataLoaderFactory, SPTSharePlaylistHelper, SPTSharePresenter, SPTShareScreenshotObserverManager, SPTShareTrackHelper, SPTShareTransition;
+@class NSString, SPTAllocationContext, SPTDataLoaderFactory, SPTScreenshotLogger, SPTShareDestinationUtility, SPTShareLogger, SPTSharePlaylistHelper, SPTSharePresenter, SPTShareScreenshotObserverManager, SPTShareTrackHelper, SPTShareTransition;
 @protocol SPContextMenuFeature, SPTBannerFeature, SPTContainerService, SPTContainerUIService, SPTCoreService, SPTFeatureFlaggingService, SPTNetworkService, SPTPlayer, SPTPlayerFeature, SPTPlaylistPlatformService, SPTSessionService, SPTShareDeeplinkHandler, SPTShareEntityDataFactory, SPTShareTestManager, SPTVideoFeature;
 
 @interface SPTShareFeatureImplementation : NSObject <SPTShareScreenshotObserverManagerDelegate, SPTShareFeature>
@@ -36,9 +36,15 @@
     id <SPTShareTestManager> _testManager;
     id <SPTShareEntityDataFactory> _shareEntityDataFactory;
     SPTSharePresenter *_sharePresenter;
+    SPTShareDestinationUtility *_shareDestinationUtility;
+    SPTShareLogger *_shareLogger;
+    SPTScreenshotLogger *_screenshotLogger;
 }
 
 + (id)serviceIdentifier;
+@property(retain, nonatomic) SPTScreenshotLogger *screenshotLogger; // @synthesize screenshotLogger=_screenshotLogger;
+@property(retain, nonatomic) SPTShareLogger *shareLogger; // @synthesize shareLogger=_shareLogger;
+@property(retain, nonatomic) SPTShareDestinationUtility *shareDestinationUtility; // @synthesize shareDestinationUtility=_shareDestinationUtility;
 @property(retain, nonatomic) SPTSharePresenter *sharePresenter; // @synthesize sharePresenter=_sharePresenter;
 @property(retain, nonatomic) id <SPTShareEntityDataFactory> shareEntityDataFactory; // @synthesize shareEntityDataFactory=_shareEntityDataFactory;
 @property(retain, nonatomic) id <SPTShareTestManager> testManager; // @synthesize testManager=_testManager;
@@ -62,15 +68,17 @@
 @property(nonatomic) __weak id <SPTContainerUIService> containerUIService; // @synthesize containerUIService=_containerUIService;
 @property(nonatomic) __weak id <SPTContainerService> containerService; // @synthesize containerService=_containerService;
 - (void).cxx_destruct;
-- (id)provideScreenshotLogger;
-- (id)provideShareLogger;
 - (id)provideShareHandlerFactory;
 - (void)presentShareViewController:(id)arg1;
 - (id)provideShareDragDelegateFactory;
 - (id)provideShareScreenshotObserverManager;
 - (void)shareActionButtonTappedInScreenshotShareBannerView:(id)arg1;
+- (id)makeSharePresenterWithShareEntityData:(id)arg1;
 - (id)provideShareScreenshotLogger;
+- (id)provideShareViewControllerForShareEntityData:(id)arg1 withShareDestinations:(id)arg2;
 - (id)provideShareViewControllerForShareEntityData:(id)arg1;
+- (id)provideShareDestinationsForEntityURI:(id)arg1;
+- (void)performShareToDestination:(id)arg1 withShareEntityData:(id)arg2 completion:(CDUnknownBlockType)arg3;
 - (id)provideShareEntityDataFactory;
 - (id)provideTestManager;
 - (void)registerWithContextMenu;

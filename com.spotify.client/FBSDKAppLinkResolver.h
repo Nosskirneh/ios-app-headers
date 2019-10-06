@@ -6,23 +6,23 @@
 
 #import <objc/NSObject.h>
 
-#import "BFAppLinkResolving-Protocol.h"
+#import "FBSDKAppLinkResolving-Protocol.h"
 
 @class NSMutableDictionary, NSString;
 
-@interface FBSDKAppLinkResolver : NSObject <BFAppLinkResolving>
+@interface FBSDKAppLinkResolver : NSObject <FBSDKAppLinkResolving>
 {
-    NSMutableDictionary *_cachedLinks;
+    NSMutableDictionary *_cachedFBSDKAppLinks;
     long long _userInterfaceIdiom;
 }
 
 + (id)resolver;
 + (void)initialize;
 @property(nonatomic) long long userInterfaceIdiom; // @synthesize userInterfaceIdiom=_userInterfaceIdiom;
-@property(retain, nonatomic) NSMutableDictionary *cachedLinks; // @synthesize cachedLinks=_cachedLinks;
+@property(retain, nonatomic) NSMutableDictionary *cachedFBSDKAppLinks; // @synthesize cachedFBSDKAppLinks=_cachedFBSDKAppLinks;
 - (void).cxx_destruct;
-- (id)appLinkFromURLInBackground:(id)arg1;
-- (id)appLinksFromURLsInBackground:(id)arg1;
+- (void)appLinksFromURLs:(id)arg1 handler:(CDUnknownBlockType)arg2;
+- (void)appLinkFromURL:(id)arg1 handler:(CDUnknownBlockType)arg2;
 - (id)initWithUserInterfaceIdiom:(long long)arg1;
 
 // Remaining properties

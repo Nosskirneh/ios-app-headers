@@ -6,12 +6,12 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTVideoEventObserver-Protocol.h"
+#import "BMEventObserver-Protocol.h"
 
 @class NSString, NSURL;
 @protocol OS_dispatch_queue, SPTCanvasStreamingPlaybackObserverDelegate;
 
-@interface SPTCanvasStreamingPlaybackObserver : NSObject <SPTVideoEventObserver>
+@interface SPTCanvasStreamingPlaybackObserver : NSObject <BMEventObserver>
 {
     _Bool _finished;
     _Bool _buffering;

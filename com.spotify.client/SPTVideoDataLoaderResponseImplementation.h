@@ -6,11 +6,11 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTVideoDataLoaderResponse-Protocol.h"
+#import "BMDataLoaderResponse-Protocol.h"
 
 @class NSData, NSDictionary, NSString;
 
-@interface SPTVideoDataLoaderResponseImplementation : NSObject <SPTVideoDataLoaderResponse>
+@interface SPTVideoDataLoaderResponseImplementation : NSObject <BMDataLoaderResponse>
 {
     long long _responseCode;
     NSData *_body;

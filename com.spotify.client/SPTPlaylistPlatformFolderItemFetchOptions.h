@@ -9,14 +9,12 @@
 @interface SPTPlaylistPlatformFolderItemFetchOptions : SPTPlaylistPlatformOptions
 {
     _Bool _groupByName;
-    _Bool _includeGroupsInRows;
     _Bool _flattenTree;
     _Bool _showOnlyWritableItems;
 }
 
 @property(nonatomic) _Bool showOnlyWritableItems; // @synthesize showOnlyWritableItems=_showOnlyWritableItems;
 @property(nonatomic) _Bool flattenTree; // @synthesize flattenTree=_flattenTree;
-@property(nonatomic) _Bool includeGroupsInRows; // @synthesize includeGroupsInRows=_includeGroupsInRows;
 @property(nonatomic) _Bool groupByName; // @synthesize groupByName=_groupByName;
 
 @end

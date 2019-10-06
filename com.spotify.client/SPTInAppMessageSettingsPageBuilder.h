@@ -8,7 +8,7 @@
 
 #import "SPTFeatureSettingsUIProvider-Protocol.h"
 
-@class NSString, SPTDataLoader, SPTInAppMessageActionFactory, SPTInAppMessageNotePresentationManagerImplementation, SPTInAppMessageQAToolBannerMessageController, SPTInAppMessageQAToolCardMessageController, SPTInAppMessageQAToolCardPresentationController, SPTInAppMessageQAToolNoteMessageController, SPTInAppMessageQAToolViewController, SPTInAppMessageQAToolViewModel;
+@class NSString, SPTDataLoader, SPTInAppMessageActionFactory, SPTInAppMessageNotePresentationManager, SPTInAppMessageQAToolBannerMessageController, SPTInAppMessageQAToolCardMessageController, SPTInAppMessageQAToolCardPresentationController, SPTInAppMessageQAToolNoteMessageController, SPTInAppMessageQAToolViewController, SPTInAppMessageQAToolViewModel;
 @protocol SPTAlertController, SPTBannerPresentationManager, SPTFeatureSettingsItemFactory, SPTLocalSettings, SPTSlateBuilderProvider, SPTSlateManager;
 
 @interface SPTInAppMessageSettingsPageBuilder : NSObject <SPTFeatureSettingsUIProvider>
@@ -27,10 +27,10 @@
     id <SPTBannerPresentationManager> _bannerPresentationManager;
     SPTInAppMessageQAToolCardMessageController *_cardMessageController;
     SPTInAppMessageQAToolNoteMessageController *_noteMessageController;
-    SPTInAppMessageNotePresentationManagerImplementation *_notePresentationManager;
+    SPTInAppMessageNotePresentationManager *_notePresentationManager;
 }
 
-@property(retain, nonatomic) SPTInAppMessageNotePresentationManagerImplementation *notePresentationManager; // @synthesize notePresentationManager=_notePresentationManager;
+@property(retain, nonatomic) SPTInAppMessageNotePresentationManager *notePresentationManager; // @synthesize notePresentationManager=_notePresentationManager;
 @property(retain, nonatomic) SPTInAppMessageQAToolNoteMessageController *noteMessageController; // @synthesize noteMessageController=_noteMessageController;
 @property(retain, nonatomic) SPTInAppMessageQAToolCardMessageController *cardMessageController; // @synthesize cardMessageController=_cardMessageController;
 @property(retain, nonatomic) id <SPTBannerPresentationManager> bannerPresentationManager; // @synthesize bannerPresentationManager=_bannerPresentationManager;

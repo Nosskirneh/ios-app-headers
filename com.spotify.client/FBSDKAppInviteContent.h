@@ -7,11 +7,12 @@
 #import <objc/NSObject.h>
 
 #import "FBSDKCopying-Protocol.h"
+#import "FBSDKSharingValidation-Protocol.h"
 #import "NSSecureCoding-Protocol.h"
 
 @class NSString, NSURL;
 
-@interface FBSDKAppInviteContent : NSObject <FBSDKCopying, NSSecureCoding>
+@interface FBSDKAppInviteContent : NSObject <FBSDKCopying, FBSDKSharingValidation, NSSecureCoding>
 {
     NSURL *_appInvitePreviewImageURL;
     NSURL *_appLinkURL;
@@ -21,7 +22,7 @@
 }
 
 + (_Bool)supportsSecureCoding;
-@property unsigned long long destination; // @synthesize destination=_destination;
+@property(nonatomic) unsigned long long destination; // @synthesize destination=_destination;
 @property(copy, nonatomic) NSString *promotionText; // @synthesize promotionText=_promotionText;
 @property(copy, nonatomic) NSString *promotionCode; // @synthesize promotionCode=_promotionCode;
 @property(copy, nonatomic) NSURL *appLinkURL; // @synthesize appLinkURL=_appLinkURL;
@@ -33,7 +34,10 @@
 - (_Bool)isEqualToAppInviteContent:(id)arg1;
 - (_Bool)isEqual:(id)arg1;
 @property(readonly) unsigned long long hash;
-@property(copy, nonatomic) NSURL *previewImageURL;
+- (_Bool)_validatePromoCodeWithError:(id *)arg1;
+- (_Bool)validateWithOptions:(unsigned long long)arg1 error:(id *)arg2;
+- (void)setPreviewImageURL:(id)arg1;
+- (id)previewImageURL;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

@@ -7,11 +7,11 @@
 #import "NSObject-Protocol.h"
 
 @class UIView, UIViewController;
-@protocol SPTVideoSurface;
+@protocol BMVideoSurface;
 
 @protocol SPTPodcastVideoViewControllerTransitionSurfaceProvider <NSObject>
 - (UIView *)provideVideoSurfaceShadowViewForTransitionToViewController:(UIViewController *)arg1;
 - (UIView *)provideVideoSurfaceContainerForTransitionToViewController:(UIViewController *)arg1;
-- (UIView<SPTVideoSurface> *)provideVideoSurfaceForTransitionToViewController:(UIViewController *)arg1;
+- (UIView<BMVideoSurface> *)provideVideoSurfaceForTransitionToViewController:(UIViewController *)arg1;
 @end
 

@@ -9,8 +9,7 @@
 @class FBSDKAccessToken;
 
 @protocol FBSDKAccessTokenCaching <NSObject>
+@property(copy, nonatomic) FBSDKAccessToken *accessToken;
 - (void)clearCache;
-- (void)cacheAccessToken:(FBSDKAccessToken *)arg1;
-- (FBSDKAccessToken *)fetchAccessToken;
 @end
 

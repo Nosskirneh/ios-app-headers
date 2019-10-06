@@ -10,7 +10,7 @@
 
 @interface FBSDKLogger : NSObject
 {
-    _Bool _isActive;
+    _Bool _active;
     unsigned long long _loggerSerialNumber;
     NSString *_loggingBehavior;
     NSMutableString *_internalContents;
@@ -23,7 +23,7 @@
 + (void)singleShotLogEntry:(id)arg1 logEntry:(id)arg2;
 + (unsigned long long)generateSerialNumber;
 @property(readonly, nonatomic) NSMutableString *internalContents; // @synthesize internalContents=_internalContents;
-@property(readonly, nonatomic) _Bool isActive; // @synthesize isActive=_isActive;
+@property(readonly, nonatomic, getter=isActive) _Bool active; // @synthesize active=_active;
 @property(readonly, copy, nonatomic) NSString *loggingBehavior; // @synthesize loggingBehavior=_loggingBehavior;
 @property(readonly, nonatomic) unsigned long long loggerSerialNumber; // @synthesize loggerSerialNumber=_loggerSerialNumber;
 - (void).cxx_destruct;

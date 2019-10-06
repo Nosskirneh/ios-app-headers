@@ -10,7 +10,7 @@
 @protocol SPTSocialListeningModel, SPTSocialListeningSessionModelEntity;
 
 @protocol SPTSocialListeningModelObserver <NSObject>
-- (void)socialListeningModelDidDeleteSession:(id <SPTSocialListeningModel>)arg1;
+- (void)socialListeningModel:(id <SPTSocialListeningModel>)arg1 didDeleteSession:(id <SPTSocialListeningSessionModelEntity>)arg2;
 - (void)socialListeningModel:(id <SPTSocialListeningModel>)arg1 didReceiveError:(NSError *)arg2;
 - (void)socialListeningModel:(id <SPTSocialListeningModel>)arg1 updatedSession:(id <SPTSocialListeningSessionModelEntity>)arg2;
 @end

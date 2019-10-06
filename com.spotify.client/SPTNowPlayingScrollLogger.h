@@ -6,19 +6,23 @@
 
 #import <objc/NSObject.h>
 
-@protocol SPTLogCenter;
+@protocol SPTLogCenter, SPTNowPlayingViewDefaultEventFactory, SPTUserBehaviourInstrumentationLogger;
 
 @interface SPTNowPlayingScrollLogger : NSObject
 {
     id <SPTLogCenter> _logCenter;
+    id <SPTNowPlayingViewDefaultEventFactory> _eventFactory;
+    id <SPTUserBehaviourInstrumentationLogger> _ubiLogger;
 }
 
+@property(readonly, nonatomic) id <SPTUserBehaviourInstrumentationLogger> ubiLogger; // @synthesize ubiLogger=_ubiLogger;
+@property(readonly, nonatomic) id <SPTNowPlayingViewDefaultEventFactory> eventFactory; // @synthesize eventFactory=_eventFactory;
 @property(readonly, nonatomic) id <SPTLogCenter> logCenter; // @synthesize logCenter=_logCenter;
 - (void).cxx_destruct;
 - (void)logScrollSwipeInteractionWithPlaybackId:(id)arg1;
 - (void)logScrollComponentImpressionWithIdentifier:(id)arg1 atIndex:(unsigned long long)arg2 playbackId:(id)arg3;
 - (void)logScrollPageImpressionWithPlayer:(id)arg1;
-- (id)initWithLogCenter:(id)arg1;
+- (id)initWithLogCenter:(id)arg1 eventFactory:(id)arg2 ubiLogger:(id)arg3;
 
 @end
 

@@ -8,21 +8,22 @@
 
 #import "SPTFacebookIntegrationService-Protocol.h"
 
-@class NSString, SPTAllocationContext, SPTFacebookMessengerURISchemeHandler, SPTFacebookSDKImplementation;
-@protocol SPTURIDispatchService;
+@class NSString, SPTAllocationContext, SPTFacebookSDKImplementation;
+@protocol SPTURIDispatchService, SPTURISchemeRegistry;
 
 @interface SPTFacebookIntegrationServiceImplementation : NSObject <SPTFacebookIntegrationService>
 {
-    id <SPTURIDispatchService> _URIDispatchService;
+    id <SPTURIDispatchService> _uriDispatchService;
+    id <SPTURISchemeRegistry> _uriSchemeRegistry;
     SPTFacebookSDKImplementation *_facebookSDK;
-    SPTFacebookMessengerURISchemeHandler *_messengerSchemeHandler;
 }
 
 + (id)serviceIdentifier;
-@property(retain, nonatomic) SPTFacebookMessengerURISchemeHandler *messengerSchemeHandler; // @synthesize messengerSchemeHandler=_messengerSchemeHandler;
 @property(retain, nonatomic) SPTFacebookSDKImplementation *facebookSDK; // @synthesize facebookSDK=_facebookSDK;
-@property(nonatomic) __weak id <SPTURIDispatchService> URIDispatchService; // @synthesize URIDispatchService=_URIDispatchService;
+@property(retain, nonatomic) id <SPTURISchemeRegistry> uriSchemeRegistry; // @synthesize uriSchemeRegistry=_uriSchemeRegistry;
+@property(nonatomic) __weak id <SPTURIDispatchService> uriDispatchService; // @synthesize uriDispatchService=_uriDispatchService;
 - (void).cxx_destruct;
+- (void)registerFacebookURISchemeHandler;
 - (id)provideFacebookSDK;
 - (void)load;
 - (void)configureWithServices:(id)arg1;

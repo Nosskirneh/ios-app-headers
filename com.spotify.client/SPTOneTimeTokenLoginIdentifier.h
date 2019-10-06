@@ -18,7 +18,7 @@
 
 @property(copy, nonatomic) NSString *identifier; // @synthesize identifier=_identifier;
 - (void).cxx_destruct;
-- (variant_5d3576ba)credentials;
+- (variant_3911a704)credentials;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (unsigned long long)type;
 - (id)initWithOneTimeToken:(id)arg1;

@@ -7,22 +7,28 @@
 #import <objc/NSObject.h>
 
 #import "NSCopying-Protocol.h"
+#import "NSMutableCopying-Protocol.h"
 
-@class NSDictionary, NSMutableDictionary, NSString;
+@class NSDictionary, NSString;
 
-@interface SPTHubsKitCommand : NSObject <NSCopying>
+@interface SPTHubsKitCommand : NSObject <NSCopying, NSMutableCopying>
 {
     NSString *_name;
-    NSMutableDictionary *_data;
+    NSDictionary *_data;
+    NSDictionary *_dictionaryRepresentation;
 }
 
 + (id)spt_search_contextMenuCommandWithURI:(id)arg1;
 + (id)spt_search_navigateAndSaveToRecentsCommandWithURI:(id)arg1;
 + (id)spt_search_playAndSaveToRecentsCommandWithURI:(id)arg1 query:(id)arg2;
-@property(readonly, nonatomic) NSMutableDictionary *data; // @synthesize data=_data;
+@property(copy, nonatomic) NSDictionary *dictionaryRepresentation; // @synthesize dictionaryRepresentation=_dictionaryRepresentation;
+@property(copy, nonatomic) NSDictionary *data; // @synthesize data=_data;
 @property(copy, nonatomic) NSString *name; // @synthesize name=_name;
 - (void).cxx_destruct;
-@property(readonly, nonatomic) NSDictionary *dictionaryRepresentation;
+- (_Bool)isEqualToCommand:(id)arg1;
+- (unsigned long long)hash;
+- (_Bool)isEqual:(id)arg1;
+- (id)mutableCopyWithZone:(struct _NSZone *)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)initWithName:(id)arg1 data:(id)arg2;
 - (id)initWithName:(id)arg1;

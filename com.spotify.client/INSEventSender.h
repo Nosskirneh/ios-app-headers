@@ -26,7 +26,7 @@
     INSSchedulerDataSourceComposition *_composition;
 }
 
-+ (id)defaultContexts;
++ (id)defaultContexts:(id)arg1;
 @property(retain, nonatomic) INSSchedulerDataSourceComposition *composition; // @synthesize composition=_composition;
 @property(retain, nonatomic) INSPersistentStoreDataDelegate *persistentStoreDataDelegate; // @synthesize persistentStoreDataDelegate=_persistentStoreDataDelegate;
 @property(retain, nonatomic) INSEventSenderStatsDataSource *eventSenderStatsDataSource; // @synthesize eventSenderStatsDataSource=_eventSenderStatsDataSource;
@@ -42,7 +42,7 @@
 - (void)removeEventObserver:(id)arg1;
 - (void)addEventObserver:(id)arg1;
 - (id)errorInfoWithMessage:(id)arg1;
-- (_Bool)validateMessage:(id)arg1;
+- (_Bool)validateMessage:(id)arg1 error:(id *)arg2;
 - (void)schedulerDidRequestBackOff;
 - (void)schedulerDidRetryBatch:(id)arg1;
 - (void)schedulerDidFailBatch:(id)arg1;
@@ -51,14 +51,12 @@
 - (void)schedulerDidAddMessageNode:(id)arg1;
 - (void)schedulerDidScheduleTimerWithInterval:(double)arg1 attempt:(unsigned long long)arg2;
 - (id)version;
-- (void)removeCustomContext:(id)arg1;
-- (void)addCustomContext:(id)arg1;
-- (void)sendNonAuthenticatedMessage:(id)arg1;
-- (void)sendMessage:(id)arg1;
-- (void)sendMessage:(id)arg1 authenticated:(_Bool)arg2;
+- (_Bool)sendNonAuthenticatedMessage:(id)arg1 error:(id *)arg2;
+- (_Bool)sendMessage:(id)arg1 error:(id *)arg2;
+- (_Bool)sendMessage:(id)arg1 authenticated:(_Bool)arg2 error:(id *)arg3;
 - (void)dealloc;
-- (id)initWithTransport:(id)arg1 logger:(id)arg2 timer:(id)arg3;
-- (id)initWithTransport:(id)arg1 logger:(id)arg2;
+- (id)initWithTransport:(id)arg1 clientId:(id)arg2 logger:(id)arg3 timer:(id)arg4;
+- (id)initWithTransport:(id)arg1 clientId:(id)arg2 logger:(id)arg3;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

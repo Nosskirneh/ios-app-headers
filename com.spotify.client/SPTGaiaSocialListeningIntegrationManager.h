@@ -32,7 +32,7 @@
 @property(readonly, nonatomic) id <SPTSocialListeningTestManager> testManager; // @synthesize testManager=_testManager;
 - (void).cxx_destruct;
 - (void)connectManager:(id)arg1 activeDeviceDidChange:(id)arg2;
-- (void)socialListeningModelDidDeleteSession:(id)arg1;
+- (void)socialListeningModel:(id)arg1 didDeleteSession:(id)arg2;
 - (void)socialListeningModel:(id)arg1 didReceiveError:(id)arg2;
 - (void)socialListeningModel:(id)arg1 updatedSession:(id)arg2;
 - (void)attachDeviceAutomaticallyIfNeeded:(id)arg1;

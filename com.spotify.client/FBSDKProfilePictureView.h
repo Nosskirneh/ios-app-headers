@@ -19,8 +19,6 @@
     NSString *_profileID;
 }
 
-+ (id)_imageURLWithState:(id)arg1;
-+ (void)_downloadImageWithState:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
 @property(copy, nonatomic) NSString *profileID; // @synthesize profileID=_profileID;
 @property(nonatomic) unsigned long long pictureMode; // @synthesize pictureMode=_pictureMode;
 - (void).cxx_destruct;

@@ -20,23 +20,22 @@
 }
 
 + (_Bool)supportsSecureCoding;
-@property(readonly, copy) NSString *appID; // @synthesize appID=_appID;
-@property(readonly, copy) NSString *tokenString; // @synthesize tokenString=_tokenString;
-@property(readonly) unsigned long long numSkipped; // @synthesize numSkipped=_numSkipped;
+@property(readonly, copy, nonatomic) NSString *appID; // @synthesize appID=_appID;
+@property(readonly, copy, nonatomic) NSString *tokenString; // @synthesize tokenString=_tokenString;
+@property(readonly, nonatomic) unsigned long long numSkipped; // @synthesize numSkipped=_numSkipped;
 - (void).cxx_destruct;
 - (id)JSONStringForEvents:(_Bool)arg1;
 - (_Bool)isCompatibleWithTokenString:(id)arg1 appID:(id)arg2;
 - (_Bool)isCompatibleWithAppEventsState:(id)arg1;
-- (_Bool)areAllEventsImplicit;
+@property(readonly, nonatomic, getter=areAllEventsImplicit) _Bool allEventsImplicit;
 - (id)extractReceiptData;
 - (void)addEvent:(id)arg1 isImplicit:(_Bool)arg2;
 - (void)addEventsFromAppEventState:(id)arg1;
-@property(readonly, copy) NSArray *events;
+@property(readonly, copy, nonatomic) NSArray *events;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)initWithToken:(id)arg1 appID:(id)arg2;
-- (id)init;
 
 @end
 

@@ -21,6 +21,7 @@
     NSSet *_featureClasses;
 }
 
++ (id)entityPagelessRadioPlayOriginForStationURI:(id)arg1 startedFromElement:(id)arg2 referrerIdentifier:(id)arg3;
 @property(copy, nonatomic) NSSet *featureClasses; // @synthesize featureClasses=_featureClasses;
 @property(readonly, copy, nonatomic) NSString *deviceIdentifier; // @synthesize deviceIdentifier=_deviceIdentifier;
 @property(readonly, copy, nonatomic) NSString *referrerIdentifier; // @synthesize referrerIdentifier=_referrerIdentifier;

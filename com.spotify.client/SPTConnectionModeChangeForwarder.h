@@ -6,12 +6,12 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTConnectionModeObservable-Protocol.h"
+#import "BMConnectionModeObservable-Protocol.h"
 #import "SPTNetworkConnectivityControllerObserver-Protocol.h"
 
 @class NSHashTable, NSString, SPTNetworkConnectivityController;
 
-@interface SPTConnectionModeChangeForwarder : NSObject <SPTNetworkConnectivityControllerObserver, SPTConnectionModeObservable>
+@interface SPTConnectionModeChangeForwarder : NSObject <SPTNetworkConnectivityControllerObserver, BMConnectionModeObservable>
 {
     SPTNetworkConnectivityController *_networkConnectivityController;
     NSHashTable *_observers;

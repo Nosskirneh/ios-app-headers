@@ -8,18 +8,26 @@
 
 #import "SPTFreeTierPlaylistCellProvider-Protocol.h"
 
-@class NSString;
-@protocol GLUEImageLoader, GLUETheme, SPTFreeTierPlaylistCellProviderDelegate, SPTFreeTierPlaylistItemsViewModel, SPTVideoURLAssetLoader;
+@class NSString, SPTNetworkConnectivityController;
+@protocol BMPlaybackRequestFactory, GLUEImageLoader, GLUETheme, SPTFreeTierPlaylistCellProviderDelegate, SPTFreeTierPlaylistItemsViewModel, SPTVideoFeaturePlayerFactory, SPTVideoURLAssetLoader;
 
 @interface SPTShowsFormatVideoCellProvider : NSObject <SPTFreeTierPlaylistCellProvider>
 {
+    _Bool _useBetamaxPlayer;
     id <SPTFreeTierPlaylistCellProviderDelegate> _delegate;
     id <GLUEImageLoader> _imageLoader;
     id <SPTVideoURLAssetLoader> _videoAssetLoader;
     id <SPTFreeTierPlaylistItemsViewModel> _itemsViewModel;
     id <GLUETheme> _glueTheme;
+    id <SPTVideoFeaturePlayerFactory> _playerFactory;
+    id <BMPlaybackRequestFactory> _playbackRequestFactory;
+    SPTNetworkConnectivityController *_networkConnectivityController;
 }
 
+@property(readonly, nonatomic) SPTNetworkConnectivityController *networkConnectivityController; // @synthesize networkConnectivityController=_networkConnectivityController;
+@property(readonly, nonatomic) id <BMPlaybackRequestFactory> playbackRequestFactory; // @synthesize playbackRequestFactory=_playbackRequestFactory;
+@property(readonly, nonatomic) id <SPTVideoFeaturePlayerFactory> playerFactory; // @synthesize playerFactory=_playerFactory;
+@property(readonly, nonatomic) _Bool useBetamaxPlayer; // @synthesize useBetamaxPlayer=_useBetamaxPlayer;
 @property(retain, nonatomic) id <GLUETheme> glueTheme; // @synthesize glueTheme=_glueTheme;
 @property(nonatomic) __weak id <SPTFreeTierPlaylistItemsViewModel> itemsViewModel; // @synthesize itemsViewModel=_itemsViewModel;
 @property(retain, nonatomic) id <SPTVideoURLAssetLoader> videoAssetLoader; // @synthesize videoAssetLoader=_videoAssetLoader;
@@ -28,12 +36,14 @@
 - (void).cxx_destruct;
 - (id)formatCellViewModelForPlaylistTrackViewModel:(id)arg1;
 - (id)identifierForCellForRowAtIndexPath:(id)arg1;
-- (void)playVideoForContentView:(id)arg1 forRowAtIndexPath:(id)arg2;
-- (void)configureCell:(id)arg1 forRowAtIndexPath:(id)arg2;
-- (_Bool)tableView:(id)arg1 didSelectRowAtIndexPath:(id)arg2;
+- (void)startPreviewInLegacyVideoLayer:(id)arg1 indexPath:(id)arg2;
+- (void)configurePlaylistCell:(id)arg1 forRowAtIndexPath:(id)arg2;
+- (void)didEndDisplayingPlaylistCell:(id)arg1 forRowAtIndexPath:(id)arg2;
+- (void)willDisplayPlaylistCell:(id)arg1 forRowAtIndexPath:(id)arg2;
+- (_Bool)didSelectPlaylistCell:(id)arg1 atIndexPath:(id)arg2;
 - (id)reuseIdentifiers;
 - (double)heightForRowAtIndexPath:(id)arg1;
-- (id)initWithImageLoader:(id)arg1 videoAssetLoader:(id)arg2 itemsViewModel:(id)arg3 rowStyle:(id)arg4 theme:(id)arg5;
+- (id)initWithImageLoader:(id)arg1 videoAssetLoader:(id)arg2 itemsViewModel:(id)arg3 rowStyle:(id)arg4 theme:(id)arg5 playerFactory:(id)arg6 playbackRequestFactory:(id)arg7 networkConnectivityController:(id)arg8 useBetamaxPlayer:(_Bool)arg9;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

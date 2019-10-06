@@ -8,7 +8,7 @@
 
 #import "SPTVideoCoordinatorService-Protocol.h"
 
-@class NSString, SPTAllocationContext, SPTVideoContextPlayerCoordinator, SPTVideoCoordinatorFeatureFlags, SPTVideoDynamicEventObserverFactory;
+@class NSString, SPTAllocationContext, SPTVideoContextPlayerCoordinator, SPTVideoCoordinatorFeatureFlags, SPTVideoDynamicEventObserverFactory, SPTVideoPreferredSubtitleMessageFactory, SPTVideoSubtitleProvider;
 @protocol CosmosFeature, SPContextMenuFeature, SPTAbbaService, SPTBannerFeature, SPTContainerService, SPTContainerUIService, SPTDebugService, SPTExternalIntegrationDriverDistractionService, SPTPlayer, SPTPlayerFeature, SPTUIPresentationService, SPTURIDispatchService, SPTVideoFeature;
 
 @interface SPTVideoCoordinatorServiceImplementation : NSObject <SPTVideoCoordinatorService>
@@ -28,11 +28,15 @@
     id <SPTPlayer> _contextPlayer;
     SPTVideoContextPlayerCoordinator *_coordinator;
     SPTVideoDynamicEventObserverFactory *_dynamicEventObserverFactory;
+    SPTVideoSubtitleProvider *_subtitleProvider;
+    SPTVideoPreferredSubtitleMessageFactory *_preferredSubtitleMessageFactory;
     SPTVideoCoordinatorFeatureFlags *_flags;
 }
 
 + (id)serviceIdentifier;
 @property(retain, nonatomic) SPTVideoCoordinatorFeatureFlags *flags; // @synthesize flags=_flags;
+@property(retain, nonatomic) SPTVideoPreferredSubtitleMessageFactory *preferredSubtitleMessageFactory; // @synthesize preferredSubtitleMessageFactory=_preferredSubtitleMessageFactory;
+@property(retain, nonatomic) SPTVideoSubtitleProvider *subtitleProvider; // @synthesize subtitleProvider=_subtitleProvider;
 @property(retain, nonatomic) SPTVideoDynamicEventObserverFactory *dynamicEventObserverFactory; // @synthesize dynamicEventObserverFactory=_dynamicEventObserverFactory;
 @property(retain, nonatomic) SPTVideoContextPlayerCoordinator *coordinator; // @synthesize coordinator=_coordinator;
 @property(retain, nonatomic) id <SPTPlayer> contextPlayer; // @synthesize contextPlayer=_contextPlayer;
@@ -53,7 +57,6 @@
 - (void)removeVideoPlaybackEventObserver:(id)arg1;
 - (void)addVideoPlaybackEventObserver:(id)arg1;
 - (id)providePlayerSource;
-- (id)provideSubtitleManager;
 - (id)provideSurfaceManager;
 - (void)registerPlaybackEventObserverFactoryBlock:(CDUnknownBlockType)arg1;
 - (void)registerPlaybackEventObserverFactory:(id)arg1;

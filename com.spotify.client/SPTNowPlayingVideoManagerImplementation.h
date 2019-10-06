@@ -59,7 +59,7 @@
 - (void)dismissFullscreenVideo:(_Bool)arg1;
 - (void)presentFullscreenVideo:(_Bool)arg1;
 - (void)dealloc;
-- (id)initWithPlayer:(id)arg1 videoViewController:(id)arg2 metaViewController:(id)arg3 deviceOrientationManager:(id)arg4 connectManager:(id)arg5 cosmosBridge:(id)arg6 inAppMessageRequester:(id)arg7;
+- (id)initWithPlayer:(id)arg1 videoViewController:(id)arg2 metaViewController:(id)arg3 deviceOrientationManager:(id)arg4 connectManager:(id)arg5 cosmosBridge:(id)arg6 inAppMessagePresentationMonitor:(id)arg7;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

@@ -11,6 +11,7 @@
 
 @interface SPTHomeMixFamilyPileConfigurator : NSObject
 {
+    _Bool _useLargeImageWhenAvailable;
     unsigned long long _maxNumberOfVisibleElements;
     SPTHomeMixMemberPileViewStyle *_currentMemberPileViewStyle;
     SPTHomeMixGlueTheme *_theme;
@@ -20,6 +21,7 @@
 + (id)overflowTextWithCount:(unsigned long long)arg1;
 @property(readonly, nonatomic) id <GLUEImageLoader> glueImageLoader; // @synthesize glueImageLoader=_glueImageLoader;
 @property(readonly, nonatomic) SPTHomeMixGlueTheme *theme; // @synthesize theme=_theme;
+@property(nonatomic) _Bool useLargeImageWhenAvailable; // @synthesize useLargeImageWhenAvailable=_useLargeImageWhenAvailable;
 @property(copy, nonatomic) SPTHomeMixMemberPileViewStyle *currentMemberPileViewStyle; // @synthesize currentMemberPileViewStyle=_currentMemberPileViewStyle;
 @property(nonatomic) unsigned long long maxNumberOfVisibleElements; // @synthesize maxNumberOfVisibleElements=_maxNumberOfVisibleElements;
 - (void).cxx_destruct;

@@ -16,7 +16,6 @@
 @property(readonly, nonatomic) NSURL *ownerImageURL;
 @property(readonly, nonatomic) double totalDuration;
 @property(readonly, nonatomic) _Bool shouldShowPlaylistOwnerPage;
-@property(readonly, nonatomic) unsigned long long searchBarType;
 @property(readonly, nonatomic) _Bool showSearchBar;
 @property(readonly, nonatomic, getter=isShuffleBadgeEducationAvailable) _Bool shuffleBadgeEducationAvailable;
 @property(readonly, nonatomic) NSURL *playlistImageURL;

@@ -27,6 +27,7 @@
 - (void)downloadAssetWithURL:(id)arg1 completion:(CDUnknownBlockType)arg2;
 - (void)accountRequestForAssetURL:(id)arg1 withLocation:(id)arg2 timeTaken:(double)arg3;
 - (unsigned long long)sizeOfFileAtURL:(id)arg1;
+- (void)removeAssetWithURL:(id)arg1;
 - (id)moveFileAtLocation:(id)arg1 toLocation:(id)arg2;
 - (_Bool)hasLocalAssetForURL:(id)arg1;
 - (id)localURLForAssetURL:(id)arg1;

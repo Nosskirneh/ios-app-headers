@@ -6,9 +6,10 @@
 
 #import "SPTService-Protocol.h"
 
-@protocol SPTEventSender;
+@protocol SPTEventSender, SPTEventSenderSatelliteServiceResponder;
 
 @protocol SPTEventSenderService <SPTService>
+- (id <SPTEventSenderSatelliteServiceResponder>)provideEventSenderSatelliteResponder;
 - (id <SPTEventSender>)provideEventSender;
 @end
 

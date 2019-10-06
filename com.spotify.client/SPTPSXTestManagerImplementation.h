@@ -26,8 +26,10 @@
     SPTPSXFeatureFlagSignalObserver *_employeeMadeForAttributionSignalObserver;
     SPTPSXFeatureFlagSignalObserver *_publicReleaseRadarPSXSignalObserver;
     SPTPSXFeatureFlagSignalObserver *_employeeReleaseRadarPSXSignalObserver;
+    SPTPSXFeatureFlagSignalObserver *_encoreTrackRowPSXSignalObserver;
 }
 
+@property(retain, nonatomic) SPTPSXFeatureFlagSignalObserver *encoreTrackRowPSXSignalObserver; // @synthesize encoreTrackRowPSXSignalObserver=_encoreTrackRowPSXSignalObserver;
 @property(retain, nonatomic) SPTPSXFeatureFlagSignalObserver *employeeReleaseRadarPSXSignalObserver; // @synthesize employeeReleaseRadarPSXSignalObserver=_employeeReleaseRadarPSXSignalObserver;
 @property(retain, nonatomic) SPTPSXFeatureFlagSignalObserver *publicReleaseRadarPSXSignalObserver; // @synthesize publicReleaseRadarPSXSignalObserver=_publicReleaseRadarPSXSignalObserver;
 @property(retain, nonatomic) SPTPSXFeatureFlagSignalObserver *employeeMadeForAttributionSignalObserver; // @synthesize employeeMadeForAttributionSignalObserver=_employeeMadeForAttributionSignalObserver;
@@ -42,9 +44,11 @@
 @property(readonly, nonatomic) id <SPTProductState> productState; // @synthesize productState=_productState;
 @property(readonly, nonatomic) id <SPTFeatureFlagFactory> featureFlagFactory; // @synthesize featureFlagFactory=_featureFlagFactory;
 - (void).cxx_destruct;
+@property(readonly, nonatomic, getter=isEncoreTrackRowsEnabled) _Bool encoreTrackRowsEnabled;
 @property(readonly, nonatomic, getter=isCopyDiscoverWeeklyEnabled) _Bool copyDiscoverWeeklyEnabled;
 @property(readonly, nonatomic, getter=isFeedbackEnabled) _Bool feedbackEnabled;
 @property(readonly, nonatomic, getter=isPersonalisedSetsUIEnabled) _Bool personalisedSetsUIEnabled;
+- (void)setUpEncoreTrackRowPSXFeatureFlags;
 - (void)setupPSXCopyDiscoverWeeklyFeatureFlags;
 - (void)setupPSXFeedbackFeatureFlags;
 - (void)setupPSXUIFeatureFlags;

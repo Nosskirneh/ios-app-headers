@@ -6,16 +6,19 @@
 
 #import <objc/NSObject.h>
 
-@class NSString, SPTObserverManager;
+#import "SPTCanvasCompatibilityManagerObserver-Protocol.h"
+
+@class NSString, SPTCanvasCompatibilityManager, SPTObserverManager;
 @protocol SPTFeatureFlagSignal, SPTLocalSettings;
 
-@interface SPTCanvasTestManager : NSObject
+@interface SPTCanvasTestManager : NSObject <SPTCanvasCompatibilityManagerObserver>
 {
     _Bool _forceDisabled;
     _Bool _dataSaverEnabled;
     _Bool _shouldStreamCanvas;
     _Bool _canvasEnabled;
     _Bool _shouldSkipCanvasCache;
+    _Bool _shouldDisplayTooltip;
     _Bool _canvasBackendServiceEnabled;
     id <SPTFeatureFlagSignal> _featureFlagSignal;
     long long _featureFlagSignalLastState;
@@ -25,13 +28,19 @@
     long long _dataSaverSignalLastState;
     id <SPTFeatureFlagSignal> _canvasNoCacheSignal;
     long long _canvasNoCacheSignalLastState;
+    id <SPTFeatureFlagSignal> _canvasTooltipSignal;
+    long long _canvasTooltipSignalLastState;
     id <SPTLocalSettings> _localSettings;
     SPTObserverManager *_observers;
+    SPTCanvasCompatibilityManager *_compatibilityManager;
 }
 
 @property(nonatomic) _Bool canvasBackendServiceEnabled; // @synthesize canvasBackendServiceEnabled=_canvasBackendServiceEnabled;
+@property(readonly, nonatomic) SPTCanvasCompatibilityManager *compatibilityManager; // @synthesize compatibilityManager=_compatibilityManager;
 @property(readonly, nonatomic) SPTObserverManager *observers; // @synthesize observers=_observers;
-@property(retain, nonatomic) id <SPTLocalSettings> localSettings; // @synthesize localSettings=_localSettings;
+@property(readonly, nonatomic) id <SPTLocalSettings> localSettings; // @synthesize localSettings=_localSettings;
+@property(nonatomic) long long canvasTooltipSignalLastState; // @synthesize canvasTooltipSignalLastState=_canvasTooltipSignalLastState;
+@property(retain, nonatomic) id <SPTFeatureFlagSignal> canvasTooltipSignal; // @synthesize canvasTooltipSignal=_canvasTooltipSignal;
 @property(nonatomic) long long canvasNoCacheSignalLastState; // @synthesize canvasNoCacheSignalLastState=_canvasNoCacheSignalLastState;
 @property(retain, nonatomic) id <SPTFeatureFlagSignal> canvasNoCacheSignal; // @synthesize canvasNoCacheSignal=_canvasNoCacheSignal;
 @property(nonatomic) long long dataSaverSignalLastState; // @synthesize dataSaverSignalLastState=_dataSaverSignalLastState;
@@ -40,24 +49,27 @@
 @property(retain, nonatomic) id <SPTFeatureFlagSignal> streamingFlagSignal; // @synthesize streamingFlagSignal=_streamingFlagSignal;
 @property(nonatomic) long long featureFlagSignalLastState; // @synthesize featureFlagSignalLastState=_featureFlagSignalLastState;
 @property(retain, nonatomic) id <SPTFeatureFlagSignal> featureFlagSignal; // @synthesize featureFlagSignal=_featureFlagSignal;
+@property(nonatomic) _Bool shouldDisplayTooltip; // @synthesize shouldDisplayTooltip=_shouldDisplayTooltip;
 @property(nonatomic) _Bool shouldSkipCanvasCache; // @synthesize shouldSkipCanvasCache=_shouldSkipCanvasCache;
 @property(nonatomic, getter=isCanvasEnabled) _Bool canvasEnabled; // @synthesize canvasEnabled=_canvasEnabled;
 @property(nonatomic) _Bool shouldStreamCanvas; // @synthesize shouldStreamCanvas=_shouldStreamCanvas;
 @property(nonatomic, getter=isDataSaverEnabled) _Bool dataSaverEnabled; // @synthesize dataSaverEnabled=_dataSaverEnabled;
 @property(nonatomic) _Bool forceDisabled; // @synthesize forceDisabled=_forceDisabled;
 - (void).cxx_destruct;
-- (_Bool)shouldEnableCanvasForDevice;
+- (void)didChangeEnableCanvasForDevice:(id)arg1;
 @property(readonly, nonatomic) _Bool shouldEnableCanvas;
 - (_Bool)canEnableCanvas;
 - (void)updateCanvasEnabled;
 - (void)updateDataSaverEnabled;
 - (void)updateShouldStreamCanvas;
 - (void)updateShouldSkipCanvasCache;
+- (void)updateShouldDisplayTooltip;
 - (void)featureFlagSignal:(id)arg1 hasAssumedState:(long long)arg2;
 - (void)notifyObserver:(id)arg1 canvasEnabled:(_Bool)arg2;
 - (void)removeObserver:(id)arg1;
 - (void)addObserver:(id)arg1;
-- (id)initWithFeatureFlagFactory:(id)arg1 dataSaverSignal:(id)arg2 localSettings:(id)arg3;
+- (void)dealloc;
+- (id)initWithFlagSignalFactory:(id)arg1 dataSaverSignal:(id)arg2 localSettings:(id)arg3 compatibilityManager:(id)arg4;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

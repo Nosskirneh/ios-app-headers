@@ -20,7 +20,6 @@
 + (id)dictionaryValue:(id)arg1;
 + (_Bool)boolValue:(id)arg1;
 + (id)arrayValue:(id)arg1;
-- (id)init;
 
 @end
 

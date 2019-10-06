@@ -8,15 +8,15 @@
 
 #import "SPTVideoFeaturePlayerFactory-Protocol.h"
 
-@class NSString, SPSession, SPTDataLoaderKeymasterAuthoriser, SPTNetworkConnectivityController, SPTRequestAccounting, SPTVideoPlayerFactory;
-@protocol SPTAbbaFeatureFlags, SPTAudioPlayerMediaClockService, SPTVideoLogger;
+@class BMBetamaxPlayerFactory, NSString, SPSession, SPTDataLoaderKeymasterAuthoriser, SPTNetworkConnectivityController, SPTRequestAccounting;
+@protocol BMLogger, SPTAbbaFeatureFlags, SPTAudioPlayerMediaClockService;
 
 @interface SPTVideoFeaturePlayerFactoryImpl : NSObject <SPTVideoFeaturePlayerFactory>
 {
-    SPTVideoPlayerFactory *_playerFactory;
+    BMBetamaxPlayerFactory *_playerFactory;
     id <SPTAbbaFeatureFlags> _featureFlags;
     SPTDataLoaderKeymasterAuthoriser *_keymasterAuthoriser;
-    id <SPTVideoLogger> _logger;
+    id <BMLogger> _logger;
     SPSession *_loginSession;
     SPTNetworkConnectivityController *_networkConnectivityController;
     SPTRequestAccounting *_requestAccounting;
@@ -27,19 +27,19 @@
 @property(retain, nonatomic) SPTRequestAccounting *requestAccounting; // @synthesize requestAccounting=_requestAccounting;
 @property(retain, nonatomic) SPTNetworkConnectivityController *networkConnectivityController; // @synthesize networkConnectivityController=_networkConnectivityController;
 @property(nonatomic) __weak SPSession *loginSession; // @synthesize loginSession=_loginSession;
-@property(retain, nonatomic) id <SPTVideoLogger> logger; // @synthesize logger=_logger;
+@property(retain, nonatomic) id <BMLogger> logger; // @synthesize logger=_logger;
 @property(retain, nonatomic) SPTDataLoaderKeymasterAuthoriser *keymasterAuthoriser; // @synthesize keymasterAuthoriser=_keymasterAuthoriser;
 @property(retain, nonatomic) id <SPTAbbaFeatureFlags> featureFlags; // @synthesize featureFlags=_featureFlags;
-@property(retain, nonatomic) SPTVideoPlayerFactory *playerFactory; // @synthesize playerFactory=_playerFactory;
+@property(retain, nonatomic) BMBetamaxPlayerFactory *playerFactory; // @synthesize playerFactory=_playerFactory;
 - (void).cxx_destruct;
 - (id)provideSubtitleFactory;
 - (id)providePlaybackRequestFactory;
 - (id)playerConfigurationWithPreventDisplaySleepDuringVideoPlayback:(_Bool)arg1;
 - (id)loggerDataProviderForIdentifier:(id)arg1;
 - (id)cacheWithOptions:(id)arg1;
-- (id)defaultObserverFactoriesWithLoggerDataProvider:(id)arg1 playerProvider:(CDUnknownBlockType)arg2;
-- (id)createVideoPlayerWithFeatureIdentifier:(id)arg1 eventObserverFactories:(id)arg2 surfaceManager:(id)arg3 subtitleManager:(id)arg4 videoCacheOptions:(id)arg5 withRoyaltyMediaEnabled:(_Bool)arg6 preventDisplaySleepDuringVideoPlayback:(_Bool)arg7;
-- (id)createVideoPlayerWithFeatureIdentifier:(id)arg1 eventObserverFactories:(id)arg2 surface:(id)arg3 subtitleManager:(id)arg4 videoCacheOptions:(id)arg5 withRoyaltyMediaEnabled:(_Bool)arg6 preventDisplaySleepDuringVideoPlayback:(_Bool)arg7;
+- (id)defaultObserverFactoriesWithLoggerDataProvider:(id)arg1;
+- (id)createVideoPlayerWithFeatureIdentifier:(id)arg1 eventObserverFactories:(id)arg2 surfaceManager:(id)arg3 videoCacheOptions:(id)arg4 withRoyaltyMediaEnabled:(_Bool)arg5 preventDisplaySleepDuringVideoPlayback:(_Bool)arg6;
+- (id)createVideoPlayerWithFeatureIdentifier:(id)arg1 eventObserverFactories:(id)arg2 surface:(id)arg3 videoCacheOptions:(id)arg4 withRoyaltyMediaEnabled:(_Bool)arg5 preventDisplaySleepDuringVideoPlayback:(_Bool)arg6;
 - (id)initWithPlayerFactory:(id)arg1 featureFlags:(id)arg2 keymasterAuthoriser:(id)arg3 logger:(id)arg4 loginSession:(id)arg5 networkConnectivityController:(id)arg6 requestAccounting:(id)arg7 audioPlayerMediaClockService:(id)arg8;
 
 // Remaining properties

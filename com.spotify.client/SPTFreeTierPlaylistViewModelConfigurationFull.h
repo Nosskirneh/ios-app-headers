@@ -23,7 +23,6 @@
     _Bool _youMightAlsoLikeEnabled;
     _Bool _extendedContextMenuActionSet;
     _Bool _likeUsedForCollection;
-    unsigned long long _searchBarType;
 }
 
 @property(readonly, nonatomic, getter=isLikeUsedForCollection) _Bool likeUsedForCollection; // @synthesize likeUsedForCollection=_likeUsedForCollection;
@@ -31,14 +30,13 @@
 @property(readonly, nonatomic, getter=isYouMightAlsoLikeEnabled) _Bool youMightAlsoLikeEnabled; // @synthesize youMightAlsoLikeEnabled=_youMightAlsoLikeEnabled;
 @property(readonly, nonatomic, getter=isEditModeSupported) _Bool editModeSupported; // @synthesize editModeSupported=_editModeSupported;
 @property(readonly, nonatomic, getter=isTappingUnavailableTracksAllowed) _Bool tappingUnavailableTracksAllowed; // @synthesize tappingUnavailableTracksAllowed=_tappingUnavailableTracksAllowed;
-@property(readonly, nonatomic) unsigned long long searchBarType; // @synthesize searchBarType=_searchBarType;
 @property(readonly, nonatomic, getter=isPlaylistOwnerPageEnabled) _Bool playlistOwnerPageEnabled; // @synthesize playlistOwnerPageEnabled=_playlistOwnerPageEnabled;
 @property(readonly, nonatomic, getter=isPlayButtonPausingPlay) _Bool playButtonPausingPlay; // @synthesize playButtonPausingPlay=_playButtonPausingPlay;
 @property(readonly, nonatomic, getter=isLikeActionPlacedInsideHeader) _Bool likeActionPlacedInsideHeader; // @synthesize likeActionPlacedInsideHeader=_likeActionPlacedInsideHeader;
 @property(readonly, nonatomic, getter=isCollectionMenuIconsEnabled) _Bool collectionMenuIconsEnabled; // @synthesize collectionMenuIconsEnabled=_collectionMenuIconsEnabled;
 @property(readonly, nonatomic, getter=isAlbumTitleIncludedInItemSubtitles) _Bool albumTitleIncludedInItemSubtitles; // @synthesize albumTitleIncludedInItemSubtitles=_albumTitleIncludedInItemSubtitles;
 @property(readonly, nonatomic, getter=isAddSongsDisabled) _Bool addSongsDisabled; // @synthesize addSongsDisabled=_addSongsDisabled;
-- (id)initWithAddSongsDisabled:(_Bool)arg1 updateFilterUXEnabled:(_Bool)arg2;
+- (id)initWithAddSongsDisabled:(_Bool)arg1;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

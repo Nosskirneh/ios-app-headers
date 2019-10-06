@@ -6,20 +6,20 @@
 
 #import "SPTVideoPlayRange.h"
 
-@protocol SPTVideoSubtitle;
+@protocol BMSubtitle;
 
 @interface SPTVideoPlayRangeState : SPTVideoPlayRange
 {
     _Bool _backgrounded;
     _Bool _fullscreen;
     float _playbackSpeed;
-    id <SPTVideoSubtitle> _subtitle;
+    id <BMSubtitle> _subtitle;
     long long _orientation;
 }
 
 @property(nonatomic) float playbackSpeed; // @synthesize playbackSpeed=_playbackSpeed;
 @property(nonatomic) long long orientation; // @synthesize orientation=_orientation;
-@property(retain, nonatomic) id <SPTVideoSubtitle> subtitle; // @synthesize subtitle=_subtitle;
+@property(retain, nonatomic) id <BMSubtitle> subtitle; // @synthesize subtitle=_subtitle;
 @property(nonatomic) _Bool fullscreen; // @synthesize fullscreen=_fullscreen;
 @property(nonatomic) _Bool backgrounded; // @synthesize backgrounded=_backgrounded;
 - (void).cxx_destruct;

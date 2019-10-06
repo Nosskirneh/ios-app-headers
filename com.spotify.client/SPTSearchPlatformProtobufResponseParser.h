@@ -30,6 +30,7 @@
 @property(readonly, nonatomic) HUBViewModelBuilderFactory *viewModelBuilderFactory; // @synthesize viewModelBuilderFactory=_viewModelBuilderFactory;
 @property(readonly, copy, nonatomic) NSURL *pageURI; // @synthesize pageURI=_pageURI;
 - (void).cxx_destruct;
+- (id)renderableEntitiesPredicate;
 - (id)componentIdentifierWithSectionID:(id)arg1 itemIndex:(id)arg2;
 - (_Bool)drillDownShouldUseCardsForEntityType:(int)arg1;
 - (id)drillDownTitleForQuery:(id)arg1 entityType:(int)arg2;

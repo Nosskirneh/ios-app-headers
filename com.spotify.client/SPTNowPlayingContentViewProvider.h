@@ -6,8 +6,8 @@
 
 #import <objc/NSObject.h>
 
-@class SPTNowPlayingContentLayerViewController, SPTNowPlayingContentLayerViewModel, SPTNowPlayingCoverArtProvider, SPTNowPlayingHorizontalVideoProvider, SPTNowPlayingLogger, SPTNowPlayingModel, SPTNowPlayingSkipLimitReachedMessageRequester, SPTNowPlayingVerticalVideoProvider, SPTTheme, SPTVideoSurfaceFactory, UIViewController;
-@protocol SPTAdsManager, SPTGLUEImageLoaderFactory, SPTImageLoaderFactory, SPTNowPlayingCarouselContentProviderRegistry, SPTNowPlayingContentLayerResolver, SPTNowPlayingContentViewController, SPTNowPlayingTestManager, SPTNowPlayingVideoManager, SPTPlayer, SPTVideoSurfaceManager;
+@class BMVideoSurfaceFactory, SPTNowPlayingContentLayerViewController, SPTNowPlayingContentLayerViewModel, SPTNowPlayingCoverArtProvider, SPTNowPlayingHorizontalVideoProvider, SPTNowPlayingLogger, SPTNowPlayingModel, SPTNowPlayingSkipLimitReachedMessageRequester, SPTNowPlayingVerticalVideoProvider, SPTTheme, UIViewController;
+@protocol BMVideoSurfaceManager, SPTAdsManager, SPTGLUEImageLoaderFactory, SPTImageLoaderFactory, SPTNowPlayingCarouselContentProviderRegistry, SPTNowPlayingContentLayerResolver, SPTNowPlayingContentViewController, SPTNowPlayingTestManager, SPTNowPlayingVideoManager, SPTPlayer;
 
 @interface SPTNowPlayingContentViewProvider : NSObject
 {
@@ -16,8 +16,8 @@
     SPTTheme *_theme;
     id <SPTImageLoaderFactory> _imageLoaderFactory;
     id <SPTGLUEImageLoaderFactory> _glueImageLoaderFactory;
-    id <SPTVideoSurfaceManager> _videoSurfaceManager;
-    SPTVideoSurfaceFactory *_surfaceFactory;
+    id <BMVideoSurfaceManager> _videoSurfaceManager;
+    BMVideoSurfaceFactory *_surfaceFactory;
     id <SPTNowPlayingVideoManager> _nowPlayingVideoManager;
     id <SPTNowPlayingTestManager> _testManager;
     SPTNowPlayingSkipLimitReachedMessageRequester *_skipLimitReachedMessageRequester;
@@ -46,8 +46,8 @@
 @property(readonly, nonatomic) SPTNowPlayingSkipLimitReachedMessageRequester *skipLimitReachedMessageRequester; // @synthesize skipLimitReachedMessageRequester=_skipLimitReachedMessageRequester;
 @property(readonly, nonatomic) id <SPTNowPlayingTestManager> testManager; // @synthesize testManager=_testManager;
 @property(readonly, nonatomic) id <SPTNowPlayingVideoManager> nowPlayingVideoManager; // @synthesize nowPlayingVideoManager=_nowPlayingVideoManager;
-@property(readonly, nonatomic) SPTVideoSurfaceFactory *surfaceFactory; // @synthesize surfaceFactory=_surfaceFactory;
-@property(readonly, nonatomic) id <SPTVideoSurfaceManager> videoSurfaceManager; // @synthesize videoSurfaceManager=_videoSurfaceManager;
+@property(readonly, nonatomic) BMVideoSurfaceFactory *surfaceFactory; // @synthesize surfaceFactory=_surfaceFactory;
+@property(readonly, nonatomic) id <BMVideoSurfaceManager> videoSurfaceManager; // @synthesize videoSurfaceManager=_videoSurfaceManager;
 @property(readonly, nonatomic) id <SPTGLUEImageLoaderFactory> glueImageLoaderFactory; // @synthesize glueImageLoaderFactory=_glueImageLoaderFactory;
 @property(readonly, nonatomic) id <SPTImageLoaderFactory> imageLoaderFactory; // @synthesize imageLoaderFactory=_imageLoaderFactory;
 @property(readonly, nonatomic) SPTTheme *theme; // @synthesize theme=_theme;

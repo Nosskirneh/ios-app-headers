@@ -6,8 +6,8 @@
 
 #import <objc/NSObject.h>
 
-@class AVPlayerItem, AVQueuePlayer, NSHashTable, SPTVideoAVFactory, SPTVideoPlayerLooper;
-@protocol SPTKVOController, SPTKVOControllerFactory, SPTNotificationCenter, SPTVideoPlayerConfiguration;
+@class AVPlayerItem, AVQueuePlayer, NSHashTable, SPTVideoAVFactory, SPTVideoPlayerLooper, SPTVideoSubtitleSelector, SPTVideoSubtitleSelectorFactory;
+@protocol BMKVOController, BMKVOControllerFactory, BMPlayerConfiguration, BMSubtitle, SPTNotificationCenter;
 
 @interface SPTVideoPlayerSource : NSObject
 {
@@ -16,43 +16,51 @@
     AVPlayerItem *_playerItem;
     AVQueuePlayer *_player;
     double _videoAspectRatio;
+    id <BMSubtitle> _preferredSubtitle;
     SPTVideoAVFactory *_avFactory;
-    id <SPTKVOController> _kvoController;
-    id <SPTKVOControllerFactory> _kvoControllerFactory;
-    id <SPTVideoPlayerConfiguration> _playerConfiguration;
+    id <BMKVOController> _kvoController;
+    id <BMKVOControllerFactory> _kvoControllerFactory;
+    id <BMPlayerConfiguration> _playerConfiguration;
     SPTVideoPlayerLooper *_playerLooper;
     NSHashTable *_observers;
     id <SPTNotificationCenter> _notificationCenter;
+    SPTVideoSubtitleSelectorFactory *_subtitleSelectorFactory;
+    SPTVideoSubtitleSelector *_subtitleSelector;
+    id <BMSubtitle> _selectedSubtitle;
 }
 
+@property(retain, nonatomic) id <BMSubtitle> selectedSubtitle; // @synthesize selectedSubtitle=_selectedSubtitle;
+@property(retain, nonatomic) SPTVideoSubtitleSelector *subtitleSelector; // @synthesize subtitleSelector=_subtitleSelector;
+@property(retain, nonatomic) SPTVideoSubtitleSelectorFactory *subtitleSelectorFactory; // @synthesize subtitleSelectorFactory=_subtitleSelectorFactory;
 @property(retain, nonatomic) id <SPTNotificationCenter> notificationCenter; // @synthesize notificationCenter=_notificationCenter;
 @property(retain, nonatomic) NSHashTable *observers; // @synthesize observers=_observers;
 @property(retain, nonatomic) SPTVideoPlayerLooper *playerLooper; // @synthesize playerLooper=_playerLooper;
-@property(retain, nonatomic) id <SPTVideoPlayerConfiguration> playerConfiguration; // @synthesize playerConfiguration=_playerConfiguration;
-@property(retain, nonatomic) id <SPTKVOControllerFactory> kvoControllerFactory; // @synthesize kvoControllerFactory=_kvoControllerFactory;
-@property(retain, nonatomic) id <SPTKVOController> kvoController; // @synthesize kvoController=_kvoController;
+@property(retain, nonatomic) id <BMPlayerConfiguration> playerConfiguration; // @synthesize playerConfiguration=_playerConfiguration;
+@property(retain, nonatomic) id <BMKVOControllerFactory> kvoControllerFactory; // @synthesize kvoControllerFactory=_kvoControllerFactory;
+@property(retain, nonatomic) id <BMKVOController> kvoController; // @synthesize kvoController=_kvoController;
 @property(retain, nonatomic) SPTVideoAVFactory *avFactory; // @synthesize avFactory=_avFactory;
+@property(retain, nonatomic) id <BMSubtitle> preferredSubtitle; // @synthesize preferredSubtitle=_preferredSubtitle;
 @property(nonatomic, getter=isAudioDisabled) _Bool audioDisabled; // @synthesize audioDisabled=_audioDisabled;
 @property(nonatomic) double videoAspectRatio; // @synthesize videoAspectRatio=_videoAspectRatio;
 @property(nonatomic) _Bool repeat; // @synthesize repeat=_repeat;
 @property(retain, nonatomic) AVQueuePlayer *player; // @synthesize player=_player;
+@property(retain, nonatomic) AVPlayerItem *playerItem; // @synthesize playerItem=_playerItem;
 - (void).cxx_destruct;
 - (void)playerItemDidFailedToPlayToEndTime:(id)arg1;
 - (void)playerItemDidReachEnd:(id)arg1;
 - (void)didChangeSeekableTimeRanges:(id)arg1;
-- (void)kvo_itemLikelyToKeepUpChanged:(id)arg1 object:(id)arg2;
-- (void)kvo_itemStatusChanged:(id)arg1 object:(id)arg2;
+- (void)didChangePlayerItemLikelyToKeepUp:(id)arg1 playerItem:(id)arg2;
+- (void)didChangePlayerItemStatus:(id)arg1 playeritem:(id)arg2;
 - (void)currentPlayerItemChanged:(id)arg1 object:(id)arg2;
-- (void)loadPlayerItem:(id)arg1 videoAspectRatio:(double)arg2;
+- (void)loadPlayerItem:(id)arg1 videoAspectRatio:(double)arg2 availableSubtitles:(id)arg3;
 - (void)unloadPlayerItem;
 - (void)resetPlayerItemQueue;
-@property(retain, nonatomic) AVPlayerItem *playerItem; // @synthesize playerItem=_playerItem;
 - (void)playerStatusChanged;
 - (void)recreatePlayer;
 - (void)removeObserver:(id)arg1;
 - (void)addObserver:(id)arg1;
 - (void)dealloc;
-- (id)initWithPlayerConfiguration:(id)arg1 avFactory:(id)arg2 kvoControllerFactory:(id)arg3 notificationCenter:(id)arg4;
+- (id)initWithPlayerConfiguration:(id)arg1 avFactory:(id)arg2 kvoControllerFactory:(id)arg3 notificationCenter:(id)arg4 subtitleSelectorFactory:(id)arg5;
 
 @end
 

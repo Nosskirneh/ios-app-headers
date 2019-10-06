@@ -11,7 +11,6 @@
 @property(readonly, nonatomic, getter=isExtendedContextMenuActionSet) _Bool extendedContextMenuActionSet;
 @property(readonly, nonatomic, getter=isYouMightAlsoLikeEnabled) _Bool youMightAlsoLikeEnabled;
 @property(readonly, nonatomic, getter=isEditModeSupported) _Bool editModeSupported;
-@property(readonly, nonatomic) unsigned long long searchBarType;
 @property(readonly, nonatomic, getter=isPlaylistOwnerPageEnabled) _Bool playlistOwnerPageEnabled;
 @property(readonly, nonatomic, getter=isCollectionMenuIconsEnabled) _Bool collectionMenuIconsEnabled;
 @property(readonly, nonatomic, getter=isPlayButtonPausingPlay) _Bool playButtonPausingPlay;

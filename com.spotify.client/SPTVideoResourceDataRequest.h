@@ -6,16 +6,16 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTVideoDataLoaderResponseHandler-Protocol.h"
+#import "BMDataLoaderResponseHandler-Protocol.h"
 #import "SPTVideoResourceRequest-Protocol.h"
 
 @class AVAssetResourceLoadingRequest, NSDictionary, NSMutableData, NSString, NSURL;
-@protocol OS_dispatch_queue, SPTVideoChunkCache, SPTVideoDataLoader;
+@protocol BMChunkCache, BMDataLoader, OS_dispatch_queue;
 
-@interface SPTVideoResourceDataRequest : NSObject <SPTVideoDataLoaderResponseHandler, SPTVideoResourceRequest>
+@interface SPTVideoResourceDataRequest : NSObject <BMDataLoaderResponseHandler, SPTVideoResourceRequest>
 {
-    id <SPTVideoDataLoader> _dataLoader;
-    id <SPTVideoChunkCache> _cache;
+    id <BMDataLoader> _dataLoader;
+    id <BMChunkCache> _cache;
     NSURL *_url;
     AVAssetResourceLoadingRequest *_request;
     CDUnknownBlockType _completion;
@@ -28,8 +28,8 @@
 @property(copy, nonatomic) CDUnknownBlockType completion; // @synthesize completion=_completion;
 @property(retain, nonatomic) AVAssetResourceLoadingRequest *request; // @synthesize request=_request;
 @property(retain, nonatomic) NSURL *url; // @synthesize url=_url;
-@property(retain, nonatomic) id <SPTVideoChunkCache> cache; // @synthesize cache=_cache;
-@property(retain, nonatomic) id <SPTVideoDataLoader> dataLoader; // @synthesize dataLoader=_dataLoader;
+@property(retain, nonatomic) id <BMChunkCache> cache; // @synthesize cache=_cache;
+@property(retain, nonatomic) id <BMDataLoader> dataLoader; // @synthesize dataLoader=_dataLoader;
 - (void).cxx_destruct;
 - (void)dataLoader:(id)arg1 didReceiveSuccessfulResponse:(id)arg2;
 - (void)dataLoader:(id)arg1 didReceiveResponse:(id)arg2 withError:(id)arg3;

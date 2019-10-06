@@ -9,8 +9,8 @@
 #import "SPTCoreLoginControllerDelegate-Protocol.h"
 #import "SPTLoginStateController-Protocol.h"
 
-@class NSError, NSString, SPCore, SPTHTTPService, SPTImageLoaderServiceManager, SPTLoginDeferredDispatcher, SPTLoginDialogController, SPTLoginErrorDecorator, SPTNetworkConnectivityController, SPTSessionObserver, SPTStartupTracer;
-@protocol SPTAlertController, SPTCrashReporter, SPTLinkDispatcher, SPTLogCenter, SPTLoginKeychainManager, SPTLoginLogger, SPTMetaViewController, SPTStateController;
+@class NSError, NSString, SPCore, SPTHTTPService, SPTImageLoaderServiceManager, SPTLoginDeferredDispatcher, SPTLoginDialogController, SPTLoginErrorDecorator, SPTNetworkConnectivityController, SPTStartupTracer;
+@protocol SPTAlertInterface, SPTCrashReporter, SPTLinkDispatcher, SPTLogCenter, SPTLoginKeychainManager, SPTLoginLogger, SPTMetaViewController, SPTStateController;
 
 @interface SPTLoginStateControllerImplementation : NSObject <SPTCoreLoginControllerDelegate, SPTLoginStateController>
 {
@@ -24,12 +24,11 @@
     id <SPTCrashReporter> _crashReporter;
     SPTStartupTracer *_startupTracer;
     CDUnknownBlockType _loginDoneBlock;
-    SPTSessionObserver *_sessionObserver;
     id <SPTStateController> _stateController;
     id <SPTMetaViewController> _metaviewController;
     CDUnknownBlockType _containerLogoutHandler;
     id <SPTLoginKeychainManager> _keychainManager;
-    id <SPTAlertController> _alertController;
+    id <SPTAlertInterface> _alertInterface;
     SPTLoginDeferredDispatcher *_deferredErrorDispatcher;
     id <SPTLinkDispatcher> _linkDispatcher;
     SPTLoginDialogController *_errorDialogController;
@@ -43,12 +42,11 @@
 @property(retain, nonatomic) SPTLoginDialogController *errorDialogController; // @synthesize errorDialogController=_errorDialogController;
 @property(retain, nonatomic) id <SPTLinkDispatcher> linkDispatcher; // @synthesize linkDispatcher=_linkDispatcher;
 @property(retain, nonatomic) SPTLoginDeferredDispatcher *deferredErrorDispatcher; // @synthesize deferredErrorDispatcher=_deferredErrorDispatcher;
-@property(retain, nonatomic) id <SPTAlertController> alertController; // @synthesize alertController=_alertController;
+@property(retain, nonatomic) id <SPTAlertInterface> alertInterface; // @synthesize alertInterface=_alertInterface;
 @property(retain, nonatomic) id <SPTLoginKeychainManager> keychainManager; // @synthesize keychainManager=_keychainManager;
 @property(readonly, nonatomic) CDUnknownBlockType containerLogoutHandler; // @synthesize containerLogoutHandler=_containerLogoutHandler;
 @property(retain, nonatomic) id <SPTMetaViewController> metaviewController; // @synthesize metaviewController=_metaviewController;
 @property(retain, nonatomic) id <SPTStateController> stateController; // @synthesize stateController=_stateController;
-@property(retain, nonatomic) SPTSessionObserver *sessionObserver; // @synthesize sessionObserver=_sessionObserver;
 @property(copy, nonatomic) CDUnknownBlockType loginDoneBlock; // @synthesize loginDoneBlock=_loginDoneBlock;
 @property(nonatomic) __weak SPTStartupTracer *startupTracer; // @synthesize startupTracer=_startupTracer;
 @property(retain, nonatomic) id <SPTCrashReporter> crashReporter; // @synthesize crashReporter=_crashReporter;
@@ -83,7 +81,7 @@
 @property(readonly, nonatomic, getter=isLoggedIn) _Bool loggedIn;
 - (void)prepareForShutdown;
 @property(nonatomic) _Bool allowErrorDispatch;
-- (id)initWithCore:(id)arg1 logCenter:(id)arg2 crashReporter:(id)arg3 startupTracer:(id)arg4 stateController:(id)arg5 containerLogoutHandler:(CDUnknownBlockType)arg6 httpService:(id)arg7 imageLoaderServiceManager:(id)arg8 keychainManager:(id)arg9 networkConnectivityController:(id)arg10 metaViewController:(id)arg11 alertController:(id)arg12 deferredErrorDispatcher:(id)arg13 linkDispatcher:(id)arg14 errorDialogController:(id)arg15 errorDecorator:(id)arg16 loginLogger:(id)arg17;
+- (id)initWithCore:(id)arg1 logCenter:(id)arg2 crashReporter:(id)arg3 startupTracer:(id)arg4 stateController:(id)arg5 containerLogoutHandler:(CDUnknownBlockType)arg6 httpService:(id)arg7 imageLoaderServiceManager:(id)arg8 keychainManager:(id)arg9 networkConnectivityController:(id)arg10 metaViewController:(id)arg11 alertInterface:(id)arg12 deferredErrorDispatcher:(id)arg13 linkDispatcher:(id)arg14 errorDialogController:(id)arg15 errorDecorator:(id)arg16 loginLogger:(id)arg17;
 - (id)sessionStateAwaiter;
 - (id)waitForLoginCompletion;
 - (id)waitForLogoutCompletion;

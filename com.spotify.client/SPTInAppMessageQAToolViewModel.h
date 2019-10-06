@@ -35,8 +35,9 @@
 - (void)showLoadingIndicator;
 - (void)showAllDoneAlert;
 - (void)handleResponse:(id)arg1;
+- (void)qaToolConfigurationsController:(id)arg1 didFetchLocalesData:(id)arg2;
 - (void)qaToolConfigurationsController:(id)arg1 returnedEmptyListWithResponse:(id)arg2;
-- (void)qaToolConfigurationsController:(id)arg1 failedtoFetchCreativesWithResponse:(id)arg2;
+- (void)qaToolConfigurationsController:(id)arg1 failedtoFetchDataWithResponse:(id)arg2;
 - (void)qaToolConfigurationsController:(id)arg1 didFetchMessageCreativesData:(id)arg2 ofType:(long long)arg3;
 - (void)qaToolFormatMessageController:(id)arg1 didWantToDismissViewController:(id)arg2;
 - (void)qaToolFormatMessageController:(id)arg1 didWantToPresentViewController:(id)arg2;

@@ -25,6 +25,7 @@
 @property(readonly, nonatomic) NSString *presentingControllerAdjustIdentifier;
 @property(readonly, nonatomic) UIViewController *presentingController;
 - (void)userDidAcceptAllLicences:(id)arg1;
+- (id)yourLibraryDialog;
 - (id)shutDownDialog;
 - (id)welcomeDialogView;
 - (id)welcomeDialogSecondCell;

@@ -21,8 +21,9 @@
 }
 
 + (id)showWithContent:(id)arg1 delegate:(id)arg2;
++ (id)dialogWithContent:(id)arg1 delegate:(id)arg2;
 + (void)initialize;
-@property(nonatomic) _Bool frictionlessRequestsEnabled; // @synthesize frictionlessRequestsEnabled=_frictionlessRequestsEnabled;
+@property(nonatomic, getter=isFrictionlessRequestsEnabled) _Bool frictionlessRequestsEnabled; // @synthesize frictionlessRequestsEnabled=_frictionlessRequestsEnabled;
 @property(copy, nonatomic) FBSDKGameRequestContent *content; // @synthesize content=_content;
 @property(nonatomic) __weak id <FBSDKGameRequestDialogDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
@@ -35,7 +36,7 @@
 - (void)webDialog:(id)arg1 didCompleteWithResults:(id)arg2;
 - (_Bool)validateWithError:(id *)arg1;
 - (_Bool)show;
-- (_Bool)canShow;
+@property(readonly, nonatomic) _Bool canShow;
 - (void)dealloc;
 - (id)init;
 

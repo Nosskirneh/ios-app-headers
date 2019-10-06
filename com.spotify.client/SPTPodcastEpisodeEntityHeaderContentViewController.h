@@ -41,9 +41,11 @@
 - (void)viewModelUpdatedPlaybackState:(id)arg1;
 - (void)viewModel:(id)arg1 didUpdateWithError:(id)arg2;
 - (void)useCoverArtFallback;
+- (double)minimumHeight;
 - (double)entityHeaderViewControllerMinimumHeight:(id)arg1;
 - (void)entityHeaderViewController:(id)arg1 didUpdateBounceOffsets:(struct UIEdgeInsets)arg2;
 - (void)entityHeaderViewController:(id)arg1 didUpdateVisibleRect:(struct CGRect)arg2;
+- (void)viewSafeAreaInsetsDidChange;
 - (void)viewDidLoad;
 - (id)initWithViewModel:(id)arg1 theme:(id)arg2 imageLoader:(id)arg3 logger:(id)arg4;
 

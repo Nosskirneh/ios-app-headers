@@ -6,14 +6,15 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTVideoPlaybackErrorMessage-Protocol.h"
+#import "BMPlaybackErrorMessage-Protocol.h"
 
 @class NSError, NSString;
-@protocol SPTVideoPlaybackIdentity;
+@protocol BMPlaybackIdentity;
 
-@interface SPTVideoPlaybackErrorMessageImpl : NSObject <SPTVideoPlaybackErrorMessage>
+@interface SPTVideoPlaybackErrorMessageImpl : NSObject <BMPlaybackErrorMessage>
 {
-    id <SPTVideoPlaybackIdentity> _identity;
+    id <BMPlaybackIdentity> _identity;
+    NSString *_featureIdentifier;
     NSError *_error;
     NSString *_errorComment;
     NSError *_underlyingError;
@@ -24,9 +25,10 @@
 @property(retain, nonatomic) NSError *underlyingError; // @synthesize underlyingError=_underlyingError;
 @property(copy, nonatomic) NSString *errorComment; // @synthesize errorComment=_errorComment;
 @property(retain, nonatomic) NSError *error; // @synthesize error=_error;
-@property(retain, nonatomic) id <SPTVideoPlaybackIdentity> identity; // @synthesize identity=_identity;
+@property(copy, nonatomic) NSString *featureIdentifier; // @synthesize featureIdentifier=_featureIdentifier;
+@property(retain, nonatomic) id <BMPlaybackIdentity> identity; // @synthesize identity=_identity;
 - (void).cxx_destruct;
-- (id)initWithIdentity:(id)arg1 error:(id)arg2 errorComment:(id)arg3 underlyingError:(id)arg4 underlyingErrorComment:(id)arg5;
+- (id)initWithIdentity:(id)arg1 featureIdentifier:(id)arg2 error:(id)arg3 errorComment:(id)arg4 underlyingError:(id)arg5 underlyingErrorComment:(id)arg6;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

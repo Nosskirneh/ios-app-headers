@@ -8,8 +8,8 @@
 
 #import "SPTPodcastEpisodeFeaturedContentService-Protocol.h"
 
-@class NSString, SPTAllocationContext;
-@protocol SPTFeatureFlaggingService, SPTGLUEService, SPTHubFrameworkService, SPTOnDemandService, SPTPodcastEpisodeFeaturedContentTestManager, SPTPodcastEpisodeFeaturedContentViewProvider, SPTSessionService;
+@class NSString, SPTAllocationContext, SPTPodcastEpisodeFeaturedContentContentOperationFactory;
+@protocol SPTFeatureFlaggingService, SPTGLUEService, SPTHubFrameworkService, SPTOnDemandService, SPTOnDemandSet, SPTPodcastEpisodeFeaturedContentTestManager, SPTPodcastEpisodeFeaturedContentViewProvider, SPTSessionService;
 
 @interface SPTPodcastEpisodeFeaturedContentServiceImplementation : NSObject <SPTPodcastEpisodeFeaturedContentService>
 {
@@ -20,9 +20,13 @@
     id <SPTOnDemandService> _onDemandService;
     id <SPTPodcastEpisodeFeaturedContentViewProvider> _featuredContentViewProvider;
     id <SPTPodcastEpisodeFeaturedContentTestManager> _testManager;
+    id <SPTOnDemandSet> _onDemandSet;
+    SPTPodcastEpisodeFeaturedContentContentOperationFactory *_contentOperationFactory;
 }
 
 + (id)serviceIdentifier;
+@property(retain, nonatomic) SPTPodcastEpisodeFeaturedContentContentOperationFactory *contentOperationFactory; // @synthesize contentOperationFactory=_contentOperationFactory;
+@property(retain, nonatomic) id <SPTOnDemandSet> onDemandSet; // @synthesize onDemandSet=_onDemandSet;
 @property(retain, nonatomic) id <SPTPodcastEpisodeFeaturedContentTestManager> testManager; // @synthesize testManager=_testManager;
 @property(retain, nonatomic) id <SPTPodcastEpisodeFeaturedContentViewProvider> featuredContentViewProvider; // @synthesize featuredContentViewProvider=_featuredContentViewProvider;
 @property(nonatomic) __weak id <SPTOnDemandService> onDemandService; // @synthesize onDemandService=_onDemandService;
@@ -31,6 +35,8 @@
 @property(nonatomic) __weak id <SPTHubFrameworkService> hubFrameworkService; // @synthesize hubFrameworkService=_hubFrameworkService;
 @property(nonatomic) __weak id <SPTSessionService> clientSessionService; // @synthesize clientSessionService=_clientSessionService;
 - (void).cxx_destruct;
+- (id)provideSubtitleDecoratorContentOperation;
+- (id)provideContentOperationFactory;
 - (id)providePodcastEpisodeFeaturedContentViewProvider;
 - (void)unload;
 - (void)load;

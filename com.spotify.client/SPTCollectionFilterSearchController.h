@@ -6,20 +6,17 @@
 
 #import <UIKit/UISearchController.h>
 
-@class NSLayoutConstraint, SPTSearchBar, UIVisualEffectView;
+@class NSLayoutConstraint, UIVisualEffectView;
 
 @interface SPTCollectionFilterSearchController : UISearchController
 {
-    SPTSearchBar *_overriddenSearchBar;
     UIVisualEffectView *_topBackgroundView;
     NSLayoutConstraint *_backgroundHeightConstraint;
 }
 
 @property(retain, nonatomic) NSLayoutConstraint *backgroundHeightConstraint; // @synthesize backgroundHeightConstraint=_backgroundHeightConstraint;
 @property(retain, nonatomic) UIVisualEffectView *topBackgroundView; // @synthesize topBackgroundView=_topBackgroundView;
-@property(retain, nonatomic) SPTSearchBar *overriddenSearchBar; // @synthesize overriddenSearchBar=_overriddenSearchBar;
 - (void).cxx_destruct;
-- (id)searchBar;
 - (void)dismissViewControllerAnimated:(_Bool)arg1 completion:(CDUnknownBlockType)arg2;
 - (void)viewDidAppear:(_Bool)arg1;
 - (void)applyLayoutConstraints;

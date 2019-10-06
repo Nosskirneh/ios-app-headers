@@ -9,7 +9,6 @@
 @protocol SPTWazeTestManagerObserver;
 
 @protocol SPTWazeTestManager <NSObject>
-@property(nonatomic, getter=isOnboardingCompleted) _Bool onboardingCompleted;
 @property(nonatomic, getter=isWazeIntegrationEnabled) _Bool wazeIntegrationEnabled;
 @property(readonly, nonatomic, getter=isWazeFeatureEnabled) _Bool wazeFeatureEnabled;
 - (void)removeObserver:(id <SPTWazeTestManagerObserver>)arg1;

@@ -15,24 +15,21 @@
     MPContentItem *_tabMenuItem;
     MPContentItem *_loginPromptItem;
     NSString *_title;
-    NSString *_descriptionMessage;
     NSString *_tabMenuItemTitle;
     id _debugLog;
 }
 
 @property(retain, nonatomic) id debugLog; // @synthesize debugLog=_debugLog;
 @property(readonly, nonatomic) NSString *tabMenuItemTitle; // @synthesize tabMenuItemTitle=_tabMenuItemTitle;
-@property(readonly, nonatomic) NSString *descriptionMessage; // @synthesize descriptionMessage=_descriptionMessage;
 @property(readonly, nonatomic) NSString *title; // @synthesize title=_title;
 - (void).cxx_destruct;
 - (id)contentItemAtIndexPath:(id)arg1;
 - (long long)numberOfChildItemsAtIndexPath:(id)arg1;
 - (_Bool)childItemsDisplayPlaybackProgressAtIndexPath:(id)arg1;
 - (void)beginLoadingChildItemsAtIndexPath:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
-- (void)playableContentManager:(id)arg1 initiatePlaybackOfContentItemAtIndexPath:(id)arg2 completionHandler:(CDUnknownBlockType)arg3;
 @property(readonly, nonatomic) MPContentItem *loginPromptItem; // @synthesize loginPromptItem=_loginPromptItem;
 @property(readonly, nonatomic) MPContentItem *tabMenuItem; // @synthesize tabMenuItem=_tabMenuItem;
-- (id)initWithTitle:(id)arg1 description:(id)arg2 menuItemTitle:(id)arg3 debugLog:(id)arg4;
+- (id)initWithTitle:(id)arg1 menuItemTitle:(id)arg2 debugLog:(id)arg3;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

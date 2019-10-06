@@ -31,6 +31,8 @@
 - (id)gradientSubsetStartingFrom:(double)arg1 to:(double)arg2;
 - (void)updateGradientLayerColors:(id)arg1;
 - (void)updateGradient;
+- (void)updateGradientLayerFrame;
+- (void)setFrame:(struct CGRect)arg1;
 - (void)setBounds:(struct CGRect)arg1;
 - (void)setupGradientLayer;
 - (id)initWithFrame:(struct CGRect)arg1;

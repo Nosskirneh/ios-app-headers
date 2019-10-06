@@ -9,12 +9,13 @@
 #import "SPTExplicitContentEnabledStateObserver-Protocol.h"
 #import "SPTPodcastEpisodeViewModelSectionDelegate-Protocol.h"
 #import "SPTPodcastFollowSectionViewModelDelegate-Protocol.h"
+#import "SPTPodcastPlayerDelegate-Protocol.h"
 #import "SPTPodcastTopicCategoryViewModelDelegate-Protocol.h"
 
 @class NSArray, NSPredicate, NSSortDescriptor, NSString, NSURL, SPTPodcastHeaderViewModel, SPTPodcastTopicCategoryViewModel, SPTPodcastViewSectionConfiguration;
-@protocol SPTCollectionPlatform, SPTExplicitContentAccessManager, SPTPodcast, SPTPodcastDataLoader, SPTPodcastDataLoaderRequestToken, SPTPodcastFactory, SPTPodcastUITestManager, SPTPodcastViewModelDelegate2;
+@protocol SPTCollectionPlatform, SPTExplicitContentAccessManager, SPTPodcast, SPTPodcastDataLoader, SPTPodcastDataLoaderRequestToken, SPTPodcastFactory, SPTPodcastPlayer, SPTPodcastUITestManager, SPTPodcastViewModelDelegate2;
 
-@interface SPTPodcastViewModel2 : NSObject <SPTPodcastEpisodeViewModelSectionDelegate, SPTPodcastTopicCategoryViewModelDelegate, SPTPodcastFollowSectionViewModelDelegate, SPTExplicitContentEnabledStateObserver>
+@interface SPTPodcastViewModel2 : NSObject <SPTPodcastEpisodeViewModelSectionDelegate, SPTPodcastTopicCategoryViewModelDelegate, SPTPodcastFollowSectionViewModelDelegate, SPTExplicitContentEnabledStateObserver, SPTPodcastPlayerDelegate>
 {
     _Bool _isLoading;
     _Bool _isLoaded;
@@ -33,6 +34,7 @@
     SPTPodcastTopicCategoryViewModel *_topicCategoryViewModel;
     id <SPTPodcastUITestManager> _uiTestManager;
     id <SPTPodcastFactory> _podcastFactory;
+    id <SPTPodcastPlayer> _podcastPlayer;
     id <SPTPodcastDataLoader> _dataLoader;
     id <SPTCollectionPlatform> _collectionPlatform;
     id <SPTExplicitContentAccessManager> _explicitContentAccessManager;
@@ -43,6 +45,7 @@
 @property(nonatomic, getter=isInitialLoadComplete) _Bool initialLoadComplete; // @synthesize initialLoadComplete=_initialLoadComplete;
 @property(nonatomic) _Bool topicsDidLoad; // @synthesize topicsDidLoad=_topicsDidLoad;
 @property(retain, nonatomic) id <SPTPodcastDataLoader> dataLoader; // @synthesize dataLoader=_dataLoader;
+@property(retain, nonatomic) id <SPTPodcastPlayer> podcastPlayer; // @synthesize podcastPlayer=_podcastPlayer;
 @property(retain, nonatomic) id <SPTPodcastFactory> podcastFactory; // @synthesize podcastFactory=_podcastFactory;
 @property(retain, nonatomic) id <SPTPodcastUITestManager> uiTestManager; // @synthesize uiTestManager=_uiTestManager;
 @property(retain, nonatomic) SPTPodcastTopicCategoryViewModel *topicCategoryViewModel; // @synthesize topicCategoryViewModel=_topicCategoryViewModel;
@@ -61,6 +64,7 @@
 - (void).cxx_destruct;
 - (void)explicitContentEnabledStateDidChange:(_Bool)arg1;
 - (void)didFinishLoadingTopicsViewModel:(id)arg1 withError:(id)arg2;
+- (void)followSectionViewModelDidUpdatePlaybackState:(id)arg1;
 - (void)followSectionViewModel:(id)arg1 didSelectContextMenuButton:(id)arg2;
 - (void)followSectionViewModelDidUpdateFollowedState:(id)arg1;
 - (void)viewModelPodcastDidUpdatePlayingEpisode:(id)arg1 atIndexPath:(id)arg2;
@@ -74,6 +78,11 @@
 - (_Bool)isPlayingAnyEpisode;
 - (void)parseJSONData:(id)arg1;
 - (void)unsubscribe;
+- (void)updateSectionViewModelsWithPlayer:(id)arg1;
+- (void)podcastPlayer:(id)arg1 didUpdateProgressForTrackURL:(id)arg2;
+- (double)podcastPlayer:(id)arg1 updateProgressIntervalForTrackURL:(id)arg2;
+- (void)podcastPlayerStateDidChange:(id)arg1;
+- (void)podcastPlayer:(id)arg1 didChangePlayingTrackURL:(id)arg2;
 - (id)deserializationQueue;
 - (void)handleFirstLoadUpdates;
 - (void)didReachEndOfContent;
@@ -86,7 +95,7 @@
 - (long long)numberOfSections;
 - (long long)numberOfRowsInSection:(long long)arg1;
 - (void)obtainDelegation;
-- (id)initWithURL:(id)arg1 headerViewModel:(id)arg2 configuration:(id)arg3 topicCategoryViewModel:(id)arg4 dataLoader:(id)arg5 collectionPlatform:(id)arg6 uiTestManager:(id)arg7 explicitContentAccessManager:(id)arg8;
+- (id)initWithURL:(id)arg1 headerViewModel:(id)arg2 configuration:(id)arg3 topicCategoryViewModel:(id)arg4 dataLoader:(id)arg5 collectionPlatform:(id)arg6 uiTestManager:(id)arg7 explicitContentAccessManager:(id)arg8 podcastPlayer:(id)arg9;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

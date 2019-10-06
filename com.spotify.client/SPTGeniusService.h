@@ -14,6 +14,7 @@
 
 @interface SPTGeniusService : NSObject <SPTDataLoaderDelegate, SPTOfflineModeStateObserver>
 {
+    _Bool _allowedToRefreshCache;
     SPTGeniusLegacyCache *_diskCache;
     id <SPTOfflineModeState> _offlineModeState;
     id <SPTLocalSettings> _localSettings;
@@ -28,6 +29,7 @@
 }
 
 @property(retain, nonatomic) NSTimer *refreshEnabledURIsTimer; // @synthesize refreshEnabledURIsTimer=_refreshEnabledURIsTimer;
+@property(nonatomic, getter=isAllowedToRefreshCache) _Bool allowedToRefreshCache; // @synthesize allowedToRefreshCache=_allowedToRefreshCache;
 @property(readonly, nonatomic) SPTGeniusServiceEnabledResourcesLoadingState *enabledResourcesLoadingState; // @synthesize enabledResourcesLoadingState=_enabledResourcesLoadingState;
 @property(readonly, nonatomic) NSMutableSet *enabledTrackURIs; // @synthesize enabledTrackURIs=_enabledTrackURIs;
 @property(readonly, nonatomic) NSMutableDictionary *requestCallbacks; // @synthesize requestCallbacks=_requestCallbacks;
@@ -50,7 +52,8 @@
 - (id)geniusEnabledResourcesURL;
 - (void)refreshEnabledURIs;
 - (void)scheduleRefreshEnabledURIs;
-- (void)loadCachedEnabledResources;
+- (void)setAllowedToRefreshCache;
+- (void)loadEnabledResourcesFromCache;
 - (id)geniusAnnotationsURLForTrackID:(id)arg1;
 - (void)fetchFromServerAnnotationsForTrackId:(id)arg1 completion:(CDUnknownBlockType)arg2;
 - (_Bool)isGeniusProxyEnabled;

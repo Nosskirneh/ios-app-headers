@@ -21,6 +21,7 @@
 - (void).cxx_destruct;
 - (void)configureDescriptionTextForPodcast:(id)arg1;
 - (long long)identifier;
+- (void)updateWithPodcastPlayer:(id)arg1;
 - (void)updateWithPodcast:(id)arg1;
 - (id)header;
 - (id)footer;

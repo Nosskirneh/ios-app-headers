@@ -9,24 +9,24 @@
 #import "SPTHubInteractionLogger-Protocol.h"
 
 @class NSString;
-@protocol SPTInteractionLogger, SPTLogCenter;
+@protocol SPTLogCenter, SPTUserBehaviourInstrumentationLogger;
 
 @interface SPTHubInteractionLoggerImplementation : NSObject <SPTHubInteractionLogger>
 {
     id <SPTLogCenter> _logCenter;
     NSString *_featureIdentifier;
     NSString *_viewURIString;
-    id <SPTInteractionLogger> _interactionLogger;
+    id <SPTUserBehaviourInstrumentationLogger> _ubiLogger;
 }
 
-@property(retain, nonatomic) id <SPTInteractionLogger> interactionLogger; // @synthesize interactionLogger=_interactionLogger;
+@property(retain, nonatomic) id <SPTUserBehaviourInstrumentationLogger> ubiLogger; // @synthesize ubiLogger=_ubiLogger;
 @property(readonly, copy, nonatomic) NSString *viewURIString; // @synthesize viewURIString=_viewURIString;
 @property(readonly, copy, nonatomic) NSString *featureIdentifier; // @synthesize featureIdentifier=_featureIdentifier;
 @property(readonly, nonatomic) id <SPTLogCenter> logCenter; // @synthesize logCenter=_logCenter;
 - (void).cxx_destruct;
 - (id)logInteraction:(id)arg1;
 - (void)logInteractionWithURI:(id)arg1 event:(id)arg2 userIntent:(id)arg3;
-- (id)initWithLogCenter:(id)arg1 featureIdentifier:(id)arg2 pageURI:(id)arg3 interactionLogger:(id)arg4;
+- (id)initWithLogCenter:(id)arg1 featureIdentifier:(id)arg2 pageURI:(id)arg3 ubiLogger:(id)arg4;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

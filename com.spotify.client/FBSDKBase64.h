@@ -8,7 +8,6 @@
 
 @interface FBSDKBase64 : NSObject
 {
-    _Bool _optionsEnabled;
 }
 
 + (id)encodeString:(id)arg1;
@@ -20,8 +19,6 @@
 - (id)encodeData:(id)arg1;
 - (id)decodeAsString:(id)arg1;
 - (id)decodeAsData:(id)arg1;
-- (id)initWithOptionsEnabled:(_Bool)arg1;
-- (id)init;
 
 @end
 

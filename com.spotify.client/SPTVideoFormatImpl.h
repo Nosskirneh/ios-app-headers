@@ -6,11 +6,11 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTVideoFormat-Protocol.h"
+#import "BMVideoFormat-Protocol.h"
 
 @class AVPlayerItemAccessLogEvent, NSString, SPTVideoManifestProfile;
 
-@interface SPTVideoFormatImpl : NSObject <SPTVideoFormat>
+@interface SPTVideoFormatImpl : NSObject <BMVideoFormat>
 {
     SPTVideoManifestProfile *_videoProfile;
     AVPlayerItemAccessLogEvent *_accessLogEvent;

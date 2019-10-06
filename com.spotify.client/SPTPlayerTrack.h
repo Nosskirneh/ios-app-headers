@@ -42,6 +42,7 @@
 @property(readonly, nonatomic, getter=isSkippableAdvertisement) _Bool skippableAdvertisement;
 @property(readonly, nonatomic, getter=isPodcastAdvertisement) _Bool podcastAdvertisement;
 @property(readonly, nonatomic, getter=isAdvertisement) _Bool advertisement;
+@property(readonly, nonatomic, getter=isAdvertisementOrInterruption) _Bool advertisementOrInterruption;
 - (id)getContributingArtistNameAtIndex:(unsigned long long)arg1 fromTrackMetadata:(id)arg2;
 - (id)getMainArtistNameFromTrackMetadata:(id)arg1;
 - (id)getArtistsFromTrackMetadata:(id)arg1;

@@ -34,6 +34,7 @@
 - (void)presentMenuForSongAtIndexPath:(NSIndexPath *)arg1 withSenderControl:(UIControl *)arg2 andLogContext:(NSString *)arg3;
 - (void)setAvailableOffline:(_Bool)arg1;
 - (_Bool)isAdditionalControlsSection:(unsigned long long)arg1;
+- (_Bool)hasSectionViewModelAtIndex:(unsigned long long)arg1;
 - (id <SPTFreeTierCollectionSongsSectionViewModel>)sectionViewModelAtIndex:(unsigned long long)arg1;
 - (void)itemSelectedAtIndexPath:(NSIndexPath *)arg1;
 - (id <SPTFreeTierCollectionPreviewableItemViewModel>)itemAtIndexPath:(NSIndexPath *)arg1;

@@ -55,7 +55,6 @@
 - (id)displayedImageURL;
 - (void)addLayoutConstraints;
 - (void)viewDidLoad;
-- (void)viewWillDisappear:(_Bool)arg1;
 - (id)initWithGLUEImageLoader:(id)arg1 theme:(id)arg2 logger:(id)arg3 stateProvider:(id)arg4;
 
 // Remaining properties

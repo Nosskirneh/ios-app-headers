@@ -23,7 +23,6 @@
 + (struct CGPoint)floorForPoint:(struct CGPoint)arg1;
 + (struct CGSize)ceilForSize:(struct CGSize)arg1;
 + (struct CGPoint)ceilForPoint:(struct CGPoint)arg1;
-- (id)init;
 
 @end
 

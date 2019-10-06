@@ -10,7 +10,7 @@
 #import "SPTVideoResourceLoaderInternal-Protocol.h"
 
 @class NSMutableSet, NSString, NSURL, SPTSpotifyVideoHLSDataFactory, SPTVideoApplicationStateObservable, SPTVideoCDNSelector, SPTVideoManifest, SPTVideoManifestResourceLoader;
-@protocol SPTVideoPlaybackIdentity, SPTVideoResourceLoaderInternalDelegate, SPTVideoResourceRequestFactory, SPTVideoSubtitleManager;
+@protocol BMPlaybackIdentity, SPTVideoResourceLoaderInternalDelegate, SPTVideoResourceRequestFactory;
 
 @interface SPTSpotifyVideoResourceLoader : NSObject <SPTVideoApplicationStateObserver, SPTVideoResourceLoaderInternal>
 {
@@ -21,20 +21,18 @@
     id <SPTVideoResourceRequestFactory> _resourceRequestFactory;
     SPTVideoManifest *_manifest;
     SPTVideoCDNSelector *_cdnSelector;
-    id <SPTVideoPlaybackIdentity> _identity;
+    id <BMPlaybackIdentity> _identity;
     NSMutableSet *_requests;
     SPTVideoManifestResourceLoader *_manifestResourceLoader;
     SPTVideoApplicationStateObservable *_appStateObservable;
     SPTSpotifyVideoHLSDataFactory *_hlsDataFactory;
-    id <SPTVideoSubtitleManager> _subtitleManager;
 }
 
-@property(retain, nonatomic) id <SPTVideoSubtitleManager> subtitleManager; // @synthesize subtitleManager=_subtitleManager;
 @property(retain, nonatomic) SPTSpotifyVideoHLSDataFactory *hlsDataFactory; // @synthesize hlsDataFactory=_hlsDataFactory;
 @property(retain, nonatomic) SPTVideoApplicationStateObservable *appStateObservable; // @synthesize appStateObservable=_appStateObservable;
 @property(retain, nonatomic) SPTVideoManifestResourceLoader *manifestResourceLoader; // @synthesize manifestResourceLoader=_manifestResourceLoader;
 @property(retain, nonatomic) NSMutableSet *requests; // @synthesize requests=_requests;
-@property(retain, nonatomic) id <SPTVideoPlaybackIdentity> identity; // @synthesize identity=_identity;
+@property(retain, nonatomic) id <BMPlaybackIdentity> identity; // @synthesize identity=_identity;
 @property(retain, nonatomic) SPTVideoCDNSelector *cdnSelector; // @synthesize cdnSelector=_cdnSelector;
 @property(retain, nonatomic) SPTVideoManifest *manifest; // @synthesize manifest=_manifest;
 @property(retain, nonatomic) id <SPTVideoResourceRequestFactory> resourceRequestFactory; // @synthesize resourceRequestFactory=_resourceRequestFactory;
@@ -59,7 +57,7 @@
 - (void)prepareManifestResource:(CDUnknownBlockType)arg1;
 - (id)videoProfileForURL:(id)arg1;
 - (id)URLForAsset;
-- (id)initWithIdentity:(id)arg1 manifestResourceLoader:(id)arg2 resourceRequestFactory:(id)arg3 cdnSelector:(id)arg4 subtitleManager:(id)arg5 appStateObservable:(id)arg6 hlsDataFactory:(id)arg7;
+- (id)initWithIdentity:(id)arg1 manifestResourceLoader:(id)arg2 resourceRequestFactory:(id)arg3 cdnSelector:(id)arg4 appStateObservable:(id)arg5 hlsDataFactory:(id)arg6;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

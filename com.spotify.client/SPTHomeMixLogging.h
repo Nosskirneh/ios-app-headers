@@ -21,6 +21,7 @@
 + (id)logMessageWelcomeLearnMoreTapped:(id)arg1 homeMixState:(id)arg2;
 + (id)logMessageWelcomeListenNowTapped:(id)arg1 homeMixState:(id)arg2;
 + (id)logMessageTasteOnboardingStartTapped:(id)arg1 homeMixState:(id)arg2;
++ (id)logMessageJoinSnackbarTapped:(id)arg1 homeMixState:(id)arg2;
 + (id)logMessageRejoinTapped:(id)arg1 homeMixState:(id)arg2;
 + (id)logMessageTrackFacePileTappedForHomeMixURI:(id)arg1 index:(unsigned long long)arg2 trackURI:(id)arg3 homeMixState:(id)arg4;
 + (id)logMessageTrackContextMenuTappedForHomeMixURI:(id)arg1 index:(unsigned long long)arg2 trackURI:(id)arg3 homeMixState:(id)arg4;

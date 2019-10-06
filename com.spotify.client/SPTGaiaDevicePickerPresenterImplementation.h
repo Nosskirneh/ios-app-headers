@@ -35,8 +35,6 @@
 - (void)logDevicePickerShownFrom:(unsigned long long)arg1;
 - (_Bool)popoverPresentationControllerShouldDismissPopover:(id)arg1;
 - (void)presentPopoverControllerFromView:(id)arg1;
-- (void)presentDevicePickerPopOverFromView:(id)arg1 fromContext:(unsigned long long)arg2;
-- (void)presentDevicePickerFromContext:(unsigned long long)arg1;
 - (void)presentDevicePickerFromView:(id)arg1 withContext:(unsigned long long)arg2;
 @property(readonly, nonatomic) _Bool hasAvailableDevices;
 - (id)initWithConnectManager:(id)arg1 deviceConfiguration:(id)arg2 modalPresentationController:(id)arg3 devicePickerProvider:(id)arg4 offlineModeState:(id)arg5 logger:(id)arg6 theme:(id)arg7;

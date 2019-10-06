@@ -27,7 +27,7 @@
 + (_Bool)shouldAddShuffleBadgeForSubtitle:(id)arg1;
 + (_Bool)shouldAddShuffleBadgeForTitle:(id)arg1;
 + (id)attributedSubtitleForModel:(id)arg1 theme:(id)arg2;
-+ (id)attributedTitleForModel:(id)arg1 theme:(id)arg2 textAlignment:(long long)arg3;
++ (id)attributedTitleForModel:(id)arg1 theme:(id)arg2 textAlignment:(long long)arg3 type:(unsigned long long)arg4;
 + (struct CGSize)preferredSizeForModel:(id)arg1 containerViewSize:(struct CGSize)arg2 theme:(id)arg3 type:(unsigned long long)arg4;
 @property(retain, nonatomic) UITapGestureRecognizer *tapGestureRecognizer; // @synthesize tapGestureRecognizer=_tapGestureRecognizer;
 @property(readonly, nonatomic) SPTHomeUICardView *cardView; // @synthesize cardView=_cardView;

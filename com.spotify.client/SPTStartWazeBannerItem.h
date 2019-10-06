@@ -10,17 +10,19 @@
 #import "SPTBannerViewDelegate-Protocol.h"
 
 @class NSString, SPTBannerView;
-@protocol SPTBannerViewDelegate;
+@protocol SPTBannerViewDelegate, SPTPartnerService;
 
 @interface SPTStartWazeBannerItem : SPTBannerItem <SPTBannerViewDelegate, SPTBannerItemCustomView>
 {
     id <SPTBannerViewDelegate> _delegate;
+    id <SPTPartnerService> _partnerService;
 }
 
+@property(readonly, nonatomic) __weak id <SPTPartnerService> partnerService; // @synthesize partnerService=_partnerService;
 @property(readonly, nonatomic) __weak id <SPTBannerViewDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
 @property(readonly, nonatomic) SPTBannerView *bannerView;
-- (id)initWithDelegate:(id)arg1;
+- (id)initWithDelegate:(id)arg1 partnerService:(id)arg2;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

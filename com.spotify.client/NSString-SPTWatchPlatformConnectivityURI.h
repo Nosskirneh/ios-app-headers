@@ -7,6 +7,9 @@
 #import <Foundation/NSString.h>
 
 @interface NSString (SPTWatchPlatformConnectivityURI)
++ (id)spt_socketCloseURIForIdentifier:(id)arg1;
++ (id)spt_socketWriteURIForIdentifier:(id)arg1;
++ (id)spt_socketConnectURI;
 + (id)spt_seekURI;
 + (id)spt_setPlaybackSpeedURI;
 + (id)spt_playbackSpeedStateURI;
@@ -28,7 +31,11 @@
 + (id)spt_collectionRemoveURI;
 + (id)spt_collectionAddURI;
 + (id)spt_collectionItemStateURI;
++ (id)spt_authorizationRequest;
 + (id)spt_pingURI;
+- (_Bool)spt_isSocketCloseURIForIdentifier:(id)arg1;
+- (_Bool)spt_isSocketWriteURIForIdentifier:(id)arg1;
+@property(readonly, nonatomic) _Bool spt_isSocketConnectURI;
 @property(readonly, nonatomic) _Bool spt_isSeekURI;
 @property(readonly, nonatomic) _Bool spt_isSetPlaybackSpeedURI;
 @property(readonly, nonatomic) _Bool spt_isPlaybackSpeedStateURI;
@@ -50,6 +57,7 @@
 @property(readonly, nonatomic) _Bool spt_isCollectionRemoveURI;
 @property(readonly, nonatomic) _Bool spt_isCollectionAddURI;
 @property(readonly, nonatomic) _Bool spt_isCollectionItemStateURI;
+- (_Bool)spt_isAuthorizationRequest;
 @property(readonly, nonatomic) _Bool spt_isPingURI;
 @end
 

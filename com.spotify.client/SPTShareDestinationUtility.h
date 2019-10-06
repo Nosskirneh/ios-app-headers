@@ -13,14 +13,12 @@
     id <SPTShareTestManager> _testManager;
 }
 
++ (id)buildDeeplinkURLWithShareText:(id)arg1 forDestination:(id)arg2;
 @property(retain, nonatomic) id <SPTShareTestManager> testManager; // @synthesize testManager=_testManager;
 - (void).cxx_destruct;
-- (_Bool)tikTokSharingAllowedForEntityURI:(id)arg1;
-- (_Bool)legacyFacebookAllowedForEntityURI:(id)arg1;
-- (_Bool)facebookStoriesAllowedForEntityURI:(id)arg1;
-- (_Bool)instagramAllowedForEntityURI:(id)arg1;
-- (_Bool)snapchatAllowedForEntityURI:(id)arg1;
-- (_Bool)destinationAllowedForEntityURI:(id)arg1 shareDestination:(id)arg2;
+- (_Bool)isStoryCompatableURI:(id)arg1;
+- (_Bool)isDestination:(id)arg1 allowedForEntityURI:(id)arg2;
+- (id)availableShareDestinationsForEntityURI:(id)arg1;
 - (id)initWithTestManager:(id)arg1;
 
 @end

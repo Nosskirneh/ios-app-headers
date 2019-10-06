@@ -10,7 +10,7 @@
 #import "SPTVideoFeature-Protocol.h"
 
 @class NSString, SPTAllocationContext, SPTVideoCDNLogger;
-@protocol SPTAbbaService, SPTAudioPlayerMediaClockService, SPTContainerService, SPTCoreService, SPTNetworkService, SPTSessionService, SPTVideoFeaturePlayerFactory;
+@protocol SPTAbbaService, SPTAudioPlayerMediaClockService, SPTContainerService, SPTCoreService, SPTEventSenderService, SPTNetworkService, SPTSessionService, SPTVideoFeaturePlayerFactory;
 
 @interface SPTVideoFeatureImplementation : NSObject <SPTService, SPTVideoFeature>
 {
@@ -20,6 +20,7 @@
     id <SPTCoreService> _coreService;
     id <SPTNetworkService> _networkFeature;
     id <SPTAudioPlayerMediaClockService> _audioPlayerMediaClockService;
+    id <SPTEventSenderService> _eventSenderService;
     id <SPTVideoFeaturePlayerFactory> _playerFactory;
     SPTVideoCDNLogger *_videoCDNLogger;
 }
@@ -27,6 +28,7 @@
 + (id)serviceIdentifier;
 @property(retain, nonatomic) SPTVideoCDNLogger *videoCDNLogger; // @synthesize videoCDNLogger=_videoCDNLogger;
 @property(retain, nonatomic) id <SPTVideoFeaturePlayerFactory> playerFactory; // @synthesize playerFactory=_playerFactory;
+@property(nonatomic) __weak id <SPTEventSenderService> eventSenderService; // @synthesize eventSenderService=_eventSenderService;
 @property(nonatomic) __weak id <SPTAudioPlayerMediaClockService> audioPlayerMediaClockService; // @synthesize audioPlayerMediaClockService=_audioPlayerMediaClockService;
 @property(nonatomic) __weak id <SPTNetworkService> networkFeature; // @synthesize networkFeature=_networkFeature;
 @property(nonatomic) __weak id <SPTCoreService> coreService; // @synthesize coreService=_coreService;

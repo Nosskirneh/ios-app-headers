@@ -27,6 +27,7 @@
 - (void)logTwitterActionCancelledWithSessionId:(id)arg1 shareData:(id)arg2;
 - (void)logTwitterActionSucceededWithSessionId:(id)arg1 shareData:(id)arg2 shareBrowselinkId:(id)arg3;
 - (void)logFacebookActionCancelledWithSessionId:(id)arg1 shareData:(id)arg2;
+- (void)logFacebookActionFailedWithSessionId:(id)arg1 shareData:(id)arg2 shareBrowselinkId:(id)arg3;
 - (void)logFacebookActionSucceededWithSessionId:(id)arg1 shareData:(id)arg2 shareBrowselinkId:(id)arg3;
 - (void)logEmailActionFailedWithSessionId:(id)arg1 shareData:(id)arg2;
 - (void)logEmailActionCancelledWithSessionId:(id)arg1 shareData:(id)arg2;

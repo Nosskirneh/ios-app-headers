@@ -61,10 +61,13 @@
 @property(readonly, nonatomic) double contentBottomLayoutGuide;
 - (void)setOverlayHidden:(_Bool)arg1 animated:(_Bool)arg2 completionHandler:(CDUnknownBlockType)arg3;
 @property(nonatomic) _Bool overlayHidden;
-- (void)setBarHidden:(_Bool)arg1 animated:(_Bool)arg2;
+- (void)setBarHidden:(_Bool)arg1 animated:(_Bool)arg2 completion:(CDUnknownBlockType)arg3;
 - (void)showBarAnimated:(_Bool)arg1 completion:(CDUnknownBlockType)arg2;
 - (void)tearDownTabBarSnapshot:(id)arg1;
 - (id)setupTabBarSnapshot;
+- (void)addNowPlayingBarToAttachmentViewController;
+- (void)setNowPlayingBarHeight;
+- (void)refreshBarHeight;
 - (void)bounceBar;
 - (void)hideBarAnimated:(_Bool)arg1;
 - (void)bounceBarWithCompletion:(CDUnknownBlockType)arg1;

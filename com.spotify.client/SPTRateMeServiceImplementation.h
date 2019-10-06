@@ -9,7 +9,7 @@
 #import "SPTRateMeService-Protocol.h"
 
 @class NSString, SPTAllocationContext, SPTRateMeController;
-@protocol SPTAccountService, SPTContainerUIService, SPTPlayerFeature, SPTSessionService, SPTSettingsFeature, SPTURIDispatchService;
+@protocol SPTAccountService, SPTContainerUIService, SPTPartnerService, SPTPlayerFeature, SPTSessionService, SPTSettingsFeature, SPTURIDispatchService;
 
 @interface SPTRateMeServiceImplementation : NSObject <SPTRateMeService>
 {
@@ -19,11 +19,13 @@
     id <SPTPlayerFeature> _playerFeature;
     id <SPTURIDispatchService> _URIDispatchService;
     id <SPTSettingsFeature> _settingsFeature;
+    id <SPTPartnerService> _partnerService;
     SPTRateMeController *_rateMeController;
 }
 
 + (id)serviceIdentifier;
 @property(retain, nonatomic) SPTRateMeController *rateMeController; // @synthesize rateMeController=_rateMeController;
+@property(nonatomic) __weak id <SPTPartnerService> partnerService; // @synthesize partnerService=_partnerService;
 @property(nonatomic) __weak id <SPTSettingsFeature> settingsFeature; // @synthesize settingsFeature=_settingsFeature;
 @property(nonatomic) __weak id <SPTURIDispatchService> URIDispatchService; // @synthesize URIDispatchService=_URIDispatchService;
 @property(nonatomic) __weak id <SPTPlayerFeature> playerFeature; // @synthesize playerFeature=_playerFeature;

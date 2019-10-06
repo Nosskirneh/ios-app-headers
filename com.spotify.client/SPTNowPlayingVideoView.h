@@ -6,14 +6,14 @@
 
 #import <UIKit/UIView.h>
 
+#import "BMVideoSurfaceDelegate-Protocol.h"
 #import "SPTThemableView-Protocol.h"
-#import "SPTVideoSurfaceDelegate-Protocol.h"
 #import "UIGestureRecognizerDelegate-Protocol.h"
 
 @class NSLayoutConstraint, NSString, SPTNowPlayingDurationViewV2, SPTNowPlayingHeadUnitView, SPTNowPlayingNavigationBarView, SPTNowPlayingNavigationButtonsView, SPTNowPlayingVideoFooterView, SPTNowPlayingVideoHeaderView, SPTTheme, UIActivityIndicatorView;
-@protocol SPTNowPlayingVideoViewV2Delegate, SPTThemableViewLayoutDelegate, SPTVideoSurface;
+@protocol BMVideoSurface, SPTNowPlayingVideoViewV2Delegate, SPTThemableViewLayoutDelegate;
 
-@interface SPTNowPlayingVideoView : UIView <SPTVideoSurfaceDelegate, UIGestureRecognizerDelegate, SPTThemableView>
+@interface SPTNowPlayingVideoView : UIView <BMVideoSurfaceDelegate, UIGestureRecognizerDelegate, SPTThemableView>
 {
     _Bool _controlsContainerHidden;
     _Bool _useAdvertisementControls;
@@ -22,7 +22,7 @@
     SPTNowPlayingNavigationBarView *_headerTitleView;
     SPTNowPlayingNavigationButtonsView *_headerButtonsView;
     SPTNowPlayingHeadUnitView *_headUnitView;
-    UIView<SPTVideoSurface> *_videoSurface;
+    UIView<BMVideoSurface> *_videoSurface;
     SPTNowPlayingDurationViewV2 *_durationView;
     UIActivityIndicatorView *_loadingActivityIndicatorView;
     SPTTheme *_theme;
@@ -54,7 +54,7 @@
 @property(nonatomic) _Bool useAdvertisementControls; // @synthesize useAdvertisementControls=_useAdvertisementControls;
 @property(readonly, nonatomic) UIActivityIndicatorView *loadingActivityIndicatorView; // @synthesize loadingActivityIndicatorView=_loadingActivityIndicatorView;
 @property(readonly, nonatomic) SPTNowPlayingDurationViewV2 *durationView; // @synthesize durationView=_durationView;
-@property(readonly, nonatomic) UIView<SPTVideoSurface> *videoSurface; // @synthesize videoSurface=_videoSurface;
+@property(readonly, nonatomic) UIView<BMVideoSurface> *videoSurface; // @synthesize videoSurface=_videoSurface;
 @property(readonly, nonatomic) SPTNowPlayingHeadUnitView *headUnitView; // @synthesize headUnitView=_headUnitView;
 @property(readonly, nonatomic) SPTNowPlayingNavigationButtonsView *headerButtonsView; // @synthesize headerButtonsView=_headerButtonsView;
 @property(readonly, nonatomic) SPTNowPlayingNavigationBarView *headerTitleView; // @synthesize headerTitleView=_headerTitleView;

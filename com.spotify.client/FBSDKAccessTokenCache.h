@@ -8,17 +8,17 @@
 
 #import "FBSDKAccessTokenCaching-Protocol.h"
 
-@class NSString;
+@class FBSDKAccessToken, FBSDKKeychainStore, NSString;
 
 @interface FBSDKAccessTokenCache : NSObject <FBSDKAccessTokenCaching>
 {
+    FBSDKKeychainStore *_keychainStore;
 }
 
-+ (id)deprecatedCacheClasses;
-+ (void)resetV3CacheChecks;
+- (void).cxx_destruct;
 - (void)clearCache;
-- (void)cacheAccessToken:(id)arg1;
-- (id)fetchAccessToken;
+@property(copy, nonatomic) FBSDKAccessToken *accessToken;
+- (id)init;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

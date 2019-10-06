@@ -29,11 +29,13 @@
 - (void)cellConfigurator:(id)arg1 likeIconButtonTapped:(id)arg2;
 - (void)cellConfigurator:(id)arg1 contextMenuIconButtonTapped:(id)arg2;
 - (void)cellConfigurator:(id)arg1 banIconButtonTapped:(id)arg2;
-- (_Bool)tableView:(id)arg1 didSelectRowAtIndexPath:(id)arg2;
+- (void)didEndDisplayingPlaylistCell:(id)arg1 forRowAtIndexPath:(id)arg2;
+- (void)willDisplayPlaylistCell:(id)arg1 forRowAtIndexPath:(id)arg2;
+- (_Bool)didSelectPlaylistCell:(id)arg1 atIndexPath:(id)arg2;
 - (id)reuseIdentifiers;
 - (id)identifierForCellForRowAtIndexPath:(id)arg1;
 - (double)heightForRowAtIndexPath:(id)arg1;
-- (void)configureCell:(id)arg1 forRowAtIndexPath:(id)arg2;
+- (void)configurePlaylistCell:(id)arg1 forRowAtIndexPath:(id)arg2;
 - (id)initWithCellConfigurator:(id)arg1 itemsViewModel:(id)arg2 playlistViewModel:(id)arg3;
 
 // Remaining properties

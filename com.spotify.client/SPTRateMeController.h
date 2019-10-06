@@ -8,7 +8,7 @@
 
 #import "SPTPlayerObserver-Protocol.h"
 
-@class NSMutableArray, NSString;
+@class NSArray, NSMutableArray, NSString;
 @protocol SPTAccountProductInformationController, SPTAlertController, SPTLinkDispatcher, SPTLocalSettings, SPTPlayer, SPTProductState;
 
 @interface SPTRateMeController : NSObject <SPTPlayerObserver>
@@ -21,8 +21,10 @@
     id <SPTPlayer> _player;
     NSMutableArray *_requirementSets;
     id <SPTAccountProductInformationController> _productInformationController;
+    NSArray *_partnerNavigationIntegrations;
 }
 
+@property(readonly, nonatomic) NSArray *partnerNavigationIntegrations; // @synthesize partnerNavigationIntegrations=_partnerNavigationIntegrations;
 @property(readonly, nonatomic) id <SPTAccountProductInformationController> productInformationController; // @synthesize productInformationController=_productInformationController;
 @property(nonatomic, getter=isShowingAlert) _Bool showingAlert; // @synthesize showingAlert=_showingAlert;
 @property(readonly, nonatomic) NSMutableArray *requirementSets; // @synthesize requirementSets=_requirementSets;
@@ -33,7 +35,7 @@
 @property(readonly, nonatomic) id <SPTProductState> productState; // @synthesize productState=_productState;
 - (void).cxx_destruct;
 - (void)applicationWillResignActiveNotification:(id)arg1;
-- (void)applicationWillEnterForegroundNotification:(id)arg1;
+- (void)applicationDidBecomeActiveNotification:(id)arg1;
 - (void)player:(id)arg1 stateDidChange:(id)arg2 fromState:(id)arg3;
 - (void)addRequirementSet:(id)arg1;
 - (void)cancelShowingAlert;
@@ -43,7 +45,7 @@
 - (void)actionRate;
 - (_Bool)allRequirementsMet;
 - (void)applyDefaults;
-- (id)initWithProductState:(id)arg1 productInformationController:(id)arg2 localSettings:(id)arg3 linkDispatcher:(id)arg4 alertController:(id)arg5 player:(id)arg6;
+- (id)initWithProductState:(id)arg1 productInformationController:(id)arg2 localSettings:(id)arg3 linkDispatcher:(id)arg4 alertController:(id)arg5 player:(id)arg6 partnerNavigationIntegrations:(id)arg7;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

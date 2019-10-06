@@ -25,7 +25,6 @@
 - (void)makeFriendsWithFirst:(id)arg1 second:(id)arg2 callback:(CDUnknownBlockType)arg3;
 - (void)addTestAccountWithPermissions:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (void)requestTestAccountTokensWithArraysOfPermissions:(id)arg1 createIfNotFound:(_Bool)arg2 completionHandler:(CDUnknownBlockType)arg3;
-- (id)init;
 - (id)initWithAppID:(id)arg1 appSecret:(id)arg2;
 
 @end

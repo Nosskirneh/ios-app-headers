@@ -6,11 +6,11 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTVideoPlayOptions-Protocol.h"
+#import "BMPlayOptions-Protocol.h"
 
 @class NSString;
 
-@interface SPTVideoCoordinatorPlayOptions : NSObject <SPTVideoPlayOptions>
+@interface SPTVideoCoordinatorPlayOptions : NSObject <BMPlayOptions>
 {
     _Bool _playWhenReady;
     double _initialPosition;

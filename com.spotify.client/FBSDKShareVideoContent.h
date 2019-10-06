@@ -8,7 +8,7 @@
 
 #import "FBSDKSharingContent-Protocol.h"
 
-@class FBSDKHashtag, FBSDKSharePhoto, FBSDKShareVideo, NSArray, NSString, NSURL;
+@class FBSDKHashtag, FBSDKShareVideo, NSArray, NSString, NSURL;
 
 @interface FBSDKShareVideoContent : NSObject <FBSDKSharingContent>
 {
@@ -19,13 +19,11 @@
     NSString *_ref;
     NSString *_pageID;
     NSString *_shareUUID;
-    FBSDKSharePhoto *_previewPhoto;
     FBSDKShareVideo *_video;
 }
 
 + (_Bool)supportsSecureCoding;
 @property(copy, nonatomic) FBSDKShareVideo *video; // @synthesize video=_video;
-@property(copy, nonatomic) FBSDKSharePhoto *previewPhoto; // @synthesize previewPhoto=_previewPhoto;
 @property(readonly, copy, nonatomic) NSString *shareUUID; // @synthesize shareUUID=_shareUUID;
 @property(copy, nonatomic) NSString *pageID; // @synthesize pageID=_pageID;
 @property(copy, nonatomic) NSString *ref; // @synthesize ref=_ref;
@@ -40,6 +38,8 @@
 - (_Bool)isEqualToShareVideoContent:(id)arg1;
 - (_Bool)isEqual:(id)arg1;
 @property(readonly) unsigned long long hash;
+- (_Bool)validateWithOptions:(unsigned long long)arg1 error:(id *)arg2;
+- (id)addParameters:(id)arg1 bridgeOptions:(unsigned long long)arg2;
 - (id)init;
 
 // Remaining properties

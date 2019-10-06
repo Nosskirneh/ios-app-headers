@@ -9,8 +9,8 @@
 @class NSDictionary, NSString;
 
 @protocol FBSDKButtonImpressionTracking <NSObject>
-- (NSString *)impressionTrackingIdentifier;
-- (NSString *)impressionTrackingEventName;
-- (NSDictionary *)analyticsParameters;
+@property(readonly, copy, nonatomic) NSString *impressionTrackingIdentifier;
+@property(readonly, copy, nonatomic) NSString *impressionTrackingEventName;
+@property(readonly, copy, nonatomic) NSDictionary *analyticsParameters;
 @end
 

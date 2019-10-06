@@ -18,6 +18,7 @@
     _Bool _shouldPerformRequest;
     _Bool _isCancelled;
     id <SPTAuthRequestDelegate> _delegate;
+    NSString *_identifier;
     id <SPTContainerUIService> _containerUIService;
     SPTAuthAccountsRequest *_accountsRequest;
     NSTimer *_authenticationTimeoutTimer;
@@ -37,6 +38,7 @@
 @property(retain, nonatomic) SPTAuthAccountsRequest *accountsRequest; // @synthesize accountsRequest=_accountsRequest;
 @property(nonatomic) __weak id <SPTContainerUIService> containerUIService; // @synthesize containerUIService=_containerUIService;
 @property(nonatomic) _Bool shouldDoSilentAuth; // @synthesize shouldDoSilentAuth=_shouldDoSilentAuth;
+@property(copy, nonatomic) NSString *identifier; // @synthesize identifier=_identifier;
 @property(nonatomic) __weak id <SPTAuthRequestDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
 - (void)authViewControllerUserDidCancel:(id)arg1;

@@ -8,15 +8,19 @@
 
 #import "SPTGaiaDevicePickerDeviceSpecificConfigurationProvider-Protocol.h"
 
-@class NSString;
+@class NSString, UIViewController;
 
 @interface SPTGaiaDevicePickerDeviceSpecificConfigurationManager : NSObject <SPTGaiaDevicePickerDeviceSpecificConfigurationProvider>
 {
+    UIViewController *_mainViewController;
 }
 
+@property(nonatomic) __weak UIViewController *mainViewController; // @synthesize mainViewController=_mainViewController;
+- (void).cxx_destruct;
 @property(readonly, nonatomic) _Bool devicePickerCanBeAccessedAsStandalonePage;
 @property(readonly, nonatomic) _Bool devicePickerWantsPopoverPresentation;
 @property(readonly, nonatomic) _Bool devicePickerWantsLightTheme;
+- (id)initWithMainViewController:(id)arg1;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

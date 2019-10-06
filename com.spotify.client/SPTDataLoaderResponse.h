@@ -35,6 +35,7 @@
 - (_Bool)shouldRetry;
 - (id)initWithRequest:(id)arg1 response:(id)arg2;
 - (long long)spt_browseViewModelFetcherErrorCode;
+- (long long)spt_podcastBrowseViewModelFetcherErrorCode;
 @property(readonly, nonatomic) NSString *searchAutocompleteRequestId;
 @property(readonly, nonatomic) NSArray *suggestions;
 

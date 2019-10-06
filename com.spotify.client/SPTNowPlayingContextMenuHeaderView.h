@@ -44,7 +44,7 @@
 - (id)createButtonLabel;
 - (void)setupShuffleButton;
 - (void)setupStackView;
-- (id)initWithTheme:(id)arg1 queueHidden:(_Bool)arg2;
+- (id)initWithTheme:(id)arg1;
 
 @end
 

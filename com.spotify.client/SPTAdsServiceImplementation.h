@@ -10,7 +10,7 @@
 #import "SPTAdFeatureFlagChecksObserver-Protocol.h"
 #import "SPTAdsService-Protocol.h"
 
-@class NSString, NSURL, SPTAdContextManager, SPTAdContextManagerListener, SPTAdFeatureFlagChecks, SPTAdFeaturedActionHandler, SPTAdFocusManager, SPTAdLinkHandler, SPTAdMicPermissionsLogger, SPTAdMobileOverlayController, SPTAdNPVModeCreator, SPTAdNowPlayingFeedbackModel, SPTAdNowPlayingManager, SPTAdPlayerObservable, SPTAdRegistryInformationManager, SPTAdRulesManager, SPTAdStateLogger, SPTAdVideoEventReporter, SPTAdVoicePermissions, SPTAdVoiceSession, SPTAdsAutoDetectionController, SPTAdsFeatureProperties, SPTAdsInAppBrowserController, SPTAdsLogger, SPTAdsMarqueeController, SPTAdsMoatManager, SPTAdsViewModel, SPTAllocationContext, SPTInterruptionVideoEventReporter, SPTSponsoredContextManager;
+@class NSString, NSURL, SPTAdContextManager, SPTAdContextManagerListener, SPTAdFeatureFlagChecks, SPTAdFeaturedActionHandler, SPTAdFocusManager, SPTAdLinkHandler, SPTAdMicPermissionsLogger, SPTAdMobileOverlayController, SPTAdNowPlayingAudioAdModeGenerator, SPTAdNowPlayingFeedbackModel, SPTAdNowPlayingManager, SPTAdNowPlayingVideoAdModeGenerator, SPTAdPlayerObservable, SPTAdRegistryInformationManager, SPTAdRulesManager, SPTAdStateLogger, SPTAdVideoEventReporter, SPTAdVoicePermissions, SPTAdVoiceSession, SPTAdsAutoDetectionController, SPTAdsFeatureProperties, SPTAdsInAppBrowserController, SPTAdsMarqueeController, SPTAdsMoatManager, SPTAdsViewModel, SPTAllocationContext, SPTInterruptionVideoEventReporter, SPTSponsoredContextManager;
 @protocol FollowFeature, GaiaFeature, SPContextMenuFeature, SPTAbbaService, SPTAccessoryManagerService, SPTAdsBaseService, SPTAdsManager, SPTBannerFeature, SPTCollectionPlatformService, SPTComScoreAnalyticsManager, SPTContainerService, SPTContainerUIService, SPTCoreService, SPTDebugService, SPTEventSender, SPTEventSenderService, SPTExternalIntegrationDriverDistractionService, SPTGLUEService, SPTInAppMessageService, SPTLocalSettings, SPTNetworkService, SPTNowPlayingPlatformService, SPTPlayer, SPTPlayerFeature, SPTPlaylistPlatformService, SPTRemoteConfigurationResolver, SPTRemoteConfigurationService, SPTResolver, SPTSessionService, SPTSettingsFeature, SPTSnackbarService, SPTUIPresentationService, SPTURIDispatchService, SPTVideoCoordinatorService, SPTVoiceService, SPTWebViewFeature, SlateFeature;
 
 @interface SPTAdsServiceImplementation : NSObject <SPTAdFeatureFlagChecksObserver, SPSessionObserver, SPTAdsService>
@@ -53,7 +53,8 @@
     SPTAdVideoEventReporter *_videoEventReporter;
     SPTInterruptionVideoEventReporter *_interruptionEventReporter;
     SPTAdsMoatManager *_moatManager;
-    SPTAdNPVModeCreator *_adNPVModeCreator;
+    SPTAdNowPlayingAudioAdModeGenerator *_audioAdModeGenerator;
+    SPTAdNowPlayingVideoAdModeGenerator *_videoAdModeGenerator;
     SPTAdPlayerObservable *_adPlayerObserver;
     id <SPTNowPlayingPlatformService> _nowPlayingPlatformService;
     id <SPTSnackbarService> _snackbarService;
@@ -61,7 +62,6 @@
     SPTAdVoiceSession *_adVoiceSession;
     SPTAdVoicePermissions *_voicePermission;
     SPTAdStateLogger *_adStateLogger;
-    SPTAdsLogger *_logger;
     id <SPTComScoreAnalyticsManager> _comScoreAnalyticsManager;
     id <SPTRemoteConfigurationResolver> _remoteConfigurationResolver;
     SPTAdsFeatureProperties *_featureProperties;
@@ -101,7 +101,6 @@
 @property(retain, nonatomic) SPTAdsFeatureProperties *featureProperties; // @synthesize featureProperties=_featureProperties;
 @property(retain, nonatomic) id <SPTRemoteConfigurationResolver> remoteConfigurationResolver; // @synthesize remoteConfigurationResolver=_remoteConfigurationResolver;
 @property(retain, nonatomic) id <SPTComScoreAnalyticsManager> comScoreAnalyticsManager; // @synthesize comScoreAnalyticsManager=_comScoreAnalyticsManager;
-@property(retain, nonatomic) SPTAdsLogger *logger; // @synthesize logger=_logger;
 @property(retain, nonatomic) SPTAdStateLogger *adStateLogger; // @synthesize adStateLogger=_adStateLogger;
 @property(nonatomic) _Bool partnerPreferencesSettingsSectionRegistered; // @synthesize partnerPreferencesSettingsSectionRegistered=_partnerPreferencesSettingsSectionRegistered;
 @property(retain, nonatomic) SPTAdVoicePermissions *voicePermission; // @synthesize voicePermission=_voicePermission;
@@ -110,7 +109,8 @@
 @property(nonatomic) __weak id <SPTSnackbarService> snackbarService; // @synthesize snackbarService=_snackbarService;
 @property(retain, nonatomic) id <SPTNowPlayingPlatformService> nowPlayingPlatformService; // @synthesize nowPlayingPlatformService=_nowPlayingPlatformService;
 @property(retain, nonatomic) SPTAdPlayerObservable *adPlayerObserver; // @synthesize adPlayerObserver=_adPlayerObserver;
-@property(retain, nonatomic) SPTAdNPVModeCreator *adNPVModeCreator; // @synthesize adNPVModeCreator=_adNPVModeCreator;
+@property(retain, nonatomic) SPTAdNowPlayingVideoAdModeGenerator *videoAdModeGenerator; // @synthesize videoAdModeGenerator=_videoAdModeGenerator;
+@property(retain, nonatomic) SPTAdNowPlayingAudioAdModeGenerator *audioAdModeGenerator; // @synthesize audioAdModeGenerator=_audioAdModeGenerator;
 @property(retain, nonatomic) SPTAdsMoatManager *moatManager; // @synthesize moatManager=_moatManager;
 @property(retain, nonatomic) SPTInterruptionVideoEventReporter *interruptionEventReporter; // @synthesize interruptionEventReporter=_interruptionEventReporter;
 @property(retain, nonatomic) SPTAdVideoEventReporter *videoEventReporter; // @synthesize videoEventReporter=_videoEventReporter;
@@ -188,17 +188,19 @@
 - (void)loadMicPermissionsLogger;
 - (void)loadComScoreAnalyticsManager;
 - (void)loadAdPlayerObserver;
-- (void)loadNPVModeCreator;
+- (void)loadAudioModeGenerator;
+- (void)loadVideoModeGenerator;
 - (void)loadMoatManager;
 - (void)loadAdSettings;
 - (void)loadSponsoredContextManager;
-- (void)loadLogger;
 - (void)loadAdStateLogger;
 - (id)loadMarqueeController;
 - (void)loadMobileOverlayController;
 - (void)loadAdContextListner;
 - (void)loadAutoDetectionController;
 @property(readonly, nonatomic) NSURL *playerViewURI;
+- (void)idleStateWasReached;
+- (void)initialViewDidAppear;
 - (void)loadAdsForFeatureFlags:(id)arg1;
 - (void)unload;
 - (void)load;

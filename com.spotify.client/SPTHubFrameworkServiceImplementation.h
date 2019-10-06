@@ -6,13 +6,12 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTHubFrameworkService-Protocol.h"
 #import "SPTService-Protocol.h"
 
 @class NSString, SPTAllocationContext, SPTHubsRendererFactoryImplementation;
-@protocol CosmosFeature, SPContextMenuFeature, SPTContainerService, SPTGLUEService, SPTInteractionSenderService, SPTNetworkService, SPTPerformanceMetricsService, SPTPlayerFeature, SPTSessionService, SPTShareFeature, SPTURIDispatchService;
+@protocol CosmosFeature, SPContextMenuFeature, SPTContainerService, SPTGLUEService, SPTNetworkService, SPTPerformanceMetricsService, SPTPlayerFeature, SPTSessionService, SPTShareFeature, SPTURIDispatchService, SPTUserBehaviourInstrumentationService;
 
-@interface SPTHubFrameworkServiceImplementation : NSObject <SPTService, SPTHubFrameworkService>
+@interface SPTHubFrameworkServiceImplementation : NSObject <SPTService>
 {
     id <SPTGLUEService> _glueService;
     id <SPTNetworkService> _networkService;
@@ -23,7 +22,7 @@
     id <SPTSessionService> _sessionService;
     id <SPTPerformanceMetricsService> _performanceMetricsService;
     id <CosmosFeature> _cosmosFeature;
-    id <SPTInteractionSenderService> _interactionSenderService;
+    id <SPTUserBehaviourInstrumentationService> _ubiService;
     id <SPTShareFeature> _shareService;
     SPTHubsRendererFactoryImplementation *_hubsRendererFactory;
 }
@@ -31,7 +30,7 @@
 + (id)serviceIdentifier;
 @property(retain, nonatomic) SPTHubsRendererFactoryImplementation *hubsRendererFactory; // @synthesize hubsRendererFactory=_hubsRendererFactory;
 @property(nonatomic) __weak id <SPTShareFeature> shareService; // @synthesize shareService=_shareService;
-@property(nonatomic) __weak id <SPTInteractionSenderService> interactionSenderService; // @synthesize interactionSenderService=_interactionSenderService;
+@property(nonatomic) __weak id <SPTUserBehaviourInstrumentationService> ubiService; // @synthesize ubiService=_ubiService;
 @property(nonatomic) __weak id <CosmosFeature> cosmosFeature; // @synthesize cosmosFeature=_cosmosFeature;
 @property(nonatomic) __weak id <SPTPerformanceMetricsService> performanceMetricsService; // @synthesize performanceMetricsService=_performanceMetricsService;
 @property(nonatomic) __weak id <SPTSessionService> sessionService; // @synthesize sessionService=_sessionService;

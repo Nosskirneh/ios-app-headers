@@ -18,7 +18,8 @@
 - (void)thumbDownTrackInPlayerState:(SPTPlayerState *)arg1 accessorySessionID:(NSString *)arg2 completionHandler:(void (^)(NSError *))arg3;
 - (void)thumbUpTrackInPlayerState:(SPTPlayerState *)arg1 accessorySessionID:(NSString *)arg2 completionHandler:(void (^)(NSError *))arg3;
 - (_Bool)isPlayingRadioInPlayerState:(SPTPlayerState *)arg1;
+- (_Bool)canStartRadioSeededByTrackURI:(NSURL *)arg1;
 - (_Bool)canStartTrackRadioSeededByPlayerState:(SPTPlayerState *)arg1;
-- (void)startTrackRadioSeededByPlayerState:(SPTPlayerState *)arg1 accessorySessionID:(NSString *)arg2 completionHandler:(void (^)(NSError *))arg3;
+- (void)startRadioForTrackURI:(NSURL *)arg1 playerState:(SPTPlayerState *)arg2 accessorySessionID:(NSString *)arg3 completionHandler:(void (^)(NSError *))arg4;
 @end
 

@@ -6,11 +6,11 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTVideoEventObserverFactory-Protocol.h"
+#import "BMEventObserverFactory-Protocol.h"
 
 @class NSString, SPTVideoCoordinatorCosmosSender, SPTVideoPlaybackStateFactory;
 
-@interface SPTVideoCoordinatorStateObserverFactory : NSObject <SPTVideoEventObserverFactory>
+@interface SPTVideoCoordinatorStateObserverFactory : NSObject <BMEventObserverFactory>
 {
     SPTVideoCoordinatorCosmosSender *_cosmosSender;
     SPTVideoPlaybackStateFactory *_playbackStateFactory;

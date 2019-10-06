@@ -6,11 +6,11 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTVideoEventObserverFactory-Protocol.h"
+#import "BMEventObserverFactory-Protocol.h"
 
 @class NSString;
 
-@interface SPTVideoEventObserverFactoryImpl : NSObject <SPTVideoEventObserverFactory>
+@interface SPTVideoEventObserverFactoryImpl : NSObject <BMEventObserverFactory>
 {
     CDUnknownBlockType _createObserverBlock;
 }

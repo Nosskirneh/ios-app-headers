@@ -12,27 +12,48 @@
 
 + (id)graphAPIDebugParamValue;
 + (void)updateGraphAPIDebugBehavior;
++ (void)_logIfSDKSettingsChanged;
++ (void)logWarnings;
++ (id)appEventSettingsForUserDefaultsKey:(id)arg1 defaultValue:(id)arg2;
++ (id)appEventSettingsForPlistKey:(id)arg1 defaultValue:(id)arg2;
 + (id)graphAPIVersion;
++ (id)defaultGraphAPIVersion;
 + (void)setGraphAPIVersion:(id)arg1;
 + (void)setUserAgentSuffix:(id)arg1;
 + (id)userAgentSuffix;
 + (void)setAccessTokenCache:(id)arg1;
 + (id)accessTokenCache;
 + (id)sdkVersion;
-+ (id)legacyUserDefaultTokenInformationKeyName;
-+ (void)setLegacyUserDefaultTokenInformationKeyName:(id)arg1;
 + (void)disableLoggingBehavior:(id)arg1;
 + (void)enableLoggingBehavior:(id)arg1;
-+ (void)setLoggingBehavior:(id)arg1;
-+ (id)loggingBehavior;
++ (void)setLoggingBehaviors:(id)arg1;
++ (id)loggingBehaviors;
 + (void)setLimitEventAndDataUsage:(_Bool)arg1;
-+ (_Bool)limitEventAndDataUsage;
++ (_Bool)shouldLimitEventAndDataUsage;
++ (void)setAdvertiserIDCollectionEnabled:(_Bool)arg1;
++ (_Bool)isAdvertiserIDCollectionEnabled;
++ (void)setAutoLogAppEventsEnabled:(_Bool)arg1;
++ (_Bool)isAutoLogAppEventsEnabled;
++ (void)setCodelessDebugLogEnabled:(_Bool)arg1;
++ (_Bool)isCodelessDebugLogEnabled;
++ (void)setInstrumentEnabled:(_Bool)arg1;
++ (_Bool)isInstrumentEnabled;
++ (void)setAutoInitEnabled:(_Bool)arg1;
++ (_Bool)isAutoInitEnabled;
 + (void)setJPEGCompressionQuality:(double)arg1;
 + (double)JPEGCompressionQuality;
-+ (_Bool)isGraphErrorRecoveryDisabled;
-+ (void)setGraphErrorRecoveryDisabled:(_Bool)arg1;
-+ (void)setAutoLogAppEventsEnabled:(id)arg1;
-+ (id)autoLogAppEventsEnabled;
++ (void)setGraphErrorRecoveryEnabled:(_Bool)arg1;
++ (_Bool)isGraphErrorRecoveryEnabled;
++ (void)_setCodelessDebugLogEnabled:(id)arg1;
++ (id)_codelessDebugLogEnabled;
++ (void)_setAdvertiserIDCollectionEnabled:(id)arg1;
++ (id)_advertiserIDCollectionEnabled;
++ (void)_setAutoLogAppEventsEnabled:(id)arg1;
++ (id)_autoLogAppEventsEnabled;
++ (void)_setInstrumentEnabled:(id)arg1;
++ (id)_instrumentEnabled;
++ (void)_setAutoInitEnabled:(id)arg1;
++ (id)_autoInitEnabled;
 + (void)_setJPEGCompressionQualityNumber:(id)arg1;
 + (id)_JPEGCompressionQualityNumber;
 + (void)setFacebookDomainPart:(id)arg1;
@@ -46,7 +67,6 @@
 + (void)setAppID:(id)arg1;
 + (id)appID;
 + (void)initialize;
-- (id)init;
 
 @end
 

@@ -6,15 +6,19 @@
 
 #import "SPTSliderWithLabel.h"
 
-@class CADisplayLink, NSArray;
+@class CADisplayLink, NSArray, UIColor;
 @protocol SPTDrivingModeSliderViewDataSource;
 
 @interface SPTDrivingModeSliderView : SPTSliderWithLabel
 {
+    _Bool _resizeTrackToBounds;
     _Bool _trackingState;
     float _trackingSpeed;
     float _uncompensatedTrackingValue;
     id <SPTDrivingModeSliderViewDataSource> _dataSource;
+    UIColor *_trackMinColor;
+    UIColor *_trackDisallowSeekingMinColor;
+    UIColor *_trackMaxColor;
     CADisplayLink *_displayLink;
     NSArray *_trackingSpeeds;
     NSArray *_trackingSpeedChangeThresholds;
@@ -32,7 +36,11 @@
 @property(readonly, nonatomic) NSArray *trackingSpeedChangeThresholds; // @synthesize trackingSpeedChangeThresholds=_trackingSpeedChangeThresholds;
 @property(readonly, nonatomic) NSArray *trackingSpeeds; // @synthesize trackingSpeeds=_trackingSpeeds;
 @property(retain, nonatomic) CADisplayLink *displayLink; // @synthesize displayLink=_displayLink;
+@property(readonly, nonatomic) UIColor *trackMaxColor; // @synthesize trackMaxColor=_trackMaxColor;
+@property(readonly, nonatomic) UIColor *trackDisallowSeekingMinColor; // @synthesize trackDisallowSeekingMinColor=_trackDisallowSeekingMinColor;
+@property(readonly, nonatomic) UIColor *trackMinColor; // @synthesize trackMinColor=_trackMinColor;
 @property(nonatomic) __weak id <SPTDrivingModeSliderViewDataSource> dataSource; // @synthesize dataSource=_dataSource;
+@property(nonatomic) _Bool resizeTrackToBounds; // @synthesize resizeTrackToBounds=_resizeTrackToBounds;
 - (void).cxx_destruct;
 - (id)timeIntervalToAccessibilityString:(double)arg1;
 - (id)accessibilityValue;
@@ -57,15 +65,16 @@
 @property(readonly, nonatomic) double currentDuration;
 @property(readonly, nonatomic) double currentPosition;
 - (void)onDisplayLink:(id)arg1;
+- (struct CGRect)trackRectForBounds:(struct CGRect)arg1;
 - (struct CGRect)thumbRectForBounds:(struct CGRect)arg1 trackRect:(struct CGRect)arg2 value:(float)arg3;
 - (void)reloadData;
 - (void)applyThemeLayout;
-- (void)invalidateDisplayLink;
 - (id)trackImageWithSize:(struct CGSize)arg1 color:(id)arg2;
 - (void)modifySliderTrack;
 - (void)modifySliderThumb;
 - (void)modifySliderAppearance;
-- (id)initWithFrame:(struct CGRect)arg1 animationView:(id)arg2;
+- (void)dealloc;
+- (id)initWithTrackMinColor:(id)arg1 trackDisallowSeekingMinColor:(id)arg2 trackMaxColor:(id)arg3;
 
 @end
 

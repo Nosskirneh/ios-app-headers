@@ -6,12 +6,12 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTVideoCache-Protocol.h"
+#import "BMCache-Protocol.h"
 
 @class NSString, SPTPersistentCache;
 @protocol SPTVideoCacheOptions;
 
-@interface SPTVideoFeatureCache : NSObject <SPTVideoCache>
+@interface SPTVideoFeatureCache : NSObject <BMCache>
 {
     SPTPersistentCache *_persistentCache;
     id <SPTVideoCacheOptions> _cacheOptions;

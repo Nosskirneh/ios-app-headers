@@ -7,16 +7,16 @@
 #import <objc/NSObject.h>
 
 @class SPTVideoManifestService, SPTVideoMediaURLConverter;
-@protocol SPTVideoPlaybackIdentity;
+@protocol BMPlaybackIdentity;
 
 @interface SPTVideoManifestResourceLoader : NSObject
 {
     SPTVideoManifestService *_manifestService;
     SPTVideoMediaURLConverter *_mediaURLConverter;
-    id <SPTVideoPlaybackIdentity> _identity;
+    id <BMPlaybackIdentity> _identity;
 }
 
-@property(retain, nonatomic) id <SPTVideoPlaybackIdentity> identity; // @synthesize identity=_identity;
+@property(retain, nonatomic) id <BMPlaybackIdentity> identity; // @synthesize identity=_identity;
 @property(retain, nonatomic) SPTVideoMediaURLConverter *mediaURLConverter; // @synthesize mediaURLConverter=_mediaURLConverter;
 @property(retain, nonatomic) SPTVideoManifestService *manifestService; // @synthesize manifestService=_manifestService;
 - (void).cxx_destruct;

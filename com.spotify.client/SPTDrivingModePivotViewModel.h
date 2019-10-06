@@ -7,26 +7,37 @@
 #import <objc/NSObject.h>
 
 #import "SPTDrivingModePivotListObserver-Protocol.h"
+#import "SPTPlayerObserver-Protocol.h"
 
 @class NSArray, NSString, SPTDrivingModePivotList, SPTDrivingModePivotPlayer;
-@protocol SPTDrivingModePivotViewModelDelegate;
+@protocol SPTDrivingModePivotViewModelDelegate, SPTPlayer;
 
-@interface SPTDrivingModePivotViewModel : NSObject <SPTDrivingModePivotListObserver>
+@interface SPTDrivingModePivotViewModel : NSObject <SPTDrivingModePivotListObserver, SPTPlayerObserver>
 {
+    _Bool _showErrorView;
+    _Bool _showLoadingView;
+    _Bool _showAdView;
     id <SPTDrivingModePivotViewModelDelegate> _delegate;
     NSArray *_pivotItems;
     unsigned long long _selectedItemIndex;
     SPTDrivingModePivotList *_pivotList;
     SPTDrivingModePivotPlayer *_pivotPlayer;
+    id <SPTPlayer> _player;
 }
 
+@property(readonly, nonatomic) id <SPTPlayer> player; // @synthesize player=_player;
 @property(readonly, nonatomic) SPTDrivingModePivotPlayer *pivotPlayer; // @synthesize pivotPlayer=_pivotPlayer;
 @property(readonly, nonatomic) SPTDrivingModePivotList *pivotList; // @synthesize pivotList=_pivotList;
 @property(nonatomic) unsigned long long selectedItemIndex; // @synthesize selectedItemIndex=_selectedItemIndex;
 @property(copy, nonatomic) NSArray *pivotItems; // @synthesize pivotItems=_pivotItems;
+@property(nonatomic, getter=shouldShowAdView) _Bool showAdView; // @synthesize showAdView=_showAdView;
+@property(nonatomic, getter=shouldShowLoadingView) _Bool showLoadingView; // @synthesize showLoadingView=_showLoadingView;
+@property(nonatomic, getter=shouldShowErrorView) _Bool showErrorView; // @synthesize showErrorView=_showErrorView;
 @property(nonatomic) __weak id <SPTDrivingModePivotViewModelDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
+- (void)player:(id)arg1 stateDidChange:(id)arg2;
 - (void)playURI:(id)arg1;
+- (id)itemForIndex:(long long)arg1;
 - (id)selectedItem;
 - (_Bool)setSelectedItemIndexInternal:(unsigned long long)arg1;
 - (void)updateSelectedItemIndex;
@@ -34,9 +45,8 @@
 - (void)viewWillBeDismissed;
 - (void)viewWillBePresented;
 @property(readonly, copy, nonatomic) NSString *errorText;
-@property(readonly, nonatomic, getter=shouldShowErrorView) _Bool showErrorView;
-@property(readonly, nonatomic, getter=shouldShowLoadingView) _Bool showLoadingView;
-- (id)initWithPivotList:(id)arg1 pivotPlayer:(id)arg2;
+- (_Bool)setShowAdViewInternal:(_Bool)arg1;
+- (id)initWithPivotList:(id)arg1 pivotPlayer:(id)arg2 player:(id)arg3;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

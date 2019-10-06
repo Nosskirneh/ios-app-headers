@@ -6,21 +6,20 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTVideoPlaybackIdentity-Protocol.h"
+#import "BMPlaybackIdentity-Protocol.h"
 
 @class NSDictionary, NSString, NSURL;
-@protocol SPTVideoPlaybackRequest;
+@protocol BMPlaybackRequest;
 
-@interface SPTVideoPlaybackIdentityImpl : NSObject <SPTVideoPlaybackIdentity>
+@interface SPTVideoPlaybackIdentityImpl : NSObject <BMPlaybackIdentity>
 {
     NSString *_sessionID;
-    id <SPTVideoPlaybackRequest> _request;
+    id <BMPlaybackRequest> _request;
 }
 
-@property(copy, nonatomic) id <SPTVideoPlaybackRequest> request; // @synthesize request=_request;
+@property(copy, nonatomic) id <BMPlaybackRequest> request; // @synthesize request=_request;
 @property(copy, nonatomic) NSString *sessionID; // @synthesize sessionID=_sessionID;
 - (void).cxx_destruct;
-@property(readonly, copy) NSString *debugDescription;
 - (_Bool)isEqual:(id)arg1;
 @property(readonly) unsigned long long hash;
 @property(readonly, nonatomic) NSDictionary *metadata;
@@ -30,6 +29,7 @@
 - (id)initWithSessionID:(id)arg1 request:(id)arg2;
 
 // Remaining properties
+@property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
 @property(readonly) Class superclass;
 

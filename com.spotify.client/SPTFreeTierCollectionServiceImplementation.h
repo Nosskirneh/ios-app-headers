@@ -7,7 +7,7 @@
 #import <objc/NSObject.h>
 
 @class NSString, SPTAllocationContext;
-@protocol FollowFeature, SPTCollectionPlatformService, SPTExplicitContentService, SPTFeatureFlaggingService, SPTFreeTierCollectionTestManager, SPTFreeTierPreCurationService, SPTFreeTierRecommendationsService, SPTFreeTierService, SPTNetworkService, SPTOnDemandService, SPTPlaylistPlatformService, SPTRecentlyPlayedService, SPTSessionService, SPTSettingsFeature, SPTYourLibraryService;
+@protocol FollowFeature, SPTCollectionPlatformService, SPTExplicitContentService, SPTFeatureFlaggingService, SPTFreeTierCollectionTestManager, SPTFreeTierPreCurationService, SPTFreeTierRecommendationsService, SPTFreeTierService, SPTNetworkService, SPTOnDemandService, SPTPlaylistPlatformService, SPTRecentlyPlayedService, SPTRemoteConfigurationService, SPTSessionService, SPTSettingsFeature, SPTYourLibraryService;
 
 @interface SPTFreeTierCollectionServiceImplementation : NSObject
 {
@@ -23,6 +23,7 @@
     id <SPTPlaylistPlatformService> _playlistPlatformService;
     id <SPTRecentlyPlayedService> _recentlyPlayedService;
     id <SPTFreeTierRecommendationsService> _recommendationsService;
+    id <SPTRemoteConfigurationService> _remoteConfigurationService;
     id <SPTSettingsFeature> _settingsService;
     id <SPTYourLibraryService> _yourLibraryService;
     id <SPTFreeTierCollectionTestManager> _testManager;
@@ -32,6 +33,7 @@
 @property(retain, nonatomic) id <SPTFreeTierCollectionTestManager> testManager; // @synthesize testManager=_testManager;
 @property(nonatomic) __weak id <SPTYourLibraryService> yourLibraryService; // @synthesize yourLibraryService=_yourLibraryService;
 @property(nonatomic) __weak id <SPTSettingsFeature> settingsService; // @synthesize settingsService=_settingsService;
+@property(nonatomic) __weak id <SPTRemoteConfigurationService> remoteConfigurationService; // @synthesize remoteConfigurationService=_remoteConfigurationService;
 @property(nonatomic) __weak id <SPTFreeTierRecommendationsService> recommendationsService; // @synthesize recommendationsService=_recommendationsService;
 @property(nonatomic) __weak id <SPTRecentlyPlayedService> recentlyPlayedService; // @synthesize recentlyPlayedService=_recentlyPlayedService;
 @property(nonatomic) __weak id <SPTPlaylistPlatformService> playlistPlatformService; // @synthesize playlistPlatformService=_playlistPlatformService;

@@ -6,13 +6,12 @@
 
 #import "SPTHubViewModelProvider.h"
 
-#import "HUBViewModelLoaderDelegate-Protocol.h"
 #import "SPTHomeViewModel-Protocol.h"
 
 @class NSString;
 @protocol HUBViewModelLoader, SPTHomeViewModelDelegate, SPTHomeViewModelProviderDelegate, SPTHubViewModelProviderDelegate;
 
-@interface SPTHomeViewModelProvider : SPTHubViewModelProvider <HUBViewModelLoaderDelegate, SPTHomeViewModel>
+@interface SPTHomeViewModelProvider : SPTHubViewModelProvider <SPTHomeViewModel>
 {
     id <SPTHubViewModelProviderDelegate> delegate;
     id <SPTHomeViewModelDelegate> viewModelDelegate;

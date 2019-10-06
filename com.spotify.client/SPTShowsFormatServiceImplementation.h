@@ -9,11 +9,12 @@
 #import "SPTShowsFormatService-Protocol.h"
 
 @class NSString, SPTAllocationContext;
-@protocol SPContextMenuFeature, SPTCollectionPlatformService, SPTContainerService, SPTFormatListPlatformService, SPTFreeTierPlaylistUIService, SPTGLUEService, SPTNetworkService, SPTPlayerFeature, SPTPodcastFeature;
+@protocol SPContextMenuFeature, SPTCollectionPlatformService, SPTContainerService, SPTFeatureFlagSignal, SPTFeatureFlaggingService, SPTFormatListPlatformService, SPTFreeTierPlaylistUIService, SPTGLUEService, SPTNetworkService, SPTPlayerFeature, SPTPodcastFeature, SPTVideoFeature;
 
 @interface SPTShowsFormatServiceImplementation : NSObject <SPTShowsFormatService>
 {
     _Bool _handlerRegistered;
+    _Bool _betamaxPlayerEnabled;
     id <SPContextMenuFeature> _contextMenuFeature;
     id <SPTCollectionPlatformService> _collectionPlatformService;
     id <SPTContainerService> _containerService;
@@ -23,10 +24,17 @@
     id <SPTPlayerFeature> _playerFeature;
     id <SPTPodcastFeature> _podcastFeature;
     id <SPTFreeTierPlaylistUIService> _playlistUIService;
+    id <SPTVideoFeature> _videoFeature;
+    id <SPTFeatureFlaggingService> _featureFlaggingService;
+    id <SPTFeatureFlagSignal> _betamaxPlayerSignal;
 }
 
 + (id)serviceIdentifier;
+@property(nonatomic) _Bool betamaxPlayerEnabled; // @synthesize betamaxPlayerEnabled=_betamaxPlayerEnabled;
+@property(retain, nonatomic) id <SPTFeatureFlagSignal> betamaxPlayerSignal; // @synthesize betamaxPlayerSignal=_betamaxPlayerSignal;
 @property(nonatomic, getter=isHandlerRegistered) _Bool handlerRegistered; // @synthesize handlerRegistered=_handlerRegistered;
+@property(nonatomic) __weak id <SPTFeatureFlaggingService> featureFlaggingService; // @synthesize featureFlaggingService=_featureFlaggingService;
+@property(nonatomic) __weak id <SPTVideoFeature> videoFeature; // @synthesize videoFeature=_videoFeature;
 @property(nonatomic) __weak id <SPTFreeTierPlaylistUIService> playlistUIService; // @synthesize playlistUIService=_playlistUIService;
 @property(nonatomic) __weak id <SPTPodcastFeature> podcastFeature; // @synthesize podcastFeature=_podcastFeature;
 @property(nonatomic) __weak id <SPTPlayerFeature> playerFeature; // @synthesize playerFeature=_playerFeature;
@@ -37,6 +45,9 @@
 @property(nonatomic) __weak id <SPTCollectionPlatformService> collectionPlatformService; // @synthesize collectionPlatformService=_collectionPlatformService;
 @property(nonatomic) __weak id <SPContextMenuFeature> contextMenuFeature; // @synthesize contextMenuFeature=_contextMenuFeature;
 - (void).cxx_destruct;
+- (void)featureFlagSignal:(id)arg1 hasAssumedState:(long long)arg2;
+- (id)createSignalForAnyFiveSignalsWithAbbaKey:(id)arg1 pageTitle:(id)arg2 itemTitle:(id)arg3 itemDescription:(id)arg4;
+- (void)setupBetamaxPlayerSignal;
 - (void)registerHandlerForShowsFormat;
 - (id)provideContextMenuProvider;
 - (void)configureShowsFormatPlaylistViewControllerWithURL:(id)arg1 context:(id)arg2 configurationBuilder:(id)arg3;

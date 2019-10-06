@@ -8,22 +8,22 @@
 
 #import "SPTNowPlayingContentLayerProvider-Protocol.h"
 
-@class NSString, SPTTheme, SPTVideoSurfaceFactory;
-@protocol SPTGLUEImageLoaderFactory, SPTNowPlayingContentLayerProviderDelegate, SPTNowPlayingVideoManager, SPTVideoSurfaceManager;
+@class BMVideoSurfaceFactory, NSString, SPTTheme;
+@protocol BMVideoSurfaceManager, SPTGLUEImageLoaderFactory, SPTNowPlayingContentLayerProviderDelegate, SPTNowPlayingVideoManager;
 
 @interface SPTNowPlayingHorizontalVideoProvider : NSObject <SPTNowPlayingContentLayerProvider>
 {
     SPTTheme *_theme;
-    id <SPTVideoSurfaceManager> _videoSurfaceManager;
-    SPTVideoSurfaceFactory *_surfaceFactory;
+    id <BMVideoSurfaceManager> _videoSurfaceManager;
+    BMVideoSurfaceFactory *_surfaceFactory;
     id <SPTGLUEImageLoaderFactory> _imageLoaderFactory;
     id <SPTNowPlayingVideoManager> _nowPlayingVideoManager;
 }
 
 @property(readonly, nonatomic) id <SPTNowPlayingVideoManager> nowPlayingVideoManager; // @synthesize nowPlayingVideoManager=_nowPlayingVideoManager;
 @property(readonly, nonatomic) id <SPTGLUEImageLoaderFactory> imageLoaderFactory; // @synthesize imageLoaderFactory=_imageLoaderFactory;
-@property(readonly, nonatomic) SPTVideoSurfaceFactory *surfaceFactory; // @synthesize surfaceFactory=_surfaceFactory;
-@property(readonly, nonatomic) id <SPTVideoSurfaceManager> videoSurfaceManager; // @synthesize videoSurfaceManager=_videoSurfaceManager;
+@property(readonly, nonatomic) BMVideoSurfaceFactory *surfaceFactory; // @synthesize surfaceFactory=_surfaceFactory;
+@property(readonly, nonatomic) id <BMVideoSurfaceManager> videoSurfaceManager; // @synthesize videoSurfaceManager=_videoSurfaceManager;
 @property(readonly, nonatomic) SPTTheme *theme; // @synthesize theme=_theme;
 - (void).cxx_destruct;
 - (void)didSelectCell:(id)arg1 withTrack:(id)arg2 containerViewController:(id)arg3;

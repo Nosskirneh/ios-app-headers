@@ -14,7 +14,7 @@
     id <FBSDKLoginTooltipViewDelegate> _delegate;
 }
 
-@property(nonatomic) _Bool forceDisplay; // @synthesize forceDisplay=_forceDisplay;
+@property(nonatomic, getter=shouldForceDisplay) _Bool forceDisplay; // @synthesize forceDisplay=_forceDisplay;
 @property(nonatomic) __weak id <FBSDKLoginTooltipViewDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
 - (void)presentInView:(id)arg1 withArrowPosition:(struct CGPoint)arg2 direction:(unsigned long long)arg3;

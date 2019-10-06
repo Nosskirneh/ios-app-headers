@@ -8,7 +8,8 @@
 
 #import "HUBViewContentOffsetObserver-Protocol.h"
 
-@class SPTFreeTierArtistContextMenuButtonViewModel, SPTFreeTierArtistFeedbackButtonViewModel, SPTFreeTierEntityNavigationDecorator, SPTProgressView, UIBarButtonItem, VISREFIntegrationManager;
+@class SPTFreeTierArtistContextMenuButtonViewModel, SPTFreeTierArtistFeedbackButtonViewModel, SPTFreeTierEntityNavigationDecorator, SPTProgressView, UIBarButtonItem;
+@protocol VISREFIntegrationManager;
 
 @interface SPTFreeTierArtistViewController : SPTHubViewController <HUBViewContentOffsetObserver>
 {
@@ -18,10 +19,10 @@
     SPTFreeTierEntityNavigationDecorator *_navigationItemDecorator;
     UIBarButtonItem *_contextMenuBarButtonItem;
     SPTProgressView *_progressView;
-    VISREFIntegrationManager *_visualRefreshIntegrationManager;
+    id <VISREFIntegrationManager> _visualRefreshIntegrationManager;
 }
 
-@property(retain, nonatomic) VISREFIntegrationManager *visualRefreshIntegrationManager; // @synthesize visualRefreshIntegrationManager=_visualRefreshIntegrationManager;
+@property(retain, nonatomic) id <VISREFIntegrationManager> visualRefreshIntegrationManager; // @synthesize visualRefreshIntegrationManager=_visualRefreshIntegrationManager;
 @property(retain, nonatomic) SPTProgressView *progressView; // @synthesize progressView=_progressView;
 @property(retain, nonatomic) UIBarButtonItem *contextMenuBarButtonItem; // @synthesize contextMenuBarButtonItem=_contextMenuBarButtonItem;
 @property(nonatomic) _Bool viewDidAppear; // @synthesize viewDidAppear=_viewDidAppear;

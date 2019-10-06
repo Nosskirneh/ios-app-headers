@@ -34,7 +34,6 @@
 - (void).cxx_destruct;
 - (void)markEpisodeAsPlayed:(id)arg1 played:(_Bool)arg2;
 - (void)offlineEpisode:(id)arg1 offline:(_Bool)arg2;
-- (void)autoFollowIfNotFollowed:(id)arg1;
 - (void)followPodcast;
 - (void)loadPodcastWithURI:(id)arg1 completion:(CDUnknownBlockType)arg2;
 - (id)initWithOfflineManager:(id)arg1 showEntityService:(id)arg2 dataLoader:(id)arg3 logger:(id)arg4 collectionLogger:(id)arg5 collectionPlatform:(id)arg6 testManager:(id)arg7;

@@ -13,6 +13,7 @@
 }
 
 - (id)init;
+- (Class)classForTableViewCell;
 - (id)createTableViewCellWithStyle:(long long)arg1 reuseIdentifier:(id)arg2;
 
 @end

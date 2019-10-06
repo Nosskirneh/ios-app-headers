@@ -6,18 +6,18 @@
 
 #import <objc/NSObject.h>
 
-@protocol SPTAudioFormat;
+@protocol BMAudioFormat;
 
 @interface SPTAudioFormatEvent : NSObject
 {
-    id <SPTAudioFormat> _format;
+    id <BMAudioFormat> _format;
     double _position;
     double _length;
 }
 
 @property(nonatomic) double length; // @synthesize length=_length;
 @property(nonatomic) double position; // @synthesize position=_position;
-@property(readonly, nonatomic) id <SPTAudioFormat> format; // @synthesize format=_format;
+@property(readonly, nonatomic) id <BMAudioFormat> format; // @synthesize format=_format;
 - (void).cxx_destruct;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)copyWithNewStartPosition:(double)arg1 format:(id)arg2;

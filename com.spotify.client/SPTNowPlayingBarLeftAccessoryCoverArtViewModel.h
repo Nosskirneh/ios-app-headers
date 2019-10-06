@@ -30,6 +30,7 @@
 - (void).cxx_destruct;
 - (void)logBarTapped;
 - (void)didTapBar;
+- (void)reloadImage;
 - (void)nowPlayingBarModelDidUpdateTrackMetaData:(id)arg1;
 - (id)initWithNowPlayingManager:(id)arg1 nowPlayingBarModel:(id)arg2 logger:(id)arg3;
 

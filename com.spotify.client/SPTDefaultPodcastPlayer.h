@@ -39,6 +39,7 @@
 - (void)player:(id)arg1 stateDidChange:(id)arg2 fromState:(id)arg3;
 - (_Bool)resumePodcast:(id)arg1 episodeUrl:(id)arg2;
 - (void)playPodcastWithContextURI:(id)arg1 itemID:(id)arg2 fromTimestamp:(id)arg3;
+- (void)playPodcast:(id)arg1 withEpisodes:(id)arg2 withOrigin:(id)arg3 startEpisodeUrl:(id)arg4 fromTimestamp:(id)arg5 resetPlay:(_Bool)arg6 completionHandler:(CDUnknownBlockType)arg7;
 - (void)playPodcast:(id)arg1 withEpisodes:(id)arg2 startEpisodeUrl:(id)arg3 fromTimestamp:(id)arg4 resetPlay:(_Bool)arg5;
 - (void)pausePodcast:(id)arg1 startEpisodeUrl:(id)arg2;
 @property(readonly, nonatomic) _Bool isPlayingPodcastEpisode;

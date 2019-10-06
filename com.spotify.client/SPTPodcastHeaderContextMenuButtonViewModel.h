@@ -27,7 +27,7 @@
 
 @property(retain, nonatomic) NSURL *URI; // @synthesize URI=_URI;
 @property(retain, nonatomic) UIView *senderView; // @synthesize senderView=_senderView;
-@property(retain, nonatomic) UIViewController *inViewController; // @synthesize inViewController=_inViewController;
+@property(nonatomic) __weak UIViewController *inViewController; // @synthesize inViewController=_inViewController;
 @property(retain, nonatomic) id <SPTShowContextMenuControllerOptions> options; // @synthesize options=_options;
 @property(nonatomic) __weak id <SPTShowContextMenuControllerDelegate> contextMenuDelegate; // @synthesize contextMenuDelegate=_contextMenuDelegate;
 @property(retain, nonatomic) id <SPTPodcast> podcast; // @synthesize podcast=_podcast;

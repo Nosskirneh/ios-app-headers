@@ -7,10 +7,11 @@
 #import <objc/NSObject.h>
 
 #import "NSCopying-Protocol.h"
+#import "NSMutableCopying-Protocol.h"
 
-@class NSDictionary, NSMutableArray, NSMutableDictionary, NSString, SPTHubsKitImageData, SPTHubsKitUIImpression5Writer, SPTHubsKitUIInteraction5Writer;
+@class NSArray, NSDictionary, NSString, SPTHubsKitImageData;
 
-@interface SPTHubsKitComponentModel : NSObject <NSCopying>
+@interface SPTHubsKitComponentModel : NSObject <NSCopying, NSMutableCopying>
 {
     NSString *_identifier;
     NSString *_componentNamespace;
@@ -22,20 +23,20 @@
     NSString *_descriptionText;
     SPTHubsKitImageData *_mainImageData;
     SPTHubsKitImageData *_backgroundImageData;
-    NSMutableDictionary *_customImageData;
-    NSMutableDictionary *_metadata;
-    NSMutableDictionary *_loggingData;
-    NSMutableDictionary *_customData;
-    NSMutableDictionary *_events;
-    NSMutableArray *_children;
+    NSDictionary *_customImageData;
+    NSDictionary *_metadata;
+    NSDictionary *_loggingData;
+    NSDictionary *_customData;
+    NSDictionary *_events;
+    NSArray *_children;
 }
 
-@property(readonly, nonatomic) NSMutableArray *children; // @synthesize children=_children;
-@property(readonly, nonatomic) NSMutableDictionary *events; // @synthesize events=_events;
-@property(readonly, nonatomic) NSMutableDictionary *customData; // @synthesize customData=_customData;
-@property(readonly, nonatomic) NSMutableDictionary *loggingData; // @synthesize loggingData=_loggingData;
-@property(readonly, nonatomic) NSMutableDictionary *metadata; // @synthesize metadata=_metadata;
-@property(readonly, nonatomic) NSMutableDictionary *customImageData; // @synthesize customImageData=_customImageData;
+@property(copy, nonatomic) NSArray *children; // @synthesize children=_children;
+@property(copy, nonatomic) NSDictionary *events; // @synthesize events=_events;
+@property(copy, nonatomic) NSDictionary *customData; // @synthesize customData=_customData;
+@property(copy, nonatomic) NSDictionary *loggingData; // @synthesize loggingData=_loggingData;
+@property(copy, nonatomic) NSDictionary *metadata; // @synthesize metadata=_metadata;
+@property(copy, nonatomic) NSDictionary *customImageData; // @synthesize customImageData=_customImageData;
 @property(copy, nonatomic) SPTHubsKitImageData *backgroundImageData; // @synthesize backgroundImageData=_backgroundImageData;
 @property(copy, nonatomic) SPTHubsKitImageData *mainImageData; // @synthesize mainImageData=_mainImageData;
 @property(copy, nonatomic) NSString *descriptionText; // @synthesize descriptionText=_descriptionText;
@@ -47,13 +48,15 @@
 @property(copy, nonatomic) NSString *componentNamespace; // @synthesize componentNamespace=_componentNamespace;
 @property(copy, nonatomic) NSString *identifier; // @synthesize identifier=_identifier;
 - (void).cxx_destruct;
-@property(readonly, nonatomic) NSDictionary *dictionaryRepresentation;
+- (_Bool)isEqualToComponentModel:(id)arg1;
+@property(readonly, copy, nonatomic) NSDictionary *dictionaryRepresentation;
+- (unsigned long long)hash;
+- (_Bool)isEqual:(id)arg1;
+- (id)mutableCopyWithZone:(struct _NSZone *)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)initWithIdentifier:(id)arg1 componentNamespace:(id)arg2 componentName:(id)arg3 componentCategory:(id)arg4 title:(id)arg5 subtitle:(id)arg6 accessoryTitle:(id)arg7 descriptionText:(id)arg8 mainImageData:(id)arg9 backgroundImageData:(id)arg10 customImageData:(id)arg11 metadata:(id)arg12 loggingData:(id)arg13 customData:(id)arg14 events:(id)arg15 children:(id)arg16;
 - (id)initWithIdentifier:(id)arg1 componentNamespace:(id)arg2 componentName:(id)arg3 componentCategory:(id)arg4;
 @property(readonly, copy, nonatomic, getter=spt_search_fullComponentName) NSString *fullComponentName;
-@property(readonly, nonatomic, getter=spt_search_uiinteraction5Writer) SPTHubsKitUIInteraction5Writer *uiinteraction5Writer;
-@property(readonly, nonatomic, getter=spt_search_uiimpression5Writer) SPTHubsKitUIImpression5Writer *uiimpression5Writer;
 
 @end
 

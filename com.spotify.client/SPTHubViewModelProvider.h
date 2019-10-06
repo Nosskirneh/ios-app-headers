@@ -6,11 +6,9 @@
 
 #import <objc/NSObject.h>
 
-#import "HUBViewModelLoaderDelegate-Protocol.h"
-
 @protocol HUBViewModelLoader, SPTHubViewModelProviderDelegate;
 
-@interface SPTHubViewModelProvider : NSObject <HUBViewModelLoaderDelegate>
+@interface SPTHubViewModelProvider : NSObject
 {
     id <SPTHubViewModelProviderDelegate> _delegate;
     id <HUBViewModelLoader> _viewModelLoader;

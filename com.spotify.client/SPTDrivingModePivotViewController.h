@@ -12,13 +12,14 @@
 #import "UICollectionViewDelegate-Protocol.h"
 #import "UICollectionViewDelegateFlowLayout-Protocol.h"
 
-@class NSString, SPTActivityIndicatorView, SPTCollectionView, SPTDrivingModeLogger, SPTDrivingModePivotViewModel, SPTTheme, UIButton, UILabel;
-@protocol GLUEImageLoader, SPTModalPresentationController;
+@class NSLayoutConstraint, NSString, SPTActivityIndicatorView, SPTCollectionView, SPTDrivingModeAdBarView, SPTDrivingModeLogger, SPTDrivingModePivotViewModel, SPTTheme, UIButton, UILabel;
+@protocol GLUEImageLoader, SPTModalPresentationController, SPTNowPlayingDurationUnitViewModel;
 
 @interface SPTDrivingModePivotViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, SPTDrivingModePivotViewModelDelegate, SPTSelfPresentingViewController>
 {
     _Bool _isForcedScrolling;
     SPTDrivingModePivotViewModel *_viewModel;
+    id <SPTNowPlayingDurationUnitViewModel> _durationViewModel;
     id <SPTModalPresentationController> _modalPresentationController;
     SPTTheme *_theme;
     SPTDrivingModeLogger *_logger;
@@ -28,8 +29,12 @@
     double _scrollSelectionDelay;
     SPTActivityIndicatorView *_loadingView;
     UILabel *_errorView;
+    SPTDrivingModeAdBarView *_adBarView;
+    NSLayoutConstraint *_topConstraint;
 }
 
+@property(retain, nonatomic) NSLayoutConstraint *topConstraint; // @synthesize topConstraint=_topConstraint;
+@property(retain, nonatomic) SPTDrivingModeAdBarView *adBarView; // @synthesize adBarView=_adBarView;
 @property(retain, nonatomic) UILabel *errorView; // @synthesize errorView=_errorView;
 @property(retain, nonatomic) SPTActivityIndicatorView *loadingView; // @synthesize loadingView=_loadingView;
 @property(nonatomic) double scrollSelectionDelay; // @synthesize scrollSelectionDelay=_scrollSelectionDelay;
@@ -40,6 +45,7 @@
 @property(readonly, nonatomic) SPTDrivingModeLogger *logger; // @synthesize logger=_logger;
 @property(readonly, nonatomic) SPTTheme *theme; // @synthesize theme=_theme;
 @property(readonly, nonatomic) id <SPTModalPresentationController> modalPresentationController; // @synthesize modalPresentationController=_modalPresentationController;
+@property(readonly, nonatomic) id <SPTNowPlayingDurationUnitViewModel> durationViewModel; // @synthesize durationViewModel=_durationViewModel;
 @property(readonly, nonatomic) SPTDrivingModePivotViewModel *viewModel; // @synthesize viewModel=_viewModel;
 - (void).cxx_destruct;
 - (id)createPivotCollectionView;
@@ -47,7 +53,6 @@
 - (id)createErrorView;
 - (void)onCloseButtonTap;
 - (void)setSelected:(id)arg1;
-- (void)setSelectedByScrolling:(id)arg1;
 - (void)setSelectedDelayed:(id)arg1;
 - (double)collectionView:(id)arg1 layout:(id)arg2 minimumLineSpacingForSectionAtIndex:(long long)arg3;
 - (double)collectionView:(id)arg1 layout:(id)arg2 minimumInteritemSpacingForSectionAtIndex:(long long)arg3;
@@ -67,16 +72,20 @@
 - (void)setNewContentOffset:(id)arg1;
 - (void)scrollViewWillBeginDragging:(id)arg1;
 - (void)scrollViewDidScroll:(id)arg1;
+- (void)hideAdBar;
+- (void)showAdBar;
 - (void)dismissWithCompletion:(CDUnknownBlockType)arg1;
 - (void)presentWithCompletion:(CDUnknownBlockType)arg1;
+- (void)updateSelectedItemWithGrayedOutSelectionStyle:(_Bool)arg1;
 - (void)updateUIInitailly:(_Bool)arg1;
+- (void)viewModelDidChangeShouldShowAd:(id)arg1;
 - (void)viewModelDidReload:(id)arg1;
 - (void)viewWillDisappear:(_Bool)arg1;
 - (void)selectItemFromViewModel;
 - (void)viewWillAppear:(_Bool)arg1;
 - (void)setupSubviews;
 - (void)viewDidLoad;
-- (id)initWithViewModel:(id)arg1 modalPresentationController:(id)arg2 theme:(id)arg3 logger:(id)arg4 imageLoader:(id)arg5;
+- (id)initWithViewModel:(id)arg1 durationViewModel:(id)arg2 modalPresentationController:(id)arg3 theme:(id)arg4 logger:(id)arg5 imageLoader:(id)arg6;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

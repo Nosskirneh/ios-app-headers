@@ -6,17 +6,17 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTNowPlayingNavigationBarModelObserver-Protocol.h"
 #import "SPTOfflineModeStateObserver-Protocol.h"
+#import "SPTPlayerObserver-Protocol.h"
 
 @class NSArray, NSError, NSString, SPTDrivingModePivotDataLoader, SPTDrivingModePivotItem, SPTDrivingModePivotItemDecorator, SPTObserverManager;
-@protocol SPTNowPlayingNavigationBarModel, SPTOfflineModeState;
+@protocol SPTOfflineModeState, SPTPlayer;
 
-@interface SPTDrivingModePivotList : NSObject <SPTOfflineModeStateObserver, SPTNowPlayingNavigationBarModelObserver>
+@interface SPTDrivingModePivotList : NSObject <SPTOfflineModeStateObserver, SPTPlayerObserver>
 {
     NSError *_error;
     SPTDrivingModePivotDataLoader *_dataLoader;
-    id <SPTNowPlayingNavigationBarModel> _navigationBarModel;
+    id <SPTPlayer> _player;
     SPTDrivingModePivotItemDecorator *_decorator;
     NSArray *_loadedItems;
     SPTDrivingModePivotItem *_nowPlayingItem;
@@ -30,23 +30,23 @@
 @property(retain, nonatomic) SPTDrivingModePivotItem *nowPlayingItem; // @synthesize nowPlayingItem=_nowPlayingItem;
 @property(copy, nonatomic) NSArray *loadedItems; // @synthesize loadedItems=_loadedItems;
 @property(readonly, nonatomic) SPTDrivingModePivotItemDecorator *decorator; // @synthesize decorator=_decorator;
-@property(readonly, nonatomic) id <SPTNowPlayingNavigationBarModel> navigationBarModel; // @synthesize navigationBarModel=_navigationBarModel;
+@property(readonly, nonatomic) id <SPTPlayer> player; // @synthesize player=_player;
 @property(readonly, nonatomic) SPTDrivingModePivotDataLoader *dataLoader; // @synthesize dataLoader=_dataLoader;
 @property(copy, nonatomic) NSError *error; // @synthesize error=_error;
 - (void).cxx_destruct;
 - (void)decorateLoadedItems:(id)arg1;
 - (void)decorateNowPlayingItemWithURI:(id)arg1;
-- (void)navigationBarModelStateDidChange:(id)arg1;
+- (void)player:(id)arg1 stateDidChange:(id)arg2 fromState:(id)arg3;
 - (void)removeObserver:(id)arg1;
 - (void)addObserver:(id)arg1;
 - (id)createErrorForOfflineState:(_Bool)arg1;
 - (id)providePivotItems;
-- (_Bool)updateNowPlayingItemWithURI:(id)arg1 title:(id)arg2;
+- (_Bool)updateNowPlayingItemWithURI:(id)arg1;
 - (void)offlineModeState:(id)arg1 updated:(_Bool)arg2;
 - (void)triggerReloadIfEmptyOrFailed;
 @property(readonly, nonatomic, getter=isLoading) _Bool loading;
 - (void)dealloc;
-- (id)initWithDataLoader:(id)arg1 navigationBarModel:(id)arg2 offlineModeState:(id)arg3 decorator:(id)arg4;
+- (id)initWithDataLoader:(id)arg1 player:(id)arg2 offlineModeState:(id)arg3 decorator:(id)arg4;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

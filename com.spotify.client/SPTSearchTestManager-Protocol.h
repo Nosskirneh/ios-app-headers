@@ -7,8 +7,6 @@
 #import "NSObject-Protocol.h"
 
 @protocol SPTSearchTestManager <NSObject>
-@property(readonly, nonatomic, getter=isProtobufSearchDrillDownEnabled) _Bool protobufSearchDrillDownEnabled;
-@property(readonly, nonatomic, getter=isProtobufSearchEnabled) _Bool protobufSearchEnabled;
 @property(readonly, nonatomic, getter=isPlayRecentTracksEnabled) _Bool playRecentTracksEnabled;
 @end
 

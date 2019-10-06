@@ -9,18 +9,19 @@
 #import "SPTUpsellExperimentationFreetierAlbumTestConfiguration-Protocol.h"
 
 @class NSString;
-@protocol HUBComponentLayoutManager, HUBContentOperation;
+@protocol HUBComponentLayoutManager, HUBContentOperation, SPTUpsellExperimentationTestManager;
 
 @interface SPTUpsellExperimentationFreetierAlbumTestConfigurationImplementation : NSObject <SPTUpsellExperimentationFreetierAlbumTestConfiguration>
 {
-    id <HUBContentOperation> _contentOperation;
+    id <SPTUpsellExperimentationTestManager> _testManager;
     id <HUBComponentLayoutManager> _componentLayoutManager;
 }
 
 @property(retain, nonatomic) id <HUBComponentLayoutManager> componentLayoutManager; // @synthesize componentLayoutManager=_componentLayoutManager;
-@property(retain, nonatomic) id <HUBContentOperation> contentOperation; // @synthesize contentOperation=_contentOperation;
+@property(retain, nonatomic) id <SPTUpsellExperimentationTestManager> testManager; // @synthesize testManager=_testManager;
 - (void).cxx_destruct;
-- (id)initWithContentOperation:(id)arg1 componentLayoutManager:(id)arg2;
+@property(readonly, nonatomic) id <HUBContentOperation> contentOperation;
+- (id)initWithTestManager:(id)arg1 componentLayoutManager:(id)arg2;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

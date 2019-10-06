@@ -8,56 +8,42 @@
 
 #import "SPTShareViewControllerDelegate-Protocol.h"
 
-@class NSString, SPTProgressView, SPTShareContainerViewController, SPTShareDataProvider, SPTShareHandlerFactory, SPTShareLocalSettingsManager, SPTShareScreenshotObserverManager, SPTShareViewController, SPTShareViewModel;
-@protocol SPTAlertController, SPTShareDeeplinkHandler;
+@class NSString, SPTProgressView, SPTShareContainerViewController, SPTShareDataProvider, SPTShareHandlerFactory, SPTShareScreenshotObserverManager, SPTShareViewController;
+@protocol SPTAlertController, SPTShareHandler;
 
 @interface SPTSharePresenter : NSObject <SPTShareViewControllerDelegate>
 {
     SPTShareContainerViewController *_containerViewController;
     SPTShareViewController *_shareViewController;
     SPTShareHandlerFactory *_shareHandlerFactory;
-    SPTShareLocalSettingsManager *_localSettingsManager;
     SPTShareDataProvider *_shareDataProvider;
-    id <SPTShareDeeplinkHandler> _deeplinkHandler;
     SPTShareScreenshotObserverManager *_screenshotObserverManager;
-    SPTShareViewModel *_shareViewModel;
     id <SPTAlertController> _alertController;
+    id <SPTShareHandler> _shareHandler;
     SPTProgressView *_progressView;
     struct CGRect _selectionFrame;
 }
 
 @property(nonatomic) struct CGRect selectionFrame; // @synthesize selectionFrame=_selectionFrame;
 @property(retain, nonatomic) SPTProgressView *progressView; // @synthesize progressView=_progressView;
+@property(retain, nonatomic) id <SPTShareHandler> shareHandler; // @synthesize shareHandler=_shareHandler;
 @property(readonly, nonatomic) id <SPTAlertController> alertController; // @synthesize alertController=_alertController;
-@property(readonly, nonatomic) SPTShareViewModel *shareViewModel; // @synthesize shareViewModel=_shareViewModel;
 @property(readonly, nonatomic) SPTShareScreenshotObserverManager *screenshotObserverManager; // @synthesize screenshotObserverManager=_screenshotObserverManager;
-@property(readonly, nonatomic) id <SPTShareDeeplinkHandler> deeplinkHandler; // @synthesize deeplinkHandler=_deeplinkHandler;
 @property(readonly, nonatomic) SPTShareDataProvider *shareDataProvider; // @synthesize shareDataProvider=_shareDataProvider;
-@property(readonly, nonatomic) SPTShareLocalSettingsManager *localSettingsManager; // @synthesize localSettingsManager=_localSettingsManager;
 @property(readonly, nonatomic) SPTShareHandlerFactory *shareHandlerFactory; // @synthesize shareHandlerFactory=_shareHandlerFactory;
 @property(readonly, nonatomic) SPTShareViewController *shareViewController; // @synthesize shareViewController=_shareViewController;
 @property(retain, nonatomic) SPTShareContainerViewController *containerViewController; // @synthesize containerViewController=_containerViewController;
 - (void).cxx_destruct;
-- (void)handleMoreMenuDestination:(id)arg1 shareViewController:(id)arg2 fromFrame:(struct CGRect)arg3;
-- (void)handleCopylinkDestination:(id)arg1 shareViewController:(id)arg2;
-- (void)handleTwitterDestination:(id)arg1 shareViewController:(id)arg2;
-- (void)handleFacebookStoriesDestination:(id)arg1 shareViewController:(id)arg2;
-- (void)handleFacebookDestination:(id)arg1 shareViewController:(id)arg2;
-- (void)handleLineDestination:(id)arg1 shareViewController:(id)arg2;
-- (void)handleMessengerDestination:(id)arg1 shareViewController:(id)arg2;
-- (void)handleWhatsAppDestination:(id)arg1 shareViewController:(id)arg2;
-- (void)handleMessagesDestination:(id)arg1 shareViewController:(id)arg2;
-- (void)handleSnapchatDestination:(id)arg1 shareViewController:(id)arg2;
-- (void)handleIGStoriesDestionation:(id)arg1 shareViewController:(id)arg2;
-- (void)shareViewControllerDidAppear:(id)arg1;
-- (void)shareViewController:(id)arg1 didSelectShareDestination:(id)arg2 fromFrame:(struct CGRect)arg3;
+- (_Bool)shouldShowProgressViewForShareDestination:(id)arg1;
+- (void)shareViewController:(id)arg1 didSelectShareDestination:(id)arg2;
+- (void)performShareDestination:(id)arg1 completion:(CDUnknownBlockType)arg2;
 - (void)presentViewController:(id)arg1;
 - (void)discardChildViewControllerIfNecessary;
 - (void)dismissShareViewController:(CDUnknownBlockType)arg1;
 - (void)dismissWithCompletion:(CDUnknownBlockType)arg1;
 - (void)presentProgressView;
 - (void)presentAlertControllerWithModel:(id)arg1;
-- (id)initWithContainerViewController:(id)arg1 shareViewController:(id)arg2 shareHandlerFactory:(id)arg3 localSettingsManager:(id)arg4 shareDataProvider:(id)arg5 deeplinkHandler:(id)arg6 screenshotObserverManager:(id)arg7 shareViewModel:(id)arg8 alertController:(id)arg9;
+- (id)initWithContainerViewController:(id)arg1 shareViewController:(id)arg2 shareHandlerFactory:(id)arg3 shareDataProvider:(id)arg4 screenshotObserverManager:(id)arg5 alertController:(id)arg6;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

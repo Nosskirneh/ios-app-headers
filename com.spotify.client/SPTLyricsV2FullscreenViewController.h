@@ -78,9 +78,9 @@
 - (void)showLoadingView;
 - (void)switchVocalRemovalToActiveState:(_Bool)arg1;
 - (void)setupConstraints;
+- (void)dismiss;
 - (void)updateStyle;
-- (void)didTapCoverArt;
-- (void)didTapCloseButton;
+- (void)didTapHeaderView;
 - (void)setScreenLockingEnabled:(_Bool)arg1;
 - (void)collapse:(_Bool)arg1 callback:(CDUnknownBlockType)arg2;
 @property(readonly, nonatomic, getter=isExpanded) _Bool expanded;

@@ -10,11 +10,12 @@
 #import "UIImagePickerControllerDelegate-Protocol.h"
 #import "UINavigationControllerDelegate-Protocol.h"
 
-@class CAGradientLayer, CALayer, GLUEButton, NSString, NSURL, SPTScannablesAuthorizationRequester, SPTScannablesDependencies, SPTScannablesScanViewModel, UIButton, UIFont, UIImageView, UILabel, UINavigationController, UIView;
-@protocol SPTPageContainer, SPTScannablesImagePickerController;
+@class CAGradientLayer, CALayer, GLUEButton, NSString, NSURL, SPTScannablesAuthorizationRequester, SPTScannablesDependencies, SPTScannablesScanViewModel, UIButton, UIFont, UILabel, UINavigationController, UIView;
+@protocol GLUEAnimationLoading><GLUEAnimationControlling, SPTPageContainer, SPTScannablesImagePickerController;
 
 @interface SPTScannablesScanViewController : SPViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate, SPTPageController>
 {
+    _Bool _captureSessionInterruptedDueToSplitView;
     SPTScannablesScanViewModel *_viewModel;
     UINavigationController<SPTScannablesImagePickerController> *_imagePickerController;
     SPTScannablesAuthorizationRequester *_authorizationRequester;
@@ -23,9 +24,11 @@
     UIView *_captureView;
     UIButton *_closeButton;
     GLUEButton *_photoLibraryButton;
-    UIImageView *_scanningIndicatorImageView;
+    struct UIView *_scanningAnimationView;
     UILabel *_subtitleLabel;
     UILabel *_privacyLabel;
+    UILabel *_captureSessionInterruptedLabel;
+    CALayer *_captureSessionInterruptedBackgroundLayer;
     CALayer *_captureLayer;
     CAGradientLayer *_backgroundGradientTop;
     CAGradientLayer *_backgroundGradientBottom;
@@ -37,6 +40,7 @@
 }
 
 + (id)sta_currentContext;
+@property(nonatomic, getter=isCaptureSessionInterruptedDueToSplitView) _Bool captureSessionInterruptedDueToSplitView; // @synthesize captureSessionInterruptedDueToSplitView=_captureSessionInterruptedDueToSplitView;
 @property(retain, nonatomic) UIFont *privacyFont; // @synthesize privacyFont=_privacyFont;
 @property(retain, nonatomic) UIFont *subtitleFont; // @synthesize subtitleFont=_subtitleFont;
 @property(nonatomic) double internalVerticalMargin; // @synthesize internalVerticalMargin=_internalVerticalMargin;
@@ -45,9 +49,11 @@
 @property(retain, nonatomic) CAGradientLayer *backgroundGradientBottom; // @synthesize backgroundGradientBottom=_backgroundGradientBottom;
 @property(retain, nonatomic) CAGradientLayer *backgroundGradientTop; // @synthesize backgroundGradientTop=_backgroundGradientTop;
 @property(retain, nonatomic) CALayer *captureLayer; // @synthesize captureLayer=_captureLayer;
+@property(retain, nonatomic) CALayer *captureSessionInterruptedBackgroundLayer; // @synthesize captureSessionInterruptedBackgroundLayer=_captureSessionInterruptedBackgroundLayer;
+@property(retain, nonatomic) UILabel *captureSessionInterruptedLabel; // @synthesize captureSessionInterruptedLabel=_captureSessionInterruptedLabel;
 @property(retain, nonatomic) UILabel *privacyLabel; // @synthesize privacyLabel=_privacyLabel;
 @property(retain, nonatomic) UILabel *subtitleLabel; // @synthesize subtitleLabel=_subtitleLabel;
-@property(retain, nonatomic) UIImageView *scanningIndicatorImageView; // @synthesize scanningIndicatorImageView=_scanningIndicatorImageView;
+@property(retain, nonatomic) UIView<GLUEAnimationLoading><GLUEAnimationControlling> *scanningAnimationView; // @synthesize scanningAnimationView=_scanningAnimationView;
 @property(retain, nonatomic) GLUEButton *photoLibraryButton; // @synthesize photoLibraryButton=_photoLibraryButton;
 @property(retain, nonatomic) UIButton *closeButton; // @synthesize closeButton=_closeButton;
 @property(retain, nonatomic) UIView *captureView; // @synthesize captureView=_captureView;
@@ -57,6 +63,7 @@
 @property(readonly, nonatomic) UINavigationController<SPTScannablesImagePickerController> *imagePickerController; // @synthesize imagePickerController=_imagePickerController;
 @property(readonly, nonatomic) SPTScannablesScanViewModel *viewModel; // @synthesize viewModel=_viewModel;
 - (void).cxx_destruct;
+- (_Bool)currentCaptureSessionIsInterrupted;
 - (void)viewWillTransitionToSize:(struct CGSize)arg1 withTransitionCoordinator:(id)arg2;
 - (_Bool)isSourceCardView;
 - (_Bool)imagePickerControllerIsPresented;
@@ -68,13 +75,18 @@
 @property(readonly, nonatomic, getter=spt_pageURI) NSURL *pageURI;
 - (void)addAndLayoutViewFinderLayer;
 - (void)layoutOverlayView;
+- (void)layoutCaptureSessionInterruptedLabel;
 - (void)layoutPrivacyLabel;
 - (void)layoutPhotoLibraryButton;
 - (void)layoutSubtitleLabel;
-- (void)layoutScanningIndicatorImageView;
+- (void)layoutScanningAnimationView;
 - (long long)currentVideoOrientation;
 - (void)layoutCaptureLayer;
 - (void)layoutCloseButton;
+- (void)toggleCaptureSessionInterruptedChanged;
+- (void)handleCaptureSessionInterruptedNotification:(id)arg1;
+- (void)addNotificationListeners;
+- (void)addCaptureSessionInterruptedBackgroundLayer;
 - (void)addCaptureLayer:(id)arg1;
 - (void)drawSmallPath:(id)arg1 forRect:(struct CGRect)arg2 cornerRadius:(double)arg3;
 - (void)drawBigPath:(id)arg1 forRect:(struct CGRect)arg2;
@@ -82,9 +94,10 @@
 - (id)provideBackgroundViewfinderLayerWithBigRect:(struct CGRect)arg1;
 - (struct CGRect)provideViewfinderRectWithBigRect:(struct CGRect)arg1;
 - (void)addOverLayView;
-- (void)addScanningIndicatorImageView;
+- (void)addScanningAnimationView;
 - (id)provideBackgroundGratientBottom;
 - (id)provideBackgroundGratientTop;
+- (void)addCaptureSessionInterruptedLabel;
 - (void)addPrivacyLabel;
 - (void)addPhotoLibraryButton;
 - (void)addSubtitleLabel;
@@ -94,7 +107,10 @@
 - (void)didTapPhotoLibraryButton;
 - (void)didTapCloseButton;
 - (void)prepareView;
+- (void)dealloc;
+- (void)viewDidDisappear:(_Bool)arg1;
 - (void)viewWillDisappear:(_Bool)arg1;
+- (void)viewDidAppear:(_Bool)arg1;
 - (void)viewWillAppear:(_Bool)arg1;
 - (void)viewWillLayoutSubviews;
 - (void)viewDidLoad;

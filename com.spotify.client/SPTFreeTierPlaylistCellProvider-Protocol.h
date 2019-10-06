@@ -6,11 +6,13 @@
 
 #import "NSObject-Protocol.h"
 
-@class NSDictionary, NSIndexPath, NSString, UITableView, UITableViewCell;
+@class NSDictionary, NSIndexPath, NSString, UITableViewCell;
 
 @protocol SPTFreeTierPlaylistCellProvider <NSObject>
-- (_Bool)tableView:(UITableView *)arg1 didSelectRowAtIndexPath:(NSIndexPath *)arg2;
-- (void)configureCell:(UITableViewCell *)arg1 forRowAtIndexPath:(NSIndexPath *)arg2;
+- (void)didEndDisplayingPlaylistCell:(UITableViewCell *)arg1 forRowAtIndexPath:(NSIndexPath *)arg2;
+- (void)willDisplayPlaylistCell:(UITableViewCell *)arg1 forRowAtIndexPath:(NSIndexPath *)arg2;
+- (_Bool)didSelectPlaylistCell:(UITableViewCell *)arg1 atIndexPath:(NSIndexPath *)arg2;
+- (void)configurePlaylistCell:(UITableViewCell *)arg1 forRowAtIndexPath:(NSIndexPath *)arg2;
 - (double)heightForRowAtIndexPath:(NSIndexPath *)arg1;
 - (NSString *)identifierForCellForRowAtIndexPath:(NSIndexPath *)arg1;
 - (NSDictionary *)reuseIdentifiers;

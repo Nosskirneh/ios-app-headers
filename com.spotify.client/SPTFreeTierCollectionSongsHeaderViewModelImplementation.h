@@ -16,6 +16,7 @@
     _Bool _playButtonHiddenWhenFiltering;
     _Bool _playButtonHidden;
     _Bool _filterAndSortingHidden;
+    _Bool _forceFilterBarVisible;
     id <SPTFreeTierCollectionSongsHeaderViewModelDelegate> delegate;
     id <SPTFreeTierCollectionSongsHeaderViewModelActionDelegate> actionDelegate;
     NSString *_textFilter;
@@ -25,6 +26,7 @@
 
 @property(readonly, nonatomic) id <SPTCollectionPlatformConfiguration> collectionPlatformConfigurator; // @synthesize collectionPlatformConfigurator=_collectionPlatformConfigurator;
 @property(readonly, nonatomic) id <SPTFreeTierCollectionTestManager> testManager; // @synthesize testManager=_testManager;
+@property(nonatomic, getter=isForceFilterBarVisible) _Bool forceFilterBarVisible; // @synthesize forceFilterBarVisible=_forceFilterBarVisible;
 @property(nonatomic, getter=isFilterAndSortingHidden) _Bool filterAndSortingHidden; // @synthesize filterAndSortingHidden=_filterAndSortingHidden;
 @property(nonatomic, getter=isPlayButtonHidden) _Bool playButtonHidden; // @synthesize playButtonHidden=_playButtonHidden;
 @property(readonly, nonatomic, getter=isPlayButtonHiddenWhenFiltering) _Bool playButtonHiddenWhenFiltering; // @synthesize playButtonHiddenWhenFiltering=_playButtonHiddenWhenFiltering;

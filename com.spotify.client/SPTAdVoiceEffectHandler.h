@@ -23,6 +23,7 @@
 @property(readonly, nonatomic) SPTAdVoicePlayCueEffectHandler *playCueEffectHandler; // @synthesize playCueEffectHandler=_playCueEffectHandler;
 @property(readonly, nonatomic) SPTAdVoiceCosmosEffectHandler *cosmosEffectHandler; // @synthesize cosmosEffectHandler=_cosmosEffectHandler;
 - (void).cxx_destruct;
+- (CDUnknownBlockType)postMicOnWithEventSink:(CDUnknownBlockType)arg1;
 - (CDUnknownBlockType)postSpeechErrorWithEventSink:(CDUnknownBlockType)arg1;
 - (CDUnknownBlockType)postSpeechReceivedWithEventSink:(CDUnknownBlockType)arg1;
 - (CDUnknownBlockType)clearAdSlotsWithEventSink:(CDUnknownBlockType)arg1;

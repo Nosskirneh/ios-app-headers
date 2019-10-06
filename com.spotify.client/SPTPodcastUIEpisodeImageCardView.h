@@ -4,16 +4,15 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <UIKit/UIView.h>
+#import "GLUEStatefulView.h"
 
-@class GLUEGradientView, GLUEImageView, GLUELabel, SPTPodcastUIEpisodeImageCardPlaceholderTextView, UIProgressView, UIStackView;
+@class GLUEGradientView, GLUEImageView, GLUELabel, SPTPodcastUIEpisodeImageCardPlaceholderTextView, UIProgressView, UIStackView, UIView;
 @protocol SPTPodcastUIEpisodeImageCardStyle;
 
-@interface SPTPodcastUIEpisodeImageCardView : UIView
+@interface SPTPodcastUIEpisodeImageCardView : GLUEStatefulView
 {
-    _Bool _highlighted;
     _Bool _backgroundImageExists;
-    id <SPTPodcastUIEpisodeImageCardStyle> _style;
+    id <SPTPodcastUIEpisodeImageCardStyle> _podcastStyle;
     GLUELabel *_titleLabel;
     GLUELabel *_metadataLabel;
     SPTPodcastUIEpisodeImageCardPlaceholderTextView *_imagePlaceholderTextView;
@@ -34,18 +33,18 @@
 @property(retain, nonatomic) UIView *imageContainerView; // @synthesize imageContainerView=_imageContainerView;
 @property(retain, nonatomic) UIStackView *labelStackView; // @synthesize labelStackView=_labelStackView;
 @property(nonatomic) _Bool backgroundImageExists; // @synthesize backgroundImageExists=_backgroundImageExists;
-@property(nonatomic) _Bool highlighted; // @synthesize highlighted=_highlighted;
 @property(retain, nonatomic) SPTPodcastUIEpisodeImageCardPlaceholderTextView *imagePlaceholderTextView; // @synthesize imagePlaceholderTextView=_imagePlaceholderTextView;
 @property(retain, nonatomic) GLUELabel *metadataLabel; // @synthesize metadataLabel=_metadataLabel;
 @property(retain, nonatomic) GLUELabel *titleLabel; // @synthesize titleLabel=_titleLabel;
-@property(retain, nonatomic) id <SPTPodcastUIEpisodeImageCardStyle> style; // @synthesize style=_style;
+@property(retain, nonatomic) id <SPTPodcastUIEpisodeImageCardStyle> podcastStyle; // @synthesize podcastStyle=_podcastStyle;
 - (void).cxx_destruct;
 - (id)gradientStyleForBackgroundColor:(id)arg1;
 - (void)applyGradientStyleForBackgroundColor:(id)arg1;
 - (id)textColorOnBackgroundColor:(id)arg1;
 - (void)translatesAutoresizingMaskIntoConstraintsForSubviewsOfView:(id)arg1 newValue:(_Bool)arg2;
 - (void)applyStyle;
-- (void)setHighlighted:(_Bool)arg1 animated:(_Bool)arg2;
+- (void)animateToHighlighted:(_Bool)arg1;
+- (void)setHighlighted:(_Bool)arg1;
 @property(nonatomic) float progress;
 - (void)prepareForReuse;
 - (void)updateEpisodeImage:(id)arg1 animated:(_Bool)arg2;

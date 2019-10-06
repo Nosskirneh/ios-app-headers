@@ -27,7 +27,6 @@
 @property(readonly, nonatomic) NSDictionary *loggingExtras;
 - (void)addLoggingExtra:(id)arg1 forKey:(id)arg2;
 - (id)initWithToken:(id)arg1 isCancelled:(_Bool)arg2 grantedPermissions:(id)arg3 declinedPermissions:(id)arg4;
-- (id)init;
 
 @end
 

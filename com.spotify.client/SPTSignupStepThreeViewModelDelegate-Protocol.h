@@ -4,11 +4,11 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import "SPTSignupViewModelDelegate-Protocol.h"
+#import "NSObject-Protocol.h"
 
 @class NSError;
 
-@protocol SPTSignupStepThreeViewModelDelegate <SPTSignupViewModelDelegate>
+@protocol SPTSignupStepThreeViewModelDelegate <NSObject>
 - (void)createUserRequestDidFinishWithError:(NSError *)arg1;
 - (void)createUserRequestDidStart;
 - (void)updateSubmitButtonState:(_Bool)arg1;

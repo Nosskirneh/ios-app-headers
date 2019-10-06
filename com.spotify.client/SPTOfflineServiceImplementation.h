@@ -9,18 +9,27 @@
 #import "SPTOfflineService-Protocol.h"
 
 @class NSString, SPTAllocationContext;
-@protocol CosmosFeature, SPTCosmosDataLoaderService;
+@protocol CosmosFeature, SPTCollectionPlatformService, SPTCosmosDataLoaderService, SPTPlaylistPlatformService, SPTSessionService;
 
 @interface SPTOfflineServiceImplementation : NSObject <SPTOfflineService>
 {
+    id <SPTSessionService> _clientSessionService;
+    id <SPTCollectionPlatformService> _collectionPlatformService;
     id <CosmosFeature> _cosmosFeature;
     id <SPTCosmosDataLoaderService> _cosmosDataLoaderService;
+    id <SPTPlaylistPlatformService> _playlistPlatformService;
 }
 
 + (id)serviceIdentifier;
+@property(nonatomic) __weak id <SPTPlaylistPlatformService> playlistPlatformService; // @synthesize playlistPlatformService=_playlistPlatformService;
 @property(nonatomic) __weak id <SPTCosmosDataLoaderService> cosmosDataLoaderService; // @synthesize cosmosDataLoaderService=_cosmosDataLoaderService;
 @property(nonatomic) __weak id <CosmosFeature> cosmosFeature; // @synthesize cosmosFeature=_cosmosFeature;
+@property(nonatomic) __weak id <SPTCollectionPlatformService> collectionPlatformService; // @synthesize collectionPlatformService=_collectionPlatformService;
+@property(nonatomic) __weak id <SPTSessionService> clientSessionService; // @synthesize clientSessionService=_clientSessionService;
 - (void).cxx_destruct;
+- (id)provideCosmosDictionaryDataLoader;
+- (id)provideOfflinePodcastModel;
+- (id)provideOfflineMusicModel;
 - (id)provideOfflineSyncModel;
 - (void)load;
 - (void)configureWithServices:(id)arg1;

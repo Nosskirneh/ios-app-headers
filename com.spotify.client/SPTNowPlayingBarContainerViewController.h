@@ -6,21 +6,22 @@
 
 #import <UIKit/UIViewController.h>
 
+#import "BMVideoSurfaceDelegate-Protocol.h"
 #import "SPTBarInteractiveTransitionParticipant-Protocol.h"
 #import "SPTNowPlayingDurationUnitViewModelDelegate-Protocol.h"
 #import "SPTNowPlayingDurationViewV2DataSource-Protocol.h"
+#import "SPTNowPlayingTestManagerObserver-Protocol.h"
 #import "SPTNowPlayingUnitProviderObserver-Protocol.h"
 #import "SPTPageController-Protocol.h"
 #import "SPTPlayerObserver-Protocol.h"
-#import "SPTVideoSurfaceDelegate-Protocol.h"
 
 @class NSArray, NSString, NSURL, SPTNowPlayingBarContentUnitProvider, SPTNowPlayingBarLeftAccessoryUnitProvider, SPTNowPlayingCarouselBackgroundBlurController, SPTNowPlayingDurationViewV2, SPTPlayerTrack, SPTTheme, UIView;
-@protocol SPTNowPlayingDurationUnitViewModel, SPTNowPlayingManager, SPTNowPlayingTestManager, SPTPageContainer, SPTPlayer, SPTVideoSurface, SPTVideoSurfaceManager;
+@protocol BMVideoSurface, BMVideoSurfaceManager, SPTNowPlayingDurationUnitViewModel, SPTNowPlayingManager, SPTNowPlayingTestManager, SPTPageContainer, SPTPlayer;
 
-@interface SPTNowPlayingBarContainerViewController : UIViewController <SPTVideoSurfaceDelegate, SPTNowPlayingUnitProviderObserver, SPTPlayerObserver, SPTNowPlayingDurationViewV2DataSource, SPTNowPlayingDurationUnitViewModelDelegate, SPTBarInteractiveTransitionParticipant, SPTPageController>
+@interface SPTNowPlayingBarContainerViewController : UIViewController <BMVideoSurfaceDelegate, SPTNowPlayingUnitProviderObserver, SPTPlayerObserver, SPTNowPlayingDurationViewV2DataSource, SPTNowPlayingDurationUnitViewModelDelegate, SPTNowPlayingTestManagerObserver, SPTBarInteractiveTransitionParticipant, SPTPageController>
 {
     id <SPTNowPlayingManager> _nowPlayingManager;
-    id <SPTVideoSurfaceManager> _videoSurfaceManager;
+    id <BMVideoSurfaceManager> _videoSurfaceManager;
     SPTNowPlayingBarContentUnitProvider *_contentUnitProvider;
     SPTNowPlayingBarLeftAccessoryUnitProvider *_leftAccessoryUnitProvider;
     UIView *_animationView;
@@ -33,7 +34,7 @@
     SPTNowPlayingCarouselBackgroundBlurController *_blurController;
     UIView *_backgroundView;
     UIView *_bottomSeparatorView;
-    UIView<SPTVideoSurface> *_videoSurface;
+    UIView<BMVideoSurface> *_videoSurface;
     SPTPlayerTrack *_currentTrack;
     UIView *_currentLeftAccessoryView;
     double _currentLeftAccessoryWidth;
@@ -42,7 +43,7 @@
 @property(nonatomic) double currentLeftAccessoryWidth; // @synthesize currentLeftAccessoryWidth=_currentLeftAccessoryWidth;
 @property(retain, nonatomic) UIView *currentLeftAccessoryView; // @synthesize currentLeftAccessoryView=_currentLeftAccessoryView;
 @property(retain, nonatomic) SPTPlayerTrack *currentTrack; // @synthesize currentTrack=_currentTrack;
-@property(retain, nonatomic) UIView<SPTVideoSurface> *videoSurface; // @synthesize videoSurface=_videoSurface;
+@property(retain, nonatomic) UIView<BMVideoSurface> *videoSurface; // @synthesize videoSurface=_videoSurface;
 @property(retain, nonatomic) UIView *bottomSeparatorView; // @synthesize bottomSeparatorView=_bottomSeparatorView;
 @property(retain, nonatomic) UIView *backgroundView; // @synthesize backgroundView=_backgroundView;
 @property(retain, nonatomic) SPTNowPlayingCarouselBackgroundBlurController *blurController; // @synthesize blurController=_blurController;
@@ -55,9 +56,10 @@
 @property(readonly, nonatomic) UIView *animationView; // @synthesize animationView=_animationView;
 @property(readonly, nonatomic) SPTNowPlayingBarLeftAccessoryUnitProvider *leftAccessoryUnitProvider; // @synthesize leftAccessoryUnitProvider=_leftAccessoryUnitProvider;
 @property(readonly, nonatomic) SPTNowPlayingBarContentUnitProvider *contentUnitProvider; // @synthesize contentUnitProvider=_contentUnitProvider;
-@property(readonly, nonatomic) id <SPTVideoSurfaceManager> videoSurfaceManager; // @synthesize videoSurfaceManager=_videoSurfaceManager;
+@property(readonly, nonatomic) id <BMVideoSurfaceManager> videoSurfaceManager; // @synthesize videoSurfaceManager=_videoSurfaceManager;
 @property(readonly, nonatomic) id <SPTNowPlayingManager> nowPlayingManager; // @synthesize nowPlayingManager=_nowPlayingManager;
 - (void).cxx_destruct;
+- (void)nowPlayingTestManagerDidEnableBarImprovements:(id)arg1;
 - (struct CGSize)preferredContentSize;
 @property(readonly, nonatomic, getter=spt_pageURI) NSURL *pageURI;
 @property(readonly, nonatomic, getter=spt_pageIdentifier) NSString *pageIdentifier;

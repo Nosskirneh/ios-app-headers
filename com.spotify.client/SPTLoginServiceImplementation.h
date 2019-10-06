@@ -12,7 +12,7 @@
 #import "SPTPreSignupExperimentationFeatureFlagsLoaderDelegate-Protocol.h"
 
 @class NSError, NSString, SPTAllocationContext, SPTAuthenticationHandler, SPTLoginAttemptLogger, SPTLoginDelayedSignupAccountCreator, SPTLoginDelayedSignupAccountSwitcher, SPTLoginDialogController, SPTLoginErrorDecorator, SPTLoginKeychainManagerImplementation, SPTLoginLogoutAwaiter, SPTLoginNavigationRouter, SPTLoginSlideUpModalPresenter, SPTLoginStateControllerImplementation, SPTObserverManager;
-@protocol SPTContainerService, SPTContainerUIService, SPTCoreService, SPTCrashReporterService, SPTDebugService, SPTFacebookIntegrationService, SPTGLUEService, SPTLoginLoggingService, SPTNetworkService, SPTPreSignupExperimentationFeatureFlags, SPTPreSignupExperimentationFeatureFlagsLoader, SPTPreSignupExperimentationService, SPTServiceManagerService, SPTURIDispatchService;
+@protocol SPTContainerService, SPTContainerUIService, SPTCoreService, SPTCrashReporterService, SPTDebugService, SPTFacebookIntegrationService, SPTGLUEService, SPTLoginLoggingService, SPTNetworkService, SPTPreSignupExperimentationFeatureFlags, SPTPreSignupExperimentationFeatureFlagsLoader, SPTPreSignupExperimentationService, SPTServiceManagerService, SPTURIDispatchService, SPTUserBehaviourInstrumentationService;
 
 @interface SPTLoginServiceImplementation : NSObject <SPTPageRegistryObserver, SPTPreSignupExperimentationFeatureFlagsLoaderDelegate, SPTLoginService, SPTLoginLogoutHandler>
 {
@@ -30,6 +30,7 @@
     id <SPTURIDispatchService> _URIDispatchService;
     id <SPTLoginLoggingService> _loggerService;
     id <SPTDebugService> _debugService;
+    id <SPTUserBehaviourInstrumentationService> _ubiService;
     id <SPTPreSignupExperimentationFeatureFlagsLoader> _flagsLoader;
     id <SPTPreSignupExperimentationFeatureFlags> _featureFlags;
     NSError *_autoLoginError;
@@ -65,6 +66,7 @@
 @property(retain, nonatomic) NSError *autoLoginError; // @synthesize autoLoginError=_autoLoginError;
 @property(retain, nonatomic) id <SPTPreSignupExperimentationFeatureFlags> featureFlags; // @synthesize featureFlags=_featureFlags;
 @property(retain, nonatomic) id <SPTPreSignupExperimentationFeatureFlagsLoader> flagsLoader; // @synthesize flagsLoader=_flagsLoader;
+@property(nonatomic) __weak id <SPTUserBehaviourInstrumentationService> ubiService; // @synthesize ubiService=_ubiService;
 @property(nonatomic) __weak id <SPTDebugService> debugService; // @synthesize debugService=_debugService;
 @property(nonatomic) __weak id <SPTLoginLoggingService> loggerService; // @synthesize loggerService=_loggerService;
 @property(nonatomic) __weak id <SPTURIDispatchService> URIDispatchService; // @synthesize URIDispatchService=_URIDispatchService;
@@ -81,7 +83,6 @@
 - (id)provideWelcomeViewControllerWithTheme:(id)arg1 mainViewLoader:(id)arg2 loginStateController:(id)arg3 performanceLogging:(id)arg4 phoneNumberEnabled:(_Bool)arg5;
 - (id)provideAccountSwitcher;
 - (id)provideNavigationRouter;
-- (id)recoverAccountHelpController;
 - (id)provideAuthenticationHandler;
 - (id)loginFailureHandler;
 - (id)mainViewLoader;

@@ -20,7 +20,7 @@
 }
 
 @property(retain, nonatomic) NSMapTable *modalPageStreams; // @synthesize modalPageStreams=_modalPageStreams;
-@property(retain, nonatomic) id <SPTInstrumentationServiceMessagingHandler> messageHandler; // @synthesize messageHandler=_messageHandler;
+@property(nonatomic) __weak id <SPTInstrumentationServiceMessagingHandler> messageHandler; // @synthesize messageHandler=_messageHandler;
 @property(retain, nonatomic) SPTInstrumentationPageStreamFactory *pageStreamFactory; // @synthesize pageStreamFactory=_pageStreamFactory;
 @property(retain, nonatomic) SPTInstrumentationStackedPageStream *pageStream; // @synthesize pageStream=_pageStream;
 - (void).cxx_destruct;

@@ -7,25 +7,29 @@
 #import <objc/NSObject.h>
 
 @class NSMutableDictionary, NSURL;
-@protocol SPTExternalIntegrationPlaybackController;
+@protocol SPTExternalIntegrationPlaybackController, SPTOnDemandSet;
 
 @interface SPTDrivingModePivotPlayer : NSObject
 {
+    NSURL *_queuedURI;
     id <SPTExternalIntegrationPlaybackController> _playbackController;
+    id <SPTOnDemandSet> _onDemandSet;
     NSMutableDictionary *_resumePoints;
     NSMutableDictionary *_resumeURIs;
 }
 
 @property(readonly, nonatomic) NSMutableDictionary *resumeURIs; // @synthesize resumeURIs=_resumeURIs;
 @property(readonly, nonatomic) NSMutableDictionary *resumePoints; // @synthesize resumePoints=_resumePoints;
+@property(readonly, nonatomic) id <SPTOnDemandSet> onDemandSet; // @synthesize onDemandSet=_onDemandSet;
 @property(readonly, nonatomic) id <SPTExternalIntegrationPlaybackController> playbackController; // @synthesize playbackController=_playbackController;
+@property(retain, nonatomic) NSURL *queuedURI; // @synthesize queuedURI=_queuedURI;
 - (void).cxx_destruct;
 - (id)playOptionsForSkipTo:(id)arg1 seekTo:(id)arg2;
 - (id)resumeOptionsFor:(id)arg1;
 - (void)updatePlaybackStatusFromPlayerState:(id)arg1;
-@property(readonly, nonatomic) NSURL *currentContextURI;
+- (void)clearQueuedURI;
 - (void)resumePlaybackForContextURI:(id)arg1;
-- (id)initWithPlaybackController:(id)arg1;
+- (id)initWithPlaybackController:(id)arg1 onDemandSet:(id)arg2;
 
 @end
 

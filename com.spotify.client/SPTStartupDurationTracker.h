@@ -20,6 +20,7 @@
 - (void).cxx_destruct;
 - (id)longestDurationsForType:(id)arg1 maxDurations:(long long)arg2;
 - (id)durationsForType:(id)arg1;
+- (void)addDuration:(double)arg1 type:(id)arg2 key:(id)arg3;
 - (void)endDurationOfType:(id)arg1 key:(id)arg2;
 - (void)startDurationOfType:(id)arg1 key:(id)arg2;
 - (void)reset;

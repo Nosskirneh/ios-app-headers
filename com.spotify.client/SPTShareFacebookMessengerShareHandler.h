@@ -8,25 +8,20 @@
 
 #import "SPTShareHandler-Protocol.h"
 
-@class NSString, SPTShareFacebookMessengerWrapper, SPTShareLogger;
+@class NSString, SPTShareLogger;
 @protocol SPTShareTestManager;
 
 @interface SPTShareFacebookMessengerShareHandler : NSObject <SPTShareHandler>
 {
     SPTShareLogger *_shareLogger;
     id <SPTShareTestManager> _testManager;
-    SPTShareFacebookMessengerWrapper *_facebookMessengerWrapper;
 }
 
-@property(retain, nonatomic) SPTShareFacebookMessengerWrapper *facebookMessengerWrapper; // @synthesize facebookMessengerWrapper=_facebookMessengerWrapper;
 @property(retain, nonatomic) id <SPTShareTestManager> testManager; // @synthesize testManager=_testManager;
 @property(retain, nonatomic) SPTShareLogger *shareLogger; // @synthesize shareLogger=_shareLogger;
 - (void).cxx_destruct;
-- (void)shareData:(id)arg1 completion:(CDUnknownBlockType)arg2;
-- (void)shareScreenshotWithData:(id)arg1 completion:(CDUnknownBlockType)arg2;
-- (id)createAlertModel;
 - (void)shareWithData:(id)arg1 shareDestination:(id)arg2 sharePresenter:(id)arg3 completion:(CDUnknownBlockType)arg4;
-- (id)initWithShareLogger:(id)arg1 testManager:(id)arg2 facebookMessengerWrapper:(id)arg3;
+- (id)initWithShareLogger:(id)arg1 testManager:(id)arg2;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

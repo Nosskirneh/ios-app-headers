@@ -71,7 +71,6 @@
 - (void)externalIntegrationPlaybackController:(id)arg1 didReceiveNewPlayerState:(id)arg2 oldPlayerState:(id)arg3;
 - (id)fragmentsParameterFromURI:(id)arg1;
 - (void)authServiceWillReturnToSourceApplicationWithURI:(id)arg1;
-- (void)registerWazeSettingsSection;
 - (id)providePresentationViewModel;
 - (void)testManager:(id)arg1 didChangeWazeIntegrationEnabledState:(_Bool)arg2;
 - (void)testManager:(id)arg1 didChangeWazeFeatureEnabledState:(_Bool)arg2;

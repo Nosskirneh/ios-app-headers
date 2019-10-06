@@ -7,6 +7,8 @@
 #import "NSObject-Protocol.h"
 
 @protocol SPTFreeTierCollectionTestManager <NSObject>
+@property(readonly, nonatomic, getter=isSearchFieldInLikedSongsVisible) _Bool searchFieldInLikedSongsVisible;
+@property(readonly, nonatomic, getter=isCollectionTrackMetadataEnabled) _Bool collectionTrackMetadataEnabled;
 @property(readonly, nonatomic, getter=isGroupsInLikedSongsEnabled) _Bool groupsInLikedSongsEnabled;
 @property(readonly, nonatomic, getter=isShowAlbumArtistRecommendationsEnabled) _Bool showAlbumArtistRecommendationsEnabled;
 @property(readonly, nonatomic, getter=isQuickActionsInLikedSongsEnabled) _Bool quickActionsInLikedSongsEnabled;

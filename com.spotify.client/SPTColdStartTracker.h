@@ -10,6 +10,7 @@
 {
 }
 
++ (void)setStartupSubdurationTracingEnabled:(_Bool)arg1;
 + (void)setStartupTracingEnabled:(_Bool)arg1;
 + (void)signalStartupFinished:(id)arg1;
 + (void)setColdStartObserver:(id)arg1;

@@ -8,9 +8,12 @@
 
 @interface SPTAdVoiceEventSpeechSessionStarted : SPTAdVoiceEvent
 {
+    double _position;
 }
 
+@property(readonly, nonatomic) double position; // @synthesize position=_position;
 - (_Bool)isEqual:(id)arg1;
+- (id)initWithPosition:(double)arg1;
 
 @end
 

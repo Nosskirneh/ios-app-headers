@@ -19,7 +19,7 @@
     NSString *_comment;
     NSString *_shareBrowselinkId;
     NSString *_itemName;
-    unsigned long long _itemType;
+    long long _itemType;
     NSURL *_itemContextSourceURI;
     NSString *_creatorName;
     NSURL *_itemURI;
@@ -42,7 +42,7 @@
 @property(readonly, nonatomic) NSURL *itemURI; // @synthesize itemURI=_itemURI;
 @property(readonly, nonatomic) NSString *creatorName; // @synthesize creatorName=_creatorName;
 @property(readonly, nonatomic) NSURL *itemContextSourceURI; // @synthesize itemContextSourceURI=_itemContextSourceURI;
-@property(readonly, nonatomic) unsigned long long itemType; // @synthesize itemType=_itemType;
+@property(readonly, nonatomic) long long itemType; // @synthesize itemType=_itemType;
 @property(readonly, nonatomic) NSString *itemName; // @synthesize itemName=_itemName;
 @property(readonly, nonatomic) NSString *shareBrowselinkId; // @synthesize shareBrowselinkId=_shareBrowselinkId;
 @property(retain, nonatomic) NSString *comment; // @synthesize comment=_comment;
@@ -53,7 +53,7 @@
 @property(readonly, nonatomic) NSURL *webURI;
 - (id)generateShareId;
 - (void)setupShareBrowselinkId;
-- (id)initWithItemURI:(id)arg1 contextSourceURI:(id)arg2 itemName:(id)arg3 creatorName:(id)arg4 sourceName:(id)arg5 imageURL:(id)arg6 shareScreenshotImage:(id)arg7 itemType:(unsigned long long)arg8 clipboardLinkTitle:(id)arg9 logContext:(id)arg10 testManager:(id)arg11;
+- (id)initWithItemURI:(id)arg1 contextSourceURI:(id)arg2 itemName:(id)arg3 creatorName:(id)arg4 sourceName:(id)arg5 imageURL:(id)arg6 shareScreenshotImage:(id)arg7 itemType:(long long)arg8 clipboardLinkTitle:(id)arg9 logContext:(id)arg10 testManager:(id)arg11;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

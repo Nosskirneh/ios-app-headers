@@ -9,6 +9,7 @@
 @class SPTDrivingModePivotViewModel;
 
 @protocol SPTDrivingModePivotViewModelDelegate <NSObject>
+- (void)viewModelDidChangeShouldShowAd:(SPTDrivingModePivotViewModel *)arg1;
 - (void)viewModelDidReload:(SPTDrivingModePivotViewModel *)arg1;
 @end
 

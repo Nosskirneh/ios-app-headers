@@ -6,9 +6,11 @@
 
 #import "SPTService-Protocol.h"
 
-@protocol SPTOfflineSyncModel;
+@protocol SPTOfflineContentModel, SPTOfflineSyncModel;
 
 @protocol SPTOfflineService <SPTService>
+- (id <SPTOfflineContentModel>)provideOfflinePodcastModel;
+- (id <SPTOfflineContentModel>)provideOfflineMusicModel;
 - (id <SPTOfflineSyncModel>)provideOfflineSyncModel;
 @end
 

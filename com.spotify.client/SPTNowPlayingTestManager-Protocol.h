@@ -7,13 +7,13 @@
 #import "NSObject-Protocol.h"
 
 @class SPTNowPlayingScrollConfiguration, SPTPlayerState;
+@protocol SPTNowPlayingTestManagerObserver;
 
 @protocol SPTNowPlayingTestManager <NSObject>
 @property(readonly, nonatomic) SPTNowPlayingScrollConfiguration *scrollConfiguration;
 @property(readonly, nonatomic, getter=isContextAwareEditorialTrackSharingEnabled) _Bool contextAwareEditorialTrackSharingEnabled;
 @property(readonly, nonatomic, getter=isLocalBansEnabled) _Bool localBansEnabled;
 @property(readonly, nonatomic, getter=isFreeTierEnabled) _Bool freeTierEnabled;
-@property(readonly, nonatomic, getter=isVoiceCompanionEnabled) _Bool voiceCompanionEnabled;
 @property(readonly, nonatomic, getter=isNoSkipLimitEnabled) _Bool noSkipLimitEnabled;
 @property(readonly, nonatomic, getter=isShowsFormatContextAwareSharingEnabled) _Bool showsFormatContextAwareSharingEnabled;
 @property(readonly, nonatomic, getter=isNowPlayingBarImprovementsEnabled) _Bool nowPlayingBarImprovementsEnabled;
@@ -22,5 +22,7 @@
 - (_Bool)setLocalBansEnabled:(_Bool)arg1;
 - (_Bool)isShowsFormatEnabledForPlayerState:(SPTPlayerState *)arg1;
 - (_Bool)isPodcast:(SPTPlayerState *)arg1;
+- (void)removeObserver:(id <SPTNowPlayingTestManagerObserver>)arg1;
+- (void)addObserver:(id <SPTNowPlayingTestManagerObserver>)arg1;
 @end
 

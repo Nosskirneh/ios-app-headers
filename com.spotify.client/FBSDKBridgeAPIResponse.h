@@ -27,7 +27,6 @@
 @property(readonly, nonatomic, getter=isCancelled) _Bool cancelled; // @synthesize cancelled=_cancelled;
 - (void).cxx_destruct;
 - (id)copyWithZone:(struct _NSZone *)arg1;
-- (id)init;
 - (id)initWithRequest:(id)arg1 responseParameters:(id)arg2 cancelled:(_Bool)arg3 error:(id)arg4;
 
 // Remaining properties

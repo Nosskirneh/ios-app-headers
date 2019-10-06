@@ -6,31 +6,43 @@
 
 #import "SPTPodcastSectionTableViewCell.h"
 
-@class GLUEContextMenuAccessoryButton, NSArray, SPTPodcastFollowButton, SPTPodcastFollowSectionViewModel;
+#import "SPTPodcastFollowSectionTableViewCellCommonInterface-Protocol.h"
+
+@class GLUEContextMenuAccessoryButton, NSArray, NSString, SPTPodcastFollowButton, SPTPodcastFollowSectionViewModel, UIButton;
 @protocol GLUETheme;
 
-@interface SPTPodcastFollowSectionTableViewCell : SPTPodcastSectionTableViewCell
+@interface SPTPodcastFollowSectionTableViewCell : SPTPodcastSectionTableViewCell <SPTPodcastFollowSectionTableViewCellCommonInterface>
 {
-    GLUEContextMenuAccessoryButton *_contextMenuButton;
     id <GLUETheme> _glueTheme;
     NSArray *_layoutConstraints;
     SPTPodcastFollowButton *_followButton;
+    UIButton *_playbackButton;
+    GLUEContextMenuAccessoryButton *_contextMenuButton;
     SPTPodcastFollowSectionViewModel *_followSectionViewModel;
 }
 
 @property(retain, nonatomic) SPTPodcastFollowSectionViewModel *followSectionViewModel; // @synthesize followSectionViewModel=_followSectionViewModel;
+@property(retain, nonatomic) GLUEContextMenuAccessoryButton *contextMenuButton; // @synthesize contextMenuButton=_contextMenuButton;
+@property(retain, nonatomic) UIButton *playbackButton; // @synthesize playbackButton=_playbackButton;
 @property(retain, nonatomic) SPTPodcastFollowButton *followButton; // @synthesize followButton=_followButton;
 @property(copy, nonatomic) NSArray *layoutConstraints; // @synthesize layoutConstraints=_layoutConstraints;
 @property(retain, nonatomic) id <GLUETheme> glueTheme; // @synthesize glueTheme=_glueTheme;
-@property(retain, nonatomic) GLUEContextMenuAccessoryButton *contextMenuButton; // @synthesize contextMenuButton=_contextMenuButton;
 - (void).cxx_destruct;
 - (void)updateFollowedButtonState:(_Bool)arg1;
 - (void)contextMenuButtonTapped:(id)arg1;
 - (void)followButtonTapped:(id)arg1;
+- (void)playbackButtonTapped:(id)arg1;
 - (void)setupConstraints;
 - (void)setupUI;
+- (void)setPlaybackButtonIcon;
 - (void)updatewithViewModel:(id)arg1 atIndexPath:(id)arg2;
 - (id)initWithStyle:(long long)arg1 reuseIdentifier:(id)arg2;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

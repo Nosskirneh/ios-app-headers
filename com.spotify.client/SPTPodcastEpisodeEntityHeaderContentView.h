@@ -72,6 +72,7 @@
 - (void).cxx_destruct;
 - (void)glue_applyStyle:(id)arg1;
 - (void)updateOffset:(double)arg1;
+- (void)updateMinimumHeight:(double)arg1;
 - (void)updateVisibleRect:(struct CGRect)arg1 minimumHeight:(double)arg2 navBarHeight:(double)arg3;
 @property(nonatomic) double listeningProgress;
 @property(nonatomic, getter=isPlayed) _Bool played;

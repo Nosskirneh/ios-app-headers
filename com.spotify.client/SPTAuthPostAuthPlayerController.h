@@ -18,7 +18,7 @@
 @property(nonatomic) __weak id <SPTExternalIntegrationPlatform> externalIntegrationPlatform; // @synthesize externalIntegrationPlatform=_externalIntegrationPlatform;
 - (void).cxx_destruct;
 - (_Bool)isPlaying;
-- (void)playIfNeccessary:(id)arg1 withCompletionHandler:(CDUnknownBlockType)arg2;
+- (void)playIfNeccessary:(id)arg1 options:(id)arg2 withCompletionHandler:(CDUnknownBlockType)arg3;
 - (void)playbackFallbackWithCompletionHandler:(CDUnknownBlockType)arg1;
 - (id)initWithExternalIntegrationPlatform:(id)arg1 connectManager:(id)arg2;
 

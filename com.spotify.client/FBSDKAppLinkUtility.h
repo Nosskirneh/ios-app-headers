@@ -11,7 +11,6 @@
 }
 
 + (id)appInvitePromotionCodeFromURL:(id)arg1;
-+ (_Bool)fetchDeferredAppInvite:(CDUnknownBlockType)arg1;
 + (void)fetchDeferredAppLink:(CDUnknownBlockType)arg1;
 
 @end

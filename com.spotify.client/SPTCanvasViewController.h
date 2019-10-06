@@ -13,7 +13,7 @@
 #import "SPTNowPlayingContainerIdleMonitorObserver-Protocol.h"
 
 @class NSString, SPTCanvasAttributionView, SPTCanvasImageResolver, SPTCanvasLoadEventLogger, SPTCanvasLoadStateTracker, SPTCanvasLoggingService, SPTCanvasModelLoader, SPTCanvasStreamingPlaybackManager, SPTImageBlurView, UIActivityIndicatorView, UIImageView, UIView;
-@protocol SPTCanvasIdleMonitorObserverDelegate, SPTCanvasLoadStateUpdater, SPTCanvasModel, SPTCanvasModelLoadDelegate, SPTCanvasTapArtistAttributionDelegate, SPTLinkDispatcher, SPTPlayerFeature, SPTVideoFeaturePlayerFactory, SPTVideoPlayer, SPTVideoSurface, SPTVideoURLAssetLoader;
+@protocol BMBetamaxPlayer, BMVideoSurface, SPTCanvasIdleMonitorObserverDelegate, SPTCanvasLoadStateUpdater, SPTCanvasModel, SPTCanvasModelLoadDelegate, SPTCanvasTapArtistAttributionDelegate, SPTLinkDispatcher, SPTPlayerFeature, SPTVideoFeaturePlayerFactory, SPTVideoURLAssetLoader;
 
 @interface SPTCanvasViewController : UIViewController <SPTCanvasStreamingPlaybackManagerLoadDelegate, SPTCanvasStreamingPlaybackObserverDelegate, SPTCanvasModelLoaderDelegate, SPTCanvasTapArtistAttributionDelegate, SPTNowPlayingContainerIdleMonitorObserver>
 {
@@ -31,13 +31,13 @@
     id <SPTPlayerFeature> _playerFeature;
     id <SPTVideoURLAssetLoader> _videoManager;
     id <SPTLinkDispatcher> _linkDispatcher;
-    id <SPTVideoPlayer> _videoPlayer;
+    id <BMBetamaxPlayer> _videoPlayer;
     SPTCanvasStreamingPlaybackManager *_videoPlaybackManager;
     SPTImageBlurView *_placeholderView;
     UIImageView *_imageView;
     SPTCanvasAttributionView *_attributionView;
     UIActivityIndicatorView *_activityIndicatorView;
-    UIView<SPTVideoSurface> *_surfaceView;
+    UIView<BMVideoSurface> *_surfaceView;
     id <SPTCanvasIdleMonitorObserverDelegate> _idleMonitorDelegate;
     id <SPTCanvasTapArtistAttributionDelegate> _artistAttributionDelegate;
 }
@@ -46,13 +46,13 @@
 @property(nonatomic) __weak id <SPTCanvasIdleMonitorObserverDelegate> idleMonitorDelegate; // @synthesize idleMonitorDelegate=_idleMonitorDelegate;
 @property(nonatomic) _Bool isIdle; // @synthesize isIdle=_isIdle;
 @property(nonatomic) _Bool shouldShowAttribution; // @synthesize shouldShowAttribution=_shouldShowAttribution;
-@property(retain, nonatomic) UIView<SPTVideoSurface> *surfaceView; // @synthesize surfaceView=_surfaceView;
+@property(retain, nonatomic) UIView<BMVideoSurface> *surfaceView; // @synthesize surfaceView=_surfaceView;
 @property(readonly, nonatomic) UIActivityIndicatorView *activityIndicatorView; // @synthesize activityIndicatorView=_activityIndicatorView;
 @property(readonly, nonatomic) SPTCanvasAttributionView *attributionView; // @synthesize attributionView=_attributionView;
 @property(readonly, nonatomic) UIImageView *imageView; // @synthesize imageView=_imageView;
 @property(readonly, nonatomic) SPTImageBlurView *placeholderView; // @synthesize placeholderView=_placeholderView;
 @property(retain, nonatomic) SPTCanvasStreamingPlaybackManager *videoPlaybackManager; // @synthesize videoPlaybackManager=_videoPlaybackManager;
-@property(retain, nonatomic) id <SPTVideoPlayer> videoPlayer; // @synthesize videoPlayer=_videoPlayer;
+@property(retain, nonatomic) id <BMBetamaxPlayer> videoPlayer; // @synthesize videoPlayer=_videoPlayer;
 @property(readonly, nonatomic) id <SPTLinkDispatcher> linkDispatcher; // @synthesize linkDispatcher=_linkDispatcher;
 @property(readonly, nonatomic) id <SPTVideoURLAssetLoader> videoManager; // @synthesize videoManager=_videoManager;
 @property(readonly, nonatomic) __weak id <SPTPlayerFeature> playerFeature; // @synthesize playerFeature=_playerFeature;

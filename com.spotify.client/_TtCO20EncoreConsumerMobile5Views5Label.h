@@ -8,7 +8,6 @@
 
 @interface _TtCO20EncoreConsumerMobile5Views5Label : _TtCs12_SwiftObject
 {
-    // Error parsing type: , name: state
     // Error parsing type: , name: uiLabel
     // Error parsing type: , name: style
 }

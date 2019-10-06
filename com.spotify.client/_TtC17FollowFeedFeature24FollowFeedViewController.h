@@ -14,7 +14,8 @@
     // Error parsing type: , name: pageURI
     // Error parsing type: , name: mobiusLoopController
     // Error parsing type: , name: feedView
-    // Error parsing type: , name: viewConnectable.storage
+    // Error parsing type: , name: hubPage
+    // Error parsing type: , name: pageConnectable
 }
 
 - (void).cxx_destruct;

@@ -9,17 +9,19 @@
 #import "SPTBannerItemCustomView-Protocol.h"
 
 @class NSString, SPTBannerView;
-@protocol SPTBannerViewDelegate;
+@protocol SPTBannerViewDelegate, SPTPartnerService;
 
 @interface SPTGoogleMapsBannerItem : SPTBannerItem <SPTBannerItemCustomView>
 {
     id <SPTBannerViewDelegate> _bannerViewDelegate;
+    id <SPTPartnerService> _partnerService;
 }
 
+@property(readonly, nonatomic) __weak id <SPTPartnerService> partnerService; // @synthesize partnerService=_partnerService;
 @property(readonly, nonatomic) __weak id <SPTBannerViewDelegate> bannerViewDelegate; // @synthesize bannerViewDelegate=_bannerViewDelegate;
 - (void).cxx_destruct;
 @property(readonly, nonatomic) SPTBannerView *bannerView;
-- (id)initWithBannerViewDelegate:(id)arg1;
+- (id)initWithBannerViewDelegate:(id)arg1 partnerService:(id)arg2;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

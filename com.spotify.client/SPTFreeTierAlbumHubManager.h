@@ -7,7 +7,7 @@
 #import <objc/NSObject.h>
 
 @class HUBComponentDefaults, HUBComponentRegistry, SPTDataLoader, SPTFreeTierAlbumBarButtonFactory, SPTFreeTierAlbumCommandHandlerFactory, SPTFreeTierAlbumContentOperationFactory, SPTFreeTierAlbumOfflineModelFactory;
-@protocol GLUETheme, SPTCollectionPlatform, SPTHubsRendererFactory, SPTHugsFactory, SPTOfflineModeState, SPTPermissionsOnDemandState, SPTPlayerFeature, SPTProductState, SPTShelves, SPTUpsellExperimentationFreetierAlbumTestConfiguration, SPTVISREFFlagsService;
+@protocol GLUETheme, SPTCollectionPlatform, SPTHubsRendererFactory, SPTHugsFactory, SPTOfflineModeState, SPTPermissionsOnDemandState, SPTPlayerFeature, SPTProductState, SPTShelves, SPTUpsellExperimentationFreetierAlbumTestConfiguration, SPTVisualRefreshIntegrationService;
 
 @interface SPTFreeTierAlbumHubManager : NSObject
 {
@@ -27,12 +27,12 @@
     id <SPTUpsellExperimentationFreetierAlbumTestConfiguration> _upsellExperimentConfiguration;
     HUBComponentDefaults *_componentDefaults;
     SPTFreeTierAlbumOfflineModelFactory *_offlineModelFactory;
-    id <SPTVISREFFlagsService> _visualRefreshService;
+    id <SPTVisualRefreshIntegrationService> _visualRefreshIntegrationService;
     id <SPTShelves> _shelves;
 }
 
 @property(readonly, nonatomic) id <SPTShelves> shelves; // @synthesize shelves=_shelves;
-@property(nonatomic) __weak id <SPTVISREFFlagsService> visualRefreshService; // @synthesize visualRefreshService=_visualRefreshService;
+@property(nonatomic) __weak id <SPTVisualRefreshIntegrationService> visualRefreshIntegrationService; // @synthesize visualRefreshIntegrationService=_visualRefreshIntegrationService;
 @property(readonly, nonatomic) SPTFreeTierAlbumOfflineModelFactory *offlineModelFactory; // @synthesize offlineModelFactory=_offlineModelFactory;
 @property(readonly, nonatomic) HUBComponentDefaults *componentDefaults; // @synthesize componentDefaults=_componentDefaults;
 @property(readonly, nonatomic) id <SPTUpsellExperimentationFreetierAlbumTestConfiguration> upsellExperimentConfiguration; // @synthesize upsellExperimentConfiguration=_upsellExperimentConfiguration;
@@ -53,7 +53,7 @@
 - (id)createViewModelLoaderForViewURI:(id)arg1 referrerIdentifier:(id)arg2 offlineModel:(id)arg3 reloadPageSignal:(id)arg4;
 - (id)createViewControllerForViewURI:(id)arg1 referrerIdentifier:(id)arg2;
 - (_Bool)canCreateViewControllerForViewURI:(id)arg1;
-- (id)initWithComponentRegistry:(id)arg1 hubsRendererFactory:(id)arg2 hugsFactory:(id)arg3 contentOperationFactory:(id)arg4 commandHandlerFactory:(id)arg5 barButtonFactory:(id)arg6 glueTheme:(id)arg7 onDemandState:(id)arg8 offlineModelFactory:(id)arg9 playerService:(id)arg10 offlineModeState:(id)arg11 productState:(id)arg12 dataLoader:(id)arg13 collectionPlatform:(id)arg14 visualRefreshService:(id)arg15 shelves:(id)arg16 upsellExperimentConfiguration:(id)arg17;
+- (id)initWithComponentRegistry:(id)arg1 hubsRendererFactory:(id)arg2 hugsFactory:(id)arg3 contentOperationFactory:(id)arg4 commandHandlerFactory:(id)arg5 barButtonFactory:(id)arg6 glueTheme:(id)arg7 onDemandState:(id)arg8 offlineModelFactory:(id)arg9 playerService:(id)arg10 offlineModeState:(id)arg11 productState:(id)arg12 dataLoader:(id)arg13 collectionPlatform:(id)arg14 visualRefreshIntegrationService:(id)arg15 shelves:(id)arg16 upsellExperimentConfiguration:(id)arg17;
 
 @end
 

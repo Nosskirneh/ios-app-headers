@@ -26,7 +26,9 @@
 - (id)initWithName:(id)arg1 componentModel:(id)arg2 data:(id)arg3;
 - (id)eventComponents;
 - (id)interactionType;
+- (id)specificationCommitHash;
 - (id)specificationId;
+- (id)applicationId;
 - (long long)spt_hubLoggingDataItemIndex;
 - (id)spt_interaction5LogMessageWithUserIntent:(id)arg1;
 

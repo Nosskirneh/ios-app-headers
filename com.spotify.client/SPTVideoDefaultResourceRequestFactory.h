@@ -9,23 +9,27 @@
 #import "SPTVideoResourceRequestFactory-Protocol.h"
 
 @class NSString;
-@protocol OS_dispatch_queue, SPTVideoChunkCache, SPTVideoDataLoader;
+@protocol BMChunkCache, BMDataLoader, BMPlaybackIdentity, OS_dispatch_queue, SPTVideoEventDispatcher;
 
 @interface SPTVideoDefaultResourceRequestFactory : NSObject <SPTVideoResourceRequestFactory>
 {
     _Bool _cachingFlatFilesEnabled;
-    id <SPTVideoDataLoader> _dataLoader;
-    id <SPTVideoChunkCache> _cache;
+    id <BMPlaybackIdentity> _identity;
+    id <BMDataLoader> _dataLoader;
+    id <BMChunkCache> _cache;
+    id <SPTVideoEventDispatcher> _eventDispatcher;
     NSObject<OS_dispatch_queue> *_queue;
 }
 
 @property(retain, nonatomic) NSObject<OS_dispatch_queue> *queue; // @synthesize queue=_queue;
+@property(retain, nonatomic) id <SPTVideoEventDispatcher> eventDispatcher; // @synthesize eventDispatcher=_eventDispatcher;
 @property(nonatomic) _Bool cachingFlatFilesEnabled; // @synthesize cachingFlatFilesEnabled=_cachingFlatFilesEnabled;
-@property(retain, nonatomic) id <SPTVideoChunkCache> cache; // @synthesize cache=_cache;
-@property(retain, nonatomic) id <SPTVideoDataLoader> dataLoader; // @synthesize dataLoader=_dataLoader;
+@property(retain, nonatomic) id <BMChunkCache> cache; // @synthesize cache=_cache;
+@property(retain, nonatomic) id <BMDataLoader> dataLoader; // @synthesize dataLoader=_dataLoader;
+@property(retain, nonatomic) id <BMPlaybackIdentity> identity; // @synthesize identity=_identity;
 - (void).cxx_destruct;
 - (id)createRequestForURL:(id)arg1 loadingRequest:(id)arg2 completion:(CDUnknownBlockType)arg3;
-- (id)initWithDataLoader:(id)arg1 cache:(id)arg2 cachingFlatFilesEnabled:(_Bool)arg3;
+- (id)initWithIdentity:(id)arg1 dataLoader:(id)arg2 cache:(id)arg3 cachingFlatFilesEnabled:(_Bool)arg4 eventDispatcher:(id)arg5;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

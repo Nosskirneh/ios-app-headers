@@ -16,7 +16,7 @@
 @property(readonly, nonatomic) id <SPTLogCenter> logCenter; // @synthesize logCenter=_logCenter;
 - (void).cxx_destruct;
 - (id)provideSkipDialogLogger;
-- (id)provideArtistSearchViewLoggerWithSessionId:(id)arg1;
+- (id)provideArtistSearchViewLoggerWithViewLogger:(id)arg1 sessionId:(id)arg2;
 - (id)provideArtistPickerViewLoggerWithViewLogger:(id)arg1 sessionId:(id)arg2;
 - (id)initWithLogCenter:(id)arg1;
 

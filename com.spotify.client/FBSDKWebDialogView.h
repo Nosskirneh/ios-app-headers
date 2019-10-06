@@ -6,24 +6,24 @@
 
 #import <UIKit/UIView.h>
 
-#import "UIWebViewDelegate-Protocol.h"
+#import "WKNavigationDelegate-Protocol.h"
 
-@class NSString, UIActivityIndicatorView, UIButton, UIWebView;
+@class NSString, UIActivityIndicatorView, UIButton, WKWebView;
 @protocol FBSDKWebDialogViewDelegate;
 
-@interface FBSDKWebDialogView : UIView <UIWebViewDelegate>
+@interface FBSDKWebDialogView : UIView <WKNavigationDelegate>
 {
     UIButton *_closeButton;
     UIActivityIndicatorView *_loadingView;
-    UIWebView *_webView;
+    WKWebView *_webView;
     id <FBSDKWebDialogViewDelegate> _delegate;
 }
 
 @property(nonatomic) __weak id <FBSDKWebDialogViewDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
-- (void)webViewDidFinishLoad:(id)arg1;
-- (_Bool)webView:(id)arg1 shouldStartLoadWithRequest:(id)arg2 navigationType:(long long)arg3;
-- (void)webView:(id)arg1 didFailLoadWithError:(id)arg2;
+- (void)webView:(id)arg1 didFinishNavigation:(id)arg2;
+- (void)webView:(id)arg1 decidePolicyForNavigationAction:(id)arg2 decisionHandler:(CDUnknownBlockType)arg3;
+- (void)webView:(id)arg1 didFailNavigation:(id)arg2 withError:(id)arg3;
 - (void)_close:(id)arg1;
 - (void)layoutSubviews;
 - (void)drawRect:(struct CGRect)arg1;

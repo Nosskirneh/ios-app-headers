@@ -6,12 +6,12 @@
 
 #import <objc/NSObject.h>
 
+#import "BMDataLoader-Protocol.h"
 #import "SPTDataLoaderDelegate-Protocol.h"
-#import "SPTVideoDataLoader-Protocol.h"
 
 @class NSString, SPTDataLoader;
 
-@interface SPTVideoDataLoaderImplementation : NSObject <SPTDataLoaderDelegate, SPTVideoDataLoader>
+@interface SPTVideoDataLoaderImplementation : NSObject <SPTDataLoaderDelegate, BMDataLoader>
 {
     SPTDataLoader *_dataLoader;
 }

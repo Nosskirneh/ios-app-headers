@@ -32,10 +32,8 @@
 - (void)featureFlag:(id)arg1 enabledStateDidChange:(_Bool)arg2;
 - (void)removeObserver:(id)arg1;
 - (void)addObserver:(id)arg1;
-@property(nonatomic, getter=isOnboardingCompleted) _Bool onboardingCompleted;
 @property(nonatomic, getter=isWazeIntegrationEnabled) _Bool wazeIntegrationEnabled;
 @property(readonly, nonatomic, getter=isWazeFeatureEnabled) _Bool wazeFeatureEnabled;
-- (id)provideWazeSettingsSection:(id)arg1;
 - (void)teardownFeatureFlags;
 - (void)setupFeatureFlags;
 - (void)dealloc;

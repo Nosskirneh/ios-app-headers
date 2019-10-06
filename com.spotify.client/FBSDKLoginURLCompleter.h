@@ -19,12 +19,12 @@
 }
 
 - (void).cxx_destruct;
+- (void)_exchangeNonceForTokenWithHandler:(CDUnknownBlockType)arg1;
 - (void)attemptBrowserLogIn:(id)arg1;
 - (void)setErrorWithDictionary:(id)arg1;
 - (void)setParametersWithDictionary:(id)arg1 appID:(id)arg2;
-- (void)completeLogIn:(id)arg1 withHandler:(CDUnknownBlockType)arg2;
+- (void)completeLoginWithHandler:(CDUnknownBlockType)arg1;
 - (id)initWithURLParameters:(id)arg1 appID:(id)arg2;
-- (id)init;
 
 @end
 

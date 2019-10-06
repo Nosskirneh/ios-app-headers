@@ -17,6 +17,5 @@
 @property(nonatomic) _Bool shouldHandleLoadingRequests;
 - (SPTVideoManifestProfile *)videoProfileForURL:(NSURL *)arg1;
 - (SPTVideoManifestProfile *)selectedAudioProfile;
-- (void)prepareManifestResource:(void (^)(NSError *))arg1;
 @end
 

@@ -6,11 +6,12 @@
 
 #import "NSObject-Protocol.h"
 
-@protocol SPTGaiaConnectAPI, SPTGaiaDevicePickerPresenter, SPTGaiaDevicesAvailableViewProvider, SPTGaiaIconProvider, SPTGaiaLockScreenControlsStateProvider, SPTGaiaPopupPresenter, SPTGaiaSystemVolumeManager, SPTGaiaVolumeControllerInterface;
+@protocol SPTGaiaConnectAPI, SPTGaiaDevicePickerPresenter, SPTGaiaDevicePickerViewInjector, SPTGaiaDevicesAvailableViewProvider, SPTGaiaIconProvider, SPTGaiaLockScreenControlsStateProvider, SPTGaiaPopupPresenter, SPTGaiaSystemVolumeManager, SPTGaiaVolumeControllerInterface;
 
 @protocol GaiaFeature <NSObject>
 - (id <SPTGaiaIconProvider>)provideIconProvider;
 - (id <SPTGaiaPopupPresenter>)providePopupPresenter;
+- (id <SPTGaiaDevicePickerViewInjector>)provideDevicePickerViewInjector;
 - (id <SPTGaiaDevicePickerPresenter>)provideDevicePresenter;
 - (id <SPTGaiaConnectAPI>)provideConnectAPI;
 - (id <SPTGaiaDevicesAvailableViewProvider>)provideDevicesAvailableViewProvider;

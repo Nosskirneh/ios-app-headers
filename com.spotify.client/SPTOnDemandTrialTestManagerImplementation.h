@@ -17,10 +17,8 @@
     _Bool _isFeatureEnabled;
     id <SPTFeatureFlagFactory> _featureFlagFactory;
     id <SPTProductState> _productState;
-    id <SPTFeatureFlagSignal> _onDemandTrialFlagSignal;
     id <SPTFeatureFlagSignal> _onDemandUserPolicySignal;
     id <SPTFeatureFlagSignal> _onDemandTrialSuppressDialogSignal;
-    long long _onDemandTrialFlagState;
     long long _onDemandUserPolicyState;
     long long _onDemandTrialSuppressDialogFlagState;
 }
@@ -28,10 +26,8 @@
 @property(nonatomic) _Bool isFeatureEnabled; // @synthesize isFeatureEnabled=_isFeatureEnabled;
 @property(nonatomic) long long onDemandTrialSuppressDialogFlagState; // @synthesize onDemandTrialSuppressDialogFlagState=_onDemandTrialSuppressDialogFlagState;
 @property(nonatomic) long long onDemandUserPolicyState; // @synthesize onDemandUserPolicyState=_onDemandUserPolicyState;
-@property(nonatomic) long long onDemandTrialFlagState; // @synthesize onDemandTrialFlagState=_onDemandTrialFlagState;
 @property(retain, nonatomic) id <SPTFeatureFlagSignal> onDemandTrialSuppressDialogSignal; // @synthesize onDemandTrialSuppressDialogSignal=_onDemandTrialSuppressDialogSignal;
 @property(retain, nonatomic) id <SPTFeatureFlagSignal> onDemandUserPolicySignal; // @synthesize onDemandUserPolicySignal=_onDemandUserPolicySignal;
-@property(retain, nonatomic) id <SPTFeatureFlagSignal> onDemandTrialFlagSignal; // @synthesize onDemandTrialFlagSignal=_onDemandTrialFlagSignal;
 @property(readonly, nonatomic) id <SPTProductState> productState; // @synthesize productState=_productState;
 @property(readonly, nonatomic) id <SPTFeatureFlagFactory> featureFlagFactory; // @synthesize featureFlagFactory=_featureFlagFactory;
 - (void).cxx_destruct;
@@ -42,7 +38,6 @@
 - (void)updateUserPolicyPresence:(id)arg1;
 - (void)setupUserPolicySignal;
 - (void)setupSuppressDialogSignal;
-- (void)setupABBAFlagSignal;
 - (void)setupSignals;
 - (void)dealloc;
 - (id)initWithFeatureFlagFactory:(id)arg1 productState:(id)arg2;

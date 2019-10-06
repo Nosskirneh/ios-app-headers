@@ -14,7 +14,9 @@
 @interface FBSDKAccessToken : NSObject <FBSDKCopying, NSSecureCoding>
 {
     NSString *_appID;
+    NSDate *_dataAccessExpirationDate;
     NSSet *_declinedPermissions;
+    NSSet *_expiredPermissions;
     NSDate *_expirationDate;
     NSSet *_permissions;
     NSDate *_refreshDate;
@@ -24,6 +26,7 @@
 
 + (_Bool)supportsSecureCoding;
 + (void)refreshCurrentAccessToken:(CDUnknownBlockType)arg1;
++ (_Bool)isCurrentAccessTokenActive;
 + (void)setCurrentAccessToken:(id)arg1;
 + (id)currentAccessToken;
 @property(readonly, copy, nonatomic) NSString *userID; // @synthesize userID=_userID;
@@ -31,7 +34,9 @@
 @property(readonly, copy, nonatomic) NSDate *refreshDate; // @synthesize refreshDate=_refreshDate;
 @property(readonly, copy, nonatomic) NSSet *permissions; // @synthesize permissions=_permissions;
 @property(readonly, copy, nonatomic) NSDate *expirationDate; // @synthesize expirationDate=_expirationDate;
+@property(readonly, copy, nonatomic) NSSet *expiredPermissions; // @synthesize expiredPermissions=_expiredPermissions;
 @property(readonly, copy, nonatomic) NSSet *declinedPermissions; // @synthesize declinedPermissions=_declinedPermissions;
+@property(readonly, copy, nonatomic) NSDate *dataAccessExpirationDate; // @synthesize dataAccessExpirationDate=_dataAccessExpirationDate;
 @property(readonly, copy, nonatomic) NSString *appID; // @synthesize appID=_appID;
 - (void).cxx_destruct;
 - (void)encodeWithCoder:(id)arg1;
@@ -40,9 +45,10 @@
 - (_Bool)isEqualToAccessToken:(id)arg1;
 - (_Bool)isEqual:(id)arg1;
 @property(readonly) unsigned long long hash;
+@property(readonly, nonatomic, getter=isExpired) _Bool expired;
+@property(readonly, nonatomic, getter=isDataAccessExpired) _Bool dataAccessExpired;
 - (_Bool)hasGranted:(id)arg1;
-- (id)initWithTokenString:(id)arg1 permissions:(id)arg2 declinedPermissions:(id)arg3 appID:(id)arg4 userID:(id)arg5 expirationDate:(id)arg6 refreshDate:(id)arg7;
-- (id)init;
+- (id)initWithTokenString:(id)arg1 permissions:(id)arg2 declinedPermissions:(id)arg3 expiredPermissions:(id)arg4 appID:(id)arg5 userID:(id)arg6 expirationDate:(id)arg7 refreshDate:(id)arg8 dataAccessExpirationDate:(id)arg9;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

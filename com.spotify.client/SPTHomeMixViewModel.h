@@ -11,13 +11,14 @@
 #import "SPTHomeMixModelDelegate-Protocol.h"
 #import "SPTHomeMixModelEffectHandlerDelegate-Protocol.h"
 #import "SPTHomeMixPlaybackEffectHandlerDelegate-Protocol.h"
+#import "SPTHomeMixSnackbarEffectHandlerDelegate-Protocol.h"
 #import "SPTOfflineModeStateObserver-Protocol.h"
 #import "SPTPlayerObserver-Protocol.h"
 
 @class NSArray, NSString, NSURL, SPTHomeMixCompositeEffectHandler, SPTHomeMixDomainMediator, SPTHomeMixDomainModel, SPTHomeMixHeaderViewModel, SPTHomeMixMetadataModelEntity, SPTHomeMixModel;
 @protocol SPTHomeMixViewModelDelegate, SPTLinkDispatcher;
 
-@interface SPTHomeMixViewModel : NSObject <SPTHomeMixModelDelegate, SPTHomeMixPlaybackEffectHandlerDelegate, SPTPlayerObserver, SPTOfflineModeStateObserver, SPTHomeMixDomainModelMediatorObserver, SPTHomeMixModelEffectHandlerDelegate, SPTExplicitContentEnabledStateObserver>
+@interface SPTHomeMixViewModel : NSObject <SPTHomeMixModelDelegate, SPTHomeMixPlaybackEffectHandlerDelegate, SPTPlayerObserver, SPTOfflineModeStateObserver, SPTHomeMixDomainModelMediatorObserver, SPTHomeMixModelEffectHandlerDelegate, SPTHomeMixSnackbarEffectHandlerDelegate, SPTExplicitContentEnabledStateObserver>
 {
     _Bool _genresPageEnabled;
     _Bool _userTogglePageEnabled;
@@ -60,6 +61,7 @@
 - (void)explicitContentEnabledStateDidChange:(_Bool)arg1;
 - (void)offlineModeState:(id)arg1 updated:(_Bool)arg2;
 - (void)player:(id)arg1 stateDidChange:(id)arg2 fromState:(id)arg3;
+- (void)homeMixSnackbarEffectHandlerDidTapOnJoinButton:(id)arg1;
 - (void)homeMixPlaybackEffectHandler:(id)arg1 didFailToStartDueToError:(id)arg2;
 - (void)homeMixModel:(id)arg1 didFailToUpdateHomeMixWithError:(id)arg2;
 - (void)handleGenresPagePresentation;

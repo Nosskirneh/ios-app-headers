@@ -55,6 +55,7 @@
 - (void)partnerTestManager:(id)arg1 didUpdateEnabledState:(_Bool)arg2;
 - (id)provideTestManager;
 - (id)providePartnerIntegrationRegistry;
+- (id)provideActiveSessionBannerViewWithViewModel:(id)arg1;
 - (id)provideLogger;
 - (id)providePartnerSettingsPageForURI:(id)arg1 context:(id)arg2;
 - (void)disable;

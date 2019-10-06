@@ -6,12 +6,12 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTVideoEventObserver-Protocol.h"
+#import "BMEventObserver-Protocol.h"
 
 @class NSString, SPTRequestAccounting;
 @protocol OS_dispatch_queue;
 
-@interface SPTVideoPlaybackRequestAccounting : NSObject <SPTVideoEventObserver>
+@interface SPTVideoPlaybackRequestAccounting : NSObject <BMEventObserver>
 {
     SPTRequestAccounting *_requestAccounting;
 }

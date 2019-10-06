@@ -9,19 +9,21 @@
 #import "SPTServiceManagerDelegate-Protocol.h"
 
 @class NSMutableDictionary, NSString, SPTStartupTracer;
-@protocol SPTServiceInstanceInteractor, SPTServiceList, SPTServiceOrchestratorDelegate;
+@protocol OS_dispatch_queue, SPTServiceInstanceInteractor, SPTServiceList, SPTServiceOrchestratorDelegate;
 
 @interface SPTServiceOrchestrator : NSObject <SPTServiceManagerDelegate>
 {
     id <SPTServiceOrchestratorDelegate> _delegate;
     id <SPTServiceInstanceInteractor> _instanceInteractor;
     id <SPTServiceList> _serviceList;
+    NSObject<OS_dispatch_queue> *_lifecycleHooksQueue;
     NSMutableDictionary *_serviceManagers;
     SPTStartupTracer *_startupTracer;
 }
 
 @property(readonly, nonatomic) SPTStartupTracer *startupTracer; // @synthesize startupTracer=_startupTracer;
 @property(retain, nonatomic) NSMutableDictionary *serviceManagers; // @synthesize serviceManagers=_serviceManagers;
+@property(readonly, nonatomic) NSObject<OS_dispatch_queue> *lifecycleHooksQueue; // @synthesize lifecycleHooksQueue=_lifecycleHooksQueue;
 @property(retain, nonatomic) id <SPTServiceList> serviceList; // @synthesize serviceList=_serviceList;
 @property(readonly, nonatomic) id <SPTServiceInstanceInteractor> instanceInteractor; // @synthesize instanceInteractor=_instanceInteractor;
 @property(nonatomic) __weak id <SPTServiceOrchestratorDelegate> delegate; // @synthesize delegate=_delegate;
@@ -32,9 +34,13 @@
 - (void)serviceManagerWillLoadServices:(id)arg1;
 - (id)scopeForServiceManager:(id)arg1;
 - (void)setupServiceForScope:(id)arg1;
+- (void)notifyAllServicesThatIdleStateWasReached;
+- (void)notifyAllServicesThatInitialViewDidAppear;
 - (void)unloadAllServices;
 - (id)childManagersForScope:(id)arg1;
 - (id)childScopesForScope:(id)arg1;
+- (void)notifyServicesThatIdleStateWasReachedForScope:(id)arg1;
+- (void)notifyServicesThatInitialViewDidAppearForScope:(id)arg1;
 - (void)unloadServicesForScope:(id)arg1;
 - (void)loadServicesForScope:(id)arg1;
 - (id)serviceManagerForScope:(id)arg1;

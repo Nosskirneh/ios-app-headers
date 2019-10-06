@@ -6,22 +6,21 @@
 
 #import <UIKit/UIView.h>
 
+#import "BMVideoSurface-Protocol.h"
 #import "SPTVideoDisplayViewDelegate-Protocol.h"
-#import "SPTVideoSurface-Protocol.h"
 
-@class NSString, SPTVideoDisplayView, SPTVideoSubtitleLayouter;
-@protocol SPTVideoSurfaceContextDelegate, SPTVideoSurfaceDelegate;
+@class NSString, SPTVideoDisplayView;
+@protocol BMVideoSurfaceContextDelegate, BMVideoSurfaceDelegate;
 
-@interface SPTVideoSurfaceImpl : UIView <SPTVideoDisplayViewDelegate, SPTVideoSurface>
+@interface SPTVideoSurfaceImpl : UIView <SPTVideoDisplayViewDelegate, BMVideoSurface>
 {
     _Bool _fullscreen;
     _Bool _attached;
     _Bool _eligibleForAttachment;
     long long _gravity;
-    id <SPTVideoSurfaceDelegate> _delegate;
-    id <SPTVideoSurfaceContextDelegate> _contextDelegate;
+    id <BMVideoSurfaceDelegate> _delegate;
+    id <BMVideoSurfaceContextDelegate> _contextDelegate;
     SPTVideoDisplayView *_displayView;
-    SPTVideoSubtitleLayouter *_subtitleLayouter;
     CDUnknownBlockType _shouldDisplayVideoBlock;
     long long _priority;
 }
@@ -30,11 +29,10 @@
 @property(copy, nonatomic) CDUnknownBlockType shouldDisplayVideoBlock; // @synthesize shouldDisplayVideoBlock=_shouldDisplayVideoBlock;
 @property(nonatomic, getter=isEligibleForAttachment) _Bool eligibleForAttachment; // @synthesize eligibleForAttachment=_eligibleForAttachment;
 @property(nonatomic, getter=isAttached) _Bool attached; // @synthesize attached=_attached;
-@property(retain, nonatomic) SPTVideoSubtitleLayouter *subtitleLayouter; // @synthesize subtitleLayouter=_subtitleLayouter;
 @property(retain, nonatomic) SPTVideoDisplayView *displayView; // @synthesize displayView=_displayView;
 @property(readonly, nonatomic, getter=isFullscreen) _Bool fullscreen; // @synthesize fullscreen=_fullscreen;
-@property(nonatomic) __weak id <SPTVideoSurfaceContextDelegate> contextDelegate; // @synthesize contextDelegate=_contextDelegate;
-@property(nonatomic) __weak id <SPTVideoSurfaceDelegate> delegate; // @synthesize delegate=_delegate;
+@property(nonatomic) __weak id <BMVideoSurfaceContextDelegate> contextDelegate; // @synthesize contextDelegate=_contextDelegate;
+@property(nonatomic) __weak id <BMVideoSurfaceDelegate> delegate; // @synthesize delegate=_delegate;
 @property(nonatomic) long long gravity; // @synthesize gravity=_gravity;
 - (void).cxx_destruct;
 @property(readonly, copy) NSString *description;
@@ -46,7 +44,6 @@
 - (void)didMoveToWindow;
 @property(readonly, nonatomic) struct CGRect videoRect;
 - (void)setGravity:(long long)arg1 animated:(_Bool)arg2;
-- (void)layoutSubviews;
 - (void)refreshVideoRect;
 - (void)refreshAttachment;
 - (void)refreshEligibleForAttachment;

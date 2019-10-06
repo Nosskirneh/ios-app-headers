@@ -11,6 +11,8 @@
 @protocol SPTEventFactoryModelMapping <NSObject>
 - (NSArray *)eventComponents;
 - (NSString *)interactionType;
+- (NSString *)specificationCommitHash;
 - (NSString *)specificationId;
+- (NSString *)applicationId;
 @end
 

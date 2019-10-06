@@ -21,6 +21,7 @@
 - (void).cxx_destruct;
 - (long long)identifier;
 - (void)updateWithTopics:(id)arg1;
+- (void)updateWithPodcastPlayer:(id)arg1;
 - (void)updateWithPodcast:(id)arg1;
 - (id)header;
 - (unsigned long long)numberOfRows;

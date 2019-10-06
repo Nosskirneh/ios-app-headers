@@ -31,6 +31,7 @@
 @property(retain, nonatomic) NSCache *tracksToReload; // @synthesize tracksToReload=_tracksToReload;
 @property(nonatomic) __weak id <SPTCanvasNowPlayingContentReloaderDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
+- (_Bool)trackHasCanvasMetadata:(id)arg1;
 - (void)offlineModeState:(id)arg1 updated:(_Bool)arg2;
 - (void)player:(id)arg1 stateDidChange:(id)arg2 fromState:(id)arg3;
 - (void)reloadContentIfNeededUsingPlayerState:(id)arg1;

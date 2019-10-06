@@ -6,11 +6,11 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTEndVideoMessageIdentity-Protocol.h"
+#import "BMEndVideoMessageIdentity-Protocol.h"
 
 @class NSNumber, NSString;
 
-@interface SPTEndVideoMessageIdentityImpl : NSObject <SPTEndVideoMessageIdentity>
+@interface SPTEndVideoMessageIdentityImpl : NSObject <BMEndVideoMessageIdentity>
 {
     NSString *_sequenceId;
     NSNumber *_sequenceNumber;

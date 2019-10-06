@@ -10,13 +10,12 @@
 #import "SPTCollectionSorting-Protocol.h"
 #import "SPTPodcastEpisodeProgressPolling-Protocol.h"
 #import "SPTPodcastEpisodeSectionFilterHeaderViewDelegate-Protocol.h"
-#import "SPTPodcastPlayerDelegate-Protocol.h"
 #import "SPTPodcastViewModelSection-Protocol.h"
 
 @class NSArray, NSCache, NSPredicate, NSSortDescriptor, NSString, NSURL, SPTPodcast, SPTPodcastEpisodeSectionFilterHeaderView, SPTPodcastFilterTableFooterView, SPTPodcastSortingService, SPTTheme;
 @protocol SPTCollectionLogger, SPTPodcastEpisodeCellActionTarget, SPTPodcastEpisodeCellConfigurator, SPTPodcastEpisodeViewModelSectionDelegate, SPTPodcastLogger, SPTPodcastPlayer, SPTPodcastTestManager;
 
-@interface SPTPodcastEpisodeSectionViewModel : NSObject <SPTPodcastEpisodeSectionFilterHeaderViewDelegate, SPTPodcastPlayerDelegate, SPTPodcastViewModelSection, SPTCollectionSorting, SPTCollectionFiltering, SPTPodcastEpisodeProgressPolling>
+@interface SPTPodcastEpisodeSectionViewModel : NSObject <SPTPodcastEpisodeSectionFilterHeaderViewDelegate, SPTPodcastViewModelSection, SPTCollectionSorting, SPTCollectionFiltering, SPTPodcastEpisodeProgressPolling>
 {
     _Bool contentFiltered;
     _Bool _filtered;
@@ -80,10 +79,6 @@
 - (void)setSortOrderWithColumn:(unsigned long long)arg1 ascending:(_Bool)arg2;
 @property(readonly, nonatomic) NSArray *supportedSortColumns;
 - (void)updateProgressWithPlayer:(id)arg1;
-- (void)podcastPlayer:(id)arg1 didUpdateProgressForTrackURL:(id)arg2;
-- (double)podcastPlayer:(id)arg1 updateProgressIntervalForTrackURL:(id)arg2;
-- (void)podcastPlayerStateDidChange:(id)arg1;
-- (void)podcastPlayer:(id)arg1 didChangePlayingTrackURL:(id)arg2;
 - (id)cachedProgressForEpisode:(id)arg1;
 - (void)updateCurrentProgress:(double)arg1 position:(double)arg2 duration:(double)arg3 forEpisode:(id)arg4;
 - (id)indexPathOfEpisodeURL:(id)arg1;
@@ -101,6 +96,7 @@
 - (id)filterDataWithTitle:(id)arg1 filter:(id)arg2 position:(long long)arg3;
 - (id)additionalFilters;
 - (long long)identifier;
+- (void)updateWithPodcastPlayer:(id)arg1;
 - (void)updateWithPodcast:(id)arg1;
 - (id)allEpisodes;
 - (id)header;

@@ -24,6 +24,7 @@
 @property(retain, nonatomic) SPTTabBarContainerLayout *containerLayout; // @synthesize containerLayout=_containerLayout;
 @property(readonly, nonatomic) UIViewController<SPTTabBarControllerProtocol><SPContentInsetViewController> *tabBarController; // @synthesize tabBarController=_tabBarController;
 - (void).cxx_destruct;
+- (void)traitCollectionDidChange:(id)arg1;
 - (void)updateCurrentTabBarItems;
 @property(copy, nonatomic) CDUnknownBlockType visibleStateCallback;
 - (id)objectRepresentation;

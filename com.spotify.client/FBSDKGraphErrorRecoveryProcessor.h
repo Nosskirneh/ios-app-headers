@@ -6,33 +6,22 @@
 
 #import <objc/NSObject.h>
 
-#import "UIAlertViewDelegate-Protocol.h"
-
-@class FBSDKErrorRecoveryAttempter, NSError, NSString, UIAlertView;
+@class FBSDKErrorRecoveryAttempter, NSError;
 @protocol FBSDKGraphErrorRecoveryProcessorDelegate;
 
-@interface FBSDKGraphErrorRecoveryProcessor : NSObject <UIAlertViewDelegate>
+@interface FBSDKGraphErrorRecoveryProcessor : NSObject
 {
     FBSDKErrorRecoveryAttempter *_recoveryAttempter;
     NSError *_error;
-    UIAlertView *_alertView;
     id <FBSDKGraphErrorRecoveryProcessorDelegate> _delegate;
 }
 
 @property(retain, nonatomic) id <FBSDKGraphErrorRecoveryProcessorDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
 - (void)didPresentErrorWithRecovery:(_Bool)arg1 contextInfo:(void *)arg2;
-- (void)alertView:(id)arg1 didDismissWithButtonIndex:(long long)arg2;
 - (void)displayAlertWithTitle:(id)arg1 message:(id)arg2 cancelButtonTitle:(id)arg3;
 - (void)displayAlertWithRecoverySuggestion:(id)arg1 recoveryOptionsTitles:(id)arg2;
 - (_Bool)processError:(id)arg1 request:(id)arg2 delegate:(id)arg3;
-- (void)dealloc;
-
-// Remaining properties
-@property(readonly, copy) NSString *debugDescription;
-@property(readonly, copy) NSString *description;
-@property(readonly) unsigned long long hash;
-@property(readonly) Class superclass;
 
 @end
 

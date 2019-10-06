@@ -8,20 +8,23 @@
 
 #import "SPTDataLoaderDelegate-Protocol.h"
 
-@class NSString, SPTDataLoader;
+@class NSString, SPTDataLoader, SPTNetworkConnectivityController;
 @protocol SPTPartnerIntegrationRegistry;
 
 @interface SPTPartnerIntegrationStateLoader : NSObject <SPTDataLoaderDelegate>
 {
     SPTDataLoader *_dataLoader;
     id <SPTPartnerIntegrationRegistry> _integrationRegistry;
+    SPTNetworkConnectivityController *_networkConnectivityController;
 }
 
+@property(readonly, nonatomic) SPTNetworkConnectivityController *networkConnectivityController; // @synthesize networkConnectivityController=_networkConnectivityController;
 @property(readonly, nonatomic) id <SPTPartnerIntegrationRegistry> integrationRegistry; // @synthesize integrationRegistry=_integrationRegistry;
 @property(readonly, nonatomic) SPTDataLoader *dataLoader; // @synthesize dataLoader=_dataLoader;
 - (void).cxx_destruct;
 - (void)dataLoader:(id)arg1 didReceiveErrorResponse:(id)arg2;
 - (void)dataLoader:(id)arg1 didReceiveSuccessfulResponse:(id)arg2;
+- (_Bool)isOffline;
 - (void)handleIntegrationsInCategoryResponse:(id)arg1 withResponseJSON:(id)arg2;
 - (void)handleCategoriesResponse:(id)arg1 withResponseJSON:(id)arg2;
 - (void)notifyErrorHandlerForResponse:(id)arg1 withError:(id)arg2;
@@ -30,7 +33,7 @@
 - (void)fetchIntegrationsForCategory:(id)arg1 successHandler:(CDUnknownBlockType)arg2 errorHandler:(CDUnknownBlockType)arg3;
 - (void)fetchIntegrationsWithSuccessHandler:(CDUnknownBlockType)arg1 errorHandler:(CDUnknownBlockType)arg2;
 - (id)requestForCategoryIdentifier:(id)arg1;
-- (id)initWithDataLoader:(id)arg1 integrationRegistry:(id)arg2;
+- (id)initWithDataLoader:(id)arg1 integrationRegistry:(id)arg2 networkConnectivityController:(id)arg3;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

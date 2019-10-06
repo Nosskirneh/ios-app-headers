@@ -18,7 +18,7 @@
 #import "UITableViewDelegate-Protocol.h"
 
 @class NSString, NSURL, SPTCollectionFilterSearchBar, SPTInfoView, SPTProgressView, UITableView;
-@protocol GLUEImageLoader, GLUETheme, SPTBarButtonItemManager, SPTBrowseRedirectButtonProvider, SPTCollectionArtistsModel, SPTCollectionLogger, SPTCollectionPlatformTestManager, SPTNUXModifying, SPTPageContainer, SPTViewLogger;
+@protocol GLUEImageLoader, GLUETheme, SPTBarButtonItemManager, SPTBrowseRedirectButtonProvider, SPTCollectionArtistsModel, SPTCollectionLogger, SPTCollectionPlatformTestManager, SPTPageContainer, SPTViewLogger;
 
 @interface SPTCollectionArtistsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate, SPObjectRepresentation, SPTBarButtonItemManagerObserver, SPTCollectionEntityListObserver, SPTCollectionFilterSearchBarDelegate, SPTCollectionArtistsModelDelegate, SPContentInsetViewController, SPTPageController>
 {
@@ -31,7 +31,6 @@
     id <GLUEImageLoader> _glueImageLoader;
     id <SPTCollectionLogger> _logger;
     NSString *_currentUserName;
-    id <SPTNUXModifying> _NUXModifier;
     id <SPTBarButtonItemManager> _barButtonItemManager;
     id <SPTCollectionPlatformTestManager> _collectionTestManager;
     id <SPTBrowseRedirectButtonProvider> _browseRedirectButtonProvider;
@@ -47,7 +46,6 @@
 @property(readonly, nonatomic) __weak id <SPTBrowseRedirectButtonProvider> browseRedirectButtonProvider; // @synthesize browseRedirectButtonProvider=_browseRedirectButtonProvider;
 @property(nonatomic) __weak id <SPTCollectionPlatformTestManager> collectionTestManager; // @synthesize collectionTestManager=_collectionTestManager;
 @property(readonly, nonatomic) __weak id <SPTBarButtonItemManager> barButtonItemManager; // @synthesize barButtonItemManager=_barButtonItemManager;
-@property(retain, nonatomic) id <SPTNUXModifying> NUXModifier; // @synthesize NUXModifier=_NUXModifier;
 @property(copy, nonatomic) NSString *currentUserName; // @synthesize currentUserName=_currentUserName;
 @property(retain, nonatomic) id <SPTCollectionLogger> logger; // @synthesize logger=_logger;
 @property(retain, nonatomic) id <GLUEImageLoader> glueImageLoader; // @synthesize glueImageLoader=_glueImageLoader;
@@ -101,7 +99,7 @@
 - (void)viewWillAppear:(_Bool)arg1;
 - (void)viewDidLoad;
 - (void)dealloc;
-- (id)initWithModel:(id)arg1 glueImageLoader:(id)arg2 collectionLogger:(id)arg3 currentUserName:(id)arg4 NUXModifier:(id)arg5 barButtonItemManager:(id)arg6 collectionTestManager:(id)arg7 browseRedirectButtonProvider:(id)arg8 viewLogger:(id)arg9;
+- (id)initWithModel:(id)arg1 glueImageLoader:(id)arg2 collectionLogger:(id)arg3 currentUserName:(id)arg4 barButtonItemManager:(id)arg5 collectionTestManager:(id)arg6 browseRedirectButtonProvider:(id)arg7 viewLogger:(id)arg8;
 
 // Remaining properties
 @property(nonatomic) _Bool automaticallyAdjustsScrollViewInsets;

@@ -6,9 +6,9 @@
 
 #import "SPTService-Protocol.h"
 
-@protocol SPTAudioPlayerMediaClock, SPTVideoPlaybackIdentity;
+@protocol BMPlaybackIdentity, SPTAudioPlayerMediaClock;
 
 @protocol SPTAudioPlayerMediaClockService <SPTService>
-- (id <SPTAudioPlayerMediaClock>)audioPlayerMediaClockForPlaybackIdentity:(id <SPTVideoPlaybackIdentity>)arg1;
+- (id <SPTAudioPlayerMediaClock>)audioPlayerMediaClockForPlaybackIdentity:(id <BMPlaybackIdentity>)arg1;
 @end
 

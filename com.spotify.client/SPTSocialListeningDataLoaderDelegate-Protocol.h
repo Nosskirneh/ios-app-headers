@@ -9,7 +9,7 @@
 @class NSError, SPTSocialListeningDataLoader, SPTSocialListeningSession;
 
 @protocol SPTSocialListeningDataLoaderDelegate <NSObject>
-- (void)socialListeningDataLoaderDidDeleteSession:(SPTSocialListeningDataLoader *)arg1;
+- (void)socialListeningDataLoader:(SPTSocialListeningDataLoader *)arg1 didDeleteSession:(SPTSocialListeningSession *)arg2;
 - (void)socialListeningDataLoader:(SPTSocialListeningDataLoader *)arg1 didEndSession:(SPTSocialListeningSession *)arg2;
 - (void)socialListeningDataLoader:(SPTSocialListeningDataLoader *)arg1 didFailWithError:(NSError *)arg2;
 - (void)socialListeningDataLoader:(SPTSocialListeningDataLoader *)arg1 didObtainSession:(SPTSocialListeningSession *)arg2;

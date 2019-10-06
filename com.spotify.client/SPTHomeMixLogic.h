@@ -34,6 +34,7 @@
 + (CDUnknownBlockType)headerUpbeatButtonTapped:(id)arg1;
 + (CDUnknownBlockType)headerChillButtonTapped:(id)arg1;
 + (CDUnknownBlockType)headerStartButtonTapped:(id)arg1;
++ (CDUnknownBlockType)snackbarJoinButtonTapped:(id)arg1;
 + (CDUnknownBlockType)headerJoinButtonTapped:(id)arg1;
 + (CDUnknownBlockType)headerPlayButtonTapped:(id)arg1;
 + (id)updateForEvent:(id)arg1 model:(id)arg2;

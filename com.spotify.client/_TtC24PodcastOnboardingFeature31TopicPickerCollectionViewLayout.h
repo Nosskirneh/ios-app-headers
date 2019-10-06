@@ -8,9 +8,11 @@
 
 @interface _TtC24PodcastOnboardingFeature31TopicPickerCollectionViewLayout : UICollectionViewFlowLayout
 {
+    // Error parsing type: , name: delegate
     // Error parsing type: , name: itemPadding
 }
 
+- (void).cxx_destruct;
 - (id)init;
 - (id)layoutAttributesForItemAtIndexPath:(id)arg1;
 - (id)layoutAttributesForElementsInRect:(struct CGRect)arg1;

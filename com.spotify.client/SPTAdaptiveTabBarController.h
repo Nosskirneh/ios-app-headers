@@ -50,7 +50,7 @@
 - (void)setSelectedIndex:(unsigned long long)arg1 animated:(_Bool)arg2;
 - (void)setSelectedViewController:(id)arg1 animated:(_Bool)arg2;
 @property(readonly, nonatomic) UIView<SPTTabBar> *spt_tabBar;
-- (void)viewWillLayoutSubviews;
+- (void)viewDidLayoutSubviews;
 - (void)viewDidAppear:(_Bool)arg1;
 - (id)initWithFriendlyName:(id)arg1 logCenter:(id)arg2 navigationConfiguration:(id)arg3;
 

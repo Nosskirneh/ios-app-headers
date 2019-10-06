@@ -6,6 +6,6 @@
 
 @protocol SPTCredentialsLoginIdentifier
 - (unsigned long long)type;
-- (variant_5d3576ba)credentials;
+- (variant_3911a704)credentials;
 @end
 

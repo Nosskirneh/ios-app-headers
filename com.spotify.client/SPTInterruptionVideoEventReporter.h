@@ -6,12 +6,12 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTVideoPlaybackEventObserver-Protocol.h"
+#import "BMPlaybackEventObserver-Protocol.h"
 
 @class NSString;
 @protocol SPTAdsBaseCosmosBridge, SPTResolver;
 
-@interface SPTInterruptionVideoEventReporter : NSObject <SPTVideoPlaybackEventObserver>
+@interface SPTInterruptionVideoEventReporter : NSObject <BMPlaybackEventObserver>
 {
     _Bool _shouldFireVideoEvents;
     _Bool _didProcessVideoFinishEvent;

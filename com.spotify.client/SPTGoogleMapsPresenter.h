@@ -11,7 +11,7 @@
 #import "SPTNowPlayingStateObserver-Protocol.h"
 
 @class NSString, SPTGoogleMapsLogger;
-@protocol GLUETheme, SPTBannerPresentationManager, SPTBannerPresentationManagerTicket, SPTLinkDispatcher, SPTNowPlayingManager, SPTNowPlayingMode, SPTNowPlayingModeResolver, SPTNowPlayingStateObservable, SPTPartnerLogger;
+@protocol GLUETheme, SPTBannerPresentationManager, SPTBannerPresentationManagerTicket, SPTLinkDispatcher, SPTNowPlayingManager, SPTNowPlayingMode, SPTNowPlayingModeResolver, SPTNowPlayingStateObservable, SPTPartnerLogger, SPTPartnerService;
 
 @interface SPTGoogleMapsPresenter : NSObject <SPTBannerViewDelegate, SPTNowPlayingModeResolverObserver, SPTNowPlayingStateObserver>
 {
@@ -25,8 +25,10 @@
     id <SPTNowPlayingStateObservable> _nowPlayingStateObservable;
     id <SPTNowPlayingMode> _nowPlayingMode;
     id <SPTPartnerLogger> _partnerLogger;
+    id <SPTPartnerService> _partnerService;
 }
 
+@property(readonly, nonatomic) __weak id <SPTPartnerService> partnerService; // @synthesize partnerService=_partnerService;
 @property(readonly, nonatomic) id <SPTPartnerLogger> partnerLogger; // @synthesize partnerLogger=_partnerLogger;
 @property(nonatomic) __weak id <SPTNowPlayingMode> nowPlayingMode; // @synthesize nowPlayingMode=_nowPlayingMode;
 @property(readonly, nonatomic) __weak id <SPTNowPlayingStateObservable> nowPlayingStateObservable; // @synthesize nowPlayingStateObservable=_nowPlayingStateObservable;
@@ -46,7 +48,7 @@
 - (void)minimizeNowPlayingViewIfNeeded;
 - (void)hideBanner;
 - (void)showBanner;
-- (id)initWithBannerPresentationManager:(id)arg1 linkDispatcher:(id)arg2 glueTheme:(id)arg3 nowPlayingManager:(id)arg4 nowPlayingModeResolver:(id)arg5 nowPlayingStateObservable:(id)arg6 logger:(id)arg7 partnerLogger:(id)arg8;
+- (id)initWithBannerPresentationManager:(id)arg1 linkDispatcher:(id)arg2 glueTheme:(id)arg3 nowPlayingManager:(id)arg4 nowPlayingModeResolver:(id)arg5 nowPlayingStateObservable:(id)arg6 logger:(id)arg7 partnerLogger:(id)arg8 partnerService:(id)arg9;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

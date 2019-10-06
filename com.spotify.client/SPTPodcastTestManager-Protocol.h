@@ -10,6 +10,7 @@
 
 @protocol SPTPodcastTestManager <NSObject>
 @property(readonly, nonatomic, getter=isYourLibraryAnchorTestEnabled) _Bool yourLibraryAnchorTestEnabled;
+@property(readonly, nonatomic, getter=isPodcastHeaderV2CondensedSizeEnabled) _Bool podcastHeaderV2CondensedSizeEnabled;
 @property(readonly, nonatomic, getter=isPodcastHeaderV2Enabled) _Bool podcastHeaderV2Enabled;
 @property(readonly, nonatomic, getter=isAddToPlaylistForAudioEpisodesEnabled) _Bool addToPlaylistForAudioEpisodesEnabled;
 @property(readonly, nonatomic, getter=isPodcastMarkedAsUnplayedEnabled) _Bool podcastMarkedAsUnplayedEnabled;
@@ -19,7 +20,6 @@
 @property(readonly, nonatomic, getter=isProductionisedYourLibraryEnabled) _Bool productionisedYourLibraryEnabled;
 @property(readonly, nonatomic, getter=isScannablesEnabled) _Bool podcastContextMenuScannablesEnabled;
 @property(readonly, nonatomic, getter=isPodcastEpisodeCardV2Enabled) _Bool podcastEpisodeCardV2Enabled;
-@property(readonly, nonatomic, getter=isPodcastShowAutoFollowDisabled) _Bool podcastShowAutoFollowDisabled;
 @property(readonly, nonatomic, getter=isLikeActionEnabled) _Bool likeActionEnabled;
 @property(readonly, nonatomic, getter=isFollowActionEnabled) _Bool followActionEnabled;
 @property(readonly, nonatomic, getter=isOnboardingTabBarTooltipTestEnabled) _Bool onboardingTabBarTooltipTestEnabled;

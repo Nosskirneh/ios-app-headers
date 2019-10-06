@@ -6,9 +6,10 @@
 
 #import "NSObject-Protocol.h"
 
-@class SPTShareData, SPTShareDestination, SPTSharePresenter;
+@class SPTShareData, SPTSharePresenter;
+@protocol SPTShareDestination;
 
 @protocol SPTShareHandler <NSObject>
-- (void)shareWithData:(SPTShareData *)arg1 shareDestination:(SPTShareDestination *)arg2 sharePresenter:(SPTSharePresenter *)arg3 completion:(void (^)(SPTShareAlertModel *))arg4;
+- (void)shareWithData:(SPTShareData *)arg1 shareDestination:(id <SPTShareDestination>)arg2 sharePresenter:(SPTSharePresenter *)arg3 completion:(void (^)(SPTShareAlertModel *))arg4;
 @end
 

@@ -4,33 +4,25 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import "SPTSingleRequestViewModel.h"
+#import <objc/NSObject.h>
 
-@class NSArray, NSString, NSURL, SPTAlbumData;
-@protocol SPTCollectionPlatform, SPTCollectionPlatformDataLoaderRequestToken;
+@class NSArray, NSString, NSURL;
 
-@interface SPTFreeTierAlbumViewModel : SPTSingleRequestViewModel
+@interface SPTFreeTierAlbumViewModel : NSObject
 {
-    id <SPTCollectionPlatformDataLoaderRequestToken> _collectionAlbumSubscription;
-    SPTAlbumData *_albumData;
-    long long _albumTracksCount;
-    NSURL *_URL;
-    id <SPTCollectionPlatform> _collectionPlatform;
+    NSArray *_albumTracks;
+    NSString *_artistName;
+    NSString *_albumName;
+    NSURL *_albumURL;
 }
 
-@property(nonatomic) __weak id <SPTCollectionPlatform> collectionPlatform; // @synthesize collectionPlatform=_collectionPlatform;
-@property(copy, nonatomic) NSURL *URL; // @synthesize URL=_URL;
-@property(nonatomic) long long albumTracksCount; // @synthesize albumTracksCount=_albumTracksCount;
-@property(retain, nonatomic) SPTAlbumData *albumData; // @synthesize albumData=_albumData;
-@property(retain, nonatomic) id <SPTCollectionPlatformDataLoaderRequestToken> collectionAlbumSubscription; // @synthesize collectionAlbumSubscription=_collectionAlbumSubscription;
+@property(readonly, copy, nonatomic) NSURL *albumURL; // @synthesize albumURL=_albumURL;
+@property(readonly, copy, nonatomic) NSString *albumName; // @synthesize albumName=_albumName;
+@property(readonly, copy, nonatomic) NSString *artistName; // @synthesize artistName=_artistName;
+@property(readonly, copy, nonatomic) NSArray *albumTracks; // @synthesize albumTracks=_albumTracks;
 - (void).cxx_destruct;
-@property(readonly, nonatomic) NSURL *albumURL;
-@property(readonly, nonatomic) NSString *albumName;
-@property(readonly, nonatomic) NSString *artistName;
-@property(readonly, nonatomic) NSArray *albumTracks;
-- (void)parseSuccessfulResponseDictionary:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
-- (id)dataWithDictionary:(id)arg1;
-- (id)initWithOfflineModeState:(id)arg1 productState:(id)arg2 dataLoader:(id)arg3 serviceName:(id)arg4 endpointPath:(id)arg5 albumURL:(id)arg6 collectionPlatform:(id)arg7;
+- (void)updateModelWithTracksURIs:(id)arg1 albumName:(id)arg2 artistName:(id)arg3;
+- (id)initWithAlbumURL:(id)arg1;
 
 @end
 
