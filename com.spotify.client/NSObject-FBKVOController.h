@@ -6,10 +6,20 @@
 
 #import <objc/NSObject.h>
 
-@class FBKVOController;
+@class FBKVOController, NSString;
 
 @interface NSObject (FBKVOController)
++ (_Bool)gckb_swizzleClassSelector:(SEL)arg1 withSelector:(SEL)arg2;
++ (_Bool)gckb_swizzleSelector:(SEL)arg1 withSelector:(SEL)arg2;
++ (id)spt_swizzledAlloc;
++ (id)spt_allocWithAnnotation:(id)arg1;
++ (id)spt_allocInContext:(id)arg1;
++ (id)spt_allocInContext:(id)arg1 withAnnotation:(id)arg2;
 @property(retain, nonatomic) FBKVOController *KVOControllerNonRetaining;
 @property(retain, nonatomic) FBKVOController *KVOController;
+- (_Bool)bothNullorEqual:(id)arg1 other:(id)arg2;
+- (id)BMW_etchObject;
+- (id)spt_instrumentationName;
+@property(readonly, copy, getter=spt_allocationContextAnnotation) NSString *allocationContextAnnotation;
 @end
 

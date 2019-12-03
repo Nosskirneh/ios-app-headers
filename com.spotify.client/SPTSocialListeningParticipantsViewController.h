@@ -13,11 +13,12 @@
 #import "UITableViewDelegate-Protocol.h"
 
 @class NSString, NSURL, SPTSocialListeningGLUETheme, SPTSocialListeningLoggerImplementation, SPTSocialListeningSessionViewUserCellConfigurator, SPTTableView;
-@protocol SPTPageContainer, SPTSocialListeningViewModel;
+@protocol GLUEImageLoader, SPTPageContainer, SPTSocialListeningViewModel;
 
 @interface SPTSocialListeningParticipantsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, SPTSocialListeningSessionViewUserCellDelegate, SPTSocialListeningViewModelObserver, SPTPageController>
 {
     id <SPTSocialListeningViewModel> _viewModel;
+    id <GLUEImageLoader> _imageLoader;
     SPTSocialListeningLoggerImplementation *_logger;
     SPTSocialListeningGLUETheme *_theme;
     SPTSocialListeningSessionViewUserCellConfigurator *_cellConfigurator;
@@ -25,9 +26,10 @@
 }
 
 @property(retain, nonatomic) SPTTableView *tableView; // @synthesize tableView=_tableView;
-@property(readonly, nonatomic) SPTSocialListeningSessionViewUserCellConfigurator *cellConfigurator; // @synthesize cellConfigurator=_cellConfigurator;
+@property(retain, nonatomic) SPTSocialListeningSessionViewUserCellConfigurator *cellConfigurator; // @synthesize cellConfigurator=_cellConfigurator;
 @property(readonly, nonatomic) SPTSocialListeningGLUETheme *theme; // @synthesize theme=_theme;
 @property(readonly, nonatomic) SPTSocialListeningLoggerImplementation *logger; // @synthesize logger=_logger;
+@property(readonly, nonatomic) id <GLUEImageLoader> imageLoader; // @synthesize imageLoader=_imageLoader;
 @property(readonly, nonatomic) id <SPTSocialListeningViewModel> viewModel; // @synthesize viewModel=_viewModel;
 - (void).cxx_destruct;
 - (void)sessionViewUserCellDidTapActionButton:(id)arg1;
@@ -42,6 +44,8 @@
 - (id)tableView:(id)arg1 cellForRowAtIndexPath:(id)arg2;
 - (void)addConstraints;
 - (void)initializeInterface;
+- (void)applyThemeLayout;
+- (void)setupCellConfigurator;
 - (void)viewDidLoad;
 - (void)dealloc;
 - (id)initWithViewModel:(id)arg1 logger:(id)arg2 imageLoader:(id)arg3 theme:(id)arg4;

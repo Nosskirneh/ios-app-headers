@@ -7,5 +7,6 @@
 #import "SPTService-Protocol.h"
 
 @protocol SPTBrowseService <SPTService>
+@property(readonly, nonatomic) CDUnknownBlockType cardsTransformer;
 @end
 

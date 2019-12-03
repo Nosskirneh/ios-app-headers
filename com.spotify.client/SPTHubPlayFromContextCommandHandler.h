@@ -8,23 +8,25 @@
 
 #import "HUBCommandHandler-Protocol.h"
 
-@protocol SPTHubInteractionLogger, SPTHubsEventFactory, SPTPlayer;
+@protocol SPTEventFactoryMapper, SPTHubInteractionLogger, SPTPlayer, SPTUserBehaviourInstrumentationHubsEventMapper;
 
 @interface SPTHubPlayFromContextCommandHandler : NSObject <HUBCommandHandler>
 {
     id <SPTPlayer> _player;
     id <SPTHubInteractionLogger> _interactionLogger;
-    id <SPTHubsEventFactory> _eventFactory;
+    id <SPTEventFactoryMapper> _eventFactory;
+    id <SPTUserBehaviourInstrumentationHubsEventMapper> _eventMapper;
 }
 
-@property(retain, nonatomic) id <SPTHubsEventFactory> eventFactory; // @synthesize eventFactory=_eventFactory;
+@property(retain, nonatomic) id <SPTUserBehaviourInstrumentationHubsEventMapper> eventMapper; // @synthesize eventMapper=_eventMapper;
+@property(retain, nonatomic) id <SPTEventFactoryMapper> eventFactory; // @synthesize eventFactory=_eventFactory;
 @property(readonly, nonatomic) id <SPTHubInteractionLogger> interactionLogger; // @synthesize interactionLogger=_interactionLogger;
 @property(readonly, nonatomic) id <SPTPlayer> player; // @synthesize player=_player;
 - (void).cxx_destruct;
 - (id)obtainPlayOptionsFromCommand:(id)arg1;
 - (id)obtainPlayerContextFromCommand:(id)arg1;
 - (void)handleCommand:(id)arg1 event:(id)arg2;
-- (id)initWithPlayer:(id)arg1 notificationCenter:(id)arg2 interactionLogger:(id)arg3 eventFactory:(id)arg4;
+- (id)initWithPlayer:(id)arg1 notificationCenter:(id)arg2 interactionLogger:(id)arg3 eventFactory:(id)arg4 eventMapper:(id)arg5;
 
 @end
 

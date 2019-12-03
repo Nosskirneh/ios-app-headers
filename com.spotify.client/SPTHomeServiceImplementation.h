@@ -9,7 +9,7 @@
 #import "SPTHomeService-Protocol.h"
 
 @class NSString, SPTAllocationContext, SPTHomeContentCache, SPTHomeHubManager;
-@protocol SPTDrivingStateDetectionService, SPTFeatureFlagFactory, SPTFeedHeartBeatManager, SPTFeedService, SPTFreeTierTasteOnboardingService, SPTFreeTierUIService, SPTGLUEService, SPTHomeTestManager, SPTHomeUIService, SPTHubFrameworkService, SPTNavigationFeature, SPTNetworkService, SPTOfflineService, SPTOnDemandService, SPTPlayerFeature, SPTPodcastUIContinueListeningService, SPTPodcastUIService, SPTRecentlyPlayedService, SPTSessionService, SPTShareFeature;
+@protocol SPTDrivingStateDetectionService, SPTFeatureFlagFactory, SPTFeedHeartBeatManager, SPTFeedService, SPTFreeTierTasteOnboardingService, SPTFreeTierUIService, SPTGLUEService, SPTHomeTestManager, SPTHomeUIService, SPTHubFrameworkService, SPTNavigationFeature, SPTNetworkService, SPTOfflineService, SPTOnDemandService, SPTPlayerFeature, SPTPodcastUIContinueListeningService, SPTPodcastUIService, SPTRecentlyPlayedService, SPTRemoteConfigurationService, SPTSessionService, SPTShareFeature, SPTSnackbarService;
 
 @interface SPTHomeServiceImplementation : SPTUIPageService <SPTHomeService>
 {
@@ -30,6 +30,8 @@
     id <SPTDrivingStateDetectionService> _drivingStateDetectionService;
     id <SPTShareFeature> _shareService;
     id <SPTFreeTierTasteOnboardingService> _tasteOnboardingService;
+    id <SPTSnackbarService> _snackbarService;
+    id <SPTRemoteConfigurationService> _remoteConfigurationService;
     id <SPTHomeTestManager> _testManager;
     SPTHomeHubManager *_hubManager;
     SPTHomeContentCache *_homeContentCache;
@@ -43,6 +45,8 @@
 @property(retain, nonatomic) SPTHomeContentCache *homeContentCache; // @synthesize homeContentCache=_homeContentCache;
 @property(retain, nonatomic) SPTHomeHubManager *hubManager; // @synthesize hubManager=_hubManager;
 @property(retain, nonatomic) id <SPTHomeTestManager> testManager; // @synthesize testManager=_testManager;
+@property(nonatomic) __weak id <SPTRemoteConfigurationService> remoteConfigurationService; // @synthesize remoteConfigurationService=_remoteConfigurationService;
+@property(nonatomic) __weak id <SPTSnackbarService> snackbarService; // @synthesize snackbarService=_snackbarService;
 @property(nonatomic) __weak id <SPTFreeTierTasteOnboardingService> tasteOnboardingService; // @synthesize tasteOnboardingService=_tasteOnboardingService;
 @property(nonatomic) __weak id <SPTShareFeature> shareService; // @synthesize shareService=_shareService;
 @property(nonatomic) __weak id <SPTDrivingStateDetectionService> drivingStateDetectionService; // @synthesize drivingStateDetectionService=_drivingStateDetectionService;
@@ -64,7 +68,7 @@
 - (id)provideViewControllerForURI:(id)arg1 context:(id)arg2;
 - (_Bool)claimsURI:(id)arg1;
 - (id)providePersistentCache;
-- (void)setupHubManagerIfNeeded;
+- (void)setupHubManager;
 - (void)load;
 - (void)configureWithServices:(id)arg1;
 

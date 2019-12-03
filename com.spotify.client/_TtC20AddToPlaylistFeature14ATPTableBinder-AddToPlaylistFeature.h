@@ -6,9 +6,7 @@
 
 #import "_TtC20AddToPlaylistFeature14ATPTableBinder.h"
 
-#import "UITableViewDataSource-Protocol.h"
-
-@interface _TtC20AddToPlaylistFeature14ATPTableBinder (AddToPlaylistFeature) <UITableViewDataSource>
+@interface _TtC20AddToPlaylistFeature14ATPTableBinder (AddToPlaylistFeature)
 - (id)tableView:(id)arg1 cellForRowAtIndexPath:(id)arg2;
 - (long long)tableView:(id)arg1 numberOfRowsInSection:(long long)arg2;
 - (long long)numberOfSectionsInTableView:(id)arg1;

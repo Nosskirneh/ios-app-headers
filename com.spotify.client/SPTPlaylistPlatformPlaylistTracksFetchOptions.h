@@ -10,8 +10,10 @@
 {
     _Bool _shouldIncludeEpisodes;
     _Bool _loadRecommendations;
+    unsigned long long _truncatePlaylistToMaxNumberOfTracks;
 }
 
+@property(nonatomic) unsigned long long truncatePlaylistToMaxNumberOfTracks; // @synthesize truncatePlaylistToMaxNumberOfTracks=_truncatePlaylistToMaxNumberOfTracks;
 @property(nonatomic) _Bool loadRecommendations; // @synthesize loadRecommendations=_loadRecommendations;
 @property(nonatomic) _Bool shouldIncludeEpisodes; // @synthesize shouldIncludeEpisodes=_shouldIncludeEpisodes;
 

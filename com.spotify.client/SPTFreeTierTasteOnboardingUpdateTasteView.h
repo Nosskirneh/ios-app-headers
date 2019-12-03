@@ -8,14 +8,12 @@
 
 #import "GLUEStyleable-Protocol.h"
 
-@class GLUEGradientView, GLUELabel, NSLayoutConstraint, NSString, UIActivityIndicatorView, UILayoutGuide;
+@class GLUELabel, NSLayoutConstraint, NSString, UIActivityIndicatorView, UILayoutGuide;
 
 @interface SPTFreeTierTasteOnboardingUpdateTasteView : UIView <GLUEStyleable>
 {
     GLUELabel *_messageLabel;
     UIActivityIndicatorView *_activityIndicatorView;
-    GLUEGradientView *_backgroundGradientView;
-    GLUEGradientView *_backgroundOverlayGradientView;
     UILayoutGuide *_bottomSpacerGuide;
     NSLayoutConstraint *_bottomSpacerGuideBottomConstraint;
     NSLayoutConstraint *_messageLabelLeadingConstraint;
@@ -30,14 +28,11 @@
 @property(retain, nonatomic) NSLayoutConstraint *messageLabelLeadingConstraint; // @synthesize messageLabelLeadingConstraint=_messageLabelLeadingConstraint;
 @property(retain, nonatomic) NSLayoutConstraint *bottomSpacerGuideBottomConstraint; // @synthesize bottomSpacerGuideBottomConstraint=_bottomSpacerGuideBottomConstraint;
 @property(retain, nonatomic) UILayoutGuide *bottomSpacerGuide; // @synthesize bottomSpacerGuide=_bottomSpacerGuide;
-@property(readonly, nonatomic) GLUEGradientView *backgroundOverlayGradientView; // @synthesize backgroundOverlayGradientView=_backgroundOverlayGradientView;
-@property(readonly, nonatomic) GLUEGradientView *backgroundGradientView; // @synthesize backgroundGradientView=_backgroundGradientView;
 @property(readonly, nonatomic) UIActivityIndicatorView *activityIndicatorView; // @synthesize activityIndicatorView=_activityIndicatorView;
 @property(readonly, nonatomic) GLUELabel *messageLabel; // @synthesize messageLabel=_messageLabel;
 - (void).cxx_destruct;
 - (void)glue_applyStyle:(id)arg1;
 - (void)activateConstraints;
-- (void)updateLayoutMarginsWithTopAnchor:(id)arg1 bottomAnchor:(id)arg2;
 - (id)initWithFrame:(struct CGRect)arg1;
 
 // Remaining properties

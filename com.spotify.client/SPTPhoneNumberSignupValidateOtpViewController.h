@@ -41,6 +41,7 @@
 - (id)navigationController:(id)arg1 animationControllerForPopOperationToViewController:(id)arg2;
 - (id)navigationController:(id)arg1 animationControllerForPushOperationFromViewController:(id)arg2;
 - (unsigned long long)preferredNavigationBarState;
+- (void)viewModelDidChangeNumberOfInputs:(id)arg1;
 - (void)viewModelSessionDidTimeout:(id)arg1;
 - (void)viewModelResendingSMSRequestedTooEarly:(id)arg1;
 - (void)viewModelWillStartResendingSMS:(id)arg1;
@@ -59,7 +60,7 @@
 - (void)restartFlow;
 - (void)showDialogWithTitle:(id)arg1 message:(id)arg2 buttonTitle:(id)arg3 shouldRestartFlow:(_Bool)arg4;
 - (void)didOtpValidationSucceed;
-- (void)didReceiveNewChallenge:(id)arg1;
+- (void)didReceiveNewChallenge:(id)arg1 inErrorMode:(_Bool)arg2;
 - (void)viewWillDisappear:(_Bool)arg1;
 - (void)viewDidAppear:(_Bool)arg1;
 - (void)viewWillAppear:(_Bool)arg1;

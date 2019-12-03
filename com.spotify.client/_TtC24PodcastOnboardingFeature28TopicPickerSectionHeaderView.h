@@ -11,10 +11,13 @@
     // Error parsing type: , name: label
     // Error parsing type: , name: theme
     // Error parsing type: , name: newlyCreated
+    // Error parsing type: , name: constrainedInset
     // Error parsing type: , name: isBelowLargeTitle
+    // Error parsing type: , name: titleText
 }
 
 - (void).cxx_destruct;
+- (void)updateConstraints;
 - (void)prepareForReuse;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithFrame:(struct CGRect)arg1;

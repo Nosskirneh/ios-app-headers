@@ -21,6 +21,7 @@
 - (id)dragSeekToTimeWithMsToSeekTo:(long long)arg1;
 - (id)hitSeekToTimeWithMsToSeekTo:(long long)arg1;
 - (id)impression;
+- (id)_location;
 - (id)initWithComponents:(id)arg1;
 
 // Remaining properties

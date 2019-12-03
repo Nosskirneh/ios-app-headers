@@ -6,54 +6,40 @@
 
 #import <objc/NSObject.h>
 
-@class HUBComponentDefaults, HUBComponentRegistry, SPTHomeCommandHandlerFactory, SPTHomeContentOperationFactory, SPTHomeEndpointFactory;
-@protocol GLUETheme, HUBContentOperation, HUBContentOperation><SPTHomeCacheRenderDelegate, SPTFeedHeartBeatManager, SPTHomeTestManager, SPTHomeUIService, SPTHubsRendererFactory, SPTHugsFactory, SPTOfflineModeState, SPTShareDragDelegateFactory;
+@class HUBComponentRegistry, SPTHomeCommandHandlerFactory, SPTHomeEndpointFactory, SPTHomeViewModelLoaderFactory;
+@protocol GLUETheme, SPTFeedHeartBeatManager, SPTHomeTestManager, SPTHomeUIService, SPTHubsRendererFactory, SPTOfflineModeState, SPTShareDragDelegateFactory;
 
 @interface SPTHomeHubManager : NSObject
 {
     id <SPTHubsRendererFactory> _hubsRendererFactory;
-    id <SPTHugsFactory> _hugsFactory;
     SPTHomeEndpointFactory *_endpointFactory;
     SPTHomeCommandHandlerFactory *_commandHandlerFactory;
-    SPTHomeContentOperationFactory *_contentOperationFactory;
     HUBComponentRegistry *_componentRegistry;
     id <GLUETheme> _GLUETheme;
     id <SPTOfflineModeState> _offlineModeState;
-    id <SPTShareDragDelegateFactory> _shareDragDelegateFactory;
     id <SPTHomeUIService> _homeUIService;
     id <SPTHomeTestManager> _testManager;
     id <SPTFeedHeartBeatManager> _feedHeartbeatManager;
-    id <HUBContentOperation> _removeComponentContentOperation;
-    id <HUBContentOperation><SPTHomeCacheRenderDelegate> _errorHandlerContentOperation;
-    HUBComponentDefaults *_componentDefaults;
+    id <SPTShareDragDelegateFactory> _shareDragDelegateFactory;
+    SPTHomeViewModelLoaderFactory *_viewModelLoaderFactory;
 }
 
-@property(retain, nonatomic) HUBComponentDefaults *componentDefaults; // @synthesize componentDefaults=_componentDefaults;
-@property(retain, nonatomic) id <HUBContentOperation><SPTHomeCacheRenderDelegate> errorHandlerContentOperation; // @synthesize errorHandlerContentOperation=_errorHandlerContentOperation;
-@property(retain, nonatomic) id <HUBContentOperation> removeComponentContentOperation; // @synthesize removeComponentContentOperation=_removeComponentContentOperation;
+@property(readonly, nonatomic) SPTHomeViewModelLoaderFactory *viewModelLoaderFactory; // @synthesize viewModelLoaderFactory=_viewModelLoaderFactory;
+@property(readonly, nonatomic) id <SPTShareDragDelegateFactory> shareDragDelegateFactory; // @synthesize shareDragDelegateFactory=_shareDragDelegateFactory;
 @property(retain, nonatomic) id <SPTFeedHeartBeatManager> feedHeartbeatManager; // @synthesize feedHeartbeatManager=_feedHeartbeatManager;
 @property(readonly, nonatomic) __weak id <SPTHomeTestManager> testManager; // @synthesize testManager=_testManager;
 @property(readonly, nonatomic) __weak id <SPTHomeUIService> homeUIService; // @synthesize homeUIService=_homeUIService;
-@property(readonly, nonatomic) id <SPTShareDragDelegateFactory> shareDragDelegateFactory; // @synthesize shareDragDelegateFactory=_shareDragDelegateFactory;
 @property(readonly, nonatomic) id <SPTOfflineModeState> offlineModeState; // @synthesize offlineModeState=_offlineModeState;
 @property(readonly, nonatomic) id <GLUETheme> GLUETheme; // @synthesize GLUETheme=_GLUETheme;
 @property(readonly, nonatomic) HUBComponentRegistry *componentRegistry; // @synthesize componentRegistry=_componentRegistry;
-@property(readonly, nonatomic) SPTHomeContentOperationFactory *contentOperationFactory; // @synthesize contentOperationFactory=_contentOperationFactory;
 @property(readonly, nonatomic) SPTHomeCommandHandlerFactory *commandHandlerFactory; // @synthesize commandHandlerFactory=_commandHandlerFactory;
 @property(readonly, nonatomic) SPTHomeEndpointFactory *endpointFactory; // @synthesize endpointFactory=_endpointFactory;
-@property(readonly, nonatomic) id <SPTHugsFactory> hugsFactory; // @synthesize hugsFactory=_hugsFactory;
 @property(readonly, nonatomic) id <SPTHubsRendererFactory> hubsRendererFactory; // @synthesize hubsRendererFactory=_hubsRendererFactory;
 - (void).cxx_destruct;
-- (id)makeCommandDispatcherWithURL:(id)arg1 referrerIdentifier:(id)arg2 hubLogger:(id)arg3 viewModelProvider:(id)arg4;
-- (id)appendExperimentalContentOperations:(id)arg1;
-- (id)commonContentOperationsIncludeErrorHandler:(_Bool)arg1;
-- (id)appendCommonOperationsTo:(id)arg1 includeErrorHandler:(_Bool)arg2;
-- (id)makeRemoteContentLoadingOperationForURL:(id)arg1 sourceIdentifier:(id)arg2;
-- (id)makeRemoteViewModelLoaderForURL:(id)arg1 sourceIdentifier:(id)arg2;
-- (id)makeCachedViewModelLoader;
-- (id)makeViewModelProviderForURL:(id)arg1 sourceIdentifier:(id)arg2;
-- (id)provideHubViewControllerForURL:(id)arg1 sourceIdentifier:(id)arg2 referrerIdentifier:(id)arg3;
-- (id)initWithHubsRendererFactory:(id)arg1 hugsFactory:(id)arg2 endpointFactory:(id)arg3 commandHandlerFactory:(id)arg4 contentOperationFactory:(id)arg5 componentRegistry:(id)arg6 GLUETheme:(id)arg7 offlineModeState:(id)arg8 homeUIService:(id)arg9 testManager:(id)arg10 feedHeartbeatManager:(id)arg11 shareDragDelegateFactory:(id)arg12;
+- (id)makeCommandDispatcherWithURL:(id)arg1 referrerIdentifier:(id)arg2 hubLogger:(id)arg3 viewModelProvider:(id)arg4 overrides:(id)arg5;
+- (id)makeViewModelProviderForSourceIdentifier:(id)arg1 overrides:(id)arg2;
+- (id)provideHubViewControllerForURL:(id)arg1 sourceIdentifier:(id)arg2 referrerIdentifier:(id)arg3 featureProperties:(id)arg4;
+- (id)initWithHubsRendererFactory:(id)arg1 endpointFactory:(id)arg2 commandHandlerFactory:(id)arg3 componentRegistry:(id)arg4 GLUETheme:(id)arg5 offlineModeState:(id)arg6 homeUIService:(id)arg7 testManager:(id)arg8 feedHeartbeatManager:(id)arg9 shareDragDelegateFactory:(id)arg10 viewModelLoaderFactory:(id)arg11;
 
 @end
 

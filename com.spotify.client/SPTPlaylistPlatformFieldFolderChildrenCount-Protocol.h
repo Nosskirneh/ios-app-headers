@@ -7,7 +7,7 @@
 #import "SPTPlaylistPlatformDataLoaderField-Protocol.h"
 
 @protocol SPTPlaylistPlatformFieldFolderChildrenCount <SPTPlaylistPlatformDataLoaderField>
-@property(readonly, nonatomic) unsigned long long folders;
-@property(readonly, nonatomic) unsigned long long playlists;
+@property(nonatomic, readonly) unsigned long long folders;
+@property(nonatomic, readonly) unsigned long long playlists;
 @end
 

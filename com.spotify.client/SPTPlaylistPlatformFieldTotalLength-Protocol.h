@@ -7,6 +7,6 @@
 #import "SPTPlaylistPlatformDataLoaderField-Protocol.h"
 
 @protocol SPTPlaylistPlatformFieldTotalLength <SPTPlaylistPlatformDataLoaderField>
-@property(readonly, nonatomic) unsigned long long totalLength;
+@property(nonatomic, readonly) unsigned long long totalLength;
 @end
 

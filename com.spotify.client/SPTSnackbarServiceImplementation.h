@@ -6,10 +6,12 @@
 
 #import <objc/NSObject.h>
 
+#import "SPTSnackbarService-Protocol.h"
+
 @class NSString, SPTAllocationContext, SPTSnackbarAnimationView, SPTSnackbarPresenterImplementation;
 @protocol SPTContainerUIService, SPTExternalIntegrationDriverDistractionService, SPTFreeTierUIService, SPTGLUEService;
 
-@interface SPTSnackbarServiceImplementation : NSObject
+@interface SPTSnackbarServiceImplementation : NSObject <SPTSnackbarService>
 {
     id <SPTGLUEService> _glueService;
     id <SPTContainerUIService> _containerUIService;

@@ -9,11 +9,12 @@
 #import "SPTNowPlayingContainedViewController-Protocol.h"
 #import "SPTNowPlayingNavigationBarModelObserver-Protocol.h"
 
-@class NSString, SPTNowPlayingNavigationBarViewV2, SPTTheme;
+@class NSString, SPTNowPlayingNavigationBarUnitManagerImplementation, SPTNowPlayingNavigationBarViewV2, SPTTheme;
 @protocol SPTNowPlayingAuxiliaryActionsHandler, SPTNowPlayingContainingViewController, SPTNowPlayingNavigationBarModel;
 
 @interface SPTNowPlayingNavigationBarUnitViewController : UIViewController <SPTNowPlayingNavigationBarModelObserver, SPTNowPlayingContainedViewController>
 {
+    SPTNowPlayingNavigationBarUnitManagerImplementation *_navigationBarUnitManager;
     id <SPTNowPlayingNavigationBarModel> _model;
     id <SPTNowPlayingAuxiliaryActionsHandler> _auxiliaryActionsHandler;
     SPTTheme *_theme;
@@ -22,6 +23,7 @@
 @property(readonly, nonatomic) SPTTheme *theme; // @synthesize theme=_theme;
 @property(readonly, nonatomic) id <SPTNowPlayingAuxiliaryActionsHandler> auxiliaryActionsHandler; // @synthesize auxiliaryActionsHandler=_auxiliaryActionsHandler;
 @property(readonly, nonatomic) id <SPTNowPlayingNavigationBarModel> model; // @synthesize model=_model;
+@property(retain, nonatomic) SPTNowPlayingNavigationBarUnitManagerImplementation *navigationBarUnitManager; // @synthesize navigationBarUnitManager=_navigationBarUnitManager;
 - (void).cxx_destruct;
 - (void)rightButtonPressed:(id)arg1;
 - (void)navigationBarModelStateDidChange:(id)arg1;

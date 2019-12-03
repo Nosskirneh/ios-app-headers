@@ -6,18 +6,17 @@
 
 #import <objc/NSObject.h>
 
+#import "SPTFeatureFlagSignalObserver-Protocol.h"
 #import "SPTFreeTierTasteOnboardingTestManager-Protocol.h"
 
 @class NSString;
 @protocol SPTFeatureFlagFactory, SPTFeatureFlagSignal, SPTFeatureSettingsItemFactory, SPTLocalSettings, SPTProductState;
 
-@interface SPTFreeTierTasteOnboardingTestManagerImplementation : NSObject <SPTFreeTierTasteOnboardingTestManager>
+@interface SPTFreeTierTasteOnboardingTestManagerImplementation : NSObject <SPTFeatureFlagSignalObserver, SPTFreeTierTasteOnboardingTestManager>
 {
     _Bool _tasteOnboardingFirstTimeFlowEnabled;
     _Bool _tasteOnboardingFirstTimeFlowForcedEnabled;
     _Bool _onboardingCoordinationEnabled;
-    _Bool _stockholmBlackStyleEnabled;
-    _Bool _stockholmBlackStyleExperimentOn;
     _Bool _deeplinkBasedSkipEnabled;
     _Bool _deeplinkAdBasedSkipEnabled;
     _Bool _podcastInFirstTimeFlowEnabled;
@@ -29,8 +28,6 @@
     id <SPTFeatureFlagSignal> _tasteOnboardingFirstTimeFlowEnabledSignal;
     id <SPTFeatureFlagSignal> _tasteOnboardingFirstTimeFlowForcedEnabledSignal;
     id <SPTFeatureFlagSignal> _onboardingCoordinationEnabledFlagSignal;
-    id <SPTFeatureFlagSignal> _stockholmBlackStyleEnabledAbbaSignal;
-    id <SPTFeatureFlagSignal> _stockholmBlackStyleEnabledUserPolicySignal;
     id <SPTFeatureFlagSignal> _onboardingIPadEnabledFlagSignal;
     id <SPTFeatureFlagSignal> _deeplinkBasedSkipEnabledSignal;
     id <SPTFeatureFlagSignal> _deeplinkAdBasedSkipEnabledSignal;
@@ -49,10 +46,6 @@
 @property(nonatomic, getter=isDeeplinkBasedSkipEnabled) _Bool deeplinkBasedSkipEnabled; // @synthesize deeplinkBasedSkipEnabled=_deeplinkBasedSkipEnabled;
 @property(retain, nonatomic) id <SPTFeatureFlagSignal> deeplinkBasedSkipEnabledSignal; // @synthesize deeplinkBasedSkipEnabledSignal=_deeplinkBasedSkipEnabledSignal;
 @property(retain, nonatomic) id <SPTFeatureFlagSignal> onboardingIPadEnabledFlagSignal; // @synthesize onboardingIPadEnabledFlagSignal=_onboardingIPadEnabledFlagSignal;
-@property(nonatomic, getter=isStockholmBlackStyleExperimentOn) _Bool stockholmBlackStyleExperimentOn; // @synthesize stockholmBlackStyleExperimentOn=_stockholmBlackStyleExperimentOn;
-@property(nonatomic, getter=isStockholmBlackStyleEnabled) _Bool stockholmBlackStyleEnabled; // @synthesize stockholmBlackStyleEnabled=_stockholmBlackStyleEnabled;
-@property(retain, nonatomic) id <SPTFeatureFlagSignal> stockholmBlackStyleEnabledUserPolicySignal; // @synthesize stockholmBlackStyleEnabledUserPolicySignal=_stockholmBlackStyleEnabledUserPolicySignal;
-@property(retain, nonatomic) id <SPTFeatureFlagSignal> stockholmBlackStyleEnabledAbbaSignal; // @synthesize stockholmBlackStyleEnabledAbbaSignal=_stockholmBlackStyleEnabledAbbaSignal;
 @property(nonatomic, getter=isOnboardingCoordinationEnabled) _Bool onboardingCoordinationEnabled; // @synthesize onboardingCoordinationEnabled=_onboardingCoordinationEnabled;
 @property(retain, nonatomic) id <SPTFeatureFlagSignal> onboardingCoordinationEnabledFlagSignal; // @synthesize onboardingCoordinationEnabledFlagSignal=_onboardingCoordinationEnabledFlagSignal;
 @property(nonatomic, getter=isTasteOnboardingFirstTimeFlowForcedEnabled) _Bool tasteOnboardingFirstTimeFlowForcedEnabled; // @synthesize tasteOnboardingFirstTimeFlowForcedEnabled=_tasteOnboardingFirstTimeFlowForcedEnabled;
@@ -67,8 +60,6 @@
 - (void)featureFlagSignal:(id)arg1 hasAssumedState:(long long)arg2;
 - (void)setupDeeplinkAdBasedSkipEnabled;
 - (void)setupDeeplinkBasedSkipEnabled;
-- (void)setupStockholmBlackStyleEnabledAbbaFlag;
-- (void)setupStockholmBlackStyleEnabledUserPolicyFlag;
 - (void)setupOnboardingIPadEnabledFlag;
 - (void)setupOnboardingCoordinationEnabledFlag;
 - (void)setupForcedFirstTimeFlowSettingsKey;

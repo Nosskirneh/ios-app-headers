@@ -9,15 +9,20 @@
 #import "SPTPodcastEpisodeFeaturedContentService-Protocol.h"
 
 @class NSString, SPTAllocationContext, SPTPodcastEpisodeFeaturedContentContentOperationFactory;
-@protocol SPTFeatureFlaggingService, SPTGLUEService, SPTHubFrameworkService, SPTOnDemandService, SPTOnDemandSet, SPTPodcastEpisodeFeaturedContentTestManager, SPTPodcastEpisodeFeaturedContentViewProvider, SPTSessionService;
+@protocol SPContextMenuFeature, SPTFeatureFlaggingService, SPTGLUEService, SPTHubFrameworkService, SPTNetworkService, SPTOnDemandService, SPTOnDemandSet, SPTPlayerFeature, SPTPodcastEpisodeFeaturedContentTestManager, SPTPodcastEpisodeFeaturedContentViewProvider, SPTRemoteConfigurationService, SPTSessionService, SPTURIDispatchService;
 
 @interface SPTPodcastEpisodeFeaturedContentServiceImplementation : NSObject <SPTPodcastEpisodeFeaturedContentService>
 {
     id <SPTSessionService> _clientSessionService;
+    id <SPContextMenuFeature> _contextMenuService;
     id <SPTHubFrameworkService> _hubFrameworkService;
     id <SPTGLUEService> _glueService;
+    id <SPTNetworkService> _networkService;
     id <SPTFeatureFlaggingService> _featureFlaggingService;
     id <SPTOnDemandService> _onDemandService;
+    id <SPTPlayerFeature> _playerService;
+    id <SPTRemoteConfigurationService> _remoteConfigurationService;
+    id <SPTURIDispatchService> _uriDispatchService;
     id <SPTPodcastEpisodeFeaturedContentViewProvider> _featuredContentViewProvider;
     id <SPTPodcastEpisodeFeaturedContentTestManager> _testManager;
     id <SPTOnDemandSet> _onDemandSet;
@@ -29,10 +34,15 @@
 @property(retain, nonatomic) id <SPTOnDemandSet> onDemandSet; // @synthesize onDemandSet=_onDemandSet;
 @property(retain, nonatomic) id <SPTPodcastEpisodeFeaturedContentTestManager> testManager; // @synthesize testManager=_testManager;
 @property(retain, nonatomic) id <SPTPodcastEpisodeFeaturedContentViewProvider> featuredContentViewProvider; // @synthesize featuredContentViewProvider=_featuredContentViewProvider;
+@property(nonatomic) __weak id <SPTURIDispatchService> uriDispatchService; // @synthesize uriDispatchService=_uriDispatchService;
+@property(nonatomic) __weak id <SPTRemoteConfigurationService> remoteConfigurationService; // @synthesize remoteConfigurationService=_remoteConfigurationService;
+@property(nonatomic) __weak id <SPTPlayerFeature> playerService; // @synthesize playerService=_playerService;
 @property(nonatomic) __weak id <SPTOnDemandService> onDemandService; // @synthesize onDemandService=_onDemandService;
 @property(nonatomic) __weak id <SPTFeatureFlaggingService> featureFlaggingService; // @synthesize featureFlaggingService=_featureFlaggingService;
+@property(nonatomic) __weak id <SPTNetworkService> networkService; // @synthesize networkService=_networkService;
 @property(nonatomic) __weak id <SPTGLUEService> glueService; // @synthesize glueService=_glueService;
 @property(nonatomic) __weak id <SPTHubFrameworkService> hubFrameworkService; // @synthesize hubFrameworkService=_hubFrameworkService;
+@property(nonatomic) __weak id <SPContextMenuFeature> contextMenuService; // @synthesize contextMenuService=_contextMenuService;
 @property(nonatomic) __weak id <SPTSessionService> clientSessionService; // @synthesize clientSessionService=_clientSessionService;
 - (void).cxx_destruct;
 - (id)provideSubtitleDecoratorContentOperation;

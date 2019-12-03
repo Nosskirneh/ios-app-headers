@@ -30,6 +30,11 @@
 @property(nonatomic) __weak id <SPTNowPlayingRemoteControlEventPolicyControllerDelegate> delegate; // @synthesize delegate=_delegate;
 @property(nonatomic, getter=isActiveForRemoteControlPolicyUpdates) _Bool activeForRemoteControlPolicyUpdates; // @synthesize activeForRemoteControlPolicyUpdates=_activeForRemoteControlPolicyUpdates;
 - (void).cxx_destruct;
+- (_Bool)shouldSeekToBeginning;
+- (_Bool)isPodcastContext;
+- (void)performSkipToPreviousWithCommandEvent:(id)arg1;
+- (void)perfromSkipToNextWithCommandEvent:(id)arg1;
+- (_Bool)isCommandEventOriginatingFromSiri:(id)arg1;
 - (long long)doNothing:(id)arg1;
 - (long long)changePlaybackRateCommandPressed:(id)arg1;
 - (long long)shuffleTypeFollowingCurrentShuffleType:(long long)arg1;

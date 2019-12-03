@@ -7,7 +7,7 @@
 #import <objc/NSObject.h>
 
 @class SPTHermesController, SPTWatchConnectivityDataLoader, SPTWatchConnectivitySession, SPTWatchPlatformTestManager;
-@protocol GLUEImageLoader, SPTCollectionPlatform, SPTExternalIntegrationContentController, SPTExternalIntegrationPlaybackController, SPTGaiaConnectAPI, SPTGaiaVolumeControllerInterface, SPTLogCenter, SPTPodcastSpeedControlManager, SPTUICompletionNotifier, SPTWatchConnectivityMessageHandlerRegistry;
+@protocol GLUEImageLoader, SPTCollectionPlatform, SPTExternalIntegrationContentController, SPTExternalIntegrationDebugLog, SPTExternalIntegrationPlaybackController, SPTGaiaConnectAPI, SPTLogCenter, SPTPodcastSpeedControlManager, SPTUICompletionNotifier, SPTVolumeAPI, SPTWatchConnectivityMessageHandlerRegistry;
 
 @interface SPTWatchPlatformRequestHandlerFactory : NSObject
 {
@@ -17,7 +17,7 @@
     id <SPTGaiaConnectAPI> _connectManager;
     id <GLUEImageLoader> _glueImageLoader;
     SPTWatchConnectivitySession *_watchConnectivitySession;
-    id <SPTGaiaVolumeControllerInterface> _volumeController;
+    id <SPTVolumeAPI> _volumeController;
     id <SPTPodcastSpeedControlManager> _podcastSpeedControlManager;
     id <SPTLogCenter> _logCenter;
     id <SPTExternalIntegrationContentController> _contentController;
@@ -25,8 +25,10 @@
     id <SPTWatchConnectivityMessageHandlerRegistry> _messageHandlerRegistry;
     SPTWatchPlatformTestManager *_testManager;
     SPTHermesController *_hermesController;
+    id <SPTExternalIntegrationDebugLog> _externalIntegrationDebugLog;
 }
 
+@property(readonly, nonatomic) id <SPTExternalIntegrationDebugLog> externalIntegrationDebugLog; // @synthesize externalIntegrationDebugLog=_externalIntegrationDebugLog;
 @property(readonly, nonatomic) SPTHermesController *hermesController; // @synthesize hermesController=_hermesController;
 @property(readonly, nonatomic) __weak SPTWatchPlatformTestManager *testManager; // @synthesize testManager=_testManager;
 @property(readonly, nonatomic) __weak id <SPTWatchConnectivityMessageHandlerRegistry> messageHandlerRegistry; // @synthesize messageHandlerRegistry=_messageHandlerRegistry;
@@ -34,7 +36,7 @@
 @property(readonly, nonatomic) __weak id <SPTExternalIntegrationContentController> contentController; // @synthesize contentController=_contentController;
 @property(readonly, nonatomic) id <SPTLogCenter> logCenter; // @synthesize logCenter=_logCenter;
 @property(readonly, nonatomic) __weak id <SPTPodcastSpeedControlManager> podcastSpeedControlManager; // @synthesize podcastSpeedControlManager=_podcastSpeedControlManager;
-@property(readonly, nonatomic) id <SPTGaiaVolumeControllerInterface> volumeController; // @synthesize volumeController=_volumeController;
+@property(readonly, nonatomic) id <SPTVolumeAPI> volumeController; // @synthesize volumeController=_volumeController;
 @property(readonly, nonatomic) __weak SPTWatchConnectivitySession *watchConnectivitySession; // @synthesize watchConnectivitySession=_watchConnectivitySession;
 @property(readonly, nonatomic) id <GLUEImageLoader> glueImageLoader; // @synthesize glueImageLoader=_glueImageLoader;
 @property(readonly, nonatomic) __weak id <SPTGaiaConnectAPI> connectManager; // @synthesize connectManager=_connectManager;
@@ -43,7 +45,7 @@
 @property(readonly, nonatomic) SPTWatchConnectivityDataLoader *dataLoader; // @synthesize dataLoader=_dataLoader;
 - (void).cxx_destruct;
 - (id)createRequestHandlers;
-- (id)initWithDataLoader:(id)arg1 collectionPlatform:(id)arg2 playbackController:(id)arg3 connectManager:(id)arg4 glueImageLoader:(id)arg5 watchConnectivitySession:(id)arg6 volumeController:(id)arg7 podcastSpeedControlManager:(id)arg8 logCenter:(id)arg9 contentController:(id)arg10 UICompletionNotifier:(id)arg11 messageHandlerRegistry:(id)arg12 testManager:(id)arg13 hermesController:(id)arg14;
+- (id)initWithDataLoader:(id)arg1 collectionPlatform:(id)arg2 playbackController:(id)arg3 connectManager:(id)arg4 glueImageLoader:(id)arg5 watchConnectivitySession:(id)arg6 volumeController:(id)arg7 podcastSpeedControlManager:(id)arg8 logCenter:(id)arg9 contentController:(id)arg10 UICompletionNotifier:(id)arg11 messageHandlerRegistry:(id)arg12 testManager:(id)arg13 hermesController:(id)arg14 externalIntegrationDebugLog:(id)arg15;
 
 @end
 

@@ -7,11 +7,12 @@
 #import <objc/NSObject.h>
 
 #import "SPTExternalIntegrationTestManager-Protocol.h"
+#import "SPTFeatureFlagSignalObserver-Protocol.h"
 
 @class NSString;
 @protocol SPTFeatureFlagFactory, SPTFeatureFlagSignal, SPTLocalSettings, SPTProductState;
 
-@interface SPTExternalIntegrationTestManagerImplementation : NSObject <SPTExternalIntegrationTestManager>
+@interface SPTExternalIntegrationTestManagerImplementation : NSObject <SPTFeatureFlagSignalObserver, SPTExternalIntegrationTestManager>
 {
     _Bool _showingEntityPagesEverywhereEnabled;
     _Bool _notShowingEntityPagesEnabled;

@@ -7,11 +7,11 @@
 #import "NSObject-Protocol.h"
 
 @class NSError;
-@protocol SPTSocialListeningModel, SPTSocialListeningSessionModelEntity;
+@protocol SPTSocialListeningModel, SPTSocialListeningSessionModelEntity, SPTSocialListeningUpdateEventModelEntity;
 
 @protocol SPTSocialListeningModelObserver <NSObject>
 - (void)socialListeningModel:(id <SPTSocialListeningModel>)arg1 didDeleteSession:(id <SPTSocialListeningSessionModelEntity>)arg2;
 - (void)socialListeningModel:(id <SPTSocialListeningModel>)arg1 didReceiveError:(NSError *)arg2;
-- (void)socialListeningModel:(id <SPTSocialListeningModel>)arg1 updatedSession:(id <SPTSocialListeningSessionModelEntity>)arg2;
+- (void)socialListeningModel:(id <SPTSocialListeningModel>)arg1 updatedSession:(id <SPTSocialListeningSessionModelEntity>)arg2 updateEvent:(id <SPTSocialListeningUpdateEventModelEntity>)arg3;
 @end
 

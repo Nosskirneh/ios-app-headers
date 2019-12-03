@@ -7,8 +7,8 @@
 #import "NSObject-Protocol.h"
 #import "UIScrollViewDelegate-Protocol.h"
 
-@class NSArray, NSIndexPath, NSString, UIFocusAnimationCoordinator, UISwipeActionsConfiguration, UITableView, UITableViewCell, UITableViewFocusUpdateContext, UIView;
-@protocol UISpringLoadedInteractionContext;
+@class NSArray, NSIndexPath, NSString, UIContextMenuConfiguration, UIFocusAnimationCoordinator, UISwipeActionsConfiguration, UITableView, UITableViewCell, UITableViewFocusUpdateContext, UITargetedPreview, UIView;
+@protocol UIContextMenuInteractionCommitAnimating, UISpringLoadedInteractionContext;
 
 @protocol UITableViewDelegate <NSObject, UIScrollViewDelegate>
 
@@ -54,5 +54,13 @@
 - (void)tableView:(UITableView *)arg1 willDisplayFooterView:(UIView *)arg2 forSection:(long long)arg3;
 - (void)tableView:(UITableView *)arg1 willDisplayHeaderView:(UIView *)arg2 forSection:(long long)arg3;
 - (void)tableView:(UITableView *)arg1 willDisplayCell:(UITableViewCell *)arg2 forRowAtIndexPath:(NSIndexPath *)arg3;
+- (void)tableView:(UITableView *)arg1 willCommitMenuWithAnimator:(id <UIContextMenuInteractionCommitAnimating>)arg2;
+- (void)tableView:(UITableView *)arg1 willPerformPreviewActionForMenuWithConfiguration:(UIContextMenuConfiguration *)arg2 animator:(id <UIContextMenuInteractionCommitAnimating>)arg3;
+- (UITargetedPreview *)tableView:(UITableView *)arg1 previewForDismissingContextMenuWithConfiguration:(UIContextMenuConfiguration *)arg2;
+- (UITargetedPreview *)tableView:(UITableView *)arg1 previewForHighlightingContextMenuWithConfiguration:(UIContextMenuConfiguration *)arg2;
+- (UIContextMenuConfiguration *)tableView:(UITableView *)arg1 contextMenuConfigurationForRowAtIndexPath:(NSIndexPath *)arg2 point:(struct CGPoint)arg3;
+- (void)tableViewDidEndMultipleSelectionInteraction:(UITableView *)arg1;
+- (void)tableView:(UITableView *)arg1 didBeginMultipleSelectionInteractionAtIndexPath:(NSIndexPath *)arg2;
+- (_Bool)tableView:(UITableView *)arg1 shouldBeginMultipleSelectionInteractionAtIndexPath:(NSIndexPath *)arg2;
 @end
 

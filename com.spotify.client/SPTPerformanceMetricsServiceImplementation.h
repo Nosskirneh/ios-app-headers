@@ -7,28 +7,37 @@
 #import <objc/NSObject.h>
 
 #import "SPTNavigationManagerDelegate-Protocol.h"
+#import "SPTPerformanceMetricsService-Protocol.h"
 
-@class NSString, SPTAllocationContext, SPTPerformanceMetricsViewLoggerFactoryImplementation, SPTStartupTracer;
-@protocol CosmosFeature, SPTContainerService, SPTNetworkService, SPTPerformanceKitUUIDProvider, SPTResolver, SPTViewLoggerConnectionTypeProvider;
+@class NSString, SPTAllocationContext, SPTPerformanceMetricsAppMetricsCollector, SPTPerformanceMetricsViewLoggerFactoryImplementation, SPTStartupTracer;
+@protocol CosmosFeature, SPTContainerService, SPTEventSenderService, SPTNetworkService, SPTPerformanceKitUUIDProvider, SPTRemoteConfigurationResolver, SPTRemoteConfigurationService, SPTResolver, SPTViewLoggerConnectionTypeProvider;
 
-@interface SPTPerformanceMetricsServiceImplementation : NSObject <SPTNavigationManagerDelegate>
+@interface SPTPerformanceMetricsServiceImplementation : NSObject <SPTNavigationManagerDelegate, SPTPerformanceMetricsService>
 {
     id <CosmosFeature> _cosmosFeature;
     id <SPTContainerService> _containerService;
     id <SPTNetworkService> _networkService;
+    id <SPTEventSenderService> _eventSenderService;
+    id <SPTRemoteConfigurationService> _remoteConfigurationService;
     SPTStartupTracer *_startupTracer;
     id <SPTResolver> _resolver;
     id <SPTViewLoggerConnectionTypeProvider> _connectionTypeProvider;
     id <SPTPerformanceKitUUIDProvider> _uuidProvider;
     SPTPerformanceMetricsViewLoggerFactoryImplementation *_viewLoggerFactory;
+    id <SPTRemoteConfigurationResolver> _remoteConfigurationResolver;
+    SPTPerformanceMetricsAppMetricsCollector *_appMetricCollector;
 }
 
 + (id)serviceIdentifier;
+@property(retain, nonatomic) SPTPerformanceMetricsAppMetricsCollector *appMetricCollector; // @synthesize appMetricCollector=_appMetricCollector;
+@property(retain, nonatomic) id <SPTRemoteConfigurationResolver> remoteConfigurationResolver; // @synthesize remoteConfigurationResolver=_remoteConfigurationResolver;
 @property(retain, nonatomic) SPTPerformanceMetricsViewLoggerFactoryImplementation *viewLoggerFactory; // @synthesize viewLoggerFactory=_viewLoggerFactory;
 @property(retain, nonatomic) id <SPTPerformanceKitUUIDProvider> uuidProvider; // @synthesize uuidProvider=_uuidProvider;
 @property(retain, nonatomic) id <SPTViewLoggerConnectionTypeProvider> connectionTypeProvider; // @synthesize connectionTypeProvider=_connectionTypeProvider;
 @property(retain, nonatomic) id <SPTResolver> resolver; // @synthesize resolver=_resolver;
 @property(retain, nonatomic) SPTStartupTracer *startupTracer; // @synthesize startupTracer=_startupTracer;
+@property(nonatomic) __weak id <SPTRemoteConfigurationService> remoteConfigurationService; // @synthesize remoteConfigurationService=_remoteConfigurationService;
+@property(nonatomic) __weak id <SPTEventSenderService> eventSenderService; // @synthesize eventSenderService=_eventSenderService;
 @property(nonatomic) __weak id <SPTNetworkService> networkService; // @synthesize networkService=_networkService;
 @property(nonatomic) __weak id <SPTContainerService> containerService; // @synthesize containerService=_containerService;
 @property(nonatomic) __weak id <CosmosFeature> cosmosFeature; // @synthesize cosmosFeature=_cosmosFeature;
@@ -39,6 +48,7 @@
 - (void)didEnterBackground;
 - (void)enableCpuMonitor:(_Bool)arg1;
 - (void)unload;
+- (void)idleStateWasReached;
 - (void)load;
 - (id)provideViewLoggerFactory;
 - (id)provideResolver;

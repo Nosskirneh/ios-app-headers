@@ -8,17 +8,18 @@
 
 #import "SPTPodcastYourLibraryEpisodeViewModel-Protocol.h"
 
-@class NSString, SPTPodcastEpisode;
+@class NSString;
+@protocol SPTPodcastEpisode;
 
 @interface SPTPodcastYourLibraryEpisodeImpl : NSObject <SPTPodcastYourLibraryEpisodeViewModel>
 {
-    SPTPodcastEpisode *_podcastEpisode;
+    id <SPTPodcastEpisode> _podcastEpisode;
     unsigned long long _viewModelType;
 }
 
 - (void).cxx_destruct;
 @property(readonly, nonatomic) unsigned long long viewModelType; // @synthesize viewModelType=_viewModelType;
-@property(readonly, nonatomic) SPTPodcastEpisode *podcastEpisode; // @synthesize podcastEpisode=_podcastEpisode;
+@property(readonly, nonatomic) id <SPTPodcastEpisode> podcastEpisode; // @synthesize podcastEpisode=_podcastEpisode;
 - (id)initWithViewModelType:(unsigned long long)arg1 episode:(id)arg2;
 
 // Remaining properties

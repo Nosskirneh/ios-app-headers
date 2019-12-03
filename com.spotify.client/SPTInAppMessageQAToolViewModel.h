@@ -9,7 +9,7 @@
 #import "SPTInAppMessageQAToolConfigurationsControllerDelegate-Protocol.h"
 #import "SPTInAppMessageQAToolFormatMessageControllerDelegate-Protocol.h"
 
-@class NSString, SPTInAppMessageQAToolConfigurationsController, SPTObserverManager, SPTProgressView;
+@class NSMutableDictionary, NSString, SPTInAppMessageQAToolConfigurationsController, SPTObserverManager, SPTProgressView;
 @protocol SPTAlertController, SPTInAppMessageQAToolViewModelDelegate, SPTInAppMessageQAToolViewModelObserver;
 
 @interface SPTInAppMessageQAToolViewModel : NSObject <SPTInAppMessageQAToolConfigurationsControllerDelegate, SPTInAppMessageQAToolFormatMessageControllerDelegate>
@@ -20,8 +20,10 @@
     SPTProgressView *_approveRejectIndicator;
     id <SPTAlertController> _alertController;
     SPTObserverManager *_observerManager;
+    NSMutableDictionary *_languagesAndCountriesDictionary;
 }
 
+@property(retain, nonatomic) NSMutableDictionary *languagesAndCountriesDictionary; // @synthesize languagesAndCountriesDictionary=_languagesAndCountriesDictionary;
 @property(readonly, nonatomic) SPTObserverManager *observerManager; // @synthesize observerManager=_observerManager;
 @property(retain, nonatomic) id <SPTAlertController> alertController; // @synthesize alertController=_alertController;
 @property(retain, nonatomic) SPTProgressView *approveRejectIndicator; // @synthesize approveRejectIndicator=_approveRejectIndicator;
@@ -29,8 +31,10 @@
 @property(retain, nonatomic) SPTInAppMessageQAToolConfigurationsController *qaToolConfigurationsController; // @synthesize qaToolConfigurationsController=_qaToolConfigurationsController;
 @property(nonatomic) __weak id <SPTInAppMessageQAToolViewModelDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
+- (void)setupLanguagesAndCountriesDictionaryFromData:(id)arg1;
 - (id)localesFromData:(id)arg1;
-- (void)showAlert:(_Bool)arg1;
+- (id)getLanguageAndCountryFromLocale:(id)arg1;
+- (void)showAlert:(_Bool)arg1 messageLocale:(id)arg2;
 - (void)hideLoadingIndicator;
 - (void)showLoadingIndicator;
 - (void)showAllDoneAlert;
@@ -44,7 +48,7 @@
 - (void)qaToolFormatMessageController:(id)arg1 failedToParseMessagesWithError:(id)arg2;
 - (void)qaToolFormatMessageControllerDidParseMessagesSuccessfully:(id)arg1;
 - (void)qaToolFormatMessageControllerPresentedAllCreatives:(id)arg1;
-- (void)qaToolFormatMessageControllerDidChangeContentUnitPosition:(id)arg1 approvedDirection:(_Bool)arg2;
+- (void)qaToolFormatMessageControllerDidChangeContentUnitPosition:(id)arg1 approvedDirection:(_Bool)arg2 messageLocale:(id)arg3;
 - (void)qaToolFormatMessageControllerDidChangeCreativeStatus:(id)arg1 creativeID:(id)arg2 approvedStatus:(_Bool)arg3;
 @property(readonly, nonatomic) id <SPTInAppMessageQAToolViewModelObserver> observerNotifierProxy;
 - (void)removeQAToolViewModelObserver:(id)arg1;

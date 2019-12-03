@@ -14,7 +14,7 @@
 + (id)requestAccountingWithSink:(struct RequestAccountingSink)arg1;
 - (id).cxx_construct;
 - (void).cxx_destruct;
-- (void)addRequestFromURL:(id)arg1 httpMethod:(id)arg2 sourceIdentifier:(id)arg3 bytesDownloaded:(int)arg4 bytesUploaded:(int)arg5 payloadSize:(int)arg6 timeTaken:(double)arg7;
+- (void)addRequestFromURL:(id)arg1 httpMethod:(id)arg2 sourceIdentifier:(id)arg3 bytesDownloaded:(int)arg4 bytesUploaded:(int)arg5 payloadSize:(int)arg6 timeTaken:(double)arg7 isCached:(_Bool)arg8;
 - (id)initWithSink:(struct RequestAccountingSink)arg1;
 
 @end

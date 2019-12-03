@@ -8,13 +8,12 @@
 
 #import "GLUEDebuggableStyle-Protocol.h"
 
-@class GLUECalendarThumbnailViewStyle, GLUEHeaderBackgroundStyle, GLUEImageStyle, GLUELabelStyle, NSString, SPTConcertsShadowStyle, UIColor;
+@class GLUECalendarThumbnailViewStyle, GLUEHeaderBackgroundStyle, GLUEImageStyle, GLUELabelStyle, NSString, UIColor;
 
 @interface SPTConcertsEntityHeaderContentStyle : NSObject <GLUEDebuggableStyle>
 {
     NSString *_debugName;
     GLUEImageStyle *_imageStyle;
-    SPTConcertsShadowStyle *_imageShadowStyle;
     UIColor *_imageBackgroundColor;
     GLUELabelStyle *_titleStyle;
     GLUELabelStyle *_venueStyle;
@@ -29,7 +28,6 @@
 + (id)createNavigationBarBakgroundStyleUsingTheme:(id)arg1;
 + (id)createMetadataLabelStyleUsingTheme:(id)arg1;
 + (id)createTitleStyleUsingTheme:(id)arg1;
-+ (id)createImageShadowStyle;
 + (id)createImageStyle;
 + (id)createCalendarStyleUsingTheme:(id)arg1;
 + (id)styleWithTheme:(id)arg1;
@@ -41,7 +39,6 @@
 @property(copy, nonatomic) GLUELabelStyle *venueStyle; // @synthesize venueStyle=_venueStyle;
 @property(copy, nonatomic) GLUELabelStyle *titleStyle; // @synthesize titleStyle=_titleStyle;
 @property(copy, nonatomic) UIColor *imageBackgroundColor; // @synthesize imageBackgroundColor=_imageBackgroundColor;
-@property(copy, nonatomic) SPTConcertsShadowStyle *imageShadowStyle; // @synthesize imageShadowStyle=_imageShadowStyle;
 @property(copy, nonatomic) GLUEImageStyle *imageStyle; // @synthesize imageStyle=_imageStyle;
 @property(copy, nonatomic) NSString *debugName; // @synthesize debugName=_debugName;
 - (void).cxx_destruct;

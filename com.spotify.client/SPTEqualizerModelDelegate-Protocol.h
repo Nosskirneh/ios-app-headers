@@ -12,6 +12,7 @@
 - (void)equalizerModelDidChangeConnectActive:(SPTEqualizerModel *)arg1;
 - (void)equalizerModelDidUpdatePreset:(SPTEqualizerModel *)arg1;
 - (void)equalizerModelDidChangeValue:(SPTEqualizerModel *)arg1;
+- (void)equalizerModelDidChangeBypass:(SPTEqualizerModel *)arg1;
 - (void)equalizerModelDidChangeOn:(SPTEqualizerModel *)arg1;
 @end
 

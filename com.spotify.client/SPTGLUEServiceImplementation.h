@@ -6,12 +6,13 @@
 
 #import <objc/NSObject.h>
 
+#import "SPTGLUEService-Protocol.h"
 #import "SPTService-Protocol.h"
 
 @class NSString, SPTAllocationContext, SPTHugsFactoryImplementation;
 @protocol GLUETheme, SPTDebugService, SPTNetworkService;
 
-@interface SPTGLUEServiceImplementation : NSObject <SPTService>
+@interface SPTGLUEServiceImplementation : NSObject <SPTGLUEService, SPTService>
 {
     id <SPTDebugService> _debugService;
     id <SPTNetworkService> _networkFeature;

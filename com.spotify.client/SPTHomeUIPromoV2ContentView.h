@@ -38,6 +38,7 @@
 @property(nonatomic) long long imageDisplayState; // @synthesize imageDisplayState=_imageDisplayState;
 @property(nonatomic) __weak id <SPTHomeUIPromoV2ContentViewDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
+- (void)updateAccessibility:(unsigned long long)arg1;
 @property(nonatomic) unsigned long long playButtonMode;
 @property(nonatomic) _Bool showsPlayButton;
 @property(copy, nonatomic) NSString *subtitleText;

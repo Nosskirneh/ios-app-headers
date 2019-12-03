@@ -13,7 +13,6 @@
 @property(readonly, nonatomic) UIColor *progressViewTintColor;
 @property(readonly, nonatomic) double progressViewCornerRadius;
 @property(readonly, nonatomic) double progressViewHeight;
-@property(readonly, nonatomic) double textAreaHeight;
 @property(readonly, nonatomic) double colorAnimationDuration;
 @property(readonly, nonatomic) double labelStackViewSpacing;
 @property(readonly, nonatomic) double labelStackViewMargin;

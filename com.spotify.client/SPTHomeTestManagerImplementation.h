@@ -6,35 +6,31 @@
 
 #import <objc/NSObject.h>
 
+#import "SPTFeatureFlagSignalObserver-Protocol.h"
 #import "SPTHomeTestManager-Protocol.h"
 
 @class NSString;
 @protocol SPTFeatureFlagFactory, SPTFeatureFlagSignal, SPTProductState;
 
-@interface SPTHomeTestManagerImplementation : NSObject <SPTHomeTestManager>
+@interface SPTHomeTestManagerImplementation : NSObject <SPTFeatureFlagSignalObserver, SPTHomeTestManager>
 {
-    _Bool _quickPlayEnabled;
     _Bool _consolidatedRecentlyPlayedEnabled;
-    _Bool _downloadSectionsEnabled;
+    _Bool _errorSnackbarEnabled;
     id <SPTFeatureFlagFactory> _featureFlagFactory;
     id <SPTProductState> _productState;
-    id <SPTFeatureFlagSignal> _quickPlayEnabledSignal;
     id <SPTFeatureFlagSignal> _consolidatedRecentlyPlayedEnabledSignal;
-    id <SPTFeatureFlagSignal> _downloadSectionsEnabledSignal;
+    id <SPTFeatureFlagSignal> _errorSnackbarEnabledSignal;
 }
 
-@property(nonatomic, getter=isDownloadSectionsEnabled) _Bool downloadSectionsEnabled; // @synthesize downloadSectionsEnabled=_downloadSectionsEnabled;
-@property(retain, nonatomic) id <SPTFeatureFlagSignal> downloadSectionsEnabledSignal; // @synthesize downloadSectionsEnabledSignal=_downloadSectionsEnabledSignal;
+@property(nonatomic, getter=isErrorSnackbarEnabled) _Bool errorSnackbarEnabled; // @synthesize errorSnackbarEnabled=_errorSnackbarEnabled;
+@property(readonly, nonatomic) id <SPTFeatureFlagSignal> errorSnackbarEnabledSignal; // @synthesize errorSnackbarEnabledSignal=_errorSnackbarEnabledSignal;
 @property(nonatomic, getter=isConsolidatedRecentlyPlayedEnabled) _Bool consolidatedRecentlyPlayedEnabled; // @synthesize consolidatedRecentlyPlayedEnabled=_consolidatedRecentlyPlayedEnabled;
 @property(readonly, nonatomic) id <SPTFeatureFlagSignal> consolidatedRecentlyPlayedEnabledSignal; // @synthesize consolidatedRecentlyPlayedEnabledSignal=_consolidatedRecentlyPlayedEnabledSignal;
-@property(nonatomic, getter=isQuickPlayEnabled) _Bool quickPlayEnabled; // @synthesize quickPlayEnabled=_quickPlayEnabled;
-@property(readonly, nonatomic) id <SPTFeatureFlagSignal> quickPlayEnabledSignal; // @synthesize quickPlayEnabledSignal=_quickPlayEnabledSignal;
 @property(readonly, nonatomic) id <SPTProductState> productState; // @synthesize productState=_productState;
 @property(readonly, nonatomic) id <SPTFeatureFlagFactory> featureFlagFactory; // @synthesize featureFlagFactory=_featureFlagFactory;
 - (void).cxx_destruct;
 - (void)featureFlagSignal:(id)arg1 hasAssumedState:(long long)arg2;
-- (void)setupDownloadSectionsSignal;
-- (void)setupQuickPlaySignal;
+- (void)setupErrorSnackbarSignal;
 - (void)setupConsolidatedRecentlyPlayedSignal;
 @property(readonly, nonatomic, getter=isProductStateNPT) _Bool productStateNPT;
 - (id)initWithFeatureFlagFactory:(id)arg1 productState:(id)arg2;

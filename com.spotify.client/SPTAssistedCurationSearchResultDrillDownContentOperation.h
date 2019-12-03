@@ -8,21 +8,25 @@
 
 #import "HUBContentOperation-Protocol.h"
 
+@class NSURL;
 @protocol HUBContentOperationDelegate;
 
 @interface SPTAssistedCurationSearchResultDrillDownContentOperation : NSObject <HUBContentOperation>
 {
     id <HUBContentOperationDelegate> _delegate;
+    NSURL *_entityURI;
 }
 
+@property(readonly, nonatomic) NSURL *entityURI; // @synthesize entityURI=_entityURI;
 @property(nonatomic) __weak id <HUBContentOperationDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
 - (id)addAssistedCurationEntityPrefixToSeeMoreURI:(id)arg1;
 - (id)addAssistedCurationEntityPrefixToEntityURI:(id)arg1;
 - (void)addSeeMoreDrillDownCommandModelInBodyComponentModelBuilder:(id)arg1;
 - (void)addEntityDrillDownCommandModelInBodyComponentModelBuilder:(id)arg1;
-- (void)addTrackRowCommandModelInBodyComponentModelBuilder:(id)arg1;
+- (void)addTrackRowCommandModelAndCustomDataInBodyComponentModelBuilder:(id)arg1;
 - (void)performForViewModelBuilder:(id)arg1 previousError:(id)arg2;
+- (id)initWithEntityURI:(id)arg1;
 
 @end
 

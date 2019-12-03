@@ -33,8 +33,8 @@
 - (void).cxx_destruct;
 - (id)initWithDictionary:(id)arg1 sessionIdentifier:(id)arg2;
 - (id)initWithIntent:(long long)arg1 targetURI:(id)arg2 query:(id)arg3 restriction:(id)arg4 media:(id)arg5 text:(id)arg6 sessionIdentifier:(id)arg7 error:(id)arg8 context:(id)arg9;
-- (_Bool)isPlayable;
 - (_Bool)spt_isExcludedFromCommandHandling;
+- (_Bool)isPlayable;
 - (_Bool)spt_shouldResumePlaybackAfterHandling;
 
 @end

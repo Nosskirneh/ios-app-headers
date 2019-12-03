@@ -7,15 +7,17 @@
 #import "SPTService-Protocol.h"
 
 @class SPTLoginDelayedSignupAccountSwitcher, SPTLoginNavigationRouter, SPTLoginSlideUpModalPresenter;
-@protocol SPTDialogController, SPTLoginKeychainManager, SPTLoginLogoutHandler, SPTLoginServiceObserver, SPTLoginStateController;
+@protocol SPTCredentialSource, SPTDialogController, SPTLoginKeychainManager, SPTLoginLogoutHandler, SPTLoginNavigationCoordinator, SPTLoginServiceObserver, SPTLoginStateController;
 
 @protocol SPTLoginService <SPTService>
 @property(readonly, nonatomic) _Bool userDidAuthenticateWithGuestAccount;
+- (id <SPTLoginNavigationCoordinator>)provideNavigationCoordinator;
 - (SPTLoginDelayedSignupAccountSwitcher *)provideAccountSwitcher;
 - (SPTLoginNavigationRouter *)provideNavigationRouter;
 - (void)didLoginWithPhoneNumber;
 - (void)removeObserver:(id <SPTLoginServiceObserver>)arg1;
 - (void)addObserver:(id <SPTLoginServiceObserver>)arg1;
+- (id <SPTCredentialSource>)provideCredentialSource;
 - (SPTLoginSlideUpModalPresenter *)provideSlideUpModalPresenter;
 - (id <SPTLoginLogoutHandler>)provideLogoutHandler;
 - (id <SPTLoginKeychainManager>)provideKeychainManager;

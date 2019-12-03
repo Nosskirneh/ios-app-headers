@@ -37,7 +37,10 @@
 @property(readonly, nonatomic) double verticalMargin; // @synthesize verticalMargin=_verticalMargin;
 @property(readonly, nonatomic) double horizontalMargin; // @synthesize horizontalMargin=_horizontalMargin;
 - (void).cxx_destruct;
+- (id)tagFilterButtonStyle;
 - (id)clearFilterButtonStyle;
+- (id)filterButtonsCellStyle;
+- (id)filterButtonsContainerStyle;
 - (id)clearFiltersControlStyle;
 - (id)lightFilterBarStyle;
 - (id)darkFilterBarStyle;

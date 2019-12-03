@@ -6,10 +6,12 @@
 
 #import <objc/NSObject.h>
 
+#import "SPTFeatureFlagSignalObserver-Protocol.h"
+
 @class NSString;
 @protocol SPTFeatureFlagSignal, SPTFeatureFlaggingService, SPTThirdPartyDeepLinkService;
 
-@interface SPTThirdPartyDeepLinkFeatureFlagManager : NSObject
+@interface SPTThirdPartyDeepLinkFeatureFlagManager : NSObject <SPTFeatureFlagSignalObserver>
 {
     id <SPTFeatureFlaggingService> _featureFlaggingService;
     id <SPTFeatureFlagSignal> _enabledSignal;

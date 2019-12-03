@@ -6,10 +6,12 @@
 
 #import <objc/NSObject.h>
 
+#import "SPTFeatureFlagSignalObserver-Protocol.h"
+
 @class NSString, SPTObserverManager;
 @protocol SPTFeatureFlagSignal;
 
-@interface SPTDrivingJumpstartTestManager : NSObject
+@interface SPTDrivingJumpstartTestManager : NSObject <SPTFeatureFlagSignalObserver>
 {
     _Bool _jumpstartEnabled;
     id <SPTFeatureFlagSignal> _jumpstartForegroundRolloutSignal;

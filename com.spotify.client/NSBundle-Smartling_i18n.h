@@ -7,6 +7,12 @@
 #import <Foundation/NSBundle.h>
 
 @interface NSBundle (Smartling_i18n)
++ (id)bmw_BMWAppKitResourcesBundle;
++ (id)glue_resourceBundleInContainerBundle:(id)arg1;
++ (id)glue_findResourcesBundle;
++ (id)glue_resourcesBundle;
++ (id)glue_codeBundle;
++ (id)spt_localizationBundle;
 - (_Bool)shouldReportNonLocalizedStrings;
 - (id)cachedLocales;
 - (id)cachedTables;
@@ -14,5 +20,6 @@
 - (id)_pluralizedStringWithKey:(id)arg1 table:(id)arg2 pluralValue:(float)arg3 forLocalization:(id)arg4;
 - (id)pluralizedStringWithKey:(id)arg1 defaultValue:(id)arg2 table:(id)arg3 pluralValue:(float)arg4 forLocalization:(id)arg5;
 - (id)pluralizedStringWithKey:(id)arg1 defaultValue:(id)arg2 table:(id)arg3 pluralValue:(float)arg4;
+- (_Bool)glue_isResourceBundle;
 @end
 

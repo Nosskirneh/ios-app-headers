@@ -7,7 +7,7 @@
 #import <objc/NSObject.h>
 
 @class SPTDataLoaderFactory, SPTShareLogger;
-@protocol SPTShareDeeplinkHandler, SPTShareTestManager, SPTVideoFeaturePlayerFactory;
+@protocol SPTShareDeeplinkHandler, SPTVideoFeaturePlayerFactory;
 
 @interface SPTShareHandlerFactory : NSObject
 {
@@ -15,17 +15,15 @@
     SPTShareLogger *_shareLogger;
     id <SPTVideoFeaturePlayerFactory> _videoPlayerFactory;
     id <SPTShareDeeplinkHandler> _deeplinkHandler;
-    id <SPTShareTestManager> _testManager;
 }
 
-@property(retain, nonatomic) id <SPTShareTestManager> testManager; // @synthesize testManager=_testManager;
 @property(retain, nonatomic) id <SPTShareDeeplinkHandler> deeplinkHandler; // @synthesize deeplinkHandler=_deeplinkHandler;
 @property(copy, nonatomic) id <SPTVideoFeaturePlayerFactory> videoPlayerFactory; // @synthesize videoPlayerFactory=_videoPlayerFactory;
 @property(retain, nonatomic) SPTShareLogger *shareLogger; // @synthesize shareLogger=_shareLogger;
 @property(retain, nonatomic) SPTDataLoaderFactory *dataLoaderFactory; // @synthesize dataLoaderFactory=_dataLoaderFactory;
 - (void).cxx_destruct;
 - (id)provideShareHandlerForShareDestination:(id)arg1;
-- (id)initWithDataLoaderFactory:(id)arg1 shareLogger:(id)arg2 deeplinkHandler:(id)arg3 videoPlayerFactory:(id)arg4 testManager:(id)arg5;
+- (id)initWithDataLoaderFactory:(id)arg1 shareLogger:(id)arg2 deeplinkHandler:(id)arg3 videoPlayerFactory:(id)arg4;
 
 @end
 

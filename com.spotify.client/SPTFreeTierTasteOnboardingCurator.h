@@ -14,7 +14,6 @@
 
 @interface SPTFreeTierTasteOnboardingCurator : NSObject <SPTDataLoaderDelegate, SPTFreeTierTasteOnboardingCurationProvider>
 {
-    long long _pendingRequestsCount;
     SPTDataLoader *_dataLoader;
     id <SPTLocalSettings> _localSettings;
     SPTObserverManager *_observerManager;
@@ -23,7 +22,6 @@
 @property(readonly, nonatomic) SPTObserverManager *observerManager; // @synthesize observerManager=_observerManager;
 @property(readonly, nonatomic) id <SPTLocalSettings> localSettings; // @synthesize localSettings=_localSettings;
 @property(readonly, nonatomic) SPTDataLoader *dataLoader; // @synthesize dataLoader=_dataLoader;
-@property(nonatomic) long long pendingRequestsCount; // @synthesize pendingRequestsCount=_pendingRequestsCount;
 - (void).cxx_destruct;
 - (void)removeObserver:(id)arg1;
 - (void)addObserver:(id)arg1;

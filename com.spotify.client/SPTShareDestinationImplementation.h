@@ -8,7 +8,7 @@
 
 #import "SPTShareDestination-Protocol.h"
 
-@class NSSet, NSString, UIImage;
+@class NSString, UIImage;
 
 @interface SPTShareDestinationImplementation : NSObject <SPTShareDestination>
 {
@@ -17,12 +17,12 @@
     NSString *_URLScheme;
     NSString *_URLFormat;
     long long _destinationId;
-    NSSet *_capabilities;
+    unsigned long long _capability;
     NSString *_loggingKey;
 }
 
 @property(readonly, nonatomic) NSString *loggingKey; // @synthesize loggingKey=_loggingKey;
-@property(readonly, nonatomic) NSSet *capabilities; // @synthesize capabilities=_capabilities;
+@property(readonly, nonatomic) unsigned long long capability; // @synthesize capability=_capability;
 @property(readonly, nonatomic) long long destinationId; // @synthesize destinationId=_destinationId;
 @property(readonly, nonatomic) NSString *URLFormat; // @synthesize URLFormat=_URLFormat;
 @property(readonly, nonatomic) NSString *URLScheme; // @synthesize URLScheme=_URLScheme;

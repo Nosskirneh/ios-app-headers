@@ -11,8 +11,8 @@
 #import "UITableViewDataSource-Protocol.h"
 #import "UITableViewDelegate-Protocol.h"
 
-@class GLUELabel, NSArray, NSLayoutConstraint, NSString, SPTShareDataProvider, SPTShareItemView, SPTShareLogger, SPTShareScreenshotObserverManager, UIButton, UITableView, UIView;
-@protocol GLUETheme, SPTImageLoader, SPTShareViewControllerDelegate;
+@class GLUELabel, NSArray, NSLayoutConstraint, NSString, SPTShareDataProvider, SPTShareDestinationUtility, SPTShareFeatureProperties, SPTShareItemView, SPTShareLogger, UIButton, UITableView, UIView;
+@protocol GLUETheme, SPTContextMenuPresenterFactory, SPTImageLoader, SPTShareViewControllerDelegate;
 
 @interface SPTShareViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, SPTImageLoaderDelegate, SPTShareViewControllerProtocol>
 {
@@ -21,7 +21,8 @@
     id <SPTShareViewControllerDelegate> _delegate;
     SPTShareDataProvider *_shareDataProvider;
     SPTShareLogger *_shareLogger;
-    SPTShareScreenshotObserverManager *_screenshotObserverManager;
+    SPTShareDestinationUtility *_shareDestinationUtility;
+    id <SPTContextMenuPresenterFactory> _contextMenuPresenterFactory;
     id <SPTImageLoader> _imageLoader;
     id <GLUETheme> _theme;
     NSArray *_layoutConstraints;
@@ -34,8 +35,10 @@
     UIButton *_cancelButton;
     UITableView *_tableView;
     NSLayoutConstraint *_mainContainerViewBottomContraint;
+    SPTShareFeatureProperties *_featureProperties;
 }
 
+@property(retain, nonatomic) SPTShareFeatureProperties *featureProperties; // @synthesize featureProperties=_featureProperties;
 @property(nonatomic, getter=isHidden) _Bool hidden; // @synthesize hidden=_hidden;
 @property(retain, nonatomic) NSLayoutConstraint *mainContainerViewBottomContraint; // @synthesize mainContainerViewBottomContraint=_mainContainerViewBottomContraint;
 @property(retain, nonatomic) UITableView *tableView; // @synthesize tableView=_tableView;
@@ -50,11 +53,16 @@
 @property(retain, nonatomic) id <GLUETheme> theme; // @synthesize theme=_theme;
 @property(retain, nonatomic) id <SPTImageLoader> imageLoader; // @synthesize imageLoader=_imageLoader;
 @property(nonatomic) _Bool isInPopover; // @synthesize isInPopover=_isInPopover;
-@property(retain, nonatomic) SPTShareScreenshotObserverManager *screenshotObserverManager; // @synthesize screenshotObserverManager=_screenshotObserverManager;
+@property(retain, nonatomic) id <SPTContextMenuPresenterFactory> contextMenuPresenterFactory; // @synthesize contextMenuPresenterFactory=_contextMenuPresenterFactory;
+@property(retain, nonatomic) SPTShareDestinationUtility *shareDestinationUtility; // @synthesize shareDestinationUtility=_shareDestinationUtility;
 @property(retain, nonatomic) SPTShareLogger *shareLogger; // @synthesize shareLogger=_shareLogger;
 @property(retain, nonatomic) SPTShareDataProvider *shareDataProvider; // @synthesize shareDataProvider=_shareDataProvider;
 @property(nonatomic) __weak id <SPTShareViewControllerDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
+- (void)performShareDestination:(id)arg1;
+- (id)provideDestinationTaskWithShareDestinationId:(long long)arg1 title:(id)arg2 icon:(id)arg3;
+- (id)provideFacebookShareDestinationTasks;
+- (void)showFacebookShareOptionsFromView:(id)arg1;
 - (void)imageLoader:(id)arg1 didLoadImage:(id)arg2 forURL:(id)arg3 loadTime:(double)arg4 context:(id)arg5;
 - (void)tableView:(id)arg1 didSelectRowAtIndexPath:(id)arg2;
 - (double)tableView:(id)arg1 heightForRowAtIndexPath:(id)arg2;
@@ -77,7 +85,7 @@
 - (void)setupMainView;
 - (void)viewDidAppear:(_Bool)arg1;
 - (void)viewDidLoad;
-- (id)initWithShareLogger:(id)arg1 shareDataProvider:(id)arg2 screenshotObserverManager:(id)arg3 imageLoader:(id)arg4;
+- (id)initWithShareLogger:(id)arg1 shareDataProvider:(id)arg2 shareDestinationUtility:(id)arg3 contextMenuPresenterFactory:(id)arg4 imageLoader:(id)arg5 featureProperties:(id)arg6;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

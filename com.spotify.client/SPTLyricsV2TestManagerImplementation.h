@@ -6,12 +6,13 @@
 
 #import <objc/NSObject.h>
 
+#import "SPTFeatureFlagSignalObserver-Protocol.h"
 #import "SPTLyricsV2TestManager-Protocol.h"
 
 @class NSString;
 @protocol SPTFeatureFlagFactory, SPTFeatureFlagSignal;
 
-@interface SPTLyricsV2TestManagerImplementation : NSObject <SPTLyricsV2TestManager>
+@interface SPTLyricsV2TestManagerImplementation : NSObject <SPTFeatureFlagSignalObserver, SPTLyricsV2TestManager>
 {
     id <SPTFeatureFlagFactory> _featureFlagFactory;
     id <SPTFeatureFlagSignal> _lyricsV2FlagSignal;

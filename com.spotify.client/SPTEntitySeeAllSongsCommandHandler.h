@@ -8,7 +8,7 @@
 
 #import "HUBCommandHandler-Protocol.h"
 
-@protocol SPTCollectionPlatform, SPTEntitySeeAllSongsHubsDataSource, SPTEntitySeeAllSongsRegistry, SPTHubInteractionLogger, SPTHubsEventFactory, SPTLinkDispatcher, SPTOfflineModeState;
+@protocol SPTCollectionPlatform, SPTEntitySeeAllSongsHubsDataSource, SPTEntitySeeAllSongsRegistry, SPTEventFactoryMapper, SPTHubInteractionLogger, SPTLinkDispatcher, SPTOfflineModeState, SPTUserBehaviourInstrumentationHubsEventMapper;
 
 @interface SPTEntitySeeAllSongsCommandHandler : NSObject <HUBCommandHandler>
 {
@@ -17,12 +17,14 @@
     id <SPTEntitySeeAllSongsRegistry> _registry;
     id <SPTCollectionPlatform> _collectionPlatform;
     id <SPTOfflineModeState> _offlineModeState;
-    id <SPTHubsEventFactory> _eventFactory;
+    id <SPTEventFactoryMapper> _eventFactory;
+    id <SPTUserBehaviourInstrumentationHubsEventMapper> _eventMapper;
     id <SPTEntitySeeAllSongsHubsDataSource> _dataSource;
 }
 
 @property(retain, nonatomic) id <SPTEntitySeeAllSongsHubsDataSource> dataSource; // @synthesize dataSource=_dataSource;
-@property(retain, nonatomic) id <SPTHubsEventFactory> eventFactory; // @synthesize eventFactory=_eventFactory;
+@property(retain, nonatomic) id <SPTUserBehaviourInstrumentationHubsEventMapper> eventMapper; // @synthesize eventMapper=_eventMapper;
+@property(retain, nonatomic) id <SPTEventFactoryMapper> eventFactory; // @synthesize eventFactory=_eventFactory;
 @property(readonly, nonatomic) id <SPTOfflineModeState> offlineModeState; // @synthesize offlineModeState=_offlineModeState;
 @property(readonly, nonatomic) id <SPTCollectionPlatform> collectionPlatform; // @synthesize collectionPlatform=_collectionPlatform;
 @property(readonly, nonatomic) id <SPTEntitySeeAllSongsRegistry> registry; // @synthesize registry=_registry;
@@ -30,7 +32,7 @@
 @property(readonly, nonatomic) id <SPTLinkDispatcher> linkDispatcher; // @synthesize linkDispatcher=_linkDispatcher;
 - (void).cxx_destruct;
 - (void)handleCommand:(id)arg1 event:(id)arg2;
-- (id)initWithLinkDispatcher:(id)arg1 interactionLogger:(id)arg2 registry:(id)arg3 collectionPlatform:(id)arg4 offlineModeState:(id)arg5 eventFactory:(id)arg6;
+- (id)initWithLinkDispatcher:(id)arg1 interactionLogger:(id)arg2 registry:(id)arg3 collectionPlatform:(id)arg4 offlineModeState:(id)arg5 eventFactory:(id)arg6 eventMapper:(id)arg7;
 
 @end
 

@@ -11,7 +11,7 @@
 #import "SPTPhoneNumberSignupService-Protocol.h"
 
 @class NSString, SPTAllocationContext, SPTPhoneNumberSignupFlowCoordinator, SPTPhoneNumberSignupUtils;
-@protocol SPTContainerService, SPTContainerUIService, SPTCoreService, SPTGLUEService, SPTLoginLoggingService, SPTLoginService, SPTSignupService, SPTURIDispatchService;
+@protocol SPTContainerService, SPTContainerUIService, SPTGLUEService, SPTLoginLoggingService, SPTLoginService, SPTSignupService, SPTURIDispatchService;
 
 @interface SPTPhoneNumberSignupServiceImplementation : NSObject <SPTPageRegistryObserver, SPTMetaViewControllerObserver, SPTPhoneNumberSignupService>
 {
@@ -19,7 +19,6 @@
     id <SPTContainerService> _containerService;
     id <SPTURIDispatchService> _uriDispatchService;
     id <SPTGLUEService> _glueService;
-    id <SPTCoreService> _coreService;
     id <SPTLoginService> _loginService;
     id <SPTSignupService> _signupService;
     id <SPTLoginLoggingService> _loggingService;
@@ -33,7 +32,6 @@
 @property(nonatomic) __weak id <SPTLoginLoggingService> loggingService; // @synthesize loggingService=_loggingService;
 @property(nonatomic) __weak id <SPTSignupService> signupService; // @synthesize signupService=_signupService;
 @property(nonatomic) __weak id <SPTLoginService> loginService; // @synthesize loginService=_loginService;
-@property(nonatomic) __weak id <SPTCoreService> coreService; // @synthesize coreService=_coreService;
 @property(nonatomic) __weak id <SPTGLUEService> glueService; // @synthesize glueService=_glueService;
 @property(nonatomic) __weak id <SPTURIDispatchService> uriDispatchService; // @synthesize uriDispatchService=_uriDispatchService;
 @property(nonatomic) __weak id <SPTContainerService> containerService; // @synthesize containerService=_containerService;
@@ -43,9 +41,9 @@
 - (id)provideMetaViewController;
 - (id)provideAllowedCallingCodes;
 - (id)provideFlowCoordinator;
-- (id)provideNavigationRouter;
+- (id)provideLoginStateController;
+- (id)provideNavigationCoordinator;
 - (id)provideTheme;
-- (id)provideCoreInstance;
 - (id)providePageRegistry;
 - (id)providePhoneNumberEntryViewController;
 - (id)provideDialogController;

@@ -10,29 +10,29 @@
 @protocol HUBComponentImageData, HUBComponentModel, HUBComponentTarget, HUBIcon;
 
 @protocol HUBComponentModel <HUBSerializable>
-@property(readonly, copy, nonatomic) NSArray *children;
-@property(readonly, nonatomic) __weak id <HUBComponentModel> parent;
-@property(readonly, copy, nonatomic) NSDictionary *customData;
-@property(readonly, copy, nonatomic) NSDictionary *loggingData;
-@property(readonly, copy, nonatomic) NSDictionary *metadata;
-@property(readonly, copy, nonatomic) NSDictionary *events;
-@property(readonly, nonatomic) id <HUBComponentTarget> target;
-@property(readonly, nonatomic) id <HUBIcon> icon;
-@property(readonly, copy, nonatomic) NSDictionary *customImageData;
-@property(readonly, nonatomic) id <HUBComponentImageData> backgroundImageData;
-@property(readonly, nonatomic) id <HUBComponentImageData> mainImageData;
-@property(readonly, copy, nonatomic) NSString *descriptionText;
-@property(readonly, copy, nonatomic) NSString *accessoryTitle;
-@property(readonly, copy, nonatomic) NSString *subtitle;
-@property(readonly, copy, nonatomic) NSString *title;
-@property(readonly, copy, nonatomic) NSString *componentCategory;
-@property(readonly, copy, nonatomic) HUBIdentifier *componentIdentifier;
-@property(readonly, copy, nonatomic) NSString *groupIdentifier;
-@property(readonly, nonatomic) unsigned long long index;
-@property(readonly, nonatomic) unsigned long long type;
-@property(readonly, copy, nonatomic) NSString *identifier;
 - (NSArray *)childrenInGroupWithIdentifier:(NSString *)arg1;
 - (id <HUBComponentModel>)childWithIdentifier:(NSString *)arg1;
 - (id <HUBComponentModel>)childAtIndex:(unsigned long long)arg1;
+@property(nonatomic, readonly) NSArray *children;
+@property(nonatomic, readonly) id <HUBComponentModel> parent;
+@property(nonatomic, readonly) NSDictionary *customData;
+@property(nonatomic, readonly) NSDictionary *loggingData;
+@property(nonatomic, readonly) NSDictionary *metadata;
+@property(nonatomic, readonly) NSDictionary *events;
+@property(nonatomic, readonly) id <HUBComponentTarget> target;
+@property(nonatomic, readonly) id <HUBIcon> icon;
+@property(nonatomic, readonly) NSDictionary *customImageData;
+@property(nonatomic, readonly) id <HUBComponentImageData> backgroundImageData;
+@property(nonatomic, readonly) id <HUBComponentImageData> mainImageData;
+@property(nonatomic, readonly) NSString *descriptionText;
+@property(nonatomic, readonly) NSString *accessoryTitle;
+@property(nonatomic, readonly) NSString *subtitle;
+@property(nonatomic, readonly) NSString *title;
+@property(nonatomic, readonly) NSString *componentCategory;
+@property(nonatomic, readonly) HUBIdentifier *componentIdentifier;
+@property(nonatomic, readonly) NSString *groupIdentifier;
+@property(nonatomic, readonly) unsigned long long index;
+@property(nonatomic, readonly) unsigned long long type;
+@property(nonatomic, readonly) NSString *identifier;
 @end
 

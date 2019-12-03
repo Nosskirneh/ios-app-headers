@@ -9,5 +9,8 @@
 @interface NSJSONSerialization (BMWAppKit)
 + (id)JSONDictionaryWithString:(id)arg1;
 + (id)stringWithJSONDictionary:(id)arg1;
++ (id)spt_dictionaryWithJSONData:(id)arg1 options:(unsigned long long)arg2 error:(id *)arg3;
++ (void)spt_JSONObjectWithData:(id)arg1 options:(unsigned long long)arg2 completion:(CDUnknownBlockType)arg3 completionQueue:(id)arg4;
++ (void)spt_dataWithJSONObject:(id)arg1 options:(unsigned long long)arg2 completion:(CDUnknownBlockType)arg3 completionQueue:(id)arg4;
 @end
 

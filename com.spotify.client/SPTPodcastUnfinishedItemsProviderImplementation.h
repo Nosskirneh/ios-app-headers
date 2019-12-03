@@ -31,6 +31,8 @@
 - (void)notifyObservers;
 - (void)unsubscribe;
 - (void)parseUnfinishedEpisodes:(id)arg1;
+- (void)requestUnfinishedItemsWithActionType:(id)arg1 maximumCount:(unsigned long long)arg2;
+- (void)getUnfinishedItemsWithMaximumCount:(unsigned long long)arg1;
 - (void)subscribeToUnfinishedItems;
 - (id)initWithEpisodeFactory:(id)arg1 dataLoader:(id)arg2;
 

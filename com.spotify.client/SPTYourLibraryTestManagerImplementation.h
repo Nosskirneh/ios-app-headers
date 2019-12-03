@@ -6,19 +6,19 @@
 
 #import <objc/NSObject.h>
 
+#import "SPTFeatureFlagSignalObserver-Protocol.h"
 #import "SPTYourLibraryTestManager-Protocol.h"
 
 @class NSString;
 @protocol SPTFeatureFlagFactory, SPTFeatureFlagSignal;
 
-@interface SPTYourLibraryTestManagerImplementation : NSObject <SPTYourLibraryTestManager>
+@interface SPTYourLibraryTestManagerImplementation : NSObject <SPTFeatureFlagSignalObserver, SPTYourLibraryTestManager>
 {
     _Bool _doubleTabYourLibraryEnabled;
     _Bool _persistActiveTabEnabled;
     id <SPTFeatureFlagFactory> _featureFlagFactory;
     id <SPTFeatureFlagSignal> _freeTierExperienceEnabledSignal;
     id <SPTFeatureFlagSignal> _doubleTabYourLibraryEnabledSignal;
-    id <SPTFeatureFlagSignal> _dynamicDoubleTabYourLibraryEnabledSignal;
     id <SPTFeatureFlagSignal> _persistActiveTabEnabledSignal;
     NSString *_persistActiveTabRawValue;
 }
@@ -27,7 +27,6 @@
 @property(nonatomic, getter=isPersistActiveTabEnabled) _Bool persistActiveTabEnabled; // @synthesize persistActiveTabEnabled=_persistActiveTabEnabled;
 @property(retain, nonatomic) id <SPTFeatureFlagSignal> persistActiveTabEnabledSignal; // @synthesize persistActiveTabEnabledSignal=_persistActiveTabEnabledSignal;
 @property(nonatomic, getter=isDoubleTabYourLibraryEnabled) _Bool doubleTabYourLibraryEnabled; // @synthesize doubleTabYourLibraryEnabled=_doubleTabYourLibraryEnabled;
-@property(retain, nonatomic) id <SPTFeatureFlagSignal> dynamicDoubleTabYourLibraryEnabledSignal; // @synthesize dynamicDoubleTabYourLibraryEnabledSignal=_dynamicDoubleTabYourLibraryEnabledSignal;
 @property(retain, nonatomic) id <SPTFeatureFlagSignal> doubleTabYourLibraryEnabledSignal; // @synthesize doubleTabYourLibraryEnabledSignal=_doubleTabYourLibraryEnabledSignal;
 @property(retain, nonatomic) id <SPTFeatureFlagSignal> freeTierExperienceEnabledSignal; // @synthesize freeTierExperienceEnabledSignal=_freeTierExperienceEnabledSignal;
 @property(retain, nonatomic) id <SPTFeatureFlagFactory> featureFlagFactory; // @synthesize featureFlagFactory=_featureFlagFactory;

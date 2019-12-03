@@ -27,7 +27,7 @@
 @property(retain, nonatomic) UIView *backgroundView; // @synthesize backgroundView=_backgroundView;
 @property(readonly, nonatomic) SPTVolumeRemotePopupViewModel *viewModel; // @synthesize viewModel=_viewModel;
 - (void).cxx_destruct;
-- (void)deviceDidUpdate;
+- (void)activeDeviceDidUpdate;
 - (void)volumeDidUpdate;
 - (void)setupAccessability;
 - (void)setupViewModel;

@@ -8,14 +8,13 @@
 
 @interface _TtC17FollowFeedFeature17ReleaseHeaderView : UIView
 {
-    // Error parsing type: , name: theme
     // Error parsing type: , name: authorView
     // Error parsing type: , name: timestampLabel
 }
 
 - (void).cxx_destruct;
-- (id)initWithFrame:(struct CGRect)arg1;
 - (id)initWithCoder:(id)arg1;
+- (id)initWithFrame:(struct CGRect)arg1;
 
 @end
 

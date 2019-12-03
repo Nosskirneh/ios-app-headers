@@ -6,13 +6,14 @@
 
 #import <objc/NSObject.h>
 
+#import "SPTFeatureFlagSignalObserver-Protocol.h"
 #import "SPTOfflineModeStateObserver-Protocol.h"
 #import "SPTSocialListeningService-Protocol.h"
 
 @class NSString, SPTAllocationContext, SPTSocialListeningDialogManager, SPTSocialListeningDialogPresenter, SPTSocialListeningGLUETheme, SPTSocialListeningLoggerImplementation, SPTSocialListeningModelImplementation, SPTSocialListeningTestManagerImplementation, SPTSocialListeningUserInterfaceFactoryImplementation;
-@protocol CosmosFeature, ProfileFeature, SPTContainerService, SPTContainerUIService, SPTCosmosDataLoaderService, SPTFeatureFlaggingService, SPTGLUEService, SPTNetworkService, SPTOfflineModeState, SPTPlayerFeature, SPTScannablesRegistration, SPTScannablesService, SPTSessionService, SPTShareFeature, SPTURIDispatchService, SlateFeature;
+@protocol CosmosFeature, ProfileFeature, SPTContainerService, SPTContainerUIService, SPTCosmosDataLoaderService, SPTFeatureFlaggingService, SPTGLUEService, SPTNetworkService, SPTOfflineModeState, SPTPlayerFeature, SPTScannablesRegistration, SPTScannablesService, SPTSessionService, SPTShareFeature, SPTSnackbarService, SPTURIDispatchService, SlateFeature;
 
-@interface SPTSocialListeningServiceImplementation : NSObject <SPTOfflineModeStateObserver, SPTSocialListeningService>
+@interface SPTSocialListeningServiceImplementation : NSObject <SPTFeatureFlagSignalObserver, SPTOfflineModeStateObserver, SPTSocialListeningService>
 {
     _Bool _socialListeningInitialized;
     id <SPTFeatureFlaggingService> _featureFlagService;
@@ -29,6 +30,7 @@
     id <SPTURIDispatchService> _URIDispatchService;
     id <ProfileFeature> _profileFeature;
     id <SlateFeature> _slateService;
+    id <SPTSnackbarService> _snackbarService;
     SPTSocialListeningTestManagerImplementation *_testManager;
     SPTSocialListeningUserInterfaceFactoryImplementation *_userInterfaceFactory;
     SPTSocialListeningGLUETheme *_socialListeningTheme;
@@ -51,6 +53,7 @@
 @property(retain, nonatomic) SPTSocialListeningGLUETheme *socialListeningTheme; // @synthesize socialListeningTheme=_socialListeningTheme;
 @property(retain, nonatomic) SPTSocialListeningUserInterfaceFactoryImplementation *userInterfaceFactory; // @synthesize userInterfaceFactory=_userInterfaceFactory;
 @property(retain, nonatomic) SPTSocialListeningTestManagerImplementation *testManager; // @synthesize testManager=_testManager;
+@property(nonatomic) __weak id <SPTSnackbarService> snackbarService; // @synthesize snackbarService=_snackbarService;
 @property(nonatomic) __weak id <SlateFeature> slateService; // @synthesize slateService=_slateService;
 @property(nonatomic) __weak id <ProfileFeature> profileFeature; // @synthesize profileFeature=_profileFeature;
 @property(nonatomic) __weak id <SPTURIDispatchService> URIDispatchService; // @synthesize URIDispatchService=_URIDispatchService;

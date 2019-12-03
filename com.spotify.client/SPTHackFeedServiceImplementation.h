@@ -9,7 +9,7 @@
 #import "SPTFeedService-Protocol.h"
 
 @class NSString, SPTAllocationContext, SPTFeedFeatureFlagExposureLoggerImplementation, SPTFeedFeatureFlagsManager, SPTFeedHeartBeatManagerImplementation, SPTFeedHeartBeatRefreshStore, SPTFeedPlaybackStatusManager;
-@protocol FollowFeature, SPContextMenuFeature, SPTAudioPreviewService, SPTContainerService, SPTCoreService, SPTFeatureFlaggingService, SPTGLUEService, SPTNetworkService, SPTPlayerFeature, SPTSessionService, SPTURIDispatchService;
+@protocol FollowFeature, SPContextMenuFeature, SPTAudioPreviewService, SPTContainerService, SPTCoreService, SPTFeatureFlaggingService, SPTFollowFeedService, SPTGLUEService, SPTNetworkService, SPTPlayerFeature, SPTSessionService, SPTURIDispatchService;
 
 @interface SPTHackFeedServiceImplementation : NSObject <SPTFeedService>
 {
@@ -25,6 +25,7 @@
     id <SPContextMenuFeature> _contextMenuService;
     id <SPTCoreService> _coreService;
     id <SPTAudioPreviewService> _audioPreviewService;
+    id <SPTFollowFeedService> _followFeedService;
     SPTFeedFeatureFlagsManager *_featureFlagManager;
     SPTFeedHeartBeatManagerImplementation *_heartBeatManager;
     SPTFeedHeartBeatRefreshStore *_heartbeatRefreshStore;
@@ -39,6 +40,7 @@
 @property(retain, nonatomic) SPTFeedHeartBeatManagerImplementation *heartBeatManager; // @synthesize heartBeatManager=_heartBeatManager;
 @property(retain, nonatomic) SPTFeedFeatureFlagsManager *featureFlagManager; // @synthesize featureFlagManager=_featureFlagManager;
 @property(nonatomic, getter=isHomeFeedButtonEnabled) _Bool homeFeedButtonEnabled; // @synthesize homeFeedButtonEnabled=_homeFeedButtonEnabled;
+@property(nonatomic) __weak id <SPTFollowFeedService> followFeedService; // @synthesize followFeedService=_followFeedService;
 @property(nonatomic) __weak id <SPTAudioPreviewService> audioPreviewService; // @synthesize audioPreviewService=_audioPreviewService;
 @property(nonatomic) __weak id <SPTCoreService> coreService; // @synthesize coreService=_coreService;
 @property(nonatomic) __weak id <SPContextMenuFeature> contextMenuService; // @synthesize contextMenuService=_contextMenuService;

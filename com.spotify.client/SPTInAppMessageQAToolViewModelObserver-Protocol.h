@@ -6,11 +6,12 @@
 
 #import "NSObject-Protocol.h"
 
-@class NSData, SPTInAppMessageQAToolViewModel;
+@class NSData, NSDictionary, SPTInAppMessageQAToolViewModel;
 
 @protocol SPTInAppMessageQAToolViewModelObserver <NSObject>
 
 @optional
+- (void)qaToolViewModel:(SPTInAppMessageQAToolViewModel *)arg1 didFetchLanguagesAndCountries:(NSDictionary *)arg2;
 - (void)qaToolViewModel:(SPTInAppMessageQAToolViewModel *)arg1 didFetchNoteCreativesData:(NSData *)arg2;
 - (void)qaToolViewModel:(SPTInAppMessageQAToolViewModel *)arg1 didFetchBannerCreativesData:(NSData *)arg2;
 - (void)qaToolViewModel:(SPTInAppMessageQAToolViewModel *)arg1 didFetchCardCreativesData:(NSData *)arg2;

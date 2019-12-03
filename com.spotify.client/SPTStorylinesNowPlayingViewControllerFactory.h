@@ -6,20 +6,22 @@
 
 #import <objc/NSObject.h>
 
-@class SPTStorylinesViewModel;
+@class SPTStorylinesTestManager, SPTStorylinesViewModel;
 @protocol GLUETheme;
 
 @interface SPTStorylinesNowPlayingViewControllerFactory : NSObject
 {
     SPTStorylinesViewModel *_viewModel;
+    SPTStorylinesTestManager *_testManager;
     id <GLUETheme> _theme;
 }
 
 @property(readonly, nonatomic) id <GLUETheme> theme; // @synthesize theme=_theme;
+@property(retain, nonatomic) SPTStorylinesTestManager *testManager; // @synthesize testManager=_testManager;
 @property(retain, nonatomic) SPTStorylinesViewModel *viewModel; // @synthesize viewModel=_viewModel;
 - (void).cxx_destruct;
 - (id)createStorylinesNowPlayingViewController;
-- (id)initWithViewModel:(id)arg1 theme:(id)arg2;
+- (id)initWithViewModel:(id)arg1 testManager:(id)arg2 theme:(id)arg3;
 
 @end
 

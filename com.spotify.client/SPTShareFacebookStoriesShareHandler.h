@@ -31,7 +31,7 @@
 - (void)shareWithData:(id)arg1 shareDestination:(id)arg2 sharePresenter:(id)arg3 completion:(CDUnknownBlockType)arg4;
 - (id)createAlertModel;
 - (void)executeCompletionWithError:(id)arg1;
-- (void)shareEntityWithURL:(id)arg1 withImage:(id)arg2 topColor:(id)arg3 bottomColor:(id)arg4;
+- (void)shareEntityWithURL:(id)arg1 backgroundImage:(id)arg2 stickerImage:(id)arg3 topColor:(id)arg4 bottomColor:(id)arg5;
 - (void)requestShareableArtefactForEntityURL:(id)arg1;
 - (id)initWithDataLoader:(id)arg1 shareLogger:(id)arg2;
 

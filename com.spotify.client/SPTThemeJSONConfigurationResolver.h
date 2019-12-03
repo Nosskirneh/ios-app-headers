@@ -13,6 +13,7 @@
 @interface SPTThemeJSONConfigurationResolver : NSObject <SPTThemeConfigurationResolver>
 {
     NSMutableDictionary *_configuration;
+    NSDictionary *_dependenciesKeysByFlag;
     SPTReaderWriterMutableDictionary *_flags;
     NSSet *_suffixes;
     NSMutableDictionary *_keysToAliases;

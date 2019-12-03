@@ -7,11 +7,10 @@
 #import <UIKit/UIView.h>
 
 #import "GLUEStyleable-Protocol.h"
-#import "SPTConcertsEntityRowAdornment-Protocol.h"
 
 @class GLUECalendarThumbnailViewStyle, GLUELabel, NSArray, NSString;
 
-@interface GLUECalendarThumbnailView : UIView <SPTConcertsEntityRowAdornment, GLUEStyleable>
+@interface GLUECalendarThumbnailView : UIView <GLUEStyleable>
 {
     GLUELabel *_calendarMonthLabel;
     GLUELabel *_calendarDayLabel;
@@ -28,14 +27,13 @@
 @property(readonly, copy, nonatomic) GLUELabel *calendarDayLabel; // @synthesize calendarDayLabel=_calendarDayLabel;
 @property(readonly, copy, nonatomic) GLUELabel *calendarMonthLabel; // @synthesize calendarMonthLabel=_calendarMonthLabel;
 - (void).cxx_destruct;
+- (id)accessibilityLabel;
 - (void)setHighlighted:(_Bool)arg1;
 - (void)glue_applyStyle:(id)arg1;
 - (void)addViewConstraints;
 - (struct CGSize)intrinsicContentSize;
 - (void)setupViewComponents;
 - (id)initWithFrame:(struct CGRect)arg1;
-@property(copy, nonatomic) NSString *subtitle;
-@property(copy, nonatomic) NSString *title;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

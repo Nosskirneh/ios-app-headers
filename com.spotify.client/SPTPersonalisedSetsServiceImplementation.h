@@ -9,7 +9,7 @@
 #import "SPTPersonalisedSetsService-Protocol.h"
 
 @class NSArray, NSString, SPTAllocationContext;
-@protocol PlaylistFeature, SPContextMenuFeature, SPTCollectionPlatformService, SPTCollectionSortingEntityManager, SPTContainerService, SPTCoreService, SPTEncoreIntegrationService, SPTExplicitContentService, SPTFeatureFlaggingService, SPTFeedbackService, SPTFollowShelfService, SPTFormatListPlatformService, SPTGLUEService, SPTNetworkService, SPTPSXTestManager, SPTPerformanceMetricsService, SPTPersonalisedSetsNowPlayingFeedbackManagerFactory, SPTPlayerFeature, SPTPlaylistPlatformService, SPTReleaseRadarDiscoverWeeklyService, SPTSessionService, SPTShelfService;
+@protocol SPContextMenuFeature, SPTCollectionPlatformService, SPTCollectionSortingEntityManager, SPTContainerService, SPTCoreService, SPTEncoreIntegrationService, SPTExplicitContentService, SPTFeatureFlaggingService, SPTFeedbackService, SPTFollowShelfService, SPTFormatListPlatformService, SPTGLUEService, SPTNetworkService, SPTPSXTestManager, SPTPerformanceMetricsService, SPTPersonalisedSetsNowPlayingFeedbackManagerFactory, SPTPlayerFeature, SPTPlaylistPlatformService, SPTReleaseRadarDiscoverWeeklyService, SPTSessionService, SPTShelfService;
 
 @interface SPTPersonalisedSetsServiceImplementation : NSObject <SPTPersonalisedSetsService>
 {
@@ -23,7 +23,6 @@
     id <SPTFeatureFlaggingService> _featureFlagService;
     id <SPTFormatListPlatformService> _formatListPlatformService;
     id <SPTCollectionPlatformService> _collectionPlatformService;
-    id <PlaylistFeature> _playlistFeature;
     id <SPTPlaylistPlatformService> _playlistPlatformService;
     id <SPTShelfService> _shelfService;
     id <SPTGLUEService> _glueService;
@@ -54,7 +53,6 @@
 @property(nonatomic) __weak id <SPTGLUEService> glueService; // @synthesize glueService=_glueService;
 @property(nonatomic) __weak id <SPTShelfService> shelfService; // @synthesize shelfService=_shelfService;
 @property(nonatomic) __weak id <SPTPlaylistPlatformService> playlistPlatformService; // @synthesize playlistPlatformService=_playlistPlatformService;
-@property(nonatomic) __weak id <PlaylistFeature> playlistFeature; // @synthesize playlistFeature=_playlistFeature;
 @property(nonatomic) __weak id <SPTCollectionPlatformService> collectionPlatformService; // @synthesize collectionPlatformService=_collectionPlatformService;
 @property(nonatomic) __weak id <SPTFormatListPlatformService> formatListPlatformService; // @synthesize formatListPlatformService=_formatListPlatformService;
 @property(nonatomic) __weak id <SPTFeatureFlaggingService> featureFlagService; // @synthesize featureFlagService=_featureFlagService;

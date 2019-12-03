@@ -46,6 +46,7 @@
 - (void).cxx_destruct;
 - (unsigned long long)preferredNavigationBarState;
 - (void)headerViewController:(id)arg1 selectedGroupIndexChanged:(unsigned long long)arg2;
+- (void)page:(id)arg1 disablePagesScroll:(_Bool)arg2;
 - (void)pageDidStopScrolling:(id)arg1;
 - (void)page:(id)arg1 didScroll:(id)arg2;
 - (void)page:(id)arg1 collapseTabControl:(_Bool)arg2;

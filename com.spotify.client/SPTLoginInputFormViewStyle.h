@@ -16,6 +16,7 @@
     GLUELabelStyle *_disclosureLabelStyle;
     SPTLoginTextFieldStyle *_inputFieldStyle;
     double _inputFieldHeight;
+    double _inputFieldHeightIPad;
     double _verticalSpacing;
     double _secondFieldTitleLabelTopMargin;
     double _inputFieldDisclosureLabelHeight;
@@ -24,6 +25,7 @@
 @property(nonatomic) double inputFieldDisclosureLabelHeight; // @synthesize inputFieldDisclosureLabelHeight=_inputFieldDisclosureLabelHeight;
 @property(nonatomic) double secondFieldTitleLabelTopMargin; // @synthesize secondFieldTitleLabelTopMargin=_secondFieldTitleLabelTopMargin;
 @property(nonatomic) double verticalSpacing; // @synthesize verticalSpacing=_verticalSpacing;
+@property(nonatomic) double inputFieldHeightIPad; // @synthesize inputFieldHeightIPad=_inputFieldHeightIPad;
 @property(nonatomic) double inputFieldHeight; // @synthesize inputFieldHeight=_inputFieldHeight;
 @property(copy, nonatomic) SPTLoginTextFieldStyle *inputFieldStyle; // @synthesize inputFieldStyle=_inputFieldStyle;
 @property(copy, nonatomic) GLUELabelStyle *disclosureLabelStyle; // @synthesize disclosureLabelStyle=_disclosureLabelStyle;

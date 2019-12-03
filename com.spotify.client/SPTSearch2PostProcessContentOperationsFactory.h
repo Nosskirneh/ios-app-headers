@@ -9,27 +9,24 @@
 #import "SPTSearch2ContentOperationsFactory-Protocol.h"
 
 @class NSString;
-@protocol SPTExplicitContentHubContentOperationFactory, SPTHubContentOperationFactory, SPTOnDemandService, SPTSearch2UserTierProviding;
+@protocol SPTHubContentOperationFactory, SPTOnDemandService, SPTSearch2UserTierProviding;
 
 @interface SPTSearch2PostProcessContentOperationsFactory : NSObject <SPTSearch2ContentOperationsFactory>
 {
     id <SPTHubContentOperationFactory> _hubContentOperationFactory;
-    id <SPTExplicitContentHubContentOperationFactory> _explicitContentContentOperationFactory;
     id <SPTOnDemandService> _onDemandService;
     id <SPTSearch2UserTierProviding> _userTierProvider;
 }
 
 @property(readonly, nonatomic) id <SPTSearch2UserTierProviding> userTierProvider; // @synthesize userTierProvider=_userTierProvider;
 @property(readonly, nonatomic) __weak id <SPTOnDemandService> onDemandService; // @synthesize onDemandService=_onDemandService;
-@property(readonly, nonatomic) id <SPTExplicitContentHubContentOperationFactory> explicitContentContentOperationFactory; // @synthesize explicitContentContentOperationFactory=_explicitContentContentOperationFactory;
 @property(readonly, nonatomic) id <SPTHubContentOperationFactory> hubContentOperationFactory; // @synthesize hubContentOperationFactory=_hubContentOperationFactory;
 - (void).cxx_destruct;
-- (id)makePlaybackDisablingContentOperation;
 - (id)makePlaybackHighlightContentOperation;
 - (id)makeOnDemandCardAccessibilityContentOperation;
 - (id)makeOnDemandDecoratorContentOperation;
 - (id)provideContentOperations;
-- (id)initWithHubContentOperationFactory:(id)arg1 explicitContentHubContentOperationFactory:(id)arg2 onDemandService:(id)arg3 userTierProvider:(id)arg4;
+- (id)initWithHubContentOperationFactory:(id)arg1 onDemandService:(id)arg2 userTierProvider:(id)arg3;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

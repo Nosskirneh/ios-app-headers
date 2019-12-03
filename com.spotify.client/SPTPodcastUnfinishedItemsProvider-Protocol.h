@@ -11,6 +11,7 @@
 @protocol SPTPodcastUnfinishedItemsProvider <NSObject>
 - (void)removeUnfinishedItemsProviderObserver:(id <SPTPodcastUnfinishedItemsProviderObserver>)arg1;
 - (void)addUnfinishedItemsProviderObserver:(id <SPTPodcastUnfinishedItemsProviderObserver>)arg1;
+- (void)getUnfinishedItemsWithMaximumCount:(unsigned long long)arg1;
 - (void)subscribeToUnfinishedItems;
 @end
 

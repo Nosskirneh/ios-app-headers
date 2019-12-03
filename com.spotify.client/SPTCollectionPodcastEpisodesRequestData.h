@@ -19,8 +19,10 @@
     NSURL *_viewURL;
     NSArray *_sortDescriptors;
     NSData *_requestBody;
+    NSString *_requestAction;
 }
 
+@property(copy, nonatomic) NSString *requestAction; // @synthesize requestAction=_requestAction;
 @property(retain, nonatomic) NSData *requestBody; // @synthesize requestBody=_requestBody;
 @property(nonatomic, getter=isGrouped) _Bool grouped; // @synthesize grouped=_grouped;
 @property(retain, nonatomic) NSArray *sortDescriptors; // @synthesize sortDescriptors=_sortDescriptors;
@@ -30,8 +32,7 @@
 @property(retain, nonatomic) NSString *requestStringTemplate; // @synthesize requestStringTemplate=_requestStringTemplate;
 - (void).cxx_destruct;
 - (id)additionalFilterString:(id)arg1;
-@property(readonly, copy, nonatomic) NSString *requestAction;
-- (id)initWithURL:(id)arg1 mediaType:(long long)arg2 podcastUITestManager:(id)arg3;
+- (id)initWithURL:(id)arg1 mediaType:(long long)arg2 subscribe:(_Bool)arg3 podcastUITestManager:(id)arg4;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

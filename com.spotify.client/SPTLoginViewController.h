@@ -32,6 +32,7 @@
 @property(nonatomic) _Bool forgetUserAfterLogout; // @synthesize forgetUserAfterLogout;
 @property(nonatomic) _Bool performLogout; // @synthesize performLogout;
 - (void).cxx_destruct;
+- (void)traitCollectionDidChange:(id)arg1;
 - (void)hideRequestLoginLinkInProgressState;
 - (void)showRequestLoginLinkInProgressState;
 - (void)loginWithoutPasswordButtonTap:(id)arg1;

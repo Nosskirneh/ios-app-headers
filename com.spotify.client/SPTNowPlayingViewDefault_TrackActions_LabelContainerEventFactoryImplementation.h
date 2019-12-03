@@ -21,6 +21,7 @@
 - (id)impression;
 - (id)artistLabelFactory;
 - (id)titleLabelFactory;
+- (id)_location;
 - (id)initWithComponents:(id)arg1;
 
 // Remaining properties

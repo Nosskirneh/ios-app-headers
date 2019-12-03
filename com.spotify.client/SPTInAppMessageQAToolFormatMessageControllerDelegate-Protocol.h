@@ -12,7 +12,7 @@
 @protocol SPTInAppMessageQAToolFormatMessageControllerDelegate <NSObject>
 - (void)qaToolFormatMessageController:(id <SPTInAppMessageQAToolViewModelObserver>)arg1 didWantToDismissViewController:(UIViewController *)arg2;
 - (void)qaToolFormatMessageController:(id <SPTInAppMessageQAToolViewModelObserver>)arg1 didWantToPresentViewController:(UIViewController *)arg2;
-- (void)qaToolFormatMessageControllerDidChangeContentUnitPosition:(id <SPTInAppMessageQAToolViewModelObserver>)arg1 approvedDirection:(_Bool)arg2;
+- (void)qaToolFormatMessageControllerDidChangeContentUnitPosition:(id <SPTInAppMessageQAToolViewModelObserver>)arg1 approvedDirection:(_Bool)arg2 messageLocale:(NSString *)arg3;
 - (void)qaToolFormatMessageControllerPresentedAllCreatives:(id <SPTInAppMessageQAToolViewModelObserver>)arg1;
 - (void)qaToolFormatMessageControllerDidChangeCreativeStatus:(id <SPTInAppMessageQAToolViewModelObserver>)arg1 creativeID:(NSString *)arg2 approvedStatus:(_Bool)arg3;
 - (void)qaToolFormatMessageControllerDidParseMessagesSuccessfully:(id <SPTInAppMessageQAToolViewModelObserver>)arg1;

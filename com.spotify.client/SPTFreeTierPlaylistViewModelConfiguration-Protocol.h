@@ -16,7 +16,6 @@
 @property(readonly, nonatomic, getter=isPlayButtonPausingPlay) _Bool playButtonPausingPlay;
 @property(readonly, nonatomic, getter=isTappingUnavailableTracksAllowed) _Bool tappingUnavailableTracksAllowed;
 @property(readonly, nonatomic, getter=isAlbumTitleIncludedInItemSubtitles) _Bool albumTitleIncludedInItemSubtitles;
-@property(readonly, nonatomic, getter=isAddSongsDisabled) _Bool addSongsDisabled;
 @property(readonly, nonatomic, getter=isLikeActionPlacedInsideHeader) _Bool likeActionPlacedInsideHeader;
 @end
 

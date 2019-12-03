@@ -22,6 +22,7 @@
 - (id)contextMenuButtonFactory;
 - (id)playbackSourceLabelFactory;
 - (id)hideButtonFactory;
+- (id)_location;
 - (id)initWithComponents:(id)arg1;
 
 // Remaining properties

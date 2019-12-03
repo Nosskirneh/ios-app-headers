@@ -6,31 +6,27 @@
 
 #import <objc/NSObject.h>
 
+#import "SPTFeatureFlagSignalObserver-Protocol.h"
 #import "SPTReleaseRadarDiscoverWeeklyTestManager-Protocol.h"
 
-@class NSString, SPTReleaseRadarDiscoverWeeklyFeatureProperties;
-@protocol SPTFeatureFlagSignal, SPTRemoteConfigurationService;
+@class NSString;
+@protocol SPTFeatureFlagSignal;
 
-@interface SPTReleaseRadarDiscoverWeeklyTestManagerImplementation : NSObject <SPTReleaseRadarDiscoverWeeklyTestManager>
+@interface SPTReleaseRadarDiscoverWeeklyTestManagerImplementation : NSObject <SPTFeatureFlagSignalObserver, SPTReleaseRadarDiscoverWeeklyTestManager>
 {
     _Bool _freeTierEnabled;
     _Bool _enablePlaylistPlatformBasedDiscoverWeeklyReleaseRadar;
     id <SPTFeatureFlagSignal> _freeTierFlagSignal;
-    id <SPTRemoteConfigurationService> _remoteConfigurationService;
-    SPTReleaseRadarDiscoverWeeklyFeatureProperties *_remoteConfigurationProperties;
 }
 
 @property(nonatomic, getter=shouldEnablePlaylistPlatformBasedDiscoverWeeklyReleaseRadar) _Bool enablePlaylistPlatformBasedDiscoverWeeklyReleaseRadar; // @synthesize enablePlaylistPlatformBasedDiscoverWeeklyReleaseRadar=_enablePlaylistPlatformBasedDiscoverWeeklyReleaseRadar;
 @property(nonatomic, getter=isFreeTierEnabled) _Bool freeTierEnabled; // @synthesize freeTierEnabled=_freeTierEnabled;
-@property(retain, nonatomic) SPTReleaseRadarDiscoverWeeklyFeatureProperties *remoteConfigurationProperties; // @synthesize remoteConfigurationProperties=_remoteConfigurationProperties;
-@property(readonly, nonatomic) __weak id <SPTRemoteConfigurationService> remoteConfigurationService; // @synthesize remoteConfigurationService=_remoteConfigurationService;
 @property(readonly, nonatomic) id <SPTFeatureFlagSignal> freeTierFlagSignal; // @synthesize freeTierFlagSignal=_freeTierFlagSignal;
 - (void).cxx_destruct;
 - (void)featureFlagSignal:(id)arg1 hasAssumedState:(long long)arg2;
-- (void)resolveRemoteConfigurationState;
 @property(readonly, nonatomic, getter=shouldSupressPlaylistPlatformBasedReleaseRadarDiscoverWeekly) _Bool supressPlaylistPlatformBasedReleaseRadarDiscoverWeekly;
 @property(readonly, nonatomic, getter=shouldSupressPersonalisedSetsFeaturePageRegistration) _Bool supressPersonalisedSetsFeaturePageRegistration;
-- (id)initWithFreeTierSignal:(id)arg1 remoteConfigurationService:(id)arg2;
+- (id)initWithFreeTierSignal:(id)arg1 featureProperties:(id)arg2;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

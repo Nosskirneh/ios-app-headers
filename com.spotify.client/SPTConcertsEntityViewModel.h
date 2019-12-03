@@ -9,7 +9,7 @@
 #import "SPTConcertsEntityResolverDelegate-Protocol.h"
 #import "SPTOfflineModeStateObserver-Protocol.h"
 
-@class NSArray, NSString, NSURL, SPTConcertsDateFormatter, SPTConcertsEntity, SPTConcertsEntityHeaderViewModel, SPTConcertsEntityState, SPTConcertsInfoViewModel, SPTConcertsLogger, SPTObserverManager;
+@class NSArray, NSError, NSString, NSURL, SPTConcertsDateFormatter, SPTConcertsEntity, SPTConcertsEntityHeaderViewModel, SPTConcertsInfoViewModel, SPTConcertsLogger, SPTObserverManager;
 @protocol GLUEImageLoader, GLUETheme, SPTConcertsEntityResolver, SPTConcertsResolverToken, SPTLinkDispatcher, SPTOfflineModeState;
 
 @interface SPTConcertsEntityViewModel : NSObject <SPTConcertsEntityResolverDelegate, SPTOfflineModeStateObserver>
@@ -21,24 +21,28 @@
     NSURL *_URI;
     id <SPTConcertsEntityResolver> _entityResolver;
     id <SPTConcertsResolverToken> _entityResolverToken;
-    SPTConcertsEntityState *_state;
     id <GLUETheme> _theme;
     id <GLUEImageLoader> _glueImageLoader;
-    NSArray *_sectionViewModels;
     id <SPTLinkDispatcher> _linkDispatcher;
     SPTObserverManager *_observerManager;
     id <SPTOfflineModeState> _offlineModeState;
     SPTConcertsDateFormatter *_dateFormatterProvider;
+    NSArray *_sectionViewModels;
+    long long _state;
+    SPTConcertsEntity *_entity;
+    NSError *_error;
 }
 
+@property(retain, nonatomic) NSError *error; // @synthesize error=_error;
+@property(retain, nonatomic) SPTConcertsEntity *entity; // @synthesize entity=_entity;
+@property(nonatomic) long long state; // @synthesize state=_state;
+@property(copy, nonatomic) NSArray *sectionViewModels; // @synthesize sectionViewModels=_sectionViewModels;
 @property(readonly, nonatomic) SPTConcertsDateFormatter *dateFormatterProvider; // @synthesize dateFormatterProvider=_dateFormatterProvider;
 @property(readonly, nonatomic) id <SPTOfflineModeState> offlineModeState; // @synthesize offlineModeState=_offlineModeState;
 @property(readonly, nonatomic) SPTObserverManager *observerManager; // @synthesize observerManager=_observerManager;
 @property(readonly, nonatomic) id <SPTLinkDispatcher> linkDispatcher; // @synthesize linkDispatcher=_linkDispatcher;
-@property(copy, nonatomic) NSArray *sectionViewModels; // @synthesize sectionViewModels=_sectionViewModels;
 @property(readonly, nonatomic) id <GLUEImageLoader> glueImageLoader; // @synthesize glueImageLoader=_glueImageLoader;
 @property(readonly, nonatomic) id <GLUETheme> theme; // @synthesize theme=_theme;
-@property(copy, nonatomic) SPTConcertsEntityState *state; // @synthesize state=_state;
 @property(retain, nonatomic) id <SPTConcertsResolverToken> entityResolverToken; // @synthesize entityResolverToken=_entityResolverToken;
 @property(readonly, nonatomic) id <SPTConcertsEntityResolver> entityResolver; // @synthesize entityResolver=_entityResolver;
 @property(readonly, nonatomic) NSURL *URI; // @synthesize URI=_URI;
@@ -68,7 +72,6 @@
 @property(readonly, nonatomic) long long sections;
 @property(readonly, nonatomic) NSURL *pageURI;
 @property(readonly, nonatomic, getter=hasTopAlbums) _Bool topAlbums;
-@property(readonly, copy, nonatomic) SPTConcertsEntity *entity;
 - (void)dealloc;
 - (id)initWithURI:(id)arg1 dateFormatterProvider:(id)arg2 entityResolver:(id)arg3 imageLoader:(id)arg4 linkDispatcher:(id)arg5 theme:(id)arg6 glueImageLoader:(id)arg7 offlineModeState:(id)arg8 concertsLogger:(id)arg9 containerUIService:(id)arg10;
 

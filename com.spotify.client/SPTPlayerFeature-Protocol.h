@@ -6,8 +6,8 @@
 
 #import "SPTService-Protocol.h"
 
-@class NSObject, NSString, NSURL;
-@protocol OS_dispatch_queue, SPTAudioSessionController, SPTPlaybackErrorDialogs, SPTPlayer, SPTPlayerObserver, SPTPlayerQueue;
+@class NSString, NSURL, OS_dispatch_queue;
+@protocol SPTAudioSessionController, SPTPlaybackErrorDialogs, SPTPlayer, SPTPlayerObserver, SPTPlayerQueue;
 
 @protocol SPTPlayerFeature <SPTService>
 - (id <SPTPlaybackErrorDialogs>)providePlaybackErrorDialogs;
@@ -15,8 +15,8 @@
 - (id <SPTPlayerQueue>)providePlayerQueue;
 - (void)removePlayerObserver:(id <SPTPlayerObserver>)arg1;
 - (void)addPlayerObserver:(id <SPTPlayerObserver>)arg1;
-- (void)fetchPlayerState:(void (^)(SPTPlayerState *))arg1 on:(NSObject<OS_dispatch_queue> *)arg2;
+- (void)fetchPlayerState:(void (^)(SPTPlayerState *))arg1 on:(OS_dispatch_queue *)arg2;
 - (id <SPTPlayer>)providePlayerWithViewURI:(NSURL *)arg1 featureIdentifier:(NSString *)arg2 referrerIdentifier:(NSString *)arg3;
-- (id <SPTPlayer>)providePlayerWithViewURI:(NSURL *)arg1 featureIdentifier:(NSString *)arg2 referrerIdentifier:(NSString *)arg3 queue:(NSObject<OS_dispatch_queue> *)arg4;
+- (id <SPTPlayer>)providePlayerWithViewURI:(NSURL *)arg1 featureIdentifier:(NSString *)arg2 referrerIdentifier:(NSString *)arg3 queue:(OS_dispatch_queue *)arg4;
 @end
 

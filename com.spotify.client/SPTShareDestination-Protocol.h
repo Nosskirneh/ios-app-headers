@@ -6,15 +6,15 @@
 
 #import "NSObject-Protocol.h"
 
-@class NSSet, NSString, UIImage;
+@class NSString, UIImage;
 
 @protocol SPTShareDestination <NSObject>
-@property(readonly, nonatomic) NSString *loggingKey;
-@property(readonly, nonatomic) NSSet *capabilities;
-@property(readonly, nonatomic) long long destinationId;
-@property(readonly, nonatomic) NSString *URLFormat;
-@property(readonly, nonatomic) NSString *URLScheme;
-@property(readonly, nonatomic) UIImage *icon;
-@property(readonly, nonatomic) NSString *title;
+@property(nonatomic, readonly) NSString *loggingKey;
+@property(nonatomic, readonly) unsigned long long capability;
+@property(nonatomic, readonly) long long destinationId;
+@property(nonatomic, readonly) NSString *URLFormat;
+@property(nonatomic, readonly) NSString *URLScheme;
+@property(nonatomic, readonly) UIImage *icon;
+@property(nonatomic, readonly) NSString *title;
 @end
 

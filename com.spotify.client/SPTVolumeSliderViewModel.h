@@ -9,11 +9,12 @@
 #import "SPTGaiaConnectObserver-Protocol.h"
 #import "SPTVolumeObserver-Protocol.h"
 #import "SPTVolumeSystemObserver-Protocol.h"
+#import "SPTVolumeThrottlerDelegate-Protocol.h"
 
-@class NSString, SPTVolumeLogger;
+@class NSString, SPTVolumeLogger, SPTVolumeThrottler;
 @protocol SPTGaiaConnectAPI, SPTVolumeAPI, SPTVolumeSliderViewModelDelegate, SPTVolumeSystemAPI;
 
-@interface SPTVolumeSliderViewModel : NSObject <SPTVolumeObserver, SPTGaiaConnectObserver, SPTVolumeSystemObserver>
+@interface SPTVolumeSliderViewModel : NSObject <SPTVolumeObserver, SPTGaiaConnectObserver, SPTVolumeSystemObserver, SPTVolumeThrottlerDelegate>
 {
     _Bool _isPlayingRemotely;
     id <SPTVolumeSliderViewModelDelegate> _delegate;
@@ -21,17 +22,22 @@
     id <SPTVolumeAPI> _volumeController;
     id <SPTVolumeSystemAPI> _systemVolumeManager;
     id <SPTGaiaConnectAPI> _connectManager;
+    SPTVolumeThrottler *_commandThrottler;
     SPTVolumeLogger *_logger;
+    double _sliderValue;
 }
 
 @property(nonatomic) _Bool isPlayingRemotely; // @synthesize isPlayingRemotely=_isPlayingRemotely;
+@property(nonatomic) double sliderValue; // @synthesize sliderValue=_sliderValue;
 @property(retain, nonatomic) SPTVolumeLogger *logger; // @synthesize logger=_logger;
+@property(retain, nonatomic) SPTVolumeThrottler *commandThrottler; // @synthesize commandThrottler=_commandThrottler;
 @property(retain, nonatomic) id <SPTGaiaConnectAPI> connectManager; // @synthesize connectManager=_connectManager;
 @property(retain, nonatomic) id <SPTVolumeSystemAPI> systemVolumeManager; // @synthesize systemVolumeManager=_systemVolumeManager;
 @property(retain, nonatomic) id <SPTVolumeAPI> volumeController; // @synthesize volumeController=_volumeController;
 @property(nonatomic) double volume; // @synthesize volume=_volume;
 @property(nonatomic) __weak id <SPTVolumeSliderViewModelDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
+- (void)shouldPerformThrottledAction:(id)arg1;
 - (void)connectActiveDeviceDidChange:(id)arg1;
 - (void)systemVolumeDidUpdate:(double)arg1;
 - (void)volumeUpdated:(id)arg1;
@@ -42,7 +48,7 @@
 - (void)observePlayingRemotely;
 - (void)observeLocalVolume;
 - (void)observeRemoteVolume;
-- (id)initWithVolumeController:(id)arg1 systemVolumeManager:(id)arg2 connectManager:(id)arg3 logger:(id)arg4;
+- (id)initWithVolumeController:(id)arg1 systemVolumeManager:(id)arg2 connectManager:(id)arg3 commandThrottler:(id)arg4 logger:(id)arg5;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

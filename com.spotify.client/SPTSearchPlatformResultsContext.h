@@ -7,12 +7,13 @@
 #import <objc/NSObject.h>
 
 #import "HUBContentOperationDelegate-Protocol.h"
+#import "SPTExplicitContentEnabledStateObserver-Protocol.h"
 #import "SPTSearchPlatformContext-Protocol.h"
 
 @class NSArray, NSString;
 @protocol HUBViewModel, SPTSearch2CancellationToken, SPTSearchPlatformContextDelegate, SPTSearchPlatformViewModelFetcher;
 
-@interface SPTSearchPlatformResultsContext : NSObject <HUBContentOperationDelegate, SPTSearchPlatformContext>
+@interface SPTSearchPlatformResultsContext : NSObject <HUBContentOperationDelegate, SPTExplicitContentEnabledStateObserver, SPTSearchPlatformContext>
 {
     id <SPTSearchPlatformContextDelegate> _delegate;
     NSString *_query;
@@ -36,13 +37,14 @@
 @property(nonatomic) __weak id <SPTSearchPlatformContextDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
 - (id)postProcessViewModel:(id)arg1;
+- (void)explicitContentEnabledStateDidChange:(_Bool)arg1;
 - (void)contentOperation:(id)arg1 didFailWithError:(id)arg2;
 - (void)contentOperationDidFinish:(id)arg1;
 - (void)contentOperationRequiresRescheduling:(id)arg1;
 - (void)loadNextPage;
 - (void)reload;
 - (void)setViewModel:(id)arg1;
-- (id)initWithViewModelFetcher:(id)arg1 postProcessContentOperations:(id)arg2 query:(id)arg3;
+- (id)initWithViewModelFetcher:(id)arg1 postProcessContentOperations:(id)arg2 query:(id)arg3 explicitContentAccessManager:(id)arg4;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

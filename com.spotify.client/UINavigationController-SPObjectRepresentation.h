@@ -7,12 +7,19 @@
 #import <UIKit/UINavigationController.h>
 
 #import "SPObjectRepresentation-Protocol.h"
+#import "SPTMetaViewControllerPresentable-Protocol.h"
 
 @class NSString;
 
-@interface UINavigationController (SPObjectRepresentation) <SPObjectRepresentation>
+@interface UINavigationController (SPObjectRepresentation) <SPObjectRepresentation, SPTMetaViewControllerPresentable>
 - (id)objectRepresentation;
 - (_Bool)restoreWithObjectRepresentation:(id)arg1;
+- (id)findCameraButton;
+- (_Bool)sta_pressCameraButton;
+- (_Bool)sta_isCameraButtonVisible;
+- (void)setNavigationBarHiddenLegacy:(_Bool)arg1 animated:(_Bool)arg2;
+@property(readonly, nonatomic) long long presentationStyle;
+@property(readonly, nonatomic, getter=spt_referrerIdentifierForActiveViewController) NSString *referrerIdentifierForTopViewController;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

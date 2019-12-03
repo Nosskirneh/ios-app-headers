@@ -6,11 +6,12 @@
 
 #import "NSObject-Protocol.h"
 
-@protocol SPTImpressionEvent, SPTNowPlayingViewDefault_TrackActions_LabelContainer_ArtistLabelEventFactory, SPTNowPlayingViewDefault_TrackActions_LabelContainer_TitleLabelEventFactory;
+@protocol SPTEventFactoryModelMapping, SPTImpressionEvent, SPTNowPlayingViewDefault_TrackActions_LabelContainer_ArtistLabelEventFactory, SPTNowPlayingViewDefault_TrackActions_LabelContainer_TitleLabelEventFactory;
 
 @protocol SPTNowPlayingViewDefault_TrackActions_LabelContainerEventFactory <NSObject>
 - (id <SPTImpressionEvent>)impression;
 - (id <SPTNowPlayingViewDefault_TrackActions_LabelContainer_ArtistLabelEventFactory>)artistLabelFactory;
 - (id <SPTNowPlayingViewDefault_TrackActions_LabelContainer_TitleLabelEventFactory>)titleLabelFactory;
+- (id <SPTEventFactoryModelMapping>)_location;
 @end
 

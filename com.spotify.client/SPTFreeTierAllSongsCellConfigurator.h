@@ -7,7 +7,7 @@
 #import <objc/NSObject.h>
 
 @class NSURL, SPTFreeTierAllSongsContextMenuPresenter, SPTFreeTierAllSongsTheme, SPTFreeTierAllSongsViewModel;
-@protocol GLUEImageLoader, SPTAudioPreviewModelFactory, SPTAudioPreviewUIFactory, SPTFreeTierAllSongsCellConfiguratorDelegate, SPTFreeTierPreCurationUIFactory, SPTLogCenter;
+@protocol GLUEImageLoader, SPTAudioPreviewModelFactory, SPTAudioPreviewUIFactory, SPTFreeTierAllSongsCellConfiguratorDelegate, SPTLogCenter;
 
 @interface SPTFreeTierAllSongsCellConfigurator : NSObject
 {
@@ -19,14 +19,12 @@
     id <GLUEImageLoader> _imageLoader;
     id <SPTAudioPreviewUIFactory> _audioPreviewUIFactory;
     id <SPTAudioPreviewModelFactory> _audioPreviewModelFactory;
-    id <SPTFreeTierPreCurationUIFactory> _preCurationUIFactory;
     SPTFreeTierAllSongsContextMenuPresenter *_contextMenuPresenter;
     id <SPTLogCenter> _logCenter;
 }
 
 @property(readonly, nonatomic) id <SPTLogCenter> logCenter; // @synthesize logCenter=_logCenter;
 @property(readonly, nonatomic) SPTFreeTierAllSongsContextMenuPresenter *contextMenuPresenter; // @synthesize contextMenuPresenter=_contextMenuPresenter;
-@property(readonly, nonatomic) id <SPTFreeTierPreCurationUIFactory> preCurationUIFactory; // @synthesize preCurationUIFactory=_preCurationUIFactory;
 @property(readonly, nonatomic) id <SPTAudioPreviewModelFactory> audioPreviewModelFactory; // @synthesize audioPreviewModelFactory=_audioPreviewModelFactory;
 @property(readonly, nonatomic) id <SPTAudioPreviewUIFactory> audioPreviewUIFactory; // @synthesize audioPreviewUIFactory=_audioPreviewUIFactory;
 @property(readonly, nonatomic) id <GLUEImageLoader> imageLoader; // @synthesize imageLoader=_imageLoader;
@@ -44,8 +42,6 @@
 - (id)indexPathForButton:(id)arg1;
 - (id)indexPathForCell:(id)arg1;
 - (void)cellImagePreviewButtonDidTouchUpInside:(id)arg1;
-- (void)banButtonButtonDidTouchUpInside:(id)arg1;
-- (void)likeButtonButtonDidTouchUpInside:(id)arg1;
 - (void)cellContextMenuButtonDidTouchUpInside:(id)arg1;
 - (_Bool)shouldSelectCellForIndexPath:(id)arg1;
 - (void)didSelectCell:(id)arg1;
@@ -55,7 +51,7 @@
 - (long long)configureMultipleAccessoriesViewForCell:(id)arg1 subtitleAccessoryView:(id)arg2 indexPath:(id)arg3;
 - (void)configureCell:(id)arg1 atIndexPath:(id)arg2;
 - (Class)cellClass;
-- (id)initWithViewURI:(id)arg1 theme:(id)arg2 viewModel:(id)arg3 imageLoader:(id)arg4 audioPreviewUIFactory:(id)arg5 audioPreviewModelFactory:(id)arg6 preCurationUIFactory:(id)arg7 contextMenuPresenter:(id)arg8 logCenter:(id)arg9;
+- (id)initWithViewURI:(id)arg1 theme:(id)arg2 viewModel:(id)arg3 imageLoader:(id)arg4 audioPreviewUIFactory:(id)arg5 audioPreviewModelFactory:(id)arg6 contextMenuPresenter:(id)arg7 logCenter:(id)arg8;
 
 @end
 

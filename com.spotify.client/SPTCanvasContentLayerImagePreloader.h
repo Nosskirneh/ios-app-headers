@@ -6,32 +6,28 @@
 
 #import <objc/NSObject.h>
 
-@class NSMutableSet, SPTCanvasImageResolver, UIImage;
+@class SPTCanvasImageResolver, SPTaskCompletionSource;
 @protocol SPTCanvasContentLayerImagePreloaderDelegate, SPTCanvasModel;
 
 @interface SPTCanvasContentLayerImagePreloader : NSObject
 {
-    _Bool _loading;
     id <SPTCanvasContentLayerImagePreloaderDelegate> _delegate;
     SPTCanvasImageResolver *_imageResolver;
     long long _imageResolverType;
     id <SPTCanvasModel> _canvasModel;
-    UIImage *_imageResult;
-    NSMutableSet *_loadCalls;
+    SPTaskCompletionSource *_completionSource;
 }
 
 + (id)preloadError;
-@property(readonly, nonatomic) NSMutableSet *loadCalls; // @synthesize loadCalls=_loadCalls;
-@property(nonatomic, getter=isLoading) _Bool loading; // @synthesize loading=_loading;
-@property(retain, nonatomic) UIImage *imageResult; // @synthesize imageResult=_imageResult;
+@property(retain, nonatomic) SPTaskCompletionSource *completionSource; // @synthesize completionSource=_completionSource;
 @property(readonly, nonatomic) id <SPTCanvasModel> canvasModel; // @synthesize canvasModel=_canvasModel;
 @property(readonly, nonatomic) long long imageResolverType; // @synthesize imageResolverType=_imageResolverType;
 @property(readonly, nonatomic) SPTCanvasImageResolver *imageResolver; // @synthesize imageResolver=_imageResolver;
 @property(nonatomic) __weak id <SPTCanvasContentLayerImagePreloaderDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
 - (void)completeLoadImageWithImage:(id)arg1;
-- (void)loadImage;
-- (id)load;
+- (void)loadImageRequest;
+- (id)loadImage;
 - (void)dealloc;
 - (id)initWithImageResolver:(id)arg1 imageResolverType:(long long)arg2 canvasModel:(id)arg3;
 

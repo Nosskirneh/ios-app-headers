@@ -10,7 +10,7 @@
 #import "SPTWatchPlatformTestManagerObserver-Protocol.h"
 
 @class NSArray, NSDictionary, NSString, SPTAllocationContext, SPTWatchPlatformLogging, SPTWatchPlatformOfflineManagerImplementation, SPTWatchPlatformTestManager;
-@protocol GaiaFeature, SPTAccessoryManagerService, SPTCollectionPlatformService, SPTContainerService, SPTExternalIntegrationPlatformService, SPTFeatureFlaggingService, SPTGLUEService, SPTNetworkService, SPTPodcastFeature, SPTRadioService, SPTRecentlyPlayedService, SPTRemoteConfigurationService, SPTSessionService;
+@protocol GaiaFeature, SPTAccessoryManagerService, SPTCollectionPlatformService, SPTContainerService, SPTExternalIntegrationDebugLogService, SPTExternalIntegrationPlatformService, SPTFeatureFlaggingService, SPTGLUEService, SPTLoginService, SPTNetworkService, SPTPodcastFeature, SPTRadioService, SPTRecentlyPlayedService, SPTRemoteConfigurationService, SPTSessionService, SPTVolumeService;
 
 @interface SPTWatchPlatformServiceImplementation : NSObject <SPTWatchPlatformTestManagerObserver, SPTWatchPlatformService>
 {
@@ -25,8 +25,11 @@
     id <SPTNetworkService> _networkService;
     id <SPTRadioService> _radioService;
     id <SPTSessionService> _sessionService;
+    id <SPTExternalIntegrationDebugLogService> _externalIntegrationDebugLogService;
     id <SPTExternalIntegrationPlatformService> _externalIntegrationPlatformService;
     id <SPTRemoteConfigurationService> _remoteConfigurationService;
+    id <SPTVolumeService> _volumeService;
+    id <SPTLoginService> _loginService;
     SPTWatchPlatformLogging *_logger;
     SPTWatchPlatformTestManager *_testManager;
     SPTWatchPlatformOfflineManagerImplementation *_offlineManager;
@@ -40,8 +43,11 @@
 @property(retain, nonatomic) SPTWatchPlatformOfflineManagerImplementation *offlineManager; // @synthesize offlineManager=_offlineManager;
 @property(retain, nonatomic) SPTWatchPlatformTestManager *testManager; // @synthesize testManager=_testManager;
 @property(retain, nonatomic) SPTWatchPlatformLogging *logger; // @synthesize logger=_logger;
+@property(nonatomic) __weak id <SPTLoginService> loginService; // @synthesize loginService=_loginService;
+@property(nonatomic) __weak id <SPTVolumeService> volumeService; // @synthesize volumeService=_volumeService;
 @property(nonatomic) __weak id <SPTRemoteConfigurationService> remoteConfigurationService; // @synthesize remoteConfigurationService=_remoteConfigurationService;
 @property(nonatomic) __weak id <SPTExternalIntegrationPlatformService> externalIntegrationPlatformService; // @synthesize externalIntegrationPlatformService=_externalIntegrationPlatformService;
+@property(nonatomic) __weak id <SPTExternalIntegrationDebugLogService> externalIntegrationDebugLogService; // @synthesize externalIntegrationDebugLogService=_externalIntegrationDebugLogService;
 @property(nonatomic) __weak id <SPTSessionService> sessionService; // @synthesize sessionService=_sessionService;
 @property(nonatomic) __weak id <SPTRadioService> radioService; // @synthesize radioService=_radioService;
 @property(nonatomic) __weak id <SPTNetworkService> networkService; // @synthesize networkService=_networkService;

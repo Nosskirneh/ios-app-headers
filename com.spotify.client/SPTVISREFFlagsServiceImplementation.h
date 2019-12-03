@@ -6,12 +6,13 @@
 
 #import <objc/NSObject.h>
 
+#import "SPTFeatureFlagSignalObserver-Protocol.h"
 #import "SPTVISREFFlagsService-Protocol.h"
 
 @class NSDictionary, NSString, SPTAllocationContext;
 @protocol SPTFeatureFlagSignal, SPTFeatureFlaggingService;
 
-@interface SPTVISREFFlagsServiceImplementation : NSObject <SPTVISREFFlagsService>
+@interface SPTVISREFFlagsServiceImplementation : NSObject <SPTFeatureFlagSignalObserver, SPTVISREFFlagsService>
 {
     _Bool _fullExperienceExistingUsersEnabled;
     _Bool _fullExperienceExistingUsersGreenButtonEnabled;
@@ -22,16 +23,24 @@
     _Bool _sectionHeaderEnabled;
     _Bool _trackRowEnabled;
     _Bool _trackCloudEnabled;
+    _Bool _offlineHeaderEnabled;
+    _Bool _offlineHeaderVariableEnabled;
+    _Bool _offlineHeaderEnabledGreen;
     id <SPTFeatureFlaggingService> _featureFlaggingService;
     NSDictionary *_visualRefreshExperienceExistingUserSignals;
     NSDictionary *_visualRefreshExperienceNewUserSignals;
     NSDictionary *_headerEnabledSignals;
+    NSDictionary *_offlineHeaderEnabledSignals;
+    id <SPTFeatureFlagSignal> _offlineHeaderEnabledGreenSignal;
     id <SPTFeatureFlagSignal> _sectionHeaderEnabledSignal;
     id <SPTFeatureFlagSignal> _trackRowEnabledSignal;
     id <SPTFeatureFlagSignal> _trackCloudEnabledSignal;
 }
 
 + (id)serviceIdentifier;
+@property(nonatomic) _Bool offlineHeaderEnabledGreen; // @synthesize offlineHeaderEnabledGreen=_offlineHeaderEnabledGreen;
+@property(nonatomic) _Bool offlineHeaderVariableEnabled; // @synthesize offlineHeaderVariableEnabled=_offlineHeaderVariableEnabled;
+@property(nonatomic) _Bool offlineHeaderEnabled; // @synthesize offlineHeaderEnabled=_offlineHeaderEnabled;
 @property(nonatomic) _Bool trackCloudEnabled; // @synthesize trackCloudEnabled=_trackCloudEnabled;
 @property(nonatomic) _Bool trackRowEnabled; // @synthesize trackRowEnabled=_trackRowEnabled;
 @property(nonatomic) _Bool sectionHeaderEnabled; // @synthesize sectionHeaderEnabled=_sectionHeaderEnabled;
@@ -44,6 +53,8 @@
 @property(retain, nonatomic) id <SPTFeatureFlagSignal> trackCloudEnabledSignal; // @synthesize trackCloudEnabledSignal=_trackCloudEnabledSignal;
 @property(retain, nonatomic) id <SPTFeatureFlagSignal> trackRowEnabledSignal; // @synthesize trackRowEnabledSignal=_trackRowEnabledSignal;
 @property(retain, nonatomic) id <SPTFeatureFlagSignal> sectionHeaderEnabledSignal; // @synthesize sectionHeaderEnabledSignal=_sectionHeaderEnabledSignal;
+@property(retain, nonatomic) id <SPTFeatureFlagSignal> offlineHeaderEnabledGreenSignal; // @synthesize offlineHeaderEnabledGreenSignal=_offlineHeaderEnabledGreenSignal;
+@property(copy, nonatomic) NSDictionary *offlineHeaderEnabledSignals; // @synthesize offlineHeaderEnabledSignals=_offlineHeaderEnabledSignals;
 @property(copy, nonatomic) NSDictionary *headerEnabledSignals; // @synthesize headerEnabledSignals=_headerEnabledSignals;
 @property(copy, nonatomic) NSDictionary *visualRefreshExperienceNewUserSignals; // @synthesize visualRefreshExperienceNewUserSignals=_visualRefreshExperienceNewUserSignals;
 @property(copy, nonatomic) NSDictionary *visualRefreshExperienceExistingUserSignals; // @synthesize visualRefreshExperienceExistingUserSignals=_visualRefreshExperienceExistingUserSignals;

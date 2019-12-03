@@ -12,6 +12,7 @@
 - (void)removeObserver:(id <SPTVolumeSystemObserver>)arg1;
 - (void)addObserver:(id <SPTVolumeSystemObserver>)arg1;
 - (void)updateSystemVolume:(double)arg1;
+- (void)didStartRemoteVolumeSyncing;
 - (double)currentSystemVolume;
 @end
 

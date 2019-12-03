@@ -16,8 +16,8 @@
 #import "UICollectionViewDataSource-Protocol.h"
 #import "UICollectionViewDelegateFlowLayout-Protocol.h"
 
-@class GLUELabel, NSArray, NSLayoutConstraint, NSString, NSURL, SPTEntityHeaderViewController, SPTHomeMixFacepileDetailPresenter, SPTHomeMixGlueTheme, SPTHomeMixHeaderActionButton, SPTHomeMixHeaderContentViewController, SPTHomeMixHeaderViewModel, SPTHomeMixTrackCellConfigurator, SPTHomeMixUserTogglePresenter, SPTHomeMixViewModel, UIBarButtonItem, UICollectionView, UILayoutGuide;
-@protocol GLUEImageLoader, SPTBarButtonItemManager, SPTContextMenuActionsProvider, SPTContextMenuOptionsFactory, SPTContextMenuPresenterFactory, SPTFreeTierTooltipConditionalPresenter, SPTPageContainer, SPTSlateBuilderProvider, SPTSlateManager, SPTSnackbarConditionalPresenter;
+@class GLUELabel, NSArray, NSLayoutConstraint, NSString, NSURL, SPTEntityHeaderViewController, SPTHomeMixFacepileDetailPresenter, SPTHomeMixFeatureProperties, SPTHomeMixGlueTheme, SPTHomeMixHeaderActionButton, SPTHomeMixHeaderContentViewController, SPTHomeMixHeaderViewModel, SPTHomeMixTrackCellConfigurator, SPTHomeMixUserTogglePresenter, SPTHomeMixViewModel, UIBarButtonItem, UICollectionView, UILayoutGuide;
+@protocol GLUEImageLoader, SPTBarButtonItemManager, SPTContextMenuActionsProvider, SPTContextMenuOptionsFactory, SPTContextMenuPresenterFactory, SPTFreeTierTooltipConditionalPresenter, SPTPageContainer, SPTShareDragDelegateFactory, SPTSlateBuilderProvider, SPTSlateManager, SPTSnackbarConditionalPresenter, UICollectionViewDragDelegate;
 
 @interface SPTHomeMixViewController : UIViewController <SPTHomeMixTrackCellDelegate, SPContentInsetViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, SPTNavigationControllerNavigationBarState, SPTBarButtonItemManagerObserver, SPTHomeMixWelcomeViewControllerDelegate, SPTPageController, SPTHomeMixViewModelDelegate>
 {
@@ -33,6 +33,8 @@
     id <SPTSlateManager> _slateManager;
     id <SPTSlateBuilderProvider> _slateBuilderProvider;
     UILayoutGuide *_mainContentLayoutGuide;
+    SPTHomeMixFeatureProperties *_featureProperties;
+    id <SPTShareDragDelegateFactory> _shareDragDelegateFactory;
     id <SPTBarButtonItemManager> _barButtonItemManager;
     NSArray *_globalRightNavigationBarButtonItems;
     NSArray *_localRightNavigationBarButtonItems;
@@ -47,8 +49,10 @@
     SPTHomeMixUserTogglePresenter *_userTogglePresenter;
     GLUELabel *_emptyTracklistLabel;
     UIBarButtonItem *_contextMenuBarButton;
+    id <UICollectionViewDragDelegate> _dragDelegateHolder;
 }
 
+@property(retain, nonatomic) id <UICollectionViewDragDelegate> dragDelegateHolder; // @synthesize dragDelegateHolder=_dragDelegateHolder;
 @property(retain, nonatomic) UIBarButtonItem *contextMenuBarButton; // @synthesize contextMenuBarButton=_contextMenuBarButton;
 @property(retain, nonatomic) GLUELabel *emptyTracklistLabel; // @synthesize emptyTracklistLabel=_emptyTracklistLabel;
 @property(retain, nonatomic) SPTHomeMixUserTogglePresenter *userTogglePresenter; // @synthesize userTogglePresenter=_userTogglePresenter;
@@ -64,6 +68,8 @@
 @property(copy, nonatomic) NSArray *localRightNavigationBarButtonItems; // @synthesize localRightNavigationBarButtonItems=_localRightNavigationBarButtonItems;
 @property(copy, nonatomic) NSArray *globalRightNavigationBarButtonItems; // @synthesize globalRightNavigationBarButtonItems=_globalRightNavigationBarButtonItems;
 @property(readonly, nonatomic) __weak id <SPTBarButtonItemManager> barButtonItemManager; // @synthesize barButtonItemManager=_barButtonItemManager;
+@property(retain, nonatomic) id <SPTShareDragDelegateFactory> shareDragDelegateFactory; // @synthesize shareDragDelegateFactory=_shareDragDelegateFactory;
+@property(retain, nonatomic) SPTHomeMixFeatureProperties *featureProperties; // @synthesize featureProperties=_featureProperties;
 @property(readonly, nonatomic) UILayoutGuide *mainContentLayoutGuide; // @synthesize mainContentLayoutGuide=_mainContentLayoutGuide;
 @property(readonly, nonatomic) id <SPTSlateBuilderProvider> slateBuilderProvider; // @synthesize slateBuilderProvider=_slateBuilderProvider;
 @property(readonly, nonatomic) id <SPTSlateManager> slateManager; // @synthesize slateManager=_slateManager;
@@ -106,7 +112,6 @@
 - (id)explicitOptOutContextMenuAction;
 - (void)handleContextMenuButtonTapped:(id)arg1;
 - (void)handleHeartButtonTapped:(id)arg1;
-- (id)safeAreaLayoutGuide;
 - (void)attachHeader;
 - (void)setupHeader;
 - (void)setupEmptyTracklistLabel;
@@ -122,7 +127,7 @@
 - (void)viewDidAppear:(_Bool)arg1;
 - (void)viewWillAppear:(_Bool)arg1;
 - (void)viewDidLoad;
-- (id)initWithViewModel:(id)arg1 theme:(id)arg2 glueImageLoader:(id)arg3 contextMenuOptionsFactory:(id)arg4 contextMenuPresenterFactory:(id)arg5 contextMenuActionsProvider:(id)arg6 barButtonItemManager:(id)arg7 snackBarPresenter:(id)arg8 toolTipPresenter:(id)arg9 slateManager:(id)arg10 slateBuilderProvider:(id)arg11 mainContentLayoutGuide:(id)arg12;
+- (id)initWithViewModel:(id)arg1 theme:(id)arg2 glueImageLoader:(id)arg3 contextMenuOptionsFactory:(id)arg4 contextMenuPresenterFactory:(id)arg5 contextMenuActionsProvider:(id)arg6 barButtonItemManager:(id)arg7 snackBarPresenter:(id)arg8 toolTipPresenter:(id)arg9 slateManager:(id)arg10 slateBuilderProvider:(id)arg11 mainContentLayoutGuide:(id)arg12 featureProperties:(id)arg13 shareDragDelegateFactory:(id)arg14;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

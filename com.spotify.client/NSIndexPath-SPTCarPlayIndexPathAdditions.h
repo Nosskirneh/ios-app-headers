@@ -10,5 +10,7 @@
 - (id)spt_indexesJoinedToString;
 - (id)spt_indexPathByRemovingFirstIndex;
 @property(readonly, nonatomic) long long spt_rootIndex;
+@property(readonly, nonatomic) unsigned long long track;
+@property(readonly, nonatomic) unsigned long long page;
 @end
 

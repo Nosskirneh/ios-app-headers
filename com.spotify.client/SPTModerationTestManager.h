@@ -6,12 +6,13 @@
 
 #import <objc/NSObject.h>
 
+#import "SPTFeatureFlagSignalObserver-Protocol.h"
 #import "SPTModerationServiceState-Protocol.h"
 
 @class NSString, SPTObserverManager;
 @protocol SPTFeatureFlagSignal;
 
-@interface SPTModerationTestManager : NSObject <SPTModerationServiceState>
+@interface SPTModerationTestManager : NSObject <SPTFeatureFlagSignalObserver, SPTModerationServiceState>
 {
     _Bool _npvModerationEnabled;
     _Bool _artistProfileImagesModerationEnabled;

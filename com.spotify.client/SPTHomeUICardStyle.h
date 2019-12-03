@@ -18,8 +18,9 @@
 + (id)makeSubtitleLabelStyleWithTheme:(id)arg1 type:(unsigned long long)arg2;
 + (id)makeTitleLabelStyleWithTheme:(id)arg1 type:(unsigned long long)arg2;
 + (id)makeUIStatesToStylesWithTheme:(id)arg1;
++ (long long)maxLinesForTitle:(id)arg1 subtitlePresent:(_Bool)arg2;
 + (long long)maxLinesToDistributeBetween:(id)arg1 asDeterminedBy:(id)arg2;
-+ (id)defaultStyleWithTheme:(id)arg1 type:(unsigned long long)arg2 model:(id)arg3;
++ (id)defaultStyleWithTheme:(id)arg1 type:(unsigned long long)arg2 model:(id)arg3 twoLinesSubtitleEnabled:(_Bool)arg4;
 @property(copy, nonatomic) GLUEImageStyle *imageStyle; // @synthesize imageStyle=_imageStyle;
 @property(copy, nonatomic) SPTHomeUILabelStyle *subtitleLabelStyle; // @synthesize subtitleLabelStyle=_subtitleLabelStyle;
 @property(copy, nonatomic) SPTHomeUILabelStyle *titleLabelStyle; // @synthesize titleLabelStyle=_titleLabelStyle;

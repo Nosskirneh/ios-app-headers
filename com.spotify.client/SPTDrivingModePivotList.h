@@ -6,13 +6,14 @@
 
 #import <objc/NSObject.h>
 
+#import "SPTDrivingModePivotSubtitleIconResolverObserver-Protocol.h"
 #import "SPTOfflineModeStateObserver-Protocol.h"
 #import "SPTPlayerObserver-Protocol.h"
 
-@class NSArray, NSError, NSString, SPTDrivingModePivotDataLoader, SPTDrivingModePivotItem, SPTDrivingModePivotItemDecorator, SPTObserverManager;
+@class NSArray, NSError, NSString, SPTDrivingModePivotDataLoader, SPTDrivingModePivotItem, SPTDrivingModePivotItemDecorator, SPTDrivingModePivotSubtitleIconResolver, SPTObserverManager;
 @protocol SPTOfflineModeState, SPTPlayer;
 
-@interface SPTDrivingModePivotList : NSObject <SPTOfflineModeStateObserver, SPTPlayerObserver>
+@interface SPTDrivingModePivotList : NSObject <SPTOfflineModeStateObserver, SPTPlayerObserver, SPTDrivingModePivotSubtitleIconResolverObserver>
 {
     NSError *_error;
     SPTDrivingModePivotDataLoader *_dataLoader;
@@ -22,9 +23,11 @@
     SPTDrivingModePivotItem *_nowPlayingItem;
     SPTObserverManager *_observerManager;
     id <SPTOfflineModeState> _offlineModeState;
+    SPTDrivingModePivotSubtitleIconResolver *_subtitleIconResolver;
 }
 
 + (_Bool)array:(id)arg1 containsItemWithURI:(id)arg2;
+@property(readonly, nonatomic) SPTDrivingModePivotSubtitleIconResolver *subtitleIconResolver; // @synthesize subtitleIconResolver=_subtitleIconResolver;
 @property(readonly, nonatomic) id <SPTOfflineModeState> offlineModeState; // @synthesize offlineModeState=_offlineModeState;
 @property(readonly, nonatomic) SPTObserverManager *observerManager; // @synthesize observerManager=_observerManager;
 @property(retain, nonatomic) SPTDrivingModePivotItem *nowPlayingItem; // @synthesize nowPlayingItem=_nowPlayingItem;
@@ -41,12 +44,14 @@
 - (void)addObserver:(id)arg1;
 - (id)createErrorForOfflineState:(_Bool)arg1;
 - (id)providePivotItems;
+- (void)updateSubtitleIconForNowPlayingItem;
 - (_Bool)updateNowPlayingItemWithURI:(id)arg1;
+- (void)onSubtitleIconResolverDidChange:(id)arg1;
 - (void)offlineModeState:(id)arg1 updated:(_Bool)arg2;
 - (void)triggerReloadIfEmptyOrFailed;
 @property(readonly, nonatomic, getter=isLoading) _Bool loading;
 - (void)dealloc;
-- (id)initWithDataLoader:(id)arg1 player:(id)arg2 offlineModeState:(id)arg3 decorator:(id)arg4;
+- (id)initWithDataLoader:(id)arg1 player:(id)arg2 offlineModeState:(id)arg3 decorator:(id)arg4 subtitleIconResolver:(id)arg5;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

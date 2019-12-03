@@ -11,7 +11,7 @@
 @protocol SPTFreeTierTooltipPresenter <NSObject>
 @property(readonly, nonatomic, getter=isTooltipPresented) _Bool tooltipPresented;
 - (void)dismissPresentedTooltip;
-- (void)presentTooltipWithText:(NSString *)arg1 fromRect:(struct CGRect)arg2 inView:(UIView *)arg3 permittedArrowDirections:(unsigned long long)arg4;
+- (void)presentTooltipWithText:(NSString *)arg1 fromRect:(struct CGRect)arg2 inView:(UIView *)arg3 permittedArrowDirections:(unsigned long long)arg4 duration:(long long)arg5;
 - (void)presentTooltipWithContentView:(UIView *)arg1 fromRect:(struct CGRect)arg2 inView:(UIView *)arg3 permittedArrowDirections:(unsigned long long)arg4 duration:(long long)arg5;
 @end
 

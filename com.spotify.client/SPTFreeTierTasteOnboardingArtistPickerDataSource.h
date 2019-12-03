@@ -54,7 +54,7 @@
 - (id)collectionView:(id)arg1 cellForItemAtIndexPath:(id)arg2;
 - (long long)collectionView:(id)arg1 numberOfItemsInSection:(long long)arg2;
 - (void)registerWithCollectionView:(id)arg1 collectionViewFlowLayout:(id)arg2;
-- (id)initWithViewModel:(id)arg1 logger:(id)arg2 theme:(id)arg3 testManager:(id)arg4 imageLoader:(id)arg5 viewLogger:(id)arg6;
+- (id)initWithViewModel:(id)arg1 logger:(id)arg2 theme:(id)arg3 imageLoader:(id)arg4 viewLogger:(id)arg5;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

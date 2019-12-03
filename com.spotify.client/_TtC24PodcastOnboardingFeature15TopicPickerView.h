@@ -8,16 +8,18 @@
 
 @interface _TtC24PodcastOnboardingFeature15TopicPickerView : UIView
 {
-    // Error parsing type: , name: collectionViewLayout.storage
-    // Error parsing type: , name: collectionView.storage
+    // Error parsing type: , name: $__lazy_storage_$_collectionViewLayout
+    // Error parsing type: , name: $__lazy_storage_$_collectionView
     // Error parsing type: , name: overlayGradientView
-    // Error parsing type: , name: userInteractionBlockerView.storage
+    // Error parsing type: , name: $__lazy_storage_$_userInteractionBlockerView
     // Error parsing type: , name: doneButton
     // Error parsing type: , name: activityIndicator
     // Error parsing type: , name: skipButton
-    // Error parsing type: , name: titleView.storage
-    // Error parsing type: , name: offlineView.storage
+    // Error parsing type: , name: $__lazy_storage_$_titleLabel
+    // Error parsing type: , name: $__lazy_storage_$_titleView
+    // Error parsing type: , name: $__lazy_storage_$_offlineView
     // Error parsing type: , name: theme
+    // Error parsing type: , name: curationMode
 }
 
 - (void).cxx_destruct;

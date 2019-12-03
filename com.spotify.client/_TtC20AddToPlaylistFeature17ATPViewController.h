@@ -17,6 +17,7 @@
     // Error parsing type: , name: makeViewBinder
     // Error parsing type: , name: logger
     // Error parsing type: , name: contextMenuDelegate
+    // Error parsing type: , name: loopControllerConnected
 }
 
 - (void).cxx_destruct;

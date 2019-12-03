@@ -9,7 +9,7 @@
 #import "SPTCanvasContentLayerViewControllerViewModelDelegate-Protocol.h"
 #import "SPTCanvasTapArtistAttributionDelegate-Protocol.h"
 
-@class NSString, SPTCanvasAttributionView, SPTCanvasContentLayerViewControllerViewModel, UIActivityIndicatorView, UIImageView, UIView;
+@class NSString, SPTCanvasActivityIndicatorView, SPTCanvasAttributionView, SPTCanvasContentLayerViewControllerViewModel, SPTCanvasNowPlayingOverlayView, UIImageView, UIView;
 
 @interface SPTCanvasContentLayerViewController : UIViewController <SPTCanvasTapArtistAttributionDelegate, SPTCanvasContentLayerViewControllerViewModelDelegate>
 {
@@ -17,13 +17,15 @@
     SPTCanvasContentLayerViewControllerViewModel *_viewModel;
     UIView *_videoPlayerView;
     UIImageView *_imageView;
+    SPTCanvasNowPlayingOverlayView *_overlayView;
     SPTCanvasAttributionView *_attributionView;
-    UIActivityIndicatorView *_activityIndicatorView;
+    SPTCanvasActivityIndicatorView *_activityIndicatorView;
 }
 
 @property(nonatomic) _Bool showsAttributionView; // @synthesize showsAttributionView=_showsAttributionView;
-@property(readonly, nonatomic) UIActivityIndicatorView *activityIndicatorView; // @synthesize activityIndicatorView=_activityIndicatorView;
+@property(readonly, nonatomic) SPTCanvasActivityIndicatorView *activityIndicatorView; // @synthesize activityIndicatorView=_activityIndicatorView;
 @property(readonly, nonatomic) SPTCanvasAttributionView *attributionView; // @synthesize attributionView=_attributionView;
+@property(retain, nonatomic) SPTCanvasNowPlayingOverlayView *overlayView; // @synthesize overlayView=_overlayView;
 @property(retain, nonatomic) UIImageView *imageView; // @synthesize imageView=_imageView;
 @property(retain, nonatomic) UIView *videoPlayerView; // @synthesize videoPlayerView=_videoPlayerView;
 @property(retain, nonatomic) SPTCanvasContentLayerViewControllerViewModel *viewModel; // @synthesize viewModel=_viewModel;
@@ -36,10 +38,12 @@
 - (void)updateCanvasImage:(id)arg1;
 - (void)updateArtistAvatarImage:(id)arg1 artistName:(id)arg2;
 - (void)setshowsAttributionView:(_Bool)arg1;
-- (void)hideattributionView;
-- (void)showattributionView;
+- (void)hideAttributionView;
+- (void)showAttributionView;
 - (void)hideLoadingIndicator;
 - (void)showLoadingIndicator;
+- (void)hideOverlay;
+- (void)showOverlay;
 - (void)didTapArtistAttribution;
 - (void)viewDidDisappear:(_Bool)arg1;
 - (void)viewWillDisappear:(_Bool)arg1;

@@ -48,8 +48,8 @@
 - (void)removeRemoteControlStateUpdateObserver:(id <SPTNowPlayingRemoteControlPolicyUpdateObserver>)arg1;
 - (void)addRemoteControlStateUpdateObserver:(id <SPTNowPlayingRemoteControlPolicyUpdateObserver>)arg1;
 - (void)bookmarkButtonPressedWithCompletion:(void (^)(_Bool, NSError *))arg1;
-- (void)shuffleButtonPressedWithShuffleType:(long long)arg1;
-- (void)repeatButtonPressedWithRepeatType:(long long)arg1;
+- (_Bool)shuffleButtonPressedWithShuffleType:(long long)arg1;
+- (_Bool)repeatButtonPressedWithRepeatType:(long long)arg1;
 - (void)dislikeButtonPressedWithCompletion:(void (^)(_Bool, NSError *))arg1 identifier:(NSString *)arg2;
 - (void)likeButtonPressedWithCompletion:(void (^)(_Bool, NSError *))arg1 identifier:(NSString *)arg2;
 - (void)skipForwardWithInterval:(double)arg1;

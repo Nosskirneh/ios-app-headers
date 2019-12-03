@@ -10,20 +10,23 @@
 #import "SPTURISubtypeHandler-Protocol.h"
 
 @class NSString;
-@protocol SPTMetaViewController, SPTPlayer;
+@protocol SPTLiveVideoPlayerContextFactory, SPTMetaViewController, SPTPlayer;
 
 @interface SPTLiveVideoSubtypeHandler : NSObject <SPTPlayerObserver, SPTURISubtypeHandler>
 {
     id <SPTPlayer> _player;
     id <SPTMetaViewController> _metaViewController;
+    id <SPTLiveVideoPlayerContextFactory> _ctxFactory;
 }
 
+@property(retain, nonatomic) id <SPTLiveVideoPlayerContextFactory> ctxFactory; // @synthesize ctxFactory=_ctxFactory;
 @property(nonatomic) __weak id <SPTMetaViewController> metaViewController; // @synthesize metaViewController=_metaViewController;
 @property(retain, nonatomic) id <SPTPlayer> player; // @synthesize player=_player;
 - (void).cxx_destruct;
+- (void)setupLivePlayerWithContext:(id)arg1;
 - (long long)URISubtypeHandlerOpenURI:(id)arg1 context:(id)arg2;
 - (_Bool)URISubtypeHandlerCanHandleURI:(id)arg1;
-- (id)initWithPlayer:(id)arg1 metaViewController:(id)arg2;
+- (id)initWithPlayer:(id)arg1 metaViewController:(id)arg2 dataLoader:(id)arg3;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

@@ -8,9 +8,9 @@
 
 @interface _TtC21VoiceCompanionFeature23VCSNowPlayingHeaderView : UIView
 {
-    // Error parsing type: , name: titleLabel.storage
-    // Error parsing type: , name: subtitleLabel.storage
-    // Error parsing type: , name: imageView.storage
+    // Error parsing type: , name: $__lazy_storage_$_titleLabel
+    // Error parsing type: , name: $__lazy_storage_$_subtitleLabel
+    // Error parsing type: , name: $__lazy_storage_$_imageView
     // Error parsing type: , name: playlist
 }
 

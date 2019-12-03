@@ -30,6 +30,7 @@
 @property(nonatomic) _Bool forgetUserAfterLogout; // @synthesize forgetUserAfterLogout;
 @property(nonatomic) _Bool performLogout; // @synthesize performLogout;
 - (void).cxx_destruct;
+- (void)traitCollectionDidChange:(id)arg1;
 - (void)userDidAcceptAllLicences:(id)arg1;
 @property(readonly, nonatomic) NSString *presentingControllerAdjustIdentifier;
 @property(readonly, nonatomic) UIViewController *presentingController;

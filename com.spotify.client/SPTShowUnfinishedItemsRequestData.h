@@ -36,7 +36,9 @@
 - (void)addAbsoluteTolerance:(id)arg1 relativeTolerance:(id)arg2 toString:(id)arg3;
 - (void)addRange:(struct _NSRange)arg1 toString:(id)arg2;
 - (id)additionalFilterString:(id)arg1;
+- (void)commonInitWithRequestString:(id)arg1 absTimeLeftTolerance:(id)arg2 relTimeLeftTolerance:(id)arg3 requestActionType:(id)arg4;
 - (id)initWithAbsTimeLeftTolerance:(id)arg1 relTimeLeftTolerance:(id)arg2 range:(struct _NSRange)arg3 requestActionType:(id)arg4;
+- (id)initWithAbsTimeLeftTolerance:(id)arg1 relTimeLeftTolerance:(id)arg2 requestActionType:(id)arg3;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

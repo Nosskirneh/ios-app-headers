@@ -24,6 +24,7 @@
 - (id)playButtonFactory;
 - (id)previousButtonFactory;
 - (id)shuffleModeButtonFactory;
+- (id)_location;
 - (id)initWithComponents:(id)arg1;
 
 // Remaining properties

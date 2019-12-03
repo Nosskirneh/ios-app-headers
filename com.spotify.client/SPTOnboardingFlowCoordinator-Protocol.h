@@ -9,7 +9,7 @@
 @protocol SPTOnboardingServiceFlowStateReporter;
 
 @protocol SPTOnboardingFlowCoordinator <NSObject>
-@property(nonatomic) __weak id <SPTOnboardingServiceFlowStateReporter> delegate;
 - (void)startOnboardingFlow;
+@property(nonatomic) __weak id <SPTOnboardingServiceFlowStateReporter> delegate;
 @end
 

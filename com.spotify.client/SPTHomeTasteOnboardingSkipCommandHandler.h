@@ -8,16 +8,17 @@
 
 #import "HUBCommandHandler-Protocol.h"
 
-@protocol SPTHomeTasteOnboardingSkipCommandHandlerDelegate;
+@class SPTHomeLocalViewModelOverrides;
 
 @interface SPTHomeTasteOnboardingSkipCommandHandler : NSObject <HUBCommandHandler>
 {
-    id <SPTHomeTasteOnboardingSkipCommandHandlerDelegate> _delegate;
+    SPTHomeLocalViewModelOverrides *_overrides;
 }
 
-@property(nonatomic) __weak id <SPTHomeTasteOnboardingSkipCommandHandlerDelegate> delegate; // @synthesize delegate=_delegate;
+@property(readonly, nonatomic) SPTHomeLocalViewModelOverrides *overrides; // @synthesize overrides=_overrides;
 - (void).cxx_destruct;
 - (void)handleCommand:(id)arg1 event:(id)arg2;
+- (id)initWithViewModelWithOverrides:(id)arg1;
 
 @end
 

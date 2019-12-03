@@ -6,7 +6,7 @@
 
 #import "GLUEEmptyStateView.h"
 
-@class NSURL, SPTAnchorEmptyStateExtensionView;
+@class NSURL;
 @protocol GLUETheme, SPTLinkDispatcher, SPTMetaViewController, SPTNavigationRouter, SPTPodcastLogger;
 
 @interface SPTPodcastCollectionYourLibraryEmptyStateView : GLUEEmptyStateView
@@ -20,13 +20,11 @@
     NSURL *_URI;
     NSURL *_navigateFromURI;
     id <SPTPodcastLogger> _podcastLogger;
-    SPTAnchorEmptyStateExtensionView *_anchorExtensionView;
 }
 
 + (id)emptyStateDownloadsViewTheme:(id)arg1 linkDispatcher:(id)arg2 metaViewController:(id)arg3 navigationRouter:(id)arg4 podcastLogger:(id)arg5 viewURI:(id)arg6;
-+ (id)emptyStateEpisodesViewTheme:(id)arg1 linkDispatcher:(id)arg2 metaViewController:(id)arg3 navigationRouter:(id)arg4 podcastLogger:(id)arg5 viewURI:(id)arg6 shouldAddAnchorExtension:(_Bool)arg7;
++ (id)emptyStateEpisodesViewTheme:(id)arg1 linkDispatcher:(id)arg2 metaViewController:(id)arg3 navigationRouter:(id)arg4 podcastLogger:(id)arg5 viewURI:(id)arg6;
 + (id)emptyStateShowsViewTheme:(id)arg1 linkDispatcher:(id)arg2 metaViewController:(id)arg3 navigationRouter:(id)arg4 podcastLogger:(id)arg5 viewURI:(id)arg6;
-@property(retain, nonatomic) SPTAnchorEmptyStateExtensionView *anchorExtensionView; // @synthesize anchorExtensionView=_anchorExtensionView;
 @property(retain, nonatomic) id <SPTPodcastLogger> podcastLogger; // @synthesize podcastLogger=_podcastLogger;
 @property(retain, nonatomic) NSURL *navigateFromURI; // @synthesize navigateFromURI=_navigateFromURI;
 @property(retain, nonatomic) NSURL *URI; // @synthesize URI=_URI;
@@ -37,7 +35,6 @@
 @property(nonatomic) __weak id <SPTMetaViewController> metaViewController; // @synthesize metaViewController=_metaViewController;
 @property(nonatomic) __weak id <SPTLinkDispatcher> linkDispatcher; // @synthesize linkDispatcher=_linkDispatcher;
 - (void).cxx_destruct;
-- (void)addAnchorExtension;
 - (id)entityPageEmptyStateViewStyle;
 - (void)applyThemeLayout;
 - (void)onAction:(id)arg1;
@@ -46,7 +43,7 @@
 - (id)featureId;
 - (id)titleText;
 - (void)setup;
-- (id)initWithTheme:(id)arg1 collectionType:(unsigned long long)arg2 linkDispatcher:(id)arg3 metaViewController:(id)arg4 navigationRouter:(id)arg5 podcastLogger:(id)arg6 viewURI:(id)arg7 shouldAddAnchorExtension:(_Bool)arg8;
+- (id)initWithTheme:(id)arg1 collectionType:(unsigned long long)arg2 linkDispatcher:(id)arg3 metaViewController:(id)arg4 navigationRouter:(id)arg5 podcastLogger:(id)arg6 viewURI:(id)arg7;
 
 @end
 

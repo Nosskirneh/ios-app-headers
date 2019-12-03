@@ -10,6 +10,7 @@
 
 @protocol SPTNowPlayingScrollViewModelDelegate <NSObject>
 - (void)nowPlayingScrollViewModelDidChangeScrollEnabledStatus:(SPTNowPlayingScrollViewModel *)arg1;
+- (void)nowPlayingScrollViewModelDidLoadProviderContent:(SPTNowPlayingScrollViewModel *)arg1;
 - (void)nowPlayingScrollViewModelDidChangeBannerStatus:(SPTNowPlayingScrollViewModel *)arg1;
 - (void)nowPlayingScrollViewModel:(SPTNowPlayingScrollViewModel *)arg1 didMoveToRelativeTrack:(SPTPlayerTrack *)arg2 withDifferentProviders:(_Bool)arg3;
 @end

@@ -11,7 +11,8 @@
     // Error parsing type: , name: label
     // Error parsing type: , name: imageView
     // Error parsing type: , name: badgeImageView
-    // Error parsing type: , name: widthConstraint.storage
+    // Error parsing type: , name: placeholderGradientView
+    // Error parsing type: , name: $__lazy_storage_$_widthConstraint
     // Error parsing type: , name: color
     // Error parsing type: , name: newlyCreated
     // Error parsing type: , name: maxWidth

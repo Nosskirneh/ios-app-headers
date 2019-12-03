@@ -9,14 +9,14 @@
 #import "SPTBrowseService-Protocol.h"
 
 @class NSString, SPTAllocationContext;
-@protocol SPTBrowseUIService, SPTContainerService, SPTFreeTierService, SPTGLUEService, SPTHubFrameworkService, SPTNetworkService, SPTOnDemandService, SPTPerformanceMetricsService, SPTPodcastFeature, SPTPodcastUIService, SPTRadioService, SPTVisualRefreshIntegrationService;
+@protocol SPTBrowseTestManager, SPTContainerService, SPTFeatureFlaggingService, SPTFreeTierService, SPTGLUEService, SPTHubFrameworkService, SPTNetworkService, SPTOnDemandService, SPTPerformanceMetricsService, SPTPodcastFeature, SPTPodcastUIService, SPTPodcastUtteranceSurveyService, SPTRadioService, SPTRemoteConfigurationService, SPTSettingsFeature, SPTVisualRefreshIntegrationService, SPTWrappedUIService;
 
 @interface SPTBrowseServiceImplementation : NSObject <SPTBrowseService>
 {
+    id <SPTBrowseTestManager> _testManager;
     id <SPTContainerService> _containerService;
     id <SPTGLUEService> _glueService;
     id <SPTHubFrameworkService> _hubFrameworkService;
-    id <SPTBrowseUIService> _browseUIService;
     id <SPTNetworkService> _networkFeature;
     id <SPTPodcastFeature> _podcastFeature;
     id <SPTFreeTierService> _freeTierService;
@@ -25,9 +25,19 @@
     id <SPTVisualRefreshIntegrationService> _visualRefreshIntegrationService;
     id <SPTPodcastUIService> _podcastUIService;
     id <SPTPerformanceMetricsService> _performanceMetricsService;
+    id <SPTPodcastUtteranceSurveyService> _podcastUtteranceSurveyService;
+    id <SPTWrappedUIService> _wrappedUIService;
+    id <SPTRemoteConfigurationService> _remoteConfigurationService;
+    id <SPTFeatureFlaggingService> _featureFlaggingService;
+    id <SPTSettingsFeature> _settingsFeature;
 }
 
 + (id)serviceIdentifier;
+@property(nonatomic) __weak id <SPTSettingsFeature> settingsFeature; // @synthesize settingsFeature=_settingsFeature;
+@property(nonatomic) __weak id <SPTFeatureFlaggingService> featureFlaggingService; // @synthesize featureFlaggingService=_featureFlaggingService;
+@property(nonatomic) __weak id <SPTRemoteConfigurationService> remoteConfigurationService; // @synthesize remoteConfigurationService=_remoteConfigurationService;
+@property(nonatomic) __weak id <SPTWrappedUIService> wrappedUIService; // @synthesize wrappedUIService=_wrappedUIService;
+@property(nonatomic) __weak id <SPTPodcastUtteranceSurveyService> podcastUtteranceSurveyService; // @synthesize podcastUtteranceSurveyService=_podcastUtteranceSurveyService;
 @property(nonatomic) __weak id <SPTPerformanceMetricsService> performanceMetricsService; // @synthesize performanceMetricsService=_performanceMetricsService;
 @property(nonatomic) __weak id <SPTPodcastUIService> podcastUIService; // @synthesize podcastUIService=_podcastUIService;
 @property(nonatomic) __weak id <SPTVisualRefreshIntegrationService> visualRefreshIntegrationService; // @synthesize visualRefreshIntegrationService=_visualRefreshIntegrationService;
@@ -36,11 +46,12 @@
 @property(nonatomic) __weak id <SPTFreeTierService> freeTierService; // @synthesize freeTierService=_freeTierService;
 @property(nonatomic) __weak id <SPTPodcastFeature> podcastFeature; // @synthesize podcastFeature=_podcastFeature;
 @property(nonatomic) __weak id <SPTNetworkService> networkFeature; // @synthesize networkFeature=_networkFeature;
-@property(nonatomic) __weak id <SPTBrowseUIService> browseUIService; // @synthesize browseUIService=_browseUIService;
 @property(nonatomic) __weak id <SPTHubFrameworkService> hubFrameworkService; // @synthesize hubFrameworkService=_hubFrameworkService;
 @property(nonatomic) __weak id <SPTGLUEService> glueService; // @synthesize glueService=_glueService;
 @property(nonatomic) __weak id <SPTContainerService> containerService; // @synthesize containerService=_containerService;
 - (void).cxx_destruct;
+@property(readonly, nonatomic) CDUnknownBlockType cardsTransformer;
+@property(readonly, nonatomic) id <SPTBrowseTestManager> testManager; // @synthesize testManager=_testManager;
 - (id)pageIdentifierForURI:(id)arg1;
 - (void)setNavigationBarVisible:(_Bool)arg1 inViewModelBuilder:(id)arg2;
 - (id)makeGenreErrorStateViewModel;
@@ -56,6 +67,7 @@
 - (id)makeGenreInitialViewModel;
 - (id)makeBrowseInitialViewModel;
 - (id)makeViewModelProviderForURI:(id)arg1;
+- (CDUnknownBlockType)removeRadioButtonTransformer;
 - (id)makeGenreViewModelProviderWithGenre:(id)arg1 pageURI:(id)arg2;
 - (id)makeBrowseViewModelProviderWithPageURI:(id)arg1;
 - (id)makeGenreViewModelFetcherWithGenre:(id)arg1 pageURI:(id)arg2;

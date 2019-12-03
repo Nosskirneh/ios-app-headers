@@ -12,13 +12,14 @@
 #import "UIApplicationDelegate-Protocol.h"
 #import "UNUserNotificationCenterDelegate-Protocol.h"
 
-@class NSMutableDictionary, NSString, SPTAppLogModel, SPTApplicationDelegateLogger, SPTCommandLineProcessor, SPTCookieStorageManager, SPTDebugLogService, SPTPerfTracingSignpostObserver, SPTPlayModeMonitor, SPTServiceOrchestrator, SPTStartupTracer, SPTURLCacheManager, StateController, UIWindow;
-@protocol SPTAppStartupController, SPTCrashReporter, SPTLinkDispatcher, SPTLogCenter, SPTMetaViewController, SPTNavigationRouter, SPTReminderHandlerService, SPTThirdPartyTrackerBroadcaster, SPTUserActivityController;
+@class NSMutableDictionary, NSString, SPTAppLogModel, SPTApplicationDelegateLogger, SPTCommandLineProcessor, SPTCookieStorageManager, SPTDebugLogService, SPTPerfTracingSignpostObserver, SPTPlayModeMonitor, SPTServiceOrchestrator, SPTStartupTracer, StateController, UIWindow;
+@protocol OS_os_log, SPTAppStartupController, SPTCrashReporter, SPTLinkDispatcher, SPTLogCenter, SPTMetaViewController, SPTNavigationRouter, SPTReminderHandlerService, SPTThirdPartyTrackerBroadcaster, SPTUserActivityController;
 
 @interface SpotifyAppDelegate : NSObject <SPTServiceOrchestratorDelegate, SPTAppStartupControllerDelegate, UNUserNotificationCenterDelegate, SPTSessionServicesLoader, UIApplicationDelegate>
 {
     id <SPTAppStartupController> _appStartupController;
     UIWindow *_window;
+    NSObject<OS_os_log> *_lifecycleLog;
     id <SPTNavigationRouter> _navigationRouter;
     id <SPTCrashReporter> _crashReporter;
     id <SPTUserActivityController> _userActivityController;
@@ -27,7 +28,6 @@
     StateController *_stateController;
     id <SPTThirdPartyTrackerBroadcaster> _trackerBroadcaster;
     SPTApplicationDelegateLogger *_appDelegateLogger;
-    SPTURLCacheManager *_urlCacheManager;
     SPTCookieStorageManager *_cookieStorageManager;
     SPTCommandLineProcessor *_commandLineProcessor;
     id <SPTMetaViewController> _metaViewController;
@@ -53,7 +53,6 @@
 @property(retain, nonatomic) id <SPTMetaViewController> metaViewController; // @synthesize metaViewController=_metaViewController;
 @property(retain, nonatomic) SPTCommandLineProcessor *commandLineProcessor; // @synthesize commandLineProcessor=_commandLineProcessor;
 @property(retain, nonatomic) SPTCookieStorageManager *cookieStorageManager; // @synthesize cookieStorageManager=_cookieStorageManager;
-@property(retain, nonatomic) SPTURLCacheManager *urlCacheManager; // @synthesize urlCacheManager=_urlCacheManager;
 @property(retain, nonatomic) SPTApplicationDelegateLogger *appDelegateLogger; // @synthesize appDelegateLogger=_appDelegateLogger;
 @property(retain, nonatomic) id <SPTThirdPartyTrackerBroadcaster> trackerBroadcaster; // @synthesize trackerBroadcaster=_trackerBroadcaster;
 @property(retain, nonatomic) StateController *stateController; // @synthesize stateController=_stateController;
@@ -81,6 +80,7 @@
 - (void)userWillLogOut;
 - (void)applyThemeAppearance;
 - (void)setupTheme;
+@property(readonly, nonatomic) NSObject<OS_os_log> *lifecycleLog; // @synthesize lifecycleLog=_lifecycleLog;
 @property(readonly, nonatomic) id <SPTAppStartupController> appStartupController; // @synthesize appStartupController=_appStartupController;
 - (void)removePlainTextFBToken;
 - (void)performVersionMigrations;

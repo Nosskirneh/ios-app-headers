@@ -6,10 +6,15 @@
 
 #import "NSObject-Protocol.h"
 
+@class GPBMessage, NSData, NSString;
 @protocol SPTEventSenderMessage;
 
 @protocol SPTEventSender <NSObject>
-- (void)sendNonAuthenticatedEvent:(id <SPTEventSenderMessage>)arg1;
-- (void)sendEvent:(id <SPTEventSenderMessage>)arg1;
+- (void)sendWrappedNonAuthenticatedEvent:(id <SPTEventSenderMessage>)arg1;
+- (void)sendWrappedEvent:(id <SPTEventSenderMessage>)arg1;
+- (void)sendNonAuthenticatedEventWithName:(NSString *)arg1 data:(NSData *)arg2;
+- (void)sendNonAuthenticatedEventWithProtobuf:(GPBMessage *)arg1;
+- (void)sendEventWithName:(NSString *)arg1 data:(NSData *)arg2;
+- (void)sendEventWithProtobuf:(GPBMessage *)arg1;
 @end
 

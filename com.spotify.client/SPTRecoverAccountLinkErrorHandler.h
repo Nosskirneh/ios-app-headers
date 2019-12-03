@@ -7,22 +7,22 @@
 #import <objc/NSObject.h>
 
 @class SPTLoginDialogController;
-@protocol SPTNavigationRouter;
+@protocol SPTLoginNavigationCoordinator;
 
 @interface SPTRecoverAccountLinkErrorHandler : NSObject
 {
-    id <SPTNavigationRouter> _navigationRouter;
+    id <SPTLoginNavigationCoordinator> _navigationCoordinator;
     SPTLoginDialogController *_dialogController;
 }
 
 @property(readonly, nonatomic) SPTLoginDialogController *dialogController; // @synthesize dialogController=_dialogController;
-@property(readonly, nonatomic) id <SPTNavigationRouter> navigationRouter; // @synthesize navigationRouter=_navigationRouter;
+@property(readonly, nonatomic) id <SPTLoginNavigationCoordinator> navigationCoordinator; // @synthesize navigationCoordinator=_navigationCoordinator;
 - (void).cxx_destruct;
 - (void)showRegionMismatchErrorDialog;
 - (void)showLinkExpiredErrorDialog;
 - (void)getNewRecoverAccountLink;
 - (void)showDialogWithError:(id)arg1;
-- (id)initWithNavigationRouter:(id)arg1 dialogController:(id)arg2;
+- (id)initWithNavigationCoordinator:(id)arg1 dialogController:(id)arg2;
 
 @end
 

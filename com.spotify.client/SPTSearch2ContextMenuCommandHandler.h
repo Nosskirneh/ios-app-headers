@@ -36,7 +36,7 @@
 - (void).cxx_destruct;
 - (void)contextMenuPresenterDidDismiss:(id)arg1;
 - (_Bool)showTrackContextMenuForCommand:(id)arg1 event:(id)arg2;
-- (_Bool)showVideoContextMenuForCommand:(id)arg1 event:(id)arg2;
+- (_Bool)showPodcastContextMenuForCommand:(id)arg1 event:(id)arg2;
 - (void)handleCommand:(id)arg1 event:(id)arg2;
 @property(readonly, nonatomic) id <SPTContextMenuOptions> contextMenuOptions; // @synthesize contextMenuOptions=_contextMenuOptions;
 - (id)initWithViewURI:(id)arg1 contextMenuLogContextIphone:(id)arg2 contextMenuLogContextIpad:(id)arg3 contextMenuOptionsFactory:(id)arg4 contextMenuPresenterFactory:(id)arg5 podcastContextMenuProvider:(id)arg6 interactionLogger:(id)arg7;

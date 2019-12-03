@@ -11,7 +11,7 @@
 #import "SPTPodcastEpisodeFeaturedContentViewController-Protocol.h"
 
 @class HUBView, NSMutableSet, NSString, SPTHubViewModelProvider;
-@protocol SPTHubImpressionLogger, SPTPodcastEpisodeFeaturedContentHubViewProvider, SPTPodcastEpisodeFeaturedContentViewControllerDelegate;
+@protocol GLUETheme, SPTHubImpressionLogger, SPTPodcastEpisodeFeaturedContentHubViewProvider, SPTPodcastEpisodeFeaturedContentViewControllerDelegate;
 
 @interface SPTPodcastEpisodeFeaturedContentViewControllerImplementation : UIViewController <SPTHubViewModelProviderDelegate, HUBViewComponentDelegate, SPTPodcastEpisodeFeaturedContentViewController>
 {
@@ -20,6 +20,7 @@
     NSMutableSet *_episodeFeaturedContentComponents;
     id <SPTPodcastEpisodeFeaturedContentHubViewProvider> _hubViewProvider;
     SPTHubViewModelProvider *_hubViewModelProvider;
+    id <GLUETheme> _theme;
     HUBView *_hubView;
     id <SPTHubImpressionLogger> _impressionLogger;
 }
@@ -27,6 +28,7 @@
 @property(readonly, nonatomic) id <SPTHubImpressionLogger> impressionLogger; // @synthesize impressionLogger=_impressionLogger;
 @property(retain, nonatomic) HUBView *hubView; // @synthesize hubView=_hubView;
 @property(nonatomic, getter=isLoaded) _Bool loaded; // @synthesize loaded=_loaded;
+@property(readonly, nonatomic) id <GLUETheme> theme; // @synthesize theme=_theme;
 @property(readonly, nonatomic) SPTHubViewModelProvider *hubViewModelProvider; // @synthesize hubViewModelProvider=_hubViewModelProvider;
 @property(readonly, nonatomic) id <SPTPodcastEpisodeFeaturedContentHubViewProvider> hubViewProvider; // @synthesize hubViewProvider=_hubViewProvider;
 @property(retain, nonatomic) NSMutableSet *episodeFeaturedContentComponents; // @synthesize episodeFeaturedContentComponents=_episodeFeaturedContentComponents;
@@ -40,7 +42,7 @@
 - (void)viewModelDidLoad:(id)arg1 dataSource:(unsigned long long)arg2;
 - (void)viewModelDidLoad:(id)arg1;
 - (void)setupHubView;
-- (id)initWithHubViewModelProvider:(id)arg1 hubViewProvider:(id)arg2 impressionLogger:(id)arg3;
+- (id)initWithHubViewModelProvider:(id)arg1 hubViewProvider:(id)arg2 theme:(id)arg3 impressionLogger:(id)arg4;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

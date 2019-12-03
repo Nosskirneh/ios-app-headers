@@ -10,7 +10,7 @@
 #import "SPTImageLoaderDelegate-Protocol.h"
 
 @class NSString, NSURL, UIButton, UIImage, UIView, VISREFArtworkContentView, VISREFFadingContainerTopAccessoryView, VISREFFreeTierPlaylistFollowButtonViewModel, VISREFGradientBackgroundView, VISREFPlayButtonForegroundView;
-@protocol SPTFreeTierPlaylistDefaultHeaderViewModel, SPTFreeTierPlaylistFollowViewModel, SPTFreeTierPlaylistFullbleedHeaderViewModel, SPTFreeTierPlaylistPlayViewModel, SPTFreeTierPlaylistVISREFHeaderControllerDelegate, SPTImageLoader, VISREFPlayButtonTestManager;
+@protocol SPTFreeTierEntityOfflineViewModel, SPTFreeTierPlaylistDefaultHeaderViewModel, SPTFreeTierPlaylistFollowViewModel, SPTFreeTierPlaylistFullbleedHeaderViewModel, SPTFreeTierPlaylistPlayViewModel, SPTFreeTierPlaylistVISREFHeaderControllerDelegate, SPTImageLoader, VISREFPlayButtonTestManager;
 
 @interface SPTFreeTierPlaylistVISREFHeaderControllerImplementation : VISREFBaseHeaderController <SPTImageLoaderDelegate, SPTFreeTierPlaylistVISREFHeaderController>
 {
@@ -28,9 +28,11 @@
     id <SPTFreeTierPlaylistFollowViewModel> _followViewModel;
     id <SPTFreeTierPlaylistDefaultHeaderViewModel> _defaultHeaderViewModel;
     id <SPTFreeTierPlaylistFullbleedHeaderViewModel> _fullbleedHeaderViewModel;
+    id <SPTFreeTierEntityOfflineViewModel> _playlistOfflineViewModel;
     VISREFFreeTierPlaylistFollowButtonViewModel *_followButtonViewModel;
     UIButton *_contextMenuButton;
     UIButton *_followButton;
+    UIButton *_offlineButton;
     UIView *_searchView;
     UIImage *_placeHolderImage;
     NSString *_playButtonAccessibilityString;
@@ -43,9 +45,11 @@
 @property(copy, nonatomic) NSString *playButtonAccessibilityString; // @synthesize playButtonAccessibilityString=_playButtonAccessibilityString;
 @property(retain, nonatomic) UIImage *placeHolderImage; // @synthesize placeHolderImage=_placeHolderImage;
 @property(retain, nonatomic) UIView *searchView; // @synthesize searchView=_searchView;
+@property(retain, nonatomic) UIButton *offlineButton; // @synthesize offlineButton=_offlineButton;
 @property(retain, nonatomic) UIButton *followButton; // @synthesize followButton=_followButton;
 @property(retain, nonatomic) UIButton *contextMenuButton; // @synthesize contextMenuButton=_contextMenuButton;
 @property(retain, nonatomic) VISREFFreeTierPlaylistFollowButtonViewModel *followButtonViewModel; // @synthesize followButtonViewModel=_followButtonViewModel;
+@property(retain, nonatomic) id <SPTFreeTierEntityOfflineViewModel> playlistOfflineViewModel; // @synthesize playlistOfflineViewModel=_playlistOfflineViewModel;
 @property(retain, nonatomic) id <SPTFreeTierPlaylistFullbleedHeaderViewModel> fullbleedHeaderViewModel; // @synthesize fullbleedHeaderViewModel=_fullbleedHeaderViewModel;
 @property(retain, nonatomic) id <SPTFreeTierPlaylistDefaultHeaderViewModel> defaultHeaderViewModel; // @synthesize defaultHeaderViewModel=_defaultHeaderViewModel;
 @property(retain, nonatomic) id <SPTFreeTierPlaylistFollowViewModel> followViewModel; // @synthesize followViewModel=_followViewModel;
@@ -63,7 +67,7 @@
 - (void).cxx_destruct;
 - (void)imageLoader:(id)arg1 didLoadImage:(id)arg2 forURL:(id)arg3 loadTime:(double)arg4 context:(id)arg5;
 - (void)update;
-- (void)configureWithPlayViewModel:(id)arg1 followViewModel:(id)arg2 defaultHeaderViewModel:(id)arg3 fullbleedHeaderViewModel:(id)arg4 filterSortBarView:(id)arg5;
+- (void)configureWithPlayViewModel:(id)arg1 followViewModel:(id)arg2 defaultHeaderViewModel:(id)arg3 fullbleedHeaderViewModel:(id)arg4 playlistOfflineViewModel:(id)arg5 filterSortBarView:(id)arg6;
 - (void)headerViewViewHierarchyDidChange:(id)arg1;
 - (void)headerView:(id)arg1 headerViewVisibleAreaChanged:(double)arg2;
 - (double)totalHeaderHeight;

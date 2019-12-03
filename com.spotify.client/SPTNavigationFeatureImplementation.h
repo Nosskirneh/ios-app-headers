@@ -6,17 +6,17 @@
 
 #import <objc/NSObject.h>
 
+#import "SPTFeatureFlagSignalObserver-Protocol.h"
 #import "SPTNavigationFeature-Protocol.h"
 
 @class NSString, SPTAllocationContext, SPTNavigationListDataLoader, SPTNavigationListStaticDataSource, SPTNavigationPageFactoryObserver, SPTNavigationSettingsRegistration;
-@protocol SPTAbbaService, SPTBarButtonItemManager, SPTContainerService, SPTCrashReporterService, SPTFeatureFlagSignal, SPTFeatureFlaggingService, SPTFreeTierService, SPTNavigationConfiguration, SPTNavigationListIdentifierFromABTestSource, SPTNavigationListProvider, SPTNavigationTestManager, SPTNetworkService, SPTSessionService, SPTSettingsFeature, SPTTabBarControllerFactory;
+@protocol SPTBarButtonItemManager, SPTContainerService, SPTCrashReporterService, SPTFeatureFlagSignal, SPTFeatureFlaggingService, SPTFreeTierService, SPTNavigationConfiguration, SPTNavigationListIdentifierFromABTestSource, SPTNavigationListProvider, SPTNavigationTestManager, SPTNetworkService, SPTSessionService, SPTSettingsFeature, SPTTabBarControllerFactory;
 
-@interface SPTNavigationFeatureImplementation : NSObject <SPTNavigationFeature>
+@interface SPTNavigationFeatureImplementation : NSObject <SPTFeatureFlagSignalObserver, SPTNavigationFeature>
 {
     _Bool _newExperienceEnabled;
     id <SPTSessionService> _clientSessionService;
     id <SPTContainerService> _containerService;
-    id <SPTAbbaService> _abbaService;
     id <SPTSettingsFeature> _settingsFeature;
     id <SPTNetworkService> _networkFeature;
     id <SPTCrashReporterService> _crashReporterService;
@@ -53,7 +53,6 @@
 @property(nonatomic) __weak id <SPTCrashReporterService> crashReporterService; // @synthesize crashReporterService=_crashReporterService;
 @property(nonatomic) __weak id <SPTNetworkService> networkFeature; // @synthesize networkFeature=_networkFeature;
 @property(nonatomic) __weak id <SPTSettingsFeature> settingsFeature; // @synthesize settingsFeature=_settingsFeature;
-@property(nonatomic) __weak id <SPTAbbaService> abbaService; // @synthesize abbaService=_abbaService;
 @property(nonatomic) __weak id <SPTContainerService> containerService; // @synthesize containerService=_containerService;
 @property(nonatomic) __weak id <SPTSessionService> clientSessionService; // @synthesize clientSessionService=_clientSessionService;
 - (void).cxx_destruct;

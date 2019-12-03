@@ -7,6 +7,7 @@
 #import "NSObject-Protocol.h"
 
 @protocol SPTHomeUITestManager <NSObject>
+@property(readonly, nonatomic, getter=isTwoLinesSubtitleEnabled) _Bool twoLinesSubtitleEnabled;
 @property(readonly, nonatomic, getter=isHomePromoV2ComponentsMockEnabled) _Bool homePromoV2ComponentsMockEnabled;
 @property(readonly, nonatomic, getter=isHomeComponentsMockEnabled) _Bool homeComponentsMockEnabled;
 @end

@@ -12,16 +12,14 @@
 
 @interface SPTFreeTierTasteOnboardingArtistPickerCollectionViewLayout : UICollectionViewFlowLayout <GLUEStyleable>
 {
-    unsigned long long _itemsPerRowPortrait;
-    unsigned long long _itemsPerRowLandscape;
+    unsigned long long _itemsPerRow;
     unsigned long long _additionalItemHeight;
     double _interitemSpacing;
 }
 
 @property(nonatomic) double interitemSpacing; // @synthesize interitemSpacing=_interitemSpacing;
 @property(nonatomic) unsigned long long additionalItemHeight; // @synthesize additionalItemHeight=_additionalItemHeight;
-@property(nonatomic) unsigned long long itemsPerRowLandscape; // @synthesize itemsPerRowLandscape=_itemsPerRowLandscape;
-@property(nonatomic) unsigned long long itemsPerRowPortrait; // @synthesize itemsPerRowPortrait=_itemsPerRowPortrait;
+@property(nonatomic) unsigned long long itemsPerRow; // @synthesize itemsPerRow=_itemsPerRow;
 - (void)glue_applyStyle:(id)arg1;
 - (void)prepareLayout;
 

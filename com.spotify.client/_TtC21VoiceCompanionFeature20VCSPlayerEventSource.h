@@ -9,8 +9,9 @@
 @interface _TtC21VoiceCompanionFeature20VCSPlayerEventSource : NSObject
 {
     // Error parsing type: , name: consumer
-    // Error parsing type: , name: lock
     // Error parsing type: , name: player
+    // Error parsing type: , name: $__lazy_storage_$_fuser
+    // Error parsing type: , name: $__lazy_storage_$_contextURIDiffuser
 }
 
 - (void).cxx_destruct;

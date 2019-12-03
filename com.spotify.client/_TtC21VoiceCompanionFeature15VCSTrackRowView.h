@@ -8,8 +8,8 @@
 
 @interface _TtC21VoiceCompanionFeature15VCSTrackRowView : UIView
 {
-    // Error parsing type: , name: titleLabel.storage
-    // Error parsing type: , name: subtitleLabel.storage
+    // Error parsing type: , name: $__lazy_storage_$_titleLabel
+    // Error parsing type: , name: $__lazy_storage_$_subtitleLabel
     // Error parsing type: , name: track
     // Error parsing type: , name: delegate
 }

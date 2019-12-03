@@ -24,7 +24,7 @@
     // Error parsing type: , name: containerService
     // Error parsing type: , name: masterFeatureFlagSignal
     // Error parsing type: , name: navigationController
-    // Error parsing type: , name: registry.storage
+    // Error parsing type: , name: $__lazy_storage_$_registry
 }
 
 + (id)serviceIdentifier;

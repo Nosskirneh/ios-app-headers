@@ -9,13 +9,13 @@
 #import "SPTDataLoaderDelegate-Protocol.h"
 #import "SPTOfflineModeStateObserver-Protocol.h"
 
-@class NSCache, NSMutableDictionary, NSMutableSet, NSString, NSTimer, SPTDataLoader, SPTGeniusLegacyCache, SPTGeniusServiceEnabledResourcesLoadingState;
+@class NSCache, NSMutableDictionary, NSMutableSet, NSString, NSTimer, SPTDataLoader, SPTGeniusDiskCache, SPTGeniusServiceEnabledResourcesLoadingState;
 @protocol SPTLocalSettings, SPTLyricsTrackChecker, SPTOfflineModeState;
 
 @interface SPTGeniusService : NSObject <SPTDataLoaderDelegate, SPTOfflineModeStateObserver>
 {
     _Bool _allowedToRefreshCache;
-    SPTGeniusLegacyCache *_diskCache;
+    SPTGeniusDiskCache *_diskCache;
     id <SPTOfflineModeState> _offlineModeState;
     id <SPTLocalSettings> _localSettings;
     id <SPTLyricsTrackChecker> _lyricsTrackChecker;
@@ -39,7 +39,7 @@
 @property(readonly, nonatomic) id <SPTLyricsTrackChecker> lyricsTrackChecker; // @synthesize lyricsTrackChecker=_lyricsTrackChecker;
 @property(readonly, nonatomic) id <SPTLocalSettings> localSettings; // @synthesize localSettings=_localSettings;
 @property(readonly, nonatomic) id <SPTOfflineModeState> offlineModeState; // @synthesize offlineModeState=_offlineModeState;
-@property(readonly, nonatomic) SPTGeniusLegacyCache *diskCache; // @synthesize diskCache=_diskCache;
+@property(readonly, nonatomic) SPTGeniusDiskCache *diskCache; // @synthesize diskCache=_diskCache;
 - (void).cxx_destruct;
 - (void)offlineModeState:(id)arg1 updated:(_Bool)arg2;
 - (id)geniusErrorWithCode:(long long)arg1 description:(id)arg2;

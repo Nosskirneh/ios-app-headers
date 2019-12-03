@@ -6,15 +6,24 @@
 
 #import "_TtC17FollowFeedFeature22HubComponentViewBinder.h"
 
+@protocol HUBComponentEventHandler;
+
 @interface _TtC17FollowFeedFeature32StaticReleaseComponentViewBinder : _TtC17FollowFeedFeature22HubComponentViewBinder
 {
+    // Error parsing type: , name: eventHandler
     // Error parsing type: , name: theme
     // Error parsing type: , name: releaseView
+    // Error parsing type: , name: $__lazy_storage_$_contentViewClickBehavior
+    // Error parsing type: , name: observers
 }
 
 - (void).cxx_destruct;
 - (id)initWithFrame:(struct CGRect)arg1;
+- (void)playButtonClickedWithSender:(id)arg1;
+- (void)artistAvatarClicked;
 - (void)configureWithModel:(id)arg1;
+- (void)dealloc;
+@property(nonatomic) __weak id <HUBComponentEventHandler> eventHandler; // @synthesize eventHandler;
 
 @end
 

@@ -12,7 +12,7 @@
 #import "SPTSlateDelegate-Protocol.h"
 
 @class NSDictionary, NSString, SPTInAppMessageServiceLogger, UIView;
-@protocol SPTCrashReporter, SPTExternalIntegrationDriverDistractionController, SPTInAppMessageSDKMessageViewModel, SPTOfflineModeState, SPTSlate, SPTSlateBuilderProvider, SPTSlateManager;
+@protocol SPTAuthController, SPTCrashReporter, SPTExternalIntegrationDriverDistractionController, SPTInAppMessageSDKMessageViewModel, SPTOfflineModeState, SPTSlate, SPTSlateBuilderProvider, SPTSlateManager;
 
 @interface SPTInAppMessageCardPresentationController : NSObject <SPTSlateDelegate, SPTSlateDataSource, SPTOfflineModeStateObserver, SPTInAppMessagePresenter>
 {
@@ -30,8 +30,10 @@
     NSDictionary *_cancelationInfo;
     id <SPTCrashReporter> _crashReporter;
     UIView *_containerView;
+    id <SPTAuthController> _authController;
 }
 
+@property(readonly, nonatomic) id <SPTAuthController> authController; // @synthesize authController=_authController;
 @property(retain, nonatomic) UIView *containerView; // @synthesize containerView=_containerView;
 @property(readonly, nonatomic) id <SPTCrashReporter> crashReporter; // @synthesize crashReporter=_crashReporter;
 @property(copy, nonatomic) NSDictionary *cancelationInfo; // @synthesize cancelationInfo=_cancelationInfo;
@@ -65,7 +67,7 @@
 - (void)cancelMessagePresentation:(id)arg1;
 - (void)offlineModeState:(id)arg1 updated:(_Bool)arg2;
 - (void)dealloc;
-- (id)initWithViewModel:(id)arg1 matchedPattern:(id)arg2 triggerType:(id)arg3 slateManager:(id)arg4 slateBuilderProvider:(id)arg5 offlineModeState:(id)arg6 driverDistractionController:(id)arg7 serviceLogger:(id)arg8 crashReporter:(id)arg9;
+- (id)initWithViewModel:(id)arg1 matchedPattern:(id)arg2 triggerType:(id)arg3 slateManager:(id)arg4 slateBuilderProvider:(id)arg5 offlineModeState:(id)arg6 driverDistractionController:(id)arg7 serviceLogger:(id)arg8 crashReporter:(id)arg9 authController:(id)arg10;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

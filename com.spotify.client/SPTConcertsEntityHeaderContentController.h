@@ -34,7 +34,6 @@
 - (void)viewWillAppear:(_Bool)arg1;
 - (void)loadView;
 @property(readonly, nonatomic) SPTConcertsEntityHeaderContentView *contentView;
-- (void)didReceiveMemoryWarning;
 - (void)dealloc;
 - (id)initWithViewModel:(id)arg1 concertsLogger:(id)arg2;
 

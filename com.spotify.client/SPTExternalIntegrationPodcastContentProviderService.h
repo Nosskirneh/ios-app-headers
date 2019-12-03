@@ -26,7 +26,10 @@
 @property(readonly, nonatomic) __weak id <SPTPodcastFeature> podcastService; // @synthesize podcastService=_podcastService;
 @property(readonly, nonatomic) __weak id <SPTExternalIntegrationContentService> contentService; // @synthesize contentService=_contentService;
 - (void).cxx_destruct;
+- (id)jsonParsingError:(id)arg1;
 - (id)createPlaceholderContentItemForURI:(id)arg1;
+- (void)resolveChildContentWithCollectionPodcastURI:(id)arg1 withCompletionHandler:(CDUnknownBlockType)arg2;
+- (void)resolveChildContentOfParentWithShowURI:(id)arg1 options:(id)arg2 withCompletionHandler:(CDUnknownBlockType)arg3;
 - (void)resolveChildContentOfParentWithURI:(id)arg1 options:(id)arg2 withCompletionHandler:(CDUnknownBlockType)arg3;
 - (long long)priorityForChildContentOfParentWithURI:(id)arg1;
 - (void)resolveContentWithURI:(id)arg1 options:(id)arg2 withCompletionHandler:(CDUnknownBlockType)arg3;

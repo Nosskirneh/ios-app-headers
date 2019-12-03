@@ -16,6 +16,7 @@
 - (id)init;
 - (id)layoutAttributesForItemAtIndexPath:(id)arg1;
 - (id)layoutAttributesForElementsInRect:(struct CGRect)arg1;
+- (id)invalidationContextForPreferredLayoutAttributes:(id)arg1 withOriginalAttributes:(id)arg2;
 - (id)initWithCoder:(id)arg1;
 
 @end

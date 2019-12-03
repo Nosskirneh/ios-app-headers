@@ -7,9 +7,10 @@
 #import "SPTService-Protocol.h"
 
 @class SPCore;
-@protocol SPTAudioDriverController, SPTLogDispatcher;
+@protocol SPTAudioDriverController, SPTEventSenderCore, SPTLogDispatcher;
 
 @protocol SPTCoreService <SPTService>
+- (void)setEventSenderCore:(id <SPTEventSenderCore>)arg1;
 - (id <SPTAudioDriverController>)provideAudioDriverController;
 - (id <SPTLogDispatcher>)provideCoreLogDispatcher;
 - (SPCore *)provideCoreInstance;

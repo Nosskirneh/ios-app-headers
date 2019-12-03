@@ -10,7 +10,7 @@
 #import "SPTContextMenuPresenterDelegate-Protocol.h"
 
 @class NSMutableSet, NSString, NSURL;
-@protocol SPTContextMenuOptions, SPTContextMenuOptionsFactory, SPTContextMenuPresenterFactory, SPTHubInteractionLogger, SPTHubsEventFactory;
+@protocol SPTContextMenuOptions, SPTContextMenuOptionsFactory, SPTContextMenuPresenterFactory, SPTEventFactoryMapper, SPTHubInteractionLogger, SPTUserBehaviourInstrumentationHubsEventMapper;
 
 @interface SPTHubContextMenuCommandHandler : NSObject <SPTContextMenuPresenterDelegate, HUBCommandHandler>
 {
@@ -22,10 +22,12 @@
     id <SPTContextMenuPresenterFactory> _contextMenuPresenterFactory;
     id <SPTHubInteractionLogger> _interactionLogger;
     NSMutableSet *_presentedContextMenuPresenters;
-    id <SPTHubsEventFactory> _eventFactory;
+    id <SPTEventFactoryMapper> _eventFactory;
+    id <SPTUserBehaviourInstrumentationHubsEventMapper> _eventMapper;
 }
 
-@property(retain, nonatomic) id <SPTHubsEventFactory> eventFactory; // @synthesize eventFactory=_eventFactory;
+@property(retain, nonatomic) id <SPTUserBehaviourInstrumentationHubsEventMapper> eventMapper; // @synthesize eventMapper=_eventMapper;
+@property(retain, nonatomic) id <SPTEventFactoryMapper> eventFactory; // @synthesize eventFactory=_eventFactory;
 @property(readonly, nonatomic) NSMutableSet *presentedContextMenuPresenters; // @synthesize presentedContextMenuPresenters=_presentedContextMenuPresenters;
 @property(readonly, nonatomic) id <SPTHubInteractionLogger> interactionLogger; // @synthesize interactionLogger=_interactionLogger;
 @property(readonly, nonatomic) id <SPTContextMenuPresenterFactory> contextMenuPresenterFactory; // @synthesize contextMenuPresenterFactory=_contextMenuPresenterFactory;
@@ -38,7 +40,7 @@
 - (_Bool)showTrackContextMenuForCommand:(id)arg1 event:(id)arg2;
 - (void)handleCommand:(id)arg1 event:(id)arg2;
 @property(readonly, nonatomic) id <SPTContextMenuOptions> contextMenuOptions; // @synthesize contextMenuOptions=_contextMenuOptions;
-- (id)initWithViewURI:(id)arg1 contextMenuLogContextIphone:(id)arg2 contextMenuLogContextIpad:(id)arg3 contextMenuOptionsFactory:(id)arg4 contextMenuPresenterFactory:(id)arg5 interactionLogger:(id)arg6 eventFactory:(id)arg7;
+- (id)initWithViewURI:(id)arg1 contextMenuLogContextIphone:(id)arg2 contextMenuLogContextIpad:(id)arg3 contextMenuOptionsFactory:(id)arg4 contextMenuPresenterFactory:(id)arg5 interactionLogger:(id)arg6 eventFactory:(id)arg7 eventMapper:(id)arg8;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

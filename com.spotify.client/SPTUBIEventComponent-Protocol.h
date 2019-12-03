@@ -9,6 +9,7 @@
 @class NSNumber, NSString, NSURL;
 
 @protocol SPTUBIEventComponent <NSObject>
+@property(readonly, copy, nonatomic) NSString *reason;
 @property(readonly, copy, nonatomic) NSURL *uri;
 @property(readonly, copy, nonatomic) NSNumber *position;
 @property(readonly, copy, nonatomic) NSString *identifier;

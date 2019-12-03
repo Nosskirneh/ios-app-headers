@@ -8,7 +8,7 @@
 
 #import "INSSchedulerDelegate-Protocol.h"
 
-@class INSContextRegistry, INSEventSenderStatsDataSource, INSPersistentStoreDataDelegate, INSPersistentStoreDataSource, INSScheduler, INSSchedulerDataSourceComposition, NSHashTable, NSString;
+@class INSContextRegistry, INSEventSenderStatsDataSource, INSEventValidator, INSPersistentStoreDataDelegate, INSPersistentStoreDataSource, INSScheduler, INSSchedulerDataSourceComposition, NSHashTable, NSString;
 @protocol INSLogger, INSTimer, INSTransport;
 
 @interface INSEventSender : NSObject <INSSchedulerDelegate>
@@ -24,9 +24,11 @@
     INSEventSenderStatsDataSource *_eventSenderStatsDataSource;
     INSPersistentStoreDataDelegate *_persistentStoreDataDelegate;
     INSSchedulerDataSourceComposition *_composition;
+    INSEventValidator *_validator;
 }
 
 + (id)defaultContexts:(id)arg1;
+@property(retain, nonatomic) INSEventValidator *validator; // @synthesize validator=_validator;
 @property(retain, nonatomic) INSSchedulerDataSourceComposition *composition; // @synthesize composition=_composition;
 @property(retain, nonatomic) INSPersistentStoreDataDelegate *persistentStoreDataDelegate; // @synthesize persistentStoreDataDelegate=_persistentStoreDataDelegate;
 @property(retain, nonatomic) INSEventSenderStatsDataSource *eventSenderStatsDataSource; // @synthesize eventSenderStatsDataSource=_eventSenderStatsDataSource;
@@ -41,8 +43,6 @@
 - (void).cxx_destruct;
 - (void)removeEventObserver:(id)arg1;
 - (void)addEventObserver:(id)arg1;
-- (id)errorInfoWithMessage:(id)arg1;
-- (_Bool)validateMessage:(id)arg1 error:(id *)arg2;
 - (void)schedulerDidRequestBackOff;
 - (void)schedulerDidRetryBatch:(id)arg1;
 - (void)schedulerDidFailBatch:(id)arg1;

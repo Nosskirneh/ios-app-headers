@@ -14,16 +14,14 @@
 {
     double _additionalItemHeight;
     double _interitemSpacing;
-    unsigned long long _itemsPerRowPortrait;
-    unsigned long long _itemsPerRowLandscape;
+    unsigned long long _itemsPerRow;
     double _lineSpacing;
     struct UIEdgeInsets _sectionInset;
 }
 
 @property(nonatomic) struct UIEdgeInsets sectionInset; // @synthesize sectionInset=_sectionInset;
 @property(nonatomic) double lineSpacing; // @synthesize lineSpacing=_lineSpacing;
-@property(nonatomic) unsigned long long itemsPerRowLandscape; // @synthesize itemsPerRowLandscape=_itemsPerRowLandscape;
-@property(nonatomic) unsigned long long itemsPerRowPortrait; // @synthesize itemsPerRowPortrait=_itemsPerRowPortrait;
+@property(nonatomic) unsigned long long itemsPerRow; // @synthesize itemsPerRow=_itemsPerRow;
 @property(nonatomic) double interitemSpacing; // @synthesize interitemSpacing=_interitemSpacing;
 @property(nonatomic) double additionalItemHeight; // @synthesize additionalItemHeight=_additionalItemHeight;
 - (id)copyWithZone:(struct _NSZone *)arg1;

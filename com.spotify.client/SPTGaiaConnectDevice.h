@@ -70,13 +70,13 @@
 - (void)updateVolumeAfterVolumeIncrease;
 - (_Bool)isEqual:(id)arg1;
 - (id)initWithDictionary:(id)arg1 requiresOnboarding:(_Bool)arg2;
-- (id)incarnationOfType:(unsigned long long)arg1;
 - (id)deviceTypeString;
 - (id)deviceTypeName;
 - (id)specificNameWithSeparator:(id)arg1;
 - (id)brandAndTypeStringWithSeparator:(id)arg1;
 - (_Bool)isDiscoveredLocally;
 - (_Bool)isAlwaysLocallyDiscoverable;
+- (id)incarnationOfType:(unsigned long long)arg1;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

@@ -6,7 +6,9 @@
 
 #import "_TtC20PushMessagingFeature12ActionRouter.h"
 
-@interface _TtC20PushMessagingFeature12ActionRouter (PushMessagingFeature)
+#import "SPTPushMessagingExternalHandler-Protocol.h"
+
+@interface _TtC20PushMessagingFeature12ActionRouter (PushMessagingFeature) <SPTPushMessagingExternalHandler>
 - (void)foregroundMessageReceived:(id)arg1 completion:(CDUnknownBlockType)arg2;
 - (void)responseMessageReceived:(id)arg1 completion:(CDUnknownBlockType)arg2;
 @end

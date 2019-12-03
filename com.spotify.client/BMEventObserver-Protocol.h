@@ -6,13 +6,12 @@
 
 #import "NSObject-Protocol.h"
 
-@class NSArray, NSError, NSObject;
-@protocol BMAudioFormat, BMPlaybackIdentity, BMSeekableWindow, BMSubtitle, BMVideoFormat, BMVideoSurface, OS_dispatch_queue;
+@class NSArray, NSError, OS_dispatch_queue;
+@protocol BMAudioFormat, BMPlaybackIdentity, BMSeekableWindow, BMSubtitle, BMVideoFormat, BMVideoSurface;
 
 @protocol BMEventObserver <NSObject>
 
 @optional
-@property(readonly, nonatomic) NSObject<OS_dispatch_queue> *dispatchQueue;
 - (void)didChangeSeekableWindow:(id <BMSeekableWindow>)arg1 timestamp:(double)arg2;
 - (void)didChangeSubtitle:(id <BMSubtitle>)arg1 atPosition:(double)arg2 timestamp:(double)arg3;
 - (void)didDropVideoFrames:(unsigned long long)arg1 timestamp:(double)arg2;
@@ -37,5 +36,6 @@
 - (void)willLoadManifestWithTimestamp:(double)arg1;
 - (void)willEndPlaybackWithNextIdentity:(id <BMPlaybackIdentity>)arg1 timestamp:(double)arg2;
 - (void)didCreatePlaybackInBackground:(_Bool)arg1 timestamp:(double)arg2;
+@property(nonatomic, readonly) OS_dispatch_queue *dispatchQueue;
 @end
 

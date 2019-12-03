@@ -6,9 +6,12 @@
 
 #import "NSObject-Protocol.h"
 
-@class NSError;
+@class NSError, SPTLoginWelcomeViewModel, UIView;
 
 @protocol SPTLoginWelcomeViewModelDelegate <NSObject>
+- (void)viewModelDidFinishLogin:(SPTLoginWelcomeViewModel *)arg1;
+- (void)viewModelDidStartLogin:(SPTLoginWelcomeViewModel *)arg1;
+- (UIView *)contextViewForWithModel:(SPTLoginWelcomeViewModel *)arg1;
 - (void)didCompleteFacebookLoginWithError:(NSError *)arg1;
 @end
 

@@ -9,13 +9,13 @@
 #import "SPTBrowseViewModelProvider-Protocol.h"
 #import "SPTBrowseViewModelProviderObserver-Protocol.h"
 
-@class NSString, SPTObserverManager;
+@class NSArray, NSString, SPTObserverManager;
 @protocol HUBViewModel, SPTBrowseViewModelProvider;
 
 @interface SPTBrowseTransformingViewModelProvider : NSObject <SPTBrowseViewModelProviderObserver, SPTBrowseViewModelProvider>
 {
     id <SPTBrowseViewModelProvider> _viewModelProvider;
-    CDUnknownBlockType _transformer;
+    NSArray *_transformers;
     id <HUBViewModel> _viewModel;
     unsigned long long _state;
     SPTObserverManager *_observers;
@@ -24,9 +24,10 @@
 @property(readonly, nonatomic) SPTObserverManager *observers; // @synthesize observers=_observers;
 @property(nonatomic) unsigned long long state; // @synthesize state=_state;
 @property(retain, nonatomic) id <HUBViewModel> viewModel; // @synthesize viewModel=_viewModel;
-@property(readonly, copy, nonatomic) CDUnknownBlockType transformer; // @synthesize transformer=_transformer;
+@property(readonly, copy, nonatomic) NSArray *transformers; // @synthesize transformers=_transformers;
 @property(readonly, nonatomic) id <SPTBrowseViewModelProvider> viewModelProvider; // @synthesize viewModelProvider=_viewModelProvider;
 - (void).cxx_destruct;
+- (id)transformViewModel:(id)arg1;
 - (void)transformAndSetViewModel:(id)arg1;
 - (void)viewModelProvider:(id)arg1 didUpdateStateFrom:(unsigned long long)arg2;
 - (void)viewModelProvider:(id)arg1 didUpdateFromViewModel:(id)arg2;
@@ -35,7 +36,7 @@
 - (void)reload;
 - (void)removeObserver:(id)arg1;
 - (void)addObserver:(id)arg1;
-- (id)initWithViewModelProvider:(id)arg1 transformer:(CDUnknownBlockType)arg2;
+- (id)initWithViewModelProvider:(id)arg1 transformers:(id)arg2;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

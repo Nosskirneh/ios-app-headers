@@ -8,8 +8,8 @@
 
 @interface _TtC21VoiceCompanionFeature28VCSResultsCollectionViewCell : UICollectionViewCell
 {
-    // Error parsing type: , name: titleLabel.storage
-    // Error parsing type: , name: imageView.storage
+    // Error parsing type: , name: $__lazy_storage_$_titleLabel
+    // Error parsing type: , name: $__lazy_storage_$_imageView
 }
 
 - (void).cxx_destruct;

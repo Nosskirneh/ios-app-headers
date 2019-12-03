@@ -12,13 +12,13 @@
 
 @interface SPTEventFactoryImplementation : NSObject <SPTEventFactory>
 {
-    NSDictionary *_interactionMap;
+    NSDictionary *_interactionTypesMap;
 }
 
-@property(readonly, copy, nonatomic) NSDictionary *interactionMap; // @synthesize interactionMap=_interactionMap;
+@property(readonly, copy, nonatomic) NSDictionary *interactionTypesMap; // @synthesize interactionTypesMap=_interactionTypesMap;
 - (void).cxx_destruct;
-- (id)factoryWithEvent:(id)arg1;
-- (id)initWithMap:(id)arg1;
+- (id)mapperFactoryWithPageURI:(id)arg1 pageId:(id)arg2;
+- (id)initWithInteractionTypesMap:(id)arg1;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

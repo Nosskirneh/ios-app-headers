@@ -21,6 +21,7 @@
 @property(retain, nonatomic) NSURL *facebook; // @synthesize facebook=_facebook;
 @property(retain, nonatomic) NSURL *twitter; // @synthesize twitter=_twitter;
 - (void).cxx_destruct;
+- (_Bool)isEqual:(id)arg1;
 - (_Bool)hasFacebook;
 - (_Bool)hasInstagram;
 - (_Bool)hasTwitter;

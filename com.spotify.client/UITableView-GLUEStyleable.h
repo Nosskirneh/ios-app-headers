@@ -12,6 +12,8 @@
 
 @interface UITableView (GLUEStyleable) <GLUEStyleable>
 - (void)glue_applyStyle:(id)arg1;
+- (void)insertRowAtIndexPath:(id)arg1 withCompletion:(CDUnknownBlockType)arg2;
+- (void)removeRowAtIndexPath:(id)arg1 withCompletion:(CDUnknownBlockType)arg2;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

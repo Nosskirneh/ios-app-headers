@@ -11,7 +11,6 @@
 @protocol SPTVoiceTestManagerSettingsDelegate <NSObject>
 - (void)testManager:(id <SPTVoiceTestManager>)arg1 didSwitchEndpoint:(unsigned long long)arg2;
 - (void)didRequestTurnOffOnboardingWithTestManager:(id <SPTVoiceTestManager>)arg1;
-- (void)didTapOpenVoiceOverlayWithTestManager:(id <SPTVoiceTestManager>)arg1;
 - (void)didTapResetOnboardingWithTestManager:(id <SPTVoiceTestManager>)arg1;
 @end
 

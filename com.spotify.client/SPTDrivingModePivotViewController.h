@@ -12,7 +12,7 @@
 #import "UICollectionViewDelegate-Protocol.h"
 #import "UICollectionViewDelegateFlowLayout-Protocol.h"
 
-@class NSLayoutConstraint, NSString, SPTActivityIndicatorView, SPTCollectionView, SPTDrivingModeAdBarView, SPTDrivingModeLogger, SPTDrivingModePivotViewModel, SPTTheme, UIButton, UILabel;
+@class NSLayoutConstraint, NSString, SPTActivityIndicatorView, SPTCollectionView, SPTDrivingModeAdBarView, SPTDrivingModeLogger, SPTDrivingModePivotViewModel, SPTTheme, UIButton, UILabel, UISelectionFeedbackGenerator;
 @protocol GLUEImageLoader, SPTModalPresentationController, SPTNowPlayingDurationUnitViewModel;
 
 @interface SPTDrivingModePivotViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, SPTDrivingModePivotViewModelDelegate, SPTSelfPresentingViewController>
@@ -31,8 +31,10 @@
     UILabel *_errorView;
     SPTDrivingModeAdBarView *_adBarView;
     NSLayoutConstraint *_topConstraint;
+    UISelectionFeedbackGenerator *_feedbackGenerator;
 }
 
+@property(retain, nonatomic) UISelectionFeedbackGenerator *feedbackGenerator; // @synthesize feedbackGenerator=_feedbackGenerator;
 @property(retain, nonatomic) NSLayoutConstraint *topConstraint; // @synthesize topConstraint=_topConstraint;
 @property(retain, nonatomic) SPTDrivingModeAdBarView *adBarView; // @synthesize adBarView=_adBarView;
 @property(retain, nonatomic) UILabel *errorView; // @synthesize errorView=_errorView;
@@ -63,6 +65,7 @@
 - (void)collectionView:(id)arg1 willDisplayCell:(id)arg2 forItemAtIndexPath:(id)arg3;
 - (id)collectionView:(id)arg1 cellForItemAtIndexPath:(id)arg2;
 - (long long)collectionView:(id)arg1 numberOfItemsInSection:(long long)arg2;
+- (void)scrollViewHapticUpdate:(long long)arg1;
 - (id)itemIndexPathFromScrollView:(id)arg1;
 - (void)selectItemAtIndexPath:(id)arg1;
 - (void)scrollViewWillBeginDecelerating:(id)arg1;

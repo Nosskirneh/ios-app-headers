@@ -6,11 +6,12 @@
 
 #import "NSObject-Protocol.h"
 
-@class GLUEAccessoryIconButton, SPTFreeTierPlaylistTrackCellConfigurator;
+@class UIButton;
+@protocol SPTFreeTierPlaylistTrackCellConfigurator;
 
 @protocol SPTFreeTierPlaylistTrackCellConfiguratorDelegate <NSObject>
-- (void)cellConfigurator:(SPTFreeTierPlaylistTrackCellConfigurator *)arg1 likeIconButtonTapped:(GLUEAccessoryIconButton *)arg2;
-- (void)cellConfigurator:(SPTFreeTierPlaylistTrackCellConfigurator *)arg1 banIconButtonTapped:(GLUEAccessoryIconButton *)arg2;
-- (void)cellConfigurator:(SPTFreeTierPlaylistTrackCellConfigurator *)arg1 contextMenuIconButtonTapped:(GLUEAccessoryIconButton *)arg2;
+- (void)cellConfigurator:(id <SPTFreeTierPlaylistTrackCellConfigurator>)arg1 likeIconButtonTapped:(UIButton *)arg2;
+- (void)cellConfigurator:(id <SPTFreeTierPlaylistTrackCellConfigurator>)arg1 banIconButtonTapped:(UIButton *)arg2;
+- (void)cellConfigurator:(id <SPTFreeTierPlaylistTrackCellConfigurator>)arg1 contextMenuIconButtonTapped:(UIButton *)arg2;
 @end
 

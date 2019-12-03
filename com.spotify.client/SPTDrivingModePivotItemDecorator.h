@@ -17,7 +17,7 @@
 @property(readonly, nonatomic) id <SPTPlaylistPlatformPlaylistDataLoader> playlistLoader; // @synthesize playlistLoader=_playlistLoader;
 @property(readonly, nonatomic) id <SPTExternalIntegrationContentController> contentController; // @synthesize contentController=_contentController;
 - (void).cxx_destruct;
-- (void)loadSubtitleIfNeededForURI:(id)arg1 successCallback:(CDUnknownBlockType)arg2;
+- (void)loadSubtitleIfNeededForURI:(id)arg1 callback:(CDUnknownBlockType)arg2;
 - (void)loadContentForURI:(id)arg1 successCallback:(CDUnknownBlockType)arg2;
 - (id)initWithContentController:(id)arg1 playlistLoader:(id)arg2;
 

@@ -10,8 +10,8 @@
 {
     // Error parsing type: , name: viewModel
     // Error parsing type: , name: collectionViewHeightConstraint
-    // Error parsing type: , name: otherResultsLabel.storage
-    // Error parsing type: , name: collectionView.storage
+    // Error parsing type: , name: $__lazy_storage_$_otherResultsLabel
+    // Error parsing type: , name: $__lazy_storage_$_collectionView
 }
 
 - (void).cxx_destruct;

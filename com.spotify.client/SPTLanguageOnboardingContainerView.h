@@ -13,7 +13,6 @@
 @interface SPTLanguageOnboardingContainerView : UIView <GLUEStyleable>
 {
     long long _containerViewState;
-    GLUEGradientView *_backgroundGradientView;
     GLUEGradientView *_backgroundOverlayGradientView;
     SPTLanguageOnboardingHeaderView *_headerView;
     SPTLanguageOnboardingGridView *_gridView;
@@ -34,12 +33,10 @@
 @property(readonly, nonatomic) SPTLanguageOnboardingGridView *gridView; // @synthesize gridView=_gridView;
 @property(readonly, nonatomic) SPTLanguageOnboardingHeaderView *headerView; // @synthesize headerView=_headerView;
 @property(readonly, nonatomic) GLUEGradientView *backgroundOverlayGradientView; // @synthesize backgroundOverlayGradientView=_backgroundOverlayGradientView;
-@property(readonly, nonatomic) GLUEGradientView *backgroundGradientView; // @synthesize backgroundGradientView=_backgroundGradientView;
 @property(nonatomic) long long containerViewState; // @synthesize containerViewState=_containerViewState;
 - (void).cxx_destruct;
 - (void)glue_applyStyle:(id)arg1;
 - (void)setNextButtonTitle:(id)arg1;
-- (void)setHeaderSubtitle:(id)arg1;
 - (void)setHeaderTitle:(id)arg1;
 - (double)gridRowHeight;
 - (struct CGSize)sizeForItemAtIndexPath:(id)arg1;

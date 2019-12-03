@@ -10,7 +10,6 @@
 
 @protocol SPTInAppMessageQAToolViewModelDelegate <NSObject>
 - (void)useLocaleList:(NSArray *)arg1;
-- (void)useHardCodedLocaleList;
 - (void)dismissMessagePresentationViewController:(UIViewController *)arg1;
 - (void)presentMessagePresentationViewController:(UIViewController *)arg1;
 @end

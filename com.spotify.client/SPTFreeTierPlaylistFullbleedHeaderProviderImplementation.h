@@ -9,7 +9,7 @@
 #import "SPTFreeTierPlaylistHeaderProvider-Protocol.h"
 
 @class NSString, SPTFreeTierPlaylistFullbleedGLUETheme;
-@protocol SPTCollectionPlatformConfiguration, SPTFreeTierPlaylistFollowViewModel, SPTFreeTierPlaylistFullbleedHeaderViewModel, SPTFreeTierPlaylistPlayViewModel, SPTImageLoader;
+@protocol SPTCollectionPlatformConfiguration, SPTFreeTierEntityOfflineViewModel, SPTFreeTierPlaylistFollowViewModel, SPTFreeTierPlaylistFullbleedHeaderViewModel, SPTFreeTierPlaylistPlayViewModel, SPTImageLoader;
 
 @interface SPTFreeTierPlaylistFullbleedHeaderProviderImplementation : NSObject <SPTFreeTierPlaylistHeaderProvider>
 {
@@ -19,8 +19,10 @@
     id <SPTFreeTierPlaylistFullbleedHeaderViewModel> _fullbleedViewModel;
     id <SPTFreeTierPlaylistPlayViewModel> _playViewModel;
     id <SPTFreeTierPlaylistFollowViewModel> _followViewModel;
+    id <SPTFreeTierEntityOfflineViewModel> _offlineViewModel;
 }
 
+@property(retain, nonatomic) id <SPTFreeTierEntityOfflineViewModel> offlineViewModel; // @synthesize offlineViewModel=_offlineViewModel;
 @property(retain, nonatomic) id <SPTFreeTierPlaylistFollowViewModel> followViewModel; // @synthesize followViewModel=_followViewModel;
 @property(retain, nonatomic) id <SPTFreeTierPlaylistPlayViewModel> playViewModel; // @synthesize playViewModel=_playViewModel;
 @property(retain, nonatomic) id <SPTFreeTierPlaylistFullbleedHeaderViewModel> fullbleedViewModel; // @synthesize fullbleedViewModel=_fullbleedViewModel;
@@ -32,7 +34,7 @@
 @property(readonly, nonatomic) _Bool drawBottomLineLayer;
 - (id)provideHeader;
 - (void)configureBarButtonManagerDelegate:(id)arg1;
-- (void)configureWithPlayViewModel:(id)arg1 followViewModel:(id)arg2 defaultHeaderViewModel:(id)arg3 fullbleedHeaderViewModel:(id)arg4 filterSortBarView:(id)arg5;
+- (void)configureWithPlayViewModel:(id)arg1 followViewModel:(id)arg2 defaultHeaderViewModel:(id)arg3 fullbleedHeaderViewModel:(id)arg4 playlistOfflineViewModel:(id)arg5 filterSortBarView:(id)arg6;
 - (id)initWithTheme:(id)arg1 imageLoader:(id)arg2 collectionConfiguration:(id)arg3 testManager:(id)arg4;
 
 // Remaining properties

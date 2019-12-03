@@ -33,7 +33,7 @@
 - (void).cxx_destruct;
 - (id)providePlayButtonTestManager;
 - (_Bool)hasOverrideForComponentId:(id)arg1;
-- (id)overriddenComponentRegistryFromRegistry:(id)arg1 sptTheme:(id)arg2 contextMenuButtonViewModel:(id)arg3 feedbackButtonViewModel:(id)arg4 viewController:(id)arg5 headerType:(unsigned long long)arg6;
+- (id)overriddenComponentRegistryFromRegistry:(id)arg1 sptTheme:(id)arg2 contextMenuButtonViewModel:(id)arg3 feedbackButtonViewModel:(id)arg4 offlineButtonViewModel:(id)arg5 viewController:(id)arg6 headerType:(unsigned long long)arg7;
 - (void)viewDidDisappear;
 - (void)viewDidAppear;
 - (void)viewWillAppear;

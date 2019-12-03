@@ -7,11 +7,12 @@
 #import <objc/NSObject.h>
 
 #import "SPTContextMenuActionsProvider-Protocol.h"
+#import "SPTFeatureFlagSignalObserver-Protocol.h"
 
 @class NSString;
 @protocol SPContextMenuActionsFactory, SPTContributingArtistsService, SPTFeatureFlagSignal, SPTUIPresentationService;
 
-@interface SPTContextMenuActionsProviderImplementation : NSObject <SPTContextMenuActionsProvider>
+@interface SPTContextMenuActionsProviderImplementation : NSObject <SPTFeatureFlagSignalObserver, SPTContextMenuActionsProvider>
 {
     _Bool _freeTierEnabled;
     id <SPContextMenuActionsFactory> _actionsFactory;

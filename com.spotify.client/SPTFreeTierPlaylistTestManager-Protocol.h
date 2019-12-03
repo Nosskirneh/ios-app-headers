@@ -7,10 +7,9 @@
 #import "NSObject-Protocol.h"
 
 @protocol SPTFreeTierPlaylistTestManager <NSObject>
+@property(readonly, nonatomic, getter=isPlaceholderCellsEnabled) _Bool placeholderCellsEnabled;
+@property(readonly, nonatomic, getter=isEncoreTrackRowsEnabled) _Bool encoreTrackRowsEnabled;
 @property(readonly, nonatomic, getter=isScrollPerformanceTrackingEnabled) _Bool scrollPerformanceTrackingEnabled;
-@property(readonly, nonatomic, getter=isAccessibilityHeaderEnabled) _Bool accessibilityHeaderEnabled;
-@property(readonly, nonatomic, getter=isTrackItemQuickActionsEnabled) _Bool trackItemQuickActionsEnabled;
-@property(readonly, nonatomic, getter=isAssistedCurationPremiumEnabled) _Bool assistedCurationPremiumEnabled;
 @property(readonly, nonatomic, getter=isEpisodesInPlaylistDisabled) _Bool episodesInPlaylistDisabled;
 @property(readonly, nonatomic, getter=isContextAwareEditorialTrackSharingEnabled) _Bool contextAwareEditorialTrackSharingEnabled;
 @property(readonly, nonatomic, getter=isConsolidatedExperienceEnabled) _Bool consolidatedExperienceEnabled;

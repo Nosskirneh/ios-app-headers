@@ -9,10 +9,12 @@
 @class NSString, UIImage, UIView;
 
 @protocol SPTCanvasContentLayerViewControllerViewModelDelegate <NSObject>
+- (void)hideOverlay;
+- (void)showOverlay;
 - (void)hideLoadingIndicator;
 - (void)showLoadingIndicator;
-- (void)hideattributionView;
-- (void)showattributionView;
+- (void)hideAttributionView;
+- (void)showAttributionView;
 - (void)didLoadVideoPlayer;
 - (void)willLoadVideoPlayer;
 - (void)removeVideoPlayerView;

@@ -7,7 +7,7 @@
 #import "SPTNowPlayingBaseUnitProvider.h"
 
 @class SPTNowPlayingBarModel, SPTNowPlayingLogger, SPTNowPlayingSkipLimitReachedMessageRequester, SPTTheme;
-@protocol SPTConnectAccessButtonTestManager, SPTGaiaConnectAPI, SPTGaiaDevicePickerPresenter, SPTGaiaDevicesAvailableViewProvider, SPTNowPlayingManager, SPTNowPlayingTestManager;
+@protocol SPTConnectAccessButtonTestManager, SPTConnectUIDevicePickerPresenter, SPTGaiaConnectAPI, SPTGaiaDevicesAvailableViewProvider, SPTNowPlayingManager, SPTNowPlayingTestManager;
 
 @interface SPTNowPlayingBarContentUnitProvider : SPTNowPlayingBaseUnitProvider
 {
@@ -17,7 +17,7 @@
     SPTNowPlayingSkipLimitReachedMessageRequester *_skipLimitReachedMessageRequester;
     SPTTheme *_theme;
     id <SPTGaiaConnectAPI> _connectManager;
-    id <SPTGaiaDevicePickerPresenter> _devicePickerPresenter;
+    id <SPTConnectUIDevicePickerPresenter> _devicePickerPresenter;
     id <SPTConnectAccessButtonTestManager> _connectAccessButtonTestManager;
     id <SPTGaiaDevicesAvailableViewProvider> _devicesAvailableViewProvider;
     id <SPTNowPlayingTestManager> _testManager;
@@ -26,7 +26,7 @@
 @property(readonly, nonatomic) id <SPTNowPlayingTestManager> testManager; // @synthesize testManager=_testManager;
 @property(retain, nonatomic) id <SPTGaiaDevicesAvailableViewProvider> devicesAvailableViewProvider; // @synthesize devicesAvailableViewProvider=_devicesAvailableViewProvider;
 @property(readonly, nonatomic) id <SPTConnectAccessButtonTestManager> connectAccessButtonTestManager; // @synthesize connectAccessButtonTestManager=_connectAccessButtonTestManager;
-@property(readonly, nonatomic) id <SPTGaiaDevicePickerPresenter> devicePickerPresenter; // @synthesize devicePickerPresenter=_devicePickerPresenter;
+@property(readonly, nonatomic) id <SPTConnectUIDevicePickerPresenter> devicePickerPresenter; // @synthesize devicePickerPresenter=_devicePickerPresenter;
 @property(readonly, nonatomic) id <SPTGaiaConnectAPI> connectManager; // @synthesize connectManager=_connectManager;
 @property(readonly, nonatomic) SPTTheme *theme; // @synthesize theme=_theme;
 @property(readonly, nonatomic) SPTNowPlayingSkipLimitReachedMessageRequester *skipLimitReachedMessageRequester; // @synthesize skipLimitReachedMessageRequester=_skipLimitReachedMessageRequester;

@@ -6,7 +6,10 @@
 
 #import "NSObject-Protocol.h"
 
+@protocol SPTConnectivityManagerDelegate;
+
 @protocol SPTConnectivityManager <NSObject>
+@property(nonatomic) __weak id <SPTConnectivityManagerDelegate> delegate;
 @property _Bool keepAliveAPNetwork;
 @property _Bool allowNetwork;
 @property _Bool allowSyncOver3G;

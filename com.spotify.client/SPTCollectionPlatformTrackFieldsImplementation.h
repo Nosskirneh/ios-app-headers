@@ -15,6 +15,7 @@
     _Bool _inCollection;
     _Bool _isBanned;
     _Bool _isExplicit;
+    _Bool _is19PlusOnly;
     _Bool _isLocalTrack;
     _Bool _isPlayable;
     _Bool _isLocallyPlayable;
@@ -39,6 +40,7 @@
 @property(nonatomic) _Bool isLocallyPlayable; // @synthesize isLocallyPlayable=_isLocallyPlayable;
 @property(nonatomic) _Bool isPlayable; // @synthesize isPlayable=_isPlayable;
 @property(nonatomic) _Bool isLocalTrack; // @synthesize isLocalTrack=_isLocalTrack;
+@property(nonatomic) _Bool is19PlusOnly; // @synthesize is19PlusOnly=_is19PlusOnly;
 @property(nonatomic) _Bool isExplicit; // @synthesize isExplicit=_isExplicit;
 @property(nonatomic) _Bool isBanned; // @synthesize isBanned=_isBanned;
 @property(nonatomic) _Bool inCollection; // @synthesize inCollection=_inCollection;

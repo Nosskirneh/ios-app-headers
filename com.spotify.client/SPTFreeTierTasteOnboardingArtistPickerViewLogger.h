@@ -31,8 +31,8 @@
 - (void)logSelectGenreInteractionWithIdentifier:(id)arg1 contentSource:(id)arg2 contentSourceUri:(id)arg3 section:(id)arg4 position:(unsigned long long)arg5 maxPosition:(unsigned long long)arg6 sequenceNumber:(unsigned long long)arg7 interactionId:(id)arg8;
 - (void)logDeselectArtistInteractionWithIdentifier:(id)arg1 contentSource:(id)arg2 contentSourceUri:(id)arg3 section:(id)arg4 position:(unsigned long long)arg5 maxPosition:(unsigned long long)arg6 sequenceNumber:(unsigned long long)arg7 interactionId:(id)arg8;
 - (void)logSelectArtistInteractionWithIdentifier:(id)arg1 contentSource:(id)arg2 contentSourceUri:(id)arg3 section:(id)arg4 position:(unsigned long long)arg5 maxPosition:(unsigned long long)arg6 sequenceNumber:(unsigned long long)arg7 interactionId:(id)arg8;
+- (void)logPresentationMode:(unsigned long long)arg1;
 - (void)logPodcastInFirstTimeFlowEnabled:(_Bool)arg1;
-- (void)logArtistPickerStyleImpressionWithStockholmBlackEnabled:(_Bool)arg1;
 - (void)logAfterSignUpInteraction;
 - (void)logNextImpression;
 - (void)logNextInteraction;

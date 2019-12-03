@@ -14,10 +14,12 @@
 @interface SPTFreeTierFindInterfaceFactoryImplementation : NSObject <SPTFreeTierFindInterfaceFactory>
 {
     _Bool _nftExperience;
+    _Bool _podcastFeatureEnabled;
     id <SPTSearchPlatformService> _searchPlatformService;
     id <SPTSearchService> _searchService;
 }
 
+@property(readonly, nonatomic) _Bool podcastFeatureEnabled; // @synthesize podcastFeatureEnabled=_podcastFeatureEnabled;
 @property(readonly, nonatomic) _Bool nftExperience; // @synthesize nftExperience=_nftExperience;
 @property(readonly, nonatomic) __weak id <SPTSearchService> searchService; // @synthesize searchService=_searchService;
 @property(readonly, nonatomic) __weak id <SPTSearchPlatformService> searchPlatformService; // @synthesize searchPlatformService=_searchPlatformService;
@@ -27,7 +29,7 @@
 - (id)makeNonNFTSearchViewController;
 - (id)makeNFTSearchViewController;
 - (id)createSearchViewController;
-- (id)initWithSearchPlatformService:(id)arg1 searchService:(id)arg2 nftExperience:(_Bool)arg3;
+- (id)initWithSearchPlatformService:(id)arg1 searchService:(id)arg2 nftExperience:(_Bool)arg3 podcastFeatureEnabled:(_Bool)arg4;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

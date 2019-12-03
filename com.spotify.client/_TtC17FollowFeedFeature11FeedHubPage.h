@@ -6,21 +6,30 @@
 
 #import "HUBViewController.h"
 
+#import "HUBViewContentOffsetObserver-Protocol.h"
 #import "HUBViewModelLoaderDelegate-Protocol.h"
+#import "SPContentInsetViewController-Protocol.h"
 
-@interface _TtC17FollowFeedFeature11FeedHubPage : HUBViewController <HUBViewModelLoaderDelegate>
+@interface _TtC17FollowFeedFeature11FeedHubPage : HUBViewController <HUBViewModelLoaderDelegate, SPContentInsetViewController, HUBViewContentOffsetObserver>
 {
     // Error parsing type: , name: theme
     // Error parsing type: , name: viewModelLoader
+    // Error parsing type: , name: layoutManager
     // Error parsing type: , name: commandHandler
+    // Error parsing type: , name: paginationHandler
 }
 
 - (void).cxx_destruct;
 - (id)initWithComponentRegistry:(id)arg1 componentLayoutManager:(id)arg2 imageLoaderFactory:(id)arg3 commandHandler:(id)arg4;
+- (void)turnOffHubsModelDiffingWithNotification:(id)arg1;
+- (void)hubView:(id)arg1 contentOffsetDidChange:(struct CGPoint)arg2;
 - (void)viewModelLoader:(id)arg1 didFailLoadingWithError:(id)arg2;
 - (void)viewModelLoader:(id)arg1 didLoadViewModel:(id)arg2;
+- (void)sp_updateContentInsets;
+- (void)viewDidDisappear:(_Bool)arg1;
 - (void)viewWillAppear:(_Bool)arg1;
 - (void)viewDidLoad;
+- (void)dealloc;
 - (id)initWithObjectRepresentation:(id)arg1;
 
 @end

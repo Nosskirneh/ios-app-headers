@@ -10,7 +10,7 @@
 #import "HUBComponentViewWithImageHandling-Protocol.h"
 #import "UIGestureRecognizerDelegate-Protocol.h"
 
-@class NSString, SPTPodcastUICallToActionCardStyle, SPTPodcastUICallToActionCardView, UILongPressGestureRecognizer, UITapGestureRecognizer;
+@class NSString, SPTPodcastUICallToActionCardStyle, SPTPodcastUICallToActionCardView, UITapGestureRecognizer;
 @protocol HUBComponentEventHandler;
 
 @interface SPTPodcastUICallToActionCardComponentView : HUGSThemableComponentView <UIGestureRecognizerDelegate, HUBComponentViewWithImageHandling, HUBComponentViewWithEvents>
@@ -19,10 +19,8 @@
     SPTPodcastUICallToActionCardView *_callToActionCardView;
     SPTPodcastUICallToActionCardStyle *_style;
     UITapGestureRecognizer *_tapGestureRecognizer;
-    UILongPressGestureRecognizer *_highlightGestureRecognizer;
 }
 
-@property(retain, nonatomic) UILongPressGestureRecognizer *highlightGestureRecognizer; // @synthesize highlightGestureRecognizer=_highlightGestureRecognizer;
 @property(retain, nonatomic) UITapGestureRecognizer *tapGestureRecognizer; // @synthesize tapGestureRecognizer=_tapGestureRecognizer;
 @property(retain, nonatomic) SPTPodcastUICallToActionCardStyle *style; // @synthesize style=_style;
 @property(retain, nonatomic) SPTPodcastUICallToActionCardView *callToActionCardView; // @synthesize callToActionCardView=_callToActionCardView;
@@ -30,8 +28,6 @@
 - (void).cxx_destruct;
 - (void)applyThemeLayout;
 - (_Bool)gestureRecognizer:(id)arg1 shouldRecognizeSimultaneouslyWithGestureRecognizer:(id)arg2;
-- (void)animateHiglight:(_Bool)arg1;
-- (void)highlightGestureRecognizerChangedState:(id)arg1;
 - (void)sendSelectionEvent;
 - (struct CGSize)preferredSizeForImageFromData:(id)arg1 model:(id)arg2 containerViewSize:(struct CGSize)arg3;
 - (void)updateViewForLoadedImage:(id)arg1 fromData:(id)arg2 model:(id)arg3 animated:(_Bool)arg4;

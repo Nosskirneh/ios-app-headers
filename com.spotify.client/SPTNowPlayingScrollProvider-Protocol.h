@@ -15,6 +15,8 @@
 - (NSString *)identifier;
 
 @optional
+- (void)loadContentForTrack:(SPTPlayerTrack *)arg1 completionBlock:(void (^)(void))arg2;
+- (_Bool)needsLayoutUpdateAfterLoadForTrack:(SPTPlayerTrack *)arg1;
 - (void)didBecomeFullyShownForTrack:(SPTPlayerTrack *)arg1;
 - (double)preferredContentHeightForWidth:(double)arg1;
 @end

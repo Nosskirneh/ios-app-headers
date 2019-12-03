@@ -31,7 +31,9 @@
 - (void)fetchAlbumsMetadataWithPolicyProtocols:(NSArray *)arg1 options:(SPTCollectionPlatformFetchOptions *)arg2 completion:(void (^)(struct SPTCollectionPlatformDataLoaderResponse *))arg3 onError:(void (^)(NSError *))arg4;
 - (void)decorateAlbumsURLs:(NSArray *)arg1 withPolicyProtocols:(NSArray *)arg2 completion:(void (^)(NSArray *))arg3 onError:(void (^)(NSError *))arg4;
 - (void)decorateAlbumURL:(NSURL *)arg1 withPolicyProtocols:(NSArray *)arg2 completion:(void (^)(id <SPTCollectionPlatformAlbumMetadataFields>))arg3 onError:(void (^)(NSError *))arg4;
+- (void)decorateArtistURLs:(NSArray *)arg1 withPolicyProtocols:(NSArray *)arg2 completion:(void (^)(NSArray *))arg3 onError:(void (^)(NSError *))arg4;
 - (void)decorateArtistURL:(NSURL *)arg1 withPolicyProtocols:(NSArray *)arg2 completion:(void (^)(id <SPTCollectionPlatformArtistMetadataFields>))arg3 onError:(void (^)(NSError *))arg4;
+- (void)decorateTrackURLs:(NSArray *)arg1 withPolicyProtocols:(NSArray *)arg2 completion:(void (^)(NSArray *))arg3 onError:(void (^)(NSError *))arg4;
 - (void)decorateTrackURL:(NSURL *)arg1 withPolicyProtocols:(NSArray *)arg2 completion:(void (^)(id <SPTCollectionPlatformTrackFields>))arg3 onError:(void (^)(NSError *))arg4;
 @end
 

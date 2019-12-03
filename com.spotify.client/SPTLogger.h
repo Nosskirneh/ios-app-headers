@@ -13,7 +13,7 @@
 @interface SPTLogger : NSObject <SPTLogger>
 {
     shared_ptr_0bb93f61 _logger;
-    struct PendingMessageStorage *_pendingStorage;
+    struct PendingMessageStorageImpl *_pendingStorage;
 }
 
 - (id).cxx_construct;
@@ -22,7 +22,7 @@
 - (void)updateMessageWithSequenceNumber:(id)arg1 messageName:(id)arg2 serializedMessage:(id)arg3;
 - (id)createMessage:(id)arg1;
 - (void)sendMessage:(id)arg1;
-- (id)initWithCoreLogger:(const shared_ptr_0bb93f61 *)arg1 pendingStorage:(struct PendingMessageStorage *)arg2;
+- (id)initWithCoreLogger:(const shared_ptr_0bb93f61 *)arg1 pendingStorage:(struct PendingMessageStorageImpl *)arg2;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

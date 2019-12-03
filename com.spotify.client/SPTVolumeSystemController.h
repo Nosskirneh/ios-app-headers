@@ -29,6 +29,7 @@
 - (void)addObserver:(id)arg1;
 - (id)outputVolumeSelectorString;
 - (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
+- (void)didStartRemoteVolumeSyncing;
 - (void)updateSystemVolume:(double)arg1;
 - (double)currentSystemVolume;
 - (void)observeLocalVolume;

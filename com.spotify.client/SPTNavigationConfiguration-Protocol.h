@@ -10,7 +10,6 @@
 
 @protocol SPTNavigationConfiguration <NSObject>
 - (NSString *)configurationIdentifier;
-- (_Bool)shouldHideNavigationTitles;
 - (_Bool)isFindEnabled;
 @end
 

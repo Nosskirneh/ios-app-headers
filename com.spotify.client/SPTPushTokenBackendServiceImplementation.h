@@ -6,13 +6,14 @@
 
 #import <objc/NSObject.h>
 
+#import "SPTFeatureFlagSignalObserver-Protocol.h"
 #import "SPTPushTokenBackendService-Protocol.h"
 #import "SPTService-Protocol.h"
 
 @class NSString, SPTAllocationContext, SPTPushTokenBackendIntegrator;
 @protocol SPTFeatureFlagSignal, SPTNetworkService, SPTPushMessagingABBAService, SPTPushTokenUserTrackerService;
 
-@interface SPTPushTokenBackendServiceImplementation : NSObject <SPTService, SPTPushTokenBackendService>
+@interface SPTPushTokenBackendServiceImplementation : NSObject <SPTFeatureFlagSignalObserver, SPTService, SPTPushTokenBackendService>
 {
     id <SPTNetworkService> _networkFeature;
     id <SPTPushTokenUserTrackerService> _pushTokenUserTrackerService;

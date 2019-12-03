@@ -16,14 +16,14 @@
     long long _codeInputFieldStackViewAxis;
     long long _codeInputFieldStackViewDistribution;
     long long _codeInputFieldStackViewAlignment;
-    double _codeInputFieldStackViewSpacing;
+    double _codeInputFieldStackViewMinSpacing;
     double _digitTextFieldHeight;
     double _digitTextFieldWidth;
 }
 
 @property(nonatomic) double digitTextFieldWidth; // @synthesize digitTextFieldWidth=_digitTextFieldWidth;
 @property(nonatomic) double digitTextFieldHeight; // @synthesize digitTextFieldHeight=_digitTextFieldHeight;
-@property(nonatomic) double codeInputFieldStackViewSpacing; // @synthesize codeInputFieldStackViewSpacing=_codeInputFieldStackViewSpacing;
+@property(nonatomic) double codeInputFieldStackViewMinSpacing; // @synthesize codeInputFieldStackViewMinSpacing=_codeInputFieldStackViewMinSpacing;
 @property(nonatomic) long long codeInputFieldStackViewAlignment; // @synthesize codeInputFieldStackViewAlignment=_codeInputFieldStackViewAlignment;
 @property(nonatomic) long long codeInputFieldStackViewDistribution; // @synthesize codeInputFieldStackViewDistribution=_codeInputFieldStackViewDistribution;
 @property(nonatomic) long long codeInputFieldStackViewAxis; // @synthesize codeInputFieldStackViewAxis=_codeInputFieldStackViewAxis;

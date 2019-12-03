@@ -6,53 +6,28 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTDataLoaderDelegate-Protocol.h"
 #import "SPTOfflineModeStateObserver-Protocol.h"
 
-@class NSArray, NSString, NSURL, SPTArtistSocialLink, SPTDataLoader;
-@protocol OS_dispatch_queue, SPTArtistAboutViewModelDelegate, SPTOfflineModeState;
+@class NSArray, NSString, NSURL, SPTArtistAbout, SPTArtistAboutDataLoader;
+@protocol SPTArtistAboutViewModelDelegate, SPTOfflineModeState;
 
-@interface SPTArtistAboutViewModel : NSObject <SPTDataLoaderDelegate, SPTOfflineModeStateObserver>
+@interface SPTArtistAboutViewModel : NSObject <SPTOfflineModeStateObserver>
 {
     _Bool _loading;
     _Bool _loaded;
     _Bool _offline;
-    _Bool _biographyHasBeenEdited;
     NSURL *_artistURI;
     id <SPTArtistAboutViewModelDelegate> _delegate;
-    NSString *_artistName;
-    NSURL *_artistMainImageURL;
-    NSArray *_imageGalleryURLs;
-    unsigned long long _monthlyListenersCount;
-    unsigned long long _monthlyListenersCountDelta;
-    unsigned long long _globalChartPosition;
-    NSString *_biographyHeadline;
-    NSString *_biographyText;
     NSArray *_socialLinkViewModels;
-    SPTDataLoader *_dataLoader;
+    SPTArtistAboutDataLoader *_dataLoader;
     id <SPTOfflineModeState> _offlineModeState;
-    NSObject<OS_dispatch_queue> *_queue;
-    SPTArtistSocialLink *_socialLinks;
-    NSArray *_friendListeners;
-    unsigned long long _friendListenersCount;
+    SPTArtistAbout *_artistAbout;
 }
 
-@property(nonatomic) unsigned long long friendListenersCount; // @synthesize friendListenersCount=_friendListenersCount;
-@property(copy, nonatomic) NSArray *friendListeners; // @synthesize friendListeners=_friendListeners;
-@property(retain, nonatomic) SPTArtistSocialLink *socialLinks; // @synthesize socialLinks=_socialLinks;
-@property(retain, nonatomic) NSObject<OS_dispatch_queue> *queue; // @synthesize queue=_queue;
+@property(retain, nonatomic) SPTArtistAbout *artistAbout; // @synthesize artistAbout=_artistAbout;
 @property(retain, nonatomic) id <SPTOfflineModeState> offlineModeState; // @synthesize offlineModeState=_offlineModeState;
-@property(retain, nonatomic) SPTDataLoader *dataLoader; // @synthesize dataLoader=_dataLoader;
+@property(retain, nonatomic) SPTArtistAboutDataLoader *dataLoader; // @synthesize dataLoader=_dataLoader;
 @property(readonly, nonatomic) NSArray *socialLinkViewModels; // @synthesize socialLinkViewModels=_socialLinkViewModels;
-@property(copy, nonatomic) NSString *biographyText; // @synthesize biographyText=_biographyText;
-@property(copy, nonatomic) NSString *biographyHeadline; // @synthesize biographyHeadline=_biographyHeadline;
-@property(nonatomic) _Bool biographyHasBeenEdited; // @synthesize biographyHasBeenEdited=_biographyHasBeenEdited;
-@property(nonatomic) unsigned long long globalChartPosition; // @synthesize globalChartPosition=_globalChartPosition;
-@property(nonatomic) unsigned long long monthlyListenersCountDelta; // @synthesize monthlyListenersCountDelta=_monthlyListenersCountDelta;
-@property(nonatomic) unsigned long long monthlyListenersCount; // @synthesize monthlyListenersCount=_monthlyListenersCount;
-@property(copy, nonatomic) NSArray *imageGalleryURLs; // @synthesize imageGalleryURLs=_imageGalleryURLs;
-@property(copy, nonatomic) NSURL *artistMainImageURL; // @synthesize artistMainImageURL=_artistMainImageURL;
-@property(copy, nonatomic) NSString *artistName; // @synthesize artistName=_artistName;
 @property(nonatomic, getter=isOffline) _Bool offline; // @synthesize offline=_offline;
 @property(nonatomic, getter=hasLoaded) _Bool loaded; // @synthesize loaded=_loaded;
 @property(nonatomic, getter=isLoading) _Bool loading; // @synthesize loading=_loading;
@@ -61,12 +36,7 @@
 - (void).cxx_destruct;
 - (id)urlForSocialLinkType:(unsigned long long)arg1;
 - (void)offlineModeState:(id)arg1 updated:(_Bool)arg2;
-- (id)imageURLsWithArray:(id)arg1;
-- (void)setupSocialLinkViewModels;
-- (void)parseDictionary:(id)arg1;
-- (void)dataLoader:(id)arg1 didCancelRequest:(id)arg2;
-- (void)dataLoader:(id)arg1 didReceiveErrorResponse:(id)arg2;
-- (void)dataLoader:(id)arg1 didReceiveSuccessfulResponse:(id)arg2;
+- (void)setupSocialLinkViewModelsWithSocialLinks:(id)arg1;
 - (void)requestData;
 - (void)dealloc;
 - (id)initWithArtistURI:(id)arg1 dataLoader:(id)arg2 offlineModeState:(id)arg3;

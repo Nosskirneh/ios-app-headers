@@ -14,22 +14,26 @@
 {
     GLUEGradientStyle *_backgroundGradientStyle;
     GLUELabelStyle *_titleHeaderStyle;
+    GLUELabelStyle *_upperTextStyle;
     GLUELabelStyle *_textBodyStyle;
     GLUEButtonStyle *_openEmailButtonStyle;
     double _titleTopMargin;
     double _verticalSpacing;
     double _horizontalMargin;
     double _openEmailButtonTopMargin;
+    double _upperLabelTopMargin;
     double _lowerLabelTopMargin;
 }
 
 @property(nonatomic) double lowerLabelTopMargin; // @synthesize lowerLabelTopMargin=_lowerLabelTopMargin;
+@property(nonatomic) double upperLabelTopMargin; // @synthesize upperLabelTopMargin=_upperLabelTopMargin;
 @property(nonatomic) double openEmailButtonTopMargin; // @synthesize openEmailButtonTopMargin=_openEmailButtonTopMargin;
 @property(nonatomic) double horizontalMargin; // @synthesize horizontalMargin=_horizontalMargin;
 @property(nonatomic) double verticalSpacing; // @synthesize verticalSpacing=_verticalSpacing;
 @property(nonatomic) double titleTopMargin; // @synthesize titleTopMargin=_titleTopMargin;
 @property(copy, nonatomic) GLUEButtonStyle *openEmailButtonStyle; // @synthesize openEmailButtonStyle=_openEmailButtonStyle;
 @property(copy, nonatomic) GLUELabelStyle *textBodyStyle; // @synthesize textBodyStyle=_textBodyStyle;
+@property(copy, nonatomic) GLUELabelStyle *upperTextStyle; // @synthesize upperTextStyle=_upperTextStyle;
 @property(copy, nonatomic) GLUELabelStyle *titleHeaderStyle; // @synthesize titleHeaderStyle=_titleHeaderStyle;
 @property(copy, nonatomic) GLUEGradientStyle *backgroundGradientStyle; // @synthesize backgroundGradientStyle=_backgroundGradientStyle;
 - (void).cxx_destruct;

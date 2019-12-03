@@ -7,13 +7,13 @@
 #import "GLUEStyleable-Protocol.h"
 
 @class NSArray;
-@protocol SPTSortingFilteringClearFiltersControlDelegate, SPTSortingFilteringClearFiltersControlStyle;
+@protocol SPTSortingFilteringButtonsContainerStyle, SPTSortingFilteringClearFiltersControlDelegate;
 
 @protocol SPTSortingFilteringClearFiltersControl <GLUEStyleable>
 @property(readonly, nonatomic) unsigned long long numberOfFilters;
 @property(nonatomic) __weak id <SPTSortingFilteringClearFiltersControlDelegate> delegate;
 - (void)removeAllFilters;
 - (void)insertFilters:(NSArray *)arg1;
-- (void)glue_applyStyle:(id <SPTSortingFilteringClearFiltersControlStyle>)arg1;
+- (void)glue_applyStyle:(id <SPTSortingFilteringButtonsContainerStyle>)arg1;
 @end
 

@@ -10,11 +10,10 @@
 #import "SPTDataLoaderDelegate-Protocol.h"
 
 @class NSArray, NSString, SPTDataLoader;
-@protocol OS_dispatch_queue, SPTCanvasMetadataResolverDelegate, SPTCanvasTrackChecker;
+@protocol OS_dispatch_queue, SPTCanvasTrackChecker;
 
 @interface SPTCanvasMetadataResolverImplementation : NSObject <SPTDataLoaderDelegate, SPTCanvasMetadataResolver>
 {
-    id <SPTCanvasMetadataResolverDelegate> delegate;
     NSObject<OS_dispatch_queue> *_queue;
     SPTDataLoader *_dataLoader;
     id <SPTCanvasTrackChecker> _canvasTrackChecker;
@@ -25,17 +24,16 @@
 @property(readonly, nonatomic) id <SPTCanvasTrackChecker> canvasTrackChecker; // @synthesize canvasTrackChecker=_canvasTrackChecker;
 @property(readonly, nonatomic) SPTDataLoader *dataLoader; // @synthesize dataLoader=_dataLoader;
 @property(readonly, nonatomic) NSObject<OS_dispatch_queue> *queue; // @synthesize queue=_queue;
-@property(nonatomic) __weak id <SPTCanvasMetadataResolverDelegate> delegate; // @synthesize delegate;
 - (void).cxx_destruct;
 - (void)dataLoader:(id)arg1 didReceiveErrorResponse:(id)arg2;
 - (void)dataLoader:(id)arg1 didReceiveSuccessfulResponse:(id)arg2;
-- (void)didFailToLoadMetadataWithError:(id)arg1;
-- (void)didLoadMetadataWithCanvasModels:(id)arg1;
+- (void)didFailToLoadMetadataWithError:(id)arg1 withCompletion:(CDUnknownBlockType)arg2;
+- (void)didLoadMetadataWithCanvasModels:(id)arg1 withCompletion:(CDUnknownBlockType)arg2;
 - (id)canvasModelsWithCanvasResponse:(id)arg1 error:(id *)arg2;
 - (id)canvasMetatadataUsingCanvasDictionary:(id)arg1;
 - (id)bodyDataForTracks:(id)arg1;
 - (id)createCanvasRequest;
-- (void)resolve;
+- (void)resolve:(CDUnknownBlockType)arg1;
 - (id)initWithDataLoader:(id)arg1 canvasTrackChecker:(id)arg2 tracks:(id)arg3;
 
 // Remaining properties

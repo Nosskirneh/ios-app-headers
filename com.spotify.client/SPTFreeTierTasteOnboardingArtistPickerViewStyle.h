@@ -14,8 +14,7 @@
 @interface SPTFreeTierTasteOnboardingArtistPickerViewStyle : NSObject <GLUEStyle>
 {
     GLUELabelStyle *_navigationItemTitleLabelStyle;
-    GLUEGradientStyle *_backgroundGradientStyle;
-    GLUEGradientStyle *_backgroundOverlayGradientStyle;
+    UIColor *_backgroundOverlayColor;
     GLUECollectionViewStyle *_collectionViewStyle;
     SPTFreeTierTasteOnboardingArtistPickerCollectionViewLayoutStyle<GLUEStyle> *_collectionViewLayoutStyle;
     GLUEGradientStyle *_overlayGradientStyle;
@@ -40,8 +39,7 @@
 @property(copy, nonatomic) GLUEGradientStyle *overlayGradientStyle; // @synthesize overlayGradientStyle=_overlayGradientStyle;
 @property(copy, nonatomic) SPTFreeTierTasteOnboardingArtistPickerCollectionViewLayoutStyle<GLUEStyle> *collectionViewLayoutStyle; // @synthesize collectionViewLayoutStyle=_collectionViewLayoutStyle;
 @property(copy, nonatomic) GLUECollectionViewStyle *collectionViewStyle; // @synthesize collectionViewStyle=_collectionViewStyle;
-@property(copy, nonatomic) GLUEGradientStyle *backgroundOverlayGradientStyle; // @synthesize backgroundOverlayGradientStyle=_backgroundOverlayGradientStyle;
-@property(copy, nonatomic) GLUEGradientStyle *backgroundGradientStyle; // @synthesize backgroundGradientStyle=_backgroundGradientStyle;
+@property(copy, nonatomic) UIColor *backgroundOverlayColor; // @synthesize backgroundOverlayColor=_backgroundOverlayColor;
 @property(copy, nonatomic) GLUELabelStyle *navigationItemTitleLabelStyle; // @synthesize navigationItemTitleLabelStyle=_navigationItemTitleLabelStyle;
 - (void).cxx_destruct;
 - (id)copyWithZone:(struct _NSZone *)arg1;

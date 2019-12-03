@@ -4,16 +4,14 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import "NSObject-Protocol.h"
+#import "SPTCoreLoginControllerLoginDelegate-Protocol.h"
 
 @class NSError, NSString;
 @protocol SPTCoreLoginController;
 
-@protocol SPTCoreLoginControllerDelegate <NSObject>
+@protocol SPTCoreLoginControllerDelegate <SPTCoreLoginControllerLoginDelegate>
 - (NSString *)core:(id <SPTCoreLoginController>)arg1 localizedDescriptionForLoginErrorCode:(int)arg2;
 - (void)coreDidLogout:(id <SPTCoreLoginController>)arg1;
 - (void)coreDidRelogin:(id <SPTCoreLoginController>)arg1 withError:(NSError *)arg2 isPermanent:(_Bool)arg3;
-- (void)core:(id <SPTCoreLoginController>)arg1 failedLoginWithError:(NSError *)arg2;
-- (void)coreDidLogin:(id <SPTCoreLoginController>)arg1;
 @end
 

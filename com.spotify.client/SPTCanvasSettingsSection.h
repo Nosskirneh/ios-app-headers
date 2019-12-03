@@ -24,8 +24,7 @@
 @property(retain, nonatomic) SPTCanvasTestManager *testManager; // @synthesize testManager=_testManager;
 - (void).cxx_destruct;
 - (void)updateSettingsCellWithTestManager:(id)arg1;
-- (void)didDisableCanvas:(id)arg1;
-- (void)didEnableCanvas:(id)arg1;
+- (void)didChangeCanvasEnabled:(id)arg1;
 - (void)settingChanged:(id)arg1;
 - (id)footerText;
 - (id)cellForRow:(long long)arg1;

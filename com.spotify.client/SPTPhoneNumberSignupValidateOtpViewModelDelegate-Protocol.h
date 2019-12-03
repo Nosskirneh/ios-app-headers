@@ -9,6 +9,7 @@
 @class SPTPhoneNumberSignupValidateOtpViewModel;
 
 @protocol SPTPhoneNumberSignupValidateOtpViewModelDelegate <NSObject>
+- (void)viewModelDidChangeNumberOfInputs:(SPTPhoneNumberSignupValidateOtpViewModel *)arg1;
 - (void)viewModelSessionDidTimeout:(SPTPhoneNumberSignupValidateOtpViewModel *)arg1;
 - (void)viewModelResendingSMSRequestedTooEarly:(SPTPhoneNumberSignupValidateOtpViewModel *)arg1;
 - (void)viewModelWillStartResendingSMS:(SPTPhoneNumberSignupValidateOtpViewModel *)arg1;

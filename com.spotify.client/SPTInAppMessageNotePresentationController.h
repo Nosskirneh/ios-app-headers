@@ -10,7 +10,7 @@
 #import "SPTOfflineModeStateObserver-Protocol.h"
 
 @class NSDictionary, NSString, SPTInAppMessageNoteOverlayController, SPTInAppMessageNowPlayingManagerRegistryImplementation, SPTInAppMessageServiceLogger;
-@protocol SPTBannerPresentationManager, SPTCrashReporter, SPTExternalIntegrationDriverDistractionController, SPTFreeTierTooltipConditionalPresenter, SPTInAppMessageSDKMessageViewModel, SPTOfflineModeState, SPTSlateManager, SPTSnackbarConditionalPresenter, SPTTooltipPresentationManager;
+@protocol SPTAuthController, SPTBannerPresentationManager, SPTCrashReporter, SPTExternalIntegrationDriverDistractionController, SPTFreeTierTooltipConditionalPresenter, SPTInAppMessageSDKMessageViewModel, SPTOfflineModeState, SPTSlateManager, SPTSnackbarConditionalPresenter, SPTTooltipPresentationManager;
 
 @interface SPTInAppMessageNotePresentationController : NSObject <SPTOfflineModeStateObserver, SPTInAppMessagePresenter>
 {
@@ -27,6 +27,7 @@
     id <SPTExternalIntegrationDriverDistractionController> _driverDistractionController;
     id <SPTCrashReporter> _crashReporter;
     id <SPTOfflineModeState> _offlineModeState;
+    id <SPTAuthController> _authController;
     NSDictionary *_cancelationInfo;
     NSString *_matchedPattern;
     NSString *_triggerType;
@@ -36,6 +37,7 @@
 @property(copy, nonatomic) NSString *matchedPattern; // @synthesize matchedPattern=_matchedPattern;
 @property(copy, nonatomic) NSDictionary *cancelationInfo; // @synthesize cancelationInfo=_cancelationInfo;
 @property(nonatomic, getter=isOffline) _Bool offline; // @synthesize offline=_offline;
+@property(readonly, nonatomic) id <SPTAuthController> authController; // @synthesize authController=_authController;
 @property(readonly, nonatomic) __weak id <SPTOfflineModeState> offlineModeState; // @synthesize offlineModeState=_offlineModeState;
 @property(readonly, nonatomic) id <SPTCrashReporter> crashReporter; // @synthesize crashReporter=_crashReporter;
 @property(readonly, nonatomic) id <SPTExternalIntegrationDriverDistractionController> driverDistractionController; // @synthesize driverDistractionController=_driverDistractionController;
@@ -56,7 +58,7 @@
 - (void)dismiss;
 - (void)presentInAppMessageView:(id)arg1 withCompletion:(CDUnknownBlockType)arg2;
 - (void)dealloc;
-- (id)initWithNoteOverlayController:(id)arg1 messageViewModel:(id)arg2 matchedPattern:(id)arg3 triggerType:(id)arg4 slateManager:(id)arg5 bannerPresentationManager:(id)arg6 tooltipPresentationManager:(id)arg7 freeTierTooltipPresenter:(id)arg8 snackbarPresenter:(id)arg9 offlineModeState:(id)arg10 nowPlayingManagerRegistry:(id)arg11 driverDistractionController:(id)arg12 serviceLogger:(id)arg13 crashReporter:(id)arg14;
+- (id)initWithNoteOverlayController:(id)arg1 messageViewModel:(id)arg2 matchedPattern:(id)arg3 triggerType:(id)arg4 slateManager:(id)arg5 bannerPresentationManager:(id)arg6 tooltipPresentationManager:(id)arg7 freeTierTooltipPresenter:(id)arg8 snackbarPresenter:(id)arg9 offlineModeState:(id)arg10 nowPlayingManagerRegistry:(id)arg11 driverDistractionController:(id)arg12 serviceLogger:(id)arg13 crashReporter:(id)arg14 authController:(id)arg15;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

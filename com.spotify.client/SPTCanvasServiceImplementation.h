@@ -9,13 +9,11 @@
 #import "SPTCanvasIdleMonitorObserverDelegate-Protocol.h"
 #import "SPTCanvasService-Protocol.h"
 #import "SPTCanvasTestManagerObserver-Protocol.h"
-#import "SPTNowPlayingCarouselContentProviderFactory-Protocol.h"
-#import "SPTNowPlayingShowsFormatOverrider-Protocol.h"
 
-@class NSString, SPTAllocationContext, SPTCanvasContextMenuActionsRegistrar, SPTCanvasLoadStateTracker, SPTCanvasLogger, SPTCanvasLoggingService, SPTCanvasNowPlayingContentLayerProvider, SPTCanvasNowPlayingRegistrator, SPTCanvasNowPlayingViewState, SPTCanvasTestManager, SPTCanvasTooltipPresentationManager, SPTCanvasTrackCheckerImplementation, SPTCanvasViewControllerFactory;
-@protocol GaiaFeature, SPContextMenuFeature, SPTContainerService, SPTCoreService, SPTDataSaverService, SPTEntityService, SPTFeatureFlaggingService, SPTFreeTierTooltipService, SPTModerationService, SPTNetworkService, SPTNowPlayingContainerIdleMonitorObservable, SPTNowPlayingPlatformService, SPTNowPlayingService, SPTPlayerFeature, SPTSessionService, SPTSettingsFeature, SPTURIDispatchService, SPTVideoFeature;
+@class NSString, SPTAllocationContext, SPTCanvasContextMenuActionsRegistrar, SPTCanvasForceArtworkManager, SPTCanvasLoadStateTracker, SPTCanvasLogger, SPTCanvasLoggingService, SPTCanvasNowPlayingContentLayerProvider, SPTCanvasNowPlayingContentReloader, SPTCanvasNowPlayingViewState, SPTCanvasSwitchViewControllerManager, SPTCanvasTestManager, SPTCanvasTooltipPresentationManager, SPTCanvasTrackCheckerImplementation;
+@protocol GaiaFeature, SPContextMenuFeature, SPTContainerService, SPTCoreService, SPTDataSaverService, SPTEntityService, SPTFeatureFlaggingService, SPTFreeTierTooltipService, SPTGLUEService, SPTModerationService, SPTNetworkService, SPTNowPlayingContainerIdleMonitorObservable, SPTNowPlayingPlatformService, SPTNowPlayingService, SPTPageRegistrationToken, SPTPlayerFeature, SPTPlaylistPlatformService, SPTSessionService, SPTSettingsFeature, SPTURIDispatchService, SPTVideoFeature, SPTVideoURLAssetLoader;
 
-@interface SPTCanvasServiceImplementation : NSObject <SPTNowPlayingCarouselContentProviderFactory, SPTNowPlayingShowsFormatOverrider, SPTCanvasIdleMonitorObserverDelegate, SPTCanvasTestManagerObserver, SPTCanvasService>
+@interface SPTCanvasServiceImplementation : NSObject <SPTCanvasIdleMonitorObserverDelegate, SPTCanvasTestManagerObserver, SPTCanvasService>
 {
     id <SPTSessionService> _clientSessionService;
     id <SPTCoreService> _coreService;
@@ -34,33 +32,43 @@
     id <SPTEntityService> _entityService;
     id <SPTURIDispatchService> _URIDispatchService;
     id <SPTFreeTierTooltipService> _tooltipService;
-    id <SPTNowPlayingContainerIdleMonitorObservable> _idleMonitorObservable;
+    id <SPTGLUEService> _glueService;
+    id <SPTPlaylistPlatformService> _playlistPlatformService;
     SPTCanvasTestManager *_testManager;
     SPTCanvasTrackCheckerImplementation *_trackChecker;
-    SPTCanvasContextMenuActionsRegistrar *_contextMenuActionsRegistrar;
-    SPTCanvasNowPlayingRegistrator *_nowPlayingRegistrator;
-    SPTCanvasViewControllerFactory *_canvasViewControllerFactory;
     SPTCanvasLoggingService *_loggingService;
-    SPTCanvasLogger *_canvasLogger;
-    SPTCanvasLoadStateTracker *_canvasLoadStateTracker;
-    SPTCanvasNowPlayingContentLayerProvider *_nowPlayingContentLayerProvider;
+    SPTCanvasContextMenuActionsRegistrar *_contextMenuActionsRegistrar;
+    SPTCanvasTooltipPresentationManager *_canvasToolTipManager;
     SPTCanvasNowPlayingViewState *_nowPlayingState;
-    SPTCanvasTooltipPresentationManager *_tooltipManager;
+    SPTCanvasForceArtworkManager *_forceArtworkManager;
+    id <SPTNowPlayingContainerIdleMonitorObservable> _idleMonitorObservable;
+    id <SPTVideoURLAssetLoader> _canvasVideoAssetLoader;
+    SPTCanvasLogger *_canvasLogger;
+    SPTCanvasNowPlayingContentLayerProvider *_nowPlayingContentLayerProvider;
+    SPTCanvasLoadStateTracker *_canvasLoadStateTracker;
+    SPTCanvasSwitchViewControllerManager *_canvasSwitchManager;
+    id <SPTPageRegistrationToken> _canvasPlaylistRegistration;
+    SPTCanvasNowPlayingContentReloader *_canvasContentReloader;
 }
 
 + (id)serviceIdentifier;
-@property(retain, nonatomic) SPTCanvasTooltipPresentationManager *tooltipManager; // @synthesize tooltipManager=_tooltipManager;
-@property(retain, nonatomic) SPTCanvasNowPlayingViewState *nowPlayingState; // @synthesize nowPlayingState=_nowPlayingState;
-@property(retain, nonatomic) SPTCanvasNowPlayingContentLayerProvider *nowPlayingContentLayerProvider; // @synthesize nowPlayingContentLayerProvider=_nowPlayingContentLayerProvider;
+@property(retain, nonatomic) SPTCanvasNowPlayingContentReloader *canvasContentReloader; // @synthesize canvasContentReloader=_canvasContentReloader;
+@property(retain, nonatomic) id <SPTPageRegistrationToken> canvasPlaylistRegistration; // @synthesize canvasPlaylistRegistration=_canvasPlaylistRegistration;
+@property(retain, nonatomic) SPTCanvasSwitchViewControllerManager *canvasSwitchManager; // @synthesize canvasSwitchManager=_canvasSwitchManager;
 @property(retain, nonatomic) SPTCanvasLoadStateTracker *canvasLoadStateTracker; // @synthesize canvasLoadStateTracker=_canvasLoadStateTracker;
+@property(retain, nonatomic) SPTCanvasNowPlayingContentLayerProvider *nowPlayingContentLayerProvider; // @synthesize nowPlayingContentLayerProvider=_nowPlayingContentLayerProvider;
 @property(retain, nonatomic) SPTCanvasLogger *canvasLogger; // @synthesize canvasLogger=_canvasLogger;
-@property(retain, nonatomic) SPTCanvasLoggingService *loggingService; // @synthesize loggingService=_loggingService;
-@property(retain, nonatomic) SPTCanvasViewControllerFactory *canvasViewControllerFactory; // @synthesize canvasViewControllerFactory=_canvasViewControllerFactory;
-@property(retain, nonatomic) SPTCanvasNowPlayingRegistrator *nowPlayingRegistrator; // @synthesize nowPlayingRegistrator=_nowPlayingRegistrator;
+@property(retain, nonatomic) id <SPTVideoURLAssetLoader> canvasVideoAssetLoader; // @synthesize canvasVideoAssetLoader=_canvasVideoAssetLoader;
+@property(retain, nonatomic) id <SPTNowPlayingContainerIdleMonitorObservable> idleMonitorObservable; // @synthesize idleMonitorObservable=_idleMonitorObservable;
+@property(retain, nonatomic) SPTCanvasForceArtworkManager *forceArtworkManager; // @synthesize forceArtworkManager=_forceArtworkManager;
+@property(retain, nonatomic) SPTCanvasNowPlayingViewState *nowPlayingState; // @synthesize nowPlayingState=_nowPlayingState;
+@property(retain, nonatomic) SPTCanvasTooltipPresentationManager *canvasToolTipManager; // @synthesize canvasToolTipManager=_canvasToolTipManager;
 @property(retain, nonatomic) SPTCanvasContextMenuActionsRegistrar *contextMenuActionsRegistrar; // @synthesize contextMenuActionsRegistrar=_contextMenuActionsRegistrar;
+@property(retain, nonatomic) SPTCanvasLoggingService *loggingService; // @synthesize loggingService=_loggingService;
 @property(retain, nonatomic) SPTCanvasTrackCheckerImplementation *trackChecker; // @synthesize trackChecker=_trackChecker;
 @property(retain, nonatomic) SPTCanvasTestManager *testManager; // @synthesize testManager=_testManager;
-@property(retain, nonatomic) id <SPTNowPlayingContainerIdleMonitorObservable> idleMonitorObservable; // @synthesize idleMonitorObservable=_idleMonitorObservable;
+@property(nonatomic) __weak id <SPTPlaylistPlatformService> playlistPlatformService; // @synthesize playlistPlatformService=_playlistPlatformService;
+@property(nonatomic) __weak id <SPTGLUEService> glueService; // @synthesize glueService=_glueService;
 @property(nonatomic) __weak id <SPTFreeTierTooltipService> tooltipService; // @synthesize tooltipService=_tooltipService;
 @property(nonatomic) __weak id <SPTURIDispatchService> URIDispatchService; // @synthesize URIDispatchService=_URIDispatchService;
 @property(nonatomic) __weak id <SPTEntityService> entityService; // @synthesize entityService=_entityService;
@@ -83,27 +91,32 @@
 - (void)registerCanvasSettingsSection;
 - (void)registerContextMenuActions;
 - (void)registerCanvasDecorator;
-- (_Bool)shouldPresentShowsFormatNPVForTrack:(id)arg1;
 - (void)unregisterNowPlayingContentLayer;
 - (void)registerNowPlayingContentLayer;
 - (void)disableCanvas;
 - (void)enableCanvas;
-- (void)didDisableCanvas:(id)arg1;
-- (void)didEnableCanvas:(id)arg1;
+- (void)didChangeCanvasEnabled:(id)arg1;
+- (void)unloadCanvasSwitchManager;
+- (void)loadCanvasSwitchManager;
 - (void)unloadCanvasLogger;
 - (void)loadCanvasLogger;
 - (void)unloadTestManager;
 - (void)loadTestManager;
 - (void)unload;
+- (id)canvasPlaylistViewController:(id)arg1;
+- (void)unregisterCanvasPlaylistProvider;
+- (void)registerCanvasPlaylistProvider;
 - (void)load;
 - (void)configureWithServices:(id)arg1;
 - (void)unRegisterNowPlayingIdleMonitorWithObserver:(id)arg1;
 - (void)registerNowPlayingIdleMonitorWithObserver:(id)arg1;
+- (id)createCanvasContentLayerViewControllerViewModelFactoryWithAssetLoader:(id)arg1;
+- (id)createCanvasContentLayerViewControllerViewModelFactory;
 - (_Bool)isCanvasEnabled;
+- (id)provideCanvasViewControllerFactory;
 - (id)provideCanvasTrackChecker;
 - (id)provideCanvasVideoLoaderFactory;
 - (id)provideCanvasMetadataResolverFactory;
-- (id)createProvider;
 - (id)createImageResolverFactory;
 
 // Remaining properties

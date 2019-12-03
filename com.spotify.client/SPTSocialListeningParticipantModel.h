@@ -12,19 +12,19 @@
 
 @interface SPTSocialListeningParticipantModel : NSObject <SPTSocialListeningParticipantModelEntity>
 {
-    _Bool _host;
     _Bool _currentUser;
     NSURL *_imageURL;
     NSString *_participantID;
     NSString *_username;
     NSString *_name;
     NSURL *_largeImageURL;
+    long long _memberType;
 }
 
+@property(readonly, nonatomic) long long memberType; // @synthesize memberType=_memberType;
 @property(readonly, nonatomic) NSURL *largeImageURL; // @synthesize largeImageURL=_largeImageURL;
 @property(readonly, copy, nonatomic) NSString *name; // @synthesize name=_name;
 @property(readonly, nonatomic, getter=isCurrentUser) _Bool currentUser; // @synthesize currentUser=_currentUser;
-@property(readonly, nonatomic, getter=isHost) _Bool host; // @synthesize host=_host;
 @property(readonly, copy, nonatomic) NSString *username; // @synthesize username=_username;
 @property(readonly, copy, nonatomic) NSString *participantID; // @synthesize participantID=_participantID;
 @property(readonly, nonatomic) NSURL *imageURL; // @synthesize imageURL=_imageURL;

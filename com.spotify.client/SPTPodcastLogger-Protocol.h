@@ -9,9 +9,9 @@
 @class NSIndexPath, NSNumber, NSString, NSURL;
 
 @protocol SPTPodcastLogger <NSObject>
-- (void)logInteractionForAnchorItemInViewURL:(NSURL *)arg1 targetURL:(NSURL *)arg2 isEmptyState:(_Bool)arg3;
-- (void)logImpressionForAnchorItemInViewURL:(NSURL *)arg1 targetURL:(NSURL *)arg2 isEmptyState:(_Bool)arg3;
 - (void)logUIImpressionForFeatureID:(NSString *)arg1 pageURI:(NSString *)arg2 section:(NSString *)arg3 itemIndex:(long long)arg4 targetURI:(NSString *)arg5;
+- (void)logDescriptionExpanded:(NSURL *)arg1;
+- (void)logNavigatToTopicPage:(NSURL *)arg1 topicURI:(NSString *)arg2;
 - (void)logNavigateBrowsePodcastsPageInViewURL:(NSURL *)arg1 featureId:(NSString *)arg2;
 - (void)logNavigateToShowPageInViewURL:(NSURL *)arg1 targetURL:(NSURL *)arg2;
 - (void)logRemoveDownloadedEpisodeInViewURL:(NSURL *)arg1 featureId:(NSString *)arg2 episodeURI:(NSURL *)arg3 indexPath:(NSIndexPath *)arg4;
@@ -21,17 +21,11 @@
 - (void)logNavigateToEpisodePageInViewURL:(NSURL *)arg1 featureId:(NSString *)arg2 episodeURI:(NSURL *)arg3 indexPath:(NSIndexPath *)arg4;
 - (void)logPauseEpisodeInViewURL:(NSURL *)arg1 featureId:(NSString *)arg2 episodeURI:(NSURL *)arg3 indexPath:(NSIndexPath *)arg4;
 - (void)logPlayEpisodeInViewURL:(NSURL *)arg1 featureId:(NSString *)arg2 episodeURI:(NSURL *)arg3 indexPath:(NSIndexPath *)arg4;
-- (void)logUIImpressionForViewURI:(NSString *)arg1 section:(NSString *)arg2 index:(long long)arg3;
-- (void)logUIImpressionForPage:(NSString *)arg1 index:(long long)arg2;
 - (void)logSpeedControlSelected:(NSNumber *)arg1;
 - (void)logLoadShowViewURL:(NSURL *)arg1;
 - (void)logOpenContextMenuShowInViewURL:(NSURL *)arg1;
 - (void)logOpenContextMenuEpisodeInViewURL:(NSURL *)arg1 episodeURI:(NSURL *)arg2 indexPath:(NSIndexPath *)arg3;
-- (void)logEditModeBatchRemoveOfflineInViewURL:(NSURL *)arg1 all:(_Bool)arg2;
 - (void)logMarkAsPlayedUnplayedContextMenu:(NSURL *)arg1 episodeURI:(NSURL *)arg2 played:(_Bool)arg3;
-- (void)logEditModeItemActionInViewURL:(NSURL *)arg1 episodeURI:(NSURL *)arg2 indexPath:(NSIndexPath *)arg3 remove:(_Bool)arg4;
-- (void)logEditModeItemActionInViewURL:(NSURL *)arg1 episodeURI:(NSURL *)arg2 indexPath:(NSIndexPath *)arg3 offline:(_Bool)arg4;
-- (void)logEditModeInViewURL:(NSURL *)arg1 entered:(_Bool)arg2 listPosition:(double)arg3;
 - (void)logShowFollowInViewURL:(NSURL *)arg1 didFollow:(_Bool)arg2 fromContextMenu:(_Bool)arg3 autoFollow:(_Bool)arg4;
 - (void)logEpisodeSortingInViewURL:(NSURL *)arg1 sorting:(unsigned long long)arg2;
 - (void)logEpisodeFilterResetInViewURL:(NSURL *)arg1;

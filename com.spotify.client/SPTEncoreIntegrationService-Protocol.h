@@ -6,9 +6,10 @@
 
 #import "SPTService-Protocol.h"
 
-@protocol SPTEncoreComponentFactory;
+@protocol SPTEncoreTestManager, SPTEncoreTrackRowFactory;
 
 @protocol SPTEncoreIntegrationService <SPTService>
-- (id <SPTEncoreComponentFactory>)provideObjCComponentFactory;
+- (id <SPTEncoreTestManager>)provideTestManager;
+- (id <SPTEncoreTrackRowFactory>)provideComponentFactory;
 @end
 

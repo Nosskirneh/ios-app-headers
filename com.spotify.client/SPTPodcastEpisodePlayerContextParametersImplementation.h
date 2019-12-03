@@ -8,14 +8,18 @@
 
 #import "SPTPodcastEpisodePlayerContextParameters-Protocol.h"
 
-@class NSString, NSURL;
+@class NSNumber, NSString, NSURL, SPTPlayerContext;
 
 @interface SPTPodcastEpisodePlayerContextParametersImplementation : NSObject <SPTPodcastEpisodePlayerContextParameters>
 {
     NSString *episodeItemID;
     NSURL *playerContextURI;
+    SPTPlayerContext *playerContext;
+    NSNumber *timestamp;
 }
 
+@property(readonly, nonatomic) NSNumber *timestamp; // @synthesize timestamp;
+@property(readonly, nonatomic) SPTPlayerContext *playerContext; // @synthesize playerContext;
 @property(readonly, nonatomic) NSURL *playerContextURI; // @synthesize playerContextURI;
 @property(readonly, nonatomic) NSString *episodeItemID; // @synthesize episodeItemID;
 - (void).cxx_destruct;

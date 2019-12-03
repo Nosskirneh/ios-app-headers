@@ -7,7 +7,7 @@
 #import "SPTUIPageService.h"
 
 @class SPTPersistentCache, SPTPremiumDestinationHubManager, SPTPremiumDestinationSettingsPageBuilder, SPTUpsellAccountLogger;
-@protocol NSObject, SPTAccountService, SPTFeatureFlagFactory, SPTFeatureFlagSignal, SPTFeatureSettingsItemFactory, SPTFreeTierService, SPTGLUEService, SPTHubFrameworkService, SPTLogCenter, SPTMandatoryPremiumTrialService, SPTNavigationFeature, SPTNavigationListProvider, SPTNetworkService, SPTPremiumDestinationExperiments, SPTSessionService, SPTSettingsFeature, SPTURIDispatchService;
+@protocol NSObject, SPTAccountService, SPTFeatureFlagFactory, SPTFeatureFlagSignal, SPTFeatureSettingsItemFactory, SPTFreeTierService, SPTGLUEService, SPTHubFrameworkService, SPTLogCenter, SPTMandatoryPremiumTrialService, SPTNavigationFeature, SPTNavigationListProvider, SPTNetworkService, SPTPremiumDestinationExperiments, SPTRemoteConfigurationService, SPTSessionService, SPTSettingsFeature, SPTURIDispatchService;
 
 @interface SPTPremiumDestinationService : SPTUIPageService
 {
@@ -22,6 +22,7 @@
     id <SPTMandatoryPremiumTrialService> _mandatoryPremiumTrialService;
     id <SPTNetworkService> _networkService;
     id <SPTURIDispatchService> _URIDispatchService;
+    id <SPTRemoteConfigurationService> _remoteConfigurationService;
     id <SPTLogCenter> _logCenter;
     SPTUpsellAccountLogger *_accountLogger;
     id <SPTFeatureFlagSignal> _freeTierFeatureFlagSignal;
@@ -48,6 +49,7 @@
 @property(retain, nonatomic) id <SPTFeatureFlagSignal> freeTierFeatureFlagSignal; // @synthesize freeTierFeatureFlagSignal=_freeTierFeatureFlagSignal;
 @property(retain, nonatomic) SPTUpsellAccountLogger *accountLogger; // @synthesize accountLogger=_accountLogger;
 @property(retain, nonatomic) id <SPTLogCenter> logCenter; // @synthesize logCenter=_logCenter;
+@property(nonatomic) __weak id <SPTRemoteConfigurationService> remoteConfigurationService; // @synthesize remoteConfigurationService=_remoteConfigurationService;
 @property(nonatomic) __weak id <SPTURIDispatchService> URIDispatchService; // @synthesize URIDispatchService=_URIDispatchService;
 @property(nonatomic) __weak id <SPTNetworkService> networkService; // @synthesize networkService=_networkService;
 @property(nonatomic) __weak id <SPTMandatoryPremiumTrialService> mandatoryPremiumTrialService; // @synthesize mandatoryPremiumTrialService=_mandatoryPremiumTrialService;

@@ -17,9 +17,11 @@
     long long _currentStatus;
     struct UIView *_animationView;
     id <GLUETheme> _theme;
+    double _currentProgress;
 }
 
 + (id)accessibilityLabelForStatus:(long long)arg1;
+@property(nonatomic) double currentProgress; // @synthesize currentProgress=_currentProgress;
 @property(nonatomic) _Bool granularDownloadProgressEnabled; // @synthesize granularDownloadProgressEnabled=_granularDownloadProgressEnabled;
 @property(retain, nonatomic) id <GLUETheme> theme; // @synthesize theme=_theme;
 @property(retain, nonatomic) UIView<GLUEStatefulAnimationLoading><GLUEStatefulAnimationControlling><GLUEAnimationControlling> *animationView; // @synthesize animationView=_animationView;
@@ -34,6 +36,7 @@
 - (void)configureAnimationTransitions;
 - (void)glue_applyStyle:(id)arg1;
 - (void)updateAnimationProgress:(double)arg1;
+- (void)updateCurrentProgressForSyncStatus:(long long)arg1;
 - (void)updateOfflineSyncStatus:(long long)arg1 withTheme:(id)arg2;
 - (struct CGSize)intrinsicContentSize;
 - (void)dealloc;

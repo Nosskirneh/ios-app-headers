@@ -23,15 +23,20 @@
     // Error parsing type: , name: flagDisabledSignal
     // Error parsing type: , name: flagEnabledSignal
     // Error parsing type: , name: flagEnabledAlwaysAvailableSignal
-    // Error parsing type: , name: isFeatureEnabled
-    // Error parsing type: , name: configuration
-    // Error parsing type: , name: player.storage
+    // Error parsing type: , name: sessionFactory
+    // Error parsing type: , name: session
+    // Error parsing type: , name: rootPageRegistrationToken
+    // Error parsing type: , name: routinesListPageRegistrationToken
+    // Error parsing type: , name: barViewControllerProvider
+    // Error parsing type: , name: snackbarViewManager
+    // Error parsing type: , name: $__lazy_storage_$_routinesViewControllerFactory
+    // Error parsing type: , name: $__lazy_storage_$_player
+    // Error parsing type: , name: testManager
 }
 
 + (id)serviceIdentifier;
 - (void).cxx_destruct;
 - (id)init;
-- (id)provideViewControllerFor:(id)arg1 context:(id)arg2;
 - (void)load;
 - (void)configureWithServices:(id)arg1;
 

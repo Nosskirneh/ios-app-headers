@@ -6,10 +6,12 @@
 
 #import <objc/NSObject.h>
 
+#import "SPTFreeTierPresentationService-Protocol.h"
+
 @class NSString, SPTAllocationContext;
 @protocol SPTContainerService, SPTContainerUIService, SPTFreeTierPresentationModalPresenter;
 
-@interface SPTFreeTierPresentationServiceImplementation : NSObject
+@interface SPTFreeTierPresentationServiceImplementation : NSObject <SPTFreeTierPresentationService>
 {
     id <SPTContainerService> _containerService;
     id <SPTContainerUIService> _containerUIService;

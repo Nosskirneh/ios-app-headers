@@ -6,7 +6,9 @@
 
 #import "_TtC21EntityAllSongsFeature21EntityAllSongsService.h"
 
-@interface _TtC21EntityAllSongsFeature21EntityAllSongsService (EntityAllSongsFeature2)
+#import "SPTURISubtypeHandler-Protocol.h"
+
+@interface _TtC21EntityAllSongsFeature21EntityAllSongsService (EntityAllSongsFeature2) <SPTURISubtypeHandler>
 - (long long)URISubtypeHandlerOpenURI:(id)arg1 context:(id)arg2;
 - (_Bool)URISubtypeHandlerCanHandleURI:(id)arg1;
 @end

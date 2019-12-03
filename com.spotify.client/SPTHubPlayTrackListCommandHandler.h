@@ -8,21 +8,25 @@
 
 #import "HUBCommandHandler-Protocol.h"
 
-@protocol SPTHubInteractionLogger, SPTHubPlayTrackListCommandHandlerDelegate, SPTPlayer;
+@protocol SPTEventFactoryMapper, SPTHubInteractionLogger, SPTHubPlayTrackListCommandHandlerDelegate, SPTPlayer, SPTUserBehaviourInstrumentationHubsEventMapper;
 
 @interface SPTHubPlayTrackListCommandHandler : NSObject <HUBCommandHandler>
 {
     id <SPTHubPlayTrackListCommandHandlerDelegate> _delegate;
     id <SPTPlayer> _player;
     id <SPTHubInteractionLogger> _interactionLogger;
+    id <SPTEventFactoryMapper> _eventFactory;
+    id <SPTUserBehaviourInstrumentationHubsEventMapper> _eventMapper;
 }
 
+@property(readonly, nonatomic) id <SPTUserBehaviourInstrumentationHubsEventMapper> eventMapper; // @synthesize eventMapper=_eventMapper;
+@property(readonly, nonatomic) id <SPTEventFactoryMapper> eventFactory; // @synthesize eventFactory=_eventFactory;
 @property(readonly, nonatomic) id <SPTHubInteractionLogger> interactionLogger; // @synthesize interactionLogger=_interactionLogger;
 @property(readonly, nonatomic) id <SPTPlayer> player; // @synthesize player=_player;
 @property(nonatomic) __weak id <SPTHubPlayTrackListCommandHandlerDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
 - (void)handleCommand:(id)arg1 event:(id)arg2;
-- (id)initWithPlayer:(id)arg1 interactionLogger:(id)arg2;
+- (id)initWithPlayer:(id)arg1 interactionLogger:(id)arg2 eventFactory:(id)arg3 eventMapper:(id)arg4;
 
 @end
 

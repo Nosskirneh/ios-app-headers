@@ -8,7 +8,7 @@
 
 #import "SPTBarButtonItemManagerObserver-Protocol.h"
 
-@class NSString, UIViewController;
+@class NSString, UIBarButtonItem, UIViewController;
 @protocol SPTBarButtonItemManager, SPTCollectionPlatformConfiguration, SPTFreeTierPlaylistBarButtonManagerDelegate, SPTFreeTierPlaylistViewModel, SPTPageController;
 
 @interface SPTFreeTierPlaylistBarButtonManager : NSObject <SPTBarButtonItemManagerObserver>
@@ -19,9 +19,11 @@
     id <SPTCollectionPlatformConfiguration> _collectionConfiguration;
     UIViewController<SPTPageController> *_viewController;
     id <SPTFreeTierPlaylistViewModel> _viewModel;
+    UIBarButtonItem *_contextMenuButton;
 }
 
 + (id)fixedSpaceItem;
+@property(retain, nonatomic) UIBarButtonItem *contextMenuButton; // @synthesize contextMenuButton=_contextMenuButton;
 @property(nonatomic, getter=isSuspended) _Bool suspended; // @synthesize suspended=_suspended;
 @property(nonatomic) __weak id <SPTFreeTierPlaylistViewModel> viewModel; // @synthesize viewModel=_viewModel;
 @property(nonatomic) __weak UIViewController<SPTPageController> *viewController; // @synthesize viewController=_viewController;

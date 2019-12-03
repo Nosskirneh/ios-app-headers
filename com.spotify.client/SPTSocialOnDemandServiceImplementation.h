@@ -6,12 +6,13 @@
 
 #import <objc/NSObject.h>
 
+#import "SPTFeatureFlagSignalObserver-Protocol.h"
 #import "SPTSocialOnDemandService-Protocol.h"
 
 @class NSString, SPTAllocationContext, SPTSocialOnDemandLinkHandler;
 @protocol SPTContainerService, SPTFeatureFlagSignal, SPTFeatureFlaggingService, SPTNowPlayingService, SPTPlayerFeature, SPTSnackbarService, SPTURIDispatchService;
 
-@interface SPTSocialOnDemandServiceImplementation : NSObject <SPTSocialOnDemandService>
+@interface SPTSocialOnDemandServiceImplementation : NSObject <SPTFeatureFlagSignalObserver, SPTSocialOnDemandService>
 {
     id <SPTContainerService> _containerService;
     id <SPTFeatureFlaggingService> _featureFlaggingService;

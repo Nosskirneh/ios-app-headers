@@ -6,13 +6,16 @@
 
 #import <objc/NSObject.h>
 
-@class NSString, SPTAllocationContext, SPTLinkDispatcherImplementation, SPTURISubtypeRegistryImplementation;
+#import "SPTURIDispatchService-Protocol.h"
+
+@class NSString, SPTActivateLinkHandler, SPTAllocationContext, SPTLinkDispatcherImplementation, SPTURISubtypeRegistryImplementation;
 @protocol SPTContainerUIService, SPTCoreService;
 
-@interface SPTURIDispatchServiceImplementation : NSObject
+@interface SPTURIDispatchServiceImplementation : NSObject <SPTURIDispatchService>
 {
     id <SPTContainerUIService> _containerUIService;
     id <SPTCoreService> _coreService;
+    SPTActivateLinkHandler *_activateLinkHandler;
     SPTLinkDispatcherImplementation *_linkDispatcher;
     SPTURISubtypeRegistryImplementation *_URISubtypeRegistry;
 }
@@ -20,6 +23,7 @@
 + (id)serviceIdentifier;
 @property(retain, nonatomic) SPTURISubtypeRegistryImplementation *URISubtypeRegistry; // @synthesize URISubtypeRegistry=_URISubtypeRegistry;
 @property(retain, nonatomic) SPTLinkDispatcherImplementation *linkDispatcher; // @synthesize linkDispatcher=_linkDispatcher;
+@property(retain, nonatomic) SPTActivateLinkHandler *activateLinkHandler; // @synthesize activateLinkHandler=_activateLinkHandler;
 @property(nonatomic) __weak id <SPTCoreService> coreService; // @synthesize coreService=_coreService;
 @property(nonatomic) __weak id <SPTContainerUIService> containerUIService; // @synthesize containerUIService=_containerUIService;
 - (void).cxx_destruct;

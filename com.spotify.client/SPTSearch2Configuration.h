@@ -16,7 +16,6 @@
     _Bool _offlineSearchEnabled;
     _Bool _playRecentTracksEnabled;
     _Bool _loadingLoggingEnabled;
-    _Bool _autocompleteEnabled;
     NSString *_recentsGroupID;
     NSString *_recentsCommandName;
     id <SPTSearch2URLProviding> _urlProvider;
@@ -28,7 +27,6 @@
     NSString *_customFeatureID;
 }
 
-@property(nonatomic, getter=isAutocompleteEnabled) _Bool autocompleteEnabled; // @synthesize autocompleteEnabled=_autocompleteEnabled;
 @property(copy, nonatomic) NSString *customFeatureID; // @synthesize customFeatureID=_customFeatureID;
 @property(copy, nonatomic) NSURL *customPageURI; // @synthesize customPageURI=_customPageURI;
 @property(copy, nonatomic) NSString *customPageIdentifer; // @synthesize customPageIdentifer=_customPageIdentifer;

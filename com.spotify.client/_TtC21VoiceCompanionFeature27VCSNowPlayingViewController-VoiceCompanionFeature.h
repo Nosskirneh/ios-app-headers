@@ -6,7 +6,9 @@
 
 #import "_TtC21VoiceCompanionFeature27VCSNowPlayingViewController.h"
 
-@interface _TtC21VoiceCompanionFeature27VCSNowPlayingViewController (VoiceCompanionFeature)
+#import "_TtP21VoiceCompanionFeature24VCSMainViewModelObserver_-Protocol.h"
+
+@interface _TtC21VoiceCompanionFeature27VCSNowPlayingViewController (VoiceCompanionFeature) <_TtP21VoiceCompanionFeature24VCSMainViewModelObserver_>
 - (void)didUpdateFutureWithTracks:(id)arg1;
 - (void)didUpdateCurrentPlayingWithTrack:(id)arg1;
 - (void)didUpdateContextWithEntity:(id)arg1;

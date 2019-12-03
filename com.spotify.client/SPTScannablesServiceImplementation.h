@@ -9,7 +9,7 @@
 #import "SPTScannablesService-Protocol.h"
 
 @class NSMutableDictionary, NSString, SPTAllocationContext, SPTScannablesAuthorizationRequester, SPTScannablesDependencies, SPTScannablesImageLoaderRequestFactory, SPTScannablesScanViewModelFactory, SPTScannablesSlateFactory, SPTScannablesUserInterfaceFactoryImplementation;
-@protocol SPTAbbaService, SPTBarButtonItemManager, SPTContainerService, SPTContainerUIService, SPTGLUEService, SPTLocalSettings, SPTNavigationFeature, SPTNetworkService, SPTScannablesOnboardingPresenter, SPTScannablesRegistry, SPTScannablesShortcutItemProvider, SPTSessionService, SPTSettingsFeature, SPTTooltipService, SPTURIDispatchService, SlateFeature;
+@protocol SPTAbbaService, SPTBarButtonItemManager, SPTContainerService, SPTContainerUIService, SPTGLUEService, SPTLocalSettings, SPTNavigationFeature, SPTNetworkService, SPTScannablesOnboardingPresenter, SPTScannablesPresenter, SPTScannablesRegistry, SPTScannablesShortcutItemProvider, SPTSessionService, SPTSettingsFeature, SPTTooltipService, SPTUIPresentationService, SPTURIDispatchService, SlateFeature;
 
 @interface SPTScannablesServiceImplementation : NSObject <SPTScannablesService>
 {
@@ -25,6 +25,7 @@
     id <SPTTooltipService> _tooltipService;
     id <SPTSettingsFeature> _settingsService;
     id <SPTGLUEService> _glueService;
+    id <SPTUIPresentationService> _UIPresentationService;
     SPTScannablesUserInterfaceFactoryImplementation *_userInterfaceFactory;
     id <SPTBarButtonItemManager> _barButtonItemManager;
     SPTScannablesScanViewModelFactory *_scanViewModelFactory;
@@ -35,11 +36,13 @@
     id <SPTScannablesRegistry> _scannablesRegistry;
     id <SPTScannablesShortcutItemProvider> _scannablesShortcutItemProvider;
     SPTScannablesImageLoaderRequestFactory *_imageLoaderFactory;
+    id <SPTScannablesPresenter> _scannablesPresenter;
     NSMutableDictionary *_scannablesDataSources;
 }
 
 + (id)serviceIdentifier;
 @property(retain, nonatomic) NSMutableDictionary *scannablesDataSources; // @synthesize scannablesDataSources=_scannablesDataSources;
+@property(retain, nonatomic) id <SPTScannablesPresenter> scannablesPresenter; // @synthesize scannablesPresenter=_scannablesPresenter;
 @property(retain, nonatomic) SPTScannablesImageLoaderRequestFactory *imageLoaderFactory; // @synthesize imageLoaderFactory=_imageLoaderFactory;
 @property(retain, nonatomic) id <SPTScannablesShortcutItemProvider> scannablesShortcutItemProvider; // @synthesize scannablesShortcutItemProvider=_scannablesShortcutItemProvider;
 @property(retain, nonatomic) id <SPTScannablesRegistry> scannablesRegistry; // @synthesize scannablesRegistry=_scannablesRegistry;
@@ -50,6 +53,7 @@
 @property(retain, nonatomic) SPTScannablesScanViewModelFactory *scanViewModelFactory; // @synthesize scanViewModelFactory=_scanViewModelFactory;
 @property(retain, nonatomic) id <SPTBarButtonItemManager> barButtonItemManager; // @synthesize barButtonItemManager=_barButtonItemManager;
 @property(retain, nonatomic) SPTScannablesUserInterfaceFactoryImplementation *userInterfaceFactory; // @synthesize userInterfaceFactory=_userInterfaceFactory;
+@property(nonatomic) __weak id <SPTUIPresentationService> UIPresentationService; // @synthesize UIPresentationService=_UIPresentationService;
 @property(nonatomic) __weak id <SPTGLUEService> glueService; // @synthesize glueService=_glueService;
 @property(nonatomic) __weak id <SPTSettingsFeature> settingsService; // @synthesize settingsService=_settingsService;
 @property(nonatomic) __weak id <SPTTooltipService> tooltipService; // @synthesize tooltipService=_tooltipService;
@@ -71,6 +75,7 @@
 - (id)provideAuthorizationRequester;
 - (id)provideScanViewModelFactory;
 - (id)provideScanViewController;
+- (id)provideScannablesPresenter;
 - (id)provideDataSourceWithIdentifier:(id)arg1;
 - (id)provideUserInterfaceFactory;
 - (id)provideTestManager;

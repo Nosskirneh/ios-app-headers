@@ -10,7 +10,7 @@
 #import "SPTInAppMessageQAToolBannerViewDelegate-Protocol.h"
 #import "SPTInAppMessageQAToolViewModelObserver-Protocol.h"
 
-@class NSMutableArray, NSString, SPTInAppMessageActionFactory, SPTInAppMessageBannerMessageViewModel, SPTInAppMessageQAToolBannerMessageParser, SPTInAppMessageQAToolBannerMessageViewController;
+@class NSDictionary, NSMutableArray, NSMutableDictionary, NSString, SPTInAppMessageActionFactory, SPTInAppMessageBannerMessageViewModel, SPTInAppMessageQAToolBannerMessageParser, SPTInAppMessageQAToolBannerMessageViewController;
 @protocol SPTBannerPresentationManager, SPTBannerPresentationManagerTicket, SPTInAppMessageQAToolFormatMessageControllerDelegate;
 
 @interface SPTInAppMessageQAToolBannerMessageController : NSObject <SPTInAppMessageBannerMessageWebViewContentDelegate, SPTInAppMessageQAToolBannerViewDelegate, SPTInAppMessageQAToolViewModelObserver>
@@ -23,8 +23,14 @@
     id <SPTBannerPresentationManager> _bannerPresentationManager;
     id <SPTBannerPresentationManagerTicket> _bannerTicket;
     SPTInAppMessageQAToolBannerMessageViewController *_bannerMessageViewController;
+    NSMutableDictionary *_campaignLocales;
+    NSString *_messageLocale;
+    NSDictionary *_languagesAndCountries;
 }
 
+@property(copy, nonatomic) NSDictionary *languagesAndCountries; // @synthesize languagesAndCountries=_languagesAndCountries;
+@property(copy, nonatomic) NSString *messageLocale; // @synthesize messageLocale=_messageLocale;
+@property(retain, nonatomic) NSMutableDictionary *campaignLocales; // @synthesize campaignLocales=_campaignLocales;
 @property(retain, nonatomic) SPTInAppMessageQAToolBannerMessageViewController *bannerMessageViewController; // @synthesize bannerMessageViewController=_bannerMessageViewController;
 @property(retain, nonatomic) id <SPTBannerPresentationManagerTicket> bannerTicket; // @synthesize bannerTicket=_bannerTicket;
 @property(retain, nonatomic) id <SPTBannerPresentationManager> bannerPresentationManager; // @synthesize bannerPresentationManager=_bannerPresentationManager;
@@ -45,6 +51,7 @@
 - (void)presentBanner;
 - (void)presentFirstMessageInQueue;
 - (void)parseBannerData:(id)arg1;
+- (void)qaToolViewModel:(id)arg1 didFetchLanguagesAndCountries:(id)arg2;
 - (void)qaToolViewModel:(id)arg1 didFetchBannerCreativesData:(id)arg2;
 - (id)initWithBannerMessageParser:(id)arg1 actionFactory:(id)arg2 bannerPresentationManager:(id)arg3;
 

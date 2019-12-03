@@ -15,7 +15,7 @@
 #import "SPTService-Protocol.h"
 #import "SPTSpotifyAppProtocolService-Protocol.h"
 
-@class NSMapTable, NSString, SPSession, SPTAllocationContext, SPTAppProtocolBackgroundController, SPTAppProtocolDelegateConnector, SPTAppProtocolEAConnector, SPTAppProtocolFeatureFlagManager;
+@class NSMapTable, NSString, SPSession, SPTAllocationContext, SPTAppProtocolBackgroundController, SPTAppProtocolEAConnector, SPTAppProtocolFeatureFlagManager;
 @protocol SPTAccessoryManagerService, SPTAccessoryStateManager, SPTAppProtocolConnector, SPTAuthController, SPTCoreService, SPTExternalIntegrationDebugLog, SPTExternalIntegrationDebugLogService, SPTExternalIntegrationPlatform, SPTGaiaConnectAPI, SPTNetworkService, SPTProductState;
 
 @interface SPTSpotifyAppProtocolServiceImplementation : NSObject <NSNetServiceDelegate, SPTAppProtocolConnectionHandlerDelegate, SPTAppProtocolConnectorDelegate, SPTExternalIntegrationPlaybackControllerObserver, SPTAppProtocolBackgroundControllerDelegate, SPTAppProtocolFeatureFlagManagerObserver, SPTService, SPTSpotifyAppProtocolService>
@@ -34,7 +34,6 @@
     id <SPTCoreService> _coreService;
     id <SPTAppProtocolConnector> _socketConnector;
     SPTAppProtocolEAConnector *_eaConnector;
-    SPTAppProtocolDelegateConnector *_delegateConnector;
     SPTAppProtocolBackgroundController *_backgroundController;
     id <SPTExternalIntegrationDebugLog> _debugLog;
     NSMapTable *_activeConnectionHandlers;
@@ -45,7 +44,6 @@
 @property(retain, nonatomic) id <SPTExternalIntegrationDebugLog> debugLog; // @synthesize debugLog=_debugLog;
 @property(nonatomic, getter=isBackgrounded) _Bool backgrounded; // @synthesize backgrounded=_backgrounded;
 @property(retain, nonatomic) SPTAppProtocolBackgroundController *backgroundController; // @synthesize backgroundController=_backgroundController;
-@property(retain, nonatomic) SPTAppProtocolDelegateConnector *delegateConnector; // @synthesize delegateConnector=_delegateConnector;
 @property(retain, nonatomic) SPTAppProtocolEAConnector *eaConnector; // @synthesize eaConnector=_eaConnector;
 @property(retain, nonatomic) id <SPTAppProtocolConnector> socketConnector; // @synthesize socketConnector=_socketConnector;
 @property(readonly, nonatomic) __weak id <SPTCoreService> coreService; // @synthesize coreService=_coreService;
@@ -84,12 +82,9 @@
 - (void)disableSocketConnections;
 - (_Bool)shouldBroadcastSocket;
 - (void)enableSocketConnections;
-- (void)disableDelegateConnections;
-- (void)enableDelegateConnections;
 - (void)stopAcceptingConnections;
 - (void)startAcceptingConnections;
 @property(readonly, nonatomic) __weak id <SPTAccessoryStateManager> accessoryStateManager; // @synthesize accessoryStateManager=_accessoryStateManager;
-- (void)connectWithDelegate:(id)arg1 callback:(CDUnknownBlockType)arg2;
 - (void)unload;
 - (void)load;
 - (void)configureWithServices:(id)arg1;

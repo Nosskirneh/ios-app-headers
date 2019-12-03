@@ -13,6 +13,7 @@
 
 @interface ProfileSettingsSection : SettingsSection <SPTImageLoaderDelegate>
 {
+    _Bool _guestAccount;
     id <SPTProfileUserData> _profileUserData;
     SPTSettingsTableViewCell *_tableViewCell;
     id <SPTImageLoader> _imageLoader;
@@ -21,6 +22,7 @@
     SPTSettingsLogger *_logger;
 }
 
+@property(nonatomic, getter=isGuestAccount) _Bool guestAccount; // @synthesize guestAccount=_guestAccount;
 @property(retain, nonatomic) SPTSettingsLogger *logger; // @synthesize logger=_logger;
 @property(readonly, nonatomic) SPTTheme *theme; // @synthesize theme=_theme;
 @property(readonly, nonatomic) id <SPTLinkDispatcher> linkDispatcher; // @synthesize linkDispatcher=_linkDispatcher;
@@ -37,7 +39,7 @@
 - (double)heightForRow:(long long)arg1;
 - (id)cellForRow:(long long)arg1;
 - (long long)numberOfRows;
-- (id)initWithSettingsViewController:(id)arg1 profileUserData:(id)arg2 imageLoader:(id)arg3 linkDispatcher:(id)arg4 theme:(id)arg5 logger:(id)arg6;
+- (id)initWithSettingsViewController:(id)arg1 profileUserData:(id)arg2 imageLoader:(id)arg3 linkDispatcher:(id)arg4 theme:(id)arg5 logger:(id)arg6 guestAccount:(_Bool)arg7;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

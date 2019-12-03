@@ -6,11 +6,10 @@
 
 #import <objc/NSObject.h>
 
-@class SPTLoginAutosendLinkModalViewController, SPTLoginAutosendLogger, SPTLoginMagicLinkTestManager, SPTLoginOpenEmailAppController, SPTLoginSlideUpModalPresenter, SPTLoginTheme;
+@class SPTLoginAutosendLinkModalViewController, SPTLoginAutosendLogger, SPTLoginOpenEmailAppController, SPTLoginSlideUpModalPresenter, SPTLoginTheme;
 
 @interface SPTLoginMagicLinkAutosendConfirmationPresenter : NSObject
 {
-    SPTLoginMagicLinkTestManager *_testManager;
     SPTLoginTheme *_theme;
     SPTLoginOpenEmailAppController *_emailAppController;
     SPTLoginAutosendLogger *_logger;
@@ -23,14 +22,13 @@
 @property(readonly, nonatomic) SPTLoginAutosendLogger *logger; // @synthesize logger=_logger;
 @property(readonly, nonatomic) SPTLoginOpenEmailAppController *emailAppController; // @synthesize emailAppController=_emailAppController;
 @property(readonly, nonatomic) SPTLoginTheme *theme; // @synthesize theme=_theme;
-@property(readonly, nonatomic) SPTLoginMagicLinkTestManager *testManager; // @synthesize testManager=_testManager;
 - (void).cxx_destruct;
 - (void)dismissDialog;
 - (void)didTapTryAnotherPasswordButton:(id)arg1;
 - (void)didTapOpenEmailButton:(id)arg1;
-- (id)confirmationViewSecondVersionWithUser:(id)arg1;
+- (id)confirmationViewWithUser:(id)arg1;
 - (void)presentAutosendConfirmationForUser:(id)arg1;
-- (id)initWithMagicLinkTestManager:(id)arg1 theme:(id)arg2 emailAppController:(id)arg3 logger:(id)arg4 slideupModalPresenter:(id)arg5;
+- (id)initWithTheme:(id)arg1 emailAppController:(id)arg2 logger:(id)arg3 slideupModalPresenter:(id)arg4;
 
 @end
 

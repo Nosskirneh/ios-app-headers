@@ -6,12 +6,13 @@
 
 #import <objc/NSObject.h>
 
+#import "SPTFeatureFlagSignalObserver-Protocol.h"
 #import "SPTGoogleAppFlipService-Protocol.h"
 
 @class NSString, SPSession, SPTAllocationContext, SPTGoogleAppFlipURISubtypeManager, SPTNetworkConnectivityController;
 @protocol SPTAuthService, SPTFeatureFlagSignal, SPTFeatureFlaggingService, SPTURIDispatchService;
 
-@interface SPTGoogleAppFlipServiceImplementation : NSObject <SPTGoogleAppFlipService>
+@interface SPTGoogleAppFlipServiceImplementation : NSObject <SPTFeatureFlagSignalObserver, SPTGoogleAppFlipService>
 {
     _Bool _featureEnabled;
     id <SPTAuthService> _authService;

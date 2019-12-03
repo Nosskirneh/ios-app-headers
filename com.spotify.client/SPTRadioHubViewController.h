@@ -25,7 +25,6 @@
 - (void)dealloc;
 - (void)viewDidAppear:(_Bool)arg1;
 - (void)viewDidLoad;
-- (void)viewWillLayoutSubviews;
 - (id)initWithTheme:(id)arg1 pageURI:(id)arg2 componentRegistry:(id)arg3 componentLayoutManager:(id)arg4 imageLoaderFactory:(id)arg5 commandHandler:(id)arg6 viewModelProvider:(id)arg7 impressionLogger:(id)arg8 loadingLogger:(id)arg9 pageIdentifier:(id)arg10 playbackService:(id)arg11 shareDragDelegateFactory:(id)arg12;
 
 // Remaining properties

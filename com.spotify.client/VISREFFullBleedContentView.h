@@ -8,15 +8,16 @@
 
 #import "VISREFHeaderComponent-Protocol.h"
 
-@class NSLayoutConstraint, NSString, TKNLabel, UIButton, UIImage, UIStackView, UITextView, VISREFAlignedImageView, VISREFGradientView;
+@class NSLayoutConstraint, NSString, SPTEncoreLabel, UIButton, UIImage, UIStackView, UITextView, VISREFAlignedImageView, VISREFGradientView;
 
 @interface VISREFFullBleedContentView : VISREFTopAndBodyContentView <VISREFHeaderComponent>
 {
-    TKNLabel *_titleLabel;
-    TKNLabel *_metadataLabel;
+    SPTEncoreLabel *_titleLabel;
+    SPTEncoreLabel *_metadataLabel;
     UIButton *_contextButton;
     UIButton *_followButton;
     UIButton *_feedbackButton;
+    UIButton *_offlineButton;
     UITextView *_descriptionTextView;
     VISREFGradientView *_titleProtectionGradient;
     UIStackView *_actionRowStackView;
@@ -49,11 +50,12 @@
 @property(retain, nonatomic) UIStackView *actionRowStackView; // @synthesize actionRowStackView=_actionRowStackView;
 @property(retain, nonatomic) VISREFGradientView *titleProtectionGradient; // @synthesize titleProtectionGradient=_titleProtectionGradient;
 @property(retain, nonatomic) UITextView *descriptionTextView; // @synthesize descriptionTextView=_descriptionTextView;
+@property(retain, nonatomic) UIButton *offlineButton; // @synthesize offlineButton=_offlineButton;
 @property(retain, nonatomic) UIButton *feedbackButton; // @synthesize feedbackButton=_feedbackButton;
 @property(retain, nonatomic) UIButton *followButton; // @synthesize followButton=_followButton;
 @property(retain, nonatomic) UIButton *contextButton; // @synthesize contextButton=_contextButton;
-@property(retain, nonatomic) TKNLabel *metadataLabel; // @synthesize metadataLabel=_metadataLabel;
-@property(retain, nonatomic) TKNLabel *titleLabel; // @synthesize titleLabel=_titleLabel;
+@property(retain, nonatomic) SPTEncoreLabel *metadataLabel; // @synthesize metadataLabel=_metadataLabel;
+@property(retain, nonatomic) SPTEncoreLabel *titleLabel; // @synthesize titleLabel=_titleLabel;
 - (void).cxx_destruct;
 - (void)updateAccessibilityLabels;
 - (void)setAssociatedColor:(id)arg1;

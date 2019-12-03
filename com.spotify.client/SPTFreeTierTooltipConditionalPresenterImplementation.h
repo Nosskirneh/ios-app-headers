@@ -27,7 +27,7 @@
 - (_Bool)isTooltipPresented;
 - (_Bool)isTooltipPresentedWithIdentifier:(id)arg1;
 - (void)tryPresentingTooltipWithIdentifier:(id)arg1 maxNumberOfTimes:(unsigned long long)arg2 presentationBlock:(CDUnknownBlockType)arg3;
-- (void)presentTooltipWithIdentifier:(id)arg1 text:(id)arg2 fromRect:(struct CGRect)arg3 inView:(id)arg4 permittedArrowDirections:(unsigned long long)arg5 maxNumberOfTimes:(unsigned long long)arg6;
+- (void)presentTooltipWithIdentifier:(id)arg1 text:(id)arg2 fromRect:(struct CGRect)arg3 inView:(id)arg4 permittedArrowDirections:(unsigned long long)arg5 duration:(long long)arg6 maxNumberOfTimes:(unsigned long long)arg7;
 - (void)presentTooltipWithIdentifier:(id)arg1 contentView:(id)arg2 fromRect:(struct CGRect)arg3 inView:(id)arg4 permittedArrowDirections:(unsigned long long)arg5 duration:(long long)arg6 maxNumberOfTimes:(unsigned long long)arg7;
 - (_Bool)shouldPresentWithPresentationCount:(unsigned long long)arg1 maxPresentationCount:(unsigned long long)arg2;
 - (id)initWithPersistentCounter:(id)arg1 tooltipPresenter:(id)arg2;

@@ -13,8 +13,10 @@
 @interface SPTLoginFeatureProperties : NSObject <SPTRemoteConfigurationProperties>
 {
     _Bool _shouldDisableGuestMode;
+    _Bool _login5Enabled;
 }
 
+@property(readonly, nonatomic) _Bool login5Enabled; // @synthesize login5Enabled=_login5Enabled;
 @property(readonly, nonatomic) _Bool shouldDisableGuestMode; // @synthesize shouldDisableGuestMode=_shouldDisableGuestMode;
 - (id)propertyModels;
 - (id)initWithPropertyValuesDictionary:(id)arg1;

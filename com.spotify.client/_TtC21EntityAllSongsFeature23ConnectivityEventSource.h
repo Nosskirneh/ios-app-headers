@@ -6,7 +6,9 @@
 
 #import <objc/NSObject.h>
 
-@interface _TtC21EntityAllSongsFeature23ConnectivityEventSource : NSObject
+#import "SPTOfflineModeStateObserver-Protocol.h"
+
+@interface _TtC21EntityAllSongsFeature23ConnectivityEventSource : NSObject <SPTOfflineModeStateObserver>
 {
     // Error parsing type: , name: offlineModeState
     // Error parsing type: , name: subscribers

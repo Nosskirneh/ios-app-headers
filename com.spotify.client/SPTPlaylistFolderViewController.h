@@ -8,7 +8,6 @@
 
 #import "SPContentInsetViewController-Protocol.h"
 #import "SPSessionObserver-Protocol.h"
-#import "SPTCollectionFilterSearchBarDelegate-Protocol.h"
 #import "SPTNavigationControllerNavigationBarState-Protocol.h"
 #import "SPTOfflineModeStateObserver-Protocol.h"
 #import "SPTPageController-Protocol.h"
@@ -19,10 +18,10 @@
 #import "UITableViewDataSource-Protocol.h"
 #import "UITableViewDelegate-Protocol.h"
 
-@class GLUEButton, GLUEEntityRowStyle, NSString, NSURL, SPSession, SPTCollectionFilterSearchBar, SPTInfoView, SPTPlaylistCreateNewPlaylistController, SPTPlaylistGLUETheme, SPTSyncProgressView, SPTTableView, UIBarButtonItem, UITableView, UIView;
+@class GLUEButton, GLUEEntityRowStyle, NSString, NSURL, SPSession, SPTInfoView, SPTPlaylistCreateNewPlaylistController, SPTPlaylistGLUETheme, SPTSyncProgressView, SPTTableView, UIBarButtonItem, UITableView, UIView;
 @protocol GLUEImageLoader, GLUETheme, SPTAlertController, SPTCollectionLogger, SPTCollectionPlatformTestManager, SPTLinkDispatcher, SPTLocalSettings, SPTNUXModifying, SPTOfflineManager, SPTOfflineModeState, SPTPageContainer, SPTPlaylistFolderViewModel, SPTPlaylistModel, SPTPlaylistRootFolderViewControllerDelegate;
 
-@interface SPTPlaylistFolderViewController : UIViewController <SPContentInsetViewController, SPTCollectionFilterSearchBarDelegate, SPTSwipeableTableViewCellDelegate, SPTOfflineModeStateObserver, SPSessionObserver, SPTNavigationControllerNavigationBarState, UITableViewDelegate, UITableViewDataSource, SPTPlaylistFolderViewModelDelegate, SPTPlaylistCreateNewPlaylistControllerDelegate, SPTPlaylistRootFolderViewController, SPTPageController>
+@interface SPTPlaylistFolderViewController : UIViewController <SPContentInsetViewController, SPTSwipeableTableViewCellDelegate, SPTOfflineModeStateObserver, SPSessionObserver, SPTNavigationControllerNavigationBarState, UITableViewDelegate, UITableViewDataSource, SPTPlaylistFolderViewModelDelegate, SPTPlaylistCreateNewPlaylistControllerDelegate, SPTPlaylistRootFolderViewController, SPTPageController>
 {
     _Bool _disableFilterBar;
     _Bool _showCreatePlaylistButton;
@@ -41,7 +40,6 @@
     id <SPTOfflineManager> _offlineManager;
     long long _disableUpdatesCount;
     UIBarButtonItem *_previousLeftBarButtonItem;
-    SPTCollectionFilterSearchBar *_filterSearchBar;
     id <SPTLocalSettings> _localSettings;
     SPTSyncProgressView *_iTunesLibrarySyncView;
     unsigned long long _numberOfSyncProgressViews;
@@ -84,7 +82,6 @@
 @property(retain, nonatomic) SPTSyncProgressView *iTunesLibrarySyncView; // @synthesize iTunesLibrarySyncView=_iTunesLibrarySyncView;
 @property(retain, nonatomic) id <SPTLocalSettings> localSettings; // @synthesize localSettings=_localSettings;
 @property(nonatomic, getter=isUserDefaultsLoaded) _Bool userDefaultsLoaded; // @synthesize userDefaultsLoaded=_userDefaultsLoaded;
-@property(retain, nonatomic) SPTCollectionFilterSearchBar *filterSearchBar; // @synthesize filterSearchBar=_filterSearchBar;
 @property(nonatomic) _Bool shouldReloadWhenAppearing; // @synthesize shouldReloadWhenAppearing=_shouldReloadWhenAppearing;
 @property(nonatomic) _Bool viewHasAppeared; // @synthesize viewHasAppeared=_viewHasAppeared;
 @property(retain, nonatomic) UIBarButtonItem *previousLeftBarButtonItem; // @synthesize previousLeftBarButtonItem=_previousLeftBarButtonItem;
@@ -112,8 +109,6 @@
 - (id)URI;
 - (void)createNewPlaylistController:(id)arg1 didCreateNewPlaylistURL:(id)arg2 name:(id)arg3;
 - (void)offlineAccessoryButtonTapped:(id)arg1;
-- (void)filterSearchBarContextButtonTapped:(id)arg1;
-- (void)filterSearchBar:(id)arg1 textDidChange:(id)arg2;
 - (void)playlistFolderViewModelDidEndiTunesLibrarySync:(id)arg1;
 - (void)playlistFolderViewModel:(id)arg1 didUpdateSyncingProgress:(double)arg2;
 - (void)playlistFolderViewModelDidBeginiTunesLibrarySync:(id)arg1;
@@ -135,7 +130,6 @@
 - (void)tableView:(id)arg1 didEndDisplayingCell:(id)arg2 forRowAtIndexPath:(id)arg3;
 - (void)tableView:(id)arg1 willDisplayCell:(id)arg2 forRowAtIndexPath:(id)arg3;
 - (double)tableView:(id)arg1 heightForRowAtIndexPath:(id)arg2;
-- (long long)tableView:(id)arg1 sectionForSectionIndexTitle:(id)arg2 atIndex:(long long)arg3;
 - (id)sectionIndexTitlesForTableView:(id)arg1;
 - (_Bool)tableView:(id)arg1 canEditRowAtIndexPath:(id)arg2;
 - (long long)selectionStyleForIndexPath:(id)arg1;

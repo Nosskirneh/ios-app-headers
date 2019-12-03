@@ -10,21 +10,25 @@
 #import "SPTPlaylistPlatformPlaylistDataLoader-Protocol.h"
 
 @class NSString;
-@protocol SPTCosmosDictionaryDataLoader;
+@protocol SPTCosmosDataLoader, SPTCosmosDictionaryDataLoader;
 
 @interface SPTPlaylistCosmosModel : NSObject <SPTPlaylistModel, SPTPlaylistPlatformPlaylistDataLoader>
 {
-    id <SPTCosmosDictionaryDataLoader> _cosmosDataLoader;
+    id <SPTCosmosDictionaryDataLoader> _dictionaryDataLoader;
+    id <SPTCosmosDataLoader> _dataLoader;
     CDUnknownBlockType _timeGetter;
 }
 
 @property(copy, nonatomic) CDUnknownBlockType timeGetter; // @synthesize timeGetter=_timeGetter;
-@property(retain, nonatomic) id <SPTCosmosDictionaryDataLoader> cosmosDataLoader; // @synthesize cosmosDataLoader=_cosmosDataLoader;
+@property(retain, nonatomic) id <SPTCosmosDataLoader> dataLoader; // @synthesize dataLoader=_dataLoader;
+@property(retain, nonatomic) id <SPTCosmosDictionaryDataLoader> dictionaryDataLoader; // @synthesize dictionaryDataLoader=_dictionaryDataLoader;
 - (void).cxx_destruct;
 - (id)handleRequestPlaylistViewForPlaylistURL:(id)arg1 subscribe:(_Bool)arg2 options:(id)arg3 minimumUpdateInterval:(double)arg4 withMetadataProtocols:(id)arg5 andTrackProtocols:(id)arg6 completion:(CDUnknownBlockType)arg7 onError:(CDUnknownBlockType)arg8;
 - (void)updateDescriptionForPlaylistURL:(id)arg1 freeformDescription:(id)arg2 completion:(CDUnknownBlockType)arg3;
+- (void)synchronisePlaylistURLs:(id)arg1;
 - (void)synchronisePlaylistURL:(id)arg1;
 - (id)loggingParams;
+- (void)fetchPlayContextForPlaylistWithURL:(id)arg1 playlistOptions:(id)arg2 completion:(CDUnknownBlockType)arg3;
 - (void)playWithURL:(id)arg1 playOptions:(id)arg2 playlistOptions:(id)arg3 completion:(CDUnknownBlockType)arg4 onError:(CDUnknownBlockType)arg5;
 - (id)subscribePlaylistViewWithRecommendationsForPlaylistURL:(id)arg1 options:(id)arg2 withMetadataProtocols:(id)arg3 andTrackProtocols:(id)arg4 completion:(CDUnknownBlockType)arg5 onError:(CDUnknownBlockType)arg6;
 - (id)subscribePlaylistViewForPlaylistURL:(id)arg1 options:(id)arg2 withMetadataProtocols:(id)arg3 andTrackProtocols:(id)arg4 completion:(CDUnknownBlockType)arg5 onError:(CDUnknownBlockType)arg6;
@@ -73,7 +77,7 @@
 - (id)URLForRootlistEndpoint;
 - (id)URLForPlaylistEndpointWithPlaylistURL:(id)arg1 operation:(id)arg2;
 - (id)URLForPlaylistEndpointWithPlaylistURL:(id)arg1;
-- (id)initWithCosmosDataLoader:(id)arg1 timeGetter:(CDUnknownBlockType)arg2;
+- (id)initWithDictionaryDataLoader:(id)arg1 dataLoader:(id)arg2 timeGetter:(CDUnknownBlockType)arg3;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

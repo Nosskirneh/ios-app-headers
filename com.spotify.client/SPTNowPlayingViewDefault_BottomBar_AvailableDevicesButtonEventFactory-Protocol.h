@@ -6,10 +6,11 @@
 
 #import "NSObject-Protocol.h"
 
-@protocol SPTImpressionEvent, SPTInteractionEvent;
+@protocol SPTEventFactoryModelMapping, SPTImpressionEvent, SPTInteractionEvent;
 
 @protocol SPTNowPlayingViewDefault_BottomBar_AvailableDevicesButtonEventFactory <NSObject>
 - (id <SPTInteractionEvent>)hitUiReveal;
 - (id <SPTImpressionEvent>)impression;
+- (id <SPTEventFactoryModelMapping>)_location;
 @end
 

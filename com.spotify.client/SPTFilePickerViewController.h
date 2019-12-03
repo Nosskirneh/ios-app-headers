@@ -59,7 +59,6 @@
 - (void)selectActiveSection:(unsigned long long)arg1 animated:(_Bool)arg2;
 - (void)recalculateFrames;
 - (void)viewWillLayoutSubviews;
-- (void)willMoveToParentViewController:(id)arg1;
 - (void)setupSections;
 - (void)buildPlaylistsSection;
 - (void)buildArtistsSection;

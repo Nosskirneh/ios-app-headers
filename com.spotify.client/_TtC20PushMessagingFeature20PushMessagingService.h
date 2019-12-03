@@ -23,6 +23,7 @@
     // Error parsing type: , name: masterFeatureFlagSignal
     // Error parsing type: , name: manualFeatureFlagSignal
     // Error parsing type: , name: manualPermissionMode
+    // Error parsing type: , name: pushPermissionRequestor
 }
 
 - (void).cxx_destruct;

@@ -6,10 +6,12 @@
 
 #import <objc/NSObject.h>
 
+#import "SPTPlaylistPlatformService-Protocol.h"
+
 @class NSString, SPTAllocationContext;
 @protocol CosmosFeature, SPTCosmosDataLoaderService, SPTPlaylistPlatformPlaylistSynchroniser, SPTResolver;
 
-@interface SPTPlaylistPlatformServiceImplementation : NSObject
+@interface SPTPlaylistPlatformServiceImplementation : NSObject <SPTPlaylistPlatformService>
 {
     CDUnknownBlockType _timeGetter;
     id <CosmosFeature> _cosmosFeature;

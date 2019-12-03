@@ -6,11 +6,9 @@
 
 #import "SPTService-Protocol.h"
 
-@class UIViewController;
-@protocol SPTVoiceCompanionConfiguration;
+@protocol SPTVoiceCompanionSession;
 
 @protocol SPTVoiceCompanionService <SPTService>
-- (UIViewController *)provideSnackViewController;
-- (id <SPTVoiceCompanionConfiguration>)provideConfiguration;
+- (id <SPTVoiceCompanionSession>)provideSession;
 @end
 

@@ -7,7 +7,7 @@
 #import <objc/NSObject.h>
 
 @class NSArray, SPTLoginSplitEmailSignupViewLogger, SPTSignupUserInfoModel;
-@protocol SPTNavigationRouter, SPTSignupGenderViewModelDelegate;
+@protocol SPTLoginNavigationCoordinator, SPTSignupGenderViewModelDelegate;
 
 @interface SPTSignupGenderViewModel : NSObject
 {
@@ -16,10 +16,10 @@
     SPTSignupUserInfoModel *_userInfoModel;
     NSArray *_localizedGenders;
     NSArray *_backendDefinedGenders;
-    id <SPTNavigationRouter> _navigationRouter;
+    id <SPTLoginNavigationCoordinator> _navigationCoordinator;
 }
 
-@property(retain, nonatomic) id <SPTNavigationRouter> navigationRouter; // @synthesize navigationRouter=_navigationRouter;
+@property(retain, nonatomic) id <SPTLoginNavigationCoordinator> navigationCoordinator; // @synthesize navigationCoordinator=_navigationCoordinator;
 @property(retain, nonatomic) NSArray *backendDefinedGenders; // @synthesize backendDefinedGenders=_backendDefinedGenders;
 @property(retain, nonatomic) NSArray *localizedGenders; // @synthesize localizedGenders=_localizedGenders;
 @property(readonly, nonatomic) SPTSignupUserInfoModel *userInfoModel; // @synthesize userInfoModel=_userInfoModel;
@@ -34,7 +34,7 @@
 - (id)fieldTitleLabelText;
 - (id)titleLabelText;
 @property(nonatomic) long long selectedIndex;
-- (id)initWithLogger:(id)arg1 userInfoModel:(id)arg2 navigationRouter:(id)arg3;
+- (id)initWithLogger:(id)arg1 userInfoModel:(id)arg2 navigationCoordinator:(id)arg3;
 
 @end
 

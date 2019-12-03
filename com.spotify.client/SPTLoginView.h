@@ -17,6 +17,7 @@
     SPTLoginInputFormView *_formView;
     GLUEButton *_loginWithoutPasswordButton;
     UIView *_contentView;
+    UIView *_mainContainer;
     SPTLoginFormScrollView *_scrollView;
     GLUEGradientView *_backgroundGradientView;
     GLUEGradientStyle *_backgroundGradientStyle;
@@ -26,8 +27,12 @@
     NSLayoutConstraint *_loginButtonTopMargin;
     NSLayoutConstraint *_loginWithoutPasswordButtonTopMargin;
     NSLayoutConstraint *_loginWithoutPasswordButtonBottomMargin;
+    NSLayoutConstraint *_mainContainerCompactWidth;
+    NSLayoutConstraint *_mainContainerRegularWidth;
 }
 
+@property(retain, nonatomic) NSLayoutConstraint *mainContainerRegularWidth; // @synthesize mainContainerRegularWidth=_mainContainerRegularWidth;
+@property(retain, nonatomic) NSLayoutConstraint *mainContainerCompactWidth; // @synthesize mainContainerCompactWidth=_mainContainerCompactWidth;
 @property(retain, nonatomic) NSLayoutConstraint *loginWithoutPasswordButtonBottomMargin; // @synthesize loginWithoutPasswordButtonBottomMargin=_loginWithoutPasswordButtonBottomMargin;
 @property(retain, nonatomic) NSLayoutConstraint *loginWithoutPasswordButtonTopMargin; // @synthesize loginWithoutPasswordButtonTopMargin=_loginWithoutPasswordButtonTopMargin;
 @property(retain, nonatomic) NSLayoutConstraint *loginButtonTopMargin; // @synthesize loginButtonTopMargin=_loginButtonTopMargin;
@@ -37,17 +42,19 @@
 @property(retain, nonatomic) GLUEGradientStyle *backgroundGradientStyle; // @synthesize backgroundGradientStyle=_backgroundGradientStyle;
 @property(retain, nonatomic) GLUEGradientView *backgroundGradientView; // @synthesize backgroundGradientView=_backgroundGradientView;
 @property(retain, nonatomic) SPTLoginFormScrollView *scrollView; // @synthesize scrollView=_scrollView;
+@property(retain, nonatomic) UIView *mainContainer; // @synthesize mainContainer=_mainContainer;
 @property(retain, nonatomic) UIView *contentView; // @synthesize contentView=_contentView;
 @property(readonly, nonatomic) GLUEButton *loginWithoutPasswordButton; // @synthesize loginWithoutPasswordButton=_loginWithoutPasswordButton;
 @property(readonly, nonatomic) SPTLoginInputFormView *formView; // @synthesize formView=_formView;
 @property(readonly, nonatomic) GLUELabel *titleLabel; // @synthesize titleLabel=_titleLabel;
 - (id)submitButton;
 - (void).cxx_destruct;
+- (void)traitsDidChange:(id)arg1;
 @property(readonly, nonatomic) SPTActionButton *onePasswordLoginButton;
 - (void)setOnePasswordLoginEnabled:(_Bool)arg1;
 - (void)glue_applyStyle:(id)arg1;
-- (void)setupConstraints;
-- (id)initWithFrame:(struct CGRect)arg1;
+- (void)setupConstraintsWithStyle:(id)arg1;
+- (id)initWithStyle:(id)arg1 frame:(struct CGRect)arg2;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

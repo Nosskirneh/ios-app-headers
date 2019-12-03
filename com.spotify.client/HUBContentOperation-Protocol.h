@@ -8,7 +8,7 @@
 @protocol HUBContentOperationDelegate, HUBViewModelBuilder;
 
 @protocol HUBContentOperation
-@property(nonatomic) __weak id <HUBContentOperationDelegate> delegate;
 - (void)performForViewModelBuilder:(id <HUBViewModelBuilder>)arg1 previousError:(NSError *)arg2;
+@property(nonatomic) __weak id <HUBContentOperationDelegate> delegate;
 @end
 

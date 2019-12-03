@@ -17,10 +17,10 @@
 - (void).cxx_destruct;
 - (_Bool)shouldPlaybackSpeedControlBeEnabled;
 - (_Bool)shouldPlaybackSpeedControlBeAvailable;
-- (void)shuffleButtonPressedWithShuffleType:(long long)arg1;
+- (_Bool)shuffleButtonPressedWithShuffleType:(long long)arg1;
 - (_Bool)shouldShuffleCommandBeEnabled;
 - (_Bool)shouldShuffleCommandBeAvailable;
-- (void)repeatButtonPressedWithRepeatType:(long long)arg1;
+- (_Bool)repeatButtonPressedWithRepeatType:(long long)arg1;
 - (_Bool)shouldRepeatCommandBeEnabled;
 - (_Bool)shouldRepeatCommandBeAvailable;
 - (_Bool)shouldChangePlaybackPositionCommandBeEnabled;

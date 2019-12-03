@@ -8,24 +8,22 @@
 
 #import "SPTAssistedCurationAddTrackHandler-Protocol.h"
 
-@class NSNotificationCenter, NSString, NSURL;
-@protocol SPTPlaylistModel;
+@class NSNotificationCenter, NSString;
+@protocol SPTAssistedCurationDatasource;
 
 @interface SPTAssistedCurationAddTrackHandlerImplementation : NSObject <SPTAssistedCurationAddTrackHandler>
 {
-    id <SPTPlaylistModel> _playlistModel;
-    NSURL *_playlistURI;
+    id <SPTAssistedCurationDatasource> _datasource;
     NSNotificationCenter *_notificationCenter;
 }
 
 @property(readonly, nonatomic) NSNotificationCenter *notificationCenter; // @synthesize notificationCenter=_notificationCenter;
-@property(readonly, nonatomic) NSURL *playlistURI; // @synthesize playlistURI=_playlistURI;
-@property(readonly, nonatomic) id <SPTPlaylistModel> playlistModel; // @synthesize playlistModel=_playlistModel;
+@property(readonly, nonatomic) id <SPTAssistedCurationDatasource> datasource; // @synthesize datasource=_datasource;
 - (void).cxx_destruct;
 - (void)postNotification:(id)arg1 trackURI:(id)arg2 userInfo:(id)arg3;
 - (void)isDuplicatedTrack:(id)arg1 completion:(CDUnknownBlockType)arg2;
 - (void)addTrackURI:(id)arg1 fromContext:(unsigned long long)arg2 withCompletion:(CDUnknownBlockType)arg3;
-- (id)initWithPlaylistModel:(id)arg1 playlistURI:(id)arg2 notificationCenter:(id)arg3;
+- (id)initWithDatasource:(id)arg1 notificationCenter:(id)arg2;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

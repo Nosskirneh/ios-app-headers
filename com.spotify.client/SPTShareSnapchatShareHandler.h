@@ -31,8 +31,9 @@
 - (void)dataLoader:(id)arg1 didReceiveErrorResponse:(id)arg2;
 - (void)dataLoader:(id)arg1 didReceiveSuccessfulResponse:(id)arg2;
 - (void)downloadArtworkForEntityURI:(id)arg1 completion:(CDUnknownBlockType)arg2;
-- (void)handleSuccess:(id)arg1 browseLinkURL:(id)arg2;
-- (id)shareAssetForURL:(id)arg1;
+- (void)shareEntityWithURL:(id)arg1 backgroundImage:(id)arg2;
+- (id)appendUTMQueryItemsToURL:(id)arg1;
+- (id)generateImageFromData:(id)arg1;
 - (void)shareWithData:(id)arg1 shareDestination:(id)arg2 sharePresenter:(id)arg3 completion:(CDUnknownBlockType)arg4;
 - (id)initWithShareLogger:(id)arg1 dataLoader:(id)arg2 deeplinkHandler:(id)arg3;
 

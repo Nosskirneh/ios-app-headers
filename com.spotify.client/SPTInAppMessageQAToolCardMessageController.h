@@ -10,7 +10,7 @@
 #import "SPTInAppMessageQAToolCardPresentationControllerDelegate-Protocol.h"
 #import "SPTInAppMessageQAToolViewModelObserver-Protocol.h"
 
-@class NSMutableArray, NSString, SPTInAppMessageActionFactory, SPTInAppMessageCardMessageViewModel, SPTInAppMessageQAToolCardMessageParser;
+@class NSMutableArray, NSMutableDictionary, NSString, SPTInAppMessageActionFactory, SPTInAppMessageCardMessageViewModel, SPTInAppMessageQAToolCardMessageParser;
 @protocol SPTInAppMessageQAToolCardMessageControllerDelegate, SPTInAppMessageQAToolFormatMessageControllerDelegate;
 
 @interface SPTInAppMessageQAToolCardMessageController : NSObject <SPTInAppMessageCardMessageWebViewContentDelegate, SPTInAppMessageQAToolCardPresentationControllerDelegate, SPTInAppMessageQAToolViewModelObserver>
@@ -21,8 +21,12 @@
     SPTInAppMessageActionFactory *_actionFactory;
     SPTInAppMessageQAToolCardMessageParser *_parser;
     NSMutableArray *_cardMessagesQueue;
+    NSMutableDictionary *_campaignLocales;
+    NSString *_messageLocale;
 }
 
+@property(copy, nonatomic) NSString *messageLocale; // @synthesize messageLocale=_messageLocale;
+@property(retain, nonatomic) NSMutableDictionary *campaignLocales; // @synthesize campaignLocales=_campaignLocales;
 @property(retain, nonatomic) NSMutableArray *cardMessagesQueue; // @synthesize cardMessagesQueue=_cardMessagesQueue;
 @property(retain, nonatomic) SPTInAppMessageQAToolCardMessageParser *parser; // @synthesize parser=_parser;
 @property(retain, nonatomic) SPTInAppMessageActionFactory *actionFactory; // @synthesize actionFactory=_actionFactory;

@@ -13,18 +13,10 @@
 @interface SPTLanguageOnboardingHeaderViewStyle : NSObject <GLUEStyle>
 {
     GLUELabelStyle *_titleLabelStyle;
-    GLUELabelStyle *_subtitleLabelStyle;
-    double _titleTopMargin;
-    double _subtitleTopMargin;
-    double _subtitleBottomMargin;
-    unsigned long long _titleNumberOfLines;
+    double _titleBottomMargin;
 }
 
-@property(nonatomic) unsigned long long titleNumberOfLines; // @synthesize titleNumberOfLines=_titleNumberOfLines;
-@property(nonatomic) double subtitleBottomMargin; // @synthesize subtitleBottomMargin=_subtitleBottomMargin;
-@property(nonatomic) double subtitleTopMargin; // @synthesize subtitleTopMargin=_subtitleTopMargin;
-@property(nonatomic) double titleTopMargin; // @synthesize titleTopMargin=_titleTopMargin;
-@property(copy, nonatomic) GLUELabelStyle *subtitleLabelStyle; // @synthesize subtitleLabelStyle=_subtitleLabelStyle;
+@property(nonatomic) double titleBottomMargin; // @synthesize titleBottomMargin=_titleBottomMargin;
 @property(copy, nonatomic) GLUELabelStyle *titleLabelStyle; // @synthesize titleLabelStyle=_titleLabelStyle;
 - (void).cxx_destruct;
 - (id)copyWithZone:(struct _NSZone *)arg1;

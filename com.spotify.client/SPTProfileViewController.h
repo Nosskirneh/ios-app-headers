@@ -16,7 +16,7 @@
 #import "UITableViewDelegate-Protocol.h"
 
 @class NSString, NSURL, SPTEntityTableHeaderView, SPTInfoView, SPTProfileBodyContainerView, SPTProfileCountsView, SPTProfileDataSource, SPTProfileInfoViewController, SPTProfileLogger, SPTProfileViewModel, SPTTableView;
-@protocol GLUEImageLoader, GLUETheme, SPContextMenuFeature, SPTBrowseRedirectButtonProvider, SPTCollectionPlatformConfiguration, SPTContextMenuPresenter, SPTFindFriendsFeature, SPTLinkDispatcher, SPTPageContainer, SPTViewLogger;
+@protocol GLUEImageLoader, GLUETheme, SPContextMenuFeature, SPTCollectionPlatformConfiguration, SPTContextMenuPresenter, SPTFindFriendsFeature, SPTLinkDispatcher, SPTPageContainer, SPTViewLogger;
 
 @interface SPTProfileViewController : SPViewController <SPTProfileViewModelDelegate, SPTProfileCountsViewDelegate, SPObjectRepresentation, SPViewController, SPContentInsetViewController, SPTNavigationControllerNavigationBarState, UITableViewDelegate, SPTPageController>
 {
@@ -27,7 +27,6 @@
     id <SPTFindFriendsFeature> _findFriendsFeature;
     id <GLUEImageLoader> _imageLoader;
     id <SPContextMenuFeature> _contextMenuFeature;
-    id <SPTBrowseRedirectButtonProvider> _browseRedirectButtonProvider;
     id <SPTLinkDispatcher> _linkDispatcher;
     id <SPTCollectionPlatformConfiguration> _collectionConfiguration;
     SPTProfileDataSource *_dataSource;
@@ -53,7 +52,6 @@
 @property(retain, nonatomic) SPTProfileDataSource *dataSource; // @synthesize dataSource=_dataSource;
 @property(retain, nonatomic) id <SPTCollectionPlatformConfiguration> collectionConfiguration; // @synthesize collectionConfiguration=_collectionConfiguration;
 @property(retain, nonatomic) id <SPTLinkDispatcher> linkDispatcher; // @synthesize linkDispatcher=_linkDispatcher;
-@property(readonly, nonatomic) __weak id <SPTBrowseRedirectButtonProvider> browseRedirectButtonProvider; // @synthesize browseRedirectButtonProvider=_browseRedirectButtonProvider;
 @property(readonly, nonatomic) __weak id <SPContextMenuFeature> contextMenuFeature; // @synthesize contextMenuFeature=_contextMenuFeature;
 @property(retain, nonatomic) id <GLUEImageLoader> imageLoader; // @synthesize imageLoader=_imageLoader;
 @property(nonatomic) __weak id <SPTFindFriendsFeature> findFriendsFeature; // @synthesize findFriendsFeature=_findFriendsFeature;
@@ -100,7 +98,7 @@
 - (void)viewWillAppear:(_Bool)arg1;
 - (void)viewDidLoad;
 - (void)dealloc;
-- (id)initWithViewModel:(id)arg1 viewLogger:(id)arg2 logger:(id)arg3 theme:(id)arg4 imageLoader:(id)arg5 contextMenuFeature:(id)arg6 browseRedirectButtonProvider:(id)arg7 findFriendsFeature:(id)arg8 linkDispatcher:(id)arg9 collectionConfiguration:(id)arg10;
+- (id)initWithViewModel:(id)arg1 viewLogger:(id)arg2 logger:(id)arg3 theme:(id)arg4 imageLoader:(id)arg5 contextMenuFeature:(id)arg6 findFriendsFeature:(id)arg7 linkDispatcher:(id)arg8 collectionConfiguration:(id)arg9;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

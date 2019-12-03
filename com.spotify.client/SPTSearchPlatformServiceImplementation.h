@@ -9,7 +9,7 @@
 #import "SPTSearchPlatformService-Protocol.h"
 
 @class NSString, SPTAllocationContext, SPTSearch2RequestParametersProvider;
-@protocol SPContextMenuFeature, SPTAudioPreviewService, SPTContainerService, SPTExplicitContentService, SPTFeatureFlaggingService, SPTGLUEService, SPTHubFrameworkService, SPTHubsRendererFactory, SPTHugsFactory, SPTNetworkService, SPTOnDemandService, SPTPerformanceMetricsService, SPTPlayerFeature, SPTPlaylistPlatformService, SPTPodcastFeature, SPTResolver, SPTSearch2UserTierProviding, SPTSearchPlatformTestManager, SPTSearchRecentsDataSourceProviding, SPTSessionService, SPTShelfService, SPTURIDispatchService, SPTVoiceService;
+@protocol CosmosFeature, SPContextMenuFeature, SPTCollectionPlatformService, SPTContainerService, SPTCosmosDataLoaderService, SPTExplicitContentService, SPTFeatureFlaggingService, SPTGLUEService, SPTHubFrameworkService, SPTHubsRendererFactory, SPTHugsFactory, SPTNetworkService, SPTOnDemandService, SPTPerformanceMetricsService, SPTPlayerFeature, SPTPlaylistPlatformService, SPTPodcastFeature, SPTRemoteConfigurationService, SPTResolver, SPTSearch2UserTierProviding, SPTSearchPlatformTestManager, SPTSearchRecentsDataSourceProviding, SPTSessionService, SPTShelfService, SPTURIDispatchService, SPTVoiceService;
 
 @interface SPTSearchPlatformServiceImplementation : NSObject <SPTSearchPlatformService>
 {
@@ -31,7 +31,10 @@
     id <SPTExplicitContentService> _explicitContentService;
     id <SPTFeatureFlaggingService> _featureFlaggingService;
     id <SPTPerformanceMetricsService> _performanceMetricsService;
-    id <SPTAudioPreviewService> _audioPreviewService;
+    id <SPTCosmosDataLoaderService> _cosmosDataLoaderService;
+    id <CosmosFeature> _cosmosFeature;
+    id <SPTCollectionPlatformService> _collectionPlatformService;
+    id <SPTRemoteConfigurationService> _remoteConfigurationService;
     id <SPTResolver> _cosmosRouter;
     id <SPTSearch2UserTierProviding> _userTierProvider;
     id <SPTHubsRendererFactory> _hubsRendererFactory;
@@ -45,7 +48,10 @@
 @property(retain, nonatomic) id <SPTHubsRendererFactory> hubsRendererFactory; // @synthesize hubsRendererFactory=_hubsRendererFactory;
 @property(retain, nonatomic) id <SPTSearch2UserTierProviding> userTierProvider; // @synthesize userTierProvider=_userTierProvider;
 @property(retain, nonatomic) id <SPTResolver> cosmosRouter; // @synthesize cosmosRouter=_cosmosRouter;
-@property(nonatomic) __weak id <SPTAudioPreviewService> audioPreviewService; // @synthesize audioPreviewService=_audioPreviewService;
+@property(nonatomic) __weak id <SPTRemoteConfigurationService> remoteConfigurationService; // @synthesize remoteConfigurationService=_remoteConfigurationService;
+@property(nonatomic) __weak id <SPTCollectionPlatformService> collectionPlatformService; // @synthesize collectionPlatformService=_collectionPlatformService;
+@property(nonatomic) __weak id <CosmosFeature> cosmosFeature; // @synthesize cosmosFeature=_cosmosFeature;
+@property(nonatomic) __weak id <SPTCosmosDataLoaderService> cosmosDataLoaderService; // @synthesize cosmosDataLoaderService=_cosmosDataLoaderService;
 @property(nonatomic) __weak id <SPTPerformanceMetricsService> performanceMetricsService; // @synthesize performanceMetricsService=_performanceMetricsService;
 @property(nonatomic) __weak id <SPTFeatureFlaggingService> featureFlaggingService; // @synthesize featureFlaggingService=_featureFlaggingService;
 @property(nonatomic) __weak id <SPTExplicitContentService> explicitContentService; // @synthesize explicitContentService=_explicitContentService;
@@ -64,7 +70,7 @@
 @property(nonatomic) __weak id <SPTSessionService> clientSessionService; // @synthesize clientSessionService=_clientSessionService;
 - (void).cxx_destruct;
 - (id)makeLoadingLoggerWithConfiguration:(id)arg1;
-- (id)makeAutocompleteViewControllerWithConfiguration:(id)arg1;
+- (id)provideCosmosDictionaryDataLoader;
 - (id)makeViewModelProviderWithConfiguration:(id)arg1;
 - (id)makeDefaultSearchRequestParameters;
 - (id)makeViewControllerDependencies;

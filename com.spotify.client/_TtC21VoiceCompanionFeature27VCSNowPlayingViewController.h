@@ -14,8 +14,8 @@
     // Error parsing type: , name: nextUpLabelView
     // Error parsing type: , name: verticalSpacingView
     // Error parsing type: , name: upnextRowViews
-    // Error parsing type: , name: componentsStackView.storage
-    // Error parsing type: , name: nextUpLabel.storage
+    // Error parsing type: , name: $__lazy_storage_$_componentsStackView
+    // Error parsing type: , name: $__lazy_storage_$_nextUpLabel
 }
 
 - (void).cxx_destruct;

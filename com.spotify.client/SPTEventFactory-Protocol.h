@@ -6,9 +6,10 @@
 
 #import "NSObject-Protocol.h"
 
-@protocol SPTEventFactoryModelMapping, SPTInteractionEventFactory;
+@class NSString, NSURL;
+@protocol SPTEventFactoryMapper;
 
 @protocol SPTEventFactory <NSObject>
-- (id <SPTInteractionEventFactory>)factoryWithEvent:(id <SPTEventFactoryModelMapping>)arg1;
+- (id <SPTEventFactoryMapper>)mapperFactoryWithPageURI:(NSURL *)arg1 pageId:(NSString *)arg2;
 @end
 

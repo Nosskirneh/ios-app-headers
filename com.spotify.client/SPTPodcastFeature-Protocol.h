@@ -6,10 +6,11 @@
 
 #import "SPTService-Protocol.h"
 
-@class NSString, NSURL, SPTPodcastPreferences;
+@class NSString, NSURL, SPTPodcastEpisodeCellActionHandlerFactory, SPTPodcastPreferences;
 @protocol SPTLinkDispatcher, SPTNowPlayingTitleViewPresenter, SPTPodcastContextMenuProvider, SPTPodcastDataLoader, SPTPodcastEpisodeCellConfigurator, SPTPodcastEpisodeFactory, SPTPodcastFactory, SPTPodcastLogger, SPTPodcastPlayer, SPTPodcastRequestFactory, SPTPodcastSpeedControlManager, SPTPodcastTestManager, SPTPodcastUnfinishedItemsProvider, SPTShowEntityService;
 
 @protocol SPTPodcastFeature <SPTService>
+- (SPTPodcastEpisodeCellActionHandlerFactory *)provideCellActionHandlerFactory;
 - (id <SPTPodcastEpisodeCellConfigurator>)provideEpisodeCellConfigurator;
 - (id <SPTPodcastUnfinishedItemsProvider>)provideUnfinishedItemsProvider;
 - (id <SPTPodcastPlayer>)providePodcastPlayerWithViewURI:(NSURL *)arg1 featureIdentifier:(NSString *)arg2 referrerIdentifier:(NSString *)arg3;

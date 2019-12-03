@@ -7,6 +7,6 @@
 #import "SPTPlaylistPlatformDataLoaderField-Protocol.h"
 
 @protocol SPTPlaylistPlatformFieldIsCollaborative <SPTPlaylistPlatformDataLoaderField>
-@property(readonly, nonatomic) _Bool isCollaborative;
+@property(nonatomic, readonly) _Bool isCollaborative;
 @end
 

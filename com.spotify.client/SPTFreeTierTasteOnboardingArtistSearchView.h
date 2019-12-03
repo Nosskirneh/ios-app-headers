@@ -8,22 +8,19 @@
 
 #import "GLUEStyleable-Protocol.h"
 
-@class NSLayoutConstraint, NSString, SPTFreeTierTasteOnboardingArtistSearchCollectionViewLayout, UICollectionView;
+@class NSString, SPTFreeTierTasteOnboardingArtistSearchCollectionViewLayout, UICollectionView;
 
 @interface SPTFreeTierTasteOnboardingArtistSearchView : UIView <GLUEStyleable>
 {
     SPTFreeTierTasteOnboardingArtistSearchCollectionViewLayout *_collectionViewLayout;
     UICollectionView *_collectionView;
-    NSLayoutConstraint *_collectionViewTopConstraint;
 }
 
-@property(retain, nonatomic) NSLayoutConstraint *collectionViewTopConstraint; // @synthesize collectionViewTopConstraint=_collectionViewTopConstraint;
 @property(readonly, nonatomic) UICollectionView *collectionView; // @synthesize collectionView=_collectionView;
 @property(readonly, nonatomic) SPTFreeTierTasteOnboardingArtistSearchCollectionViewLayout *collectionViewLayout; // @synthesize collectionViewLayout=_collectionViewLayout;
 - (void).cxx_destruct;
 - (void)glue_applyStyle:(id)arg1;
 - (void)activateConstraints;
-- (void)updateLayoutMarginsWithTopAnchor:(id)arg1 topAnchorConstant:(double)arg2 bottomAnchor:(id)arg3;
 - (void)setHidden:(_Bool)arg1;
 - (id)initWithFrame:(struct CGRect)arg1;
 

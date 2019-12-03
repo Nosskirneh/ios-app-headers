@@ -16,8 +16,8 @@
 @property(copy, nonatomic) NSArray *viewSections; // @synthesize viewSections=_viewSections;
 - (void).cxx_destruct;
 - (id)instanceForSectionIdentifier:(long long)arg1;
-- (void)createViewModelSectionsFromSections:(id)arg1 podcastPlayer:(id)arg2 cellConfigurator:(id)arg3 cellActionHandler:(id)arg4 collectionLogger:(id)arg5 podcastLogger:(id)arg6 podcastTestManager:(id)arg7 podcastURL:(id)arg8 sortingService:(id)arg9;
-- (id)initWithViewSections:(id)arg1 podcastPlayer:(id)arg2 cellConfigurator:(id)arg3 cellActionHandler:(id)arg4 collectionLogger:(id)arg5 podcastLogger:(id)arg6 podcastTestManager:(id)arg7 podcastURL:(id)arg8 sortingService:(id)arg9;
+- (void)createViewModelSectionsFromSections:(id)arg1 podcastPlayer:(id)arg2 cellConfigurator:(id)arg3 cellActionHandler:(id)arg4 stringFormatter:(id)arg5 collectionLogger:(id)arg6 podcastLogger:(id)arg7 podcastTestManager:(id)arg8 podcastURL:(id)arg9 sortingService:(id)arg10;
+- (id)initWithViewSections:(id)arg1 podcastPlayer:(id)arg2 cellConfigurator:(id)arg3 cellActionHandler:(id)arg4 stringFormatter:(id)arg5 collectionLogger:(id)arg6 podcastLogger:(id)arg7 podcastTestManager:(id)arg8 podcastURL:(id)arg9 sortingService:(id)arg10;
 
 @end
 

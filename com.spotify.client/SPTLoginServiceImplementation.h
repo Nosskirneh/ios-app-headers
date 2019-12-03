@@ -11,7 +11,7 @@
 #import "SPTPageRegistryObserver-Protocol.h"
 #import "SPTPreSignupExperimentationFeatureFlagsLoaderDelegate-Protocol.h"
 
-@class NSError, NSString, SPTAllocationContext, SPTAuthenticationHandler, SPTLoginAttemptLogger, SPTLoginDelayedSignupAccountCreator, SPTLoginDelayedSignupAccountSwitcher, SPTLoginDialogController, SPTLoginErrorDecorator, SPTLoginKeychainManagerImplementation, SPTLoginLogoutAwaiter, SPTLoginNavigationRouter, SPTLoginSlideUpModalPresenter, SPTLoginStateControllerImplementation, SPTObserverManager;
+@class NSError, NSString, SPTAllocationContext, SPTAuthenticationHandler, SPTLoginAttemptLogger, SPTLoginDelayedSignupAccountCreator, SPTLoginDelayedSignupAccountSwitcher, SPTLoginDialogController, SPTLoginErrorDecorator, SPTLoginFeatureNavigationCoordinator, SPTLoginKeychainManagerImplementation, SPTLoginLogoutAwaiter, SPTLoginNavigationRouter, SPTLoginSlideUpModalPresenter, SPTLoginStateControllerImplementation, SPTObserverManager, SPTSigninWithAppleHandler;
 @protocol SPTContainerService, SPTContainerUIService, SPTCoreService, SPTCrashReporterService, SPTDebugService, SPTFacebookIntegrationService, SPTGLUEService, SPTLoginLoggingService, SPTNetworkService, SPTPreSignupExperimentationFeatureFlags, SPTPreSignupExperimentationFeatureFlagsLoader, SPTPreSignupExperimentationService, SPTServiceManagerService, SPTURIDispatchService, SPTUserBehaviourInstrumentationService;
 
 @interface SPTLoginServiceImplementation : NSObject <SPTPageRegistryObserver, SPTPreSignupExperimentationFeatureFlagsLoaderDelegate, SPTLoginService, SPTLoginLogoutHandler>
@@ -46,9 +46,13 @@
     SPTLoginDelayedSignupAccountSwitcher *_accountSwitcher;
     SPTAuthenticationHandler *_authenticationHandler;
     SPTLoginSlideUpModalPresenter *_slideUpModalPresenter;
+    SPTLoginFeatureNavigationCoordinator *_navigationCoordinator;
+    SPTSigninWithAppleHandler *_siaHandler;
 }
 
 + (id)serviceIdentifier;
+@property(retain, nonatomic) SPTSigninWithAppleHandler *siaHandler; // @synthesize siaHandler=_siaHandler;
+@property(retain, nonatomic) SPTLoginFeatureNavigationCoordinator *navigationCoordinator; // @synthesize navigationCoordinator=_navigationCoordinator;
 @property(retain, nonatomic) SPTLoginSlideUpModalPresenter *slideUpModalPresenter; // @synthesize slideUpModalPresenter=_slideUpModalPresenter;
 @property(retain, nonatomic) SPTAuthenticationHandler *authenticationHandler; // @synthesize authenticationHandler=_authenticationHandler;
 @property(retain, nonatomic) SPTLoginDelayedSignupAccountSwitcher *accountSwitcher; // @synthesize accountSwitcher=_accountSwitcher;
@@ -90,8 +94,10 @@
 - (id)provideWelcomeViewController;
 - (id)provideLoginViewControllerForURI:(id)arg1 context:(id)arg2;
 - (id)provideMagicLinkSentConfirmationViewControllerForURI:(id)arg1 context:(id)arg2;
+- (id)provideMagicLinkDoRequestViewControllerForURI:(id)arg1 context:(id)arg2;
 - (void)registerContinueWithEmailViewController;
 - (void)registerMagicLinkSentConfirmationViewController;
+- (void)registerMagicLinkDoRequestViewController;
 - (void)registerLoginViewController;
 - (void)registerWelcomeViewController;
 - (void)registerViewControllers;
@@ -100,13 +106,17 @@
 - (void)loginWithGuestCredentials:(id)arg1;
 - (_Bool)isEligibleForGuestAccountExperience;
 - (void)createGuestAccountOrShowLoginView;
+- (id)provideLoginKeychainManagerImpl;
 - (void)featureFlagsLoaderDidFailToLoadFeatureFlags:(id)arg1;
 - (void)featureFlagsLoader:(id)arg1 didLoadFeatureFlags:(id)arg2;
 - (void)loadFeatureFlags;
 - (void)tryToLoginAutomaticallyWithCredentials:(id)arg1 loginOptions:(id)arg2;
 - (void)loginWithCredentials:(id)arg1 loginOptions:(id)arg2;
+- (void)tryStoredCredentials:(id)arg1 loginOptions:(id)arg2;
 - (void)tryToLoginAutomatically;
 - (void)pageRegistryDidUnregisterFeaturePages:(id)arg1;
+- (id)provideCredentialSource;
+- (id)provideNavigationCoordinator;
 - (void)didLoginWithPhoneNumber;
 - (void)logoutWithCompletion:(CDUnknownBlockType)arg1;
 - (void)removeObserver:(id)arg1;

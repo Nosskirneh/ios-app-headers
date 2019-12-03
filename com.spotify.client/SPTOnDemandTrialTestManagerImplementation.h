@@ -6,13 +6,14 @@
 
 #import <objc/NSObject.h>
 
+#import "SPTFeatureFlagSignalObserver-Protocol.h"
 #import "SPTOnDemandTrialTestManager-Protocol.h"
 #import "SPTProductStateObserver-Protocol.h"
 
 @class NSString;
 @protocol SPTFeatureFlagFactory, SPTFeatureFlagSignal, SPTProductState;
 
-@interface SPTOnDemandTrialTestManagerImplementation : NSObject <SPTProductStateObserver, SPTOnDemandTrialTestManager>
+@interface SPTOnDemandTrialTestManagerImplementation : NSObject <SPTFeatureFlagSignalObserver, SPTProductStateObserver, SPTOnDemandTrialTestManager>
 {
     _Bool _isFeatureEnabled;
     id <SPTFeatureFlagFactory> _featureFlagFactory;

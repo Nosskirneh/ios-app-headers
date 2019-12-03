@@ -14,7 +14,7 @@
 #import "SPTSleepTimerTimeObserver-Protocol.h"
 
 @class NSString, SPTNowPlayingContextMenuHeaderFactory, SPTNowPlayingLogger, SPTNowPlayingModel, SPTObserverManager;
-@protocol SPContextMenuFeature, SPTContextMenuPresenter, SPTGaiaDevicePickerPresenter, SPTLinkDispatcher, SPTNowPlayingLegacyFeedbackCoordinator, SPTNowPlayingManager, SPTNowPlayingModeResolver, SPTNowPlayingTestManager, SPTPodcastContextMenuProvider, SPTPodcastSpeedControlManager, SPTQueueLogger, SPTShareFeature, SPTShowContextMenuControllerOptions, SPTSleepTimerController, SPTSleepTimerService, SPTUIPresentationService;
+@protocol SPContextMenuFeature, SPTConnectUIDevicePickerPresenter, SPTContextMenuPresenter, SPTLinkDispatcher, SPTNowPlayingLegacyFeedbackCoordinator, SPTNowPlayingManager, SPTNowPlayingModeResolver, SPTNowPlayingTestManager, SPTPodcastContextMenuProvider, SPTPodcastSpeedControlManager, SPTQueueLogger, SPTShareFeature, SPTShowContextMenuControllerOptions, SPTSleepTimerController, SPTSleepTimerService, SPTUIPresentationService;
 
 @interface SPTNowPlayingAuxiliaryActionsHandlerImplementation : NSObject <SPTNowPlayingAuxiliaryActionsModelObserver, SPTPodcastPreferencesObserver, SPTContextMenuPresenterDelegate, SPTSleepTimerTimeObserver, SPTSleepTimerEventObserver, SPTNowPlayingAuxiliaryActionsHandler>
 {
@@ -22,7 +22,7 @@
     SPTNowPlayingModel *_model;
     id <SPTPodcastSpeedControlManager> _speedControlManager;
     id <SPTUIPresentationService> _presentationService;
-    id <SPTGaiaDevicePickerPresenter> _devicePickerPresenter;
+    id <SPTConnectUIDevicePickerPresenter> _devicePickerPresenter;
     id <SPContextMenuFeature> _contextMenuService;
     id <SPTNowPlayingManager> _manager;
     id <SPTLinkDispatcher> _linkDispatcher;
@@ -55,7 +55,7 @@
 @property(readonly, nonatomic) id <SPTLinkDispatcher> linkDispatcher; // @synthesize linkDispatcher=_linkDispatcher;
 @property(readonly, nonatomic) id <SPTNowPlayingManager> manager; // @synthesize manager=_manager;
 @property(readonly, nonatomic) __weak id <SPContextMenuFeature> contextMenuService; // @synthesize contextMenuService=_contextMenuService;
-@property(readonly, nonatomic) id <SPTGaiaDevicePickerPresenter> devicePickerPresenter; // @synthesize devicePickerPresenter=_devicePickerPresenter;
+@property(readonly, nonatomic) id <SPTConnectUIDevicePickerPresenter> devicePickerPresenter; // @synthesize devicePickerPresenter=_devicePickerPresenter;
 @property(readonly, nonatomic) id <SPTUIPresentationService> presentationService; // @synthesize presentationService=_presentationService;
 @property(readonly, nonatomic) id <SPTPodcastSpeedControlManager> speedControlManager; // @synthesize speedControlManager=_speedControlManager;
 @property(readonly, nonatomic) SPTNowPlayingModel *model; // @synthesize model=_model;

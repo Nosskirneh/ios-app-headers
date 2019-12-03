@@ -10,6 +10,7 @@
 @protocol SPTAssistedCurationAddTrackHandler, SPTAssistedCurationCardViewModel, SPTAssistedCurationViewModelDelegate;
 
 @protocol SPTAssistedCurationViewModel <NSObject>
+@property(readonly, nonatomic) long long addTrackIcon;
 @property(readonly, nonatomic) id <SPTAssistedCurationAddTrackHandler> addTrackHandler;
 @property(readonly, nonatomic) NSURL *playlistURI;
 @property(readonly, nonatomic, getter=isLoaded) _Bool loaded;

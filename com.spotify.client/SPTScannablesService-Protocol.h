@@ -7,13 +7,14 @@
 #import "SPTService-Protocol.h"
 
 @class NSString, UIBarButtonItem;
-@protocol SPTScannablesDataSource, SPTScannablesRegistry, SPTScannablesShortcutItemProvider, SPTScannablesTestManager, SPTScannablesUserInterfaceFactory;
+@protocol SPTScannablesDataSource, SPTScannablesPresenter, SPTScannablesRegistry, SPTScannablesShortcutItemProvider, SPTScannablesTestManager, SPTScannablesUserInterfaceFactory;
 
 @protocol SPTScannablesService <SPTService>
 - (UIBarButtonItem *)makeScannableBarButtonItem;
 - (id <SPTScannablesShortcutItemProvider>)provideShortcutItemProvider;
 - (id <SPTScannablesRegistry>)provideRegistry;
 - (id <SPTScannablesDataSource>)provideDataSourceWithIdentifier:(NSString *)arg1;
+- (id <SPTScannablesPresenter>)provideScannablesPresenter;
 - (id <SPTScannablesUserInterfaceFactory>)provideUserInterfaceFactory;
 - (id <SPTScannablesTestManager>)provideTestManager;
 @end

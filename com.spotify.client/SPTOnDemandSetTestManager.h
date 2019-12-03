@@ -6,10 +6,12 @@
 
 #import <objc/NSObject.h>
 
+#import "SPTFeatureFlagSignalObserver-Protocol.h"
+
 @class NSString;
 @protocol SPTFeatureFlagFactory, SPTFeatureFlagSignal;
 
-@interface SPTOnDemandSetTestManager : NSObject
+@interface SPTOnDemandSetTestManager : NSObject <SPTFeatureFlagSignalObserver>
 {
     _Bool _onDemandDebuggingEnabled;
     id <SPTFeatureFlagFactory> _featureFlagFactory;

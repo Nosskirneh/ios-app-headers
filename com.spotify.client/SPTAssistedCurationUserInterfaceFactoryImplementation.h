@@ -40,9 +40,9 @@
 - (id)makeSaveToRecentsCommandHandler;
 - (id)makeNavigateCommandHandler;
 - (id)addToPlaylistCommandHandlerWithViewModel:(id)arg1;
-- (struct NSDictionary *)assistedCurationComponents;
+- (struct NSDictionary *)customComponentsWithViewModel:(id)arg1;
 - (id)provideGLUEImageLoader;
-- (id)provideAssistedCurationTheme;
+- (id)provideCardStyleWithViewModel:(id)arg1;
 - (id)initWithSearchPlatformService:(id)arg1 glueService:(id)arg2 audioPreviewService:(id)arg3 explicitContentService:(id)arg4 viewModel:(id)arg5 linkDispatcher:(id)arg6 testManager:(id)arg7;
 
 // Remaining properties

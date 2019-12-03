@@ -10,7 +10,7 @@
 #import "SPTImageLoaderDelegate-Protocol.h"
 
 @class NSString, NSURL, UIButton, UIColor, UIView, VISREFCustomBackButton, VISREFFreeTierPlaylistFollowButtonViewModel, VISREFFullBleedContentView, VISREFGradientBackgroundView, VISREFPlayButtonForegroundView;
-@protocol SPTFreeTierPlaylistDefaultHeaderViewModel, SPTFreeTierPlaylistFollowViewModel, SPTFreeTierPlaylistFullbleedHeaderViewModel, SPTFreeTierPlaylistPlayViewModel, SPTFreeTierPlaylistVISREFHeaderControllerDelegate, SPTImageLoader, VISREFPlayButtonTestManager;
+@protocol SPTFreeTierEntityOfflineViewModel, SPTFreeTierPlaylistDefaultHeaderViewModel, SPTFreeTierPlaylistFollowViewModel, SPTFreeTierPlaylistFullbleedHeaderViewModel, SPTFreeTierPlaylistPlayViewModel, SPTFreeTierPlaylistVISREFHeaderControllerDelegate, SPTImageLoader, VISREFPlayButtonTestManager;
 
 @interface SPTFreeTierPlaylistVISREFFullBleedHeaderControllerImplementation : VISREFBaseHeaderController <SPTImageLoaderDelegate, SPTFreeTierPlaylistVISREFHeaderController>
 {
@@ -28,9 +28,11 @@
     id <SPTFreeTierPlaylistFollowViewModel> _followViewModel;
     id <SPTFreeTierPlaylistDefaultHeaderViewModel> _defaultHeaderViewModel;
     id <SPTFreeTierPlaylistFullbleedHeaderViewModel> _fullbleedHeaderViewModel;
+    id <SPTFreeTierEntityOfflineViewModel> _playlistOfflineViewModel;
     VISREFFreeTierPlaylistFollowButtonViewModel *_followButtonViewModel;
     VISREFCustomBackButton *_backButton;
     UIButton *_followButton;
+    UIButton *_offlineButton;
     UIColor *_associatedColor;
     double _navigationBarGradientEndPoint;
     NSString *_playButtonAccessibilityString;
@@ -47,9 +49,11 @@
 @property(nonatomic) CDStruct_5a28e70a backButtonGlyphOffsetRange; // @synthesize backButtonGlyphOffsetRange=_backButtonGlyphOffsetRange;
 @property(nonatomic) double navigationBarGradientEndPoint; // @synthesize navigationBarGradientEndPoint=_navigationBarGradientEndPoint;
 @property(retain, nonatomic) UIColor *associatedColor; // @synthesize associatedColor=_associatedColor;
+@property(retain, nonatomic) UIButton *offlineButton; // @synthesize offlineButton=_offlineButton;
 @property(retain, nonatomic) UIButton *followButton; // @synthesize followButton=_followButton;
 @property(retain, nonatomic) VISREFCustomBackButton *backButton; // @synthesize backButton=_backButton;
 @property(retain, nonatomic) VISREFFreeTierPlaylistFollowButtonViewModel *followButtonViewModel; // @synthesize followButtonViewModel=_followButtonViewModel;
+@property(retain, nonatomic) id <SPTFreeTierEntityOfflineViewModel> playlistOfflineViewModel; // @synthesize playlistOfflineViewModel=_playlistOfflineViewModel;
 @property(retain, nonatomic) id <SPTFreeTierPlaylistFullbleedHeaderViewModel> fullbleedHeaderViewModel; // @synthesize fullbleedHeaderViewModel=_fullbleedHeaderViewModel;
 @property(retain, nonatomic) id <SPTFreeTierPlaylistDefaultHeaderViewModel> defaultHeaderViewModel; // @synthesize defaultHeaderViewModel=_defaultHeaderViewModel;
 @property(retain, nonatomic) id <SPTFreeTierPlaylistFollowViewModel> followViewModel; // @synthesize followViewModel=_followViewModel;
@@ -71,7 +75,7 @@
 - (void)setCustomBackButton:(id)arg1;
 - (void)navigationBarHeightDidChange:(double)arg1;
 - (void)update;
-- (void)configureWithPlayViewModel:(id)arg1 followViewModel:(id)arg2 defaultHeaderViewModel:(id)arg3 fullbleedHeaderViewModel:(id)arg4 filterSortBarView:(id)arg5;
+- (void)configureWithPlayViewModel:(id)arg1 followViewModel:(id)arg2 defaultHeaderViewModel:(id)arg3 fullbleedHeaderViewModel:(id)arg4 playlistOfflineViewModel:(id)arg5 filterSortBarView:(id)arg6;
 - (void)headerViewViewHierarchyDidChange:(id)arg1;
 - (void)headerView:(id)arg1 headerViewVisibleAreaChanged:(double)arg2;
 - (double)minimumHeight;

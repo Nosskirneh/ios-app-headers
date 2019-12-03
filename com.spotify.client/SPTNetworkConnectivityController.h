@@ -6,29 +6,31 @@
 
 #import <objc/NSObject.h>
 
-@class CTTelephonyNetworkInfo, NSMapTable, NSNotificationCenter, NSUserDefaults, SPCore, SPTReachability;
+@class APLReachability, CTTelephonyNetworkInfo, NSHashTable, NSMapTable, NSNotificationCenter, NSUserDefaults, SPCore;
 @protocol SPTConnectivityManager;
 
 @interface SPTNetworkConnectivityController : NSObject
 {
     id <SPTConnectivityManager> _connectivityManager;
-    SPTReachability *_reachability;
+    APLReachability *_reachability;
     SPCore *_core;
     NSMapTable *_observers;
     NSNotificationCenter *_center;
     NSUserDefaults *_defaults;
     CTTelephonyNetworkInfo *_networkInfo;
     long long _previousConnectionType;
+    NSHashTable *_activeKeepAliveTokens;
 }
 
 + (_Bool)automaticallyNotifiesObserversForKey:(id)arg1;
+@property(retain, nonatomic) NSHashTable *activeKeepAliveTokens; // @synthesize activeKeepAliveTokens=_activeKeepAliveTokens;
 @property(nonatomic) long long previousConnectionType; // @synthesize previousConnectionType=_previousConnectionType;
 @property(retain, nonatomic) CTTelephonyNetworkInfo *networkInfo; // @synthesize networkInfo=_networkInfo;
 @property(retain, nonatomic) NSUserDefaults *defaults; // @synthesize defaults=_defaults;
 @property(retain, nonatomic) NSNotificationCenter *center; // @synthesize center=_center;
 @property(retain, nonatomic) NSMapTable *observers; // @synthesize observers=_observers;
 @property(nonatomic) __weak SPCore *core; // @synthesize core=_core;
-@property(retain, nonatomic) SPTReachability *reachability; // @synthesize reachability=_reachability;
+@property(retain, nonatomic) APLReachability *reachability; // @synthesize reachability=_reachability;
 @property(retain, nonatomic) id <SPTConnectivityManager> connectivityManager; // @synthesize connectivityManager=_connectivityManager;
 - (void).cxx_destruct;
 - (void)setDefaultsForcedOffline:(_Bool)arg1;
@@ -38,6 +40,9 @@
 - (long long)connectionTypeFromReachabilityStatus:(long long)arg1;
 - (long long)refinedCellularType;
 - (void)defaultsChanged;
+- (void)updateKeepAliveStatus;
+- (void)keepAliveTokenRelinquished:(id)arg1;
+- (id)keepAlivePersistentConnectionsWithReason:(id)arg1;
 - (void)setAllowSyncOver3G:(_Bool)arg1 callback:(CDUnknownBlockType)arg2;
 @property(readonly, nonatomic) _Bool allowSyncOver3G;
 - (void)setForcedOffline:(_Bool)arg1 callback:(CDUnknownBlockType)arg2;

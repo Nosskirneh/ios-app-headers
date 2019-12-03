@@ -6,12 +6,13 @@
 
 #import <objc/NSObject.h>
 
+#import "SPTFeatureFlagSignalObserver-Protocol.h"
 #import "SPTReminderService-Protocol.h"
 
 @class NSString, SPTAllocationContext, SPTReminderTestManager;
 @protocol SPContextMenuFeature, SPTFeatureFlaggingService, SPTReminderHandlerService;
 
-@interface SPTReminderServiceImplementation : NSObject <SPTReminderService>
+@interface SPTReminderServiceImplementation : NSObject <SPTFeatureFlagSignalObserver, SPTReminderService>
 {
     id <SPTReminderHandlerService> _handlerService;
     id <SPContextMenuFeature> _contextMenuFeature;

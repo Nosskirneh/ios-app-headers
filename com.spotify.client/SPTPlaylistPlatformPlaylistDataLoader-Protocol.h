@@ -11,6 +11,7 @@
 
 @protocol SPTPlaylistPlatformPlaylistDataLoader <NSObject>
 - (void)synchronisePlaylistURL:(NSURL *)arg1;
+- (void)fetchPlayContextForPlaylistWithURL:(NSURL *)arg1 playlistOptions:(SPTPlaylistPlatformPlayOptions *)arg2 completion:(void (^)(SPTPlayerContext *, NSError *))arg3;
 - (void)playWithURL:(NSURL *)arg1 playOptions:(SPTPlayOptions *)arg2 playlistOptions:(SPTPlaylistPlatformPlayOptions *)arg3 completion:(void (^)(void))arg4 onError:(void (^)(NSError *))arg5;
 - (id <SPTPlaylistPlatformDataLoaderRequestToken>)subscribePlaylistViewWithRecommendationsForPlaylistURL:(NSURL *)arg1 options:(SPTPlaylistPlatformPlaylistTracksSubscriptionOptions *)arg2 withMetadataProtocols:(NSArray *)arg3 andTrackProtocols:(NSArray *)arg4 completion:(void (^)(id <SPTPlaylistPlatformDataLoaderField>, struct SPTPlaylistPlatformDataLoaderResponse *, NSArray<SPTPlaylistPlatformDataLoaderField> *))arg5 onError:(void (^)(NSError *))arg6;
 - (id <SPTPlaylistPlatformDataLoaderRequestToken>)subscribePlaylistViewForPlaylistURL:(NSURL *)arg1 options:(SPTPlaylistPlatformPlaylistTracksSubscriptionOptions *)arg2 withMetadataProtocols:(NSArray *)arg3 andTrackProtocols:(NSArray *)arg4 completion:(void (^)(id <SPTPlaylistPlatformDataLoaderField>, struct SPTPlaylistPlatformDataLoaderResponse *))arg5 onError:(void (^)(NSError *))arg6;

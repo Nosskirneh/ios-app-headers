@@ -6,12 +6,13 @@
 
 #import <objc/NSObject.h>
 
+#import "SPTFeatureFlagSignalObserver-Protocol.h"
 #import "SPTSocialListeningTestManager-Protocol.h"
 
 @class NSString;
 @protocol SPTFeatureFlagFactory, SPTFeatureFlagSignal;
 
-@interface SPTSocialListeningTestManagerImplementation : NSObject <SPTSocialListeningTestManager>
+@interface SPTSocialListeningTestManagerImplementation : NSObject <SPTFeatureFlagSignalObserver, SPTSocialListeningTestManager>
 {
     _Bool _socialListeningEnabled;
     _Bool _shareLinkEnabled;

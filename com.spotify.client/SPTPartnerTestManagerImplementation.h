@@ -6,12 +6,13 @@
 
 #import <objc/NSObject.h>
 
+#import "SPTFeatureFlagSignalObserver-Protocol.h"
 #import "SPTPartnerTestManager-Protocol.h"
 
 @class NSString, SPTObserverManager;
 @protocol SPTFeatureFlagFactory, SPTFeatureFlagSignal, SPTLocalSettings;
 
-@interface SPTPartnerTestManagerImplementation : NSObject <SPTPartnerTestManager>
+@interface SPTPartnerTestManagerImplementation : NSObject <SPTFeatureFlagSignalObserver, SPTPartnerTestManager>
 {
     _Bool _partnerFeatureEnabled;
     id <SPTFeatureFlagFactory> _featureFlagFactory;

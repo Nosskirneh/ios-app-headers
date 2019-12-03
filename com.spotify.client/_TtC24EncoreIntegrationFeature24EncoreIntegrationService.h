@@ -10,9 +10,11 @@
 
 @interface _TtC24EncoreIntegrationFeature24EncoreIntegrationService : NSObject <SPTEncoreIntegrationService>
 {
-    // Error parsing type: , name: objCComponentFactory
+    // Error parsing type: , name: componentFactory
+    // Error parsing type: , name: testManager
     // Error parsing type: , name: containerService
     // Error parsing type: , name: glueService
+    // Error parsing type: , name: featureFlaggingService
 }
 
 + (id)serviceIdentifier;
@@ -21,7 +23,8 @@
 - (void)unload;
 - (void)load;
 - (void)configureWithServices:(id)arg1;
-- (id)provideObjCComponentFactory;
+- (id)provideTestManager;
+- (id)provideComponentFactory;
 
 @end
 

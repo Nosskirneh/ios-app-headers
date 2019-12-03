@@ -7,7 +7,7 @@
 #import <UIKit/UIView.h>
 
 @class NSLayoutConstraint, SPTFreeTierPlaylistHeaderViewStyle, UILayoutGuide;
-@protocol SPTFreeTierPlaylistHeaderContent, UILayoutSupport;
+@protocol SPTFreeTierPlaylistHeaderContent;
 
 @interface SPTFreeTierPlaylistHeaderView : UIView
 {
@@ -26,10 +26,8 @@
     SPTFreeTierPlaylistHeaderViewStyle *_style;
     double _safeAreaMinY;
     UILayoutGuide *_parentLayoutGuide;
-    id <UILayoutSupport> _legacyLayoutSupport;
 }
 
-@property(retain, nonatomic) id <UILayoutSupport> legacyLayoutSupport; // @synthesize legacyLayoutSupport=_legacyLayoutSupport;
 @property(retain, nonatomic) UILayoutGuide *parentLayoutGuide; // @synthesize parentLayoutGuide=_parentLayoutGuide;
 @property(nonatomic) double safeAreaMinY; // @synthesize safeAreaMinY=_safeAreaMinY;
 @property(retain, nonatomic) SPTFreeTierPlaylistHeaderViewStyle *style; // @synthesize style=_style;
@@ -61,7 +59,7 @@
 - (void)setupSearchIfNeeded;
 - (void)setContentView:(id)arg1;
 - (void)setBackgroundView:(id)arg1;
-- (void)configureWithParentLayoutGuide:(id)arg1 legacyLayoutSupport:(id)arg2;
+- (void)configureWithParentLayoutGuide:(id)arg1;
 - (id)initWithBackgroundView:(id)arg1 contentView:(id)arg2 navigationTitleView:(id)arg3 filterSearchBar:(id)arg4 headerViewStyle:(id)arg5;
 
 @end

@@ -14,6 +14,7 @@
 
 @interface HUBView : UIView <HUBComponentViewManagerDelegate, HUBScrollViewDelegate>
 {
+    _Bool _useDiffingOnComponentModelChanges;
     UICollectionView *_contentView;
     id <HUBViewComponentDelegate> _componentDelegate;
     id <HUBViewScrollDelegate> _scrollDelegate;
@@ -36,12 +37,14 @@
 @property(nonatomic) __weak id <HUBViewScrollDelegate> scrollDelegate; // @synthesize scrollDelegate=_scrollDelegate;
 @property(nonatomic) __weak id <HUBViewComponentDelegate> componentDelegate; // @synthesize componentDelegate=_componentDelegate;
 @property(readonly, nonatomic) UICollectionView *contentView; // @synthesize contentView=_contentView;
+@property(nonatomic) _Bool useDiffingOnComponentModelChanges; // @synthesize useDiffingOnComponentModelChanges=_useDiffingOnComponentModelChanges;
 - (void).cxx_destruct;
 - (void)componentViewManager:(id)arg1 componentViewDidDisappear:(id)arg2;
 - (void)componentViewManager:(id)arg1 componentViewWillAppear:(id)arg2;
 - (struct CGRect)contentRectForScrollView:(id)arg1;
 - (void)scrollViewDidScroll:(id)arg1;
 - (_Bool)scrollViewShouldBeginScrolling:(id)arg1;
+- (void)applyComponentModelDiff:(id)arg1;
 @property(nonatomic) _Bool adjustsTargetContentOffset;
 - (void)setContentOffset:(struct CGPoint)arg1 animated:(_Bool)arg2;
 - (void)removeContentOffsetObserver:(id)arg1;

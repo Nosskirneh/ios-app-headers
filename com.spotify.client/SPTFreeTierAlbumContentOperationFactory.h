@@ -7,7 +7,7 @@
 #import <objc/NSObject.h>
 
 @class SPTNetworkConnectivityController;
-@protocol HUBImageLoaderFactory, SPTCollectionPlatformStateProvider, SPTCollectionPlatformTestManager, SPTExplicitContentAccessManager, SPTHubContentOperationFactory, SPTOnDemandService, SPTOnDemandTrialService, SPTPlayerFeature, SPTProductState, SPTSessionService, SPTUpsellExperimentationFreetierAlbumTestConfiguration;
+@protocol HUBImageLoaderFactory, SPTCollectionPlatformStateProvider, SPTCollectionPlatformTestManager, SPTExplicitContentAccessManager, SPTHubContentOperationFactory, SPTOnDemandService, SPTOnDemandTrialService, SPTPlayerFeature, SPTProductState, SPTSessionService, VISREFIntegrationManager;
 
 @interface SPTFreeTierAlbumContentOperationFactory : NSObject
 {
@@ -19,16 +19,16 @@
     id <SPTSessionService> _clientSessionService;
     id <HUBImageLoaderFactory> _imageLoaderFactory;
     id <SPTProductState> _productState;
-    id <SPTUpsellExperimentationFreetierAlbumTestConfiguration> _upsellExperimentConfiguration;
     id <SPTExplicitContentAccessManager> _explicitContentAccessManager;
     id <SPTCollectionPlatformStateProvider> _collectionPlaformStateProvider;
     id <SPTCollectionPlatformTestManager> _collectionPlatformTestManager;
+    id <VISREFIntegrationManager> _visualRefreshIntegrationManager;
 }
 
+@property(retain, nonatomic) id <VISREFIntegrationManager> visualRefreshIntegrationManager; // @synthesize visualRefreshIntegrationManager=_visualRefreshIntegrationManager;
 @property(readonly, nonatomic) id <SPTCollectionPlatformTestManager> collectionPlatformTestManager; // @synthesize collectionPlatformTestManager=_collectionPlatformTestManager;
 @property(readonly, nonatomic) id <SPTCollectionPlatformStateProvider> collectionPlaformStateProvider; // @synthesize collectionPlaformStateProvider=_collectionPlaformStateProvider;
 @property(readonly, nonatomic) __weak id <SPTExplicitContentAccessManager> explicitContentAccessManager; // @synthesize explicitContentAccessManager=_explicitContentAccessManager;
-@property(retain, nonatomic) id <SPTUpsellExperimentationFreetierAlbumTestConfiguration> upsellExperimentConfiguration; // @synthesize upsellExperimentConfiguration=_upsellExperimentConfiguration;
 @property(readonly, nonatomic) __weak id <SPTProductState> productState; // @synthesize productState=_productState;
 @property(retain, nonatomic) id <HUBImageLoaderFactory> imageLoaderFactory; // @synthesize imageLoaderFactory=_imageLoaderFactory;
 @property(nonatomic) __weak id <SPTSessionService> clientSessionService; // @synthesize clientSessionService=_clientSessionService;
@@ -39,7 +39,7 @@
 @property(readonly, nonatomic) id <SPTHubContentOperationFactory> hubContentOperationFactory; // @synthesize hubContentOperationFactory=_hubContentOperationFactory;
 - (void).cxx_destruct;
 - (id)createContentOperationsForViewURI:(id)arg1 referrerIdentifier:(id)arg2 offlineModel:(id)arg3 reloadPageSignal:(id)arg4;
-- (id)initWithHubContentOperationFactory:(id)arg1 playerService:(id)arg2 onDemandService:(id)arg3 onDemandTrialService:(id)arg4 clientSessionService:(id)arg5 networkConnectivityController:(id)arg6 imageLoaderFactory:(id)arg7 productState:(id)arg8 upsellExperimentConfiguration:(id)arg9 explicitContentAccessManager:(id)arg10 collectionPlaformStateProvider:(id)arg11 collectionPlatformTestManager:(id)arg12;
+- (id)initWithHubContentOperationFactory:(id)arg1 playerService:(id)arg2 onDemandService:(id)arg3 onDemandTrialService:(id)arg4 clientSessionService:(id)arg5 networkConnectivityController:(id)arg6 imageLoaderFactory:(id)arg7 productState:(id)arg8 explicitContentAccessManager:(id)arg9 collectionPlaformStateProvider:(id)arg10 collectionPlatformTestManager:(id)arg11 visualRefreshIntegrationManager:(id)arg12;
 
 @end
 

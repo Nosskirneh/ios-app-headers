@@ -19,7 +19,10 @@
 @property(readonly, nonatomic) SPTPlayerTrack *track; // @synthesize track=_track;
 - (void).cxx_destruct;
 - (void)updateWithStyle:(id)arg1;
+- (void)updateLayout;
+- (void)traitCollectionDidChange:(id)arg1;
 - (void)loadView;
+- (void)viewDidLoad;
 - (id)initWithTrack:(id)arg1 imageLoader:(id)arg2;
 
 // Remaining properties

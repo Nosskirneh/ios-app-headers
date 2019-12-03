@@ -6,6 +6,8 @@
 
 #import <UIKit/UIDevice.h>
 
+@class NSString;
+
 @interface UIDevice (ADJAdditions)
 - (_Bool)adjSetIadWithDetails:(id)arg1 ADClientSharedClientInstance:(id)arg2 retriesLeft:(int)arg3;
 - (void)adjSetIad:(id)arg1 triesV3Left:(int)arg2;
@@ -16,5 +18,11 @@
 - (id)adjFbAttributionId;
 - (id)adjIdForAdvertisers;
 - (_Bool)adjTrackingEnabled;
+- (id)gaiaHardwareName;
+@property(readonly, nonatomic, getter=spt_archName) NSString *archName;
+@property(readonly, nonatomic, getter=spt_screenSize) long long screenSize;
+@property(readonly, nonatomic, getter=spt_hasModem) _Bool hasModem;
+@property(readonly, nonatomic, getter=spt_systemHardwarePlatformType) long long systemHardwarePlatformType;
+@property(readonly, nonatomic, getter=spt_hardwareIdentifier) NSString *hardwareIdentifier;
 @end
 

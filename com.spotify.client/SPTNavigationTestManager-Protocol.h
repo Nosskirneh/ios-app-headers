@@ -9,7 +9,6 @@
 @protocol SPTFeatureFlagSignal;
 
 @protocol SPTNavigationTestManager <NSObject>
-@property(readonly, nonatomic) _Bool sideBarNavigationEnabled;
 @property(readonly, nonatomic) id <SPTFeatureFlagSignal> stateRestorationDisabledSignal;
 @end
 

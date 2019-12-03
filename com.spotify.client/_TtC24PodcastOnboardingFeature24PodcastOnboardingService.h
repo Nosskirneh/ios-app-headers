@@ -19,11 +19,9 @@
     // Error parsing type: , name: clientSessionService
     // Error parsing type: , name: settingsService
     // Error parsing type: , name: performanceMetricsService
-    // Error parsing type: , name: masterFeatureFlagSignal
-    // Error parsing type: , name: enabledInFirstTimeFlowAbbaSignal
     // Error parsing type: , name: enabledInFirstTimeFlowUserPolicySignal
-    // Error parsing type: , name: flowCoordinator.storage
-    // Error parsing type: , name: curationManager.storage
+    // Error parsing type: , name: $__lazy_storage_$_flowCoordinator
+    // Error parsing type: , name: $__lazy_storage_$_curationManager
 }
 
 + (id)serviceIdentifier;

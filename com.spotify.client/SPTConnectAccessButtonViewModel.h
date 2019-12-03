@@ -11,14 +11,14 @@
 #import "SPTPlayerObserver-Protocol.h"
 
 @class NSNotificationCenter, NSString, SPTConnectAccessButtonAnimationCoordinator, SPTConnectAccessButtonLogger, SPTTheme, UIImage;
-@protocol SPTConnectAccessButtonViewModelDelegate, SPTGaiaConnectAPI, SPTGaiaDevicePickerPresenter, SPTGaiaIconProvider, SPTPlayer;
+@protocol SPTConnectAccessButtonViewModelDelegate, SPTConnectUIDevicePickerPresenter, SPTGaiaConnectAPI, SPTGaiaIconProvider, SPTPlayer;
 
 @interface SPTConnectAccessButtonViewModel : NSObject <SPTGaiaConnectObserver, SPTPlayerObserver, SPTConnectAccessButtonAnimationCoordinatorDelegate>
 {
     _Bool _isButtonContainerVisible;
     _Bool _hasPerformedNudgeForCurrentSession;
     id <SPTConnectAccessButtonViewModelDelegate> _delegate;
-    id <SPTGaiaDevicePickerPresenter> _devicePickerPresenter;
+    id <SPTConnectUIDevicePickerPresenter> _devicePickerPresenter;
     id <SPTGaiaConnectAPI> _connectManager;
     id <SPTGaiaIconProvider> _connectIconProvider;
     NSNotificationCenter *_notificationCenter;
@@ -37,7 +37,7 @@
 @property(readonly, nonatomic) NSNotificationCenter *notificationCenter; // @synthesize notificationCenter=_notificationCenter;
 @property(readonly, nonatomic) id <SPTGaiaIconProvider> connectIconProvider; // @synthesize connectIconProvider=_connectIconProvider;
 @property(readonly, nonatomic) id <SPTGaiaConnectAPI> connectManager; // @synthesize connectManager=_connectManager;
-@property(readonly, nonatomic) id <SPTGaiaDevicePickerPresenter> devicePickerPresenter; // @synthesize devicePickerPresenter=_devicePickerPresenter;
+@property(readonly, nonatomic) id <SPTConnectUIDevicePickerPresenter> devicePickerPresenter; // @synthesize devicePickerPresenter=_devicePickerPresenter;
 @property(nonatomic) __weak id <SPTConnectAccessButtonViewModelDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
 - (void)animationCoordinatorRequestAnimation:(long long)arg1;

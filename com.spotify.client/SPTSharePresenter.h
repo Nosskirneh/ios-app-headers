@@ -8,16 +8,15 @@
 
 #import "SPTShareViewControllerDelegate-Protocol.h"
 
-@class NSString, SPTProgressView, SPTShareContainerViewController, SPTShareDataProvider, SPTShareHandlerFactory, SPTShareScreenshotObserverManager, SPTShareViewController;
+@class NSString, SPTProgressView, SPTShareDataProvider, SPTShareHandlerFactory, SPTShareViewController, UIViewController;
 @protocol SPTAlertController, SPTShareHandler;
 
 @interface SPTSharePresenter : NSObject <SPTShareViewControllerDelegate>
 {
-    SPTShareContainerViewController *_containerViewController;
+    UIViewController *_contextViewController;
     SPTShareViewController *_shareViewController;
     SPTShareHandlerFactory *_shareHandlerFactory;
     SPTShareDataProvider *_shareDataProvider;
-    SPTShareScreenshotObserverManager *_screenshotObserverManager;
     id <SPTAlertController> _alertController;
     id <SPTShareHandler> _shareHandler;
     SPTProgressView *_progressView;
@@ -28,11 +27,10 @@
 @property(retain, nonatomic) SPTProgressView *progressView; // @synthesize progressView=_progressView;
 @property(retain, nonatomic) id <SPTShareHandler> shareHandler; // @synthesize shareHandler=_shareHandler;
 @property(readonly, nonatomic) id <SPTAlertController> alertController; // @synthesize alertController=_alertController;
-@property(readonly, nonatomic) SPTShareScreenshotObserverManager *screenshotObserverManager; // @synthesize screenshotObserverManager=_screenshotObserverManager;
 @property(readonly, nonatomic) SPTShareDataProvider *shareDataProvider; // @synthesize shareDataProvider=_shareDataProvider;
 @property(readonly, nonatomic) SPTShareHandlerFactory *shareHandlerFactory; // @synthesize shareHandlerFactory=_shareHandlerFactory;
 @property(readonly, nonatomic) SPTShareViewController *shareViewController; // @synthesize shareViewController=_shareViewController;
-@property(retain, nonatomic) SPTShareContainerViewController *containerViewController; // @synthesize containerViewController=_containerViewController;
+@property(readonly, nonatomic) __weak UIViewController *contextViewController; // @synthesize contextViewController=_contextViewController;
 - (void).cxx_destruct;
 - (_Bool)shouldShowProgressViewForShareDestination:(id)arg1;
 - (void)shareViewController:(id)arg1 didSelectShareDestination:(id)arg2;
@@ -43,7 +41,7 @@
 - (void)dismissWithCompletion:(CDUnknownBlockType)arg1;
 - (void)presentProgressView;
 - (void)presentAlertControllerWithModel:(id)arg1;
-- (id)initWithContainerViewController:(id)arg1 shareViewController:(id)arg2 shareHandlerFactory:(id)arg3 shareDataProvider:(id)arg4 screenshotObserverManager:(id)arg5 alertController:(id)arg6;
+- (id)initWithContextViewController:(id)arg1 shareViewController:(id)arg2 shareHandlerFactory:(id)arg3 shareDataProvider:(id)arg4 alertController:(id)arg5;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

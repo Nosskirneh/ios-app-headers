@@ -9,7 +9,7 @@
 #import "SPTDataLoaderDelegate-Protocol.h"
 #import "SPTNetworkConnectivityControllerObserver-Protocol.h"
 
-@class NSArray, NSMutableArray, NSMutableDictionary, NSString, SPTDataLoader, SPTDataLoaderRequest, SPTFreeTierTasteOnboardingArtistPickerViewLogger, SPTFreeTierTasteOnboardingCurator, SPTFreeTierTasteOnboardingDeeplinkStore, SPTFreeTierTasteOnboardingSession, SPTFreeTierTasteOnboardingTheme, SPTNetworkConnectivityController, SPTPopupManager;
+@class NSArray, NSMutableArray, NSMutableDictionary, NSString, SPTDataLoader, SPTDataLoaderRequest, SPTFreeTierTasteOnboardingArtistPickerViewLogger, SPTFreeTierTasteOnboardingDeeplinkStore, SPTFreeTierTasteOnboardingSession, SPTFreeTierTasteOnboardingTheme, SPTNetworkConnectivityController, SPTPopupManager;
 @protocol SPTFollowModelFactory, SPTFreeTierTasteOnboardingArtistPickerViewModelDelegate, SPTFreeTierTasteOnboardingTestManager;
 
 @interface SPTFreeTierTasteOnboardingArtistPickerViewModel : NSObject <SPTNetworkConnectivityControllerObserver, SPTDataLoaderDelegate>
@@ -21,7 +21,6 @@
     SPTFreeTierTasteOnboardingArtistPickerViewLogger *_logger;
     SPTFreeTierTasteOnboardingSession *_session;
     SPTFreeTierTasteOnboardingTheme *_theme;
-    SPTFreeTierTasteOnboardingCurator *_curator;
     SPTDataLoader *_dataLoader;
     id <SPTFollowModelFactory> _followModelFactory;
     SPTPopupManager *_popupManager;
@@ -46,7 +45,6 @@
 @property(readonly, nonatomic) SPTPopupManager *popupManager; // @synthesize popupManager=_popupManager;
 @property(readonly, nonatomic) id <SPTFollowModelFactory> followModelFactory; // @synthesize followModelFactory=_followModelFactory;
 @property(readonly, nonatomic) SPTDataLoader *dataLoader; // @synthesize dataLoader=_dataLoader;
-@property(readonly, nonatomic) SPTFreeTierTasteOnboardingCurator *curator; // @synthesize curator=_curator;
 @property(readonly, nonatomic) SPTFreeTierTasteOnboardingTheme *theme; // @synthesize theme=_theme;
 @property(nonatomic, getter=isPodcastOnboardingScheduled) _Bool podcastOnboardingScheduled; // @synthesize podcastOnboardingScheduled=_podcastOnboardingScheduled;
 @property(nonatomic) _Bool isCloseButtonPermanent; // @synthesize isCloseButtonPermanent=_isCloseButtonPermanent;
@@ -56,7 +54,6 @@
 @property(nonatomic) __weak id <SPTFreeTierTasteOnboardingArtistPickerViewModelDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
 - (void)logPodcastInFirstTimeFlowImpression;
-- (void)logArtistPickerStyleImpression;
 - (void)logItemInteractionId:(id)arg1 forItem:(id)arg2 position:(unsigned long long)arg3 maxPosition:(unsigned long long)arg4;
 - (void)didDeselectItem:(id)arg1 atIndexPath:(id)arg2;
 - (void)didSelectItem:(id)arg1 atIndexPath:(id)arg2;
@@ -79,18 +76,16 @@
 - (void)dataLoader:(id)arg1 didReceiveErrorResponse:(id)arg2;
 - (void)dataLoader:(id)arg1 didReceiveSuccessfulResponse:(id)arg2;
 - (id)titleTextForRepeatVisit:(_Bool)arg1 requiredCount:(unsigned long long)arg2;
-- (void)complete;
 - (void)selectItem:(id)arg1;
 - (id)searchPlaceholderText;
 - (id)actionText;
 - (id)titleText;
-@property(readonly, nonatomic) _Bool shouldShowHeader;
 - (id)offlineViewStyle;
 - (id)viewStyleForTraitCollection:(id)arg1;
 @property(readonly, nonatomic) NSArray *viewItems;
 - (unsigned long long)selectedItemsRequiredCount;
 - (void)dealloc;
-- (id)initWithTheme:(id)arg1 curator:(id)arg2 logger:(id)arg3 session:(id)arg4 dataLoader:(id)arg5 followModelFactory:(id)arg6 popupManager:(id)arg7 networkConnectivityController:(id)arg8 testManager:(id)arg9 deeplinkStore:(id)arg10;
+- (id)initWithTheme:(id)arg1 logger:(id)arg2 session:(id)arg3 dataLoader:(id)arg4 followModelFactory:(id)arg5 popupManager:(id)arg6 networkConnectivityController:(id)arg7 testManager:(id)arg8 deeplinkStore:(id)arg9;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

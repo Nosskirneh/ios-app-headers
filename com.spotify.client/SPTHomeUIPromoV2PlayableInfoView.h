@@ -28,6 +28,7 @@
 @property(nonatomic) _Bool showsPlayButton; // @synthesize showsPlayButton=_showsPlayButton;
 @property(nonatomic) __weak id <SPTHomeUIPromoV2PlayableInfoViewDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
+- (void)updateAccessibility:(unsigned long long)arg1;
 @property(nonatomic) unsigned long long playButtonMode;
 @property(copy, nonatomic) NSString *secondaryText;
 @property(copy, nonatomic) NSString *primaryText;

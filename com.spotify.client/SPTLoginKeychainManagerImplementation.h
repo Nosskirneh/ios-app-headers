@@ -6,37 +6,45 @@
 
 #import <objc/NSObject.h>
 
+#import "SPTCredentialSource-Protocol.h"
 #import "SPTLoginKeychainManager-Protocol.h"
 
-@class NSString, SPTLoginCredentials;
-@protocol OS_dispatch_queue, SPTAppExtensionCredentialsManager, SPTKeychainManager, SPTLoginLogger;
+@class NSMutableArray, NSString, SPTAuthLoginCredentials, SPTAuthSerializableCredentials;
+@protocol OS_dispatch_queue, SPTKeychainManager, SPTLoginLogger;
 
-@interface SPTLoginKeychainManagerImplementation : NSObject <SPTLoginKeychainManager>
+@interface SPTLoginKeychainManagerImplementation : NSObject <SPTLoginKeychainManager, SPTCredentialSource>
 {
     id <SPTKeychainManager> _keychainManager;
     id <SPTLoginLogger> _logger;
-    id <SPTAppExtensionCredentialsManager> _appExtensionCredentialsManager;
+    NSMutableArray *_externalCredentialStores;
     NSObject<OS_dispatch_queue> *_queue;
-    SPTLoginCredentials *_savedCredentials;
+    SPTAuthLoginCredentials *_savedCredentials;
+    SPTAuthSerializableCredentials *_lastCredentials;
 }
 
-@property(copy, nonatomic) SPTLoginCredentials *savedCredentials; // @synthesize savedCredentials=_savedCredentials;
+@property(retain, nonatomic) SPTAuthSerializableCredentials *lastCredentials; // @synthesize lastCredentials=_lastCredentials;
+@property(copy, nonatomic) SPTAuthLoginCredentials *savedCredentials; // @synthesize savedCredentials=_savedCredentials;
 @property(retain, nonatomic) NSObject<OS_dispatch_queue> *queue; // @synthesize queue=_queue;
-@property(retain, nonatomic) id <SPTAppExtensionCredentialsManager> appExtensionCredentialsManager; // @synthesize appExtensionCredentialsManager=_appExtensionCredentialsManager;
+@property(retain, nonatomic) NSMutableArray *externalCredentialStores; // @synthesize externalCredentialStores=_externalCredentialStores;
 @property(retain, nonatomic) id <SPTLoginLogger> logger; // @synthesize logger=_logger;
 @property(retain, nonatomic) id <SPTKeychainManager> keychainManager; // @synthesize keychainManager=_keychainManager;
 - (void).cxx_destruct;
 - (void)readStoredCredentialsWithCompletion:(CDUnknownBlockType)arg1;
-- (void)deleteStoredLoginSessionFromAppExtension;
-- (void)deleteCredentialsFromAppExtension;
+- (void)deleteSiAUserId;
+- (void)deleteCredentialsFromExternalStores;
 - (void)deleteCredentialsAndLog;
 - (void)deleteCredentials;
+- (void)readSigninWithAppleUserIdWithCompletion:(CDUnknownBlockType)arg1;
 - (void)bootstrapKeychainCredentials;
+- (id)signinWithAppleUserId;
 - (id)storedCredentials;
-- (void)saveCredentialsToAppExtension:(id)arg1;
+- (void)saveCredentialsToExternalStores:(id)arg1;
 - (void)saveCredentialsAndLog:(id)arg1;
+- (void)updateLastCredentials:(id)arg1;
 - (void)setCredentials:(id)arg1;
-- (id)initWithKeychainManager:(id)arg1 appExtensionCredentialsManager:(id)arg2 logger:(id)arg3;
+- (void)removeCredentialStore:(id)arg1;
+- (void)addCredentialStore:(id)arg1;
+- (id)initWithKeychainManager:(id)arg1 logger:(id)arg2 externalCredentialStores:(id)arg3;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

@@ -18,8 +18,8 @@
 
 @property(retain, nonatomic) id <SPTEventSenderMessage> message; // @synthesize message=_message;
 - (void).cxx_destruct;
-@property(readonly, nonatomic) NSData *data;
-@property(readonly, nonatomic) NSString *name;
+@property(readonly, copy, nonatomic) NSData *data;
+@property(readonly, copy, nonatomic) NSString *name;
 - (id)initWithMessage:(id)arg1;
 
 // Remaining properties

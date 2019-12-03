@@ -6,10 +6,12 @@
 
 #import <objc/NSObject.h>
 
+#import "SPTFeatureFlagSignalObserver-Protocol.h"
+
 @class NSString, SPTOnDemandTrialDialogsPresenter;
 @protocol SPTLocalSettings, SPTOnDemandTrialTestManager, SPTProductState;
 
-@interface SPTOnDemandTrialStateManager : NSObject
+@interface SPTOnDemandTrialStateManager : NSObject <SPTFeatureFlagSignalObserver>
 {
     id <SPTLocalSettings> _localSettings;
     id <SPTOnDemandTrialTestManager> _testManager;

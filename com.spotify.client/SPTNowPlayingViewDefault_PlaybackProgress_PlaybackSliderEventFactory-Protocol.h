@@ -6,11 +6,12 @@
 
 #import "NSObject-Protocol.h"
 
-@protocol SPTImpressionEvent, SPTInteractionEvent;
+@protocol SPTEventFactoryModelMapping, SPTImpressionEvent, SPTInteractionEvent;
 
 @protocol SPTNowPlayingViewDefault_PlaybackProgress_PlaybackSliderEventFactory <NSObject>
 - (id <SPTInteractionEvent>)dragSeekToTimeWithMsToSeekTo:(long long)arg1;
 - (id <SPTInteractionEvent>)hitSeekToTimeWithMsToSeekTo:(long long)arg1;
 - (id <SPTImpressionEvent>)impression;
+- (id <SPTEventFactoryModelMapping>)_location;
 @end
 

@@ -29,7 +29,7 @@
 - (void).cxx_destruct;
 - (id)infoViewStyle;
 - (id)searchButtonStyle;
-- (id)cardStyle;
+- (id)cardStyleWithAddIcon:(long long)arg1;
 - (id)initWithParentTheme:(id)arg1;
 
 @end

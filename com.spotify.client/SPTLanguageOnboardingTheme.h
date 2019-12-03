@@ -19,6 +19,7 @@
 - (id)headerViewStyle;
 - (id)backgroundOverlayGradientStyle;
 @property(readonly, copy, nonatomic) SPTLanguageOnboardingContainerViewStyle<GLUEStyle> *containerViewStyle;
+- (id)badgeStyle;
 @property(readonly, copy, nonatomic) SPTLanguageOnboardingGridCellStyle<GLUEStyle> *gridCellStyle;
 
 @end

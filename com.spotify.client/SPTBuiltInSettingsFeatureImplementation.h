@@ -6,12 +6,13 @@
 
 #import <objc/NSObject.h>
 
+#import "SPTFeatureFlagSignalObserver-Protocol.h"
 #import "SPTService-Protocol.h"
 
 @class NSString, SPTAllocationContext, SPTPlaybackPreferencesObserver, SPTSettingsLogger;
-@protocol CosmosFeature, ProfileFeature, SPTAbbaFeatureFlags, SPTAbbaService, SPTBannerFeature, SPTContainerService, SPTContainerUIService, SPTCoreService, SPTDataSaverService, SPTDebugService, SPTFeatureFlagSignal, SPTFreeTierService, SPTInAppMessageService, SPTLoginService, SPTNetworkService, SPTSessionService, SPTSettingsDataSource, SPTSettingsFeature, SPTURIDispatchService, SPTVoiceService;
+@protocol CosmosFeature, ProfileFeature, SPTAbbaFeatureFlags, SPTAbbaService, SPTBannerFeature, SPTContainerService, SPTContainerUIService, SPTCoreService, SPTDataSaverService, SPTDebugService, SPTFeatureFlagSignal, SPTFreeTierService, SPTInAppMessageService, SPTLoginDelayedSignupService, SPTLoginService, SPTNetworkService, SPTSessionService, SPTSettingsDataSource, SPTSettingsFeature, SPTURIDispatchService, SPTVoiceService;
 
-@interface SPTBuiltInSettingsFeatureImplementation : NSObject <SPTService>
+@interface SPTBuiltInSettingsFeatureImplementation : NSObject <SPTFeatureFlagSignalObserver, SPTService>
 {
     _Bool _freeTierEnabled;
     _Bool _dataSaverActivated;
@@ -32,6 +33,7 @@
     id <SPTLoginService> _loginService;
     id <ProfileFeature> _profileFeature;
     id <SPTInAppMessageService> _inAppMessageService;
+    id <SPTLoginDelayedSignupService> _delayedSignupService;
     id <SPTAbbaFeatureFlags> _featureFlags;
     id <SPTSettingsDataSource> _settingsDataSource;
     id <SPTFeatureFlagSignal> _freeTierFeatureSignal;
@@ -49,6 +51,7 @@
 @property(retain, nonatomic) id <SPTFeatureFlagSignal> freeTierFeatureSignal; // @synthesize freeTierFeatureSignal=_freeTierFeatureSignal;
 @property(retain, nonatomic) id <SPTSettingsDataSource> settingsDataSource; // @synthesize settingsDataSource=_settingsDataSource;
 @property(retain, nonatomic) id <SPTAbbaFeatureFlags> featureFlags; // @synthesize featureFlags=_featureFlags;
+@property(nonatomic) __weak id <SPTLoginDelayedSignupService> delayedSignupService; // @synthesize delayedSignupService=_delayedSignupService;
 @property(nonatomic) __weak id <SPTInAppMessageService> inAppMessageService; // @synthesize inAppMessageService=_inAppMessageService;
 @property(nonatomic) __weak id <ProfileFeature> profileFeature; // @synthesize profileFeature=_profileFeature;
 @property(nonatomic) __weak id <SPTLoginService> loginService; // @synthesize loginService=_loginService;

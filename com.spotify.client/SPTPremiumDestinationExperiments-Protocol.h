@@ -7,8 +7,9 @@
 #import "NSObject-Protocol.h"
 
 @protocol SPTPremiumDestinationExperiments <NSObject>
+@property(readonly, nonatomic) _Bool shouldUseHeaderVoiceoverAccessible;
 @property(readonly, nonatomic) _Bool shouldUseDevEndpointSetting;
-@property(readonly, nonatomic) _Bool shouldFetchPremiumDestinationHubsFromBackendV2;
-@property(readonly, nonatomic) _Bool shouldFetchPremiumDestinationHubsFromBackend;
+@property(readonly, nonatomic) _Bool shouldShowLegacyPD;
+@property(readonly, nonatomic) _Bool shouldFetchPremiumDestinationHubsFromBackendV3;
 @end
 

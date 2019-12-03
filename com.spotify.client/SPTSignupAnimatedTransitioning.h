@@ -17,7 +17,7 @@
     UINavigationController *_navigationController;
 }
 
-@property(retain, nonatomic) UINavigationController *navigationController; // @synthesize navigationController=_navigationController;
+@property(nonatomic) __weak UINavigationController *navigationController; // @synthesize navigationController=_navigationController;
 @property(readonly, nonatomic) SPTSignupInteractiveTransition *interactiveTransition; // @synthesize interactiveTransition=_interactiveTransition;
 @property(nonatomic) long long operation; // @synthesize operation=_operation;
 - (void).cxx_destruct;

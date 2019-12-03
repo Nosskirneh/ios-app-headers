@@ -7,7 +7,9 @@
 #import <AVFoundation/AVPlayerItemErrorLogEvent.h>
 
 @interface AVPlayerItemErrorLogEvent (HTTPResponseCode)
++ (id)spt_keysForDictionary;
 - (_Bool)isHTTPErrorCode;
 - (long long)httpResponseCode;
+- (id)spt_dictionary;
 @end
 

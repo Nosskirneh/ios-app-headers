@@ -9,17 +9,25 @@
 #import "SPTNowPlayingAdUnitViewController-Protocol.h"
 #import "SPTNowPlayingContainedViewController-Protocol.h"
 
-@class NSString, SPTNowPlayingAudioAdInfoUnitView, SPTTheme;
-@protocol SPTAdsBaseEntity, SPTAdsManager, SPTNowPlayingContainingViewController;
+@class NSString, SPTAdNowPlayingAuxiliaryActionsHandler, SPTAdsFeatureProperties, SPTNowPlayingAudioAdInfoUnitView, SPTTheme;
+@protocol SPTAdsBaseEntity, SPTAdsManager, SPTLinkDispatcher, SPTNowPlayingContainingViewController, SPTSnackbarConditionalPresenter;
 
 @interface SPTNowPlayingAudioAdInformationUnitViewController : UIViewController <SPTNowPlayingContainedViewController, SPTNowPlayingAdUnitViewController>
 {
     SPTTheme *_theme;
     id <SPTAdsManager> _adsManager;
+    SPTAdsFeatureProperties *_properties;
+    SPTAdNowPlayingAuxiliaryActionsHandler *_actionsHandler;
+    id <SPTSnackbarConditionalPresenter> _snackbarPresenter;
+    id <SPTLinkDispatcher> _linkDispatcher;
     id <SPTAdsBaseEntity> _adEntity;
 }
 
 @property(retain, nonatomic) id <SPTAdsBaseEntity> adEntity; // @synthesize adEntity=_adEntity;
+@property(readonly, nonatomic) id <SPTLinkDispatcher> linkDispatcher; // @synthesize linkDispatcher=_linkDispatcher;
+@property(readonly, nonatomic) id <SPTSnackbarConditionalPresenter> snackbarPresenter; // @synthesize snackbarPresenter=_snackbarPresenter;
+@property(readonly, nonatomic) SPTAdNowPlayingAuxiliaryActionsHandler *actionsHandler; // @synthesize actionsHandler=_actionsHandler;
+@property(readonly, nonatomic) SPTAdsFeatureProperties *properties; // @synthesize properties=_properties;
 @property(readonly, nonatomic) id <SPTAdsManager> adsManager; // @synthesize adsManager=_adsManager;
 @property(readonly, nonatomic) SPTTheme *theme; // @synthesize theme=_theme;
 - (void).cxx_destruct;
@@ -27,12 +35,13 @@
 - (struct CGSize)preferredContentSize;
 - (double)viewControllerPriority;
 - (unsigned long long)leadingEdge;
+- (void)didTapBookmarkButton;
 - (void)didTapActionButton;
 - (void)updateButton;
 - (void)viewDidLoad;
 - (void)viewDidAppear:(_Bool)arg1;
 - (void)loadView;
-- (id)initWithAdsManager:(id)arg1 theme:(id)arg2;
+- (id)initWithAdsManager:(id)arg1 theme:(id)arg2 actionsHandler:(id)arg3 featureProperties:(id)arg4 snackbarPresenter:(id)arg5 linkDispatcher:(id)arg6;
 
 // Remaining properties
 @property(nonatomic) __weak UIViewController<SPTNowPlayingContainingViewController> *container;

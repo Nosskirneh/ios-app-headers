@@ -12,12 +12,10 @@
 {
     NSString *_trackTitle;
     NSArray *_roles;
-    NSString *_sourceTitle;
-    NSString *_sourceValue;
+    NSArray *_sources;
 }
 
-@property(readonly, nonatomic) NSString *sourceValue; // @synthesize sourceValue=_sourceValue;
-@property(readonly, nonatomic) NSString *sourceTitle; // @synthesize sourceTitle=_sourceTitle;
+@property(readonly, nonatomic) NSArray *sources; // @synthesize sources=_sources;
 @property(readonly, nonatomic) NSArray *roles; // @synthesize roles=_roles;
 @property(readonly, nonatomic) NSString *trackTitle; // @synthesize trackTitle=_trackTitle;
 - (void).cxx_destruct;

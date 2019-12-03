@@ -7,7 +7,7 @@
 #import "NSObject-Protocol.h"
 
 @protocol SPContentInsetViewController <NSObject>
-@property(nonatomic) _Bool automaticallyAdjustsScrollViewInsets;
 - (void)sp_updateContentInsets;
+@property(nonatomic) _Bool automaticallyAdjustsScrollViewInsets;
 @end
 

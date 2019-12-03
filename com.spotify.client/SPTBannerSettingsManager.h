@@ -6,10 +6,12 @@
 
 #import <objc/NSObject.h>
 
+#import "SPTFeatureFlagSignalObserver-Protocol.h"
+
 @class MessageBarController, NSString;
 @protocol SPTBannerPresentationManager, SPTFeatureFlagBuilder, SPTFeatureFlagSignal;
 
-@interface SPTBannerSettingsManager : NSObject
+@interface SPTBannerSettingsManager : NSObject <SPTFeatureFlagSignalObserver>
 {
     id <SPTFeatureFlagBuilder> _featureFlagBuilder;
     id <SPTBannerPresentationManager> _bannerPresentationManager;

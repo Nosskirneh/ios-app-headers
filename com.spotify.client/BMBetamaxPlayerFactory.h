@@ -6,7 +6,7 @@
 
 #import <objc/NSObject.h>
 
-@class SPTVideoApplicationStateObservable;
+@class SPTPlayerItemNotificationObservable, SPTVideoApplicationStateObservable;
 @protocol BMConnectionModeObservable, BMDataLoader, BMKVOControllerFactory, BMLogger, SPTNotificationCenter, SPTVideoPlaybackErrorFormatter;
 
 @interface BMBetamaxPlayerFactory : NSObject
@@ -17,10 +17,12 @@
     id <BMLogger> _logger;
     id <SPTNotificationCenter> _notificationCenter;
     SPTVideoApplicationStateObservable *_appStateObservable;
+    SPTPlayerItemNotificationObservable *_playerItemObservable;
     id <SPTVideoPlaybackErrorFormatter> _playbackErrorFormatter;
 }
 
 @property(retain, nonatomic) id <SPTVideoPlaybackErrorFormatter> playbackErrorFormatter; // @synthesize playbackErrorFormatter=_playbackErrorFormatter;
+@property(retain, nonatomic) SPTPlayerItemNotificationObservable *playerItemObservable; // @synthesize playerItemObservable=_playerItemObservable;
 @property(retain, nonatomic) SPTVideoApplicationStateObservable *appStateObservable; // @synthesize appStateObservable=_appStateObservable;
 @property(retain, nonatomic) id <SPTNotificationCenter> notificationCenter; // @synthesize notificationCenter=_notificationCenter;
 @property(retain, nonatomic) id <BMLogger> logger; // @synthesize logger=_logger;
@@ -31,7 +33,7 @@
 - (id)defaultEventObserverFactoriesWithLoggerDataProvider:(id)arg1;
 - (id)createPlayerWithSurfaceManager:(id)arg1 configuration:(id)arg2 loggerDataProvider:(id)arg3 eventObserverFactories:(id)arg4 cache:(id)arg5 allowRoyaltyMedia:(_Bool)arg6;
 - (id)createPlayerWithSurface:(id)arg1 configuration:(id)arg2 loggerDataProvider:(id)arg3 eventObserverFactories:(id)arg4 cache:(id)arg5 allowRoyaltyMedia:(_Bool)arg6;
-- (id)initWithDataLoader:(id)arg1 connectionModeObservable:(id)arg2 kvoControllerFactory:(id)arg3 logger:(id)arg4 notificationCenter:(id)arg5 appStateObservable:(id)arg6 playbackErrorFormatter:(id)arg7;
+- (id)initWithDataLoader:(id)arg1 connectionModeObservable:(id)arg2 kvoControllerFactory:(id)arg3 logger:(id)arg4 notificationCenter:(id)arg5 appStateObservable:(id)arg6 playerItemObservable:(id)arg7 playbackErrorFormatter:(id)arg8;
 - (id)initWithDataLoader:(id)arg1 connectionModeObservable:(id)arg2 kvoControllerFactory:(id)arg3 logger:(id)arg4;
 
 @end

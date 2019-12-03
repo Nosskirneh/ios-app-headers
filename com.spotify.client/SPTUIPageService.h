@@ -6,12 +6,13 @@
 
 #import <objc/NSObject.h>
 
+#import "SPTFeatureFlagSignalObserver-Protocol.h"
 #import "SPTService-Protocol.h"
 
 @class NSString, SPTAllocationContext;
 @protocol SPTContainerService, SPTFeatureFlagSignal, SPTFeatureFlaggingService, SPTPageRegistrationToken;
 
-@interface SPTUIPageService : NSObject <SPTService>
+@interface SPTUIPageService : NSObject <SPTService, SPTFeatureFlagSignalObserver>
 {
     id <SPTContainerService> _containerService;
     id <SPTFeatureFlaggingService> _featureFlaggingService;

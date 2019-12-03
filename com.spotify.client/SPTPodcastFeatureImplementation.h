@@ -9,8 +9,8 @@
 #import "SPTPodcastFeature-Protocol.h"
 #import "SPTPodcastTestManagerObserver-Protocol.h"
 
-@class NSString, SPTAllocationContext, SPTPodcastContextAwareURITypeManager, SPTPodcastCosmosDataLoader, SPTPodcastDataLoaderShowEntityService, SPTPodcastEpisodeCellActionHandlerFactory, SPTPodcastEpisodeFactory, SPTPodcastFactory, SPTPodcastOnboardingManager, SPTPodcastPreferences, SPTPodcastRequestFactory, SPTPodcastSortingService, SPTPodcastSpeedControlManagerImpl, SPTPodcastTestManagerImplementation;
-@protocol CosmosFeature, SPContextMenuFeature, SPTAbbaService, SPTCollectionLogger, SPTCollectionPlatformService, SPTContainerUIService, SPTContextDispatchService, SPTCrashReporterService, SPTEpisodeContextMenuControllerDelegate, SPTExplicitContentService, SPTFreeTierService, SPTGLUEService, SPTNavigationFeature, SPTNetworkService, SPTPageRegistrationToken, SPTPerformanceMetricsService, SPTPlayerFeature, SPTPodcastContextMenuProvider, SPTPodcastLogger, SPTPodcastUIService, SPTRecentlyPlayedService, SPTResolver, SPTScannablesService, SPTSessionService, SPTSettingsFeature, SPTShareFeature, SPTSleepTimerService, SPTSnackbarService, SPTTooltipService, SPTUIPresentationService, SPTURIDispatchService, SPTVideoCoordinatorService, SPTYourLibraryService, SlateFeature;
+@class NSString, SPTAllocationContext, SPTPodcastContextAwareURITypeManager, SPTPodcastCosmosDataLoader, SPTPodcastDataLoaderShowEntityService, SPTPodcastEpisodeCellActionHandlerFactory, SPTPodcastEpisodeFactory, SPTPodcastFactory, SPTPodcastPreferences, SPTPodcastRequestFactory, SPTPodcastSortingService, SPTPodcastSpeedControlManagerImpl, SPTPodcastTestManagerImplementation;
+@protocol CosmosFeature, SPContextMenuFeature, SPTAbbaService, SPTCollectionLogger, SPTCollectionPlatformService, SPTContainerUIService, SPTContextDispatchService, SPTCrashReporterService, SPTEpisodeContextMenuControllerDelegate, SPTExplicitContentService, SPTFreeTierService, SPTGLUEService, SPTNavigationFeature, SPTNetworkService, SPTPageRegistrationToken, SPTPerformanceMetricsService, SPTPlayerFeature, SPTPodcastContextMenuProvider, SPTPodcastLogger, SPTPodcastUIService, SPTRecentlyPlayedService, SPTResolver, SPTScannablesService, SPTSessionService, SPTSettingsFeature, SPTShareFeature, SPTSleepTimerService, SPTSnackbarService, SPTUIPresentationService, SPTURIDispatchService, SPTVideoCoordinatorService, SPTYourLibraryService;
 
 @interface SPTPodcastFeatureImplementation : SPTUIPageService <SPTPodcastTestManagerObserver, SPTPodcastFeature>
 {
@@ -30,8 +30,6 @@
     id <SPTAbbaService> _abbaService;
     id <SPTContextDispatchService> _contextDispatchService;
     id <SPTGLUEService> _glueService;
-    id <SlateFeature> _slateService;
-    id <SPTTooltipService> _tooltipService;
     id <SPTURIDispatchService> _uriDispatchService;
     id <SPTUIPresentationService> _presentationService;
     id <SPTFreeTierService> _freeTierService;
@@ -51,7 +49,6 @@
     id <SPTPodcastLogger> _logger;
     SPTPodcastContextAwareURITypeManager *_podcastURITypeManager;
     id <SPTEpisodeContextMenuControllerDelegate> _contextMenuDelegateObject;
-    SPTPodcastOnboardingManager *_onboardingManager;
     SPTPodcastTestManagerImplementation *_testManager;
     SPTPodcastSpeedControlManagerImpl *_podcastSpeedControlManager;
     SPTPodcastRequestFactory *_podcastRequestFactory;
@@ -79,7 +76,6 @@
 @property(retain, nonatomic) SPTPodcastRequestFactory *podcastRequestFactory; // @synthesize podcastRequestFactory=_podcastRequestFactory;
 @property(retain, nonatomic) SPTPodcastSpeedControlManagerImpl *podcastSpeedControlManager; // @synthesize podcastSpeedControlManager=_podcastSpeedControlManager;
 @property(retain, nonatomic) SPTPodcastTestManagerImplementation *testManager; // @synthesize testManager=_testManager;
-@property(retain, nonatomic) SPTPodcastOnboardingManager *onboardingManager; // @synthesize onboardingManager=_onboardingManager;
 @property(retain, nonatomic) id <SPTEpisodeContextMenuControllerDelegate> contextMenuDelegateObject; // @synthesize contextMenuDelegateObject=_contextMenuDelegateObject;
 @property(retain, nonatomic) SPTPodcastContextAwareURITypeManager *podcastURITypeManager; // @synthesize podcastURITypeManager=_podcastURITypeManager;
 @property(retain, nonatomic) id <SPTPodcastLogger> logger; // @synthesize logger=_logger;
@@ -100,8 +96,6 @@
 @property(nonatomic) __weak id <SPTFreeTierService> freeTierService; // @synthesize freeTierService=_freeTierService;
 @property(nonatomic) __weak id <SPTUIPresentationService> presentationService; // @synthesize presentationService=_presentationService;
 @property(nonatomic) __weak id <SPTURIDispatchService> uriDispatchService; // @synthesize uriDispatchService=_uriDispatchService;
-@property(nonatomic) __weak id <SPTTooltipService> tooltipService; // @synthesize tooltipService=_tooltipService;
-@property(nonatomic) __weak id <SlateFeature> slateService; // @synthesize slateService=_slateService;
 @property(nonatomic) __weak id <SPTGLUEService> glueService; // @synthesize glueService=_glueService;
 @property(nonatomic) __weak id <SPTContextDispatchService> contextDispatchService; // @synthesize contextDispatchService=_contextDispatchService;
 @property(nonatomic) __weak id <SPTAbbaService> abbaService; // @synthesize abbaService=_abbaService;
@@ -129,20 +123,14 @@
 - (id)provideTestManager;
 - (void)addSwitchToSettingsPage:(id)arg1 settingsTitle:(id)arg2 settingsDescription:(id)arg3 settingsKey:(id)arg4;
 - (id)registerPageSelector:(SEL)arg1 predicate:(CDUnknownBlockType)arg2;
-- (id)showsPageProvider;
-- (id)downloadsPageProvider;
-- (id)episodesPageProvider;
-- (void)registerYourLibraryContentPages;
 - (void)registerInternalVideoURIPage;
 - (void)registerInternalPodcastURIPage;
 - (void)updateCrashReporterValues;
-- (void)registerOnboardingManager;
 - (void)unregisterInternalPages;
 - (void)unregisterLegacyPage;
 - (void)registerShowPages;
-- (void)updateConditionalFeatures;
-- (void)podcastTestManagerDidUpdate:(id)arg1;
 - (void)registerPodcastCollectionEntityContentType;
+- (void)podcastTestManagerDidUpdate:(id)arg1;
 - (id)provideEpisodeCellConfigurator;
 - (id)provideResolverForPodcast;
 - (id)providePodcastPreferences;
@@ -157,7 +145,6 @@
 - (id)provideShowContextMenuControllerForLinkDispatcher:(id)arg1;
 - (id)providePodcastViewControllerForURL:(id)arg1 context:(id)arg2;
 - (id)provideVideoShowViewControllerForURL:(id)arg1 context:(id)arg2;
-- (id)podcastEmptyStateStringProviderForURL:(id)arg1;
 - (id)provideSortingService;
 - (id)provideLocalSettings;
 - (_Bool)claimsURI:(id)arg1;

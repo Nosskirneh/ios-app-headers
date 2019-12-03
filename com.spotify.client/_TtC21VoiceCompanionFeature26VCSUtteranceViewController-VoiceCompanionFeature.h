@@ -6,9 +6,7 @@
 
 #import "_TtC21VoiceCompanionFeature26VCSUtteranceViewController.h"
 
-#import "_TtP21VoiceCompanionFeature21VCSUtterancesObserver_-Protocol.h"
-
-@interface _TtC21VoiceCompanionFeature26VCSUtteranceViewController (VoiceCompanionFeature) <_TtP21VoiceCompanionFeature21VCSUtterancesObserver_>
+@interface _TtC21VoiceCompanionFeature26VCSUtteranceViewController (VoiceCompanionFeature)
 - (void)didUpdateUtteranceWithUtterance:(id)arg1;
 @end
 

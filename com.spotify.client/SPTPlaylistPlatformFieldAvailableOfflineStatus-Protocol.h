@@ -7,6 +7,6 @@
 #import "SPTPlaylistPlatformDataLoaderField-Protocol.h"
 
 @protocol SPTPlaylistPlatformFieldAvailableOfflineStatus <SPTPlaylistPlatformDataLoaderField>
-@property(readonly, nonatomic) unsigned long long availableOfflineStatus;
+@property(nonatomic, readonly) unsigned long long availableOfflineStatus;
 @end
 

@@ -6,68 +6,65 @@
 
 #import <objc/NSObject.h>
 
+#import "SPTAuthLoginTaskDelegate-Protocol.h"
+#import "SPTAuthSessionDelegate-Protocol.h"
 #import "SPTCoreLoginController-Protocol.h"
 
-@class NSString, SPSession, SPTConnectivityManager, SPTCoreCreateOptions, SPTCoreSchedulerThread, SPTEventSenderBridge, SPTPreferencesImplementation, SPTStorageSystem;
-@protocol SPTCoreLoginControllerDelegate, SPTCoreLoginIdentifierControllerDelegate, SPTOfflineModeState, SPTSessionBootstrapDelegate;
+@class NSString, SPSession, SPTAuthLoginController, SPTAuthLoginTask, SPTAuthSession, SPTConnectivityApplicationScope, SPTConnectivityManager, SPTCoreCreateOptions, SPTCoreSchedulerThread, SPTEventSenderBridge, SPTPreferencesImplementation;
+@protocol SPTCoreLoginControllerDelegate, SPTCoreLoginControllerLoginDelegate, SPTOfflineModeState, SPTSessionBootstrapDelegate;
 
-@interface SPCore : NSObject <SPTCoreLoginController>
+@interface SPCore : NSObject <SPTAuthSessionDelegate, SPTAuthLoginTaskDelegate, SPTCoreLoginController>
 {
     struct unique_ptr<spotify::client::Core, std::__1::default_delete<spotify::client::Core>> _core;
-    unique_ptr_af2c9e6c _cppSession;
-    struct scoped_connection _reloginConnection;
-    struct scoped_connection _didLogoutConnection;
     SPSession *_session;
     id <SPTCoreLoginControllerDelegate> _loginControllerDelegate;
-    id <SPTCoreLoginIdentifierControllerDelegate> _loginIdentifierControllerDelegate;
+    SPTConnectivityApplicationScope *_connectivityApplicationScope;
     SPTPreferencesImplementation *_preferences;
     SPTConnectivityManager *_connectivityManager;
     id <SPTOfflineModeState> _offlineNotifier;
-    SPTStorageSystem *_storageSystem;
+    SPTAuthLoginController *_loginController;
+    SPTAuthSession *_authSession;
     SPTCoreSchedulerThread *_coreScheduler;
     SPTEventSenderBridge *_eventSenderBridge;
     SPSession *_internalSession;
     SPTCoreCreateOptions *_createOptions;
     id <SPTSessionBootstrapDelegate> _bootstrapDelegate;
-    unsigned long long _loginWithPhoneNumberRetryNumber;
-    optional_f8dbc4af _loginCodeRequiredProceedCallback;
-    optional_b0104c67 _loginCodeRequiredResendCallback;
+    id <SPTCoreLoginControllerLoginDelegate> _currentLoginDelegate;
+    SPTAuthLoginTask *_loginTask;
 }
 
 + (id)coreWithCreateOptions:(id)arg1 bootstrapDelegate:(id)arg2 scheduler:(id)arg3 eventSender:(id)arg4 error:(id *)arg5;
 + (id)coreWithCreateOptions:(id)arg1 bootstrapDelegate:(id)arg2 scheduler:(id)arg3 error:(id *)arg4;
 + (id)coreWithCreateOptions:(id)arg1 scheduler:(id)arg2 error:(id *)arg3;
-@property(nonatomic) unsigned long long loginWithPhoneNumberRetryNumber; // @synthesize loginWithPhoneNumberRetryNumber=_loginWithPhoneNumberRetryNumber;
-@property(nonatomic) optional_b0104c67 loginCodeRequiredResendCallback; // @synthesize loginCodeRequiredResendCallback=_loginCodeRequiredResendCallback;
-@property(nonatomic) optional_f8dbc4af loginCodeRequiredProceedCallback; // @synthesize loginCodeRequiredProceedCallback=_loginCodeRequiredProceedCallback;
+@property(retain, nonatomic) SPTAuthLoginTask *loginTask; // @synthesize loginTask=_loginTask;
+@property(nonatomic) __weak id <SPTCoreLoginControllerLoginDelegate> currentLoginDelegate; // @synthesize currentLoginDelegate=_currentLoginDelegate;
 @property(nonatomic) __weak id <SPTSessionBootstrapDelegate> bootstrapDelegate; // @synthesize bootstrapDelegate=_bootstrapDelegate;
 @property(retain, nonatomic) SPTCoreCreateOptions *createOptions; // @synthesize createOptions=_createOptions;
 @property(retain, nonatomic) SPSession *internalSession; // @synthesize internalSession=_internalSession;
 @property(retain, nonatomic) SPTEventSenderBridge *eventSenderBridge; // @synthesize eventSenderBridge=_eventSenderBridge;
 @property(retain, nonatomic) SPTCoreSchedulerThread *coreScheduler; // @synthesize coreScheduler=_coreScheduler;
-@property(retain, nonatomic) SPTStorageSystem *storageSystem; // @synthesize storageSystem=_storageSystem;
+@property(retain, nonatomic) SPTAuthSession *authSession; // @synthesize authSession=_authSession;
+@property(nonatomic) __weak SPTAuthLoginController *loginController; // @synthesize loginController=_loginController;
 @property(nonatomic) __weak id <SPTOfflineModeState> offlineNotifier; // @synthesize offlineNotifier=_offlineNotifier;
 @property(retain, nonatomic) SPTConnectivityManager *connectivityManager; // @synthesize connectivityManager=_connectivityManager;
 @property(retain, nonatomic) SPTPreferencesImplementation *preferences; // @synthesize preferences=_preferences;
-@property(nonatomic) __weak id <SPTCoreLoginIdentifierControllerDelegate> loginIdentifierControllerDelegate; // @synthesize loginIdentifierControllerDelegate=_loginIdentifierControllerDelegate;
+@property(retain, nonatomic) SPTConnectivityApplicationScope *connectivityApplicationScope; // @synthesize connectivityApplicationScope=_connectivityApplicationScope;
 @property(nonatomic) __weak id <SPTCoreLoginControllerDelegate> loginControllerDelegate; // @synthesize loginControllerDelegate=_loginControllerDelegate;
 @property(retain, nonatomic) SPSession *session; // @synthesize session=_session;
 - (id).cxx_construct;
 - (void).cxx_destruct;
-- (id)createConnectivity;
-- (id)createAccesspointResolverWithDelegate:(id)arg1;
+- (id)createXResolveClientWithDelegate:(id)arg1;
 - (id)createRequestAccounting;
-@property(nonatomic) _Bool keepAliveAPNetwork;
 - (void)notifyLogoutOnMainThread;
-- (void)notifyLoginFailureOnMainThread:(id)arg1;
 - (void)onLoginSuccess;
 - (void)notifyLoginSuccessOnMainThread;
-- (void)notifyLoginSuccessOnMainThreadWithIdentifier:(id)arg1;
-- (id)errorForErrorCode:(const struct error_code *)arg1;
+- (id)legacyErrorForErrorCode:(const struct error_code *)arg1;
+- (id)legacyErrorForError:(id)arg1;
+- (id)errorForErrorCode:(const struct error_code *)arg1 description:(const basic_string_90719d97 *)arg2;
 - (void)teardownServices;
 - (void)destroySession;
 - (void)onLogout;
-- (void)onLoginSuccess:(unique_ptr_af2c9e6c)arg1;
+- (void)onLoginSuccess:(id)arg1;
 - (void)flushCaches;
 - (void)setRememberMeModeForUsername:(id)arg1 rememberMe:(_Bool)arg2;
 - (void)prepareForShutdown;
@@ -76,17 +73,24 @@
 - (_Bool)hasStoredCredentials;
 - (id)serializableCredentialsAndCanonicalUsername:(id *)arg1;
 - (id)storedCredentialsAndCanonicalUsername:(id *)arg1;
-- (void)loginWithCppCredentials:(variant_3911a704)arg1 options:(struct LoginOptions)arg2;
 - (void)loginWithCredentials:(id)arg1 options:(id)arg2;
-- (void)loginWithParentChild:(id)arg1 options:(id)arg2;
-- (void)notifyChallengeSucceededWithIdentifierToken:(basic_string_7c0a1c0b)arg1;
-- (void)notifyChallengeReceivedForIdentifier:(id)arg1 withCode:(struct Code)arg2 isInvalidCredentials:(_Bool)arg3;
-- (void)notifyFailureWithErrorCode:(struct error_code)arg1 description:(basic_string_7c0a1c0b)arg2;
-- (void)resetLoginCodeRequiredCallbacks;
-- (void)requestNewChallenge;
-- (void)respondToIdentityLoginChallengeWithCode:(id)arg1;
-- (void)loginWithIdentifier:(id)arg1;
-- (void)respondToBootstrapChallenge:(struct LoginBootstrap *)arg1;
+- (void)loginWithAppleSignInCredential:(id)arg1 options:(id)arg2;
+- (void)loginWithParentChildCredential:(id)arg1 options:(id)arg2;
+- (void)loginWithOneTimeTokenCredential:(id)arg1 options:(id)arg2;
+- (void)loginWithPhoneNumberIdentifier:(id)arg1 options:(id)arg2;
+- (void)loginWithTask:(id)arg1;
+- (void)notifyChallengeSucceededWithSignupInformation:(id)arg1;
+- (void)notifyChallengeReceivedWithCode:(id)arg1;
+- (void)notifyFailureWithErrorCode:(struct error_code)arg1 description:(basic_string_90719d97)arg2;
+- (void)loginTask:(id)arg1 didRequireBootstrapUsingWebgateSession:(id)arg2 completionCallback:(CDUnknownBlockType)arg3;
+- (void)loginTask:(id)arg1 didFailWithError:(struct LoginFailure *)arg2;
+- (void)loginTask:(id)arg1 didRequireSignup:(id)arg2;
+- (void)loginTask:(id)arg1 didRequireCode:(id)arg2;
+- (void)loginTask:(id)arg1 didFinishWithSession:(id)arg2;
+- (void)loginTask:(id)arg1 didFinishWithWebgateSession:(id)arg2;
+- (void)session:(id)arg1 didReloginWithError:(const struct error_code *)arg2 description:(id)arg3 isPermanent:(_Bool)arg4;
+- (void)session:(id)arg1 didLogoutWithError:(id)arg2;
+- (void)respondToBootstrapChallenge:(id)arg1 completionCallback:(CDUnknownBlockType)arg2;
 - (struct TimerManager *)mainScheduler;
 - (struct Core *)cpp;
 - (void)invalidate;

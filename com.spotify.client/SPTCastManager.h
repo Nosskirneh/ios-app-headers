@@ -54,7 +54,6 @@
 - (void)addObserver:(id)arg1;
 - (_Bool)isCastDeviceConnected:(id)arg1;
 - (_Bool)isLoginAlreadyPerformed;
-- (id)prependCast:(id)arg1;
 - (_Bool)isDevice:(id)arg1 sameAsCastDevice:(id)arg2;
 - (void)connectManager:(id)arg1 activeDeviceDidChange:(id)arg2;
 - (void)loadDummyMedia;

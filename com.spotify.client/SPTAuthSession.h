@@ -6,19 +6,38 @@
 
 #import <objc/NSObject.h>
 
+@class NSString;
+@protocol SPTAsyncScheduler, SPTAuthSessionDelegate, SPTProductState;
+
 @interface SPTAuthSession : NSObject
 {
-    unique_ptr_5965b565 _auth_session;
-    struct unique_ptr<spotify::connectivity::AccessTokenScope, std::__1::default_delete<spotify::connectivity::AccessTokenScope>> _access_token_scope;
-    struct unique_ptr<SchedulerImpl, std::__1::default_delete<SchedulerImpl>> _scheduler;
+    unique_ptr_c7ae8056 _cppSession;
+    struct scoped_connection _reloginConnection;
+    struct scoped_connection _didLogoutConnection;
+    id <SPTAuthSessionDelegate> _delegate;
+    NSString *_canonicalUsername;
+    NSString *_verbatimUsername;
+    id <SPTProductState> _productState;
+    id <SPTAsyncScheduler> _scheduler;
 }
 
+@property(nonatomic) __weak id <SPTAsyncScheduler> scheduler; // @synthesize scheduler=_scheduler;
+@property(retain, nonatomic) id <SPTProductState> productState; // @synthesize productState=_productState;
+@property(readonly, nonatomic) NSString *verbatimUsername; // @synthesize verbatimUsername=_verbatimUsername;
+@property(readonly, nonatomic) NSString *canonicalUsername; // @synthesize canonicalUsername=_canonicalUsername;
+@property(nonatomic) __weak id <SPTAuthSessionDelegate> delegate; // @synthesize delegate=_delegate;
 - (id).cxx_construct;
 - (void).cxx_destruct;
-- (struct ConnectionBuilder)connectionBuilder;
-- (id)userName;
-- (id)reusableCredentials;
-- (id)initWithSession:(unique_ptr_5965b565)arg1 applicationScope:(struct ApplicationScope *)arg2 scheduler:(struct Scheduler *)arg3;
+- (id)webTokenRequestForURL:(id)arg1;
+- (void)acceptLicenses:(id)arg1;
+- (void)unacceptedLicencesWithCallback:(CDUnknownBlockType)arg1;
+- (id)unacceptedLicences;
+- (void)tryReconnect:(_Bool)arg1 toAP:(id)arg2;
+- (void)logout;
+- (struct Session *)cpp;
+- (void)destroy;
+- (void)dealloc;
+- (id)initWithSession:(unique_ptr_c7ae8056)arg1 coreThreadScheduler:(id)arg2;
 
 @end
 

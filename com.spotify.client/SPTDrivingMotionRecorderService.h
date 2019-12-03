@@ -8,6 +8,7 @@
 
 #import "SPTAccessoryStateObserver-Protocol.h"
 #import "SPTDrivingMotionManagerDelegate-Protocol.h"
+#import "SPTFeatureFlagSignalObserver-Protocol.h"
 #import "SPTNetworkConnectivityControllerObserver-Protocol.h"
 #import "SPTService-Protocol.h"
 #import "SPTWazeNavigationStateObserver-Protocol.h"
@@ -15,7 +16,7 @@
 @class NSString, NSTimer, SPTAllocationContext, SPTDrivingDetectionLogger, SPTDrivingMotionManager;
 @protocol SPTAccessoryManagerService, SPTContainerService, SPTFeatureFlagSignal, SPTFeatureFlaggingService, SPTNetworkService, SPTWazeService;
 
-@interface SPTDrivingMotionRecorderService : NSObject <SPTAccessoryStateObserver, SPTDrivingMotionManagerDelegate, SPTWazeNavigationStateObserver, SPTNetworkConnectivityControllerObserver, SPTService>
+@interface SPTDrivingMotionRecorderService : NSObject <SPTAccessoryStateObserver, SPTDrivingMotionManagerDelegate, SPTFeatureFlagSignalObserver, SPTWazeNavigationStateObserver, SPTNetworkConnectivityControllerObserver, SPTService>
 {
     _Bool _motionDataLoggingForTrainingEnabled;
     id <SPTAccessoryManagerService> _accessoryManagerService;

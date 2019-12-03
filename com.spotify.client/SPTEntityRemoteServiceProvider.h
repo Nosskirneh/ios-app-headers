@@ -15,12 +15,12 @@
     struct MetadataHandler *_metadataHandler;
 }
 
-- (shared_ptr_6008c08c)lookupTracksWithLinks:(const span_60459498 *)arg1 callback:(const struct function<void (const boost::system::error_code &, spotify::tl::span<const spotify::uri::SpotifyLink>, spotify::tl::span<std::__1::shared_ptr<const spotify::metadata::TrackInfo>>)> *)arg2;
-- (shared_ptr_6008c08c)lookupAlbumsWithLinks:(const span_60459498 *)arg1 callback:(const struct function<void (const boost::system::error_code &, spotify::tl::span<const spotify::uri::SpotifyLink>, spotify::tl::span<std::__1::shared_ptr<const spotify::metadata::AlbumMetadata>>)> *)arg2;
-- (shared_ptr_6008c08c)lookupArtistsWithLinks:(const span_60459498 *)arg1 callback:(const struct function<void (const boost::system::error_code &, spotify::tl::span<const spotify::uri::SpotifyLink>, spotify::tl::span<std::__1::shared_ptr<const spotify::metadata::ArtistMetadata>>)> *)arg2;
-- (shared_ptr_6008c08c)lookupTrackWithLink:(const struct SpotifyLink *)arg1 callback:(const struct function<void (const boost::system::error_code &, const spotify::uri::SpotifyLink &, const std::__1::shared_ptr<const spotify::metadata::TrackInfo>&)> *)arg2;
-- (shared_ptr_6008c08c)lookupAlbumWithLink:(const struct SpotifyLink *)arg1 callback:(const struct function<void (const boost::system::error_code &, const spotify::uri::SpotifyLink &, const std::__1::shared_ptr<const spotify::metadata::AlbumMetadata>&)> *)arg2;
-- (shared_ptr_6008c08c)lookupArtistWithLink:(const struct SpotifyLink *)arg1 callback:(const struct function<void (const boost::system::error_code &, const spotify::uri::SpotifyLink &, const std::__1::shared_ptr<const spotify::metadata::ArtistMetadata>&)> *)arg2;
+- (shared_ptr_6008c08c)lookupTracksWithLinks:(const span_60459498 *)arg1 callback:(const struct function<void (const std::__1::error_code &, spotify::tl::span<const spotify::uri::SpotifyLink>, spotify::tl::span<std::__1::shared_ptr<const spotify::metadata::TrackInfo>>)> *)arg2;
+- (shared_ptr_6008c08c)lookupAlbumsWithLinks:(const span_60459498 *)arg1 callback:(const struct function<void (const std::__1::error_code &, spotify::tl::span<const spotify::uri::SpotifyLink>, spotify::tl::span<std::__1::shared_ptr<const spotify::metadata::AlbumMetadata>>)> *)arg2;
+- (shared_ptr_6008c08c)lookupArtistsWithLinks:(const span_60459498 *)arg1 callback:(const struct function<void (const std::__1::error_code &, spotify::tl::span<const spotify::uri::SpotifyLink>, spotify::tl::span<std::__1::shared_ptr<const spotify::metadata::ArtistMetadata>>)> *)arg2;
+- (shared_ptr_6008c08c)lookupTrackWithLink:(const struct SpotifyLink *)arg1 callback:(const struct function<void (const std::__1::error_code &, const spotify::uri::SpotifyLink &, const std::__1::shared_ptr<const spotify::metadata::TrackInfo>&)> *)arg2;
+- (shared_ptr_6008c08c)lookupAlbumWithLink:(const struct SpotifyLink *)arg1 callback:(const struct function<void (const std::__1::error_code &, const spotify::uri::SpotifyLink &, const std::__1::shared_ptr<const spotify::metadata::AlbumMetadata>&)> *)arg2;
+- (shared_ptr_6008c08c)lookupArtistWithLink:(const struct SpotifyLink *)arg1 callback:(const struct function<void (const std::__1::error_code &, const spotify::uri::SpotifyLink &, const std::__1::shared_ptr<const spotify::metadata::ArtistMetadata>&)> *)arg2;
 - (id)initWithMetadataHandler:(struct MetadataHandler *)arg1;
 
 // Remaining properties

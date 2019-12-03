@@ -6,12 +6,13 @@
 
 #import "NSObject-Protocol.h"
 
-@protocol SPTImpressionEvent, SPTNowPlayingViewDefault_TopBar_ContextMenuButtonEventFactory, SPTNowPlayingViewDefault_TopBar_HideButtonEventFactory, SPTNowPlayingViewDefault_TopBar_PlaybackSourceLabelEventFactory;
+@protocol SPTEventFactoryModelMapping, SPTImpressionEvent, SPTNowPlayingViewDefault_TopBar_ContextMenuButtonEventFactory, SPTNowPlayingViewDefault_TopBar_HideButtonEventFactory, SPTNowPlayingViewDefault_TopBar_PlaybackSourceLabelEventFactory;
 
 @protocol SPTNowPlayingViewDefault_TopBarEventFactory <NSObject>
 - (id <SPTImpressionEvent>)impression;
 - (id <SPTNowPlayingViewDefault_TopBar_ContextMenuButtonEventFactory>)contextMenuButtonFactory;
 - (id <SPTNowPlayingViewDefault_TopBar_PlaybackSourceLabelEventFactory>)playbackSourceLabelFactory;
 - (id <SPTNowPlayingViewDefault_TopBar_HideButtonEventFactory>)hideButtonFactory;
+- (id <SPTEventFactoryModelMapping>)_location;
 @end
 

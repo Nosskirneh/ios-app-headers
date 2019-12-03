@@ -6,9 +6,10 @@
 
 #import "NSObject-Protocol.h"
 
-@class SPTPodcastEpisodeCellActionHandler;
+@class NSIndexPath;
+@protocol SPTPodcastEpisode, SPTPodcastEpisodeCellActionTarget;
 
 @protocol SPTPodcastEpisodeCellActionHandlerDelegate <NSObject>
-- (void)actionHandler:(SPTPodcastEpisodeCellActionHandler *)arg1 didMarkEpisodeAsPlayed:(_Bool)arg2;
+- (void)actionHandler:(id <SPTPodcastEpisodeCellActionTarget>)arg1 didMarkEpisode:(id <SPTPodcastEpisode>)arg2 atIndextPath:(NSIndexPath *)arg3 asPlayed:(_Bool)arg4;
 @end
 

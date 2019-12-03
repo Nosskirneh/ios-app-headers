@@ -9,7 +9,7 @@
 #import "SPTFreeTierPlaylistService-Protocol.h"
 
 @class NSString, SPTAllocationContext;
-@protocol SPTCollectionPlatformService, SPTExplicitContentService, SPTFeatureFlaggingService, SPTFreeTierPlaylistTestManager, SPTFreeTierPreCurationService, SPTFreeTierService, SPTOnDemandService, SPTPlaylistPlatformService, SPTRemoteConfigurationService, SPTSessionService, SPTSettingsFeature, SPTSortingFilteringService;
+@protocol SPTCollectionPlatformService, SPTEncoreIntegrationService, SPTExplicitContentService, SPTFeatureFlaggingService, SPTFreeTierPlaylistTestManager, SPTFreeTierService, SPTOnDemandService, SPTPlaylistPlatformService, SPTSessionService, SPTSettingsFeature, SPTSortingFilteringService;
 
 @interface SPTFreeTierPlaylistServiceImplementation : NSObject <SPTFreeTierPlaylistService>
 {
@@ -18,23 +18,21 @@
     id <SPTExplicitContentService> _explicitContentService;
     id <SPTFeatureFlaggingService> _featureFlaggingService;
     id <SPTFreeTierService> _freeTierService;
-    id <SPTFreeTierPreCurationService> _freeTierPreCurationService;
     id <SPTOnDemandService> _onDemandService;
     id <SPTPlaylistPlatformService> _playlistPlatformService;
     id <SPTSortingFilteringService> _sortingFilteringService;
     id <SPTSettingsFeature> _settingsFeature;
-    id <SPTRemoteConfigurationService> _remoteConfigurationService;
     id <SPTFreeTierPlaylistTestManager> _testManager;
+    id <SPTEncoreIntegrationService> _encoreIntegrationService;
 }
 
 + (id)serviceIdentifier;
+@property(nonatomic) __weak id <SPTEncoreIntegrationService> encoreIntegrationService; // @synthesize encoreIntegrationService=_encoreIntegrationService;
 @property(retain, nonatomic) id <SPTFreeTierPlaylistTestManager> testManager; // @synthesize testManager=_testManager;
-@property(nonatomic) __weak id <SPTRemoteConfigurationService> remoteConfigurationService; // @synthesize remoteConfigurationService=_remoteConfigurationService;
 @property(nonatomic) __weak id <SPTSettingsFeature> settingsFeature; // @synthesize settingsFeature=_settingsFeature;
 @property(nonatomic) __weak id <SPTSortingFilteringService> sortingFilteringService; // @synthesize sortingFilteringService=_sortingFilteringService;
 @property(nonatomic) __weak id <SPTPlaylistPlatformService> playlistPlatformService; // @synthesize playlistPlatformService=_playlistPlatformService;
 @property(nonatomic) __weak id <SPTOnDemandService> onDemandService; // @synthesize onDemandService=_onDemandService;
-@property(nonatomic) __weak id <SPTFreeTierPreCurationService> freeTierPreCurationService; // @synthesize freeTierPreCurationService=_freeTierPreCurationService;
 @property(nonatomic) __weak id <SPTFreeTierService> freeTierService; // @synthesize freeTierService=_freeTierService;
 @property(nonatomic) __weak id <SPTFeatureFlaggingService> featureFlaggingService; // @synthesize featureFlaggingService=_featureFlaggingService;
 @property(nonatomic) __weak id <SPTExplicitContentService> explicitContentService; // @synthesize explicitContentService=_explicitContentService;

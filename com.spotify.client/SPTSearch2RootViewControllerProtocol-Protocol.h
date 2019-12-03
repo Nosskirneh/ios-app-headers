@@ -7,10 +7,8 @@
 #import "NSObject-Protocol.h"
 
 @class NSString;
-@protocol SPTSearch2RootViewControllerDelegate;
 
 @protocol SPTSearch2RootViewControllerProtocol <NSObject>
-@property(nonatomic) __weak id <SPTSearch2RootViewControllerDelegate> delegate;
 @property(nonatomic) _Bool shouldFocusSearchBarOnViewDidAppear;
 @property(nonatomic) _Bool voiceSearchAllowed;
 @property(readonly, copy, nonatomic) NSString *requestID;

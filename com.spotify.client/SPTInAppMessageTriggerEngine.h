@@ -7,20 +7,22 @@
 #import <objc/NSObject.h>
 
 #import "SPTInAppMessageMessageRequesterDelegate-Protocol.h"
+#import "SPTInAppMessagePodcastExperimentsHandlerDelegate-Protocol.h"
 #import "SPTInAppMessageTriggerListControllerDelegate-Protocol.h"
 #import "SPTInstrumentationCurrentPageViewObserver-Protocol.h"
 #import "SPTPlayerObserver-Protocol.h"
 
-@class NSArray, NSMutableDictionary, NSString, SPTInAppMessageFeatureFlagChecks;
+@class NSArray, NSMutableDictionary, NSString, SPTInAppMessageFeatureFlagChecks, SPTInAppMessagePodcastExperimentsHandler;
 @protocol SPTExternalIntegrationDriverDistractionController, SPTInAppMessageTriggerEngineDelegate;
 
-@interface SPTInAppMessageTriggerEngine : NSObject <SPTInAppMessageTriggerListControllerDelegate, SPTInstrumentationCurrentPageViewObserver, SPTPlayerObserver, SPTInAppMessageMessageRequesterDelegate>
+@interface SPTInAppMessageTriggerEngine : NSObject <SPTInAppMessagePodcastExperimentsHandlerDelegate, SPTInAppMessageTriggerListControllerDelegate, SPTInstrumentationCurrentPageViewObserver, SPTPlayerObserver, SPTInAppMessageMessageRequesterDelegate>
 {
     NSArray *_triggerList;
     id <SPTInAppMessageTriggerEngineDelegate> _delegate;
     NSMutableDictionary *_triggerRegularExpressionCache;
     id <SPTExternalIntegrationDriverDistractionController> _driverDistractionController;
     SPTInAppMessageFeatureFlagChecks *_featureFlagChecker;
+    SPTInAppMessagePodcastExperimentsHandler *_podcastExperimentsHandler;
     NSString *_matchingNavigationPattern;
     NSString *_matchingTrackPattern;
     NSString *_matchingClientEventPattern;
@@ -33,12 +35,16 @@
 @property(copy, nonatomic) NSString *matchingClientEventPattern; // @synthesize matchingClientEventPattern=_matchingClientEventPattern;
 @property(copy, nonatomic) NSString *matchingTrackPattern; // @synthesize matchingTrackPattern=_matchingTrackPattern;
 @property(copy, nonatomic) NSString *matchingNavigationPattern; // @synthesize matchingNavigationPattern=_matchingNavigationPattern;
+@property(retain, nonatomic) SPTInAppMessagePodcastExperimentsHandler *podcastExperimentsHandler; // @synthesize podcastExperimentsHandler=_podcastExperimentsHandler;
 @property(retain, nonatomic) SPTInAppMessageFeatureFlagChecks *featureFlagChecker; // @synthesize featureFlagChecker=_featureFlagChecker;
 @property(retain, nonatomic) id <SPTExternalIntegrationDriverDistractionController> driverDistractionController; // @synthesize driverDistractionController=_driverDistractionController;
 @property(retain, nonatomic) NSMutableDictionary *triggerRegularExpressionCache; // @synthesize triggerRegularExpressionCache=_triggerRegularExpressionCache;
 @property(nonatomic) __weak id <SPTInAppMessageTriggerEngineDelegate> delegate; // @synthesize delegate=_delegate;
 @property(retain, nonatomic) NSArray *triggerList; // @synthesize triggerList=_triggerList;
 - (void).cxx_destruct;
+- (void)podcastExperiementsHandler:(id)arg1 didDownloadPodcast:(id)arg2;
+- (void)podcastExperiementsHandler:(id)arg1 didFollowPodcast:(id)arg2;
+- (void)setupPodcastExperiments;
 - (id)getClientEventPatternForMessageRequest:(id)arg1;
 - (id)getURIForPageView:(id)arg1;
 - (void)compareMatchedPatternWithCurrentClientEventPattern:(id)arg1;
@@ -50,7 +56,7 @@
 - (id)getMatchingTriggersForURI:(id)arg1 triggerType:(id)arg2;
 - (void)performPatternMatchingForURI:(id)arg1 triggerType:(id)arg2;
 - (void)triggerListController:(id)arg1 didFetchActiveTriggers:(id)arg2;
-- (id)initWithDriverDistractionController:(id)arg1 featureFlagChecker:(id)arg2;
+- (id)initWithDriverDistractionController:(id)arg1 featureFlagChecker:(id)arg2 podcastExperimentsHandler:(id)arg3;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

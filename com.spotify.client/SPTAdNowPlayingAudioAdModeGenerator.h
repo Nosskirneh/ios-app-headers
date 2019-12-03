@@ -8,7 +8,7 @@
 
 #import "SPTAdsBaseRegistryObserver-Protocol.h"
 
-@class NSString;
+@class NSString, SPTAdNowPlayingAuxiliaryActionsHandler;
 @protocol SPTAdsBaseRegistry, SPTNowPlayingMode, SPTNowPlayingModesRegistry;
 
 @interface SPTAdNowPlayingAudioAdModeGenerator : NSObject <SPTAdsBaseRegistryObserver>
@@ -16,8 +16,10 @@
     id <SPTNowPlayingMode> _npvAdMode;
     id <SPTAdsBaseRegistry> _adRegistry;
     id <SPTNowPlayingModesRegistry> _npvModeRegistry;
+    SPTAdNowPlayingAuxiliaryActionsHandler *_actionsHandler;
 }
 
+@property(retain, nonatomic) SPTAdNowPlayingAuxiliaryActionsHandler *actionsHandler; // @synthesize actionsHandler=_actionsHandler;
 @property(nonatomic) __weak id <SPTNowPlayingModesRegistry> npvModeRegistry; // @synthesize npvModeRegistry=_npvModeRegistry;
 @property(retain, nonatomic) id <SPTAdsBaseRegistry> adRegistry; // @synthesize adRegistry=_adRegistry;
 @property(readonly, nonatomic) id <SPTNowPlayingMode> npvAdMode; // @synthesize npvAdMode=_npvAdMode;
@@ -25,7 +27,7 @@
 - (void)updateAdModeWithAdEntity:(id)arg1;
 - (void)adRegistry:(id)arg1 didProcessAdEntity:(id)arg2 event:(long long)arg3;
 - (void)dealloc;
-- (id)initWithNowPlayingManager:(id)arg1 adManager:(id)arg2 playerObserver:(id)arg3 feedbackModel:(id)arg4 featureChecker:(id)arg5 animationView:(id)arg6 theme:(id)arg7 linkDispatcher:(id)arg8 cosmosBridge:(id)arg9 adRegistry:(id)arg10 modeRegistry:(id)arg11;
+- (id)initWithNowPlayingManager:(id)arg1 adManager:(id)arg2 playerObserver:(id)arg3 actionsHandler:(id)arg4 featureChecker:(id)arg5 animationView:(id)arg6 theme:(id)arg7 linkDispatcher:(id)arg8 cosmosBridge:(id)arg9 adRegistry:(id)arg10 modeRegistry:(id)arg11 featureProperties:(id)arg12 snackbarPresenter:(id)arg13;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

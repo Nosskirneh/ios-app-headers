@@ -7,7 +7,7 @@
 #import <objc/NSObject.h>
 
 @class SPTLoginSplitEmailSignupViewLogger, SPTSignupAgeFieldValidator, SPTSignupUserInfoModel;
-@protocol SPTNavigationRouter, SPTSignupBirthDateViewModelDelegate;
+@protocol SPTLoginNavigationCoordinator, SPTSignupBirthDateViewModelDelegate;
 
 @interface SPTSignupBirthDateViewModel : NSObject
 {
@@ -15,10 +15,10 @@
     SPTLoginSplitEmailSignupViewLogger *_logger;
     SPTSignupAgeFieldValidator *_ageValidator;
     SPTSignupUserInfoModel *_userInfoModel;
-    id <SPTNavigationRouter> _navigationRouter;
+    id <SPTLoginNavigationCoordinator> _navigationCoordinator;
 }
 
-@property(retain, nonatomic) id <SPTNavigationRouter> navigationRouter; // @synthesize navigationRouter=_navigationRouter;
+@property(retain, nonatomic) id <SPTLoginNavigationCoordinator> navigationCoordinator; // @synthesize navigationCoordinator=_navigationCoordinator;
 @property(retain, nonatomic) SPTSignupUserInfoModel *userInfoModel; // @synthesize userInfoModel=_userInfoModel;
 @property(readonly, nonatomic) SPTSignupAgeFieldValidator *ageValidator; // @synthesize ageValidator=_ageValidator;
 @property(readonly, nonatomic) SPTLoginSplitEmailSignupViewLogger *logger; // @synthesize logger=_logger;
@@ -36,7 +36,7 @@
 - (id)nextButtonText;
 - (id)fieldTitleLabelText;
 - (id)titleLabelText;
-- (id)initWithAgeValidator:(id)arg1 userInfoModel:(id)arg2 logger:(id)arg3 navigationRouter:(id)arg4;
+- (id)initWithAgeValidator:(id)arg1 userInfoModel:(id)arg2 logger:(id)arg3 navigationCoordinator:(id)arg4;
 
 @end
 

@@ -10,18 +10,17 @@
 {
 }
 
-+ (void)addPageURI:(id)arg1 toComponentModelBuilder:(id)arg2;
 + (_Bool)shouldMarkItemAsPlaying:(id)arg1 player:(id)arg2;
 + (void)addCommandsToClearAllRecentsComponentModelBuilder:(id)arg1;
 + (void)setUpImageDataBuilderIn:(id)arg1 forRecentsItem:(id)arg2;
 + (id)addTapEventCommandToComponentModelBuilder:(id)arg1 commandName:(id)arg2 commandDataURI:(id)arg3;
 + (void)addCommandsToComponentModelBuilder:(id)arg1 recentsCommandName:(id)arg2 playTracksEnabled:(_Bool)arg3 forRecentsItem:(id)arg4 recentsItemIndex:(unsigned long long)arg5;
-+ (void)addCustomDataToComponentModelBuilder:(id)arg1 forRecentsItem:(id)arg2 recentsItemIndex:(unsigned long long)arg3;
++ (void)addCustomDataToComponentModelBuilder:(id)arg1 forRecentsItem:(id)arg2;
 + (void)addLoggingDataToComponentModelBuilder:(id)arg1 interactionType:(id)arg2 impressionType:(id)arg3 renderType:(id)arg4 itemIndex:(id)arg5 sectionID:(id)arg6 featureID:(id)arg7 requestID:(id)arg8 targetURI:(id)arg9 pageURI:(id)arg10;
-+ (id)configureComponentModelBuilder:(id)arg1 player:(id)arg2 recentsCommandName:(id)arg3 playTracksEnabled:(_Bool)arg4 forRecentsItem:(id)arg5 recentsItemIndex:(unsigned long long)arg6 featureID:(id)arg7 pageURI:(id)arg8;
++ (id)configureComponentModelBuilder:(id)arg1 player:(id)arg2 recentsCommandName:(id)arg3 playTracksEnabled:(_Bool)arg4 shouldRoundPodcastArtwork:(_Bool)arg5 forRecentsItem:(id)arg6 recentsItemIndex:(unsigned long long)arg7 featureID:(id)arg8 pageURI:(id)arg9;
 + (void)addClearAllRecentsComponentToViewModelBuilder:(id)arg1 featureID:(id)arg2 pageURI:(id)arg3;
-+ (void)addHeaderComponentToViewModelBuilder:(id)arg1 featureID:(id)arg2 pageURI:(id)arg3;
-+ (void)addRecentsToViewModelBuilder:(id)arg1 withDataSource:(id)arg2 player:(id)arg3 recentsCommandName:(id)arg4 playTracksEnabled:(_Bool)arg5 featureID:(id)arg6 pageURI:(id)arg7;
++ (void)addHeaderComponentToViewModelBuilder:(id)arg1 newSectionHeadersEnabled:(_Bool)arg2 featureID:(id)arg3 pageURI:(id)arg4;
++ (void)addRecentsToViewModelBuilder:(id)arg1 withDataSource:(id)arg2 player:(id)arg3 recentsCommandName:(id)arg4 playTracksEnabled:(_Bool)arg5 newSectionHeadersEnabled:(_Bool)arg6 shouldRoundPodcastArtwork:(_Bool)arg7 featureID:(id)arg8 pageURI:(id)arg9;
 
 @end
 

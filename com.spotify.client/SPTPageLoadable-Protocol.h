@@ -4,10 +4,10 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-@protocol SPTPageLoadResultHandler;
+@protocol SPTPageLoadStateHandler;
 
 @protocol SPTPageLoadable
 - (void)cancel;
-- (void)loadWithResultHandler:(id <SPTPageLoadResultHandler>)arg1;
+- (void)loadWithResultHandler:(id <SPTPageLoadStateHandler>)arg1;
 @end
 

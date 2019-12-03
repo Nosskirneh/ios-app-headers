@@ -9,7 +9,7 @@
 #import "SPTInAppMessageCardMessagePriorityDeciderDelegate-Protocol.h"
 
 @class NSString, SPTInAppMessageActionFactory, SPTInAppMessageCardMessageParser, SPTInAppMessageCardMessagePresentationController, SPTInAppMessageFeedbackPresentationController, SPTInAppMessageServiceLogger;
-@protocol SPTCrashReporter, SPTExternalIntegrationDriverDistractionController, SPTOfflineModeState, SPTSlateBuilderProvider, SPTSlateManager;
+@protocol SPTAuthController, SPTCrashReporter, SPTExternalIntegrationDriverDistractionController, SPTOfflineModeState, SPTPushMessagingPermissionRequestor, SPTSlateBuilderProvider, SPTSlateManager;
 
 @interface SPTInAppMessageCardMessageController : NSObject <SPTInAppMessageCardMessagePriorityDeciderDelegate>
 {
@@ -23,8 +23,12 @@
     SPTInAppMessageFeedbackPresentationController *_feedbackPresentationController;
     id <SPTOfflineModeState> _offlineModeState;
     id <SPTCrashReporter> _crashReporter;
+    id <SPTPushMessagingPermissionRequestor> _pushPermissionRequestor;
+    id <SPTAuthController> _authController;
 }
 
+@property(retain, nonatomic) id <SPTAuthController> authController; // @synthesize authController=_authController;
+@property(readonly, nonatomic) id <SPTPushMessagingPermissionRequestor> pushPermissionRequestor; // @synthesize pushPermissionRequestor=_pushPermissionRequestor;
 @property(retain, nonatomic) id <SPTCrashReporter> crashReporter; // @synthesize crashReporter=_crashReporter;
 @property(nonatomic) __weak id <SPTOfflineModeState> offlineModeState; // @synthesize offlineModeState=_offlineModeState;
 @property(retain, nonatomic) SPTInAppMessageFeedbackPresentationController *feedbackPresentationController; // @synthesize feedbackPresentationController=_feedbackPresentationController;
@@ -38,7 +42,7 @@
 - (void).cxx_destruct;
 - (void)presentMessage:(id)arg1 forTrigger:(id)arg2;
 - (void)cardMessagePriorityDeciderDidFetchMessage:(id)arg1 forTrigger:(id)arg2;
-- (id)initWithParser:(id)arg1 slateManager:(id)arg2 slateBuilderProvider:(id)arg3 actionFactory:(id)arg4 serviceLogger:(id)arg5 driverDistractionController:(id)arg6 offlineModeState:(id)arg7 feedbackPresentationController:(id)arg8 crashReporter:(id)arg9;
+- (id)initWithParser:(id)arg1 slateManager:(id)arg2 slateBuilderProvider:(id)arg3 actionFactory:(id)arg4 serviceLogger:(id)arg5 driverDistractionController:(id)arg6 offlineModeState:(id)arg7 feedbackPresentationController:(id)arg8 crashReporter:(id)arg9 pushPermissionRequestor:(id)arg10 authController:(id)arg11;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

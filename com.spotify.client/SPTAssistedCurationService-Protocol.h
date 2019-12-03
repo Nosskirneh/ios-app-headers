@@ -10,7 +10,7 @@
 @protocol SPTAssistedCurationAddTrackHandler, SPTAssistedCurationModel;
 
 @protocol SPTAssistedCurationService <SPTService>
-- (id <SPTAssistedCurationAddTrackHandler>)provideAddTrackHandlerForPlaylistURI:(NSURL *)arg1;
-- (id <SPTAssistedCurationModel>)provideAssistedCurationModelForPlaylistURI:(NSURL *)arg1;
+- (id <SPTAssistedCurationAddTrackHandler>)provideAddTrackHandlerForURI:(NSURL *)arg1;
+- (id <SPTAssistedCurationModel>)provideAssistedCurationModelForURI:(NSURL *)arg1 mostPlayedCard:(_Bool)arg2;
 @end
 

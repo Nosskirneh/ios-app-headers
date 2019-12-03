@@ -9,12 +9,13 @@
 #import "SPTDrivingModeViewControllerFactory-Protocol.h"
 
 @class NSString, SPTDrivingModeLogger;
-@protocol SPTContainerService, SPTExternalIntegrationContentService, SPTExternalIntegrationDriverDistractionService, SPTExternalIntegrationPlaybackService, SPTFeatureFlaggingService, SPTGLUEService, SPTNetworkService, SPTNowPlayingPlatformService, SPTNowPlayingService, SPTOnDemandService, SPTPlayer, SPTPlayerFeature, SPTPlaylistPlatformService, SPTService, SPTSessionService, SPTSettingsFeature, SPTUIPresentationService;
+@protocol SPTContainerService, SPTDrivingModeRemoteConfiguration, SPTExternalIntegrationContentService, SPTExternalIntegrationDriverDistractionService, SPTExternalIntegrationPlaybackService, SPTFeatureFlaggingService, SPTGLUEService, SPTNetworkService, SPTNowPlayingPlatformService, SPTNowPlayingService, SPTOnDemandService, SPTPlayer, SPTPlayerFeature, SPTPlaylistPlatformService, SPTRemoteConfigurationService, SPTService, SPTSessionService, SPTSettingsFeature, SPTUIPresentationService;
 
 @interface SPTDrivingModeFactory : NSObject <SPTDrivingModeViewControllerFactory>
 {
     id <SPTPlayer> _player;
     SPTDrivingModeLogger *_logger;
+    id <SPTDrivingModeRemoteConfiguration> _remoteConfiguration;
     id <SPTFeatureFlaggingService> _featureFlaggingService;
     id <SPTSettingsFeature> _settingsService;
     id <SPTNowPlayingService> _nowPlayingService;
@@ -31,8 +32,10 @@
     id <SPTPlaylistPlatformService> _playlistPlatformService;
     id <SPTOnDemandService> _onDemandSetService;
     id <SPTService> _drivingModeService;
+    id <SPTRemoteConfigurationService> _remoteConfigurationService;
 }
 
+@property(readonly, nonatomic) __weak id <SPTRemoteConfigurationService> remoteConfigurationService; // @synthesize remoteConfigurationService=_remoteConfigurationService;
 @property(readonly, nonatomic) __weak id <SPTService> drivingModeService; // @synthesize drivingModeService=_drivingModeService;
 @property(readonly, nonatomic) __weak id <SPTOnDemandService> onDemandSetService; // @synthesize onDemandSetService=_onDemandSetService;
 @property(readonly, nonatomic) __weak id <SPTPlaylistPlatformService> playlistPlatformService; // @synthesize playlistPlatformService=_playlistPlatformService;
@@ -58,13 +61,16 @@
 - (id)createDefaultHeadUnitViewController;
 - (id)createDurationUnitViewController;
 - (id)createInformationUnitViewController;
+- (id)createEmptyUnitViewController;
 - (id)createNavigationBarUnitViewControllerForSession:(id)arg1;
 - (id)createPivotList;
+- (id)createHomeFeedList;
 - (id)createPivotPlayer;
 - (id)createNowPlayingModesWithConfigurationManager:(id)arg1 optOutHandler:(id)arg2;
 - (id)createSessionWithConfigurationManager:(id)arg1 optOutHandler:(id)arg2;
 - (id)createDrivingModeControllerWithConfigurationManager:(id)arg1;
 - (id)createTestManagerForService:(id)arg1;
+@property(readonly, nonatomic) id <SPTDrivingModeRemoteConfiguration> remoteConfiguration; // @synthesize remoteConfiguration=_remoteConfiguration;
 @property(readonly, nonatomic) SPTDrivingModeLogger *logger; // @synthesize logger=_logger;
 @property(readonly, nonatomic) id <SPTPlayer> player; // @synthesize player=_player;
 - (id)initWithServiceProvider:(id)arg1 drivingModeService:(id)arg2;

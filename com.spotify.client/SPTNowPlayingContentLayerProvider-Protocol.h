@@ -7,7 +7,7 @@
 #import "NSObject-Protocol.h"
 
 @class NSString, SPTPlayerState, SPTPlayerTrack, UICollectionViewCell, UIViewController;
-@protocol SPTNowPlayingContentLayerProviderDelegate;
+@protocol SPTNowPlayingContentLayerProvider, SPTNowPlayingContentLayerProviderDelegate;
 
 @protocol SPTNowPlayingContentLayerProvider <NSObject>
 - (_Bool)displaysFullScreenContentForTrack:(SPTPlayerTrack *)arg1;
@@ -16,12 +16,13 @@
 - (void)configureCell:(UICollectionViewCell *)arg1 withTrack:(SPTPlayerTrack *)arg2 windowedContentInsets:(struct UIEdgeInsets)arg3 peekingDisallowed:(_Bool)arg4;
 - (long long)priority;
 - (Class)cellClass;
-- (NSString *)contentIdentifier;
+- (NSString *)reuseIdentifier;
+- (unsigned long long)contentType;
 
 @optional
 @property(nonatomic) __weak id <SPTNowPlayingContentLayerProviderDelegate> delegate;
 - (void)configurePlaceholderCell:(UICollectionViewCell *)arg1 windowedContentInsets:(struct UIEdgeInsets)arg2;
-- (void)didSelectCell:(UICollectionViewCell *)arg1 withTrack:(SPTPlayerTrack *)arg2 containerViewController:(UIViewController *)arg3;
+- (void)didSelectCell:(UICollectionViewCell *)arg1 withProvider:(id <SPTNowPlayingContentLayerProvider>)arg2 withTrack:(SPTPlayerTrack *)arg3 containerViewController:(UIViewController *)arg4;
 - (void)didEndDisplayingCell:(UICollectionViewCell *)arg1 withTrack:(SPTPlayerTrack *)arg2 containerViewController:(UIViewController *)arg3;
 - (void)willDisplayCell:(UICollectionViewCell *)arg1 withTrack:(SPTPlayerTrack *)arg2 containerViewController:(UIViewController *)arg3;
 @end

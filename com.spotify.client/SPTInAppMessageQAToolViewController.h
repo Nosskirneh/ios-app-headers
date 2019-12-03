@@ -65,7 +65,6 @@
 - (long long)pickerView:(id)arg1 numberOfRowsInComponent:(long long)arg2;
 - (long long)numberOfComponentsInPickerView:(id)arg1;
 - (void)useLocaleList:(id)arg1;
-- (void)useHardCodedLocaleList;
 - (void)dismissMessagePresentationViewController:(id)arg1;
 - (void)presentMessagePresentationViewController:(id)arg1;
 - (double)topInset;
@@ -80,7 +79,6 @@
 - (void)setupScrollView;
 - (void)setupReviewStatusArray;
 - (void)setupCampaignFormatsArray;
-- (void)setupLocalesArray;
 - (void)viewDidLoad;
 - (id)initWithViewModel:(id)arg1;
 

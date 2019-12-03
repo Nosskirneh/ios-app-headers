@@ -7,23 +7,21 @@
 #import <objc/NSObject.h>
 
 @class HUBComponentRegistry;
-@protocol SPTBrowseUIService, SPTHubsRendererFactory, SPTHugsFactory;
+@protocol SPTHubsRendererFactory, SPTHugsFactory;
 
 @interface SPTFreeTierFindHubManager : NSObject
 {
     id <SPTHubsRendererFactory> _hubsRendererFactory;
     id <SPTHugsFactory> _hugsFactory;
-    id <SPTBrowseUIService> _uiService;
     HUBComponentRegistry *_componentRegistry;
 }
 
 @property(retain, nonatomic) HUBComponentRegistry *componentRegistry; // @synthesize componentRegistry=_componentRegistry;
-@property(readonly, nonatomic) __weak id <SPTBrowseUIService> uiService; // @synthesize uiService=_uiService;
 @property(readonly, nonatomic) id <SPTHugsFactory> hugsFactory; // @synthesize hugsFactory=_hugsFactory;
 @property(readonly, nonatomic) id <SPTHubsRendererFactory> hubsRendererFactory; // @synthesize hubsRendererFactory=_hubsRendererFactory;
 - (void).cxx_destruct;
 - (id)createHubContainerViewWithURL:(id)arg1 referrerIdentifier:(id)arg2 viewModelProvider:(id)arg3;
-- (id)initWithHubsRendererFactory:(id)arg1 hugsFactory:(id)arg2 uiService:(id)arg3;
+- (id)initWithHubsRendererFactory:(id)arg1 hugsFactory:(id)arg2 theme:(id)arg3;
 
 @end
 

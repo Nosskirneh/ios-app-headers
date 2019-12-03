@@ -112,7 +112,6 @@
 - (id)providePlaybackService;
 - (id)provideStationsService;
 - (id)provideRadioManager;
-- (id)provideCosmosResolver;
 - (id)provideStationViewController:(id)arg1 context:(id)arg2;
 - (id)provideRadioLoggingService;
 - (id)radioStationViewModelForURL:(id)arg1;

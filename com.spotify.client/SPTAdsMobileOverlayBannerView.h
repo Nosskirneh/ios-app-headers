@@ -12,7 +12,6 @@
 @interface SPTAdsMobileOverlayBannerView : SPTBannerView
 {
     SPTAdsPromotedContentImageView *_imageView;
-    UIView *_backgroundOverlayView;
     UIView *_actionView;
     GLUELabel *_headerLabel;
     GLUELabel *_advertiserLabel;
@@ -37,7 +36,6 @@
 @property(readonly, nonatomic) GLUELabel *advertiserLabel; // @synthesize advertiserLabel=_advertiserLabel;
 @property(readonly, nonatomic) GLUELabel *headerLabel; // @synthesize headerLabel=_headerLabel;
 @property(readonly, nonatomic) UIView *actionView; // @synthesize actionView=_actionView;
-@property(readonly, nonatomic) UIView *backgroundOverlayView; // @synthesize backgroundOverlayView=_backgroundOverlayView;
 @property(readonly, nonatomic) SPTAdsPromotedContentImageView *imageView; // @synthesize imageView=_imageView;
 - (void).cxx_destruct;
 - (void)traitCollectionDidChange:(id)arg1;
@@ -49,7 +47,7 @@
 - (struct CGSize)sizeThatFits:(struct CGSize)arg1;
 - (void)addConstraints;
 - (void)removeUnusedSubviews;
-- (id)initWithAdvertiserTitle:(id)arg1 imageUrl:(id)arg2 theme:(id)arg3 glueImageLoader:(id)arg4;
+- (id)initWithAdvertiserTitle:(id)arg1 actionButtonText:(id)arg2 imageUrl:(id)arg3 theme:(id)arg4 glueImageLoader:(id)arg5;
 
 @end
 

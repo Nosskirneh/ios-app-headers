@@ -7,11 +7,10 @@
 #import "SPTUIPageService.h"
 
 @class SPTYourLibraryGLUETheme, SPTYourLibraryLogger, SPTYourLibraryURIManager, SPTYourLibraryViewController;
-@protocol CollectionFeature, SPTGLUEService, SPTOfflineService, SPTPerformanceMetricsService, SPTSessionService, SPTYourLibraryService, SPTYourLibraryViewModel;
+@protocol SPTGLUEService, SPTOfflineService, SPTPerformanceMetricsService, SPTSessionService, SPTYourLibraryService, SPTYourLibraryViewModel;
 
 @interface SPTYourLibraryUIService : SPTUIPageService
 {
-    id <CollectionFeature> _collectionService;
     id <SPTGLUEService> _glueService;
     id <SPTYourLibraryService> _yourLibraryService;
     id <SPTOfflineService> _offlineService;
@@ -35,14 +34,12 @@
 @property(nonatomic) __weak id <SPTOfflineService> offlineService; // @synthesize offlineService=_offlineService;
 @property(nonatomic) __weak id <SPTYourLibraryService> yourLibraryService; // @synthesize yourLibraryService=_yourLibraryService;
 @property(nonatomic) __weak id <SPTGLUEService> glueService; // @synthesize glueService=_glueService;
-@property(nonatomic) __weak id <CollectionFeature> collectionService; // @synthesize collectionService=_collectionService;
 - (void).cxx_destruct;
 - (id)provideViewLoggerForURI:(id)arg1;
 - (id)provideLogger;
 - (id)provideOfflineBannerViewController;
 - (id)provideViewControllerForURI:(id)arg1 context:(id)arg2;
 - (_Bool)claimsURI:(id)arg1;
-- (void)configureMasterFeatureFlag:(id)arg1;
 - (void)configureWithServices:(id)arg1;
 - (void)unload;
 

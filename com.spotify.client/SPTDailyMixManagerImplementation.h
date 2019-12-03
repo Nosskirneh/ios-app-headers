@@ -14,7 +14,7 @@
 #import "SPTRadioPlaybackObserver-Protocol.h"
 
 @class NSHashTable, NSString, SPTDailyMixLoggingService, SPTDataLoader, SPTPlayerState, SPTRadioPlaybackService;
-@protocol SPTAbbaFeatureFlags, SPTCollectionPlatform, SPTCollectionPlatformTestManager, SPTOfflineModeState, SPTPlayer, SPTPlayerFeature;
+@protocol SPTCollectionPlatform, SPTCollectionPlatformTestManager, SPTOfflineModeState, SPTPlayer, SPTPlayerFeature;
 
 @interface SPTDailyMixManagerImplementation : NSObject <SPTDataLoaderDelegate, SPTOfflineModeStateObserver, SPTPlayerObserver, SPTRadioPlaybackObserver, SPTDailyMixManager, SPTDailyMixPlayerProxy>
 {
@@ -23,7 +23,6 @@
     SPTPlayerState *_playerState;
     id <SPTCollectionPlatform> _collectionPlatform;
     SPTDailyMixLoggingService *_loggingService;
-    id <SPTAbbaFeatureFlags> _featureFlags;
     NSHashTable *_observers;
     NSHashTable *_playerProxyObservers;
     SPTDataLoader *_dataLoader;
@@ -42,7 +41,6 @@
 @property(retain) SPTDataLoader *dataLoader; // @synthesize dataLoader=_dataLoader;
 @property(retain, nonatomic) NSHashTable *playerProxyObservers; // @synthesize playerProxyObservers=_playerProxyObservers;
 @property(retain, nonatomic) NSHashTable *observers; // @synthesize observers=_observers;
-@property(retain, nonatomic) id <SPTAbbaFeatureFlags> featureFlags; // @synthesize featureFlags=_featureFlags;
 @property(readonly, nonatomic) SPTDailyMixLoggingService *loggingService; // @synthesize loggingService=_loggingService;
 @property(readonly, nonatomic) __weak id <SPTCollectionPlatform> collectionPlatform; // @synthesize collectionPlatform=_collectionPlatform;
 @property(retain, nonatomic) SPTPlayerState *playerState; // @synthesize playerState=_playerState;
@@ -82,7 +80,7 @@
 - (void)startDecoratedDailyMixWithURL:(id)arg1 startedFromElement:(id)arg2 atIndex:(unsigned long long)arg3 referrerIdentifier:(id)arg4 completion:(CDUnknownBlockType)arg5;
 - (void)startDailyMixWithURL:(id)arg1 startedFromElement:(id)arg2 referrerIdentifier:(id)arg3 completion:(CDUnknownBlockType)arg4;
 - (void)dealloc;
-- (id)initWithAbba:(id)arg1 dataLoader:(id)arg2 radioPlaybackService:(id)arg3 playerFeature:(id)arg4 collectionPlatform:(id)arg5 loggingService:(id)arg6 collectionTestManager:(id)arg7 offlineModeState:(id)arg8;
+- (id)initWithDataLoader:(id)arg1 radioPlaybackService:(id)arg2 playerFeature:(id)arg3 collectionPlatform:(id)arg4 loggingService:(id)arg5 collectionTestManager:(id)arg6 offlineModeState:(id)arg7;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

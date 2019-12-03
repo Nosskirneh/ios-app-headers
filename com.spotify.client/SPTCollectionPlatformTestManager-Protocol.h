@@ -6,11 +6,11 @@
 
 #import "NSObject-Protocol.h"
 
-@protocol SPTCollectionPlatformConfiguration, SPTFeatureFlagSignal;
+@protocol SPTCollectionPlatformConfiguration;
 
 @protocol SPTCollectionPlatformTestManager <NSObject>
+@property(readonly, nonatomic, getter=isPremiumSnackbarEnabled) _Bool premiumSnackbarEnabled;
 @property(readonly, nonatomic, getter=isLocalBansEnabled) _Bool localBansEnabled;
-@property(readonly, nonatomic) id <SPTFeatureFlagSignal> localBansEnabledSignal;
 @property(readonly, nonatomic, getter=isMadeForAttributionEnabled) _Bool madeForAttributionEnabled;
 @property(readonly, nonatomic, getter=isIncompleteAlbumsUsedForCollectionState) _Bool incompleteAlbumsUsedForCollectionState;
 @property(readonly, nonatomic, getter=isPremiumLabelEnabled) _Bool premiumLabelEnabled;

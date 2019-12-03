@@ -9,7 +9,7 @@
 #import "SPTInAppMessageSDKMessageReceiver-Protocol.h"
 
 @class NSString, SPTInAppMessageCardPresentationController, SPTInAppMessageNoteOverlayController, SPTInAppMessageNotePresentationController, SPTInAppMessageNowPlayingManagerRegistryImplementation, SPTInAppMessageSDKBannerPresentationController, SPTInAppMessageServiceLogger;
-@protocol SPTBannerPresentationManager, SPTCrashReporter, SPTExternalIntegrationDriverDistractionController, SPTFreeTierTooltipConditionalPresenter, SPTOfflineModeState, SPTSlateBuilderProvider, SPTSlateManager, SPTSnackbarConditionalPresenter, SPTTooltipPresentationManager;
+@protocol SPTAuthController, SPTBannerPresentationManager, SPTCrashReporter, SPTExternalIntegrationDriverDistractionController, SPTFreeTierTooltipConditionalPresenter, SPTOfflineModeState, SPTSlateBuilderProvider, SPTSlateManager, SPTSnackbarConditionalPresenter, SPTTooltipPresentationManager;
 
 @interface SPTInAppMessageReceiverImplementation : NSObject <SPTInAppMessageSDKMessageReceiver>
 {
@@ -28,8 +28,10 @@
     id <SPTFreeTierTooltipConditionalPresenter> _freeTierTooltipPresenter;
     id <SPTSnackbarConditionalPresenter> _snackbarPresenter;
     SPTInAppMessageNotePresentationController *_notePresentationController;
+    id <SPTAuthController> _authController;
 }
 
+@property(readonly, nonatomic) id <SPTAuthController> authController; // @synthesize authController=_authController;
 @property(retain, nonatomic) SPTInAppMessageNotePresentationController *notePresentationController; // @synthesize notePresentationController=_notePresentationController;
 @property(readonly, nonatomic) id <SPTSnackbarConditionalPresenter> snackbarPresenter; // @synthesize snackbarPresenter=_snackbarPresenter;
 @property(readonly, nonatomic) id <SPTFreeTierTooltipConditionalPresenter> freeTierTooltipPresenter; // @synthesize freeTierTooltipPresenter=_freeTierTooltipPresenter;
@@ -47,7 +49,7 @@
 @property(retain, nonatomic) SPTInAppMessageCardPresentationController *cardPresentationController; // @synthesize cardPresentationController=_cardPresentationController;
 - (void).cxx_destruct;
 - (void)didReceiveMessageViewModel:(id)arg1 matchedPattern:(id)arg2 triggerType:(id)arg3;
-- (id)initWithSlateManager:(id)arg1 slateBuilderProvider:(id)arg2 noteOverlayController:(id)arg3 bannerPresentationManager:(id)arg4 tooltipPresentationManager:(id)arg5 freeTierTooltipPresenter:(id)arg6 snackbarPresenter:(id)arg7 nowPlayingManagerRegistry:(id)arg8 offlineModeState:(id)arg9 driverDistractionController:(id)arg10 serviceLogger:(id)arg11 crashReporter:(id)arg12;
+- (id)initWithSlateManager:(id)arg1 slateBuilderProvider:(id)arg2 noteOverlayController:(id)arg3 bannerPresentationManager:(id)arg4 tooltipPresentationManager:(id)arg5 freeTierTooltipPresenter:(id)arg6 snackbarPresenter:(id)arg7 nowPlayingManagerRegistry:(id)arg8 offlineModeState:(id)arg9 driverDistractionController:(id)arg10 serviceLogger:(id)arg11 crashReporter:(id)arg12 authController:(id)arg13;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

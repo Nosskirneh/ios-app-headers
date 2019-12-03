@@ -50,6 +50,7 @@
 - (void)presentMessage:(id)arg1;
 - (void)verifyWaitingForProviderIdentifier:(id)arg1;
 @property(readonly, nonatomic, getter=isLoaded) _Bool loaded;
+@property(readonly, nonatomic) long long addTrackIcon;
 @property(readonly, nonatomic) NSURL *playlistURI;
 - (void)viewDidDisappear;
 - (void)viewDidLoad;

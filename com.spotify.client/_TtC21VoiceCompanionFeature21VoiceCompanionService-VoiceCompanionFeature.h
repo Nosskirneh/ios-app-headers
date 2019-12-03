@@ -7,6 +7,7 @@
 #import "_TtC21VoiceCompanionFeature21VoiceCompanionService.h"
 
 @interface _TtC21VoiceCompanionFeature21VoiceCompanionService (VoiceCompanionFeature)
-- (void)featureFlagSignal:(id)arg1 hasAssumedState:(long long)arg2;
+- (long long)URISubtypeHandlerOpenURI:(id)arg1 context:(id)arg2;
+- (_Bool)URISubtypeHandlerCanHandleURI:(id)arg1;
 @end
 

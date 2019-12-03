@@ -6,10 +6,12 @@
 
 #import <objc/NSObject.h>
 
+#import "SPTFeatureFlagSignalObserver-Protocol.h"
+
 @class NSString, SPTObserverManager;
 @protocol SPTFeatureFlagFactory, SPTFeatureFlagSignal;
 
-@interface SPTGoogleMapsFeatureFlagManager : NSObject
+@interface SPTGoogleMapsFeatureFlagManager : NSObject <SPTFeatureFlagSignalObserver>
 {
     _Bool _googleMapsFeatureEnabled;
     id <SPTFeatureFlagFactory> _featureFlagFactory;

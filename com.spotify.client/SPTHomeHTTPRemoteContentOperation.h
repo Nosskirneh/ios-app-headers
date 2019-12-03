@@ -9,45 +9,45 @@
 #import "HUBContentOperation-Protocol.h"
 #import "SPTDataLoaderDelegate-Protocol.h"
 #import "SPTFreeTierTasteOnboardingCurationObserver-Protocol.h"
-#import "SPTOfflineModeStateObserver-Protocol.h"
 
 @class NSError, NSString, NSURL, SPTDataLoader, SPTHomeContentCache;
-@protocol HUBContentOperationDelegate, HUBViewModelBuilder, SPTFreeTierTasteOnboardingCurationProvider, SPTOfflineModeState;
+@protocol HUBContentOperationDelegate, HUBViewModelBuilder, SPTFreeTierTasteOnboardingCurationProvider, SPTLocalSettings;
 
-@interface SPTHomeHTTPRemoteContentOperation : NSObject <SPTDataLoaderDelegate, SPTOfflineModeStateObserver, SPTFreeTierTasteOnboardingCurationObserver, HUBContentOperation>
+@interface SPTHomeHTTPRemoteContentOperation : NSObject <SPTDataLoaderDelegate, SPTFreeTierTasteOnboardingCurationObserver, HUBContentOperation>
 {
+    _Bool _skipCache;
     _Bool _ignoreCache;
     id <HUBContentOperationDelegate> _delegate;
     NSURL *_contentURL;
     NSString *_sourceIdentifier;
     SPTDataLoader *_dataLoader;
-    id <SPTOfflineModeState> _offlineModeState;
     SPTHomeContentCache *_homeContentCache;
     id <SPTFreeTierTasteOnboardingCurationProvider> _tasteOnboardingCurationProvider;
+    id <SPTLocalSettings> _localSettings;
     id <HUBViewModelBuilder> _viewModelBuilder;
     NSError *_previousError;
 }
 
 @property(nonatomic) _Bool ignoreCache; // @synthesize ignoreCache=_ignoreCache;
+@property(nonatomic) _Bool skipCache; // @synthesize skipCache=_skipCache;
 @property(retain, nonatomic) NSError *previousError; // @synthesize previousError=_previousError;
 @property(retain, nonatomic) id <HUBViewModelBuilder> viewModelBuilder; // @synthesize viewModelBuilder=_viewModelBuilder;
+@property(readonly, nonatomic) id <SPTLocalSettings> localSettings; // @synthesize localSettings=_localSettings;
 @property(readonly, nonatomic) id <SPTFreeTierTasteOnboardingCurationProvider> tasteOnboardingCurationProvider; // @synthesize tasteOnboardingCurationProvider=_tasteOnboardingCurationProvider;
 @property(readonly, nonatomic) __weak SPTHomeContentCache *homeContentCache; // @synthesize homeContentCache=_homeContentCache;
-@property(readonly, nonatomic) id <SPTOfflineModeState> offlineModeState; // @synthesize offlineModeState=_offlineModeState;
 @property(readonly, nonatomic) SPTDataLoader *dataLoader; // @synthesize dataLoader=_dataLoader;
 @property(readonly, copy, nonatomic) NSString *sourceIdentifier; // @synthesize sourceIdentifier=_sourceIdentifier;
 @property(readonly, nonatomic) NSURL *contentURL; // @synthesize contentURL=_contentURL;
 @property(nonatomic) __weak id <HUBContentOperationDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
 - (void)tasteOnboardingDidFinishCurating:(id)arg1;
-- (void)offlineModeState:(id)arg1 updated:(_Bool)arg2;
 - (id)makeUnknownError;
 - (void)finishWithOperationStatus:(unsigned long long)arg1;
 - (void)dataLoader:(id)arg1 didReceiveErrorResponse:(id)arg2;
 - (void)dataLoader:(id)arg1 didReceiveSuccessfulResponse:(id)arg2;
 - (void)performForViewModelBuilder:(id)arg1 previousError:(id)arg2;
 - (void)dealloc;
-- (id)initWithContentURL:(id)arg1 sourceIdentifier:(id)arg2 dataLoaderFactory:(id)arg3 offlineModeState:(id)arg4 homeContentCache:(id)arg5 tasteOnboardingCurationProvider:(id)arg6;
+- (id)initWithContentURL:(id)arg1 sourceIdentifier:(id)arg2 dataLoaderFactory:(id)arg3 homeContentCache:(id)arg4 tasteOnboardingCurationProvider:(id)arg5 featureSettingsItemFactory:(id)arg6 localSettings:(id)arg7;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

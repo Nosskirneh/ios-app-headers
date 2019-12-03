@@ -21,6 +21,7 @@
 - (id)impression;
 - (id)addToCollectionButtonFactory;
 - (id)labelContainerFactory;
+- (id)_location;
 - (id)initWithComponents:(id)arg1;
 
 // Remaining properties

@@ -23,11 +23,13 @@
 @property(nonatomic) __weak id <SPTContainerService> containerService; // @synthesize containerService=_containerService;
 @property(nonatomic) __weak id <SPTEventSenderService> eventSenderService; // @synthesize eventSenderService=_eventSenderService;
 - (void).cxx_destruct;
+- (id)interactionTypesMap;
 - (id)provideUserBehaviourInstrumentationStateViewController;
 - (void)unload;
 - (void)load;
+- (id)provideHubsEventMapper;
 - (id)provideEventFactory;
-- (id)provideUBILoggerFactory;
+- (id)provideUBILogger;
 - (void)configureWithServices:(id)arg1;
 
 // Remaining properties

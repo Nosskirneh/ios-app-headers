@@ -16,8 +16,10 @@
     NSURL *_URL;
     unsigned long long _playlists;
     unsigned long long _folders;
+    NSString *_groupLabel;
 }
 
+@property(copy, nonatomic) NSString *groupLabel; // @synthesize groupLabel=_groupLabel;
 @property(nonatomic) unsigned long long folders; // @synthesize folders=_folders;
 @property(nonatomic) unsigned long long playlists; // @synthesize playlists=_playlists;
 @property(retain, nonatomic) NSURL *URL; // @synthesize URL=_URL;

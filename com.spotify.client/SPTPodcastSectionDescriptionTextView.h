@@ -23,7 +23,6 @@
 @property(nonatomic) double lineHeight; // @synthesize lineHeight=_lineHeight;
 @property(copy, nonatomic) NSString *originalText; // @synthesize originalText=_originalText;
 - (void).cxx_destruct;
-- (id)spt_collapsedAttributedString:(id)arg1 withStringEnding:(id)arg2 sizeConstraint:(struct CGSize)arg3 numberOfLines:(long long)arg4;
 - (id)collapsedStringEnding;
 - (void)setAttributedText:(id)arg1;
 - (void)setText:(id)arg1;

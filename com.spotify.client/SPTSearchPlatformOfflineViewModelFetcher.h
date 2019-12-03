@@ -8,38 +8,47 @@
 
 #import "SPTSearchPlatformViewModelFetcher-Protocol.h"
 
-@class HUBViewModelBuilderFactory, NSString;
-@protocol SPTOfflineManager, SPTPlaylistPlatformPlaylistDataLoader, SPTSearch2EmptyStatePropertiesProvider;
+@class HUBViewModelBuilderFactory, NSString, SPTSearchPlatformOfflineEpisodeDataLoader;
+@protocol SPTCollectionPlatformDataLoader, SPTOfflineManager, SPTPlaylistPlatformPlaylistDataLoader, SPTSearch2EmptyStatePropertiesProvider;
 
 @interface SPTSearchPlatformOfflineViewModelFetcher : NSObject <SPTSearchPlatformViewModelFetcher>
 {
     NSString *_query;
     id <SPTOfflineManager> _offlineManager;
     id <SPTPlaylistPlatformPlaylistDataLoader> _playlistDataLoader;
+    id <SPTCollectionPlatformDataLoader> _collectionDataLoader;
+    SPTSearchPlatformOfflineEpisodeDataLoader *_episodeDataLoader;
     HUBViewModelBuilderFactory *_viewModelBuilderFactory;
     id <SPTSearch2EmptyStatePropertiesProvider> _emptyStatePropertiesProvider;
 }
 
 @property(readonly, nonatomic) id <SPTSearch2EmptyStatePropertiesProvider> emptyStatePropertiesProvider; // @synthesize emptyStatePropertiesProvider=_emptyStatePropertiesProvider;
 @property(readonly, nonatomic) HUBViewModelBuilderFactory *viewModelBuilderFactory; // @synthesize viewModelBuilderFactory=_viewModelBuilderFactory;
+@property(readonly, nonatomic) SPTSearchPlatformOfflineEpisodeDataLoader *episodeDataLoader; // @synthesize episodeDataLoader=_episodeDataLoader;
+@property(readonly, nonatomic) id <SPTCollectionPlatformDataLoader> collectionDataLoader; // @synthesize collectionDataLoader=_collectionDataLoader;
 @property(readonly, nonatomic) id <SPTPlaylistPlatformPlaylistDataLoader> playlistDataLoader; // @synthesize playlistDataLoader=_playlistDataLoader;
 @property(readonly, nonatomic) __weak id <SPTOfflineManager> offlineManager; // @synthesize offlineManager=_offlineManager;
 @property(readonly, copy, nonatomic) NSString *query; // @synthesize query=_query;
 - (void).cxx_destruct;
+- (id)customDataSubtitleAccessoryLabelWithExplicit:(_Bool)arg1 premium:(_Bool)arg2;
 - (void)addSectionHeaderWithTitle:(id)arg1 identifier:(id)arg2 toViewModelBuilder:(id)arg3;
-- (void)configureComponentModelBuilder:(id)arg1 withShow:(id)arg2;
-- (void)configureViewModelBuilder:(id)arg1 withShows:(id)arg2;
-- (void)fetchShowsWithCompletion:(CDUnknownBlockType)arg1;
+- (void)configureComponentModelBuilder:(id)arg1 withEpisode:(id)arg2;
+- (void)configureViewModelBuilder:(id)arg1 withEpisodes:(id)arg2;
+- (void)fetchEpisodesWithCompletion:(CDUnknownBlockType)arg1;
 - (id)subtitleForTrack:(id)arg1;
 - (void)configureComponentModelBuilder:(id)arg1 withTrack:(id)arg2;
 - (void)configureViewModelBuilder:(id)arg1 withTracks:(id)arg2;
 - (void)fetchTracksWithCompletion:(CDUnknownBlockType)arg1;
+- (id)artistsNamesFromArtists:(id)arg1;
+- (void)configureComponentModelBuilder:(id)arg1 withAlbum:(id)arg2;
+- (void)configureViewModelBuilder:(id)arg1 withAlbums:(id)arg2;
+- (void)fetchAlbumsWithCompletion:(CDUnknownBlockType)arg1;
 - (void)configureComponentModelBuilder:(id)arg1 withPlaylist:(id)arg2;
 - (void)configureViewModelBuilder:(id)arg1 withPlaylists:(id)arg2;
 - (void)fetchPlaylistsWithCompletion:(CDUnknownBlockType)arg1;
 - (void)addNoResultsOverlayComponentToViewModelBuilder:(id)arg1;
 - (id)fetchViewModelWithCompletion:(CDUnknownBlockType)arg1;
-- (id)initWithQuery:(id)arg1 offlineManager:(id)arg2 playlistDataLoder:(id)arg3 emptyStatePropertiesProvider:(id)arg4 viewModelBuilderFactory:(id)arg5;
+- (id)initWithQuery:(id)arg1 offlineManager:(id)arg2 playlistDataLoader:(id)arg3 collectionDataLoader:(id)arg4 episodeDataLoder:(id)arg5 emptyStatePropertiesProvider:(id)arg6 viewModelBuilderFactory:(id)arg7;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

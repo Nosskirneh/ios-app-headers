@@ -9,7 +9,7 @@
 #import "SPTGaiaConnectObserver-Protocol.h"
 
 @class NSString;
-@protocol SPTGaiaConnectAPI, SPTGaiaDevicePickerPresenter, SPTNowPlayingBarPageModelDelegate;
+@protocol SPTConnectUIDevicePickerPresenter, SPTGaiaConnectAPI, SPTNowPlayingBarPageModelDelegate;
 
 @interface SPTNowPlayingBarPageModel : NSObject <SPTGaiaConnectObserver>
 {
@@ -17,10 +17,10 @@
     _Bool _disableRemoteDevicesView;
     id <SPTNowPlayingBarPageModelDelegate> _delegate;
     id <SPTGaiaConnectAPI> _connectManager;
-    id <SPTGaiaDevicePickerPresenter> _devicePresenter;
+    id <SPTConnectUIDevicePickerPresenter> _devicePresenter;
 }
 
-@property(retain, nonatomic) id <SPTGaiaDevicePickerPresenter> devicePresenter; // @synthesize devicePresenter=_devicePresenter;
+@property(retain, nonatomic) id <SPTConnectUIDevicePickerPresenter> devicePresenter; // @synthesize devicePresenter=_devicePresenter;
 @property(retain, nonatomic) id <SPTGaiaConnectAPI> connectManager; // @synthesize connectManager=_connectManager;
 @property(nonatomic) _Bool disableRemoteDevicesView; // @synthesize disableRemoteDevicesView=_disableRemoteDevicesView;
 @property(nonatomic, getter=isRemoteDevicesVisible) _Bool remoteDevicesVisible; // @synthesize remoteDevicesVisible=_remoteDevicesVisible;

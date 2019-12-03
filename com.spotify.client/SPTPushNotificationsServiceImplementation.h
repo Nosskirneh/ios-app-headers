@@ -6,13 +6,14 @@
 
 #import <objc/NSObject.h>
 
+#import "SPTFeatureFlagSignalObserver-Protocol.h"
 #import "SPTPushNotificationsService-Protocol.h"
 #import "SPTService-Protocol.h"
 
 @class NSString, SPTAllocationContext, SPTPushNotificationActionRegistryImplementation, SPTPushNotificationController;
 @protocol SPTApplicationScopeFeatureFlagSignalService, SPTContainerService, SPTContainerUIService, SPTCoreService, SPTFeatureFlagSignal, SPTNetworkService, SPTURIDispatchService;
 
-@interface SPTPushNotificationsServiceImplementation : NSObject <SPTService, SPTPushNotificationsService>
+@interface SPTPushNotificationsServiceImplementation : NSObject <SPTFeatureFlagSignalObserver, SPTService, SPTPushNotificationsService>
 {
     id <SPTCoreService> _coreService;
     SPTPushNotificationController *_pushNotificationsController;

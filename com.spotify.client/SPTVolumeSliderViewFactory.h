@@ -6,24 +6,35 @@
 
 #import <objc/NSObject.h>
 
-@class SPTVolumeLogger;
+#import "SPTGaiaDevicePickerViewFactory-Protocol.h"
+
+@class NSString, SPTVolumeLogger, SPTVolumeThrottler;
 @protocol SPTGaiaConnectAPI, SPTVolumeAPI, SPTVolumeSystemAPI;
 
-@interface SPTVolumeSliderViewFactory : NSObject
+@interface SPTVolumeSliderViewFactory : NSObject <SPTGaiaDevicePickerViewFactory>
 {
     id <SPTVolumeAPI> _volumeController;
     id <SPTVolumeSystemAPI> _systemVolumeManager;
     id <SPTGaiaConnectAPI> _connectManager;
+    SPTVolumeThrottler *_commandThrottler;
     SPTVolumeLogger *_logger;
 }
 
 @property(retain, nonatomic) SPTVolumeLogger *logger; // @synthesize logger=_logger;
+@property(retain, nonatomic) SPTVolumeThrottler *commandThrottler; // @synthesize commandThrottler=_commandThrottler;
 @property(retain, nonatomic) id <SPTGaiaConnectAPI> connectManager; // @synthesize connectManager=_connectManager;
 @property(retain, nonatomic) id <SPTVolumeSystemAPI> systemVolumeManager; // @synthesize systemVolumeManager=_systemVolumeManager;
 @property(retain, nonatomic) id <SPTVolumeAPI> volumeController; // @synthesize volumeController=_volumeController;
 - (void).cxx_destruct;
+- (id)createView;
 - (id)createVolumeSliderView;
-- (id)initWithVolumeController:(id)arg1 systemVolumeManager:(id)arg2 connectManager:(id)arg3 logger:(id)arg4;
+- (id)initWithVolumeController:(id)arg1 systemVolumeManager:(id)arg2 connectManager:(id)arg3 commandThrottler:(id)arg4 logger:(id)arg5;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

@@ -9,7 +9,7 @@
 @interface _TtC21VoiceCompanionFeature26VCSUtteranceViewController : SPViewController
 {
     // Error parsing type: , name: viewModel
-    // Error parsing type: , name: utteranceLabel.storage
+    // Error parsing type: , name: $__lazy_storage_$_utteranceLabel
 }
 
 - (void).cxx_destruct;

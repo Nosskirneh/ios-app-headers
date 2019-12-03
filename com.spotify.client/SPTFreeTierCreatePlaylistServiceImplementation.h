@@ -6,12 +6,13 @@
 
 #import <objc/NSObject.h>
 
+#import "SPTFeatureFlagSignalObserver-Protocol.h"
 #import "SPTFreeTierCreatePlaylistService-Protocol.h"
 
 @class NSString, SPTAllocationContext, SPTFreeTierCreatePlaylistTestManagerImplementation;
-@protocol PlaylistFeature, SPContextMenuFeature, SPTAddToPlaylistService, SPTContainerService, SPTFeatureFlagSignal, SPTFeatureFlaggingService, SPTFreeTierPresentationService, SPTGLUEService, SPTInAppMessageService, SPTPageRegistrationToken, SPTPlaylistPlatformService, SPTURIDispatchService;
+@protocol PlaylistFeature, SPContextMenuFeature, SPTAddToPlaylistService, SPTContainerService, SPTFeatureFlagSignal, SPTFreeTierPresentationService, SPTGLUEService, SPTInAppMessageService, SPTPageRegistrationToken, SPTPlaylistPlatformService, SPTRemoteConfigurationService, SPTURIDispatchService;
 
-@interface SPTFreeTierCreatePlaylistServiceImplementation : NSObject <SPTFreeTierCreatePlaylistService>
+@interface SPTFreeTierCreatePlaylistServiceImplementation : NSObject <SPTFeatureFlagSignalObserver, SPTFreeTierCreatePlaylistService>
 {
     id <SPTContainerService> _containerService;
     id <SPContextMenuFeature> _contextMenuFeature;
@@ -19,10 +20,10 @@
     id <SPTPlaylistPlatformService> _playlistPlatformService;
     id <PlaylistFeature> _playlistFeature;
     id <SPTURIDispatchService> _URIDispatchService;
-    id <SPTFeatureFlaggingService> _featureFlaggingService;
     id <SPTGLUEService> _glueService;
     id <SPTInAppMessageService> _inAppMessageService;
     id <SPTAddToPlaylistService> _addToPlaylistService;
+    id <SPTRemoteConfigurationService> _remoteConfigurationService;
     SPTFreeTierCreatePlaylistTestManagerImplementation *_testManager;
     id <SPTPageRegistrationToken> _createPlaylistServiceRegistrationToken;
     id <SPTFeatureFlagSignal> _addToPlaylistFeatureEnabledSignal;
@@ -32,10 +33,10 @@
 @property(retain, nonatomic) id <SPTFeatureFlagSignal> addToPlaylistFeatureEnabledSignal; // @synthesize addToPlaylistFeatureEnabledSignal=_addToPlaylistFeatureEnabledSignal;
 @property(retain, nonatomic) id <SPTPageRegistrationToken> createPlaylistServiceRegistrationToken; // @synthesize createPlaylistServiceRegistrationToken=_createPlaylistServiceRegistrationToken;
 @property(retain, nonatomic) SPTFreeTierCreatePlaylistTestManagerImplementation *testManager; // @synthesize testManager=_testManager;
+@property(nonatomic) __weak id <SPTRemoteConfigurationService> remoteConfigurationService; // @synthesize remoteConfigurationService=_remoteConfigurationService;
 @property(nonatomic) __weak id <SPTAddToPlaylistService> addToPlaylistService; // @synthesize addToPlaylistService=_addToPlaylistService;
 @property(nonatomic) __weak id <SPTInAppMessageService> inAppMessageService; // @synthesize inAppMessageService=_inAppMessageService;
 @property(nonatomic) __weak id <SPTGLUEService> glueService; // @synthesize glueService=_glueService;
-@property(nonatomic) __weak id <SPTFeatureFlaggingService> featureFlaggingService; // @synthesize featureFlaggingService=_featureFlaggingService;
 @property(nonatomic) __weak id <SPTURIDispatchService> URIDispatchService; // @synthesize URIDispatchService=_URIDispatchService;
 @property(nonatomic) __weak id <PlaylistFeature> playlistFeature; // @synthesize playlistFeature=_playlistFeature;
 @property(nonatomic) __weak id <SPTPlaylistPlatformService> playlistPlatformService; // @synthesize playlistPlatformService=_playlistPlatformService;

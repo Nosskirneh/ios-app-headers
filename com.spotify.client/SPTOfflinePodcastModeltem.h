@@ -6,11 +6,12 @@
 
 #import <objc/NSObject.h>
 
+#import "NSCoding-Protocol.h"
 #import "SPTOfflineContentModelItem-Protocol.h"
 
 @class NSString, NSURL;
 
-@interface SPTOfflinePodcastModeltem : NSObject <SPTOfflineContentModelItem>
+@interface SPTOfflinePodcastModeltem : NSObject <SPTOfflineContentModelItem, NSCoding>
 {
     NSURL *_entityURL;
     NSURL *_imageURL;
@@ -25,6 +26,9 @@
 @property(readonly, nonatomic) NSURL *imageURL; // @synthesize imageURL=_imageURL;
 @property(readonly, nonatomic) NSURL *entityURL; // @synthesize entityURL=_entityURL;
 - (void).cxx_destruct;
+- (_Bool)isEqual:(id)arg1;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
 - (id)initWithDictionary:(id)arg1;
 
 // Remaining properties

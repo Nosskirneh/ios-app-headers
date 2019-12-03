@@ -6,9 +6,11 @@
 
 #import "_TtC20PushMessagingFeature20PushMessagingService.h"
 
-@interface _TtC20PushMessagingFeature20PushMessagingService (PushMessagingFeature)
+#import "SPTPushMessagingService-Protocol.h"
+
+@interface _TtC20PushMessagingFeature20PushMessagingService (PushMessagingFeature) <SPTPushMessagingService>
 + (id)serviceIdentifier;
 - (id)providePushRegistrar;
-- (void)requestPushPermissionDialog;
+- (id)providePushPermissionRequestor;
 @end
 

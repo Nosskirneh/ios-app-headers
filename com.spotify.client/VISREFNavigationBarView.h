@@ -8,13 +8,13 @@
 
 #import "VISREFHeaderViewAnimationProgress-Protocol.h"
 
-@class NSString, TKNLabel, VISREFGradientView;
+@class NSString, SPTEncoreLabel, VISREFGradientView;
 @protocol VISREFHeaderViewAnimationProgress;
 
 @interface VISREFNavigationBarView : UIView <VISREFHeaderViewAnimationProgress>
 {
     UIView<VISREFHeaderViewAnimationProgress> *_backButton;
-    TKNLabel *_titleLabel;
+    SPTEncoreLabel *_titleLabel;
     VISREFGradientView *_overlayGradient;
     double _latestProgress;
     CDStruct_5a28e70a _normalizedTitleFadeRange;
@@ -22,7 +22,7 @@
 
 @property(nonatomic) double latestProgress; // @synthesize latestProgress=_latestProgress;
 @property(retain, nonatomic) VISREFGradientView *overlayGradient; // @synthesize overlayGradient=_overlayGradient;
-@property(retain, nonatomic) TKNLabel *titleLabel; // @synthesize titleLabel=_titleLabel;
+@property(retain, nonatomic) SPTEncoreLabel *titleLabel; // @synthesize titleLabel=_titleLabel;
 @property(retain, nonatomic) UIView<VISREFHeaderViewAnimationProgress> *backButton; // @synthesize backButton=_backButton;
 @property(nonatomic) CDStruct_5a28e70a normalizedTitleFadeRange; // @synthesize normalizedTitleFadeRange=_normalizedTitleFadeRange;
 - (void).cxx_destruct;

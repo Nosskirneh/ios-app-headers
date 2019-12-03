@@ -17,6 +17,7 @@
 @property(readonly, copy, nonatomic) GLUELabelStyle *homeMixWelcomeCellNameStyle;
 @property(readonly, copy, nonatomic) GLUELabelStyle *homeMixWelcomeSubtitleStyle;
 - (id)homeMixWelcomeTitleStyleWithTextColor:(id)arg1;
+- (double)homeMixGenreCardFallbackMinimumHeight;
 - (id)homeMixFacepileDetailSubtitleStyle;
 - (id)homeMixFacepileDetailTitleStyle;
 - (id)homeMixFacepileDetailGradientStyle;

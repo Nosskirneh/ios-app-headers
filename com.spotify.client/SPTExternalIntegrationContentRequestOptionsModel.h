@@ -12,13 +12,16 @@
 
 @interface SPTExternalIntegrationContentRequestOptionsModel : NSObject <SPTExternalIntegrationContentRequestOptions>
 {
+    _Bool _offlineOnly;
     unsigned long long _limit;
     NSArray *_debugLogTags;
 }
 
 @property(readonly, nonatomic) NSArray *debugLogTags; // @synthesize debugLogTags=_debugLogTags;
+@property(readonly, nonatomic) _Bool offlineOnly; // @synthesize offlineOnly=_offlineOnly;
 @property(readonly, nonatomic) unsigned long long limit; // @synthesize limit=_limit;
 - (void).cxx_destruct;
+- (id)initWithLimit:(unsigned long long)arg1 offlineOnly:(_Bool)arg2 debugLogTags:(id)arg3;
 - (id)initWithLimit:(unsigned long long)arg1 debugLogTags:(id)arg2;
 - (id)init;
 

@@ -45,7 +45,7 @@
 @property(readonly, nonatomic, getter=isContentFiltered) _Bool contentFiltered;
 @property(readonly, copy, nonatomic) NSArray *availableSortRules; // @synthesize availableSortRules=_availableSortRules;
 @property(copy, nonatomic) NSArray *activeFilters;
-@property(readonly, nonatomic) NSArray *availableFilters;
+@property(readonly, copy, nonatomic) NSArray *availableFilters;
 - (id)initWithSortingFilteringPreferences:(id)arg1 playlistURL:(id)arg2 sortingEntityManager:(id)arg3;
 
 // Remaining properties

@@ -16,6 +16,7 @@
 @interface SPTEqualizerModel : NSObject <SPTAudioDriverControllerObserver, SPTAudioDriverObserver, SPTGaiaConnectObserver>
 {
     _Bool _on;
+    _Bool _nonMusicBypass;
     _Bool _connectActive;
     id <SPTEqualizerModelDelegate> _delegate;
     NSArray *_values;
@@ -41,6 +42,7 @@
 @property(retain, nonatomic) NSString *preset; // @synthesize preset=_preset;
 @property(retain, nonatomic) NSArray *presets; // @synthesize presets=_presets;
 @property(retain, nonatomic) NSArray *values; // @synthesize values=_values;
+@property(nonatomic) _Bool nonMusicBypass; // @synthesize nonMusicBypass=_nonMusicBypass;
 @property(nonatomic) _Bool on; // @synthesize on=_on;
 @property(nonatomic) __weak id <SPTEqualizerModelDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
@@ -51,6 +53,7 @@
 @property(readonly, nonatomic) _Bool allowsEditing;
 - (id)currentRoutePortType;
 - (void)applyEqualizerToAudioUnit:(struct OpaqueAudioComponentInstance *)arg1;
+- (void)applyEqualizerNonMusicBypass;
 - (void)applyEqualizer;
 - (id)columnNameAtIndex:(long long)arg1;
 - (void)setConnectActive:(_Bool)arg1;

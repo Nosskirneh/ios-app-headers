@@ -11,7 +11,6 @@
 #import "UITableViewDragDelegate-Protocol.h"
 
 @class NSString, SPTShareLogger;
-@protocol SPTShareTestManager;
 
 @interface SPTShareDragDelegateImplementation : NSObject <UITableViewDragDelegate, UICollectionViewDragDelegate, SPTShareCroppableDragPreview>
 {
@@ -19,10 +18,8 @@
     SPTShareLogger *_shareLogger;
     CDUnknownBlockType _itemBlock;
     NSString *_logContext;
-    id <SPTShareTestManager> _testManager;
 }
 
-@property(retain, nonatomic) id <SPTShareTestManager> testManager; // @synthesize testManager=_testManager;
 @property(copy, nonatomic) NSString *logContext; // @synthesize logContext=_logContext;
 @property(copy, nonatomic) CDUnknownBlockType itemBlock; // @synthesize itemBlock=_itemBlock;
 @property(retain, nonatomic) SPTShareLogger *shareLogger; // @synthesize shareLogger=_shareLogger;
@@ -30,12 +27,12 @@
 - (void).cxx_destruct;
 - (id)provideDragItemsForIndexPath:(id)arg1;
 - (id)previewParametersForContainerView:(id)arg1 indexPath:(id)arg2;
-- (_Bool)canHandleURI:(id)arg1 dragDropSharingEnabled:(_Bool)arg2;
+- (_Bool)canHandleURI:(id)arg1;
 - (id)tableView:(id)arg1 dragPreviewParametersForRowAtIndexPath:(id)arg2;
 - (id)tableView:(id)arg1 itemsForBeginningDragSession:(id)arg2 atIndexPath:(id)arg3;
 - (id)collectionView:(id)arg1 dragPreviewParametersForItemAtIndexPath:(id)arg2;
 - (id)collectionView:(id)arg1 itemsForBeginningDragSession:(id)arg2 atIndexPath:(id)arg3;
-- (id)initWithShareLogger:(id)arg1 testManager:(id)arg2 itemBlock:(CDUnknownBlockType)arg3 logContext:(id)arg4;
+- (id)initWithShareLogger:(id)arg1 itemBlock:(CDUnknownBlockType)arg2 logContext:(id)arg3;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

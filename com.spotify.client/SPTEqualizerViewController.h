@@ -8,7 +8,6 @@
 
 #import "SPTEqualizerColumnViewDataSource-Protocol.h"
 #import "SPTEqualizerModelDelegate-Protocol.h"
-#import "SPTEqualizerSwitchTableViewCellDelegate-Protocol.h"
 #import "SPTPageController-Protocol.h"
 #import "UITableViewDataSource-Protocol.h"
 #import "UITableViewDelegate-Protocol.h"
@@ -16,7 +15,7 @@
 @class NSString, NSTimer, NSURL, SPTEqualizerModel, SPTEqualizerView;
 @protocol SPTPageContainer;
 
-@interface SPTEqualizerViewController : UIViewController <SPTEqualizerColumnViewDataSource, UITableViewDataSource, SPTEqualizerModelDelegate, SPTEqualizerSwitchTableViewCellDelegate, UITableViewDelegate, SPTPageController>
+@interface SPTEqualizerViewController : UIViewController <SPTEqualizerColumnViewDataSource, UITableViewDataSource, SPTEqualizerModelDelegate, UITableViewDelegate, SPTPageController>
 {
     SPTEqualizerModel *_model;
     SPTEqualizerView *_equalizerView;
@@ -32,10 +31,12 @@
 @property(readonly, nonatomic, getter=spt_pageIdentifier) NSString *pageIdentifier;
 - (void)tableView:(id)arg1 didSelectRowAtIndexPath:(id)arg2;
 - (void)equalizerColumnViewDidChangeValue:(id)arg1;
-- (void)equalizerSwitchTableViewCellDidChangeOn:(id)arg1;
+- (void)equalizerNonMusicBypassChanged:(id)arg1;
+- (void)equalizerOnChanged:(id)arg1;
 - (void)equalizerModelDidChangeConnectActive:(id)arg1;
 - (void)equalizerModelDidUpdatePreset:(id)arg1;
 - (void)equalizerModelDidChangeValue:(id)arg1;
+- (void)equalizerModelDidChangeBypass:(id)arg1;
 - (void)equalizerModelDidChangeOn:(id)arg1;
 - (double)tableView:(id)arg1 heightForRowAtIndexPath:(id)arg2;
 - (void)tableView:(id)arg1 willDisplayCell:(id)arg2 forRowAtIndexPath:(id)arg3;

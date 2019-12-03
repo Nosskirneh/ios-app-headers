@@ -6,7 +6,7 @@
 
 #import "NSObject-Protocol.h"
 
-@class NSError, NSNotification, SPTAudioSessionActivator;
+@class NSError, NSNotification, NSString, SPTAudioSessionActivator;
 @protocol SPTAudioSessionController;
 
 @protocol SPTAudioSessionControllerObserver <NSObject>
@@ -16,6 +16,8 @@
 - (void)audioSessionController:(id <SPTAudioSessionController>)arg1 didHandleInterruptionNotification:(NSNotification *)arg2;
 - (void)audioSessionController:(id <SPTAudioSessionController>)arg1 willHandleInterruptionNotification:(NSNotification *)arg2;
 - (void)audioSessionController:(id <SPTAudioSessionController>)arg1 didFailSettingAudioSessionConfiguration:(NSError *)arg2;
+- (void)audioSessionController:(id <SPTAudioSessionController>)arg1 didSetAudioSessionCategory:(NSString *)arg2;
+- (void)audioSessionController:(id <SPTAudioSessionController>)arg1 willSetAudioSessionCategory:(NSString *)arg2;
 - (void)audioSessionController:(id <SPTAudioSessionController>)arg1 didFailSettingAudioSessionActive:(_Bool)arg2 error:(NSError *)arg3;
 - (void)audioSessionController:(id <SPTAudioSessionController>)arg1 didSetAudioSessionActive:(_Bool)arg2;
 - (void)audioSessionController:(id <SPTAudioSessionController>)arg1 willSetAudioSessionActive:(_Bool)arg2;

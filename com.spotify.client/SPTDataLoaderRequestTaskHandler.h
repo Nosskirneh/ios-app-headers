@@ -55,6 +55,7 @@
 - (void)completeIfInFlight;
 - (void)checkRetryLimiterAndExecute;
 - (void)checkRateLimiterAndExecute;
+- (void)noteWaitingForConnectivity;
 - (void)provideNewBodyStreamWithCompletion:(CDUnknownBlockType)arg1;
 - (void)start;
 - (_Bool)mayRedirect;

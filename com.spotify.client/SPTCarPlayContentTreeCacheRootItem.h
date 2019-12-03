@@ -23,6 +23,7 @@
 - (void).cxx_destruct;
 - (id)contentSetWithoutUnplayableContainersForChildrenOfIndexPath:(id)arg1;
 - (void)emptyCache;
+- (unsigned long long)countChildReferences:(id)arg1 withoutErrors:(_Bool)arg2;
 - (void)addChildReference:(id)arg1 toParentIndexPath:(id)arg2;
 - (void)insertItem:(id)arg1 atIndexPath:(id)arg2;
 - (unsigned long long)hash;

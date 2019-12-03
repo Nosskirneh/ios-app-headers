@@ -13,8 +13,8 @@
 #import "SPTPageController-Protocol.h"
 #import "UIPopoverPresentationControllerDelegate-Protocol.h"
 
-@class NSString, NSURL, SPTConcertsEntityDataSource, SPTConcertsEntityHeaderContentController, SPTConcertsEntityViewDelegate, SPTConcertsEntityViewModel, SPTConcertsLogger, SPTEntityHeaderViewController, SPTInfoView, SPTProgressView, UICollectionView, UICollectionViewFlowLayout;
-@protocol SPContextMenuActionsFactory, SPTBarButtonItemManager, SPTPageContainer;
+@class NSString, NSURL, SPTConcertsEntityDataSource, SPTConcertsEntityHeaderContentController, SPTConcertsEntityViewDelegate, SPTConcertsEntityViewModel, SPTConcertsFeatureProperties, SPTConcertsLogger, SPTEntityHeaderViewController, SPTInfoView, SPTProgressView, UICollectionView, UICollectionViewFlowLayout;
+@protocol SPContextMenuActionsFactory, SPTBarButtonItemManager, SPTPageContainer, SPTRemoteConfigurationResolver;
 
 @interface SPTConcertsEntityViewController : UIViewController <SPContentInsetViewController, SPTNavigationControllerNavigationBarState, SPTConcertsEntityViewModelObserver, SPTBarButtonItemManagerObserver, UIPopoverPresentationControllerDelegate, SPTPageController>
 {
@@ -28,12 +28,16 @@
     UICollectionViewFlowLayout *_collectionViewLayout;
     SPTEntityHeaderViewController *_headerViewController;
     SPTConcertsEntityHeaderContentController *_headerContentViewController;
+    SPTConcertsFeatureProperties *_featureProperties;
     id <SPContextMenuActionsFactory> _contextMenuActionFactory;
     id <SPTBarButtonItemManager> _barButtonItemManager;
+    id <SPTRemoteConfigurationResolver> _remoteConfigurationResolver;
 }
 
+@property(readonly, nonatomic) __weak id <SPTRemoteConfigurationResolver> remoteConfigurationResolver; // @synthesize remoteConfigurationResolver=_remoteConfigurationResolver;
 @property(readonly, nonatomic) __weak id <SPTBarButtonItemManager> barButtonItemManager; // @synthesize barButtonItemManager=_barButtonItemManager;
 @property(readonly, nonatomic) id <SPContextMenuActionsFactory> contextMenuActionFactory; // @synthesize contextMenuActionFactory=_contextMenuActionFactory;
+@property(retain, nonatomic) SPTConcertsFeatureProperties *featureProperties; // @synthesize featureProperties=_featureProperties;
 @property(retain, nonatomic) SPTConcertsEntityHeaderContentController *headerContentViewController; // @synthesize headerContentViewController=_headerContentViewController;
 @property(retain, nonatomic) SPTEntityHeaderViewController *headerViewController; // @synthesize headerViewController=_headerViewController;
 @property(retain, nonatomic) UICollectionViewFlowLayout *collectionViewLayout; // @synthesize collectionViewLayout=_collectionViewLayout;
@@ -69,9 +73,8 @@
 - (void)configureCollectionView;
 - (void)loadCollectionView;
 - (void)loadView;
-- (void)didReceiveMemoryWarning;
 - (void)dealloc;
-- (id)initWithViewModel:(id)arg1 dataSource:(id)arg2 viewDelegate:(id)arg3 contextMenuActionFactory:(id)arg4 barButtonItemManager:(id)arg5 concertsLogger:(id)arg6;
+- (id)initWithViewModel:(id)arg1 dataSource:(id)arg2 viewDelegate:(id)arg3 contextMenuActionFactory:(id)arg4 barButtonItemManager:(id)arg5 concertsLogger:(id)arg6 remoteConfigurationResolver:(id)arg7;
 
 // Remaining properties
 @property(nonatomic) _Bool automaticallyAdjustsScrollViewInsets;

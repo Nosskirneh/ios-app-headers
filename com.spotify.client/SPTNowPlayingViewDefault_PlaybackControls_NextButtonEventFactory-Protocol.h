@@ -7,10 +7,11 @@
 #import "NSObject-Protocol.h"
 
 @class NSURL;
-@protocol SPTImpressionEvent, SPTInteractionEvent;
+@protocol SPTEventFactoryModelMapping, SPTImpressionEvent, SPTInteractionEvent;
 
 @protocol SPTNowPlayingViewDefault_PlaybackControls_NextButtonEventFactory <NSObject>
 - (id <SPTInteractionEvent>)hitSkipToNextWithItemToBeSkipped:(NSURL *)arg1;
 - (id <SPTImpressionEvent>)impression;
+- (id <SPTEventFactoryModelMapping>)_location;
 @end
 

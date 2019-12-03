@@ -9,20 +9,19 @@
 #import "SPTCosmosDictionaryDataLoader-Protocol.h"
 
 @class NSString;
-@protocol SPTResolver;
+@protocol SPTCosmosDataLoader;
 
 @interface SPTCosmosDictionaryDataLoaderImplementation : NSObject <SPTCosmosDictionaryDataLoader>
 {
-    id <SPTResolver> _resolver;
+    id <SPTCosmosDataLoader> _dataLoader;
 }
 
-@property(retain, nonatomic) id <SPTResolver> resolver; // @synthesize resolver=_resolver;
+@property(readonly, nonatomic) id <SPTCosmosDataLoader> dataLoader; // @synthesize dataLoader=_dataLoader;
 - (void).cxx_destruct;
-- (id)makeRequest:(id)arg1 replyOnMainThread:(_Bool)arg2 onSuccess:(CDUnknownBlockType)arg3 onError:(CDUnknownBlockType)arg4;
-- (id)makeLifetimeRequestWithURL:(id)arg1 requestAction:(id)arg2 requestData:(id)arg3 replyOnMainThread:(_Bool)arg4 completion:(CDUnknownBlockType)arg5 onError:(CDUnknownBlockType)arg6;
-- (id)makeCancelableRequestWithURL:(id)arg1 requestAction:(id)arg2 requestData:(id)arg3 replyOnMainThread:(_Bool)arg4 completion:(CDUnknownBlockType)arg5 onError:(CDUnknownBlockType)arg6;
+- (id)internalMakeRequestWithURL:(id)arg1 requestAction:(id)arg2 requestData:(id)arg3 replyOnMainThread:(_Bool)arg4 completion:(CDUnknownBlockType)arg5 onError:(CDUnknownBlockType)arg6;
 - (void)makeRequestWithURL:(id)arg1 requestAction:(id)arg2 requestData:(id)arg3 replyOnMainThread:(_Bool)arg4 completion:(CDUnknownBlockType)arg5 onError:(CDUnknownBlockType)arg6;
-- (id)initWithResolver:(id)arg1;
+- (id)makeCancelableRequestWithURL:(id)arg1 requestAction:(id)arg2 requestData:(id)arg3 replyOnMainThread:(_Bool)arg4 completion:(CDUnknownBlockType)arg5 onError:(CDUnknownBlockType)arg6;
+- (id)initWithDataLoader:(id)arg1;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

@@ -6,15 +6,17 @@
 
 #import <objc/NSObject.h>
 
+#import "SPTFeatureFlagSignalObserver-Protocol.h"
 #import "SPTShowsFormatService-Protocol.h"
 
 @class NSString, SPTAllocationContext;
 @protocol SPContextMenuFeature, SPTCollectionPlatformService, SPTContainerService, SPTFeatureFlagSignal, SPTFeatureFlaggingService, SPTFormatListPlatformService, SPTFreeTierPlaylistUIService, SPTGLUEService, SPTNetworkService, SPTPlayerFeature, SPTPodcastFeature, SPTVideoFeature;
 
-@interface SPTShowsFormatServiceImplementation : NSObject <SPTShowsFormatService>
+@interface SPTShowsFormatServiceImplementation : NSObject <SPTFeatureFlagSignalObserver, SPTShowsFormatService>
 {
     _Bool _handlerRegistered;
     _Bool _betamaxPlayerEnabled;
+    _Bool _betamaxCacheEnabled;
     id <SPContextMenuFeature> _contextMenuFeature;
     id <SPTCollectionPlatformService> _collectionPlatformService;
     id <SPTContainerService> _containerService;
@@ -27,10 +29,13 @@
     id <SPTVideoFeature> _videoFeature;
     id <SPTFeatureFlaggingService> _featureFlaggingService;
     id <SPTFeatureFlagSignal> _betamaxPlayerSignal;
+    id <SPTFeatureFlagSignal> _betamaxCacheSignal;
 }
 
 + (id)serviceIdentifier;
+@property(nonatomic) _Bool betamaxCacheEnabled; // @synthesize betamaxCacheEnabled=_betamaxCacheEnabled;
 @property(nonatomic) _Bool betamaxPlayerEnabled; // @synthesize betamaxPlayerEnabled=_betamaxPlayerEnabled;
+@property(retain, nonatomic) id <SPTFeatureFlagSignal> betamaxCacheSignal; // @synthesize betamaxCacheSignal=_betamaxCacheSignal;
 @property(retain, nonatomic) id <SPTFeatureFlagSignal> betamaxPlayerSignal; // @synthesize betamaxPlayerSignal=_betamaxPlayerSignal;
 @property(nonatomic, getter=isHandlerRegistered) _Bool handlerRegistered; // @synthesize handlerRegistered=_handlerRegistered;
 @property(nonatomic) __weak id <SPTFeatureFlaggingService> featureFlaggingService; // @synthesize featureFlaggingService=_featureFlaggingService;

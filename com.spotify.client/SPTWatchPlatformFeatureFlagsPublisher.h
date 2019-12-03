@@ -27,6 +27,7 @@
 - (void)testManager:(id)arg1 didUpdateWatchAppOfflineEnabledState:(_Bool)arg2;
 - (void)testManager:(id)arg1 didUpdateWatchAppLibraryOnboardingEnabledState:(_Bool)arg2;
 - (void)testManager:(id)arg1 didUpdateWatchAppLibraryEnabledState:(_Bool)arg2;
+- (void)testManager:(id)arg1 didUpdateWatchStreamingEnabledState:(_Bool)arg2;
 - (void)handlePublisherEvent:(long long)arg1;
 - (void)publishFeatureFlags;
 - (id)initWithPubSubMessageQueue:(id)arg1 testManager:(id)arg2;

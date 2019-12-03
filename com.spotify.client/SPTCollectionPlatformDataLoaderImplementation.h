@@ -53,7 +53,9 @@
 - (void)fetchAlbumsMetadataWithPolicyProtocols:(id)arg1 options:(id)arg2 completion:(CDUnknownBlockType)arg3 onError:(CDUnknownBlockType)arg4;
 - (void)decorateAlbumsURLs:(id)arg1 withPolicyProtocols:(id)arg2 completion:(CDUnknownBlockType)arg3 onError:(CDUnknownBlockType)arg4;
 - (void)decorateAlbumURL:(id)arg1 withPolicyProtocols:(id)arg2 completion:(CDUnknownBlockType)arg3 onError:(CDUnknownBlockType)arg4;
+- (void)decorateArtistURLs:(id)arg1 withPolicyProtocols:(id)arg2 completion:(CDUnknownBlockType)arg3 onError:(CDUnknownBlockType)arg4;
 - (void)decorateArtistURL:(id)arg1 withPolicyProtocols:(id)arg2 completion:(CDUnknownBlockType)arg3 onError:(CDUnknownBlockType)arg4;
+- (void)decorateTrackURLs:(id)arg1 withPolicyProtocols:(id)arg2 completion:(CDUnknownBlockType)arg3 onError:(CDUnknownBlockType)arg4;
 - (void)decorateTrackURL:(id)arg1 withPolicyProtocols:(id)arg2 completion:(CDUnknownBlockType)arg3 onError:(CDUnknownBlockType)arg4;
 - (SPTCollectionPlatformDataLoaderResponse_3cfdded1 *)responseForData:(id)arg1 withItemBuilder:(id)arg2 itemKey:(id)arg3;
 - (id)sectionIndexForData:(id)arg1 withItemBuilder:(id)arg2;

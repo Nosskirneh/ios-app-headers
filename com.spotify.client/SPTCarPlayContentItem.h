@@ -31,6 +31,8 @@
 @property(readonly) unsigned long long hash;
 - (_Bool)isEqual:(id)arg1;
 - (id)initWithExternalIntegrationContent:(id)arg1 imageLoader:(id)arg2 iconCache:(id)arg3 playable:(_Bool)arg4;
+- (_Bool)isErrorItem;
+- (_Bool)isShuffleItem;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

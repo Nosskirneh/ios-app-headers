@@ -6,45 +6,40 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTCanvasMetadataResolverDelegate-Protocol.h"
 #import "SPTCanvasVideoLoader-Protocol.h"
 
-@class AVAssetExportSession, NSString, SPTCanvasContentLayerVideoPreloader, SPTPlayerTrack;
-@protocol SPTCanvasMetadataResolver, SPTCanvasTrackChecker, SPTCanvasVideoLoaderDelegate, SPTVideoURLAssetLoader;
+@class NSString, SPTCanvasContentLayerVideoPreloader, SPTPlayerTrack, SPTaskCompletionSource;
+@protocol SPTCanvasMetadataResolver, SPTCanvasTrackChecker, SPTVideoURLAssetLoader;
 
-@interface SPTCanvasVideoLoaderImplementation : NSObject <SPTCanvasMetadataResolverDelegate, SPTCanvasVideoLoader>
+@interface SPTCanvasVideoLoaderImplementation : NSObject <SPTCanvasVideoLoader>
 {
-    id <SPTCanvasVideoLoaderDelegate> delegate;
     SPTCanvasContentLayerVideoPreloader *_videoLoader;
     id <SPTCanvasTrackChecker> _canvasTrackChecker;
     id <SPTCanvasMetadataResolver> _metadataResolver;
     id <SPTVideoURLAssetLoader> _videoAssetLoader;
     SPTPlayerTrack *_track;
-    AVAssetExportSession *_exportSession;
+    CDUnknownBlockType _exporterBlock;
+    SPTaskCompletionSource *_completionSource;
 }
 
-@property(retain, nonatomic) AVAssetExportSession *exportSession; // @synthesize exportSession=_exportSession;
++ (id)errorUnknown;
++ (id)errorExporting;
++ (id)errorInsertingVideoTrack;
++ (id)errorNoVideoTrack;
+@property(retain, nonatomic) SPTaskCompletionSource *completionSource; // @synthesize completionSource=_completionSource;
+@property(readonly, copy, nonatomic) CDUnknownBlockType exporterBlock; // @synthesize exporterBlock=_exporterBlock;
 @property(readonly, nonatomic) SPTPlayerTrack *track; // @synthesize track=_track;
 @property(readonly, nonatomic) id <SPTVideoURLAssetLoader> videoAssetLoader; // @synthesize videoAssetLoader=_videoAssetLoader;
 @property(readonly, nonatomic) id <SPTCanvasMetadataResolver> metadataResolver; // @synthesize metadataResolver=_metadataResolver;
 @property(readonly, nonatomic) id <SPTCanvasTrackChecker> canvasTrackChecker; // @synthesize canvasTrackChecker=_canvasTrackChecker;
 @property(retain, nonatomic) SPTCanvasContentLayerVideoPreloader *videoLoader; // @synthesize videoLoader=_videoLoader;
-@property(nonatomic) __weak id <SPTCanvasVideoLoaderDelegate> delegate; // @synthesize delegate;
 - (void).cxx_destruct;
-- (void)metadataResolver:(id)arg1 willLoadVideoForTracks:(id)arg2;
-- (void)metadataResolver:(id)arg1 didLoadVideoForTracks:(id)arg2;
-- (void)metadataResolver:(id)arg1 didFailToLoadVideoForTracks:(id)arg2 error:(id)arg3;
-- (void)didFailToLoadVideoForTrackWithError:(id)arg1;
-- (void)didLoadVideoForTrackWithVideoData:(id)arg1;
-- (void)generateVideoWithURL:(id)arg1 assetDuration:(double)arg2;
-- (id)localURLForAssetURL:(id)arg1;
-- (void)loadWithCanvasModel:(id)arg1;
-- (void)load;
-- (id)errorUnknown;
-- (id)errorExporting;
-- (id)errorInsertingVideoTrack;
-- (id)errorNoVideoTrack;
-- (id)initWithCanvasTrackChecker:(id)arg1 videoAssetLoader:(id)arg2 metadataResolver:(id)arg3 track:(id)arg4;
+- (void)didFailToLoadVideoForTrackWithError:(id)arg1 completion:(CDUnknownBlockType)arg2;
+- (void)didLoadVideoForTrackWithVideoData:(id)arg1 completion:(CDUnknownBlockType)arg2;
+- (void)exportVideoWithURL:(id)arg1 assetDuration:(double)arg2 completionSource:(id)arg3;
+- (void)loadUsingCanvasModel:(id)arg1 completionSource:(id)arg2;
+- (void)load:(CDUnknownBlockType)arg1;
+- (id)initWithCanvasTrackChecker:(id)arg1 videoAssetLoader:(id)arg2 metadataResolver:(id)arg3 track:(id)arg4 exporterBlock:(CDUnknownBlockType)arg5;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

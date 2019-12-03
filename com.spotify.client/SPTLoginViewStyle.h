@@ -12,6 +12,8 @@
 
 @interface SPTLoginViewStyle : NSObject <GLUEStyle>
 {
+    double _mainContainerWidth;
+    double _mainContainerIPadWidth;
     GLUELabelStyle *_titleLabelStyle;
     SPTLoginInputFormViewStyle *_inputFormStyle;
     double _titleTopMargin;
@@ -36,6 +38,8 @@
 @property(nonatomic) double titleTopMargin; // @synthesize titleTopMargin=_titleTopMargin;
 @property(copy, nonatomic) SPTLoginInputFormViewStyle *inputFormStyle; // @synthesize inputFormStyle=_inputFormStyle;
 @property(copy, nonatomic) GLUELabelStyle *titleLabelStyle; // @synthesize titleLabelStyle=_titleLabelStyle;
+@property(nonatomic) double mainContainerIPadWidth; // @synthesize mainContainerIPadWidth=_mainContainerIPadWidth;
+@property(nonatomic) double mainContainerWidth; // @synthesize mainContainerWidth=_mainContainerWidth;
 - (void).cxx_destruct;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 

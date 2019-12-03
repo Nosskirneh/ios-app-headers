@@ -6,74 +6,65 @@
 
 #import <objc/NSObject.h>
 
+#import "SPTFeatureFlagSignalObserver-Protocol.h"
 #import "SPTFreeTierPlaylistTestManager-Protocol.h"
 
-@class NSString, SPTFreeTierPlaylistFeatureProperties;
-@protocol SPTFeatureFlagFactory, SPTFeatureFlagSignal, SPTFreeTierPreCurationTestManager, SPTProductState, SPTRemoteConfigurationResolver;
+@class NSString;
+@protocol SPTEncoreTestManager, SPTFeatureFlagFactory, SPTFeatureFlagSignal, SPTProductState;
 
-@interface SPTFreeTierPlaylistTestManagerImplementation : NSObject <SPTFreeTierPlaylistTestManager>
+@interface SPTFreeTierPlaylistTestManagerImplementation : NSObject <SPTFeatureFlagSignalObserver, SPTFreeTierPlaylistTestManager>
 {
     _Bool _weigthedShufflePlayDisabled;
-    _Bool _premiumLabelEnabled;
     _Bool _freeTierEnabled;
     _Bool _editAnnotationEnabled;
     _Bool _contextAwareEditorialTrackSharingEnabled;
     _Bool _episodesInPlaylistDisabled;
-    _Bool _accessibilityHeaderEnabled;
     _Bool _scrollPerformanceTrackingEnabled;
+    _Bool _placeholderCellsEnabled;
     id <SPTFeatureFlagFactory> _featureFlagFactory;
     id <SPTProductState> _productState;
     id <SPTFeatureFlagSignal> _freeTierEnabledSignal;
-    id <SPTFreeTierPreCurationTestManager> _preCurationTestManager;
+    id <SPTEncoreTestManager> _encoreTestManager;
     id <SPTFeatureFlagSignal> _weigthedShufflePlaySignal;
-    id <SPTFeatureFlagSignal> _windowedTrackTestSignal;
     id <SPTFeatureFlagSignal> _editAnnotationSignal;
     id <SPTFeatureFlagSignal> _contextAwareEditorialTrackSharingSignal;
     id <SPTFeatureFlagSignal> _ignoreProductStateForEpisodesAvailableSignal;
-    id <SPTFeatureFlagSignal> _accessibilityHeaderSignal;
     id <SPTFeatureFlagSignal> _scrollPerformanceSignal;
-    SPTFreeTierPlaylistFeatureProperties *_properties;
-    id <SPTRemoteConfigurationResolver> _remoteConfigurationResolver;
+    id <SPTFeatureFlagSignal> _placeholderCellsEnabedSignal;
 }
 
-@property(retain, nonatomic) id <SPTRemoteConfigurationResolver> remoteConfigurationResolver; // @synthesize remoteConfigurationResolver=_remoteConfigurationResolver;
-@property(retain, nonatomic) SPTFreeTierPlaylistFeatureProperties *properties; // @synthesize properties=_properties;
+@property(nonatomic, getter=isPlaceholderCellsEnabled) _Bool placeholderCellsEnabled; // @synthesize placeholderCellsEnabled=_placeholderCellsEnabled;
 @property(nonatomic, getter=isScrollPerformanceTrackingEnabled) _Bool scrollPerformanceTrackingEnabled; // @synthesize scrollPerformanceTrackingEnabled=_scrollPerformanceTrackingEnabled;
-@property(nonatomic, getter=isAccessibilityHeaderEnabled) _Bool accessibilityHeaderEnabled; // @synthesize accessibilityHeaderEnabled=_accessibilityHeaderEnabled;
 @property(nonatomic, getter=isEpisodesInPlaylistDisabled) _Bool episodesInPlaylistDisabled; // @synthesize episodesInPlaylistDisabled=_episodesInPlaylistDisabled;
 @property(nonatomic, getter=isContextAwareEditorialTrackSharingEnabled) _Bool contextAwareEditorialTrackSharingEnabled; // @synthesize contextAwareEditorialTrackSharingEnabled=_contextAwareEditorialTrackSharingEnabled;
 @property(nonatomic, getter=isEditAnnotationEnabled) _Bool editAnnotationEnabled; // @synthesize editAnnotationEnabled=_editAnnotationEnabled;
 @property(nonatomic, getter=isFreeTierEnabled) _Bool freeTierEnabled; // @synthesize freeTierEnabled=_freeTierEnabled;
-@property(nonatomic, getter=isPremiumLabelEnabled) _Bool premiumLabelEnabled; // @synthesize premiumLabelEnabled=_premiumLabelEnabled;
 @property(nonatomic, getter=isWeigthedShufflePlayDisabled) _Bool weigthedShufflePlayDisabled; // @synthesize weigthedShufflePlayDisabled=_weigthedShufflePlayDisabled;
+@property(retain, nonatomic) id <SPTFeatureFlagSignal> placeholderCellsEnabedSignal; // @synthesize placeholderCellsEnabedSignal=_placeholderCellsEnabedSignal;
 @property(retain, nonatomic) id <SPTFeatureFlagSignal> scrollPerformanceSignal; // @synthesize scrollPerformanceSignal=_scrollPerformanceSignal;
-@property(retain, nonatomic) id <SPTFeatureFlagSignal> accessibilityHeaderSignal; // @synthesize accessibilityHeaderSignal=_accessibilityHeaderSignal;
 @property(retain, nonatomic) id <SPTFeatureFlagSignal> ignoreProductStateForEpisodesAvailableSignal; // @synthesize ignoreProductStateForEpisodesAvailableSignal=_ignoreProductStateForEpisodesAvailableSignal;
 @property(retain, nonatomic) id <SPTFeatureFlagSignal> contextAwareEditorialTrackSharingSignal; // @synthesize contextAwareEditorialTrackSharingSignal=_contextAwareEditorialTrackSharingSignal;
 @property(retain, nonatomic) id <SPTFeatureFlagSignal> editAnnotationSignal; // @synthesize editAnnotationSignal=_editAnnotationSignal;
-@property(retain, nonatomic) id <SPTFeatureFlagSignal> windowedTrackTestSignal; // @synthesize windowedTrackTestSignal=_windowedTrackTestSignal;
 @property(retain, nonatomic) id <SPTFeatureFlagSignal> weigthedShufflePlaySignal; // @synthesize weigthedShufflePlaySignal=_weigthedShufflePlaySignal;
-@property(readonly, nonatomic) id <SPTFreeTierPreCurationTestManager> preCurationTestManager; // @synthesize preCurationTestManager=_preCurationTestManager;
+@property(readonly, nonatomic) id <SPTEncoreTestManager> encoreTestManager; // @synthesize encoreTestManager=_encoreTestManager;
 @property(readonly, nonatomic) id <SPTFeatureFlagSignal> freeTierEnabledSignal; // @synthesize freeTierEnabledSignal=_freeTierEnabledSignal;
 @property(readonly, nonatomic) id <SPTProductState> productState; // @synthesize productState=_productState;
 @property(readonly, nonatomic) id <SPTFeatureFlagFactory> featureFlagFactory; // @synthesize featureFlagFactory=_featureFlagFactory;
 - (void).cxx_destruct;
 - (id)createSignalForAnyFiveSignalsWithAbbaKey:(id)arg1 pageTitle:(id)arg2 itemTitle:(id)arg3 itemDescription:(id)arg4;
-- (void)setupRemoteConfigurationProperties;
-@property(readonly, nonatomic, getter=isAssistedCurationPremiumEnabled) _Bool assistedCurationPremiumEnabled;
 @property(readonly, nonatomic, getter=isConsolidatedExperienceEnabled) _Bool consolidatedExperienceEnabled;
 - (void)featureFlagSignal:(id)arg1 hasAssumedState:(long long)arg2;
 - (void)setupEpisodesAvailable;
-@property(readonly, nonatomic, getter=isTrackItemQuickActionsEnabled) _Bool trackItemQuickActionsEnabled;
+@property(readonly, nonatomic, getter=isPremiumLabelEnabled) _Bool premiumLabelEnabled;
+@property(readonly, nonatomic, getter=isEncoreTrackRowsEnabled) _Bool encoreTrackRowsEnabled;
+- (void)setupPlaceholderCellsEnabledSignal;
 - (void)setupScrollPerformanceSignal;
-- (void)setupAccessibilityHeaderSignal;
 - (id)editAnnotationAbbaSignal;
 - (id)editAnnotationRolloutSignal;
 - (void)setupContextAwareEditorialTrackSharingSignal;
 - (void)setupEditAnnotationSignal;
-- (void)setupIsPremiumOnlySignal;
 - (void)setupWeightedShufflePlay;
-- (id)initWithFeatureFlagFactory:(id)arg1 productState:(id)arg2 freeTierEnabledSignal:(id)arg3 preCurationTestManager:(id)arg4 remoteConfigurationResolver:(id)arg5;
+- (id)initWithFeatureFlagFactory:(id)arg1 productState:(id)arg2 freeTierEnabledSignal:(id)arg3 encoreTestManager:(id)arg4;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

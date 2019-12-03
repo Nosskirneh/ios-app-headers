@@ -31,7 +31,7 @@
 - (void)fetchImageForStorylines:(id)arg1 atCardIndex:(unsigned long long)arg2;
 - (void)didLoadStorylines:(id)arg1 forTrack:(id)arg2;
 - (void)fetchStorylinesForTrack:(id)arg1;
-- (void)loadStorylinesForTrack:(id)arg1;
+- (void)loadStorylinesForTrack:(id)arg1 withIdentifier:(id)arg2;
 - (id)initWithDataLoader:(id)arg1 imageLoader:(id)arg2 storylinesCache:(id)arg3 loadEventLogger:(id)arg4;
 
 // Remaining properties

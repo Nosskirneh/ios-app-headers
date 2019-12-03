@@ -14,7 +14,6 @@
 {
     NSString *_interactionType;
     NSString *_applicationId;
-    NSString *_specificationId;
     NSArray *_components;
     NSString *_action;
     NSDictionary *_actionParameters;
@@ -29,11 +28,10 @@
 @property(readonly, copy, nonatomic) NSDictionary *actionParameters; // @synthesize actionParameters=_actionParameters;
 @property(readonly, copy, nonatomic) NSString *action; // @synthesize action=_action;
 @property(readonly, copy, nonatomic) NSArray *components; // @synthesize components=_components;
-@property(readonly, copy, nonatomic) NSString *specificationId; // @synthesize specificationId=_specificationId;
 @property(readonly, copy, nonatomic) NSString *applicationId; // @synthesize applicationId=_applicationId;
 @property(readonly, copy, nonatomic) NSString *interactionType; // @synthesize interactionType=_interactionType;
 - (void).cxx_destruct;
-- (id)initWithType:(id)arg1 applicationId:(id)arg2 specificationId:(id)arg3 specificationCommitHash:(id)arg4 components:(id)arg5 action:(id)arg6 actionParameters:(id)arg7 errors:(id)arg8;
+- (id)initWithType:(id)arg1 applicationId:(id)arg2 specificationCommitHash:(id)arg3 components:(id)arg4 action:(id)arg5 actionParameters:(id)arg6 errors:(id)arg7;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

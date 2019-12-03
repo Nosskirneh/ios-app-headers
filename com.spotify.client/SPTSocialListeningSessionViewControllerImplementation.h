@@ -10,7 +10,7 @@
 #import "SPTSocialListeningViewModelObserver-Protocol.h"
 
 @class NSString, SPTSocialListeningFacepileItemViewConfigurator, SPTSocialListeningGLUETheme, SPTSocialListeningLoggerImplementation, SPTSocialListeningSessionView;
-@protocol GLUEImageLoader, SPTContainerUIService, SPTOfflineModeState, SPTScannablesUserInterfaceFactory, SPTShareFeature, SPTSocialListeningViewModel;
+@protocol GLUEImageLoader, SPTContainerUIService, SPTOfflineModeState, SPTScannablesPresenter, SPTShareFeature, SPTSocialListeningViewModel;
 
 @interface SPTSocialListeningSessionViewControllerImplementation : UIViewController <SPTSocialListeningSessionViewController, SPTSocialListeningViewModelObserver>
 {
@@ -18,7 +18,7 @@
     SPTSocialListeningGLUETheme *_theme;
     SPTSocialListeningLoggerImplementation *_logger;
     id <GLUEImageLoader> _imageLoader;
-    id <SPTScannablesUserInterfaceFactory> _scannablesUIFactory;
+    id <SPTScannablesPresenter> _scannablesPresenter;
     id <SPTContainerUIService> _containerUIService;
     id <SPTOfflineModeState> _offlineModeState;
     id <SPTShareFeature> _shareFeature;
@@ -29,7 +29,7 @@
 @property(readonly, nonatomic) __weak id <SPTShareFeature> shareFeature; // @synthesize shareFeature=_shareFeature;
 @property(nonatomic) __weak id <SPTOfflineModeState> offlineModeState; // @synthesize offlineModeState=_offlineModeState;
 @property(nonatomic) __weak id <SPTContainerUIService> containerUIService; // @synthesize containerUIService=_containerUIService;
-@property(nonatomic) __weak id <SPTScannablesUserInterfaceFactory> scannablesUIFactory; // @synthesize scannablesUIFactory=_scannablesUIFactory;
+@property(nonatomic) __weak id <SPTScannablesPresenter> scannablesPresenter; // @synthesize scannablesPresenter=_scannablesPresenter;
 @property(readonly, nonatomic) id <GLUEImageLoader> imageLoader; // @synthesize imageLoader=_imageLoader;
 @property(readonly, nonatomic) SPTSocialListeningLoggerImplementation *logger; // @synthesize logger=_logger;
 @property(readonly, nonatomic) SPTSocialListeningGLUETheme *theme; // @synthesize theme=_theme;
@@ -50,14 +50,14 @@
 - (void)setupActions;
 - (void)showErrorAlert;
 - (void)updateUI;
+- (void)applyThemeLayout;
 - (void)calculatePreferredSize;
 - (void)viewDidLayoutSubviews;
 @property(readonly, nonatomic) SPTSocialListeningSessionView *sessionView;
 - (void)loadView;
-- (void)applyViewStyles;
 - (void)viewDidLoad;
 - (void)dealloc;
-- (id)initWithViewModel:(id)arg1 scannablesUserInterfaceFactory:(id)arg2 containerUIService:(id)arg3 offlineModeState:(id)arg4 shareFeature:(id)arg5 theme:(id)arg6 logger:(id)arg7 imageLoader:(id)arg8;
+- (id)initWithViewModel:(id)arg1 scannablesPresenter:(id)arg2 containerUIService:(id)arg3 offlineModeState:(id)arg4 shareFeature:(id)arg5 theme:(id)arg6 logger:(id)arg7 imageLoader:(id)arg8;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

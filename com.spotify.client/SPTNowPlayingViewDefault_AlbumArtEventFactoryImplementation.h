@@ -21,6 +21,7 @@
 - (id)swipeSkipToPreviousWithItemToBeSkipped:(id)arg1;
 - (id)swipeSkipToNextWithItemToBeSkipped:(id)arg1;
 - (id)impression;
+- (id)_location;
 - (id)initWithComponents:(id)arg1;
 
 // Remaining properties

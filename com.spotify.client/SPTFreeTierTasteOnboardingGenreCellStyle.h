@@ -8,18 +8,16 @@
 
 #import "GLUEStyle-Protocol.h"
 
-@class GLUEImageStyle, GLUELabelStyle, NSString, UIImage;
+@class GLUEImageStyle, GLUELabelStyle, NSString;
 
 @interface SPTFreeTierTasteOnboardingGenreCellStyle : NSObject <GLUEStyle>
 {
     GLUEImageStyle *_imageViewStyle;
     GLUELabelStyle *_textLabelStyle;
-    UIImage *_placeholderImage;
     double _textLabelEdgeMargin;
 }
 
 @property(nonatomic) double textLabelEdgeMargin; // @synthesize textLabelEdgeMargin=_textLabelEdgeMargin;
-@property(retain, nonatomic) UIImage *placeholderImage; // @synthesize placeholderImage=_placeholderImage;
 @property(copy, nonatomic) GLUELabelStyle *textLabelStyle; // @synthesize textLabelStyle=_textLabelStyle;
 @property(copy, nonatomic) GLUEImageStyle *imageViewStyle; // @synthesize imageViewStyle=_imageViewStyle;
 - (void).cxx_destruct;

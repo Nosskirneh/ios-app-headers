@@ -6,12 +6,10 @@
 
 #import "SPTService-Protocol.h"
 
-@protocol HUBComponentLayoutManager, HUBContentOperation, SPTHomeUIComponentFactory;
+@protocol HUBComponentLayoutManager, SPTHomeUIComponentFactory;
 
 @protocol SPTHomeUIService <SPTService>
 @property(readonly, nonatomic) id <SPTHomeUIComponentFactory> componentFactory;
 - (id <HUBComponentLayoutManager>)provideHomeComponentLayoutManager;
-- (id <HUBContentOperation>)provideHomePromoV2MockHubContentOperation;
-- (id <HUBContentOperation>)provideHomeMockHubContentOperation;
 @end
 

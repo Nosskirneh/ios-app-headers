@@ -10,19 +10,16 @@
 #import "SPTShareHandler-Protocol.h"
 
 @class NSString, SPTShareData, SPTShareLogger;
-@protocol SPTShareTestManager;
 
 @interface SPTShareFacebookShareHandler : NSObject <FBSDKSharingDelegate, SPTShareHandler>
 {
     SPTShareLogger *_shareLogger;
-    id <SPTShareTestManager> _testManager;
     CDUnknownBlockType _shareCompletionBlock;
     SPTShareData *_shareData;
 }
 
 @property(retain, nonatomic) SPTShareData *shareData; // @synthesize shareData=_shareData;
 @property(copy, nonatomic) CDUnknownBlockType shareCompletionBlock; // @synthesize shareCompletionBlock=_shareCompletionBlock;
-@property(retain, nonatomic) id <SPTShareTestManager> testManager; // @synthesize testManager=_testManager;
 @property(retain, nonatomic) SPTShareLogger *shareLogger; // @synthesize shareLogger=_shareLogger;
 - (void).cxx_destruct;
 - (void)sharerDidCancel:(id)arg1;
@@ -30,7 +27,7 @@
 - (void)sharer:(id)arg1 didCompleteWithResults:(id)arg2;
 - (void)shareWithData:(id)arg1 shareDestination:(id)arg2 sharePresenter:(id)arg3 completion:(CDUnknownBlockType)arg4;
 - (id)createAlertModel;
-- (id)initWithShareLogger:(id)arg1 testManager:(id)arg2;
+- (id)initWithShareLogger:(id)arg1;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

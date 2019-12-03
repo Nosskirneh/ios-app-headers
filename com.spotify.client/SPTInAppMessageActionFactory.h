@@ -6,10 +6,12 @@
 
 #import <objc/NSObject.h>
 
+#import "SPTFeatureFlagSignalObserver-Protocol.h"
+
 @class NSString, SPTInAppMessageActionsRegistryImplementation, SPTPopupManager;
 @protocol SPTAccountProductActivationController, SPTCollectionPlatform, SPTCollectionPlatformTestManager, SPTFeatureFlagSignal, SPTFollowModelFactory, SPTLinkDispatcher, SPTOnDemandSet, SPTPlayer, SPTPlaylistModel, SPTPodcastTestManager, SPTUIModeTransitionCoordinator;
 
-@interface SPTInAppMessageActionFactory : NSObject
+@interface SPTInAppMessageActionFactory : NSObject <SPTFeatureFlagSignalObserver>
 {
     _Bool _freeTierEnabled;
     id <SPTLinkDispatcher> _linkDispatcher;

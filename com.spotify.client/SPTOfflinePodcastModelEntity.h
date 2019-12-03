@@ -6,11 +6,12 @@
 
 #import <objc/NSObject.h>
 
+#import "NSCoding-Protocol.h"
 #import "SPTOfflineContentModelEntity-Protocol.h"
 
 @class NSArray, NSString;
 
-@interface SPTOfflinePodcastModelEntity : NSObject <SPTOfflineContentModelEntity>
+@interface SPTOfflinePodcastModelEntity : NSObject <SPTOfflineContentModelEntity, NSCoding>
 {
     NSArray *_items;
 }
@@ -18,6 +19,8 @@
 @property(readonly, nonatomic) NSArray *items; // @synthesize items=_items;
 - (void).cxx_destruct;
 - (id)entityItemsFromItemDictionaries:(id)arg1;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
 - (id)initWithEpisodes:(id)arg1;
 
 // Remaining properties

@@ -6,7 +6,6 @@
 
 #import <UIKit/UIViewController.h>
 
-#import "SPTFreeTierPlaylistCellConfiguratorDelegate-Protocol.h"
 #import "SPTFreeTierPlaylistViewModelDelegate-Protocol.h"
 #import "SPTNavigationControllerNavigationBarState-Protocol.h"
 #import "SPTPageController-Protocol.h"
@@ -14,32 +13,26 @@
 #import "UITableViewDataSource-Protocol.h"
 #import "UITableViewDelegate-Protocol.h"
 
-@class GLUEEntityRowStyle, NSLayoutConstraint, NSString, NSURL, SPTFreeTierPlaylistCellConfigurator, SPTFreeTierPlaylistGLUETheme, SPTFreeTierPlaylistLogger, SPTSearchBar, SPTTableView;
-@protocol SPContextMenuFeature, SPTFreeTierPlaylistViewModel, SPTPageContainer;
+@class GLUEEntityRowStyle, NSLayoutConstraint, NSString, NSURL, SPTFreeTierPlaylistCellProviderCoordinator, SPTSearchBar, SPTTableView;
+@protocol SPTFreeTierPlaylistViewModel, SPTPageContainer;
 
-@interface SPTFreeTierPlaylistSearchViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, SPTFreeTierPlaylistCellConfiguratorDelegate, SPTNavigationControllerNavigationBarState, UISearchBarDelegate, SPTPageController, SPTFreeTierPlaylistViewModelDelegate>
+@interface SPTFreeTierPlaylistSearchViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, SPTNavigationControllerNavigationBarState, UISearchBarDelegate, SPTPageController, SPTFreeTierPlaylistViewModelDelegate>
 {
     _Bool _shouldBecomeFirstResponder;
     SPTTableView *_tableView;
-    SPTFreeTierPlaylistCellConfigurator *_cellConfigurator;
     GLUEEntityRowStyle *_trackRowStyle;
+    SPTFreeTierPlaylistCellProviderCoordinator *_cellProviderCoordinator;
     id <SPTFreeTierPlaylistViewModel> _playlistViewModel;
-    SPTFreeTierPlaylistLogger *_logger;
-    id <SPContextMenuFeature> _contextMenuService;
     NSLayoutConstraint *_bottomConstraint;
-    SPTFreeTierPlaylistGLUETheme *_theme;
     SPTSearchBar *_searchBar;
 }
 
 @property(retain, nonatomic) SPTSearchBar *searchBar; // @synthesize searchBar=_searchBar;
-@property(retain, nonatomic) SPTFreeTierPlaylistGLUETheme *theme; // @synthesize theme=_theme;
 @property(nonatomic) _Bool shouldBecomeFirstResponder; // @synthesize shouldBecomeFirstResponder=_shouldBecomeFirstResponder;
 @property(retain, nonatomic) NSLayoutConstraint *bottomConstraint; // @synthesize bottomConstraint=_bottomConstraint;
-@property(readonly, nonatomic) __weak id <SPContextMenuFeature> contextMenuService; // @synthesize contextMenuService=_contextMenuService;
-@property(readonly, nonatomic) SPTFreeTierPlaylistLogger *logger; // @synthesize logger=_logger;
 @property(readonly, nonatomic) id <SPTFreeTierPlaylistViewModel> playlistViewModel; // @synthesize playlistViewModel=_playlistViewModel;
-@property(retain, nonatomic) GLUEEntityRowStyle *trackRowStyle; // @synthesize trackRowStyle=_trackRowStyle;
-@property(retain, nonatomic) SPTFreeTierPlaylistCellConfigurator *cellConfigurator; // @synthesize cellConfigurator=_cellConfigurator;
+@property(readonly, nonatomic) SPTFreeTierPlaylistCellProviderCoordinator *cellProviderCoordinator; // @synthesize cellProviderCoordinator=_cellProviderCoordinator;
+@property(readonly, nonatomic) GLUEEntityRowStyle *trackRowStyle; // @synthesize trackRowStyle=_trackRowStyle;
 @property(retain, nonatomic) SPTTableView *tableView; // @synthesize tableView=_tableView;
 - (void).cxx_destruct;
 - (id)noResultsView;
@@ -52,10 +45,6 @@
 - (void)searchBar:(id)arg1 textDidChange:(id)arg2;
 - (void)searchBarCancelButtonClicked:(id)arg1;
 - (void)enableCancelButtonInView:(id)arg1;
-- (void)cellConfigurator:(id)arg1 likeIconButtonTapped:(id)arg2;
-- (void)cellConfigurator:(id)arg1 banIconButtonTapped:(id)arg2;
-- (void)cellConfigurator:(id)arg1 contextMenuIconButtonTapped:(id)arg2;
-- (id)indexPathForIconButton:(id)arg1;
 - (unsigned long long)preferredNavigationBarState;
 - (void)didPressCancel;
 - (void)viewWillDisappear:(_Bool)arg1;
@@ -63,6 +52,10 @@
 - (void)viewDidLoad;
 - (void)setupConstraints;
 - (void)tableView:(id)arg1 didSelectRowAtIndexPath:(id)arg2;
+- (double)tableView:(id)arg1 heightForRowAtIndexPath:(id)arg2;
+- (double)tableView:(id)arg1 estimatedHeightForRowAtIndexPath:(id)arg2;
+- (void)tableView:(id)arg1 didEndDisplayingCell:(id)arg2 forRowAtIndexPath:(id)arg3;
+- (void)tableView:(id)arg1 willDisplayCell:(id)arg2 forRowAtIndexPath:(id)arg3;
 - (id)tableView:(id)arg1 cellForRowAtIndexPath:(id)arg2;
 - (double)tableView:(id)arg1 heightForFooterInSection:(long long)arg2;
 - (double)tableView:(id)arg1 heightForHeaderInSection:(long long)arg2;
@@ -70,7 +63,7 @@
 - (long long)numberOfSectionsInTableView:(id)arg1;
 @property(readonly, nonatomic, getter=spt_pageURI) NSURL *pageURI;
 @property(readonly, nonatomic, getter=spt_pageIdentifier) NSString *pageIdentifier;
-- (id)initWithPlaylistViewModel:(id)arg1 theme:(id)arg2 contextMenuService:(id)arg3 logger:(id)arg4 preCurationUIFactory:(id)arg5;
+- (id)initWithPlaylistViewModel:(id)arg1 trackRowStyle:(id)arg2 cellProviderCoordinator:(id)arg3;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

@@ -34,6 +34,7 @@
 - (void)hubView:(id)arg1 contentOffsetDidChange:(struct CGPoint)arg2;
 - (double)verticalMarginBetweenHeaderAndFirstBodyComponent;
 - (void)layoutSubviews;
+@property(nonatomic) _Bool useDiffingOnViewModelChanges;
 - (void)setBackgroundColor:(id)arg1;
 - (id)initWithFrame:(struct CGRect)arg1 imageLoaderFactory:(id)arg2 componentLayoutManager:(id)arg3 componentRegistry:(id)arg4 componentEventHandler:(id)arg5;
 

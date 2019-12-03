@@ -14,15 +14,12 @@
 #import "SPTNowPlayingContentContainingViewController-Protocol.h"
 #import "SPTNowPlayingModeLayoutDelegate-Protocol.h"
 #import "SPTNowPlayingModeResolverObserver-Protocol.h"
-#import "SPTPlayerObserver-Protocol.h"
-#import "SPTShareScreenshotObserverManagerDataSource-Protocol.h"
 
-@class NSArray, NSHashTable, NSLayoutConstraint, NSMutableArray, NSMutableDictionary, NSString, SPTNowPlayingContainerIdleMonitor, SPTNowPlayingContentViewProvider, SPTNowPlayingLogger, SPTNowPlayingModel, SPTShareScreenshotObserverManager, SPTTheme, UIStackView;
+@class NSArray, NSHashTable, NSLayoutConstraint, NSMutableArray, NSMutableDictionary, NSString, SPTNowPlayingContainerIdleMonitor, SPTNowPlayingContentViewProvider, SPTNowPlayingLogger, SPTNowPlayingModel, SPTTheme, UIStackView;
 @protocol SPTNowPlayingContainedViewController, SPTNowPlayingContentViewController, SPTNowPlayingModeResolver, SPTShareFeature;
 
-@interface SPTNowPlayingViewController : UIViewController <SPTNowPlayingContainingViewController, SPTNowPlayingContainerIdleMonitorObserver, SPTNowPlayingContainerIdleMonitorLoggingDelegate, SPTPlayerObserver, SPTShareScreenshotObserverManagerDataSource, SPTNowPlayingModeResolverObserver, SPTNowPlayingModeLayoutDelegate, SPTBarOverlayViewController, SPTNowPlayingContentContainingViewController, SPTNowPlayingContainerIdleMonitorReceiving>
+@interface SPTNowPlayingViewController : UIViewController <SPTNowPlayingContainingViewController, SPTNowPlayingContainerIdleMonitorObserver, SPTNowPlayingContainerIdleMonitorLoggingDelegate, SPTNowPlayingModeResolverObserver, SPTNowPlayingModeLayoutDelegate, SPTBarOverlayViewController, SPTNowPlayingContentContainingViewController, SPTNowPlayingContainerIdleMonitorReceiving>
 {
-    _Bool _allowsScreenshots;
     SPTNowPlayingModel *_model;
     SPTTheme *_theme;
     NSHashTable *_viewControllers;
@@ -33,7 +30,6 @@
     UIStackView *_topStackView;
     UIStackView *_bottomStackView;
     id <SPTShareFeature> _shareFeature;
-    SPTShareScreenshotObserverManager *_screenshotShareObserverManager;
     id <SPTNowPlayingModeResolver> _modeResolver;
     UIViewController<SPTNowPlayingContainedViewController> *_navigationBarUnitViewController;
     SPTNowPlayingContentViewProvider *_contentViewProvider;
@@ -58,8 +54,6 @@
 @property(readonly, nonatomic) SPTNowPlayingContentViewProvider *contentViewProvider; // @synthesize contentViewProvider=_contentViewProvider;
 @property(retain, nonatomic) UIViewController<SPTNowPlayingContainedViewController> *navigationBarUnitViewController; // @synthesize navigationBarUnitViewController=_navigationBarUnitViewController;
 @property(retain, nonatomic) id <SPTNowPlayingModeResolver> modeResolver; // @synthesize modeResolver=_modeResolver;
-@property(nonatomic) _Bool allowsScreenshots; // @synthesize allowsScreenshots=_allowsScreenshots;
-@property(retain, nonatomic) SPTShareScreenshotObserverManager *screenshotShareObserverManager; // @synthesize screenshotShareObserverManager=_screenshotShareObserverManager;
 @property(nonatomic) __weak id <SPTShareFeature> shareFeature; // @synthesize shareFeature=_shareFeature;
 @property(retain, nonatomic) UIStackView *bottomStackView; // @synthesize bottomStackView=_bottomStackView;
 @property(retain, nonatomic) UIStackView *topStackView; // @synthesize topStackView=_topStackView;
@@ -76,9 +70,6 @@
 - (void)setupForMode:(id)arg1 fromMode:(id)arg2;
 - (id)viewControllersForMode:(id)arg1;
 - (void)modeResolver:(id)arg1 didChangeToMode:(id)arg2 fromMode:(id)arg3;
-- (_Bool)shouldShowScreenshotBannerWithObserverManager:(id)arg1;
-- (id)shareDataForScreenshotObserverManager:(id)arg1 image:(id)arg2;
-- (void)player:(id)arg1 stateDidChange:(id)arg2 fromState:(id)arg3;
 - (void)logIdleMonitorIntent:(id)arg1;
 - (void)logUserDidEndIdlePeriod;
 - (void)logUserDidBeginIdlePeriod;
@@ -95,8 +86,6 @@
 - (void)setupContentViewController;
 - (void)emptyStackViews;
 - (void)setupStackViews;
-- (void)updateScreenshotsAllowedForCurrentTrack:(_Bool)arg1;
-- (void)viewDidDisappear:(_Bool)arg1;
 - (void)viewWillAppear:(_Bool)arg1;
 - (id)viewControllersForEdge:(unsigned long long)arg1;
 - (void)updateViewConstraints;
@@ -107,7 +96,6 @@
 - (void)forceUpdateViewConstraints;
 - (void)viewDidLoad;
 - (_Bool)shouldAutorotate;
-- (void)dealloc;
 - (id)initWithModel:(id)arg1 theme:(id)arg2 modeResolver:(id)arg3 shareFeature:(id)arg4 logger:(id)arg5 contentViewProvider:(id)arg6;
 
 // Remaining properties

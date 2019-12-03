@@ -47,6 +47,7 @@
 - (void)featureFlagsDidChange:(id)arg1;
 - (void)removeObserver:(id)arg1;
 - (void)addObserver:(id)arg1;
+@property(readonly, nonatomic, getter=isMoatDisabled) _Bool moatDisabled;
 @property(readonly, nonatomic, getter=isAudioPlusEnabled) _Bool audioPlusEnabled;
 @property(readonly, nonatomic, getter=isLeaveBehindTopBannerEnabled) _Bool leaveBehindTopBannerEnabled;
 @property(readonly, nonatomic, getter=isLeaveBehindCompanionBannerEnabled) _Bool leaveBehindCompanionBannerEnabled;
@@ -60,6 +61,7 @@
 @property(readonly, nonatomic, getter=isPrerollEnabled) _Bool prerollEnabled;
 @property(readonly, nonatomic, getter=isMobiusVoiceEnabled) _Bool mobiusVoiceEnabled;
 @property(readonly, nonatomic, getter=isVoiceEnabled) _Bool voiceEnabled;
+@property(readonly, nonatomic, getter=isComscoreEnabled) _Bool comscoreEnabled;
 @property(readonly, nonatomic, getter=isCosmosWatchNowEnabled) _Bool cosmosWatchNowEnabled;
 - (void)dealloc;
 - (id)initWithProductState:(id)arg1 localSetting:(id)arg2 abbaService:(id)arg3;

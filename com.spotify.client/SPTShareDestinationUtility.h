@@ -6,20 +6,16 @@
 
 #import <objc/NSObject.h>
 
-@protocol SPTShareTestManager;
-
 @interface SPTShareDestinationUtility : NSObject
 {
-    id <SPTShareTestManager> _testManager;
 }
 
 + (id)buildDeeplinkURLWithShareText:(id)arg1 forDestination:(id)arg2;
-@property(retain, nonatomic) id <SPTShareTestManager> testManager; // @synthesize testManager=_testManager;
-- (void).cxx_destruct;
 - (_Bool)isStoryCompatableURI:(id)arg1;
 - (_Bool)isDestination:(id)arg1 allowedForEntityURI:(id)arg2;
+- (id)availableShareDestinations;
 - (id)availableShareDestinationsForEntityURI:(id)arg1;
-- (id)initWithTestManager:(id)arg1;
+- (id)provideShareDestinationWithId:(long long)arg1;
 
 @end
 

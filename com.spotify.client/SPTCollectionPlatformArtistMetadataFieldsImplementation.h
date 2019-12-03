@@ -18,8 +18,10 @@
     NSDictionary *_artistPortraits;
     unsigned long long _artistTracksCount;
     NSURL *_collectionURL;
+    NSString *_groupLabel;
 }
 
+@property(copy, nonatomic) NSString *groupLabel; // @synthesize groupLabel=_groupLabel;
 @property(retain, nonatomic) NSURL *collectionURL; // @synthesize collectionURL=_collectionURL;
 @property(nonatomic) unsigned long long artistTracksCount; // @synthesize artistTracksCount=_artistTracksCount;
 @property(nonatomic) _Bool isBanned; // @synthesize isBanned=_isBanned;

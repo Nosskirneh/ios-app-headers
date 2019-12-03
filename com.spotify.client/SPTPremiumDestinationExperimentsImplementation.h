@@ -6,36 +6,33 @@
 
 #import <objc/NSObject.h>
 
+#import "SPTFeatureFlagSignalObserver-Protocol.h"
 #import "SPTPremiumDestinationExperiments-Protocol.h"
 
 @class NSString;
-@protocol SPTFeatureFlagFactory, SPTFeatureFlagSignal;
+@protocol SPTFeatureFlagFactory, SPTFeatureFlagSignal, SPTRemoteConfigurationResolver;
 
-@interface SPTPremiumDestinationExperimentsImplementation : NSObject <SPTPremiumDestinationExperiments>
+@interface SPTPremiumDestinationExperimentsImplementation : NSObject <SPTFeatureFlagSignalObserver, SPTPremiumDestinationExperiments>
 {
     _Bool _shouldUseDevEndpointSetting;
-    _Bool _shouldFetchPremiumDestinationHubsFromBackend;
-    _Bool _shouldFetchPremiumDestinationHubsFromBackendV2;
     id <SPTFeatureFlagFactory> _featureFlagFactory;
+    id <SPTRemoteConfigurationResolver> _remoteConfigurationResolver;
     id <SPTFeatureFlagSignal> _shouldUseDevEndpointSettingSignal;
-    id <SPTFeatureFlagSignal> _shouldFetchPremiumDestinationHubsFromBackendSignal;
-    id <SPTFeatureFlagSignal> _shouldFetchPremiumDestinationHubsFromBackendV2Signal;
 }
 
-@property(nonatomic) _Bool shouldFetchPremiumDestinationHubsFromBackendV2; // @synthesize shouldFetchPremiumDestinationHubsFromBackendV2=_shouldFetchPremiumDestinationHubsFromBackendV2;
-@property(retain, nonatomic) id <SPTFeatureFlagSignal> shouldFetchPremiumDestinationHubsFromBackendV2Signal; // @synthesize shouldFetchPremiumDestinationHubsFromBackendV2Signal=_shouldFetchPremiumDestinationHubsFromBackendV2Signal;
-@property(nonatomic) _Bool shouldFetchPremiumDestinationHubsFromBackend; // @synthesize shouldFetchPremiumDestinationHubsFromBackend=_shouldFetchPremiumDestinationHubsFromBackend;
-@property(retain, nonatomic) id <SPTFeatureFlagSignal> shouldFetchPremiumDestinationHubsFromBackendSignal; // @synthesize shouldFetchPremiumDestinationHubsFromBackendSignal=_shouldFetchPremiumDestinationHubsFromBackendSignal;
 @property(nonatomic) _Bool shouldUseDevEndpointSetting; // @synthesize shouldUseDevEndpointSetting=_shouldUseDevEndpointSetting;
 @property(retain, nonatomic) id <SPTFeatureFlagSignal> shouldUseDevEndpointSettingSignal; // @synthesize shouldUseDevEndpointSettingSignal=_shouldUseDevEndpointSettingSignal;
+@property(readonly, nonatomic) id <SPTRemoteConfigurationResolver> remoteConfigurationResolver; // @synthesize remoteConfigurationResolver=_remoteConfigurationResolver;
 @property(readonly, nonatomic) id <SPTFeatureFlagFactory> featureFlagFactory; // @synthesize featureFlagFactory=_featureFlagFactory;
 - (void).cxx_destruct;
 - (void)featureFlagSignal:(id)arg1 hasAssumedState:(long long)arg2;
-- (void)setupHubsBackendV2RolloutFlag;
-- (void)setupHubsBackendRolloutFlag;
 - (void)setupUseDevEndpointSetting;
+- (id)featureProperties;
 - (void)loadFlags;
-- (id)initWithFeatureFlagFactory:(id)arg1;
+@property(readonly, nonatomic) _Bool shouldShowLegacyPD;
+@property(readonly, nonatomic) _Bool shouldFetchPremiumDestinationHubsFromBackendV3;
+@property(readonly, nonatomic) _Bool shouldUseHeaderVoiceoverAccessible;
+- (id)initWithFeatureFlagFactory:(id)arg1 remoteConfigurationResolver:(id)arg2;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

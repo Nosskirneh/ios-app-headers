@@ -8,14 +8,14 @@
 
 @interface SPTLFMediaLibraryListener : NSObject
 {
-    function_f9feaa7d _on_change;
+    function_84aba934 _on_change;
 }
 
 - (id).cxx_construct;
 - (void).cxx_destruct;
 - (void)dealloc;
 - (void)iPodLibraryDidChange:(id)arg1;
-- (id)initWithCallback:(const function_f9feaa7d *)arg1;
+- (id)initWithCallback:(const function_84aba934 *)arg1;
 
 @end
 

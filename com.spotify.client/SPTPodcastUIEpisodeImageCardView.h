@@ -4,12 +4,12 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import "GLUEStatefulView.h"
+#import "SPTPodcastUIHighlightableView.h"
 
 @class GLUEGradientView, GLUEImageView, GLUELabel, SPTPodcastUIEpisodeImageCardPlaceholderTextView, UIProgressView, UIStackView, UIView;
 @protocol SPTPodcastUIEpisodeImageCardStyle;
 
-@interface SPTPodcastUIEpisodeImageCardView : GLUEStatefulView
+@interface SPTPodcastUIEpisodeImageCardView : SPTPodcastUIHighlightableView
 {
     _Bool _backgroundImageExists;
     id <SPTPodcastUIEpisodeImageCardStyle> _podcastStyle;
@@ -43,8 +43,6 @@
 - (id)textColorOnBackgroundColor:(id)arg1;
 - (void)translatesAutoresizingMaskIntoConstraintsForSubviewsOfView:(id)arg1 newValue:(_Bool)arg2;
 - (void)applyStyle;
-- (void)animateToHighlighted:(_Bool)arg1;
-- (void)setHighlighted:(_Bool)arg1;
 @property(nonatomic) float progress;
 - (void)prepareForReuse;
 - (void)updateEpisodeImage:(id)arg1 animated:(_Bool)arg2;

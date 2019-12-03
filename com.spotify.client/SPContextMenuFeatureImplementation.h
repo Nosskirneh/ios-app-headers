@@ -6,12 +6,13 @@
 
 #import <objc/NSObject.h>
 
+#import "SPContextMenuFeature-Protocol.h"
 #import "SPTService-Protocol.h"
 
 @class NSString, SPTAllocationContext;
 @protocol SPContextMenuActionsFactory, SPTContainerService, SPTContextMenuActionsProvider, SPTContextMenuOptionsFactory, SPTContextMenuPresenterFactory, SPTContributingArtistsService, SPTFreeTierService, SPTGLUEService, SPTNetworkService, SPTPlayerFeature, SPTScannablesService, SPTUIPresentationService, SPTURIDispatchService;
 
-@interface SPContextMenuFeatureImplementation : NSObject <SPTService>
+@interface SPContextMenuFeatureImplementation : NSObject <SPTService, SPContextMenuFeature>
 {
     id <SPTNetworkService> _networkFeature;
     id <SPTContainerService> _containerService;

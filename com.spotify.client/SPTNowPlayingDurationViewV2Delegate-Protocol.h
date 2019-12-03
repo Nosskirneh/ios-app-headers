@@ -12,6 +12,7 @@
 - (void)nowPlayingDurationViewProgressDidChange:(SPTNowPlayingDurationViewV2 *)arg1;
 - (void)nowPlayingDurationViewDidTapSlider:(SPTNowPlayingDurationViewV2 *)arg1;
 - (void)nowPlayingDurationViewDidEndScrubbing:(SPTNowPlayingDurationViewV2 *)arg1;
+- (void)nowPlayingDurationViewDidScrub:(SPTNowPlayingDurationViewV2 *)arg1;
 - (void)nowPlayingDurationViewDidBeginScrubbing:(SPTNowPlayingDurationViewV2 *)arg1;
 - (void)nowPlayingDurationViewToggleTimeRemainingLabel:(SPTNowPlayingDurationViewV2 *)arg1;
 @end

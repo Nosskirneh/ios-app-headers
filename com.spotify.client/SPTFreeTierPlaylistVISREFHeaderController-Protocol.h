@@ -7,16 +7,17 @@
 #import "NSObject-Protocol.h"
 
 @class UIButton, UIImage, UIView;
-@protocol SPTFreeTierPlaylistDefaultHeaderViewModel, SPTFreeTierPlaylistFollowViewModel, SPTFreeTierPlaylistFullbleedHeaderViewModel, SPTFreeTierPlaylistPlayViewModel, SPTFreeTierPlaylistVISREFHeaderControllerDelegate, VISREFHeaderViewAnimationProgress;
+@protocol SPTFreeTierEntityOfflineViewModel, SPTFreeTierPlaylistDefaultHeaderViewModel, SPTFreeTierPlaylistFollowViewModel, SPTFreeTierPlaylistFullbleedHeaderViewModel, SPTFreeTierPlaylistPlayViewModel, SPTFreeTierPlaylistVISREFHeaderControllerDelegate, VISREFHeaderViewAnimationProgress;
 
 @protocol SPTFreeTierPlaylistVISREFHeaderController <NSObject>
 @property(nonatomic) __weak id <SPTFreeTierPlaylistVISREFHeaderControllerDelegate> delegate;
 - (void)setSearchView:(UIView *)arg1;
 - (void)setImage:(UIImage *)arg1;
+- (void)setOfflineButton:(UIButton *)arg1;
 - (void)setFollowButton:(UIButton *)arg1;
 - (void)setContextMenuButton:(UIButton *)arg1;
 - (void)setCustomBackButton:(UIView<VISREFHeaderViewAnimationProgress> *)arg1;
 - (void)update;
-- (void)configureWithPlayViewModel:(id <SPTFreeTierPlaylistPlayViewModel>)arg1 followViewModel:(id <SPTFreeTierPlaylistFollowViewModel>)arg2 defaultHeaderViewModel:(id <SPTFreeTierPlaylistDefaultHeaderViewModel>)arg3 fullbleedHeaderViewModel:(id <SPTFreeTierPlaylistFullbleedHeaderViewModel>)arg4 filterSortBarView:(UIView *)arg5;
+- (void)configureWithPlayViewModel:(id <SPTFreeTierPlaylistPlayViewModel>)arg1 followViewModel:(id <SPTFreeTierPlaylistFollowViewModel>)arg2 defaultHeaderViewModel:(id <SPTFreeTierPlaylistDefaultHeaderViewModel>)arg3 fullbleedHeaderViewModel:(id <SPTFreeTierPlaylistFullbleedHeaderViewModel>)arg4 playlistOfflineViewModel:(id <SPTFreeTierEntityOfflineViewModel>)arg5 filterSortBarView:(UIView *)arg6;
 @end
 

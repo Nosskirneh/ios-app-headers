@@ -11,12 +11,13 @@
 #import "SPTPlayerObserver-Protocol.h"
 
 @class NSNotificationCenter, NSString, SPTGaiaDeviceAppearanceMapping, SPTGaiaLogger, SPTGaiaPopupContentViewController, SPTGaiaSocialListeningIntegrationManager, SPTPopupDialog, SPTTheme, UIApplication;
-@protocol SPTAlertInterface, SPTGaiaConnectManager, SPTPlayer, SPTProductState;
+@protocol SPTAlertInterface, SPTGaiaAttachPopupControllerDelegate, SPTGaiaConnectManager, SPTPlayer, SPTProductState;
 
 @interface SPTGaiaPopupController : NSObject <SPTPlayerObserver, SPTGaiaConnectManagerObserver, SPTGaiaPopupPresenter>
 {
     _Bool _devicePickerVisible;
     _Bool _delayedPopup;
+    id <SPTGaiaAttachPopupControllerDelegate> attachPopupDelegate;
     id <SPTProductState> _productState;
     id <SPTPlayer> _player;
     id <SPTAlertInterface> _alertInterface;
@@ -47,6 +48,7 @@
 @property(readonly, nonatomic) id <SPTAlertInterface> alertInterface; // @synthesize alertInterface=_alertInterface;
 @property(readonly, nonatomic) __weak id <SPTPlayer> player; // @synthesize player=_player;
 @property(readonly, nonatomic) __weak id <SPTProductState> productState; // @synthesize productState=_productState;
+@property(nonatomic) __weak id <SPTGaiaAttachPopupControllerDelegate> attachPopupDelegate; // @synthesize attachPopupDelegate;
 - (void).cxx_destruct;
 - (void)player:(id)arg1 didEncounterError:(id)arg2;
 - (void)attachDevice;

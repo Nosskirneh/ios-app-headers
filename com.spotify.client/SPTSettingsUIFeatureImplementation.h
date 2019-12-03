@@ -9,7 +9,7 @@
 #import "SPTService-Protocol.h"
 
 @class NSString, RootSettingsViewController, SPTAllocationContext;
-@protocol CosmosFeature, GaiaFeature, SPTAbbaFeatureFlags, SPTAbbaService, SPTContainerService, SPTContainerUIService, SPTCoreService, SPTDataSaverService, SPTExplicitContentService, SPTLanguageOnboardingService, SPTLoginService, SPTNavigationFeature, SPTSessionService, SPTSettingsFeature, SPTURIDispatchService;
+@protocol GaiaFeature, SPTAbbaFeatureFlags, SPTAbbaService, SPTContainerService, SPTContainerUIService, SPTCoreService, SPTExplicitContentService, SPTLanguageOnboardingService, SPTLoginService, SPTNavigationFeature, SPTSessionService, SPTSettingsFeature, SPTURIDispatchService;
 
 @interface SPTSettingsUIFeatureImplementation : NSObject <SPTService>
 {
@@ -19,11 +19,9 @@
     id <SPTCoreService> _coreService;
     id <SPTLoginService> _loginService;
     id <GaiaFeature> _gaiaFeature;
-    id <CosmosFeature> _cosmosFeature;
     id <SPTAbbaService> _abbaService;
     id <SPTSettingsFeature> _settingsFeature;
     id <SPTNavigationFeature> _navigationFeature;
-    id <SPTDataSaverService> _dataSaverService;
     id <SPTLanguageOnboardingService> _languageOnboardingService;
     id <SPTExplicitContentService> _explicitContentService;
     id <SPTURIDispatchService> _URIDispatchService;
@@ -37,11 +35,9 @@
 @property(nonatomic) __weak id <SPTURIDispatchService> URIDispatchService; // @synthesize URIDispatchService=_URIDispatchService;
 @property(nonatomic) __weak id <SPTExplicitContentService> explicitContentService; // @synthesize explicitContentService=_explicitContentService;
 @property(nonatomic) __weak id <SPTLanguageOnboardingService> languageOnboardingService; // @synthesize languageOnboardingService=_languageOnboardingService;
-@property(nonatomic) __weak id <SPTDataSaverService> dataSaverService; // @synthesize dataSaverService=_dataSaverService;
 @property(nonatomic) __weak id <SPTNavigationFeature> navigationFeature; // @synthesize navigationFeature=_navigationFeature;
 @property(nonatomic) __weak id <SPTSettingsFeature> settingsFeature; // @synthesize settingsFeature=_settingsFeature;
 @property(nonatomic) __weak id <SPTAbbaService> abbaService; // @synthesize abbaService=_abbaService;
-@property(nonatomic) __weak id <CosmosFeature> cosmosFeature; // @synthesize cosmosFeature=_cosmosFeature;
 @property(nonatomic) __weak id <GaiaFeature> gaiaFeature; // @synthesize gaiaFeature=_gaiaFeature;
 @property(nonatomic) __weak id <SPTLoginService> loginService; // @synthesize loginService=_loginService;
 @property(nonatomic) __weak id <SPTCoreService> coreService; // @synthesize coreService=_coreService;
@@ -49,7 +45,6 @@
 @property(nonatomic) __weak id <SPTContainerUIService> containerUIService; // @synthesize containerUIService=_containerUIService;
 @property(nonatomic) __weak id <SPTContainerService> containerService; // @synthesize containerService=_containerService;
 - (void).cxx_destruct;
-- (id)createResolverForView:(id)arg1;
 - (id)provideSectionViewControllerWithURL:(id)arg1 context:(id)arg2;
 - (id)provideSettingsViewController;
 - (void)unload;

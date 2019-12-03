@@ -9,7 +9,7 @@
 #import "SPTFeatureSettingsUIProvider-Protocol.h"
 
 @class NSString, SPTPremiumDestinationHubManager;
-@protocol SPTFeatureSettingsItemFactory, SPTLinkDispatcher, SPTNavigationListProvider;
+@protocol SPTFeatureSettingsItemFactory, SPTLinkDispatcher, SPTNavigationListProvider, SPTPremiumDestinationExperiments;
 
 @interface SPTPremiumDestinationSettingsPageBuilder : NSObject <SPTFeatureSettingsUIProvider>
 {
@@ -17,9 +17,11 @@
     id <SPTNavigationListProvider> _navigationListProvider;
     id <SPTLinkDispatcher> _linkDispatcher;
     SPTPremiumDestinationHubManager *_hubManager;
+    id <SPTPremiumDestinationExperiments> _experiments;
 }
 
-@property(retain, nonatomic) SPTPremiumDestinationHubManager *hubManager; // @synthesize hubManager=_hubManager;
+@property(readonly, nonatomic) id <SPTPremiumDestinationExperiments> experiments; // @synthesize experiments=_experiments;
+@property(readonly, nonatomic) SPTPremiumDestinationHubManager *hubManager; // @synthesize hubManager=_hubManager;
 @property(readonly, nonatomic) id <SPTLinkDispatcher> linkDispatcher; // @synthesize linkDispatcher=_linkDispatcher;
 @property(readonly, nonatomic) id <SPTNavigationListProvider> navigationListProvider; // @synthesize navigationListProvider=_navigationListProvider;
 @property(readonly, nonatomic) id <SPTFeatureSettingsItemFactory> featureSettingsItemFactory; // @synthesize featureSettingsItemFactory=_featureSettingsItemFactory;
@@ -29,7 +31,7 @@
 - (id)itemForLegacyPremiumDestination;
 - (id)itemForPremiumDestination;
 - (void)itemizeSettingsPage:(id)arg1;
-- (id)initWithNavigationListProvider:(id)arg1 featureSettingsItemFactory:(id)arg2 linkDispatcher:(id)arg3 hubManager:(id)arg4;
+- (id)initWithNavigationListProvider:(id)arg1 featureSettingsItemFactory:(id)arg2 linkDispatcher:(id)arg3 hubManager:(id)arg4 experiments:(id)arg5;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

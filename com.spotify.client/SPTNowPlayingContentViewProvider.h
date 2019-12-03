@@ -6,27 +6,20 @@
 
 #import <objc/NSObject.h>
 
-@class BMVideoSurfaceFactory, SPTNowPlayingContentLayerViewController, SPTNowPlayingContentLayerViewModel, SPTNowPlayingCoverArtProvider, SPTNowPlayingHorizontalVideoProvider, SPTNowPlayingLogger, SPTNowPlayingModel, SPTNowPlayingSkipLimitReachedMessageRequester, SPTNowPlayingVerticalVideoProvider, SPTTheme, UIViewController;
-@protocol BMVideoSurfaceManager, SPTAdsManager, SPTGLUEImageLoaderFactory, SPTImageLoaderFactory, SPTNowPlayingCarouselContentProviderRegistry, SPTNowPlayingContentLayerResolver, SPTNowPlayingContentViewController, SPTNowPlayingTestManager, SPTNowPlayingVideoManager, SPTPlayer;
+@class BMVideoSurfaceFactory, SPTNowPlayingContentLayerViewController, SPTNowPlayingContentLayerViewModel, SPTNowPlayingCoverArtProvider, SPTNowPlayingHorizontalVideoProvider, SPTNowPlayingLogger, SPTNowPlayingVerticalVideoProvider, SPTTheme;
+@protocol BMVideoSurfaceManager, SPTGLUEImageLoaderFactory, SPTNowPlayingContentLayerResolver, SPTNowPlayingVideoManager, SPTPlayer;
 
 @interface SPTNowPlayingContentViewProvider : NSObject
 {
     SPTNowPlayingLogger *_nowPlayingLogger;
-    SPTNowPlayingModel *_nowPlayingModel;
     SPTTheme *_theme;
-    id <SPTImageLoaderFactory> _imageLoaderFactory;
     id <SPTGLUEImageLoaderFactory> _glueImageLoaderFactory;
     id <BMVideoSurfaceManager> _videoSurfaceManager;
     BMVideoSurfaceFactory *_surfaceFactory;
     id <SPTNowPlayingVideoManager> _nowPlayingVideoManager;
-    id <SPTNowPlayingTestManager> _testManager;
-    SPTNowPlayingSkipLimitReachedMessageRequester *_skipLimitReachedMessageRequester;
-    id <SPTNowPlayingCarouselContentProviderRegistry> _carouselRegistry;
     id <SPTPlayer> _player;
-    id <SPTAdsManager> _adsManager;
     SPTNowPlayingContentLayerViewModel *_contentLayerViewModel;
     id <SPTNowPlayingContentLayerResolver> _contentLayerResolver;
-    UIViewController<SPTNowPlayingContentViewController> *_contentViewController;
     SPTNowPlayingContentLayerViewController *_contentLayerViewController;
     SPTNowPlayingCoverArtProvider *_coverArtProvider;
     SPTNowPlayingVerticalVideoProvider *_verticalVideoProvider;
@@ -37,28 +30,21 @@
 @property(retain, nonatomic) SPTNowPlayingVerticalVideoProvider *verticalVideoProvider; // @synthesize verticalVideoProvider=_verticalVideoProvider;
 @property(retain, nonatomic) SPTNowPlayingCoverArtProvider *coverArtProvider; // @synthesize coverArtProvider=_coverArtProvider;
 @property(retain, nonatomic) SPTNowPlayingContentLayerViewController *contentLayerViewController; // @synthesize contentLayerViewController=_contentLayerViewController;
-@property(retain, nonatomic) UIViewController<SPTNowPlayingContentViewController> *contentViewController; // @synthesize contentViewController=_contentViewController;
 @property(readonly, nonatomic) id <SPTNowPlayingContentLayerResolver> contentLayerResolver; // @synthesize contentLayerResolver=_contentLayerResolver;
 @property(readonly, nonatomic) SPTNowPlayingContentLayerViewModel *contentLayerViewModel; // @synthesize contentLayerViewModel=_contentLayerViewModel;
-@property(readonly, nonatomic) __weak id <SPTAdsManager> adsManager; // @synthesize adsManager=_adsManager;
 @property(readonly, nonatomic) id <SPTPlayer> player; // @synthesize player=_player;
-@property(readonly, nonatomic) id <SPTNowPlayingCarouselContentProviderRegistry> carouselRegistry; // @synthesize carouselRegistry=_carouselRegistry;
-@property(readonly, nonatomic) SPTNowPlayingSkipLimitReachedMessageRequester *skipLimitReachedMessageRequester; // @synthesize skipLimitReachedMessageRequester=_skipLimitReachedMessageRequester;
-@property(readonly, nonatomic) id <SPTNowPlayingTestManager> testManager; // @synthesize testManager=_testManager;
 @property(readonly, nonatomic) id <SPTNowPlayingVideoManager> nowPlayingVideoManager; // @synthesize nowPlayingVideoManager=_nowPlayingVideoManager;
 @property(readonly, nonatomic) BMVideoSurfaceFactory *surfaceFactory; // @synthesize surfaceFactory=_surfaceFactory;
 @property(readonly, nonatomic) id <BMVideoSurfaceManager> videoSurfaceManager; // @synthesize videoSurfaceManager=_videoSurfaceManager;
 @property(readonly, nonatomic) id <SPTGLUEImageLoaderFactory> glueImageLoaderFactory; // @synthesize glueImageLoaderFactory=_glueImageLoaderFactory;
-@property(readonly, nonatomic) id <SPTImageLoaderFactory> imageLoaderFactory; // @synthesize imageLoaderFactory=_imageLoaderFactory;
 @property(readonly, nonatomic) SPTTheme *theme; // @synthesize theme=_theme;
-@property(readonly, nonatomic) SPTNowPlayingModel *nowPlayingModel; // @synthesize nowPlayingModel=_nowPlayingModel;
 @property(readonly, nonatomic) SPTNowPlayingLogger *nowPlayingLogger; // @synthesize nowPlayingLogger=_nowPlayingLogger;
 - (void).cxx_destruct;
 - (void)registerHorizontalVideoProvider;
 - (void)registerVerticalVideoProvider;
 - (void)registerCoverArtProvider;
-- (id)contentViewControllerV1;
-- (id)initWithModel:(id)arg1 imageLoaderFactory:(id)arg2 glueImageLoaderFactory:(id)arg3 theme:(id)arg4 logger:(id)arg5 videoSurfaceManager:(id)arg6 surfaceFactory:(id)arg7 nowPlayingVideoManager:(id)arg8 testManager:(id)arg9 skipLimitReachedMessageRequester:(id)arg10 carouselRegistry:(id)arg11 player:(id)arg12 adsManager:(id)arg13 contentLayerViewModel:(id)arg14;
+- (id)contentViewController;
+- (id)initWithTheme:(id)arg1 glueImageLoaderFactory:(id)arg2 logger:(id)arg3 videoSurfaceManager:(id)arg4 surfaceFactory:(id)arg5 nowPlayingVideoManager:(id)arg6 player:(id)arg7 contentLayerViewModel:(id)arg8;
 
 @end
 

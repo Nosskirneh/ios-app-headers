@@ -9,7 +9,7 @@
 #import "SPTImageLoaderRequest-Protocol.h"
 
 @class NSDate, NSString, NSURL;
-@protocol SPTImageLoaderRemoteCallback, SPTImageLoaderRequestDelegate, SPTResolver;
+@protocol OS_dispatch_queue, SPTImageLoaderRemoteCallback, SPTImageLoaderRequestDelegate, SPTImageResolver, SPTResolver;
 
 @interface SPTCoreImageLoaderRequest : NSObject <SPTImageLoaderRequest>
 {
@@ -23,10 +23,14 @@
     NSString *_sourceIdentifier;
     id <SPTImageLoaderRemoteCallback> _callback;
     id <SPTResolver> _resolver;
+    id <SPTImageResolver> _imageResolver;
+    NSObject<OS_dispatch_queue> *_callbackQueue;
     struct CGSize _requestedSize;
 }
 
+@property(retain, nonatomic) NSObject<OS_dispatch_queue> *callbackQueue; // @synthesize callbackQueue=_callbackQueue;
 @property _Bool requestCanceled; // @synthesize requestCanceled=_requestCanceled;
+@property(retain, nonatomic) id <SPTImageResolver> imageResolver; // @synthesize imageResolver=_imageResolver;
 @property(retain, nonatomic) id <SPTResolver> resolver; // @synthesize resolver=_resolver;
 @property(nonatomic) _Bool allowUpscaling; // @synthesize allowUpscaling=_allowUpscaling;
 @property(nonatomic) __weak id <SPTImageLoaderRemoteCallback> callback; // @synthesize callback=_callback;
@@ -42,11 +46,12 @@
 - (void)cancel;
 - (void)dispatchError:(id)arg1;
 - (void)dispatchSuccess:(id)arg1;
+- (void)loadURL:(id)arg1;
 - (void)load;
 - (id)cosmosURIForImageURI:(id)arg1;
 @property(readonly, nonatomic) _Bool preventPersistentCaching;
 @property(readonly, nonatomic) _Bool preventInMemoryCaching;
-- (id)initWithURL:(id)arg1 sourceIdentifier:(id)arg2 requestedSize:(struct CGSize)arg3 context:(id)arg4 callback:(id)arg5 delegate:(id)arg6 resolver:(id)arg7;
+- (id)initWithURL:(id)arg1 sourceIdentifier:(id)arg2 requestedSize:(struct CGSize)arg3 context:(id)arg4 callback:(id)arg5 delegate:(id)arg6 resolver:(id)arg7 imageResolver:(id)arg8;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

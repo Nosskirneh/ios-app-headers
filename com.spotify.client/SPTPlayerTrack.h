@@ -42,6 +42,7 @@
 @property(readonly, nonatomic, getter=isSkippableAdvertisement) _Bool skippableAdvertisement;
 @property(readonly, nonatomic, getter=isPodcastAdvertisement) _Bool podcastAdvertisement;
 @property(readonly, nonatomic, getter=isAdvertisement) _Bool advertisement;
+@property(readonly, nonatomic) _Bool hasCanvas;
 @property(readonly, nonatomic, getter=isAdvertisementOrInterruption) _Bool advertisementOrInterruption;
 - (id)getContributingArtistNameAtIndex:(unsigned long long)arg1 fromTrackMetadata:(id)arg2;
 - (id)getMainArtistNameFromTrackMetadata:(id)arg1;
@@ -54,7 +55,6 @@
 @property(readonly, nonatomic) NSNumber *albumDiscCount;
 @property(readonly, nonatomic) NSNumber *albumTrackNumber;
 @property(readonly, nonatomic) NSNumber *albumTrackCount;
-- (_Bool)isPlaylistContext;
 @property(readonly, nonatomic) _Bool isShow;
 @property(readonly, nonatomic) NSString *showTitle;
 @property(readonly, nonatomic) _Bool isBackgroundable;
@@ -69,6 +69,7 @@
 @property(readonly, nonatomic) NSURL *coverArtURLSmall;
 @property(readonly, nonatomic) NSURL *coverArtURL;
 @property(readonly, nonatomic) _Bool wasManuallyQueued;
+@property(readonly, nonatomic, getter=isInjectedTrack) _Bool injectedTrack;
 @property(readonly, nonatomic) _Bool isRatedExplicit;
 @property(readonly, nonatomic, getter=spt_isMetaTrack) _Bool spt_metaTrack;
 @property(readonly, nonatomic, getter=spt_isHidden) _Bool spt_hidden;

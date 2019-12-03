@@ -6,6 +6,8 @@
 
 #import <UIKit/UIColor.h>
 
+@class NSString;
+
 @interface UIColor (GCKAdditions)
 + (id)gck_liveIndicatorColor;
 + (id)gck_sliderTooltipBackgroundColor;
@@ -29,5 +31,66 @@
 + (id)gck_bodyTextColor;
 + (id)gck_backgroundColor;
 + (id)gck_defaultViewTintColor;
++ (id)encore_colorFromARGBHexString:(id)arg1;
++ (id)encore_colorFromRGBAHexString:(id)arg1;
++ (id)encore_colorFromRGBHexString:(id)arg1;
++ (unsigned int)rgbValueFromHexString:(id)arg1;
++ (id)glue_colorFromHexString:(id)arg1;
++ (id)glue_colorFromHexString:(id)arg1 alpha:(double)arg2;
++ (id)spt_colorFromHexString:(id)arg1;
++ (id)spt_colorForSeed:(unsigned long long)arg1;
++ (id)LOT_colorByLerpingFromColor:(id)arg1 toColor:(id)arg2 amount:(double)arg3;
++ (id)LOT_colorWithName:(id)arg1;
++ (id)LOT_colorWithHexString:(id)arg1;
++ (id)LOT_colorWithRGBHex:(unsigned int)arg1;
++ (id)LOT_randomColor;
++ (id)LOT_colorWithString:(id)arg1;
++ (id)searchForColorByName:(id)arg1;
+- (id)spt_hexStringRepresentation;
+- (_Bool)encore_equalToColor:(id)arg1 withPrecision:(double)arg2;
+@property(readonly, nonatomic, getter=spt_luminance) double luminance;
+- (double)spt_contrastRatioTo:(id)arg1;
+- (id)lyrics_colorByBlendingWithColor:(id)arg1 ratio:(double)arg2;
+- (union SPTColor)spt_SPTColor;
+@property(readonly, nonatomic, getter=spt_scannablesHexRepresentation) NSString *scannablesHexRepresentation;
+- (id)search_colorByBlendingWithColor:(id)arg1 ratio:(double)arg2;
+- (_Bool)spt_isEqualToColor:(id)arg1;
+@property(readonly, nonatomic) NSString *spt_hexString;
+- (_Bool)spt_isColorBright;
+@property(readonly, nonatomic, getter=spt_brightness) double brightness;
+- (double)visref_blue;
+- (double)visref_green;
+- (double)visref_red;
+- (double)visref_alpha;
+- (double)visref_brightness;
+- (double)visref_saturation;
+- (double)visref_hue360;
+- (double)visref_hue;
+- (id)LOT_hexStringValue;
+- (id)LOT_stringFromColor;
+- (id)LOT_colorByDarkeningToColor:(id)arg1;
+- (id)LOT_colorByLighteningToColor:(id)arg1;
+- (id)LOT_colorByAddingColor:(id)arg1;
+- (id)LOT_colorByMultiplyingByColor:(id)arg1;
+- (id)LOT_colorByDarkeningTo:(double)arg1;
+- (id)LOT_colorByLighteningTo:(double)arg1;
+- (id)LOT_colorByAdding:(double)arg1;
+- (id)LOT_colorByMultiplyingBy:(double)arg1;
+- (id)LOT_colorByDarkeningToRed:(double)arg1 green:(double)arg2 blue:(double)arg3 alpha:(double)arg4;
+- (id)LOT_colorByLighteningToRed:(double)arg1 green:(double)arg2 blue:(double)arg3 alpha:(double)arg4;
+- (id)LOT_colorByAddingRed:(double)arg1 green:(double)arg2 blue:(double)arg3 alpha:(double)arg4;
+- (id)LOT_colorByMultiplyingByRed:(double)arg1 green:(double)arg2 blue:(double)arg3 alpha:(double)arg4;
+- (id)LOT_colorByLuminanceMapping;
+@property(readonly, nonatomic) unsigned int rgbHex;
+@property(readonly, nonatomic) double alpha;
+@property(readonly, nonatomic) double white;
+@property(readonly, nonatomic) double blue;
+@property(readonly, nonatomic) double green;
+@property(readonly, nonatomic) double red;
+- (_Bool)LOT_red:(double *)arg1 green:(double *)arg2 blue:(double *)arg3 alpha:(double *)arg4;
+- (id)LOT_arrayFromRGBAComponents;
+@property(readonly, nonatomic) _Bool canProvideRGBComponents;
+- (id)LOT_colorSpaceString;
+@property(readonly, nonatomic) int colorSpaceModel;
 @end
 

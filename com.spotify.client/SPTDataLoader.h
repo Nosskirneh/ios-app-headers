@@ -31,6 +31,7 @@
 - (void).cxx_destruct;
 - (void)cancellationTokenDidCancel:(id)arg1;
 - (void)needsNewBodyStream:(CDUnknownBlockType)arg1 forRequest:(id)arg2;
+- (void)requestIsWaitingForConnectivity:(id)arg1;
 - (void)receivedInitialResponse:(id)arg1;
 - (void)receivedDataChunk:(id)arg1 forResponse:(id)arg2;
 - (void)cancelledRequest:(id)arg1;

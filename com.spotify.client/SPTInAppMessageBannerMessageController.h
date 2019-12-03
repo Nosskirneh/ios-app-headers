@@ -9,7 +9,7 @@
 #import "SPTInAppMessageBannerMessagePriorityDeciderDelegate-Protocol.h"
 
 @class NSString, SPTInAppMessageActionFactory, SPTInAppMessageBannerMessageParser, SPTInAppMessageBannerMessageViewModel, SPTInAppMessageBannerPresentationController, SPTInAppMessageNotePresentationManager, SPTInAppMessageNowPlayingManagerRegistryImplementation, SPTInAppMessageServiceLogger;
-@protocol SPTBannerPresentationManager, SPTCrashReporter, SPTExternalIntegrationDriverDistractionController, SPTOfflineModeState;
+@protocol SPTAuthController, SPTBannerPresentationManager, SPTCrashReporter, SPTExternalIntegrationDriverDistractionController, SPTOfflineModeState;
 
 @interface SPTInAppMessageBannerMessageController : NSObject <SPTInAppMessageBannerMessagePriorityDeciderDelegate>
 {
@@ -24,8 +24,10 @@
     id <SPTOfflineModeState> _offlineModeState;
     SPTInAppMessageNotePresentationManager *_notePresentationManager;
     id <SPTCrashReporter> _crashReporter;
+    id <SPTAuthController> _authController;
 }
 
+@property(retain, nonatomic) id <SPTAuthController> authController; // @synthesize authController=_authController;
 @property(retain, nonatomic) id <SPTCrashReporter> crashReporter; // @synthesize crashReporter=_crashReporter;
 @property(retain, nonatomic) SPTInAppMessageNotePresentationManager *notePresentationManager; // @synthesize notePresentationManager=_notePresentationManager;
 @property(nonatomic) __weak id <SPTOfflineModeState> offlineModeState; // @synthesize offlineModeState=_offlineModeState;
@@ -39,7 +41,7 @@
 @property(retain, nonatomic) SPTInAppMessageBannerPresentationController *bannerPresentationController; // @synthesize bannerPresentationController=_bannerPresentationController;
 - (void).cxx_destruct;
 - (void)bannerMessagePriorityDeciderDidFetchMessage:(id)arg1 forTrigger:(id)arg2;
-- (id)initWithBannerPresentationManager:(id)arg1 bannerMessageParser:(id)arg2 actionFactory:(id)arg3 serviceLogger:(id)arg4 driverDistractionController:(id)arg5 nowPlayingManagerRegistry:(id)arg6 offlineModeState:(id)arg7 notePresentationManager:(id)arg8 crashReporter:(id)arg9;
+- (id)initWithBannerPresentationManager:(id)arg1 bannerMessageParser:(id)arg2 actionFactory:(id)arg3 serviceLogger:(id)arg4 driverDistractionController:(id)arg5 nowPlayingManagerRegistry:(id)arg6 offlineModeState:(id)arg7 notePresentationManager:(id)arg8 crashReporter:(id)arg9 authController:(id)arg10;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

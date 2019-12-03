@@ -39,7 +39,7 @@
 - (void)showTooltipWithContentView:(id)arg1 fromRect:(struct CGRect)arg2 inView:(id)arg3 permittedArrowDirections:(unsigned long long)arg4 duration:(long long)arg5;
 - (void)dismissPresentedTooltip;
 - (void)presentTooltipWithContentView:(id)arg1 fromRect:(struct CGRect)arg2 inView:(id)arg3 permittedArrowDirections:(unsigned long long)arg4 duration:(long long)arg5;
-- (void)presentTooltipWithText:(id)arg1 fromRect:(struct CGRect)arg2 inView:(id)arg3 permittedArrowDirections:(unsigned long long)arg4;
+- (void)presentTooltipWithText:(id)arg1 fromRect:(struct CGRect)arg2 inView:(id)arg3 permittedArrowDirections:(unsigned long long)arg4 duration:(long long)arg5;
 - (id)initWithTheme:(id)arg1;
 
 // Remaining properties

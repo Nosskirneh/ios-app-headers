@@ -6,15 +6,17 @@
 
 #import "SPAction.h"
 
-@class SPTCanvasTooltipPresentationManager;
+@class SPTCanvasLoggingService, SPTCanvasTooltipPresentationManager;
 @protocol SPTLinkDispatcher;
 
 @interface SPTCanvasPlaybackSettingsAction : SPAction
 {
     id <SPTLinkDispatcher> _linkDispatcher;
     SPTCanvasTooltipPresentationManager *_tooltipPresentationManager;
+    SPTCanvasLoggingService *_logService;
 }
 
+@property(readonly, nonatomic) SPTCanvasLoggingService *logService; // @synthesize logService=_logService;
 @property(readonly, nonatomic) SPTCanvasTooltipPresentationManager *tooltipPresentationManager; // @synthesize tooltipPresentationManager=_tooltipPresentationManager;
 @property(readonly, nonatomic) id <SPTLinkDispatcher> linkDispatcher; // @synthesize linkDispatcher=_linkDispatcher;
 - (void).cxx_destruct;
@@ -22,7 +24,7 @@
 - (long long)icon;
 - (id)title;
 - (id)execute:(id)arg1;
-- (id)initWithLinkDispatcher:(id)arg1 tooltipPresentationManager:(id)arg2 logContext:(id)arg3;
+- (id)initWithLinkDispatcher:(id)arg1 tooltipPresentationManager:(id)arg2 logService:(id)arg3 logContext:(id)arg4;
 
 @end
 

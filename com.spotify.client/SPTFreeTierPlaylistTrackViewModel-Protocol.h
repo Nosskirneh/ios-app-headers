@@ -9,6 +9,7 @@
 @class NSArray, NSDate, NSDictionary, NSString, NSURL, UIColor;
 
 @protocol SPTFreeTierPlaylistTrackViewModel <NSObject>
+@property(readonly, copy, nonatomic) NSString *rowId;
 @property(readonly, copy, nonatomic) NSDictionary *formatListAttributes;
 @property(readonly, nonatomic) double duration;
 @property(readonly, nonatomic) _Bool isPlayed;
@@ -17,7 +18,6 @@
 @property(readonly, copy, nonatomic) NSString *publisherName;
 @property(readonly, nonatomic, getter=isImageEnabled) _Bool imageEnabled;
 @property(readonly, nonatomic) long long offlineSyncStatus;
-@property(readonly, nonatomic) _Bool showCollectionQuickActions;
 @property(readonly, nonatomic) NSString *freeformDescription;
 @property(readonly, nonatomic) NSURL *videoThumbnailURL;
 @property(readonly, nonatomic, getter=isEpisode) _Bool episode;

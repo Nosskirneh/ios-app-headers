@@ -11,6 +11,7 @@
 @interface SPTTrack : NSObject
 {
     _Bool _isExplicit;
+    _Bool _is19Plus;
     _Bool _isPremiumOnly;
     NSURL *_URL;
     NSString *_name;
@@ -23,6 +24,7 @@
 + (id)trackWithTrackInfo:(const struct TrackInfo *)arg1;
 @property(retain, nonatomic) NSArray *imageURLs; // @synthesize imageURLs=_imageURLs;
 @property(readonly, nonatomic) _Bool isPremiumOnly; // @synthesize isPremiumOnly=_isPremiumOnly;
+@property(readonly, nonatomic) _Bool is19Plus; // @synthesize is19Plus=_is19Plus;
 @property(readonly, nonatomic) _Bool isExplicit; // @synthesize isExplicit=_isExplicit;
 @property(readonly, nonatomic) NSData *previewFileId; // @synthesize previewFileId=_previewFileId;
 @property(readonly, nonatomic) SPTAlbum *album; // @synthesize album=_album;
@@ -31,7 +33,7 @@
 @property(readonly, nonatomic) NSURL *URL; // @synthesize URL=_URL;
 - (void).cxx_destruct;
 - (id)imageURLForSize:(int)arg1;
-- (id)initWithURL:(id)arg1 name:(id)arg2 artist:(id)arg3 album:(id)arg4 imageURLs:(id)arg5 previewFileId:(id)arg6 isExplicit:(_Bool)arg7 isPremiumOnly:(_Bool)arg8;
+- (id)initWithURL:(id)arg1 name:(id)arg2 artist:(id)arg3 album:(id)arg4 imageURLs:(id)arg5 previewFileId:(id)arg6 isExplicit:(_Bool)arg7 is19Plus:(_Bool)arg8 isPremiumOnly:(_Bool)arg9;
 
 @end
 

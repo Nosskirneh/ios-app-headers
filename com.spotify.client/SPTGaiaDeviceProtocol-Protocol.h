@@ -9,16 +9,20 @@
 @class NSString;
 
 @protocol SPTGaiaDeviceProtocol <NSObject>
-@property(readonly, nonatomic, getter=isSocialConnect) _Bool socialConnect;
-@property(readonly, nonatomic) long long volumeSteps;
-@property(readonly, nonatomic) _Bool supportsVolume;
-@property(readonly, nonatomic) float volume;
-@property(readonly, nonatomic, getter=isShuffleDevice) _Bool shuffleDevice;
-@property(readonly, nonatomic) _Bool isAttached;
-@property(readonly, nonatomic) unsigned long long deviceState;
-@property(readonly, nonatomic) unsigned long long deviceType;
-@property(readonly, nonatomic) NSString *name;
-@property(readonly, nonatomic) NSString *physicalDeviceId;
-@property(readonly, nonatomic) NSString *deviceId;
+- (_Bool)isSocialConnect;
+@property(nonatomic, readonly) long long volumeSteps;
+@property(nonatomic, readonly) _Bool supportsVolume;
+@property(nonatomic, readonly) float volume;
+- (_Bool)isShuffleDevice;
+@property(nonatomic, readonly) _Bool isAttached;
+@property(nonatomic, readonly) unsigned long long deviceState;
+@property(nonatomic, readonly) unsigned long long deviceType;
+@property(nonatomic, readonly) NSString *name;
+@property(nonatomic, readonly) NSString *physicalDeviceId;
+@property(nonatomic, readonly) NSString *deviceId;
+
+// Remaining properties
+@property(nonatomic, readonly) _Bool shuffleDevice;
+@property(nonatomic, readonly) _Bool socialConnect;
 @end
 

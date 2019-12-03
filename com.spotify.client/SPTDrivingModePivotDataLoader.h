@@ -8,17 +8,15 @@
 
 #import "SPTDataLoaderDelegate-Protocol.h"
 
-@class NSString, SPTDataLoader, SPTDrivingModePivotSubtitleIconResolver;
+@class NSString, SPTDataLoader;
 @protocol HUBIconImageResolver;
 
 @interface SPTDrivingModePivotDataLoader : NSObject <SPTDataLoaderDelegate>
 {
     SPTDataLoader *_dataLoader;
     id <HUBIconImageResolver> _iconImageResolver;
-    SPTDrivingModePivotSubtitleIconResolver *_subtitleIconResolver;
 }
 
-@property(readonly, nonatomic) SPTDrivingModePivotSubtitleIconResolver *subtitleIconResolver; // @synthesize subtitleIconResolver=_subtitleIconResolver;
 @property(readonly, nonatomic) id <HUBIconImageResolver> iconImageResolver; // @synthesize iconImageResolver=_iconImageResolver;
 @property(readonly, nonatomic) SPTDataLoader *dataLoader; // @synthesize dataLoader=_dataLoader;
 - (void).cxx_destruct;
@@ -27,11 +25,10 @@
 - (id)contentURL;
 - (void)dataLoader:(id)arg1 didReceiveErrorResponse:(id)arg2;
 - (void)dataLoader:(id)arg1 didReceiveSuccessfulResponse:(id)arg2;
-- (long long)subtitleIconForURI:(id)arg1;
 - (void)cancelLoading;
 @property(readonly, nonatomic, getter=isLoading) _Bool loading;
 - (void)loadPivotItemsWithSuccessCallback:(CDUnknownBlockType)arg1 errorCallback:(CDUnknownBlockType)arg2;
-- (id)initWithDataLoader:(id)arg1 iconImageResolver:(id)arg2 subtitleIconResolver:(id)arg3;
+- (id)initWithDataLoader:(id)arg1 iconImageResolver:(id)arg2;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

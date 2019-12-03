@@ -18,9 +18,7 @@
 @property(readonly, nonatomic, getter=isShowsFormatContextAwareSharingEnabled) _Bool showsFormatContextAwareSharingEnabled;
 @property(readonly, nonatomic, getter=isNowPlayingBarImprovementsEnabled) _Bool nowPlayingBarImprovementsEnabled;
 @property(readonly, nonatomic, getter=isMusicSleepTimerEnabled) _Bool musicSleepTimerEnabled;
-@property(readonly, nonatomic, getter=isNewContentLayerEnabled) _Bool newContentLayerEnabled;
 - (_Bool)setLocalBansEnabled:(_Bool)arg1;
-- (_Bool)isShowsFormatEnabledForPlayerState:(SPTPlayerState *)arg1;
 - (_Bool)isPodcast:(SPTPlayerState *)arg1;
 - (void)removeObserver:(id <SPTNowPlayingTestManagerObserver>)arg1;
 - (void)addObserver:(id <SPTNowPlayingTestManagerObserver>)arg1;

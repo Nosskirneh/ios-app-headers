@@ -10,6 +10,6 @@
 @protocol SPTCanvasVideoLoader;
 
 @protocol SPTCanvasVideoLoaderFactory <NSObject>
-- (id <SPTCanvasVideoLoader>)createVideoLoaderForTrack:(SPTPlayerTrack *)arg1;
+- (id <SPTCanvasVideoLoader>)createVideoLoaderForTrack:(SPTPlayerTrack *)arg1 videoLoaderType:(long long)arg2;
 @end
 

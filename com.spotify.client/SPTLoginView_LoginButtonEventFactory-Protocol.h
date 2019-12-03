@@ -7,9 +7,10 @@
 #import "NSObject-Protocol.h"
 
 @class NSURL;
-@protocol SPTInteractionEvent;
+@protocol SPTEventFactoryModelMapping, SPTInteractionEvent;
 
 @protocol SPTLoginView_LoginButtonEventFactory <NSObject>
 - (id <SPTInteractionEvent>)hitUiNavigateWithDestination:(NSURL *)arg1;
+- (id <SPTEventFactoryModelMapping>)_location;
 @end
 

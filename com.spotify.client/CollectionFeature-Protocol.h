@@ -6,9 +6,6 @@
 
 #import "NSObject-Protocol.h"
 
-@protocol SPTFeatureFlagSignal;
-
 @protocol CollectionFeature <NSObject>
-- (id <SPTFeatureFlagSignal>)provideLegacyCollectionFeatureEnabledSignal;
 @end
 

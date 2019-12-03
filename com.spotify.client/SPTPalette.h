@@ -31,8 +31,6 @@
 - (id)initWithSelectedSwatches:(id)arg1 allSwatches:(id)arg2;
 - (id)init;
 - (id)initWithCGImage:(struct CGImage *)arg1 configuration:(id)arg2;
-- (id)initWithPixels:(const union SPTColor *)arg1 count:(unsigned long long)arg2 configuration:(id)arg3;
-- (id)initWithImage:(id)arg1 configuration:(id)arg2;
 @property(readonly, copy, nonatomic) SPTPaletteSwatch *vibrantSwatch;
 @property(readonly, copy, nonatomic) SPTPaletteSwatch *mutedSwatch;
 @property(readonly, copy, nonatomic) SPTPaletteSwatch *lightVibrantSwatch;
@@ -40,6 +38,8 @@
 @property(readonly, copy, nonatomic) SPTPaletteSwatch *darkVibrantSwatch;
 @property(readonly, copy, nonatomic) SPTPaletteSwatch *darkMutedSwatch;
 @property(readonly, copy, nonatomic) SPTPaletteSwatch *dominantSwatch;
+- (id)initWithPixels:(const union SPTColor *)arg1 count:(unsigned long long)arg2 configuration:(id)arg3;
+- (id)initWithImage:(id)arg1 configuration:(id)arg2;
 
 @end
 

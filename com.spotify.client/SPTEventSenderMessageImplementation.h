@@ -8,18 +8,20 @@
 
 #import "SPTEventSenderMessage-Protocol.h"
 
-@class GPBMessage, NSData, NSString;
+@class NSData, NSString;
 
 @interface SPTEventSenderMessageImplementation : NSObject <SPTEventSenderMessage>
 {
-    GPBMessage *_message;
+    NSData *_data;
+    NSString *_name;
 }
 
-@property(retain, nonatomic) GPBMessage *message; // @synthesize message=_message;
++ (id)messageWithName:(id)arg1 data:(id)arg2;
++ (id)messageWithProtobuf:(id)arg1;
+@property(readonly, copy, nonatomic) NSString *name; // @synthesize name=_name;
+@property(readonly, copy, nonatomic) NSData *data; // @synthesize data=_data;
 - (void).cxx_destruct;
-@property(readonly, copy, nonatomic) NSData *data;
-@property(readonly, copy, nonatomic) NSString *name;
-- (id)initWithMessage:(id)arg1;
+- (id)initWithName:(id)arg1 data:(id)arg2;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

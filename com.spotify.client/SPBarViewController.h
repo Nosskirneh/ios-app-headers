@@ -6,15 +6,16 @@
 
 #import <UIKit/UIViewController.h>
 
+#import "MessageBarControllerObserver-Protocol.h"
 #import "SPTBarInteractivePresentationControllerDelegate-Protocol.h"
 
 @class NSArray, NSHashTable, NSLayoutConstraint, NSString, SPTBarAttachmentContainerViewController, SPTBarInteractivePresentationController;
 @protocol SPTBarInteractiveTransitionParticipant, SPTBarOverlayViewController, SPTModalPresentationController;
 
-@interface SPBarViewController : UIViewController <SPTBarInteractivePresentationControllerDelegate>
+@interface SPBarViewController : UIViewController <SPTBarInteractivePresentationControllerDelegate, MessageBarControllerObserver>
 {
+    _Bool _barEnabled;
     _Bool _barHidden;
-    _Bool _barVisibilityLocked;
     UIViewController *_contentViewController;
     UIViewController<SPTBarInteractiveTransitionParticipant> *_nowPlayingBarViewController;
     UIViewController<SPTBarOverlayViewController> *_overlayViewController;
@@ -28,6 +29,7 @@
     NSLayoutConstraint *_barAttachmentBottomConstraint;
 }
 
+@property(nonatomic, getter=isBarHidden) _Bool barHidden; // @synthesize barHidden=_barHidden;
 @property(retain, nonatomic) NSLayoutConstraint *barAttachmentBottomConstraint; // @synthesize barAttachmentBottomConstraint=_barAttachmentBottomConstraint;
 @property(retain, nonatomic) NSLayoutConstraint *barAttachmentHeightConstraint; // @synthesize barAttachmentHeightConstraint=_barAttachmentHeightConstraint;
 @property(readonly, nonatomic) NSHashTable *layoutGuideObservers; // @synthesize layoutGuideObservers=_layoutGuideObservers;
@@ -36,8 +38,7 @@
 @property(readonly, nonatomic) id <SPTModalPresentationController> modalPresentationController; // @synthesize modalPresentationController=_modalPresentationController;
 @property(readonly, nonatomic) SPTBarInteractivePresentationController *interactivePresentationController; // @synthesize interactivePresentationController=_interactivePresentationController;
 @property(nonatomic) double nowPlayingBarHeight; // @synthesize nowPlayingBarHeight=_nowPlayingBarHeight;
-@property(nonatomic) _Bool barVisibilityLocked; // @synthesize barVisibilityLocked=_barVisibilityLocked;
-@property(nonatomic, getter=isBarHidden) _Bool barHidden; // @synthesize barHidden=_barHidden;
+@property(nonatomic, getter=isBarEnabled) _Bool barEnabled; // @synthesize barEnabled=_barEnabled;
 @property(retain, nonatomic) UIViewController<SPTBarOverlayViewController> *overlayViewController; // @synthesize overlayViewController=_overlayViewController;
 @property(retain, nonatomic) UIViewController<SPTBarInteractiveTransitionParticipant> *nowPlayingBarViewController; // @synthesize nowPlayingBarViewController=_nowPlayingBarViewController;
 @property(retain, nonatomic) UIViewController *contentViewController; // @synthesize contentViewController=_contentViewController;
@@ -61,7 +62,8 @@
 @property(readonly, nonatomic) double contentBottomLayoutGuide;
 - (void)setOverlayHidden:(_Bool)arg1 animated:(_Bool)arg2 completionHandler:(CDUnknownBlockType)arg3;
 @property(nonatomic) _Bool overlayHidden;
-- (void)setBarHidden:(_Bool)arg1 animated:(_Bool)arg2 completion:(CDUnknownBlockType)arg3;
+- (void)updateBarHiddenAnimated:(_Bool)arg1;
+- (void)setBarHidden:(_Bool)arg1 animated:(_Bool)arg2;
 - (void)showBarAnimated:(_Bool)arg1 completion:(CDUnknownBlockType)arg2;
 - (void)tearDownTabBarSnapshot:(id)arg1;
 - (id)setupTabBarSnapshot;
@@ -75,6 +77,7 @@
 - (void)addBarAttachmentViewController:(id)arg1 atIndex:(unsigned long long)arg2 height:(double)arg3 animated:(_Bool)arg4;
 - (void)addViewController:(id)arg1;
 - (void)addViewForViewController:(id)arg1;
+- (void)viewDidAppear:(_Bool)arg1;
 - (void)viewDidLoad;
 - (id)initWithContentViewController:(id)arg1 modalPresentationController:(id)arg2;
 

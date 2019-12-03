@@ -8,5 +8,10 @@
 
 @interface NSMutableArray (JSON)
 - (void)removeNull;
+- (void)spt_reset;
+- (id)spt_pop;
+- (void)spt_push:(id)arg1;
+- (id)spt_top;
+- (_Bool)spt_isEmpty;
 @end
 

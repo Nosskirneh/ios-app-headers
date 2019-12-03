@@ -10,7 +10,7 @@
 #import "SPTHomeMixUIService-Protocol.h"
 
 @class NSString, SPTAllocationContext, SPTHomeMixService, SPTHomeMixTestManager;
-@protocol SPContextMenuFeature, SPTContainerService, SPTContainerUIService, SPTExplicitContentService, SPTFeatureFlaggingService, SPTFormatListPlatformRegistration, SPTFormatListPlatformService, SPTFreeTierTooltipService, SPTGLUEService, SPTNavigationFeature, SPTPlayerFeature, SPTPlaylistPlatformService, SPTSessionService, SPTSnackbarService, SPTURIDispatchService, SlateFeature;
+@protocol SPContextMenuFeature, SPTContainerService, SPTContainerUIService, SPTExplicitContentService, SPTFeatureFlaggingService, SPTFormatListPlatformRegistration, SPTFormatListPlatformService, SPTFreeTierTooltipService, SPTGLUEService, SPTNavigationFeature, SPTPlayerFeature, SPTPlaylistPlatformService, SPTRemoteConfigurationResolver, SPTRemoteConfigurationService, SPTSessionService, SPTShareFeature, SPTSnackbarService, SPTURIDispatchService, SlateFeature;
 
 @interface SPTHomeMixUIServiceImplementation : NSObject <SPTHomeMixTestManagerDelegate, SPTHomeMixUIService>
 {
@@ -30,15 +30,21 @@
     id <SPTPlaylistPlatformService> _playlistPlatformService;
     id <SPTURIDispatchService> _URIDispatchService;
     id <SPTSessionService> _sessionService;
+    id <SPTShareFeature> _shareFeature;
     id <SlateFeature> _slateService;
+    id <SPTRemoteConfigurationService> _remoteConfigurationService;
     id <SPTFormatListPlatformRegistration> _formatListPlatformRegistrationToken;
     SPTHomeMixTestManager *_testManager;
+    id <SPTRemoteConfigurationResolver> _remoteConfigurationResolver;
 }
 
 + (id)serviceIdentifier;
+@property(retain, nonatomic) id <SPTRemoteConfigurationResolver> remoteConfigurationResolver; // @synthesize remoteConfigurationResolver=_remoteConfigurationResolver;
 @property(retain, nonatomic) SPTHomeMixTestManager *testManager; // @synthesize testManager=_testManager;
 @property(retain, nonatomic) id <SPTFormatListPlatformRegistration> formatListPlatformRegistrationToken; // @synthesize formatListPlatformRegistrationToken=_formatListPlatformRegistrationToken;
+@property(nonatomic) __weak id <SPTRemoteConfigurationService> remoteConfigurationService; // @synthesize remoteConfigurationService=_remoteConfigurationService;
 @property(nonatomic) __weak id <SlateFeature> slateService; // @synthesize slateService=_slateService;
+@property(nonatomic) __weak id <SPTShareFeature> shareFeature; // @synthesize shareFeature=_shareFeature;
 @property(nonatomic) __weak id <SPTSessionService> sessionService; // @synthesize sessionService=_sessionService;
 @property(nonatomic) __weak id <SPTURIDispatchService> URIDispatchService; // @synthesize URIDispatchService=_URIDispatchService;
 @property(nonatomic) __weak id <SPTPlaylistPlatformService> playlistPlatformService; // @synthesize playlistPlatformService=_playlistPlatformService;
@@ -56,6 +62,7 @@
 @property(nonatomic) __weak id <SPTSessionService> clientSessionService; // @synthesize clientSessionService=_clientSessionService;
 @property(nonatomic) __weak SPTHomeMixService *homeMixService; // @synthesize homeMixService=_homeMixService;
 - (void).cxx_destruct;
+- (id)featureProperties;
 - (id)provideHomeMixEnabledSignal;
 - (id)provideViewControllerForURI:(id)arg1 context:(id)arg2;
 - (void)disableService;

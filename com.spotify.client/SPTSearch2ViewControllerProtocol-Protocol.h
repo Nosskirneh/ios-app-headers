@@ -9,7 +9,6 @@
 @class NSString;
 
 @protocol SPTSearch2ViewControllerProtocol <NSObject>
-@property(copy, nonatomic) NSString *autoCompleteRequestID;
 @property(readonly, copy, nonatomic) NSString *requestID;
 @property(nonatomic) _Bool automaticallyAdjustsInsets;
 @property(nonatomic) struct UIEdgeInsets insets;

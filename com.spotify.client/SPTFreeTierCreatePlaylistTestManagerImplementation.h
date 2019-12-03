@@ -8,23 +8,21 @@
 
 #import "SPTFreeTierCreatePlaylistTestManager-Protocol.h"
 
-@class NSString;
-@protocol SPTFeatureFlagFactory, SPTFeatureFlagSignal;
+@class NSString, SPTFreeTierCreatePlaylistFeatureProperties;
+@protocol SPTRemoteConfigurationResolver;
 
 @interface SPTFreeTierCreatePlaylistTestManagerImplementation : NSObject <SPTFreeTierCreatePlaylistTestManager>
 {
-    _Bool _createPlaylistEnabled;
-    id <SPTFeatureFlagFactory> _featureFlagFactory;
-    id <SPTFeatureFlagSignal> _createPlaylistEnabledSignal;
+    id <SPTRemoteConfigurationResolver> _remoteConfigurationResolver;
+    SPTFreeTierCreatePlaylistFeatureProperties *_remoteConfigurationProperties;
 }
 
-@property(nonatomic, getter=isCreatePlaylistEnabled) _Bool createPlaylistEnabled; // @synthesize createPlaylistEnabled=_createPlaylistEnabled;
-@property(retain, nonatomic) id <SPTFeatureFlagSignal> createPlaylistEnabledSignal; // @synthesize createPlaylistEnabledSignal=_createPlaylistEnabledSignal;
-@property(readonly, nonatomic) id <SPTFeatureFlagFactory> featureFlagFactory; // @synthesize featureFlagFactory=_featureFlagFactory;
+@property(retain, nonatomic) SPTFreeTierCreatePlaylistFeatureProperties *remoteConfigurationProperties; // @synthesize remoteConfigurationProperties=_remoteConfigurationProperties;
+@property(readonly, nonatomic) id <SPTRemoteConfigurationResolver> remoteConfigurationResolver; // @synthesize remoteConfigurationResolver=_remoteConfigurationResolver;
 - (void).cxx_destruct;
-- (void)featureFlagSignal:(id)arg1 hasAssumedState:(long long)arg2;
-- (void)setupFlags;
-- (id)initWithFeatureFlagFactory:(id)arg1;
+- (void)setupRemoteConfigurationProperties;
+@property(readonly, nonatomic, getter=isCreatePlaylistEnabled) _Bool createPlaylistEnabled;
+- (id)initWithRemoteConfigurationResolver:(id)arg1;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

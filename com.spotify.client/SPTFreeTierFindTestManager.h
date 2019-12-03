@@ -6,20 +6,18 @@
 
 #import <objc/NSObject.h>
 
+#import "SPTFeatureFlagSignalObserver-Protocol.h"
+
 @class NSString;
 @protocol SPTFeatureFlagSignal;
 
-@interface SPTFreeTierFindTestManager : NSObject
+@interface SPTFreeTierFindTestManager : NSObject <SPTFeatureFlagSignalObserver>
 {
     _Bool _freeTierEnabled;
-    _Bool _cacheDisabled;
     id <SPTFeatureFlagSignal> _freeTierEnabledSignal;
-    id <SPTFeatureFlagSignal> _cacheDisabledSignal;
 }
 
-@property(readonly, nonatomic) id <SPTFeatureFlagSignal> cacheDisabledSignal; // @synthesize cacheDisabledSignal=_cacheDisabledSignal;
 @property(readonly, nonatomic) id <SPTFeatureFlagSignal> freeTierEnabledSignal; // @synthesize freeTierEnabledSignal=_freeTierEnabledSignal;
-@property(nonatomic, getter=isCacheDisabled) _Bool cacheDisabled; // @synthesize cacheDisabled=_cacheDisabled;
 @property(nonatomic, getter=isFreeTierEnabled) _Bool freeTierEnabled; // @synthesize freeTierEnabled=_freeTierEnabled;
 - (void).cxx_destruct;
 - (void)featureFlagSignal:(id)arg1 hasAssumedState:(long long)arg2;

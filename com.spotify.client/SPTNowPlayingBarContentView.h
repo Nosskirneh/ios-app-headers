@@ -8,7 +8,7 @@
 
 #import "SPTNowPlayingTestManagerObserver-Protocol.h"
 
-@class NSArray, NSLayoutConstraint, NSString, SPStepScrollView, SPTNowPlayingFadeMaskView, SPTTheme, UIButton, UIImageView;
+@class NSArray, NSLayoutConstraint, NSString, SPStepScrollView, SPTNowPlayingFadeMaskView, SPTTheme, UIButton;
 @protocol SPTGaiaDevicesAvailableView, SPTNowPlayingBarPlayButton, SPTNowPlayingBarVoiceCompanionDelegate, SPTNowPlayingTestManager;
 
 @interface SPTNowPlayingBarContentView : UIView <SPTNowPlayingTestManagerObserver>
@@ -24,10 +24,8 @@
     id <SPTNowPlayingTestManager> _testManager;
     UIView *_voiceCompanionView;
     NSLayoutConstraint *_voiceCompanionWidthLayoutConstraint;
-    UIImageView *_nowPlayingBarVoiceButtonImageView;
 }
 
-@property(retain, nonatomic) UIImageView *nowPlayingBarVoiceButtonImageView; // @synthesize nowPlayingBarVoiceButtonImageView=_nowPlayingBarVoiceButtonImageView;
 @property(retain, nonatomic) NSLayoutConstraint *voiceCompanionWidthLayoutConstraint; // @synthesize voiceCompanionWidthLayoutConstraint=_voiceCompanionWidthLayoutConstraint;
 @property(retain, nonatomic) UIView *voiceCompanionView; // @synthesize voiceCompanionView=_voiceCompanionView;
 @property(readonly, nonatomic) id <SPTNowPlayingTestManager> testManager; // @synthesize testManager=_testManager;

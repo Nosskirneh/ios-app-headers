@@ -8,7 +8,8 @@
 
 @interface _TtC24PodcastOnboardingFeature31TopicPickerLargeTitleHeaderView : UICollectionReusableView
 {
-    // Error parsing type: , name: label
+    // Error parsing type: , name: $__lazy_storage_$_label
+    // Error parsing type: , name: titleText
     // Error parsing type: , name: theme
     // Error parsing type: , name: newlyCreated
 }

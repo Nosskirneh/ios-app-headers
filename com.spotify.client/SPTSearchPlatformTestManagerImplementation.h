@@ -6,32 +6,41 @@
 
 #import <objc/NSObject.h>
 
+#import "SPTFeatureFlagSignalObserver-Protocol.h"
 #import "SPTSearchPlatformTestManager-Protocol.h"
 
-@class NSString;
+@class NSString, SPTSearchFeatureProperties;
 @protocol SPTFeatureFlagFactory, SPTFeatureFlagSignal;
 
-@interface SPTSearchPlatformTestManagerImplementation : NSObject <SPTSearchPlatformTestManager>
+@interface SPTSearchPlatformTestManagerImplementation : NSObject <SPTFeatureFlagSignalObserver, SPTSearchPlatformTestManager>
 {
-    _Bool _autocompleteEnabled;
-    _Bool _trackPreviewEnabled;
+    _Bool _searchKitEnabled;
+    _Bool _podcastResultCardsShowEnabled;
+    _Bool _podcastResultCardsDurationEnabled;
     id <SPTFeatureFlagFactory> _featureFlagFactory;
-    id <SPTFeatureFlagSignal> _autocompleteSignal;
-    id <SPTFeatureFlagSignal> _trackPreviewSignal;
+    SPTSearchFeatureProperties *_properties;
+    id <SPTFeatureFlagSignal> _searchKitSignal;
+    id <SPTFeatureFlagSignal> _podcastResultCardsShowSignal;
+    id <SPTFeatureFlagSignal> _podcastResultCardsDurationSignal;
+    unsigned long long _podcastRowsType;
 }
 
-@property(nonatomic, getter=isTrackPreviewEnabled) _Bool trackPreviewEnabled; // @synthesize trackPreviewEnabled=_trackPreviewEnabled;
-@property(readonly, nonatomic) id <SPTFeatureFlagSignal> trackPreviewSignal; // @synthesize trackPreviewSignal=_trackPreviewSignal;
-@property(nonatomic, getter=isAutocompleteEnabled) _Bool autocompleteEnabled; // @synthesize autocompleteEnabled=_autocompleteEnabled;
-@property(readonly, nonatomic) id <SPTFeatureFlagSignal> autocompleteSignal; // @synthesize autocompleteSignal=_autocompleteSignal;
+@property(nonatomic) unsigned long long podcastRowsType; // @synthesize podcastRowsType=_podcastRowsType;
+@property(nonatomic, getter=isPodcastResultCardsDurationEnabled) _Bool podcastResultCardsDurationEnabled; // @synthesize podcastResultCardsDurationEnabled=_podcastResultCardsDurationEnabled;
+@property(readonly, nonatomic) id <SPTFeatureFlagSignal> podcastResultCardsDurationSignal; // @synthesize podcastResultCardsDurationSignal=_podcastResultCardsDurationSignal;
+@property(nonatomic, getter=isPodcastResultCardsShowEnabled) _Bool podcastResultCardsShowEnabled; // @synthesize podcastResultCardsShowEnabled=_podcastResultCardsShowEnabled;
+@property(readonly, nonatomic) id <SPTFeatureFlagSignal> podcastResultCardsShowSignal; // @synthesize podcastResultCardsShowSignal=_podcastResultCardsShowSignal;
+@property(nonatomic, getter=isSearchKitEnabled) _Bool searchKitEnabled; // @synthesize searchKitEnabled=_searchKitEnabled;
+@property(readonly, nonatomic) id <SPTFeatureFlagSignal> searchKitSignal; // @synthesize searchKitSignal=_searchKitSignal;
+@property(readonly, nonatomic) SPTSearchFeatureProperties *properties; // @synthesize properties=_properties;
 @property(readonly, nonatomic) id <SPTFeatureFlagFactory> featureFlagFactory; // @synthesize featureFlagFactory=_featureFlagFactory;
 - (void).cxx_destruct;
+@property(readonly, nonatomic, getter=isNewSectionHeadersEnabled) _Bool newSectionHeadersEnabled;
 - (void)featureFlagSignal:(id)arg1 hasAssumedState:(long long)arg2;
-- (void)setupTrackPreviewSignal;
-- (id)createAutocompleteNewFreeSignal;
-- (id)createAutocompleteDataCollectionSignal;
-- (void)setupAutocompleteSignal;
-- (id)initWithFeatureFlagFactory:(id)arg1;
+- (void)updatePodcastRowType;
+- (void)setUpSearchKitSignal;
+- (void)setUpPodcastResultsCardsSignals;
+- (id)initWithFeatureFlagFactory:(id)arg1 remoteConfigurationResolver:(id)arg2;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

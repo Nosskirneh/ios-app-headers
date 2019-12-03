@@ -20,7 +20,7 @@
 @property(readonly, retain, nonatomic) NSError *error; // @synthesize error=_error;
 - (void).cxx_destruct;
 - (void)parseResponseCode:(const struct error_code *)arg1 token:(const char *)arg2 url:(const char *)arg3;
-- (void)parseResponseJobToken:(void *)arg1 errorCode:(const struct error_code *)arg2 token:(const basic_string_7c0a1c0b *)arg3 url:(const basic_string_7c0a1c0b *)arg4;
+- (void)parseResponseJobToken:(void *)arg1 errorCode:(const struct error_code *)arg2 token:(const basic_string_90719d97 *)arg3 url:(const basic_string_90719d97 *)arg4;
 - (SEL)resultParserSelector;
 
 @end

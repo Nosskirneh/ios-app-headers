@@ -8,14 +8,13 @@
 
 #import "SPTLoginDelayedSignupBannerViewModelDelegate-Protocol.h"
 #import "SPTLoginDelayedSignupDialogPresenterDelegate-Protocol.h"
-#import "SPTService-Protocol.h"
+#import "SPTLoginDelayedSignupService-Protocol.h"
 
-@class NSString, SPTAllocationContext, SPTLoginDelayedSignupBannerViewModel, SPTLoginDelayedSignupDialogLogger, SPTLoginDelayedSignupDialogPresenter, UIViewController;
+@class NSString, SPTAllocationContext, SPTLoginDelayedSignupBannerViewModel, SPTLoginDelayedSignupDialogLogger, SPTLoginDelayedSignupDialogPresenter, SPTLoginDelayedSignupGuestAccountTracker, UIViewController;
 @protocol SPTBannerFeature, SPTContainerService, SPTContainerUIService, SPTGLUEService, SPTLoginLoggingService, SPTLoginService, SPTPreSignupExperimentationService, SPTRemoteConfigurationService, SPTSessionService, SPTSignupService, SPTUIPresentationService, SPTURIDispatchService;
 
-@interface SPTLoginDelayedSignupServiceImplementation : NSObject <SPTLoginDelayedSignupBannerViewModelDelegate, SPTLoginDelayedSignupDialogPresenterDelegate, SPTService>
+@interface SPTLoginDelayedSignupServiceImplementation : NSObject <SPTLoginDelayedSignupBannerViewModelDelegate, SPTLoginDelayedSignupDialogPresenterDelegate, SPTLoginDelayedSignupService>
 {
-    _Bool _guestAccount;
     id <SPTLoginService> _loginService;
     id <SPTSessionService> _sessionService;
     id <SPTBannerFeature> _bannerService;
@@ -32,14 +31,15 @@
     SPTLoginDelayedSignupBannerViewModel *_bannerViewModel;
     SPTLoginDelayedSignupDialogPresenter *_dialogPresenter;
     SPTLoginDelayedSignupDialogLogger *_bannerLogger;
+    SPTLoginDelayedSignupGuestAccountTracker *_guestTracker;
 }
 
 + (id)serviceIdentifier;
+@property(retain, nonatomic) SPTLoginDelayedSignupGuestAccountTracker *guestTracker; // @synthesize guestTracker=_guestTracker;
 @property(retain, nonatomic) SPTLoginDelayedSignupDialogLogger *bannerLogger; // @synthesize bannerLogger=_bannerLogger;
 @property(retain, nonatomic) SPTLoginDelayedSignupDialogPresenter *dialogPresenter; // @synthesize dialogPresenter=_dialogPresenter;
 @property(retain, nonatomic) SPTLoginDelayedSignupBannerViewModel *bannerViewModel; // @synthesize bannerViewModel=_bannerViewModel;
 @property(nonatomic) __weak UIViewController *presentedController; // @synthesize presentedController=_presentedController;
-@property(nonatomic, getter=isGuestAccount) _Bool guestAccount; // @synthesize guestAccount=_guestAccount;
 @property(nonatomic) __weak id <SPTLoginLoggingService> loginLoggerService; // @synthesize loginLoggerService=_loginLoggerService;
 @property(nonatomic) __weak id <SPTContainerUIService> containerUIService; // @synthesize containerUIService=_containerUIService;
 @property(nonatomic) __weak id <SPTPreSignupExperimentationService> psesService; // @synthesize psesService=_psesService;
@@ -53,6 +53,7 @@
 @property(nonatomic) __weak id <SPTSessionService> sessionService; // @synthesize sessionService=_sessionService;
 @property(nonatomic) __weak id <SPTLoginService> loginService; // @synthesize loginService=_loginService;
 - (void).cxx_destruct;
+- (_Bool)isGuestAccount;
 - (void)dialogPresenterWillOpenFacebookFlow:(id)arg1;
 - (void)dialogPresenterWillOpenSignupFlow:(id)arg1;
 - (void)dialogPresenterWillOpenLoginFlow:(id)arg1;

@@ -12,8 +12,8 @@
 #import "SPTPodcastPlayerDelegate-Protocol.h"
 #import "SPTPodcastTopicCategoryViewModelDelegate-Protocol.h"
 
-@class NSArray, NSPredicate, NSSortDescriptor, NSString, NSURL, SPTPodcastHeaderViewModel, SPTPodcastTopicCategoryViewModel, SPTPodcastViewSectionConfiguration;
-@protocol SPTCollectionPlatform, SPTExplicitContentAccessManager, SPTPodcast, SPTPodcastDataLoader, SPTPodcastDataLoaderRequestToken, SPTPodcastFactory, SPTPodcastPlayer, SPTPodcastUITestManager, SPTPodcastViewModelDelegate2;
+@class NSArray, NSPredicate, NSSortDescriptor, NSString, NSURL, SPTPodcastEpisodeSectionViewModel, SPTPodcastHeaderViewModel, SPTPodcastTopicCategoryViewModel, SPTPodcastViewSectionConfiguration;
+@protocol SPTCollectionPlatform, SPTExplicitContentAccessManager, SPTPodcast, SPTPodcastDataLoader, SPTPodcastDataLoaderRequestToken, SPTPodcastFactory, SPTPodcastLogger, SPTPodcastPlayer, SPTPodcastUITestManager, SPTPodcastViewModelDelegate2;
 
 @interface SPTPodcastViewModel2 : NSObject <SPTPodcastEpisodeViewModelSectionDelegate, SPTPodcastTopicCategoryViewModelDelegate, SPTPodcastFollowSectionViewModelDelegate, SPTExplicitContentEnabledStateObserver, SPTPodcastPlayerDelegate>
 {
@@ -36,14 +36,18 @@
     id <SPTPodcastFactory> _podcastFactory;
     id <SPTPodcastPlayer> _podcastPlayer;
     id <SPTPodcastDataLoader> _dataLoader;
+    id <SPTPodcastLogger> _logger;
     id <SPTCollectionPlatform> _collectionPlatform;
     id <SPTExplicitContentAccessManager> _explicitContentAccessManager;
+    SPTPodcastEpisodeSectionViewModel *_episodeSectionViewModel;
 }
 
+@property(nonatomic) __weak SPTPodcastEpisodeSectionViewModel *episodeSectionViewModel; // @synthesize episodeSectionViewModel=_episodeSectionViewModel;
 @property(retain, nonatomic) id <SPTExplicitContentAccessManager> explicitContentAccessManager; // @synthesize explicitContentAccessManager=_explicitContentAccessManager;
 @property(nonatomic) __weak id <SPTCollectionPlatform> collectionPlatform; // @synthesize collectionPlatform=_collectionPlatform;
 @property(nonatomic, getter=isInitialLoadComplete) _Bool initialLoadComplete; // @synthesize initialLoadComplete=_initialLoadComplete;
 @property(nonatomic) _Bool topicsDidLoad; // @synthesize topicsDidLoad=_topicsDidLoad;
+@property(retain, nonatomic) id <SPTPodcastLogger> logger; // @synthesize logger=_logger;
 @property(retain, nonatomic) id <SPTPodcastDataLoader> dataLoader; // @synthesize dataLoader=_dataLoader;
 @property(retain, nonatomic) id <SPTPodcastPlayer> podcastPlayer; // @synthesize podcastPlayer=_podcastPlayer;
 @property(retain, nonatomic) id <SPTPodcastFactory> podcastFactory; // @synthesize podcastFactory=_podcastFactory;
@@ -62,6 +66,8 @@
 @property(retain, nonatomic) NSURL *URL; // @synthesize URL=_URL;
 @property(nonatomic) __weak id <SPTPodcastViewModelDelegate2> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
+- (id)indexPathForEpisodeIndex:(long long)arg1;
+- (id)indexForEpisodeURL:(id)arg1;
 - (void)explicitContentEnabledStateDidChange:(_Bool)arg1;
 - (void)didFinishLoadingTopicsViewModel:(id)arg1 withError:(id)arg2;
 - (void)followSectionViewModelDidUpdatePlaybackState:(id)arg1;
@@ -95,7 +101,7 @@
 - (long long)numberOfSections;
 - (long long)numberOfRowsInSection:(long long)arg1;
 - (void)obtainDelegation;
-- (id)initWithURL:(id)arg1 headerViewModel:(id)arg2 configuration:(id)arg3 topicCategoryViewModel:(id)arg4 dataLoader:(id)arg5 collectionPlatform:(id)arg6 uiTestManager:(id)arg7 explicitContentAccessManager:(id)arg8 podcastPlayer:(id)arg9;
+- (id)initWithURL:(id)arg1 headerViewModel:(id)arg2 configuration:(id)arg3 topicCategoryViewModel:(id)arg4 dataLoader:(id)arg5 collectionPlatform:(id)arg6 uiTestManager:(id)arg7 explicitContentAccessManager:(id)arg8 podcastPlayer:(id)arg9 podcastLogger:(id)arg10;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

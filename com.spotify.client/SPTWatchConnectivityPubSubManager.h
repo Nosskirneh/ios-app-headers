@@ -29,7 +29,7 @@
 - (void)registerSubscriber:(id)arg1 forTopic:(id)arg2;
 - (void)distributeNewMessagesInReceivedApplicationContext:(id)arg1;
 - (id)latestMessageForTopic:(id)arg1;
-- (void)publishMessage:(id)arg1 toTopic:(id)arg2;
+- (id)publishMessage:(id)arg1 toTopic:(id)arg2;
 - (id)provideMessageQueue;
 - (id)provideRegistry;
 - (id)initWithSession:(id)arg1;

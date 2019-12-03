@@ -18,8 +18,6 @@
 
 @property(retain, nonatomic) id <SPTLogCenter> logCenter; // @synthesize logCenter=_logCenter;
 - (void).cxx_destruct;
-- (void)logInteractionForAnchorItemInViewURL:(id)arg1 targetURL:(id)arg2 isEmptyState:(_Bool)arg3;
-- (void)logImpressionForAnchorItemInViewURL:(id)arg1 targetURL:(id)arg2 isEmptyState:(_Bool)arg3;
 - (void)logNavigateBrowsePodcastsPageInViewURL:(id)arg1 featureId:(id)arg2;
 - (void)logNavigateToShowPageInViewURL:(id)arg1 targetURL:(id)arg2;
 - (void)logMarkAsPlayedEpisodePageInViewURL:(id)arg1 featureId:(id)arg2 episodeURI:(id)arg3 indexPath:(id)arg4;
@@ -30,17 +28,13 @@
 - (void)logPauseEpisodeInViewURL:(id)arg1 featureId:(id)arg2 episodeURI:(id)arg3 indexPath:(id)arg4;
 - (void)logPlayEpisodeInViewURL:(id)arg1 featureId:(id)arg2 episodeURI:(id)arg3 indexPath:(id)arg4;
 - (void)logLoadShowViewURL:(id)arg1;
-- (void)logUIImpressionForViewURI:(id)arg1 section:(id)arg2 index:(long long)arg3;
 - (void)logUIImpressionForFeatureID:(id)arg1 pageURI:(id)arg2 section:(id)arg3 itemIndex:(long long)arg4 targetURI:(id)arg5;
-- (void)logUIImpressionForPage:(id)arg1 index:(long long)arg2;
 - (void)logSpeedControlSelected:(id)arg1;
 - (void)logMarkAsPlayedUnplayedContextMenu:(id)arg1 episodeURI:(id)arg2 played:(_Bool)arg3;
 - (void)logOpenContextMenuShowInViewURL:(id)arg1;
 - (void)logOpenContextMenuEpisodeInViewURL:(id)arg1 episodeURI:(id)arg2 indexPath:(id)arg3;
-- (void)logEditModeBatchRemoveOfflineInViewURL:(id)arg1 all:(_Bool)arg2;
-- (void)logEditModeItemActionInViewURL:(id)arg1 episodeURI:(id)arg2 indexPath:(id)arg3 remove:(_Bool)arg4;
-- (void)logEditModeItemActionInViewURL:(id)arg1 episodeURI:(id)arg2 indexPath:(id)arg3 offline:(_Bool)arg4;
-- (void)logEditModeInViewURL:(id)arg1 entered:(_Bool)arg2 listPosition:(double)arg3;
+- (void)logDescriptionExpanded:(id)arg1;
+- (void)logNavigatToTopicPage:(id)arg1 topicURI:(id)arg2;
 - (void)logShowFollowInViewURL:(id)arg1 didFollow:(_Bool)arg2 fromContextMenu:(_Bool)arg3 autoFollow:(_Bool)arg4;
 - (void)logEpisodeSortingInViewURL:(id)arg1 sorting:(unsigned long long)arg2;
 - (void)logEpisodeFilterResetInViewURL:(id)arg1;

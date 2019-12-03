@@ -8,19 +8,20 @@
 
 #import "INSMessageProtocol-Protocol.h"
 
-@class GPBMessage, NSData, NSString;
+@class NSData, NSString;
 
 @interface INSMessageWrapper : NSObject <INSMessageProtocol>
 {
-    GPBMessage *_message;
+    NSString *_name;
+    NSData *_data;
 }
 
++ (id)wrapperWithEnvelope:(id)arg1;
 + (id)wrapperWithMessage:(id)arg1;
-@property(retain, nonatomic) GPBMessage *message; // @synthesize message=_message;
+@property(readonly, copy, nonatomic) NSData *data; // @synthesize data=_data;
+@property(readonly, copy, nonatomic) NSString *name; // @synthesize name=_name;
 - (void).cxx_destruct;
-@property(readonly, nonatomic) NSString *name;
-@property(readonly, nonatomic) NSData *data;
-- (id)initWithMessage:(id)arg1;
+- (id)initWithName:(id)arg1 data:(id)arg2;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

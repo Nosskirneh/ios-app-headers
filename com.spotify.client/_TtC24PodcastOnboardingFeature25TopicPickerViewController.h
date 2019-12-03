@@ -11,12 +11,12 @@
     // Error parsing type: , name: theme
     // Error parsing type: , name: makeViewBinder
     // Error parsing type: , name: loopController
+    // Error parsing type: , name: curationMode
     // Error parsing type: , name: instrumentationMediatorColleague
 }
 
 - (void).cxx_destruct;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;
-- (void)viewWillLayoutSubviews;
 - (void)viewWillDisappear:(_Bool)arg1;
 - (void)viewDidAppear:(_Bool)arg1;
 - (void)viewWillAppear:(_Bool)arg1;

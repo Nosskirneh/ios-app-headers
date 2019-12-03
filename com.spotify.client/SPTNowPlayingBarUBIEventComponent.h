@@ -16,14 +16,16 @@
     NSString *_identifier;
     NSNumber *_position;
     NSURL *_uri;
+    NSString *_reason;
 }
 
+@property(copy, nonatomic) NSString *reason; // @synthesize reason=_reason;
 @property(copy, nonatomic) NSURL *uri; // @synthesize uri=_uri;
 @property(copy, nonatomic) NSNumber *position; // @synthesize position=_position;
 @property(copy, nonatomic) NSString *identifier; // @synthesize identifier=_identifier;
 @property(copy, nonatomic) NSString *name; // @synthesize name=_name;
 - (void).cxx_destruct;
-- (id)initWithName:(id)arg1 identifier:(id)arg2 position:(id)arg3 uri:(id)arg4;
+- (id)initWithName:(id)arg1 identifier:(id)arg2 position:(id)arg3 uri:(id)arg4 reason:(id)arg5;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

@@ -6,23 +6,19 @@
 
 #import <objc/NSObject.h>
 
+#import "SPTFeatureFlagSignalObserver-Protocol.h"
 #import "SPTSearchTestManager-Protocol.h"
 
 @class NSString;
-@protocol SPTFeatureFlagFactory, SPTFeatureFlagSignal;
+@protocol SPTFeatureFlagFactory;
 
-@interface SPTSearchTestManagerImplementation : NSObject <SPTSearchTestManager>
+@interface SPTSearchTestManagerImplementation : NSObject <SPTFeatureFlagSignalObserver, SPTSearchTestManager>
 {
-    _Bool _playRecentTracksEnabled;
     id <SPTFeatureFlagFactory> _featureFlagFactory;
-    id <SPTFeatureFlagSignal> _playRecentTracksSignal;
 }
 
-@property(nonatomic, getter=isPlayRecentTracksEnabled) _Bool playRecentTracksEnabled; // @synthesize playRecentTracksEnabled=_playRecentTracksEnabled;
-@property(readonly, nonatomic) id <SPTFeatureFlagSignal> playRecentTracksSignal; // @synthesize playRecentTracksSignal=_playRecentTracksSignal;
 @property(readonly, nonatomic) id <SPTFeatureFlagFactory> featureFlagFactory; // @synthesize featureFlagFactory=_featureFlagFactory;
 - (void).cxx_destruct;
-- (void)setupPlayRecentTracksSignal;
 - (void)featureFlagSignal:(id)arg1 hasAssumedState:(long long)arg2;
 - (id)initWithFeatureFlagFactory:(id)arg1;
 

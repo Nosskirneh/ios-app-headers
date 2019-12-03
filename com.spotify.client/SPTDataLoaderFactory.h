@@ -7,12 +7,13 @@
 #import <objc/NSObject.h>
 
 #import "SPTDataLoaderAuthoriserDelegate-Protocol.h"
+#import "SPTDataLoaderRequestResponseHandler-Protocol.h"
 #import "SPTDataLoaderRequestResponseHandlerDelegate-Protocol.h"
 
 @class NSArray, NSMapTable, NSString;
 @protocol OS_dispatch_queue, SPTDataLoaderRequestResponseHandlerDelegate;
 
-@interface SPTDataLoaderFactory : NSObject <SPTDataLoaderRequestResponseHandlerDelegate, SPTDataLoaderAuthoriserDelegate>
+@interface SPTDataLoaderFactory : NSObject <SPTDataLoaderRequestResponseHandlerDelegate, SPTDataLoaderAuthoriserDelegate, SPTDataLoaderRequestResponseHandler>
 {
     _Bool _offline;
     id <SPTDataLoaderRequestResponseHandlerDelegate> _requestResponseHandlerDelegate;
@@ -26,7 +27,7 @@
 @property(retain, nonatomic) NSMapTable *requestToRequestResponseHandler; // @synthesize requestToRequestResponseHandler=_requestToRequestResponseHandler;
 @property(readonly, copy, nonatomic) NSArray *authorisers; // @synthesize authorisers=_authorisers;
 @property(nonatomic, getter=isOffline) _Bool offline; // @synthesize offline=_offline;
-- (id)requestResponseHandlerDelegate;
+@property(readonly, nonatomic) __weak id <SPTDataLoaderRequestResponseHandlerDelegate> requestResponseHandlerDelegate; // @synthesize requestResponseHandlerDelegate=_requestResponseHandlerDelegate;
 - (void).cxx_destruct;
 - (void)dataLoaderAuthoriser:(id)arg1 didFailToAuthoriseRequest:(id)arg2 withError:(id)arg3;
 - (void)dataLoaderAuthoriser:(id)arg1 authorisedRequest:(id)arg2;
@@ -35,6 +36,7 @@
 - (void)needsNewBodyStream:(CDUnknownBlockType)arg1 forRequest:(id)arg2;
 - (void)authoriseRequest:(id)arg1;
 - (_Bool)shouldAuthoriseRequest:(id)arg1;
+- (void)requestIsWaitingForConnectivity:(id)arg1;
 - (void)receivedInitialResponse:(id)arg1;
 - (void)receivedDataChunk:(id)arg1 forResponse:(id)arg2;
 - (void)cancelledRequest:(id)arg1;

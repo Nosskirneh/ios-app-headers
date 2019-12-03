@@ -12,16 +12,16 @@
 {
     id <SPTLogCenter> _logCenter;
     id <SPTUserBehaviourInstrumentationLogger> _ubiLogger;
-    id <SPTNowPlayingBarEventFactory> _nowPlayingBarInteractionFactory;
-    id <SPTNowPlayingViewDefaultEventFactory> _nowPlayingViewInteractionFactory;
+    id <SPTNowPlayingBarEventFactory> _nowPlayingBarEventFactory;
+    id <SPTNowPlayingViewDefaultEventFactory> _nowPlayingViewEventFactory;
     id <SPTNowPlayingModeResolver> _modeResolver;
     CDUnknownBlockType _likeActionResolver;
 }
 
 @property(readonly, copy, nonatomic) CDUnknownBlockType likeActionResolver; // @synthesize likeActionResolver=_likeActionResolver;
 @property(readonly, nonatomic) __weak id <SPTNowPlayingModeResolver> modeResolver; // @synthesize modeResolver=_modeResolver;
-@property(retain, nonatomic) id <SPTNowPlayingViewDefaultEventFactory> nowPlayingViewInteractionFactory; // @synthesize nowPlayingViewInteractionFactory=_nowPlayingViewInteractionFactory;
-@property(retain, nonatomic) id <SPTNowPlayingBarEventFactory> nowPlayingBarInteractionFactory; // @synthesize nowPlayingBarInteractionFactory=_nowPlayingBarInteractionFactory;
+@property(retain, nonatomic) id <SPTNowPlayingViewDefaultEventFactory> nowPlayingViewEventFactory; // @synthesize nowPlayingViewEventFactory=_nowPlayingViewEventFactory;
+@property(retain, nonatomic) id <SPTNowPlayingBarEventFactory> nowPlayingBarEventFactory; // @synthesize nowPlayingBarEventFactory=_nowPlayingBarEventFactory;
 @property(retain, nonatomic) id <SPTUserBehaviourInstrumentationLogger> ubiLogger; // @synthesize ubiLogger=_ubiLogger;
 @property(retain, nonatomic) id <SPTLogCenter> logCenter; // @synthesize logCenter=_logCenter;
 - (void).cxx_destruct;
@@ -62,7 +62,7 @@
 - (id)intentForShufflingState:(_Bool)arg1;
 - (id)intentForRepeatMode:(unsigned long long)arg1;
 - (id)intentForPlayButtonBehavior:(long long)arg1;
-- (id)initWithLogCenter:(id)arg1 modeResolver:(id)arg2 likeActionResolver:(CDUnknownBlockType)arg3 ubiLogger:(id)arg4 nowPlayingBarInteractionFactory:(id)arg5 nowPlayingViewInteractionFactory:(id)arg6;
+- (id)initWithLogCenter:(id)arg1 modeResolver:(id)arg2 likeActionResolver:(CDUnknownBlockType)arg3 ubiLogger:(id)arg4 nowPlayingBarEventFactory:(id)arg5 nowPlayingViewEventFactory:(id)arg6;
 - (void)ubi_logRemainingTimeLabelTapped;
 - (void)ubi_logTapToOpenArtist:(id)arg1 playerState:(id)arg2;
 - (void)ubi_logBarHeartButtonTapped:(long long)arg1 playerState:(id)arg2;

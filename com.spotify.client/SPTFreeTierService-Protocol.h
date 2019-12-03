@@ -6,10 +6,9 @@
 
 #import "SPTService-Protocol.h"
 
-@protocol SPTFeatureFlagSignal, SPTFreeTierTestManager;
+@protocol SPTFeatureFlagSignal;
 
 @protocol SPTFreeTierService <SPTService>
-- (id <SPTFreeTierTestManager>)provideFreeTierTestManager;
 - (id <SPTFeatureFlagSignal>)provideNewExperienceEnabledSignal;
 @end
 

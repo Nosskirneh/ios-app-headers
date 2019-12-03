@@ -18,11 +18,14 @@
     SPTDataLoaderFactory *_dataLoaderFactory;
 }
 
++ (CDUnknownBlockType)originalVideoExporterForTrack:(id)arg1;
++ (CDUnknownBlockType)extendedVideoExporterForTrack:(id)arg1;
++ (CDUnknownBlockType)videoExporterForTrack:(id)arg1 usingVideoLoaderType:(long long)arg2;
 @property(readonly, nonatomic) SPTDataLoaderFactory *dataLoaderFactory; // @synthesize dataLoaderFactory=_dataLoaderFactory;
 @property(readonly, nonatomic) id <SPTVideoURLAssetLoader> videoAssetLoader; // @synthesize videoAssetLoader=_videoAssetLoader;
 @property(readonly, nonatomic) id <SPTCanvasTrackChecker> canvasTrackChecker; // @synthesize canvasTrackChecker=_canvasTrackChecker;
 - (void).cxx_destruct;
-- (id)createVideoLoaderForTrack:(id)arg1;
+- (id)createVideoLoaderForTrack:(id)arg1 videoLoaderType:(long long)arg2;
 - (id)initWithCanvasTrackChecker:(id)arg1 videoAssetLoader:(id)arg2 dataLoaderFactory:(id)arg3;
 
 // Remaining properties

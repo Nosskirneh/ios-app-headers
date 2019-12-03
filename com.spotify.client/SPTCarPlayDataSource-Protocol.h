@@ -8,5 +8,6 @@
 #import "MPPlayableContentDelegate-Protocol.h"
 
 @protocol SPTCarPlayDataSource <MPPlayableContentDataSource, MPPlayableContentDelegate>
+- (void)updateOfflineOnly:(_Bool)arg1;
 @end
 

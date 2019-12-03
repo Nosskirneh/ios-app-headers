@@ -19,6 +19,7 @@
 @property(readonly, nonatomic) id <SPTLoginLogoutHandler> logoutHandler; // @synthesize logoutHandler=_logoutHandler;
 - (void).cxx_destruct;
 - (void)logoutUser;
+- (void)showLogoutAlert;
 - (void)didSelectRow:(long long)arg1;
 - (double)heightForRow:(long long)arg1;
 - (id)cellForRow:(long long)arg1;

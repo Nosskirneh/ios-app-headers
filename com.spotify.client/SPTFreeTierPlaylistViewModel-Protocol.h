@@ -4,6 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
+#import "SPTFreeTierEntityOfflineViewModel-Protocol.h"
 #import "SPTFreeTierPlaylistDefaultHeaderViewModel-Protocol.h"
 #import "SPTFreeTierPlaylistFollowViewModel-Protocol.h"
 #import "SPTFreeTierPlaylistFullbleedHeaderViewModel-Protocol.h"
@@ -12,7 +13,7 @@
 @class NSIndexPath, NSString, NSURL;
 @protocol SPTFreeTierPlaylistCloudViewModel, SPTFreeTierPlaylistSortingFiltering, SPTFreeTierPlaylistSponsoredViewModel, SPTFreeTierPlaylistTrackViewModel, SPTFreeTierPlaylistViewModelDelegate;
 
-@protocol SPTFreeTierPlaylistViewModel <SPTFreeTierPlaylistFollowViewModel, SPTFreeTierPlaylistFullbleedHeaderViewModel, SPTFreeTierPlaylistDefaultHeaderViewModel, SPTFreeTierPlaylistItemsViewModel>
+@protocol SPTFreeTierPlaylistViewModel <SPTFreeTierPlaylistFollowViewModel, SPTFreeTierPlaylistFullbleedHeaderViewModel, SPTFreeTierPlaylistDefaultHeaderViewModel, SPTFreeTierPlaylistItemsViewModel, SPTFreeTierEntityOfflineViewModel>
 @property(readonly, nonatomic) id <SPTFreeTierPlaylistSponsoredViewModel> sponsoredViewModel;
 @property(readonly, nonatomic) _Bool contentSupportsRadio;
 @property(readonly, nonatomic) _Bool containsOnlyTracks;
@@ -23,9 +24,7 @@
 @property(readonly, nonatomic) unsigned long long countOfTracks;
 @property(readonly, nonatomic) unsigned long long offlineAvailability;
 @property(readonly, nonatomic, getter=isEmpty) _Bool empty;
-@property(readonly, nonatomic, getter=isAddSongsDisabled) _Bool addSongsDisabled;
 @property(readonly, nonatomic, getter=isExtendedContextMenuActionSet) _Bool extendedContextMenuActionSet;
-@property(readonly, nonatomic, getter=isAccessibilityHeaderEnabled) _Bool accessibilityHeaderEnabled;
 @property(readonly, nonatomic, getter=isEditModeEnabled) _Bool editModeEnabled;
 @property(readonly, nonatomic, getter=isOfflineSyncAvailable) _Bool offlineSyncAvailable;
 @property(readonly, nonatomic, getter=isReportAbuseEnabled) _Bool reportAbuseEnabled;
@@ -51,12 +50,12 @@
 - (NSIndexPath *)indexPathForItemURI:(NSURL *)arg1;
 - (NSURL *)sharingURLForTrackViewModelAtIndexPath:(NSIndexPath *)arg1;
 - (id <SPTFreeTierPlaylistTrackViewModel>)trackViewModelAtIndexPath:(NSIndexPath *)arg1;
+- (void)loadMoreTracksIfApproachingEndOfLoadedTracks:(NSIndexPath *)arg1;
 - (_Bool)isApproachingEndIndexPath:(NSIndexPath *)arg1;
 - (NSString *)titleOfSectionFooter:(unsigned long long)arg1;
 - (NSString *)subTitleOfSectionHeader:(unsigned long long)arg1;
 - (NSString *)titleOfSectionHeader:(unsigned long long)arg1;
 - (_Bool)shouldDisplayFooterForSection:(unsigned long long)arg1;
-- (_Bool)shouldDisplayBrowseRedirectButtonForSection:(unsigned long long)arg1;
 - (_Bool)shouldDisplayHeaderForSection:(unsigned long long)arg1;
 - (_Bool)hasMoreInSection:(unsigned long long)arg1;
 - (void)loadMoreInSection:(unsigned long long)arg1;

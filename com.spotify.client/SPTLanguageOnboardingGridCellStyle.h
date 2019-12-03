@@ -8,7 +8,7 @@
 
 #import "GLUEStyle-Protocol.h"
 
-@class GLUEGradientStyle, GLUEImageStyle, GLUELabelStyle, NSString, UIColor, UIImage;
+@class GLUEGradientStyle, GLUEImageStyle, GLUELabelStyle, NSString, SPTLanguageOnboardingCellBadgeStyle, UIColor;
 
 @interface SPTLanguageOnboardingGridCellStyle : NSObject <GLUEStyle>
 {
@@ -23,11 +23,11 @@
     double _languageNameLabelTrailingMargin;
     double _badgeImageViewTopMargin;
     double _badgeImageViewTrailingMargin;
-    UIImage *_badgeImageViewImage;
+    SPTLanguageOnboardingCellBadgeStyle *_badgeStyle;
     struct CGSize _badgeImageViewSize;
 }
 
-@property(retain, nonatomic) UIImage *badgeImageViewImage; // @synthesize badgeImageViewImage=_badgeImageViewImage;
+@property(copy, nonatomic) SPTLanguageOnboardingCellBadgeStyle *badgeStyle; // @synthesize badgeStyle=_badgeStyle;
 @property(nonatomic) struct CGSize badgeImageViewSize; // @synthesize badgeImageViewSize=_badgeImageViewSize;
 @property(nonatomic) double badgeImageViewTrailingMargin; // @synthesize badgeImageViewTrailingMargin=_badgeImageViewTrailingMargin;
 @property(nonatomic) double badgeImageViewTopMargin; // @synthesize badgeImageViewTopMargin=_badgeImageViewTopMargin;

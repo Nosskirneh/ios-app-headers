@@ -14,13 +14,16 @@
 {
     SPTStorylinesAttributionView *_attributionView;
     GLUEButton *_followButton;
+    GLUEButton *_viewArtistButton;
 }
 
+@property(readonly, nonatomic) GLUEButton *viewArtistButton; // @synthesize viewArtistButton=_viewArtistButton;
 @property(readonly, nonatomic) GLUEButton *followButton; // @synthesize followButton=_followButton;
 @property(readonly, nonatomic) SPTStorylinesAttributionView *attributionView; // @synthesize attributionView=_attributionView;
 - (void).cxx_destruct;
 - (void)glue_applyStyle:(id)arg1;
 - (void)setupConstraints;
+- (void)setupViewArtistButton;
 - (void)setupFollowButton;
 - (void)setupAttributionView;
 - (id)initWithFrame:(struct CGRect)arg1;

@@ -6,13 +6,12 @@
 
 #import "NSObject-Protocol.h"
 
-@class SPTConcertsEntityState, SPTConcertsEntityViewModel;
+@class SPTConcertsEntityViewModel;
 
 @protocol SPTConcertsEntityViewModelObserver <NSObject>
 
 @optional
-- (void)entityViewModel:(SPTConcertsEntityViewModel *)arg1 didTransitionToState:(SPTConcertsEntityState *)arg2 fromState:(SPTConcertsEntityState *)arg3;
-- (void)entityViewModel:(SPTConcertsEntityViewModel *)arg1 willTransitionToState:(SPTConcertsEntityState *)arg2;
+- (void)entityViewModel:(SPTConcertsEntityViewModel *)arg1 didTransitionToState:(long long)arg2 fromState:(long long)arg3;
 - (void)entityViewModel:(SPTConcertsEntityViewModel *)arg1 showViewState:(long long)arg2;
 - (void)entityViewModel:(SPTConcertsEntityViewModel *)arg1 showLoadingIndicator:(_Bool)arg2;
 - (void)updateForEntityViewModel:(SPTConcertsEntityViewModel *)arg1;

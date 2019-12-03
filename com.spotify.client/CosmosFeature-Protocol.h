@@ -6,11 +6,9 @@
 
 #import "NSObject-Protocol.h"
 
-@class NSString, SPTRouterParameters;
 @protocol SPTResolver;
 
 @protocol CosmosFeature <NSObject>
-- (id <SPTResolver>)provideResolverWithParameters:(SPTRouterParameters *)arg1;
-- (id <SPTResolver>)provideResolverWithViewName:(NSString *)arg1 viewSession:(NSString *)arg2 viewVersion:(NSString *)arg3;
+- (id <SPTResolver>)provideResolver;
 @end
 

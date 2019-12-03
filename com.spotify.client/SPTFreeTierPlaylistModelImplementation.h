@@ -67,7 +67,10 @@
 - (void)explicitContentEnabledStateDidChange:(_Bool)arg1;
 - (void)productState:(id)arg1 stateDidChange:(id)arg2;
 - (void)handleError:(id)arg1 withContext:(id)arg2;
-- (void)playWithWithPlayOrigin:(id)arg1 playOptions:(id)arg2 platformPlayOptions:(id)arg3;
+- (void)fetchPlayContextWithCompletion:(CDUnknownBlockType)arg1;
+- (void)playWithWithPlayOptions:(id)arg1 platformPlayOptions:(id)arg2;
+- (id)playOptionsForShufflePlay:(_Bool)arg1 skipToTrack:(id)arg2;
+- (id)playlistPlatformPlayOptionsForShufflePlay:(_Bool)arg1 playOrigin:(id)arg2;
 - (void)addTrackURL:(id)arg1 completion:(CDUnknownBlockType)arg2;
 - (void)updateDescription:(id)arg1 completion:(CDUnknownBlockType)arg2;
 - (void)renamePlaylistToName:(id)arg1 completion:(CDUnknownBlockType)arg2;

@@ -10,12 +10,11 @@
 #import "SPTShareHandler-Protocol.h"
 
 @class NSString, SPTShareData, SPTShareLogger, SPTStatusBarToken;
-@protocol SPTShareDeeplinkHandler, SPTShareTestManager;
+@protocol SPTShareDeeplinkHandler;
 
 @interface SPTShareMessagesShareHandler : NSObject <MFMessageComposeViewControllerDelegate, SPTShareHandler>
 {
     SPTShareLogger *_shareLogger;
-    id <SPTShareTestManager> _testManager;
     id <SPTShareDeeplinkHandler> _deeplinkHandler;
     SPTShareData *_shareData;
     CDUnknownBlockType _completionBlock;
@@ -26,13 +25,13 @@
 @property(copy, nonatomic) CDUnknownBlockType completionBlock; // @synthesize completionBlock=_completionBlock;
 @property(retain, nonatomic) SPTShareData *shareData; // @synthesize shareData=_shareData;
 @property(retain, nonatomic) id <SPTShareDeeplinkHandler> deeplinkHandler; // @synthesize deeplinkHandler=_deeplinkHandler;
-@property(retain, nonatomic) id <SPTShareTestManager> testManager; // @synthesize testManager=_testManager;
 @property(retain, nonatomic) SPTShareLogger *shareLogger; // @synthesize shareLogger=_shareLogger;
 - (void).cxx_destruct;
 - (void)messageComposeViewController:(id)arg1 didFinishWithResult:(long long)arg2;
+- (id)generateShareTextBodyFromShareData:(id)arg1;
 - (void)shareWithData:(id)arg1 shareDestination:(id)arg2 sharePresenter:(id)arg3 completion:(CDUnknownBlockType)arg4;
 - (id)createAlertModel;
-- (id)initWithShareLogger:(id)arg1 testManager:(id)arg2 deeplinkHandler:(id)arg3;
+- (id)initWithShareLogger:(id)arg1 deeplinkHandler:(id)arg2;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

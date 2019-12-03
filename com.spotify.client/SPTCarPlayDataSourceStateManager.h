@@ -7,30 +7,25 @@
 #import <objc/NSObject.h>
 
 #import "SPTNetworkConnectivityControllerObserver-Protocol.h"
-#import "SPTOfflineModeStateObserver-Protocol.h"
 
 @class NSString, SPTCarPlayLoggedInDataSource, SPTCarPlayTestManager, SPTNetworkConnectivityController;
-@protocol SPTCarPlayDataSource, SPTExternalIntegrationDebugLog, SPTMediaPlayerContentBridge, SPTOfflineModeState;
+@protocol SPTCarPlayDataSource, SPTExternalIntegrationDebugLog, SPTMediaPlayerContentBridge;
 
-@interface SPTCarPlayDataSourceStateManager : NSObject <SPTOfflineModeStateObserver, SPTNetworkConnectivityControllerObserver>
+@interface SPTCarPlayDataSourceStateManager : NSObject <SPTNetworkConnectivityControllerObserver>
 {
     _Bool _availableForLoggedInDataSources;
     id <SPTExternalIntegrationDebugLog> _debugLog;
     SPTCarPlayTestManager *_testManager;
-    id <SPTOfflineModeState> _offlineModeState;
     id <SPTMediaPlayerContentBridge> _mediaPlayerBridge;
     SPTNetworkConnectivityController *_networkConnectivityController;
     SPTCarPlayLoggedInDataSource *_loggedInDefaultDataSource;
-    SPTCarPlayLoggedInDataSource *_loggedInOfflineDataSource;
     id <SPTCarPlayDataSource> _restrictedDataSource;
 }
 
 @property(retain, nonatomic) id <SPTCarPlayDataSource> restrictedDataSource; // @synthesize restrictedDataSource=_restrictedDataSource;
-@property(retain, nonatomic) SPTCarPlayLoggedInDataSource *loggedInOfflineDataSource; // @synthesize loggedInOfflineDataSource=_loggedInOfflineDataSource;
 @property(retain, nonatomic) SPTCarPlayLoggedInDataSource *loggedInDefaultDataSource; // @synthesize loggedInDefaultDataSource=_loggedInDefaultDataSource;
 @property(retain, nonatomic) SPTNetworkConnectivityController *networkConnectivityController; // @synthesize networkConnectivityController=_networkConnectivityController;
 @property(retain, nonatomic) id <SPTMediaPlayerContentBridge> mediaPlayerBridge; // @synthesize mediaPlayerBridge=_mediaPlayerBridge;
-@property(retain, nonatomic) id <SPTOfflineModeState> offlineModeState; // @synthesize offlineModeState=_offlineModeState;
 @property(nonatomic) __weak SPTCarPlayTestManager *testManager; // @synthesize testManager=_testManager;
 @property(readonly, nonatomic) __weak id <SPTExternalIntegrationDebugLog> debugLog; // @synthesize debugLog=_debugLog;
 @property(nonatomic, getter=isAvailableForLoggedInDataSources) _Bool availableForLoggedInDataSources; // @synthesize availableForLoggedInDataSources=_availableForLoggedInDataSources;
@@ -39,13 +34,13 @@
 - (id)debugStringForReason:(unsigned long long)arg1;
 - (void)applyDataSource:(id)arg1;
 - (void)applyLoggedInDataSource:(id)arg1;
-- (void)updateLoggedInDataSource;
+- (_Bool)offlineOnly;
+- (void)networkConnectivityController:(id)arg1 didChangeForcedOffline:(_Bool)arg2;
 - (void)networkConnectivityController:(id)arg1 didChangeConnectionType:(long long)arg2 oldConnectionType:(long long)arg3;
-- (void)offlineModeState:(id)arg1 updated:(_Bool)arg2;
 - (void)carplaySessionDidDisconnect;
 - (void)applyRestricedDataSourceForReason:(unsigned long long)arg1;
 - (void)setDataSourceAccessory:(id)arg1;
-- (void)setupLoggedInDataSourcesWithTestManager:(id)arg1 externalIntegrationPlatform:(id)arg2 imageLoaderFactor:(id)arg3 connectManager:(id)arg4 offlineModeState:(id)arg5 networkConnectivityController:(id)arg6;
+- (void)setupLoggedInDataSourcesWithTestManager:(id)arg1 externalIntegrationPlatform:(id)arg2 imageLoaderFactor:(id)arg3 connectManager:(id)arg4 networkConnectivityController:(id)arg5;
 - (void)tearDownForRestricedDataSource;
 - (void)dealloc;
 - (id)initWithMediaPlayerBridge:(id)arg1 debugLog:(id)arg2;

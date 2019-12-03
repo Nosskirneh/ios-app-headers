@@ -33,6 +33,7 @@
 - (void)connectManager:(id)arg1 availableDevicesDidChange:(id)arg2;
 - (void)removeObserver:(id)arg1;
 - (void)addObserver:(id)arg1;
+- (void)discoverDevices;
 - (void)renameDevice:(id)arg1 name:(id)arg2 responseBlock:(CDUnknownBlockType)arg3;
 - (void)deactivateActiveDeviceWithResponseBlock:(CDUnknownBlockType)arg1;
 - (void)activateDevice:(id)arg1 responseBlock:(CDUnknownBlockType)arg2;

@@ -5,9 +5,10 @@
 //
 
 #import "SPTPlaylistPlatformFieldFolderChildrenCount-Protocol.h"
+#import "SPTPlaylistPlatformFieldGroupLabel-Protocol.h"
 #import "SPTPlaylistPlatformFieldName-Protocol.h"
 #import "SPTPlaylistPlatformFieldURL-Protocol.h"
 
-@protocol SPTPlaylistPlatformFolderMetadataFields <SPTPlaylistPlatformFieldName, SPTPlaylistPlatformFieldURL, SPTPlaylistPlatformFieldFolderChildrenCount>
+@protocol SPTPlaylistPlatformFolderMetadataFields <SPTPlaylistPlatformFieldName, SPTPlaylistPlatformFieldURL, SPTPlaylistPlatformFieldFolderChildrenCount, SPTPlaylistPlatformFieldGroupLabel>
 @end
 

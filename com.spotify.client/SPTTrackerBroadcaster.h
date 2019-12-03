@@ -6,7 +6,6 @@
 
 #import <objc/NSObject.h>
 
-#import "AdjustDelegate-Protocol.h"
 #import "SPSessionObserver-Protocol.h"
 #import "SPTOfflineModeStateObserver-Protocol.h"
 #import "SPTThirdPartyTrackerBroadcaster-Protocol.h"
@@ -14,7 +13,7 @@
 @class NSMutableSet, NSString, SPCore, SPSession;
 @protocol SPTOfflineModeState;
 
-@interface SPTTrackerBroadcaster : NSObject <SPSessionObserver, AdjustDelegate, SPTOfflineModeStateObserver, SPTThirdPartyTrackerBroadcaster>
+@interface SPTTrackerBroadcaster : NSObject <SPSessionObserver, SPTOfflineModeStateObserver, SPTThirdPartyTrackerBroadcaster>
 {
     _Bool _enableUserTracker;
     _Bool _userLogin;
@@ -30,7 +29,7 @@
 @property(nonatomic) __weak SPCore *core; // @synthesize core=_core;
 @property(nonatomic) __weak SPSession *session; // @synthesize session=_session;
 @property(nonatomic) __weak id <SPTOfflineModeState> offlineModeState; // @synthesize offlineModeState=_offlineModeState;
-@property(retain) NSMutableSet *trackers; // @synthesize trackers=_trackers;
+@property(retain, nonatomic) NSMutableSet *trackers; // @synthesize trackers=_trackers;
 @property(nonatomic, getter=didUserLogin) _Bool userLogin; // @synthesize userLogin=_userLogin;
 @property(readonly, nonatomic) NSString *trackerUserID; // @synthesize trackerUserID;
 @property(readonly, nonatomic, getter=shouldEnableUserTracker) _Bool enableUserTracker; // @synthesize enableUserTracker=_enableUserTracker;
@@ -49,7 +48,6 @@
 - (void)didFailToRegisterForRemoteNotificationsWithError:(id)arg1;
 - (void)handleIncomingRemoteNotification:(id)arg1;
 - (void)coreSessionChanged:(id)arg1;
-- (void)userDidRegister;
 - (void)trackAppDidLaunch;
 - (void)removeTracker:(id)arg1;
 - (void)addTracker:(id)arg1;

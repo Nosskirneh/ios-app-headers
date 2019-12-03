@@ -10,7 +10,7 @@
 #import "SPTDrivingModePivotViewFactory-Protocol.h"
 
 @class NSString, SPTDrivingModeLogger, SPTDrivingModeSession;
-@protocol SPTGLUEService, SPTNowPlayingService, SPTPlayer, SPTUIPresentationService;
+@protocol SPTDrivingModeRemoteConfiguration, SPTGLUEService, SPTNowPlayingService, SPTPlayer, SPTUIPresentationService;
 
 @interface SPTDrivingModeSessionScopeFactory : NSObject <SPTDrivingModePivotViewFactory, SPTDrivingModeContextMenuFactory>
 {
@@ -20,8 +20,10 @@
     id <SPTGLUEService> _glueService;
     SPTDrivingModeSession *_session;
     SPTDrivingModeLogger *_logger;
+    id <SPTDrivingModeRemoteConfiguration> _remoteConfiguration;
 }
 
+@property(readonly, nonatomic) id <SPTDrivingModeRemoteConfiguration> remoteConfiguration; // @synthesize remoteConfiguration=_remoteConfiguration;
 @property(retain, nonatomic) SPTDrivingModeLogger *logger; // @synthesize logger=_logger;
 @property(retain, nonatomic) SPTDrivingModeSession *session; // @synthesize session=_session;
 @property(nonatomic) __weak id <SPTGLUEService> glueService; // @synthesize glueService=_glueService;
@@ -31,7 +33,7 @@
 - (void).cxx_destruct;
 - (id)createContextMenuViewController;
 - (id)createPivotViewViewController;
-- (id)initWithSession:(id)arg1 presentationService:(id)arg2 nowPlayingService:(id)arg3 player:(id)arg4 logger:(id)arg5 glueService:(id)arg6;
+- (id)initWithSession:(id)arg1 remoteConfiguration:(id)arg2 presentationService:(id)arg3 nowPlayingService:(id)arg4 player:(id)arg5 logger:(id)arg6 glueService:(id)arg7;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

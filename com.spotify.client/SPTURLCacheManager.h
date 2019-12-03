@@ -10,7 +10,8 @@
 {
 }
 
-- (void)setupURLCache;
++ (_Bool)isResponseFromCache:(id)arg1;
++ (void)setupURLCache;
 
 @end
 

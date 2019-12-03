@@ -21,6 +21,7 @@
 - (id)hitShuffleDisable;
 - (id)hitShuffleEnable;
 - (id)impression;
+- (id)_location;
 - (id)initWithComponents:(id)arg1;
 
 // Remaining properties

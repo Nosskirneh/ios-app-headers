@@ -25,9 +25,9 @@
 - (void)viewDidLoad;
 - (id)initWithObjectRepresentation:(id)arg1;
 - (id)initWithCoder:(id)arg1;
-@property(nonatomic, copy) NSURL *pageURI; // @synthesize pageURI;
+@property(nonatomic, copy) NSURL *pageURI;
 - (id)spt_pageURI;
-@property(nonatomic, copy) NSString *pageIdentifier; // @synthesize pageIdentifier;
+@property(nonatomic, copy) NSString *pageIdentifier;
 - (id)spt_pageIdentifier;
 
 @end

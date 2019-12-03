@@ -21,10 +21,8 @@
     NSLayoutConstraint *_titleLabelLeftConstraint;
     NSLayoutConstraint *_titleLabelRightConstraint;
     NSLayoutConstraint *_searchBarContainerViewHeightConstraint;
-    NSLayoutConstraint *_searchBarContainerViewBottomConstraint;
 }
 
-@property(nonatomic) __weak NSLayoutConstraint *searchBarContainerViewBottomConstraint; // @synthesize searchBarContainerViewBottomConstraint=_searchBarContainerViewBottomConstraint;
 @property(nonatomic) __weak NSLayoutConstraint *searchBarContainerViewHeightConstraint; // @synthesize searchBarContainerViewHeightConstraint=_searchBarContainerViewHeightConstraint;
 @property(nonatomic) __weak NSLayoutConstraint *titleLabelRightConstraint; // @synthesize titleLabelRightConstraint=_titleLabelRightConstraint;
 @property(nonatomic) __weak NSLayoutConstraint *titleLabelLeftConstraint; // @synthesize titleLabelLeftConstraint=_titleLabelLeftConstraint;

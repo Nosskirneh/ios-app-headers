@@ -9,7 +9,7 @@
 #import "VISREFHubHeaderController-Protocol.h"
 
 @class NSString, VISREFArtworkContentView, VISREFCustomBackButton, VISREFGradientBackgroundView, VISREFHeaderView, VISREFPlayButtonForegroundView;
-@protocol GLUETheme, HUBComponentEventHandler, HUBComponentModel, SPTFreeTierEntityContextMenuButtonViewModel, SPTFreeTierEntityFeedbackButtonViewModel, VISREFPlayButtonTestManager;
+@protocol GLUETheme, HUBComponentEventHandler, HUBComponentModel, SPTFreeTierEntityContextMenuButtonViewModel, SPTFreeTierEntityFeedbackButtonViewModel, SPTFreeTierEntityOfflineViewModel, VISREFPlayButtonTestManager;
 
 @interface SPTVISREFAlbumHeaderController : VISREFBaseHeaderController <VISREFHubHeaderController>
 {
@@ -25,11 +25,13 @@
     CDUnknownBlockType _backButtonTappedBlock;
     id <SPTFreeTierEntityFeedbackButtonViewModel> _followButtonModel;
     id <SPTFreeTierEntityContextMenuButtonViewModel> _contextMenuButtonModel;
+    id <SPTFreeTierEntityOfflineViewModel> _offlineButtonModel;
     id <VISREFPlayButtonTestManager> _playButtonTestManager;
 }
 
 + (struct CGSize)preferredHeaderSizeForContainerViewSize:(struct CGSize)arg1;
 @property(retain, nonatomic) id <VISREFPlayButtonTestManager> playButtonTestManager; // @synthesize playButtonTestManager=_playButtonTestManager;
+@property(retain, nonatomic) id <SPTFreeTierEntityOfflineViewModel> offlineButtonModel; // @synthesize offlineButtonModel=_offlineButtonModel;
 @property(retain, nonatomic) id <SPTFreeTierEntityContextMenuButtonViewModel> contextMenuButtonModel; // @synthesize contextMenuButtonModel=_contextMenuButtonModel;
 @property(retain, nonatomic) id <SPTFreeTierEntityFeedbackButtonViewModel> followButtonModel; // @synthesize followButtonModel=_followButtonModel;
 @property(copy, nonatomic) CDUnknownBlockType backButtonTappedBlock; // @synthesize backButtonTappedBlock=_backButtonTappedBlock;

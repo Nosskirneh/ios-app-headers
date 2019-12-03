@@ -20,8 +20,12 @@
     double _inputFormTopMargin;
     double _horizontalMargin;
     double _nextButtonTopMargin;
+    double _mainContainerWidth;
+    double _mainContainerIPadWidth;
 }
 
+@property(nonatomic) double mainContainerIPadWidth; // @synthesize mainContainerIPadWidth=_mainContainerIPadWidth;
+@property(nonatomic) double mainContainerWidth; // @synthesize mainContainerWidth=_mainContainerWidth;
 @property(nonatomic) double nextButtonTopMargin; // @synthesize nextButtonTopMargin=_nextButtonTopMargin;
 @property(nonatomic) double horizontalMargin; // @synthesize horizontalMargin=_horizontalMargin;
 @property(nonatomic) double inputFormTopMargin; // @synthesize inputFormTopMargin=_inputFormTopMargin;

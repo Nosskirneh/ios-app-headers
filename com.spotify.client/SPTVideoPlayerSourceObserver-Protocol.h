@@ -10,6 +10,8 @@
 @protocol BMSeekableWindow, BMSubtitle;
 
 @protocol SPTVideoPlayerSourceObserver <NSObject>
+- (void)playerSource:(SPTVideoPlayerSource *)arg1 newAccessLogEntry:(AVPlayerItem *)arg2;
+- (void)playerSource:(SPTVideoPlayerSource *)arg1 newErrorLogEntry:(AVPlayerItem *)arg2;
 - (void)playerSource:(SPTVideoPlayerSource *)arg1 didUpdateSeekableWindow:(id <BMSeekableWindow>)arg2;
 - (void)playerSource:(SPTVideoPlayerSource *)arg1 playerItem:(AVPlayerItem *)arg2 failedToPlayToEndWithError:(NSError *)arg3;
 - (void)playerSource:(SPTVideoPlayerSource *)arg1 didChangeSubtitle:(id <BMSubtitle>)arg2;

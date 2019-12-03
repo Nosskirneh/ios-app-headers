@@ -15,9 +15,8 @@
 
 @property(readonly, nonatomic) id <SPTPlayer> player; // @synthesize player=_player;
 - (void).cxx_destruct;
-- (id)provideHabitsCommandHandler:(id)arg1;
-- (id)provideTasteOnboardingSkipCommandHandler:(id)arg1;
-- (id)provideQuickPlayCommandHandler;
+- (id)provideNavigateAndPlayCommandHandler:(id)arg1;
+- (id)provideTasteOnboardingSkipCommandHandlerWithOverrides:(id)arg1;
 - (id)provideReloadCommandHandlerWithViewModelProvider:(id)arg1;
 - (id)initWithPlayer:(id)arg1;
 

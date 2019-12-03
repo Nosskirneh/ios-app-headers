@@ -43,7 +43,7 @@
 - (_Bool)isIPad;
 - (id)provideGoToEpisodeActionForEpisode:(id)arg1 inViewController:(id)arg2;
 - (id)provideGoToShowActionForEpisode:(id)arg1 inViewController:(id)arg2;
-- (id)provideMarkAsPlayedUnplayedActionForEpisode:(id)arg1 contextMenuDelegate:(id)arg2 inViewController:(id)arg3;
+- (id)provideMarkAsPlayedUnplayedActionForEpisode:(id)arg1 contextMenuDelegate:(id)arg2;
 - (id)provideOfflineActionForEpisode:(id)arg1 contextMenuDelegate:(id)arg2 inViewController:(id)arg3;
 - (id)subtitleContextMenuActionForURI:(id)arg1 sourceURL:(id)arg2 options:(id)arg3;
 - (void)showContextMenuMetadataViewShowMore:(id)arg1;

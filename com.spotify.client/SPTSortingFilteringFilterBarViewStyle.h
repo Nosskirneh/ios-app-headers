@@ -9,7 +9,7 @@
 #import "SPTSortingFilteringFilterBarStyle-Protocol.h"
 
 @class NSString, UIColor;
-@protocol SPTSortingFilteringClearFiltersControlStyle, SPTSortingFilteringFilterBarSortButtonStyle, SPTSortingFilteringSearchFieldStyle;
+@protocol SPTSortingFilteringButtonsContainerStyle, SPTSortingFilteringFilterBarSortButtonStyle, SPTSortingFilteringSearchFieldStyle;
 
 @interface SPTSortingFilteringFilterBarViewStyle : NSObject <SPTSortingFilteringFilterBarStyle>
 {
@@ -20,10 +20,12 @@
     double topMargin;
     double spacing;
     id <SPTSortingFilteringSearchFieldStyle> searchFieldStyle;
-    id <SPTSortingFilteringClearFiltersControlStyle> clearFiltersControlStyle;
+    id <SPTSortingFilteringButtonsContainerStyle> clearFiltersControlStyle;
+    id <SPTSortingFilteringButtonsContainerStyle> filterButtonsContainerStyle;
 }
 
-@property(copy, nonatomic) id <SPTSortingFilteringClearFiltersControlStyle> clearFiltersControlStyle; // @synthesize clearFiltersControlStyle;
+@property(copy, nonatomic) id <SPTSortingFilteringButtonsContainerStyle> filterButtonsContainerStyle; // @synthesize filterButtonsContainerStyle;
+@property(copy, nonatomic) id <SPTSortingFilteringButtonsContainerStyle> clearFiltersControlStyle; // @synthesize clearFiltersControlStyle;
 @property(copy, nonatomic) id <SPTSortingFilteringSearchFieldStyle> searchFieldStyle; // @synthesize searchFieldStyle;
 @property(nonatomic) double spacing; // @synthesize spacing;
 @property(nonatomic) double topMargin; // @synthesize topMargin;

@@ -59,7 +59,6 @@
 - (void)handleError:(id)arg1 withContext:(id)arg2;
 - (void)viewDidLoad;
 - (id)trackViewModelAtIndexPath:(id)arg1;
-@property(readonly, nonatomic, getter=isAddToPlaylistForAudioEpisodesEnabled) _Bool addToPlaylistForAudioEpisodesEnabled;
 @property(readonly, nonatomic) _Bool editAnnotationEnabled;
 @property(readonly, nonatomic) _Bool reorderEnabled;
 @property(readonly, nonatomic) unsigned long long countOfTracks;

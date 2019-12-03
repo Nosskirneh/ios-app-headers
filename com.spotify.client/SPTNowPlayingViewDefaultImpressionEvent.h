@@ -13,7 +13,6 @@
 @interface SPTNowPlayingViewDefaultImpressionEvent : NSObject <SPTImpressionEvent>
 {
     NSString *_applicationId;
-    NSString *_specificationId;
     NSArray *_components;
     NSArray *_errors;
     NSString *_specificationCommitHash;
@@ -24,7 +23,6 @@
 @property(copy, nonatomic) NSString *specificationCommitHash; // @synthesize specificationCommitHash=_specificationCommitHash;
 @property(copy, nonatomic) NSArray *errors; // @synthesize errors=_errors;
 @property(copy, nonatomic) NSArray *components; // @synthesize components=_components;
-@property(copy, nonatomic) NSString *specificationId; // @synthesize specificationId=_specificationId;
 @property(copy, nonatomic) NSString *applicationId; // @synthesize applicationId=_applicationId;
 - (void).cxx_destruct;
 - (id)initWithComponents:(id)arg1 errors:(id)arg2;

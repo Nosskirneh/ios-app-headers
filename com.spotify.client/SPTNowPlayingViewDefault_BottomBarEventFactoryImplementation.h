@@ -21,6 +21,7 @@
 - (id)impression;
 - (id)showQueueButtonFactory;
 - (id)availableDevicesButtonFactory;
+- (id)_location;
 - (id)initWithComponents:(id)arg1;
 
 // Remaining properties

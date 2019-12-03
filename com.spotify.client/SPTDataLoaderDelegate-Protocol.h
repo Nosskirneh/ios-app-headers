@@ -13,6 +13,7 @@
 - (void)dataLoader:(SPTDataLoader *)arg1 didReceiveSuccessfulResponse:(SPTDataLoaderResponse *)arg2;
 
 @optional
+- (void)dataLoader:(SPTDataLoader *)arg1 requestIsWaitingForConnectivity:(SPTDataLoaderRequest *)arg2;
 - (void)dataLoader:(SPTDataLoader *)arg1 needsNewBodyStream:(void (^)(NSInputStream *))arg2 forRequest:(SPTDataLoaderRequest *)arg3;
 - (void)dataLoader:(SPTDataLoader *)arg1 didReceiveInitialResponse:(SPTDataLoaderResponse *)arg2;
 - (void)dataLoader:(SPTDataLoader *)arg1 didReceiveDataChunk:(NSData *)arg2 forResponse:(SPTDataLoaderResponse *)arg3;

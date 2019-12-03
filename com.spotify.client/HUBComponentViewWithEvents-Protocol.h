@@ -7,6 +7,6 @@
 @protocol HUBComponentEventHandler;
 
 @protocol HUBComponentViewWithEvents
-@property(retain, nonatomic) id <HUBComponentEventHandler> eventHandler;
+@property(nonatomic, retain) id <HUBComponentEventHandler> eventHandler;
 @end
 

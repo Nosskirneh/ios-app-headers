@@ -9,7 +9,14 @@
 @interface NSDate (BMWAppKit)
 + (id)dateWithDateGaugeValue:(long long)arg1;
 + (id)dateWithTimeGaugeValue:(long long)arg1;
++ (id)idzk_dateWithDosDate:(unsigned long long)arg1;
++ (id)spt_expiryDateFromHTTPResponseHeaders:(id)arg1;
++ (id)spt_dateFromHTTPDateTimeString:(id)arg1;
 - (long long)dateGaugeValue;
 - (long long)timeGaugeValue;
+- (unsigned int)idzk_dosDate;
+- (id)spt_timeAgoSinceNow;
+- (_Bool)spt_account_isMoreThan4DaysAgo;
+- (_Bool)spt_account_isMoreThan24HoursAgo;
 @end
 

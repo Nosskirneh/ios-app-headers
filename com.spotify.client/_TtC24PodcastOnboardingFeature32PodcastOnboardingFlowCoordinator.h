@@ -6,9 +6,11 @@
 
 #import <objc/NSObject.h>
 
+#import "SPTOnboardingFlowCoordinator-Protocol.h"
+
 @protocol SPTOnboardingServiceFlowStateReporter;
 
-@interface _TtC24PodcastOnboardingFeature32PodcastOnboardingFlowCoordinator : NSObject
+@interface _TtC24PodcastOnboardingFeature32PodcastOnboardingFlowCoordinator : NSObject <SPTOnboardingFlowCoordinator>
 {
     // Error parsing type: , name: delegate
     // Error parsing type: , name: modalPresentationController
@@ -24,6 +26,7 @@
     // Error parsing type: , name: viewLoggerFactory
     // Error parsing type: , name: imageLoader
     // Error parsing type: , name: isEnabledInFirstTimeFlow
+    // Error parsing type: , name: $__lazy_storage_$_logConfiguration
 }
 
 - (void).cxx_destruct;

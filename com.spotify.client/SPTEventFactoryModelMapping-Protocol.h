@@ -6,11 +6,11 @@
 
 #import "NSObject-Protocol.h"
 
-@class NSArray, NSString;
+@class NSArray, NSString, NSURL;
 
 @protocol SPTEventFactoryModelMapping <NSObject>
-- (NSArray *)eventComponents;
-- (NSString *)interactionType;
+- (NSArray *)eventComponentsWithPageURI:(NSURL *)arg1 pageId:(NSString *)arg2;
+- (NSString *)generatorCommitHash;
 - (NSString *)specificationCommitHash;
 - (NSString *)specificationId;
 - (NSString *)applicationId;

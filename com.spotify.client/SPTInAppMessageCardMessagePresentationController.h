@@ -6,15 +6,16 @@
 
 #import <objc/NSObject.h>
 
+#import "SPTAuthControllerObserver-Protocol.h"
 #import "SPTInAppMessageCardMessageWebViewContentDelegate-Protocol.h"
 #import "SPTOfflineModeStateObserver-Protocol.h"
 #import "SPTSlateDataSource-Protocol.h"
 #import "SPTSlateDelegate-Protocol.h"
 
-@class NSDictionary, NSString, SPTInAppMessageCardMessageViewModel, SPTInAppMessageServiceLogger;
-@protocol SPTCrashReporter, SPTExternalIntegrationDriverDistractionController, SPTOfflineModeState, SPTSlate, SPTSlateBuilderProvider, SPTSlateManager;
+@class NSDictionary, NSString, SPTInAppMessageCardMessageViewController, SPTInAppMessageCardMessageViewModel, SPTInAppMessageServiceLogger;
+@protocol SPTAuthController, SPTCrashReporter, SPTExternalIntegrationDriverDistractionController, SPTOfflineModeState, SPTSlate, SPTSlateBuilderProvider, SPTSlateManager;
 
-@interface SPTInAppMessageCardMessagePresentationController : NSObject <SPTSlateDelegate, SPTSlateDataSource, SPTInAppMessageCardMessageWebViewContentDelegate, SPTOfflineModeStateObserver>
+@interface SPTInAppMessageCardMessagePresentationController : NSObject <SPTSlateDelegate, SPTSlateDataSource, SPTInAppMessageCardMessageWebViewContentDelegate, SPTOfflineModeStateObserver, SPTAuthControllerObserver>
 {
     _Bool _presentingCard;
     _Bool _offline;
@@ -27,8 +28,12 @@
     SPTInAppMessageServiceLogger *_serviceLogger;
     NSDictionary *_cancelationInfo;
     id <SPTCrashReporter> _crashReporter;
+    id <SPTAuthController> _authController;
+    SPTInAppMessageCardMessageViewController *_contentUnit;
 }
 
+@property(retain, nonatomic) SPTInAppMessageCardMessageViewController *contentUnit; // @synthesize contentUnit=_contentUnit;
+@property(readonly, nonatomic) id <SPTAuthController> authController; // @synthesize authController=_authController;
 @property(readonly, nonatomic) id <SPTCrashReporter> crashReporter; // @synthesize crashReporter=_crashReporter;
 @property(copy, nonatomic) NSDictionary *cancelationInfo; // @synthesize cancelationInfo=_cancelationInfo;
 @property(nonatomic, getter=isOffline) _Bool offline; // @synthesize offline=_offline;
@@ -41,6 +46,7 @@
 @property(retain, nonatomic) SPTInAppMessageCardMessageViewModel *viewModel; // @synthesize viewModel=_viewModel;
 @property(nonatomic, getter=isPresentingCard) _Bool presentingCard; // @synthesize presentingCard=_presentingCard;
 - (void).cxx_destruct;
+- (void)authDidStart;
 - (id)messageFormat;
 - (void)dismissCardMessageIfAdPlaying;
 - (_Bool)canPresentSlate;
@@ -60,7 +66,7 @@
 - (_Bool)isIpad;
 - (void)offlineModeState:(id)arg1 updated:(_Bool)arg2;
 - (void)dealloc;
-- (id)initWithViewModel:(id)arg1 slateManager:(id)arg2 slateBuilderProvider:(id)arg3 offlineModeState:(id)arg4 driverDistractionController:(id)arg5 serviceLogger:(id)arg6 crashReporter:(id)arg7;
+- (id)initWithViewModel:(id)arg1 slateManager:(id)arg2 slateBuilderProvider:(id)arg3 offlineModeState:(id)arg4 driverDistractionController:(id)arg5 serviceLogger:(id)arg6 crashReporter:(id)arg7 authController:(id)arg8;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

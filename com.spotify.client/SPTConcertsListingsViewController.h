@@ -16,8 +16,8 @@
 #import "UITableViewDataSource-Protocol.h"
 #import "UITableViewDelegate-Protocol.h"
 
-@class NSArray, NSString, NSURL, SPTConcertsListingLogger, SPTConcertsListingsHeaderContentViewController, SPTConcertsListingsViewModel, SPTConcertsLocationSearchViewController, SPTEntityHeaderViewController, SPTInfoView, SPTProgressView, SPTTableView, UILabel, UIView;
-@protocol GLUEImageLoader, GLUETheme, SPTNavigationRouter, SPTPageContainer, SPTViewLogger;
+@class NSArray, NSString, NSURL, SPTConcertsFeatureProperties, SPTConcertsListingLogger, SPTConcertsListingsHeaderContentViewController, SPTConcertsListingsViewModel, SPTConcertsLocationSearchViewController, SPTEntityHeaderViewController, SPTInfoView, SPTProgressView, SPTTableView, UILabel, UIView;
+@protocol GLUEImageLoader, GLUETheme, SPTNavigationRouter, SPTPageContainer, SPTRemoteConfigurationResolver, SPTViewLogger;
 
 @interface SPTConcertsListingsViewController : UIViewController <SPTConcertsListingsViewModelDelegate, UITableViewDataSource, UITableViewDelegate, SPTConcertsListingsHeaderContentViewControllerDelegate, SPTConcertsLocationSearchViewControllerDelegate, SPContentInsetViewController, SPTNavigationControllerNavigationBarState, SPObjectRepresentation, SPTPageController>
 {
@@ -31,6 +31,8 @@
     SPTConcertsListingLogger *_concertsListingLogger;
     SPTConcertsListingsHeaderContentViewController *_headerContentViewController;
     SPTEntityHeaderViewController *_headerViewController;
+    SPTConcertsFeatureProperties *_featureProperties;
+    id <SPTRemoteConfigurationResolver> _remoteConfigurationResolver;
     NSArray *_currentLayoutConstraints;
     SPTTableView *_tableView;
     SPTInfoView *_infoView;
@@ -50,6 +52,8 @@
 @property(retain, nonatomic) SPTTableView *tableView; // @synthesize tableView=_tableView;
 @property(retain, nonatomic) NSArray *currentLayoutConstraints; // @synthesize currentLayoutConstraints=_currentLayoutConstraints;
 @property(nonatomic) _Bool changedLocationBeforeLeavingView; // @synthesize changedLocationBeforeLeavingView=_changedLocationBeforeLeavingView;
+@property(readonly, nonatomic) __weak id <SPTRemoteConfigurationResolver> remoteConfigurationResolver; // @synthesize remoteConfigurationResolver=_remoteConfigurationResolver;
+@property(retain, nonatomic) SPTConcertsFeatureProperties *featureProperties; // @synthesize featureProperties=_featureProperties;
 @property(retain, nonatomic) SPTEntityHeaderViewController *headerViewController; // @synthesize headerViewController=_headerViewController;
 @property(retain, nonatomic) SPTConcertsListingsHeaderContentViewController *headerContentViewController; // @synthesize headerContentViewController=_headerContentViewController;
 @property(retain, nonatomic) SPTConcertsListingLogger *concertsListingLogger; // @synthesize concertsListingLogger=_concertsListingLogger;
@@ -99,7 +103,7 @@
 - (void)viewWillAppear:(_Bool)arg1;
 - (void)viewDidLoad;
 - (void)dealloc;
-- (id)initWithViewModel:(id)arg1 headerContentViewController:(id)arg2 glueImageLoader:(id)arg3 viewLogger:(id)arg4 concertsListingLogger:(id)arg5 navigationRouter:(id)arg6;
+- (id)initWithViewModel:(id)arg1 headerContentViewController:(id)arg2 glueImageLoader:(id)arg3 viewLogger:(id)arg4 concertsListingLogger:(id)arg5 navigationRouter:(id)arg6 remoteConfigurationResolver:(id)arg7;
 
 // Remaining properties
 @property(nonatomic) _Bool automaticallyAdjustsScrollViewInsets;

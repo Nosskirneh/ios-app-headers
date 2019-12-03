@@ -24,7 +24,7 @@
 - (void).cxx_destruct;
 - (id)reuseIdentifiers;
 - (id)cellProviderForRowAtIndexPath:(id)arg1;
-- (id)initWithCellConfigurator:(id)arg1 cellStateFactory:(id)arg2 player:(id)arg3 offlineManager:(id)arg4 itemsViewModel:(id)arg5 delegate:(id)arg6;
+- (id)initWithCellConfigurator:(id)arg1 cellStateFactory:(id)arg2 player:(id)arg3 offlineManager:(id)arg4 itemsViewModel:(id)arg5 linkDispatcher:(id)arg6 playlistURL:(id)arg7 delegate:(id)arg8 playModel:(id)arg9;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

@@ -17,6 +17,8 @@
 @interface SPTSearchPlatformEmptyStateContext : NSObject <SPTSearchRecentsDataSourceDelegate, SPTPlayerObserver, SPTSearch2ConnectivityMonitorObserver, SPTSearchPlatformContext>
 {
     _Bool _playRecentTracksEnabled;
+    _Bool _shouldRoundPodcastArtwork;
+    _Bool _newSectionHeadersEnabled;
     id <SPTSearchPlatformContextDelegate> _delegate;
     NSString *_query;
     unsigned long long _state;
@@ -35,6 +37,8 @@
 @property(copy, nonatomic) NSDate *recentsDatasetSetTimestamp; // @synthesize recentsDatasetSetTimestamp=_recentsDatasetSetTimestamp;
 @property(readonly, copy, nonatomic) NSURL *pageURI; // @synthesize pageURI=_pageURI;
 @property(readonly, copy, nonatomic) NSString *featureID; // @synthesize featureID=_featureID;
+@property(readonly, nonatomic, getter=isNewSectionHeadersEnabled) _Bool newSectionHeadersEnabled; // @synthesize newSectionHeadersEnabled=_newSectionHeadersEnabled;
+@property(readonly, nonatomic) _Bool shouldRoundPodcastArtwork; // @synthesize shouldRoundPodcastArtwork=_shouldRoundPodcastArtwork;
 @property(readonly, nonatomic, getter=isPlayRecentTracksEnabled) _Bool playRecentTracksEnabled; // @synthesize playRecentTracksEnabled=_playRecentTracksEnabled;
 @property(readonly, nonatomic) id <SPTSearch2ConnectivityMonitor> connectivityMonitor; // @synthesize connectivityMonitor=_connectivityMonitor;
 @property(readonly, copy, nonatomic) NSString *recentsCommandName; // @synthesize recentsCommandName=_recentsCommandName;
@@ -59,7 +63,7 @@
 - (void)reload;
 - (void)setState:(unsigned long long)arg1;
 - (void)setViewModel:(id)arg1;
-- (id)initWithViewModelBuilderFactory:(id)arg1 emptyStatePropertiesProvider:(id)arg2 recentsDataSource:(id)arg3 player:(id)arg4 recentsCommandName:(id)arg5 connectivityMonitor:(id)arg6 playRecentTracksEnabled:(_Bool)arg7 featureID:(id)arg8 pageURI:(id)arg9;
+- (id)initWithViewModelBuilderFactory:(id)arg1 emptyStatePropertiesProvider:(id)arg2 recentsDataSource:(id)arg3 player:(id)arg4 recentsCommandName:(id)arg5 connectivityMonitor:(id)arg6 playRecentTracksEnabled:(_Bool)arg7 shouldRoundPodcastArtwork:(_Bool)arg8 newSectionHeadersEnabled:(_Bool)arg9 featureID:(id)arg10 pageURI:(id)arg11;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

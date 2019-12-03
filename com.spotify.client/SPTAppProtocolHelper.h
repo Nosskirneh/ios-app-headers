@@ -10,8 +10,6 @@
 {
 }
 
-+ (id)messageArrayAsData:(id)arg1;
-+ (id)messageDataAsArray:(id)arg1;
 + (id)prependHeaderToData:(id)arg1;
 + (id)generateNonce;
 + (id)createChallengeWithSessionId:(id)arg1 withNonce:(id)arg2 andAuthId:(id)arg3;

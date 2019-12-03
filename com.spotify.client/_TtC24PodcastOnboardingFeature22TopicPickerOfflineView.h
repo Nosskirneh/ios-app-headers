@@ -8,7 +8,7 @@
 
 @interface _TtC24PodcastOnboardingFeature22TopicPickerOfflineView : UIView
 {
-    // Error parsing type: , name: stackView.storage
+    // Error parsing type: , name: $__lazy_storage_$_stackView
     // Error parsing type: , name: titleLabel
     // Error parsing type: , name: bodyLabel
     // Error parsing type: , name: theme

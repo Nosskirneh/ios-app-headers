@@ -38,7 +38,6 @@
 - (void)deleteSession:(id)arg1;
 - (void)joinSession:(id)arg1;
 - (void)getCurrentSession;
-- (void)createSession;
 - (void)getOrCreateSession;
 - (id)initWithDataLoader:(id)arg1 cosmosDictionaryDataLoader:(id)arg2 currentUserData:(id)arg3;
 

@@ -69,6 +69,7 @@
 - (void)themeSettingsChangedNotification;
 - (void)applyThemeLayout;
 - (_Bool)shouldAutorotate;
+- (void)scrollsToSectionIfNeeded;
 - (void)viewDidAppear:(_Bool)arg1;
 - (void)viewWillAppear:(_Bool)arg1;
 - (void)viewWillLayoutSubviews;

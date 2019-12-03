@@ -8,7 +8,7 @@
 
 #import "SPTAdsManager-Protocol.h"
 
-@class NSString, SPTAdFeatureFlagChecks, SPTAdFeaturedActionHandler, SPTAdNowPlayingFeedbackModel, SPTAdNowPlayingManager, SPTAdRulesManager, SPTAdVoicePermissions, SPTAdsInAppBrowserController, SPTAdsViewModel;
+@class NSString, SPTAdFeatureFlagChecks, SPTAdFeaturedActionHandler, SPTAdNowPlayingAuxiliaryActionsHandler, SPTAdNowPlayingManager, SPTAdRulesManager, SPTAdVoicePermissions, SPTAdsFeatureProperties, SPTAdsInAppBrowserController, SPTAdsViewModel;
 @protocol SPTAdNowPlayingRemoteControlPolicy, SPTAdsBaseCosmosBridge, SPTAdsBaseEntity, SPTAdsBaseGlobalSettingsController, SPTLinkDispatcher, SPTMetaViewController, SPTNowPlayingNavigationBarModel, SPTPlayer;
 
 @interface SPTAdsManagerImplementation : NSObject <SPTAdsManager>
@@ -26,14 +26,16 @@
     id <SPTPlayer> _player;
     id <SPTAdsBaseCosmosBridge> _cosmosBridge;
     id <SPTAdNowPlayingRemoteControlPolicy> _remoteControlPolicy;
-    SPTAdNowPlayingFeedbackModel *_feedbackModel;
+    SPTAdNowPlayingAuxiliaryActionsHandler *_actionsHandler;
     SPTAdsInAppBrowserController *_inAppBrowserController;
     SPTAdVoicePermissions *_voicePermission;
+    SPTAdsFeatureProperties *_featureProperties;
 }
 
+@property(retain, nonatomic) SPTAdsFeatureProperties *featureProperties; // @synthesize featureProperties=_featureProperties;
 @property(retain, nonatomic) SPTAdVoicePermissions *voicePermission; // @synthesize voicePermission=_voicePermission;
 @property(retain, nonatomic) SPTAdsInAppBrowserController *inAppBrowserController; // @synthesize inAppBrowserController=_inAppBrowserController;
-@property(retain, nonatomic) SPTAdNowPlayingFeedbackModel *feedbackModel; // @synthesize feedbackModel=_feedbackModel;
+@property(retain, nonatomic) SPTAdNowPlayingAuxiliaryActionsHandler *actionsHandler; // @synthesize actionsHandler=_actionsHandler;
 @property(retain, nonatomic) id <SPTAdNowPlayingRemoteControlPolicy> remoteControlPolicy; // @synthesize remoteControlPolicy=_remoteControlPolicy;
 @property(nonatomic) __weak id <SPTAdsBaseCosmosBridge> cosmosBridge; // @synthesize cosmosBridge=_cosmosBridge;
 @property(nonatomic) __weak id <SPTPlayer> player; // @synthesize player=_player;
@@ -74,7 +76,7 @@
 - (void)removeObservers;
 - (void)addObservers;
 - (void)dealloc;
-- (id)initWithViewModel:(id)arg1 metaViewController:(id)arg2 adNowPlayingManager:(id)arg3 adFeaturedActionHandler:(id)arg4 adRulesManager:(id)arg5 adFeatureChecker:(id)arg6 adSettingsController:(id)arg7 linkDispatcher:(id)arg8 adFeedbackModel:(id)arg9 player:(id)arg10 cosmosBridge:(id)arg11 inAppBrowserController:(id)arg12 voicePermission:(id)arg13;
+- (id)initWithViewModel:(id)arg1 metaViewController:(id)arg2 adNowPlayingManager:(id)arg3 adFeaturedActionHandler:(id)arg4 adRulesManager:(id)arg5 adFeatureChecker:(id)arg6 adSettingsController:(id)arg7 linkDispatcher:(id)arg8 actionsHandler:(id)arg9 player:(id)arg10 cosmosBridge:(id)arg11 inAppBrowserController:(id)arg12 voicePermission:(id)arg13 featureProperties:(id)arg14;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

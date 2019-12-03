@@ -11,39 +11,41 @@
 #import "NSURLSessionTaskDelegate-Protocol.h"
 #import "SPTDataLoaderRequestResponseHandlerDelegate-Protocol.h"
 
-@class NSFileManager, NSMapTable, NSMutableArray, NSOperationQueue, NSString, NSURLSession, SPTDataLoaderRateLimiter, SPTDataLoaderResolver, SPTDataLoaderServerTrustPolicy;
+@class NSFileManager, NSMapTable, NSMutableArray, NSOperationQueue, NSString, SPTDataLoaderRateLimiter, SPTDataLoaderResolver, SPTDataLoaderServerTrustPolicy;
+@protocol SPTDataLoaderServiceSessionSelector;
 
 @interface SPTDataLoaderService : NSObject <SPTDataLoaderRequestResponseHandlerDelegate, NSURLSessionDataDelegate, NSURLSessionTaskDelegate, NSURLSessionDownloadDelegate>
 {
     _Bool _allCertificatesAllowed;
     SPTDataLoaderRateLimiter *_rateLimiter;
     SPTDataLoaderResolver *_resolver;
-    NSURLSession *_session;
     NSOperationQueue *_sessionQueue;
     NSMutableArray *_handlers;
     NSMapTable *_consumptionObservers;
     SPTDataLoaderServerTrustPolicy *_serverTrustPolicy;
     NSFileManager *_fileManager;
     Class _dataClass;
+    id <SPTDataLoaderServiceSessionSelector> _sessionSelector;
 }
 
 + (id)dataLoaderServiceWithConfiguration:(id)arg1 rateLimiter:(id)arg2 resolver:(id)arg3 qualityOfService:(long long)arg4;
 + (id)dataLoaderServiceWithUserAgent:(id)arg1 rateLimiter:(id)arg2 resolver:(id)arg3 customURLProtocolClasses:(id)arg4 qualityOfService:(long long)arg5;
 + (id)dataLoaderServiceWithConfiguration:(id)arg1 rateLimiter:(id)arg2 resolver:(id)arg3;
 + (id)dataLoaderServiceWithUserAgent:(id)arg1 rateLimiter:(id)arg2 resolver:(id)arg3 customURLProtocolClasses:(id)arg4;
+@property(retain, nonatomic) id <SPTDataLoaderServiceSessionSelector> sessionSelector; // @synthesize sessionSelector=_sessionSelector;
 @property(nonatomic) __weak Class dataClass; // @synthesize dataClass=_dataClass;
 @property(nonatomic) __weak NSFileManager *fileManager; // @synthesize fileManager=_fileManager;
 @property(retain, nonatomic) SPTDataLoaderServerTrustPolicy *serverTrustPolicy; // @synthesize serverTrustPolicy=_serverTrustPolicy;
 @property(retain, nonatomic) NSMapTable *consumptionObservers; // @synthesize consumptionObservers=_consumptionObservers;
 @property(retain, nonatomic) NSMutableArray *handlers; // @synthesize handlers=_handlers;
 @property(retain, nonatomic) NSOperationQueue *sessionQueue; // @synthesize sessionQueue=_sessionQueue;
-@property(retain, nonatomic) NSURLSession *session; // @synthesize session=_session;
 @property(retain, nonatomic) SPTDataLoaderResolver *resolver; // @synthesize resolver=_resolver;
 @property(retain, nonatomic) SPTDataLoaderRateLimiter *rateLimiter; // @synthesize rateLimiter=_rateLimiter;
 @property(nonatomic, getter=areAllCertificatesAllowed) _Bool allCertificatesAllowed; // @synthesize allCertificatesAllowed=_allCertificatesAllowed;
 - (void).cxx_destruct;
 - (void)dealloc;
 - (void)URLSession:(id)arg1 downloadTask:(id)arg2 didFinishDownloadingToURL:(id)arg3;
+- (void)URLSession:(id)arg1 taskIsWaitingForConnectivity:(id)arg2;
 - (void)URLSession:(id)arg1 task:(id)arg2 needNewBodyStream:(CDUnknownBlockType)arg3;
 - (void)URLSession:(id)arg1 task:(id)arg2 willPerformHTTPRedirection:(id)arg3 newRequest:(id)arg4 completionHandler:(CDUnknownBlockType)arg5;
 - (void)URLSession:(id)arg1 task:(id)arg2 didCompleteWithError:(id)arg3;
@@ -56,6 +58,7 @@
 - (void)requestResponseHandler:(id)arg1 authorisedRequest:(id)arg2;
 - (void)requestResponseHandler:(id)arg1 cancelRequest:(id)arg2;
 - (void)requestResponseHandler:(id)arg1 performRequest:(id)arg2;
+- (void)invalidateAndCancel;
 - (void)cancelAllLoads;
 - (void)performRequest:(id)arg1 requestResponseHandler:(id)arg2;
 - (id)handlerForTask:(id)arg1;

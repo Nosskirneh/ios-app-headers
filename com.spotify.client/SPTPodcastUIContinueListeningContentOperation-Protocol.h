@@ -10,7 +10,6 @@
 @class NSString;
 
 @protocol SPTPodcastUIContinueListeningContentOperation <NSObject, HUBContentOperation>
-@property(nonatomic) _Bool forceShowContinueListeningInDebugMode;
 @property(copy, nonatomic) NSString *itemComponentModelIdentifierPrefix;
 @end
 

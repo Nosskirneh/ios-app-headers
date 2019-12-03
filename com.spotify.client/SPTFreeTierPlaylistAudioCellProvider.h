@@ -9,20 +9,20 @@
 #import "SPTFreeTierPlaylistCellProvider-Protocol.h"
 #import "SPTFreeTierPlaylistTrackCellConfiguratorDelegate-Protocol.h"
 
-@class NSString, SPTFreeTierPlaylistTrackCellConfigurator;
-@protocol SPTFreeTierPlaylistCellProviderDelegate, SPTFreeTierPlaylistItemsViewModel, SPTFreeTierPlaylistViewModel;
+@class NSString;
+@protocol SPTFreeTierPlaylistCellProviderDelegate, SPTFreeTierPlaylistItemsViewModel, SPTFreeTierPlaylistTrackCellConfigurator, SPTFreeTierPlaylistViewModel;
 
 @interface SPTFreeTierPlaylistAudioCellProvider : NSObject <SPTFreeTierPlaylistTrackCellConfiguratorDelegate, SPTFreeTierPlaylistCellProvider>
 {
     id <SPTFreeTierPlaylistCellProviderDelegate> _delegate;
-    SPTFreeTierPlaylistTrackCellConfigurator *_cellConfigurator;
+    id <SPTFreeTierPlaylistTrackCellConfigurator> _cellConfigurator;
     id <SPTFreeTierPlaylistItemsViewModel> _itemsViewModel;
     id <SPTFreeTierPlaylistViewModel> _playlistViewModel;
 }
 
 @property(nonatomic) __weak id <SPTFreeTierPlaylistViewModel> playlistViewModel; // @synthesize playlistViewModel=_playlistViewModel;
 @property(nonatomic) __weak id <SPTFreeTierPlaylistItemsViewModel> itemsViewModel; // @synthesize itemsViewModel=_itemsViewModel;
-@property(retain, nonatomic) SPTFreeTierPlaylistTrackCellConfigurator *cellConfigurator; // @synthesize cellConfigurator=_cellConfigurator;
+@property(retain, nonatomic) id <SPTFreeTierPlaylistTrackCellConfigurator> cellConfigurator; // @synthesize cellConfigurator=_cellConfigurator;
 @property(nonatomic) __weak id <SPTFreeTierPlaylistCellProviderDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
 - (id)indexPathForView:(id)arg1;

@@ -6,11 +6,12 @@
 
 #import "NSObject-Protocol.h"
 
-@protocol SPTImpressionEvent, SPTNowPlayingViewDefault_PlaybackProgress_PlaybackSliderEventFactory, SPTNowPlayingViewDefault_PlaybackProgress_RemainingTotalTimeLabelEventFactory;
+@protocol SPTEventFactoryModelMapping, SPTImpressionEvent, SPTNowPlayingViewDefault_PlaybackProgress_PlaybackSliderEventFactory, SPTNowPlayingViewDefault_PlaybackProgress_RemainingTotalTimeLabelEventFactory;
 
 @protocol SPTNowPlayingViewDefault_PlaybackProgressEventFactory <NSObject>
 - (id <SPTImpressionEvent>)impression;
 - (id <SPTNowPlayingViewDefault_PlaybackProgress_RemainingTotalTimeLabelEventFactory>)remainingTotalTimeLabelFactory;
 - (id <SPTNowPlayingViewDefault_PlaybackProgress_PlaybackSliderEventFactory>)playbackSliderFactory;
+- (id <SPTEventFactoryModelMapping>)_location;
 @end
 

@@ -18,7 +18,6 @@
     _Bool _playbackRestricted;
     _Bool _premiumOnlyFeatureEnabled;
     _Bool _collectionMenuIconsEnabled;
-    _Bool _showCollectionQuickActions;
     _Bool _showTrackOwner;
     _Bool _showAlbumInSubtitle;
     _Bool _showThumbnailImage;
@@ -36,7 +35,6 @@
 @property(nonatomic) _Bool showThumbnailImage; // @synthesize showThumbnailImage=_showThumbnailImage;
 @property(nonatomic) _Bool showAlbumInSubtitle; // @synthesize showAlbumInSubtitle=_showAlbumInSubtitle;
 @property(nonatomic) _Bool showTrackOwner; // @synthesize showTrackOwner=_showTrackOwner;
-@property(nonatomic) _Bool showCollectionQuickActions; // @synthesize showCollectionQuickActions=_showCollectionQuickActions;
 @property(readonly, nonatomic, getter=isCollectionMenuIconsEnabled) _Bool collectionMenuIconsEnabled; // @synthesize collectionMenuIconsEnabled=_collectionMenuIconsEnabled;
 @property(readonly, nonatomic, getter=isPremiumOnlyFeatureEnabled) _Bool premiumOnlyFeatureEnabled; // @synthesize premiumOnlyFeatureEnabled=_premiumOnlyFeatureEnabled;
 @property(nonatomic, getter=isPlaybackRestricted) _Bool playbackRestricted; // @synthesize playbackRestricted=_playbackRestricted;
@@ -48,6 +46,7 @@
 @property(retain, nonatomic) id <SPTCollectionPlatformConfiguration> collectionConfiguration; // @synthesize collectionConfiguration=_collectionConfiguration;
 @property(retain, nonatomic) id <SPTFreeTierPlaylistModelEntityTrackFields> trackEntity; // @synthesize trackEntity=_trackEntity;
 - (void).cxx_destruct;
+@property(readonly, copy, nonatomic) NSString *rowId;
 @property(readonly, copy, nonatomic) NSDictionary *formatListAttributes;
 @property(readonly, nonatomic) _Bool isPlayed;
 @property(readonly, nonatomic) double timeLeft;
@@ -74,7 +73,7 @@
 @property(readonly, nonatomic) NSURL *imageURL;
 @property(readonly, nonatomic) NSURL *URL;
 @property(readonly, copy, nonatomic) NSString *title;
-- (id)initWithPlaylistTrackEntity:(id)arg1 collectionConfiguration:(id)arg2 isPlayingTrack:(_Bool)arg3 isOffline:(_Bool)arg4 isPlaybackRestricted:(_Bool)arg5 isPremiumOnlyFeatureEnabled:(_Bool)arg6 isCollectionMenuIconsEnabled:(_Bool)arg7 showCollectionQuickActions:(_Bool)arg8 showTrackOwner:(_Bool)arg9 showAlbumInSubtitle:(_Bool)arg10 visualRefreshService:(id)arg11 showThumbnailImage:(_Bool)arg12;
+- (id)initWithPlaylistTrackEntity:(id)arg1 collectionConfiguration:(id)arg2 isPlayingTrack:(_Bool)arg3 isOffline:(_Bool)arg4 isPlaybackRestricted:(_Bool)arg5 isPremiumOnlyFeatureEnabled:(_Bool)arg6 isCollectionMenuIconsEnabled:(_Bool)arg7 showTrackOwner:(_Bool)arg8 showAlbumInSubtitle:(_Bool)arg9 visualRefreshService:(id)arg10 showThumbnailImage:(_Bool)arg11;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

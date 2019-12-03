@@ -7,6 +7,5 @@
 #import "NSObject-Protocol.h"
 
 @protocol SPTSearchTestManager <NSObject>
-@property(readonly, nonatomic, getter=isPlayRecentTracksEnabled) _Bool playRecentTracksEnabled;
 @end
 

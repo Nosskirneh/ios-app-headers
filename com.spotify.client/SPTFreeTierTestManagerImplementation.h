@@ -6,12 +6,12 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTFreeTierTestManager-Protocol.h"
+#import "SPTFeatureFlagSignalObserver-Protocol.h"
 
 @class NSString;
 @protocol SPTFeatureFlagFactory, SPTFeatureFlagSignal, SPTLocalSettings, SPTProductState;
 
-@interface SPTFreeTierTestManagerImplementation : NSObject <SPTFreeTierTestManager>
+@interface SPTFreeTierTestManagerImplementation : NSObject <SPTFeatureFlagSignalObserver>
 {
     id <SPTFeatureFlagFactory> _featureFlagFactory;
     id <SPTLocalSettings> _localSettings;
@@ -26,7 +26,6 @@
 @property(readonly, nonatomic) id <SPTLocalSettings> localSettings; // @synthesize localSettings=_localSettings;
 @property(readonly, nonatomic) id <SPTFeatureFlagFactory> featureFlagFactory; // @synthesize featureFlagFactory=_featureFlagFactory;
 - (void).cxx_destruct;
-- (_Bool)isProductStateNPT;
 @property(readonly, nonatomic) _Bool theNewExperienceEnabled;
 - (id)provideLiveNewExperienceEnabledSignal;
 - (id)provideShadowNewExperienceEnabledSignal;

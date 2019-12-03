@@ -6,21 +6,24 @@
 
 #import <UIKit/UIView.h>
 
-@class GLUEButton, SPTActionButton, SPTTheme;
+@class GLUEButton, SPTActionButton, SPTAdNowPlayingBookmarkButton, SPTTheme;
 
 @interface SPTNowPlayingAudioAdInfoUnitView : UIView
 {
     GLUEButton *_actionButton;
     SPTActionButton *_optOutButton;
+    SPTAdNowPlayingBookmarkButton *_bookmarkButton;
     SPTTheme *_theme;
 }
 
 @property(retain, nonatomic) SPTTheme *theme; // @synthesize theme=_theme;
-@property(retain, nonatomic) SPTActionButton *optOutButton; // @synthesize optOutButton=_optOutButton;
-@property(retain, nonatomic) GLUEButton *actionButton; // @synthesize actionButton=_actionButton;
+@property(readonly, nonatomic) SPTAdNowPlayingBookmarkButton *bookmarkButton; // @synthesize bookmarkButton=_bookmarkButton;
+@property(readonly, nonatomic) SPTActionButton *optOutButton; // @synthesize optOutButton=_optOutButton;
+@property(readonly, nonatomic) GLUEButton *actionButton; // @synthesize actionButton=_actionButton;
 - (void).cxx_destruct;
 - (void)updateActionButtonWithTitle:(id)arg1 isOptOut:(_Bool)arg2;
 - (void)setupConstraints;
+- (id)createBookmarkButton;
 - (id)createOptOutButton;
 - (id)createActionButton;
 - (id)initWithTheme:(id)arg1;

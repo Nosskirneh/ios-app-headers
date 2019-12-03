@@ -6,32 +6,28 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTVoiceSessionObserver-Protocol.h"
+#import "SPTVoiceLibrarySessionObserver-Protocol.h"
 
 @class NSEnumerator, NSString, NSTimer, SPTPodcastUtteranceSurveyLogger, SPTPodcastUtteranceSurveyPageModel;
-@protocol SPTLocalSettings, SPTPodcastUtteranceSurveyViewModelPresenterDelegate, SPTPodcastUtteranceSurveyViewModelViewDelegate, SPTVoiceSession, SPTVoiceSessionFactory;
+@protocol SPTLocalSettings, SPTPodcastUtteranceSurveyViewModelPresenterDelegate, SPTPodcastUtteranceSurveyViewModelViewDelegate, SPTVoiceLibrarySession;
 
-@interface SPTPodcastUtteranceSurveyViewModel : NSObject <SPTVoiceSessionObserver>
+@interface SPTPodcastUtteranceSurveyViewModel : NSObject <SPTVoiceLibrarySessionObserver>
 {
-    _Bool _sessionActive;
     id <SPTPodcastUtteranceSurveyViewModelPresenterDelegate> _presenterDelegate;
     id <SPTPodcastUtteranceSurveyViewModelViewDelegate> _viewDelegate;
     SPTPodcastUtteranceSurveyPageModel *_currentPage;
     SPTPodcastUtteranceSurveyLogger *_logger;
     id <SPTLocalSettings> _localSettings;
-    id <SPTVoiceSessionFactory> _voiceSessionFactory;
-    id <SPTVoiceSession> _voiceSession;
+    id <SPTVoiceLibrarySession> _voiceSession;
     NSTimer *_firstUtteranceTimer;
     double _noUtteranceIntervalTimeout;
     NSEnumerator *_surveyPageEnumerator;
 }
 
 @property(retain, nonatomic) NSEnumerator *surveyPageEnumerator; // @synthesize surveyPageEnumerator=_surveyPageEnumerator;
-@property(nonatomic) _Bool sessionActive; // @synthesize sessionActive=_sessionActive;
 @property(nonatomic) double noUtteranceIntervalTimeout; // @synthesize noUtteranceIntervalTimeout=_noUtteranceIntervalTimeout;
 @property(retain, nonatomic) NSTimer *firstUtteranceTimer; // @synthesize firstUtteranceTimer=_firstUtteranceTimer;
-@property(retain, nonatomic) id <SPTVoiceSession> voiceSession; // @synthesize voiceSession=_voiceSession;
-@property(retain, nonatomic) id <SPTVoiceSessionFactory> voiceSessionFactory; // @synthesize voiceSessionFactory=_voiceSessionFactory;
+@property(retain, nonatomic) id <SPTVoiceLibrarySession> voiceSession; // @synthesize voiceSession=_voiceSession;
 @property(retain, nonatomic) id <SPTLocalSettings> localSettings; // @synthesize localSettings=_localSettings;
 @property(retain, nonatomic) SPTPodcastUtteranceSurveyLogger *logger; // @synthesize logger=_logger;
 @property(retain, nonatomic) SPTPodcastUtteranceSurveyPageModel *currentPage; // @synthesize currentPage=_currentPage;
@@ -48,7 +44,7 @@
 - (void)slateDidAppear;
 - (void)voiceSessionDidStopListening:(id)arg1;
 - (void)voiceSessionDidStartListening:(id)arg1;
-- (void)voiceSession:(id)arg1 didUpdateTranscriptText:(id)arg2;
+- (void)voiceSession:(id)arg1 didUpdateIntermediateResponse:(id)arg2;
 - (id)createSurveyPages;
 - (id)initWithLocalSettings:(id)arg1 logger:(id)arg2 voiceSession:(id)arg3;
 

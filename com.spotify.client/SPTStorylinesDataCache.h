@@ -22,7 +22,7 @@
 @property(readonly, nonatomic) SPTStorylinesPersistentCache *persistentCache; // @synthesize persistentCache=_persistentCache;
 - (void).cxx_destruct;
 - (_Bool)validStorylines:(id)arg1 forIdentifier:(id)arg2;
-- (void)loadStorylinesDataForEntityUri:(id)arg1 withCallback:(CDUnknownBlockType)arg2;
+- (void)loadStorylinesDataForEntityUri:(id)arg1 withStorylineId:(id)arg2 withCallback:(CDUnknownBlockType)arg3;
 - (void)removeCachedStorylines:(id)arg1;
 - (void)cacheStorylines:(id)arg1;
 - (id)cachedContentKeyForEntityUri:(id)arg1;

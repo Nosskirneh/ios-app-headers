@@ -6,9 +6,9 @@
 
 #import "NSObject-Protocol.h"
 
-@class NSArray, SPTFreeTierTasteOnboardingArtistPickerViewController;
+@class NSArray, SPTFreeTierTasteOnboardingArtistPickerViewController, SPTFreeTierTasteOnboardingSession;
 
 @protocol SPTFreeTierTasteOnboardingArtistPickerViewControllerDelegate <NSObject>
-- (void)artistPickerViewController:(SPTFreeTierTasteOnboardingArtistPickerViewController *)arg1 didComplete:(_Bool)arg2 withSelectedArtistURIs:(NSArray *)arg3;
+- (void)artistPickerViewController:(SPTFreeTierTasteOnboardingArtistPickerViewController *)arg1 didComplete:(_Bool)arg2 withSelectedArtistURIs:(NSArray *)arg3 session:(SPTFreeTierTasteOnboardingSession *)arg4;
 @end
 

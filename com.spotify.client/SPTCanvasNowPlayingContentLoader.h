@@ -7,25 +7,23 @@
 #import <objc/NSObject.h>
 
 #import "SPTCanvasContentLayerViewControllerViewModelLoadDelegate-Protocol.h"
-#import "SPTCanvasNowPlayingContentReloaderDelegate-Protocol.h"
+#import "SPTCanvasNowPlayingContentReloaderObserver-Protocol.h"
+#import "SPTCanvasNowPlayingViewContentLoader-Protocol.h"
 #import "SPTCanvasNowPlayingViewStateObserver-Protocol.h"
 
-@class NSCache, NSMapTable, NSString, SPTCanvasImageResolverFactory, SPTCanvasNowPlayingContentLoaderTracker, SPTCanvasNowPlayingContentReloader, SPTCanvasNowPlayingViewState, SPTCanvasTooltipPresentationManager;
-@protocol SPTCanvasIdleMonitorObserverDelegate, SPTCanvasNowPlayingContentLoaderDelegate, SPTCanvasTrackChecker, SPTLinkDispatcher, SPTVideoFeaturePlayerFactory, SPTVideoURLAssetLoader;
+@class NSCache, NSMapTable, NSString, SPTCanvasContentLayerViewControllerViewModelFactory, SPTCanvasForceArtworkManager, SPTCanvasNowPlayingContentLoaderTracker, SPTCanvasNowPlayingContentReloader, SPTCanvasNowPlayingViewState, SPTCanvasTestManager;
+@protocol SPTCanvasNowPlayingViewContentLoaderDelegate, SPTCanvasTrackChecker;
 
-@interface SPTCanvasNowPlayingContentLoader : NSObject <SPTCanvasNowPlayingViewStateObserver, SPTCanvasContentLayerViewControllerViewModelLoadDelegate, SPTCanvasNowPlayingContentReloaderDelegate>
+@interface SPTCanvasNowPlayingContentLoader : NSObject <SPTCanvasNowPlayingViewStateObserver, SPTCanvasContentLayerViewControllerViewModelLoadDelegate, SPTCanvasNowPlayingContentReloaderObserver, SPTCanvasNowPlayingViewContentLoader>
 {
-    id <SPTCanvasNowPlayingContentLoaderDelegate> _delegate;
+    id <SPTCanvasNowPlayingViewContentLoaderDelegate> delegate;
     id <SPTCanvasTrackChecker> _canvasTrackChecker;
     SPTCanvasNowPlayingContentReloader *_contentReloader;
     SPTCanvasNowPlayingContentLoaderTracker *_contentLoaderTracker;
-    id <SPTVideoFeaturePlayerFactory> _videoPlayerFactory;
-    id <SPTVideoURLAssetLoader> _videoAssetLoader;
     SPTCanvasNowPlayingViewState *_nowPlayingState;
-    SPTCanvasImageResolverFactory *_imageResolverFactory;
-    SPTCanvasTooltipPresentationManager *_tooltipManager;
-    id <SPTLinkDispatcher> _linkDispatcher;
-    id <SPTCanvasIdleMonitorObserverDelegate> _idleMonitorDelegate;
+    SPTCanvasContentLayerViewControllerViewModelFactory *_viewModelFactory;
+    SPTCanvasTestManager *_testManager;
+    SPTCanvasForceArtworkManager *_forceArtworkManager;
     NSMapTable *_viewControllers;
     NSCache *_preloadedModels;
     NSCache *_reloadingModels;
@@ -34,17 +32,14 @@
 @property(retain, nonatomic) NSCache *reloadingModels; // @synthesize reloadingModels=_reloadingModels;
 @property(retain, nonatomic) NSCache *preloadedModels; // @synthesize preloadedModels=_preloadedModels;
 @property(retain, nonatomic) NSMapTable *viewControllers; // @synthesize viewControllers=_viewControllers;
-@property(readonly, nonatomic) __weak id <SPTCanvasIdleMonitorObserverDelegate> idleMonitorDelegate; // @synthesize idleMonitorDelegate=_idleMonitorDelegate;
-@property(readonly, nonatomic) id <SPTLinkDispatcher> linkDispatcher; // @synthesize linkDispatcher=_linkDispatcher;
-@property(readonly, nonatomic) SPTCanvasTooltipPresentationManager *tooltipManager; // @synthesize tooltipManager=_tooltipManager;
-@property(readonly, nonatomic) SPTCanvasImageResolverFactory *imageResolverFactory; // @synthesize imageResolverFactory=_imageResolverFactory;
+@property(readonly, nonatomic) SPTCanvasForceArtworkManager *forceArtworkManager; // @synthesize forceArtworkManager=_forceArtworkManager;
+@property(readonly, nonatomic) SPTCanvasTestManager *testManager; // @synthesize testManager=_testManager;
+@property(readonly, nonatomic) SPTCanvasContentLayerViewControllerViewModelFactory *viewModelFactory; // @synthesize viewModelFactory=_viewModelFactory;
 @property(readonly, nonatomic) SPTCanvasNowPlayingViewState *nowPlayingState; // @synthesize nowPlayingState=_nowPlayingState;
-@property(readonly, nonatomic) id <SPTVideoURLAssetLoader> videoAssetLoader; // @synthesize videoAssetLoader=_videoAssetLoader;
-@property(readonly, nonatomic) id <SPTVideoFeaturePlayerFactory> videoPlayerFactory; // @synthesize videoPlayerFactory=_videoPlayerFactory;
 @property(readonly, nonatomic) SPTCanvasNowPlayingContentLoaderTracker *contentLoaderTracker; // @synthesize contentLoaderTracker=_contentLoaderTracker;
 @property(readonly, nonatomic) SPTCanvasNowPlayingContentReloader *contentReloader; // @synthesize contentReloader=_contentReloader;
 @property(readonly, nonatomic) id <SPTCanvasTrackChecker> canvasTrackChecker; // @synthesize canvasTrackChecker=_canvasTrackChecker;
-@property(nonatomic) __weak id <SPTCanvasNowPlayingContentLoaderDelegate> delegate; // @synthesize delegate=_delegate;
+@property(nonatomic) __weak id <SPTCanvasNowPlayingViewContentLoaderDelegate> delegate; // @synthesize delegate;
 - (void).cxx_destruct;
 - (void)contentNeedsReloadForTrack:(id)arg1;
 - (void)didFailToRenderViewModel:(id)arg1;
@@ -64,7 +59,7 @@
 - (void)configureCanvasForTrack:(id)arg1 usingCanvasCell:(id)arg2;
 - (_Bool)canLoadCanvasForTrack:(id)arg1;
 - (void)dealloc;
-- (id)initWithCanvasTrackChecker:(id)arg1 contentReloader:(id)arg2 contentLoaderTracker:(id)arg3 videoPlayerFactory:(id)arg4 videoAssetLoader:(id)arg5 imageResolverFactory:(id)arg6 nowPlayingState:(id)arg7 linkDispatcher:(id)arg8 idleMonitorDelegate:(id)arg9 tooltipManager:(id)arg10;
+- (id)initWithCanvasTrackChecker:(id)arg1 viewModelFactory:(id)arg2 contentReloader:(id)arg3 contentLoaderTracker:(id)arg4 nowPlayingState:(id)arg5 testManager:(id)arg6 forceArtworkManager:(id)arg7;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

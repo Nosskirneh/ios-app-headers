@@ -19,6 +19,7 @@
     CDUnknownBlockType _backButtonTappedBlock;
     id _followButtonModel;
     id _contextMenuButtonModel;
+    id _offlineButtonModel;
     VISREFBaseHeaderController<VISREFHubHeaderController> *_headerController;
     NSLayoutConstraint *_heightConstraint;
     NSURL *_lastImageURL;
@@ -29,6 +30,7 @@
 @property(retain, nonatomic) NSURL *lastImageURL; // @synthesize lastImageURL=_lastImageURL;
 @property(retain, nonatomic) NSLayoutConstraint *heightConstraint; // @synthesize heightConstraint=_heightConstraint;
 @property(retain, nonatomic) VISREFBaseHeaderController<VISREFHubHeaderController> *headerController; // @synthesize headerController=_headerController;
+@property(retain, nonatomic) id offlineButtonModel; // @synthesize offlineButtonModel=_offlineButtonModel;
 @property(retain, nonatomic) id contextMenuButtonModel; // @synthesize contextMenuButtonModel=_contextMenuButtonModel;
 @property(retain, nonatomic) id followButtonModel; // @synthesize followButtonModel=_followButtonModel;
 @property(copy, nonatomic) CDUnknownBlockType backButtonTappedBlock; // @synthesize backButtonTappedBlock=_backButtonTappedBlock;

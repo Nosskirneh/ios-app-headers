@@ -9,12 +9,12 @@
 #import "SPTGaiaConnectObserver-Protocol.h"
 #import "SPTNowPlayingTrackMetadataQueueObserver-Protocol.h"
 #import "SPTPlayerObserver-Protocol.h"
-#import "SPTVoiceCompanionConfigurationObserver-Protocol.h"
+#import "SPTVoiceCompanionSessionObserver-Protocol.h"
 
 @class NSString, NSURL, SPTNowPlayingModel, SPTNowPlayingTrackMetadataQueue, SPTObserverManager, SPTPlayerState, SPTPlayerTrack, SPTStatefulPlayer;
 @protocol SPTLinkDispatcher, SPTPlayer;
 
-@interface SPTNowPlayingBarModel : NSObject <SPTPlayerObserver, SPTNowPlayingTrackMetadataQueueObserver, SPTGaiaConnectObserver, SPTVoiceCompanionConfigurationObserver>
+@interface SPTNowPlayingBarModel : NSObject <SPTPlayerObserver, SPTNowPlayingTrackMetadataQueueObserver, SPTGaiaConnectObserver, SPTVoiceCompanionSessionObserver>
 {
     _Bool _skippingToPreviousTrackAllowed;
     _Bool _skippingToNextTrackAllowed;
@@ -53,7 +53,9 @@
 - (void).cxx_destruct;
 - (void)removeObserver:(id)arg1;
 - (void)addObserver:(id)arg1;
-- (void)didUpdateVoiceCompanionStateWithActive:(_Bool)arg1 experimentType:(unsigned long long)arg2 entryPoint:(unsigned long long)arg3;
+- (void)didReceiveVoiceRequest:(id)arg1;
+- (void)didEndVoiceSession;
+- (void)didStartVoiceSession;
 - (void)player:(id)arg1 stateDidChange:(id)arg2;
 - (void)trackMetadataQueue:(id)arg1 didMoveToRelativeTrack:(id)arg2;
 - (void)didTapVoiceCompanionView;
@@ -66,7 +68,7 @@
 - (void)pause;
 - (_Bool)shouldShowSkipNextUpsell;
 - (void)dealloc;
-- (id)initWithPlayer:(id)arg1 nowPlayingModel:(id)arg2 statefulPlayer:(id)arg3 trackMetadataQueue:(id)arg4 linkDispatcher:(id)arg5 voiceConfiguration:(id)arg6;
+- (id)initWithPlayer:(id)arg1 nowPlayingModel:(id)arg2 statefulPlayer:(id)arg3 trackMetadataQueue:(id)arg4 linkDispatcher:(id)arg5 voiceSession:(id)arg6;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

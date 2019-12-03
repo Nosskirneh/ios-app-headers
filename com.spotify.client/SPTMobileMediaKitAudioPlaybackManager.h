@@ -24,8 +24,10 @@
     id <SPTGaiaConnectAPI> _connectManager;
     unsigned long long _pullContextBackgroundTask;
     unsigned long long _playbackBackgroundTask;
+    unsigned long long _nlURIBackgroundTask;
 }
 
+@property(nonatomic) unsigned long long nlURIBackgroundTask; // @synthesize nlURIBackgroundTask=_nlURIBackgroundTask;
 @property(nonatomic) unsigned long long playbackBackgroundTask; // @synthesize playbackBackgroundTask=_playbackBackgroundTask;
 @property(nonatomic) unsigned long long pullContextBackgroundTask; // @synthesize pullContextBackgroundTask=_pullContextBackgroundTask;
 @property(readonly, nonatomic) id <SPTGaiaConnectAPI> connectManager; // @synthesize connectManager=_connectManager;
@@ -43,11 +45,15 @@
 - (void)startPlaybackBackgroundTask;
 - (void)endPullContextBackgroundTask;
 - (void)startPullContextBackgroundTask;
+- (void)endHandleNLURIBackgroundTask;
+- (void)startHandleNLURIBackgroundTask;
 - (void)pullContextForInitialPlaybackWithHeader:(id)arg1 context:(id)arg2;
+- (void)handleNaturalLanguageURI:(id)arg1 header:(id)arg2 context:(id)arg3;
 - (void)playAllTracksShuffledWithHeader:(id)arg1 context:(id)arg2;
 - (void)resumeWithHeader:(id)arg1 context:(id)arg2;
 - (void)startOverWithHeader:(id)arg1 context:(id)arg2;
 - (void)playWithMessageOnLocalDevice:(id)arg1;
+- (_Bool)isNaturalLanguageURI:(id)arg1;
 - (void)unfavoriteWithMessage:(id)arg1;
 - (void)favoriteWithMessage:(id)arg1;
 - (void)disableRepeatWithMessage:(id)arg1;

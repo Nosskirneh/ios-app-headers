@@ -9,23 +9,20 @@
 #import "SPContentInsetViewController-Protocol.h"
 #import "SPTPageController-Protocol.h"
 #import "SPTSearch2RootViewControllerProtocol-Protocol.h"
-#import "SPTSearchAutocompleteViewControllerDelegate-Protocol.h"
 #import "SPTSearchSearchBarDelegate-Protocol.h"
 #import "SPTSearchVoiceEnabledViewDelegate-Protocol.h"
 
-@class NSLayoutConstraint, NSString, NSURL, SPTFloatingVoiceSearchView, SPTNetworkConnectivityController, SPTSearch2ViewController, SPTSearchAutocompleteViewController, UIView;
-@protocol SPTLinkDispatcher, SPTPageContainer, SPTSearch2RootViewControllerDelegate, SPTSearchLogger, SPTSearchSearchBarProtocol, SPTVoiceService;
+@class NSLayoutConstraint, NSString, NSURL, SPTFloatingVoiceSearchView, SPTNetworkConnectivityController, SPTSearch2ViewController, UIView;
+@protocol SPTLinkDispatcher, SPTPageContainer, SPTSearchLogger, SPTSearchSearchBarProtocol, SPTVoiceService;
 
-@interface SPTSearch2RootViewController : UIViewController <SPTSearchSearchBarDelegate, SPContentInsetViewController, SPTSearchVoiceEnabledViewDelegate, SPTSearchAutocompleteViewControllerDelegate, SPTSearch2RootViewControllerProtocol, SPTPageController>
+@interface SPTSearch2RootViewController : UIViewController <SPTSearchSearchBarDelegate, SPContentInsetViewController, SPTSearchVoiceEnabledViewDelegate, SPTSearch2RootViewControllerProtocol, SPTPageController>
 {
     _Bool _automaticallyAdjustsInsets;
     _Bool _voiceSearchAllowed;
     _Bool _shouldFocusSearchBarOnViewDidAppear;
     unsigned long long _cancelButtonVisibility;
     NSString *_query;
-    id <SPTSearch2RootViewControllerDelegate> _delegate;
     SPTSearch2ViewController *_searchViewController;
-    SPTSearchAutocompleteViewController *_autocompleteViewController;
     id <SPTSearchLogger> _logger;
     id <SPTLinkDispatcher> _linkDispatcher;
     id <SPTVoiceService> _voiceService;
@@ -45,9 +42,7 @@
 @property(readonly, nonatomic) id <SPTVoiceService> voiceService; // @synthesize voiceService=_voiceService;
 @property(readonly, nonatomic) id <SPTLinkDispatcher> linkDispatcher; // @synthesize linkDispatcher=_linkDispatcher;
 @property(readonly, nonatomic) id <SPTSearchLogger> logger; // @synthesize logger=_logger;
-@property(readonly, nonatomic) SPTSearchAutocompleteViewController *autocompleteViewController; // @synthesize autocompleteViewController=_autocompleteViewController;
 @property(readonly, nonatomic) SPTSearch2ViewController *searchViewController; // @synthesize searchViewController=_searchViewController;
-@property(nonatomic) __weak id <SPTSearch2RootViewControllerDelegate> delegate; // @synthesize delegate=_delegate;
 @property(nonatomic) _Bool shouldFocusSearchBarOnViewDidAppear; // @synthesize shouldFocusSearchBarOnViewDidAppear=_shouldFocusSearchBarOnViewDidAppear;
 @property(nonatomic) _Bool voiceSearchAllowed; // @synthesize voiceSearchAllowed=_voiceSearchAllowed;
 @property(copy, nonatomic) NSString *query; // @synthesize query=_query;
@@ -55,20 +50,11 @@
 @property(nonatomic) struct UIEdgeInsets insets; // @synthesize insets=_insets;
 @property(nonatomic) unsigned long long cancelButtonVisibility; // @synthesize cancelButtonVisibility=_cancelButtonVisibility;
 - (void).cxx_destruct;
-- (void)updateVisibleViewControllerForQueryText:(id)arg1;
-- (_Bool)isAutocompleteEnabled;
-- (_Bool)isAutocompleteViewControllerVisible;
-- (_Bool)isSearchViewControllerVisible;
-- (void)autocompleteResultAutofilled:(id)arg1;
-- (void)autocompleteResultSelected:(id)arg1;
 - (void)voiceEnabledView:(id)arg1 didSelectElementWithSourceIdentifier:(id)arg2;
 - (void)configureFloatingMicrophoneForVoiceEnabledSearch;
 - (void)setupVoiceView;
 - (void)updateSearchBarForCurrentCancelButtonVisibility;
-- (void)setQuery:(id)arg1 notifyingDelegate:(_Bool)arg2;
 - (id)spotifyURIFromQuery:(id)arg1;
-- (void)showSearchViewController;
-- (void)showAutocompleteViewController;
 - (void)dismissKeyboard;
 - (void)adjustFloatingButtonBottomConstraint;
 - (void)adjustInsetsIfNeeded;
@@ -91,7 +77,7 @@
 - (void)viewDidLayoutSubviews;
 - (void)viewDidLoad;
 @property(readonly, copy, nonatomic) NSString *requestID;
-- (id)initWithSearchViewController:(id)arg1 autocompleteViewController:(id)arg2 logger:(id)arg3 linkDispatcher:(id)arg4 voiceService:(id)arg5 connectivityController:(id)arg6;
+- (id)initWithSearchViewController:(id)arg1 logger:(id)arg2 linkDispatcher:(id)arg3 voiceService:(id)arg4 connectivityController:(id)arg5;
 
 // Remaining properties
 @property(nonatomic) _Bool automaticallyAdjustsScrollViewInsets;

@@ -21,9 +21,9 @@
 @property(readonly, nonatomic) id <SPTExternalIntegrationPlaybackController> playbackController; // @synthesize playbackController=_playbackController;
 - (void).cxx_destruct;
 - (id)contentItemFromExternalIntegrationContent:(id)arg1;
+- (id)errorContentItem;
 - (id)emptyListContentItemOfParent:(id)arg1;
 - (id)shuffleContentItemOfParent:(id)arg1;
-- (_Bool)isShuffleItem:(id)arg1;
 - (id)initWithPlaybackController:(id)arg1 imageLoaderFactory:(id)arg2;
 
 @end

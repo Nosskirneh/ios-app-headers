@@ -8,11 +8,12 @@
 
 #import "SPTDrivingModeConfigurationManager-Protocol.h"
 #import "SPTDrivingModeTestManager-Protocol.h"
+#import "SPTFeatureFlagSignalObserver-Protocol.h"
 
 @class NSString, SPTDrivingModeLogger, SPTObserverManager;
 @protocol SPTFeatureFlagFactory, SPTFeatureFlagSignal, SPTLocalSettings, SettingsRegistry;
 
-@interface SPTDrivingModeTestManagerImplementation : NSObject <SPTDrivingModeTestManager, SPTDrivingModeConfigurationManager>
+@interface SPTDrivingModeTestManagerImplementation : NSObject <SPTFeatureFlagSignalObserver, SPTDrivingModeTestManager, SPTDrivingModeConfigurationManager>
 {
     _Bool _carViewEnabled;
     _Bool _carViewFlagEnabled;

@@ -9,13 +9,15 @@
 #import "SPTReleaseRadarDiscoverWeeklyService-Protocol.h"
 
 @class NSString, SPTAllocationContext;
-@protocol SPTFormatListPlatformService, SPTFreeTierPlaylistUIService, SPTFreeTierService, SPTReleaseRadarDiscoverWeeklyTestManager, SPTRemoteConfigurationService;
+@protocol SPTFeedbackService, SPTFormatListPlatformService, SPTFreeTierPlaylistUIService, SPTFreeTierService, SPTGLUEService, SPTReleaseRadarDiscoverWeeklyTestManager, SPTRemoteConfigurationService;
 
 @interface SPTReleaseRadarDiscoverWeeklyServiceImplementation : NSObject <SPTReleaseRadarDiscoverWeeklyService>
 {
+    id <SPTFeedbackService> _feedbackService;
     id <SPTFormatListPlatformService> _formatListPlatformService;
     id <SPTFreeTierPlaylistUIService> _freeTierPlaylistUIService;
     id <SPTFreeTierService> _freeTierService;
+    id <SPTGLUEService> _glueService;
     id <SPTRemoteConfigurationService> _remoteConfigurationService;
     id <SPTReleaseRadarDiscoverWeeklyTestManager> _testManager;
 }
@@ -23,12 +25,15 @@
 + (id)serviceIdentifier;
 @property(readonly, nonatomic) id <SPTReleaseRadarDiscoverWeeklyTestManager> testManager; // @synthesize testManager=_testManager;
 @property(nonatomic) __weak id <SPTRemoteConfigurationService> remoteConfigurationService; // @synthesize remoteConfigurationService=_remoteConfigurationService;
+@property(nonatomic) __weak id <SPTGLUEService> glueService; // @synthesize glueService=_glueService;
 @property(nonatomic) __weak id <SPTFreeTierService> freeTierService; // @synthesize freeTierService=_freeTierService;
 @property(nonatomic) __weak id <SPTFreeTierPlaylistUIService> freeTierPlaylistUIService; // @synthesize freeTierPlaylistUIService=_freeTierPlaylistUIService;
 @property(nonatomic) __weak id <SPTFormatListPlatformService> formatListPlatformService; // @synthesize formatListPlatformService=_formatListPlatformService;
+@property(nonatomic) __weak id <SPTFeedbackService> feedbackService; // @synthesize feedbackService=_feedbackService;
 - (void).cxx_destruct;
 - (id)provideTestManager;
 - (void)unload;
+- (void)customizeConfiguration:(id)arg1;
 - (void)load;
 - (void)configureWithServices:(id)arg1;
 

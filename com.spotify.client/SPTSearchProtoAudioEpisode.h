@@ -6,7 +6,7 @@
 
 #import "GPBMessage.h"
 
-@class NSString;
+@class GPBDuration, NSMutableArray, NSString;
 
 @interface SPTSearchProtoAudioEpisode : GPBMessage
 {
@@ -15,8 +15,13 @@
 + (id)descriptor;
 
 // Remaining properties
+@property(retain, nonatomic) GPBDuration *duration; // @dynamic duration;
 @property(nonatomic) _Bool explicit_p; // @dynamic explicit_p;
+@property(nonatomic) _Bool hasDuration; // @dynamic hasDuration;
 @property(copy, nonatomic) NSString *showName; // @dynamic showName;
+@property(nonatomic) _Bool topPlayed; // @dynamic topPlayed;
+@property(retain, nonatomic) NSMutableArray *topicsArray; // @dynamic topicsArray;
+@property(readonly, nonatomic) unsigned long long topicsArray_Count; // @dynamic topicsArray_Count;
 
 @end
 

@@ -7,11 +7,12 @@
 #import "NSObject-Protocol.h"
 
 @class NSURL;
-@protocol SPTImpressionEvent, SPTInteractionEvent;
+@protocol SPTEventFactoryModelMapping, SPTImpressionEvent, SPTInteractionEvent;
 
 @protocol SPTNowPlayingViewDefault_AlbumArtEventFactory <NSObject>
 - (id <SPTInteractionEvent>)swipeSkipToPreviousWithItemToBeSkipped:(NSURL *)arg1;
 - (id <SPTInteractionEvent>)swipeSkipToNextWithItemToBeSkipped:(NSURL *)arg1;
 - (id <SPTImpressionEvent>)impression;
+- (id <SPTEventFactoryModelMapping>)_location;
 @end
 

@@ -17,7 +17,7 @@
 @interface SPTArtistAboutImageGalleryViewController : UIViewController <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UIScrollViewDelegate>
 {
     _Bool _didSwipe;
-    NSArray *_imageURLs;
+    NSArray *_galleryImages;
     NSURL *_artistURI;
     id <GLUEImageLoader> _glueImageLoader;
     SPTArtistAboutStateProvider *_stateProvider;
@@ -37,7 +37,7 @@
 @property(retain, nonatomic) SPTArtistAboutStateProvider *stateProvider; // @synthesize stateProvider=_stateProvider;
 @property(retain, nonatomic) id <GLUEImageLoader> glueImageLoader; // @synthesize glueImageLoader=_glueImageLoader;
 @property(retain, nonatomic) NSURL *artistURI; // @synthesize artistURI=_artistURI;
-@property(copy, nonatomic) NSArray *imageURLs; // @synthesize imageURLs=_imageURLs;
+@property(copy, nonatomic) NSArray *galleryImages; // @synthesize galleryImages=_galleryImages;
 - (void).cxx_destruct;
 - (void)collectionView:(id)arg1 didEndDisplayingCell:(id)arg2 forItemAtIndexPath:(id)arg3;
 - (id)collectionView:(id)arg1 cellForItemAtIndexPath:(id)arg2;
@@ -52,7 +52,7 @@
 - (void)applyGalleryEffects;
 - (void)didTapGallery:(id)arg1;
 - (void)viewDidLayoutSubviews;
-- (id)displayedImageURL;
+- (id)displayedGalleryImage;
 - (void)addLayoutConstraints;
 - (void)viewDidLoad;
 - (id)initWithGLUEImageLoader:(id)arg1 theme:(id)arg2 logger:(id)arg3 stateProvider:(id)arg4;

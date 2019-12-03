@@ -6,19 +6,19 @@
 
 #import <objc/NSObject.h>
 
-@class NSString, NSURL, SPTArtistAboutViewModel;
+@class NSString, NSURL, SPTArtistAboutImage, SPTArtistAboutViewModel;
 @protocol SPTModerationServiceState;
 
 @interface SPTArtistAboutStateProvider : NSObject
 {
-    NSURL *_displayedImageURL;
+    SPTArtistAboutImage *_displayedGalleryImage;
     SPTArtistAboutViewModel *_viewModel;
     id <SPTModerationServiceState> _moderationServiceState;
 }
 
 @property(nonatomic) __weak id <SPTModerationServiceState> moderationServiceState; // @synthesize moderationServiceState=_moderationServiceState;
 @property(retain, nonatomic) SPTArtistAboutViewModel *viewModel; // @synthesize viewModel=_viewModel;
-@property(nonatomic) NSURL *displayedImageURL; // @synthesize displayedImageURL=_displayedImageURL;
+@property(nonatomic) SPTArtistAboutImage *displayedGalleryImage; // @synthesize displayedGalleryImage=_displayedGalleryImage;
 - (void).cxx_destruct;
 @property(readonly, nonatomic) _Bool isModerationEnabled;
 @property(readonly, nonatomic) NSURL *artistUri;

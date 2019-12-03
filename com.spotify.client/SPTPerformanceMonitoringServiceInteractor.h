@@ -9,13 +9,16 @@
 #import "SPTServiceInstanceInteractor-Protocol.h"
 
 @class NSString, SPTDefaultServiceInstanceInteractor, SPTStartupTracer;
+@protocol OS_os_log;
 
 @interface SPTPerformanceMonitoringServiceInteractor : NSObject <SPTServiceInstanceInteractor>
 {
     SPTDefaultServiceInstanceInteractor *_defaultInteractor;
     SPTStartupTracer *_startupTracer;
+    NSObject<OS_os_log> *_instrumentationLog;
 }
 
+@property(readonly, nonatomic) NSObject<OS_os_log> *instrumentationLog; // @synthesize instrumentationLog=_instrumentationLog;
 @property(readonly, nonatomic) SPTStartupTracer *startupTracer; // @synthesize startupTracer=_startupTracer;
 @property(readonly, nonatomic) SPTDefaultServiceInstanceInteractor *defaultInteractor; // @synthesize defaultInteractor=_defaultInteractor;
 - (void).cxx_destruct;
@@ -28,7 +31,7 @@
 - (id)identifierForService:(id)arg1;
 - (id)identifierForServiceClass:(Class)arg1;
 - (id)allocationContextForIdentifier:(id)arg1;
-- (id)initWithStartupTracer:(id)arg1;
+- (id)initWithStartupTracer:(id)arg1 instrumentationLog:(id)arg2;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

@@ -34,8 +34,6 @@
 @property(nonatomic) __weak id <SPTContainerService> containerService; // @synthesize containerService=_containerService;
 - (void).cxx_destruct;
 - (id)provideHomeComponentLayoutManager;
-- (id)provideHomePromoV2MockHubContentOperation;
-- (id)provideHomeMockHubContentOperation;
 @property(readonly, nonatomic) id <SPTHomeUIComponentFactory> componentFactory;
 - (void)configureWithServices:(id)arg1;
 

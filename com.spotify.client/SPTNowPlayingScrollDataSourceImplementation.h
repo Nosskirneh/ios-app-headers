@@ -24,7 +24,7 @@
 - (void).cxx_destruct;
 - (id)providerAtIndex:(unsigned long long)arg1;
 - (unsigned long long)numberOfProviders;
-- (_Bool)updateProvidersForTrack:(id)arg1;
+- (_Bool)updateProvidersForTrack:(id)arg1 compltionBlock:(CDUnknownBlockType)arg2;
 - (void)unregisterProvider:(id)arg1;
 - (void)registerProvider:(id)arg1;
 - (unsigned long long)maximumNumberOfProviders;

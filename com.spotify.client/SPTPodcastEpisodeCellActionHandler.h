@@ -56,8 +56,8 @@
 - (void)showDeleteDownloadsAlertWithBlock:(CDUnknownBlockType)arg1;
 - (id)episodeViewControllerWithURI:(id)arg1;
 - (void)navigateToEpisodeViewControllerWithURI:(id)arg1;
-- (void)markAsUnplayed:(id)arg1;
-- (void)presentMarkAsPlayedSnackbarForEpisode:(id)arg1;
+- (void)markAsUnplayed:(id)arg1 atIndexPath:(id)arg2;
+- (void)presentMarkAsPlayedSnackbarForEpisode:(id)arg1 atIndexPath:(id)arg2;
 - (void)displayContextMenuForEpisode:(id)arg1 sender:(id)arg2 indexPath:(id)arg3;
 - (_Bool)isPlayingEpisode:(id)arg1;
 - (void)pauseEpisode:(id)arg1 indexPath:(id)arg2;

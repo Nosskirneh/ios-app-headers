@@ -14,7 +14,15 @@ typedef void (^CDUnknownBlockType)(void); // return type and parameters are unkn
 
 #pragma mark Named Structures
 
+struct AccessToken {
+    basic_string_90719d97 access_token;
+    struct time_point<std::__1::chrono::system_clock, std::__1::chrono::duration<long long, std::__1::ratio<1, 1000000>>> expires_at_timestamp;
+    basic_string_90719d97 token_type;
+};
+
 struct AccessTokenScope;
+
+struct AccesspointResolver;
 
 struct ActivityPeriod {
     int _field1;
@@ -46,11 +54,20 @@ struct ApHandler {
 
 struct AppleConnectionFactory;
 
+struct AppleSignInCredential {
+    struct unique_ptr<spotify::connectivity::auth::credentials::AppleSignInCredential::Impl, std::__1::default_delete<spotify::connectivity::auth::credentials::AppleSignInCredential::Impl>> _pimpl;
+};
+
+struct ApplicationConfig {
+    unsigned int _field1;
+    basic_string_90719d97 _field2;
+    basic_string_90719d97 _field3;
+    int _field4;
+};
+
 struct ApplicationScope {
     struct unique_ptr<spotify::connectivity::ApplicationScope::Impl, std::__1::default_delete<spotify::connectivity::ApplicationScope::Impl>> _field1;
 };
-
-struct ApplicationScopeImpl;
 
 struct ApplicationStateTracker {
     struct shared_ptr<spotify::client::ApplicationStateTracker::Impl> _field1;
@@ -111,7 +128,7 @@ struct ArtistInfo {
     CDUnknownFunctionPointerType *_field1;
     struct weak_ptr<spotify::metadata::ArtistInfo> _field2;
     struct MetadataModel *_field3;
-    basic_string_7c0a1c0b _field4;
+    basic_string_90719d97 _field4;
 };
 
 struct ArtistMetadata {
@@ -146,9 +163,10 @@ struct AudioBufferList {
 
 struct AudioDriver {
     CDUnknownFunctionPointerType *_field1;
-    struct signal<void (const spotify::playback::AudioDriverInfo &), boost::signals2::optional_last_value<void>, int, std::__1::less<int>, boost::function<void (const spotify::playback::AudioDriverInfo &)>, boost::function<void (const boost::signals2::connection &, const spotify::playback::AudioDriverInfo &)>, boost::signals2::mutex> _field2;
+    struct signal<void (const spotify::playback::AudioDriverInfo &), spotify::signals::optional_last_value<void>, int, std::__1::less<int>> _field2;
     int _field3;
     int _field4;
+    _Bool _field5;
 };
 
 struct AudioStreamBasicDescription {
@@ -169,14 +187,11 @@ struct AudioStreamPacketDescription {
     unsigned int _field3;
 };
 
-struct AudioVolumeControlManager {
-    CDUnknownFunctionPointerType *_field1;
-    struct vector<std::__1::pair<spotify::playback::AudioVolumeControl *, boost::signals2::connection>, std::__1::allocator<std::__1::pair<spotify::playback::AudioVolumeControl *, boost::signals2::connection>>> _field2;
-    struct signal<void (spotify::playback::VolumeChangeReason), boost::signals2::optional_last_value<void>, int, std::__1::less<int>, boost::function<void (spotify::playback::VolumeChangeReason)>, boost::function<void (const boost::signals2::connection &, spotify::playback::VolumeChangeReason)>, boost::signals2::mutex> _field3;
-    int _field4;
-};
-
 struct AuthSession;
+
+struct AuthenticationConfig {
+    basic_string_90719d97 _field1;
+};
 
 struct AutologinFromCredentialsStore;
 
@@ -253,16 +268,26 @@ struct CLSMachOSlice {
     int cpusubtype;
 };
 
+struct CacheConfig {
+    struct path _field1;
+};
+
+struct CacheDrmConfig {
+    struct array<unsigned char, 4> _field1;
+    struct array<unsigned char, 16> _field2;
+};
+
 struct CacheInfo {
-    basic_string_7c0a1c0b _field1;
-    basic_string_7c0a1c0b _field2;
-    basic_string_7c0a1c0b _field3;
-    _Bool _field4;
+    basic_string_90719d97 _field1;
+    basic_string_90719d97 _field2;
+    basic_string_90719d97 _field3;
 };
 
 struct CharPointer_UTF8 {
     char *_field1;
 };
+
+struct Client;
 
 struct ClientConfiguration;
 
@@ -274,19 +299,19 @@ struct ClientInfo;
 
 struct ClientVersionInfo {
     unsigned int _field1;
-    basic_string_7c0a1c0b _field2;
-    basic_string_7c0a1c0b _field3;
-    basic_string_7c0a1c0b _field4;
-    basic_string_7c0a1c0b _field5;
+    basic_string_90719d97 _field2;
+    basic_string_90719d97 _field3;
+    basic_string_90719d97 _field4;
+    basic_string_90719d97 _field5;
 };
 
 struct Code {
-    int _field1;
-    unsigned long long _field2;
-    basic_string_7c0a1c0b _field3;
-    struct duration<long long, std::__1::ratio<1, 1>> _field4;
-    struct time_point<std::__1::chrono::system_clock, std::__1::chrono::duration<long long, std::__1::ratio<1, 1000000>>> _field5;
-    unsigned long long _field6;
+    int method;
+    unsigned long long code_length;
+    basic_string_90719d97 canonical_phone_number;
+    struct duration<long long, std::__1::ratio<1, 1>> expires_in;
+    struct time_point<std::__1::chrono::system_clock, std::__1::chrono::duration<long long, std::__1::ratio<1, 1000000>>> expires_at;
+    unsigned long long retry_number;
 };
 
 struct ColorCube {
@@ -299,7 +324,14 @@ struct ColorCube {
     struct UInt8Range _field7;
 };
 
-struct Configuration;
+struct Configuration {
+    struct AuthenticationConfig _field1;
+    struct CacheConfig _field2;
+    struct DeviceConfig _field3;
+    struct ApplicationConfig _field4;
+    struct NetworkConfig _field5;
+    struct PerformanceConfig _field6;
+};
 
 struct ConfigurationListenerImpl;
 
@@ -313,6 +345,7 @@ struct ConnectionFactory;
 
 struct ConnectivityManager {
     struct unique_ptr<spotify::connectivity::ConnectivityManager::Impl, std::__1::default_delete<spotify::connectivity::ConnectivityManager::Impl>> _field1;
+    CDUnknownFunctionPointerType _field2;
 };
 
 struct ContextPlayerOptionOverrides {
@@ -322,9 +355,9 @@ struct ContextPlayerOptionOverrides {
 };
 
 struct ContextTrack {
-    basic_string_7c0a1c0b _field1;
-    basic_string_7c0a1c0b _field2;
-    struct flat_map<std::__1::basic_string<char>, std::__1::basic_string<char>, std::__1::less<std::__1::basic_string<char>>, boost::container::new_allocator<std::__1::pair<std::__1::basic_string<char>, std::__1::basic_string<char>>>> _field3;
+    basic_string_90719d97 _field1;
+    basic_string_90719d97 _field2;
+    struct flat_map<std::__1::basic_string<char>, std::__1::basic_string<char>, std::__1::less<std::__1::basic_string<char>>, void> _field3;
 };
 
 struct Core {
@@ -340,9 +373,9 @@ struct CoreCreateOptions {
     struct optional<unsigned char> _field6;
     struct optional<unsigned char> _field7;
     struct optional<unsigned int> _field8;
-    basic_string_7c0a1c0b _field9;
+    basic_string_90719d97 _field9;
     struct optional<spotify::http::ConnectionType> _field10;
-    struct function<void (const std::__1::basic_string<char>&)> _field11;
+    function_574b1799 _field11;
     _Bool _field12;
     struct vector<std::__1::basic_string<char>, std::__1::allocator<std::__1::basic_string<char>>> _field13;
 };
@@ -353,10 +386,16 @@ struct CriticalSection {
 
 struct DefaultHashFunctions;
 
+struct DeviceConfig {
+    basic_string_90719d97 _field1;
+    basic_string_90719d97 _field2;
+    basic_string_90719d97 _field3;
+};
+
 struct DeviceInfo {
-    basic_string_7c0a1c0b _field1;
-    basic_string_7c0a1c0b _field2;
-    basic_string_7c0a1c0b _field3;
+    basic_string_90719d97 _field1;
+    basic_string_90719d97 _field2;
+    basic_string_90719d97 _field3;
 };
 
 struct Disc;
@@ -382,35 +421,42 @@ struct FacebookPermissions;
 
 struct FacebookService {
     CDUnknownFunctionPointerType *_field1;
-    basic_string_7c0a1c0b _field2;
+    basic_string_90719d97 _field2;
     _Bool _field3;
     int _field4;
     struct weak_ptr<spotify::facebook::FacebookService> _field5;
     struct FacebookApi *_field6;
     struct function<std::__1::chrono::time_point<std::__1::chrono::system_clock, std::__1::chrono::duration<long long, std::__1::ratio<1, 1000000>>>()> _field7;
     struct function<std::__1::chrono::time_point<std::__1::chrono::system_clock, std::__1::chrono::duration<long long, std::__1::ratio<1, 1000000>>>()> _field8;
-    shared_ptr_6ae16b82 _field9;
+    struct shared_ptr<spotify::http::ConnectionFactory> _field9;
     int _field10;
     struct TimerManager *_field11;
-    basic_string_7c0a1c0b _field12;
-    basic_string_7c0a1c0b _field13;
+    basic_string_90719d97 _field12;
+    basic_string_90719d97 _field13;
     _Bool _field14;
     shared_ptr_2175cb8d _field15;
     struct Logger *_field16;
-    shared_ptr_6ae16b82 _field17;
+    struct shared_ptr<spotify::http::ConnectionFactory> _field17;
     struct HermesHandler *_field18;
     struct MercuryHandler *_field19;
     struct function<std::__1::basic_string<char>()> _field20;
-    struct function<spotify::auth::AccountInfo ()> _field21;
-    basic_string_7c0a1c0b _field22;
-    struct signal<void (spotify::facebook::ServiceErrorType, const std::__1::basic_string<char>&), boost::signals2::optional_last_value<void>, int, std::__1::less<int>, boost::function<void (spotify::facebook::ServiceErrorType, const std::__1::basic_string<char>&)>, boost::function<void (const boost::signals2::connection &, spotify::facebook::ServiceErrorType, const std::__1::basic_string<char>&)>, boost::signals2::mutex> _field23;
-    struct signal<void (spotify::facebook::ServiceEvent), boost::signals2::optional_last_value<void>, int, std::__1::less<int>, boost::function<void (spotify::facebook::ServiceEvent)>, boost::function<void (const boost::signals2::connection &, spotify::facebook::ServiceEvent)>, boost::signals2::mutex> _field24;
-    struct signal<void (), boost::signals2::optional_last_value<void>, int, std::__1::less<int>, boost::function<void ()>, boost::function<void (const boost::signals2::connection &)>, boost::signals2::mutex> _field25;
+    struct function<spotify::connectivity::auth::AccountInfo ()> _field21;
+    basic_string_90719d97 _field22;
+    struct signal<void (spotify::facebook::ServiceErrorType, const std::__1::basic_string<char>&), spotify::signals::optional_last_value<void>, int, std::__1::less<int>> _field23;
+    struct signal<void (spotify::facebook::ServiceEvent), spotify::signals::optional_last_value<void>, int, std::__1::less<int>> _field24;
+    struct signal<void (), spotify::signals::optional_last_value<void>, int, std::__1::less<int>> _field25;
     struct shared_ptr<spotify::facebook::FacebookServiceRequestFactory> _field26;
     struct shared_ptr<spotify::facebook::MeMetadataRequest> _field27;
     struct shared_ptr<spotify::facebook::FriendsMetadataRequest> _field28;
     struct shared_ptr<spotify::facebook::FacebookPermissions> _field29;
-    basic_string_7c0a1c0b _field30;
+    basic_string_90719d97 _field30;
+    int _field31;
+    struct unordered_map<int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::EnableRequest, spotify::facebook::proto::EnableReply>>, std::__1::hash<int>, std::__1::equal_to<int>, std::__1::allocator<std::__1::pair<const int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::EnableRequest, spotify::facebook::proto::EnableReply>>>>> _field32;
+    struct unordered_map<int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::DisableRequest, spotify::facebook::proto::Credential>>, std::__1::hash<int>, std::__1::equal_to<int>, std::__1::allocator<std::__1::pair<const int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::DisableRequest, spotify::facebook::proto::Credential>>>>> _field33;
+    struct unordered_map<int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::Credential, spotify::facebook::proto::ConfigReply>>, std::__1::hash<int>, std::__1::equal_to<int>, std::__1::allocator<std::__1::pair<const int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::Credential, spotify::facebook::proto::ConfigReply>>>>> _field34;
+    struct unordered_map<int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::UpdateUserStateRequest, spotify::facebook::proto::UserState>>, std::__1::hash<int>, std::__1::equal_to<int>, std::__1::allocator<std::__1::pair<const int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::UpdateUserStateRequest, spotify::facebook::proto::UserState>>>>> _field35;
+    struct unordered_map<int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::InspectCredentialRequest, spotify::facebook::proto::InspectCredentialReply>>, std::__1::hash<int>, std::__1::equal_to<int>, std::__1::allocator<std::__1::pair<const int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::InspectCredentialRequest, spotify::facebook::proto::InspectCredentialReply>>>>> _field36;
+    struct unordered_map<int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::UserState, spotify::facebook::proto::UserState>>, std::__1::hash<int>, std::__1::equal_to<int>, std::__1::allocator<std::__1::pair<const int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::UserState, spotify::facebook::proto::UserState>>>>> _field37;
 };
 
 struct FacebookServiceRequestFactory;
@@ -486,6 +532,8 @@ struct GPBOutputBufferState {
     NSOutputStream *output;
 };
 
+struct GenericTimerManager;
+
 struct HashEntry;
 
 struct HashMap<ComScore::String, ComScore::String, ComScore::DefaultHashFunctions, ComScore::CriticalSection> {
@@ -544,13 +592,14 @@ struct HueRange {
 
 struct IOSAudioDriver {
     CDUnknownFunctionPointerType *_field1;
-    struct signal<void (const spotify::playback::AudioDriverInfo &), boost::signals2::optional_last_value<void>, int, std::__1::less<int>, boost::function<void (const spotify::playback::AudioDriverInfo &)>, boost::function<void (const boost::signals2::connection &, const spotify::playback::AudioDriverInfo &)>, boost::signals2::mutex> _field2;
+    struct signal<void (const spotify::playback::AudioDriverInfo &), spotify::signals::optional_last_value<void>, int, std::__1::less<int>> _field2;
     int _field3;
     int _field4;
+    _Bool _field5;
 };
 
 struct Identifier {
-    struct unique_ptr<spotify::auth::Identifier::Impl, std::__1::default_delete<spotify::auth::Identifier::Impl>> _field1;
+    struct unique_ptr<spotify::connectivity::auth::Identifier::Impl, std::__1::default_delete<spotify::connectivity::auth::Identifier::Impl>> _pimpl;
 };
 
 struct Impl;
@@ -563,7 +612,7 @@ struct IncognitoModeHandler {
     struct function<std::__1::chrono::time_point<std::__1::chrono::system_clock, std::__1::chrono::duration<long long, std::__1::ratio<1, 1000000>>>()> _field5;
     struct ScrobblerContainer *_field6;
     struct function<bool ()> _field7;
-    struct signal<void (bool, bool), boost::signals2::optional_last_value<void>, int, std::__1::less<int>, boost::function<void (bool, bool)>, boost::function<void (const boost::signals2::connection &, bool, bool)>, boost::signals2::mutex> _field8;
+    struct signal<void (bool, bool), spotify::signals::optional_last_value<void>, int, std::__1::less<int>> _field8;
 };
 
 struct LOT_Subpath {
@@ -589,39 +638,39 @@ struct LogObserver {
     CDUnknownFunctionPointerType *_field1;
     struct LogMessageFilter _field2;
     id _field3;
-    basic_string_7c0a1c0b _field4;
+    basic_string_90719d97 _field4;
 };
 
 struct Logger;
-
-struct LoginBootstrap {
-    unique_ptr_5965b565 _field1;
-    struct function<void (bool, const std::__1::basic_string<char>&)> _field2;
-};
 
 struct LoginController {
     CDUnknownFunctionPointerType *_field1;
 };
 
-struct LoginControllerImpl;
+struct LoginControllerConfiguration {
+    struct CacheDrmConfig _field1;
+};
 
 struct LoginCredentials {
-    struct unique_ptr<spotify::auth::LoginCredentials::Impl, std::__1::default_delete<spotify::auth::LoginCredentials::Impl>> _impl;
+    struct unique_ptr<spotify::connectivity::auth::LoginCredentials::Impl, std::__1::default_delete<spotify::connectivity::auth::LoginCredentials::Impl>> _impl;
+};
+
+struct LoginFailure {
+    struct error_code _field1;
+    basic_string_90719d97 _field2;
 };
 
 struct LoginOptions {
     int _field1;
     int _field2;
-    basic_string_7c0a1c0b _field3;
-    basic_string_7c0a1c0b _field4;
-    basic_string_7c0a1c0b _field5;
-    basic_string_7c0a1c0b _field6;
+    basic_string_90719d97 _field3;
+    basic_string_90719d97 _field4;
+    basic_string_90719d97 _field5;
+    basic_string_90719d97 _field6;
     _Bool _field7;
     _Bool _field8;
-    _Bool _field9;
-    basic_string_7c0a1c0b _field10;
-    basic_string_7c0a1c0b _field11;
-    struct ProxySettings _field12;
+    basic_string_90719d97 _field9;
+    struct ProxySettings _field10;
 };
 
 struct MeMetadataRequest;
@@ -685,6 +734,17 @@ struct NSString {
     Class _field1;
 };
 
+struct NetworkConfig {
+    _Bool _field1;
+    _Bool _field2;
+    int _field3;
+    struct optional<unsigned char> _field4;
+    struct optional<unsigned char> _field5;
+    struct optional<unsigned int> _field6;
+    basic_string_90719d97 _field7;
+    struct optional<spotify::http::ConnectionType> _field8;
+};
+
 struct NetworkInfo {
     _Bool _field1;
     _Bool _field2;
@@ -703,7 +763,7 @@ struct OfflineManagerObserverBridge {
 };
 
 struct OneTimeToken {
-    struct unique_ptr<spotify::auth::credentials::OneTimeToken::Impl, std::__1::default_delete<spotify::auth::credentials::OneTimeToken::Impl>> _field1;
+    struct unique_ptr<spotify::connectivity::auth::credentials::OneTimeToken::Impl, std::__1::default_delete<spotify::connectivity::auth::credentials::OneTimeToken::Impl>> _pimpl;
 };
 
 struct OwnedArray<ConfigurationListenerImpl, ComScore::DummyCriticalSection> {
@@ -716,31 +776,36 @@ struct OwnedArray<StreamingListenerImpl, ComScore::CriticalSection> {
     int _field2;
 };
 
-struct ParentChildCredentials {
-    struct unique_ptr<spotify::auth::credentials::ParentChildCredentials::Impl, std::__1::default_delete<spotify::auth::credentials::ParentChildCredentials::Impl>> _field1;
+struct ParentChildCredential {
+    struct unique_ptr<spotify::connectivity::auth::credentials::ParentChildCredential::Impl, std::__1::default_delete<spotify::connectivity::auth::credentials::ParentChildCredential::Impl>> _pimpl;
 };
 
-struct PendingMessageStorage {
+struct PendingMessageStorageImpl {
     CDUnknownFunctionPointerType *_field1;
     struct Timer _field2;
     struct Timer _field3;
     struct Logger *_field4;
-    basic_string_7c0a1c0b _field5;
+    basic_string_90719d97 _field5;
     struct mutex _field6;
-    struct vector<std::__1::unique_ptr<spotify::analytics::PendingMessageStorage::PendingMessage, std::__1::default_delete<spotify::analytics::PendingMessageStorage::PendingMessage>>, std::__1::allocator<std::__1::unique_ptr<spotify::analytics::PendingMessageStorage::PendingMessage, std::__1::default_delete<spotify::analytics::PendingMessageStorage::PendingMessage>>>> _field7;
-    basic_string_7c0a1c0b _field8;
+    struct vector<std::__1::unique_ptr<spotify::analytics::PendingMessageStorageImpl::PendingMessage, std::__1::default_delete<spotify::analytics::PendingMessageStorageImpl::PendingMessage>>, std::__1::allocator<std::__1::unique_ptr<spotify::analytics::PendingMessageStorageImpl::PendingMessage, std::__1::default_delete<spotify::analytics::PendingMessageStorageImpl::PendingMessage>>>> _field7;
+    basic_string_90719d97 _field8;
     struct map<std::__1::basic_string<char>, long long, std::__1::less<std::__1::basic_string<char>>, std::__1::allocator<std::__1::pair<const std::__1::basic_string<char>, long long>>> _field9;
     _Bool _field10;
     _Bool _field11;
+    function_84aba934 _field12;
+};
+
+struct PerformanceConfig {
+    _Bool _field1;
 };
 
 struct PlayOrigin {
-    basic_string_7c0a1c0b _field1;
-    basic_string_7c0a1c0b _field2;
-    basic_string_7c0a1c0b _field3;
-    basic_string_7c0a1c0b _field4;
-    basic_string_7c0a1c0b _field5;
-    basic_string_7c0a1c0b _field6;
+    basic_string_90719d97 _field1;
+    basic_string_90719d97 _field2;
+    basic_string_90719d97 _field3;
+    basic_string_90719d97 _field4;
+    basic_string_90719d97 _field5;
+    basic_string_90719d97 _field6;
     struct set<std::__1::basic_string<char>, std::__1::less<std::__1::basic_string<char>>, std::__1::allocator<std::__1::basic_string<char>>> _field7;
 };
 
@@ -757,7 +822,7 @@ struct PrefStore;
 
 struct Prefs {
     struct unique_ptr<spotify::prefs::PrefStore, std::__1::default_delete<spotify::prefs::PrefStore>> _field1;
-    struct signal<void (spotify::prefs::PrefEntry *), boost::signals2::optional_last_value<void>, int, std::__1::less<int>, boost::function<void (spotify::prefs::PrefEntry *)>, boost::function<void (const boost::signals2::connection &, spotify::prefs::PrefEntry *)>, boost::signals2::mutex> _field2;
+    struct signal<void (spotify::prefs::PrefEntry *), spotify::signals::optional_last_value<void>, int, std::__1::less<int>> _field2;
     _Bool _field3;
 };
 
@@ -765,19 +830,16 @@ struct PreparePlayOptions {
     struct optional<spotify::player::PlaybackId> _field1;
     _Bool _field2;
     struct SkipToTrack _field3;
-    struct optional<std::__1::chrono::duration<long long, std::__1::ratio<1, 1000>>> {
-        _Bool _field1;
-        struct aligned_storage<std::__1::chrono::duration<long long, std::__1::ratio<1, 1000>>> _field2;
-    } _field4;
+    optional_331450e3 _field4;
     _Bool _field5;
     _Bool _field6;
     struct ContextPlayerOptionOverrides _field7;
     struct Suppressions _field8;
     int _field9;
     int _field10;
-    basic_string_7c0a1c0b _field11;
+    basic_string_90719d97 _field11;
     struct optional<spotify::player::PlayerLicense> _field12;
-    struct flat_map<std::__1::basic_string<char>, spotify::json::encoded_value, std::__1::less<std::__1::basic_string<char>>, boost::container::new_allocator<std::__1::pair<std::__1::basic_string<char>, spotify::json::encoded_value>>> _field13;
+    struct flat_map<std::__1::basic_string<char>, spotify::json::encoded_value, std::__1::less<std::__1::basic_string<char>>, void> _field13;
 };
 
 struct ProductState;
@@ -789,9 +851,9 @@ struct ProxyContextPlayer;
 struct ProxySettings {
     int _field1;
     int _field2;
-    basic_string_7c0a1c0b _field3;
-    basic_string_7c0a1c0b _field4;
-    basic_string_7c0a1c0b _field5;
+    basic_string_90719d97 _field3;
+    basic_string_90719d97 _field4;
+    basic_string_90719d97 _field5;
 };
 
 struct ReducedRequirementsStreamingAnalytics {
@@ -803,21 +865,41 @@ struct ReducedRequirementsStreamingAnalytics {
 };
 
 struct RefreshTokenCredentials {
-    struct unique_ptr<spotify::auth::credentials::RefreshTokenCredentials::Impl, std::__1::default_delete<spotify::auth::credentials::RefreshTokenCredentials::Impl>> _field1;
+    struct unique_ptr<spotify::connectivity::auth::credentials::RefreshTokenCredentials::Impl, std::__1::default_delete<spotify::connectivity::auth::credentials::RefreshTokenCredentials::Impl>> _field1;
 };
 
 struct RequestAccountingSink {
-    struct weak_ptr<spotify::netstat::RequestAccounting::Impl> _weak_impl;
+    struct weak_ptr<spotify::connectivity::netstat::RequestAccounting::Impl> _weak_impl;
 };
 
 struct Resolve {
-    struct function<std::__1::shared_ptr<void>(const spotify::cosmos::Request &, const std::__1::function<void (spotify::cosmos::Response)>&)> _function;
-    struct vector<spotify::cosmos::Route, std::__1::allocator<spotify::cosmos::Route>> _routes;
+    struct shared_ptr<spotify::cosmos::resolve::ResolveImpl> _impl;
 };
 
-struct Resolver;
+struct ResolveImpl;
 
-struct Route;
+struct SPTAuthSchedulerBridge;
+
+struct SPTConnectivityCacheId {
+    unsigned char elements[16];
+};
+
+struct SPTConnectivityCacheSalt {
+    unsigned char elements[4];
+};
+
+struct SPTConnectivitySchedulerBridge;
+
+struct SPTEncoreIconCharacterSet {
+    CDUnion_2be632f8 _field1;
+};
+
+struct SPTEncore_RGBA {
+    unsigned char _field1;
+    unsigned char _field2;
+    unsigned char _field3;
+    unsigned char _field4;
+};
 
 struct SPTID3ParserHeaderStruct {
     char headerType[3];
@@ -828,16 +910,7 @@ struct SPTID3ParserHeaderStruct {
 };
 
 struct SPTIconCharacterSet {
-    union {
-        struct {
-            unsigned short _field1;
-            unsigned short _field2;
-            unsigned short _field3;
-            unsigned short _field4;
-            unsigned short _field5;
-        } _field1;
-        unsigned short _field2[5];
-    } _field1;
+    CDUnion_2be632f8 _field1;
 };
 
 struct SPTNowPlayingTrack {
@@ -872,8 +945,6 @@ struct Scheduler {
     CDUnknownFunctionPointerType *_field1;
 };
 
-struct SchedulerImpl;
-
 struct ScrobblerContainer;
 
 struct Search {
@@ -882,11 +953,16 @@ struct Search {
 };
 
 struct SerializableCredentials {
-    struct unique_ptr<spotify::auth::SerializableCredentials::Impl, std::__1::default_delete<spotify::auth::SerializableCredentials::Impl>> _impl;
+    struct unique_ptr<spotify::connectivity::auth::SerializableCredentials::Impl, std::__1::default_delete<spotify::connectivity::auth::SerializableCredentials::Impl>> _impl;
 };
 
 struct Session {
     CDUnknownFunctionPointerType *_field1;
+};
+
+struct SignupInfo {
+    basic_string_90719d97 identifier_token;
+    struct UserInfo user_info;
 };
 
 struct SkipToTrack {
@@ -915,7 +991,7 @@ struct SpinLock {
 
 struct SpotifyLink {
     int _field1;
-    basic_string_7c0a1c0b _field2;
+    basic_string_90719d97 _field2;
     struct vector<std::__1::basic_string<char>, std::__1::allocator<std::__1::basic_string<char>>> _field3;
     unsigned int _field4;
     unsigned int _field5;
@@ -930,7 +1006,7 @@ struct SpotifyLink {
         struct gid<16, spotify::uri::detail::AdIdTag> _field6;
         struct gid<16, spotify::uri::detail::AdIdTag> _field7;
         unsigned long long _field8;
-        basic_string_7c0a1c0b *_field9;
+        basic_string_90719d97 *_field9;
         int _field10;
         int _field11;
         struct gid<20, spotify::uri::detail::ImageIdTag> _field12;
@@ -956,10 +1032,6 @@ struct SpotifyLink {
         int _field23;
         int _field24;
     } _field8;
-};
-
-struct StorageSystem {
-    CDUnknownFunctionPointerType *_field1;
 };
 
 struct StreamingAnalytics {
@@ -1021,7 +1093,7 @@ struct TrackInfo {
     int _field6;
     unsigned char _field7;
     _Bool _field8;
-    basic_string_7c0a1c0b _field9;
+    basic_string_90719d97 _field9;
     unsigned int _field10;
 };
 
@@ -1054,6 +1126,17 @@ struct UInt8Range {
     unsigned char _field2;
 };
 
+struct UserInfo {
+    basic_string_90719d97 name;
+    basic_string_90719d97 email;
+    _Bool email_verified;
+    basic_string_90719d97 birthdate;
+    int gender;
+    basic_string_90719d97 phone_number;
+    _Bool phone_number_verified;
+    _Bool email_already_registered;
+};
+
 struct VISREFColorExtractionConfiguration {
     double _field1;
     double _field2;
@@ -1074,6 +1157,30 @@ struct _NSRange {
 
 struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<std::__1::basic_string<char>, std::__1::basic_string<char>>, void *>*>, std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<std::__1::basic_string<char>, std::__1::basic_string<char>>, void *>>> {
     struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<std::__1::basic_string<char>, std::__1::basic_string<char>>, void *>*> _field1;
+};
+
+struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::Credential, spotify::facebook::proto::ConfigReply>>>, void *>*> {
+    struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::Credential, spotify::facebook::proto::ConfigReply>>>, void *>*> *_field1;
+};
+
+struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::DisableRequest, spotify::facebook::proto::Credential>>>, void *>*> {
+    struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::DisableRequest, spotify::facebook::proto::Credential>>>, void *>*> *_field1;
+};
+
+struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::EnableRequest, spotify::facebook::proto::EnableReply>>>, void *>*> {
+    struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::EnableRequest, spotify::facebook::proto::EnableReply>>>, void *>*> *_field1;
+};
+
+struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::InspectCredentialRequest, spotify::facebook::proto::InspectCredentialReply>>>, void *>*> {
+    struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::InspectCredentialRequest, spotify::facebook::proto::InspectCredentialReply>>>, void *>*> *_field1;
+};
+
+struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::UpdateUserStateRequest, spotify::facebook::proto::UserState>>>, void *>*> {
+    struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::UpdateUserStateRequest, spotify::facebook::proto::UserState>>>, void *>*> *_field1;
+};
+
+struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::UserState, spotify::facebook::proto::UserState>>>, void *>*> {
+    struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::UserState, spotify::facebook::proto::UserState>>>, void *>*> *_field1;
 };
 
 struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<std::__1::basic_string<char>, std::__1::basic_string<char>>, void *>*> {
@@ -1150,11 +1257,16 @@ struct aligned_storage<std::__1::basic_string<char>> {
     } _field1;
 };
 
-struct aligned_storage<std::__1::chrono::duration<long long, std::__1::ratio<1, 1000>>> {
-    union dummy_u {
-        char _field1[8];
-        struct a8 _field2;
-    } _field1;
+struct aligned_struct<40, 8> {
+    unsigned char _field1[40];
+};
+
+struct array<unsigned char, 16> {
+    unsigned char _field1[16];
+};
+
+struct array<unsigned char, 4> {
+    unsigned char _field1[4];
 };
 
 struct basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>> {
@@ -1162,22 +1274,22 @@ struct basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>
         struct __rep {
             union {
                 struct __long {
-                    char *_field1;
-                    unsigned long long _field2;
-                    unsigned long long _field3;
-                } _field1;
+                    char *__data_;
+                    unsigned long long __size_;
+                    unsigned long long __cap_;
+                } __l;
                 struct __short {
-                    char _field1[23];
+                    char __data_[23];
                     struct {
-                        unsigned char _field1;
-                    } _field2;
-                } _field2;
+                        unsigned char __size_;
+                    } ;
+                } __s;
                 struct __raw {
-                    unsigned long long _field1[3];
-                } _field3;
-            } _field1;
-        } _field1;
-    } _field1;
+                    unsigned long long __words[3];
+                } __r;
+            } ;
+        } __value_;
+    } __r_;
 };
 
 struct clientConfigurationParams {
@@ -1215,7 +1327,7 @@ struct cmp_ctx_s {
     CDUnknownFunctionPointerType _field4;
 };
 
-struct connection_body_base;
+struct connected_slot;
 
 struct deque<short, std::__1::allocator<short>> {
     struct __split_buffer<short *, std::__1::allocator<short *>> {
@@ -1240,7 +1352,7 @@ struct dl_info {
 };
 
 struct duration<long long, std::__1::ratio<1, 1000000>> {
-    long long _field1;
+    long long __rep_;
 };
 
 struct duration<long long, std::__1::ratio<1, 1000>> {
@@ -1248,7 +1360,7 @@ struct duration<long long, std::__1::ratio<1, 1000>> {
 };
 
 struct duration<long long, std::__1::ratio<1, 1>> {
-    long long _field1;
+    long long __rep_;
 };
 
 struct error_category;
@@ -1258,11 +1370,11 @@ struct error_code {
     struct error_category *_field2;
 };
 
-struct flat_map<std::__1::basic_string<char>, spotify::json::encoded_value, std::__1::less<std::__1::basic_string<char>>, boost::container::new_allocator<std::__1::pair<std::__1::basic_string<char>, spotify::json::encoded_value>>> {
+struct flat_map<std::__1::basic_string<char>, spotify::json::encoded_value, std::__1::less<std::__1::basic_string<char>>, void> {
     struct flat_tree<boost::container::dtl::pair<std::__1::basic_string<char>, spotify::json::encoded_value>, boost::container::dtl::select1st<std::__1::basic_string<char>>, std::__1::less<std::__1::basic_string<char>>, boost::container::new_allocator<boost::container::dtl::pair<std::__1::basic_string<char>, spotify::json::encoded_value>>> _field1;
 };
 
-struct flat_map<std::__1::basic_string<char>, std::__1::basic_string<char>, std::__1::less<std::__1::basic_string<char>>, boost::container::new_allocator<std::__1::pair<std::__1::basic_string<char>, std::__1::basic_string<char>>>> {
+struct flat_map<std::__1::basic_string<char>, std::__1::basic_string<char>, std::__1::less<std::__1::basic_string<char>>, void> {
     struct flat_tree<boost::container::dtl::pair<std::__1::basic_string<char>, std::__1::basic_string<char>>, boost::container::dtl::select1st<std::__1::basic_string<char>>, std::__1::less<std::__1::basic_string<char>>, boost::container::new_allocator<boost::container::dtl::pair<std::__1::basic_string<char>, std::__1::basic_string<char>>>> _field1;
 };
 
@@ -1279,58 +1391,80 @@ struct flat_tree<boost::container::dtl::pair<std::__1::basic_string<char>, std::
 };
 
 struct function<bool ()> {
-    struct type _field1;
-    struct __base<bool ()> *_field2;
+    struct __value_func<bool ()> {
+        struct type _field1;
+        struct __base<bool ()> *_field2;
+    } _field1;
 };
 
-struct function<spotify::auth::AccountInfo ()> {
-    struct type _field1;
-    struct __base<spotify::auth::AccountInfo ()> *_field2;
+struct function<spotify::connectivity::auth::AccountInfo ()> {
+    struct __value_func<spotify::connectivity::auth::AccountInfo ()> {
+        struct type _field1;
+        struct __base<spotify::connectivity::auth::AccountInfo ()> *_field2;
+    } _field1;
 };
 
 struct function<std::__1::basic_string<char>()> {
-    struct type _field1;
-    struct __base<std::__1::basic_string<char>()> *_field2;
+    struct __value_func<std::__1::basic_string<char>()> {
+        struct type _field1;
+        struct __base<std::__1::basic_string<char>()> *_field2;
+    } _field1;
 };
 
 struct function<std::__1::chrono::time_point<std::__1::chrono::system_clock, std::__1::chrono::duration<long long, std::__1::ratio<1, 1000000>>>()> {
-    struct type _field1;
-    struct __base<std::__1::chrono::time_point<std::__1::chrono::system_clock, std::__1::chrono::duration<long long, std::__1::ratio<1, 1000000>>>()> *_field2;
-};
-
-struct function<std::__1::shared_ptr<void>(const spotify::cosmos::Request &, const std::__1::function<void (spotify::cosmos::Response)>&)> {
-    struct type __buf_;
-    struct __base<std::__1::shared_ptr<void>(const spotify::cosmos::Request &, const std::__1::function<void (spotify::cosmos::Response)>&)> *__f_;
+    struct __value_func<std::__1::chrono::time_point<std::__1::chrono::system_clock, std::__1::chrono::duration<long long, std::__1::ratio<1, 1000000>>>()> {
+        struct type _field1;
+        struct __base<std::__1::chrono::time_point<std::__1::chrono::system_clock, std::__1::chrono::duration<long long, std::__1::ratio<1, 1000000>>>()> *_field2;
+    } _field1;
 };
 
 struct function<std::__1::vector<std::__1::shared_ptr<const spotify::metadata::TrackInfo>, std::__1::allocator<std::__1::shared_ptr<const spotify::metadata::TrackInfo>>>()> {
-    struct type _field1;
-    struct __base<std::__1::vector<std::__1::shared_ptr<const spotify::metadata::TrackInfo>, std::__1::allocator<std::__1::shared_ptr<const spotify::metadata::TrackInfo>>>()> *_field2;
+    struct __value_func<std::__1::vector<std::__1::shared_ptr<const spotify::metadata::TrackInfo>, std::__1::allocator<std::__1::shared_ptr<const spotify::metadata::TrackInfo>>>()> {
+        struct type _field1;
+        struct __base<std::__1::vector<std::__1::shared_ptr<const spotify::metadata::TrackInfo>, std::__1::allocator<std::__1::shared_ptr<const spotify::metadata::TrackInfo>>>()> *_field2;
+    } _field1;
 };
 
 struct function<void ()> {
-    struct type __buf_;
-    struct __base<void ()> *__f_;
-};
-
-struct function<void (bool, const std::__1::basic_string<char>&)> {
-    struct type _field1;
-    struct __base<void (bool, const std::__1::basic_string<char>&)> *_field2;
+    struct __value_func<void ()> {
+        struct type __buf_;
+        struct __base<void ()> *__f_;
+    } __f_;
 };
 
 struct function<void (const std::__1::basic_string<char>&)> {
-    struct type __buf_;
-    struct __base<void (const std::__1::basic_string<char>&)> *__f_;
+    struct __value_func<void (const std::__1::basic_string<char>&)> {
+        struct type __buf_;
+        struct __base<void (const std::__1::basic_string<char>&)> *__f_;
+    } __f_;
 };
 
 struct function<void (const std::__1::function<void ()>&)> {
-    struct type __buf_;
-    struct __base<void (const std::__1::function<void ()>&)> *__f_;
+    struct __value_func<void (const std::__1::function<void ()>&)> {
+        struct type __buf_;
+        struct __base<void (const std::__1::function<void ()>&)> *__f_;
+    } __f_;
 };
 
 struct function<void (spotify::hermes::HermesQuery *)> {
-    struct type _field1;
-    struct __base<void (spotify::hermes::HermesQuery *)> *_field2;
+    struct __value_func<void (spotify::hermes::HermesQuery *)> {
+        struct type _field1;
+        struct __base<void (spotify::hermes::HermesQuery *)> *_field2;
+    } _field1;
+};
+
+struct function<void (std::__1::optional<spotify::connectivity::oauth::AccessToken>, std::__1::error_code)> {
+    struct __value_func<void (std::__1::optional<spotify::connectivity::oauth::AccessToken>, std::__1::error_code)> {
+        struct type __buf_;
+        struct __base<void (std::__1::optional<spotify::connectivity::oauth::AccessToken>, std::__1::error_code)> *__f_;
+    } __f_;
+};
+
+struct function<void (std::__1::variant<spotify::connectivity::auth::LoginAuthSuccess, spotify::connectivity::auth::LoginSuccess, spotify::connectivity::auth::LoginCodeRequired, spotify::connectivity::auth::LoginSignupRequired, spotify::connectivity::auth::LoginFailure, spotify::connectivity::auth::LoginBootstrap>&&)> {
+    struct __value_func<void (std::__1::variant<spotify::connectivity::auth::LoginAuthSuccess, spotify::connectivity::auth::LoginSuccess, spotify::connectivity::auth::LoginCodeRequired, spotify::connectivity::auth::LoginSignupRequired, spotify::connectivity::auth::LoginFailure, spotify::connectivity::auth::LoginBootstrap>&&)> {
+        struct type __buf_;
+        struct __base<void (std::__1::variant<spotify::connectivity::auth::LoginAuthSuccess, spotify::connectivity::auth::LoginSuccess, spotify::connectivity::auth::LoginCodeRequired, spotify::connectivity::auth::LoginSignupRequired, spotify::connectivity::auth::LoginFailure, spotify::connectivity::auth::LoginBootstrap>&&)> *__f_;
+    } __f_;
 };
 
 struct gid<16, spotify::uri::detail::AdIdTag> {
@@ -1409,6 +1543,8 @@ struct in_addr {
     unsigned int _field1;
 };
 
+struct less<int>;
+
 struct map<std::__1::basic_string<char>, long long, std::__1::less<std::__1::basic_string<char>>, std::__1::allocator<std::__1::pair<const std::__1::basic_string<char>, long long>>> {
     struct __tree<std::__1::__value_type<std::__1::basic_string<char>, long long>, std::__1::__map_value_compare<std::__1::basic_string<char>, std::__1::__value_type<std::__1::basic_string<char>, long long>, std::__1::less<std::__1::basic_string<char>>, true>, std::__1::allocator<std::__1::__value_type<std::__1::basic_string<char>, long long>>> {
         struct __tree_end_node<std::__1::__tree_node_base<void *>*> *_field1;
@@ -1437,6 +1573,10 @@ struct mutex {
     struct _opaque_pthread_mutex_t __m_;
 };
 
+struct once_flag {
+    unsigned long long __state_;
+};
+
 struct optional<bool> {
     _Bool _field1;
     _Bool _field2;
@@ -1446,6 +1586,62 @@ struct optional<double> {
     union {
         char __null_state_;
         double __val_;
+    } ;
+    _Bool __engaged_;
+};
+
+struct optional<spotify::connectivity::auth::Identifier> {
+    union {
+        char __null_state_;
+        struct Identifier __val_;
+    } ;
+    _Bool __engaged_;
+};
+
+struct optional<spotify::connectivity::auth::SignupInfo> {
+    union {
+        char __null_state_;
+        struct SignupInfo __val_;
+    } ;
+    _Bool __engaged_;
+};
+
+struct optional<spotify::connectivity::auth::UserInfo> {
+    union {
+        char __null_state_;
+        struct UserInfo __val_;
+    } ;
+    _Bool __engaged_;
+};
+
+struct optional<spotify::connectivity::auth::challenge::Code> {
+    union {
+        char __null_state_;
+        struct Code __val_;
+    } ;
+    _Bool __engaged_;
+};
+
+struct optional<spotify::connectivity::auth::credentials::AppleSignInCredential> {
+    union {
+        char __null_state_;
+        struct AppleSignInCredential __val_;
+    } ;
+    _Bool __engaged_;
+};
+
+struct optional<spotify::connectivity::auth::credentials::OneTimeToken> {
+    union {
+        char __null_state_;
+        struct OneTimeToken __val_;
+    } ;
+    _Bool __engaged_;
+};
+
+struct optional<spotify::connectivity::auth::credentials::ParentChildCredential> {
+    union {
+        char __null_state_;
+        struct ParentChildCredential __val_;
     } ;
     _Bool __engaged_;
 };
@@ -1473,20 +1669,12 @@ struct optional<std::__1::basic_string<char>> {
     struct aligned_storage<std::__1::basic_string<char>> _field2;
 };
 
-struct optional<std::__1::function<void ()>> {
+struct optional<std::__1::chrono::duration<long long, std::__1::ratio<1, 1000>>> {
     union {
-        char __null_state_;
-        function_f9feaa7d __val_;
-    } ;
-    _Bool __engaged_;
-};
-
-struct optional<std::__1::function<void (const std::__1::basic_string<char>&)>> {
-    union {
-        char __null_state_;
-        struct function<void (const std::__1::basic_string<char>&)> __val_;
-    } ;
-    _Bool __engaged_;
+        char _field1;
+        struct duration<long long, std::__1::ratio<1, 1000>> _field2;
+    } _field1;
+    _Bool _field2;
 };
 
 struct optional<unsigned char> {
@@ -1510,14 +1698,18 @@ struct optional<unsigned long> {
     unsigned long long _field2;
 };
 
-struct pair<spotify::playback::AudioVolumeControl *, boost::signals2::connection>;
+struct optional_last_value<void>;
 
 struct pair<std::__1::basic_string<char>, spotify::json::encoded_value>;
 
 struct pair<std::__1::basic_string<char>, std::__1::basic_string<char>>;
 
+struct path {
+    basic_string_90719d97 _field1;
+};
+
 struct scoped_connection {
-    struct weak_ptr<boost::signals2::detail::connection_body_base> _weak_connection_body;
+    struct shared_ptr<spotify::signals::connection::shared_state> _state;
 };
 
 struct set<std::__1::basic_string<char>, std::__1::less<std::__1::basic_string<char>>, std::__1::allocator<std::__1::basic_string<char>>> {
@@ -1530,10 +1722,6 @@ struct set<std::__1::basic_string<char>, std::__1::less<std::__1::basic_string<c
             unsigned long long _field1;
         } _field3;
     } _field1;
-};
-
-struct shared_count {
-    struct sp_counted_base *_field1;
 };
 
 struct shared_ptr<ComScore::Asset> {
@@ -1591,41 +1779,6 @@ struct shared_ptr<ComScore::TaskExecutor> {
     struct __shared_weak_count *_field2;
 };
 
-struct shared_ptr<boost::signals2::detail::signal_impl<void (), boost::signals2::optional_last_value<void>, int, std::__1::less<int>, boost::function<void ()>, boost::function<void (const boost::signals2::connection &)>, boost::signals2::mutex>> {
-    struct signal_impl<void (), boost::signals2::optional_last_value<void>, int, std::__1::less<int>, boost::function<void ()>, boost::function<void (const boost::signals2::connection &)>, boost::signals2::mutex> *_field1;
-    struct shared_count _field2;
-};
-
-struct shared_ptr<boost::signals2::detail::signal_impl<void (bool, bool), boost::signals2::optional_last_value<void>, int, std::__1::less<int>, boost::function<void (bool, bool)>, boost::function<void (const boost::signals2::connection &, bool, bool)>, boost::signals2::mutex>> {
-    struct signal_impl<void (bool, bool), boost::signals2::optional_last_value<void>, int, std::__1::less<int>, boost::function<void (bool, bool)>, boost::function<void (const boost::signals2::connection &, bool, bool)>, boost::signals2::mutex> *_field1;
-    struct shared_count _field2;
-};
-
-struct shared_ptr<boost::signals2::detail::signal_impl<void (const spotify::playback::AudioDriverInfo &), boost::signals2::optional_last_value<void>, int, std::__1::less<int>, boost::function<void (const spotify::playback::AudioDriverInfo &)>, boost::function<void (const boost::signals2::connection &, const spotify::playback::AudioDriverInfo &)>, boost::signals2::mutex>> {
-    struct signal_impl<void (const spotify::playback::AudioDriverInfo &), boost::signals2::optional_last_value<void>, int, std::__1::less<int>, boost::function<void (const spotify::playback::AudioDriverInfo &)>, boost::function<void (const boost::signals2::connection &, const spotify::playback::AudioDriverInfo &)>, boost::signals2::mutex> *_field1;
-    struct shared_count _field2;
-};
-
-struct shared_ptr<boost::signals2::detail::signal_impl<void (spotify::facebook::ServiceErrorType, const std::__1::basic_string<char>&), boost::signals2::optional_last_value<void>, int, std::__1::less<int>, boost::function<void (spotify::facebook::ServiceErrorType, const std::__1::basic_string<char>&)>, boost::function<void (const boost::signals2::connection &, spotify::facebook::ServiceErrorType, const std::__1::basic_string<char>&)>, boost::signals2::mutex>> {
-    struct signal_impl<void (spotify::facebook::ServiceErrorType, const std::__1::basic_string<char>&), boost::signals2::optional_last_value<void>, int, std::__1::less<int>, boost::function<void (spotify::facebook::ServiceErrorType, const std::__1::basic_string<char>&)>, boost::function<void (const boost::signals2::connection &, spotify::facebook::ServiceErrorType, const std::__1::basic_string<char>&)>, boost::signals2::mutex> *_field1;
-    struct shared_count _field2;
-};
-
-struct shared_ptr<boost::signals2::detail::signal_impl<void (spotify::facebook::ServiceEvent), boost::signals2::optional_last_value<void>, int, std::__1::less<int>, boost::function<void (spotify::facebook::ServiceEvent)>, boost::function<void (const boost::signals2::connection &, spotify::facebook::ServiceEvent)>, boost::signals2::mutex>> {
-    struct signal_impl<void (spotify::facebook::ServiceEvent), boost::signals2::optional_last_value<void>, int, std::__1::less<int>, boost::function<void (spotify::facebook::ServiceEvent)>, boost::function<void (const boost::signals2::connection &, spotify::facebook::ServiceEvent)>, boost::signals2::mutex> *_field1;
-    struct shared_count _field2;
-};
-
-struct shared_ptr<boost::signals2::detail::signal_impl<void (spotify::playback::VolumeChangeReason), boost::signals2::optional_last_value<void>, int, std::__1::less<int>, boost::function<void (spotify::playback::VolumeChangeReason)>, boost::function<void (const boost::signals2::connection &, spotify::playback::VolumeChangeReason)>, boost::signals2::mutex>> {
-    struct signal_impl<void (spotify::playback::VolumeChangeReason), boost::signals2::optional_last_value<void>, int, std::__1::less<int>, boost::function<void (spotify::playback::VolumeChangeReason)>, boost::function<void (const boost::signals2::connection &, spotify::playback::VolumeChangeReason)>, boost::signals2::mutex> *_field1;
-    struct shared_count _field2;
-};
-
-struct shared_ptr<boost::signals2::detail::signal_impl<void (spotify::prefs::PrefEntry *), boost::signals2::optional_last_value<void>, int, std::__1::less<int>, boost::function<void (spotify::prefs::PrefEntry *)>, boost::function<void (const boost::signals2::connection &, spotify::prefs::PrefEntry *)>, boost::signals2::mutex>> {
-    struct signal_impl<void (spotify::prefs::PrefEntry *), boost::signals2::optional_last_value<void>, int, std::__1::less<int>, boost::function<void (spotify::prefs::PrefEntry *)>, boost::function<void (const boost::signals2::connection &, spotify::prefs::PrefEntry *)>, boost::signals2::mutex> *_field1;
-    struct shared_count _field2;
-};
-
 struct shared_ptr<const spotify::social::SocialUserData> {
     struct SocialUserData *_field1;
     struct __shared_weak_count *_field2;
@@ -1641,6 +1794,11 @@ struct shared_ptr<spotify::analytics::Logger> {
     struct __shared_weak_count *__cntrl_;
 };
 
+struct shared_ptr<spotify::async::GenericTimerManager> {
+    struct GenericTimerManager *__ptr_;
+    struct __shared_weak_count *__cntrl_;
+};
+
 struct shared_ptr<spotify::async::Timer::Impl> {
     struct Impl *_field1;
     struct __shared_weak_count *_field2;
@@ -1649,6 +1807,16 @@ struct shared_ptr<spotify::async::Timer::Impl> {
 struct shared_ptr<spotify::client::ApplicationStateTracker::Impl> {
     struct Impl *_field1;
     struct __shared_weak_count *_field2;
+};
+
+struct shared_ptr<spotify::connectivity::oauth::Client> {
+    struct Client *__ptr_;
+    struct __shared_weak_count *__cntrl_;
+};
+
+struct shared_ptr<spotify::cosmos::resolve::ResolveImpl> {
+    struct ResolveImpl *__ptr_;
+    struct __shared_weak_count *__cntrl_;
 };
 
 struct shared_ptr<spotify::event_sender::EventSender> {
@@ -1751,6 +1919,11 @@ struct shared_ptr<spotify::product_state::ProductState> {
     struct __shared_weak_count *__cntrl_;
 };
 
+struct shared_ptr<spotify::signals::connection::shared_state> {
+    struct shared_state *__ptr_;
+    struct __shared_weak_count *__cntrl_;
+};
+
 struct shared_ptr<std::__1::vector<spotify::palette::Swatch, std::__1::allocator<spotify::palette::Swatch>>> {
     struct vector<spotify::palette::Swatch, std::__1::allocator<spotify::palette::Swatch>> *_field1;
     struct __shared_weak_count *_field2;
@@ -1766,54 +1939,66 @@ struct shared_ptr<void> {
     struct __shared_weak_count *__cntrl_;
 };
 
-struct signal<void (), boost::signals2::optional_last_value<void>, int, std::__1::less<int>, boost::function<void ()>, boost::function<void (const boost::signals2::connection &)>, boost::signals2::mutex> {
-    CDUnknownFunctionPointerType *_field1;
-    struct shared_ptr<boost::signals2::detail::signal_impl<void (), boost::signals2::optional_last_value<void>, int, std::__1::less<int>, boost::function<void ()>, boost::function<void (const boost::signals2::connection &)>, boost::signals2::mutex>> _field2;
+struct shared_state;
+
+struct signal<void (), spotify::signals::optional_last_value<void>, int, std::__1::less<int>> {
+    shared_ptr_b60d0e1e _field1;
+    struct mutex _field2;
+    struct slot_vector _field3;
+    struct optional_last_value<void> _field4;
+    struct less<int> _field5;
 };
 
-struct signal<void (bool, bool), boost::signals2::optional_last_value<void>, int, std::__1::less<int>, boost::function<void (bool, bool)>, boost::function<void (const boost::signals2::connection &, bool, bool)>, boost::signals2::mutex> {
-    CDUnknownFunctionPointerType *_field1;
-    struct shared_ptr<boost::signals2::detail::signal_impl<void (bool, bool), boost::signals2::optional_last_value<void>, int, std::__1::less<int>, boost::function<void (bool, bool)>, boost::function<void (const boost::signals2::connection &, bool, bool)>, boost::signals2::mutex>> _field2;
+struct signal<void (bool, bool), spotify::signals::optional_last_value<void>, int, std::__1::less<int>> {
+    shared_ptr_b60d0e1e _field1;
+    struct mutex _field2;
+    struct slot_vector _field3;
+    struct optional_last_value<void> _field4;
+    struct less<int> _field5;
 };
 
-struct signal<void (const spotify::playback::AudioDriverInfo &), boost::signals2::optional_last_value<void>, int, std::__1::less<int>, boost::function<void (const spotify::playback::AudioDriverInfo &)>, boost::function<void (const boost::signals2::connection &, const spotify::playback::AudioDriverInfo &)>, boost::signals2::mutex> {
-    CDUnknownFunctionPointerType *_field1;
-    struct shared_ptr<boost::signals2::detail::signal_impl<void (const spotify::playback::AudioDriverInfo &), boost::signals2::optional_last_value<void>, int, std::__1::less<int>, boost::function<void (const spotify::playback::AudioDriverInfo &)>, boost::function<void (const boost::signals2::connection &, const spotify::playback::AudioDriverInfo &)>, boost::signals2::mutex>> _field2;
+struct signal<void (const spotify::playback::AudioDriverInfo &), spotify::signals::optional_last_value<void>, int, std::__1::less<int>> {
+    shared_ptr_b60d0e1e _field1;
+    struct mutex _field2;
+    struct slot_vector _field3;
+    struct optional_last_value<void> _field4;
+    struct less<int> _field5;
 };
 
-struct signal<void (spotify::facebook::ServiceErrorType, const std::__1::basic_string<char>&), boost::signals2::optional_last_value<void>, int, std::__1::less<int>, boost::function<void (spotify::facebook::ServiceErrorType, const std::__1::basic_string<char>&)>, boost::function<void (const boost::signals2::connection &, spotify::facebook::ServiceErrorType, const std::__1::basic_string<char>&)>, boost::signals2::mutex> {
-    CDUnknownFunctionPointerType *_field1;
-    struct shared_ptr<boost::signals2::detail::signal_impl<void (spotify::facebook::ServiceErrorType, const std::__1::basic_string<char>&), boost::signals2::optional_last_value<void>, int, std::__1::less<int>, boost::function<void (spotify::facebook::ServiceErrorType, const std::__1::basic_string<char>&)>, boost::function<void (const boost::signals2::connection &, spotify::facebook::ServiceErrorType, const std::__1::basic_string<char>&)>, boost::signals2::mutex>> _field2;
+struct signal<void (spotify::facebook::ServiceErrorType, const std::__1::basic_string<char>&), spotify::signals::optional_last_value<void>, int, std::__1::less<int>> {
+    shared_ptr_b60d0e1e _field1;
+    struct mutex _field2;
+    struct slot_vector _field3;
+    struct optional_last_value<void> _field4;
+    struct less<int> _field5;
 };
 
-struct signal<void (spotify::facebook::ServiceEvent), boost::signals2::optional_last_value<void>, int, std::__1::less<int>, boost::function<void (spotify::facebook::ServiceEvent)>, boost::function<void (const boost::signals2::connection &, spotify::facebook::ServiceEvent)>, boost::signals2::mutex> {
-    CDUnknownFunctionPointerType *_field1;
-    struct shared_ptr<boost::signals2::detail::signal_impl<void (spotify::facebook::ServiceEvent), boost::signals2::optional_last_value<void>, int, std::__1::less<int>, boost::function<void (spotify::facebook::ServiceEvent)>, boost::function<void (const boost::signals2::connection &, spotify::facebook::ServiceEvent)>, boost::signals2::mutex>> _field2;
+struct signal<void (spotify::facebook::ServiceEvent), spotify::signals::optional_last_value<void>, int, std::__1::less<int>> {
+    shared_ptr_b60d0e1e _field1;
+    struct mutex _field2;
+    struct slot_vector _field3;
+    struct optional_last_value<void> _field4;
+    struct less<int> _field5;
 };
 
-struct signal<void (spotify::playback::VolumeChangeReason), boost::signals2::optional_last_value<void>, int, std::__1::less<int>, boost::function<void (spotify::playback::VolumeChangeReason)>, boost::function<void (const boost::signals2::connection &, spotify::playback::VolumeChangeReason)>, boost::signals2::mutex> {
-    CDUnknownFunctionPointerType *_field1;
-    struct shared_ptr<boost::signals2::detail::signal_impl<void (spotify::playback::VolumeChangeReason), boost::signals2::optional_last_value<void>, int, std::__1::less<int>, boost::function<void (spotify::playback::VolumeChangeReason)>, boost::function<void (const boost::signals2::connection &, spotify::playback::VolumeChangeReason)>, boost::signals2::mutex>> _field2;
+struct signal<void (spotify::prefs::PrefEntry *), spotify::signals::optional_last_value<void>, int, std::__1::less<int>> {
+    shared_ptr_b60d0e1e _field1;
+    struct mutex _field2;
+    struct slot_vector _field3;
+    struct optional_last_value<void> _field4;
+    struct less<int> _field5;
 };
 
-struct signal<void (spotify::prefs::PrefEntry *), boost::signals2::optional_last_value<void>, int, std::__1::less<int>, boost::function<void (spotify::prefs::PrefEntry *)>, boost::function<void (const boost::signals2::connection &, spotify::prefs::PrefEntry *)>, boost::signals2::mutex> {
-    CDUnknownFunctionPointerType *_field1;
-    struct shared_ptr<boost::signals2::detail::signal_impl<void (spotify::prefs::PrefEntry *), boost::signals2::optional_last_value<void>, int, std::__1::less<int>, boost::function<void (spotify::prefs::PrefEntry *)>, boost::function<void (const boost::signals2::connection &, spotify::prefs::PrefEntry *)>, boost::signals2::mutex>> _field2;
+struct slot_vector {
+    struct small_vector<spotify::signals::detail::connected_slot, 16, void, void> _field1;
+    _Bool _field2;
 };
 
-struct signal_impl<void (), boost::signals2::optional_last_value<void>, int, std::__1::less<int>, boost::function<void ()>, boost::function<void (const boost::signals2::connection &)>, boost::signals2::mutex>;
-
-struct signal_impl<void (bool, bool), boost::signals2::optional_last_value<void>, int, std::__1::less<int>, boost::function<void (bool, bool)>, boost::function<void (const boost::signals2::connection &, bool, bool)>, boost::signals2::mutex>;
-
-struct signal_impl<void (const spotify::playback::AudioDriverInfo &), boost::signals2::optional_last_value<void>, int, std::__1::less<int>, boost::function<void (const spotify::playback::AudioDriverInfo &)>, boost::function<void (const boost::signals2::connection &, const spotify::playback::AudioDriverInfo &)>, boost::signals2::mutex>;
-
-struct signal_impl<void (spotify::facebook::ServiceErrorType, const std::__1::basic_string<char>&), boost::signals2::optional_last_value<void>, int, std::__1::less<int>, boost::function<void (spotify::facebook::ServiceErrorType, const std::__1::basic_string<char>&)>, boost::function<void (const boost::signals2::connection &, spotify::facebook::ServiceErrorType, const std::__1::basic_string<char>&)>, boost::signals2::mutex>;
-
-struct signal_impl<void (spotify::facebook::ServiceEvent), boost::signals2::optional_last_value<void>, int, std::__1::less<int>, boost::function<void (spotify::facebook::ServiceEvent)>, boost::function<void (const boost::signals2::connection &, spotify::facebook::ServiceEvent)>, boost::signals2::mutex>;
-
-struct signal_impl<void (spotify::playback::VolumeChangeReason), boost::signals2::optional_last_value<void>, int, std::__1::less<int>, boost::function<void (spotify::playback::VolumeChangeReason)>, boost::function<void (const boost::signals2::connection &, spotify::playback::VolumeChangeReason)>, boost::signals2::mutex>;
-
-struct signal_impl<void (spotify::prefs::PrefEntry *), boost::signals2::optional_last_value<void>, int, std::__1::less<int>, boost::function<void (spotify::prefs::PrefEntry *)>, boost::function<void (const boost::signals2::connection &, spotify::prefs::PrefEntry *)>, boost::signals2::mutex>;
+struct small_vector<spotify::signals::detail::connected_slot, 16, void, void> {
+    struct vector_alloc_holder<boost::container::small_vector_allocator<spotify::signals::detail::connected_slot, boost::container::new_allocator<void>, void>, unsigned long, boost::move_detail::integral_constant<unsigned int, 1>> _field1;
+    union aligned_struct_wrapper<40, 8> _field2;
+    union aligned_struct_wrapper<40, 8> _field3[15];
+};
 
 struct sockaddr {
     unsigned char _field1;
@@ -1843,8 +2028,6 @@ struct sockaddr_un {
     unsigned char _field2;
     char _field3[104];
 };
-
-struct sp_counted_base;
 
 struct span<const spotify::metadata::AlbumGroup> {
     struct AlbumGroup *_field1;
@@ -1882,8 +2065,12 @@ struct streamingConfigurationParams {
     _Bool systemClockJumpDetection;
 };
 
+struct thread {
+    struct _opaque_pthread_t *__t_;
+};
+
 struct time_point<std::__1::chrono::system_clock, std::__1::chrono::duration<long long, std::__1::ratio<1, 1000000>>> {
-    struct duration<long long, std::__1::ratio<1, 1000000>> _field1;
+    struct duration<long long, std::__1::ratio<1, 1000000>> __d_;
 };
 
 struct timespec {
@@ -1895,84 +2082,12 @@ struct type {
     unsigned char __lx[24];
 };
 
-struct unique_ptr<ApplicationScopeImpl, std::__1::default_delete<ApplicationScopeImpl>> {
-    struct __compressed_pair<ApplicationScopeImpl *, std::__1::default_delete<ApplicationScopeImpl>> {
-        struct ApplicationScopeImpl *__value_;
-    } __ptr_;
-};
-
-struct unique_ptr<LoginControllerImpl, std::__1::default_delete<LoginControllerImpl>> {
-    struct __compressed_pair<LoginControllerImpl *, std::__1::default_delete<LoginControllerImpl>> {
-        struct LoginControllerImpl *__value_;
-    } __ptr_;
-};
-
-struct unique_ptr<SchedulerImpl, std::__1::default_delete<SchedulerImpl>> {
-    struct __compressed_pair<SchedulerImpl *, std::__1::default_delete<SchedulerImpl>> {
-        struct SchedulerImpl *__value_;
-    } __ptr_;
-};
-
-struct unique_ptr<spotify::analytics::PendingMessageStorage::PendingMessage, std::__1::default_delete<spotify::analytics::PendingMessageStorage::PendingMessage>>;
+struct unique_ptr<spotify::analytics::PendingMessageStorageImpl::PendingMessage, std::__1::default_delete<spotify::analytics::PendingMessageStorageImpl::PendingMessage>>;
 
 struct unique_ptr<spotify::async::TimerManager, std::__1::default_delete<spotify::async::TimerManager>> {
     struct __compressed_pair<spotify::async::TimerManager *, std::__1::default_delete<spotify::async::TimerManager>> {
         struct TimerManager *__value_;
     } __ptr_;
-};
-
-struct unique_ptr<spotify::auth::AuthSession, std::__1::default_delete<spotify::auth::AuthSession>> {
-    struct __compressed_pair<spotify::auth::AuthSession *, std::__1::default_delete<spotify::auth::AuthSession>> {
-        struct AuthSession *__value_;
-    } __ptr_;
-};
-
-struct unique_ptr<spotify::auth::Identifier::Impl, std::__1::default_delete<spotify::auth::Identifier::Impl>> {
-    struct __compressed_pair<spotify::auth::Identifier::Impl *, std::__1::default_delete<spotify::auth::Identifier::Impl>> {
-        struct Impl *_field1;
-    } _field1;
-};
-
-struct unique_ptr<spotify::auth::LoginCredentials::Impl, std::__1::default_delete<spotify::auth::LoginCredentials::Impl>> {
-    struct __compressed_pair<spotify::auth::LoginCredentials::Impl *, std::__1::default_delete<spotify::auth::LoginCredentials::Impl>> {
-        struct Impl *__value_;
-    } __ptr_;
-};
-
-struct unique_ptr<spotify::auth::SerializableCredentials::Impl, std::__1::default_delete<spotify::auth::SerializableCredentials::Impl>> {
-    struct __compressed_pair<spotify::auth::SerializableCredentials::Impl *, std::__1::default_delete<spotify::auth::SerializableCredentials::Impl>> {
-        struct Impl *__value_;
-    } __ptr_;
-};
-
-struct unique_ptr<spotify::auth::Session, std::__1::default_delete<spotify::auth::Session>> {
-    struct __compressed_pair<spotify::auth::Session *, std::__1::default_delete<spotify::auth::Session>> {
-        struct Session *__value_;
-    } __ptr_;
-};
-
-struct unique_ptr<spotify::auth::credentials::OneTimeToken::Impl, std::__1::default_delete<spotify::auth::credentials::OneTimeToken::Impl>> {
-    struct __compressed_pair<spotify::auth::credentials::OneTimeToken::Impl *, std::__1::default_delete<spotify::auth::credentials::OneTimeToken::Impl>> {
-        struct Impl *_field1;
-    } _field1;
-};
-
-struct unique_ptr<spotify::auth::credentials::ParentChildCredentials, std::__1::default_delete<spotify::auth::credentials::ParentChildCredentials>> {
-    struct __compressed_pair<spotify::auth::credentials::ParentChildCredentials *, std::__1::default_delete<spotify::auth::credentials::ParentChildCredentials>> {
-        struct ParentChildCredentials *__value_;
-    } __ptr_;
-};
-
-struct unique_ptr<spotify::auth::credentials::ParentChildCredentials::Impl, std::__1::default_delete<spotify::auth::credentials::ParentChildCredentials::Impl>> {
-    struct __compressed_pair<spotify::auth::credentials::ParentChildCredentials::Impl *, std::__1::default_delete<spotify::auth::credentials::ParentChildCredentials::Impl>> {
-        struct Impl *_field1;
-    } _field1;
-};
-
-struct unique_ptr<spotify::auth::credentials::RefreshTokenCredentials::Impl, std::__1::default_delete<spotify::auth::credentials::RefreshTokenCredentials::Impl>> {
-    struct __compressed_pair<spotify::auth::credentials::RefreshTokenCredentials::Impl *, std::__1::default_delete<spotify::auth::credentials::RefreshTokenCredentials::Impl>> {
-        struct Impl *_field1;
-    } _field1;
 };
 
 struct unique_ptr<spotify::client::Core, std::__1::default_delete<spotify::client::Core>> {
@@ -1999,6 +2114,12 @@ struct unique_ptr<spotify::connectivity::AccessTokenScope, std::__1::default_del
     } __ptr_;
 };
 
+struct unique_ptr<spotify::connectivity::ApplicationScope, std::__1::default_delete<spotify::connectivity::ApplicationScope>> {
+    struct __compressed_pair<spotify::connectivity::ApplicationScope *, std::__1::default_delete<spotify::connectivity::ApplicationScope>> {
+        struct ApplicationScope *__value_;
+    } __ptr_;
+};
+
 struct unique_ptr<spotify::connectivity::ApplicationScope::Impl, std::__1::default_delete<spotify::connectivity::ApplicationScope::Impl>> {
     struct __compressed_pair<spotify::connectivity::ApplicationScope::Impl *, std::__1::default_delete<spotify::connectivity::ApplicationScope::Impl>> {
         struct Impl *_field1;
@@ -2009,6 +2130,90 @@ struct unique_ptr<spotify::connectivity::ConnectivityManager::Impl, std::__1::de
     struct __compressed_pair<spotify::connectivity::ConnectivityManager::Impl *, std::__1::default_delete<spotify::connectivity::ConnectivityManager::Impl>> {
         struct Impl *_field1;
     } _field1;
+};
+
+struct unique_ptr<spotify::connectivity::auth::AuthSession, std::__1::default_delete<spotify::connectivity::auth::AuthSession>> {
+    struct __compressed_pair<spotify::connectivity::auth::AuthSession *, std::__1::default_delete<spotify::connectivity::auth::AuthSession>> {
+        struct AuthSession *__value_;
+    } __ptr_;
+};
+
+struct unique_ptr<spotify::connectivity::auth::Identifier::Impl, std::__1::default_delete<spotify::connectivity::auth::Identifier::Impl>> {
+    struct __compressed_pair<spotify::connectivity::auth::Identifier::Impl *, std::__1::default_delete<spotify::connectivity::auth::Identifier::Impl>> {
+        struct Impl *__value_;
+    } __ptr_;
+};
+
+struct unique_ptr<spotify::connectivity::auth::LoginController, std::__1::default_delete<spotify::connectivity::auth::LoginController>> {
+    struct __compressed_pair<spotify::connectivity::auth::LoginController *, std::__1::default_delete<spotify::connectivity::auth::LoginController>> {
+        struct LoginController *__value_;
+    } __ptr_;
+};
+
+struct unique_ptr<spotify::connectivity::auth::LoginCredentials::Impl, std::__1::default_delete<spotify::connectivity::auth::LoginCredentials::Impl>> {
+    struct __compressed_pair<spotify::connectivity::auth::LoginCredentials::Impl *, std::__1::default_delete<spotify::connectivity::auth::LoginCredentials::Impl>> {
+        struct Impl *__value_;
+    } __ptr_;
+};
+
+struct unique_ptr<spotify::connectivity::auth::SerializableCredentials::Impl, std::__1::default_delete<spotify::connectivity::auth::SerializableCredentials::Impl>> {
+    struct __compressed_pair<spotify::connectivity::auth::SerializableCredentials::Impl *, std::__1::default_delete<spotify::connectivity::auth::SerializableCredentials::Impl>> {
+        struct Impl *__value_;
+    } __ptr_;
+};
+
+struct unique_ptr<spotify::connectivity::auth::Session, std::__1::default_delete<spotify::connectivity::auth::Session>> {
+    struct __compressed_pair<spotify::connectivity::auth::Session *, std::__1::default_delete<spotify::connectivity::auth::Session>> {
+        struct Session *__value_;
+    } __ptr_;
+};
+
+struct unique_ptr<spotify::connectivity::auth::accesspoint::AccesspointResolver, std::__1::default_delete<spotify::connectivity::auth::accesspoint::AccesspointResolver>> {
+    struct __compressed_pair<spotify::connectivity::auth::accesspoint::AccesspointResolver *, std::__1::default_delete<spotify::connectivity::auth::accesspoint::AccesspointResolver>> {
+        struct AccesspointResolver *__value_;
+    } __ptr_;
+};
+
+struct unique_ptr<spotify::connectivity::auth::credentials::AppleSignInCredential::Impl, std::__1::default_delete<spotify::connectivity::auth::credentials::AppleSignInCredential::Impl>> {
+    struct __compressed_pair<spotify::connectivity::auth::credentials::AppleSignInCredential::Impl *, std::__1::default_delete<spotify::connectivity::auth::credentials::AppleSignInCredential::Impl>> {
+        struct Impl *__value_;
+    } __ptr_;
+};
+
+struct unique_ptr<spotify::connectivity::auth::credentials::OneTimeToken::Impl, std::__1::default_delete<spotify::connectivity::auth::credentials::OneTimeToken::Impl>> {
+    struct __compressed_pair<spotify::connectivity::auth::credentials::OneTimeToken::Impl *, std::__1::default_delete<spotify::connectivity::auth::credentials::OneTimeToken::Impl>> {
+        struct Impl *__value_;
+    } __ptr_;
+};
+
+struct unique_ptr<spotify::connectivity::auth::credentials::ParentChildCredential::Impl, std::__1::default_delete<spotify::connectivity::auth::credentials::ParentChildCredential::Impl>> {
+    struct __compressed_pair<spotify::connectivity::auth::credentials::ParentChildCredential::Impl *, std::__1::default_delete<spotify::connectivity::auth::credentials::ParentChildCredential::Impl>> {
+        struct Impl *__value_;
+    } __ptr_;
+};
+
+struct unique_ptr<spotify::connectivity::auth::credentials::RefreshTokenCredentials::Impl, std::__1::default_delete<spotify::connectivity::auth::credentials::RefreshTokenCredentials::Impl>> {
+    struct __compressed_pair<spotify::connectivity::auth::credentials::RefreshTokenCredentials::Impl *, std::__1::default_delete<spotify::connectivity::auth::credentials::RefreshTokenCredentials::Impl>> {
+        struct Impl *_field1;
+    } _field1;
+};
+
+struct unique_ptr<spotify::connectivity::auth::objc::impl::SPTAuthSchedulerBridge, std::__1::default_delete<spotify::connectivity::auth::objc::impl::SPTAuthSchedulerBridge>> {
+    struct __compressed_pair<spotify::connectivity::auth::objc::impl::SPTAuthSchedulerBridge *, std::__1::default_delete<spotify::connectivity::auth::objc::impl::SPTAuthSchedulerBridge>> {
+        struct SPTAuthSchedulerBridge *__value_;
+    } __ptr_;
+};
+
+struct unique_ptr<spotify::connectivity::oauth::objc::SPTAuthSchedulerBridge, std::__1::default_delete<spotify::connectivity::oauth::objc::SPTAuthSchedulerBridge>> {
+    struct __compressed_pair<spotify::connectivity::oauth::objc::SPTAuthSchedulerBridge *, std::__1::default_delete<spotify::connectivity::oauth::objc::SPTAuthSchedulerBridge>> {
+        struct SPTAuthSchedulerBridge *__value_;
+    } __ptr_;
+};
+
+struct unique_ptr<spotify::connectivity::objc::impl::SPTConnectivitySchedulerBridge, std::__1::default_delete<spotify::connectivity::objc::impl::SPTConnectivitySchedulerBridge>> {
+    struct __compressed_pair<spotify::connectivity::objc::impl::SPTConnectivitySchedulerBridge *, std::__1::default_delete<spotify::connectivity::objc::impl::SPTConnectivitySchedulerBridge>> {
+        struct SPTConnectivitySchedulerBridge *__value_;
+    } __ptr_;
 };
 
 struct unique_ptr<spotify::metadata::MetadataModel::Impl, std::__1::default_delete<spotify::metadata::MetadataModel::Impl>> {
@@ -2029,10 +2234,70 @@ struct unique_ptr<spotify::prefs::Prefs, std::__1::default_delete<spotify::prefs
     } __ptr_;
 };
 
-struct unique_ptr<spotify::xresolve::Resolver, std::__1::default_delete<spotify::xresolve::Resolver>> {
-    struct __compressed_pair<spotify::xresolve::Resolver *, std::__1::default_delete<spotify::xresolve::Resolver>> {
-        struct Resolver *__value_;
-    } __ptr_;
+struct unique_ptr<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::Credential, spotify::facebook::proto::ConfigReply>>>, void *>*>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::Credential, spotify::facebook::proto::ConfigReply>>>, void *>*>*>>> {
+    struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::Credential, spotify::facebook::proto::ConfigReply>>>, void *>*>**, std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::Credential, spotify::facebook::proto::ConfigReply>>>, void *>*>*>>> {
+        struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::Credential, spotify::facebook::proto::ConfigReply>>>, void *>*> **_field1;
+        struct __bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::Credential, spotify::facebook::proto::ConfigReply>>>, void *>*>*>> {
+            struct __compressed_pair<unsigned long, std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::Credential, spotify::facebook::proto::ConfigReply>>>, void *>*>*>> {
+                unsigned long long _field1;
+            } _field1;
+        } _field2;
+    } _field1;
+};
+
+struct unique_ptr<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::DisableRequest, spotify::facebook::proto::Credential>>>, void *>*>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::DisableRequest, spotify::facebook::proto::Credential>>>, void *>*>*>>> {
+    struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::DisableRequest, spotify::facebook::proto::Credential>>>, void *>*>**, std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::DisableRequest, spotify::facebook::proto::Credential>>>, void *>*>*>>> {
+        struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::DisableRequest, spotify::facebook::proto::Credential>>>, void *>*> **_field1;
+        struct __bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::DisableRequest, spotify::facebook::proto::Credential>>>, void *>*>*>> {
+            struct __compressed_pair<unsigned long, std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::DisableRequest, spotify::facebook::proto::Credential>>>, void *>*>*>> {
+                unsigned long long _field1;
+            } _field1;
+        } _field2;
+    } _field1;
+};
+
+struct unique_ptr<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::EnableRequest, spotify::facebook::proto::EnableReply>>>, void *>*>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::EnableRequest, spotify::facebook::proto::EnableReply>>>, void *>*>*>>> {
+    struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::EnableRequest, spotify::facebook::proto::EnableReply>>>, void *>*>**, std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::EnableRequest, spotify::facebook::proto::EnableReply>>>, void *>*>*>>> {
+        struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::EnableRequest, spotify::facebook::proto::EnableReply>>>, void *>*> **_field1;
+        struct __bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::EnableRequest, spotify::facebook::proto::EnableReply>>>, void *>*>*>> {
+            struct __compressed_pair<unsigned long, std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::EnableRequest, spotify::facebook::proto::EnableReply>>>, void *>*>*>> {
+                unsigned long long _field1;
+            } _field1;
+        } _field2;
+    } _field1;
+};
+
+struct unique_ptr<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::InspectCredentialRequest, spotify::facebook::proto::InspectCredentialReply>>>, void *>*>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::InspectCredentialRequest, spotify::facebook::proto::InspectCredentialReply>>>, void *>*>*>>> {
+    struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::InspectCredentialRequest, spotify::facebook::proto::InspectCredentialReply>>>, void *>*>**, std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::InspectCredentialRequest, spotify::facebook::proto::InspectCredentialReply>>>, void *>*>*>>> {
+        struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::InspectCredentialRequest, spotify::facebook::proto::InspectCredentialReply>>>, void *>*> **_field1;
+        struct __bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::InspectCredentialRequest, spotify::facebook::proto::InspectCredentialReply>>>, void *>*>*>> {
+            struct __compressed_pair<unsigned long, std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::InspectCredentialRequest, spotify::facebook::proto::InspectCredentialReply>>>, void *>*>*>> {
+                unsigned long long _field1;
+            } _field1;
+        } _field2;
+    } _field1;
+};
+
+struct unique_ptr<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::UpdateUserStateRequest, spotify::facebook::proto::UserState>>>, void *>*>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::UpdateUserStateRequest, spotify::facebook::proto::UserState>>>, void *>*>*>>> {
+    struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::UpdateUserStateRequest, spotify::facebook::proto::UserState>>>, void *>*>**, std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::UpdateUserStateRequest, spotify::facebook::proto::UserState>>>, void *>*>*>>> {
+        struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::UpdateUserStateRequest, spotify::facebook::proto::UserState>>>, void *>*> **_field1;
+        struct __bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::UpdateUserStateRequest, spotify::facebook::proto::UserState>>>, void *>*>*>> {
+            struct __compressed_pair<unsigned long, std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::UpdateUserStateRequest, spotify::facebook::proto::UserState>>>, void *>*>*>> {
+                unsigned long long _field1;
+            } _field1;
+        } _field2;
+    } _field1;
+};
+
+struct unique_ptr<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::UserState, spotify::facebook::proto::UserState>>>, void *>*>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::UserState, spotify::facebook::proto::UserState>>>, void *>*>*>>> {
+    struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::UserState, spotify::facebook::proto::UserState>>>, void *>*>**, std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::UserState, spotify::facebook::proto::UserState>>>, void *>*>*>>> {
+        struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::UserState, spotify::facebook::proto::UserState>>>, void *>*> **_field1;
+        struct __bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::UserState, spotify::facebook::proto::UserState>>>, void *>*>*>> {
+            struct __compressed_pair<unsigned long, std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::UserState, spotify::facebook::proto::UserState>>>, void *>*>*>> {
+                unsigned long long _field1;
+            } _field1;
+        } _field2;
+    } _field1;
 };
 
 struct unique_ptr<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<std::__1::basic_string<char>, std::__1::basic_string<char>>, void *>*>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<std::__1::basic_string<char>, std::__1::basic_string<char>>, void *>*>*>>> {
@@ -2068,14 +2333,104 @@ struct unique_ptr<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__h
     } __ptr_;
 };
 
-struct unordered_map<std::__1::basic_string<char>, std::__1::basic_string<char>, spotify::cosmos::detail::HashCaseInsensitive, spotify::cosmos::detail::EqualsCaseInsensitive, std::__1::allocator<std::__1::pair<const std::__1::basic_string<char>, std::__1::basic_string<char>>>> {
-    struct __hash_table<std::__1::__hash_value_type<std::__1::basic_string<char>, std::__1::basic_string<char>>, std::__1::__unordered_map_hasher<std::__1::basic_string<char>, std::__1::__hash_value_type<std::__1::basic_string<char>, std::__1::basic_string<char>>, spotify::cosmos::detail::HashCaseInsensitive, true>, std::__1::__unordered_map_equal<std::__1::basic_string<char>, std::__1::__hash_value_type<std::__1::basic_string<char>, std::__1::basic_string<char>>, spotify::cosmos::detail::EqualsCaseInsensitive, true>, std::__1::allocator<std::__1::__hash_value_type<std::__1::basic_string<char>, std::__1::basic_string<char>>>> {
-        struct unique_ptr<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<std::__1::basic_string<char>, std::__1::basic_string<char>>, void *>*>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<std::__1::basic_string<char>, std::__1::basic_string<char>>, void *>*>*>>> _field1;
-        struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<std::__1::basic_string<char>, std::__1::basic_string<char>>, void *>*>, std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<std::__1::basic_string<char>, std::__1::basic_string<char>>, void *>>> _field2;
-        struct __compressed_pair<unsigned long, std::__1::__unordered_map_hasher<std::__1::basic_string<char>, std::__1::__hash_value_type<std::__1::basic_string<char>, std::__1::basic_string<char>>, spotify::cosmos::detail::HashCaseInsensitive, true>> {
+struct unordered_map<int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::Credential, spotify::facebook::proto::ConfigReply>>, std::__1::hash<int>, std::__1::equal_to<int>, std::__1::allocator<std::__1::pair<const int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::Credential, spotify::facebook::proto::ConfigReply>>>>> {
+    struct __hash_table<std::__1::__hash_value_type<int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::Credential, spotify::facebook::proto::ConfigReply>>>, std::__1::__unordered_map_hasher<int, std::__1::__hash_value_type<int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::Credential, spotify::facebook::proto::ConfigReply>>>, std::__1::hash<int>, true>, std::__1::__unordered_map_equal<int, std::__1::__hash_value_type<int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::Credential, spotify::facebook::proto::ConfigReply>>>, std::__1::equal_to<int>, true>, std::__1::allocator<std::__1::__hash_value_type<int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::Credential, spotify::facebook::proto::ConfigReply>>>>> {
+        struct unique_ptr<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::Credential, spotify::facebook::proto::ConfigReply>>>, void *>*>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::Credential, spotify::facebook::proto::ConfigReply>>>, void *>*>*>>> _field1;
+        struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::Credential, spotify::facebook::proto::ConfigReply>>>, void *>*>, std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::Credential, spotify::facebook::proto::ConfigReply>>>, void *>>> {
+            struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::Credential, spotify::facebook::proto::ConfigReply>>>, void *>*> _field1;
+        } _field2;
+        struct __compressed_pair<unsigned long, std::__1::__unordered_map_hasher<int, std::__1::__hash_value_type<int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::Credential, spotify::facebook::proto::ConfigReply>>>, std::__1::hash<int>, true>> {
             unsigned long long _field1;
         } _field3;
-        struct __compressed_pair<float, std::__1::__unordered_map_equal<std::__1::basic_string<char>, std::__1::__hash_value_type<std::__1::basic_string<char>, std::__1::basic_string<char>>, spotify::cosmos::detail::EqualsCaseInsensitive, true>> {
+        struct __compressed_pair<float, std::__1::__unordered_map_equal<int, std::__1::__hash_value_type<int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::Credential, spotify::facebook::proto::ConfigReply>>>, std::__1::equal_to<int>, true>> {
+            float _field1;
+        } _field4;
+    } _field1;
+};
+
+struct unordered_map<int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::DisableRequest, spotify::facebook::proto::Credential>>, std::__1::hash<int>, std::__1::equal_to<int>, std::__1::allocator<std::__1::pair<const int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::DisableRequest, spotify::facebook::proto::Credential>>>>> {
+    struct __hash_table<std::__1::__hash_value_type<int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::DisableRequest, spotify::facebook::proto::Credential>>>, std::__1::__unordered_map_hasher<int, std::__1::__hash_value_type<int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::DisableRequest, spotify::facebook::proto::Credential>>>, std::__1::hash<int>, true>, std::__1::__unordered_map_equal<int, std::__1::__hash_value_type<int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::DisableRequest, spotify::facebook::proto::Credential>>>, std::__1::equal_to<int>, true>, std::__1::allocator<std::__1::__hash_value_type<int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::DisableRequest, spotify::facebook::proto::Credential>>>>> {
+        struct unique_ptr<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::DisableRequest, spotify::facebook::proto::Credential>>>, void *>*>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::DisableRequest, spotify::facebook::proto::Credential>>>, void *>*>*>>> _field1;
+        struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::DisableRequest, spotify::facebook::proto::Credential>>>, void *>*>, std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::DisableRequest, spotify::facebook::proto::Credential>>>, void *>>> {
+            struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::DisableRequest, spotify::facebook::proto::Credential>>>, void *>*> _field1;
+        } _field2;
+        struct __compressed_pair<unsigned long, std::__1::__unordered_map_hasher<int, std::__1::__hash_value_type<int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::DisableRequest, spotify::facebook::proto::Credential>>>, std::__1::hash<int>, true>> {
+            unsigned long long _field1;
+        } _field3;
+        struct __compressed_pair<float, std::__1::__unordered_map_equal<int, std::__1::__hash_value_type<int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::DisableRequest, spotify::facebook::proto::Credential>>>, std::__1::equal_to<int>, true>> {
+            float _field1;
+        } _field4;
+    } _field1;
+};
+
+struct unordered_map<int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::EnableRequest, spotify::facebook::proto::EnableReply>>, std::__1::hash<int>, std::__1::equal_to<int>, std::__1::allocator<std::__1::pair<const int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::EnableRequest, spotify::facebook::proto::EnableReply>>>>> {
+    struct __hash_table<std::__1::__hash_value_type<int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::EnableRequest, spotify::facebook::proto::EnableReply>>>, std::__1::__unordered_map_hasher<int, std::__1::__hash_value_type<int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::EnableRequest, spotify::facebook::proto::EnableReply>>>, std::__1::hash<int>, true>, std::__1::__unordered_map_equal<int, std::__1::__hash_value_type<int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::EnableRequest, spotify::facebook::proto::EnableReply>>>, std::__1::equal_to<int>, true>, std::__1::allocator<std::__1::__hash_value_type<int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::EnableRequest, spotify::facebook::proto::EnableReply>>>>> {
+        struct unique_ptr<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::EnableRequest, spotify::facebook::proto::EnableReply>>>, void *>*>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::EnableRequest, spotify::facebook::proto::EnableReply>>>, void *>*>*>>> _field1;
+        struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::EnableRequest, spotify::facebook::proto::EnableReply>>>, void *>*>, std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::EnableRequest, spotify::facebook::proto::EnableReply>>>, void *>>> {
+            struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::EnableRequest, spotify::facebook::proto::EnableReply>>>, void *>*> _field1;
+        } _field2;
+        struct __compressed_pair<unsigned long, std::__1::__unordered_map_hasher<int, std::__1::__hash_value_type<int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::EnableRequest, spotify::facebook::proto::EnableReply>>>, std::__1::hash<int>, true>> {
+            unsigned long long _field1;
+        } _field3;
+        struct __compressed_pair<float, std::__1::__unordered_map_equal<int, std::__1::__hash_value_type<int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::EnableRequest, spotify::facebook::proto::EnableReply>>>, std::__1::equal_to<int>, true>> {
+            float _field1;
+        } _field4;
+    } _field1;
+};
+
+struct unordered_map<int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::InspectCredentialRequest, spotify::facebook::proto::InspectCredentialReply>>, std::__1::hash<int>, std::__1::equal_to<int>, std::__1::allocator<std::__1::pair<const int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::InspectCredentialRequest, spotify::facebook::proto::InspectCredentialReply>>>>> {
+    struct __hash_table<std::__1::__hash_value_type<int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::InspectCredentialRequest, spotify::facebook::proto::InspectCredentialReply>>>, std::__1::__unordered_map_hasher<int, std::__1::__hash_value_type<int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::InspectCredentialRequest, spotify::facebook::proto::InspectCredentialReply>>>, std::__1::hash<int>, true>, std::__1::__unordered_map_equal<int, std::__1::__hash_value_type<int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::InspectCredentialRequest, spotify::facebook::proto::InspectCredentialReply>>>, std::__1::equal_to<int>, true>, std::__1::allocator<std::__1::__hash_value_type<int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::InspectCredentialRequest, spotify::facebook::proto::InspectCredentialReply>>>>> {
+        struct unique_ptr<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::InspectCredentialRequest, spotify::facebook::proto::InspectCredentialReply>>>, void *>*>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::InspectCredentialRequest, spotify::facebook::proto::InspectCredentialReply>>>, void *>*>*>>> _field1;
+        struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::InspectCredentialRequest, spotify::facebook::proto::InspectCredentialReply>>>, void *>*>, std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::InspectCredentialRequest, spotify::facebook::proto::InspectCredentialReply>>>, void *>>> {
+            struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::InspectCredentialRequest, spotify::facebook::proto::InspectCredentialReply>>>, void *>*> _field1;
+        } _field2;
+        struct __compressed_pair<unsigned long, std::__1::__unordered_map_hasher<int, std::__1::__hash_value_type<int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::InspectCredentialRequest, spotify::facebook::proto::InspectCredentialReply>>>, std::__1::hash<int>, true>> {
+            unsigned long long _field1;
+        } _field3;
+        struct __compressed_pair<float, std::__1::__unordered_map_equal<int, std::__1::__hash_value_type<int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::InspectCredentialRequest, spotify::facebook::proto::InspectCredentialReply>>>, std::__1::equal_to<int>, true>> {
+            float _field1;
+        } _field4;
+    } _field1;
+};
+
+struct unordered_map<int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::UpdateUserStateRequest, spotify::facebook::proto::UserState>>, std::__1::hash<int>, std::__1::equal_to<int>, std::__1::allocator<std::__1::pair<const int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::UpdateUserStateRequest, spotify::facebook::proto::UserState>>>>> {
+    struct __hash_table<std::__1::__hash_value_type<int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::UpdateUserStateRequest, spotify::facebook::proto::UserState>>>, std::__1::__unordered_map_hasher<int, std::__1::__hash_value_type<int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::UpdateUserStateRequest, spotify::facebook::proto::UserState>>>, std::__1::hash<int>, true>, std::__1::__unordered_map_equal<int, std::__1::__hash_value_type<int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::UpdateUserStateRequest, spotify::facebook::proto::UserState>>>, std::__1::equal_to<int>, true>, std::__1::allocator<std::__1::__hash_value_type<int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::UpdateUserStateRequest, spotify::facebook::proto::UserState>>>>> {
+        struct unique_ptr<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::UpdateUserStateRequest, spotify::facebook::proto::UserState>>>, void *>*>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::UpdateUserStateRequest, spotify::facebook::proto::UserState>>>, void *>*>*>>> _field1;
+        struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::UpdateUserStateRequest, spotify::facebook::proto::UserState>>>, void *>*>, std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::UpdateUserStateRequest, spotify::facebook::proto::UserState>>>, void *>>> {
+            struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::UpdateUserStateRequest, spotify::facebook::proto::UserState>>>, void *>*> _field1;
+        } _field2;
+        struct __compressed_pair<unsigned long, std::__1::__unordered_map_hasher<int, std::__1::__hash_value_type<int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::UpdateUserStateRequest, spotify::facebook::proto::UserState>>>, std::__1::hash<int>, true>> {
+            unsigned long long _field1;
+        } _field3;
+        struct __compressed_pair<float, std::__1::__unordered_map_equal<int, std::__1::__hash_value_type<int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::UpdateUserStateRequest, spotify::facebook::proto::UserState>>>, std::__1::equal_to<int>, true>> {
+            float _field1;
+        } _field4;
+    } _field1;
+};
+
+struct unordered_map<int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::UserState, spotify::facebook::proto::UserState>>, std::__1::hash<int>, std::__1::equal_to<int>, std::__1::allocator<std::__1::pair<const int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::UserState, spotify::facebook::proto::UserState>>>>> {
+    struct __hash_table<std::__1::__hash_value_type<int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::UserState, spotify::facebook::proto::UserState>>>, std::__1::__unordered_map_hasher<int, std::__1::__hash_value_type<int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::UserState, spotify::facebook::proto::UserState>>>, std::__1::hash<int>, true>, std::__1::__unordered_map_equal<int, std::__1::__hash_value_type<int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::UserState, spotify::facebook::proto::UserState>>>, std::__1::equal_to<int>, true>, std::__1::allocator<std::__1::__hash_value_type<int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::UserState, spotify::facebook::proto::UserState>>>>> {
+        struct unique_ptr<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::UserState, spotify::facebook::proto::UserState>>>, void *>*>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::UserState, spotify::facebook::proto::UserState>>>, void *>*>*>>> _field1;
+        struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::UserState, spotify::facebook::proto::UserState>>>, void *>*>, std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::UserState, spotify::facebook::proto::UserState>>>, void *>>> {
+            struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::UserState, spotify::facebook::proto::UserState>>>, void *>*> _field1;
+        } _field2;
+        struct __compressed_pair<unsigned long, std::__1::__unordered_map_hasher<int, std::__1::__hash_value_type<int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::UserState, spotify::facebook::proto::UserState>>>, std::__1::hash<int>, true>> {
+            unsigned long long _field1;
+        } _field3;
+        struct __compressed_pair<float, std::__1::__unordered_map_equal<int, std::__1::__hash_value_type<int, std::__1::shared_ptr<spotify::facebook::FacebookServiceRequest<spotify::facebook::proto::UserState, spotify::facebook::proto::UserState>>>, std::__1::equal_to<int>, true>> {
+            float _field1;
+        } _field4;
+    } _field1;
+};
+
+struct unordered_map<std::__1::basic_string<char>, std::__1::basic_string<char>, spotify::cosmos::detail::CaseInsensitiveKeys, spotify::cosmos::detail::CaseInsensitiveKeys, std::__1::allocator<std::__1::pair<const std::__1::basic_string<char>, std::__1::basic_string<char>>>> {
+    struct __hash_table<std::__1::__hash_value_type<std::__1::basic_string<char>, std::__1::basic_string<char>>, std::__1::__unordered_map_hasher<std::__1::basic_string<char>, std::__1::__hash_value_type<std::__1::basic_string<char>, std::__1::basic_string<char>>, spotify::cosmos::detail::CaseInsensitiveKeys, true>, std::__1::__unordered_map_equal<std::__1::basic_string<char>, std::__1::__hash_value_type<std::__1::basic_string<char>, std::__1::basic_string<char>>, spotify::cosmos::detail::CaseInsensitiveKeys, true>, std::__1::allocator<std::__1::__hash_value_type<std::__1::basic_string<char>, std::__1::basic_string<char>>>> {
+        struct unique_ptr<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<std::__1::basic_string<char>, std::__1::basic_string<char>>, void *>*>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<std::__1::basic_string<char>, std::__1::basic_string<char>>, void *>*>*>>> _field1;
+        struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<std::__1::basic_string<char>, std::__1::basic_string<char>>, void *>*>, std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<std::__1::basic_string<char>, std::__1::basic_string<char>>, void *>>> _field2;
+        struct __compressed_pair<unsigned long, std::__1::__unordered_map_hasher<std::__1::basic_string<char>, std::__1::__hash_value_type<std::__1::basic_string<char>, std::__1::basic_string<char>>, spotify::cosmos::detail::CaseInsensitiveKeys, true>> {
+            unsigned long long _field1;
+        } _field3;
+        struct __compressed_pair<float, std::__1::__unordered_map_equal<std::__1::basic_string<char>, std::__1::__hash_value_type<std::__1::basic_string<char>, std::__1::basic_string<char>>, spotify::cosmos::detail::CaseInsensitiveKeys, true>> {
             float _field1;
         } _field4;
     } _field1;
@@ -2124,39 +2479,45 @@ struct unordered_map<unsigned long long, std::__1::shared_ptr<spotify::async::Ti
     } __table_;
 };
 
-struct variant<spotify::auth::Identifier, spotify::auth::credentials::AutologinFromCredentialsStore, spotify::auth::credentials::OneTimeToken, spotify::auth::credentials::ParentChildCredentials, spotify::auth::credentials::RefreshTokenCredentials, spotify::auth::LoginCredentials> {
-    struct __impl<spotify::auth::Identifier, spotify::auth::credentials::AutologinFromCredentialsStore, spotify::auth::credentials::OneTimeToken, spotify::auth::credentials::ParentChildCredentials, spotify::auth::credentials::RefreshTokenCredentials, spotify::auth::LoginCredentials> {
-        union __union<std::__1::__variant_detail::_Trait::_Available, 0, spotify::auth::Identifier, spotify::auth::credentials::AutologinFromCredentialsStore, spotify::auth::credentials::OneTimeToken, spotify::auth::credentials::ParentChildCredentials, spotify::auth::credentials::RefreshTokenCredentials, spotify::auth::LoginCredentials> {
+struct variant<spotify::connectivity::auth::Identifier, spotify::connectivity::auth::credentials::AppleSignInCredential, spotify::connectivity::auth::credentials::AutologinFromCredentialsStore, spotify::connectivity::auth::credentials::OneTimeToken, spotify::connectivity::auth::credentials::ParentChildCredential, spotify::connectivity::auth::credentials::RefreshTokenCredentials, spotify::connectivity::auth::LoginCredentials> {
+    struct __impl<spotify::connectivity::auth::Identifier, spotify::connectivity::auth::credentials::AppleSignInCredential, spotify::connectivity::auth::credentials::AutologinFromCredentialsStore, spotify::connectivity::auth::credentials::OneTimeToken, spotify::connectivity::auth::credentials::ParentChildCredential, spotify::connectivity::auth::credentials::RefreshTokenCredentials, spotify::connectivity::auth::LoginCredentials> {
+        union __union<std::__1::__variant_detail::_Trait::_Available, 0, spotify::connectivity::auth::Identifier, spotify::connectivity::auth::credentials::AppleSignInCredential, spotify::connectivity::auth::credentials::AutologinFromCredentialsStore, spotify::connectivity::auth::credentials::OneTimeToken, spotify::connectivity::auth::credentials::ParentChildCredential, spotify::connectivity::auth::credentials::RefreshTokenCredentials, spotify::connectivity::auth::LoginCredentials> {
             char _field1;
-            struct __alt<0, spotify::auth::Identifier> {
+            struct __alt<0, spotify::connectivity::auth::Identifier> {
                 struct Identifier _field1;
             } _field2;
-            union __union<std::__1::__variant_detail::_Trait::_Available, 1, spotify::auth::credentials::AutologinFromCredentialsStore, spotify::auth::credentials::OneTimeToken, spotify::auth::credentials::ParentChildCredentials, spotify::auth::credentials::RefreshTokenCredentials, spotify::auth::LoginCredentials> {
+            union __union<std::__1::__variant_detail::_Trait::_Available, 1, spotify::connectivity::auth::credentials::AppleSignInCredential, spotify::connectivity::auth::credentials::AutologinFromCredentialsStore, spotify::connectivity::auth::credentials::OneTimeToken, spotify::connectivity::auth::credentials::ParentChildCredential, spotify::connectivity::auth::credentials::RefreshTokenCredentials, spotify::connectivity::auth::LoginCredentials> {
                 char _field1;
-                struct __alt<1, spotify::auth::credentials::AutologinFromCredentialsStore> {
-                    struct AutologinFromCredentialsStore _field1;
+                struct __alt<1, spotify::connectivity::auth::credentials::AppleSignInCredential> {
+                    struct AppleSignInCredential _field1;
                 } _field2;
-                union __union<std::__1::__variant_detail::_Trait::_Available, 2, spotify::auth::credentials::OneTimeToken, spotify::auth::credentials::ParentChildCredentials, spotify::auth::credentials::RefreshTokenCredentials, spotify::auth::LoginCredentials> {
+                union __union<std::__1::__variant_detail::_Trait::_Available, 2, spotify::connectivity::auth::credentials::AutologinFromCredentialsStore, spotify::connectivity::auth::credentials::OneTimeToken, spotify::connectivity::auth::credentials::ParentChildCredential, spotify::connectivity::auth::credentials::RefreshTokenCredentials, spotify::connectivity::auth::LoginCredentials> {
                     char _field1;
-                    struct __alt<2, spotify::auth::credentials::OneTimeToken> {
-                        struct OneTimeToken _field1;
+                    struct __alt<2, spotify::connectivity::auth::credentials::AutologinFromCredentialsStore> {
+                        struct AutologinFromCredentialsStore _field1;
                     } _field2;
-                    union __union<std::__1::__variant_detail::_Trait::_Available, 3, spotify::auth::credentials::ParentChildCredentials, spotify::auth::credentials::RefreshTokenCredentials, spotify::auth::LoginCredentials> {
+                    union __union<std::__1::__variant_detail::_Trait::_Available, 3, spotify::connectivity::auth::credentials::OneTimeToken, spotify::connectivity::auth::credentials::ParentChildCredential, spotify::connectivity::auth::credentials::RefreshTokenCredentials, spotify::connectivity::auth::LoginCredentials> {
                         char _field1;
-                        struct __alt<3, spotify::auth::credentials::ParentChildCredentials> {
-                            struct ParentChildCredentials _field1;
+                        struct __alt<3, spotify::connectivity::auth::credentials::OneTimeToken> {
+                            struct OneTimeToken _field1;
                         } _field2;
-                        union __union<std::__1::__variant_detail::_Trait::_Available, 4, spotify::auth::credentials::RefreshTokenCredentials, spotify::auth::LoginCredentials> {
+                        union __union<std::__1::__variant_detail::_Trait::_Available, 4, spotify::connectivity::auth::credentials::ParentChildCredential, spotify::connectivity::auth::credentials::RefreshTokenCredentials, spotify::connectivity::auth::LoginCredentials> {
                             char _field1;
-                            struct __alt<4, spotify::auth::credentials::RefreshTokenCredentials> {
-                                struct RefreshTokenCredentials _field1;
+                            struct __alt<4, spotify::connectivity::auth::credentials::ParentChildCredential> {
+                                struct ParentChildCredential _field1;
                             } _field2;
-                            union __union<std::__1::__variant_detail::_Trait::_Available, 5, spotify::auth::LoginCredentials> {
+                            union __union<std::__1::__variant_detail::_Trait::_Available, 5, spotify::connectivity::auth::credentials::RefreshTokenCredentials, spotify::connectivity::auth::LoginCredentials> {
                                 char _field1;
-                                struct __alt<5, spotify::auth::LoginCredentials> {
-                                    struct LoginCredentials _field1;
+                                struct __alt<5, spotify::connectivity::auth::credentials::RefreshTokenCredentials> {
+                                    struct RefreshTokenCredentials _field1;
                                 } _field2;
-                                union __union<std::__1::__variant_detail::_Trait::_Available, 6> _field3;
+                                union __union<std::__1::__variant_detail::_Trait::_Available, 6, spotify::connectivity::auth::LoginCredentials> {
+                                    char _field1;
+                                    struct __alt<6, spotify::connectivity::auth::LoginCredentials> {
+                                        struct LoginCredentials _field1;
+                                    } _field2;
+                                    union __union<std::__1::__variant_detail::_Trait::_Available, 7> _field3;
+                                } _field3;
                             } _field3;
                         } _field3;
                     } _field3;
@@ -2181,14 +2542,6 @@ struct vector<boost::container::dtl::pair<std::__1::basic_string<char>, spotify:
 
 struct vector<boost::container::dtl::pair<std::__1::basic_string<char>, std::__1::basic_string<char>>, boost::container::new_allocator<boost::container::dtl::pair<std::__1::basic_string<char>, std::__1::basic_string<char>>>, void> {
     struct vector_alloc_holder<boost::container::new_allocator<boost::container::dtl::pair<std::__1::basic_string<char>, std::__1::basic_string<char>>>, unsigned long, boost::move_detail::integral_constant<unsigned int, 1>> _field1;
-};
-
-struct vector<spotify::cosmos::Route, std::__1::allocator<spotify::cosmos::Route>> {
-    struct Route *__begin_;
-    struct Route *__end_;
-    struct __compressed_pair<spotify::cosmos::Route *, std::__1::allocator<spotify::cosmos::Route>> {
-        struct Route *__value_;
-    } __end_cap_;
 };
 
 struct vector<spotify::metadata::AlbumGroup, std::__1::allocator<spotify::metadata::AlbumGroup>> {
@@ -2228,26 +2581,18 @@ struct vector<spotify::uri::SpotifyLink, std::__1::allocator<spotify::uri::Spoti
 };
 
 struct vector<std::__1::basic_string<char>, std::__1::allocator<std::__1::basic_string<char>>> {
-    basic_string_7c0a1c0b *_field1;
-    basic_string_7c0a1c0b *_field2;
+    basic_string_90719d97 *_field1;
+    basic_string_90719d97 *_field2;
     struct __compressed_pair<std::__1::basic_string<char>*, std::__1::allocator<std::__1::basic_string<char>>> {
-        basic_string_7c0a1c0b *_field1;
+        basic_string_90719d97 *_field1;
     } _field3;
 };
 
-struct vector<std::__1::pair<spotify::playback::AudioVolumeControl *, boost::signals2::connection>, std::__1::allocator<std::__1::pair<spotify::playback::AudioVolumeControl *, boost::signals2::connection>>> {
-    struct pair<spotify::playback::AudioVolumeControl *, boost::signals2::connection> *_field1;
-    struct pair<spotify::playback::AudioVolumeControl *, boost::signals2::connection> *_field2;
-    struct __compressed_pair<std::__1::pair<spotify::playback::AudioVolumeControl *, boost::signals2::connection>*, std::__1::allocator<std::__1::pair<spotify::playback::AudioVolumeControl *, boost::signals2::connection>>> {
-        struct pair<spotify::playback::AudioVolumeControl *, boost::signals2::connection> *_field1;
-    } _field3;
-};
-
-struct vector<std::__1::unique_ptr<spotify::analytics::PendingMessageStorage::PendingMessage, std::__1::default_delete<spotify::analytics::PendingMessageStorage::PendingMessage>>, std::__1::allocator<std::__1::unique_ptr<spotify::analytics::PendingMessageStorage::PendingMessage, std::__1::default_delete<spotify::analytics::PendingMessageStorage::PendingMessage>>>> {
-    struct unique_ptr<spotify::analytics::PendingMessageStorage::PendingMessage, std::__1::default_delete<spotify::analytics::PendingMessageStorage::PendingMessage>> *_field1;
-    struct unique_ptr<spotify::analytics::PendingMessageStorage::PendingMessage, std::__1::default_delete<spotify::analytics::PendingMessageStorage::PendingMessage>> *_field2;
-    struct __compressed_pair<std::__1::unique_ptr<spotify::analytics::PendingMessageStorage::PendingMessage, std::__1::default_delete<spotify::analytics::PendingMessageStorage::PendingMessage>>*, std::__1::allocator<std::__1::unique_ptr<spotify::analytics::PendingMessageStorage::PendingMessage, std::__1::default_delete<spotify::analytics::PendingMessageStorage::PendingMessage>>>> {
-        struct unique_ptr<spotify::analytics::PendingMessageStorage::PendingMessage, std::__1::default_delete<spotify::analytics::PendingMessageStorage::PendingMessage>> *_field1;
+struct vector<std::__1::unique_ptr<spotify::analytics::PendingMessageStorageImpl::PendingMessage, std::__1::default_delete<spotify::analytics::PendingMessageStorageImpl::PendingMessage>>, std::__1::allocator<std::__1::unique_ptr<spotify::analytics::PendingMessageStorageImpl::PendingMessage, std::__1::default_delete<spotify::analytics::PendingMessageStorageImpl::PendingMessage>>>> {
+    struct unique_ptr<spotify::analytics::PendingMessageStorageImpl::PendingMessage, std::__1::default_delete<spotify::analytics::PendingMessageStorageImpl::PendingMessage>> *_field1;
+    struct unique_ptr<spotify::analytics::PendingMessageStorageImpl::PendingMessage, std::__1::default_delete<spotify::analytics::PendingMessageStorageImpl::PendingMessage>> *_field2;
+    struct __compressed_pair<std::__1::unique_ptr<spotify::analytics::PendingMessageStorageImpl::PendingMessage, std::__1::default_delete<spotify::analytics::PendingMessageStorageImpl::PendingMessage>>*, std::__1::allocator<std::__1::unique_ptr<spotify::analytics::PendingMessageStorageImpl::PendingMessage, std::__1::default_delete<spotify::analytics::PendingMessageStorageImpl::PendingMessage>>>> {
+        struct unique_ptr<spotify::analytics::PendingMessageStorageImpl::PendingMessage, std::__1::default_delete<spotify::analytics::PendingMessageStorageImpl::PendingMessage>> *_field1;
     } _field3;
 };
 
@@ -2263,13 +2608,15 @@ struct vector_alloc_holder<boost::container::new_allocator<boost::container::dtl
     unsigned long long _field3;
 };
 
-struct weak_count {
-    struct sp_counted_base *pi_;
+struct vector_alloc_holder<boost::container::small_vector_allocator<spotify::signals::detail::connected_slot, boost::container::new_allocator<void>, void>, unsigned long, boost::move_detail::integral_constant<unsigned int, 1>> {
+    struct connected_slot *_field1;
+    unsigned long long _field2;
+    unsigned long long _field3;
 };
 
-struct weak_ptr<boost::signals2::detail::connection_body_base> {
-    struct connection_body_base *px;
-    struct weak_count pn;
+struct weak_ptr<spotify::connectivity::netstat::RequestAccounting::Impl> {
+    struct Impl *__ptr_;
+    struct __shared_weak_count *__cntrl_;
 };
 
 struct weak_ptr<spotify::facebook::FacebookService> {
@@ -2295,11 +2642,6 @@ struct weak_ptr<spotify::metadata::ArtistInfo> {
 struct weak_ptr<spotify::metadata::TrackInfo> {
     struct TrackInfo *_field1;
     struct __shared_weak_count *_field2;
-};
-
-struct weak_ptr<spotify::netstat::RequestAccounting::Impl> {
-    struct Impl *__ptr_;
-    struct __shared_weak_count *__cntrl_;
 };
 
 struct weak_ptr<spotify::player::ProxyContextPlayer> {
@@ -2329,38 +2671,25 @@ typedef struct {
     Class _field1;
 } SPTCollectionPlatformDataLoaderResponse_f5c2288a;
 
-typedef struct ?<std::__1::chrono::duration<long long, std::__1::ratio<1, 1000>>> {
-    union {
-        char _field1;
-        struct duration<long long, std::__1::ratio<1, 1000>> _field2;
-    } _field1;
-    _Bool _field2;
-} optional_331450e3;
-
-typedef struct ?<std::__1::chrono::duration<long long, std::__1::ratio<1, 1000>>> {
-    _Bool _field1;
-    struct aligned_storage<std::__1::chrono::duration<long long, std::__1::ratio<1, 1000>>> _field2;
-} optional_be93f04b;
-
 typedef struct {
     int _field1;
-    basic_string_7c0a1c0b _field2;
+    basic_string_90719d97 _field2;
     struct unordered_map<std::__1::basic_string<char>, std::__1::basic_string<char>, spotify::http::detail::HashCaseInsensitive, spotify::http::detail::EqualsCaseInsensitive, std::__1::allocator<std::__1::pair<const std::__1::basic_string<char>, std::__1::basic_string<char>>>> _field3;
-    basic_string_7c0a1c0b _field4;
-} Response_17a732c3;
+    basic_string_90719d97 _field4;
+} Response_2534f3e7;
 
 typedef struct {
     int _field1;
-    struct unordered_map<std::__1::basic_string<char>, std::__1::basic_string<char>, spotify::cosmos::detail::HashCaseInsensitive, spotify::cosmos::detail::EqualsCaseInsensitive, std::__1::allocator<std::__1::pair<const std::__1::basic_string<char>, std::__1::basic_string<char>>>> _field2;
-    basic_string_7c0a1c0b _field3;
-} Response_d1689f6a;
+    struct unordered_map<std::__1::basic_string<char>, std::__1::basic_string<char>, spotify::cosmos::detail::CaseInsensitiveKeys, spotify::cosmos::detail::CaseInsensitiveKeys, std::__1::allocator<std::__1::pair<const std::__1::basic_string<char>, std::__1::basic_string<char>>>> _field2;
+    basic_string_90719d97 _field3;
+} Response_3b1d8643;
 
 typedef struct {
-    basic_string_7c0a1c0b _field1;
-    basic_string_7c0a1c0b _field2;
-    struct unordered_map<std::__1::basic_string<char>, std::__1::basic_string<char>, spotify::cosmos::detail::HashCaseInsensitive, spotify::cosmos::detail::EqualsCaseInsensitive, std::__1::allocator<std::__1::pair<const std::__1::basic_string<char>, std::__1::basic_string<char>>>> _field3;
-    basic_string_7c0a1c0b _field4;
-} Request_995d6ec1;
+    basic_string_90719d97 _field1;
+    basic_string_90719d97 _field2;
+    struct unordered_map<std::__1::basic_string<char>, std::__1::basic_string<char>, spotify::cosmos::detail::CaseInsensitiveKeys, spotify::cosmos::detail::CaseInsensitiveKeys, std::__1::allocator<std::__1::pair<const std::__1::basic_string<char>, std::__1::basic_string<char>>>> _field3;
+    basic_string_90719d97 _field4;
+} Request_165ecabc;
 
 typedef struct {
     struct CriticalSection _field1;
@@ -2391,6 +2720,14 @@ typedef struct {
     float meanLevel;
     float peakLevel;
 } CDStruct_a2d37825;
+
+typedef struct {
+    unsigned int framesProcessed;
+    float meanAccumulator;
+    float rmsAccumulator;
+    float meanLevel;
+    float rmsLevel;
+} CDStruct_06307587;
 
 typedef struct {
     unsigned long long _field1;
@@ -2492,11 +2829,6 @@ typedef struct {
     CDStruct_3412e649 magnitude;
 } CDStruct_93d588b8;
 
-typedef struct {
-    struct CLLocationCoordinate2D _field1;
-    CDStruct_5a28e70a _field2;
-} CDStruct_e43cf4f1;
-
 // Template types
 typedef struct HashMap<ComScore::String, ComScore::String, ComScore::DefaultHashFunctions, ComScore::CriticalSection> {
     struct DefaultHashFunctions _field1;
@@ -2515,33 +2847,58 @@ typedef struct basic_string<char, std::__1::char_traits<char>, std::__1::allocat
         struct __rep {
             union {
                 struct __long {
-                    char *_field1;
-                    unsigned long long _field2;
-                    unsigned long long _field3;
-                } _field1;
+                    char *__data_;
+                    unsigned long long __size_;
+                    unsigned long long __cap_;
+                } __l;
                 struct __short {
-                    char _field1[23];
+                    char __data_[23];
                     struct {
-                        unsigned char _field1;
-                    } _field2;
-                } _field2;
+                        unsigned char __size_;
+                    } ;
+                } __s;
                 struct __raw {
-                    unsigned long long _field1[3];
-                } _field3;
-            } _field1;
-        } _field1;
-    } _field1;
-} basic_string_7c0a1c0b;
+                    unsigned long long __words[3];
+                } __r;
+            } ;
+        } __value_;
+    } __r_;
+} basic_string_90719d97;
 
 typedef struct function<void ()> {
-    struct type __buf_;
-    struct __base<void ()> *__f_;
-} function_f9feaa7d;
+    struct __value_func<void ()> {
+        struct type __buf_;
+        struct __base<void ()> *__f_;
+    } __f_;
+} function_84aba934;
+
+typedef struct function<void (const std::__1::basic_string<char>&)> {
+    struct __value_func<void (const std::__1::basic_string<char>&)> {
+        struct type __buf_;
+        struct __base<void (const std::__1::basic_string<char>&)> *__f_;
+    } __f_;
+} function_574b1799;
 
 typedef struct function<void (const std::__1::function<void ()>&)> {
-    struct type __buf_;
-    struct __base<void (const std::__1::function<void ()>&)> *__f_;
-} function_b41bc498;
+    struct __value_func<void (const std::__1::function<void ()>&)> {
+        struct type __buf_;
+        struct __base<void (const std::__1::function<void ()>&)> *__f_;
+    } __f_;
+} function_e8ecaf02;
+
+typedef struct function<void (std::__1::optional<spotify::connectivity::oauth::AccessToken>, std::__1::error_code)> {
+    struct __value_func<void (std::__1::optional<spotify::connectivity::oauth::AccessToken>, std::__1::error_code)> {
+        struct type __buf_;
+        struct __base<void (std::__1::optional<spotify::connectivity::oauth::AccessToken>, std::__1::error_code)> *__f_;
+    } __f_;
+} function_5bec9669;
+
+typedef struct function<void (std::__1::variant<spotify::connectivity::auth::LoginAuthSuccess, spotify::connectivity::auth::LoginSuccess, spotify::connectivity::auth::LoginCodeRequired, spotify::connectivity::auth::LoginSignupRequired, spotify::connectivity::auth::LoginFailure, spotify::connectivity::auth::LoginBootstrap>&&)> {
+    struct __value_func<void (std::__1::variant<spotify::connectivity::auth::LoginAuthSuccess, spotify::connectivity::auth::LoginSuccess, spotify::connectivity::auth::LoginCodeRequired, spotify::connectivity::auth::LoginSignupRequired, spotify::connectivity::auth::LoginFailure, spotify::connectivity::auth::LoginBootstrap>&&)> {
+        struct type __buf_;
+        struct __base<void (std::__1::variant<spotify::connectivity::auth::LoginAuthSuccess, spotify::connectivity::auth::LoginSuccess, spotify::connectivity::auth::LoginCodeRequired, spotify::connectivity::auth::LoginSignupRequired, spotify::connectivity::auth::LoginFailure, spotify::connectivity::auth::LoginBootstrap>&&)> *__f_;
+    } __f_;
+} function_1d11ba22;
 
 typedef struct map<std::__1::basic_string<char>, std::__1::basic_string<char>, std::__1::less<std::__1::basic_string<char>>, std::__1::allocator<std::__1::pair<const std::__1::basic_string<char>, std::__1::basic_string<char>>>> {
     struct __tree<std::__1::__value_type<std::__1::basic_string<char>, std::__1::basic_string<char>>, std::__1::__map_value_compare<std::__1::basic_string<char>, std::__1::__value_type<std::__1::basic_string<char>, std::__1::basic_string<char>>, std::__1::less<std::__1::basic_string<char>>, true>, std::__1::allocator<std::__1::__value_type<std::__1::basic_string<char>, std::__1::basic_string<char>>>> {
@@ -2555,21 +2912,13 @@ typedef struct map<std::__1::basic_string<char>, std::__1::basic_string<char>, s
     } _field1;
 } map_0edfe763;
 
-typedef struct optional<std::__1::function<void ()>> {
+typedef struct optional<std::__1::chrono::duration<long long, std::__1::ratio<1, 1000>>> {
     union {
-        char __null_state_;
-        function_f9feaa7d __val_;
-    } ;
-    _Bool __engaged_;
-} optional_b0104c67;
-
-typedef struct optional<std::__1::function<void (const std::__1::basic_string<char>&)>> {
-    union {
-        char __null_state_;
-        struct function<void (const std::__1::basic_string<char>&)> __val_;
-    } ;
-    _Bool __engaged_;
-} optional_f8dbc4af;
+        char _field1;
+        struct duration<long long, std::__1::ratio<1, 1000>> _field2;
+    } _field1;
+    _Bool _field2;
+} optional_331450e3;
 
 typedef struct shared_ptr<ComScore::Asset> {
     struct Asset *__ptr_;
@@ -2626,6 +2975,11 @@ typedef struct shared_ptr<spotify::analytics::Logger> {
     struct __shared_weak_count *__cntrl_;
 } shared_ptr_0bb93f61;
 
+typedef struct shared_ptr<spotify::connectivity::oauth::Client> {
+    struct Client *__ptr_;
+    struct __shared_weak_count *__cntrl_;
+} shared_ptr_e0806d77;
+
 typedef struct shared_ptr<spotify::event_sender::EventSender> {
     struct EventSender *__ptr_;
     struct __shared_weak_count *__cntrl_;
@@ -2640,11 +2994,6 @@ typedef struct shared_ptr<spotify::http::Connection> {
     struct Connection *__ptr_;
     struct __shared_weak_count *__cntrl_;
 } shared_ptr_d5d571b3;
-
-typedef struct shared_ptr<spotify::http::ConnectionFactory> {
-    struct ConnectionFactory *_field1;
-    struct __shared_weak_count *_field2;
-} shared_ptr_6ae16b82;
 
 typedef struct shared_ptr<spotify::metadata::MetadataTask> {
     struct MetadataTask *__ptr_;
@@ -2666,6 +3015,11 @@ typedef struct shared_ptr<spotify::product_state::ProductState> {
     struct __shared_weak_count *__cntrl_;
 } shared_ptr_2175cb8d;
 
+typedef struct shared_ptr<void> {
+    void *__ptr_;
+    struct __shared_weak_count *__cntrl_;
+} shared_ptr_b60d0e1e;
+
 typedef struct span<const spotify::metadata::AlbumGroup> {
     struct AlbumGroup *_field1;
     unsigned long long _field2;
@@ -2676,51 +3030,63 @@ typedef struct span<const spotify::uri::SpotifyLink> {
     unsigned long long _field2;
 } span_60459498;
 
-typedef struct unique_ptr<spotify::auth::AuthSession, std::__1::default_delete<spotify::auth::AuthSession>> {
-    struct __compressed_pair<spotify::auth::AuthSession *, std::__1::default_delete<spotify::auth::AuthSession>> {
+typedef struct unique_ptr<spotify::connectivity::auth::AuthSession, std::__1::default_delete<spotify::connectivity::auth::AuthSession>> {
+    struct __compressed_pair<spotify::connectivity::auth::AuthSession *, std::__1::default_delete<spotify::connectivity::auth::AuthSession>> {
         struct AuthSession *__value_;
     } __ptr_;
-} unique_ptr_5965b565;
+} unique_ptr_31f72f11;
 
-typedef struct unique_ptr<spotify::auth::Session, std::__1::default_delete<spotify::auth::Session>> {
-    struct __compressed_pair<spotify::auth::Session *, std::__1::default_delete<spotify::auth::Session>> {
+typedef struct unique_ptr<spotify::connectivity::auth::LoginController, std::__1::default_delete<spotify::connectivity::auth::LoginController>> {
+    struct __compressed_pair<spotify::connectivity::auth::LoginController *, std::__1::default_delete<spotify::connectivity::auth::LoginController>> {
+        struct LoginController *__value_;
+    } __ptr_;
+} unique_ptr_97a42db5;
+
+typedef struct unique_ptr<spotify::connectivity::auth::Session, std::__1::default_delete<spotify::connectivity::auth::Session>> {
+    struct __compressed_pair<spotify::connectivity::auth::Session *, std::__1::default_delete<spotify::connectivity::auth::Session>> {
         struct Session *__value_;
     } __ptr_;
-} unique_ptr_af2c9e6c;
+} unique_ptr_c7ae8056;
 
-typedef struct variant<spotify::auth::Identifier, spotify::auth::credentials::AutologinFromCredentialsStore, spotify::auth::credentials::OneTimeToken, spotify::auth::credentials::ParentChildCredentials, spotify::auth::credentials::RefreshTokenCredentials, spotify::auth::LoginCredentials> {
-    struct __impl<spotify::auth::Identifier, spotify::auth::credentials::AutologinFromCredentialsStore, spotify::auth::credentials::OneTimeToken, spotify::auth::credentials::ParentChildCredentials, spotify::auth::credentials::RefreshTokenCredentials, spotify::auth::LoginCredentials> {
-        union __union<std::__1::__variant_detail::_Trait::_Available, 0, spotify::auth::Identifier, spotify::auth::credentials::AutologinFromCredentialsStore, spotify::auth::credentials::OneTimeToken, spotify::auth::credentials::ParentChildCredentials, spotify::auth::credentials::RefreshTokenCredentials, spotify::auth::LoginCredentials> {
+typedef struct variant<spotify::connectivity::auth::Identifier, spotify::connectivity::auth::credentials::AppleSignInCredential, spotify::connectivity::auth::credentials::AutologinFromCredentialsStore, spotify::connectivity::auth::credentials::OneTimeToken, spotify::connectivity::auth::credentials::ParentChildCredential, spotify::connectivity::auth::credentials::RefreshTokenCredentials, spotify::connectivity::auth::LoginCredentials> {
+    struct __impl<spotify::connectivity::auth::Identifier, spotify::connectivity::auth::credentials::AppleSignInCredential, spotify::connectivity::auth::credentials::AutologinFromCredentialsStore, spotify::connectivity::auth::credentials::OneTimeToken, spotify::connectivity::auth::credentials::ParentChildCredential, spotify::connectivity::auth::credentials::RefreshTokenCredentials, spotify::connectivity::auth::LoginCredentials> {
+        union __union<std::__1::__variant_detail::_Trait::_Available, 0, spotify::connectivity::auth::Identifier, spotify::connectivity::auth::credentials::AppleSignInCredential, spotify::connectivity::auth::credentials::AutologinFromCredentialsStore, spotify::connectivity::auth::credentials::OneTimeToken, spotify::connectivity::auth::credentials::ParentChildCredential, spotify::connectivity::auth::credentials::RefreshTokenCredentials, spotify::connectivity::auth::LoginCredentials> {
             char _field1;
-            struct __alt<0, spotify::auth::Identifier> {
+            struct __alt<0, spotify::connectivity::auth::Identifier> {
                 struct Identifier _field1;
             } _field2;
-            union __union<std::__1::__variant_detail::_Trait::_Available, 1, spotify::auth::credentials::AutologinFromCredentialsStore, spotify::auth::credentials::OneTimeToken, spotify::auth::credentials::ParentChildCredentials, spotify::auth::credentials::RefreshTokenCredentials, spotify::auth::LoginCredentials> {
+            union __union<std::__1::__variant_detail::_Trait::_Available, 1, spotify::connectivity::auth::credentials::AppleSignInCredential, spotify::connectivity::auth::credentials::AutologinFromCredentialsStore, spotify::connectivity::auth::credentials::OneTimeToken, spotify::connectivity::auth::credentials::ParentChildCredential, spotify::connectivity::auth::credentials::RefreshTokenCredentials, spotify::connectivity::auth::LoginCredentials> {
                 char _field1;
-                struct __alt<1, spotify::auth::credentials::AutologinFromCredentialsStore> {
-                    struct AutologinFromCredentialsStore _field1;
+                struct __alt<1, spotify::connectivity::auth::credentials::AppleSignInCredential> {
+                    struct AppleSignInCredential _field1;
                 } _field2;
-                union __union<std::__1::__variant_detail::_Trait::_Available, 2, spotify::auth::credentials::OneTimeToken, spotify::auth::credentials::ParentChildCredentials, spotify::auth::credentials::RefreshTokenCredentials, spotify::auth::LoginCredentials> {
+                union __union<std::__1::__variant_detail::_Trait::_Available, 2, spotify::connectivity::auth::credentials::AutologinFromCredentialsStore, spotify::connectivity::auth::credentials::OneTimeToken, spotify::connectivity::auth::credentials::ParentChildCredential, spotify::connectivity::auth::credentials::RefreshTokenCredentials, spotify::connectivity::auth::LoginCredentials> {
                     char _field1;
-                    struct __alt<2, spotify::auth::credentials::OneTimeToken> {
-                        struct OneTimeToken _field1;
+                    struct __alt<2, spotify::connectivity::auth::credentials::AutologinFromCredentialsStore> {
+                        struct AutologinFromCredentialsStore _field1;
                     } _field2;
-                    union __union<std::__1::__variant_detail::_Trait::_Available, 3, spotify::auth::credentials::ParentChildCredentials, spotify::auth::credentials::RefreshTokenCredentials, spotify::auth::LoginCredentials> {
+                    union __union<std::__1::__variant_detail::_Trait::_Available, 3, spotify::connectivity::auth::credentials::OneTimeToken, spotify::connectivity::auth::credentials::ParentChildCredential, spotify::connectivity::auth::credentials::RefreshTokenCredentials, spotify::connectivity::auth::LoginCredentials> {
                         char _field1;
-                        struct __alt<3, spotify::auth::credentials::ParentChildCredentials> {
-                            struct ParentChildCredentials _field1;
+                        struct __alt<3, spotify::connectivity::auth::credentials::OneTimeToken> {
+                            struct OneTimeToken _field1;
                         } _field2;
-                        union __union<std::__1::__variant_detail::_Trait::_Available, 4, spotify::auth::credentials::RefreshTokenCredentials, spotify::auth::LoginCredentials> {
+                        union __union<std::__1::__variant_detail::_Trait::_Available, 4, spotify::connectivity::auth::credentials::ParentChildCredential, spotify::connectivity::auth::credentials::RefreshTokenCredentials, spotify::connectivity::auth::LoginCredentials> {
                             char _field1;
-                            struct __alt<4, spotify::auth::credentials::RefreshTokenCredentials> {
-                                struct RefreshTokenCredentials _field1;
+                            struct __alt<4, spotify::connectivity::auth::credentials::ParentChildCredential> {
+                                struct ParentChildCredential _field1;
                             } _field2;
-                            union __union<std::__1::__variant_detail::_Trait::_Available, 5, spotify::auth::LoginCredentials> {
+                            union __union<std::__1::__variant_detail::_Trait::_Available, 5, spotify::connectivity::auth::credentials::RefreshTokenCredentials, spotify::connectivity::auth::LoginCredentials> {
                                 char _field1;
-                                struct __alt<5, spotify::auth::LoginCredentials> {
-                                    struct LoginCredentials _field1;
+                                struct __alt<5, spotify::connectivity::auth::credentials::RefreshTokenCredentials> {
+                                    struct RefreshTokenCredentials _field1;
                                 } _field2;
-                                union __union<std::__1::__variant_detail::_Trait::_Available, 6> _field3;
+                                union __union<std::__1::__variant_detail::_Trait::_Available, 6, spotify::connectivity::auth::LoginCredentials> {
+                                    char _field1;
+                                    struct __alt<6, spotify::connectivity::auth::LoginCredentials> {
+                                        struct LoginCredentials _field1;
+                                    } _field2;
+                                    union __union<std::__1::__variant_detail::_Trait::_Available, 7> _field3;
+                                } _field3;
                             } _field3;
                         } _field3;
                     } _field3;
@@ -2729,7 +3095,7 @@ typedef struct variant<spotify::auth::Identifier, spotify::auth::credentials::Au
         } _field1;
         unsigned int _field2;
     } _field1;
-} variant_3911a704;
+} variant_0086d13d;
 
 typedef struct vector<spotify::uri::SpotifyLink, std::__1::allocator<spotify::uri::SpotifyLink>> {
     struct SpotifyLink *_field1;
@@ -2761,6 +3127,11 @@ union SPTColor {
     unsigned int argb;
 };
 
+union aligned_struct_wrapper<40, 8> {
+    struct aligned_struct<40, 8> _field1;
+    unsigned char _field2[40];
+};
+
 #if 0
 // Names with conflicting types:
 typedef union {
@@ -2785,4 +3156,15 @@ typedef union {
     GPBMessage *valueMessage;
     int valueEnum;
 } CDUnion_88782d86;
+
+typedef union {
+    struct {
+        unsigned short _field1;
+        unsigned short _field2;
+        unsigned short _field3;
+        unsigned short _field4;
+        unsigned short _field5;
+    } _field1;
+    unsigned short _field2[5];
+} CDUnion_2be632f8;
 

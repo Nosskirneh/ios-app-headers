@@ -6,20 +6,21 @@
 
 #import <objc/NSObject.h>
 
+#import "SPTFeatureFlagSignalObserver-Protocol.h"
 #import "SPTMobileMediaKitService-Protocol.h"
 
 @class NSString, SPTAllocationContext, SPTDataLoader, SPTMobileMediaKitAPKeepAliveHandler, SPTMobileMediaKitClientCommunicationsManager;
-@protocol GaiaFeature, SPTAccessoryManagerService, SPTContainerService, SPTCoreService, SPTExternalIntegrationCollectionService, SPTExternalIntegrationDebugLogService, SPTExternalIntegrationPlaybackService, SPTFeatureFlagSignal, SPTFeatureFlaggingService;
+@protocol GaiaFeature, SPTAccessoryManagerService, SPTContainerService, SPTExternalIntegrationCollectionService, SPTExternalIntegrationDebugLogService, SPTExternalIntegrationPlaybackService, SPTFeatureFlagSignal, SPTFeatureFlaggingService, SPTNetworkService;
 
-@interface SPTMobileMediaKitServiceImplementation : NSObject <SPTMobileMediaKitService>
+@interface SPTMobileMediaKitServiceImplementation : NSObject <SPTFeatureFlagSignalObserver, SPTMobileMediaKitService>
 {
     _Bool _featureEnabled;
     id <SPTContainerService> _containerService;
     id <SPTExternalIntegrationPlaybackService> _externalIntegrationPlaybackService;
     id <SPTExternalIntegrationCollectionService> _externalIntegrationCollectionService;
     id <SPTExternalIntegrationDebugLogService> _externalIntegrationDebugLogService;
+    id <SPTNetworkService> _networkService;
     id <GaiaFeature> _gaiaFeature;
-    id <SPTCoreService> _coreService;
     id <SPTAccessoryManagerService> _accessoryManagerService;
     id <SPTFeatureFlaggingService> _featureFlaggingService;
     SPTDataLoader *_dataLoader;
@@ -36,8 +37,8 @@
 @property(retain, nonatomic) SPTDataLoader *dataLoader; // @synthesize dataLoader=_dataLoader;
 @property(nonatomic) __weak id <SPTFeatureFlaggingService> featureFlaggingService; // @synthesize featureFlaggingService=_featureFlaggingService;
 @property(nonatomic) __weak id <SPTAccessoryManagerService> accessoryManagerService; // @synthesize accessoryManagerService=_accessoryManagerService;
-@property(nonatomic) __weak id <SPTCoreService> coreService; // @synthesize coreService=_coreService;
 @property(nonatomic) __weak id <GaiaFeature> gaiaFeature; // @synthesize gaiaFeature=_gaiaFeature;
+@property(nonatomic) __weak id <SPTNetworkService> networkService; // @synthesize networkService=_networkService;
 @property(nonatomic) __weak id <SPTExternalIntegrationDebugLogService> externalIntegrationDebugLogService; // @synthesize externalIntegrationDebugLogService=_externalIntegrationDebugLogService;
 @property(nonatomic) __weak id <SPTExternalIntegrationCollectionService> externalIntegrationCollectionService; // @synthesize externalIntegrationCollectionService=_externalIntegrationCollectionService;
 @property(nonatomic) __weak id <SPTExternalIntegrationPlaybackService> externalIntegrationPlaybackService; // @synthesize externalIntegrationPlaybackService=_externalIntegrationPlaybackService;

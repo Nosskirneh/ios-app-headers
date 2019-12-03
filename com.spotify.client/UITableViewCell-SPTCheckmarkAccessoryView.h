@@ -6,7 +6,23 @@
 
 #import <UIKit/UITableViewCell.h>
 
-@interface UITableViewCell (SPTCheckmarkAccessoryView)
+#import "GLUEStyleable-Protocol.h"
+#import "SPTInstrumentationInteractionItemIDUtilities-Protocol.h"
+
+@class NSString;
+
+@interface UITableViewCell (SPTCheckmarkAccessoryView) <GLUEStyleable, SPTInstrumentationInteractionItemIDUtilities>
 - (_Bool)accessoryViewIsSPTCheckmarkAccessoryView;
+- (_Bool)accessoryViewIsSPTContextMenuAccessoryButton;
+- (void)glue_applyStyle:(id)arg1;
+- (_Bool)accessoryViewIsSPTDisclosureAccessoryView;
+- (long long)SPTCellAccessoryViewType;
+- (id)spt_indexPathInParentView;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 @end
 

@@ -6,10 +6,12 @@
 
 #import "NSObject-Protocol.h"
 
-@class NSArray, NSString, UITextField, UIView, UIViewController;
-@protocol SPTSortingFilteringClearFiltersControl, SPTSortingFilteringFilterBar, SPTSortingFilteringPicker, SPTSortingFilteringSearchField, SPTSortingFilteringSortRule, SPTSortingFilteringTheme;
+@class NSArray, NSString, UITableViewCell, UITextField, UIView, UIViewController;
+@protocol SPTSortingFilteringButtonsCell, SPTSortingFilteringButtonsContainer, SPTSortingFilteringClearFiltersControl, SPTSortingFilteringFilterBar, SPTSortingFilteringPicker, SPTSortingFilteringSearchField, SPTSortingFilteringSortRule, SPTSortingFilteringTheme;
 
 @protocol SPTSortingFilteringUIFactory <NSObject>
+- (UITableViewCell<SPTSortingFilteringButtonsCell> *)createButtonsTableViewCell;
+- (UIView<SPTSortingFilteringButtonsContainer> *)createButtonsContainerWithAvailableFilterRules:(NSArray *)arg1 selectedFilterRules:(NSArray *)arg2;
 - (UIView<SPTSortingFilteringClearFiltersControl> *)createClearFiltersControlWithFilterTitles:(NSArray *)arg1;
 - (UIViewController<SPTSortingFilteringPicker> *)createSortingFilteringPickerWithAvailableFilterRules:(NSArray *)arg1 availableSortRules:(NSArray *)arg2 selectedFilterRules:(NSArray *)arg3 selectedSortRule:(id <SPTSortingFilteringSortRule>)arg4;
 - (UIView<SPTSortingFilteringFilterBar> *)createFilterBarWithPlaceholder:(NSString *)arg1;

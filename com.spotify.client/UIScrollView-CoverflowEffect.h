@@ -8,5 +8,6 @@
 
 @interface UIScrollView (CoverflowEffect)
 - (void)spt_applyCoverFlowerEffectToSubviews:(id)arg1 pageWidth:(double)arg2 minimumSubviewScale:(double)arg3 usePerspectiveEffect:(_Bool)arg4 verticalMode:(_Bool)arg5;
+- (void)spt_scrollToTopAnimated:(_Bool)arg1;
 @end
 

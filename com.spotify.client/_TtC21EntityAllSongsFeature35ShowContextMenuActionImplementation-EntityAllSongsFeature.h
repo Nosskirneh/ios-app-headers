@@ -6,7 +6,9 @@
 
 #import "_TtC21EntityAllSongsFeature35ShowContextMenuActionImplementation.h"
 
-@interface _TtC21EntityAllSongsFeature35ShowContextMenuActionImplementation (EntityAllSongsFeature)
+#import "SPTContextMenuPresenterDelegate-Protocol.h"
+
+@interface _TtC21EntityAllSongsFeature35ShowContextMenuActionImplementation (EntityAllSongsFeature) <SPTContextMenuPresenterDelegate>
 - (void)contextMenuPresenterDidDismiss:(id)arg1;
 @end
 

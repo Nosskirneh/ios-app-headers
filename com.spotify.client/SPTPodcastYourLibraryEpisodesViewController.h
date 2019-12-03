@@ -8,21 +8,20 @@
 
 #import "SPContentInsetViewController-Protocol.h"
 #import "SPTPageController-Protocol.h"
-#import "SPTPodcastAnchorEpisodeHeaderViewDelegate-Protocol.h"
 #import "SPTPodcastEpisodeCellActionHandlerDelegate-Protocol.h"
 #import "SPTPodcastPlayerDelegate-Protocol.h"
 #import "SPTPodcastYourLibraryEpisodesViewModelDelegate-Protocol.h"
 #import "SPTScrollToTopViewController-Protocol.h"
 #import "SPTShowInfoViewProviderTarget-Protocol.h"
 #import "SPTYourLibraryPage-Protocol.h"
+#import "UIContextMenuInteractionDelegate-Protocol.h"
 #import "UITableViewDataSource-Protocol.h"
 #import "UITableViewDelegate-Protocol.h"
-#import "UIViewControllerPreviewingDelegate-Protocol.h"
 
-@class NSArray, NSMutableDictionary, NSString, NSURL, SPTPodcastAnchorEpisodeHeaderView, SPTPodcastEpisodeCellActionHandler, SPTPodcastYourLibraryEpisodesViewModelImpl, SPTProgressView, SPTViewLogger, UITableView, UIView;
-@protocol GLUETheme, SPTPageContainer, SPTPodcastEpisodeCellConfigurator, SPTPodcastLogger, SPTPodcastPlayer, SPTPodcastTestManager, SPTShowInfoViewProvider, SPTYourLibraryPageDelegate, UIViewControllerPreviewing;
+@class NSArray, NSMutableDictionary, NSString, NSURL, SPTPodcastYourLibraryEpisodesViewModelImpl, SPTProgressView, SPTViewLogger, UITableView, UIView;
+@protocol GLUETheme, SPTPageContainer, SPTPodcastEpisodeCellActionTarget, SPTPodcastEpisodeCellConfigurator, SPTPodcastLogger, SPTPodcastPlayer, SPTPodcastTestManager, SPTShowInfoViewProvider, SPTYourLibraryPageDelegate, UIViewControllerPreviewing;
 
-@interface SPTPodcastYourLibraryEpisodesViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, SPTPodcastYourLibraryEpisodesViewModelDelegate, SPTPodcastPlayerDelegate, SPTPodcastEpisodeCellActionHandlerDelegate, UIViewControllerPreviewingDelegate, SPTShowInfoViewProviderTarget, SPTPodcastAnchorEpisodeHeaderViewDelegate, SPContentInsetViewController, SPTPageController, SPTYourLibraryPage, SPTScrollToTopViewController>
+@interface SPTPodcastYourLibraryEpisodesViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, SPTPodcastYourLibraryEpisodesViewModelDelegate, SPTPodcastPlayerDelegate, SPTPodcastEpisodeCellActionHandlerDelegate, SPTShowInfoViewProviderTarget, SPContentInsetViewController, UIContextMenuInteractionDelegate, SPTPageController, SPTYourLibraryPage, SPTScrollToTopViewController>
 {
     id <SPTYourLibraryPageDelegate> _pageDelegate;
     SPTPodcastYourLibraryEpisodesViewModelImpl *_viewModel;
@@ -31,7 +30,7 @@
     SPTProgressView *_progressView;
     NSArray *_layoutConstraints;
     id <SPTPodcastEpisodeCellConfigurator> _cellConfigurator;
-    SPTPodcastEpisodeCellActionHandler *_cellActionHandler;
+    id <SPTPodcastEpisodeCellActionTarget> _cellActionHandler;
     id <SPTPodcastPlayer> _player;
     SPTViewLogger *_viewLogger;
     id <SPTPodcastLogger> _podcastLogger;
@@ -41,10 +40,8 @@
     NSArray *_infoViewConstraints;
     NSMutableDictionary *_cellHeightsForSection;
     id <UIViewControllerPreviewing> _previewingContext;
-    SPTPodcastAnchorEpisodeHeaderView *_anchorHeaderView;
 }
 
-@property(retain, nonatomic) SPTPodcastAnchorEpisodeHeaderView *anchorHeaderView; // @synthesize anchorHeaderView=_anchorHeaderView;
 @property(nonatomic) __weak id <UIViewControllerPreviewing> previewingContext; // @synthesize previewingContext=_previewingContext;
 @property(retain, nonatomic) NSMutableDictionary *cellHeightsForSection; // @synthesize cellHeightsForSection=_cellHeightsForSection;
 @property(copy, nonatomic) NSArray *infoViewConstraints; // @synthesize infoViewConstraints=_infoViewConstraints;
@@ -54,7 +51,7 @@
 @property(retain, nonatomic) id <SPTPodcastLogger> podcastLogger; // @synthesize podcastLogger=_podcastLogger;
 @property(retain, nonatomic) SPTViewLogger *viewLogger; // @synthesize viewLogger=_viewLogger;
 @property(retain, nonatomic) id <SPTPodcastPlayer> player; // @synthesize player=_player;
-@property(retain, nonatomic) SPTPodcastEpisodeCellActionHandler *cellActionHandler; // @synthesize cellActionHandler=_cellActionHandler;
+@property(retain, nonatomic) id <SPTPodcastEpisodeCellActionTarget> cellActionHandler; // @synthesize cellActionHandler=_cellActionHandler;
 @property(retain, nonatomic) id <SPTPodcastEpisodeCellConfigurator> cellConfigurator; // @synthesize cellConfigurator=_cellConfigurator;
 @property(copy, nonatomic) NSArray *layoutConstraints; // @synthesize layoutConstraints=_layoutConstraints;
 @property(retain, nonatomic) SPTProgressView *progressView; // @synthesize progressView=_progressView;
@@ -63,11 +60,11 @@
 @property(readonly, nonatomic) SPTPodcastYourLibraryEpisodesViewModelImpl *viewModel; // @synthesize viewModel=_viewModel;
 @property(nonatomic) __weak id <SPTYourLibraryPageDelegate> pageDelegate; // @synthesize pageDelegate=_pageDelegate;
 - (void).cxx_destruct;
-- (void)didSelectAnchorItemWithURL:(id)arg1;
-- (id)previewingContext:(id)arg1 viewControllerForLocation:(struct CGPoint)arg2;
-- (void)previewingContext:(id)arg1 commitViewController:(id)arg2;
 @property(readonly, nonatomic) double offscreenContentHeight;
-- (void)actionHandler:(id)arg1 didMarkEpisodeAsPlayed:(_Bool)arg2;
+- (void)contextMenuInteraction:(id)arg1 willPerformPreviewActionForMenuWithConfiguration:(id)arg2 animator:(id)arg3;
+- (id)contextMenuInteraction:(id)arg1 configurationForMenuAtLocation:(struct CGPoint)arg2;
+- (id)contextMenuInteraction:(id)arg1 previewForHighlightingMenuWithConfiguration:(id)arg2;
+- (void)actionHandler:(id)arg1 didMarkEpisode:(id)arg2 atIndextPath:(id)arg3 asPlayed:(_Bool)arg4;
 - (void)podcastPlayer:(id)arg1 didUpdateProgressForTrackURL:(id)arg2;
 - (double)podcastPlayer:(id)arg1 updateProgressIntervalForTrackURL:(id)arg2;
 - (void)podcastPlayer:(id)arg1 didChangePlayingTrackURL:(id)arg2;
@@ -82,7 +79,6 @@
 - (_Bool)scrollViewShouldScrollToTop:(id)arg1;
 - (void)scrollViewDidEndScrollingAnimation:(id)arg1;
 - (void)scrollViewDidScroll:(id)arg1;
-- (void)tableView:(id)arg1 willDisplayHeaderView:(id)arg2 forSection:(long long)arg3;
 - (double)tableView:(id)arg1 heightForHeaderInSection:(long long)arg2;
 - (double)tableView:(id)arg1 estimatedHeightForRowAtIndexPath:(id)arg2;
 - (void)tableView:(id)arg1 willDisplayCell:(id)arg2 forRowAtIndexPath:(id)arg3;
@@ -99,9 +95,9 @@
 - (void)showInfoViewWithError:(id)arg1;
 - (void)showEmptyInfoView;
 - (struct UIEdgeInsets)insetsForInfoViewRespectingBottomLayoutGuide;
-- (void)registerFor3DTouch;
 - (void)updateProgressWithPlayer:(id)arg1;
 - (id)idenfifierForEpisodeViewModel:(id)arg1;
+- (void)addTableViewInteraction;
 - (void)addLayoutConstraints;
 - (void)setupTableView;
 - (void)viewWillAppear:(_Bool)arg1;

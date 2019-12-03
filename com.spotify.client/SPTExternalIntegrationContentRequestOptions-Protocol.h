@@ -10,6 +10,7 @@
 
 @protocol SPTExternalIntegrationContentRequestOptions <NSObject>
 @property(readonly, nonatomic) NSArray *debugLogTags;
+@property(readonly, nonatomic) _Bool offlineOnly;
 @property(readonly, nonatomic) unsigned long long limit;
 @end
 

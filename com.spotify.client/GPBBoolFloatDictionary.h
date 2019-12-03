@@ -38,7 +38,6 @@
 - (unsigned long long)hash;
 - (_Bool)isEqual:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
-- (void)dealloc;
 - (id)initWithCapacity:(unsigned long long)arg1;
 - (id)initWithDictionary:(id)arg1;
 - (id)initWithFloats:(const float *)arg1 forKeys:(const _Bool *)arg2 count:(unsigned long long)arg3;

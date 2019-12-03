@@ -12,7 +12,7 @@
 #import "SPTVoiceTestManagerSettingsDelegate-Protocol.h"
 
 @class NSString, SPTAllocationContext, SPTDataLoaderKeymasterAuthoriser, SPTVoiceOnboardingManager, SPTVoiceSessionHandlingOptions, SPTVoiceTabBarViewManager, SPTVoiceTestManagerImplementation;
-@protocol SPTBannerFeature, SPTCollectionPlatformService, SPTContainerService, SPTCoreService, SPTExternalIntegrationPlaybackService, SPTFeatureFlaggingService, SPTFreeTierService, SPTGLUEService, SPTNetworkService, SPTPageRegistrationToken, SPTPlayerFeature, SPTPlaylistPlatformService, SPTPodcastFeature, SPTRadioManager, SPTSessionService, SPTSettingsFeature, SPTURIDispatchService, SPTVoiceAudioRecorderFactory, SPTVoiceLoggerProtocol, SPTVoiceOnboardingRecordPermissionsState, SPTVoiceSessionViewControllerFactory;
+@protocol SPTBannerFeature, SPTCollectionPlatformService, SPTContainerService, SPTCoreService, SPTExternalIntegrationPlaybackService, SPTFeatureFlaggingService, SPTFreeTierService, SPTGLUEService, SPTNetworkService, SPTPageRegistrationToken, SPTPlayerFeature, SPTPlaylistPlatformService, SPTPodcastFeature, SPTRadioManager, SPTSessionService, SPTSettingsFeature, SPTURIDispatchService, SPTVoiceAudioRecorderFactory, SPTVoiceLoggerProtocol, SPTVoiceOnboardingRecordPermissionsState, SPTVoiceSessionViewControllerFactory, SPTVoiceUIService;
 
 @interface SPTVoiceServiceImplementation : NSObject <SPTVoiceTestManagerObserver, SPTVoiceTestManagerSettingsDelegate, SPTVoiceTabBarViewManagerDelegate, SPTVoiceService>
 {
@@ -33,6 +33,7 @@
     id <SPTFeatureFlaggingService> _featureFlaggingService;
     id <SPTFreeTierService> _freeTierService;
     id <SPTBannerFeature> _bannerService;
+    id <SPTVoiceUIService> _voiceUIService;
     SPTDataLoaderKeymasterAuthoriser *_keymasterAuthoriser;
     id <SPTVoiceSessionViewControllerFactory> _defaultViewControllerFactory;
     SPTVoiceTestManagerImplementation *_testManager;
@@ -54,6 +55,7 @@
 @property(readonly, nonatomic) SPTVoiceTestManagerImplementation *testManager; // @synthesize testManager=_testManager;
 @property(readonly, nonatomic) id <SPTVoiceSessionViewControllerFactory> defaultViewControllerFactory; // @synthesize defaultViewControllerFactory=_defaultViewControllerFactory;
 @property(nonatomic) __weak SPTDataLoaderKeymasterAuthoriser *keymasterAuthoriser; // @synthesize keymasterAuthoriser=_keymasterAuthoriser;
+@property(nonatomic) __weak id <SPTVoiceUIService> voiceUIService; // @synthesize voiceUIService=_voiceUIService;
 @property(nonatomic) __weak id <SPTBannerFeature> bannerService; // @synthesize bannerService=_bannerService;
 @property(nonatomic) __weak id <SPTFreeTierService> freeTierService; // @synthesize freeTierService=_freeTierService;
 @property(nonatomic) __weak id <SPTFeatureFlaggingService> featureFlaggingService; // @synthesize featureFlaggingService=_featureFlaggingService;
@@ -88,7 +90,6 @@
 - (void)testManager:(id)arg1 didSwitchEndpoint:(unsigned long long)arg2;
 - (void)didRequestTurnOffOnboardingWithTestManager:(id)arg1;
 - (void)didTapResetOnboardingWithTestManager:(id)arg1;
-- (void)didTapOpenVoiceOverlayWithTestManager:(id)arg1;
 - (void)testManager:(id)arg1 didChangeVoiceSearchEnabledState:(_Bool)arg2;
 - (void)testManager:(id)arg1 didChangeVoiceServiceEnabledState:(_Bool)arg2;
 - (void)setVoiceCalloutTooltipDidDisplay:(_Bool)arg1;

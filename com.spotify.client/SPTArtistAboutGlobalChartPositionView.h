@@ -27,6 +27,7 @@
 @property(retain, nonatomic) UIView *circleView; // @synthesize circleView=_circleView;
 @property(retain, nonatomic) NSNumberFormatter *numberFormatter; // @synthesize numberFormatter=_numberFormatter;
 - (void).cxx_destruct;
+- (id)accessibilityLabel;
 - (void)setGlobalChartPosition:(unsigned long long)arg1;
 - (void)glue_applyStyle:(id)arg1;
 - (void)addLayoutConstraints;

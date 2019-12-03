@@ -8,15 +8,15 @@
 
 #import "SPTPodcastHeaderContentView-Protocol.h"
 
-@class NSLayoutConstraint, NSString, TKNLabel, UIImage, UIImageView, UILayoutGuide, UIView;
+@class NSLayoutConstraint, NSString, SPTEncoreLabel, UIImage, UIImageView, UILayoutGuide, UIView;
 
 @interface SPTPodcastHeaderContentViewRegularImplementation : VISREFTopAndBodyContentView <SPTPodcastHeaderContentView>
 {
     UILayoutGuide *titlePositionLayoutGuide;
     UIImageView *_imageView;
     UIView *_imageShadowView;
-    TKNLabel *_titleLabel;
-    TKNLabel *_publisherLabel;
+    SPTEncoreLabel *_titleLabel;
+    SPTEncoreLabel *_publisherLabel;
     NSLayoutConstraint *_headerHeightConstraint;
     NSLayoutConstraint *_imageTopConstraint;
     NSLayoutConstraint *_imageHeightConstraint;
@@ -39,8 +39,8 @@
 @property(retain, nonatomic) NSLayoutConstraint *imageHeightConstraint; // @synthesize imageHeightConstraint=_imageHeightConstraint;
 @property(retain, nonatomic) NSLayoutConstraint *imageTopConstraint; // @synthesize imageTopConstraint=_imageTopConstraint;
 @property(retain, nonatomic) NSLayoutConstraint *headerHeightConstraint; // @synthesize headerHeightConstraint=_headerHeightConstraint;
-@property(retain, nonatomic) TKNLabel *publisherLabel; // @synthesize publisherLabel=_publisherLabel;
-@property(retain, nonatomic) TKNLabel *titleLabel; // @synthesize titleLabel=_titleLabel;
+@property(retain, nonatomic) SPTEncoreLabel *publisherLabel; // @synthesize publisherLabel=_publisherLabel;
+@property(retain, nonatomic) SPTEncoreLabel *titleLabel; // @synthesize titleLabel=_titleLabel;
 @property(retain, nonatomic) UIView *imageShadowView; // @synthesize imageShadowView=_imageShadowView;
 @property(retain, nonatomic) UIImageView *imageView; // @synthesize imageView=_imageView;
 @property(readonly, nonatomic) UILayoutGuide *titlePositionLayoutGuide; // @synthesize titlePositionLayoutGuide;

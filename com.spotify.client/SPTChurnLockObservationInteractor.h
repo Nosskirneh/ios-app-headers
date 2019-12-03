@@ -6,12 +6,13 @@
 
 #import <objc/NSObject.h>
 
+#import "SPTFeatureFlagSignalObserver-Protocol.h"
 #import "SPTUICompletionNotifierObserver-Protocol.h"
 
 @class NSString;
 @protocol SPTChurnLockObservationInteractorDelegate, SPTFeatureFlagFactory, SPTFeatureFlagSignal, SPTUICompletionNotifier;
 
-@interface SPTChurnLockObservationInteractor : NSObject <SPTUICompletionNotifierObserver>
+@interface SPTChurnLockObservationInteractor : NSObject <SPTUICompletionNotifierObserver, SPTFeatureFlagSignalObserver>
 {
     id <SPTChurnLockObservationInteractorDelegate> _delegate;
     id <SPTFeatureFlagFactory> _featureFlagFactory;

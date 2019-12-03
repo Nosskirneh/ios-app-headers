@@ -23,7 +23,8 @@
 - (void)logRelatedArtistShowsInteractionWithConcertURI:(id)arg1;
 - (void)logGoToAlbumInteractionForAlbumURI:(id)arg1;
 - (void)logGoToArtistInteractionForArtistURI:(id)arg1;
-- (void)logFindTicketsInteraction;
+- (void)logShareButtonInteraction;
+- (void)logFindTicketsInteractionForURI:(id)arg1;
 - (void)logConcertEntityPageImpression;
 - (id)initWithLogCenter:(id)arg1 concertURI:(id)arg2;
 

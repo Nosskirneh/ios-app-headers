@@ -8,8 +8,8 @@
 
 #import "ProfileFeature-Protocol.h"
 
-@class NSString, SPTAllocationContext, SPTProfileLogger;
-@protocol FollowFeature, SPContextMenuFeature, SPTBrowsePlatformService, SPTBrowseRedirectButtonProvider, SPTCollectionPlatformService, SPTContainerService, SPTCoreService, SPTFindFriendsFeature, SPTFreeTierService, SPTGLUEService, SPTNavigationFeature, SPTNetworkService, SPTPageRegistrationToken, SPTPerformanceMetricsService, SPTSessionService;
+@class NSString, SPTAllocationContext, SPTProfileFeatureProperties, SPTProfileLogger;
+@protocol FollowFeature, SPContextMenuFeature, SPTCollectionPlatformService, SPTContainerService, SPTCoreService, SPTFindFriendsFeature, SPTFreeTierService, SPTGLUEService, SPTNavigationFeature, SPTNetworkService, SPTPageRegistrationToken, SPTPerformanceMetricsService, SPTRemoteConfigurationService, SPTSessionService;
 
 @interface ProfileFeatureImplementation : NSObject <ProfileFeature>
 {
@@ -23,27 +23,27 @@
     id <SPTFindFriendsFeature> _findFriendsFeature;
     id <SPTFreeTierService> _freeTierService;
     id <SPTNavigationFeature> _navigationFeature;
-    id <SPTBrowsePlatformService> _browsePlatformService;
     id <SPTGLUEService> _glueService;
     id <SPTPerformanceMetricsService> _performanceMetricsService;
-    id <SPTBrowseRedirectButtonProvider> _browseRedirectButtonProvider;
     SPTProfileLogger *_logger;
     id <SPTPageRegistrationToken> _profileOverviewPageRegistrationToken;
     id <SPTPageRegistrationToken> _profilePageRegistrationToken;
     id <SPTPageRegistrationToken> _profileViewAllPageRegistrationToken;
     id <SPTPageRegistrationToken> _profileSocialRelationsPageRegistrationToken;
+    id <SPTRemoteConfigurationService> _remoteConfigurationService;
+    SPTProfileFeatureProperties *_featureProperties;
 }
 
 + (id)serviceIdentifier;
+@property(retain, nonatomic) SPTProfileFeatureProperties *featureProperties; // @synthesize featureProperties=_featureProperties;
+@property(nonatomic) __weak id <SPTRemoteConfigurationService> remoteConfigurationService; // @synthesize remoteConfigurationService=_remoteConfigurationService;
 @property(retain, nonatomic) id <SPTPageRegistrationToken> profileSocialRelationsPageRegistrationToken; // @synthesize profileSocialRelationsPageRegistrationToken=_profileSocialRelationsPageRegistrationToken;
 @property(retain, nonatomic) id <SPTPageRegistrationToken> profileViewAllPageRegistrationToken; // @synthesize profileViewAllPageRegistrationToken=_profileViewAllPageRegistrationToken;
 @property(retain, nonatomic) id <SPTPageRegistrationToken> profilePageRegistrationToken; // @synthesize profilePageRegistrationToken=_profilePageRegistrationToken;
 @property(retain, nonatomic) id <SPTPageRegistrationToken> profileOverviewPageRegistrationToken; // @synthesize profileOverviewPageRegistrationToken=_profileOverviewPageRegistrationToken;
 @property(retain, nonatomic) SPTProfileLogger *logger; // @synthesize logger=_logger;
-@property(retain, nonatomic) id <SPTBrowseRedirectButtonProvider> browseRedirectButtonProvider; // @synthesize browseRedirectButtonProvider=_browseRedirectButtonProvider;
 @property(nonatomic) __weak id <SPTPerformanceMetricsService> performanceMetricsService; // @synthesize performanceMetricsService=_performanceMetricsService;
 @property(nonatomic) __weak id <SPTGLUEService> glueService; // @synthesize glueService=_glueService;
-@property(nonatomic) __weak id <SPTBrowsePlatformService> browsePlatformService; // @synthesize browsePlatformService=_browsePlatformService;
 @property(nonatomic) __weak id <SPTNavigationFeature> navigationFeature; // @synthesize navigationFeature=_navigationFeature;
 @property(nonatomic) __weak id <SPTFreeTierService> freeTierService; // @synthesize freeTierService=_freeTierService;
 @property(nonatomic) __weak id <SPTFindFriendsFeature> findFriendsFeature; // @synthesize findFriendsFeature=_findFriendsFeature;
@@ -65,6 +65,7 @@
 - (id)provideRootProfileViewController:(id)arg1 context:(id)arg2;
 - (void)unregisterPages;
 - (void)registerPages;
+- (void)configurePageRegistryState;
 - (void)load;
 - (void)configureWithServices:(id)arg1;
 

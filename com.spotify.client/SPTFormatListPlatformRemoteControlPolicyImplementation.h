@@ -104,10 +104,10 @@
 @property(readonly, nonatomic) _Bool shouldSeekBackwardCommandBeAvailable;
 @property(readonly, nonatomic) _Bool shouldSeekForwardCommandBeEnabled;
 @property(readonly, nonatomic) _Bool shouldSeekForwardCommandBeAvailable;
-- (void)shuffleButtonPressedWithShuffleType:(long long)arg1;
+- (_Bool)shuffleButtonPressedWithShuffleType:(long long)arg1;
 @property(readonly, nonatomic) _Bool shouldShuffleCommandBeEnabled;
 @property(readonly, nonatomic) _Bool shouldShuffleCommandBeAvailable;
-- (void)repeatButtonPressedWithRepeatType:(long long)arg1;
+- (_Bool)repeatButtonPressedWithRepeatType:(long long)arg1;
 @property(readonly, nonatomic) _Bool shouldRepeatCommandBeEnabled;
 @property(readonly, nonatomic) _Bool shouldRepeatCommandBeAvailable;
 - (void)dislikeButtonPressedWithCompletion:(CDUnknownBlockType)arg1 identifier:(id)arg2;

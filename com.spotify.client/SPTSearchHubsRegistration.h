@@ -7,24 +7,20 @@
 #import <objc/NSObject.h>
 
 @class HUBComponentRegistry;
-@protocol GLUETheme, SPTAudioPreviewModelFactory, SPTAudioPreviewUIFactory;
+@protocol GLUETheme;
 
 @interface SPTSearchHubsRegistration : NSObject
 {
     id <GLUETheme> _theme;
     HUBComponentRegistry *_componentRegistry;
-    id <SPTAudioPreviewModelFactory> _audioPreviewModelFactory;
-    id <SPTAudioPreviewUIFactory> _audioPreviewUIFactory;
 }
 
-@property(readonly, nonatomic) id <SPTAudioPreviewUIFactory> audioPreviewUIFactory; // @synthesize audioPreviewUIFactory=_audioPreviewUIFactory;
-@property(readonly, nonatomic) id <SPTAudioPreviewModelFactory> audioPreviewModelFactory; // @synthesize audioPreviewModelFactory=_audioPreviewModelFactory;
 @property(readonly, nonatomic) HUBComponentRegistry *componentRegistry; // @synthesize componentRegistry=_componentRegistry;
 @property(readonly, nonatomic) id <GLUETheme> theme; // @synthesize theme=_theme;
 - (void).cxx_destruct;
 - (void)unregisterSearchComponents;
 - (void)registerSearchComponents;
-- (id)initWithTheme:(id)arg1 componentRegistry:(id)arg2 audioPreviewModelFactory:(id)arg3 audioPreviewUIFactory:(id)arg4;
+- (id)initWithTheme:(id)arg1 componentRegistry:(id)arg2;
 
 @end
 

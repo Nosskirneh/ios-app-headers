@@ -7,11 +7,12 @@
 #import <objc/NSObject.h>
 
 #import "SPTPresenterViewControllerProvider-Protocol.h"
+#import "SPTUIPresentationService-Protocol.h"
 
 @class NSString, SPTAllocationContext;
 @protocol SPTContainerService, SPTContainerUIService, SPTInstrumentationService, SPTModalPresentationController, SPTPopoverPresentationController;
 
-@interface SPTUIPresentationServiceImplementation : NSObject <SPTPresenterViewControllerProvider>
+@interface SPTUIPresentationServiceImplementation : NSObject <SPTPresenterViewControllerProvider, SPTUIPresentationService>
 {
     id <SPTContainerUIService> _containerUIService;
     id <SPTContainerService> _containerService;

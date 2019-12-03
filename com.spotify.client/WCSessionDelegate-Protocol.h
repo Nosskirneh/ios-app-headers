@@ -24,6 +24,7 @@
 - (void)session:(WCSession *)arg1 didReceiveMessage:(NSDictionary *)arg2 replyHandler:(void (^)(NSDictionary *))arg3;
 - (void)session:(WCSession *)arg1 didReceiveMessage:(NSDictionary *)arg2;
 - (void)sessionReachabilityDidChange:(WCSession *)arg1;
+- (void)sessionCompanionAppInstalledDidChange:(WCSession *)arg1;
 - (void)sessionWatchStateDidChange:(WCSession *)arg1;
 @end
 

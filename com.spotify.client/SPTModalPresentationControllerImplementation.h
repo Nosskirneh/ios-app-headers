@@ -6,12 +6,13 @@
 
 #import <objc/NSObject.h>
 
+#import "MessageBarControllerObserver-Protocol.h"
 #import "SPTModalPresentationController-Protocol.h"
 
 @class NSString;
 @protocol SPTInstrumentationModalPresentationMonitor, SPTPresenterViewControllerProvider;
 
-@interface SPTModalPresentationControllerImplementation : NSObject <SPTModalPresentationController>
+@interface SPTModalPresentationControllerImplementation : NSObject <SPTModalPresentationController, MessageBarControllerObserver>
 {
     id <SPTPresenterViewControllerProvider> _presenterProvider;
     id <SPTInstrumentationModalPresentationMonitor> _presentationMonitor;

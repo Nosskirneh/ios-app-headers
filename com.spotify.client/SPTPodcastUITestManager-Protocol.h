@@ -7,6 +7,7 @@
 #import "NSObject-Protocol.h"
 
 @protocol SPTPodcastUITestManager <NSObject>
+@property(readonly, nonatomic, getter=isContinueListeningLoggingEnabled) _Bool continueListeningLoggingEnabled;
 @property(readonly, nonatomic, getter=isGranularDownloadProgressEnabled) _Bool granularDownloadProgressEnabled;
 @end
 

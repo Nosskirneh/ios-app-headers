@@ -4,14 +4,14 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
 //
 
-#import <UIKit/UIView.h>
+#import "SPTPodcastUIHighlightableView.h"
 
 @class GLUELabel, SPTPodcastUICallToActionCardStyle, SPTPodcastUIRoundedImageView, SPTPodcastUIRoundedView;
 @protocol GLUETheme;
 
-@interface SPTPodcastUICallToActionCardView : UIView
+@interface SPTPodcastUICallToActionCardView : SPTPodcastUIHighlightableView
 {
-    SPTPodcastUICallToActionCardStyle *_style;
+    SPTPodcastUICallToActionCardStyle *_cardStyle;
     GLUELabel *_titleLabel;
     GLUELabel *_actionTextLabel;
     SPTPodcastUIRoundedImageView *_imageView;
@@ -24,7 +24,7 @@
 @property(retain, nonatomic) SPTPodcastUIRoundedImageView *imageView; // @synthesize imageView=_imageView;
 @property(retain, nonatomic) GLUELabel *actionTextLabel; // @synthesize actionTextLabel=_actionTextLabel;
 @property(retain, nonatomic) GLUELabel *titleLabel; // @synthesize titleLabel=_titleLabel;
-@property(readonly, nonatomic) SPTPodcastUICallToActionCardStyle *style; // @synthesize style=_style;
+@property(readonly, nonatomic) SPTPodcastUICallToActionCardStyle *cardStyle; // @synthesize cardStyle=_cardStyle;
 - (void).cxx_destruct;
 - (void)applyStyle;
 - (void)setUpLabels;

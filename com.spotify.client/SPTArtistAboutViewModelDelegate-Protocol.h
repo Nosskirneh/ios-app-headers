@@ -6,14 +6,12 @@
 
 #import "NSObject-Protocol.h"
 
-@class NSError, SPTArtistAboutViewModel;
+@class NSError, SPTArtistAbout;
 
 @protocol SPTArtistAboutViewModelDelegate <NSObject>
-- (void)artistAboutViewModel:(SPTArtistAboutViewModel *)arg1 failedWithError:(NSError *)arg2;
-- (void)artistAboutViewModel:(SPTArtistAboutViewModel *)arg1 loadedDataWithError:(NSError *)arg2;
-
-@optional
-- (void)artistAboutViewModel:(SPTArtistAboutViewModel *)arg1 isOffline:(_Bool)arg2;
-- (void)artistAboutViewModel:(SPTArtistAboutViewModel *)arg1 isLoading:(_Bool)arg2;
+- (void)isOfflineWithNoData;
+- (void)didFailToLoadArtistAboutWithError:(NSError *)arg1;
+- (void)didLoadArtistAbout:(SPTArtistAbout *)arg1;
+- (void)isLoadingArtistAbout;
 @end
 

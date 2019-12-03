@@ -32,7 +32,6 @@
 - (id)provideAdsSettingsController;
 - (id)provideAdRegistry;
 - (id)provideAdsMovementLogger;
-- (id)createResolverForView:(id)arg1;
 - (id)provideAdsResolver;
 - (id)provideAdsCosmosBridge;
 - (void)unload;

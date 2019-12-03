@@ -11,6 +11,8 @@
     // Error parsing type: , name: theme
     // Error parsing type: , name: imageLoaderFactory
     // Error parsing type: , name: glueImageLoader
+    // Error parsing type: , name: hubCommandTranslator
+    // Error parsing type: , name: paginationHandler
 }
 
 @end

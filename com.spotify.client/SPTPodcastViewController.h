@@ -18,8 +18,8 @@
 #import "UITableViewDataSource-Protocol.h"
 #import "UITableViewDelegate-Protocol.h"
 
-@class NSString, NSURL, SPTEntityTableHeaderView, SPTFreeTierEntityNavigationDecorator, SPTInfoView, SPTPodcastEpisodeCellActionHandler, SPTPodcastFilterHeaderView, SPTPodcastHeaderProvider, SPTPodcastViewModel, SPTProgressView, SPTShowContextMenuController, SPTTableView, SPTTheme;
-@protocol GLUEImageLoader, GLUETheme, SPTCollectionLogger, SPTCollectionPlatformTestManager, SPTLinkDispatcher, SPTPageContainer, SPTPodcastContextMenuProvider, SPTPodcastEpisodeCellConfigurator, SPTPodcastLogger, SPTPodcastTestManager, SPTShareFeature, SPTUIPresentationService;
+@class NSString, NSURL, SPTEntityTableHeaderView, SPTFreeTierEntityNavigationDecorator, SPTInfoView, SPTPodcastFilterHeaderView, SPTPodcastHeaderProvider, SPTPodcastViewModel, SPTProgressView, SPTShowContextMenuController, SPTTableView, SPTTheme;
+@protocol GLUEImageLoader, GLUETheme, SPTCollectionLogger, SPTCollectionPlatformTestManager, SPTLinkDispatcher, SPTPageContainer, SPTPodcastContextMenuProvider, SPTPodcastEpisodeCellActionTarget, SPTPodcastEpisodeCellConfigurator, SPTPodcastLogger, SPTPodcastTestManager, SPTShareFeature, SPTUIPresentationService, SPTViewLogger;
 
 @interface SPTPodcastViewController : UIViewController <SPTNavigationControllerNavigationBarState, SPTPodcastViewModelDelegate, SPTShowContextMenuControllerDelegate, SPTShareableContext, SPTPodcastHeaderDescriptionViewDelegate, SPTPodcastTestManagerObserver, SPTPodcastFilterHeaderViewTarget, UITableViewDelegate, UITableViewDataSource, SPTPageController, SPViewController>
 {
@@ -32,7 +32,7 @@
     id <SPTPodcastContextMenuProvider> _podcastContextMenuProvider;
     SPTShowContextMenuController *_showContextMenuController;
     id <SPTPodcastEpisodeCellConfigurator> _cellConfigurator;
-    SPTPodcastEpisodeCellActionHandler *_cellActionHandler;
+    id <SPTPodcastEpisodeCellActionTarget> _cellActionHandler;
     SPTTableView *_tableView;
     SPTProgressView *_progressView;
     SPTInfoView *_infoView;
@@ -48,12 +48,14 @@
     id <SPTUIPresentationService> _presentationService;
     id <SPTPodcastLogger> _logger;
     id <SPTCollectionLogger> _collectionLogger;
+    id <SPTViewLogger> _viewLogger;
     NSURL *_firstRowImpressionEpisode;
 }
 
 @property(copy, nonatomic) NSURL *firstRowImpressionEpisode; // @synthesize firstRowImpressionEpisode=_firstRowImpressionEpisode;
 @property(nonatomic) _Bool firstTimeShowing; // @synthesize firstTimeShowing=_firstTimeShowing;
 @property(nonatomic, getter=isDataLoaded) _Bool dataLoaded; // @synthesize dataLoaded=_dataLoaded;
+@property(retain, nonatomic) id <SPTViewLogger> viewLogger; // @synthesize viewLogger=_viewLogger;
 @property(retain, nonatomic) id <SPTCollectionLogger> collectionLogger; // @synthesize collectionLogger=_collectionLogger;
 @property(retain, nonatomic) id <SPTPodcastLogger> logger; // @synthesize logger=_logger;
 @property(nonatomic) __weak id <SPTUIPresentationService> presentationService; // @synthesize presentationService=_presentationService;
@@ -69,7 +71,7 @@
 @property(retain, nonatomic) SPTInfoView *infoView; // @synthesize infoView=_infoView;
 @property(retain, nonatomic) SPTProgressView *progressView; // @synthesize progressView=_progressView;
 @property(retain, nonatomic) SPTTableView *tableView; // @synthesize tableView=_tableView;
-@property(retain, nonatomic) SPTPodcastEpisodeCellActionHandler *cellActionHandler; // @synthesize cellActionHandler=_cellActionHandler;
+@property(retain, nonatomic) id <SPTPodcastEpisodeCellActionTarget> cellActionHandler; // @synthesize cellActionHandler=_cellActionHandler;
 @property(retain, nonatomic) id <SPTPodcastEpisodeCellConfigurator> cellConfigurator; // @synthesize cellConfigurator=_cellConfigurator;
 @property(retain, nonatomic) SPTShowContextMenuController *showContextMenuController; // @synthesize showContextMenuController=_showContextMenuController;
 @property(retain, nonatomic) id <SPTPodcastContextMenuProvider> podcastContextMenuProvider; // @synthesize podcastContextMenuProvider=_podcastContextMenuProvider;
@@ -78,7 +80,6 @@
 @property(copy, nonatomic) CDUnknownBlockType contextResponseHandler; // @synthesize contextResponseHandler=_contextResponseHandler;
 @property(retain, nonatomic) SPTPodcastViewModel *viewModel; // @synthesize viewModel=_viewModel;
 - (void).cxx_destruct;
-- (void)logImpressionForCellAtIndexPath:(id)arg1;
 - (void)podcastTestManagerDidUpdate:(id)arg1;
 - (void)playURIInContext:(id)arg1;
 - (void)evaluatePendingContextResponseHandlerWithViewModel:(id)arg1;
@@ -123,10 +124,11 @@
 - (void)updateBarButtons;
 - (void)setupBarButtons;
 - (void)setupConstraints;
+- (void)viewDidDisappear:(_Bool)arg1;
 - (void)viewWillAppear:(_Bool)arg1;
 - (void)viewDidLoad;
 - (void)dealloc;
-- (id)initWithPodcastViewModel:(id)arg1 glueImageLoader:(id)arg2 logger:(id)arg3 collectionLogger:(id)arg4 showContextMenuController:(id)arg5 episodeCellConfigurator:(id)arg6 collectionTestManager:(id)arg7 podcastTestManager:(id)arg8 podcastContextMenuProvider:(id)arg9 shareFeature:(id)arg10 linkDispatcher:(id)arg11 navigationDecorator:(id)arg12 cellActionHandler:(id)arg13 presentationService:(id)arg14;
+- (id)initWithPodcastViewModel:(id)arg1 glueImageLoader:(id)arg2 logger:(id)arg3 collectionLogger:(id)arg4 showContextMenuController:(id)arg5 episodeCellConfigurator:(id)arg6 collectionTestManager:(id)arg7 podcastTestManager:(id)arg8 podcastContextMenuProvider:(id)arg9 shareFeature:(id)arg10 linkDispatcher:(id)arg11 navigationDecorator:(id)arg12 cellActionHandler:(id)arg13 presentationService:(id)arg14 viewLogger:(id)arg15;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

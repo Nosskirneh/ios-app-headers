@@ -6,7 +6,7 @@
 
 #import <objc/NSObject.h>
 
-@class NSArray, NSData, NSDate, NSDictionary, NSError, NSString, NSURLResponse, SPTDataLoaderRequest;
+@class NSData, NSDate, NSDictionary, NSError, NSURLResponse, SPTDataLoaderRequest;
 
 @interface SPTDataLoaderResponse : NSObject
 {
@@ -35,9 +35,6 @@
 - (_Bool)shouldRetry;
 - (id)initWithRequest:(id)arg1 response:(id)arg2;
 - (long long)spt_browseViewModelFetcherErrorCode;
-- (long long)spt_podcastBrowseViewModelFetcherErrorCode;
-@property(readonly, nonatomic) NSString *searchAutocompleteRequestId;
-@property(readonly, nonatomic) NSArray *suggestions;
 
 @end
 

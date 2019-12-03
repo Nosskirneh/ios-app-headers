@@ -8,7 +8,7 @@
 
 #import "SPTCoreService-Protocol.h"
 
-@class NSString, SPCore, SPTAllocationContext, SPTLog;
+@class NSString, SPCore, SPTAllocationContext, SPTEventSenderCoreProxyImplementation, SPTLog;
 @protocol SPTAudioDriverController, SPTBootstrapService;
 
 @interface SPTCoreServiceImplementation : NSObject <SPTCoreService>
@@ -16,11 +16,13 @@
     id <SPTAudioDriverController> _audioDriverController;
     id <SPTBootstrapService> _bootstrapService;
     SPTLog *_log;
+    SPTEventSenderCoreProxyImplementation *_eventSenderCoreProxy;
     SPCore *_core;
 }
 
 + (id)serviceIdentifier;
 @property(retain, nonatomic) SPCore *core; // @synthesize core=_core;
+@property(retain, nonatomic) SPTEventSenderCoreProxyImplementation *eventSenderCoreProxy; // @synthesize eventSenderCoreProxy=_eventSenderCoreProxy;
 @property(retain, nonatomic) SPTLog *log; // @synthesize log=_log;
 @property(nonatomic) __weak id <SPTBootstrapService> bootstrapService; // @synthesize bootstrapService=_bootstrapService;
 @property(retain, nonatomic) id <SPTAudioDriverController> audioDriverController; // @synthesize audioDriverController=_audioDriverController;
@@ -35,6 +37,7 @@
 - (id)legacyCachePath;
 - (void)createAndMigratePathsForPersistentCache:(id)arg1 volatileCache:(id)arg2 settings:(id)arg3;
 - (void)setupCoreWithAudioDriverController:(id)arg1;
+- (void)setEventSenderCore:(id)arg1;
 - (id)provideAudioDriverController;
 - (id)provideCoreLogDispatcher;
 - (id)provideCoreInstance;

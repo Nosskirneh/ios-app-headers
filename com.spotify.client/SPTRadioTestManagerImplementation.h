@@ -6,12 +6,13 @@
 
 #import <objc/NSObject.h>
 
+#import "SPTFeatureFlagSignalObserver-Protocol.h"
 #import "SPTRadioTestManager-Protocol.h"
 
 @class NSString;
 @protocol SPTAbbaService, SPTFeatureFlagFactory, SPTFeatureFlagSignal, SPTLegacyFeatureFlag, SPTLocalSettings, SPTProductState;
 
-@interface SPTRadioTestManagerImplementation : NSObject <SPTRadioTestManager>
+@interface SPTRadioTestManagerImplementation : NSObject <SPTFeatureFlagSignalObserver, SPTRadioTestManager>
 {
     _Bool contextMenuPlaylistRadioHidden;
     _Bool radioContextMenuUsingFormatListLinks;

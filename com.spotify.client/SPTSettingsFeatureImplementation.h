@@ -6,10 +6,12 @@
 
 #import <objc/NSObject.h>
 
+#import "SPTSettingsFeature-Protocol.h"
+
 @class NSMapTable, NSString, SPTAllocationContext, SettingsRegistryImplementation;
 @protocol SPTAbbaService, SPTClientSettings, SPTContainerService, SPTCoreService, SPTSessionService, SPTURIDispatchService;
 
-@interface SPTSettingsFeatureImplementation : NSObject
+@interface SPTSettingsFeatureImplementation : NSObject <SPTSettingsFeature>
 {
     id <SPTAbbaService> _abbaService;
     id <SPTSessionService> _clientSessionService;

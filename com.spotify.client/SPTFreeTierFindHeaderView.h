@@ -39,7 +39,7 @@
 - (double)headerMinimumHeight;
 - (double)headerHeight;
 @property(nonatomic) _Bool microphoneButtonHidden;
-- (void)updateButtonWithTitle:(id)arg1 forState:(unsigned long long)arg2;
+- (void)updateButtonWithTitle:(id)arg1 accessibilityLabel:(id)arg2 forState:(unsigned long long)arg3;
 - (void)addFindHeaderButton;
 - (void)addMicrophoneButton;
 - (void)addTitleLabel;

@@ -6,12 +6,13 @@
 
 #import <objc/NSObject.h>
 
+#import "SPTDataSaverLowDataModeMonitorDelegate-Protocol.h"
 #import "SPTDataSaverService-Protocol.h"
 
-@class NSString, SPTAllocationContext, SPTDataSaverLogger;
-@protocol SPTContainerService, SPTCoreService, SPTDataSaverTestManager, SPTFeatureFlagSignal, SPTFeatureFlaggingService, SPTLocalSettings, SPTPreferences, SPTSessionService, SPTSettingsFeature;
+@class NSString, SPTAllocationContext, SPTDataSaverController, SPTDataSaverLogger, SPTDataSaverLowDataModeMonitor;
+@protocol SPTContainerService, SPTCoreService, SPTFeatureFlagSignal, SPTFeatureFlaggingService, SPTLocalSettings, SPTPreferences, SPTSessionService, SPTSettingsFeature;
 
-@interface SPTDataSaverServiceImplementation : NSObject <SPTDataSaverService>
+@interface SPTDataSaverServiceImplementation : NSObject <SPTDataSaverLowDataModeMonitorDelegate, SPTDataSaverService>
 {
     _Bool canvasEnabled;
     id <SPTSettingsFeature> _settingsFeature;
@@ -22,13 +23,15 @@
     id <SPTLocalSettings> _localSettings;
     id <SPTPreferences> _corePreferences;
     id <SPTFeatureFlagSignal> _dataSaverActivatedSignal;
-    id <SPTDataSaverTestManager> _testManager;
     SPTDataSaverLogger *_logger;
+    SPTDataSaverController *_controller;
+    SPTDataSaverLowDataModeMonitor *_lowDataModeMonitor;
 }
 
 + (id)serviceIdentifier;
+@property(retain, nonatomic) SPTDataSaverLowDataModeMonitor *lowDataModeMonitor; // @synthesize lowDataModeMonitor=_lowDataModeMonitor;
+@property(retain, nonatomic) SPTDataSaverController *controller; // @synthesize controller=_controller;
 @property(retain, nonatomic) SPTDataSaverLogger *logger; // @synthesize logger=_logger;
-@property(retain, nonatomic) id <SPTDataSaverTestManager> testManager; // @synthesize testManager=_testManager;
 @property(retain, nonatomic) id <SPTFeatureFlagSignal> dataSaverActivatedSignal; // @synthesize dataSaverActivatedSignal=_dataSaverActivatedSignal;
 @property(retain, nonatomic) id <SPTPreferences> corePreferences; // @synthesize corePreferences=_corePreferences;
 @property(retain, nonatomic) id <SPTLocalSettings> localSettings; // @synthesize localSettings=_localSettings;
@@ -39,10 +42,11 @@
 @property(nonatomic) __weak id <SPTSettingsFeature> settingsFeature; // @synthesize settingsFeature=_settingsFeature;
 @property(nonatomic) _Bool canvasEnabled; // @synthesize canvasEnabled;
 - (void).cxx_destruct;
-- (void)setupInitialSettings:(_Bool)arg1;
+- (void)lowDataModeDidChangeActiveState:(_Bool)arg1;
 - (id)provideDataSaverActivatedSignal;
-@property(readonly, nonatomic, getter=isDataSaverEnabled) _Bool dataSaverEnabled;
 - (id)provideDataSaverSettingSection:(id)arg1;
+- (void)setupDataSaverLowDataMonitor;
+- (void)setupDataSaverController;
 - (void)setupDataSaverSettings;
 - (void)unload;
 - (void)load;

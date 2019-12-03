@@ -6,10 +6,12 @@
 
 #import <objc/NSObject.h>
 
+#import "SPTUserTrackingService-Protocol.h"
+
 @class NSString, SPTAdjustURLSanitizer, SPTAdjustUserTracker, SPTAllocationContext, SPTTrackerBroadcaster;
 @protocol SPTContainerService, SPTCoreService, SPTDebugService, SPTPushNotificationController, SPTPushNotificationsService, SPTPushTokenUserTracker, SPTPushTokenUserTrackerService;
 
-@interface SPTUserTrackingServiceImplementation : NSObject
+@interface SPTUserTrackingServiceImplementation : NSObject <SPTUserTrackingService>
 {
     SPTTrackerBroadcaster *_trackerBroadcaster;
     id <SPTPushNotificationController> _pushNotificationsController;

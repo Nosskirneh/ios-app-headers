@@ -7,12 +7,14 @@
 #import "NSObject-Protocol.h"
 
 @class GLUEEntityRowStyle;
-@protocol SPTFreeTierPlaylistCellProviderDelegate, SPTFreeTierPlaylistCellProviderFactory, SPTFreeTierPlaylistContextMenuPresenter, SPTFreeTierPlaylistDefaultHeaderViewModel, SPTFreeTierPlaylistFollowViewModel, SPTFreeTierPlaylistFullbleedHeaderViewModel, SPTFreeTierPlaylistHeaderProvider, SPTFreeTierPlaylistItemsViewModel, SPTFreeTierPlaylistModel, SPTFreeTierPlaylistPlayModel, SPTFreeTierPlaylistPlayViewModel;
+@protocol SPTFreeTierEntityOfflineViewModel, SPTFreeTierPlaylistCellProviderDelegate, SPTFreeTierPlaylistCellProviderFactory, SPTFreeTierPlaylistContextMenuPresenter, SPTFreeTierPlaylistDefaultHeaderViewModel, SPTFreeTierPlaylistFollowViewModel, SPTFreeTierPlaylistFullbleedHeaderViewModel, SPTFreeTierPlaylistHeaderProvider, SPTFreeTierPlaylistItemsViewModel, SPTFreeTierPlaylistModel, SPTFreeTierPlaylistPlayModel, SPTFreeTierPlaylistPlayViewModel, SPTFreeTierPlaylistTrackCellConfigurator;
 
 @protocol SPTFreeTierPlaylistConfiguration <NSObject>
 @property(readonly, nonatomic) __weak id <SPTFreeTierPlaylistCellProviderDelegate> cellProviderDelegate;
 @property(readonly, nonatomic) id <SPTFreeTierPlaylistModel> playlistModel;
+@property(readonly, nonatomic) id <SPTFreeTierPlaylistTrackCellConfigurator> trackCellConfigurator;
 @property(readonly, nonatomic) id <SPTFreeTierPlaylistItemsViewModel> itemsViewModel;
+@property(readonly, nonatomic) id <SPTFreeTierEntityOfflineViewModel> offlineViewModel;
 @property(readonly, nonatomic) id <SPTFreeTierPlaylistContextMenuPresenter> contextMenuPresenter;
 @property(readonly, nonatomic) id <SPTFreeTierPlaylistFullbleedHeaderViewModel> fullbleedHeaderViewModel;
 @property(readonly, nonatomic) id <SPTFreeTierPlaylistDefaultHeaderViewModel> defaultHeaderViewModel;
@@ -22,6 +24,7 @@
 @property(readonly, nonatomic) id <SPTFreeTierPlaylistCellProviderFactory> cellProviderFactory;
 @property(readonly, nonatomic) id <SPTFreeTierPlaylistHeaderProvider> headerProvider;
 @property(readonly, copy, nonatomic) GLUEEntityRowStyle *rowStyle;
+@property(readonly, nonatomic) _Bool useBarButtons;
 @property(readonly, nonatomic) _Bool showTrackArtwork;
 @property(readonly, nonatomic) long long headerType;
 @end

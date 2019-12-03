@@ -15,6 +15,7 @@
 
 @property(readonly, nonatomic) id <SPTLogCenter> logCenter; // @synthesize logCenter=_logCenter;
 - (void).cxx_destruct;
+- (void)logVolumeHardwareButtonPressedWithDirection:(id)arg1;
 - (void)logVolumeSliderDraggedToVolume:(double)arg1;
 - (id)initWithLogCenter:(id)arg1;
 

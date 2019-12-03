@@ -56,7 +56,7 @@
 - (double)viewWidth;
 - (double)nowPlayingViewHeight;
 - (double)viewHeight;
-- (void)resetIdleCountdown;
+- (void)resetIdleState;
 - (void)applicationDidBecomeActive;
 - (void)removeApplicationStateObservers;
 - (void)addApplicationStateObservers;
@@ -65,6 +65,7 @@
 - (void)nowPlayingScrollViewModelDidChangeBannerStatus:(id)arg1;
 - (void)nowPlayingScrollViewModelDidChangeScrollEnabledStatus:(id)arg1;
 - (void)nowPlayingScrollViewModel:(id)arg1 didMoveToRelativeTrack:(id)arg2 withDifferentProviders:(_Bool)arg3;
+- (void)nowPlayingScrollViewModelDidLoadProviderContent:(id)arg1;
 - (void)viewSafeAreaInsetsDidChange;
 - (void)updateSafeAreaInsets;
 - (void)notifyFullyShownComponents;

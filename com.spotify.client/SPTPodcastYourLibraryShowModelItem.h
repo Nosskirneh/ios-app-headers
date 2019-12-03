@@ -6,7 +6,7 @@
 
 #import <objc/NSObject.h>
 
-@class NSDate, NSString, NSURL, UIImage;
+@class NSDate, NSString, NSURL;
 @protocol SPTPodcastUIStringFormatter;
 
 @interface SPTPodcastYourLibraryShowModelItem : NSObject
@@ -14,7 +14,6 @@
     NSString *_title;
     NSString *_publisher;
     NSURL *_imageURL;
-    UIImage *_image;
     NSURL *_entityURL;
     NSString *_loggingContext;
     NSDate *_publishDate;
@@ -25,7 +24,6 @@
 @property(retain, nonatomic) NSDate *publishDate; // @synthesize publishDate=_publishDate;
 @property(copy, nonatomic) NSString *loggingContext; // @synthesize loggingContext=_loggingContext;
 @property(copy, nonatomic) NSURL *entityURL; // @synthesize entityURL=_entityURL;
-@property(copy, nonatomic) UIImage *image; // @synthesize image=_image;
 @property(readonly, copy, nonatomic) NSURL *imageURL; // @synthesize imageURL=_imageURL;
 @property(readonly, copy, nonatomic) NSString *publisher; // @synthesize publisher=_publisher;
 @property(readonly, copy, nonatomic) NSString *title; // @synthesize title=_title;

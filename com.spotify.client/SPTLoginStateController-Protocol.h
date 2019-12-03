@@ -6,21 +6,27 @@
 
 #import "NSObject-Protocol.h"
 
-@class NSError, NSString, SPTLoginCredentials, SPTLoginOptions;
+@class NSError, NSString, SPTAuthAppleSignInCredential, SPTAuthLoginCredentials, SPTAuthLoginOptions, SPTAuthPhoneNumberIdentifier;
+@protocol SPTLoginPhoneNumberLoginStateDelegate, SPTLoginStateControllerObserver;
 
 @protocol SPTLoginStateController <NSObject>
+@property(nonatomic) __weak id <SPTLoginPhoneNumberLoginStateDelegate> phoneNumberLoginDelegate;
 @property(nonatomic) _Bool allowErrorDispatch;
 @property(readonly, nonatomic, getter=isLoggedIn) _Bool loggedIn;
 @property(readonly, nonatomic) _Bool userDidSignUp;
 @property(retain, nonatomic) NSError *lastConnectionError;
-- (SPTLoginCredentials *)currentCredentials;
+- (void)removeLoginStateObserver:(id <SPTLoginStateControllerObserver>)arg1;
+- (void)addLoginStateObserver:(id <SPTLoginStateControllerObserver>)arg1;
+- (SPTAuthLoginCredentials *)currentCredentials;
 - (void)didLogin;
-- (void)reloginWithCredentials:(SPTLoginCredentials *)arg1 options:(SPTLoginOptions *)arg2 completionHandler:(void (^)(NSError *))arg3;
+- (void)reloginWithCredentials:(SPTAuthLoginCredentials *)arg1 options:(SPTAuthLoginOptions *)arg2 completionHandler:(void (^)(NSError *))arg3;
 - (void)reloginWithCompletionHandler:(void (^)(NSError *))arg1;
 - (void)logoutForgetUser:(_Bool)arg1;
-- (void)loginWithCredentials:(SPTLoginCredentials *)arg1 options:(SPTLoginOptions *)arg2 userDidSignUp:(_Bool)arg3 completion:(void (^)(NSError *))arg4;
-- (void)loginWithCredentials:(SPTLoginCredentials *)arg1 options:(SPTLoginOptions *)arg2 completion:(void (^)(NSError *))arg3;
-- (void)loginWithStoredCredentials:(SPTLoginCredentials *)arg1 options:(SPTLoginOptions *)arg2 completion:(void (^)(NSError *))arg3;
+- (void)loginWithAppleIDCredentials:(SPTAuthAppleSignInCredential *)arg1 options:(SPTAuthLoginOptions *)arg2 onLoginComplete:(void (^)(NSError *))arg3 onSignupRequired:(void (^)(SPTAuthSignupInfo *))arg4;
+- (void)loginWithCredentials:(SPTAuthLoginCredentials *)arg1 options:(SPTAuthLoginOptions *)arg2 userDidSignUp:(_Bool)arg3 completion:(void (^)(NSError *))arg4;
+- (void)loginWithCredentials:(SPTAuthLoginCredentials *)arg1 options:(SPTAuthLoginOptions *)arg2 completion:(void (^)(NSError *))arg3;
+- (void)loginWithStoredCredentials:(SPTAuthLoginCredentials *)arg1 options:(SPTAuthLoginOptions *)arg2 completion:(void (^)(NSError *))arg3;
+- (void)loginWithPhoneNumberIdentifier:(SPTAuthPhoneNumberIdentifier *)arg1;
 - (void)loginWithOneTimeToken:(NSString *)arg1 userDidSignUp:(_Bool)arg2 completion:(void (^)(NSError *))arg3;
 @end
 

@@ -11,10 +11,10 @@
 @protocol SPTContextMenuHeader <NSObject>
 
 @optional
-@property(readonly, nonatomic) NSURL *headerImageURL;
-@property(retain, nonatomic) NSString *title;
 - (void)setImage:(UIImage *)arg1 animated:(_Bool)arg2;
+@property(nonatomic, readonly) NSURL *headerImageURL;
 - (struct CGSize)preferredImageSize;
 - (double)preferredHeight;
+@property(nonatomic, copy) NSString *title;
 @end
 

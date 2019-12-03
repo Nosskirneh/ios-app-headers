@@ -21,6 +21,7 @@
     _Bool _containsTracks;
     _Bool _containsEpisodes;
     _Bool _containsAudioEpisodes;
+    _Bool _preferLinearPlayback;
     NSString *_name;
     NSString *_freeformDescription;
     NSURL *_URL;
@@ -39,8 +40,11 @@
     double _duration;
     NSDate *_addedAt;
     NSString *_madeForName;
+    NSString *_groupLabel;
 }
 
+@property(copy, nonatomic) NSString *groupLabel; // @synthesize groupLabel=_groupLabel;
+@property(nonatomic) _Bool preferLinearPlayback; // @synthesize preferLinearPlayback=_preferLinearPlayback;
 @property(nonatomic) _Bool containsAudioEpisodes; // @synthesize containsAudioEpisodes=_containsAudioEpisodes;
 @property(nonatomic) _Bool containsEpisodes; // @synthesize containsEpisodes=_containsEpisodes;
 @property(nonatomic) _Bool containsTracks; // @synthesize containsTracks=_containsTracks;

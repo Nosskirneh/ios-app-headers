@@ -6,7 +6,7 @@
 
 #import <objc/NSObject.h>
 
-@protocol SPContextMenuFeature, SPTAudioPreviewService, SPTContainerService, SPTExplicitContentService, SPTGLUEService, SPTHubsRendererFactory, SPTLogCenter, SPTNetworkService, SPTOnDemandService, SPTPlayerFeature, SPTPlaylistPlatformService, SPTPodcastFeature, SPTSearchRecentsDataSourceProviding, SPTSessionService, SPTShelfService;
+@protocol SPContextMenuFeature, SPTContainerService, SPTExplicitContentService, SPTGLUEService, SPTHubsRendererFactory, SPTLogCenter, SPTNetworkService, SPTOnDemandService, SPTPlayerFeature, SPTPlaylistPlatformService, SPTPodcastFeature, SPTSearchRecentsDataSourceProviding, SPTSessionService, SPTShelfService;
 
 @interface SPTSearch2ViewControllerDependencies : NSObject
 {
@@ -24,10 +24,8 @@
     id <SPTLogCenter> _logCenter;
     id <SPContextMenuFeature> _contextMenuService;
     id <SPTExplicitContentService> _explicitContentService;
-    id <SPTAudioPreviewService> _audioPreviewService;
 }
 
-@property(readonly, nonatomic) id <SPTAudioPreviewService> audioPreviewService; // @synthesize audioPreviewService=_audioPreviewService;
 @property(readonly, nonatomic) id <SPTExplicitContentService> explicitContentService; // @synthesize explicitContentService=_explicitContentService;
 @property(readonly, nonatomic) id <SPContextMenuFeature> contextMenuService; // @synthesize contextMenuService=_contextMenuService;
 @property(readonly, nonatomic) id <SPTLogCenter> logCenter; // @synthesize logCenter=_logCenter;
@@ -43,7 +41,7 @@
 @property(readonly, nonatomic) id <SPTSessionService> sessionService; // @synthesize sessionService=_sessionService;
 @property(readonly, nonatomic) id <SPTNetworkService> networkService; // @synthesize networkService=_networkService;
 - (void).cxx_destruct;
-- (id)initWithNetworkService:(id)arg1 sessionService:(id)arg2 glueService:(id)arg3 playlistPlatformService:(id)arg4 hubsRendererFactory:(id)arg5 playerService:(id)arg6 containerService:(id)arg7 podcastService:(id)arg8 shelfService:(id)arg9 recentsDataSourceProvider:(id)arg10 onDemandService:(id)arg11 logCenter:(id)arg12 contextMenuService:(id)arg13 explicitContentService:(id)arg14 audioPreviewService:(id)arg15;
+- (id)initWithNetworkService:(id)arg1 sessionService:(id)arg2 glueService:(id)arg3 playlistPlatformService:(id)arg4 hubsRendererFactory:(id)arg5 playerService:(id)arg6 containerService:(id)arg7 podcastService:(id)arg8 shelfService:(id)arg9 recentsDataSourceProvider:(id)arg10 onDemandService:(id)arg11 logCenter:(id)arg12 contextMenuService:(id)arg13 explicitContentService:(id)arg14;
 
 @end
 

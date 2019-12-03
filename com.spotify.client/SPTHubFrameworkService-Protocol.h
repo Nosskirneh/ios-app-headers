@@ -6,10 +6,11 @@
 
 #import "SPTService-Protocol.h"
 
-@protocol SPTHubsEventFactory, SPTHubsRendererFactory;
+@class NSString, NSURL;
+@protocol SPTEventFactoryMapper, SPTHubsRendererFactory;
 
 @protocol SPTHubFrameworkService <SPTService>
-- (id <SPTHubsEventFactory>)provideHubsEventFactory;
 - (id <SPTHubsRendererFactory>)provideHubsRendererFactory;
+- (id <SPTEventFactoryMapper>)provideHubsEventFactoryWithPageURI:(NSURL *)arg1 pageId:(NSString *)arg2 reason:(NSString *)arg3;
 @end
 

@@ -9,7 +9,7 @@
 #import "SPTYourLibraryPageProvider-Protocol.h"
 
 @class NSString, NSURL, SPTPodcastYourLibraryShowsViewModel;
-@protocol GLUETheme, SPTCollectionLogger, SPTCollectionPlatformDataLoader, SPTExplicitContentAccessManager, SPTGLUEImageLoaderFactory, SPTMetaViewController, SPTNavigationRouter, SPTPerformanceMetricsViewLoggerFactory, SPTPodcastLogger, SPTPodcastTestManager, SPTPodcastUIStringFormatter, SPTPodcastYourLibraryShowCellConfigurator;
+@protocol GLUEImageLoader, GLUETheme, SPTCollectionLogger, SPTCollectionPlatformDataLoader, SPTExplicitContentAccessManager, SPTGLUEImageLoaderFactory, SPTMetaViewController, SPTNavigationRouter, SPTPerformanceMetricsViewLoggerFactory, SPTPodcastLogger, SPTPodcastTestManager, SPTPodcastUIStringFormatter, SPTPodcastYourLibraryShowCellConfigurator;
 
 @interface SPTPodcastYourLibraryShowsPageProvider : NSObject <SPTYourLibraryPageProvider>
 {
@@ -28,12 +28,14 @@
     id <SPTCollectionLogger> _collectionLogger;
     id <SPTPerformanceMetricsViewLoggerFactory> _viewLoggerFactory;
     id <SPTPodcastUIStringFormatter> _stringFormatter;
+    id <GLUEImageLoader> _imageLoader;
     id <SPTMetaViewController> _metaViewController;
     id <SPTNavigationRouter> _navigationRouter;
 }
 
 @property(nonatomic) __weak id <SPTNavigationRouter> navigationRouter; // @synthesize navigationRouter=_navigationRouter;
 @property(nonatomic) __weak id <SPTMetaViewController> metaViewController; // @synthesize metaViewController=_metaViewController;
+@property(retain, nonatomic) id <GLUEImageLoader> imageLoader; // @synthesize imageLoader=_imageLoader;
 @property(retain, nonatomic) id <SPTPodcastUIStringFormatter> stringFormatter; // @synthesize stringFormatter=_stringFormatter;
 @property(retain, nonatomic) id <SPTPerformanceMetricsViewLoggerFactory> viewLoggerFactory; // @synthesize viewLoggerFactory=_viewLoggerFactory;
 @property(retain, nonatomic) id <SPTCollectionLogger> collectionLogger; // @synthesize collectionLogger=_collectionLogger;

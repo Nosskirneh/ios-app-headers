@@ -40,7 +40,7 @@
 - (void)loadVideoPlayer;
 - (id)createVideoPlayerObserverFactory;
 - (void)createVideoPlayer;
-- (void)load;
+- (void)loadPlayer;
 - (void)dealloc;
 - (id)initWithVideoPlayerFactory:(id)arg1 canvasModel:(id)arg2 canvasAssetURL:(id)arg3 canvasAssetDuration:(double)arg4;
 

@@ -8,5 +8,7 @@
 
 @interface CADisplayLink (WeakTarget)
 + (id)spt_nowPlaying_displayLinkWithWeakTarget:(id)arg1 selector:(SEL)arg2;
++ (id)search_scheduledDisplayLinkWithDuration:(double)arg1 block:(CDUnknownBlockType)arg2;
++ (id)search_displayLinkWithBlock:(CDUnknownBlockType)arg1;
 @end
 

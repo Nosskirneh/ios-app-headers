@@ -9,19 +9,16 @@
 #import "SPTShareDragDelegateFactory-Protocol.h"
 
 @class NSString, SPTShareLogger;
-@protocol SPTShareTestManager;
 
 @interface SPTShareDragDelegateFactoryImplementation : NSObject <SPTShareDragDelegateFactory>
 {
     SPTShareLogger *_shareLogger;
-    id <SPTShareTestManager> _testManager;
 }
 
-@property(retain, nonatomic) id <SPTShareTestManager> testManager; // @synthesize testManager=_testManager;
 @property(retain, nonatomic) SPTShareLogger *shareLogger; // @synthesize shareLogger=_shareLogger;
 - (void).cxx_destruct;
 - (id)createShareDragDelegateWithBlock:(CDUnknownBlockType)arg1 logContext:(id)arg2;
-- (id)initWithShareLogger:(id)arg1 testManager:(id)arg2;
+- (id)initWithShareLogger:(id)arg1;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

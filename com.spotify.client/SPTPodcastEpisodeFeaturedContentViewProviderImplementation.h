@@ -8,25 +8,38 @@
 
 #import "SPTPodcastEpisodeFeaturedContentViewProvider-Protocol.h"
 
-@class NSString, SPTPodcastEpisodeFeaturedContentContentOperationFactory;
-@protocol SPTHubsRendererFactory, SPTHugsFactory, SPTPodcastEpisodeFeaturedContentTestManager;
+@class NSString, SPTPodcastEpisodeFeaturedContentContentOperationFactory, SPTPodcastEpisodeFeaturedContentContextMenuPresenter, SPTPodcastEpisodeFeaturedContentDataLoader;
+@protocol GLUEImageLoader, GLUETheme, SPTHubsRendererFactory, SPTHugsFactory, SPTLinkDispatcher, SPTPlayerFeature, SPTPodcastEpisodeFeaturedContentTestManager;
 
 @interface SPTPodcastEpisodeFeaturedContentViewProviderImplementation : NSObject <SPTPodcastEpisodeFeaturedContentViewProvider>
 {
+    SPTPodcastEpisodeFeaturedContentDataLoader *_dataLoader;
     id <SPTHubsRendererFactory> _hubsRendererFactory;
     id <SPTHugsFactory> _hugsFactory;
+    id <GLUETheme> _theme;
+    id <GLUEImageLoader> _imageLoader;
+    id <SPTPlayerFeature> _playerService;
     id <SPTPodcastEpisodeFeaturedContentTestManager> _testManager;
     SPTPodcastEpisodeFeaturedContentContentOperationFactory *_contentOperationsFactory;
+    SPTPodcastEpisodeFeaturedContentContextMenuPresenter *_contextMenuPresenter;
+    id <SPTLinkDispatcher> _linkDispatcher;
 }
 
+@property(readonly, nonatomic) id <SPTLinkDispatcher> linkDispatcher; // @synthesize linkDispatcher=_linkDispatcher;
+@property(readonly, nonatomic) SPTPodcastEpisodeFeaturedContentContextMenuPresenter *contextMenuPresenter; // @synthesize contextMenuPresenter=_contextMenuPresenter;
 @property(readonly, nonatomic) SPTPodcastEpisodeFeaturedContentContentOperationFactory *contentOperationsFactory; // @synthesize contentOperationsFactory=_contentOperationsFactory;
 @property(readonly, nonatomic) id <SPTPodcastEpisodeFeaturedContentTestManager> testManager; // @synthesize testManager=_testManager;
+@property(readonly, nonatomic) __weak id <SPTPlayerFeature> playerService; // @synthesize playerService=_playerService;
+@property(readonly, nonatomic) id <GLUEImageLoader> imageLoader; // @synthesize imageLoader=_imageLoader;
+@property(readonly, nonatomic) id <GLUETheme> theme; // @synthesize theme=_theme;
 @property(readonly, nonatomic) id <SPTHugsFactory> hugsFactory; // @synthesize hugsFactory=_hugsFactory;
 @property(readonly, nonatomic) id <SPTHubsRendererFactory> hubsRendererFactory; // @synthesize hubsRendererFactory=_hubsRendererFactory;
+@property(readonly, nonatomic) SPTPodcastEpisodeFeaturedContentDataLoader *dataLoader; // @synthesize dataLoader=_dataLoader;
 - (void).cxx_destruct;
 - (id)managerForURL:(id)arg1 referrerIdentifier:(id)arg2;
+- (id)featuredContentTrackListForEpisodeURL:(id)arg1 withContext:(id)arg2;
 - (id)featuredContentForEpisodeURL:(id)arg1 withContext:(id)arg2;
-- (id)initWithHubsRendererFactory:(id)arg1 hugsFactory:(id)arg2 testManager:(id)arg3 contentOperationFactory:(id)arg4;
+- (id)initWithHubsRendererFactory:(id)arg1 hugsFactory:(id)arg2 theme:(id)arg3 imageLoader:(id)arg4 testManager:(id)arg5 contentOperationFactory:(id)arg6 dataLoaderFactory:(id)arg7 contextMenuPresenter:(id)arg8 playerService:(id)arg9 linkDispatcher:(id)arg10;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

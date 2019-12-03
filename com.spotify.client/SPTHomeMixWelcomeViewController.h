@@ -20,7 +20,6 @@
     SPTHomeMixWelcomeViewModel *_model;
     id <SPTHomeMixWelcomeViewControllerDelegate> _delegate;
     UILayoutGuide *_mainContentLayoutGuide;
-    UILayoutGuide *_parentSafeAreaLayoutGuide;
     NSLayoutConstraint *_genreListBottomLayoutConstraint;
     SPTHomeMixHeaderWelcomeHeaderView *_headerView;
     SPTCollectionView *_collectionView;
@@ -35,7 +34,6 @@
 @property(retain, nonatomic) SPTCollectionView *collectionView; // @synthesize collectionView=_collectionView;
 @property(retain, nonatomic) SPTHomeMixHeaderWelcomeHeaderView *headerView; // @synthesize headerView=_headerView;
 @property(retain, nonatomic) NSLayoutConstraint *genreListBottomLayoutConstraint; // @synthesize genreListBottomLayoutConstraint=_genreListBottomLayoutConstraint;
-@property(retain, nonatomic) UILayoutGuide *parentSafeAreaLayoutGuide; // @synthesize parentSafeAreaLayoutGuide=_parentSafeAreaLayoutGuide;
 @property(retain, nonatomic) UILayoutGuide *mainContentLayoutGuide; // @synthesize mainContentLayoutGuide=_mainContentLayoutGuide;
 @property(nonatomic) __weak id <SPTHomeMixWelcomeViewControllerDelegate> delegate; // @synthesize delegate=_delegate;
 @property(retain, nonatomic) SPTHomeMixWelcomeViewModel *model; // @synthesize model=_model;
@@ -53,7 +51,7 @@
 - (void)showFooter;
 - (void)viewDidAppear:(_Bool)arg1;
 - (void)viewDidLoad;
-- (id)initWithFacePileConfigurator:(id)arg1 theme:(id)arg2 model:(id)arg3 delegate:(id)arg4 mainContentLayoutGuide:(id)arg5 parentSafeAreaLayoutGuide:(id)arg6;
+- (id)initWithFacePileConfigurator:(id)arg1 theme:(id)arg2 model:(id)arg3 delegate:(id)arg4 mainContentLayoutGuide:(id)arg5;
 
 // Remaining properties
 @property(nonatomic) _Bool automaticallyAdjustsScrollViewInsets;

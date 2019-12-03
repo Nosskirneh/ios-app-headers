@@ -48,6 +48,10 @@
 @property(nonatomic) __weak id <SPTNowPlayingRemoteControlEventPolicyControllerDelegate> delegate; // @synthesize delegate=_delegate;
 @property(nonatomic, getter=isActiveForRemoteControlPolicyUpdates) _Bool activeForRemoteControlPolicyUpdates; // @synthesize activeForRemoteControlPolicyUpdates=_activeForRemoteControlPolicyUpdates;
 - (void).cxx_destruct;
+- (void)performSeekToStartWithCommandEvent:(id)arg1;
+- (void)performSkipToPreviousWithCommandEvent:(id)arg1;
+- (void)perfromSkipToNextWithCommandEvent:(id)arg1;
+- (_Bool)isCommandEventOriginatingFromSiri:(id)arg1;
 - (void)audioPlayerDecodeErrorDidOccur:(id)arg1 error:(id)arg2;
 - (void)audioPlayerDidFinishPlaying:(id)arg1 successfully:(_Bool)arg2;
 - (long long)shuffleButtonPressed:(id)arg1;

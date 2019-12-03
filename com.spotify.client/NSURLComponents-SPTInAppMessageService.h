@@ -6,7 +6,24 @@
 
 #import <Foundation/NSURLComponents.h>
 
+@class NSArray, NSDictionary;
+
 @interface NSURLComponents (SPTInAppMessageService)
 + (id)spt_spotifyInAppMessageTriggerHTTPHost;
++ (id)spt_spotifyTransportHTTPPortOverride;
++ (id)spt_spotifyTransportHTTPHost;
++ (id)spt_spotifyTransportHTTPScheme;
++ (id)spt_characterSetForPathComponents;
++ (id)spt_componentsForService:(id)arg1 relativeURI:(id)arg2;
++ (id)spt_componentsForRelativeURI:(id)arg1;
++ (id)spt_componentsForService:(id)arg1 pathComponents:(id)arg2 queryParameters:(id)arg3 transport:(long long)arg4;
++ (id)spt_componentsForHTTPTransport;
+- (void)spt_addPlaylistPlatformMinimumUpdateInterval:(double)arg1;
+- (void)spt_addPlaylistPlatformFolderItemOptions:(id)arg1;
+- (void)spt_addPlaylistPlatformTracksFetchOptions:(id)arg1;
+- (void)spt_addPlaylistPlatformPlayOptions:(id)arg1;
+- (void)spt_addPlaylistPlatformOptions:(id)arg1 filterItems:(id)arg2;
+@property(copy, nonatomic, setter=spt_setPathComponents:) NSArray *spt_pathComponents;
+@property(copy, nonatomic, setter=spt_setQueryParameters:) NSDictionary *spt_queryParameters;
 @end
 

@@ -6,7 +6,8 @@
 
 #import <objc/NSObject.h>
 
-@class NSLocale, NSString, SPCore, SPTPhoneNumberSignupPhoneNumberEntryModel, SPTPhoneNumberSignupPhoneNumberEntryViewLogger, SPTPhoneNumberSignupUtils;
+@class NSLocale, NSString, SPTPhoneNumberSignupPhoneNumberEntryModel, SPTPhoneNumberSignupPhoneNumberEntryViewLogger, SPTPhoneNumberSignupUtils;
+@protocol SPTLoginStateController;
 
 @interface SPTPhoneNumberSignupPhoneNumberEntryViewModel : NSObject
 {
@@ -17,7 +18,7 @@
     NSString *_callingCode;
     NSString *_countryName;
     NSLocale *_locale;
-    SPCore *_core;
+    id <SPTLoginStateController> _loginStateController;
     SPTPhoneNumberSignupPhoneNumberEntryViewLogger *_logger;
     SPTPhoneNumberSignupUtils *_phoneNumberSignupUtils;
 }
@@ -25,7 +26,7 @@
 @property(readonly, nonatomic) SPTPhoneNumberSignupUtils *phoneNumberSignupUtils; // @synthesize phoneNumberSignupUtils=_phoneNumberSignupUtils;
 @property(nonatomic) _Bool didUserEditPhoneNumber; // @synthesize didUserEditPhoneNumber=_didUserEditPhoneNumber;
 @property(readonly, nonatomic) SPTPhoneNumberSignupPhoneNumberEntryViewLogger *logger; // @synthesize logger=_logger;
-@property(readonly, nonatomic) __weak SPCore *core; // @synthesize core=_core;
+@property(readonly, nonatomic) __weak id <SPTLoginStateController> loginStateController; // @synthesize loginStateController=_loginStateController;
 @property(readonly, nonatomic) NSLocale *locale; // @synthesize locale=_locale;
 @property(nonatomic) _Bool isNextButtonLoading; // @synthesize isNextButtonLoading=_isNextButtonLoading;
 @property(copy, nonatomic) NSString *countryName; // @synthesize countryName=_countryName;
@@ -46,7 +47,15 @@
 - (void)selectedCountryDidUpdate;
 - (void)updateSelectedCountryCodeIfCountrySelectionIsDisabled;
 - (id)callingCodeForCountryCode:(id)arg1;
-- (id)initWithModel:(id)arg1 core:(id)arg2 locale:(id)arg3 logger:(id)arg4 phoneNumberSignupUtils:(id)arg5;
+- (id)initWithModel:(id)arg1 loginStateController:(id)arg2 locale:(id)arg3 logger:(id)arg4 phoneNumberSignupUtils:(id)arg5;
+- (void)logOtpRequestFailure;
+- (void)logOtpRequestSuccess;
+- (void)logUserDidEditPhoneNumber;
+- (void)logUserDidSelectCountry;
+- (void)logUserDidTapNextButton;
+- (void)logUserDidTapCountrySelector;
+- (void)logUserDidSeeDialogType:(unsigned long long)arg1;
+- (void)logUserDidSeeView;
 @property(readonly, nonatomic) NSString *dialogGeneralErrorMessage;
 @property(readonly, nonatomic) NSString *dialogTryAgainMessage;
 @property(readonly, nonatomic) NSString *dialogInactiveInternetMessage;
@@ -57,14 +66,6 @@
 @property(readonly, nonatomic) NSString *phoneNumberTextFieldPlaceholder;
 @property(readonly, nonatomic) NSString *nextButtonTitle;
 @property(readonly, nonatomic) NSString *title;
-- (void)logOtpRequestFailure;
-- (void)logOtpRequestSuccess;
-- (void)logUserDidEditPhoneNumber;
-- (void)logUserDidSelectCountry;
-- (void)logUserDidTapNextButton;
-- (void)logUserDidTapCountrySelector;
-- (void)logUserDidSeeDialogType:(unsigned long long)arg1;
-- (void)logUserDidSeeView;
 
 @end
 

@@ -13,7 +13,6 @@
 @property(readonly, copy, nonatomic) NSString *specificationCommitHash;
 @property(readonly, copy, nonatomic) NSArray *errors;
 @property(readonly, copy, nonatomic) NSArray *components;
-@property(readonly, copy, nonatomic) NSString *specificationId;
 @property(readonly, copy, nonatomic) NSString *applicationId;
 @end
 

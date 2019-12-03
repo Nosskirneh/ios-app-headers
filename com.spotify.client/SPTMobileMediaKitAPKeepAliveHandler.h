@@ -6,18 +6,22 @@
 
 #import <objc/NSObject.h>
 
-@class SPCore;
+@class SPTNetworkConnectivityController;
+@protocol SPTKeepAlivePersistentConnectionsToken;
 
 @interface SPTMobileMediaKitAPKeepAliveHandler : NSObject
 {
-    SPCore *_core;
+    SPTNetworkConnectivityController *_networkController;
+    id <SPTKeepAlivePersistentConnectionsToken> _keepAliveToken;
 }
 
-@property(nonatomic) __weak SPCore *core; // @synthesize core=_core;
+@property(retain, nonatomic) id <SPTKeepAlivePersistentConnectionsToken> keepAliveToken; // @synthesize keepAliveToken=_keepAliveToken;
+@property(nonatomic) __weak SPTNetworkConnectivityController *networkController; // @synthesize networkController=_networkController;
 - (void).cxx_destruct;
+- (void)dealloc;
 - (void)disable;
 - (void)enable;
-- (id)initWithCore:(id)arg1;
+- (id)initWithNetworkConnectivityController:(id)arg1;
 
 @end
 

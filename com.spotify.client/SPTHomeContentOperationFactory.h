@@ -6,8 +6,8 @@
 
 #import <objc/NSObject.h>
 
-@class SPTDataLoaderFactory, SPTHomeContentCache;
-@protocol SPTFreeTierTasteOnboardingCurationProvider, SPTHomeTestManager, SPTOfflineModeState, SPTOfflineService, SPTOnDemandService, SPTPlayer, SPTPodcastUIContinueListeningService, SPTRecentlyPlayedService;
+@class SPTDataLoaderFactory, SPTHomeContentCache, SPTNetworkConnectivityController;
+@protocol SPTFeatureSettingsItemFactory, SPTFreeTierTasteOnboardingCurationProvider, SPTHomeTestManager, SPTLocalSettings, SPTOfflineService, SPTOnDemandService, SPTPlayer, SPTPodcastUIContinueListeningService, SPTRecentlyPlayedService, SPTSnackbarService;
 
 @interface SPTHomeContentOperationFactory : NSObject
 {
@@ -15,39 +15,43 @@
     id <SPTPodcastUIContinueListeningService> _podcastUIContinueListeningService;
     id <SPTRecentlyPlayedService> _recentlyPlayedService;
     id <SPTOfflineService> _offlineService;
-    id <SPTOfflineModeState> _offlineModeState;
+    id <SPTSnackbarService> _snackbarService;
+    SPTNetworkConnectivityController *_networkConnectivityController;
     SPTHomeContentCache *_homeContentCache;
     SPTDataLoaderFactory *_dataLoaderFactory;
     id <SPTHomeTestManager> _testManager;
     id <SPTPlayer> _player;
     id <SPTFreeTierTasteOnboardingCurationProvider> _tasteOnboardingCurationProvider;
+    id <SPTLocalSettings> _localSettings;
+    id <SPTFeatureSettingsItemFactory> _featureSettingsItemFactory;
 }
 
+@property(readonly, nonatomic) id <SPTFeatureSettingsItemFactory> featureSettingsItemFactory; // @synthesize featureSettingsItemFactory=_featureSettingsItemFactory;
+@property(readonly, nonatomic) id <SPTLocalSettings> localSettings; // @synthesize localSettings=_localSettings;
 @property(readonly, nonatomic) id <SPTFreeTierTasteOnboardingCurationProvider> tasteOnboardingCurationProvider; // @synthesize tasteOnboardingCurationProvider=_tasteOnboardingCurationProvider;
 @property(readonly, nonatomic) id <SPTPlayer> player; // @synthesize player=_player;
 @property(readonly, nonatomic) id <SPTHomeTestManager> testManager; // @synthesize testManager=_testManager;
 @property(readonly, nonatomic) SPTDataLoaderFactory *dataLoaderFactory; // @synthesize dataLoaderFactory=_dataLoaderFactory;
 @property(readonly, nonatomic) SPTHomeContentCache *homeContentCache; // @synthesize homeContentCache=_homeContentCache;
-@property(readonly, nonatomic) __weak id <SPTOfflineModeState> offlineModeState; // @synthesize offlineModeState=_offlineModeState;
+@property(readonly, nonatomic) SPTNetworkConnectivityController *networkConnectivityController; // @synthesize networkConnectivityController=_networkConnectivityController;
+@property(readonly, nonatomic) __weak id <SPTSnackbarService> snackbarService; // @synthesize snackbarService=_snackbarService;
 @property(readonly, nonatomic) __weak id <SPTOfflineService> offlineService; // @synthesize offlineService=_offlineService;
 @property(readonly, nonatomic) __weak id <SPTRecentlyPlayedService> recentlyPlayedService; // @synthesize recentlyPlayedService=_recentlyPlayedService;
 @property(readonly, nonatomic) __weak id <SPTPodcastUIContinueListeningService> podcastUIContinueListeningService; // @synthesize podcastUIContinueListeningService=_podcastUIContinueListeningService;
 @property(readonly, nonatomic) __weak id <SPTOnDemandService> onDemandService; // @synthesize onDemandService=_onDemandService;
 - (void).cxx_destruct;
+- (id)provideTimeRelativeTextContentOperation;
 - (id)provideDownloadsContentOperation;
-- (id)provideHabitsContentOperation;
-- (id)provideQuickPlayRecentlyPlayedDecoratorContentOperation;
-- (id)provideQuickPlayContentOperation;
 - (id)provideRemoteContentOperationWithSourceIdentifier:(id)arg1 contentURL:(id)arg2;
-- (id)provideErrorHandlingContentOperation;
+- (id)provideErrorHandlingContentOperationSnackbarEnabled:(_Bool)arg1;
 - (id)provideCachedContentOperation;
 - (id)provideContinueListeningContentOperation;
-- (id)provideRemoveComponentContentOperation;
+- (id)provideRemoveComponentContentOperationWithOverrides:(id)arg1;
 - (id)provideOnDemandExtractorContentOperation;
 - (id)provideOnDemandDecoratorContentOperation;
 - (id)provideCardAccessibilityContentOperation;
 - (id)provideRecentlyPlayedContentOperation;
-- (id)initWithOnDemandService:(id)arg1 recentlyPlayedService:(id)arg2 podcastUIContinueListeningService:(id)arg3 offlineService:(id)arg4 offlineModeState:(id)arg5 homeContentCache:(id)arg6 dataLoaderFactory:(id)arg7 testManager:(id)arg8 player:(id)arg9 tasteOnboardingCurationProvider:(id)arg10;
+- (id)initWithOnDemandService:(id)arg1 recentlyPlayedService:(id)arg2 podcastUIContinueListeningService:(id)arg3 offlineService:(id)arg4 snackbarService:(id)arg5 networkConnectivityController:(id)arg6 homeContentCache:(id)arg7 dataLoaderFactory:(id)arg8 testManager:(id)arg9 player:(id)arg10 tasteOnboardingCurationProvider:(id)arg11 localSettings:(id)arg12 featureSettingsItemFactory:(id)arg13;
 
 @end
 

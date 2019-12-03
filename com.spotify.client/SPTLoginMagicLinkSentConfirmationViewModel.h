@@ -17,7 +17,7 @@
 }
 
 @property(readonly, nonatomic) SPTLoginOpenEmailAppController *emailAppController; // @synthesize emailAppController=_emailAppController;
-@property(readonly, nonatomic) NSString *emailOrUsername; // @synthesize emailOrUsername=_emailOrUsername;
+@property(copy, nonatomic) NSString *emailOrUsername; // @synthesize emailOrUsername=_emailOrUsername;
 @property(readonly, nonatomic) SPTLoginTheme *theme; // @synthesize theme=_theme;
 @property(readonly, nonatomic) SPTLoginMagicLinkSentConfirmationViewLogger *logger; // @synthesize logger=_logger;
 - (void).cxx_destruct;
@@ -26,7 +26,7 @@
 - (id)viewStyle;
 - (id)emailSentImage;
 - (id)emailButtonText;
-- (id)lowerLabelText;
+- (id)bodyLabelText;
 - (id)upperLabelText;
 - (id)titleLabelText;
 - (id)initWithTheme:(id)arg1 emailOrUsername:(id)arg2 logger:(id)arg3 emailAppController:(id)arg4;

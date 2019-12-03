@@ -9,6 +9,9 @@
 @class NSURL;
 
 @protocol SPTAuthControllerObserver <NSObject>
+
+@optional
+- (void)authDidStart;
 - (void)authServiceWillReturnToSourceApplicationWithURI:(NSURL *)arg1;
 @end
 

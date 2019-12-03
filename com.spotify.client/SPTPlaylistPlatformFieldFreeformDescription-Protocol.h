@@ -9,6 +9,6 @@
 @class NSString;
 
 @protocol SPTPlaylistPlatformFieldFreeformDescription <SPTPlaylistPlatformDataLoaderField>
-@property(readonly, copy, nonatomic) NSString *freeformDescription;
+@property(nonatomic, readonly) NSString *freeformDescription;
 @end
 

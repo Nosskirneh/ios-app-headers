@@ -7,46 +7,60 @@
 #import <objc/NSObject.h>
 
 #import "SPTGaiaConnectObserver-Protocol.h"
+#import "SPTGaiaWirelessRoutesObserver-Protocol.h"
 #import "SPTVolumeObserver-Protocol.h"
 
-@class MPVolumeView, NSString, SPTVolumeAnimationConfig, SPTVolumeRemotePopupView, UIWindow;
-@protocol SPTGaiaConnectAPI, SPTVolumeAPI;
+@class NSNotificationCenter, NSString, SPTVolumeAnimationConfig, SPTVolumeDeviceHelper, SPTVolumeRemotePopupView, UIApplication;
+@protocol SPTGaiaConnectAPI, SPTGaiaIconProvider, SPTGaiaWirelessRoutesAPI, SPTVolumeAPI, SPTVolumeSystemPopupHider;
 
-@interface SPTVolumeRemotePopupPresenter : NSObject <SPTVolumeObserver, SPTGaiaConnectObserver>
+@interface SPTVolumeRemotePopupPresenter : NSObject <SPTVolumeObserver, SPTGaiaConnectObserver, SPTGaiaWirelessRoutesObserver>
 {
     _Bool _volumeUpdatedSinceHide;
-    _Bool _systemHUDDisabled;
+    _Bool _devicePickerVisible;
     id <SPTVolumeAPI> _volumeManager;
     id <SPTGaiaConnectAPI> _connectManager;
-    UIWindow *_window;
+    id <SPTGaiaWirelessRoutesAPI> _wirelessRoutesManager;
+    id <SPTGaiaIconProvider> _iconProvider;
+    UIApplication *_application;
     SPTVolumeAnimationConfig *_animationConfig;
+    id <SPTVolumeSystemPopupHider> _systemPopupHider;
+    NSNotificationCenter *_notificationCenter;
+    SPTVolumeDeviceHelper *_deviceHelper;
     SPTVolumeRemotePopupView *_volumeView;
-    MPVolumeView *_systemVolumeView;
 }
 
-@property(nonatomic) _Bool systemHUDDisabled; // @synthesize systemHUDDisabled=_systemHUDDisabled;
+@property(nonatomic) _Bool devicePickerVisible; // @synthesize devicePickerVisible=_devicePickerVisible;
 @property(nonatomic) _Bool volumeUpdatedSinceHide; // @synthesize volumeUpdatedSinceHide=_volumeUpdatedSinceHide;
-@property(retain, nonatomic) MPVolumeView *systemVolumeView; // @synthesize systemVolumeView=_systemVolumeView;
 @property(retain, nonatomic) SPTVolumeRemotePopupView *volumeView; // @synthesize volumeView=_volumeView;
+@property(readonly, nonatomic) SPTVolumeDeviceHelper *deviceHelper; // @synthesize deviceHelper=_deviceHelper;
+@property(readonly, nonatomic) NSNotificationCenter *notificationCenter; // @synthesize notificationCenter=_notificationCenter;
+@property(readonly, nonatomic) id <SPTVolumeSystemPopupHider> systemPopupHider; // @synthesize systemPopupHider=_systemPopupHider;
 @property(readonly, nonatomic) SPTVolumeAnimationConfig *animationConfig; // @synthesize animationConfig=_animationConfig;
-@property(readonly, nonatomic) UIWindow *window; // @synthesize window=_window;
+@property(readonly, nonatomic) UIApplication *application; // @synthesize application=_application;
+@property(readonly, nonatomic) id <SPTGaiaIconProvider> iconProvider; // @synthesize iconProvider=_iconProvider;
+@property(readonly, nonatomic) id <SPTGaiaWirelessRoutesAPI> wirelessRoutesManager; // @synthesize wirelessRoutesManager=_wirelessRoutesManager;
 @property(readonly, nonatomic) id <SPTGaiaConnectAPI> connectManager; // @synthesize connectManager=_connectManager;
 @property(readonly, nonatomic) id <SPTVolumeAPI> volumeManager; // @synthesize volumeManager=_volumeManager;
 - (void).cxx_destruct;
-- (void)enableSystemVolumeHUD;
-- (void)disableVolumeSystemHUD;
-- (void)volumeUpdated:(id)arg1;
+- (void)devicePickerWillDisappear;
+- (void)devicePickerWillAppear;
+- (void)wirelessActiveDeviceDidChange;
+- (void)wirelessRoutesDidChangeAvailability:(_Bool)arg1;
 - (void)connectActiveDeviceDidChange:(id)arg1;
+- (void)connectDeviceBeingActivatedDidChange:(id)arg1;
+- (void)volumeUpdated:(id)arg1;
 - (_Bool)shouldShowVolumeView;
 - (void)setupVolumeViewConstraints;
 - (id)createVolumeView;
+- (void)forceHideVolumeView;
 - (void)animateOutVolumeView;
 - (void)animateInVolumeView;
 - (void)hideVolumeView;
 - (void)showVolumeView;
+- (void)triggerVolumeViewUpdate;
 - (void)dealloc;
 - (void)setupObserving;
-- (id)initWithVolumeManager:(id)arg1 connectManager:(id)arg2 window:(id)arg3 animationConfig:(id)arg4;
+- (id)initWithVolumeManager:(id)arg1 connectManager:(id)arg2 wirelessRoutesManager:(id)arg3 iconProvider:(id)arg4 application:(id)arg5 animationConfig:(id)arg6 systemPopupHider:(id)arg7 notificationCenter:(id)arg8 deviceHelper:(id)arg9;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

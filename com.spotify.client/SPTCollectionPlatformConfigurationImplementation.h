@@ -10,7 +10,7 @@
 #import "SPTCollectionPlatformTestManagerUpdateDelegate-Protocol.h"
 
 @class NSString, NSURL, UIImage;
-@protocol SPTCollectionPlatformTestManager;
+@protocol SPTCollectionPlatformTestManager, SPTSnackbarConditionalPresenter;
 
 @interface SPTCollectionPlatformConfigurationImplementation : NSObject <SPTCollectionPlatformConfiguration, SPTCollectionPlatformTestManagerUpdateDelegate>
 {
@@ -18,8 +18,10 @@
     id <SPTCollectionPlatformTestManager> _testManager;
     UIImage *_selectedOverlayImage;
     UIImage *_overlayImage;
+    id <SPTSnackbarConditionalPresenter> _snackbarPresenter;
 }
 
+@property(retain, nonatomic) id <SPTSnackbarConditionalPresenter> snackbarPresenter; // @synthesize snackbarPresenter=_snackbarPresenter;
 @property(nonatomic) _Bool useHideWhenBanningTracks; // @synthesize useHideWhenBanningTracks=_useHideWhenBanningTracks;
 @property(retain, nonatomic) UIImage *overlayImage; // @synthesize overlayImage=_overlayImage;
 @property(retain, nonatomic) UIImage *selectedOverlayImage; // @synthesize selectedOverlayImage=_selectedOverlayImage;
@@ -68,7 +70,7 @@
 @property(readonly, nonatomic) NSString *collectionPlayingFromTitle;
 @property(readonly, nonatomic) long long contentInCollectionIcon;
 @property(readonly, nonatomic) NSString *collectionTitle;
-- (id)initWithTestManager:(id)arg1 useHideWhenBanningTracks:(_Bool)arg2;
+- (id)initWithSnackbarPresenter:(id)arg1 testManager:(id)arg2 useHideWhenBanningTracks:(_Bool)arg3;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

@@ -8,20 +8,19 @@
 
 #import "SPTShareHandler-Protocol.h"
 
-@class NSString, SPTShareLogger;
-@protocol SPTShareTestManager;
+@class NSString, SPTShareLogger, UIActivityViewController;
 
 @interface SPTShareMoreShareHandler : NSObject <SPTShareHandler>
 {
     SPTShareLogger *_shareLogger;
-    id <SPTShareTestManager> _testManager;
+    UIActivityViewController *_activityViewController;
 }
 
-@property(retain, nonatomic) id <SPTShareTestManager> testManager; // @synthesize testManager=_testManager;
+@property(retain, nonatomic) UIActivityViewController *activityViewController; // @synthesize activityViewController=_activityViewController;
 @property(retain, nonatomic) SPTShareLogger *shareLogger; // @synthesize shareLogger=_shareLogger;
 - (void).cxx_destruct;
 - (void)shareWithData:(id)arg1 shareDestination:(id)arg2 sharePresenter:(id)arg3 completion:(CDUnknownBlockType)arg4;
-- (id)initWithShareLogger:(id)arg1 testManager:(id)arg2;
+- (id)initWithShareLogger:(id)arg1;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

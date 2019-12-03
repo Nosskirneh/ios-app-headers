@@ -16,6 +16,7 @@
     _Bool _pageNavigationDisabled;
     _Bool _ready;
     _Bool _respondsToDidChangeViewController;
+    _Bool _visible;
     id <SPTYourLibraryPageViewControllerDataSource> _dataSource;
     id <SPTYourLibraryPageViewControllerDelegate> _delegate;
     UIScrollView *_scrollView;
@@ -25,6 +26,7 @@
     struct CGSize _currentSize;
 }
 
+@property(nonatomic) _Bool visible; // @synthesize visible=_visible;
 @property(retain, nonatomic) NSMutableArray *animationEndBlocks; // @synthesize animationEndBlocks=_animationEndBlocks;
 @property(retain, nonatomic) NSNumber *needReloadAtIndex; // @synthesize needReloadAtIndex=_needReloadAtIndex;
 @property(nonatomic) _Bool respondsToDidChangeViewController; // @synthesize respondsToDidChangeViewController=_respondsToDidChangeViewController;
@@ -56,6 +58,7 @@
 - (void)reloadAtIndex:(unsigned long long)arg1;
 - (void)selectPageAtIndex:(unsigned long long)arg1 animated:(_Bool)arg2 completionBlock:(CDUnknownBlockType)arg3;
 - (void)setHorizontalPageOffset:(double)arg1;
+- (void)viewDidDisappear:(_Bool)arg1;
 - (void)viewDidAppear:(_Bool)arg1;
 - (void)viewDidLayoutSubviews;
 - (void)loadView;

@@ -10,6 +10,7 @@
 
 @protocol SPTPodcastUIStringFormatter <NSObject>
 - (NSString *)dateTextForGivenLatestEpisodeDate:(NSDate *)arg1;
+- (NSString *)shortDurationStringWithDuration:(double)arg1;
 - (NSString *)durationStringWithDuration:(double)arg1;
 - (NSString *)timeLeftStringWithDuration:(double)arg1 listenedDuration:(double)arg2;
 - (NSString *)durationOrTimeLeftStringWithEpisodeDuration:(double)arg1 listenedDuration:(double)arg2 isPlayed:(_Bool)arg3 isAudioMediaType:(_Bool)arg4;

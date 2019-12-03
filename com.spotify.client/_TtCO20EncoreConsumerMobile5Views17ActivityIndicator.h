@@ -6,10 +6,14 @@
 
 #import <swiftCore/_TtCs12_SwiftObject.h>
 
+@class UIView;
+
 @interface _TtCO20EncoreConsumerMobile5Views17ActivityIndicator : _TtCs12_SwiftObject
 {
     // Error parsing type: , name: spinnerView
 }
+
+@property(nonatomic, readonly) UIView *uiView;
 
 @end
 

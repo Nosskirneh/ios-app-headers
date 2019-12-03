@@ -35,6 +35,7 @@
 @property(nonatomic) _Bool forgetUserAfterLogout; // @synthesize forgetUserAfterLogout;
 @property(nonatomic) _Bool performLogout; // @synthesize performLogout;
 - (void).cxx_destruct;
+- (void)traitCollectionDidChange:(id)arg1;
 - (id)navigationController:(id)arg1 interactionControllerForAnimationController:(id)arg2;
 - (id)navigationController:(id)arg1 animationControllerForPopOperationToViewController:(id)arg2;
 - (id)navigationController:(id)arg1 animationControllerForPushOperationFromViewController:(id)arg2;

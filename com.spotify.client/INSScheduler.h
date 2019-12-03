@@ -11,7 +11,7 @@
 #import "INSTimerObserver-Protocol.h"
 
 @class NSMutableSet, NSOperationQueue, NSString;
-@protocol INSEventEnvelopeFactoryProtocol, INSLogger, INSSchedulerDataDelegate, INSSchedulerDataSource, INSSchedulerDelegate, INSTransport;
+@protocol INSEventEnvelopeFactoryProtocol, INSEventValidatorProtocol, INSLogger, INSSchedulerDataDelegate, INSSchedulerDataSource, INSSchedulerDelegate, INSTransport;
 
 @interface INSScheduler : NSObject <INSMessageOperationDelegate, INSSchedulerProtocol, INSTimerObserver>
 {
@@ -23,8 +23,10 @@
     id <INSSchedulerDelegate> _delegate;
     id <INSSchedulerDataSource> _dataSource;
     id <INSSchedulerDataDelegate> _dataDelegate;
+    id <INSEventValidatorProtocol> _validator;
 }
 
+@property(retain, nonatomic) id <INSEventValidatorProtocol> validator; // @synthesize validator=_validator;
 @property(nonatomic) __weak id <INSSchedulerDataDelegate> dataDelegate; // @synthesize dataDelegate=_dataDelegate;
 @property(nonatomic) __weak id <INSSchedulerDataSource> dataSource; // @synthesize dataSource=_dataSource;
 @property(nonatomic) __weak id <INSSchedulerDelegate> delegate; // @synthesize delegate=_delegate;
@@ -46,13 +48,15 @@
 - (void)scheduleQueueBackoff;
 - (void)addBatchToExecutionQueue:(id)arg1 route:(long long)arg2;
 - (void)batchAndAddToExecutionQueue:(id)arg1 queuedEnvelopes:(id)arg2 route:(long long)arg3;
+- (void)deleteInvalidEnvelopes:(id)arg1;
 - (id)queuedEnvelopes;
+- (id)invalidEnvelopes:(id)arg1;
 - (void)scheduleAllMessages;
 - (id)wrappedNodesFromEnvelopes:(id)arg1;
 - (void)timerDidFire:(id)arg1;
 - (void)timer:(id)arg1 didScheduleWithInterval:(double)arg2 attempt:(unsigned long long)arg3;
-- (void)scheduleMessage:(id)arg1 authenticated:(_Bool)arg2;
-- (id)initWithTransport:(id)arg1 dataSource:(id)arg2 dataDelegate:(id)arg3 logger:(id)arg4 eventEnvelopeFactory:(id)arg5 delegate:(id)arg6;
+- (_Bool)scheduleMessage:(id)arg1 authenticated:(_Bool)arg2 error:(id *)arg3;
+- (id)initWithTransport:(id)arg1 dataSource:(id)arg2 dataDelegate:(id)arg3 logger:(id)arg4 eventEnvelopeFactory:(id)arg5 delegate:(id)arg6 validator:(id)arg7;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

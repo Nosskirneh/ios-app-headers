@@ -9,13 +9,14 @@
 #import "HUBComponent-Protocol.h"
 
 @class NSSet;
-@protocol GLUETheme, VISREFPlayButtonTestManager;
+@protocol GLUETheme, SPTFreeTierEntityOfflineViewModel, VISREFPlayButtonTestManager;
 
 @interface VISREFHubHeaderComponent : NSObject <HUBComponent>
 {
     CDUnknownBlockType _backButtonTappedBlock;
     id _followButtonModel;
     id _contextMenuButtonModel;
+    id <SPTFreeTierEntityOfflineViewModel> _offlineButtonModel;
     Class _headerControllerClass;
     id <GLUETheme> _theme;
     id <VISREFPlayButtonTestManager> _playButtonTestManager;
@@ -24,6 +25,7 @@
 @property(retain, nonatomic) id <VISREFPlayButtonTestManager> playButtonTestManager; // @synthesize playButtonTestManager=_playButtonTestManager;
 @property(readonly, nonatomic) id <GLUETheme> theme; // @synthesize theme=_theme;
 @property(retain, nonatomic) Class headerControllerClass; // @synthesize headerControllerClass=_headerControllerClass;
+@property(retain, nonatomic) id <SPTFreeTierEntityOfflineViewModel> offlineButtonModel; // @synthesize offlineButtonModel=_offlineButtonModel;
 @property(retain, nonatomic) id contextMenuButtonModel; // @synthesize contextMenuButtonModel=_contextMenuButtonModel;
 @property(retain, nonatomic) id followButtonModel; // @synthesize followButtonModel=_followButtonModel;
 @property(copy, nonatomic) CDUnknownBlockType backButtonTappedBlock; // @synthesize backButtonTappedBlock=_backButtonTappedBlock;

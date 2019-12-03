@@ -15,7 +15,7 @@
     NSArray *_components;
 }
 
-+ (id)factory;
++ (id)factoryWithPageIdentifier:(id)arg1 pageUri:(id)arg2;
 @property(copy, nonatomic) NSArray *components; // @synthesize components=_components;
 - (void).cxx_destruct;
 - (id)hitUiReveal;
@@ -24,7 +24,8 @@
 - (id)swipeUiReveal;
 - (id)heartButtonFactory;
 - (id)playButtonFactory;
-- (id)init;
+- (id)_location;
+- (id)initWithPageIdentifier:(id)arg1 pageUri:(id)arg2;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

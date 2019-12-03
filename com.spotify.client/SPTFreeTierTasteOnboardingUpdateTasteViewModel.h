@@ -8,7 +8,7 @@
 
 #import "SPTFreeTierTasteOnboardingCurationObserver-Protocol.h"
 
-@class NSArray, NSString, SPTFreeTierTasteOnboardingCurator, SPTFreeTierTasteOnboardingTheme;
+@class NSArray, NSString, SPTFreeTierTasteOnboardingCurator, SPTFreeTierTasteOnboardingSession, SPTFreeTierTasteOnboardingTheme;
 @protocol SPTFreeTierTasteOnboardingTestManager, SPTFreeTierTasteOnboardingUpdateTasteViewModelDelegate, SPTViewLogger;
 
 @interface SPTFreeTierTasteOnboardingUpdateTasteViewModel : NSObject <SPTFreeTierTasteOnboardingCurationObserver>
@@ -20,10 +20,12 @@
     SPTFreeTierTasteOnboardingCurator *_curator;
     id <SPTFreeTierTasteOnboardingTestManager> _testManager;
     id <SPTViewLogger> _viewLogger;
+    SPTFreeTierTasteOnboardingSession *_session;
     unsigned long long _minCompleteTime;
 }
 
 @property(nonatomic) unsigned long long minCompleteTime; // @synthesize minCompleteTime=_minCompleteTime;
+@property(readonly, nonatomic) SPTFreeTierTasteOnboardingSession *session; // @synthesize session=_session;
 @property(readonly, nonatomic) id <SPTViewLogger> viewLogger; // @synthesize viewLogger=_viewLogger;
 @property(readonly, nonatomic) id <SPTFreeTierTasteOnboardingTestManager> testManager; // @synthesize testManager=_testManager;
 @property(readonly, nonatomic) SPTFreeTierTasteOnboardingCurator *curator; // @synthesize curator=_curator;
@@ -38,7 +40,7 @@
 - (id)messageText;
 - (id)viewStyle;
 - (void)dealloc;
-- (id)initWithTheme:(id)arg1 curator:(id)arg2 testManager:(id)arg3 viewLogger:(id)arg4;
+- (id)initWithTheme:(id)arg1 curator:(id)arg2 testManager:(id)arg3 session:(id)arg4 viewLogger:(id)arg5;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

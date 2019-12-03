@@ -6,27 +6,23 @@
 
 #import <objc/NSObject.h>
 
-@class NSMutableSet, SPTCanvasContentLayerVideoPreloaderResult;
+@class SPTaskCompletionSource;
 @protocol SPTCanvasContentLayerVideoPreloaderDelegate, SPTCanvasModel, SPTVideoURLAssetLoader;
 
 @interface SPTCanvasContentLayerVideoPreloader : NSObject
 {
-    _Bool _loading;
     id <SPTCanvasContentLayerVideoPreloaderDelegate> _delegate;
     id <SPTVideoURLAssetLoader> _videoAssetLoader;
     id <SPTCanvasModel> _canvasModel;
-    SPTCanvasContentLayerVideoPreloaderResult *_result;
-    NSMutableSet *_loadCalls;
+    SPTaskCompletionSource *_completionSource;
 }
 
-@property(readonly, nonatomic) NSMutableSet *loadCalls; // @synthesize loadCalls=_loadCalls;
-@property(nonatomic, getter=isLoading) _Bool loading; // @synthesize loading=_loading;
-@property(retain, nonatomic) SPTCanvasContentLayerVideoPreloaderResult *result; // @synthesize result=_result;
+@property(retain, nonatomic) SPTaskCompletionSource *completionSource; // @synthesize completionSource=_completionSource;
 @property(readonly, nonatomic) id <SPTCanvasModel> canvasModel; // @synthesize canvasModel=_canvasModel;
 @property(readonly, nonatomic) id <SPTVideoURLAssetLoader> videoAssetLoader; // @synthesize videoAssetLoader=_videoAssetLoader;
 @property(nonatomic) __weak id <SPTCanvasContentLayerVideoPreloaderDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
-- (id)load;
+- (id)loadVideo;
 - (void)didLoadAsset:(id)arg1 withError:(id)arg2;
 - (void)loadAsset:(id)arg1 withError:(id)arg2;
 - (void)loadAssetWithURL:(id)arg1;

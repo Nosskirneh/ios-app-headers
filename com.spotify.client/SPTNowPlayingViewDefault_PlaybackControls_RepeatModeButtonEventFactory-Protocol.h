@@ -6,12 +6,13 @@
 
 #import "NSObject-Protocol.h"
 
-@protocol SPTImpressionEvent, SPTInteractionEvent;
+@protocol SPTEventFactoryModelMapping, SPTImpressionEvent, SPTInteractionEvent;
 
 @protocol SPTNowPlayingViewDefault_PlaybackControls_RepeatModeButtonEventFactory <NSObject>
 - (id <SPTInteractionEvent>)hitRepeatDisable;
 - (id <SPTInteractionEvent>)hitRepeatOneEnable;
 - (id <SPTInteractionEvent>)hitRepeatEnable;
 - (id <SPTImpressionEvent>)impression;
+- (id <SPTEventFactoryModelMapping>)_location;
 @end
 

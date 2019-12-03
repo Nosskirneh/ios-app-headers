@@ -25,6 +25,7 @@
     UIView *_separatorLeftLine;
     UIView *_separatorRightLine;
     UIView *_contentView;
+    UIView *_mainContainer;
     NSArray *_profilePictureSizeConstraints;
     NSLayoutConstraint *_profilePictureTopMarginConstraint;
     NSLayoutConstraint *_titleHeaderTopMarginConstraint;
@@ -38,8 +39,12 @@
     NSLayoutConstraint *_horizontalMarginConstraint;
     NSLayoutConstraint *_termsViewMaxTopMarginConstraint;
     NSLayoutConstraint *_termsViewBottomMarginConstraint;
+    NSLayoutConstraint *_mainContainerCompactWidth;
+    NSLayoutConstraint *_mainContainerRegularWidth;
 }
 
+@property(retain, nonatomic) NSLayoutConstraint *mainContainerRegularWidth; // @synthesize mainContainerRegularWidth=_mainContainerRegularWidth;
+@property(retain, nonatomic) NSLayoutConstraint *mainContainerCompactWidth; // @synthesize mainContainerCompactWidth=_mainContainerCompactWidth;
 @property(retain, nonatomic) NSLayoutConstraint *termsViewBottomMarginConstraint; // @synthesize termsViewBottomMarginConstraint=_termsViewBottomMarginConstraint;
 @property(retain, nonatomic) NSLayoutConstraint *termsViewMaxTopMarginConstraint; // @synthesize termsViewMaxTopMarginConstraint=_termsViewMaxTopMarginConstraint;
 @property(retain, nonatomic) NSLayoutConstraint *horizontalMarginConstraint; // @synthesize horizontalMarginConstraint=_horizontalMarginConstraint;
@@ -53,6 +58,7 @@
 @property(retain, nonatomic) NSLayoutConstraint *titleHeaderTopMarginConstraint; // @synthesize titleHeaderTopMarginConstraint=_titleHeaderTopMarginConstraint;
 @property(retain, nonatomic) NSLayoutConstraint *profilePictureTopMarginConstraint; // @synthesize profilePictureTopMarginConstraint=_profilePictureTopMarginConstraint;
 @property(retain, nonatomic) NSArray *profilePictureSizeConstraints; // @synthesize profilePictureSizeConstraints=_profilePictureSizeConstraints;
+@property(retain, nonatomic) UIView *mainContainer; // @synthesize mainContainer=_mainContainer;
 @property(retain, nonatomic) UIView *contentView; // @synthesize contentView=_contentView;
 @property(retain, nonatomic) UIView *separatorRightLine; // @synthesize separatorRightLine=_separatorRightLine;
 @property(retain, nonatomic) UIView *separatorLeftLine; // @synthesize separatorLeftLine=_separatorLeftLine;
@@ -67,10 +73,11 @@
 @property(readonly, nonatomic) GLUEImageView *profilePicture; // @synthesize profilePicture=_profilePicture;
 - (id)submitButton;
 - (void).cxx_destruct;
+- (void)traitsDidChange:(id)arg1;
 - (void)glue_applyStyle:(id)arg1;
 - (void)layoutProfilePicture;
-- (void)setupConstraints;
-- (id)initWithFrame:(struct CGRect)arg1;
+- (void)setupConstraintsWithStyle:(id)arg1;
+- (id)initWithFrame:(struct CGRect)arg1 andTheme:(id)arg2;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

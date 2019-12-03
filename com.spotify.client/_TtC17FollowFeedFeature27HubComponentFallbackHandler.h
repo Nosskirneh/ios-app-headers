@@ -6,9 +6,11 @@
 
 #import <swiftCore/_TtCs12_SwiftObject.h>
 
+#import "HUBComponentFallbackHandler-Protocol.h"
+
 @class NSString;
 
-@interface _TtC17FollowFeedFeature27HubComponentFallbackHandler : _TtCs12_SwiftObject
+@interface _TtC17FollowFeedFeature27HubComponentFallbackHandler : _TtCs12_SwiftObject <HUBComponentFallbackHandler>
 {
     // Error parsing type: , name: defaultComponentNamespace
     // Error parsing type: , name: defaultComponentName
@@ -17,8 +19,8 @@
 
 - (id)fallbackComponentForCategory:(id)arg1;
 @property(nonatomic, copy) NSString *defaultComponentCategory; // @synthesize defaultComponentCategory;
-@property(nonatomic, copy) NSString *defaultComponentName; // @synthesize defaultComponentName;
-@property(nonatomic, copy) NSString *defaultComponentNamespace; // @synthesize defaultComponentNamespace;
+@property(nonatomic, copy) NSString *defaultComponentName;
+@property(nonatomic, copy) NSString *defaultComponentNamespace;
 
 @end
 

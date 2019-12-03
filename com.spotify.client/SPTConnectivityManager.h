@@ -9,7 +9,7 @@
 #import "SPTConnectivityManager-Protocol.h"
 
 @class NSString;
-@protocol OS_dispatch_queue, SPTAsyncScheduler;
+@protocol OS_dispatch_queue, SPTAsyncScheduler, SPTConnectivityManagerDelegate;
 
 @interface SPTConnectivityManager : NSObject <SPTConnectivityManager>
 {
@@ -19,11 +19,14 @@
     struct mutex _mutex;
     unsigned long long _nextCallbackTimerId;
     struct unordered_map<unsigned long long, std::__1::shared_ptr<spotify::async::Timer>, std::__1::hash<unsigned long long>, std::__1::equal_to<unsigned long long>, std::__1::allocator<std::__1::pair<const unsigned long long, std::__1::shared_ptr<spotify::async::Timer>>>> _callbackTimers;
+    struct scoped_connection _connectivityManagerStateChangeConnection;
+    id <SPTConnectivityManagerDelegate> delegate;
     id <SPTAsyncScheduler> _scheduler;
 }
 
 + (void)deferCallback:(CDUnknownBlockType)arg1 forConnectivityManager:(id)arg2 callbackQueue:(id)arg3;
 @property(nonatomic) __weak id <SPTAsyncScheduler> scheduler; // @synthesize scheduler=_scheduler;
+@property(nonatomic) __weak id <SPTConnectivityManagerDelegate> delegate; // @synthesize delegate;
 - (id).cxx_construct;
 - (void).cxx_destruct;
 @property _Bool keepAliveAPNetwork;

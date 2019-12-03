@@ -11,7 +11,9 @@
 @protocol SPTCanvasTestManagerObserver <NSObject>
 
 @optional
-- (void)didDisableCanvas:(SPTCanvasTestManager *)arg1;
-- (void)didEnableCanvas:(SPTCanvasTestManager *)arg1;
+- (void)didChangeEnableCanvasTap:(SPTCanvasTestManager *)arg1;
+- (void)didChangeDisplayCanvasToggle:(SPTCanvasTestManager *)arg1;
+- (void)didChangeDisplayCanvasSettings:(SPTCanvasTestManager *)arg1;
+- (void)didChangeCanvasEnabled:(SPTCanvasTestManager *)arg1;
 @end
 

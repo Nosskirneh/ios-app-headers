@@ -6,11 +6,12 @@
 
 #import "NSObject-Protocol.h"
 
-@protocol SPTImpressionEvent, SPTNowPlayingViewDefault_TrackActions_AddToCollectionButtonEventFactory, SPTNowPlayingViewDefault_TrackActions_LabelContainerEventFactory;
+@protocol SPTEventFactoryModelMapping, SPTImpressionEvent, SPTNowPlayingViewDefault_TrackActions_AddToCollectionButtonEventFactory, SPTNowPlayingViewDefault_TrackActions_LabelContainerEventFactory;
 
 @protocol SPTNowPlayingViewDefault_TrackActionsEventFactory <NSObject>
 - (id <SPTImpressionEvent>)impression;
 - (id <SPTNowPlayingViewDefault_TrackActions_AddToCollectionButtonEventFactory>)addToCollectionButtonFactory;
 - (id <SPTNowPlayingViewDefault_TrackActions_LabelContainerEventFactory>)labelContainerFactory;
+- (id <SPTEventFactoryModelMapping>)_location;
 @end
 

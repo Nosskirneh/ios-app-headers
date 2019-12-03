@@ -8,8 +8,8 @@
 @protocol HUBComponentModel;
 
 @protocol HUBComponent
-@property(readonly, copy, nonatomic) NSSet *layoutTraits;
 - (struct CGSize)preferredViewSizeForDisplayingModel:(id <HUBComponentModel>)arg1 containerViewSize:(struct CGSize)arg2;
 - (HUBComponentView *)createViewWithFrame:(struct CGRect)arg1;
+@property(nonatomic, readonly) NSSet *layoutTraits;
 @end
 

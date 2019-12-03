@@ -9,7 +9,7 @@
 #import "SPTSignupDataLoaderDelegate-Protocol.h"
 
 @class NSString, SPTAuthenticationHandler, SPTLoginDialogController, SPTLoginEmailAlreadyExistsDialogLogger, SPTSignupCreateUserDataLoader, SPTSignupFacebookConfirmationLogger, SPTSignupTermsAndPolicyViewModel, SPTSignupUserInfoModel;
-@protocol GLUEImageLoader, SPTNavigationRouter, SPTSignupFacebookConfirmationViewModelDelegate;
+@protocol GLUEImageLoader, SPTLoginNavigationCoordinator, SPTSignupFacebookConfirmationViewModelDelegate;
 
 @interface SPTSignupFacebookConfirmationViewModel : NSObject <SPTSignupDataLoaderDelegate>
 {
@@ -18,7 +18,7 @@
     SPTSignupTermsAndPolicyViewModel *_termsAndPolicyViewModel;
     SPTSignupUserInfoModel *_userInfo;
     id <GLUEImageLoader> _glueImageLoader;
-    id <SPTNavigationRouter> _navigationRouter;
+    id <SPTLoginNavigationCoordinator> _navigationCoordinator;
     SPTSignupCreateUserDataLoader *_createUserDataLoader;
     SPTAuthenticationHandler *_authenticationHandler;
     SPTLoginDialogController *_dialogController;
@@ -29,7 +29,7 @@
 @property(retain, nonatomic) SPTLoginDialogController *dialogController; // @synthesize dialogController=_dialogController;
 @property(retain, nonatomic) SPTAuthenticationHandler *authenticationHandler; // @synthesize authenticationHandler=_authenticationHandler;
 @property(retain, nonatomic) SPTSignupCreateUserDataLoader *createUserDataLoader; // @synthesize createUserDataLoader=_createUserDataLoader;
-@property(retain, nonatomic) id <SPTNavigationRouter> navigationRouter; // @synthesize navigationRouter=_navigationRouter;
+@property(retain, nonatomic) id <SPTLoginNavigationCoordinator> navigationCoordinator; // @synthesize navigationCoordinator=_navigationCoordinator;
 @property(readonly, nonatomic) id <GLUEImageLoader> glueImageLoader; // @synthesize glueImageLoader=_glueImageLoader;
 @property(readonly, nonatomic) SPTSignupUserInfoModel *userInfo; // @synthesize userInfo=_userInfo;
 @property(readonly, nonatomic) SPTSignupTermsAndPolicyViewModel *termsAndPolicyViewModel; // @synthesize termsAndPolicyViewModel=_termsAndPolicyViewModel;
@@ -48,7 +48,7 @@
 - (id)separatorText;
 - (id)explanationText;
 - (id)greetingText;
-- (id)initWithUserInfo:(id)arg1 imageLoader:(id)arg2 navigationRouter:(id)arg3 logger:(id)arg4 termsAndPolicyViewModel:(id)arg5 createUserDataLoader:(id)arg6 authenticationHandler:(id)arg7 dialogController:(id)arg8 emailExistsDialogLogger:(id)arg9;
+- (id)initWithUserInfo:(id)arg1 imageLoader:(id)arg2 navigationCoordinator:(id)arg3 logger:(id)arg4 termsAndPolicyViewModel:(id)arg5 createUserDataLoader:(id)arg6 authenticationHandler:(id)arg7 dialogController:(id)arg8 emailExistsDialogLogger:(id)arg9;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

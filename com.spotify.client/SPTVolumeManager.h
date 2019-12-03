@@ -10,19 +10,23 @@
 #import "SPTVolumeRemoteCoordinatorDelegate-Protocol.h"
 #import "SPTVolumeSystemObserver-Protocol.h"
 
-@class NSNumber, NSString, SPTObserverManager;
-@protocol SPTVolumeRemoteCoordinator, SPTVolumeSystemAPI;
+@class NSNumber, NSString, SPTObserverManager, SPTVolumeLogger;
+@protocol SPTVolumeRemoteCoordinator, SPTVolumeSynchronizationManager, SPTVolumeSystemAPI;
 
 @interface SPTVolumeManager : NSObject <SPTVolumeRemoteCoordinatorDelegate, SPTVolumeSystemObserver, SPTVolumeAPI>
 {
     id <SPTVolumeSystemAPI> _systemVolumeManager;
     id <SPTVolumeRemoteCoordinator> _remoteVolumeCoordinator;
+    id <SPTVolumeSynchronizationManager> _volumeSynchronizationManager;
+    SPTVolumeLogger *_logger;
     SPTObserverManager *_observers;
     double _internalVolume;
 }
 
 @property(nonatomic) double internalVolume; // @synthesize internalVolume=_internalVolume;
 @property(retain, nonatomic) SPTObserverManager *observers; // @synthesize observers=_observers;
+@property(readonly, nonatomic) SPTVolumeLogger *logger; // @synthesize logger=_logger;
+@property(readonly, nonatomic) id <SPTVolumeSynchronizationManager> volumeSynchronizationManager; // @synthesize volumeSynchronizationManager=_volumeSynchronizationManager;
 @property(readonly, nonatomic) id <SPTVolumeRemoteCoordinator> remoteVolumeCoordinator; // @synthesize remoteVolumeCoordinator=_remoteVolumeCoordinator;
 @property(readonly, nonatomic) id <SPTVolumeSystemAPI> systemVolumeManager; // @synthesize systemVolumeManager=_systemVolumeManager;
 - (void).cxx_destruct;
@@ -36,7 +40,7 @@
 - (void)requestVolumeUpdate:(double)arg1;
 @property(readonly, nonatomic) NSNumber *volume; // @dynamic volume;
 - (void)setupObserving;
-- (id)initWithSystemVolumeManager:(id)arg1 remoteVolumeCoordinator:(id)arg2;
+- (id)initWithSystemVolumeManager:(id)arg1 remoteVolumeCoordinator:(id)arg2 volumeSynchronizationManager:(id)arg3 logger:(id)arg4;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

@@ -26,8 +26,8 @@
 @property(retain, nonatomic) SPTUser *currentUser; // @synthesize currentUser=_currentUser;
 @property(nonatomic) _Bool online; // @synthesize online=_online;
 - (void).cxx_destruct;
-- (id)userWithUsernameInternal:(basic_string_7c0a1c0b)arg1;
-- (void)internalUserWithUsername:(basic_string_7c0a1c0b)arg1 callback:(CDUnknownBlockType)arg2;
+- (id)userWithUsernameInternal:(basic_string_90719d97)arg1;
+- (void)internalUserWithUsername:(basic_string_90719d97)arg1 callback:(CDUnknownBlockType)arg2;
 - (void)userWithUsername:(id)arg1 callback:(CDUnknownBlockType)arg2;
 - (void)userWithLink:(id)arg1 callback:(CDUnknownBlockType)arg2;
 - (id)userWithUsername:(id)arg1;

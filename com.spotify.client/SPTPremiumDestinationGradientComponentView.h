@@ -8,7 +8,7 @@
 
 #import "HUBComponentViewWithChildren-Protocol.h"
 
-@class GLUEGradientView, NSArray;
+@class GLUEGradientView, NSArray, UIStackView;
 @protocol HUBComponentViewChildDelegate;
 
 @interface SPTPremiumDestinationGradientComponentView : HUBComponentView <HUBComponentViewWithChildren>
@@ -16,9 +16,10 @@
     id <HUBComponentViewChildDelegate> childDelegate;
     GLUEGradientView *_gradientView;
     NSArray *_childComponentViews;
+    UIStackView *_stackView;
 }
 
-+ (struct CGRect)layoutRectForComponentView:(id)arg1 fromPreviousComponentView:(id)arg2;
+@property(retain, nonatomic) UIStackView *stackView; // @synthesize stackView=_stackView;
 @property(retain, nonatomic) NSArray *childComponentViews; // @synthesize childComponentViews=_childComponentViews;
 @property(retain, nonatomic) GLUEGradientView *gradientView; // @synthesize gradientView=_gradientView;
 @property(nonatomic) __weak id <HUBComponentViewChildDelegate> childDelegate; // @synthesize childDelegate;

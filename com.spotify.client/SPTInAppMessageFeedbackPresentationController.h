@@ -8,12 +8,13 @@
 
 #import "SPTContextMenuPresenterDelegate-Protocol.h"
 
-@class NSArray, NSDictionary, NSString, SPTInAppMessageServiceLogger, UIWindow;
+@class NSDictionary, NSMutableArray, NSString, SPTInAppMessageServiceLogger, UIWindow;
 @protocol SPTContextMenuPresenter, SPTContextMenuPresenterFactory;
 
 @interface SPTInAppMessageFeedbackPresentationController : NSObject <SPTContextMenuPresenterDelegate>
 {
-    NSArray *_contextMenuActions;
+    _Bool _feedbackOptionsSet;
+    NSMutableArray *_contextMenuActions;
     NSDictionary *_messageInformation;
     id <SPTContextMenuPresenterFactory> _contextMenuPresenterFactory;
     id <SPTContextMenuPresenter> _contextMenuPresenter;
@@ -21,18 +22,18 @@
     SPTInAppMessageServiceLogger *_serviceLogger;
 }
 
+@property(nonatomic) _Bool feedbackOptionsSet; // @synthesize feedbackOptionsSet=_feedbackOptionsSet;
 @property(retain, nonatomic) SPTInAppMessageServiceLogger *serviceLogger; // @synthesize serviceLogger=_serviceLogger;
 @property(retain, nonatomic) UIWindow *feedbackWindow; // @synthesize feedbackWindow=_feedbackWindow;
 @property(retain, nonatomic) id <SPTContextMenuPresenter> contextMenuPresenter; // @synthesize contextMenuPresenter=_contextMenuPresenter;
 @property(retain, nonatomic) id <SPTContextMenuPresenterFactory> contextMenuPresenterFactory; // @synthesize contextMenuPresenterFactory=_contextMenuPresenterFactory;
 @property(copy, nonatomic) NSDictionary *messageInformation; // @synthesize messageInformation=_messageInformation;
-@property(copy, nonatomic) NSArray *contextMenuActions; // @synthesize contextMenuActions=_contextMenuActions;
+@property(retain, nonatomic) NSMutableArray *contextMenuActions; // @synthesize contextMenuActions=_contextMenuActions;
 - (void).cxx_destruct;
 - (void)didSelectContextMenuAction:(id)arg1;
 - (void)contextMenuPresenterDidDismiss:(id)arg1;
-- (void)setupContextMenuActions;
-- (void)setupFeedbackWindow;
-- (void)presentFeedbackUIForMessage:(id)arg1;
+- (void)setFeedbackOptions:(id)arg1;
+- (void)presentFeedbackUIForMessage:(id)arg1 inViewController:(id)arg2 senderView:(id)arg3;
 - (id)initWithContextMenuPresenterFactory:(id)arg1 serviceLogger:(id)arg2;
 
 // Remaining properties

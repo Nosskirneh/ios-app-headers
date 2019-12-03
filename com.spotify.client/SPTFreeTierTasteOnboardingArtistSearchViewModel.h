@@ -14,7 +14,7 @@
 #import "UISearchResultsUpdating-Protocol.h"
 
 @class NSMutableArray, NSString, SPTDataLoader, SPTFreeTierTasteOnboardingArtistSearchInfoView, SPTFreeTierTasteOnboardingArtistSearchResultCellStyle, SPTFreeTierTasteOnboardingArtistSearchViewLogger, SPTFreeTierTasteOnboardingSession, SPTFreeTierTasteOnboardingTheme, UICollectionView;
-@protocol GLUEImageLoader, SPTFreeTierTasteOnboardingArtistSearchViewModelDelegate, SPTFreeTierTasteOnboardingTestManager;
+@protocol GLUEImageLoader, SPTFreeTierTasteOnboardingArtistSearchViewModelDelegate;
 
 @interface SPTFreeTierTasteOnboardingArtistSearchViewModel : NSObject <SPTDataLoaderDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UISearchResultsUpdating, UISearchBarDelegate, SPTInstrumentationInteractionMediatorColleague>
 {
@@ -26,7 +26,6 @@
     SPTFreeTierTasteOnboardingTheme *_theme;
     SPTDataLoader *_dataLoader;
     id <GLUEImageLoader> _imageLoader;
-    id <SPTFreeTierTasteOnboardingTestManager> _testManager;
     NSMutableArray *_items;
     UICollectionView *_collectionView;
     SPTFreeTierTasteOnboardingArtistSearchResultCellStyle *_cellStyle;
@@ -46,7 +45,6 @@
 @property(retain, nonatomic) SPTFreeTierTasteOnboardingArtistSearchResultCellStyle *cellStyle; // @synthesize cellStyle=_cellStyle;
 @property(nonatomic) __weak UICollectionView *collectionView; // @synthesize collectionView=_collectionView;
 @property(readonly, nonatomic) NSMutableArray *items; // @synthesize items=_items;
-@property(readonly, nonatomic) id <SPTFreeTierTasteOnboardingTestManager> testManager; // @synthesize testManager=_testManager;
 @property(readonly, nonatomic) id <GLUEImageLoader> imageLoader; // @synthesize imageLoader=_imageLoader;
 @property(readonly, nonatomic) SPTDataLoader *dataLoader; // @synthesize dataLoader=_dataLoader;
 @property(readonly, nonatomic) SPTFreeTierTasteOnboardingTheme *theme; // @synthesize theme=_theme;
@@ -58,7 +56,6 @@
 - (void)performLoadMoreRequest;
 - (void)mediator:(id)arg1 requiresDataForBuilder:(id)arg2 forInteractionInformation:(id)arg3;
 - (void)resetContentOffset;
-@property(readonly, nonatomic) double topMargin;
 - (void)searchBarCancelButtonClicked:(id)arg1;
 - (void)searchBar:(id)arg1 textDidChange:(id)arg2;
 - (_Bool)searchBar:(id)arg1 shouldChangeTextInRange:(struct _NSRange)arg2 replacementText:(id)arg3;
@@ -80,7 +77,7 @@
 - (void)performSearch:(id)arg1;
 - (void)registerWithCollectionView:(id)arg1;
 - (id)viewStyleForTraitCollection:(id)arg1;
-- (id)initWithTheme:(id)arg1 logger:(id)arg2 session:(id)arg3 dataLoader:(id)arg4 imageLoader:(id)arg5 testManager:(id)arg6;
+- (id)initWithTheme:(id)arg1 logger:(id)arg2 session:(id)arg3 dataLoader:(id)arg4 imageLoader:(id)arg5;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

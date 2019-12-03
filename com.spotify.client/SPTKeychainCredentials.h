@@ -8,14 +8,14 @@
 
 #import "NSCoding-Protocol.h"
 
-@class SPTSerializableCredentials;
+@class SPTAuthSerializableCredentials;
 
 @interface SPTKeychainCredentials : NSObject <NSCoding>
 {
-    SPTSerializableCredentials *_credentials;
+    SPTAuthSerializableCredentials *_credentials;
 }
 
-@property(retain, nonatomic) SPTSerializableCredentials *credentials; // @synthesize credentials=_credentials;
+@property(retain, nonatomic) SPTAuthSerializableCredentials *credentials; // @synthesize credentials=_credentials;
 - (void).cxx_destruct;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;

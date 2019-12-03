@@ -8,7 +8,7 @@
 
 #import "HUBComponentViewWithChildren-Protocol.h"
 
-@class GLUEGradientView, NSArray, SPTPremiumDestinationGLUETheme, SPTPremiumDestinationOfferCardStyle;
+@class GLUEGradientView, NSArray, SPTPremiumDestinationGLUETheme, SPTPremiumDestinationOfferCardStyle, UIStackView;
 @protocol HUBComponentViewChildDelegate;
 
 @interface SPTPremiumDestinationOfferCardComponentView : HUBComponentView <HUBComponentViewWithChildren>
@@ -18,9 +18,10 @@
     SPTPremiumDestinationOfferCardStyle *_style;
     NSArray *_childComponentViews;
     GLUEGradientView *_gradientView;
+    UIStackView *_stackView;
 }
 
-+ (struct CGRect)layoutRectForComponentView:(id)arg1 fromPreviousComponentView:(id)arg2 withStyle:(id)arg3;
+@property(retain, nonatomic) UIStackView *stackView; // @synthesize stackView=_stackView;
 @property(retain, nonatomic) GLUEGradientView *gradientView; // @synthesize gradientView=_gradientView;
 @property(retain, nonatomic) NSArray *childComponentViews; // @synthesize childComponentViews=_childComponentViews;
 @property(retain, nonatomic) SPTPremiumDestinationOfferCardStyle *style; // @synthesize style=_style;

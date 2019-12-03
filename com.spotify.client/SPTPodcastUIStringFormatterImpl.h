@@ -29,6 +29,7 @@
 - (id)dateWithoutYearTemplateFormat;
 - (id)publicationDateStringWithPublicationDate:(id)arg1 currentDate:(id)arg2;
 - (id)dateTextForGivenLatestEpisodeDate:(id)arg1;
+- (id)shortDurationStringWithDuration:(double)arg1;
 - (id)durationStringWithDuration:(double)arg1;
 - (id)timeLeftStringWithDuration:(double)arg1 listenedDuration:(double)arg2;
 - (id)durationOrTimeLeftStringWithEpisodeDuration:(double)arg1 listenedDuration:(double)arg2 isPlayed:(_Bool)arg3 isAudioMediaType:(_Bool)arg4;

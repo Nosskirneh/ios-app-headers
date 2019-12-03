@@ -17,8 +17,12 @@
 
 @property(nonatomic) __weak INSEventSender *sdk; // @synthesize sdk=_sdk;
 - (void).cxx_destruct;
-- (void)sendNonAuthenticatedEvent:(id)arg1;
-- (void)sendEvent:(id)arg1;
+- (void)sendWrappedNonAuthenticatedEvent:(id)arg1;
+- (void)sendWrappedEvent:(id)arg1;
+- (void)sendNonAuthenticatedEventWithName:(id)arg1 data:(id)arg2;
+- (void)sendNonAuthenticatedEventWithProtobuf:(id)arg1;
+- (void)sendEventWithName:(id)arg1 data:(id)arg2;
+- (void)sendEventWithProtobuf:(id)arg1;
 - (id)wrapMessage:(id)arg1;
 - (id)initWithSdk:(id)arg1;
 

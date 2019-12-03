@@ -9,10 +9,11 @@
 #import "SPTRemoteConfigurationService-Protocol.h"
 
 @class NSString, SPTAllocationContext, SPTRemoteConfigurationFeatureProperties;
-@protocol SPTEventSenderService, SPTNetworkService, SPTRemoteConfigurationIntegration, SPTRemoteConfigurationResolver;
+@protocol SPTBootstrapService, SPTEventSenderService, SPTNetworkService, SPTRemoteConfigurationIntegration, SPTRemoteConfigurationResolver;
 
 @interface SPTRemoteConfigurationServiceImplementation : NSObject <SPTRemoteConfigurationService>
 {
+    id <SPTBootstrapService> _bootstrapService;
     id <SPTNetworkService> _networkService;
     id <SPTEventSenderService> _eventSenderService;
     id <SPTRemoteConfigurationResolver> _remoteConfigurationResolver;
@@ -26,6 +27,7 @@
 @property(retain, nonatomic) id <SPTRemoteConfigurationResolver> remoteConfigurationResolver; // @synthesize remoteConfigurationResolver=_remoteConfigurationResolver;
 @property(nonatomic) __weak id <SPTEventSenderService> eventSenderService; // @synthesize eventSenderService=_eventSenderService;
 @property(nonatomic) __weak id <SPTNetworkService> networkService; // @synthesize networkService=_networkService;
+@property(nonatomic) __weak id <SPTBootstrapService> bootstrapService; // @synthesize bootstrapService=_bootstrapService;
 - (void).cxx_destruct;
 - (void)setupRemoteConfiguration;
 - (void)scheduleInitialFetch;

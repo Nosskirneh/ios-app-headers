@@ -11,24 +11,24 @@
 #import "UICollectionViewDelegate-Protocol.h"
 #import "UICollectionViewDelegateFlowLayout-Protocol.h"
 
-@class NSArray, NSLayoutConstraint, NSString, SPTSortingFilteringClearFilterCollectionViewCell, UICollectionView, UICollectionViewFlowLayout;
-@protocol SPTSortingFilteringClearFiltersControlDelegate, SPTSortingFilteringClearFiltersControlStyle;
+@class NSArray, NSLayoutConstraint, NSString, SPTSortingFilteringFilterButtonCollectionViewCell, UICollectionView, UICollectionViewFlowLayout;
+@protocol SPTSortingFilteringButtonsContainerStyle, SPTSortingFilteringClearFiltersControlDelegate;
 
 @interface SPTSortingFilteringClearFiltersControlView : UIView <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, SPTSortingFilteringClearFiltersControl>
 {
     id <SPTSortingFilteringClearFiltersControlDelegate> _delegate;
     UICollectionView *_collectionView;
     NSArray *_items;
-    id <SPTSortingFilteringClearFiltersControlStyle> _style;
+    id <SPTSortingFilteringButtonsContainerStyle> _style;
     UICollectionViewFlowLayout *_collectionLayout;
     NSLayoutConstraint *_collectionViewHeightConstraint;
-    SPTSortingFilteringClearFilterCollectionViewCell *_calculationCell;
+    SPTSortingFilteringFilterButtonCollectionViewCell *_calculationCell;
 }
 
-@property(retain, nonatomic) SPTSortingFilteringClearFilterCollectionViewCell *calculationCell; // @synthesize calculationCell=_calculationCell;
+@property(retain, nonatomic) SPTSortingFilteringFilterButtonCollectionViewCell *calculationCell; // @synthesize calculationCell=_calculationCell;
 @property(retain, nonatomic) NSLayoutConstraint *collectionViewHeightConstraint; // @synthesize collectionViewHeightConstraint=_collectionViewHeightConstraint;
 @property(retain, nonatomic) UICollectionViewFlowLayout *collectionLayout; // @synthesize collectionLayout=_collectionLayout;
-@property(retain, nonatomic) id <SPTSortingFilteringClearFiltersControlStyle> style; // @synthesize style=_style;
+@property(retain, nonatomic) id <SPTSortingFilteringButtonsContainerStyle> style; // @synthesize style=_style;
 @property(copy, nonatomic) NSArray *items; // @synthesize items=_items;
 @property(retain, nonatomic) UICollectionView *collectionView; // @synthesize collectionView=_collectionView;
 @property(nonatomic) __weak id <SPTSortingFilteringClearFiltersControlDelegate> delegate; // @synthesize delegate=_delegate;

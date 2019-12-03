@@ -9,13 +9,14 @@
 #import "SPForegroundObserverDelegate-Protocol.h"
 #import "SPTCanvasLoadStateTrackerObserver-Protocol.h"
 #import "SPTCanvasNowPlayingViewStateObserver-Protocol.h"
+#import "SPTFeatureFlagSignalObserver-Protocol.h"
 #import "SPTGaiaConnectObserver-Protocol.h"
 #import "SPTPlayerObserver-Protocol.h"
 
 @class NSString, NSURL, SPForegroundObserver, SPTCanvasLoadStateTracker, SPTCanvasNowPlayingViewState, SPTCanvasTrackCheckerImplementation, SPTPlayerState;
 @protocol SPTFeatureFlagSignal, SPTGaiaConnectAPI, SPTLogCenter, SPTPlayerFeature;
 
-@interface SPTCanvasLogger : NSObject <SPForegroundObserverDelegate, SPTPlayerObserver, SPTGaiaConnectObserver, SPTCanvasLoadStateTrackerObserver, SPTCanvasNowPlayingViewStateObserver>
+@interface SPTCanvasLogger : NSObject <SPForegroundObserverDelegate, SPTFeatureFlagSignalObserver, SPTPlayerObserver, SPTGaiaConnectObserver, SPTCanvasLoadStateTrackerObserver, SPTCanvasNowPlayingViewStateObserver>
 {
     _Bool _isPlayingRemotely;
     _Bool _dataSaverEnabled;
@@ -39,7 +40,7 @@
 @property(nonatomic, getter=isDataSaverEnabled) _Bool dataSaverEnabled; // @synthesize dataSaverEnabled=_dataSaverEnabled;
 @property(readonly, nonatomic) id <SPTFeatureFlagSignal> dataSaverFeatureFlagSignal; // @synthesize dataSaverFeatureFlagSignal=_dataSaverFeatureFlagSignal;
 @property(nonatomic) _Bool isPlayingRemotely; // @synthesize isPlayingRemotely=_isPlayingRemotely;
-@property(retain, nonatomic) NSString *currentPageSource; // @synthesize currentPageSource=_currentPageSource;
+@property(copy, nonatomic) NSString *currentPageSource; // @synthesize currentPageSource=_currentPageSource;
 @property(retain, nonatomic) NSURL *currentTrackURI; // @synthesize currentTrackURI=_currentTrackURI;
 @property(retain, nonatomic) NSString *currentAudioState; // @synthesize currentAudioState=_currentAudioState;
 @property(retain, nonatomic) NSString *currentAppState; // @synthesize currentAppState=_currentAppState;

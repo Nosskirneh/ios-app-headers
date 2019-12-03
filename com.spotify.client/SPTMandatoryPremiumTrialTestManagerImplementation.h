@@ -6,12 +6,13 @@
 
 #import <objc/NSObject.h>
 
+#import "SPTFeatureFlagSignalObserver-Protocol.h"
 #import "SPTMandatoryPremiumTrialTestManager-Protocol.h"
 
 @class NSString;
 @protocol SPTFeatureFlagFactory, SPTFeatureFlagSignal;
 
-@interface SPTMandatoryPremiumTrialTestManagerImplementation : NSObject <SPTMandatoryPremiumTrialTestManager>
+@interface SPTMandatoryPremiumTrialTestManagerImplementation : NSObject <SPTFeatureFlagSignalObserver, SPTMandatoryPremiumTrialTestManager>
 {
     id <SPTFeatureFlagFactory> _featureFlagFactory;
     id <SPTFeatureFlagSignal> _inTrialSignal;

@@ -9,8 +9,8 @@
 #import "SPTFreeTierPlaylistCellProvider-Protocol.h"
 #import "SPTPodcastEpisodeCellActionTarget-Protocol.h"
 
-@class NSString;
-@protocol SPTFreeTierPlaylistCellProviderDelegate, SPTFreeTierPlaylistItemsViewModel, SPTFreeTierPlaylistPodcastCellStateFactory, SPTOfflineManager, SPTPlayer, SPTPodcastEpisodeCellConfigurator;
+@class NSString, NSURL;
+@protocol SPTFreeTierPlaylistCellProviderDelegate, SPTFreeTierPlaylistItemsViewModel, SPTFreeTierPlaylistPlayModel, SPTFreeTierPlaylistPodcastCellStateFactory, SPTLinkDispatcher, SPTOfflineManager, SPTPlayer, SPTPodcastEpisodeCellConfigurator;
 
 @interface SPTFreeTierPlaylistPodcastCellProvider : NSObject <SPTPodcastEpisodeCellActionTarget, SPTFreeTierPlaylistCellProvider>
 {
@@ -18,12 +18,18 @@
     id <SPTPodcastEpisodeCellConfigurator> _cellConfigurator;
     id <SPTFreeTierPlaylistPodcastCellStateFactory> _cellStateFactory;
     id <SPTPlayer> _player;
+    id <SPTLinkDispatcher> _linkDispatcher;
+    NSURL *_playlistURL;
+    id <SPTFreeTierPlaylistPlayModel> _playModel;
     id <SPTFreeTierPlaylistItemsViewModel> _itemsViewModel;
     id <SPTOfflineManager> _offlineManager;
 }
 
 @property(nonatomic) __weak id <SPTOfflineManager> offlineManager; // @synthesize offlineManager=_offlineManager;
 @property(nonatomic) __weak id <SPTFreeTierPlaylistItemsViewModel> itemsViewModel; // @synthesize itemsViewModel=_itemsViewModel;
+@property(readonly, nonatomic) __weak id <SPTFreeTierPlaylistPlayModel> playModel; // @synthesize playModel=_playModel;
+@property(readonly, nonatomic) NSURL *playlistURL; // @synthesize playlistURL=_playlistURL;
+@property(readonly, nonatomic) id <SPTLinkDispatcher> linkDispatcher; // @synthesize linkDispatcher=_linkDispatcher;
 @property(readonly, nonatomic) id <SPTPlayer> player; // @synthesize player=_player;
 @property(readonly, nonatomic) id <SPTFreeTierPlaylistPodcastCellStateFactory> cellStateFactory; // @synthesize cellStateFactory=_cellStateFactory;
 @property(readonly, nonatomic) id <SPTPodcastEpisodeCellConfigurator> cellConfigurator; // @synthesize cellConfigurator=_cellConfigurator;
@@ -41,8 +47,10 @@
 - (void)didEndDisplayingPlaylistCell:(id)arg1 forRowAtIndexPath:(id)arg2;
 - (void)willDisplayPlaylistCell:(id)arg1 forRowAtIndexPath:(id)arg2;
 - (_Bool)didSelectPlaylistCell:(id)arg1 atIndexPath:(id)arg2;
+- (id)base64EncodedContext:(id)arg1;
+- (void)displayEntityViewForEpisdoeAtIndexPath:(id)arg1;
 - (void)configurePlaylistCell:(id)arg1 forRowAtIndexPath:(id)arg2;
-- (id)initWithCellConfigurator:(id)arg1 cellStateFactory:(id)arg2 player:(id)arg3 itemsViewModel:(id)arg4 offlineManager:(id)arg5;
+- (id)initWithCellConfigurator:(id)arg1 cellStateFactory:(id)arg2 player:(id)arg3 itemsViewModel:(id)arg4 offlineManager:(id)arg5 linkDispatcher:(id)arg6 playlistURL:(id)arg7 playModel:(id)arg8;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

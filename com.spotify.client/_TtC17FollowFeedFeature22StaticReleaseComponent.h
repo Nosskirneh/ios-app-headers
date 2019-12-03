@@ -17,7 +17,7 @@
 
 - (struct CGSize)preferredViewSizeForDisplayingModel:(id)arg1 containerViewSize:(struct CGSize)arg2;
 - (id)createViewWithFrame:(struct CGRect)arg1;
-@property(nonatomic, copy) NSSet *layoutTraits; // @synthesize layoutTraits;
+@property(nonatomic, copy) NSSet *layoutTraits;
 
 @end
 

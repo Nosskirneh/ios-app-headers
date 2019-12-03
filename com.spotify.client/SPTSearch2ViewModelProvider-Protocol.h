@@ -14,6 +14,6 @@
 @property(readonly, nonatomic) id <HUBViewModel> viewModel;
 @property(nonatomic) __weak id <SPTSearch2ViewModelProviderDelegate> delegate;
 - (void)loadNextPage;
-- (void)loadForQuery:(NSString *)arg1 autoCompleteRequestID:(NSString *)arg2;
+- (void)loadForQuery:(NSString *)arg1;
 @end
 

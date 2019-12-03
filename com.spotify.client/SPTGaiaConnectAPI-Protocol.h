@@ -20,6 +20,7 @@
 @property(readonly, nonatomic) NSArray *devices;
 - (void)removeObserver:(id <SPTGaiaConnectObserver>)arg1;
 - (void)addObserver:(id <SPTGaiaConnectObserver>)arg1;
+- (void)discoverDevices;
 - (id <SPTGaiaDeviceProtocol>)findDeviceWithPhysicalIdentifier:(NSString *)arg1;
 - (id <SPTGaiaDeviceProtocol>)findDeviceWithIdentifier:(NSString *)arg1;
 - (void)renameDevice:(id <SPTGaiaDeviceProtocol>)arg1 name:(NSString *)arg2 responseBlock:(void (^)(_Bool, NSError *))arg3;

@@ -7,7 +7,7 @@
 #import "NSObject-Protocol.h"
 
 @protocol BMPlayOptions <NSObject>
-@property(readonly, nonatomic) double initialPosition;
-@property(readonly, nonatomic) _Bool playWhenReady;
+@property(nonatomic, readonly) double initialPosition;
+@property(nonatomic, readonly) _Bool playWhenReady;
 @end
 

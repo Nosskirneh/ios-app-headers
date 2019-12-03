@@ -6,25 +6,30 @@
 
 #import <objc/NSObject.h>
 
+#import "SPTFeatureFlagSignalObserver-Protocol.h"
 #import "SPTPodcastEpisodeFeaturedContentTestManager-Protocol.h"
 
-@class NSString;
+@class NSString, SPTPodcastEpisodeFeaturedContentFeatureProperties;
 @protocol SPTFeatureFlagFactory, SPTFeatureFlagSignal;
 
-@interface SPTPodcastEpisodeFeaturedContentTestManagerImplementation : NSObject <SPTPodcastEpisodeFeaturedContentTestManager>
+@interface SPTPodcastEpisodeFeaturedContentTestManagerImplementation : NSObject <SPTFeatureFlagSignalObserver, SPTPodcastEpisodeFeaturedContentTestManager>
 {
     _Bool _featuredContentEnabled;
     id <SPTFeatureFlagFactory> _featureFlagFactory;
     id <SPTFeatureFlagSignal> _featuredContentEnabledSignal;
+    SPTPodcastEpisodeFeaturedContentFeatureProperties *_remoteConfigurationProperties;
 }
 
+@property(readonly, nonatomic) SPTPodcastEpisodeFeaturedContentFeatureProperties *remoteConfigurationProperties; // @synthesize remoteConfigurationProperties=_remoteConfigurationProperties;
 @property(nonatomic, getter=isFeaturedContentEnabled) _Bool featuredContentEnabled; // @synthesize featuredContentEnabled=_featuredContentEnabled;
 @property(readonly, nonatomic) id <SPTFeatureFlagSignal> featuredContentEnabledSignal; // @synthesize featuredContentEnabledSignal=_featuredContentEnabledSignal;
 @property(readonly, nonatomic) id <SPTFeatureFlagFactory> featureFlagFactory; // @synthesize featureFlagFactory=_featureFlagFactory;
 - (void).cxx_destruct;
 - (void)featureFlagSignal:(id)arg1 hasAssumedState:(long long)arg2;
 - (void)featuredContentSignal;
-- (id)initWithFeatureFlagFactory:(id)arg1;
+@property(readonly, nonatomic, getter=isTrackListModeLinkedPage) _Bool trackListModeLinkedPage;
+@property(readonly, nonatomic, getter=isTrackListEnabled) _Bool trackListEnabled;
+- (id)initWithFeatureFlagFactory:(id)arg1 remoteConfigurationResolver:(id)arg2;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

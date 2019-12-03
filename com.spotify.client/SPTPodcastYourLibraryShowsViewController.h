@@ -17,7 +17,7 @@
 #import "UITableViewDelegate-Protocol.h"
 
 @class NSArray, NSString, NSURL, SPTPodcastYourLibraryShowsViewModel, SPTProgressView, SPTTableView, SPTTheme, UIView;
-@protocol GLUEImageLoader, SPTLinkDispatcher, SPTPageContainer, SPTPodcastLogger, SPTPodcastTestManager, SPTPodcastYourLibraryShowCellConfigurator, SPTShowInfoViewProvider, SPTViewLogger, SPTYourLibraryPageDelegate;
+@protocol GLUEImageLoader, SPTLinkDispatcher, SPTPageContainer, SPTPodcastLogger, SPTPodcastYourLibraryShowCellConfigurator, SPTShowInfoViewProvider, SPTViewLogger, SPTYourLibraryPageDelegate;
 
 @interface SPTPodcastYourLibraryShowsViewController : UIViewController <SPTPodcastYourLibraryShowsViewModelDelegate, UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate, SPTShowInfoViewProviderTarget, SPContentInsetViewController, SPTPageController, SPTYourLibraryPage, SPTScrollToTopViewController>
 {
@@ -29,7 +29,6 @@
     id <GLUEImageLoader> _imageLoader;
     id <SPTLinkDispatcher> _linkDispatcher;
     id <SPTPodcastLogger> _logger;
-    id <SPTPodcastTestManager> _testManager;
     SPTTheme *_theme;
     id <SPTViewLogger> _viewLogger;
     id <SPTShowInfoViewProvider> _infoViewProvider;
@@ -42,7 +41,6 @@
 @property(retain, nonatomic) id <SPTShowInfoViewProvider> infoViewProvider; // @synthesize infoViewProvider=_infoViewProvider;
 @property(retain, nonatomic) id <SPTViewLogger> viewLogger; // @synthesize viewLogger=_viewLogger;
 @property(retain, nonatomic) SPTTheme *theme; // @synthesize theme=_theme;
-@property(retain, nonatomic) id <SPTPodcastTestManager> testManager; // @synthesize testManager=_testManager;
 @property(retain, nonatomic) id <SPTPodcastLogger> logger; // @synthesize logger=_logger;
 @property(retain, nonatomic) id <SPTLinkDispatcher> linkDispatcher; // @synthesize linkDispatcher=_linkDispatcher;
 @property(retain, nonatomic) id <GLUEImageLoader> imageLoader; // @synthesize imageLoader=_imageLoader;
@@ -60,7 +58,6 @@
 - (_Bool)scrollViewShouldScrollToTop:(id)arg1;
 - (void)scrollViewDidEndDecelerating:(id)arg1;
 - (void)scrollViewDidScroll:(id)arg1;
-- (void)tableView:(id)arg1 willDisplayCell:(id)arg2 forRowAtIndexPath:(id)arg3;
 - (void)tableView:(id)arg1 didSelectRowAtIndexPath:(id)arg2;
 - (double)tableView:(id)arg1 heightForFooterInSection:(long long)arg2;
 - (double)tableView:(id)arg1 heightForHeaderInSection:(long long)arg2;
@@ -83,7 +80,7 @@
 - (void)viewWillDisappear:(_Bool)arg1;
 - (void)viewWillAppear:(_Bool)arg1;
 - (void)viewDidLoad;
-- (id)initWithPodcastViewModel:(id)arg1 theme:(id)arg2 cellConfigurator:(id)arg3 logger:(id)arg4 podcastTestManager:(id)arg5 linkDispatcher:(id)arg6 infoViewProvider:(id)arg7 viewLogger:(id)arg8;
+- (id)initWithPodcastViewModel:(id)arg1 theme:(id)arg2 cellConfigurator:(id)arg3 logger:(id)arg4 linkDispatcher:(id)arg5 infoViewProvider:(id)arg6 viewLogger:(id)arg7;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

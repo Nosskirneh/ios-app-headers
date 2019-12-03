@@ -31,6 +31,10 @@
 - (id)skipBackwardCommandIntervals;
 - (_Bool)shouldSkipBackwardCommandBeEnabled;
 - (_Bool)shouldSkipBackwardCommandBeAvailable;
+- (_Bool)shouldPreviousTrackCommandBeEnabled;
+- (_Bool)shouldPreviousTrackCommandBeAvailable;
+- (_Bool)shouldNextTrackCommandBeEnabled;
+- (_Bool)shouldNextTrackCommandBeAvailable;
 - (id)initWithModel:(id)arg1;
 
 // Remaining properties

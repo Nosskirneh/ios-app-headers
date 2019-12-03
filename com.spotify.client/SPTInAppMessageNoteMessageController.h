@@ -9,7 +9,7 @@
 #import "SPTInAppMessageNoteMessagePriorityDeciderDelegate-Protocol.h"
 
 @class NSString, SPTInAppMessageActionFactory, SPTInAppMessageNoteMessageParser, SPTInAppMessageNoteMessagePresentationController, SPTInAppMessageNoteMessageViewModel, SPTInAppMessageNotePresentationManager, SPTInAppMessageNowPlayingManagerRegistryImplementation, SPTInAppMessageServiceLogger;
-@protocol SPTBannerPresentationManager, SPTCrashReporter, SPTExternalIntegrationDriverDistractionController, SPTFreeTierTooltipConditionalPresenter, SPTOfflineModeState, SPTSlateManager, SPTSnackbarConditionalPresenter, SPTTooltipPresentationManager;
+@protocol SPTAuthController, SPTBannerPresentationManager, SPTCrashReporter, SPTExternalIntegrationDriverDistractionController, SPTFreeTierTooltipConditionalPresenter, SPTOfflineModeState, SPTSlateManager, SPTSnackbarConditionalPresenter, SPTTooltipPresentationManager;
 
 @interface SPTInAppMessageNoteMessageController : NSObject <SPTInAppMessageNoteMessagePriorityDeciderDelegate>
 {
@@ -28,8 +28,10 @@
     id <SPTOfflineModeState> _offlineModeState;
     SPTInAppMessageNowPlayingManagerRegistryImplementation *_nowPlayingManagerRegistry;
     id <SPTCrashReporter> _crashReporter;
+    id <SPTAuthController> _authController;
 }
 
+@property(retain, nonatomic) id <SPTAuthController> authController; // @synthesize authController=_authController;
 @property(retain, nonatomic) id <SPTCrashReporter> crashReporter; // @synthesize crashReporter=_crashReporter;
 @property(retain, nonatomic) SPTInAppMessageNowPlayingManagerRegistryImplementation *nowPlayingManagerRegistry; // @synthesize nowPlayingManagerRegistry=_nowPlayingManagerRegistry;
 @property(nonatomic) __weak id <SPTOfflineModeState> offlineModeState; // @synthesize offlineModeState=_offlineModeState;
@@ -47,7 +49,7 @@
 @property(retain, nonatomic) SPTInAppMessageNoteMessageParser *noteMessageParser; // @synthesize noteMessageParser=_noteMessageParser;
 - (void).cxx_destruct;
 - (void)noteMessagePriorityDeciderDidFetchMessage:(id)arg1 forTrigger:(id)arg2;
-- (id)initWithNoteMessageParser:(id)arg1 slateManager:(id)arg2 notePresentationManager:(id)arg3 bannerPresentationManager:(id)arg4 tooltipPresentationManager:(id)arg5 freeTierTooltipPresenter:(id)arg6 snackbarPresenter:(id)arg7 actionFactory:(id)arg8 serviceLogger:(id)arg9 driverDistractionController:(id)arg10 offlineModeState:(id)arg11 nowPlayingManagerRegistry:(id)arg12 crashReporter:(id)arg13;
+- (id)initWithNoteMessageParser:(id)arg1 slateManager:(id)arg2 notePresentationManager:(id)arg3 bannerPresentationManager:(id)arg4 tooltipPresentationManager:(id)arg5 freeTierTooltipPresenter:(id)arg6 snackbarPresenter:(id)arg7 actionFactory:(id)arg8 serviceLogger:(id)arg9 driverDistractionController:(id)arg10 offlineModeState:(id)arg11 nowPlayingManagerRegistry:(id)arg12 crashReporter:(id)arg13 authController:(id)arg14;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

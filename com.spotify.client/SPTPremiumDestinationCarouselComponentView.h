@@ -10,7 +10,7 @@
 #import "UICollectionViewDataSource-Protocol.h"
 #import "UICollectionViewDelegate-Protocol.h"
 
-@class NSString, SPTPremiumDestinationCarouselStyle, SPTPremiumDestinationGLUETheme, SPTPremiumDestinationValueCarouselFlowLayout, UICollectionView, UIPageControl;
+@class NSLayoutConstraint, NSString, SPTPremiumDestinationCarouselStyle, SPTPremiumDestinationGLUETheme, SPTPremiumDestinationValueCarouselFlowLayout, UICollectionView, UIPageControl;
 @protocol HUBComponentViewChildDelegate;
 
 @interface SPTPremiumDestinationCarouselComponentView : HUBComponentView <UICollectionViewDataSource, UICollectionViewDelegate, HUBComponentViewWithChildren>
@@ -21,10 +21,12 @@
     SPTPremiumDestinationValueCarouselFlowLayout *_collectionLayout;
     UICollectionView *_collectionView;
     UIPageControl *_pageControl;
+    NSLayoutConstraint *_collectionViewHeightConstraint;
 }
 
 + (struct CGSize)calculateItemSizeForModel:(id)arg1 containerViewSize:(struct CGSize)arg2 theme:(id)arg3;
 + (struct CGSize)sizeForContainerViewSize:(struct CGSize)arg1 model:(id)arg2 theme:(id)arg3;
+@property(retain, nonatomic) NSLayoutConstraint *collectionViewHeightConstraint; // @synthesize collectionViewHeightConstraint=_collectionViewHeightConstraint;
 @property(retain, nonatomic) UIPageControl *pageControl; // @synthesize pageControl=_pageControl;
 @property(retain, nonatomic) UICollectionView *collectionView; // @synthesize collectionView=_collectionView;
 @property(retain, nonatomic) SPTPremiumDestinationValueCarouselFlowLayout *collectionLayout; // @synthesize collectionLayout=_collectionLayout;

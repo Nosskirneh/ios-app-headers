@@ -6,16 +6,22 @@
 
 #import <objc/NSObject.h>
 
+@class NSDictionary;
 @protocol SPTFeatureFlagFactory;
 
 @interface SPTCanvasFlagSignalFactory : NSObject
 {
     id <SPTFeatureFlagFactory> _factory;
+    NSDictionary *_canvasToggleSignals;
 }
 
+@property(copy, nonatomic) NSDictionary *canvasToggleSignals; // @synthesize canvasToggleSignals=_canvasToggleSignals;
 @property(readonly, nonatomic) id <SPTFeatureFlagFactory> factory; // @synthesize factory=_factory;
 - (void).cxx_destruct;
-- (id)createTooltipFlagSignal;
+- (id)createCanvasTapFlagSignal;
+- (id)createCanvasSettingsSignal;
+- (id)createCanvasToggleSignal;
+- (id)createCanvasBlankToggleSignal;
 - (id)createNoCacheFlagSignal;
 - (id)createStreamingFlagSignal;
 - (id)createFeatureFlagSignal;

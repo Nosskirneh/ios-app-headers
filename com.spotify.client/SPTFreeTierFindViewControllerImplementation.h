@@ -17,15 +17,16 @@
 #import "SPViewController-Protocol.h"
 #import "UIScrollViewDelegate-Protocol.h"
 
-@class HUBContainerView, NSLayoutConstraint, NSString, NSURL, SPTFreeTierFindHeaderView, SPTFreeTierFindLogger, UIView;
+@class HUBContainerView, NSLayoutConstraint, NSString, NSURL, SPTFreeTierFindHeaderView, SPTFreeTierFindHubManager, SPTFreeTierFindLogger, UIView;
 @protocol GLUETheme, SPTFreeTierFindViewControllerDelegate, SPTFreeTierFindViewModelProvider, SPTOfflineModeState, SPTPageContainer, SPTVoiceTestManager;
 
 @interface SPTFreeTierFindViewControllerImplementation : UIViewController <SPTFreeTierFindHeaderViewDelegate, UIScrollViewDelegate, SPTFreeTierFindViewModelProviderObserver, HUBViewComponentDelegate, HUBViewContentOffsetObserver, SPTOfflineModeStateObserver, SPViewController, SPTVoiceTestManagerObserver, SPTFreeTierFindViewController, SPTPageController>
 {
     _Bool _initialViewModelLoaded;
+    _Bool _podcastFeatureEnabled;
     id <SPTFreeTierFindViewControllerDelegate> _delegate;
-    id <GLUETheme> _theme;
     HUBContainerView *_hubContainerView;
+    id <GLUETheme> _theme;
     id <SPTFreeTierFindViewModelProvider> _viewModelProvider;
     id <SPTVoiceTestManager> _voiceTestmanager;
     SPTFreeTierFindHeaderView *_findHeaderView;
@@ -33,10 +34,17 @@
     SPTFreeTierFindLogger *_logger;
     id <SPTOfflineModeState> _offlineModeState;
     NSLayoutConstraint *_headerHeightConstraint;
+    SPTFreeTierFindHubManager *_hubManager;
+    NSURL *_pageURL;
+    NSString *_referrerIdentifier;
     struct UIEdgeInsets _insets;
     struct CGRect _lastKnownHubContainerViewFrame;
 }
 
+@property(readonly, copy, nonatomic) NSString *referrerIdentifier; // @synthesize referrerIdentifier=_referrerIdentifier;
+@property(readonly, copy, nonatomic) NSURL *pageURL; // @synthesize pageURL=_pageURL;
+@property(readonly, nonatomic) SPTFreeTierFindHubManager *hubManager; // @synthesize hubManager=_hubManager;
+@property(nonatomic, getter=isPodcastFeatureEnabled) _Bool podcastFeatureEnabled; // @synthesize podcastFeatureEnabled=_podcastFeatureEnabled;
 @property(nonatomic) struct CGRect lastKnownHubContainerViewFrame; // @synthesize lastKnownHubContainerViewFrame=_lastKnownHubContainerViewFrame;
 @property(nonatomic, getter=isInitialViewModelLoaded) _Bool initialViewModelLoaded; // @synthesize initialViewModelLoaded=_initialViewModelLoaded;
 @property(retain, nonatomic) NSLayoutConstraint *headerHeightConstraint; // @synthesize headerHeightConstraint=_headerHeightConstraint;
@@ -46,7 +54,6 @@
 @property(retain, nonatomic) SPTFreeTierFindHeaderView *findHeaderView; // @synthesize findHeaderView=_findHeaderView;
 @property(readonly, nonatomic) id <SPTVoiceTestManager> voiceTestmanager; // @synthesize voiceTestmanager=_voiceTestmanager;
 @property(readonly, nonatomic) id <SPTFreeTierFindViewModelProvider> viewModelProvider; // @synthesize viewModelProvider=_viewModelProvider;
-@property(readonly, nonatomic) HUBContainerView *hubContainerView; // @synthesize hubContainerView=_hubContainerView;
 @property(readonly, nonatomic) id <GLUETheme> theme; // @synthesize theme=_theme;
 @property(nonatomic) __weak id <SPTFreeTierFindViewControllerDelegate> delegate; // @synthesize delegate=_delegate;
 @property(nonatomic) struct UIEdgeInsets insets; // @synthesize insets=_insets;
@@ -54,6 +61,7 @@
 @property(readonly, nonatomic, getter=spt_pageURI) NSURL *pageURI;
 @property(readonly, nonatomic, getter=spt_pageIdentifier) NSString *pageIdentifier;
 @property(readonly, nonatomic) NSURL *URI;
+@property(readonly, nonatomic) HUBContainerView *hubContainerView; // @synthesize hubContainerView=_hubContainerView;
 - (void)updateMicrophoneButtonVisibility;
 - (void)updateSubviewsInsets;
 - (struct CGRect)statusBarFrame;
@@ -61,6 +69,8 @@
 - (double)headerViewHeight;
 - (void)updateWithViewModel:(id)arg1;
 - (void)loadViewModel;
+- (id)findHeaderButtonAccessibilityLabel;
+- (id)findHeaderButtonTitle;
 - (void)updateHeaderView;
 - (void)testManager:(id)arg1 didChangeVoiceSearchEnabledState:(_Bool)arg2;
 - (void)offlineModeState:(id)arg1 updated:(_Bool)arg2;
@@ -80,7 +90,7 @@
 - (void)viewDidAppear:(_Bool)arg1;
 - (void)viewWillAppear:(_Bool)arg1;
 - (void)viewDidLoad;
-- (id)initWithTheme:(id)arg1 hubContainerView:(id)arg2 logger:(id)arg3 viewModelProvider:(id)arg4 offlineModeState:(id)arg5 voiceTestManager:(id)arg6;
+- (id)initWithTheme:(id)arg1 hubManager:(id)arg2 logger:(id)arg3 viewModelProvider:(id)arg4 offlineModeState:(id)arg5 podcastFeatureEnabled:(_Bool)arg6 voiceTestManager:(id)arg7 pageURL:(id)arg8 referrerIdentifier:(id)arg9;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

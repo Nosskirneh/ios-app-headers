@@ -6,12 +6,10 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTPodcastTestManagerObserver-Protocol.h"
+@class NSArray, NSURL;
+@protocol SPTCollectionLogger, SPTCollectionPlatformDataLoader, SPTCollectionPlatformDataLoaderRequestToken, SPTPodcastUIStringFormatter, SPTPodcastYourLibraryShowsViewModelDelegate;
 
-@class NSArray, NSString, NSURL;
-@protocol SPTCollectionLogger, SPTCollectionPlatformDataLoader, SPTCollectionPlatformDataLoaderRequestToken, SPTPodcastTestManager, SPTPodcastUIStringFormatter, SPTPodcastYourLibraryShowsViewModelDelegate;
-
-@interface SPTPodcastYourLibraryShowsViewModel : NSObject <SPTPodcastTestManagerObserver>
+@interface SPTPodcastYourLibraryShowsViewModel : NSObject
 {
     id <SPTPodcastYourLibraryShowsViewModelDelegate> _delegate;
     NSURL *_URL;
@@ -19,12 +17,10 @@
     id <SPTCollectionPlatformDataLoaderRequestToken> _collectionRequestToken;
     id <SPTCollectionLogger> _collectionLogger;
     NSArray *_showsCollection;
-    id <SPTPodcastTestManager> _testManager;
     id <SPTPodcastUIStringFormatter> _stringFormatter;
 }
 
 @property(retain, nonatomic) id <SPTPodcastUIStringFormatter> stringFormatter; // @synthesize stringFormatter=_stringFormatter;
-@property(retain, nonatomic) id <SPTPodcastTestManager> testManager; // @synthesize testManager=_testManager;
 @property(copy, nonatomic) NSArray *showsCollection; // @synthesize showsCollection=_showsCollection;
 @property(retain, nonatomic) id <SPTCollectionLogger> collectionLogger; // @synthesize collectionLogger=_collectionLogger;
 @property(retain, nonatomic) id <SPTCollectionPlatformDataLoaderRequestToken> collectionRequestToken; // @synthesize collectionRequestToken=_collectionRequestToken;
@@ -32,7 +28,6 @@
 @property(copy, nonatomic) NSURL *URL; // @synthesize URL=_URL;
 @property(nonatomic) __weak id <SPTPodcastYourLibraryShowsViewModelDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
-- (void)podcastTestManagerDidUpdate:(id)arg1;
 - (id)parseResponseItems:(id)arg1;
 @property(readonly, nonatomic, getter=isEmpty) _Bool empty;
 - (unsigned long long)numberOfRows;
@@ -40,14 +35,7 @@
 - (id)itemAtIndexPath:(id)arg1;
 - (void)unsubscribe;
 - (void)loadAndSubscribe;
-- (void)dealloc;
-- (id)initWithURL:(id)arg1 dataLoader:(id)arg2 collectionLogger:(id)arg3 podcastTestManager:(id)arg4 stringFormatter:(id)arg5;
-
-// Remaining properties
-@property(readonly, copy) NSString *debugDescription;
-@property(readonly, copy) NSString *description;
-@property(readonly) unsigned long long hash;
-@property(readonly) Class superclass;
+- (id)initWithURL:(id)arg1 dataLoader:(id)arg2 collectionLogger:(id)arg3 stringFormatter:(id)arg4;
 
 @end
 

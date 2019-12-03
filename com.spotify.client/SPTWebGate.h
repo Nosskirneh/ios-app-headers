@@ -6,20 +6,20 @@
 
 #import <objc/NSObject.h>
 
-@class NSString, SPTAuthSession;
+@class NSString, SPTConnectivityAccessTokenScope;
 
 @interface SPTWebGate : NSObject
 {
     NSString *_host;
-    SPTAuthSession *_authSession;
+    SPTConnectivityAccessTokenScope *_accessTokenScope;
 }
 
-@property(readonly, nonatomic) SPTAuthSession *authSession; // @synthesize authSession=_authSession;
+@property(readonly, nonatomic) SPTConnectivityAccessTokenScope *accessTokenScope; // @synthesize accessTokenScope=_accessTokenScope;
 @property(readonly, nonatomic) NSString *host; // @synthesize host=_host;
 - (void).cxx_destruct;
 - (id)callForRequest:(id)arg1 success:(CDUnknownBlockType)arg2 failure:(CDUnknownBlockType)arg3;
-- (id)initWithAuthSession:(id)arg1 withHostNameOverride:(id)arg2;
-- (id)initWithAuthSession:(id)arg1;
+- (id)initWithAccessTokenScope:(id)arg1 withHostNameOverride:(id)arg2;
+- (id)initWithAccessTokenScope:(id)arg1;
 
 @end
 

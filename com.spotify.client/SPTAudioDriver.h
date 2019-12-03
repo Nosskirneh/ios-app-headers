@@ -30,6 +30,7 @@
 - (void)audioDriverDidClose:(struct IOSAudioDriver *)arg1;
 - (void)audioDriverDidOpen:(struct IOSAudioDriver *)arg1;
 - (void)performWithEqualizerUnit:(CDUnknownBlockType)arg1;
+- (void)setEqualizerBypassedForNonMusicContent:(_Bool)arg1;
 - (void)setSuspended:(_Bool)arg1;
 - (void)removeObserver:(id)arg1;
 - (void)addObserver:(id)arg1;

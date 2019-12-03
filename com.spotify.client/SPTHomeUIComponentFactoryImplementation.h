@@ -9,23 +9,25 @@
 #import "SPTHomeUIComponentFactory-Protocol.h"
 
 @class NSString, SPTHomeUILogger;
-@protocol GLUETheme, SPTPlayer;
+@protocol GLUETheme, SPTHomeUITestManager, SPTPlayer;
 
 @interface SPTHomeUIComponentFactoryImplementation : NSObject <SPTHomeUIComponentFactory>
 {
     id <GLUETheme> _theme;
     id <SPTPlayer> _player;
     SPTHomeUILogger *_logger;
+    id <SPTHomeUITestManager> _testManager;
 }
 
+@property(readonly, nonatomic) id <SPTHomeUITestManager> testManager; // @synthesize testManager=_testManager;
 @property(readonly, nonatomic) SPTHomeUILogger *logger; // @synthesize logger=_logger;
-@property(readonly, nonatomic) __weak id <SPTPlayer> player; // @synthesize player=_player;
+@property(readonly, nonatomic) id <SPTPlayer> player; // @synthesize player=_player;
 @property(readonly, nonatomic) id <GLUETheme> theme; // @synthesize theme=_theme;
 - (void).cxx_destruct;
-- (id)createHabitsComponent;
-- (id)createQuickPlayCardComponent;
-- (id)createQuickPlayComponent;
-- (id)createSectionHeaderComponent;
+- (id)createHabitsSmallCardComponent;
+- (id)createHabitsLargeCardComponent;
+- (id)createHabitsContainerComponentWithType:(unsigned long long)arg1;
+- (id)createSectionHeaderComponentWithType:(unsigned long long)arg1;
 - (id)createRowLargeComponent;
 - (id)createPromoV2Component;
 - (id)createPromoComponent;
@@ -36,7 +38,7 @@
 - (void)unregisterHomeComponentsFromComponentRegistry:(id)arg1;
 - (void)registerHomeComponentsToComponentRegistry:(id)arg1;
 - (id)provideHomeHubComponents;
-- (id)initWithTheme:(id)arg1 player:(id)arg2 logger:(id)arg3;
+- (id)initWithTheme:(id)arg1 player:(id)arg2 logger:(id)arg3 testManager:(id)arg4;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

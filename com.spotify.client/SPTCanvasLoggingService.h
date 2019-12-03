@@ -15,9 +15,15 @@
 
 @property(retain, nonatomic) id <SPTLogCenter> logCenter; // @synthesize logCenter=_logCenter;
 - (void).cxx_destruct;
+- (void)logCanvasTapTooltipImpression;
+- (void)logCanvasSettingsTooltipImpression;
+- (void)logCanvasToggleTooltipImpression;
+- (void)logToggleArtworkWasTapped;
+- (void)logToggleVisualsWasTapped;
+- (void)logTapArtwork;
+- (void)logTapVisuals;
+- (void)logChangeSettingsWasTapped;
 - (void)logSettingsMenuCanvasEnabled:(_Bool)arg1 itemIndex:(int)arg2;
-- (void)logDidDisplayCanvasVideoForContentURI:(id)arg1;
-- (void)logDidDisplayCanvasCoverForContentURI:(id)arg1;
 - (id)initWithLogCenter:(id)arg1;
 
 @end

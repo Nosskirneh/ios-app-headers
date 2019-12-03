@@ -6,12 +6,15 @@
 
 #import <objc/NSObject.h>
 
-@class NSString, SPTPodcastUtteranceSurveyPresenter;
-@protocol SPTFeatureFlagFactory, SPTFeatureFlagSignal, SPTFeatureSettingsItemFactory, SPTLocalSettings;
+#import "SPTFeatureFlagSignalObserver-Protocol.h"
 
-@interface SPTPodcastUtteranceSurveyTestManager : NSObject
+@class NSString, SPTPodcastUtteranceSurveyPresenter;
+@protocol SPTFeatureFlagFactory, SPTFeatureFlagSignal, SPTFeatureSettingsItemFactory, SPTLocalSettings, SPTPodcastSurveyTestManager;
+
+@interface SPTPodcastUtteranceSurveyTestManager : NSObject <SPTFeatureFlagSignalObserver>
 {
     _Bool _podcastUtteranceSurveyABFlagEnabled;
+    id <SPTPodcastSurveyTestManager> _delegate;
     id <SPTFeatureFlagFactory> _featureFlagFactory;
     id <SPTLocalSettings> _localSettings;
     id <SPTFeatureSettingsItemFactory> _featureSettingsItemFactory;
@@ -25,8 +28,10 @@
 @property(readonly, nonatomic) id <SPTFeatureSettingsItemFactory> featureSettingsItemFactory; // @synthesize featureSettingsItemFactory=_featureSettingsItemFactory;
 @property(readonly, nonatomic) id <SPTLocalSettings> localSettings; // @synthesize localSettings=_localSettings;
 @property(readonly, nonatomic) id <SPTFeatureFlagFactory> featureFlagFactory; // @synthesize featureFlagFactory=_featureFlagFactory;
+@property(nonatomic) __weak id <SPTPodcastSurveyTestManager> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
 - (void)featureFlagSignal:(id)arg1 hasAssumedState:(long long)arg2;
+- (void)handleSurveyEnabledStateChanged:(_Bool)arg1;
 - (void)setupPodcastUtteranceSurveySignal;
 - (void)setupFeatureFlags;
 - (void)registerFeatureSettingsPage;

@@ -6,12 +6,13 @@
 
 #import <objc/NSObject.h>
 
+#import "SPTFeatureFlagSignalObserver-Protocol.h"
 #import "SPTProfileTestManager-Protocol.h"
 
 @class NSString;
 @protocol SPTFeatureFlagSignal;
 
-@interface SPTProfileTestManagerImplementation : NSObject <SPTProfileTestManager>
+@interface SPTProfileTestManagerImplementation : NSObject <SPTFeatureFlagSignalObserver, SPTProfileTestManager>
 {
     _Bool _likeActionEnabled;
     id <SPTFeatureFlagSignal> _freeTierEnabledSignal;

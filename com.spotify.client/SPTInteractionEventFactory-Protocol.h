@@ -18,16 +18,20 @@
 - (id <SPTInteractionEvent>)uiElementToggle;
 - (id <SPTInteractionEvent>)uiReveal;
 - (id <SPTInteractionEvent>)makePlaylistCollaborativeWithPlaylistToBeMadeCollaborative:(NSURL *)arg1;
-- (id <SPTInteractionEvent>)removeItemFromPlaylistWithItemRoRemoveFromPlaylist:(NSURL *)arg1;
+- (id <SPTInteractionEvent>)removeItemFromPlaylistWithItemToBeRemovedFromPlaylist:(NSURL *)arg1;
 - (id <SPTInteractionEvent>)makePlaylistPublicWithPlaylistToBeMadePublic:(NSURL *)arg1;
-- (id <SPTInteractionEvent>)unbanWithItemToUnban:(NSURL *)arg1;
+- (id <SPTInteractionEvent>)filter;
 - (id <SPTInteractionEvent>)openOsSettings;
 - (id <SPTInteractionEvent>)pauseWithItemToBePaused:(NSURL *)arg1;
 - (id <SPTInteractionEvent>)repeatOneEnable;
+- (id <SPTInteractionEvent>)removeStationWithStationToBeRemoved:(NSURL *)arg1;
 - (id <SPTInteractionEvent>)followWithItemToBeFollowed:(NSURL *)arg1;
+- (id <SPTInteractionEvent>)sort;
 - (id <SPTInteractionEvent>)repeatDisable;
 - (id <SPTInteractionEvent>)uiNavigateWithDestination:(NSURL *)arg1;
 - (id <SPTInteractionEvent>)likeWithItemToBeLiked:(NSURL *)arg1;
+- (id <SPTInteractionEvent>)removeDislikeWithItemNoLongerDisliked:(NSURL *)arg1;
+- (id <SPTInteractionEvent>)renamePlaylistWithPlaylistToBeRenamed:(NSURL *)arg1;
 - (id <SPTInteractionEvent>)makePlaylistSecretWithPlaylistToBeMadeSecret:(NSURL *)arg1;
 - (id <SPTInteractionEvent>)resumeWithItemToBeResumed:(NSURL *)arg1;
 - (id <SPTInteractionEvent>)shuffleEnable;
@@ -35,15 +39,21 @@
 - (id <SPTInteractionEvent>)noAction;
 - (id <SPTInteractionEvent>)uiHide;
 - (id <SPTInteractionEvent>)skipToNextWithItemToBeSkipped:(NSURL *)arg1;
-- (id <SPTInteractionEvent>)unlikeWithItemToBeUnliked:(NSURL *)arg1;
+- (id <SPTInteractionEvent>)addStationWithStationToBeAdded:(NSURL *)arg1;
+- (id <SPTInteractionEvent>)seekByTimeWithMsSeekedOffset:(long long)arg1;
 - (id <SPTInteractionEvent>)makePlaylistNonCollaborativeWithPlaylistToBeMadeNonCollaborative:(NSURL *)arg1;
 - (id <SPTInteractionEvent>)shufflePlayWithContextToBePlayed:(NSURL *)arg1;
 - (id <SPTInteractionEvent>)repeatEnable;
 - (id <SPTInteractionEvent>)seekToTimeWithMsToSeekTo:(long long)arg1;
 - (id <SPTInteractionEvent>)downloadWithItemToDownload:(NSURL *)arg1;
 - (id <SPTInteractionEvent>)textClear;
-- (id <SPTInteractionEvent>)banWithItemToBan:(NSURL *)arg1;
+- (id <SPTInteractionEvent>)logout;
+- (id <SPTInteractionEvent>)createPlaylist;
+- (id <SPTInteractionEvent>)removeLikeWithItemNoLongerLiked:(NSURL *)arg1;
 - (id <SPTInteractionEvent>)removeDownloadWithItemToRemoveFromDownloads:(NSURL *)arg1;
+- (id <SPTInteractionEvent>)refreshContent;
+- (id <SPTInteractionEvent>)setPlaylistDescriptionWithPlaylistToChangeDescriptionOn:(NSURL *)arg1;
+- (id <SPTInteractionEvent>)dislikeWithItemToBeDisliked:(NSURL *)arg1;
 - (id <SPTInteractionEvent>)playWithItemToBePlayed:(NSURL *)arg1;
 @end
 

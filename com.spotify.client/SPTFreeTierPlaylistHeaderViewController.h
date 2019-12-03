@@ -10,7 +10,7 @@
 #import "SPTFreeTierPlaylistHeader-Protocol.h"
 
 @class NSString, SPTFreeTierPlaylistHeaderView, UILayoutGuide, UIScrollView;
-@protocol SPTFreeTierPlaylistHeaderConfigurator, UILayoutSupport;
+@protocol SPTFreeTierPlaylistHeaderConfigurator;
 
 @interface SPTFreeTierPlaylistHeaderViewController : UIViewController <SPTEntityHeaderContentController, SPTFreeTierPlaylistHeader>
 {
@@ -19,11 +19,9 @@
     UIScrollView *_parentScrollView;
     id <SPTFreeTierPlaylistHeaderConfigurator> _configurator;
     UILayoutGuide *_parentLayoutGuide;
-    id <UILayoutSupport> _legacyLayoutSupport;
 }
 
 @property(nonatomic) _Bool headerHasAppeared; // @synthesize headerHasAppeared=_headerHasAppeared;
-@property(readonly, nonatomic) id <UILayoutSupport> legacyLayoutSupport; // @synthesize legacyLayoutSupport=_legacyLayoutSupport;
 @property(readonly, nonatomic) UILayoutGuide *parentLayoutGuide; // @synthesize parentLayoutGuide=_parentLayoutGuide;
 @property(readonly, nonatomic) id <SPTFreeTierPlaylistHeaderConfigurator> configurator; // @synthesize configurator=_configurator;
 @property(nonatomic) __weak UIScrollView *parentScrollView; // @synthesize parentScrollView=_parentScrollView;
@@ -42,7 +40,7 @@
 - (void)viewDidAppear:(_Bool)arg1;
 - (void)viewWillAppear:(_Bool)arg1;
 - (void)loadView;
-- (id)initWithConfigurator:(id)arg1 parentLayoutGuide:(id)arg2 legacyLayoutSupport:(id)arg3;
+- (id)initWithConfigurator:(id)arg1 parentLayoutGuide:(id)arg2;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

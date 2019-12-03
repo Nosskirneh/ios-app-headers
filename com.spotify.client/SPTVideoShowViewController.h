@@ -20,8 +20,8 @@
 #import "UITableViewDataSource-Protocol.h"
 #import "UITableViewDelegate-Protocol.h"
 
-@class GLUEButton, NSLayoutConstraint, NSString, NSURL, SPTEntityTableHeaderView, SPTFreeTierEntityNavigationDecorator, SPTInfoView, SPTPodcastEpisodeCellActionHandler, SPTPodcastHeaderDescriptionView, SPTPodcastToolbarHeaderView, SPTPodcastVideoPlayerView, SPTPodcastVideoViewControllerTransition, SPTProgressView, SPTShowContextMenuController, SPTTableView, SPTTheme, SPTVideoShowViewModel, UIBarButtonItem, UIImage, UIView;
-@protocol BMVideoSurfaceManager, GLUEImageLoader, GLUETheme, SPTAlertInterface, SPTCollectionLogger, SPTCollectionPlatformTestManager, SPTImageLoader, SPTLinkDispatcher, SPTNavigationTestManager, SPTPageContainer, SPTPodcastContextMenuProvider, SPTPodcastEpisodeCellConfigurator, SPTPodcastLogger, SPTPodcastTestManager, SPTShareFeature, SPTUIPresentationService;
+@class GLUEButton, NSLayoutConstraint, NSString, NSURL, SPTEntityTableHeaderView, SPTFreeTierEntityNavigationDecorator, SPTInfoView, SPTPodcastHeaderDescriptionView, SPTPodcastToolbarHeaderView, SPTPodcastVideoPlayerView, SPTPodcastVideoViewControllerTransition, SPTProgressView, SPTShowContextMenuController, SPTTableView, SPTTheme, SPTVideoShowViewModel, UIBarButtonItem, UIImage, UIView;
+@protocol BMVideoSurfaceManager, GLUEImageLoader, GLUETheme, SPTAlertInterface, SPTCollectionLogger, SPTCollectionPlatformTestManager, SPTImageLoader, SPTLinkDispatcher, SPTNavigationTestManager, SPTPageContainer, SPTPodcastContextMenuProvider, SPTPodcastEpisodeCellActionTarget, SPTPodcastEpisodeCellConfigurator, SPTPodcastLogger, SPTPodcastTestManager, SPTShareFeature, SPTUIPresentationService;
 
 @interface SPTVideoShowViewController : UIViewController <SPTNavigationControllerNavigationBarState, SPTVideoShowViewModelDelegate, SPTImageLoaderDelegate, SPTShowContextMenuControllerDelegate, SPTPodcastVideoViewControllerTransitionDelegate, SPTShareableContext, SPTPodcastHeaderDescriptionViewDelegate, SPTPodcastTestManagerObserver, UITableViewDelegate, UITableViewDataSource, SPTNavigationControllerTransitioning, SPTPageController, SPViewController>
 {
@@ -45,7 +45,7 @@
     id <SPTCollectionPlatformTestManager> _collectionTestManager;
     id <SPTPodcastTestManager> _podcastTestManager;
     id <SPTPodcastContextMenuProvider> _podcastContextMenuProvider;
-    SPTPodcastEpisodeCellActionHandler *_cellActionHandler;
+    id <SPTPodcastEpisodeCellActionTarget> _cellActionHandler;
     id <SPTAlertInterface> _alertInterface;
     id <SPTNavigationTestManager> _navigationTestManager;
     SPTEntityTableHeaderView *_headerView;
@@ -99,7 +99,7 @@
 @property(retain, nonatomic) SPTEntityTableHeaderView *headerView; // @synthesize headerView=_headerView;
 @property(retain, nonatomic) id <SPTNavigationTestManager> navigationTestManager; // @synthesize navigationTestManager=_navigationTestManager;
 @property(retain, nonatomic) id <SPTAlertInterface> alertInterface; // @synthesize alertInterface=_alertInterface;
-@property(retain, nonatomic) SPTPodcastEpisodeCellActionHandler *cellActionHandler; // @synthesize cellActionHandler=_cellActionHandler;
+@property(retain, nonatomic) id <SPTPodcastEpisodeCellActionTarget> cellActionHandler; // @synthesize cellActionHandler=_cellActionHandler;
 @property(retain, nonatomic) id <SPTPodcastContextMenuProvider> podcastContextMenuProvider; // @synthesize podcastContextMenuProvider=_podcastContextMenuProvider;
 @property(retain, nonatomic) id <SPTPodcastTestManager> podcastTestManager; // @synthesize podcastTestManager=_podcastTestManager;
 @property(nonatomic) __weak id <SPTCollectionPlatformTestManager> collectionTestManager; // @synthesize collectionTestManager=_collectionTestManager;

@@ -8,9 +8,9 @@
 @protocol HUBComponent;
 
 @protocol HUBComponentFallbackHandler
-@property(readonly, copy, nonatomic) NSString *defaultComponentCategory;
-@property(readonly, copy, nonatomic) NSString *defaultComponentName;
-@property(readonly, copy, nonatomic) NSString *defaultComponentNamespace;
 - (id <HUBComponent>)fallbackComponentForCategory:(NSString *)arg1;
+@property(nonatomic, readonly) NSString *defaultComponentCategory;
+@property(nonatomic, readonly) NSString *defaultComponentName;
+@property(nonatomic, readonly) NSString *defaultComponentNamespace;
 @end
 

@@ -8,7 +8,7 @@
 
 @interface _TtC21EntityAllSongsFeature26AllSongsAudioPreviewBinder : _TtCs12_SwiftObject
 {
-    // Error parsing type: , name: view.storage
+    // Error parsing type: , name: $__lazy_storage_$_view
     // Error parsing type: , name: previewView
     // Error parsing type: , name: audioPreviewPlayer
     // Error parsing type: , name: audioPreviewModel

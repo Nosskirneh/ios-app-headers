@@ -11,7 +11,7 @@
 #import "SPTService-Protocol.h"
 #import "UIPopoverPresentationControllerDelegate-Protocol.h"
 
-@class GaiaLocalAudioSessionController, GaiaMessageBarController, NSString, SPNavigationController, SPTAllocationContext, SPTCastManager, SPTGaiaAudioAPKeepAliveHandler, SPTGaiaConnectCosmosResolver, SPTGaiaConnectPublicStateCache, SPTGaiaConnectStateObservingManager, SPTGaiaDeviceAppearanceMapping, SPTGaiaDevicePickerAppearanceManager, SPTGaiaDevicePickerDeviceSpecificConfigurationManager, SPTGaiaDevicePickerDevicesProvider, SPTGaiaDevicePickerViewController, SPTGaiaDevicePickerViewModel, SPTGaiaDevicesAvailableViewFactory, SPTGaiaEducationDetailModelManager, SPTGaiaFeatureFlagsManager, SPTGaiaFeatureSettingsManager, SPTGaiaHomeDeviceLocalNotificationManager, SPTGaiaHomeDeviceLogger, SPTGaiaHomeDeviceManager, SPTGaiaHomeDeviceTooltipConnectionTracker, SPTGaiaHomeDeviceTooltipManager, SPTGaiaHomeDeviceTransitionManager, SPTGaiaIconProviderImplementation, SPTGaiaInstrumentationRemotePlayingStateBinder, SPTGaiaLocalDevicePermissions, SPTGaiaLockScreenFeatureManager, SPTGaiaLogger, SPTGaiaMPMusicPlayerControllerFactory, SPTGaiaOnboardingManagerImplementation, SPTGaiaPlaybackGrabberController, SPTGaiaPopupController, SPTGaiaSettingsManager, SPTGaiaSilentAudioPlayerProviderDefaultImplementation, SPTGaiaSocialListeningIntegrationManager, SPTGaiaVolumeButtonController;
+@class GaiaLocalAudioSessionController, GaiaMessageBarController, NSString, SPNavigationController, SPTAllocationContext, SPTCastManager, SPTGaiaAudioAPKeepAliveHandler, SPTGaiaConnectCosmosResolver, SPTGaiaConnectPublicStateCache, SPTGaiaConnectStateObservingManager, SPTGaiaDeviceAppearanceMapping, SPTGaiaDevicePickerAppearanceManager, SPTGaiaDevicePickerDeviceSpecificConfigurationManager, SPTGaiaDevicePickerDevicesProvider, SPTGaiaDevicePickerViewController, SPTGaiaDevicePickerViewModel, SPTGaiaDevicesAvailableViewFactory, SPTGaiaEducationDetailModelManager, SPTGaiaFeatureFlagsManager, SPTGaiaFeatureSettingsManager, SPTGaiaHomeDeviceLocalNotificationManager, SPTGaiaHomeDeviceLogger, SPTGaiaHomeDeviceManager, SPTGaiaHomeDeviceTooltipConnectionTracker, SPTGaiaHomeDeviceTooltipManager, SPTGaiaHomeDeviceTransitionManager, SPTGaiaIconProviderImplementation, SPTGaiaInstrumentationRemotePlayingStateBinder, SPTGaiaLocalDevicePermissions, SPTGaiaLockScreenFeatureManager, SPTGaiaLogger, SPTGaiaMPMusicPlayerControllerFactory, SPTGaiaOnboardingManagerImplementation, SPTGaiaPlaybackGrabberController, SPTGaiaPopupController, SPTGaiaSettingsManager, SPTGaiaSignpostInstrumentation, SPTGaiaSilentAudioPlayerProviderDefaultImplementation, SPTGaiaSocialListeningIntegrationManager, SPTGaiaVolumeButtonController;
 @protocol CosmosFeature, SPTAbbaService, SPTAccountService, SPTContainerService, SPTContainerUIService, SPTCoreService, SPTCrashReporterService, SPTFreeTierTooltipService, SPTGLUEService, SPTGaiaConnectAPI, SPTGaiaConnectManager, SPTGaiaDevicePickerPresenter, SPTGaiaDevicePickerViewInjector, SPTGaiaVolumeControllerInterface, SPTGaiaWirelessRoutesAPI, SPTInstrumentationService, SPTNetworkService, SPTPlayer, SPTPlayerFeature, SPTPushNotificationSessionService, SPTSessionService, SPTSettingsFeature, SPTSocialListeningService, SPTUIPresentationService, SPTURIDispatchService;
 
 @interface GaiaFeatureImplementation : NSObject <UIPopoverPresentationControllerDelegate, SPTService, GaiaFeature, SPTGaiaDevicePickerControllerProvider>
@@ -64,6 +64,7 @@
     SPTGaiaEducationDetailModelManager *_educationModelManager;
     SPTGaiaDevicesAvailableViewFactory *_devicesAvailableViewFactory;
     SPTGaiaInstrumentationRemotePlayingStateBinder *_instrumentationRemotePlayingStateBinder;
+    SPTGaiaSignpostInstrumentation *_signpostInstrumentation;
     SPTGaiaHomeDeviceLocalNotificationManager *_homeDeviceLocalNotificationManager;
     SPTGaiaSilentAudioPlayerProviderDefaultImplementation *_silentAudioPlayerProvider;
     SPTGaiaDevicePickerAppearanceManager *_appearanceManager;
@@ -95,6 +96,7 @@
 @property(retain, nonatomic) SPTGaiaDevicePickerAppearanceManager *appearanceManager; // @synthesize appearanceManager=_appearanceManager;
 @property(retain, nonatomic) SPTGaiaSilentAudioPlayerProviderDefaultImplementation *silentAudioPlayerProvider; // @synthesize silentAudioPlayerProvider=_silentAudioPlayerProvider;
 @property(retain, nonatomic) SPTGaiaHomeDeviceLocalNotificationManager *homeDeviceLocalNotificationManager; // @synthesize homeDeviceLocalNotificationManager=_homeDeviceLocalNotificationManager;
+@property(readonly, nonatomic) SPTGaiaSignpostInstrumentation *signpostInstrumentation; // @synthesize signpostInstrumentation=_signpostInstrumentation;
 @property(retain, nonatomic) SPTGaiaInstrumentationRemotePlayingStateBinder *instrumentationRemotePlayingStateBinder; // @synthesize instrumentationRemotePlayingStateBinder=_instrumentationRemotePlayingStateBinder;
 @property(retain, nonatomic) SPTGaiaDevicesAvailableViewFactory *devicesAvailableViewFactory; // @synthesize devicesAvailableViewFactory=_devicesAvailableViewFactory;
 @property(retain, nonatomic) SPTGaiaEducationDetailModelManager *educationModelManager; // @synthesize educationModelManager=_educationModelManager;
@@ -145,10 +147,10 @@
 @property(nonatomic) __weak id <SPTAccountService> accountService; // @synthesize accountService=_accountService;
 - (void).cxx_destruct;
 - (_Bool)popoverPresentationControllerShouldDismissPopover:(id)arg1;
-- (void)silentAudioPlayingStateChangedTo:(_Bool)arg1;
 - (void)registerSettings;
 - (id)provideLocalSettings;
 - (void)registerFeatureSettingsPage;
+- (id)provideWirelessRoutesAPI;
 - (id)provideVolumeRecfactorFlags;
 - (id)provideIconProvider;
 - (id)providePopupPresenter;
@@ -163,6 +165,7 @@
 - (void)applicationWillChangeStatusBarOrientationNotification:(id)arg1;
 - (void)setupConnectManager;
 - (void)setupOnboardingManager;
+- (void)setupSignpostInstrumentation;
 - (void)setupInstrumentationBinder;
 - (void)setupAudioAPKeepAliveHandler;
 - (void)setupHomeDeviceNotificationManager;

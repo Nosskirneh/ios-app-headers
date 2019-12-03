@@ -13,7 +13,7 @@
     // Error parsing type: , name: addToPlaylistView
     // Error parsing type: , name: logger
     // Error parsing type: , name: tableBinder
-    // Error parsing type: , name: infoViewBinder.storage
+    // Error parsing type: , name: $__lazy_storage_$_infoViewBinder
 }
 
 @end

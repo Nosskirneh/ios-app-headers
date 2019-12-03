@@ -10,7 +10,7 @@
 #import "SPTInAppMessageQAToolNoteViewDelegate-Protocol.h"
 #import "SPTInAppMessageQAToolViewModelObserver-Protocol.h"
 
-@class NSMutableArray, NSString, SPTInAppMessageActionFactory, SPTInAppMessageNoteMessageViewModel, SPTInAppMessageNotePresentationManager, SPTInAppMessageQAToolNoteMessageParser, SPTInAppMessageQAToolNoteMessageViewController;
+@class NSDictionary, NSMutableArray, NSMutableDictionary, NSString, SPTInAppMessageActionFactory, SPTInAppMessageNoteMessageViewModel, SPTInAppMessageNotePresentationManager, SPTInAppMessageQAToolNoteMessageParser, SPTInAppMessageQAToolNoteMessageViewController;
 @protocol SPTInAppMessageQAToolFormatMessageControllerDelegate;
 
 @interface SPTInAppMessageQAToolNoteMessageController : NSObject <SPTInAppMessageNoteMessageWebViewContentDelegate, SPTInAppMessageQAToolNoteViewDelegate, SPTInAppMessageQAToolViewModelObserver>
@@ -22,8 +22,14 @@
     SPTInAppMessageNoteMessageViewModel *_noteMessageViewModel;
     SPTInAppMessageNotePresentationManager *_notePresentationManager;
     SPTInAppMessageQAToolNoteMessageViewController *_noteMessageViewController;
+    NSMutableDictionary *_campaignLocales;
+    NSString *_messageLocale;
+    NSDictionary *_languagesAndCountries;
 }
 
+@property(copy, nonatomic) NSDictionary *languagesAndCountries; // @synthesize languagesAndCountries=_languagesAndCountries;
+@property(copy, nonatomic) NSString *messageLocale; // @synthesize messageLocale=_messageLocale;
+@property(retain, nonatomic) NSMutableDictionary *campaignLocales; // @synthesize campaignLocales=_campaignLocales;
 @property(retain, nonatomic) SPTInAppMessageQAToolNoteMessageViewController *noteMessageViewController; // @synthesize noteMessageViewController=_noteMessageViewController;
 @property(retain, nonatomic) SPTInAppMessageNotePresentationManager *notePresentationManager; // @synthesize notePresentationManager=_notePresentationManager;
 @property(retain, nonatomic) SPTInAppMessageNoteMessageViewModel *noteMessageViewModel; // @synthesize noteMessageViewModel=_noteMessageViewModel;
@@ -41,6 +47,7 @@
 - (void)presentNote;
 - (void)presentFirstMessageInQueue;
 - (void)parseNoteData:(id)arg1;
+- (void)qaToolViewModel:(id)arg1 didFetchLanguagesAndCountries:(id)arg2;
 - (void)qaToolViewModel:(id)arg1 didFetchNoteCreativesData:(id)arg2;
 - (id)initWithNoteMessageParser:(id)arg1 actionFactory:(id)arg2 notePresentationManager:(id)arg3;
 

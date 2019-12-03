@@ -60,10 +60,11 @@
 - (unsigned long long)preferredNavigationBarState;
 - (void)externalLinkTapped:(id)arg1;
 - (void)externalSocialLinkTappedForType:(unsigned long long)arg1;
-- (void)artistAboutViewModel:(id)arg1 isOffline:(_Bool)arg2;
-- (void)artistAboutViewModel:(id)arg1 isLoading:(_Bool)arg2;
-- (void)artistAboutViewModel:(id)arg1 failedWithError:(id)arg2;
-- (void)artistAboutViewModel:(id)arg1 loadedDataWithError:(id)arg2;
+- (void)isOfflineWithNoData;
+- (void)didFailToLoadArtistAboutWithError:(id)arg1;
+- (void)configureViewsForArtistAbout:(id)arg1;
+- (void)didLoadArtistAbout:(id)arg1;
+- (void)isLoadingArtistAbout;
 - (void)showInfoViewForError:(id)arg1;
 - (void)showOfflineView;
 - (void)showErrorView;
@@ -74,7 +75,8 @@
 - (void)viewWillDisappear:(_Bool)arg1;
 - (void)viewWillAppear:(_Bool)arg1;
 - (void)addLayoutConstraints;
-- (void)setupView;
+- (void)configureContextMenuForEnabledState:(_Bool)arg1;
+- (void)setupViews;
 - (void)viewDidLoad;
 - (void)loadView;
 - (void)dealloc;

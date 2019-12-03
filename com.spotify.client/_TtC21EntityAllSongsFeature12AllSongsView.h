@@ -12,8 +12,8 @@
     // Error parsing type: , name: setTitle
     // Error parsing type: , name: title
     // Error parsing type: , name: backButton
-    // Error parsing type: , name: tableView.storage
-    // Error parsing type: , name: infoView.storage
+    // Error parsing type: , name: $__lazy_storage_$_tableView
+    // Error parsing type: , name: $__lazy_storage_$_infoView
 }
 
 - (void).cxx_destruct;

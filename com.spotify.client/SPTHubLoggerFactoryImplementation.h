@@ -9,16 +9,16 @@
 #import "SPTHubLoggerFactory-Protocol.h"
 
 @class NSString;
-@protocol SPTLogCenter, SPTPerformanceMetricsViewLoggerFactory, SPTUserBehaviourInstrumentationLoggerFactory;
+@protocol SPTLogCenter, SPTPerformanceMetricsViewLoggerFactory, SPTUserBehaviourInstrumentationLogger;
 
 @interface SPTHubLoggerFactoryImplementation : NSObject <SPTHubLoggerFactory>
 {
     id <SPTLogCenter> _logCenter;
     id <SPTPerformanceMetricsViewLoggerFactory> _viewLoggerFactory;
-    id <SPTUserBehaviourInstrumentationLoggerFactory> _ubiLoggerFactory;
+    id <SPTUserBehaviourInstrumentationLogger> _ubiLogger;
 }
 
-@property(retain, nonatomic) id <SPTUserBehaviourInstrumentationLoggerFactory> ubiLoggerFactory; // @synthesize ubiLoggerFactory=_ubiLoggerFactory;
+@property(retain, nonatomic) id <SPTUserBehaviourInstrumentationLogger> ubiLogger; // @synthesize ubiLogger=_ubiLogger;
 @property(readonly, nonatomic) id <SPTPerformanceMetricsViewLoggerFactory> viewLoggerFactory; // @synthesize viewLoggerFactory=_viewLoggerFactory;
 @property(readonly, nonatomic) id <SPTLogCenter> logCenter; // @synthesize logCenter=_logCenter;
 - (void).cxx_destruct;
@@ -26,7 +26,7 @@
 - (id)createInteractionLoggerWithFeatureIdentifier:(id)arg1 pageURI:(id)arg2;
 - (id)createImpressionLoggerWithFeatureIdentifier:(id)arg1 pageURI:(id)arg2 componentModelURIResolver:(id)arg3;
 - (id)createLoggerWithFeatureIdentifier:(id)arg1 pageIdentifier:(id)arg2 pageURI:(id)arg3 componentModelURIResolver:(id)arg4;
-- (id)initWithLogCenter:(id)arg1 viewLoggerFactory:(id)arg2 ubiLoggerFactory:(id)arg3;
+- (id)initWithLogCenter:(id)arg1 viewLoggerFactory:(id)arg2 ubiLogger:(id)arg3;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

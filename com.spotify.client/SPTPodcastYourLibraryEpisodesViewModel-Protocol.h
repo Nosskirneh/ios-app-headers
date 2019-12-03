@@ -13,8 +13,6 @@
 @property(readonly, nonatomic, getter=isEmpty) _Bool empty;
 @property(readonly, nonatomic, getter=isPlayingPodcastEpsiode) _Bool playingPodcastEpisode;
 @property(readonly, nonatomic) double currentEpisodeProgress;
-@property(readonly, nonatomic) _Bool isLoaded;
-@property(readonly, nonatomic) _Bool isLoading;
 @property(readonly, nonatomic) NSURL *URL;
 @property(nonatomic) __weak id <SPTPodcastYourLibraryEpisodesViewModelDelegate> delegate;
 - (_Bool)showSeparatorForSection:(long long)arg1;

@@ -9,7 +9,7 @@
 #import "SPTServiceManagerDelegate-Protocol.h"
 
 @class NSMutableDictionary, NSString, SPTStartupTracer;
-@protocol OS_dispatch_queue, SPTServiceInstanceInteractor, SPTServiceList, SPTServiceOrchestratorDelegate;
+@protocol OS_dispatch_queue, OS_os_log, SPTServiceInstanceInteractor, SPTServiceList, SPTServiceOrchestratorDelegate;
 
 @interface SPTServiceOrchestrator : NSObject <SPTServiceManagerDelegate>
 {
@@ -19,8 +19,10 @@
     NSObject<OS_dispatch_queue> *_lifecycleHooksQueue;
     NSMutableDictionary *_serviceManagers;
     SPTStartupTracer *_startupTracer;
+    NSObject<OS_os_log> *_instrumentationLog;
 }
 
+@property(readonly, nonatomic) NSObject<OS_os_log> *instrumentationLog; // @synthesize instrumentationLog=_instrumentationLog;
 @property(readonly, nonatomic) SPTStartupTracer *startupTracer; // @synthesize startupTracer=_startupTracer;
 @property(retain, nonatomic) NSMutableDictionary *serviceManagers; // @synthesize serviceManagers=_serviceManagers;
 @property(readonly, nonatomic) NSObject<OS_dispatch_queue> *lifecycleHooksQueue; // @synthesize lifecycleHooksQueue=_lifecycleHooksQueue;
@@ -44,7 +46,7 @@
 - (void)unloadServicesForScope:(id)arg1;
 - (void)loadServicesForScope:(id)arg1;
 - (id)serviceManagerForScope:(id)arg1;
-- (id)initWithServiceList:(id)arg1 instanceInteractor:(id)arg2 startupTracer:(id)arg3;
+- (id)initWithServiceList:(id)arg1 instanceInteractor:(id)arg2 startupTracer:(id)arg3 instrumentationLog:(id)arg4;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

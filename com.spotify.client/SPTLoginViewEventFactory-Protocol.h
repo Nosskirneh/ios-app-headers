@@ -6,9 +6,10 @@
 
 #import "NSObject-Protocol.h"
 
-@protocol SPTLoginView_LoginButtonEventFactory;
+@protocol SPTEventFactoryModelMapping, SPTLoginView_LoginButtonEventFactory;
 
 @protocol SPTLoginViewEventFactory <NSObject>
 - (id <SPTLoginView_LoginButtonEventFactory>)loginButtonFactory;
+- (id <SPTEventFactoryModelMapping>)_location;
 @end
 

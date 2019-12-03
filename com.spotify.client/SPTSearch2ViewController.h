@@ -16,7 +16,7 @@
 #import "SPTSearchPlatformColorInterpolatorDelegate-Protocol.h"
 
 @class GLUEGradientView, NSMutableDictionary, NSString, NSURL, SPTProgressView, SPTSearch2Configuration, SPTSearchHubViewController, SPTSearchPlatformColorInterpolator;
-@protocol GLUETheme, SPTExplicitContentHubCommandHandlerFactory, SPTImageLoader, SPTPageContainer, SPTSearch2ViewModelProvider, SPTSearchLoadingLogger, SPTShareDragDelegateFactory;
+@protocol GLUETheme, SPTExplicitContentAccessManager, SPTImageLoader, SPTPageContainer, SPTSearch2ViewModelProvider, SPTSearchLoadingLogger, SPTShareDragDelegateFactory;
 
 @interface SPTSearch2ViewController : UIViewController <SPContentInsetViewController, SPTSearch2ViewModelProviderDelegate, HUBViewContentOffsetObserver, SPTImageLoaderDelegate, SPTHubPlayTrackListCommandHandlerDelegate, SPTSearchPlatformColorInterpolatorDelegate, SPTPageController, SPTSearch2ViewControllerProtocol>
 {
@@ -25,14 +25,13 @@
     SPTSearchHubViewController *_hubViewController;
     SPTProgressView *_progressView;
     GLUEGradientView *_gradientView;
-    NSString *_autoCompleteRequestID;
     id <SPTSearch2ViewModelProvider> _viewModelProvider;
     id <SPTImageLoader> _imageLoader;
     id <GLUETheme> _theme;
     SPTSearch2Configuration *_configuration;
     SPTSearchPlatformColorInterpolator *_colorInterpolator;
-    id <SPTExplicitContentHubCommandHandlerFactory> _explicitContentHubCommandHandlerFactory;
     id <SPTSearchLoadingLogger> _loadingLogger;
+    id <SPTExplicitContentAccessManager> _explicitContentAccessManager;
     NSMutableDictionary *_dragDelegateHolders;
     id <SPTShareDragDelegateFactory> _shareDragDelegateFactory;
     struct UIEdgeInsets _insets;
@@ -40,14 +39,13 @@
 
 @property(readonly, nonatomic) id <SPTShareDragDelegateFactory> shareDragDelegateFactory; // @synthesize shareDragDelegateFactory=_shareDragDelegateFactory;
 @property(readonly, nonatomic) NSMutableDictionary *dragDelegateHolders; // @synthesize dragDelegateHolders=_dragDelegateHolders;
+@property(readonly, nonatomic) id <SPTExplicitContentAccessManager> explicitContentAccessManager; // @synthesize explicitContentAccessManager=_explicitContentAccessManager;
 @property(readonly, nonatomic) id <SPTSearchLoadingLogger> loadingLogger; // @synthesize loadingLogger=_loadingLogger;
-@property(readonly, nonatomic) id <SPTExplicitContentHubCommandHandlerFactory> explicitContentHubCommandHandlerFactory; // @synthesize explicitContentHubCommandHandlerFactory=_explicitContentHubCommandHandlerFactory;
 @property(readonly, nonatomic) SPTSearchPlatformColorInterpolator *colorInterpolator; // @synthesize colorInterpolator=_colorInterpolator;
 @property(readonly, copy, nonatomic) SPTSearch2Configuration *configuration; // @synthesize configuration=_configuration;
 @property(readonly, nonatomic) id <GLUETheme> theme; // @synthesize theme=_theme;
 @property(readonly, nonatomic) id <SPTImageLoader> imageLoader; // @synthesize imageLoader=_imageLoader;
 @property(readonly, nonatomic) id <SPTSearch2ViewModelProvider> viewModelProvider; // @synthesize viewModelProvider=_viewModelProvider;
-@property(copy, nonatomic) NSString *autoCompleteRequestID; // @synthesize autoCompleteRequestID=_autoCompleteRequestID;
 @property(readonly, nonatomic) SPTSearchHubViewController *hubViewController; // @synthesize hubViewController=_hubViewController;
 @property(nonatomic) _Bool automaticallyAdjustsInsets; // @synthesize automaticallyAdjustsInsets=_automaticallyAdjustsInsets;
 @property(nonatomic) struct UIEdgeInsets insets; // @synthesize insets=_insets;

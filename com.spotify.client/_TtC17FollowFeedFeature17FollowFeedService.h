@@ -11,20 +11,24 @@
 @interface _TtC17FollowFeedFeature17FollowFeedService : NSObject <SPTFollowFeedService>
 {
     // Error parsing type: , name: containerService
-    // Error parsing type: , name: featureFlaggingService
     // Error parsing type: , name: uriDispatchService
     // Error parsing type: , name: hubsService
     // Error parsing type: , name: glueService
-    // Error parsing type: , name: featureFlagSignal
+    // Error parsing type: , name: networkService
+    // Error parsing type: , name: followService
+    // Error parsing type: , name: playerService
+    // Error parsing type: , name: remoteConfigurationService
+    // Error parsing type: , name: pageRegistrationToken
+    // Error parsing type: , name: remoteConfigurationResolver
 }
 
 + (id)serviceIdentifier;
 - (void).cxx_destruct;
 - (id)init;
 - (id)provideFollowFeedViewController;
-- (void)unload;
 - (void)load;
 - (void)configureWithServices:(id)arg1;
+@property(nonatomic, readonly) _Bool followFeedEnabled;
 
 @end
 

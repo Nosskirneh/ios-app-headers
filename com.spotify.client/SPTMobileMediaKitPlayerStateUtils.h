@@ -20,6 +20,8 @@
 + (_Bool)isSameTrack:(id)arg1 old:(id)arg2;
 + (_Bool)hasTrackInfo:(id)arg1;
 + (id)playerEventForPlayerState:(id)arg1 eventName:(unsigned long long)arg2;
++ (_Bool)isSameTrackURIForPlayerState:(id)arg1 oldPlayerState:(id)arg2;
++ (_Bool)isSameContextURIForPlayerState:(id)arg1 oldPlayerState:(id)arg2;
 + (id)playerEventForNewPlayerState:(id)arg1 oldPlayerState:(id)arg2;
 + (id)playerEventForRemotePlayback;
 + (id)playerEventForCurrentPlayerState:(id)arg1;

@@ -9,7 +9,7 @@
 #import "GLUEThemeObserver-Protocol.h"
 #import "SPTImageLoaderDelegate-Protocol.h"
 
-@class NSCache, NSString, SPTConcertsArtist, SPTConcertsDateFormatter, SPTConcertsEntity, UIColor, UIImage;
+@class NSDateFormatter, NSString, SPTConcertsArtist, SPTConcertsArtistNameFormatter, SPTConcertsDateFormatter, SPTConcertsEntity, UIColor, UIImage;
 @protocol GLUETheme, SPTConcertsEntityHeaderViewModelDelegate, SPTContainerUIService, SPTImageLoader, SPTImageLoaderRequest, SPTLinkDispatcher;
 
 @interface SPTConcertsEntityHeaderViewModel : NSObject <GLUEThemeObserver, SPTImageLoaderDelegate>
@@ -17,22 +17,26 @@
     id <SPTConcertsEntityHeaderViewModelDelegate> _delegate;
     id <GLUETheme> _theme;
     UIImage *_primaryImage;
+    SPTConcertsEntity *_entity;
     id <SPTLinkDispatcher> _linkDispatcher;
     SPTConcertsDateFormatter *_dateFormatterProvider;
-    NSCache *_valuesCache;
-    SPTConcertsEntity *_entity;
     id <SPTImageLoader> _imageLoader;
     id <SPTImageLoaderRequest> _primaryImageLoadRequest;
     id <SPTContainerUIService> _containerUIService;
+    SPTConcertsArtistNameFormatter *_nameFormatter;
+    NSDateFormatter *_timeTextDateFormatter;
+    NSDateFormatter *_dateTextDateFormatter;
 }
 
-@property(retain, nonatomic) id <SPTContainerUIService> containerUIService; // @synthesize containerUIService=_containerUIService;
+@property(retain, nonatomic) NSDateFormatter *dateTextDateFormatter; // @synthesize dateTextDateFormatter=_dateTextDateFormatter;
+@property(retain, nonatomic) NSDateFormatter *timeTextDateFormatter; // @synthesize timeTextDateFormatter=_timeTextDateFormatter;
+@property(retain, nonatomic) SPTConcertsArtistNameFormatter *nameFormatter; // @synthesize nameFormatter=_nameFormatter;
+@property(nonatomic) __weak id <SPTContainerUIService> containerUIService; // @synthesize containerUIService=_containerUIService;
 @property(retain, nonatomic) id <SPTImageLoaderRequest> primaryImageLoadRequest; // @synthesize primaryImageLoadRequest=_primaryImageLoadRequest;
 @property(readonly, nonatomic) id <SPTImageLoader> imageLoader; // @synthesize imageLoader=_imageLoader;
-@property(retain, nonatomic) SPTConcertsEntity *entity; // @synthesize entity=_entity;
-@property(readonly, nonatomic) NSCache *valuesCache; // @synthesize valuesCache=_valuesCache;
 @property(readonly, nonatomic) SPTConcertsDateFormatter *dateFormatterProvider; // @synthesize dateFormatterProvider=_dateFormatterProvider;
 @property(readonly, nonatomic) id <SPTLinkDispatcher> linkDispatcher; // @synthesize linkDispatcher=_linkDispatcher;
+@property(retain, nonatomic) SPTConcertsEntity *entity; // @synthesize entity=_entity;
 @property(retain, nonatomic) UIImage *primaryImage; // @synthesize primaryImage=_primaryImage;
 @property(readonly, nonatomic) id <GLUETheme> theme; // @synthesize theme=_theme;
 @property(nonatomic) __weak id <SPTConcertsEntityHeaderViewModelDelegate> delegate; // @synthesize delegate=_delegate;
@@ -51,11 +55,7 @@
 @property(readonly, nonatomic, getter=isFindTicketsButtonEnabled) _Bool findTicketsButtonEnabled;
 @property(readonly, copy, nonatomic) NSString *ticketDetailsText;
 @property(readonly, nonatomic) _Bool shouldShowTicketDetails;
-- (void)invalidateCachedValue;
-- (id)valueForCacheKey:(SEL)arg1 creator:(CDUnknownBlockType)arg2;
-- (id)timeTextDateFormatter;
 @property(readonly, copy, nonatomic) NSString *timeText;
-- (id)dateTextDateFormatter;
 @property(readonly, copy, nonatomic) NSString *dateText;
 @property(readonly, copy, nonatomic) NSString *venueText;
 @property(readonly, copy, nonatomic) NSString *titleText;

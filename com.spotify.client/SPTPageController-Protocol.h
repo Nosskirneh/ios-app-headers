@@ -10,10 +10,15 @@
 @protocol SPTPageContainer;
 
 @protocol SPTPageController <NSObject>
-@property(readonly, nonatomic, getter=spt_pageURI) NSURL *pageURI;
-@property(readonly, nonatomic, getter=spt_pageIdentifier) NSString *pageIdentifier;
+- (NSURL *)spt_pageURI;
+- (NSString *)spt_pageIdentifier;
 
 @optional
-@property(readonly, nonatomic, getter=spt_pageContainer) id <SPTPageContainer> pageContainer;
+- (id <SPTPageContainer>)spt_pageContainer;
+
+// Remaining properties
+@property(nonatomic, readonly) id <SPTPageContainer> pageContainer;
+@property(nonatomic, readonly) NSString *pageIdentifier;
+@property(nonatomic, readonly) NSURL *pageURI;
 @end
 

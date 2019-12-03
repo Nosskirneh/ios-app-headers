@@ -6,9 +6,6 @@
 
 #import "SPTService-Protocol.h"
 
-@protocol SPTMadeForYouTestManager;
-
 @protocol SPTMadeForYouService <SPTService>
-- (id <SPTMadeForYouTestManager>)provideTestManager;
 @end
 

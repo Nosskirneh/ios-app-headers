@@ -9,7 +9,7 @@
 #import "SPTConcertsService-Protocol.h"
 
 @class NSSet, NSString, SPTAllocationContext, SPTConcertsDateFormatter, SPTConcertsLocalDataManager;
-@protocol SPContextMenuFeature, SPTContainerService, SPTContainerUIService, SPTCoreService, SPTGLUEService, SPTHubFrameworkService, SPTLocalSettings, SPTNavigationFeature, SPTNetworkService, SPTPerformanceMetricsService, SPTSessionService, SPTSettingsFeature, SPTURIDispatchService;
+@protocol SPContextMenuFeature, SPTContainerService, SPTContainerUIService, SPTCoreService, SPTGLUEService, SPTHubFrameworkService, SPTLocalSettings, SPTNavigationFeature, SPTNetworkService, SPTNowPlayingPlatformService, SPTNowPlayingScrollDataSource, SPTPerformanceMetricsService, SPTPlayer, SPTPlayerFeature, SPTRemoteConfigurationResolver, SPTRemoteConfigurationService, SPTSessionService, SPTSettingsFeature, SPTURIDispatchService;
 
 @interface SPTConcertsServiceImplementation : NSObject <SPTConcertsService>
 {
@@ -26,15 +26,27 @@
     id <SPTContainerUIService> _containerUIService;
     id <SPTPerformanceMetricsService> _performanceMetricsService;
     id <SPTURIDispatchService> _uriDispatchService;
+    id <SPTRemoteConfigurationService> _remoteConfigurationService;
+    id <SPTNowPlayingPlatformService> _nowPlayingPlatformService;
+    id <SPTPlayerFeature> _playerFeature;
     id <SPTLocalSettings> _localSettings;
     SPTConcertsLocalDataManager *_localDataManager;
+    id <SPTRemoteConfigurationResolver> _remoteConfigurationResolver;
+    id <SPTPlayer> _player;
     NSSet *_pageRegistrations;
+    id <SPTNowPlayingScrollDataSource> _dataSource;
 }
 
 + (id)serviceIdentifier;
+@property(retain, nonatomic) id <SPTNowPlayingScrollDataSource> dataSource; // @synthesize dataSource=_dataSource;
 @property(copy, nonatomic) NSSet *pageRegistrations; // @synthesize pageRegistrations=_pageRegistrations;
+@property(retain, nonatomic) id <SPTPlayer> player; // @synthesize player=_player;
+@property(retain, nonatomic) id <SPTRemoteConfigurationResolver> remoteConfigurationResolver; // @synthesize remoteConfigurationResolver=_remoteConfigurationResolver;
 @property(retain, nonatomic) SPTConcertsLocalDataManager *localDataManager; // @synthesize localDataManager=_localDataManager;
 @property(retain, nonatomic) id <SPTLocalSettings> localSettings; // @synthesize localSettings=_localSettings;
+@property(nonatomic) __weak id <SPTPlayerFeature> playerFeature; // @synthesize playerFeature=_playerFeature;
+@property(nonatomic) __weak id <SPTNowPlayingPlatformService> nowPlayingPlatformService; // @synthesize nowPlayingPlatformService=_nowPlayingPlatformService;
+@property(nonatomic) __weak id <SPTRemoteConfigurationService> remoteConfigurationService; // @synthesize remoteConfigurationService=_remoteConfigurationService;
 @property(nonatomic) __weak id <SPTURIDispatchService> uriDispatchService; // @synthesize uriDispatchService=_uriDispatchService;
 @property(nonatomic) __weak id <SPTPerformanceMetricsService> performanceMetricsService; // @synthesize performanceMetricsService=_performanceMetricsService;
 @property(nonatomic) __weak id <SPTContainerUIService> containerUIService; // @synthesize containerUIService=_containerUIService;
@@ -48,6 +60,7 @@
 @property(nonatomic) __weak id <SPTCoreService> coreService; // @synthesize coreService=_coreService;
 @property(nonatomic) __weak id <SPTSessionService> clientSessionService; // @synthesize clientSessionService=_clientSessionService;
 - (void).cxx_destruct;
+- (id)providePlayer;
 - (id)provideArtistConcertsPageForURI:(id)arg1 context:(id)arg2;
 - (void)registerAllArtistConcertsPage;
 - (id)provideConcertsConcertsViewControllerWithEventEntityModel:(id)arg1;
@@ -61,6 +74,8 @@
 - (void)unloadLocalDataManager;
 - (void)loadLocalDataManager;
 - (void)loadLocalSettings;
+- (id)concertsViewController;
+- (void)registerNowPlayingScrollPivotsProvider;
 - (void)unload;
 - (void)load;
 - (void)configureWithServices:(id)arg1;

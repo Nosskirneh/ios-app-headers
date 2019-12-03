@@ -9,7 +9,7 @@
 @class NSDictionary, NSString;
 
 @protocol HUBCommandModel <HUBSerializable>
-@property(readonly, copy, nonatomic) NSDictionary *data;
-@property(readonly, copy, nonatomic) NSString *name;
+@property(nonatomic, readonly) NSDictionary *data;
+@property(nonatomic, readonly) NSString *name;
 @end
 

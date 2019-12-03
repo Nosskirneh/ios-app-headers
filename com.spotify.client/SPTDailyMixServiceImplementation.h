@@ -9,16 +9,14 @@
 #import "SPTDailyMixFeature-Protocol.h"
 
 @class NSString, SPTAllocationContext, SPTDailyMixHubViewControllerFactory, SPTDailyMixLoggingService, SPTDailyMixManagerImplementation, SPTDailyMixUtils;
-@protocol SPTAbbaService, SPTCollectionPlatformService, SPTContainerService, SPTDailyMixFeedbackUIModel, SPTGLUEService, SPTHubFrameworkService, SPTLocalSettings, SPTMadeForYouService, SPTNetworkService, SPTNowPlayingRemoteControlPolicy, SPTPlayerFeature, SPTRadioService, SPTRecentlyPlayedService, SPTSessionService;
+@protocol SPTCollectionPlatformService, SPTContainerService, SPTDailyMixFeedbackUIModel, SPTGLUEService, SPTHubFrameworkService, SPTLocalSettings, SPTNetworkService, SPTNowPlayingRemoteControlPolicy, SPTPlayerFeature, SPTRadioService, SPTRecentlyPlayedService, SPTSessionService;
 
 @interface SPTDailyMixServiceImplementation : NSObject <SPTDailyMixFeature>
 {
     _Bool _registeredWithRecentlyPlayed;
     id <SPTSessionService> _clientSessionService;
     id <SPTContainerService> _containerService;
-    id <SPTAbbaService> _abbaService;
     id <SPTLocalSettings> _localSettings;
-    id <SPTMadeForYouService> _madeForYouService;
     id <SPTNetworkService> _networkFeature;
     id <SPTPlayerFeature> _playbackFeature;
     SPTDailyMixUtils *_dailyMixUtils;
@@ -49,9 +47,7 @@
 @property(retain, nonatomic) SPTDailyMixUtils *dailyMixUtils; // @synthesize dailyMixUtils=_dailyMixUtils;
 @property(nonatomic) __weak id <SPTPlayerFeature> playbackFeature; // @synthesize playbackFeature=_playbackFeature;
 @property(nonatomic) __weak id <SPTNetworkService> networkFeature; // @synthesize networkFeature=_networkFeature;
-@property(nonatomic) __weak id <SPTMadeForYouService> madeForYouService; // @synthesize madeForYouService=_madeForYouService;
 @property(retain, nonatomic) id <SPTLocalSettings> localSettings; // @synthesize localSettings=_localSettings;
-@property(nonatomic) __weak id <SPTAbbaService> abbaService; // @synthesize abbaService=_abbaService;
 @property(nonatomic) __weak id <SPTContainerService> containerService; // @synthesize containerService=_containerService;
 @property(nonatomic) __weak id <SPTSessionService> clientSessionService; // @synthesize clientSessionService=_clientSessionService;
 - (void).cxx_destruct;

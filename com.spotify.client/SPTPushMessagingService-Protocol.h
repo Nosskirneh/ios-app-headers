@@ -6,10 +6,10 @@
 
 #import "SPTService-Protocol.h"
 
-@protocol SPTPushMessagingRegistrar;
+@protocol SPTPushMessagingPermissionRequestor, SPTPushMessagingRegistrar;
 
 @protocol SPTPushMessagingService <SPTService>
-- (void)requestPushPermissionDialog;
+- (id <SPTPushMessagingPermissionRequestor>)providePushPermissionRequestor;
 - (id <SPTPushMessagingRegistrar>)providePushRegistrar;
 @property(nonatomic, readonly) _Bool manualPermissionMode;
 @end

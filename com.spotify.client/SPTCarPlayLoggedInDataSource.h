@@ -17,6 +17,7 @@
 {
     _Bool _rootItemsRequestInitiated;
     _Bool _fetchingRootPending;
+    _Bool _offlineOnly;
     SPTAccessory *_currentAccessory;
     id <SPTCarPlayContentDataSource> _contentDataSource;
     id <SPTExternalIntegrationPlatform> _externalIntegrationPlatform;
@@ -29,6 +30,7 @@
 }
 
 @property(retain, nonatomic) id debugLog; // @synthesize debugLog=_debugLog;
+@property _Bool offlineOnly; // @synthesize offlineOnly=_offlineOnly;
 @property _Bool fetchingRootPending; // @synthesize fetchingRootPending=_fetchingRootPending;
 @property(nonatomic) _Bool rootItemsRequestInitiated; // @synthesize rootItemsRequestInitiated=_rootItemsRequestInitiated;
 @property(readonly, nonatomic) SPTCarPlayContentTreeCache *contentTreeCache; // @synthesize contentTreeCache=_contentTreeCache;
@@ -51,6 +53,7 @@
 @property(readonly, nonatomic) NSSet *missingRootItemURIs;
 - (_Bool)contentURIShouldAddShuffleHeader:(id)arg1;
 - (id)errorWithCode:(unsigned long long)arg1;
+- (void)addSpecialChildContentToCache:(id)arg1 forParentIndexPath:(id)arg2;
 - (void)addChildContentToCache:(id)arg1 forParent:(id)arg2 withIndexPath:(id)arg3;
 - (void)handleCompletedChildContentResolvingWithContent:(id)arg1 indexPath:(id)arg2 error:(id)arg3 completionHandler:(CDUnknownBlockType)arg4;
 - (void)loadChildrenOfItemAtIndexPath:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
@@ -65,9 +68,10 @@
 - (long long)numberOfChildItemsAtIndexPath:(id)arg1;
 - (_Bool)childItemsDisplayPlaybackProgressAtIndexPath:(id)arg1;
 - (void)beginLoadingChildItemsAtIndexPath:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
+- (void)updateOfflineOnly:(_Bool)arg1;
 - (void)carplaySessionEnded;
 - (void)dealloc;
-- (id)initWithContentDataSource:(id)arg1 contentTreeCache:(id)arg2 externalIntegrationPlatform:(id)arg3 mediaPlayerBridge:(id)arg4 connectManager:(id)arg5 imageLoaderFactory:(id)arg6 debugLog:(id)arg7;
+- (id)initWithContentDataSource:(id)arg1 contentTreeCache:(id)arg2 externalIntegrationPlatform:(id)arg3 mediaPlayerBridge:(id)arg4 connectManager:(id)arg5 imageLoaderFactory:(id)arg6 offlineOnly:(_Bool)arg7 debugLog:(id)arg8;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

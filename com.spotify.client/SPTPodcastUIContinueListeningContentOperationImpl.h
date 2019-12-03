@@ -10,36 +10,36 @@
 #import "SPTPodcastUnfinishedItemsProviderObserver-Protocol.h"
 
 @class HUBIdentifier, NSArray, NSString;
-@protocol HUBContentOperationDelegate, SPTPodcastUnfinishedItemsProvider;
+@protocol HUBContentOperationDelegate, SPTPodcastUIContinueListeningDiffLogger, SPTPodcastUITestManager, SPTPodcastUnfinishedItemsProvider;
 
 @interface SPTPodcastUIContinueListeningContentOperationImpl : NSObject <SPTPodcastUnfinishedItemsProviderObserver, SPTPodcastUIContinueListeningContentOperation>
 {
-    _Bool _forceShowContinueListeningInDebugMode;
     _Bool _hasBeenPerformed;
     id <HUBContentOperationDelegate> _delegate;
     NSString *_itemComponentModelIdentifierPrefix;
     id <SPTPodcastUnfinishedItemsProvider> _unfinishedItemsProvider;
+    id <SPTPodcastUIContinueListeningDiffLogger> _continueListeningDiffLogger;
     NSArray *_entityList;
+    NSArray *_remoteItems;
     HUBIdentifier *_itemComponentIdentifier;
+    id <SPTPodcastUITestManager> _testManager;
 }
 
+@property(readonly, nonatomic) id <SPTPodcastUITestManager> testManager; // @synthesize testManager=_testManager;
 @property(nonatomic) _Bool hasBeenPerformed; // @synthesize hasBeenPerformed=_hasBeenPerformed;
 @property(retain, nonatomic) HUBIdentifier *itemComponentIdentifier; // @synthesize itemComponentIdentifier=_itemComponentIdentifier;
+@property(copy, nonatomic) NSArray *remoteItems; // @synthesize remoteItems=_remoteItems;
 @property(copy, nonatomic) NSArray *entityList; // @synthesize entityList=_entityList;
+@property(readonly, nonatomic) id <SPTPodcastUIContinueListeningDiffLogger> continueListeningDiffLogger; // @synthesize continueListeningDiffLogger=_continueListeningDiffLogger;
 @property(readonly, nonatomic) id <SPTPodcastUnfinishedItemsProvider> unfinishedItemsProvider; // @synthesize unfinishedItemsProvider=_unfinishedItemsProvider;
-@property(nonatomic) _Bool forceShowContinueListeningInDebugMode; // @synthesize forceShowContinueListeningInDebugMode=_forceShowContinueListeningInDebugMode;
 @property(copy, nonatomic) NSString *itemComponentModelIdentifierPrefix; // @synthesize itemComponentModelIdentifierPrefix=_itemComponentModelIdentifierPrefix;
 @property(nonatomic) __weak id <HUBContentOperationDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
-- (id)componentModelIdentifierForItemAtIndex:(unsigned long long)arg1;
 - (void)unfinishedItemsModelDidReload:(id)arg1;
-- (void)cleanUpViewModelBuilder:(id)arg1 containerBuilder:(id)arg2 numberOfItems:(unsigned long long)arg3;
-- (id)addChildCardBuilderToBuilder:(id)arg1 identifier:(id)arg2 item:(id)arg3;
-- (void)addSectionHeaderBuilderForComponentBuilder:(id)arg1 viewModelBuilder:(id)arg2;
-- (_Bool)doesComponentExistWithViewModelBuilder:(id)arg1;
+- (void)performRemoteLogging;
 - (void)performForViewModelBuilder:(id)arg1 previousError:(id)arg2;
 - (void)dealloc;
-- (id)initWithUnfinishedItemsProvider:(id)arg1 forceShowContinueListeningInDebugMode:(_Bool)arg2;
+- (id)initWithUnfinishedItemsProvider:(id)arg1 continueListeningDiffLogger:(id)arg2 testManager:(id)arg3;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

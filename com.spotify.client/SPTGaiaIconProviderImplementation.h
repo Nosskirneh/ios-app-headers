@@ -8,22 +8,27 @@
 
 #import "SPTGaiaIconProvider-Protocol.h"
 
-@class NSString, SPTTheme;
-@protocol SPTGaiaConnectAPI;
+@class NSString, SPTGaiaDeviceAppearanceMapping, SPTTheme;
+@protocol SPTGaiaConnectAPI, SPTGaiaConnectManager;
 
 @interface SPTGaiaIconProviderImplementation : NSObject <SPTGaiaIconProvider>
 {
     SPTTheme *_theme;
     id <SPTGaiaConnectAPI> _connectManager;
+    id <SPTGaiaConnectManager> _internalConnectManager;
+    SPTGaiaDeviceAppearanceMapping *_iconMapper;
 }
 
+@property(readonly, nonatomic) SPTGaiaDeviceAppearanceMapping *iconMapper; // @synthesize iconMapper=_iconMapper;
+@property(readonly, nonatomic) id <SPTGaiaConnectManager> internalConnectManager; // @synthesize internalConnectManager=_internalConnectManager;
 @property(readonly, nonatomic) id <SPTGaiaConnectAPI> connectManager; // @synthesize connectManager=_connectManager;
 @property(readonly, nonatomic) SPTTheme *theme; // @synthesize theme=_theme;
 - (void).cxx_destruct;
 - (id)animatedIconBackgroundColorForContext:(unsigned long long)arg1;
 - (id)iconColorForContext:(unsigned long long)arg1;
+- (id)deviceIconForCurrentConnectionState:(struct CGSize)arg1;
 - (id)iconForCurrentConnectionStateWithContext:(unsigned long long)arg1 size:(struct CGSize)arg2;
-- (id)initWithTheme:(id)arg1 connectManager:(id)arg2;
+- (id)initWithTheme:(id)arg1 connectManager:(id)arg2 internalConnectManager:(id)arg3 iconMapper:(id)arg4;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

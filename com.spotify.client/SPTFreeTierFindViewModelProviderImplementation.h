@@ -15,8 +15,8 @@
 
 @interface SPTFreeTierFindViewModelProviderImplementation : NSObject <SPTDataLoaderDelegate, SPTOfflineModeStateObserver, SPTFreeTierFindViewModelProvider>
 {
-    _Bool _offline;
     _Bool _refreshing;
+    _Bool _loadedRemoteContent;
     _Bool _cacheLoadCompleted;
     id <HUBViewModel> _viewModel;
     SPTDataLoader *_dataLoader;
@@ -31,12 +31,12 @@
 
 @property(nonatomic) unsigned long long reconnectsCount; // @synthesize reconnectsCount=_reconnectsCount;
 @property(nonatomic, getter=isCacheLoadCompleted) _Bool cacheLoadCompleted; // @synthesize cacheLoadCompleted=_cacheLoadCompleted;
+@property(nonatomic, getter=hasLoadedRemoteContent) _Bool loadedRemoteContent; // @synthesize loadedRemoteContent=_loadedRemoteContent;
 @property(nonatomic, getter=isRefreshing) _Bool refreshing; // @synthesize refreshing=_refreshing;
 @property(readonly, nonatomic) SPTObserverManager *observers; // @synthesize observers=_observers;
 @property(readonly, nonatomic) id <SPTFreeTierFindCache> cache; // @synthesize cache=_cache;
 @property(readonly, copy, nonatomic) NSString *sourceIdentifier; // @synthesize sourceIdentifier=_sourceIdentifier;
 @property(readonly, copy, nonatomic) NSURL *contentURL; // @synthesize contentURL=_contentURL;
-@property(nonatomic, getter=isOffline) _Bool offline; // @synthesize offline=_offline;
 @property(readonly, nonatomic) id <SPTOfflineModeState> offlineModeState; // @synthesize offlineModeState=_offlineModeState;
 @property(readonly, nonatomic) HUBViewModelBuilderFactory *viewModelBuilderFactory; // @synthesize viewModelBuilderFactory=_viewModelBuilderFactory;
 @property(readonly, nonatomic) SPTDataLoader *dataLoader; // @synthesize dataLoader=_dataLoader;

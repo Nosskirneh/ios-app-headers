@@ -18,7 +18,7 @@
     UINavigationController *_navigationController;
 }
 
-@property(readonly, nonatomic) UINavigationController *navigationController; // @synthesize navigationController=_navigationController;
+@property(readonly, nonatomic) __weak UINavigationController *navigationController; // @synthesize navigationController=_navigationController;
 @property(nonatomic, getter=shouldFinishInteractiveTransition) _Bool finishInteractiveTransition; // @synthesize finishInteractiveTransition=_finishInteractiveTransition;
 @property(retain, nonatomic) UIScreenEdgePanGestureRecognizer *edgePanGestureRecognizer; // @synthesize edgePanGestureRecognizer=_edgePanGestureRecognizer;
 @property(nonatomic, getter=isInteractive) _Bool interactive; // @synthesize interactive=_interactive;

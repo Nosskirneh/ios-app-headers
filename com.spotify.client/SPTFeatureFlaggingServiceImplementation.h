@@ -6,10 +6,12 @@
 
 #import <objc/NSObject.h>
 
+#import "SPTFeatureFlaggingService-Protocol.h"
+
 @class NSString, SPTAllocationContext;
 @protocol SPTAbbaService, SPTContainerService, SPTSessionService, SPTSettingsFeature;
 
-@interface SPTFeatureFlaggingServiceImplementation : NSObject
+@interface SPTFeatureFlaggingServiceImplementation : NSObject <SPTFeatureFlaggingService>
 {
     id <SPTAbbaService> _abbaService;
     id <SPTContainerService> _containerService;

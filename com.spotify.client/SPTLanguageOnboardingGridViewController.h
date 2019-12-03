@@ -7,6 +7,7 @@
 #import <UIKit/UIViewController.h>
 
 #import "SPTLanguageOnboardingViewModelDelegate-Protocol.h"
+#import "SPTNavigationControllerNavigationBarState-Protocol.h"
 #import "SPTPageController-Protocol.h"
 #import "UICollectionViewDataSource-Protocol.h"
 #import "UICollectionViewDelegateFlowLayout-Protocol.h"
@@ -14,7 +15,7 @@
 @class NSString, NSURL, SPTLanguageOnboardingContainerView, SPTLanguageOnboardingTheme, SPTLanguageOnboardingViewModel, SPTPopupDialog, SPTPopupManager;
 @protocol GLUEImageLoader, SPTLanguageOnboardingGridViewControllerDelegate, SPTPageContainer;
 
-@interface SPTLanguageOnboardingGridViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, SPTLanguageOnboardingViewModelDelegate, SPTPageController>
+@interface SPTLanguageOnboardingGridViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, SPTLanguageOnboardingViewModelDelegate, SPTNavigationControllerNavigationBarState, SPTPageController>
 {
     SPTPopupManager *_popupManager;
     SPTLanguageOnboardingViewModel *_viewModel;
@@ -31,6 +32,7 @@
 @property(readonly, nonatomic) SPTLanguageOnboardingViewModel *viewModel; // @synthesize viewModel=_viewModel;
 @property(readonly, nonatomic) SPTPopupManager *popupManager; // @synthesize popupManager=_popupManager;
 - (void).cxx_destruct;
+- (unsigned long long)preferredNavigationBarState;
 - (void)handleFinish;
 - (void)handleSkip;
 - (void)fetchLanguages;
@@ -55,7 +57,6 @@
 @property(readonly, nonatomic, getter=spt_pageIdentifier) NSString *pageIdentifier;
 - (void)nextButtonTapped:(id)arg1;
 - (void)setUpCollectionView;
-- (void)viewDidAppear:(_Bool)arg1;
 - (void)viewDidLoad;
 - (void)loadView;
 - (id)initWithViewModel:(id)arg1 theme:(id)arg2 imageLoader:(id)arg3 popupManager:(id)arg4 delegate:(id)arg5;

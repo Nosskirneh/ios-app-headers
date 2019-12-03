@@ -43,6 +43,7 @@
 @property(readonly, nonatomic) GLUELabel *languageNameLabel; // @synthesize languageNameLabel=_languageNameLabel;
 @property(readonly, nonatomic) GLUEImageView *coverImageView; // @synthesize coverImageView=_coverImageView;
 - (void).cxx_destruct;
+- (id)badgeImageWithStyle:(id)arg1;
 - (void)glue_applyStyle:(id)arg1;
 - (void)updatePicked;
 - (void)setUpConstraints;

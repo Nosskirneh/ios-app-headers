@@ -6,21 +6,25 @@
 
 #import <objc/NSObject.h>
 
+@class SPSession;
 @protocol SPTExternalIntegrationPlatform, SPTGaiaConnectAPI;
 
 @interface SPTAuthPostAuthPlayerController : NSObject
 {
     id <SPTExternalIntegrationPlatform> _externalIntegrationPlatform;
     id <SPTGaiaConnectAPI> _connectManager;
+    SPSession *_session;
 }
 
+@property(readonly, nonatomic) __weak SPSession *session; // @synthesize session=_session;
 @property(retain, nonatomic) id <SPTGaiaConnectAPI> connectManager; // @synthesize connectManager=_connectManager;
 @property(nonatomic) __weak id <SPTExternalIntegrationPlatform> externalIntegrationPlatform; // @synthesize externalIntegrationPlatform=_externalIntegrationPlatform;
 - (void).cxx_destruct;
+- (id)sanitizePlayURI:(id)arg1;
 - (_Bool)isPlaying;
 - (void)playIfNeccessary:(id)arg1 options:(id)arg2 withCompletionHandler:(CDUnknownBlockType)arg3;
 - (void)playbackFallbackWithCompletionHandler:(CDUnknownBlockType)arg1;
-- (id)initWithExternalIntegrationPlatform:(id)arg1 connectManager:(id)arg2;
+- (id)initWithExternalIntegrationPlatform:(id)arg1 connectManager:(id)arg2 session:(id)arg3;
 
 @end
 

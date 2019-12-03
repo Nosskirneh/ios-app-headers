@@ -9,15 +9,17 @@
 #import "SPTBootstrapService-Protocol.h"
 
 @class NSString, SPTAllocationContext;
-@protocol SPTSessionBootstrapDelegate;
+@protocol SPTRemoteConfigurationContextService, SPTSessionBootstrapDelegate;
 
 @interface SPTBootstrapServiceImplementation : NSObject <SPTBootstrapService>
 {
+    id <SPTRemoteConfigurationContextService> _remoteConfigurationContextService;
     id <SPTSessionBootstrapDelegate> _bootstrapModule;
 }
 
 + (id)serviceIdentifier;
 @property(retain, nonatomic) id <SPTSessionBootstrapDelegate> bootstrapModule; // @synthesize bootstrapModule=_bootstrapModule;
+@property(nonatomic) __weak id <SPTRemoteConfigurationContextService> remoteConfigurationContextService; // @synthesize remoteConfigurationContextService=_remoteConfigurationContextService;
 - (void).cxx_destruct;
 - (void)unload;
 - (void)load;

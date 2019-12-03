@@ -6,19 +6,17 @@
 
 #import <objc/NSObject.h>
 
-@protocol SPTEntityService, SPTShareTestManager;
+@protocol SPTEntityService;
 
 @interface SPTShareTrackHelper : NSObject
 {
     id <SPTEntityService> _entityService;
-    id <SPTShareTestManager> _testManager;
 }
 
-@property(retain, nonatomic) id <SPTShareTestManager> testManager; // @synthesize testManager=_testManager;
 @property(retain, nonatomic) id <SPTEntityService> entityService; // @synthesize entityService=_entityService;
 - (void).cxx_destruct;
 - (void)normalizeSharingEntityData:(id)arg1 completion:(CDUnknownBlockType)arg2;
-- (id)initWithEntityService:(id)arg1 testManager:(id)arg2;
+- (id)initWithEntityService:(id)arg1;
 
 @end
 

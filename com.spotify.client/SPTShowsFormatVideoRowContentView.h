@@ -10,7 +10,7 @@
 #import "GLUEReusable-Protocol.h"
 #import "SPTCellImageLoadingContextCompatibleCell-Protocol.h"
 
-@class GLUEImageView, GLUELabel, GLUETrackAccessoryLabel, NSArray, NSLayoutConstraint, NSString, SPTShowsFormatCellViewModel, SPTShowsFormatLoopedAssetLayer, SPTShowsFormatVideoRowContentStyle, UIStackView;
+@class GLUEImageView, GLUELabel, GLUETrackAccessoryLabel, NSArray, NSLayoutConstraint, NSString, NSURL, SPTShowsFormatCellViewModel, SPTShowsFormatLoopedAssetLayer, SPTShowsFormatVideoRowContentStyle, UIStackView;
 @protocol BMBetamaxPlayer, BMVideoSurface;
 
 @interface SPTShowsFormatVideoRowContentView : UIView <GLUEEntityRowContent, GLUEReusable, SPTCellImageLoadingContextCompatibleCell>
@@ -32,8 +32,10 @@
     NSLayoutConstraint *_stackVerticalConstraint;
     NSArray *_accessoryViewLayoutConstraints;
     SPTShowsFormatCellViewModel *_viewModel;
+    NSURL *_thumbnailURL;
 }
 
+@property(retain, nonatomic) NSURL *thumbnailURL; // @synthesize thumbnailURL=_thumbnailURL;
 @property(nonatomic) _Bool didSetupConstraints; // @synthesize didSetupConstraints=_didSetupConstraints;
 @property(retain, nonatomic) SPTShowsFormatCellViewModel *viewModel; // @synthesize viewModel=_viewModel;
 @property(copy, nonatomic) NSArray *accessoryViewLayoutConstraints; // @synthesize accessoryViewLayoutConstraints=_accessoryViewLayoutConstraints;
@@ -62,8 +64,8 @@
 - (void)pauseVideo;
 - (void)resumeVideo;
 - (void)didTapContextMenuButton:(id)arg1;
-- (void)configureWithViewModel:(id)arg1 glueImageLoader:(id)arg2 useBetamaxPlayer:(_Bool)arg3 playerFactory:(id)arg4 playbackRequestFactory:(id)arg5 isCellularConnection:(_Bool)arg6;
-- (void)setupBetamaxVideoSurfaceWithPlayerFactory:(id)arg1;
+- (void)configureWithViewModel:(id)arg1 glueImageLoader:(id)arg2 useBetamaxPlayer:(_Bool)arg3 playerFactory:(id)arg4 playbackRequestFactory:(id)arg5 videoCacheOptions:(id)arg6 isCellularConnection:(_Bool)arg7;
+- (void)setupBetamaxVideoSurfaceWithPlayerFactory:(id)arg1 videoCacheOptions:(id)arg2;
 - (void)setupLegacyVideoLayer;
 - (id)initWithFrame:(struct CGRect)arg1;
 

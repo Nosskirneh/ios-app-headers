@@ -25,6 +25,7 @@
 @property(retain, nonatomic) id <BMDataLoader> videoDataLoader; // @synthesize videoDataLoader=_videoDataLoader;
 - (void).cxx_destruct;
 - (id)reasonFromErrorResponseJSON:(id)arg1;
+- (id)responseJsonFromData:(id)arg1;
 - (id)manifestErrorFromResponse:(unsigned long long)arg1 error:(id)arg2 body:(id)arg3;
 - (void)fetchManifestWithManifestID:(id)arg1 initiatingPlaybackID:(id)arg2 success:(CDUnknownBlockType)arg3 failure:(CDUnknownBlockType)arg4;
 - (id)initWithVideoDataLoader:(id)arg1 playerConfiguration:(id)arg2 manifestFactory:(id)arg3;

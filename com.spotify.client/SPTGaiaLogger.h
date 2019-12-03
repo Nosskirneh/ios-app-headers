@@ -25,13 +25,11 @@
 - (void)logSwitchDevicePopupInteractionWithAction:(id)arg1;
 - (void)logEducationInteractionWithPageIdentifier:(id)arg1 pageURI:(id)arg2;
 - (void)logDeviceContextMenuItemInteractionWithIndex:(long long)arg1 andActionIdentifier:(id)arg2;
-- (void)logDeviceContextMenuInteractionWithIndex:(long long)arg1 andDeviceType:(id)arg2;
+- (void)logDeviceContextMenuInteractionWithIndex:(long long)arg1 andDeviceType:(id)arg2 andDeviceId:(id)arg3;
 - (void)logMoreDevicesSelectedInteraction;
 - (void)logEducationSelectedInteractionWithIndex:(long long)arg1 andEducationType:(id)arg2;
-- (void)logDeviceSelectedInteractionWithIndex:(long long)arg1 andDeviceType:(id)arg2;
-- (void)logDevicePickerOpenInteractionWithDevicesAvailableState:(id)arg1;
-- (void)logDevicePickerInteractionEventWithDevicesAvailableState:(id)arg1;
-- (void)logRemoteControlEventOccuredWithType:(long long)arg1;
+- (void)logDeviceSelectedInteractionWithIndex:(long long)arg1 andDeviceType:(id)arg2 andDeviceId:(id)arg3;
+- (void)logDevicePickerOpenInteractionWithDevicesAvailableState:(id)arg1 contextPageIdentifier:(id)arg2 contextPageURI:(id)arg3;
 - (id)initWithLogCenter:(id)arg1;
 
 @end

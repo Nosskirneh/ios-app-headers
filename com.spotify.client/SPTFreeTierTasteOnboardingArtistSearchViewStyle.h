@@ -8,13 +8,11 @@
 
 #import "GLUEStyle-Protocol.h"
 
-@class GLUECollectionViewStyle, GLUEGradientStyle, NSString, SPTFreeTierTasteOnboardingArtistSearchCollectionViewLayoutStyle, UIColor, UIFont, UIImage;
+@class GLUECollectionViewStyle, NSString, SPTFreeTierTasteOnboardingArtistSearchCollectionViewLayoutStyle, UIColor, UIFont, UIImage;
 @protocol GLUEStyle;
 
 @interface SPTFreeTierTasteOnboardingArtistSearchViewStyle : NSObject <GLUEStyle>
 {
-    GLUEGradientStyle *_backgroundGradientStyle;
-    GLUEGradientStyle *_backgroundOverlayGradientStyle;
     GLUECollectionViewStyle *_collectionViewStyle;
     SPTFreeTierTasteOnboardingArtistSearchCollectionViewLayoutStyle<GLUEStyle> *_collectionViewLayoutStyle;
     unsigned long long _searchBarStyle;
@@ -41,8 +39,6 @@
 @property(nonatomic) unsigned long long searchBarStyle; // @synthesize searchBarStyle=_searchBarStyle;
 @property(copy, nonatomic) SPTFreeTierTasteOnboardingArtistSearchCollectionViewLayoutStyle<GLUEStyle> *collectionViewLayoutStyle; // @synthesize collectionViewLayoutStyle=_collectionViewLayoutStyle;
 @property(copy, nonatomic) GLUECollectionViewStyle *collectionViewStyle; // @synthesize collectionViewStyle=_collectionViewStyle;
-@property(copy, nonatomic) GLUEGradientStyle *backgroundOverlayGradientStyle; // @synthesize backgroundOverlayGradientStyle=_backgroundOverlayGradientStyle;
-@property(copy, nonatomic) GLUEGradientStyle *backgroundGradientStyle; // @synthesize backgroundGradientStyle=_backgroundGradientStyle;
 - (void).cxx_destruct;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 

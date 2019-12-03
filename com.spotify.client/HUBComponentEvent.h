@@ -6,12 +6,10 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTEventFactoryModelMapping-Protocol.h"
-
 @class NSDictionary, NSString;
 @protocol HUBComponentModel;
 
-@interface HUBComponentEvent : NSObject <SPTEventFactoryModelMapping>
+@interface HUBComponentEvent : NSObject
 {
     NSString *_name;
     id <HUBComponentModel> _componentModel;
@@ -24,19 +22,6 @@
 - (void).cxx_destruct;
 - (id)initWithName:(id)arg1 componentModel:(id)arg2;
 - (id)initWithName:(id)arg1 componentModel:(id)arg2 data:(id)arg3;
-- (id)eventComponents;
-- (id)interactionType;
-- (id)specificationCommitHash;
-- (id)specificationId;
-- (id)applicationId;
-- (long long)spt_hubLoggingDataItemIndex;
-- (id)spt_interaction5LogMessageWithUserIntent:(id)arg1;
-
-// Remaining properties
-@property(readonly, copy) NSString *debugDescription;
-@property(readonly, copy) NSString *description;
-@property(readonly) unsigned long long hash;
-@property(readonly) Class superclass;
 
 @end
 

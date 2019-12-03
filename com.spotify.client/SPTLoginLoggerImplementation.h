@@ -18,6 +18,9 @@
 
 @property(retain, nonatomic) id <SPTAdjustUserTrackerProtocol> adjustUserTracker; // @synthesize adjustUserTracker=_adjustUserTracker;
 - (void).cxx_destruct;
+- (id)timestamp;
+- (void)userDidCompleteRequestWithType:(id)arg1 error:(id)arg2 attemptId:(id)arg3;
+- (id)userDidStartRequestWithType:(id)arg1;
 - (void)trackGuestAccountCreationFailedWithError:(long long)arg1;
 - (void)trackGuestAccountCreated;
 - (void)trackForcedLogoutWithError:(long long)arg1;

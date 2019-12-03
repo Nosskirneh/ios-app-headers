@@ -19,7 +19,6 @@
     _Bool _showsOnlySavedAlbums;
     _Bool _groupByName;
     _Bool _groupByFullField;
-    _Bool _showOnlyTracksNotInAlbums;
     double _minimumUpdateInterval;
     NSArray *_sort;
     NSString *_textFilter;
@@ -28,7 +27,6 @@
     struct _NSRange _range;
 }
 
-@property(nonatomic) _Bool showOnlyTracksNotInAlbums; // @synthesize showOnlyTracksNotInAlbums=_showOnlyTracksNotInAlbums;
 @property(nonatomic) unsigned long long mediaType; // @synthesize mediaType=_mediaType;
 @property(nonatomic) _Bool groupByFullField; // @synthesize groupByFullField=_groupByFullField;
 @property(nonatomic) _Bool groupByName; // @synthesize groupByName=_groupByName;

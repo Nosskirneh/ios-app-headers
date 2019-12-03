@@ -28,7 +28,6 @@
 @property(retain, nonatomic) id <GLUETheme> glueTheme; // @synthesize glueTheme=_glueTheme;
 @property(retain, nonatomic) SPTTheme *theme; // @synthesize theme=_theme;
 - (void).cxx_destruct;
-- (id)createShowCellConfigurator;
 - (id)createEpisodeCellConfiguratorWithStringFormatter:(id)arg1 buttonsFactory:(id)arg2;
 - (id)initWithTheme:(id)arg1 glueTheme:(id)arg2 imageLoaderFactory:(id)arg3 explicitContentAccessManager:(id)arg4 podcastTestManager:(id)arg5;
 

@@ -8,30 +8,19 @@
 
 #import "SPTNavigationTestManager-Protocol.h"
 
-@class NSString, NSUserDefaults;
+@class NSString;
 @protocol SPTFeatureFlagFactory, SPTFeatureFlagSignal;
 
 @interface SPTNavigationTestManagerImplementation : NSObject <SPTNavigationTestManager>
 {
-    _Bool _sideBarNavigationEnabled;
     id <SPTFeatureFlagSignal> _stateRestorationDisabledSignal;
     id <SPTFeatureFlagFactory> _featureFlagFactory;
-    NSUserDefaults *_userDefaults;
-    id <SPTFeatureFlagSignal> _sideBarSignalAbFlagForExposureOnly;
-    id <SPTFeatureFlagSignal> _sideBarSignal;
 }
 
-@property(nonatomic) _Bool sideBarNavigationEnabled; // @synthesize sideBarNavigationEnabled=_sideBarNavigationEnabled;
-@property(readonly, nonatomic) id <SPTFeatureFlagSignal> sideBarSignal; // @synthesize sideBarSignal=_sideBarSignal;
-@property(readonly, nonatomic) id <SPTFeatureFlagSignal> sideBarSignalAbFlagForExposureOnly; // @synthesize sideBarSignalAbFlagForExposureOnly=_sideBarSignalAbFlagForExposureOnly;
-@property(readonly, nonatomic) NSUserDefaults *userDefaults; // @synthesize userDefaults=_userDefaults;
 @property(readonly, nonatomic) id <SPTFeatureFlagFactory> featureFlagFactory; // @synthesize featureFlagFactory=_featureFlagFactory;
 @property(readonly, nonatomic) id <SPTFeatureFlagSignal> stateRestorationDisabledSignal; // @synthesize stateRestorationDisabledSignal=_stateRestorationDisabledSignal;
 - (void).cxx_destruct;
-- (void)featureFlagSignal:(id)arg1 hasAssumedState:(long long)arg2;
-- (void)setupSideBarSignal;
-- (void)setupSideBarAbbaSignalForLogExposure;
-- (id)initWithFeatureFlagFactory:(id)arg1 userDefaults:(id)arg2;
+- (id)initWithFeatureFlagFactory:(id)arg1;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

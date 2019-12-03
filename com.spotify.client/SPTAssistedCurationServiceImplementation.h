@@ -29,12 +29,16 @@
 @property(nonatomic) __weak id <SPTCoreService> coreService; // @synthesize coreService=_coreService;
 @property(nonatomic) __weak id <SPTCollectionPlatformService> collectionPlatformService; // @synthesize collectionPlatformService=_collectionPlatformService;
 - (void).cxx_destruct;
-- (id)provideAddTrackHandlerForPlaylistURI:(id)arg1;
-- (id)provideAssistedCurationModelForPlaylistURI:(id)arg1;
-- (id)cardProviders;
-- (id)provideTopGenresDataLoader;
-- (id)provideCosmosDictionaryDataLoader;
+- (id)mostPlayedCardProviderForURI:(id)arg1;
 - (id)provideRecommendedTracksDataLoader;
+- (id)recentlyPlayedCardProvider;
+- (id)topGenresCardProvider;
+- (id)likedSongsCardProvider;
+- (id)cardProvidersForURI:(id)arg1 mostPlayedCard:(_Bool)arg2;
+- (id)datasourceForURI:(id)arg1;
+- (long long)collectionTypeOfURI:(id)arg1;
+- (id)provideAddTrackHandlerForURI:(id)arg1;
+- (id)provideAssistedCurationModelForURI:(id)arg1 mostPlayedCard:(_Bool)arg2;
 - (void)configureWithServices:(id)arg1;
 
 // Remaining properties

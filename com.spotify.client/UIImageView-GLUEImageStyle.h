@@ -12,5 +12,8 @@
 - (void)glue_applySquareMaskForImageSize:(struct CGSize)arg1;
 - (void)glue_applyMask:(long long)arg1 imageSize:(struct CGSize)arg2;
 - (void)glue_applyMask:(long long)arg1;
+- (void)setMaskForSPTImageStyle:(long long)arg1 imageSize:(struct CGSize)arg2;
+- (void)setMaskForSPTImageStyle:(long long)arg1;
+- (void)spt_setImageWithTransition:(id)arg1;
 @end
 

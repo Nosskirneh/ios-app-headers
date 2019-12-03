@@ -7,31 +7,21 @@
 #import <objc/NSObject.h>
 
 #import "HUBContentOperation-Protocol.h"
-#import "SPTHomeViewModelDelegate-Protocol.h"
 
-@class NSString;
+@class SPTHomeLocalViewModelOverrides;
 @protocol HUBContentOperationDelegate;
 
-@interface SPTHomeRemoveComponentContentOperation : NSObject <SPTHomeViewModelDelegate, HUBContentOperation>
+@interface SPTHomeRemoveComponentContentOperation : NSObject <HUBContentOperation>
 {
-    _Bool _shouldRemoveWelcomeHeader;
-    _Bool _skipTasteOnBoarding;
     id <HUBContentOperationDelegate> delegate;
+    SPTHomeLocalViewModelOverrides *_overrides;
 }
 
-@property(nonatomic) _Bool skipTasteOnBoarding; // @synthesize skipTasteOnBoarding=_skipTasteOnBoarding;
-@property(nonatomic) _Bool shouldRemoveWelcomeHeader; // @synthesize shouldRemoveWelcomeHeader=_shouldRemoveWelcomeHeader;
+@property(readonly, nonatomic) SPTHomeLocalViewModelOverrides *overrides; // @synthesize overrides=_overrides;
 @property(nonatomic) __weak id <HUBContentOperationDelegate> delegate; // @synthesize delegate;
 - (void).cxx_destruct;
-- (void)removeWelcomeHeader;
-- (void)didSkipTasteOnboarding;
 - (void)performForViewModelBuilder:(id)arg1 previousError:(id)arg2;
-
-// Remaining properties
-@property(readonly, copy) NSString *debugDescription;
-@property(readonly, copy) NSString *description;
-@property(readonly) unsigned long long hash;
-@property(readonly) Class superclass;
+- (id)initWithOverrides:(id)arg1;
 
 @end
 

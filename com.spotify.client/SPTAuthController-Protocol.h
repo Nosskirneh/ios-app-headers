@@ -10,6 +10,7 @@
 @protocol SPTAuthControllerObserver;
 
 @protocol SPTAuthController <NSObject>
+@property(readonly, nonatomic, getter=isAuthRequestInProgress) _Bool authRequestInProgress;
 - (_Bool)isOffline;
 - (void)removeObserver:(id <SPTAuthControllerObserver>)arg1;
 - (void)addObserver:(id <SPTAuthControllerObserver>)arg1;

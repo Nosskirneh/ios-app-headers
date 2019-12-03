@@ -14,7 +14,7 @@
 {
 }
 
-- (id)createOptions:(id)arg1 cacheIdentifier:(id)arg2 timeToLive:(unsigned long long)arg3;
+- (id)createWithCachePath:(id)arg1 cacheIdentifier:(id)arg2 timeToLive:(unsigned long long)arg3;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

@@ -33,7 +33,7 @@
 - (id)missingDataLoaderError;
 - (void)lookupResumePointsForURIs:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (void)lookupEpisodeURIs:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
-- (void)lookupEpisodesForShowWithURI:(id)arg1 inRange:(struct _NSRange)arg2 completionHandler:(CDUnknownBlockType)arg3;
+- (void)lookupEpisodesForShowWithURI:(id)arg1 inRange:(struct _NSRange)arg2 includeEpisode:(id)arg3 completionHandler:(CDUnknownBlockType)arg4;
 - (void)lookupShowEntityWithURI:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (id)initWithFeatureFlags:(id)arg1 sortingService:(id)arg2;
 

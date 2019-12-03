@@ -10,11 +10,10 @@
 #import "SPTAssistedCurationUIService-Protocol.h"
 
 @class NSString, SPTAllocationContext, SPTAssistedCurationLinkDispatcherImplementation, SPTAssistedCurationPresentationHelper;
-@protocol SPContextMenuFeature, SPTAssistedCurationService, SPTAssistedCurationUITestManager, SPTAssistedCurationUserInterfaceFactory, SPTAudioPreviewService, SPTExplicitContentService, SPTFreeTierPresentationService, SPTFreeTierService, SPTGLUEService, SPTPerformanceMetricsService, SPTSearchPlatformService, SPTSessionService, SPTSettingsFeature, SPTSnackbarService;
+@protocol SPContextMenuFeature, SPTAssistedCurationService, SPTAssistedCurationUITestManager, SPTAssistedCurationUserInterfaceFactory, SPTAudioPreviewService, SPTExplicitContentService, SPTFreeTierPresentationService, SPTFreeTierService, SPTGLUEService, SPTPerformanceMetricsService, SPTRemoteConfigurationService, SPTSearchPlatformService, SPTSettingsFeature, SPTSnackbarService;
 
 @interface SPTAssistedCurationUIServiceImplementation : SPTUIPageService <SPTAssistedCurationLinkDispatcherPageProvider, SPTAssistedCurationUIService>
 {
-    id <SPTSessionService> _clientSessionService;
     id <SPTGLUEService> _glueService;
     id <SPContextMenuFeature> _contextMenuFeature;
     id <SPTAssistedCurationService> _assistedCurationService;
@@ -30,9 +29,11 @@
     id <SPTFreeTierService> _freeTierService;
     id <SPTSettingsFeature> _settingsService;
     id <SPTAssistedCurationUITestManager> _assistedCurationUITestManager;
+    id <SPTRemoteConfigurationService> _remoteConfigurationService;
 }
 
 + (id)serviceIdentifier;
+@property(nonatomic) __weak id <SPTRemoteConfigurationService> remoteConfigurationService; // @synthesize remoteConfigurationService=_remoteConfigurationService;
 @property(retain, nonatomic) id <SPTAssistedCurationUITestManager> assistedCurationUITestManager; // @synthesize assistedCurationUITestManager=_assistedCurationUITestManager;
 @property(nonatomic) __weak id <SPTSettingsFeature> settingsService; // @synthesize settingsService=_settingsService;
 @property(nonatomic) __weak id <SPTFreeTierService> freeTierService; // @synthesize freeTierService=_freeTierService;
@@ -48,22 +49,23 @@
 @property(nonatomic) __weak id <SPTAssistedCurationService> assistedCurationService; // @synthesize assistedCurationService=_assistedCurationService;
 @property(nonatomic) __weak id <SPContextMenuFeature> contextMenuFeature; // @synthesize contextMenuFeature=_contextMenuFeature;
 @property(nonatomic) __weak id <SPTGLUEService> glueService; // @synthesize glueService=_glueService;
-@property(nonatomic) __weak id <SPTSessionService> clientSessionService; // @synthesize clientSessionService=_clientSessionService;
 - (void).cxx_destruct;
+- (id)cardProvidersToWaitWithMostPlayedCard:(_Bool)arg1;
 - (id)provideAddSongsActionTaskForURL:(id)arg1 logContext:(id)arg2;
 - (id)provideLoggerForURI:(id)arg1 playlistURI:(id)arg2;
 - (id)provideInterfaceFactoryWithViewModel:(id)arg1;
 - (id)provideGLUEImageLoader;
 - (id)provideEducationSnackBarPresenter;
 - (id)provideFeatureSettingsItemFactory;
-- (id)provideLocalSettings;
 - (id)provideSearchDrillDownViewControllerForURL:(id)arg1 context:(id)arg2;
-- (id)provideAssistedCurationViewControllerForPlaylistURI:(id)arg1;
+- (id)provideAssistedCurationViewControllerForURI:(id)arg1 mostPlayedCard:(_Bool)arg2;
 - (id)provideViewControllerForURI:(id)arg1 context:(id)arg2;
 - (id)providerCardsSortMechanism;
 - (id)provideAssistedCurationPresentationHelper;
 - (id)providerAssistedCurationLinkDispatcher;
 - (_Bool)claimsURI:(id)arg1;
+- (void)curateForURL:(id)arg1 withMostPlayedCard:(_Bool)arg2;
+- (void)curateLikedSongs;
 - (void)curatePlaylistURL:(id)arg1;
 - (void)load;
 - (void)configureWithServices:(id)arg1;

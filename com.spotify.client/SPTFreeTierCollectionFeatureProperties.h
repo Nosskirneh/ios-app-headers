@@ -12,14 +12,10 @@
 
 @interface SPTFreeTierCollectionFeatureProperties : NSObject <SPTRemoteConfigurationProperties>
 {
-    _Bool _collectionTrackMetadataEnabled;
     _Bool _playlistsRelevanceSortAsDefaultEnabled;
-    _Bool _likedSongsSearchAndFilterAlwaysVisible;
 }
 
-@property(readonly, nonatomic) _Bool likedSongsSearchAndFilterAlwaysVisible; // @synthesize likedSongsSearchAndFilterAlwaysVisible=_likedSongsSearchAndFilterAlwaysVisible;
 @property(readonly, nonatomic) _Bool playlistsRelevanceSortAsDefaultEnabled; // @synthesize playlistsRelevanceSortAsDefaultEnabled=_playlistsRelevanceSortAsDefaultEnabled;
-@property(readonly, nonatomic) _Bool collectionTrackMetadataEnabled; // @synthesize collectionTrackMetadataEnabled=_collectionTrackMetadataEnabled;
 - (id)propertyModels;
 - (id)initWithPropertyValuesDictionary:(id)arg1;
 - (id)initWithConfiguration:(id)arg1;

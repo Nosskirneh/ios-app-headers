@@ -36,7 +36,7 @@
 - (void)viewWillAppear:(_Bool)arg1;
 - (void)viewModelDidLoad:(id)arg1;
 - (void)setupNavigationItems;
-- (id)initWithTheme:(id)arg1 pageIdentifier:(id)arg2 pageURI:(id)arg3 componentRegistry:(id)arg4 componentLayoutManager:(id)arg5 imageLoaderFactory:(id)arg6 commandHandler:(id)arg7 viewModelProvider:(id)arg8 impressionLogger:(id)arg9 loadingLogger:(id)arg10 feedbackButtonViewModel:(id)arg11 contextMenuButtonViewModel:(id)arg12 player:(id)arg13 visualRefreshIntegrationManager:(id)arg14 shareDragDelegateFactory:(id)arg15;
+- (id)initWithTheme:(id)arg1 pageIdentifier:(id)arg2 pageURI:(id)arg3 componentRegistry:(id)arg4 componentLayoutManager:(id)arg5 imageLoaderFactory:(id)arg6 commandHandler:(id)arg7 viewModelProvider:(id)arg8 impressionLogger:(id)arg9 loadingLogger:(id)arg10 feedbackButtonViewModel:(id)arg11 contextMenuButtonViewModel:(id)arg12 player:(id)arg13 visualRefreshIntegrationManager:(id)arg14 offlineModel:(id)arg15 shareDragDelegateFactory:(id)arg16;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

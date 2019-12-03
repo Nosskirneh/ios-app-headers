@@ -6,18 +6,11 @@
 
 #import <objc/NSObject.h>
 
-@class NSCache;
-
 @interface SPTConcertsDateFormatter : NSObject
 {
-    NSCache *_cache;
 }
 
-@property(readonly, nonatomic) NSCache *cache; // @synthesize cache=_cache;
-- (void).cxx_destruct;
-- (id)fullCacheKeyForBaseKey:(id)arg1 locale:(id)arg2 timeZone:(id)arg3;
-- (id)dateFormatterForCacheKey:(id)arg1 creator:(CDUnknownBlockType)arg2;
-- (id)dateFormatterWithTemplate:(id)arg1 locale:(id)arg2 timeZone:(id)arg3;
+- (id)dateFormatWithTemplate:(id)arg1 locale:(id)arg2;
 - (id)concertRowMetadataDateFormatter;
 - (id)subtitleDateRangeDateFormatter;
 - (id)subtitleSingleDateDateFormatter;
@@ -25,7 +18,6 @@
 - (id)shortDateStyleDateFormatter;
 - (id)monthTextDateFormatter;
 - (id)backendDateFormatter;
-- (id)init;
 
 @end
 

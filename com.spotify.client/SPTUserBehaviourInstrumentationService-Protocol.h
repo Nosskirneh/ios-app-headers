@@ -6,10 +6,11 @@
 
 #import "SPTService-Protocol.h"
 
-@protocol SPTEventFactory, SPTUserBehaviourInstrumentationLoggerFactory;
+@protocol SPTEventFactory, SPTUserBehaviourInstrumentationHubsEventMapper, SPTUserBehaviourInstrumentationLogger;
 
 @protocol SPTUserBehaviourInstrumentationService <SPTService>
+- (id <SPTUserBehaviourInstrumentationHubsEventMapper>)provideHubsEventMapper;
 - (id <SPTEventFactory>)provideEventFactory;
-- (id <SPTUserBehaviourInstrumentationLoggerFactory>)provideUBILoggerFactory;
+- (id <SPTUserBehaviourInstrumentationLogger>)provideUBILogger;
 @end
 

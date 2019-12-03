@@ -6,25 +6,23 @@
 
 #import <objc/NSObject.h>
 
-@class UIApplication, UIWindow;
+@class UIApplication;
 @protocol SPTAlertInterface;
 
 @interface SPTGaiaHomeDeviceAlertPresenter : NSObject
 {
     id <SPTAlertInterface> _alertController;
-    UIWindow *_alertWindow;
     UIApplication *_application;
 }
 
 @property(retain, nonatomic) UIApplication *application; // @synthesize application=_application;
-@property(retain, nonatomic) UIWindow *alertWindow; // @synthesize alertWindow=_alertWindow;
 @property(retain, nonatomic) id <SPTAlertInterface> alertController; // @synthesize alertController=_alertController;
 - (void).cxx_destruct;
 - (void)navigateToPushNotificationsSettings;
 - (void)showNoPushNotificationsAlert;
 - (void)showHomeDeviceRemovedAlertWithDeviceName:(id)arg1;
 - (void)showHomeDeviceSetAlertWithDeviceName:(id)arg1;
-- (id)initWithAlertController:(id)arg1 alertWindow:(id)arg2 application:(id)arg3;
+- (id)initWithAlertController:(id)arg1 application:(id)arg2;
 
 @end
 

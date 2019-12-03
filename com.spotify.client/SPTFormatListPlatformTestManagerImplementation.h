@@ -6,12 +6,13 @@
 
 #import <objc/NSObject.h>
 
+#import "SPTFeatureFlagSignalObserver-Protocol.h"
 #import "SPTFormatListPlatformTestManager-Protocol.h"
 
 @class NSString;
 @protocol SPTAbbaFeatureFlags, SPTFeatureFlagSignal, SPTLocalSettings;
 
-@interface SPTFormatListPlatformTestManagerImplementation : NSObject <SPTFormatListPlatformTestManager>
+@interface SPTFormatListPlatformTestManagerImplementation : NSObject <SPTFeatureFlagSignalObserver, SPTFormatListPlatformTestManager>
 {
     _Bool _useNewEmptyStateView;
     id <SPTLocalSettings> _localSettings;

@@ -12,7 +12,7 @@
 #import "SPTPlayerObserver-Protocol.h"
 #import "SpotifyApplicationRemoteControlObserver-Protocol.h"
 
-@class NSNotificationCenter, NSString, SPTAudioSessionActivator, SPTGaiaLogger;
+@class NSNotificationCenter, NSString, SPTAudioSessionActivator;
 @protocol SPTAudioSessionController, SPTGaiaConnectManager, SPTGaiaLockScreenControlsStateProvider, SPTGaiaSilentAudioObserveProtocol, SPTGaiaSilentAudioPlayer, SPTGaiaSilentAudioPlayerProvider, SPTPlayer;
 
 @interface GaiaLocalAudioSessionController : NSObject <SPTPlayerObserver, SpotifyApplicationRemoteControlObserver, SPTGaiaLockScreenControlsStateObserver, SPTAudioSessionControllerObserver, SPTGaiaConnectManagerObserver>
@@ -25,7 +25,6 @@
     id <SPTPlayer> _player;
     id <SPTGaiaLockScreenControlsStateProvider> _lockScreenControlsStateProvider;
     NSNotificationCenter *_notificationCenter;
-    SPTGaiaLogger *_logger;
     id <SPTGaiaSilentAudioPlayerProvider> _silentAudioPlayerProvider;
     SPTAudioSessionActivator *_audioSessionActivator;
     id <SPTGaiaSilentAudioPlayer> _silentAudioPlayer;
@@ -36,7 +35,6 @@
 @property(retain, nonatomic) id <SPTGaiaSilentAudioPlayer> silentAudioPlayer; // @synthesize silentAudioPlayer=_silentAudioPlayer;
 @property(retain, nonatomic) SPTAudioSessionActivator *audioSessionActivator; // @synthesize audioSessionActivator=_audioSessionActivator;
 @property(retain, nonatomic) id <SPTGaiaSilentAudioPlayerProvider> silentAudioPlayerProvider; // @synthesize silentAudioPlayerProvider=_silentAudioPlayerProvider;
-@property(retain, nonatomic) SPTGaiaLogger *logger; // @synthesize logger=_logger;
 @property(retain, nonatomic) NSNotificationCenter *notificationCenter; // @synthesize notificationCenter=_notificationCenter;
 @property(retain, nonatomic) id <SPTGaiaLockScreenControlsStateProvider> lockScreenControlsStateProvider; // @synthesize lockScreenControlsStateProvider=_lockScreenControlsStateProvider;
 @property(retain, nonatomic) id <SPTPlayer> player; // @synthesize player=_player;
@@ -61,7 +59,7 @@
 - (void)updateCurrentDeviceAndPlayerState;
 - (void)player:(id)arg1 stateDidChange:(id)arg2 fromState:(id)arg3;
 - (void)dealloc;
-- (id)initWithAudioSessionController:(id)arg1 connectManager:(id)arg2 player:(id)arg3 lockScreenControlsStateProvider:(id)arg4 notificationCenter:(id)arg5 logger:(id)arg6 silentAudioPlayerProvider:(id)arg7;
+- (id)initWithAudioSessionController:(id)arg1 connectManager:(id)arg2 player:(id)arg3 lockScreenControlsStateProvider:(id)arg4 notificationCenter:(id)arg5 silentAudioPlayerProvider:(id)arg6;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

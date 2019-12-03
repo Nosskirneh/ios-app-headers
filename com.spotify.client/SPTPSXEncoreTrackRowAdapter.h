@@ -6,12 +6,13 @@
 
 #import "SPTTableRowAdapter.h"
 
+#import "SPTEncoreTrackRowDelegate-Protocol.h"
 #import "SPTPlayerObserver-Protocol.h"
 
 @class NSString, SPTPSXLogger;
-@protocol GLUETheme, SPTContextMenuOptionsFactory, SPTContextMenuPresenterFactory, SPTEncoreComponentFactory, SPTExplicitContentAccessManager, SPTFormatListItemModel, SPTFormatListPlatformManager, SPTPSXTestManager, SPTPSXTrackRowDelegate, SPTPSXViewModel, SPTShelves;
+@protocol GLUETheme, SPTContextMenuOptionsFactory, SPTContextMenuPresenterFactory, SPTEncoreTrackRowFactory, SPTEncoreTrackRowModelHelper, SPTExplicitContentAccessManager, SPTFormatListItemModel, SPTFormatListPlatformManager, SPTPSXTestManager, SPTPSXTrackRowDelegate, SPTPSXViewModel, SPTShelves;
 
-@interface SPTPSXEncoreTrackRowAdapter : SPTTableRowAdapter <SPTPlayerObserver>
+@interface SPTPSXEncoreTrackRowAdapter : SPTTableRowAdapter <SPTPlayerObserver, SPTEncoreTrackRowDelegate>
 {
     id <SPTPSXTrackRowDelegate> _delegate;
     id <SPTFormatListItemModel> _track;
@@ -23,12 +24,14 @@
     id <SPTPSXTestManager> _testManager;
     id <SPTExplicitContentAccessManager> _explicitContentAccessManager;
     SPTPSXLogger *_logger;
-    id <SPTEncoreComponentFactory> _encoreComponentFactory;
+    id <SPTEncoreTrackRowFactory> _encoreComponentFactory;
+    id <SPTEncoreTrackRowModelHelper> _trackRowModelHelper;
     id <GLUETheme> _theme;
 }
 
 @property(retain, nonatomic) id <GLUETheme> theme; // @synthesize theme=_theme;
-@property(retain, nonatomic) id <SPTEncoreComponentFactory> encoreComponentFactory; // @synthesize encoreComponentFactory=_encoreComponentFactory;
+@property(retain, nonatomic) id <SPTEncoreTrackRowModelHelper> trackRowModelHelper; // @synthesize trackRowModelHelper=_trackRowModelHelper;
+@property(retain, nonatomic) id <SPTEncoreTrackRowFactory> encoreComponentFactory; // @synthesize encoreComponentFactory=_encoreComponentFactory;
 @property(retain, nonatomic) SPTPSXLogger *logger; // @synthesize logger=_logger;
 @property(retain, nonatomic) id <SPTExplicitContentAccessManager> explicitContentAccessManager; // @synthesize explicitContentAccessManager=_explicitContentAccessManager;
 @property(retain, nonatomic) id <SPTPSXTestManager> testManager; // @synthesize testManager=_testManager;
@@ -42,8 +45,14 @@
 - (void).cxx_destruct;
 - (void)player:(id)arg1 stateDidChange:(id)arg2;
 - (void)banBanButtonTapped:(id)arg1;
-- (void)contextMenuButtonTapped:(id)arg1;
+- (void)unlikeWithSender:(id)arg1;
+- (void)unhideWithSender:(id)arg1;
+- (void)unbanWithSender:(id)arg1;
+- (void)tappedWithSender:(id)arg1;
+- (void)contextMenuTappedWithSender:(id)arg1;
 - (void)enableSwipeActionsOnCell:(id)arg1;
+- (long long)trackModifierIsDisabled:(_Bool)arg1 IsBanned:(_Bool)arg2 isInCollection:(_Bool)arg3;
+- (id)encoreModelIsPressed:(_Bool)arg1;
 - (void)configureCell:(id)arg1;
 - (void)didSelectCell;
 - (_Bool)shouldHighlightCell:(id)arg1;

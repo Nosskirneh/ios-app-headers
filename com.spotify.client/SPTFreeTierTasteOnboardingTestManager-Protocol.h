@@ -9,8 +9,6 @@
 @protocol SPTFreeTierTasteOnboardingTestManager <NSObject>
 @property(readonly, nonatomic, getter=isPodcastInFirstTimeFlowExperimentOn) _Bool podcastInFirstTimeFlowExperimentOn;
 @property(readonly, nonatomic, getter=isPodcastInFirstTimeFlowEnabled) _Bool podcastInFirstTimeFlowEnabled;
-@property(readonly, nonatomic, getter=isStockholmBlackStyleExperimentOn) _Bool stockholmBlackStyleExperimentOn;
-@property(readonly, nonatomic, getter=isStockholmBlackStyleEnabled) _Bool stockholmBlackStyleEnabled;
 @property(readonly, nonatomic, getter=isDeeplinkAdBasedSkipEnabled) _Bool deeplinkAdBasedSkipEnabled;
 @property(readonly, nonatomic, getter=isDeeplinkBasedSkipEnabled) _Bool deeplinkBasedSkipEnabled;
 @property(readonly, nonatomic, getter=isOnboardingCoordinationEnabled) _Bool onboardingCoordinationEnabled;

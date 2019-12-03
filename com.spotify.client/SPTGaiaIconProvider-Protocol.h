@@ -9,6 +9,7 @@
 @class UIImage;
 
 @protocol SPTGaiaIconProvider <NSObject>
+- (UIImage *)deviceIconForCurrentConnectionState:(struct CGSize)arg1;
 - (UIImage *)iconForCurrentConnectionStateWithContext:(unsigned long long)arg1 size:(struct CGSize)arg2;
 @end
 

@@ -12,13 +12,14 @@
     // Error parsing type: , name: view
     // Error parsing type: , name: cellBinderFactory
     // Error parsing type: , name: imageLoader
+    // Error parsing type: , name: curationMode
     // Error parsing type: , name: eventConsumer
     // Error parsing type: , name: visibleBinders
     // Error parsing type: , name: model
     // Error parsing type: , name: largeTitleHeight
     // Error parsing type: , name: primaryFeedbackGenerator
     // Error parsing type: , name: secondaryFeedbackGenerator
-    // Error parsing type: , name: diffuser.storage
+    // Error parsing type: , name: $__lazy_storage_$_diffuser
 }
 
 - (void).cxx_destruct;

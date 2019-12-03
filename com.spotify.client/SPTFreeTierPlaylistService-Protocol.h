@@ -7,11 +7,12 @@
 #import "SPTService-Protocol.h"
 
 @class NSString, NSURL;
-@protocol SPTFreeTierPlaylistModel, SPTFreeTierPlaylistTestManager;
+@protocol SPTFreeTierPlaylistModel, SPTFreeTierPlaylistSortingFiltering, SPTFreeTierPlaylistTestManager;
 
 @protocol SPTFreeTierPlaylistService <SPTService>
 - (id <SPTFreeTierPlaylistTestManager>)provideTestManager;
 - (id <SPTFreeTierPlaylistModel>)providePlaylistModelForURL:(NSURL *)arg1 formatListType:(NSString *)arg2;
 - (id <SPTFreeTierPlaylistModel>)providePlaylistModelForURL:(NSURL *)arg1;
+- (id <SPTFreeTierPlaylistSortingFiltering>)provideSortingFilteringForPlaylistURL:(NSURL *)arg1;
 @end
 

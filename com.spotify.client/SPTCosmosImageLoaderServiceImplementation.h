@@ -10,18 +10,20 @@
 #import "SPTService-Protocol.h"
 
 @class NSString, SPTAllocationContext, SPTSpotifyImageRequestFactory;
-@protocol CosmosFeature, SPTNetworkService, SPTSessionService;
+@protocol CosmosFeature, SPTImageResolveService, SPTNetworkService, SPTSessionService;
 
 @interface SPTCosmosImageLoaderServiceImplementation : NSObject <SPTService, SPTCosmosImageLoaderService>
 {
     id <SPTSessionService> _clientSessionService;
     id <CosmosFeature> _cosmosService;
     id <SPTNetworkService> _networkService;
+    id <SPTImageResolveService> _imageResolveService;
     SPTSpotifyImageRequestFactory *_spotifyImageRequestFactory;
 }
 
 + (id)serviceIdentifier;
 @property(retain, nonatomic) SPTSpotifyImageRequestFactory *spotifyImageRequestFactory; // @synthesize spotifyImageRequestFactory=_spotifyImageRequestFactory;
+@property(nonatomic) __weak id <SPTImageResolveService> imageResolveService; // @synthesize imageResolveService=_imageResolveService;
 @property(nonatomic) __weak id <SPTNetworkService> networkService; // @synthesize networkService=_networkService;
 @property(nonatomic) __weak id <CosmosFeature> cosmosService; // @synthesize cosmosService=_cosmosService;
 @property(nonatomic) __weak id <SPTSessionService> clientSessionService; // @synthesize clientSessionService=_clientSessionService;

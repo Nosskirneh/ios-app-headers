@@ -8,15 +8,16 @@
 
 #import "VISREFHeaderComponent-Protocol.h"
 
-@class NSLayoutConstraint, NSString, TKNLabel, UIButton, UIImage, UIImageView, UILayoutGuide, UIStackView, UIView;
+@class NSLayoutConstraint, NSString, SPTEncoreLabel, UIButton, UIImage, UIImageView, UILayoutGuide, UIStackView, UIView;
 
 @interface VISREFArtworkContentView : VISREFTopAndBodyContentView <VISREFHeaderComponent>
 {
     UILayoutGuide *_titlePositionLayoutGuide;
-    TKNLabel *_titleLabel;
-    TKNLabel *_metadataLabel;
+    SPTEncoreLabel *_titleLabel;
+    SPTEncoreLabel *_metadataLabel;
     UIButton *_contextButton;
     UIButton *_feedbackButton;
+    UIButton *_offlineButton;
     UIImageView *_imageView;
     UIView *_imageShadowView;
     UIStackView *_actionRowStackView;
@@ -41,10 +42,11 @@
 @property(retain, nonatomic) UIStackView *actionRowStackView; // @synthesize actionRowStackView=_actionRowStackView;
 @property(retain, nonatomic) UIView *imageShadowView; // @synthesize imageShadowView=_imageShadowView;
 @property(retain, nonatomic) UIImageView *imageView; // @synthesize imageView=_imageView;
+@property(retain, nonatomic) UIButton *offlineButton; // @synthesize offlineButton=_offlineButton;
 @property(retain, nonatomic) UIButton *feedbackButton; // @synthesize feedbackButton=_feedbackButton;
 @property(retain, nonatomic) UIButton *contextButton; // @synthesize contextButton=_contextButton;
-@property(retain, nonatomic) TKNLabel *metadataLabel; // @synthesize metadataLabel=_metadataLabel;
-@property(retain, nonatomic) TKNLabel *titleLabel; // @synthesize titleLabel=_titleLabel;
+@property(retain, nonatomic) SPTEncoreLabel *metadataLabel; // @synthesize metadataLabel=_metadataLabel;
+@property(retain, nonatomic) SPTEncoreLabel *titleLabel; // @synthesize titleLabel=_titleLabel;
 @property(readonly, nonatomic) UILayoutGuide *titlePositionLayoutGuide; // @synthesize titlePositionLayoutGuide=_titlePositionLayoutGuide;
 - (void).cxx_destruct;
 - (void)updateTopMargin;

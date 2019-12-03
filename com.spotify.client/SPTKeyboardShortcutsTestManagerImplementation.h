@@ -6,12 +6,13 @@
 
 #import <objc/NSObject.h>
 
+#import "SPTFeatureFlagSignalObserver-Protocol.h"
 #import "SPTKeyboardShortcutsTestManager-Protocol.h"
 
 @class NSString;
 @protocol SPTFeatureFlagFactory, SPTFeatureFlagSignal;
 
-@interface SPTKeyboardShortcutsTestManagerImplementation : NSObject <SPTKeyboardShortcutsTestManager>
+@interface SPTKeyboardShortcutsTestManagerImplementation : NSObject <SPTFeatureFlagSignalObserver, SPTKeyboardShortcutsTestManager>
 {
     _Bool _keyboardShortcutsFeatureEnabled;
     id <SPTFeatureFlagFactory> _featureFlagFactory;

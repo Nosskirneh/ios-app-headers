@@ -6,105 +6,35 @@
 
 #import <UIKit/UIViewController.h>
 
-#import "SPTCanvasModelLoaderDelegate-Protocol.h"
-#import "SPTCanvasStreamingPlaybackManagerLoadDelegate-Protocol.h"
-#import "SPTCanvasStreamingPlaybackObserverDelegate-Protocol.h"
-#import "SPTCanvasTapArtistAttributionDelegate-Protocol.h"
-#import "SPTNowPlayingContainerIdleMonitorObserver-Protocol.h"
+#import "SPTCanvasViewControllerViewModelUIDelegate-Protocol.h"
 
-@class NSString, SPTCanvasAttributionView, SPTCanvasImageResolver, SPTCanvasLoadEventLogger, SPTCanvasLoadStateTracker, SPTCanvasLoggingService, SPTCanvasModelLoader, SPTCanvasStreamingPlaybackManager, SPTImageBlurView, UIActivityIndicatorView, UIImageView, UIView;
-@protocol BMBetamaxPlayer, BMVideoSurface, SPTCanvasIdleMonitorObserverDelegate, SPTCanvasLoadStateUpdater, SPTCanvasModel, SPTCanvasModelLoadDelegate, SPTCanvasTapArtistAttributionDelegate, SPTLinkDispatcher, SPTPlayerFeature, SPTVideoFeaturePlayerFactory, SPTVideoURLAssetLoader;
+@class NSString, SPTCanvasViewControllerViewModel, UIActivityIndicatorView, UIImageView, UIView;
 
-@interface SPTCanvasViewController : UIViewController <SPTCanvasStreamingPlaybackManagerLoadDelegate, SPTCanvasStreamingPlaybackObserverDelegate, SPTCanvasModelLoaderDelegate, SPTCanvasTapArtistAttributionDelegate, SPTNowPlayingContainerIdleMonitorObserver>
+@interface SPTCanvasViewController : UIViewController <SPTCanvasViewControllerViewModelUIDelegate>
 {
-    _Bool _shouldShowAttribution;
-    _Bool _isIdle;
-    id <SPTCanvasModel> _canvasModel;
-    id <SPTCanvasModelLoadDelegate> _delegate;
-    SPTCanvasImageResolver *_imageResolver;
-    SPTCanvasModelLoader *_canvasModelLoader;
-    SPTCanvasLoggingService *_loggingService;
-    SPTCanvasLoadEventLogger *_loadEventLogger;
-    SPTCanvasLoadStateTracker *_loadStateTracker;
-    id <SPTCanvasLoadStateUpdater> _canvasLoadStateUpdater;
-    id <SPTVideoFeaturePlayerFactory> _playerFactory;
-    id <SPTPlayerFeature> _playerFeature;
-    id <SPTVideoURLAssetLoader> _videoManager;
-    id <SPTLinkDispatcher> _linkDispatcher;
-    id <BMBetamaxPlayer> _videoPlayer;
-    SPTCanvasStreamingPlaybackManager *_videoPlaybackManager;
-    SPTImageBlurView *_placeholderView;
+    SPTCanvasViewControllerViewModel *_viewModel;
+    UIView *_videoPlayerView;
     UIImageView *_imageView;
-    SPTCanvasAttributionView *_attributionView;
     UIActivityIndicatorView *_activityIndicatorView;
-    UIView<BMVideoSurface> *_surfaceView;
-    id <SPTCanvasIdleMonitorObserverDelegate> _idleMonitorDelegate;
-    id <SPTCanvasTapArtistAttributionDelegate> _artistAttributionDelegate;
 }
 
-@property(nonatomic) __weak id <SPTCanvasTapArtistAttributionDelegate> artistAttributionDelegate; // @synthesize artistAttributionDelegate=_artistAttributionDelegate;
-@property(nonatomic) __weak id <SPTCanvasIdleMonitorObserverDelegate> idleMonitorDelegate; // @synthesize idleMonitorDelegate=_idleMonitorDelegate;
-@property(nonatomic) _Bool isIdle; // @synthesize isIdle=_isIdle;
-@property(nonatomic) _Bool shouldShowAttribution; // @synthesize shouldShowAttribution=_shouldShowAttribution;
-@property(retain, nonatomic) UIView<BMVideoSurface> *surfaceView; // @synthesize surfaceView=_surfaceView;
 @property(readonly, nonatomic) UIActivityIndicatorView *activityIndicatorView; // @synthesize activityIndicatorView=_activityIndicatorView;
-@property(readonly, nonatomic) SPTCanvasAttributionView *attributionView; // @synthesize attributionView=_attributionView;
-@property(readonly, nonatomic) UIImageView *imageView; // @synthesize imageView=_imageView;
-@property(readonly, nonatomic) SPTImageBlurView *placeholderView; // @synthesize placeholderView=_placeholderView;
-@property(retain, nonatomic) SPTCanvasStreamingPlaybackManager *videoPlaybackManager; // @synthesize videoPlaybackManager=_videoPlaybackManager;
-@property(retain, nonatomic) id <BMBetamaxPlayer> videoPlayer; // @synthesize videoPlayer=_videoPlayer;
-@property(readonly, nonatomic) id <SPTLinkDispatcher> linkDispatcher; // @synthesize linkDispatcher=_linkDispatcher;
-@property(readonly, nonatomic) id <SPTVideoURLAssetLoader> videoManager; // @synthesize videoManager=_videoManager;
-@property(readonly, nonatomic) __weak id <SPTPlayerFeature> playerFeature; // @synthesize playerFeature=_playerFeature;
-@property(readonly, nonatomic) __weak id <SPTVideoFeaturePlayerFactory> playerFactory; // @synthesize playerFactory=_playerFactory;
-@property(retain, nonatomic) id <SPTCanvasLoadStateUpdater> canvasLoadStateUpdater; // @synthesize canvasLoadStateUpdater=_canvasLoadStateUpdater;
-@property(readonly, nonatomic) SPTCanvasLoadStateTracker *loadStateTracker; // @synthesize loadStateTracker=_loadStateTracker;
-@property(readonly, nonatomic) SPTCanvasLoadEventLogger *loadEventLogger; // @synthesize loadEventLogger=_loadEventLogger;
-@property(readonly, nonatomic) SPTCanvasLoggingService *loggingService; // @synthesize loggingService=_loggingService;
-@property(retain, nonatomic) SPTCanvasModelLoader *canvasModelLoader; // @synthesize canvasModelLoader=_canvasModelLoader;
-@property(readonly, nonatomic) SPTCanvasImageResolver *imageResolver; // @synthesize imageResolver=_imageResolver;
-@property(nonatomic) __weak id <SPTCanvasModelLoadDelegate> delegate; // @synthesize delegate=_delegate;
-@property(retain, nonatomic) id <SPTCanvasModel> canvasModel; // @synthesize canvasModel=_canvasModel;
+@property(retain, nonatomic) UIImageView *imageView; // @synthesize imageView=_imageView;
+@property(retain, nonatomic) UIView *videoPlayerView; // @synthesize videoPlayerView=_videoPlayerView;
+@property(retain, nonatomic) SPTCanvasViewControllerViewModel *viewModel; // @synthesize viewModel=_viewModel;
 - (void).cxx_destruct;
-- (void)streamingFailedForMediaURL:(id)arg1 entityURI:(id)arg2 playbackOption:(long long)arg3 error:(id)arg4;
-- (void)streamingDidStartForMediaURL:(id)arg1 entityURI:(id)arg2 playbackOption:(long long)arg3;
-- (void)streamingWillStartForMediaURL:(id)arg1 entityURI:(id)arg2 playbackOption:(long long)arg3;
-- (void)streamingPlaybackManager:(id)arg1 didFailToLoadAssetURL:(id)arg2 entityURI:(id)arg3 playbackOption:(long long)arg4 error:(id)arg5;
-- (void)streamingPlaybackManager:(id)arg1 didLoadAssetURL:(id)arg2 entityURI:(id)arg3 playbackOption:(long long)arg4;
-- (void)streamingPlaybackManager:(id)arg1 willLoadAssetURL:(id)arg2 entityURI:(id)arg3 playbackOption:(long long)arg4;
-- (void)streamingDidFailForManifestId:(id)arg1 entityURI:(id)arg2 playbackOption:(long long)arg3 error:(id)arg4;
-- (void)streamingDidStartForManifestId:(id)arg1 entityURI:(id)arg2 playbackOption:(long long)arg3;
-- (void)streamingWillStartForManifestId:(id)arg1 entityURI:(id)arg2 playbackOption:(long long)arg3;
-- (void)assetDownloadDidFailForAssetURL:(id)arg1 entityURI:(id)arg2 playbackOption:(long long)arg3 error:(id)arg4;
-- (void)assetDownloadDidFinishForAssetURL:(id)arg1 entityURI:(id)arg2 playbackOption:(long long)arg3;
-- (void)assetDownloadDidStartForAssetURL:(id)arg1 entityURI:(id)arg2 playbackOption:(long long)arg3;
-- (_Bool)canvasModelHasSameManifestId:(id)arg1 entityURI:(id)arg2 playbackOption:(long long)arg3;
-- (_Bool)canvasModelHasSameAssetURL:(id)arg1 entityURI:(id)arg2 playbackOption:(long long)arg3;
-- (void)navigateToCurrentArtist;
-- (void)didTapArtistAttribution;
+- (void)animateWithAnimations:(CDUnknownBlockType)arg1;
+- (void)didLoadVideoPlayer;
+- (void)willLoadVideoPlayer;
+- (void)removeVideoPlayerView;
+- (void)addVideoPlayerView:(id)arg1;
+- (void)updateCanvasImage:(id)arg1;
 - (void)hideLoadingIndicator;
 - (void)showLoadingIndicator;
-- (void)updateAttributionView;
-- (void)idlePeriodDidEnd;
-- (void)idlePeriodDidBegin;
-- (long long)playbackOption:(id)arg1;
-@property(readonly, nonatomic) UIView *videoView;
-- (void)setupStreamingPlaybackWithVideoManager:(id)arg1 playerFeature:(id)arg2 playerFactory:(id)arg3;
-- (void)didFailToLoadFallbackContentWithModel:(id)arg1 error:(id)arg2;
-- (void)didLoadFallbackContentWithModel:(id)arg1 image:(id)arg2;
-- (void)didFailToLoadImageContentWithModel:(id)arg1 error:(id)arg2;
-- (void)didLoadImageContentWithModel:(id)arg1 image:(id)arg2;
-- (void)willLoadImageContentWithModel:(id)arg1;
-- (void)didLoadArtistAvatarWithModel:(id)arg1 artistAvatarImage:(id)arg2;
-- (void)loadVideoContentWithModel:(id)arg1;
-- (void)setVisible:(_Bool)arg1;
-- (void)pausePlayback;
-- (void)resumePlayback;
-- (void)viewWillDisappear:(_Bool)arg1;
-- (void)viewDidAppear:(_Bool)arg1;
-- (void)setupConstraints;
+- (void)viewDidDisappear:(_Bool)arg1;
+- (void)viewWillAppear:(_Bool)arg1;
 - (void)viewDidLoad;
-- (id)initWithLoadStateTracker:(id)arg1 imageResolver:(id)arg2 videoManager:(id)arg3 loggingService:(id)arg4 loadEventLogger:(id)arg5 idleMonitorDelegate:(id)arg6 playerFactory:(id)arg7 playerFeature:(id)arg8 linkDispatcher:(id)arg9;
+- (id)init;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

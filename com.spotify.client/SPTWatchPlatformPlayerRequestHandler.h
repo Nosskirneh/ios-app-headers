@@ -10,20 +10,20 @@
 #import "SPTWatchConnectivityRequestHandler-Protocol.h"
 
 @class NSString, SPTWatchConnectivityDataLoader, SPTaskCompletionSource;
-@protocol SPTExternalIntegrationPlaybackController, SPTGaiaVolumeControllerInterface, SPTUICompletionNotifier;
+@protocol SPTExternalIntegrationPlaybackController, SPTUICompletionNotifier, SPTVolumeAPI;
 
 @interface SPTWatchPlatformPlayerRequestHandler : NSObject <SPTExternalIntegrationPlaybackControllerObserver, SPTWatchConnectivityRequestHandler>
 {
     SPTWatchConnectivityDataLoader *_dataLoader;
     id <SPTExternalIntegrationPlaybackController> _playbackController;
-    id <SPTGaiaVolumeControllerInterface> _volumeController;
+    id <SPTVolumeAPI> _volumeController;
     id <SPTUICompletionNotifier> _UICompletionNotifier;
     SPTaskCompletionSource *_awaitPlayerReadyTaskFactory;
 }
 
 @property(retain, nonatomic) SPTaskCompletionSource *awaitPlayerReadyTaskFactory; // @synthesize awaitPlayerReadyTaskFactory=_awaitPlayerReadyTaskFactory;
 @property(readonly, nonatomic) __weak id <SPTUICompletionNotifier> UICompletionNotifier; // @synthesize UICompletionNotifier=_UICompletionNotifier;
-@property(readonly, nonatomic) id <SPTGaiaVolumeControllerInterface> volumeController; // @synthesize volumeController=_volumeController;
+@property(readonly, nonatomic) id <SPTVolumeAPI> volumeController; // @synthesize volumeController=_volumeController;
 @property(readonly, nonatomic) __weak id <SPTExternalIntegrationPlaybackController> playbackController; // @synthesize playbackController=_playbackController;
 @property(readonly, nonatomic) SPTWatchConnectivityDataLoader *dataLoader; // @synthesize dataLoader=_dataLoader;
 - (void).cxx_destruct;

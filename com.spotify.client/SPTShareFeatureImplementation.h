@@ -7,12 +7,11 @@
 #import <objc/NSObject.h>
 
 #import "SPTShareFeature-Protocol.h"
-#import "SPTShareScreenshotObserverManagerDelegate-Protocol.h"
 
-@class NSString, SPTAllocationContext, SPTDataLoaderFactory, SPTScreenshotLogger, SPTShareDestinationUtility, SPTShareLogger, SPTSharePlaylistHelper, SPTSharePresenter, SPTShareScreenshotObserverManager, SPTShareTrackHelper, SPTShareTransition;
-@protocol SPContextMenuFeature, SPTBannerFeature, SPTContainerService, SPTContainerUIService, SPTCoreService, SPTFeatureFlaggingService, SPTNetworkService, SPTPlayer, SPTPlayerFeature, SPTPlaylistPlatformService, SPTSessionService, SPTShareDeeplinkHandler, SPTShareEntityDataFactory, SPTShareTestManager, SPTVideoFeature;
+@class NSString, SPTAllocationContext, SPTDataLoaderFactory, SPTShareDestinationUtility, SPTShareFeatureProperties, SPTShareLogger, SPTSharePlaylistHelper, SPTSharePresenter, SPTShareTrackHelper, SPTShareTransition;
+@protocol SPContextMenuFeature, SPTBannerFeature, SPTContainerService, SPTContainerUIService, SPTCoreService, SPTFeatureFlaggingService, SPTNetworkService, SPTPlayer, SPTPlayerFeature, SPTPlaylistPlatformService, SPTRemoteConfigurationService, SPTSessionService, SPTShareDeeplinkHandler, SPTShareEntityDataFactory, SPTVideoFeature;
 
-@interface SPTShareFeatureImplementation : NSObject <SPTShareScreenshotObserverManagerDelegate, SPTShareFeature>
+@interface SPTShareFeatureImplementation : NSObject <SPTShareFeature>
 {
     id <SPTContainerService> _containerService;
     id <SPTContainerUIService> _containerUIService;
@@ -25,37 +24,35 @@
     id <SPTFeatureFlaggingService> _featureFlagSignalService;
     id <SPTVideoFeature> _videoFeature;
     id <SPTCoreService> _coreService;
+    id <SPTRemoteConfigurationService> _remoteConfigurationService;
     SPTSharePlaylistHelper *_sharePlaylistHelper;
     SPTShareTrackHelper *_shareTrackHelper;
     NSString *_logContext;
     id <SPTPlayer> _player;
-    SPTShareScreenshotObserverManager *_screenshotObserverManager;
     SPTShareTransition *_shareTransition;
     SPTDataLoaderFactory *_dataloaderFactory;
     id <SPTShareDeeplinkHandler> _deeplinkHandler;
-    id <SPTShareTestManager> _testManager;
     id <SPTShareEntityDataFactory> _shareEntityDataFactory;
     SPTSharePresenter *_sharePresenter;
     SPTShareDestinationUtility *_shareDestinationUtility;
     SPTShareLogger *_shareLogger;
-    SPTScreenshotLogger *_screenshotLogger;
+    SPTShareFeatureProperties *_featureProperties;
 }
 
 + (id)serviceIdentifier;
-@property(retain, nonatomic) SPTScreenshotLogger *screenshotLogger; // @synthesize screenshotLogger=_screenshotLogger;
+@property(retain, nonatomic) SPTShareFeatureProperties *featureProperties; // @synthesize featureProperties=_featureProperties;
 @property(retain, nonatomic) SPTShareLogger *shareLogger; // @synthesize shareLogger=_shareLogger;
 @property(retain, nonatomic) SPTShareDestinationUtility *shareDestinationUtility; // @synthesize shareDestinationUtility=_shareDestinationUtility;
 @property(retain, nonatomic) SPTSharePresenter *sharePresenter; // @synthesize sharePresenter=_sharePresenter;
 @property(retain, nonatomic) id <SPTShareEntityDataFactory> shareEntityDataFactory; // @synthesize shareEntityDataFactory=_shareEntityDataFactory;
-@property(retain, nonatomic) id <SPTShareTestManager> testManager; // @synthesize testManager=_testManager;
 @property(retain, nonatomic) id <SPTShareDeeplinkHandler> deeplinkHandler; // @synthesize deeplinkHandler=_deeplinkHandler;
 @property(retain, nonatomic) SPTDataLoaderFactory *dataloaderFactory; // @synthesize dataloaderFactory=_dataloaderFactory;
 @property(retain, nonatomic) SPTShareTransition *shareTransition; // @synthesize shareTransition=_shareTransition;
-@property(retain, nonatomic) SPTShareScreenshotObserverManager *screenshotObserverManager; // @synthesize screenshotObserverManager=_screenshotObserverManager;
 @property(retain, nonatomic) id <SPTPlayer> player; // @synthesize player=_player;
 @property(retain, nonatomic) NSString *logContext; // @synthesize logContext=_logContext;
 @property(retain, nonatomic) SPTShareTrackHelper *shareTrackHelper; // @synthesize shareTrackHelper=_shareTrackHelper;
 @property(retain, nonatomic) SPTSharePlaylistHelper *sharePlaylistHelper; // @synthesize sharePlaylistHelper=_sharePlaylistHelper;
+@property(nonatomic) __weak id <SPTRemoteConfigurationService> remoteConfigurationService; // @synthesize remoteConfigurationService=_remoteConfigurationService;
 @property(nonatomic) __weak id <SPTCoreService> coreService; // @synthesize coreService=_coreService;
 @property(nonatomic) __weak id <SPTVideoFeature> videoFeature; // @synthesize videoFeature=_videoFeature;
 @property(nonatomic) __weak id <SPTFeatureFlaggingService> featureFlagSignalService; // @synthesize featureFlagSignalService=_featureFlagSignalService;
@@ -68,20 +65,18 @@
 @property(nonatomic) __weak id <SPTContainerUIService> containerUIService; // @synthesize containerUIService=_containerUIService;
 @property(nonatomic) __weak id <SPTContainerService> containerService; // @synthesize containerService=_containerService;
 - (void).cxx_destruct;
+- (id)provideShareDemoViewControllerWithURI:(id)arg1 context:(id)arg2;
 - (id)provideShareHandlerFactory;
 - (void)presentShareViewController:(id)arg1;
 - (id)provideShareDragDelegateFactory;
-- (id)provideShareScreenshotObserverManager;
-- (void)shareActionButtonTappedInScreenshotShareBannerView:(id)arg1;
-- (id)makeSharePresenterWithShareEntityData:(id)arg1;
-- (id)provideShareScreenshotLogger;
+- (id)makeSharePresenterWithShareEntityData:(id)arg1 contextViewController:(id)arg2;
 - (id)provideShareViewControllerForShareEntityData:(id)arg1 withShareDestinations:(id)arg2;
 - (id)provideShareViewControllerForShareEntityData:(id)arg1;
 - (id)provideShareDestinationsForEntityURI:(id)arg1;
-- (void)performShareToDestination:(id)arg1 withShareEntityData:(id)arg2 completion:(CDUnknownBlockType)arg3;
+- (void)performShareToDestination:(id)arg1 withShareEntityData:(id)arg2 contextViewController:(id)arg3 completion:(CDUnknownBlockType)arg4;
 - (id)provideShareEntityDataFactory;
-- (id)provideTestManager;
 - (void)registerWithContextMenu;
+- (void)registerDemoViewController;
 - (void)load;
 - (void)configureWithServices:(id)arg1;
 

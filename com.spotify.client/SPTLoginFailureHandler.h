@@ -8,7 +8,7 @@
 
 #import "SPTLoginRecoverAccountDataLoaderDelegate-Protocol.h"
 
-@class NSString, SPTLoginFailureCounter, SPTLoginMagicLinkAutosendConfirmationPresenter, SPTLoginMagicLinkRequestTracker, SPTLoginMagicLinkTestManager, SPTLoginRecoverAccountDataLoader;
+@class NSString, SPTLoginFailureCounter, SPTLoginMagicLinkAutosendConfirmationPresenter, SPTLoginMagicLinkRequestTracker, SPTLoginRecoverAccountDataLoader;
 @protocol SPTLoginFailureHandlerDelegate;
 
 @interface SPTLoginFailureHandler : NSObject <SPTLoginRecoverAccountDataLoaderDelegate>
@@ -17,12 +17,10 @@
     SPTLoginMagicLinkAutosendConfirmationPresenter *_confirmationPresenter;
     SPTLoginMagicLinkRequestTracker *_requestTracker;
     SPTLoginFailureCounter *_failureCounter;
-    SPTLoginMagicLinkTestManager *_testManager;
     SPTLoginRecoverAccountDataLoader *_dataLoader;
 }
 
 @property(retain, nonatomic) SPTLoginRecoverAccountDataLoader *dataLoader; // @synthesize dataLoader=_dataLoader;
-@property(retain, nonatomic) SPTLoginMagicLinkTestManager *testManager; // @synthesize testManager=_testManager;
 @property(retain, nonatomic) SPTLoginFailureCounter *failureCounter; // @synthesize failureCounter=_failureCounter;
 @property(retain, nonatomic) SPTLoginMagicLinkRequestTracker *requestTracker; // @synthesize requestTracker=_requestTracker;
 @property(retain, nonatomic) SPTLoginMagicLinkAutosendConfirmationPresenter *confirmationPresenter; // @synthesize confirmationPresenter=_confirmationPresenter;
@@ -32,7 +30,7 @@
 - (void)dataLoader:(id)arg1 didFinishLoadingWithError:(id)arg2 forEmail:(id)arg3;
 - (_Bool)hasFailedEnoughTimesForUser:(id)arg1;
 - (void)handleLoginFailureForUser:(id)arg1;
-- (id)initWithConfirmationPresenter:(id)arg1 requestTracker:(id)arg2 loginFailureCounter:(id)arg3 testManager:(id)arg4 dataLoader:(id)arg5;
+- (id)initWithConfirmationPresenter:(id)arg1 requestTracker:(id)arg2 loginFailureCounter:(id)arg3 dataLoader:(id)arg4;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

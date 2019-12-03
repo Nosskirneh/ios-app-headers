@@ -6,12 +6,12 @@
 
 #import "NSObject-Protocol.h"
 
-@class NSData, NSString, SPTInAppMessageNetworkClient;
+@class NSArray, NSData, NSString, SPTInAppMessageNetworkClient;
 
 @protocol SPTInAppMessageNetworkClientObserver <NSObject>
 
 @optional
-- (void)networkClient:(SPTInAppMessageNetworkClient *)arg1 didFetchMessage:(NSData *)arg2 messageFormat:(NSString *)arg3 matchedPattern:(NSString *)arg4 triggerType:(NSString *)arg5;
+- (void)networkClient:(SPTInAppMessageNetworkClient *)arg1 didFetchMessage:(NSData *)arg2 messageFormat:(NSString *)arg3 triggers:(NSArray *)arg4 triggerType:(NSString *)arg5;
 - (void)networkClient:(SPTInAppMessageNetworkClient *)arg1 didFetchTriggers:(NSData *)arg2;
 @end
 

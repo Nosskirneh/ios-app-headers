@@ -10,6 +10,6 @@
 @protocol SPTSearchPlatformContext;
 
 @protocol SPTSearch2ContextProvider <NSObject>
-- (id <SPTSearchPlatformContext>)provideContextForQuery:(NSString *)arg1 autoCompleteRequestID:(NSString *)arg2;
+- (id <SPTSearchPlatformContext>)provideContextForQuery:(NSString *)arg1;
 @end
 

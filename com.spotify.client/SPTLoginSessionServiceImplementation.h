@@ -9,7 +9,7 @@
 #import "SPTService-Protocol.h"
 
 @class NSString, SPTAllocationContext, SPTLoginKeychainCredentialsWriter, SPTLoginSignupMarketingOptInFlashController;
-@protocol SPTCoreService, SPTLoginService, SPTNotificationsService, SPTSessionService, SPTURIDispatchService;
+@protocol SPTCoreService, SPTLoginService, SPTNotificationsService, SPTRemoteConfigurationService, SPTSessionService, SPTURIDispatchService;
 
 @interface SPTLoginSessionServiceImplementation : NSObject <SPTService>
 {
@@ -18,6 +18,7 @@
     id <SPTSessionService> _sessionService;
     id <SPTURIDispatchService> _URIDispatchService;
     id <SPTNotificationsService> _notificationsService;
+    id <SPTRemoteConfigurationService> _remoteConfigurationService;
     SPTLoginKeychainCredentialsWriter *_credentialsWriter;
     SPTLoginSignupMarketingOptInFlashController *_marketingOptInController;
 }
@@ -25,6 +26,7 @@
 + (id)serviceIdentifier;
 @property(retain, nonatomic) SPTLoginSignupMarketingOptInFlashController *marketingOptInController; // @synthesize marketingOptInController=_marketingOptInController;
 @property(retain, nonatomic) SPTLoginKeychainCredentialsWriter *credentialsWriter; // @synthesize credentialsWriter=_credentialsWriter;
+@property(nonatomic) __weak id <SPTRemoteConfigurationService> remoteConfigurationService; // @synthesize remoteConfigurationService=_remoteConfigurationService;
 @property(nonatomic) __weak id <SPTNotificationsService> notificationsService; // @synthesize notificationsService=_notificationsService;
 @property(nonatomic) __weak id <SPTURIDispatchService> URIDispatchService; // @synthesize URIDispatchService=_URIDispatchService;
 @property(nonatomic) __weak id <SPTSessionService> sessionService; // @synthesize sessionService=_sessionService;

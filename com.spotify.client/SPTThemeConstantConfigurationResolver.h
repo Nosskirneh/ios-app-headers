@@ -16,10 +16,12 @@
     NSSet *_suffixes;
     NSSet *_fileNames;
     NSDictionary *_mergedConfigurations;
+    NSDictionary *_dependenciesKeysByFlag;
     NSMutableDictionary *_keysToAliases;
 }
 
 @property(readonly, nonatomic) NSMutableDictionary *keysToAliases; // @synthesize keysToAliases=_keysToAliases;
+@property(readonly, nonatomic) NSDictionary *dependenciesKeysByFlag; // @synthesize dependenciesKeysByFlag=_dependenciesKeysByFlag;
 @property(readonly, nonatomic) NSDictionary *mergedConfigurations; // @synthesize mergedConfigurations=_mergedConfigurations;
 @property(readonly, nonatomic) NSSet *fileNames; // @synthesize fileNames=_fileNames;
 @property(readonly, nonatomic) NSSet *suffixes; // @synthesize suffixes=_suffixes;

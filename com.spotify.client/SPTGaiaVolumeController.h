@@ -18,6 +18,7 @@
 @interface SPTGaiaVolumeController : NSObject <SPTCastManagerObserver, SPTGaiaVolumeButtonControllerDelegate, SPTGaiaConnectManagerObserver, SPTGaiaSystemVolumeObserver, SPTGaiaVolumeControllerInterface>
 {
     _Bool _disableRemoteVolumePopup;
+    _Bool _isObserving;
     NSNumber *_currentVolume;
     SPTGaiaVolumeButtonController *_volumeButtonController;
     SPTCastManager *_castDeviceManager;
@@ -34,6 +35,7 @@
     SPTObserverManager *_observerManager;
 }
 
+@property(nonatomic) _Bool isObserving; // @synthesize isObserving=_isObserving;
 @property(nonatomic) _Bool disableRemoteVolumePopup; // @synthesize disableRemoteVolumePopup=_disableRemoteVolumePopup;
 @property(readonly, nonatomic) SPTObserverManager *observerManager; // @synthesize observerManager=_observerManager;
 @property(readonly, nonatomic) SPTGaiaLogger *logger; // @synthesize logger=_logger;

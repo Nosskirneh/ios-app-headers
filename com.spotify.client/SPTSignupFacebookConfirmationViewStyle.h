@@ -12,6 +12,8 @@
 
 @interface SPTSignupFacebookConfirmationViewStyle : NSObject <GLUEStyle>
 {
+    double _mainContainerWidth;
+    double _mainContainerIPadWidth;
     GLUEGradientStyle *_backgroundGradientStyle;
     GLUEImageStyle *_profilePictureStyle;
     GLUELabelStyle *_titleHeaderStyle;
@@ -58,6 +60,8 @@
 @property(copy, nonatomic) GLUELabelStyle *titleHeaderStyle; // @synthesize titleHeaderStyle=_titleHeaderStyle;
 @property(copy, nonatomic) GLUEImageStyle *profilePictureStyle; // @synthesize profilePictureStyle=_profilePictureStyle;
 @property(copy, nonatomic) GLUEGradientStyle *backgroundGradientStyle; // @synthesize backgroundGradientStyle=_backgroundGradientStyle;
+@property(nonatomic) double mainContainerIPadWidth; // @synthesize mainContainerIPadWidth=_mainContainerIPadWidth;
+@property(nonatomic) double mainContainerWidth; // @synthesize mainContainerWidth=_mainContainerWidth;
 - (void).cxx_destruct;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 

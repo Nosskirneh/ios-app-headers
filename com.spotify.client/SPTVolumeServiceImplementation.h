@@ -8,8 +8,8 @@
 
 #import "SPTVolumeService-Protocol.h"
 
-@class NSString, SPTAllocationContext, SPTVolumeCosmosResolver, SPTVolumeFlagsManager, SPTVolumeRemotePopupPresenter;
-@protocol CosmosFeature, GaiaFeature, SPTAbbaService, SPTContainerService, SPTVolumeAPI;
+@class NSString, SPTAllocationContext, SPTVolumeBuffer, SPTVolumeCosmosResolver, SPTVolumeLogger, SPTVolumeMobileToMobileCoordinator, SPTVolumeRemotePopupPresenter, SPTVolumeSystemPopupHideEmitter;
+@protocol CosmosFeature, GaiaFeature, SPTAbbaService, SPTContainerService, SPTGaiaConnectAPI, SPTPlayerFeature, SPTVolumeAPI, SPTVolumeFlagsManager, SPTVolumeSynchronizationManager, SPTVolumeSystemAPI;
 
 @interface SPTVolumeServiceImplementation : NSObject <SPTVolumeService>
 {
@@ -17,17 +17,33 @@
     id <GaiaFeature> _gaiaService;
     id <CosmosFeature> _cosmosService;
     id <SPTAbbaService> _abbaService;
+    id <SPTPlayerFeature> _playerService;
     id <SPTVolumeAPI> _volumeManager;
+    SPTVolumeMobileToMobileCoordinator *_mobileToMobileManager;
     SPTVolumeRemotePopupPresenter *_remoteVolumePopupPresenter;
     SPTVolumeCosmosResolver *_resolver;
-    SPTVolumeFlagsManager *_flagManager;
+    id <SPTVolumeFlagsManager> _flagManager;
+    id <SPTGaiaConnectAPI> _connectManager;
+    id <SPTVolumeSystemAPI> _systemVolumeManager;
+    SPTVolumeBuffer *_remoteBuffer;
+    SPTVolumeSystemPopupHideEmitter *_systemPopupEmitter;
+    SPTVolumeLogger *_logger;
+    id <SPTVolumeSynchronizationManager> _synchronizationManager;
 }
 
 + (id)serviceIdentifier;
-@property(retain, nonatomic) SPTVolumeFlagsManager *flagManager; // @synthesize flagManager=_flagManager;
+@property(retain, nonatomic) id <SPTVolumeSynchronizationManager> synchronizationManager; // @synthesize synchronizationManager=_synchronizationManager;
+@property(retain, nonatomic) SPTVolumeLogger *logger; // @synthesize logger=_logger;
+@property(retain, nonatomic) SPTVolumeSystemPopupHideEmitter *systemPopupEmitter; // @synthesize systemPopupEmitter=_systemPopupEmitter;
+@property(retain, nonatomic) SPTVolumeBuffer *remoteBuffer; // @synthesize remoteBuffer=_remoteBuffer;
+@property(retain, nonatomic) id <SPTVolumeSystemAPI> systemVolumeManager; // @synthesize systemVolumeManager=_systemVolumeManager;
+@property(retain, nonatomic) id <SPTGaiaConnectAPI> connectManager; // @synthesize connectManager=_connectManager;
+@property(retain, nonatomic) id <SPTVolumeFlagsManager> flagManager; // @synthesize flagManager=_flagManager;
 @property(retain, nonatomic) SPTVolumeCosmosResolver *resolver; // @synthesize resolver=_resolver;
 @property(retain, nonatomic) SPTVolumeRemotePopupPresenter *remoteVolumePopupPresenter; // @synthesize remoteVolumePopupPresenter=_remoteVolumePopupPresenter;
+@property(retain, nonatomic) SPTVolumeMobileToMobileCoordinator *mobileToMobileManager; // @synthesize mobileToMobileManager=_mobileToMobileManager;
 @property(retain, nonatomic) id <SPTVolumeAPI> volumeManager; // @synthesize volumeManager=_volumeManager;
+@property(nonatomic) __weak id <SPTPlayerFeature> playerService; // @synthesize playerService=_playerService;
 @property(nonatomic) __weak id <SPTAbbaService> abbaService; // @synthesize abbaService=_abbaService;
 @property(nonatomic) __weak id <CosmosFeature> cosmosService; // @synthesize cosmosService=_cosmosService;
 @property(nonatomic) __weak id <GaiaFeature> gaiaService; // @synthesize gaiaService=_gaiaService;
@@ -37,6 +53,9 @@
 - (void)setupVolumeSliderView;
 - (void)setupRemoteVolumePopupPresenter;
 - (void)setupGaiaVolumeProxy;
+- (id)buildVolumeSynchronizationManager;
+- (id)buildRemoteControllerRouter;
+- (void)setupMobileToMobileManager;
 - (void)setupVolumeManager;
 - (void)unload;
 - (void)load;

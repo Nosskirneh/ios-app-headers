@@ -16,6 +16,7 @@
 
 // Remaining properties
 @property(copy, nonatomic) NSString *publisherName; // @dynamic publisherName;
+@property(nonatomic) _Bool topPlayed; // @dynamic topPlayed;
 
 @end
 

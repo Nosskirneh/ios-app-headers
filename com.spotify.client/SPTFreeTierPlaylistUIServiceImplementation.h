@@ -9,7 +9,7 @@
 #import "SPTFreeTierPlaylistUIService-Protocol.h"
 
 @class NSString, SPTAllocationContext;
-@protocol SPContextMenuFeature, SPTAdsService, SPTAssistedCurationUIService, SPTBrowsePlatformService, SPTBrowseRedirectButtonProvider, SPTCollectionPlatformService, SPTContainerService, SPTContainerUIService, SPTCoreService, SPTEventSenderService, SPTFeatureFlaggingService, SPTFormatListPlatformRegistration, SPTFormatListPlatformService, SPTFreeTierAllSongsService, SPTFreeTierCreatePlaylistService, SPTFreeTierPlaylistService, SPTFreeTierPreCurationService, SPTFreeTierRecommendationsService, SPTGLUEService, SPTNavigationFeature, SPTNetworkService, SPTOnDemandService, SPTPerformanceMetricsService, SPTPlayerFeature, SPTPlaylistExtenderService, SPTPlaylistPlatformService, SPTPodcastFeature, SPTSessionService, SPTShareFeature, SPTShelfService, SPTSnackbarService, SPTSortingFilteringService, SPTUIPresentationService, SPTVISREFFlagsService, SPTVisualRefreshIntegrationService;
+@protocol SPContextMenuFeature, SPTAdsService, SPTAssistedCurationUIService, SPTCollectionPlatformService, SPTContainerService, SPTContainerUIService, SPTCoreService, SPTEncoreIntegrationService, SPTEventSenderService, SPTFeatureFlaggingService, SPTFormatListPlatformRegistration, SPTFormatListPlatformService, SPTFreeTierAllSongsService, SPTFreeTierCreatePlaylistService, SPTFreeTierPlaylistService, SPTFreeTierPreCurationService, SPTFreeTierRecommendationsService, SPTGLUEService, SPTNavigationFeature, SPTNetworkService, SPTOnDemandService, SPTPerformanceMetricsService, SPTPersonalizedBylineService, SPTPlayerFeature, SPTPlaylistExtenderService, SPTPlaylistPlatformService, SPTPodcastFeature, SPTSessionService, SPTShareFeature, SPTShelfService, SPTSnackbarService, SPTSortingFilteringService, SPTUIPresentationService, SPTVISREFFlagsService, SPTVisualRefreshIntegrationService;
 
 @interface SPTFreeTierPlaylistUIServiceImplementation : NSObject <SPTFreeTierPlaylistUIService>
 {
@@ -42,25 +42,25 @@
     id <SPTPlaylistExtenderService> _playlistExtenderFeature;
     id <SPTSortingFilteringService> _sortingFilteringService;
     id <SPTFormatListPlatformRegistration> _formatRegistryHandlerRegistration;
-    id <SPTBrowsePlatformService> _browsePlatformService;
-    id <SPTBrowseRedirectButtonProvider> _browseRedirectButtonProvider;
     id <SPTVISREFFlagsService> _visualRefreshService;
     id <SPTVisualRefreshIntegrationService> _visualRefreshIntegrationService;
     id <SPTPodcastFeature> _podcastFeature;
     id <SPTSessionService> _clientSessionService;
     id <SPTShareFeature> _shareFeature;
     id <SPTEventSenderService> _eventSenderService;
+    id <SPTEncoreIntegrationService> _encoreIntegrationService;
+    id <SPTPersonalizedBylineService> _byLineService;
 }
 
 + (id)serviceIdentifier;
+@property(nonatomic) __weak id <SPTPersonalizedBylineService> byLineService; // @synthesize byLineService=_byLineService;
+@property(nonatomic) __weak id <SPTEncoreIntegrationService> encoreIntegrationService; // @synthesize encoreIntegrationService=_encoreIntegrationService;
 @property(nonatomic) __weak id <SPTEventSenderService> eventSenderService; // @synthesize eventSenderService=_eventSenderService;
 @property(nonatomic) __weak id <SPTShareFeature> shareFeature; // @synthesize shareFeature=_shareFeature;
 @property(nonatomic) __weak id <SPTSessionService> clientSessionService; // @synthesize clientSessionService=_clientSessionService;
 @property(nonatomic) __weak id <SPTPodcastFeature> podcastFeature; // @synthesize podcastFeature=_podcastFeature;
 @property(nonatomic) __weak id <SPTVisualRefreshIntegrationService> visualRefreshIntegrationService; // @synthesize visualRefreshIntegrationService=_visualRefreshIntegrationService;
 @property(nonatomic) __weak id <SPTVISREFFlagsService> visualRefreshService; // @synthesize visualRefreshService=_visualRefreshService;
-@property(retain, nonatomic) id <SPTBrowseRedirectButtonProvider> browseRedirectButtonProvider; // @synthesize browseRedirectButtonProvider=_browseRedirectButtonProvider;
-@property(nonatomic) __weak id <SPTBrowsePlatformService> browsePlatformService; // @synthesize browsePlatformService=_browsePlatformService;
 @property(retain, nonatomic) id <SPTFormatListPlatformRegistration> formatRegistryHandlerRegistration; // @synthesize formatRegistryHandlerRegistration=_formatRegistryHandlerRegistration;
 @property(nonatomic) __weak id <SPTSortingFilteringService> sortingFilteringService; // @synthesize sortingFilteringService=_sortingFilteringService;
 @property(nonatomic) __weak id <SPTPlaylistExtenderService> playlistExtenderFeature; // @synthesize playlistExtenderFeature=_playlistExtenderFeature;
@@ -96,7 +96,6 @@
 - (id)provideLoggerForURI:(id)arg1;
 - (id)provideSponsoredViewModelForURL:(id)arg1;
 - (id)providePlaylistEditViewControllerForURL:(id)arg1;
-- (id)providePlaylistSearchViewControllerWithViewModel:(id)arg1;
 - (id)providePlaylistViewControllerForURL:(id)arg1 withContext:(id)arg2 formatListType:(id)arg3 configurationBlock:(CDUnknownBlockType)arg4;
 - (id)fullbleedHeaderProvider;
 - (void)unregisterPage;

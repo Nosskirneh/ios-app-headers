@@ -10,7 +10,6 @@
 @protocol SPTSocialListeningModelObserver;
 
 @protocol SPTSocialListeningModel <NSObject>
-@property(nonatomic) _Bool currentActiveDeviceIsSocialConnectDevice;
 @property(readonly, nonatomic) long long state;
 @property(readonly, nonatomic) unsigned long long connectedParticipants;
 @property(readonly, nonatomic, getter=isSessionHost) _Bool sessionHost;

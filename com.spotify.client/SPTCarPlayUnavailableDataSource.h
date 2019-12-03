@@ -27,6 +27,7 @@
 - (long long)numberOfChildItemsAtIndexPath:(id)arg1;
 - (_Bool)childItemsDisplayPlaybackProgressAtIndexPath:(id)arg1;
 - (void)beginLoadingChildItemsAtIndexPath:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
+- (void)updateOfflineOnly:(_Bool)arg1;
 @property(readonly, nonatomic) MPContentItem *loginPromptItem; // @synthesize loginPromptItem=_loginPromptItem;
 @property(readonly, nonatomic) MPContentItem *tabMenuItem; // @synthesize tabMenuItem=_tabMenuItem;
 - (id)initWithTitle:(id)arg1 menuItemTitle:(id)arg2 debugLog:(id)arg3;

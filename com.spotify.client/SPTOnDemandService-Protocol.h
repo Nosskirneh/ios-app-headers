@@ -9,10 +9,10 @@
 @protocol HUBContentOperation, SPTOnDemandSet;
 
 @protocol SPTOnDemandService <SPTService>
+- (id <SPTOnDemandSet>)provideOnDemandSet;
 - (id <HUBContentOperation>)provideOnDemandCardAccessibilityContentOperation;
 - (id <HUBContentOperation>)provideOnDemandReloadContentOperation;
 - (id <HUBContentOperation>)provideOnDemandDecoratorContentOperation;
 - (id <HUBContentOperation>)provideOnDemandExtractorContentOperation;
-- (id <SPTOnDemandSet>)provideOnDemandSet;
 @end
 

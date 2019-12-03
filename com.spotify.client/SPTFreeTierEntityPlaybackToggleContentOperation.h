@@ -9,7 +9,7 @@
 #import "HUBContentOperation-Protocol.h"
 #import "SPTPlayerObserver-Protocol.h"
 
-@class NSString;
+@class NSString, SPTPlayerState;
 @protocol HUBContentOperationDelegate, SPTPlayer;
 
 @interface SPTFreeTierEntityPlaybackToggleContentOperation : NSObject <SPTPlayerObserver, HUBContentOperation>
@@ -17,8 +17,10 @@
     _Bool _observing;
     id <HUBContentOperationDelegate> _delegate;
     id <SPTPlayer> _player;
+    SPTPlayerState *_currentState;
 }
 
+@property(retain, nonatomic) SPTPlayerState *currentState; // @synthesize currentState=_currentState;
 @property(nonatomic, getter=isObserving) _Bool observing; // @synthesize observing=_observing;
 @property(readonly, nonatomic) id <SPTPlayer> player; // @synthesize player=_player;
 @property(nonatomic) __weak id <HUBContentOperationDelegate> delegate; // @synthesize delegate=_delegate;

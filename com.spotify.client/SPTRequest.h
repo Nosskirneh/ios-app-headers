@@ -21,9 +21,9 @@
 @property(readonly, copy, nonatomic) NSURL *URL; // @synthesize URL=_URL;
 @property(readonly, copy, nonatomic) NSString *action; // @synthesize action=_action;
 - (void).cxx_destruct;
-- (void)getCppRequest:(Request_995d6ec1 *)arg1;
+- (void)getCppRequest:(struct Request *)arg1;
 - (id)description;
-- (id)initWithCppRequest:(const Request_995d6ec1 *)arg1;
+- (id)initWithCppRequest:(const struct Request *)arg1;
 - (id)initRequesting:(id)arg1 withAction:(id)arg2 body:(id)arg3 headers:(id)arg4;
 
 @end

@@ -68,7 +68,6 @@
 @property(readonly, nonatomic) NSString *settingsSectionHeaderTitle;
 @property(readonly, nonatomic) NSString *settingsNavBarTitle;
 @property(readonly, nonatomic) NSString *nextButtonTitle;
-@property(readonly, nonatomic) NSString *headerSubtitle;
 @property(readonly, nonatomic) NSString *headerTitle;
 @property(readonly, nonatomic, getter=hasFetchedLanguages) _Bool fetchedLanguages;
 @property(readonly, nonatomic, getter=isOffline) _Bool offline;

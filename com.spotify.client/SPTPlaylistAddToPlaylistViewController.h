@@ -6,13 +6,14 @@
 
 #import "SPTPlaylistFolderViewController.h"
 
+#import "SPTContextMenuContentViewController-Protocol.h"
 #import "SPTMetaViewControllerPresentable-Protocol.h"
 #import "SPTPlaylistDismissableViewController-Protocol.h"
 
 @class GLUEButtonStyle, NSArray, NSString, NSURL, SPSession, SPTPlaylistCreateNewPlaylistController, SPTPlaylistGLUETheme, SPTPlaylistLogger, SPTPlaylistTestManager, SPTTableView;
 @protocol GLUEImageLoader, GLUETheme, PlaylistFeature, SPTAlertController, SPTContextMenuContentViewControllerDelegate, SPTLocalSettings, SPTOfflineManager, SPTOfflineModeState, SPTPlaylistModel, SPTProductState, SPTSnackbarConditionalPresenter;
 
-@interface SPTPlaylistAddToPlaylistViewController : SPTPlaylistFolderViewController <SPTMetaViewControllerPresentable, SPTPlaylistDismissableViewController>
+@interface SPTPlaylistAddToPlaylistViewController : SPTPlaylistFolderViewController <SPTMetaViewControllerPresentable, SPTContextMenuContentViewController, SPTPlaylistDismissableViewController>
 {
     _Bool _isAdding;
     _Bool _added;

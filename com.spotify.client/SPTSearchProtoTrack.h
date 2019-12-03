@@ -17,6 +17,9 @@
 // Remaining properties
 @property(nonatomic) _Bool explicit_p; // @dynamic explicit_p;
 @property(nonatomic) _Bool hasTrackAlbum; // @dynamic hasTrackAlbum;
+@property(nonatomic) _Bool onDemand; // @dynamic onDemand;
+@property(copy, nonatomic) NSString *onDemandPlaylistUri; // @dynamic onDemandPlaylistUri;
+@property(copy, nonatomic) NSString *onDemandTrackUri; // @dynamic onDemandTrackUri;
 @property(copy, nonatomic) NSString *previewId; // @dynamic previewId;
 @property(retain, nonatomic) SPTSearchProtoRelatedEntity *trackAlbum; // @dynamic trackAlbum;
 @property(retain, nonatomic) NSMutableArray *trackArtistsArray; // @dynamic trackArtistsArray;

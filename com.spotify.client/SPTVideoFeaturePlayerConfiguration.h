@@ -9,7 +9,7 @@
 #import "BMPlayerConfiguration-Protocol.h"
 #import "SPTAbbaFeatureFlagsObserver-Protocol.h"
 
-@class NSString, NSURL, SPTDataLoaderKeymasterAuthoriser;
+@class NSString, NSURL;
 @protocol SPTAbbaFeatureFlags;
 
 @interface SPTVideoFeaturePlayerConfiguration : NSObject <SPTAbbaFeatureFlagsObserver, BMPlayerConfiguration>
@@ -19,12 +19,10 @@
     _Bool _preventDisplaySleepDuringVideoPlayback;
     unsigned long long _videoCDNLoggingOption;
     id <SPTAbbaFeatureFlags> _featureFlags;
-    SPTDataLoaderKeymasterAuthoriser *_keymasterAuthoriser;
     NSString *_manifestURLTemplate;
 }
 
 @property(copy, nonatomic) NSString *manifestURLTemplate; // @synthesize manifestURLTemplate=_manifestURLTemplate;
-@property(retain, nonatomic) SPTDataLoaderKeymasterAuthoriser *keymasterAuthoriser; // @synthesize keymasterAuthoriser=_keymasterAuthoriser;
 @property(retain, nonatomic) id <SPTAbbaFeatureFlags> featureFlags; // @synthesize featureFlags=_featureFlags;
 @property(readonly, nonatomic) _Bool preventDisplaySleepDuringVideoPlayback; // @synthesize preventDisplaySleepDuringVideoPlayback=_preventDisplaySleepDuringVideoPlayback;
 @property(readonly, nonatomic) _Bool cachingFlatFilesEnabled; // @synthesize cachingFlatFilesEnabled=_cachingFlatFilesEnabled;
@@ -41,7 +39,7 @@
 - (void)updateFeatureFlagsTemplates;
 - (void)dealloc;
 - (void)updateFeatureFlags;
-- (id)initWithFeatureFlags:(id)arg1 keymasterAuthoriser:(id)arg2 preventDisplaySleepDuringVideoPlayback:(_Bool)arg3;
+- (id)initWithFeatureFlags:(id)arg1 preventDisplaySleepDuringVideoPlayback:(_Bool)arg2;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

@@ -40,7 +40,11 @@
 - (id)propertyListRepresentationOfItem:(id)arg1;
 - (id)propertyListRepresentationOfRootItem:(id)arg1;
 - (id)rootContentIdentifiersForContentType;
+- (id)offlineCollectionsURIs;
+- (void)offlineExternalIntegrationContentWithCompletionHandler:(CDUnknownBlockType)arg1;
+- (void)replyWithOfflineRecommendationsForMessage:(id)arg1 reply:(CDUnknownBlockType)arg2;
 - (void)resolveChildContentOfParentURI:(id)arg1 getChildrenMessage:(id)arg2 reply:(CDUnknownBlockType)arg3;
+- (void)replyToMessage:(id)arg1 reply:(CDUnknownBlockType)arg2 items:(id)arg3 error:(id)arg4;
 - (void)handleGetCrossfadeStateCallMessage:(id)arg1 andReply:(CDUnknownBlockType)arg2;
 - (void)handleLogMessage:(id)arg1;
 - (void)handleQueueUriMessage:(id)arg1 andReply:(CDUnknownBlockType)arg2;
@@ -53,7 +57,7 @@
 - (void)handlePlayUriMessage:(id)arg1 andReply:(CDUnknownBlockType)arg2;
 - (void)handlePlayItemMessage:(id)arg1 andReply:(CDUnknownBlockType)arg2;
 - (void)handleGetChildrenOfItemMessage:(id)arg1 andReply:(CDUnknownBlockType)arg2;
-- (void)handleGetRecommendedContentForTypMessage:(id)arg1 andReply:(CDUnknownBlockType)arg2;
+- (void)handleGetRecommendedContentForTypeMessage:(id)arg1 andReply:(CDUnknownBlockType)arg2;
 - (void)handleGetRootItemMessage:(id)arg1 andReply:(CDUnknownBlockType)arg2;
 - (void)handleGetItemForURIMessage:(id)arg1 andReply:(CDUnknownBlockType)arg2;
 - (void)handleGetRecommendedRootItemsMessage:(id)arg1 andReply:(CDUnknownBlockType)arg2;

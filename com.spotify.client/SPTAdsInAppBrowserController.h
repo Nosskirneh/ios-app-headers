@@ -9,25 +9,24 @@
 #import "SPTWebViewControllerDelegate-Protocol.h"
 
 @class NSString, NSURL, UIViewController;
-@protocol SPTLogCenter, SPTWebViewController, SPTWebViewFactory;
+@protocol SPTEventSender, SPTWebViewController, SPTWebViewFactory;
 
 @interface SPTAdsInAppBrowserController : NSObject <SPTWebViewControllerDelegate>
 {
     id <SPTWebViewFactory> _webViewFactory;
     UIViewController<SPTWebViewController> *_webViewController;
-    id <SPTLogCenter> _logCenter;
+    id <SPTEventSender> _eventSender;
     NSURL *_initialURL;
 }
 
 @property(retain, nonatomic) NSURL *initialURL; // @synthesize initialURL=_initialURL;
-@property(readonly, nonatomic) id <SPTLogCenter> logCenter; // @synthesize logCenter=_logCenter;
+@property(readonly, nonatomic) id <SPTEventSender> eventSender; // @synthesize eventSender=_eventSender;
 @property(retain, nonatomic) UIViewController<SPTWebViewController> *webViewController; // @synthesize webViewController=_webViewController;
 @property(retain, nonatomic) id <SPTWebViewFactory> webViewFactory; // @synthesize webViewFactory=_webViewFactory;
 - (void).cxx_destruct;
 - (void)logError:(id)arg1;
 - (id)jsonErrorStringWithError:(id)arg1;
-- (id)devicePlatform;
-- (id)logMessageWithEventName:(id)arg1 jsonData:(id)arg2;
+- (void)sendMessageWithEventName:(id)arg1 jsonData:(id)arg2;
 - (id)errorMessageHTML;
 - (void)showErrorMessage;
 - (void)webViewController:(id)arg1 didFailProvisionalNavigation:(unsigned long long)arg2 withError:(id)arg3;
@@ -37,7 +36,7 @@
 - (void)webViewController:(id)arg1 didStartProvisionalNavigation:(unsigned long long)arg2;
 - (void)webViewController:(id)arg1 didFinishNavigation:(unsigned long long)arg2;
 - (void)presentBrowserWithURL:(id)arg1;
-- (id)initWithWebViewFactory:(id)arg1 logCenter:(id)arg2;
+- (id)initWithWebViewFactory:(id)arg1 eventSender:(id)arg2;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

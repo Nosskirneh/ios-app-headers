@@ -32,7 +32,6 @@
     NSString *_httpUserAgent;
     long long _streamingRulesSupported;
     CDUnknownBlockType _assertionHandlerCallback;
-    NSString *_logConfigurationFilePath;
     CDUnknownBlockType _acceptLanguageCallback;
     id <SPTAudioDriverController> _audioDriverController;
     NSString *_clientLanguage;
@@ -45,7 +44,6 @@
 @property(copy, nonatomic) CDUnknownBlockType acceptLanguageCallback; // @synthesize acceptLanguageCallback=_acceptLanguageCallback;
 @property(nonatomic) _Bool isTablet; // @synthesize isTablet=_isTablet;
 @property(nonatomic) _Bool enableMftRulesForPlayer; // @synthesize enableMftRulesForPlayer=_enableMftRulesForPlayer;
-@property(copy, nonatomic) NSString *logConfigurationFilePath; // @synthesize logConfigurationFilePath=_logConfigurationFilePath;
 @property(copy, nonatomic) CDUnknownBlockType assertionHandlerCallback; // @synthesize assertionHandlerCallback=_assertionHandlerCallback;
 @property(nonatomic) long long streamingRulesSupported; // @synthesize streamingRulesSupported=_streamingRulesSupported;
 @property(copy, nonatomic) NSString *httpUserAgent; // @synthesize httpUserAgent=_httpUserAgent;

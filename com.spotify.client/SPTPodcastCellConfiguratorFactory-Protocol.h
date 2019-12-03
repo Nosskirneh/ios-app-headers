@@ -6,10 +6,9 @@
 
 #import "NSObject-Protocol.h"
 
-@protocol SPTPodcastEpisodeCellConfigurator, SPTPodcastUIButtonsFactory, SPTPodcastUIStringFormatter, SPTPodcastYourLibraryShowCellConfigurator;
+@protocol SPTPodcastEpisodeCellConfigurator, SPTPodcastUIButtonsFactory, SPTPodcastUIStringFormatter;
 
 @protocol SPTPodcastCellConfiguratorFactory <NSObject>
-- (id <SPTPodcastYourLibraryShowCellConfigurator>)createShowCellConfigurator;
 - (id <SPTPodcastEpisodeCellConfigurator>)createEpisodeCellConfiguratorWithStringFormatter:(id <SPTPodcastUIStringFormatter>)arg1 buttonsFactory:(id <SPTPodcastUIButtonsFactory>)arg2;
 @end
 

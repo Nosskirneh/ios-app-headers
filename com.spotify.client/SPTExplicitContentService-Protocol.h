@@ -6,11 +6,9 @@
 
 #import "SPTService-Protocol.h"
 
-@protocol SPTExplicitContentAccessManager, SPTExplicitContentHubCommandHandlerFactory, SPTExplicitContentHubContentOperationFactory;
+@protocol SPTExplicitContentAccessManager;
 
 @protocol SPTExplicitContentService <SPTService>
-- (id <SPTExplicitContentHubContentOperationFactory>)provideHubContentOperationFactory;
-- (id <SPTExplicitContentHubCommandHandlerFactory>)provideHubCommandHandlerFactory;
 - (id <SPTExplicitContentAccessManager>)provideAccessManager;
 @end
 

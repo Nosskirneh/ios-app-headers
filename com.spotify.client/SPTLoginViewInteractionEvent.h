@@ -14,7 +14,6 @@
 {
     NSString *_applicationId;
     NSString *_interactionType;
-    NSString *_specificationId;
     NSArray *_components;
     NSString *_action;
     NSDictionary *_actionParameters;
@@ -29,7 +28,6 @@
 @property(copy, nonatomic) NSDictionary *actionParameters; // @synthesize actionParameters=_actionParameters;
 @property(copy, nonatomic) NSString *action; // @synthesize action=_action;
 @property(copy, nonatomic) NSArray *components; // @synthesize components=_components;
-@property(copy, nonatomic) NSString *specificationId; // @synthesize specificationId=_specificationId;
 @property(copy, nonatomic) NSString *interactionType; // @synthesize interactionType=_interactionType;
 @property(copy, nonatomic) NSString *applicationId; // @synthesize applicationId=_applicationId;
 - (void).cxx_destruct;

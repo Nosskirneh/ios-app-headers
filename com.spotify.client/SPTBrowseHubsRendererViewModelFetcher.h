@@ -8,11 +8,12 @@
 
 #import "SPTBrowseViewModelFetcher-Protocol.h"
 #import "SPTDataLoaderDelegate-Protocol.h"
+#import "SPTFeatureFlagSignalObserver-Protocol.h"
 
 @class NSString, SPTBrowseOnDemandDecorator, SPTDataLoader, SPTDataLoaderFactory;
 @protocol SPTBrowseTimeZoneProvider, SPTBrowseViewModelBuilderProvider, SPTFeatureFlagSignal, SPTPodcastTestManager;
 
-@interface SPTBrowseHubsRendererViewModelFetcher : NSObject <SPTDataLoaderDelegate, SPTBrowseViewModelFetcher>
+@interface SPTBrowseHubsRendererViewModelFetcher : NSObject <SPTDataLoaderDelegate, SPTFeatureFlagSignalObserver, SPTBrowseViewModelFetcher>
 {
     _Bool _nftEnabled;
     id <SPTBrowseViewModelBuilderProvider> _viewModelBuilderProvider;

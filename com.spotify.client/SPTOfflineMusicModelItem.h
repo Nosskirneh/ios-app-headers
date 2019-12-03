@@ -6,25 +6,30 @@
 
 #import <objc/NSObject.h>
 
+#import "NSCoding-Protocol.h"
 #import "SPTOfflineContentModelItem-Protocol.h"
 
 @class NSString, NSURL;
 
-@interface SPTOfflineMusicModelItem : NSObject <SPTOfflineContentModelItem>
+@interface SPTOfflineMusicModelItem : NSObject <SPTOfflineContentModelItem, NSCoding>
 {
+    NSString *_name;
     NSURL *_entityURL;
     NSURL *_imageURL;
-    NSString *_name;
     NSURL *_entityImageURL;
     NSString *_freeformDescription;
 }
 
-@property(readonly, copy, nonatomic) NSString *freeformDescription; // @synthesize freeformDescription=_freeformDescription;
-@property(readonly, nonatomic) NSURL *entityImageURL; // @synthesize entityImageURL=_entityImageURL;
-@property(readonly, copy, nonatomic) NSString *name; // @synthesize name=_name;
-@property(readonly, nonatomic) NSURL *imageURL; // @synthesize imageURL=_imageURL;
-@property(readonly, nonatomic) NSURL *entityURL; // @synthesize entityURL=_entityURL;
++ (id)likedSongsItem:(id)arg1;
+@property(copy, nonatomic) NSString *freeformDescription; // @synthesize freeformDescription=_freeformDescription;
+@property(retain, nonatomic) NSURL *entityImageURL; // @synthesize entityImageURL=_entityImageURL;
+@property(retain, nonatomic) NSURL *imageURL; // @synthesize imageURL=_imageURL;
+@property(retain, nonatomic) NSURL *entityURL; // @synthesize entityURL=_entityURL;
+@property(copy, nonatomic) NSString *name; // @synthesize name=_name;
 - (void).cxx_destruct;
+- (_Bool)isEqual:(id)arg1;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
 - (id)initWithAlbumItem:(id)arg1;
 - (id)initWithPlaylistItem:(id)arg1;
 

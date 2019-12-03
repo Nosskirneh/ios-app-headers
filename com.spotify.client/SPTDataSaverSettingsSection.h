@@ -6,31 +6,36 @@
 
 #import "SettingsSection.h"
 
-@class SPTDataSaverLogger, SettingsSwitchTableViewCell;
-@protocol SPTLocalSettings, SPTPreferences;
+#import "SPTDataSaverControllerDelegate-Protocol.h"
 
-@interface SPTDataSaverSettingsSection : SettingsSection
+@class NSString, SPTDataSaverController, SettingsSwitchTableViewCell;
+
+@interface SPTDataSaverSettingsSection : SettingsSection <SPTDataSaverControllerDelegate>
 {
     _Bool _canvasEnabled;
-    id <SPTPreferences> _preferences;
-    id <SPTLocalSettings> _localSettings;
     SettingsSwitchTableViewCell *_dataSaverCell;
-    SPTDataSaverLogger *_logger;
+    SPTDataSaverController *_dataSaverController;
 }
 
+@property(retain, nonatomic) SPTDataSaverController *dataSaverController; // @synthesize dataSaverController=_dataSaverController;
 @property(nonatomic) _Bool canvasEnabled; // @synthesize canvasEnabled=_canvasEnabled;
-@property(readonly, nonatomic) SPTDataSaverLogger *logger; // @synthesize logger=_logger;
 @property(retain, nonatomic) SettingsSwitchTableViewCell *dataSaverCell; // @synthesize dataSaverCell=_dataSaverCell;
-@property(retain, nonatomic) id <SPTLocalSettings> localSettings; // @synthesize localSettings=_localSettings;
-@property(retain, nonatomic) id <SPTPreferences> preferences; // @synthesize preferences=_preferences;
 - (void).cxx_destruct;
+- (void)dataSaverControllerStateDidChange;
+- (void)updateDataSaverState;
 - (void)updateDataSaverCellTitleWithActivatedState:(_Bool)arg1;
 - (id)footerText;
 - (id)cellForRow:(long long)arg1;
 - (long long)numberOfRows;
 - (void)dataSaverSwitchChanged:(id)arg1;
 - (void)dealloc;
-- (id)initWithSettingsViewController:(id)arg1 preferences:(id)arg2 localSettings:(id)arg3 canvasEnabled:(_Bool)arg4 logger:(id)arg5;
+- (id)initWithSettingsViewController:(id)arg1 dataSaverController:(id)arg2 canvasEnabled:(_Bool)arg3;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

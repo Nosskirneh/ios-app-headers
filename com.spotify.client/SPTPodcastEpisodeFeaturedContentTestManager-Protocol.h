@@ -7,6 +7,8 @@
 #import "NSObject-Protocol.h"
 
 @protocol SPTPodcastEpisodeFeaturedContentTestManager <NSObject>
+@property(readonly, nonatomic, getter=isTrackListModeLinkedPage) _Bool trackListModeLinkedPage;
+@property(readonly, nonatomic, getter=isTrackListEnabled) _Bool trackListEnabled;
 @property(readonly, nonatomic, getter=isFeaturedContentEnabled) _Bool featuredContentEnabled;
 @end
 

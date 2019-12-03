@@ -12,6 +12,7 @@
 - (void)updateDescriptionForPlaylistURL:(NSURL *)arg1 freeformDescription:(NSString *)arg2 completion:(void (^)(NSError *))arg3;
 - (void)removeOfflinePlaylistURL:(NSURL *)arg1 completion:(void (^)(NSError *))arg2;
 - (void)addOfflinePlaylistURL:(NSURL *)arg1 completion:(void (^)(NSError *))arg2;
+- (void)synchronisePlaylistURLs:(NSArray *)arg1;
 - (void)synchronisePlaylistURL:(NSURL *)arg1;
 - (void)unfollowPlaylistURL:(NSURL *)arg1 completion:(void (^)(NSError *))arg2;
 - (void)followPlaylistURL:(NSURL *)arg1 completion:(void (^)(NSError *))arg2;

@@ -50,7 +50,7 @@
 - (id)contextMenuPresenterWithSenderView:(id)arg1;
 - (void)transitionToState:(unsigned long long)arg1;
 - (void)tapContextMenuButton:(id)arg1;
-- (void)configureWithViewURI:(id)arg1 metadata:(id)arg2 imageURL:(id)arg3;
+- (void)configureWithViewURI:(id)arg1 metadata:(id)arg2;
 - (id)initWithPresenterFactory:(id)arg1 actionFactory:(id)arg2 freeTierArtistTestManager:(id)arg3 artistURI:(id)arg4 followModelFactory:(id)arg5 decorationRegistry:(id)arg6 moderationFeatureState:(id)arg7;
 
 // Remaining properties

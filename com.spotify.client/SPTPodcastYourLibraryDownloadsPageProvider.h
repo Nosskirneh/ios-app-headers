@@ -8,8 +8,8 @@
 
 #import "SPTYourLibraryPageProvider-Protocol.h"
 
-@class NSString, NSURL, SPTPodcastCosmosDataLoader, SPTPodcastEpisodeCellActionHandlerFactory, SPTTheme;
-@protocol GLUETheme, SPTExplicitContentAccessManager, SPTGLUEImageLoaderFactory, SPTMetaViewController, SPTNavigationRouter, SPTOfflineManager, SPTPerformanceMetricsViewLoggerFactory, SPTPlayerFeature, SPTPodcastLogger, SPTPodcastTestManager, SPTPodcastUIButtonsFactory, SPTPodcastUIStringFormatter, SPTPodcastUITestManager;
+@class NSString, NSURL, SPTPodcastEpisodeCellActionHandlerFactory, SPTTheme;
+@protocol GLUETheme, SPTExplicitContentAccessManager, SPTMetaViewController, SPTNavigationRouter, SPTOfflineManager, SPTPerformanceMetricsViewLoggerFactory, SPTPodcastDataLoader, SPTPodcastEpisodeCellConfigurator, SPTPodcastEpisodeFactory, SPTPodcastLogger, SPTPodcastRequestFactory, SPTPodcastTestManager, SPTPodcastUITestManager, SPTPodcastYourLibraryPageProviderDelegate;
 
 @interface SPTPodcastYourLibraryDownloadsPageProvider : NSObject <SPTYourLibraryPageProvider>
 {
@@ -17,40 +17,40 @@
     unsigned long long _providerIdentifier;
     NSString *_title;
     NSURL *_URI;
+    id <SPTPodcastYourLibraryPageProviderDelegate> _delegate;
     id <SPTPodcastTestManager> _testManager;
-    SPTPodcastCosmosDataLoader *_dataLoader;
+    id <SPTPodcastDataLoader> _dataLoader;
     id <SPTExplicitContentAccessManager> _explicitContentAccessManager;
     SPTTheme *_theme;
     id <GLUETheme> _glueTheme;
-    id <SPTPodcastUIButtonsFactory> _buttonsFactory;
-    id <SPTGLUEImageLoaderFactory> _imageLoaderFactory;
     SPTPodcastEpisodeCellActionHandlerFactory *_cellActionHandlerFactory;
+    id <SPTPodcastEpisodeCellConfigurator> _cellConfigurator;
     id <SPTPodcastLogger> _podcastLogger;
     id <SPTPerformanceMetricsViewLoggerFactory> _viewLoggerFactory;
-    id <SPTPodcastUIStringFormatter> _podcastStringFormatter;
     id <SPTPodcastUITestManager> _podcastUITestManager;
+    id <SPTPodcastRequestFactory> _podcastRequestFactory;
+    id <SPTPodcastEpisodeFactory> _episodeFactory;
     id <SPTMetaViewController> _metaViewController;
     id <SPTNavigationRouter> _navigationRouter;
-    id <SPTPlayerFeature> _playerFeature;
     id <SPTOfflineManager> _offlineManager;
 }
 
 @property(nonatomic) __weak id <SPTOfflineManager> offlineManager; // @synthesize offlineManager=_offlineManager;
-@property(nonatomic) __weak id <SPTPlayerFeature> playerFeature; // @synthesize playerFeature=_playerFeature;
 @property(nonatomic) __weak id <SPTNavigationRouter> navigationRouter; // @synthesize navigationRouter=_navigationRouter;
 @property(nonatomic) __weak id <SPTMetaViewController> metaViewController; // @synthesize metaViewController=_metaViewController;
+@property(retain, nonatomic) id <SPTPodcastEpisodeFactory> episodeFactory; // @synthesize episodeFactory=_episodeFactory;
+@property(retain, nonatomic) id <SPTPodcastRequestFactory> podcastRequestFactory; // @synthesize podcastRequestFactory=_podcastRequestFactory;
 @property(retain, nonatomic) id <SPTPodcastUITestManager> podcastUITestManager; // @synthesize podcastUITestManager=_podcastUITestManager;
-@property(retain, nonatomic) id <SPTPodcastUIStringFormatter> podcastStringFormatter; // @synthesize podcastStringFormatter=_podcastStringFormatter;
 @property(retain, nonatomic) id <SPTPerformanceMetricsViewLoggerFactory> viewLoggerFactory; // @synthesize viewLoggerFactory=_viewLoggerFactory;
 @property(retain, nonatomic) id <SPTPodcastLogger> podcastLogger; // @synthesize podcastLogger=_podcastLogger;
+@property(retain, nonatomic) id <SPTPodcastEpisodeCellConfigurator> cellConfigurator; // @synthesize cellConfigurator=_cellConfigurator;
 @property(retain, nonatomic) SPTPodcastEpisodeCellActionHandlerFactory *cellActionHandlerFactory; // @synthesize cellActionHandlerFactory=_cellActionHandlerFactory;
-@property(retain, nonatomic) id <SPTGLUEImageLoaderFactory> imageLoaderFactory; // @synthesize imageLoaderFactory=_imageLoaderFactory;
-@property(retain, nonatomic) id <SPTPodcastUIButtonsFactory> buttonsFactory; // @synthesize buttonsFactory=_buttonsFactory;
 @property(retain, nonatomic) id <GLUETheme> glueTheme; // @synthesize glueTheme=_glueTheme;
 @property(retain, nonatomic) SPTTheme *theme; // @synthesize theme=_theme;
 @property(retain, nonatomic) id <SPTExplicitContentAccessManager> explicitContentAccessManager; // @synthesize explicitContentAccessManager=_explicitContentAccessManager;
-@property(retain, nonatomic) SPTPodcastCosmosDataLoader *dataLoader; // @synthesize dataLoader=_dataLoader;
+@property(retain, nonatomic) id <SPTPodcastDataLoader> dataLoader; // @synthesize dataLoader=_dataLoader;
 @property(retain, nonatomic) id <SPTPodcastTestManager> testManager; // @synthesize testManager=_testManager;
+@property(nonatomic) __weak id <SPTPodcastYourLibraryPageProviderDelegate> delegate; // @synthesize delegate=_delegate;
 @property(readonly, nonatomic) NSURL *URI; // @synthesize URI=_URI;
 @property(readonly, nonatomic) NSString *title; // @synthesize title=_title;
 @property(readonly, nonatomic) unsigned long long providerIdentifier; // @synthesize providerIdentifier=_providerIdentifier;
@@ -58,7 +58,7 @@
 - (void).cxx_destruct;
 - (id)pageViewControllerForContext:(id)arg1;
 - (_Bool)claimsURI:(id)arg1;
-- (id)initWithURI:(id)arg1 title:(id)arg2 pageProviderIdentifier:(unsigned long long)arg3 testManager:(id)arg4 dataLoader:(id)arg5 offlineManager:(id)arg6 explicitContentAccessManager:(id)arg7 theme:(id)arg8 glueTheme:(id)arg9 buttonsFactory:(id)arg10 imageLoaderFactory:(id)arg11 playerFeature:(id)arg12 cellActionHandlerFactory:(id)arg13 metaViewController:(id)arg14 navigationRouter:(id)arg15 podcastLogger:(id)arg16 viewLoggerFactory:(id)arg17 podcastStringFormatter:(id)arg18 podcastUITestManager:(id)arg19;
+- (id)initWithURI:(id)arg1 title:(id)arg2 delegate:(id)arg3 pageProviderIdentifier:(unsigned long long)arg4 podcastRequestFactory:(id)arg5 dataLoader:(id)arg6 episodeFactory:(id)arg7 testManager:(id)arg8 offlineManager:(id)arg9 explicitContentAccessManager:(id)arg10 theme:(id)arg11 glueTheme:(id)arg12 cellConfigurator:(id)arg13 cellActionHandlerFactory:(id)arg14 metaViewController:(id)arg15 navigationRouter:(id)arg16 podcastLogger:(id)arg17 viewLoggerFactory:(id)arg18 podcastUITestManager:(id)arg19;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

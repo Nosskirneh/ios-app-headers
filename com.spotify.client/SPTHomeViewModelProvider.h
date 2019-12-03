@@ -6,30 +6,30 @@
 
 #import "SPTHubViewModelProvider.h"
 
-#import "SPTHomeViewModel-Protocol.h"
+#import "HUBViewModelLoaderDelegate-Protocol.h"
+#import "SPTHomeLocalViewModelOverridesDelegate-Protocol.h"
 
 @class NSString;
-@protocol HUBViewModelLoader, SPTHomeViewModelDelegate, SPTHomeViewModelProviderDelegate, SPTHubViewModelProviderDelegate;
+@protocol HUBViewModelLoader, SPTHomeViewModelProviderDelegate, SPTHubViewModelProviderDelegate;
 
-@interface SPTHomeViewModelProvider : SPTHubViewModelProvider <SPTHomeViewModel>
+@interface SPTHomeViewModelProvider : SPTHubViewModelProvider <HUBViewModelLoaderDelegate, SPTHomeLocalViewModelOverridesDelegate>
 {
     id <SPTHubViewModelProviderDelegate> delegate;
-    id <SPTHomeViewModelDelegate> viewModelDelegate;
     id <SPTHomeViewModelProviderDelegate> _viewModelProviderDelegate;
     id <HUBViewModelLoader> _cachedViewModelLoader;
     id <HUBViewModelLoader> _remoteViewModelLoader;
+    unsigned long long _lastLoadedSource;
 }
 
+@property(nonatomic) unsigned long long lastLoadedSource; // @synthesize lastLoadedSource=_lastLoadedSource;
 @property(readonly, nonatomic) id <HUBViewModelLoader> remoteViewModelLoader; // @synthesize remoteViewModelLoader=_remoteViewModelLoader;
 @property(readonly, nonatomic) id <HUBViewModelLoader> cachedViewModelLoader; // @synthesize cachedViewModelLoader=_cachedViewModelLoader;
 @property(nonatomic) __weak id <SPTHomeViewModelProviderDelegate> viewModelProviderDelegate; // @synthesize viewModelProviderDelegate=_viewModelProviderDelegate;
-@property(nonatomic) __weak id <SPTHomeViewModelDelegate> viewModelDelegate; // @synthesize viewModelDelegate;
 @property(nonatomic) __weak id <SPTHubViewModelProviderDelegate> delegate; // @synthesize delegate;
 - (void).cxx_destruct;
 - (void)viewModelLoader:(id)arg1 didFailLoadingWithError:(id)arg2;
 - (void)viewModelLoader:(id)arg1 didLoadViewModel:(id)arg2;
-- (void)removeWelcomeHeaderIfRecentlyPlayedIsInModel:(id)arg1 dataSource:(unsigned long long)arg2;
-- (void)didSkipTasteOnboarding;
+- (void)overridesDidChange:(id)arg1;
 - (void)loadViewModelWithSource:(unsigned long long)arg1;
 - (void)loadViewModel;
 - (id)initWithCachedViewModelLoader:(id)arg1 remoteViewModelLoader:(id)arg2;

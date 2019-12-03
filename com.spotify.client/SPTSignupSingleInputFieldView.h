@@ -19,6 +19,7 @@
     GLUEGradientView *_backgroundGradientView;
     SPTLoginFormScrollView *_scrollView;
     UIView *_contentView;
+    UIView *_mainContainer;
     SPTLoginInputFormView *_formView;
     double _animatableContentViewOriginalX;
     NSLayoutConstraint *_titleLabelTopMargin;
@@ -26,8 +27,12 @@
     NSLayoutConstraint *_formViewTopMargin;
     NSLayoutConstraint *_formViewHorizontalMargin;
     NSLayoutConstraint *_nextButtonTopMargin;
+    NSLayoutConstraint *_mainContainerCompactWidth;
+    NSLayoutConstraint *_mainContainerRegularWidth;
 }
 
+@property(retain, nonatomic) NSLayoutConstraint *mainContainerRegularWidth; // @synthesize mainContainerRegularWidth=_mainContainerRegularWidth;
+@property(retain, nonatomic) NSLayoutConstraint *mainContainerCompactWidth; // @synthesize mainContainerCompactWidth=_mainContainerCompactWidth;
 @property(retain, nonatomic) NSLayoutConstraint *nextButtonTopMargin; // @synthesize nextButtonTopMargin=_nextButtonTopMargin;
 @property(retain, nonatomic) NSLayoutConstraint *formViewHorizontalMargin; // @synthesize formViewHorizontalMargin=_formViewHorizontalMargin;
 @property(retain, nonatomic) NSLayoutConstraint *formViewTopMargin; // @synthesize formViewTopMargin=_formViewTopMargin;
@@ -35,6 +40,7 @@
 @property(retain, nonatomic) NSLayoutConstraint *titleLabelTopMargin; // @synthesize titleLabelTopMargin=_titleLabelTopMargin;
 @property(nonatomic) double animatableContentViewOriginalX; // @synthesize animatableContentViewOriginalX=_animatableContentViewOriginalX;
 @property(retain, nonatomic) SPTLoginInputFormView *formView; // @synthesize formView=_formView;
+@property(retain, nonatomic) UIView *mainContainer; // @synthesize mainContainer=_mainContainer;
 @property(retain, nonatomic) UIView *contentView; // @synthesize contentView=_contentView;
 @property(retain, nonatomic) SPTLoginFormScrollView *scrollView; // @synthesize scrollView=_scrollView;
 @property(retain, nonatomic) GLUEGradientView *backgroundGradientView; // @synthesize backgroundGradientView=_backgroundGradientView;
@@ -42,14 +48,15 @@
 @property(readonly, nonatomic) GLUELabel *titleLabel; // @synthesize titleLabel=_titleLabel;
 @property(retain, nonatomic) NSString *transitionContextViewKey; // @synthesize transitionContextViewKey=_transitionContextViewKey;
 - (void).cxx_destruct;
+- (void)traitsDidChange:(id)arg1;
 - (void)glue_applyStyle:(id)arg1;
 @property(readonly, nonatomic) UIView *animatableContentView;
 @property(readonly, nonatomic) GLUELabel *inputFieldDisclosureLabel;
 @property(readonly, nonatomic) SPTLoginTextField *hiddenInputField;
 @property(readonly, nonatomic) SPTLoginTextField *inputField;
 @property(readonly, nonatomic) GLUELabel *inputFieldTitleLabel;
-- (void)setupConstraints;
-- (id)initWithFrame:(struct CGRect)arg1;
+- (void)setupConstraintsWithStyle:(id)arg1;
+- (id)initWithStyle:(id)arg1 frame:(struct CGRect)arg2;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

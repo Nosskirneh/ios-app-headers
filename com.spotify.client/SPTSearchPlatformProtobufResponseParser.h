@@ -9,27 +9,32 @@
 #import "SPTSearchPlatformResponseParser-Protocol.h"
 
 @class HUBViewModelBuilderFactory, NSString, NSURL;
-@protocol SPTSearch2EmptyStatePropertiesProvider;
+@protocol SPTExplicitContentAccessManager, SPTSearch2EmptyStatePropertiesProvider;
 
 @interface SPTSearchPlatformProtobufResponseParser : NSObject <SPTSearchPlatformResponseParser>
 {
     _Bool _nftExperience;
     _Bool _isDrillDown;
-    _Bool _trackPreviewEnabled;
+    _Bool _newSectionHeadersEnabled;
     NSURL *_pageURI;
     HUBViewModelBuilderFactory *_viewModelBuilderFactory;
     id <SPTSearch2EmptyStatePropertiesProvider> _emptyStatePropertiesProvider;
+    id <SPTExplicitContentAccessManager> _explicitContentAccessManager;
     NSString *_query;
+    unsigned long long _podcastRowsType;
 }
 
-@property(readonly, nonatomic) _Bool trackPreviewEnabled; // @synthesize trackPreviewEnabled=_trackPreviewEnabled;
+@property(readonly, nonatomic) _Bool newSectionHeadersEnabled; // @synthesize newSectionHeadersEnabled=_newSectionHeadersEnabled;
+@property(readonly, nonatomic) unsigned long long podcastRowsType; // @synthesize podcastRowsType=_podcastRowsType;
 @property(readonly, nonatomic) _Bool isDrillDown; // @synthesize isDrillDown=_isDrillDown;
 @property(readonly, nonatomic) _Bool nftExperience; // @synthesize nftExperience=_nftExperience;
 @property(readonly, copy, nonatomic) NSString *query; // @synthesize query=_query;
+@property(readonly, nonatomic) id <SPTExplicitContentAccessManager> explicitContentAccessManager; // @synthesize explicitContentAccessManager=_explicitContentAccessManager;
 @property(readonly, nonatomic) id <SPTSearch2EmptyStatePropertiesProvider> emptyStatePropertiesProvider; // @synthesize emptyStatePropertiesProvider=_emptyStatePropertiesProvider;
 @property(readonly, nonatomic) HUBViewModelBuilderFactory *viewModelBuilderFactory; // @synthesize viewModelBuilderFactory=_viewModelBuilderFactory;
 @property(readonly, copy, nonatomic) NSURL *pageURI; // @synthesize pageURI=_pageURI;
 - (void).cxx_destruct;
+- (id)durationStringWithDuration:(unsigned long long)arg1;
 - (id)renderableEntitiesPredicate;
 - (id)componentIdentifierWithSectionID:(id)arg1 itemIndex:(id)arg2;
 - (_Bool)drillDownShouldUseCardsForEntityType:(int)arg1;
@@ -56,7 +61,7 @@
 - (id)cardMetadataForEntity:(id)arg1;
 - (id)rowCommandsForEntity:(id)arg1;
 - (id)rowCustomDataForEntity:(id)arg1;
-- (id)rowMetadataForEntity:(id)arg1 trackPreviewEnabled:(_Bool)arg2;
+- (id)rowMetadataForEntity:(id)arg1;
 - (id)imageStyleForEntity:(id)arg1;
 - (id)imageDataForEntity:(id)arg1;
 - (long long)accessoryIconRightForEntity:(id)arg1;
@@ -66,21 +71,21 @@
 - (id)mainImageURLForEntity:(id)arg1;
 - (id)placeholderIconIdentifierForEntity:(id)arg1;
 - (long long)placeholderIconForEntity:(id)arg1;
-- (id)rowComponentIdentifierForEntity:(id)arg1 trackPreviewEnabled:(_Bool)arg2;
+- (id)defaultRowComponentIdentifier;
+- (id)rowComponentIdentifierForEntity:(id)arg1;
 - (id)seeAllRowsFromEntityTypes:(id)arg1 requestID:(id)arg2;
 - (id)rowsForEntities:(id)arg1 requestID:(id)arg2 sectionID:(id)arg3 offset:(unsigned long long)arg4;
 - (id)seeAllRowFromEntityType:(int)arg1;
 - (id)cardsForEntities:(id)arg1 requestID:(id)arg2 sectionID:(id)arg3 offset:(unsigned long long)arg4;
 - (id)carouselWithEntities:(id)arg1 requestID:(id)arg2;
-- (id)carouselHeaderTitleWithRecommendationType:(int)arg1 entityName:(id)arg2;
-- (id)carouselHeaderWithRecommendationType:(int)arg1 entityName:(id)arg2;
+- (id)carouselHeaderWithTitle:(id)arg1;
 - (id)recsFromRecommendations:(id)arg1 entityName:(id)arg2 requestID:(id)arg3;
-- (id)rowForEntity:(id)arg1 identifier:(id)arg2 trackPreviewEnabled:(_Bool)arg3;
+- (id)rowForEntity:(id)arg1 identifier:(id)arg2;
 - (id)cardForEntity:(id)arg1 componentIdentifier:(id)arg2;
 - (id)parseDrillDownResponse:(id)arg1 requestID:(id)arg2 offset:(unsigned long long)arg3 error:(id *)arg4;
 - (id)parseMainResponse:(id)arg1 requestID:(id)arg2 error:(id *)arg3;
 - (id)parse:(id)arg1 requestID:(id)arg2 offset:(unsigned long long)arg3 error:(id *)arg4;
-- (id)initWithPageURI:(id)arg1 viewModelBuilderFactory:(id)arg2 emptyStatePropertiesProvider:(id)arg3 userTierProvider:(id)arg4 query:(id)arg5 isDrillDown:(_Bool)arg6 trackPreviewEnabled:(_Bool)arg7;
+- (id)initWithPageURI:(id)arg1 viewModelBuilderFactory:(id)arg2 emptyStatePropertiesProvider:(id)arg3 userTierProvider:(id)arg4 explicitContentAccessManager:(id)arg5 query:(id)arg6 isDrillDown:(_Bool)arg7 podcastRowsType:(unsigned long long)arg8 newSectionHeadersEnabled:(_Bool)arg9;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

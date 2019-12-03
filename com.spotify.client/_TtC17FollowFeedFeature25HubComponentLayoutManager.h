@@ -6,7 +6,9 @@
 
 #import <swiftCore/_TtCs12_SwiftObject.h>
 
-@interface _TtC17FollowFeedFeature25HubComponentLayoutManager : _TtCs12_SwiftObject
+#import "HUBComponentLayoutManager-Protocol.h"
+
+@interface _TtC17FollowFeedFeature25HubComponentLayoutManager : _TtCs12_SwiftObject <HUBComponentLayoutManager>
 {
 }
 

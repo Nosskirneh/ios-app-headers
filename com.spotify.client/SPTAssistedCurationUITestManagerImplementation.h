@@ -7,33 +7,33 @@
 #import <objc/NSObject.h>
 
 #import "SPTAssistedCurationUITestManager-Protocol.h"
+#import "SPTFeatureFlagSignalObserver-Protocol.h"
 
-@class NSString;
-@protocol SPTFeatureFlagFactory, SPTFeatureFlagSignal, SPTFeatureSettingsItemFactory, SPTLocalSettings;
+@class NSString, SPTAssistedCurationFeatureProperties;
+@protocol SPTFeatureFlagFactory, SPTFeatureFlagSignal, SPTFeatureSettingsItemFactory, SPTRemoteConfigurationResolver;
 
-@interface SPTAssistedCurationUITestManagerImplementation : NSObject <SPTAssistedCurationUITestManager>
+@interface SPTAssistedCurationUITestManagerImplementation : NSObject <SPTFeatureFlagSignalObserver, SPTAssistedCurationUITestManager>
 {
-    _Bool _assistedCurationSearchAutocompleteEnabled;
     _Bool _shouldUseSnackBar;
     id <SPTFeatureFlagFactory> _featureFlagFactory;
     id <SPTFeatureSettingsItemFactory> _featureSettingsItemFactory;
-    id <SPTLocalSettings> _localSettings;
-    id <SPTFeatureFlagSignal> _autocompleteSignal;
     id <SPTFeatureFlagSignal> _freeTierSignal;
+    id <SPTRemoteConfigurationResolver> _remoteConfigurationResolver;
+    SPTAssistedCurationFeatureProperties *_remoteConfigurationProperties;
 }
 
+@property(retain, nonatomic) SPTAssistedCurationFeatureProperties *remoteConfigurationProperties; // @synthesize remoteConfigurationProperties=_remoteConfigurationProperties;
+@property(readonly, nonatomic) id <SPTRemoteConfigurationResolver> remoteConfigurationResolver; // @synthesize remoteConfigurationResolver=_remoteConfigurationResolver;
 @property(nonatomic) _Bool shouldUseSnackBar; // @synthesize shouldUseSnackBar=_shouldUseSnackBar;
 @property(readonly, nonatomic) id <SPTFeatureFlagSignal> freeTierSignal; // @synthesize freeTierSignal=_freeTierSignal;
-@property(nonatomic, getter=isAssistedCurationSearchAutocompleteEnabled) _Bool assistedCurationSearchAutocompleteEnabled; // @synthesize assistedCurationSearchAutocompleteEnabled=_assistedCurationSearchAutocompleteEnabled;
-@property(readonly, nonatomic) id <SPTFeatureFlagSignal> autocompleteSignal; // @synthesize autocompleteSignal=_autocompleteSignal;
-@property(readonly, nonatomic) id <SPTLocalSettings> localSettings; // @synthesize localSettings=_localSettings;
 @property(readonly, nonatomic) id <SPTFeatureSettingsItemFactory> featureSettingsItemFactory; // @synthesize featureSettingsItemFactory=_featureSettingsItemFactory;
 @property(readonly, nonatomic) id <SPTFeatureFlagFactory> featureFlagFactory; // @synthesize featureFlagFactory=_featureFlagFactory;
 - (void).cxx_destruct;
+@property(readonly, nonatomic, getter=isMostPlayedInLikedSongsEnabled) _Bool mostPlayedInLikedSongsEnabled;
+- (void)setupRemoteConfigurationProperties;
 - (void)featureFlagSignal:(id)arg1 hasAssumedState:(long long)arg2;
 - (void)dealloc;
-- (void)setupAutocompleteSignal;
-- (id)initWithFeatureFlagFactory:(id)arg1 localSettings:(id)arg2 featureSettingsItemFactory:(id)arg3 freeTierSignal:(id)arg4;
+- (id)initWithFeatureFlagFactory:(id)arg1 featureSettingsItemFactory:(id)arg2 freeTierSignal:(id)arg3 remoteConfigurationResolver:(id)arg4;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

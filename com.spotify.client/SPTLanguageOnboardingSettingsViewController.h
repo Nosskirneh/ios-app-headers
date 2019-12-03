@@ -41,6 +41,7 @@
 - (void)viewModel:(id)arg1 didFailToUpdateSelectedLanguages:(id)arg2;
 - (void)viewModel:(id)arg1 didFailFetchingLanguages:(id)arg2;
 - (void)switchControlChangedValue:(id)arg1;
+- (void)tableView:(id)arg1 didSelectRowAtIndexPath:(id)arg2;
 - (id)tableView:(id)arg1 cellForRowAtIndexPath:(id)arg2;
 - (long long)tableView:(id)arg1 numberOfRowsInSection:(long long)arg2;
 - (long long)numberOfSectionsInTableView:(id)arg1;

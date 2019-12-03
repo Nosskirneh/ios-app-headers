@@ -100,8 +100,8 @@
 - (void)resourceLoaderDidEnableFullVideoUsage:(id)arg1;
 - (void)addPeriodicTimeObserver;
 - (void)effectiveRateChanged;
-- (void)errorLogEntryAdded:(id)arg1;
-- (void)accessLogEntryAdded:(id)arg1;
+- (void)playerSource:(id)arg1 newErrorLogEntry:(id)arg2;
+- (void)playerSource:(id)arg1 newAccessLogEntry:(id)arg2;
 - (void)playerSource:(id)arg1 playerItem:(id)arg2 failedToPlayToEndWithError:(id)arg3;
 - (void)playerSource:(id)arg1 didReachEndForPlayerItem:(id)arg2;
 - (void)playerSource:(id)arg1 didUpdateSeekableWindow:(id)arg2;

@@ -13,6 +13,7 @@
 
 @interface SPTDataLoaderRequest : NSObject <NSCopying>
 {
+    _Bool _waitsForConnectivity;
     _Bool _chunks;
     _Bool _skipNSURLCache;
     _Bool _retriedAuthorisation;
@@ -34,10 +35,10 @@
 + (id)generateLanguageHeaderValue;
 + (id)languageHeaderValue;
 + (id)requestWithURL:(id)arg1 sourceIdentifier:(id)arg2;
-+ (id)spt_dataLoaderRequestSuggestingResultsWithQuery:(id)arg1 sessionId:(id)arg2;
 + (id)requestHeadersForEndpoint:(unsigned long long)arg1;
 + (id)serviceURLForEndpoint:(unsigned long long)arg1;
 + (id)spt_speechRecognitionRequestWithBoundary:(id)arg1 sampleRate:(id)arg2 utteranceId:(id)arg3 inputStream:(id)arg4 endpoint:(unsigned long long)arg5 shouldSaveAudio:(_Bool)arg6 freeTierEnabled:(_Bool)arg7 language:(id)arg8;
++ (id)spt_librarySpeechRecognitionRequestWithRequest:(id)arg1 boundary:(id)arg2 sampleRate:(id)arg3 utteranceId:(id)arg4 inputStream:(id)arg5;
 @property(nonatomic) __weak id <SPTDataLoaderCancellationToken> cancellationToken; // @synthesize cancellationToken=_cancellationToken;
 @property(nonatomic) _Bool retriedAuthorisation; // @synthesize retriedAuthorisation=_retriedAuthorisation;
 @property(retain, nonatomic) NSMutableDictionary *mutableHeaders; // @synthesize mutableHeaders=_mutableHeaders;
@@ -53,6 +54,7 @@
 @property(nonatomic) _Bool chunks; // @synthesize chunks=_chunks;
 @property(retain, nonatomic) NSData *body; // @synthesize body=_body;
 @property(nonatomic) unsigned long long maximumRetryCount; // @synthesize maximumRetryCount=_maximumRetryCount;
+@property(nonatomic) _Bool waitsForConnectivity; // @synthesize waitsForConnectivity=_waitsForConnectivity;
 @property(retain, nonatomic) NSURL *URL; // @synthesize URL=_URL;
 - (void).cxx_destruct;
 - (id)copyWithZone:(struct _NSZone *)arg1;

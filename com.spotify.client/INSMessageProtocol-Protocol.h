@@ -9,7 +9,7 @@
 @class NSData, NSString;
 
 @protocol INSMessageProtocol <NSObject>
-@property(readonly, nonatomic) NSString *name;
-@property(readonly, nonatomic) NSData *data;
+@property(readonly, copy, nonatomic) NSString *name;
+@property(readonly, copy, nonatomic) NSData *data;
 @end
 

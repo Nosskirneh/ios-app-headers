@@ -6,26 +6,23 @@
 
 #import <objc/NSObject.h>
 
+#import "SPTFeatureFlagSignalObserver-Protocol.h"
+
 @class NSSet, NSString;
 @protocol SPTFeatureFlagFactory, SPTFeatureFlagSignal;
 
-@interface SPTRecentlyPlayedTestManager : NSObject
+@interface SPTRecentlyPlayedTestManager : NSObject <SPTFeatureFlagSignalObserver>
 {
-    _Bool _recentlyPlayedListCachingEnabled;
     id <SPTFeatureFlagFactory> _featureFlagFactory;
     id <SPTFeatureFlagSignal> _freeTierEnabledSignal;
-    id <SPTFeatureFlagSignal> _recentlyPlayedCachingSignal;
     NSSet *_disallowedContentTypes;
 }
 
 @property(copy, nonatomic) NSSet *disallowedContentTypes; // @synthesize disallowedContentTypes=_disallowedContentTypes;
-@property(retain, nonatomic) id <SPTFeatureFlagSignal> recentlyPlayedCachingSignal; // @synthesize recentlyPlayedCachingSignal=_recentlyPlayedCachingSignal;
 @property(readonly, nonatomic) id <SPTFeatureFlagSignal> freeTierEnabledSignal; // @synthesize freeTierEnabledSignal=_freeTierEnabledSignal;
 @property(readonly, nonatomic) id <SPTFeatureFlagFactory> featureFlagFactory; // @synthesize featureFlagFactory=_featureFlagFactory;
-@property(nonatomic, getter=isRecentlyPlayedListCachingEnabled) _Bool recentlyPlayedListCachingEnabled; // @synthesize recentlyPlayedListCachingEnabled=_recentlyPlayedListCachingEnabled;
 - (void).cxx_destruct;
 - (void)featureFlagSignal:(id)arg1 hasAssumedState:(long long)arg2;
-- (void)setupCachedRecentlyPlayedListSignal;
 - (_Bool)disallowAdditionalContentType:(unsigned long long)arg1;
 - (id)initWithFeatureFlagFactory:(id)arg1 freeTierEnabledSignal:(id)arg2;
 

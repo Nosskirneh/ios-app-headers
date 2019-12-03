@@ -14,6 +14,8 @@
 {
 }
 
+- (id)createMarkEpisodeAsPlayedRequestWithURLs:(id)arg1 markAsUnplayed:(_Bool)arg2;
+- (id)createCollectionEpisodesRequestWithURL:(id)arg1 subscribe:(_Bool)arg2 testManager:(id)arg3;
 - (id)createPodcastEntityRequestWithURL:(id)arg1 range:(struct _NSRange)arg2 subscribe:(_Bool)arg3 testManager:(id)arg4;
 - (id)createDecorateItemsRequestWithItemURIs:(id)arg1 subscribe:(_Bool)arg2;
 

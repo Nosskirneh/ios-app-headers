@@ -7,65 +7,57 @@
 #import <objc/NSObject.h>
 
 #import "SPTCanvasCompatibilityManagerObserver-Protocol.h"
+#import "SPTCanvasFlagSignalResolverDelegate-Protocol.h"
 
-@class NSString, SPTCanvasCompatibilityManager, SPTObserverManager;
-@protocol SPTFeatureFlagSignal, SPTLocalSettings;
+@class NSString, SPTCanvasCompatibilityManager, SPTCanvasFlagSignalResolver, SPTObserverManager;
+@protocol SPTLocalSettings;
 
-@interface SPTCanvasTestManager : NSObject <SPTCanvasCompatibilityManagerObserver>
+@interface SPTCanvasTestManager : NSObject <SPTCanvasCompatibilityManagerObserver, SPTCanvasFlagSignalResolverDelegate>
 {
+    _Bool _didShowFirstCanvas;
     _Bool _forceDisabled;
-    _Bool _dataSaverEnabled;
-    _Bool _shouldStreamCanvas;
     _Bool _canvasEnabled;
-    _Bool _shouldSkipCanvasCache;
-    _Bool _shouldDisplayTooltip;
-    _Bool _canvasBackendServiceEnabled;
-    id <SPTFeatureFlagSignal> _featureFlagSignal;
-    long long _featureFlagSignalLastState;
-    id <SPTFeatureFlagSignal> _streamingFlagSignal;
-    long long _streamingFlagSignalLastState;
-    id <SPTFeatureFlagSignal> _dataSaverSignal;
-    long long _dataSaverSignalLastState;
-    id <SPTFeatureFlagSignal> _canvasNoCacheSignal;
-    long long _canvasNoCacheSignalLastState;
-    id <SPTFeatureFlagSignal> _canvasTooltipSignal;
-    long long _canvasTooltipSignalLastState;
+    SPTCanvasFlagSignalResolver *_featureFlagResolver;
+    SPTCanvasFlagSignalResolver *_streamingFlagResolver;
+    SPTCanvasFlagSignalResolver *_dataSaverFlagResolver;
+    SPTCanvasFlagSignalResolver *_canvasNoCacheFlagResolver;
+    SPTCanvasFlagSignalResolver *_canvasSettingsFlagResolver;
+    SPTCanvasFlagSignalResolver *_canvasToggleFlagResolver;
+    SPTCanvasFlagSignalResolver *_canvasBlankToggleFlagResolver;
+    SPTCanvasFlagSignalResolver *_canvasTapFlagResolver;
     id <SPTLocalSettings> _localSettings;
     SPTObserverManager *_observers;
     SPTCanvasCompatibilityManager *_compatibilityManager;
 }
 
-@property(nonatomic) _Bool canvasBackendServiceEnabled; // @synthesize canvasBackendServiceEnabled=_canvasBackendServiceEnabled;
 @property(readonly, nonatomic) SPTCanvasCompatibilityManager *compatibilityManager; // @synthesize compatibilityManager=_compatibilityManager;
 @property(readonly, nonatomic) SPTObserverManager *observers; // @synthesize observers=_observers;
 @property(readonly, nonatomic) id <SPTLocalSettings> localSettings; // @synthesize localSettings=_localSettings;
-@property(nonatomic) long long canvasTooltipSignalLastState; // @synthesize canvasTooltipSignalLastState=_canvasTooltipSignalLastState;
-@property(retain, nonatomic) id <SPTFeatureFlagSignal> canvasTooltipSignal; // @synthesize canvasTooltipSignal=_canvasTooltipSignal;
-@property(nonatomic) long long canvasNoCacheSignalLastState; // @synthesize canvasNoCacheSignalLastState=_canvasNoCacheSignalLastState;
-@property(retain, nonatomic) id <SPTFeatureFlagSignal> canvasNoCacheSignal; // @synthesize canvasNoCacheSignal=_canvasNoCacheSignal;
-@property(nonatomic) long long dataSaverSignalLastState; // @synthesize dataSaverSignalLastState=_dataSaverSignalLastState;
-@property(retain, nonatomic) id <SPTFeatureFlagSignal> dataSaverSignal; // @synthesize dataSaverSignal=_dataSaverSignal;
-@property(nonatomic) long long streamingFlagSignalLastState; // @synthesize streamingFlagSignalLastState=_streamingFlagSignalLastState;
-@property(retain, nonatomic) id <SPTFeatureFlagSignal> streamingFlagSignal; // @synthesize streamingFlagSignal=_streamingFlagSignal;
-@property(nonatomic) long long featureFlagSignalLastState; // @synthesize featureFlagSignalLastState=_featureFlagSignalLastState;
-@property(retain, nonatomic) id <SPTFeatureFlagSignal> featureFlagSignal; // @synthesize featureFlagSignal=_featureFlagSignal;
-@property(nonatomic) _Bool shouldDisplayTooltip; // @synthesize shouldDisplayTooltip=_shouldDisplayTooltip;
-@property(nonatomic) _Bool shouldSkipCanvasCache; // @synthesize shouldSkipCanvasCache=_shouldSkipCanvasCache;
+@property(retain, nonatomic) SPTCanvasFlagSignalResolver *canvasTapFlagResolver; // @synthesize canvasTapFlagResolver=_canvasTapFlagResolver;
+@property(retain, nonatomic) SPTCanvasFlagSignalResolver *canvasBlankToggleFlagResolver; // @synthesize canvasBlankToggleFlagResolver=_canvasBlankToggleFlagResolver;
+@property(retain, nonatomic) SPTCanvasFlagSignalResolver *canvasToggleFlagResolver; // @synthesize canvasToggleFlagResolver=_canvasToggleFlagResolver;
+@property(retain, nonatomic) SPTCanvasFlagSignalResolver *canvasSettingsFlagResolver; // @synthesize canvasSettingsFlagResolver=_canvasSettingsFlagResolver;
+@property(retain, nonatomic) SPTCanvasFlagSignalResolver *canvasNoCacheFlagResolver; // @synthesize canvasNoCacheFlagResolver=_canvasNoCacheFlagResolver;
+@property(retain, nonatomic) SPTCanvasFlagSignalResolver *dataSaverFlagResolver; // @synthesize dataSaverFlagResolver=_dataSaverFlagResolver;
+@property(retain, nonatomic) SPTCanvasFlagSignalResolver *streamingFlagResolver; // @synthesize streamingFlagResolver=_streamingFlagResolver;
+@property(retain, nonatomic) SPTCanvasFlagSignalResolver *featureFlagResolver; // @synthesize featureFlagResolver=_featureFlagResolver;
 @property(nonatomic, getter=isCanvasEnabled) _Bool canvasEnabled; // @synthesize canvasEnabled=_canvasEnabled;
-@property(nonatomic) _Bool shouldStreamCanvas; // @synthesize shouldStreamCanvas=_shouldStreamCanvas;
-@property(nonatomic, getter=isDataSaverEnabled) _Bool dataSaverEnabled; // @synthesize dataSaverEnabled=_dataSaverEnabled;
 @property(nonatomic) _Bool forceDisabled; // @synthesize forceDisabled=_forceDisabled;
+@property(nonatomic) _Bool didShowFirstCanvas; // @synthesize didShowFirstCanvas=_didShowFirstCanvas;
 - (void).cxx_destruct;
 - (void)didChangeEnableCanvasForDevice:(id)arg1;
+- (void)didChangeFlag:(id)arg1 enabled:(_Bool)arg2;
+@property(readonly, nonatomic, getter=isDataSaverEnabled) _Bool dtaSaverEnabled;
+@property(readonly, nonatomic) _Bool shouldStreamCanvas;
+@property(readonly, nonatomic) _Bool shouldSkipCanvasCache;
+- (_Bool)shouldEnableCanvasTap;
+@property(readonly, nonatomic) _Bool shouldDisplayBlankCanvasToggle;
+@property(readonly, nonatomic) _Bool shouldDisplayCanvasToggle;
+@property(readonly, nonatomic) _Bool shouldDisplayCanvasSettings;
+@property(readonly, nonatomic) _Bool shouldDisplayCanvasSettingsContextMenuAction;
 @property(readonly, nonatomic) _Bool shouldEnableCanvas;
 - (_Bool)canEnableCanvas;
 - (void)updateCanvasEnabled;
-- (void)updateDataSaverEnabled;
-- (void)updateShouldStreamCanvas;
-- (void)updateShouldSkipCanvasCache;
-- (void)updateShouldDisplayTooltip;
-- (void)featureFlagSignal:(id)arg1 hasAssumedState:(long long)arg2;
-- (void)notifyObserver:(id)arg1 canvasEnabled:(_Bool)arg2;
 - (void)removeObserver:(id)arg1;
 - (void)addObserver:(id)arg1;
 - (void)dealloc;

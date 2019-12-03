@@ -8,8 +8,8 @@
 
 #import "SPTNowPlayingPlatformService-Protocol.h"
 
-@class NSString, SPTAllocationContext, SPTNowPlayingContentProviderRegistriesImplementation, SPTNowPlayingRemoteControlEventControllerManager;
-@protocol SPTAbbaService, SPTFeatureFlaggingService, SPTFreeTierService, SPTNowPlayingContentLayerResolver, SPTNowPlayingModeResolver, SPTNowPlayingModeViewControllerRegistry, SPTNowPlayingModesRegistry, SPTNowPlayingRemoteControlPolicyRegistry, SPTNowPlayingScrollDataSource_Internal, SPTNowPlayingShowsFormatOverriderRegistry, SPTNowPlayingTestManager, SPTOnDemandService, SPTPlayer, SPTPlayerFeature, SPTRadioRemoteConfigService, SPTSessionService;
+@class NSString, SPTAllocationContext, SPTNowPlayingRemoteControlEventControllerManager;
+@protocol SPTAbbaService, SPTFeatureFlaggingService, SPTFreeTierService, SPTNowPlayingContentLayerResolver, SPTNowPlayingModeResolver, SPTNowPlayingModeViewControllerRegistry, SPTNowPlayingModesRegistry, SPTNowPlayingRemoteControlPolicyRegistry, SPTNowPlayingScrollDataSource_Internal, SPTNowPlayingTestManager, SPTOnDemandService, SPTPlayer, SPTPlayerFeature, SPTRadioRemoteConfigService, SPTSessionService;
 
 @interface SPTNowPlayingPlatformServiceImplementation : NSObject <SPTNowPlayingPlatformService>
 {
@@ -26,8 +26,6 @@
     id <SPTNowPlayingModeViewControllerRegistry> _modeViewControllerRegistry;
     id <SPTNowPlayingModeViewControllerRegistry> _sideBarViewControllerRegistry;
     id <SPTNowPlayingRemoteControlPolicyRegistry> _remoteControlPolicyRegistry;
-    id <SPTNowPlayingShowsFormatOverriderRegistry> _showsFormatOverriderRegistry;
-    SPTNowPlayingContentProviderRegistriesImplementation *_contentProviderRegistries;
     SPTNowPlayingRemoteControlEventControllerManager *_remoteControlEventControllerManager;
     id <SPTNowPlayingScrollDataSource_Internal> _scrollDataSource;
     id <SPTNowPlayingContentLayerResolver> _contentLayerResolver;
@@ -39,8 +37,6 @@
 @property(retain, nonatomic) id <SPTNowPlayingContentLayerResolver> contentLayerResolver; // @synthesize contentLayerResolver=_contentLayerResolver;
 @property(retain, nonatomic) id <SPTNowPlayingScrollDataSource_Internal> scrollDataSource; // @synthesize scrollDataSource=_scrollDataSource;
 @property(retain, nonatomic) SPTNowPlayingRemoteControlEventControllerManager *remoteControlEventControllerManager; // @synthesize remoteControlEventControllerManager=_remoteControlEventControllerManager;
-@property(retain, nonatomic) SPTNowPlayingContentProviderRegistriesImplementation *contentProviderRegistries; // @synthesize contentProviderRegistries=_contentProviderRegistries;
-@property(retain, nonatomic) id <SPTNowPlayingShowsFormatOverriderRegistry> showsFormatOverriderRegistry; // @synthesize showsFormatOverriderRegistry=_showsFormatOverriderRegistry;
 @property(retain, nonatomic) id <SPTNowPlayingRemoteControlPolicyRegistry> remoteControlPolicyRegistry; // @synthesize remoteControlPolicyRegistry=_remoteControlPolicyRegistry;
 @property(retain, nonatomic) id <SPTNowPlayingModeViewControllerRegistry> sideBarViewControllerRegistry; // @synthesize sideBarViewControllerRegistry=_sideBarViewControllerRegistry;
 @property(retain, nonatomic) id <SPTNowPlayingModeViewControllerRegistry> modeViewControllerRegistry; // @synthesize modeViewControllerRegistry=_modeViewControllerRegistry;
@@ -58,8 +54,6 @@
 - (id)provideContentLayerResolver;
 - (id)provideScrollDataSource;
 - (id)provideRemoteControlEventControllerRegistry;
-- (id)provideContentProviderRegistries;
-- (id)provideShowsFormatOverriderRegistry;
 - (id)provideRemoteControlPolicyRegistry;
 - (id)provideSideBarViewControllerRegistry;
 - (id)provideModeViewControllerRegistry;

@@ -9,11 +9,11 @@
 @interface _TtC24PodcastOnboardingFeature14SendTopicsView : UIView
 {
     // Error parsing type: , name: theme
-    // Error parsing type: , name: labelContainerView.storage
+    // Error parsing type: , name: $__lazy_storage_$_labelContainerView
     // Error parsing type: , name: animatedViewLeadingConstraint
     // Error parsing type: , name: label
     // Error parsing type: , name: labelText
-    // Error parsing type: , name: animatingDotsView.storage
+    // Error parsing type: , name: $__lazy_storage_$_animatingDotsView
 }
 
 - (void).cxx_destruct;

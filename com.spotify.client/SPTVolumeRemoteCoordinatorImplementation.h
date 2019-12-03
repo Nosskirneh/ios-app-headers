@@ -8,41 +8,43 @@
 
 #import "SPTRemoteVolumeMasterDelegate-Protocol.h"
 #import "SPTVolumeRemoteCoordinator-Protocol.h"
-#import "SPTVolumeRemoteEventHandlerDelegate-Protocol.h"
+#import "SPTVolumeSynchronizationManagerObserver-Protocol.h"
 
-@class NSString, SPTRemoteVolumeMasterController, SPTVolumeOutputRouteManager, SPTVolumeRemoteBuffer, SPTVolumeRemoteEventHandler;
-@protocol SPTVolumeRemoteCoordinatorDelegate, SPTVolumeSystemAPI;
+@class NSString, SPTVolumeBuffer, SPTVolumeOutputRouteManager, SPTVolumeRemoteControllerRouter;
+@protocol SPTVolumeRemoteCoordinatorDelegate, SPTVolumeSynchronizationManager, SPTVolumeSystemAPI;
 
-@interface SPTVolumeRemoteCoordinatorImplementation : NSObject <SPTRemoteVolumeMasterDelegate, SPTVolumeRemoteEventHandlerDelegate, SPTVolumeRemoteCoordinator>
+@interface SPTVolumeRemoteCoordinatorImplementation : NSObject <SPTRemoteVolumeMasterDelegate, SPTVolumeSynchronizationManagerObserver, SPTVolumeRemoteCoordinator>
 {
     _Bool _hasActiveConnection;
     id <SPTVolumeRemoteCoordinatorDelegate> delegate;
     id <SPTVolumeSystemAPI> _systemVolumeManager;
-    SPTRemoteVolumeMasterController *_remoteVolumeManager;
-    SPTVolumeRemoteBuffer *_remoteBuffer;
-    SPTVolumeRemoteEventHandler *_volumeEventHandler;
+    SPTVolumeRemoteControllerRouter *_remoteVolumeManager;
+    SPTVolumeBuffer *_remoteBuffer;
     SPTVolumeOutputRouteManager *_outputRoutesManager;
+    id <SPTVolumeSynchronizationManager> _volumeSynchronizationManager;
 }
 
 @property(nonatomic) _Bool hasActiveConnection; // @synthesize hasActiveConnection=_hasActiveConnection;
+@property(readonly, nonatomic) id <SPTVolumeSynchronizationManager> volumeSynchronizationManager; // @synthesize volumeSynchronizationManager=_volumeSynchronizationManager;
 @property(readonly, nonatomic) SPTVolumeOutputRouteManager *outputRoutesManager; // @synthesize outputRoutesManager=_outputRoutesManager;
-@property(readonly, nonatomic) SPTVolumeRemoteEventHandler *volumeEventHandler; // @synthesize volumeEventHandler=_volumeEventHandler;
-@property(readonly, nonatomic) SPTVolumeRemoteBuffer *remoteBuffer; // @synthesize remoteBuffer=_remoteBuffer;
-@property(readonly, nonatomic) SPTRemoteVolumeMasterController *remoteVolumeManager; // @synthesize remoteVolumeManager=_remoteVolumeManager;
+@property(readonly, nonatomic) SPTVolumeBuffer *remoteBuffer; // @synthesize remoteBuffer=_remoteBuffer;
+@property(readonly, nonatomic) SPTVolumeRemoteControllerRouter *remoteVolumeManager; // @synthesize remoteVolumeManager=_remoteVolumeManager;
 @property(readonly, nonatomic) id <SPTVolumeSystemAPI> systemVolumeManager; // @synthesize systemVolumeManager=_systemVolumeManager;
 @property(nonatomic) __weak id <SPTVolumeRemoteCoordinatorDelegate> delegate; // @synthesize delegate;
 - (void).cxx_destruct;
+- (_Bool)hasActiveRemoteVolumeController;
 - (_Bool)shouldResetSystemVolume;
 - (void)stopRemoteVolumeSynchronization;
 - (void)startSynchronizingWithRemoteVolume;
-- (_Bool)shouldHandleRemoteVolumeUpdate;
+- (void)shouldSyncRemoteVolumeChanged:(_Bool)arg1;
 - (void)activeVolumeControllerRemoteVolumeDidChange:(double)arg1;
 - (_Bool)isSystemVolumeChangeCausedByOutputRouteChange:(double)arg1;
 @property(readonly, nonatomic) double volumeStep;
+- (void)remoteVolumeCommandSent;
 - (long long)sendRemoteVolumeSetCommand:(double)arg1;
-@property(readonly, nonatomic) _Bool hasActiveRemoteVolumeController;
-- (void)setupDelegates;
-- (id)initWithSystemVolumeManager:(id)arg1 remoteVolumeManager:(id)arg2 remoteBuffer:(id)arg3 volumeEventHandler:(id)arg4 outputRoutesManager:(id)arg5;
+- (void)dealloc;
+- (void)setupObserving;
+- (id)initWithSystemVolumeManager:(id)arg1 remoteVolumeManager:(id)arg2 remoteBuffer:(id)arg3 outputRoutesManager:(id)arg4 volumeSynchronizationManager:(id)arg5;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

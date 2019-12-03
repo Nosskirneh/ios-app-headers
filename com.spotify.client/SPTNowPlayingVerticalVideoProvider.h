@@ -37,7 +37,8 @@
 - (_Bool)displaysFullScreenContentForTrack:(id)arg1;
 - (_Bool)requiresOverlayForTrack:(id)arg1;
 - (_Bool)isActiveForTrack:(id)arg1 playerState:(id)arg2;
-- (id)contentIdentifier;
+- (id)reuseIdentifier;
+- (unsigned long long)contentType;
 - (void)configureCell:(id)arg1 withTrack:(id)arg2 windowedContentInsets:(struct UIEdgeInsets)arg3 peekingDisallowed:(_Bool)arg4;
 - (Class)cellClass;
 - (long long)priority;

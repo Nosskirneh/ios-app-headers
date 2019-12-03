@@ -6,13 +6,15 @@
 
 #import <objc/NSObject.h>
 
+#import "MessageBarControllerObserver-Protocol.h"
+#import "SPTFeatureFlagSignalObserver-Protocol.h"
 #import "SPTPushNotificationSessionService-Protocol.h"
 #import "SPTThirdPartyUserTracker-Protocol.h"
 
 @class NSString, SPTAllocationContext, SPTPushNotificationsAppRegistrar;
 @protocol SPTContainerUIService, SPTFeatureFlagSignal, SPTPushMessagingABBAService, SPTPushNotificationsService, SPTThirdPartyTrackerBroadcaster, SPTUserTrackingService;
 
-@interface SPTPushNotificationSessionServiceImplementation : NSObject <SPTThirdPartyUserTracker, SPTPushNotificationSessionService>
+@interface SPTPushNotificationSessionServiceImplementation : NSObject <SPTThirdPartyUserTracker, MessageBarControllerObserver, SPTFeatureFlagSignalObserver, SPTPushNotificationSessionService>
 {
     _Bool _enableUserTracker;
     NSString *_trackerUserID;

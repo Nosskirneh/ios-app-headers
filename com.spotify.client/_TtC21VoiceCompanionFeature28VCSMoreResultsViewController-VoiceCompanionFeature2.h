@@ -6,9 +6,7 @@
 
 #import "_TtC21VoiceCompanionFeature28VCSMoreResultsViewController.h"
 
-#import "_TtP21VoiceCompanionFeature26VCSRecommendationsObserver_-Protocol.h"
-
-@interface _TtC21VoiceCompanionFeature28VCSMoreResultsViewController (VoiceCompanionFeature2) <_TtP21VoiceCompanionFeature26VCSRecommendationsObserver_>
+@interface _TtC21VoiceCompanionFeature28VCSMoreResultsViewController (VoiceCompanionFeature2)
 - (void)didUpdateRecommendationsWithRecommendations:(id)arg1;
 @end
 

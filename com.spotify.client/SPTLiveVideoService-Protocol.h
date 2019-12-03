@@ -6,6 +6,9 @@
 
 #import "SPTService-Protocol.h"
 
+@protocol SPTLiveVideoPlayerContextFactory;
+
 @protocol SPTLiveVideoService <SPTService>
+- (id <SPTLiveVideoPlayerContextFactory>)provideLiveContextFactory;
 @end
 

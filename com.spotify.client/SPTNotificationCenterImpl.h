@@ -12,10 +12,10 @@
 
 @interface SPTNotificationCenterImpl : NSObject <SPTNotificationCenter>
 {
-    NSNotificationCenter *_notificationCenter;
+    NSNotificationCenter *_nsNotificationCenter;
 }
 
-@property(retain, nonatomic) NSNotificationCenter *notificationCenter; // @synthesize notificationCenter=_notificationCenter;
+@property(retain, nonatomic) NSNotificationCenter *nsNotificationCenter; // @synthesize nsNotificationCenter=_nsNotificationCenter;
 - (void).cxx_destruct;
 - (void)removeObserver:(id)arg1 name:(id)arg2 object:(id)arg3;
 - (void)removeObserver:(id)arg1;

@@ -8,6 +8,7 @@
 
 @interface _TtC17FollowFeedFeature19FeedPageConnectable : _TtCs12_SwiftObject
 {
+    // Error parsing type: , name: lock
     // Error parsing type: , name: consumer
     // Error parsing type: , name: hubPage
 }

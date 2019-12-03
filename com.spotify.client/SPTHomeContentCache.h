@@ -7,18 +7,13 @@
 #import <objc/NSObject.h>
 
 @class SPSession, SPTPersistentCache;
-@protocol SPTAlertInterface, SPTFeatureSettingsItemFactory;
 
 @interface SPTHomeContentCache : NSObject
 {
     SPTPersistentCache *_persistentCache;
     SPSession *_session;
-    id <SPTFeatureSettingsItemFactory> _featureSettingsItemFactory;
-    id <SPTAlertInterface> _alertInterface;
 }
 
-@property(readonly, nonatomic) id <SPTAlertInterface> alertInterface; // @synthesize alertInterface=_alertInterface;
-@property(readonly, nonatomic) id <SPTFeatureSettingsItemFactory> featureSettingsItemFactory; // @synthesize featureSettingsItemFactory=_featureSettingsItemFactory;
 @property(readonly, nonatomic) __weak SPSession *session; // @synthesize session=_session;
 @property(readonly, nonatomic) SPTPersistentCache *persistentCache; // @synthesize persistentCache=_persistentCache;
 - (void).cxx_destruct;

@@ -7,12 +7,13 @@
 #import <objc/NSObject.h>
 
 #import "PlaylistFeature-Protocol.h"
+#import "SPTFeatureFlagSignalObserver-Protocol.h"
 #import "SPTService-Protocol.h"
 
 @class NSString, NSURL, SPTAllocationContext, SPTPlaylistGLUETheme, SPTPlaylistTestManager;
-@protocol SPContextMenuFeature, SPTAbbaService, SPTAddToPlaylistService, SPTCollectionLogger, SPTCollectionPlatformService, SPTCollectionSortingEntityManager, SPTContainerService, SPTContainerUIService, SPTCoreService, SPTFeatureFlaggingService, SPTFreeTierService, SPTGLUEService, SPTNuxService, SPTPageRegistrationToken, SPTPlayerFeature, SPTPlaylistPlatformService, SPTSessionService, SPTSnackbarService, SPTURIDispatchService, SPTYourLibraryService;
+@protocol SPContextMenuFeature, SPTAbbaService, SPTAddToPlaylistService, SPTCollectionLogger, SPTCollectionPlatformService, SPTContainerService, SPTContainerUIService, SPTCoreService, SPTFeatureFlaggingService, SPTFreeTierService, SPTGLUEService, SPTNuxService, SPTPageRegistrationToken, SPTPlaylistPlatformService, SPTSessionService, SPTSnackbarService, SPTURIDispatchService, SPTYourLibraryService;
 
-@interface PlaylistFeatureImplementation : NSObject <SPTService, PlaylistFeature>
+@interface PlaylistFeatureImplementation : NSObject <SPTFeatureFlagSignalObserver, SPTService, PlaylistFeature>
 {
     id <SPTAddToPlaylistService> _addToPlaylistService;
     id <SPTContainerService> _containerService;
@@ -23,12 +24,10 @@
     id <SPTPlaylistPlatformService> _playlistPlatformService;
     id <SPContextMenuFeature> _contextMenuFeature;
     id <SPTCollectionPlatformService> _collectionPlatformService;
-    id <SPTPlayerFeature> _playerFeature;
     id <SPTNuxService> _nuxService;
     id <SPTURIDispatchService> _URIDispatchService;
     id <SPTFeatureFlaggingService> _featureFlaggingService;
     id <SPTAbbaService> _abbaService;
-    id <SPTCollectionSortingEntityManager> _playlistSortingEntityManager;
     id <SPTFreeTierService> _freeTierService;
     id <SPTSnackbarService> _snackbarService;
     id <SPTYourLibraryService> _yourLibraryService;
@@ -48,12 +47,10 @@
 @property(nonatomic) __weak id <SPTYourLibraryService> yourLibraryService; // @synthesize yourLibraryService=_yourLibraryService;
 @property(nonatomic) __weak id <SPTSnackbarService> snackbarService; // @synthesize snackbarService=_snackbarService;
 @property(nonatomic) __weak id <SPTFreeTierService> freeTierService; // @synthesize freeTierService=_freeTierService;
-@property(retain, nonatomic) id <SPTCollectionSortingEntityManager> playlistSortingEntityManager; // @synthesize playlistSortingEntityManager=_playlistSortingEntityManager;
 @property(retain, nonatomic) id <SPTAbbaService> abbaService; // @synthesize abbaService=_abbaService;
 @property(nonatomic) __weak id <SPTFeatureFlaggingService> featureFlaggingService; // @synthesize featureFlaggingService=_featureFlaggingService;
 @property(nonatomic) __weak id <SPTURIDispatchService> URIDispatchService; // @synthesize URIDispatchService=_URIDispatchService;
 @property(nonatomic) __weak id <SPTNuxService> nuxService; // @synthesize nuxService=_nuxService;
-@property(nonatomic) __weak id <SPTPlayerFeature> playerFeature; // @synthesize playerFeature=_playerFeature;
 @property(nonatomic) __weak id <SPTCollectionPlatformService> collectionPlatformService; // @synthesize collectionPlatformService=_collectionPlatformService;
 @property(nonatomic) __weak id <SPContextMenuFeature> contextMenuFeature; // @synthesize contextMenuFeature=_contextMenuFeature;
 @property(nonatomic) __weak id <SPTPlaylistPlatformService> playlistPlatformService; // @synthesize playlistPlatformService=_playlistPlatformService;

@@ -6,10 +6,10 @@
 
 #import "NSObject-Protocol.h"
 
-@class SPTPodcastEpisode;
+@protocol SPTPodcastEpisode;
 
 @protocol SPTPodcastYourLibraryEpisodeViewModel <NSObject>
 @property(readonly, nonatomic) unsigned long long viewModelType;
-@property(readonly, nonatomic) SPTPodcastEpisode *podcastEpisode;
+@property(readonly, nonatomic) id <SPTPodcastEpisode> podcastEpisode;
 @end
 

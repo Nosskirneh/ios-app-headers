@@ -72,7 +72,6 @@
 - (void)collectionView:(id)arg1 willDisplayCell:(id)arg2 forItemAtIndexPath:(id)arg3;
 - (id)collectionView:(id)arg1 cellForItemAtIndexPath:(id)arg2;
 - (long long)collectionView:(id)arg1 numberOfItemsInSection:(long long)arg2;
-- (void)reloadDataAndLayoutForIndexPath:(id)arg1 relativeMovement:(double)arg2;
 - (void)refreshLeftInset;
 - (void)reloadDataMovingToIndexPath:(id)arg1 relativeMovement:(long long)arg2;
 - (id)cellAsCoverArtCell:(id)arg1;
@@ -86,8 +85,10 @@
 - (void)setupOverlay;
 - (void)setupUI;
 - (void)viewWillTransitionToSize:(struct CGSize)arg1 withTransitionCoordinator:(id)arg2;
+- (void)reloadLayoutWithSize:(struct CGSize)arg1;
+- (void)reloadLayout;
 - (void)viewWillDisappear:(_Bool)arg1;
-- (void)refreshView;
+- (void)viewDidAppear:(_Bool)arg1;
 - (void)viewWillAppear:(_Bool)arg1;
 - (void)viewDidLoad;
 - (void)dealloc;

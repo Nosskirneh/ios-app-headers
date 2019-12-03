@@ -10,7 +10,7 @@
 #import "SPTVoiceSessionObserver-Protocol.h"
 
 @class NSString, NSTimer, SPTAdPlayerObservable, SPTAdVoiceCommandAudioPlayer, SPTObserverManager;
-@protocol SPTAdsBaseCosmosBridge, SPTAdsBaseEntity, SPTLinkDispatcher, SPTVoiceSession;
+@protocol SPTAccessoryStateManager, SPTAdsBaseCosmosBridge, SPTAdsBaseEntity, SPTEventSender, SPTLinkDispatcher, SPTVoiceSession;
 
 @interface SPTAdVoiceManagerLegacy : NSObject <SPTVoiceSessionObserver, SPTAdPlayerObserver>
 {
@@ -24,6 +24,8 @@
     unsigned long long _voiceManagerState;
     SPTObserverManager *_observerManager;
     CDUnknownBlockType _completionHandler;
+    id <SPTAccessoryStateManager> _accessoryStateManager;
+    id <SPTEventSender> _eventSender;
     double _delaySeconds;
     double _recordSeconds;
     NSTimer *_timer;
@@ -33,6 +35,8 @@
 @property(retain, nonatomic) NSTimer *timer; // @synthesize timer=_timer;
 @property(readonly, nonatomic) double recordSeconds; // @synthesize recordSeconds=_recordSeconds;
 @property(readonly, nonatomic) double delaySeconds; // @synthesize delaySeconds=_delaySeconds;
+@property(retain, nonatomic) id <SPTEventSender> eventSender; // @synthesize eventSender=_eventSender;
+@property(retain, nonatomic) id <SPTAccessoryStateManager> accessoryStateManager; // @synthesize accessoryStateManager=_accessoryStateManager;
 @property(copy, nonatomic) CDUnknownBlockType completionHandler; // @synthesize completionHandler=_completionHandler;
 @property(retain, nonatomic) SPTObserverManager *observerManager; // @synthesize observerManager=_observerManager;
 @property(nonatomic) unsigned long long voiceManagerState; // @synthesize voiceManagerState=_voiceManagerState;
@@ -43,6 +47,8 @@
 @property(nonatomic) __weak id <SPTAdsBaseEntity> adEntity; // @synthesize adEntity=_adEntity;
 @property(retain, nonatomic) id <SPTVoiceSession> voiceSession; // @synthesize voiceSession=_voiceSession;
 - (void).cxx_destruct;
+- (void)logVoiceAdLogEvent:(id)arg1;
+- (id)getActiveConnectedDevice;
 - (void)skipToNextTrack;
 - (void)navigateToURI:(id)arg1;
 - (void)playContextURI:(id)arg1;
@@ -58,12 +64,13 @@
 - (void)voiceSession:(id)arg1 didUpdateTranscriptText:(id)arg2;
 - (void)voiceSession:(id)arg1 didFailVoiceCommand:(id)arg2 withError:(id)arg3;
 - (void)voiceSession:(id)arg1 didReceiveVoiceCommand:(id)arg2;
+- (void)voiceSessionDidStartListening:(id)arg1;
 - (void)voiceSessionWillStartListening:(id)arg1;
 - (void)voiceSessionDidStopListening:(id)arg1;
 - (void)removeObserver:(id)arg1;
 - (void)addObserver:(id)arg1;
 - (void)dealloc;
-- (id)initWithVoiceSession:(id)arg1 adEntity:(id)arg2 playerObservable:(id)arg3 linkDispatcher:(id)arg4 cosmosBridge:(id)arg5;
+- (id)initWithVoiceSession:(id)arg1 adEntity:(id)arg2 playerObservable:(id)arg3 linkDispatcher:(id)arg4 cosmosBridge:(id)arg5 accessoryStateManager:(id)arg6 eventSender:(id)arg7;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

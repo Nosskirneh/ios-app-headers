@@ -7,16 +7,15 @@
 #import <objc/NSObject.h>
 
 #import "SPTPodcastEpisodeProgressPolling-Protocol.h"
+#import "SPTPodcastUnfinishedItemsProviderObserver-Protocol.h"
 #import "SPTPodcastYourLibraryDataParserDelegate-Protocol.h"
 #import "SPTPodcastYourLibraryEpisodesViewModel-Protocol.h"
 
 @class NSArray, NSCache, NSString, NSURL, SPTPodcastYourLibraryDataParser;
-@protocol SPTExplicitContentAccessManager, SPTPodcastDataLoader, SPTPodcastDataLoaderRequestToken, SPTPodcastPlayer, SPTPodcastTestManager, SPTPodcastUITestManager, SPTPodcastYourLibraryEpisodesViewModelDelegate;
+@protocol SPTExplicitContentAccessManager, SPTPodcastDataLoader, SPTPodcastDataLoaderRequestToken, SPTPodcastEpisodeFactory, SPTPodcastPlayer, SPTPodcastRequestFactory, SPTPodcastTestManager, SPTPodcastUITestManager, SPTPodcastUnfinishedItemsProvider, SPTPodcastYourLibraryEpisodesViewModelDelegate;
 
-@interface SPTPodcastYourLibraryEpisodesViewModelImpl : NSObject <SPTPodcastYourLibraryDataParserDelegate, SPTPodcastYourLibraryEpisodesViewModel, SPTPodcastEpisodeProgressPolling>
+@interface SPTPodcastYourLibraryEpisodesViewModelImpl : NSObject <SPTPodcastYourLibraryDataParserDelegate, SPTPodcastUnfinishedItemsProviderObserver, SPTPodcastYourLibraryEpisodesViewModel, SPTPodcastEpisodeProgressPolling>
 {
-    _Bool _isLoading;
-    _Bool _isLoaded;
     NSURL *_URL;
     id <SPTPodcastYourLibraryEpisodesViewModelDelegate> _delegate;
     NSCache *_progressCache;
@@ -24,6 +23,9 @@
     id <SPTPodcastPlayer> _player;
     id <SPTPodcastDataLoaderRequestToken> _nextEpisodesRequestToken;
     id <SPTPodcastDataLoaderRequestToken> _unfinishedEpisodesRequestToken;
+    id <SPTPodcastEpisodeFactory> _episodeFactory;
+    id <SPTPodcastRequestFactory> _requestFactory;
+    id <SPTPodcastUnfinishedItemsProvider> _unfinishedItemsProvider;
     SPTPodcastYourLibraryDataParser *_dataParser;
     id <SPTExplicitContentAccessManager> _explicitContentAccessManager;
     id <SPTPodcastTestManager> _testManager;
@@ -33,8 +35,6 @@
     NSArray *_headerItems;
 }
 
-@property(nonatomic) _Bool isLoaded; // @synthesize isLoaded=_isLoaded;
-@property(nonatomic) _Bool isLoading; // @synthesize isLoading=_isLoading;
 @property(copy, nonatomic) NSArray *headerItems; // @synthesize headerItems=_headerItems;
 @property(copy, nonatomic) NSArray *nextEpisodeItems; // @synthesize nextEpisodeItems=_nextEpisodeItems;
 @property(copy, nonatomic) NSArray *unfinishedEpisodeItems; // @synthesize unfinishedEpisodeItems=_unfinishedEpisodeItems;
@@ -42,6 +42,9 @@
 @property(retain, nonatomic) id <SPTPodcastTestManager> testManager; // @synthesize testManager=_testManager;
 @property(retain, nonatomic) id <SPTExplicitContentAccessManager> explicitContentAccessManager; // @synthesize explicitContentAccessManager=_explicitContentAccessManager;
 @property(retain, nonatomic) SPTPodcastYourLibraryDataParser *dataParser; // @synthesize dataParser=_dataParser;
+@property(retain, nonatomic) id <SPTPodcastUnfinishedItemsProvider> unfinishedItemsProvider; // @synthesize unfinishedItemsProvider=_unfinishedItemsProvider;
+@property(retain, nonatomic) id <SPTPodcastRequestFactory> requestFactory; // @synthesize requestFactory=_requestFactory;
+@property(retain, nonatomic) id <SPTPodcastEpisodeFactory> episodeFactory; // @synthesize episodeFactory=_episodeFactory;
 @property(retain, nonatomic) id <SPTPodcastDataLoaderRequestToken> unfinishedEpisodesRequestToken; // @synthesize unfinishedEpisodesRequestToken=_unfinishedEpisodesRequestToken;
 @property(retain, nonatomic) id <SPTPodcastDataLoaderRequestToken> nextEpisodesRequestToken; // @synthesize nextEpisodesRequestToken=_nextEpisodesRequestToken;
 @property(retain, nonatomic) id <SPTPodcastPlayer> player; // @synthesize player=_player;
@@ -53,12 +56,16 @@
 - (void)didFailParsingData:(id)arg1;
 - (void)dataParser:(id)arg1 didFinishParsingUnfinishedEpisodes:(id)arg2;
 - (void)dataParser:(id)arg1 didFinishParsingNextEpisodes:(id)arg2 withHeaderItems:(id)arg3;
+- (void)unfinishedItemsModelDidReload:(id)arg1;
 - (id)cachedProgressForEpisode:(id)arg1;
 - (void)updateCurrentProgress:(double)arg1 position:(double)arg2 duration:(double)arg3 forEpisode:(id)arg4;
 - (void)removeDuplicatesFromNextEpisodes:(id)arg1 headerItems:(id)arg2;
+- (void)insertEpisode:(id)arg1 atIndexPath:(id)arg2;
+- (void)deleteEpisode:(id)arg1 atIndexPath:(id)arg2;
 - (void)setItemsFromNextEpisodes:(id)arg1 headerItems:(id)arg2;
 - (id)episodeViewModelAtIndexPath:(id)arg1;
-- (void)fetchUnfinishedEpisodesWithCompletionHandler:(CDUnknownBlockType)arg1;
+- (void)markEpisode:(id)arg1 asPlayed:(_Bool)arg2;
+- (void)fetchUnfinishedEpisodes;
 - (void)subscribeNextEpisodes;
 - (id)allEpisodesInSection:(unsigned long long)arg1;
 - (void)unsubscribe;
@@ -74,7 +81,7 @@
 - (_Bool)isEpisodeActiveAtIndexPath:(id)arg1;
 @property(readonly, nonatomic, getter=isEmpty) _Bool empty;
 - (id)episodeAtIndexPath:(id)arg1;
-- (id)initWithDataLoader:(id)arg1 podcastPlayer:(id)arg2 explicitContentAccessManager:(id)arg3 viewURI:(id)arg4 podcastTestManager:(id)arg5 podcastUITestManager:(id)arg6;
+- (id)initWithDataLoader:(id)arg1 requestFactory:(id)arg2 unfinishedItemsProvider:(id)arg3 episodeFactory:(id)arg4 podcastPlayer:(id)arg5 explicitContentAccessManager:(id)arg6 viewURI:(id)arg7 podcastTestManager:(id)arg8 podcastUITestManager:(id)arg9;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

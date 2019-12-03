@@ -6,22 +6,27 @@
 
 #import <objc/NSObject.h>
 
+#import "SPTFeatureFlagSignalObserver-Protocol.h"
 #import "SPTHomeUITestManager-Protocol.h"
 
 @class NSString;
 @protocol SPTFeatureFlagFactory, SPTFeatureFlagSignal, SPTFeatureSettingsItemFactory, SPTLocalSettings;
 
-@interface SPTHomeUITestManagerImplementation : NSObject <SPTHomeUITestManager>
+@interface SPTHomeUITestManagerImplementation : NSObject <SPTFeatureFlagSignalObserver, SPTHomeUITestManager>
 {
     _Bool _homeComponentsMockEnabled;
     _Bool _homePromoV2ComponentsMockEnabled;
+    _Bool _twoLinesSubtitleEnabled;
     id <SPTFeatureFlagFactory> _featureFlagFactory;
     id <SPTFeatureSettingsItemFactory> _featureSettingsItemFactory;
     id <SPTLocalSettings> _localSettings;
     id <SPTFeatureFlagSignal> _homeComponentsMockEnabledSignal;
     id <SPTFeatureFlagSignal> _homeComponentsMockPromoV2EnabledSignal;
+    id <SPTFeatureFlagSignal> _twoLinesSubtitleEnabledSignal;
 }
 
+@property(nonatomic, getter=isTwoLinesSubtitleEnabled) _Bool twoLinesSubtitleEnabled; // @synthesize twoLinesSubtitleEnabled=_twoLinesSubtitleEnabled;
+@property(readonly, nonatomic) id <SPTFeatureFlagSignal> twoLinesSubtitleEnabledSignal; // @synthesize twoLinesSubtitleEnabledSignal=_twoLinesSubtitleEnabledSignal;
 @property(nonatomic, getter=isHomePromoV2ComponentsMockEnabled) _Bool homePromoV2ComponentsMockEnabled; // @synthesize homePromoV2ComponentsMockEnabled=_homePromoV2ComponentsMockEnabled;
 @property(nonatomic, getter=isHomeComponentsMockEnabled) _Bool homeComponentsMockEnabled; // @synthesize homeComponentsMockEnabled=_homeComponentsMockEnabled;
 @property(readonly, nonatomic) id <SPTFeatureFlagSignal> homeComponentsMockPromoV2EnabledSignal; // @synthesize homeComponentsMockPromoV2EnabledSignal=_homeComponentsMockPromoV2EnabledSignal;

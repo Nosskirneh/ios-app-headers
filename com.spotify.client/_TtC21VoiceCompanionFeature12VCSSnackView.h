@@ -8,11 +8,15 @@
 
 @interface _TtC21VoiceCompanionFeature12VCSSnackView : UIView
 {
+    // Error parsing type: , name: theme
+    // Error parsing type: , name: $__lazy_storage_$_basedOnLabel
+    // Error parsing type: , name: $__lazy_storage_$_collectionView
+    // Error parsing type: , name: $__lazy_storage_$_closeButton
 }
 
+- (void).cxx_destruct;
 - (id)initWithFrame:(struct CGRect)arg1;
 - (id)initWithCoder:(id)arg1;
-- (id)init;
 
 @end
 

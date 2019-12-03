@@ -13,5 +13,6 @@
 - (id <SPTCanvasModel>)canvasModelForTrackMetadata:(NSDictionary *)arg1 withPlaceholderURI:(NSURL *)arg2;
 - (id <SPTCanvasModel>)canvasModelForTrack:(SPTPlayerTrack *)arg1 withPlaceholderURI:(NSURL *)arg2;
 - (_Bool)isCanvasEnabledForTrack:(SPTPlayerTrack *)arg1;
+- (_Bool)trackHasCanvasMetadata:(SPTPlayerTrack *)arg1;
 @end
 

@@ -6,10 +6,7 @@
 
 #import "NSObject-Protocol.h"
 
-@protocol SPTCanvasMetadataResolverDelegate;
-
 @protocol SPTCanvasMetadataResolver <NSObject>
-@property(nonatomic) __weak id <SPTCanvasMetadataResolverDelegate> delegate;
-- (void)resolve;
+- (void)resolve:(void (^)(NSArray *, NSDictionary *, NSError *))arg1;
 @end
 

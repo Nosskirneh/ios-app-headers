@@ -7,5 +7,6 @@
 #import "SPTService-Protocol.h"
 
 @protocol SPTFollowFeedService <SPTService>
+@property(nonatomic, readonly) _Bool followFeedEnabled;
 @end
 

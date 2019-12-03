@@ -6,9 +6,10 @@
 
 #import "SPTService-Protocol.h"
 
-@protocol SPTCosmosDictionaryDataLoader, SPTResolver;
+@protocol SPTCosmosDataLoader, SPTCosmosDictionaryDataLoader, SPTResolver;
 
 @protocol SPTCosmosDataLoaderService <SPTService>
-- (id <SPTCosmosDictionaryDataLoader>)provideCosmosDataLoaderWithResolver:(id <SPTResolver>)arg1;
+- (id <SPTCosmosDataLoader>)provideDataLoaderWithResolver:(id <SPTResolver>)arg1;
+- (id <SPTCosmosDictionaryDataLoader>)provideDictionaryDataLoaderWithResolver:(id <SPTResolver>)arg1;
 @end
 

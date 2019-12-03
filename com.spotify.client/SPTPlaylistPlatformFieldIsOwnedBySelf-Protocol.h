@@ -7,6 +7,6 @@
 #import "SPTPlaylistPlatformDataLoaderField-Protocol.h"
 
 @protocol SPTPlaylistPlatformFieldIsOwnedBySelf <SPTPlaylistPlatformDataLoaderField>
-@property(readonly, nonatomic) _Bool isOwnedBySelf;
+@property(nonatomic, readonly) _Bool isOwnedBySelf;
 @end
 

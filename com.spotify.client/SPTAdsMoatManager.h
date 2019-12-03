@@ -9,8 +9,8 @@
 #import "BMVideoSurfaceDelegate-Protocol.h"
 #import "SPTAdFocusManagerObserver-Protocol.h"
 
-@class AVPlayer, FBKVOController, NSDictionary, NSString, SPOTMoatVideoTracker, SPTAdFocusManager;
-@protocol BMVideoSurfaceManager, SPTAVPlayerSource, SPTAdsBaseCosmosBridge;
+@class AVPlayer, FBKVOController, NSDictionary, NSMapTable, NSString, SPOTMoatVideoTracker, SPTAdFocusManager;
+@protocol BMVideoSurfaceManager, SPTAVPlayerSource, SPTAdsBaseCosmosBridge, SPTCrashReporter;
 
 @interface SPTAdsMoatManager : NSObject <BMVideoSurfaceDelegate, SPTAdFocusManagerObserver>
 {
@@ -18,6 +18,7 @@
     _Bool _tracking;
     SPOTMoatVideoTracker *_videoTracker;
     id <SPTAdsBaseCosmosBridge> _cosmosBridge;
+    id <SPTCrashReporter> _crashReporter;
     NSObject<BMVideoSurfaceManager> *_surfaceManager;
     NSObject<SPTAVPlayerSource> *_avPlayerSource;
     FBKVOController *_kvoController;
@@ -27,8 +28,10 @@
     id _timeObserverToken;
     SPTAdFocusManager *_adFocusManager;
     double _trackDuration;
+    NSMapTable *_timeObserverTable;
 }
 
+@property(retain, nonatomic) NSMapTable *timeObserverTable; // @synthesize timeObserverTable=_timeObserverTable;
 @property(nonatomic) double trackDuration; // @synthesize trackDuration=_trackDuration;
 @property(retain, nonatomic) SPTAdFocusManager *adFocusManager; // @synthesize adFocusManager=_adFocusManager;
 @property(retain, nonatomic) id timeObserverToken; // @synthesize timeObserverToken=_timeObserverToken;
@@ -40,6 +43,7 @@
 @property(retain, nonatomic) FBKVOController *kvoController; // @synthesize kvoController=_kvoController;
 @property(nonatomic) __weak NSObject<SPTAVPlayerSource> *avPlayerSource; // @synthesize avPlayerSource=_avPlayerSource;
 @property(nonatomic) __weak NSObject<BMVideoSurfaceManager> *surfaceManager; // @synthesize surfaceManager=_surfaceManager;
+@property(retain, nonatomic) id <SPTCrashReporter> crashReporter; // @synthesize crashReporter=_crashReporter;
 @property(retain, nonatomic) id <SPTAdsBaseCosmosBridge> cosmosBridge; // @synthesize cosmosBridge=_cosmosBridge;
 @property(retain, nonatomic) SPOTMoatVideoTracker *videoTracker; // @synthesize videoTracker=_videoTracker;
 - (void).cxx_destruct;
@@ -60,8 +64,9 @@
 - (void)startTracking;
 - (void)startObserving;
 - (void)removeBoundaryTimeObserver;
+- (void)handleCrashReporting:(id)arg1 crashReporter:(id)arg2;
 - (void)dealloc;
-- (id)initWithVideoSurfaceManager:(id)arg1 avPlayerSource:(id)arg2 cosmosBridge:(id)arg3 adFocusManager:(id)arg4 videoTracker:(id)arg5;
+- (id)initWithVideoSurfaceManager:(id)arg1 avPlayerSource:(id)arg2 cosmosBridge:(id)arg3 adFocusManager:(id)arg4 videoTracker:(id)arg5 featureFlags:(id)arg6 crashReporter:(id)arg7;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

@@ -9,7 +9,7 @@
 #import "SPTHubCommandHandlerFactory-Protocol.h"
 
 @class NSString;
-@protocol SPTContextMenuOptionsFactory, SPTContextMenuPresenterFactory, SPTHubsEventFactory, SPTLinkDispatcher, SPTPlayerFeature;
+@protocol SPTContextMenuOptionsFactory, SPTContextMenuPresenterFactory, SPTEventFactory, SPTLinkDispatcher, SPTPlayerFeature, SPTUserBehaviourInstrumentationHubsEventMapper;
 
 @interface SPTHubDefaultCommandHandlers : NSObject <SPTHubCommandHandlerFactory>
 {
@@ -20,10 +20,12 @@
     NSString *_contextMenuLogContextIpad;
     id <SPTContextMenuOptionsFactory> _contextMenuOptionsFactory;
     id <SPTContextMenuPresenterFactory> _contextMenuPresenterFactory;
-    id <SPTHubsEventFactory> _eventFactory;
+    id <SPTEventFactory> _eventFactory;
+    id <SPTUserBehaviourInstrumentationHubsEventMapper> _eventMapper;
 }
 
-@property(retain, nonatomic) id <SPTHubsEventFactory> eventFactory; // @synthesize eventFactory=_eventFactory;
+@property(retain, nonatomic) id <SPTUserBehaviourInstrumentationHubsEventMapper> eventMapper; // @synthesize eventMapper=_eventMapper;
+@property(retain, nonatomic) id <SPTEventFactory> eventFactory; // @synthesize eventFactory=_eventFactory;
 @property(readonly, nonatomic) id <SPTContextMenuPresenterFactory> contextMenuPresenterFactory; // @synthesize contextMenuPresenterFactory=_contextMenuPresenterFactory;
 @property(readonly, nonatomic) id <SPTContextMenuOptionsFactory> contextMenuOptionsFactory; // @synthesize contextMenuOptionsFactory=_contextMenuOptionsFactory;
 @property(readonly, copy, nonatomic) NSString *contextMenuLogContextIpad; // @synthesize contextMenuLogContextIpad=_contextMenuLogContextIpad;
@@ -33,7 +35,7 @@
 @property(readonly, copy, nonatomic) NSString *featureIdentifier; // @synthesize featureIdentifier=_featureIdentifier;
 - (void).cxx_destruct;
 - (id)createDefaultCommandHandlersWithViewURI:(id)arg1 referrerIdentifier:(id)arg2 interactionLogger:(id)arg3;
-- (id)initWithFeatureIdentifier:(id)arg1 linkDispatcher:(id)arg2 playerService:(id)arg3 contextMenuLogContextIphone:(id)arg4 contextMenuLogContextIpad:(id)arg5 contextMenuOptionsFactory:(id)arg6 presenterFactory:(id)arg7 eventFactory:(id)arg8;
+- (id)initWithFeatureIdentifier:(id)arg1 linkDispatcher:(id)arg2 playerService:(id)arg3 contextMenuLogContextIphone:(id)arg4 contextMenuLogContextIpad:(id)arg5 contextMenuOptionsFactory:(id)arg6 presenterFactory:(id)arg7 eventFactory:(id)arg8 eventMapper:(id)arg9;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

@@ -20,10 +20,6 @@
 @property(readonly, nonatomic) id <SPTSearch2DateProviding> dateProvider; // @synthesize dateProvider=_dateProvider;
 @property(readonly, nonatomic) id <SPTLogCenter> logCenter; // @synthesize logCenter=_logCenter;
 - (void).cxx_destruct;
-- (void)logUIInteractionForAutocompleteQueryClearedWithRequestId:(id)arg1;
-- (void)logUIInteractionForAutocompleteSuggestionManuallyEntered:(id)arg1 requestId:(id)arg2;
-- (void)logUIInteractionForAutocompleteSuggestionFilledWithRequestId:(id)arg1 index:(unsigned long long)arg2;
-- (void)logUIInteractionForAutocompleteSuggestionSelected:(id)arg1 requestId:(id)arg2 index:(unsigned long long)arg3;
 - (void)logUIImpressionVoiceFloatingMicrophoneTooltipCalloutWithSourceIdentifier:(id)arg1;
 - (void)logUIInteractionLaunchVoiceSearchViewWithSourceIdentifier:(id)arg1;
 - (void)logUIInteractionForClearCurrentSearchStringWithRequestID:(id)arg1;

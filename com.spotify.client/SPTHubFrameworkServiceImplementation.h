@@ -6,12 +6,13 @@
 
 #import <objc/NSObject.h>
 
+#import "SPTHubFrameworkService-Protocol.h"
 #import "SPTService-Protocol.h"
 
 @class NSString, SPTAllocationContext, SPTHubsRendererFactoryImplementation;
 @protocol CosmosFeature, SPContextMenuFeature, SPTContainerService, SPTGLUEService, SPTNetworkService, SPTPerformanceMetricsService, SPTPlayerFeature, SPTSessionService, SPTShareFeature, SPTURIDispatchService, SPTUserBehaviourInstrumentationService;
 
-@interface SPTHubFrameworkServiceImplementation : NSObject <SPTService>
+@interface SPTHubFrameworkServiceImplementation : NSObject <SPTService, SPTHubFrameworkService>
 {
     id <SPTGLUEService> _glueService;
     id <SPTNetworkService> _networkService;
@@ -41,7 +42,7 @@
 @property(nonatomic) __weak id <SPTNetworkService> networkService; // @synthesize networkService=_networkService;
 @property(nonatomic) __weak id <SPTGLUEService> glueService; // @synthesize glueService=_glueService;
 - (void).cxx_destruct;
-- (id)provideHubsEventFactory;
+- (id)provideHubsEventFactoryWithPageURI:(id)arg1 pageId:(id)arg2 reason:(id)arg3;
 - (id)provideHubsRendererFactory;
 - (void)load;
 - (void)configureWithServices:(id)arg1;

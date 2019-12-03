@@ -7,6 +7,21 @@
 #import <Foundation/NSAttributedString.h>
 
 @interface NSAttributedString (Marquee)
++ (id)attributedStringForSPTIcon:(long long)arg1 fontSize:(double)arg2;
++ (id)attributedStringForSPTIcon:(long long)arg1 fontSize:(double)arg2 fontColor:(id)arg3;
++ (id)spt_attributedGeniusString:(id)arg1 font:(id)arg2 highlightColor:(id)arg3 defaultColor:(id)arg4 paragraphStyle:(id)arg5;
 - (id)contextMenuHeaderString;
+- (id)encore_scaledStringToFitSize:(struct CGSize)arg1 minScale:(double)arg2;
+- (id)encore_scaledStringToFitSize:(struct CGSize)arg1 numberOfLines:(unsigned long long)arg2 minScale:(double)arg3 scaledStringFits:(_Bool *)arg4;
+- (id)encore_scaledStringToFitWidth:(double)arg1 numberOfLines:(unsigned long long)arg2 minScale:(double)arg3;
+- (id)spt_attributedStringByPrependingShuffleBadgeWithTextAlignment:(long long)arg1;
+- (id)spt_attributedStringByPrependingShuffleBadgeForEntityRow;
+- (id)spt_attributedStringByPrependingShuffleBadge;
+- (id)attributedStringByPrependingShuffleBadge;
+- (id)spt_collapsedAttributedStringWithStringEnding:(id)arg1 sizeConstraint:(struct CGSize)arg2 numberOfLines:(long long)arg3;
+- (id)spt_dottedTimestampLinkAttributedStringWithContextURL:(id)arg1 maxTimeLimit:(long long)arg2;
+- (id)spt_underlinedLinkAttributedString;
+- (id)spt_podcastUnderlinedLinkAttributedString;
+- (id)spt_podcastCollapsedAttributedStringWithStringEnding:(id)arg1 sizeConstraint:(struct CGSize)arg2 numberOfLines:(long long)arg3;
 @end
 

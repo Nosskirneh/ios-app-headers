@@ -23,11 +23,13 @@
     NSString *_playRadio;
     NSString *_codeChallenge;
     NSString *_codeChallengeMethod;
+    NSString *_pinPairingCode;
     NSString *_appLocalizationLanguage;
 }
 
 @property(copy, nonatomic) NSString *appLocalizationLanguage; // @synthesize appLocalizationLanguage=_appLocalizationLanguage;
 @property(readonly, nonatomic, getter=isUsingStagingEnvironment) _Bool usingStagingEnvironment; // @synthesize usingStagingEnvironment=_usingStagingEnvironment;
+@property(readonly, nonatomic) NSString *pinPairingCode; // @synthesize pinPairingCode=_pinPairingCode;
 @property(readonly, nonatomic) NSString *codeChallengeMethod; // @synthesize codeChallengeMethod=_codeChallengeMethod;
 @property(readonly, nonatomic) NSString *codeChallenge; // @synthesize codeChallenge=_codeChallenge;
 @property(readonly, nonatomic) NSString *playRadio; // @synthesize playRadio=_playRadio;
@@ -43,6 +45,8 @@
 - (void).cxx_destruct;
 - (id)loadJsonForResource:(id)arg1 ofType:(id)arg2;
 - (id)webLanguageForAppLanguage:(id)arg1;
+- (id)toPairURL;
+- (id)toAuthorizeURL;
 - (id)toURL;
 - (id)initWithBundleId:(id)arg1 queryDict:(id)arg2 useStaging:(_Bool)arg3;
 

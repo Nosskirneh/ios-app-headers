@@ -11,7 +11,7 @@
 #import "SPTSignupService-Protocol.h"
 
 @class NSString, SPTAllocationContext, SPTLoginPerformanceLogging, SPTSignupConfigurationDataLoader, SPTSignupUserInfoModel;
-@protocol SPTContainerService, SPTContainerUIService, SPTDebugService, SPTGLUEService, SPTLoginLoggingService, SPTLoginService, SPTNetworkService, SPTPreSignupExperimentationService, SPTServiceManagerService, SPTURIDispatchService;
+@protocol SPTContainerService, SPTContainerUIService, SPTGLUEService, SPTLoginLoggingService, SPTLoginService, SPTNetworkService, SPTPreSignupExperimentationService, SPTServiceManagerService, SPTURIDispatchService;
 
 @interface SPTSignupServiceImplementation : NSObject <SPTPageRegistryObserver, SPTLoginServiceObserver, SPTSignupService>
 {
@@ -23,7 +23,6 @@
     id <SPTNetworkService> _networkService;
     id <SPTServiceManagerService> _serviceManagerService;
     id <SPTPreSignupExperimentationService> _experimentationService;
-    id <SPTDebugService> _debugService;
     id <SPTLoginLoggingService> _loggerService;
     SPTSignupUserInfoModel *_userInfoModel;
     SPTSignupConfigurationDataLoader *_configurationDataLoader;
@@ -35,7 +34,6 @@
 @property(retain, nonatomic) SPTSignupConfigurationDataLoader *configurationDataLoader; // @synthesize configurationDataLoader=_configurationDataLoader;
 @property(retain, nonatomic) SPTSignupUserInfoModel *userInfoModel; // @synthesize userInfoModel=_userInfoModel;
 @property(nonatomic) __weak id <SPTLoginLoggingService> loggerService; // @synthesize loggerService=_loggerService;
-@property(nonatomic) __weak id <SPTDebugService> debugService; // @synthesize debugService=_debugService;
 @property(nonatomic) __weak id <SPTPreSignupExperimentationService> experimentationService; // @synthesize experimentationService=_experimentationService;
 @property(nonatomic) __weak id <SPTServiceManagerService> serviceManagerService; // @synthesize serviceManagerService=_serviceManagerService;
 @property(nonatomic) __weak id <SPTNetworkService> networkService; // @synthesize networkService=_networkService;
@@ -49,16 +47,14 @@
 - (void)pageRegistryDidUnregisterFeaturePages:(id)arg1;
 - (void)fetchSignupConfiguration;
 - (id)provideAllowedCallingCodes;
-- (id)navigationRouter;
 - (void)loadSignupConfiguration;
-- (id)provideStepThreeViewController;
+- (id)provideDisplayNameViewController;
 - (id)provideFacebookConfirmationViewController:(id)arg1 context:(id)arg2;
 - (id)provideTermsAndPolicyViewModelWithTheme:(id)arg1 screenIdentifier:(id)arg2;
 - (id)provideGenderForSignupViewController;
 - (id)provideBirthDateViewController:(id)arg1 context:(id)arg2;
 - (id)providePasswordForSignupViewController;
 - (id)provideEmailForSignupViewController;
-- (void)registerSignupSplitFlowViewControllers;
 - (void)registerSignupViewControllers;
 - (void)unload;
 - (void)load;

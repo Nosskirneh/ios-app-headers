@@ -9,7 +9,7 @@
 #import "SPTHubsRendererFactory-Protocol.h"
 
 @class NSString, SPTHubContentOperationFactoryImplementation, SPTHubDefaultCommandHandlers, SPTHubLoggerFactoryImplementation;
-@protocol SPTContextMenuOptionsFactory, SPTContextMenuPresenterFactory, SPTEventFactory, SPTHugsFactory, SPTImageLoaderFactory, SPTLinkDispatcher, SPTPlayerFeature, SPTShareDragDelegateFactory;
+@protocol SPTContextMenuOptionsFactory, SPTContextMenuPresenterFactory, SPTEventFactory, SPTHugsFactory, SPTImageLoaderFactory, SPTLinkDispatcher, SPTPlayerFeature, SPTShareDragDelegateFactory, SPTUserBehaviourInstrumentationHubsEventMapper;
 
 @interface SPTHubsRendererFactoryImplementation : NSObject <SPTHubsRendererFactory>
 {
@@ -23,10 +23,12 @@
     SPTHubContentOperationFactoryImplementation *_contentOperationFactory;
     SPTHubLoggerFactoryImplementation *_loggerFactory;
     id <SPTEventFactory> _eventFactory;
+    id <SPTUserBehaviourInstrumentationHubsEventMapper> _eventMapper;
     id <SPTShareDragDelegateFactory> _shareDragDelegateFactory;
 }
 
 @property(retain, nonatomic) id <SPTShareDragDelegateFactory> shareDragDelegateFactory; // @synthesize shareDragDelegateFactory=_shareDragDelegateFactory;
+@property(retain, nonatomic) id <SPTUserBehaviourInstrumentationHubsEventMapper> eventMapper; // @synthesize eventMapper=_eventMapper;
 @property(retain, nonatomic) id <SPTEventFactory> eventFactory; // @synthesize eventFactory=_eventFactory;
 @property(readonly, nonatomic) SPTHubLoggerFactoryImplementation *loggerFactory; // @synthesize loggerFactory=_loggerFactory;
 @property(readonly, nonatomic) SPTHubContentOperationFactoryImplementation *contentOperationFactory; // @synthesize contentOperationFactory=_contentOperationFactory;
@@ -45,7 +47,7 @@
 - (id)createImageLoaderFactoryWithLogger:(id)arg1;
 - (id)provideShareDragDelegateFactory;
 - (id)provideImageLoaderFactory;
-- (id)initWithTheme:(id)arg1 imageLoaderFactory:(id)arg2 dataLoaderFactory:(id)arg3 offlineModeState:(id)arg4 playerService:(id)arg5 linkDispatcher:(id)arg6 hugsFactory:(id)arg7 contextMenuOptionsFactory:(id)arg8 presenterFactory:(id)arg9 logCenter:(id)arg10 viewLoggerFactory:(id)arg11 cosmosFeature:(id)arg12 ubiLoggerFactory:(id)arg13 eventFactory:(id)arg14 shareDragDelegateFactory:(id)arg15;
+- (id)initWithTheme:(id)arg1 imageLoaderFactory:(id)arg2 dataLoaderFactory:(id)arg3 offlineModeState:(id)arg4 playerService:(id)arg5 linkDispatcher:(id)arg6 hugsFactory:(id)arg7 contextMenuOptionsFactory:(id)arg8 presenterFactory:(id)arg9 logCenter:(id)arg10 viewLoggerFactory:(id)arg11 cosmosFeature:(id)arg12 ubiLogger:(id)arg13 eventFactory:(id)arg14 eventMapper:(id)arg15 shareDragDelegateFactory:(id)arg16;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

@@ -11,7 +11,7 @@
     // Error parsing type: , name: cell
     // Error parsing type: , name: state
     // Error parsing type: , name: imageLoader
-    // Error parsing type: , name: diffuser.storage
+    // Error parsing type: , name: $__lazy_storage_$_diffuser
 }
 
 @end

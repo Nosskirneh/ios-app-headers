@@ -16,7 +16,6 @@
 
 @optional
 - (void)userDidReconnect;
-- (void)userDidRegister;
 - (void)userWillLogout;
 - (void)userDidLogout;
 

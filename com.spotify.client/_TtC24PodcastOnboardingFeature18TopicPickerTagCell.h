@@ -12,7 +12,7 @@
     // Error parsing type: , name: contentBackgroundView
     // Error parsing type: , name: selectionAnimationView
     // Error parsing type: , name: theme
-    // Error parsing type: , name: maxWidthConstraint.storage
+    // Error parsing type: , name: $__lazy_storage_$_maxWidthConstraint
     // Error parsing type: , name: color
     // Error parsing type: , name: newlyCreated
 }

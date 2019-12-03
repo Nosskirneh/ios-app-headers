@@ -17,5 +17,6 @@
 - (void)paymentQueueRestoreCompletedTransactionsFinished:(SKPaymentQueue *)arg1;
 - (void)paymentQueue:(SKPaymentQueue *)arg1 restoreCompletedTransactionsFailedWithError:(NSError *)arg2;
 - (void)paymentQueue:(SKPaymentQueue *)arg1 removedTransactions:(NSArray *)arg2;
+- (void)paymentQueueDidChangeStorefront:(SKPaymentQueue *)arg1;
 @end
 

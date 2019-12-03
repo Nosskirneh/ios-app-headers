@@ -10,8 +10,8 @@
 @protocol SPTPlaylistPlatformFolderMetadataFields, SPTPlaylistPlatformPlaylistMetadataFields;
 
 @protocol SPTPlaylistPlatformFolderItem <NSObject>
-@property(readonly, nonatomic) NSString *groupHeader;
-@property(readonly, nonatomic) id <SPTPlaylistPlatformPlaylistMetadataFields> playlist;
-@property(readonly, nonatomic) id <SPTPlaylistPlatformFolderMetadataFields> folder;
+@property(nonatomic, readonly) NSString *groupHeader;
+@property(nonatomic, readonly) id <SPTPlaylistPlatformPlaylistMetadataFields> playlist;
+@property(nonatomic, readonly) id <SPTPlaylistPlatformFolderMetadataFields> folder;
 @end
 

@@ -13,7 +13,6 @@
 @interface SPTSocialListeningSessionScannableView : UIView <GLUEStyleable>
 {
     GLUEImageView *_scannableImageView;
-    UIView *_scannableContainerView;
     UIView *_separatorView;
     GLUEAccessoryIconButton *_shareCodeButton;
     UIStackView *_stackView;
@@ -24,7 +23,6 @@
 @property(readonly, nonatomic) UIStackView *stackView; // @synthesize stackView=_stackView;
 @property(readonly, nonatomic) GLUEAccessoryIconButton *shareCodeButton; // @synthesize shareCodeButton=_shareCodeButton;
 @property(readonly, nonatomic) UIView *separatorView; // @synthesize separatorView=_separatorView;
-@property(readonly, nonatomic) UIView *scannableContainerView; // @synthesize scannableContainerView=_scannableContainerView;
 @property(readonly, nonatomic) GLUEImageView *scannableImageView; // @synthesize scannableImageView=_scannableImageView;
 - (void).cxx_destruct;
 - (void)glue_applyStyle:(id)arg1;

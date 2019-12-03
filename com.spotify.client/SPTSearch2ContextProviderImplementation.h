@@ -8,8 +8,8 @@
 
 #import "SPTSearch2ContextProvider-Protocol.h"
 
-@class NSString, NSURL, SPTDataLoaderFactory, SPTNetworkConnectivityController;
-@protocol SPTHubsRendererFactory, SPTHugsFactory, SPTOfflineManager, SPTPlayer, SPTPlaylistPlatformPlaylistDataLoader, SPTSearch2ContentOperationsFactory, SPTSearch2DateProviding, SPTSearch2EmptyStatePropertiesProvider, SPTSearch2URLProviding, SPTSearch2UserTierProviding, SPTSearchPlatformTestManager, SPTSearchRecentsDataSource;
+@class NSString, NSURL, SPTDataLoaderFactory, SPTNetworkConnectivityController, SPTSearchPlatformOfflineEpisodeDataLoader;
+@protocol SPTCollectionPlatformDataLoader, SPTExplicitContentAccessManager, SPTHubsRendererFactory, SPTHugsFactory, SPTOfflineManager, SPTPlayer, SPTPlaylistPlatformPlaylistDataLoader, SPTSearch2ContentOperationsFactory, SPTSearch2DateProviding, SPTSearch2EmptyStatePropertiesProvider, SPTSearch2URLProviding, SPTSearch2UserTierProviding, SPTSearchPlatformTestManager, SPTSearchRecentsDataSource;
 
 @interface SPTSearch2ContextProviderImplementation : NSObject <SPTSearch2ContextProvider>
 {
@@ -27,6 +27,9 @@
     id <SPTSearchRecentsDataSource> _recentsDataSource;
     id <SPTOfflineManager> _offlineManager;
     id <SPTPlaylistPlatformPlaylistDataLoader> _playlistDataLoader;
+    id <SPTCollectionPlatformDataLoader> _collectionDataLoader;
+    SPTSearchPlatformOfflineEpisodeDataLoader *_episodeDataLoader;
+    id <SPTExplicitContentAccessManager> _explicitContentAccessManager;
     NSString *_recentsCommandName;
     id <SPTSearchPlatformTestManager> _searchTestManager;
     id <SPTSearch2DateProviding> _dateProvider;
@@ -43,6 +46,9 @@
 @property(readonly, nonatomic) _Bool playRecentTracksEnabled; // @synthesize playRecentTracksEnabled=_playRecentTracksEnabled;
 @property(readonly, nonatomic) _Bool offlineSearchEnabled; // @synthesize offlineSearchEnabled=_offlineSearchEnabled;
 @property(readonly, copy, nonatomic) NSString *recentsCommandName; // @synthesize recentsCommandName=_recentsCommandName;
+@property(readonly, nonatomic) id <SPTExplicitContentAccessManager> explicitContentAccessManager; // @synthesize explicitContentAccessManager=_explicitContentAccessManager;
+@property(readonly, nonatomic) SPTSearchPlatformOfflineEpisodeDataLoader *episodeDataLoader; // @synthesize episodeDataLoader=_episodeDataLoader;
+@property(readonly, nonatomic) id <SPTCollectionPlatformDataLoader> collectionDataLoader; // @synthesize collectionDataLoader=_collectionDataLoader;
 @property(readonly, nonatomic) id <SPTPlaylistPlatformPlaylistDataLoader> playlistDataLoader; // @synthesize playlistDataLoader=_playlistDataLoader;
 @property(readonly, nonatomic) __weak id <SPTOfflineManager> offlineManager; // @synthesize offlineManager=_offlineManager;
 @property(readonly, nonatomic) id <SPTSearchRecentsDataSource> recentsDataSource; // @synthesize recentsDataSource=_recentsDataSource;
@@ -64,13 +70,13 @@
 - (id)makeViewModelBuilderFactory;
 - (id)makeOfflineFetcherForQuery:(id)arg1;
 - (id)assistedCurationPatcher;
-- (id)makeOnlineFetcherForQuery:(id)arg1 autoCompleteRequestID:(id)arg2;
+- (id)makeOnlineFetcherForQuery:(id)arg1;
 - (id)makeOfflineResultsContextForQuery:(id)arg1;
-- (id)makeOnlineResultsContextForQuery:(id)arg1 autoCompleteRequestID:(id)arg2;
+- (id)makeOnlineResultsContextForQuery:(id)arg1;
 - (id)makeEmptyStateContext;
-- (id)makeResultsContextForQuery:(id)arg1 autoCompleteRequestID:(id)arg2;
-- (id)provideContextForQuery:(id)arg1 autoCompleteRequestID:(id)arg2;
-- (id)initWithURLProvider:(id)arg1 hubsRendererFactory:(id)arg2 hugsFactory:(id)arg3 dataLoaderFactory:(id)arg4 connectivityController:(id)arg5 entityVersion:(unsigned long long)arg6 postProcessContentOperationsFactory:(id)arg7 emptyStatePropertiesProvider:(id)arg8 recentsDataSource:(id)arg9 player:(id)arg10 offlineManager:(id)arg11 playlistDataLoder:(id)arg12 recentsCommandName:(id)arg13 offlineSearchEnabled:(_Bool)arg14 playRecentTracksEnabled:(_Bool)arg15 searchTestManager:(id)arg16 dateProvider:(id)arg17 userTierProvider:(id)arg18 featureID:(id)arg19 pageURI:(id)arg20;
+- (id)makeResultsContextForQuery:(id)arg1;
+- (id)provideContextForQuery:(id)arg1;
+- (id)initWithURLProvider:(id)arg1 hubsRendererFactory:(id)arg2 hugsFactory:(id)arg3 dataLoaderFactory:(id)arg4 connectivityController:(id)arg5 entityVersion:(unsigned long long)arg6 postProcessContentOperationsFactory:(id)arg7 emptyStatePropertiesProvider:(id)arg8 recentsDataSource:(id)arg9 player:(id)arg10 offlineManager:(id)arg11 playlistDataLoader:(id)arg12 collectionDataLoader:(id)arg13 episodeDataLoader:(id)arg14 explicitContentAccessManager:(id)arg15 recentsCommandName:(id)arg16 offlineSearchEnabled:(_Bool)arg17 playRecentTracksEnabled:(_Bool)arg18 searchTestManager:(id)arg19 dateProvider:(id)arg20 userTierProvider:(id)arg21 featureID:(id)arg22 pageURI:(id)arg23;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

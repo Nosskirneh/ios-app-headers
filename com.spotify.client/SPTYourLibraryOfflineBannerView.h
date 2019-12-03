@@ -27,7 +27,6 @@
 @property(readonly, nonatomic) GLUELabel *detailLabel; // @synthesize detailLabel=_detailLabel;
 @property(readonly, nonatomic) GLUELabel *titleLabel; // @synthesize titleLabel=_titleLabel;
 - (void).cxx_destruct;
-- (double)topInset;
 - (struct CGSize)sizeThatFits:(struct CGSize)arg1;
 - (void)applyStyle;
 - (void)setupConstraints;

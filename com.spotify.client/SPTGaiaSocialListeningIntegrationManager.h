@@ -34,7 +34,7 @@
 - (void)connectManager:(id)arg1 activeDeviceDidChange:(id)arg2;
 - (void)socialListeningModel:(id)arg1 didDeleteSession:(id)arg2;
 - (void)socialListeningModel:(id)arg1 didReceiveError:(id)arg2;
-- (void)socialListeningModel:(id)arg1 updatedSession:(id)arg2;
+- (void)socialListeningModel:(id)arg1 updatedSession:(id)arg2 updateEvent:(id)arg3;
 - (void)attachDeviceAutomaticallyIfNeeded:(id)arg1;
 - (void)removeObserver:(id)arg1;
 - (void)addObserver:(id)arg1;

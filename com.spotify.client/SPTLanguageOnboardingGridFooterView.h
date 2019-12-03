@@ -8,17 +8,17 @@
 
 #import "GLUEStyleable-Protocol.h"
 
-@class GLUEButton, NSLayoutConstraint, NSString, SPTLanguageOnboardingPassthroughGradientView;
+@class GLUEButton, GLUEGradientView, NSLayoutConstraint, NSString;
 
 @interface SPTLanguageOnboardingGridFooterView : UIView <GLUEStyleable>
 {
     GLUEButton *_nextButton;
-    SPTLanguageOnboardingPassthroughGradientView *_fadeGradientView;
+    GLUEGradientView *_fadeGradientView;
     NSLayoutConstraint *_nextButtonBottomConstraint;
 }
 
 @property(retain, nonatomic) NSLayoutConstraint *nextButtonBottomConstraint; // @synthesize nextButtonBottomConstraint=_nextButtonBottomConstraint;
-@property(readonly, nonatomic) SPTLanguageOnboardingPassthroughGradientView *fadeGradientView; // @synthesize fadeGradientView=_fadeGradientView;
+@property(readonly, nonatomic) GLUEGradientView *fadeGradientView; // @synthesize fadeGradientView=_fadeGradientView;
 @property(readonly, nonatomic) GLUEButton *nextButton; // @synthesize nextButton=_nextButton;
 - (void).cxx_destruct;
 - (void)glue_applyStyle:(id)arg1;

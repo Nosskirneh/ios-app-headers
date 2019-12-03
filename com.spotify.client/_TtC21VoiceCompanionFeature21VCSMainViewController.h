@@ -10,7 +10,7 @@
 {
     // Error parsing type: , name: viewModel
     // Error parsing type: , name: uri
-    // Error parsing type: , name: componentsStackView.storage
+    // Error parsing type: , name: $__lazy_storage_$_componentsStackView
     // Error parsing type: , name: scrollView
 }
 

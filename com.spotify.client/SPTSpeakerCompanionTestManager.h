@@ -6,10 +6,12 @@
 
 #import <objc/NSObject.h>
 
+#import "SPTFeatureFlagSignalObserver-Protocol.h"
+
 @class NSString;
 @protocol SPTFeatureFlagFactory, SPTFeatureFlagSignal, SPTFeatureSettingsItemFactory, SPTLocalSettings;
 
-@interface SPTSpeakerCompanionTestManager : NSObject
+@interface SPTSpeakerCompanionTestManager : NSObject <SPTFeatureFlagSignalObserver>
 {
     _Bool _entityFeedbackPopupABFlagEnabled;
     _Bool _companionPageABFlagEnabled;

@@ -6,11 +6,12 @@
 
 #import "NSObject-Protocol.h"
 
-@protocol SPTImpressionEvent, SPTNowPlayingViewDefault_BottomBar_AvailableDevicesButtonEventFactory, SPTNowPlayingViewDefault_BottomBar_ShowQueueButtonEventFactory;
+@protocol SPTEventFactoryModelMapping, SPTImpressionEvent, SPTNowPlayingViewDefault_BottomBar_AvailableDevicesButtonEventFactory, SPTNowPlayingViewDefault_BottomBar_ShowQueueButtonEventFactory;
 
 @protocol SPTNowPlayingViewDefault_BottomBarEventFactory <NSObject>
 - (id <SPTImpressionEvent>)impression;
 - (id <SPTNowPlayingViewDefault_BottomBar_ShowQueueButtonEventFactory>)showQueueButtonFactory;
 - (id <SPTNowPlayingViewDefault_BottomBar_AvailableDevicesButtonEventFactory>)availableDevicesButtonFactory;
+- (id <SPTEventFactoryModelMapping>)_location;
 @end
 

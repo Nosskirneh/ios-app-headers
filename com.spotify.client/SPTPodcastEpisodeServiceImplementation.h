@@ -8,8 +8,8 @@
 
 #import "SPTPodcastEpisodeService-Protocol.h"
 
-@class NSString, SPTAllocationContext;
-@protocol SPTCollectionPlatformService, SPTContainerUIService, SPTExplicitContentService, SPTNetworkService, SPTPerformanceMetricsService, SPTPodcastEpisodeFeaturedContentService, SPTPodcastFeature, SPTPodcastRecommendationsService, SPTPodcastUIService, SPTSessionService, SPTShareFeature, SPTUIPresentationService;
+@class NSString, SPTAllocationContext, SPTPodcastEpisodeTestManager;
+@protocol SPTCollectionPlatformService, SPTContainerUIService, SPTExplicitContentService, SPTNetworkService, SPTPerformanceMetricsService, SPTPodcastEpisodeFeaturedContentService, SPTPodcastFeature, SPTPodcastRecommendationsService, SPTPodcastUIService, SPTRemoteConfigurationResolver, SPTRemoteConfigurationService, SPTSessionService, SPTShareFeature, SPTUIPresentationService;
 
 @interface SPTPodcastEpisodeServiceImplementation : SPTUIPageService <SPTPodcastEpisodeService>
 {
@@ -25,9 +25,15 @@
     id <SPTShareFeature> _shareFeature;
     id <SPTCollectionPlatformService> _collectionPlatformService;
     id <SPTPodcastEpisodeFeaturedContentService> _podcastEpisodeFeaturedContentService;
+    id <SPTRemoteConfigurationService> _remoteConfigurationService;
+    id <SPTRemoteConfigurationResolver> _remoteConfigurationResolver;
+    SPTPodcastEpisodeTestManager *_testManager;
 }
 
 + (id)serviceIdentifier;
+@property(retain, nonatomic) SPTPodcastEpisodeTestManager *testManager; // @synthesize testManager=_testManager;
+@property(retain, nonatomic) id <SPTRemoteConfigurationResolver> remoteConfigurationResolver; // @synthesize remoteConfigurationResolver=_remoteConfigurationResolver;
+@property(nonatomic) __weak id <SPTRemoteConfigurationService> remoteConfigurationService; // @synthesize remoteConfigurationService=_remoteConfigurationService;
 @property(nonatomic) __weak id <SPTPodcastEpisodeFeaturedContentService> podcastEpisodeFeaturedContentService; // @synthesize podcastEpisodeFeaturedContentService=_podcastEpisodeFeaturedContentService;
 @property(nonatomic) __weak id <SPTCollectionPlatformService> collectionPlatformService; // @synthesize collectionPlatformService=_collectionPlatformService;
 @property(nonatomic) __weak id <SPTShareFeature> shareFeature; // @synthesize shareFeature=_shareFeature;
@@ -44,6 +50,7 @@
 - (id)provideContextPlayerParameters:(id)arg1;
 - (id)provideViewControllerForURI:(id)arg1 context:(id)arg2;
 - (_Bool)claimsURI:(id)arg1;
+- (void)load;
 - (void)configureWithServices:(id)arg1;
 
 // Remaining properties

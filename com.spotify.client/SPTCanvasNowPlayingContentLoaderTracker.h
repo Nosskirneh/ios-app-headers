@@ -7,10 +7,11 @@
 #import <objc/NSObject.h>
 
 #import "SPTCanvasContentLayerViewControllerViewModelLoadDelegate-Protocol.h"
+#import "SPTCanvasViewControllerViewModelLoadDelegate-Protocol.h"
 
 @class NSMapTable, NSString, SPTCanvasLoadEventLogger, SPTCanvasLoadStateTracker;
 
-@interface SPTCanvasNowPlayingContentLoaderTracker : NSObject <SPTCanvasContentLayerViewControllerViewModelLoadDelegate>
+@interface SPTCanvasNowPlayingContentLoaderTracker : NSObject <SPTCanvasViewControllerViewModelLoadDelegate, SPTCanvasContentLayerViewControllerViewModelLoadDelegate>
 {
     SPTCanvasLoadEventLogger *_loadEventLogger;
     SPTCanvasLoadStateTracker *_loadStateTracker;
@@ -24,6 +25,11 @@
 - (void)didFailToLoadViewModel:(id)arg1 withError:(id)arg2;
 - (void)didLoadViewModel:(id)arg1;
 - (void)willLoadViewModel:(id)arg1;
+- (void)setCanvasLoadState:(id)arg1 forCanvasWithCanvasId:(id)arg2 usingLegacyViewModel:(id)arg3;
+- (id)canvasLoadStateForCanvasWithCanvasId:(id)arg1 usingLegacyViewModel:(id)arg2;
+- (void)didFailToLoadViewControllerViewModel:(id)arg1 withError:(id)arg2;
+- (void)didLoadViewControllerViewModel:(id)arg1;
+- (void)willLoadViewControllerViewModel:(id)arg1;
 - (void)setCanvasLoadState:(id)arg1 forCanvasWithCanvasId:(id)arg2 usingViewModel:(id)arg3;
 - (id)canvasLoadStateForCanvasWithCanvasId:(id)arg1 usingViewModel:(id)arg2;
 - (id)initWithLoadEventLogger:(id)arg1 loadStateTracker:(id)arg2;

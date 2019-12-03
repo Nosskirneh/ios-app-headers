@@ -8,17 +8,21 @@
 
 #import "SPTGaiaSilentAudioObserveProtocol-Protocol.h"
 
-@class NSString, SPCore;
+@class NSString, SPTNetworkConnectivityController;
+@protocol SPTKeepAlivePersistentConnectionsToken;
 
 @interface SPTGaiaAudioAPKeepAliveHandler : NSObject <SPTGaiaSilentAudioObserveProtocol>
 {
-    SPCore *_core;
+    SPTNetworkConnectivityController *_networkController;
+    id <SPTKeepAlivePersistentConnectionsToken> _keepAliveToken;
 }
 
-@property(nonatomic) __weak SPCore *core; // @synthesize core=_core;
+@property(retain, nonatomic) id <SPTKeepAlivePersistentConnectionsToken> keepAliveToken; // @synthesize keepAliveToken=_keepAliveToken;
+@property(nonatomic) __weak SPTNetworkConnectivityController *networkController; // @synthesize networkController=_networkController;
 - (void).cxx_destruct;
+- (void)dealloc;
 - (void)silentAudioPlayingStateChangedTo:(_Bool)arg1;
-- (id)initWithCore:(id)arg1;
+- (id)initWithNetworkConnectivityController:(id)arg1;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

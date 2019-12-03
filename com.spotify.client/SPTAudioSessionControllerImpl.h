@@ -9,12 +9,13 @@
 #import "SPTAudioDriverControllerObserver-Protocol.h"
 #import "SPTAudioDriverObserver-Protocol.h"
 #import "SPTAudioSessionController-Protocol.h"
+#import "SPTFeatureFlagSignalObserver-Protocol.h"
 #import "SPTPlayerObserver-Protocol.h"
 
 @class AVAudioSession, NSString, SPTObserverManager, SPTPlayerState;
 @protocol SPTAudioDriverController, SPTAudioSessionControllerDelegate, SPTFeatureFlagSignal, SPTPlayer;
 
-@interface SPTAudioSessionControllerImpl : NSObject <SPTPlayerObserver, SPTAudioDriverControllerObserver, SPTAudioDriverObserver, SPTAudioSessionController>
+@interface SPTAudioSessionControllerImpl : NSObject <SPTPlayerObserver, SPTAudioDriverControllerObserver, SPTAudioDriverObserver, SPTFeatureFlagSignalObserver, SPTAudioSessionController>
 {
     _Bool _active;
     _Bool _interrupted;

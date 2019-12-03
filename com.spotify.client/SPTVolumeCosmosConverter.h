@@ -10,8 +10,8 @@
 {
 }
 
-+ (float)applicationVolumeFromCosmosVolume:(long long)arg1;
-+ (long long)cosmosVolumeFromApplicationVolume:(float)arg1;
++ (double)applicationVolumeFromCosmosVolume:(long long)arg1;
++ (long long)cosmosVolumeFromApplicationVolume:(double)arg1;
 
 @end
 

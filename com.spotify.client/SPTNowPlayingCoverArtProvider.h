@@ -26,7 +26,8 @@
 - (void)configurePlaceholderCell:(id)arg1 windowedContentInsets:(struct UIEdgeInsets)arg2;
 - (void)configureCell:(id)arg1 withTrack:(id)arg2 windowedContentInsets:(struct UIEdgeInsets)arg3 peekingDisallowed:(_Bool)arg4;
 - (Class)cellClass;
-- (id)contentIdentifier;
+- (id)reuseIdentifier;
+- (unsigned long long)contentType;
 - (long long)priority;
 - (id)initWithTheme:(id)arg1 imageLoaderFactory:(id)arg2;
 

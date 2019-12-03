@@ -6,9 +6,11 @@
 
 #import "NSObject-Protocol.h"
 
-@class NSString;
+@class NSError, NSString;
 
 @protocol SPTLoginLogger <NSObject>
+- (void)userDidCompleteRequestWithType:(NSString *)arg1 error:(NSError *)arg2 attemptId:(NSString *)arg3;
+- (NSString *)userDidStartRequestWithType:(NSString *)arg1;
 - (void)trackGuestAccountCreationFailedWithError:(long long)arg1;
 - (void)trackGuestAccountCreated;
 - (void)trackForcedLogoutWithError:(long long)arg1;

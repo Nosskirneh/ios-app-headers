@@ -6,7 +6,7 @@
 
 #import <objc/NSObject.h>
 
-@class SPTCanvasPlaybackSettingsActionFactory, SPTCanvasTestManager;
+@class SPTCanvasPlaybackSettingsActionFactory, SPTCanvasTestManager, SPTCanvasTooltipPresentationManager;
 @protocol SPContextMenuActionsFactory, SPTCanvasTrackChecker, SPTModerationServiceState;
 
 @interface SPTCanvasContextMenuActionsRegistrar : NSObject
@@ -16,8 +16,10 @@
     id <SPTCanvasTrackChecker> _trackChecker;
     SPTCanvasTestManager *_testManager;
     SPTCanvasPlaybackSettingsActionFactory *_canvasActionFactory;
+    SPTCanvasTooltipPresentationManager *_presentationManager;
 }
 
+@property(readonly, nonatomic) SPTCanvasTooltipPresentationManager *presentationManager; // @synthesize presentationManager=_presentationManager;
 @property(readonly, nonatomic) SPTCanvasPlaybackSettingsActionFactory *canvasActionFactory; // @synthesize canvasActionFactory=_canvasActionFactory;
 @property(readonly, nonatomic) SPTCanvasTestManager *testManager; // @synthesize testManager=_testManager;
 @property(readonly, nonatomic) id <SPTCanvasTrackChecker> trackChecker; // @synthesize trackChecker=_trackChecker;
@@ -26,7 +28,7 @@
 - (void).cxx_destruct;
 - (void)registerCanvasPlaybackSettings;
 - (void)registerReportAbuseForNPVCanvasTracks;
-- (id)initWithModerationServiceState:(id)arg1 contextMenuActionsFactory:(id)arg2 canvasActionFactory:(id)arg3 trackChecker:(id)arg4 testManager:(id)arg5;
+- (id)initWithModerationServiceState:(id)arg1 contextMenuActionsFactory:(id)arg2 canvasActionFactory:(id)arg3 trackChecker:(id)arg4 testManager:(id)arg5 presentationManager:(id)arg6;
 
 @end
 

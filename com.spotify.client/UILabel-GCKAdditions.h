@@ -7,6 +7,12 @@
 #import <UIKit/UILabel.h>
 
 @interface UILabel (GCKAdditions)
++ (id)labelWithSPTDefaultAppearanceAndFrame:(struct CGRect)arg1;
 - (void)gck_applyStyleAttributes:(id)arg1 withTextStyle:(unsigned long long)arg2;
+- (void)encore_disableDynamicTypeMonitoring;
+- (void)encore_applyStyle:(id)arg1 withAccessibilityScale:(double)arg2 useDynamicTypeMonitor:(_Bool)arg3;
+- (void)encore_applyStyle:(id)arg1 withAccessibilityScale:(double)arg2;
+- (void)encore_applyStyle:(id)arg1;
+- (long long)spt_characterIndexAtPoint:(struct CGPoint)arg1;
 @end
 

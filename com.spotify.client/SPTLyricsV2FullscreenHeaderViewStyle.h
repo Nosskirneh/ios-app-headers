@@ -19,14 +19,10 @@
     double _shadowOpacity;
     double _shadowRadius;
     double _labelTrailingMargin;
-    double _imageWidthMultiplier;
-    double _imageHeightMultiplier;
     double _trackInfoHorizontalMargin;
 }
 
 @property(nonatomic) double trackInfoHorizontalMargin; // @synthesize trackInfoHorizontalMargin=_trackInfoHorizontalMargin;
-@property(nonatomic) double imageHeightMultiplier; // @synthesize imageHeightMultiplier=_imageHeightMultiplier;
-@property(nonatomic) double imageWidthMultiplier; // @synthesize imageWidthMultiplier=_imageWidthMultiplier;
 @property(nonatomic) double labelTrailingMargin; // @synthesize labelTrailingMargin=_labelTrailingMargin;
 @property(nonatomic) double shadowRadius; // @synthesize shadowRadius=_shadowRadius;
 @property(nonatomic) double shadowOpacity; // @synthesize shadowOpacity=_shadowOpacity;

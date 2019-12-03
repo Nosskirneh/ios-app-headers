@@ -6,20 +6,16 @@
 
 #import "NSObject-Protocol.h"
 
-@class NSString, NSURL, UIImage;
+@class NSArray, NSString, NSURL, UIImage;
 
 @protocol SPTShareEntityData <NSObject>
-@property(retain, nonatomic) NSString *comment;
-@property(retain, nonatomic) UIImage *image;
-@property(readonly, nonatomic) NSString *itemSubtitle;
-@property(readonly, nonatomic) NSString *itemTitle;
-@property(readonly, nonatomic) NSURL *webURI;
+@property(readonly, nonatomic) NSArray *extraQueryItems;
+@property(readonly, nonatomic) NSString *freeText;
+@property(readonly, nonatomic) UIImage *fullscreenBackgroundImage;
 @property(readonly, nonatomic) NSString *logContext;
-@property(readonly, nonatomic) UIImage *shareScreenshotImage;
-@property(readonly, nonatomic) NSString *shareBrowselinkId;
 @property(readonly, nonatomic) NSString *clipboardLinkTitle;
 @property(readonly, nonatomic) long long itemType;
-@property(readonly, nonatomic) NSURL *imageURL;
+@property(readonly, nonatomic) NSURL *itemImageURL;
 @property(readonly, nonatomic) NSString *sourceName;
 @property(readonly, nonatomic) NSString *creatorName;
 @property(readonly, nonatomic) NSString *itemName;

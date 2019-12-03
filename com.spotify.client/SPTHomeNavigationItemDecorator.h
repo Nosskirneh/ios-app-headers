@@ -40,6 +40,7 @@
 - (id)rightItems;
 - (void)updateNavigationItemDecoratorAlpha:(double)arg1;
 - (void)decoratePageController:(id)arg1;
+@property(readonly, nonatomic) _Bool shouldShowFeedButton;
 - (id)initWithBarButtonItemManager:(id)arg1 linkDispatcher:(id)arg2 homeLogger:(id)arg3 theme:(id)arg4 feedFeatureFlagManager:(id)arg5 feedHeartbeatManager:(id)arg6 testManager:(id)arg7;
 
 @end

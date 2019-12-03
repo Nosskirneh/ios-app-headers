@@ -23,11 +23,9 @@
 - (void)dataLoader:(id)arg1 didReceiveErrorResponse:(id)arg2;
 - (void)dataLoader:(id)arg1 didReceiveSuccessfulResponse:(id)arg2;
 - (id)buildServiceURL;
-- (id)templateNameFromTemplate:(unsigned long long)arg1;
 - (_Bool)hasOngoingRequests;
 - (void)cancelRequest;
-- (void)performRequestForEmailOrUsername:(id)arg1 template:(id)arg2;
-- (void)requestLoginLinkForEmailOrUsername:(id)arg1 withTemplate:(unsigned long long)arg2;
+- (void)requestLoginLinkForEmailOrUsername:(id)arg1;
 - (void)dealloc;
 - (id)initWithDataLoader:(id)arg1;
 

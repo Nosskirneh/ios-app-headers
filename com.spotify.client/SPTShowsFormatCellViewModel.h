@@ -6,7 +6,7 @@
 
 #import <objc/NSObject.h>
 
-@class GLUEAccessoryIconButtonStyle, GLUETrackMultipleAccessoriesViewStyle, NSString, NSURL, SPTFreeTierPreCurationQuickActionViewStyle, UIColor;
+@class GLUEAccessoryIconButtonStyle, GLUETrackMultipleAccessoriesViewStyle, NSString, NSURL, UIColor;
 @protocol GLUEStyle;
 
 @interface SPTShowsFormatCellViewModel : NSObject
@@ -26,7 +26,6 @@
     id <GLUEStyle> _rowStyle;
     GLUEAccessoryIconButtonStyle *_contextMenuAccessoryButtonStyle;
     GLUETrackMultipleAccessoriesViewStyle *_trackMultipleAccessoriesStyle;
-    SPTFreeTierPreCurationQuickActionViewStyle *_quickActionViewStyle;
     CDUnknownBlockType _showContextMenu;
     CDUnknownBlockType _likeQuickAction;
     CDUnknownBlockType _banQuickAction;
@@ -35,7 +34,6 @@
 @property(copy, nonatomic) CDUnknownBlockType banQuickAction; // @synthesize banQuickAction=_banQuickAction;
 @property(copy, nonatomic) CDUnknownBlockType likeQuickAction; // @synthesize likeQuickAction=_likeQuickAction;
 @property(copy, nonatomic) CDUnknownBlockType showContextMenu; // @synthesize showContextMenu=_showContextMenu;
-@property(retain, nonatomic) SPTFreeTierPreCurationQuickActionViewStyle *quickActionViewStyle; // @synthesize quickActionViewStyle=_quickActionViewStyle;
 @property(retain, nonatomic) GLUETrackMultipleAccessoriesViewStyle *trackMultipleAccessoriesStyle; // @synthesize trackMultipleAccessoriesStyle=_trackMultipleAccessoriesStyle;
 @property(retain, nonatomic) GLUEAccessoryIconButtonStyle *contextMenuAccessoryButtonStyle; // @synthesize contextMenuAccessoryButtonStyle=_contextMenuAccessoryButtonStyle;
 @property(retain, nonatomic) id <GLUEStyle> rowStyle; // @synthesize rowStyle=_rowStyle;

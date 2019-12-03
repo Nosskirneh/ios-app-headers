@@ -6,13 +6,14 @@
 
 #import <objc/NSObject.h>
 
+#import "MessageBarControllerObserver-Protocol.h"
 #import "SPTMenuControllerObserver-Protocol.h"
 #import "SPTMetaViewControllerObserver-Protocol.h"
 
 @class MessageBarController, NSArray, NSString, SPBarViewController, SPTMenuController, UILayoutGuide, UIView;
 @protocol SPTMetaViewController;
 
-@interface SPTMainContentLayoutGuideController : NSObject <SPTMenuControllerObserver, SPTMetaViewControllerObserver>
+@interface SPTMainContentLayoutGuideController : NSObject <MessageBarControllerObserver, SPTMenuControllerObserver, SPTMetaViewControllerObserver>
 {
     UILayoutGuide *_layoutGuide;
     id <SPTMetaViewController> _metaViewController;

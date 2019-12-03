@@ -7,10 +7,11 @@
 #import "NSObject-Protocol.h"
 
 @class NSURL;
-@protocol SPTInteractionEvent;
+@protocol SPTEventFactoryModelMapping, SPTInteractionEvent;
 
 @protocol SPTNowPlayingBar_HeartButtonEventFactory <NSObject>
-- (id <SPTInteractionEvent>)hitUnlikeWithItemToBeUnliked:(NSURL *)arg1;
+- (id <SPTInteractionEvent>)hitRemoveLikeWithItemNoLongerLiked:(NSURL *)arg1;
 - (id <SPTInteractionEvent>)hitLikeWithItemToBeLiked:(NSURL *)arg1;
+- (id <SPTEventFactoryModelMapping>)_location;
 @end
 

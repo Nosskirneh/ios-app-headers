@@ -28,6 +28,7 @@
 @property(readonly, copy, nonatomic) NSDictionary *formatListAttributes; // @synthesize formatListAttributes;
 @property(readonly, nonatomic) NSString *freeformDescription; // @synthesize freeformDescription;
 - (void).cxx_destruct;
+@property(readonly, copy, nonatomic) NSString *rowId;
 @property(readonly, nonatomic) _Bool isPlayed;
 @property(readonly, nonatomic) double timeLeft;
 @property(readonly, nonatomic) double duration;
@@ -36,7 +37,6 @@
 @property(readonly, nonatomic) NSURL *videoThumbnailURL;
 @property(readonly, nonatomic, getter=isImageEnabled) _Bool imageEnabled;
 @property(readonly, nonatomic) long long offlineSyncStatus;
-@property(readonly, nonatomic) _Bool showCollectionQuickActions;
 @property(readonly, nonatomic, getter=isEpisode) _Bool episode;
 @property(readonly, nonatomic, getter=isVideo) _Bool video;
 @property(readonly, nonatomic, getter=isBanned) _Bool banned;

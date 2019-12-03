@@ -7,16 +7,16 @@
 #import <objc/NSObject.h>
 
 @class SPTLoginContinueWithEmailViewLogger;
-@protocol SPTNavigationRouter;
+@protocol SPTLoginNavigationCoordinator;
 
 @interface SPTLoginContinueWithEmailViewModel : NSObject
 {
-    id <SPTNavigationRouter> _navigationRouter;
+    id <SPTLoginNavigationCoordinator> _navigationCoordinator;
     SPTLoginContinueWithEmailViewLogger *_logger;
 }
 
 @property(retain, nonatomic) SPTLoginContinueWithEmailViewLogger *logger; // @synthesize logger=_logger;
-@property(retain, nonatomic) id <SPTNavigationRouter> navigationRouter; // @synthesize navigationRouter=_navigationRouter;
+@property(retain, nonatomic) id <SPTLoginNavigationCoordinator> navigationCoordinator; // @synthesize navigationCoordinator=_navigationCoordinator;
 - (void).cxx_destruct;
 - (void)logUserDidTapLogIn;
 - (void)logUserDidTapSignup;
@@ -27,7 +27,7 @@
 - (id)orLabelTitle;
 - (id)signupButtonTitle;
 - (id)title;
-- (id)initWithNavigationRouter:(id)arg1 logger:(id)arg2;
+- (id)initWithNavigationCoordinator:(id)arg1 logger:(id)arg2;
 
 @end
 

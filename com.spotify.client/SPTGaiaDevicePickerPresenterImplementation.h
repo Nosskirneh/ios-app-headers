@@ -17,20 +17,22 @@
     id <SPTGaiaConnectAPI> _connectManager;
     id <SPTGaiaDevicePickerDeviceSpecificConfigurationProvider> _deviceConfiguration;
     id <SPTModalPresentationController> _modalPresentationController;
-    id <SPTGaiaDevicePickerControllerProvider> _devicePickerProvider;
     id <SPTOfflineModeState> _offlineModeState;
     SPTGaiaLogger *_logger;
     SPTTheme *_theme;
+    id <SPTGaiaDevicePickerControllerProvider> _devicePickerProvider;
 }
 
+@property(readonly, nonatomic) __weak id <SPTGaiaDevicePickerControllerProvider> devicePickerProvider; // @synthesize devicePickerProvider=_devicePickerProvider;
 @property(readonly, nonatomic) SPTTheme *theme; // @synthesize theme=_theme;
 @property(readonly, nonatomic) SPTGaiaLogger *logger; // @synthesize logger=_logger;
 @property(readonly, nonatomic) id <SPTOfflineModeState> offlineModeState; // @synthesize offlineModeState=_offlineModeState;
-@property(readonly, nonatomic) id <SPTGaiaDevicePickerControllerProvider> devicePickerProvider; // @synthesize devicePickerProvider=_devicePickerProvider;
 @property(readonly, nonatomic) id <SPTModalPresentationController> modalPresentationController; // @synthesize modalPresentationController=_modalPresentationController;
 @property(readonly, nonatomic) id <SPTGaiaDevicePickerDeviceSpecificConfigurationProvider> deviceConfiguration; // @synthesize deviceConfiguration=_deviceConfiguration;
 @property(readonly, nonatomic) id <SPTGaiaConnectAPI> connectManager; // @synthesize connectManager=_connectManager;
 - (void).cxx_destruct;
+- (id)presentationContextPageURI:(unsigned long long)arg1;
+- (id)presentationContextPageIdentifier:(unsigned long long)arg1;
 - (id)calculatedDevicesAvailableState;
 - (void)logDevicePickerShownFrom:(unsigned long long)arg1;
 - (_Bool)popoverPresentationControllerShouldDismissPopover:(id)arg1;

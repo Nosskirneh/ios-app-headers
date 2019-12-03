@@ -6,11 +6,11 @@
 
 #import "SPTService-Protocol.h"
 
-@class NSDictionary;
+@class NSDictionary, NSString, NSURL;
 @protocol SPTEntitySeeAllSongsRegistry, SPTHubInteractionLogger;
 
 @protocol SPTEntitySeeAllSongsService <SPTService>
-- (NSDictionary *)createCommandHandlersWithInteractionLogger:(id <SPTHubInteractionLogger>)arg1;
+- (NSDictionary *)createCommandHandlersWithViewURI:(NSURL *)arg1 referrerIdentifier:(NSString *)arg2 interactionLogger:(id <SPTHubInteractionLogger>)arg3;
 - (id <SPTEntitySeeAllSongsRegistry>)provideRegistry;
 @end
 

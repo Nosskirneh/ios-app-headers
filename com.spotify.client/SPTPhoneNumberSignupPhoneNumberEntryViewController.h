@@ -55,7 +55,7 @@
 - (void)viewWillAppear:(_Bool)arg1;
 - (void)viewDidLoad;
 - (void)loadView;
-- (id)initWithTheme:(id)arg1 core:(id)arg2 dialogController:(id)arg3 viewModel:(id)arg4 delegate:(id)arg5;
+- (id)initWithTheme:(id)arg1 dialogController:(id)arg2 viewModel:(id)arg3 delegate:(id)arg4;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

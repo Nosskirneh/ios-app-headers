@@ -85,8 +85,6 @@
 - (void)showStatusBarIfNeeded;
 - (_Bool)isPresentedInAPopover;
 - (void)updateVolumeViewVisibilityForDevice:(id)arg1 animated:(_Bool)arg2;
-- (_Bool)shouldAdjustHeaderInsetManually;
-- (void)viewDidLayoutSubviews;
 - (void)viewDidDisappear:(_Bool)arg1;
 - (void)viewWillDisappear:(_Bool)arg1;
 - (void)viewDidAppear:(_Bool)arg1;

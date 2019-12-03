@@ -7,7 +7,7 @@
 #import <objc/NSObject.h>
 
 @class HUBComponentDefaults, HUBComponentRegistry, SPTFreeTierTrackBarButtonFactory, SPTFreeTierTrackCommandHandlerFactory, SPTFreeTierTrackContentOperationFactory;
-@protocol GLUETheme, HUBComponentLayoutManager, SPTHubsRendererFactory, SPTHugsFactory;
+@protocol GLUETheme, SPTHubsRendererFactory, SPTHugsFactory;
 
 @interface SPTFreeTierTrackHubManager : NSObject
 {
@@ -18,12 +18,10 @@
     SPTFreeTierTrackCommandHandlerFactory *_commandHandlerFactory;
     SPTFreeTierTrackBarButtonFactory *_barButtonFactory;
     id <GLUETheme> _glueTheme;
-    id <HUBComponentLayoutManager> _componentLayoutManager;
     HUBComponentDefaults *_componentDefaults;
 }
 
 @property(readonly, nonatomic) HUBComponentDefaults *componentDefaults; // @synthesize componentDefaults=_componentDefaults;
-@property(readonly, nonatomic) id <HUBComponentLayoutManager> componentLayoutManager; // @synthesize componentLayoutManager=_componentLayoutManager;
 @property(readonly, nonatomic) id <GLUETheme> glueTheme; // @synthesize glueTheme=_glueTheme;
 @property(readonly, nonatomic) SPTFreeTierTrackBarButtonFactory *barButtonFactory; // @synthesize barButtonFactory=_barButtonFactory;
 @property(readonly, nonatomic) SPTFreeTierTrackCommandHandlerFactory *commandHandlerFactory; // @synthesize commandHandlerFactory=_commandHandlerFactory;
@@ -35,7 +33,7 @@
 - (id)createViewModelLoaderForViewURI:(id)arg1 referrerIdentifier:(id)arg2 reloadPageSignal:(id)arg3;
 - (id)createViewControllerForViewURI:(id)arg1 referrerIdentifier:(id)arg2;
 - (_Bool)canCreateViewControllerForViewURI:(id)arg1;
-- (id)initWithComponentRegistry:(id)arg1 hubsRendererFactory:(id)arg2 hugsFactory:(id)arg3 contentOperationFactory:(id)arg4 commandHandlerFactory:(id)arg5 barButtonFactory:(id)arg6 glueTheme:(id)arg7 componentLayoutManager:(id)arg8;
+- (id)initWithComponentRegistry:(id)arg1 hubsRendererFactory:(id)arg2 hugsFactory:(id)arg3 contentOperationFactory:(id)arg4 commandHandlerFactory:(id)arg5 barButtonFactory:(id)arg6 glueTheme:(id)arg7;
 
 @end
 

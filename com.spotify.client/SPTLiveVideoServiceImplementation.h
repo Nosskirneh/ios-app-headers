@@ -6,12 +6,13 @@
 
 #import <objc/NSObject.h>
 
+#import "SPTFeatureFlagSignalObserver-Protocol.h"
 #import "SPTLiveVideoService-Protocol.h"
 
 @class NSString, SPTAllocationContext;
-@protocol SPTContainerService, SPTFeatureFlagSignal, SPTFeatureFlaggingService, SPTNowPlayingPlatformService, SPTNowPlayingService, SPTPlayerFeature, SPTURIDispatchService, SPTURISubtypeHandler;
+@protocol SPTContainerService, SPTFeatureFlagSignal, SPTFeatureFlaggingService, SPTNetworkService, SPTNowPlayingPlatformService, SPTNowPlayingService, SPTPlayerFeature, SPTURIDispatchService, SPTURISubtypeHandler;
 
-@interface SPTLiveVideoServiceImplementation : NSObject <SPTLiveVideoService>
+@interface SPTLiveVideoServiceImplementation : NSObject <SPTFeatureFlagSignalObserver, SPTLiveVideoService>
 {
     id <SPTFeatureFlaggingService> _featureFlaggingService;
     id <SPTContainerService> _containerService;
@@ -21,9 +22,11 @@
     id <SPTNowPlayingPlatformService> _nowPlayingPlatformService;
     id <SPTFeatureFlagSignal> _enabledSignal;
     id <SPTURISubtypeHandler> _subtypeHandler;
+    id <SPTNetworkService> _networkFeature;
 }
 
 + (id)serviceIdentifier;
+@property(nonatomic) __weak id <SPTNetworkService> networkFeature; // @synthesize networkFeature=_networkFeature;
 @property(retain, nonatomic) id <SPTURISubtypeHandler> subtypeHandler; // @synthesize subtypeHandler=_subtypeHandler;
 @property(retain, nonatomic) id <SPTFeatureFlagSignal> enabledSignal; // @synthesize enabledSignal=_enabledSignal;
 @property(nonatomic) __weak id <SPTNowPlayingPlatformService> nowPlayingPlatformService; // @synthesize nowPlayingPlatformService=_nowPlayingPlatformService;
@@ -33,6 +36,7 @@
 @property(nonatomic) __weak id <SPTContainerService> containerService; // @synthesize containerService=_containerService;
 @property(nonatomic) __weak id <SPTFeatureFlaggingService> featureFlaggingService; // @synthesize featureFlaggingService=_featureFlaggingService;
 - (void).cxx_destruct;
+- (id)provideLiveContextFactory;
 - (void)featureFlagSignal:(id)arg1 hasAssumedState:(long long)arg2;
 - (void)disableService;
 - (void)enableService;

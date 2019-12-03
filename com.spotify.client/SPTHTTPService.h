@@ -8,7 +8,7 @@
 
 #import "SPTProductStateObserver-Protocol.h"
 
-@class NSString, SPCore, SPTDataLoaderFactory, SPTDataLoaderFactoryManager, SPTDataLoaderKeymasterAuthoriser, SPTDataLoaderRequestAccountingConsumptionObserver, SPTDataLoaderResolver, SPTDataLoaderService, SPTNetworkConnectivityController, SPTStartupTracer;
+@class NSString, SPCore, SPTDataLoaderFactory, SPTDataLoaderFactoryManager, SPTDataLoaderKeymasterAuthoriser, SPTDataLoaderOauthAuthoriser, SPTDataLoaderRequestAccountingConsumptionObserver, SPTDataLoaderResolver, SPTDataLoaderService, SPTNetworkConnectivityController, SPTStartupTracer;
 
 @interface SPTHTTPService : NSObject <SPTProductStateObserver>
 {
@@ -21,10 +21,12 @@
     SPTDataLoaderFactory *_dataLoaderFactory;
     SPTDataLoaderFactoryManager *_dataLoaderFactoryManager;
     SPTDataLoaderKeymasterAuthoriser *_keymasterAuthoriser;
+    SPTDataLoaderOauthAuthoriser *_oauthAuthoriser;
     id _productStateStreamingRulesValue;
 }
 
 @property(retain, nonatomic) id productStateStreamingRulesValue; // @synthesize productStateStreamingRulesValue=_productStateStreamingRulesValue;
+@property(retain, nonatomic) SPTDataLoaderOauthAuthoriser *oauthAuthoriser; // @synthesize oauthAuthoriser=_oauthAuthoriser;
 @property(retain, nonatomic) SPTDataLoaderKeymasterAuthoriser *keymasterAuthoriser; // @synthesize keymasterAuthoriser=_keymasterAuthoriser;
 @property(retain, nonatomic) SPTDataLoaderFactoryManager *dataLoaderFactoryManager; // @synthesize dataLoaderFactoryManager=_dataLoaderFactoryManager;
 @property(retain, nonatomic) SPTDataLoaderFactory *dataLoaderFactory; // @synthesize dataLoaderFactory=_dataLoaderFactory;
@@ -39,6 +41,7 @@
 - (id)provideKeymasterAuthoriser;
 - (id)provideDataLoaderFactory;
 - (void)clientDidLogout;
+- (void)setOauthClient:(id)arg1 productState:(id)arg2;
 - (void)setHermesTransport:(id)arg1 productState:(id)arg2;
 - (id)dataLoaderServiceConfiguration;
 - (void)dealloc;

@@ -8,7 +8,7 @@
 
 #import "SPTOfflineModeStateObserver-Protocol.h"
 
-@class NSString, SPTStorylinesDataLoader, SPTStorylinesEnabledTracks, SPTStorylinesEnabledTracksCache, SPTStorylinesEnabledTracksLoadingState, SPTStorylinesEntitiesLoadEventLogger;
+@class NSString, SPTStorylinesDataLoader, SPTStorylinesEnabledTracks, SPTStorylinesEnabledTracksCache, SPTStorylinesEnabledTracksLoadingState, SPTStorylinesEntitiesLoadEventLogger, SPTStorylinesTestManager;
 @protocol SPTOfflineModeState;
 
 @interface SPTStorylinesEnabledManager : NSObject <SPTOfflineModeStateObserver>
@@ -18,10 +18,12 @@
     id <SPTOfflineModeState> _offlineModeState;
     SPTStorylinesEnabledTracksCache *_enabledTracksCache;
     SPTStorylinesEntitiesLoadEventLogger *_entitiesLogger;
+    SPTStorylinesTestManager *_testManager;
     SPTStorylinesEnabledTracks *_enabledTracks;
 }
 
 @property(retain, nonatomic) SPTStorylinesEnabledTracks *enabledTracks; // @synthesize enabledTracks=_enabledTracks;
+@property(retain, nonatomic) SPTStorylinesTestManager *testManager; // @synthesize testManager=_testManager;
 @property(readonly, nonatomic) SPTStorylinesEntitiesLoadEventLogger *entitiesLogger; // @synthesize entitiesLogger=_entitiesLogger;
 @property(retain, nonatomic) SPTStorylinesEnabledTracksCache *enabledTracksCache; // @synthesize enabledTracksCache=_enabledTracksCache;
 @property(retain, nonatomic) id <SPTOfflineModeState> offlineModeState; // @synthesize offlineModeState=_offlineModeState;
@@ -29,11 +31,11 @@
 @property(readonly, nonatomic) SPTStorylinesEnabledTracksLoadingState *loadingState; // @synthesize loadingState=_loadingState;
 - (void).cxx_destruct;
 - (void)offlineModeState:(id)arg1 updated:(_Bool)arg2;
+- (id)storylinesIdentifierForTrack:(id)arg1;
 - (void)loadEntitiesListWithCompletion:(CDUnknownBlockType)arg1;
 - (void)loadEnabledUris;
-- (id)identifierForEntityUri:(id)arg1;
 - (_Bool)storylinesEnabledForTrack:(id)arg1;
-- (id)initWithDataLoader:(id)arg1 offlineModeState:(id)arg2 enabledTracksCache:(id)arg3 entitiesLogger:(id)arg4;
+- (id)initWithDataLoader:(id)arg1 offlineModeState:(id)arg2 enabledTracksCache:(id)arg3 entitiesLogger:(id)arg4 testManager:(id)arg5;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

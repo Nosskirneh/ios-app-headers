@@ -6,13 +6,14 @@
 
 #import <objc/NSObject.h>
 
+#import "SPTFeatureFlagSignalObserver-Protocol.h"
 #import "SPTFollowShelfService-Protocol.h"
 #import "SPTFollowShelfTestManagerObserver-Protocol.h"
 
 @class NSString, SPTAllocationContext, SPTFollowShelfTestManager, SPTFollowShelfViewModel;
 @protocol FollowFeature, SPTContainerService, SPTFeatureFlagSignal, SPTFeatureFlaggingService, SPTGLUEService, SPTSessionService, SPTSettingsFeature, SPTURIDispatchService;
 
-@interface SPTFollowShelfServiceImplementation : NSObject <SPTFollowShelfTestManagerObserver, SPTFollowShelfService>
+@interface SPTFollowShelfServiceImplementation : NSObject <SPTFollowShelfTestManagerObserver, SPTFeatureFlagSignalObserver, SPTFollowShelfService>
 {
     id <SPTContainerService> _containerService;
     id <SPTFeatureFlaggingService> _featureFlaggingService;

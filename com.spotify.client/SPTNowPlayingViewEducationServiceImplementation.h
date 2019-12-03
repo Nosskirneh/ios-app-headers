@@ -6,13 +6,14 @@
 
 #import <objc/NSObject.h>
 
+#import "SPTFeatureFlagSignalObserver-Protocol.h"
 #import "SPTNowPlayingStateObserver-Protocol.h"
 #import "SPTService-Protocol.h"
 
 @class NSMutableArray, NSString, SPTAllocationContext;
 @protocol SPTFeatureFlagSignal, SPTFreeTierService, SPTNowPlayingPlatformService, SPTNowPlayingService, SPTNowPlayingTestManager, SPTSnackbarConditionalPresenter, SPTSnackbarService;
 
-@interface SPTNowPlayingViewEducationServiceImplementation : NSObject <SPTNowPlayingStateObserver, SPTService>
+@interface SPTNowPlayingViewEducationServiceImplementation : NSObject <SPTNowPlayingStateObserver, SPTFeatureFlagSignalObserver, SPTService>
 {
     id <SPTSnackbarService> _snackbarService;
     id <SPTNowPlayingService> _nowPlayingService;

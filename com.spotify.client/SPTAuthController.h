@@ -6,17 +6,39 @@
 
 #import <objc/NSObject.h>
 
-@interface SPTAuthController : NSObject
+#import "SPTAuthLoginTaskDelegate-Protocol.h"
+
+@class NSMapTable, NSString, SPTAuthLoginController;
+@protocol SPTAsyncScheduler;
+
+@interface SPTAuthController : NSObject <SPTAuthLoginTaskDelegate>
 {
-    struct unique_ptr<SchedulerImpl, std::__1::default_delete<SchedulerImpl>> _scheduler;
-    struct unique_ptr<LoginControllerImpl, std::__1::default_delete<LoginControllerImpl>> _controller;
-    struct unique_ptr<ApplicationScopeImpl, std::__1::default_delete<ApplicationScopeImpl>> _application_scope;
+    SPTAuthLoginController *_controller;
+    id <SPTAsyncScheduler> _scheduler;
+    NSMapTable *_taskMap;
 }
 
-- (id).cxx_construct;
+@property(retain, nonatomic) NSMapTable *taskMap; // @synthesize taskMap=_taskMap;
+@property(nonatomic) __weak id <SPTAsyncScheduler> scheduler; // @synthesize scheduler=_scheduler;
+@property(nonatomic) __weak SPTAuthLoginController *controller; // @synthesize controller=_controller;
 - (void).cxx_destruct;
+- (void)loginTask:(id)arg1 didRequireSignup:(id)arg2;
+- (void)loginTask:(id)arg1 didRequireCode:(id)arg2;
+- (void)loginTask:(id)arg1 didRequireBootstrapUsingWebgateSession:(id)arg2 completionCallback:(CDUnknownBlockType)arg3;
+- (void)loginTask:(id)arg1 didFinishWithSession:(id)arg2;
+- (void)loginTask:(id)arg1 didFailWithError:(struct LoginFailure *)arg2;
+- (void)loginTask:(id)arg1 didFinishWithWebgateSession:(id)arg2;
+- (CDUnknownBlockType)completionForTask:(id)arg1;
+- (void)removeTask:(id)arg1;
+- (void)addTask:(id)arg1 completion:(CDUnknownBlockType)arg2;
 - (void)authWithCredentials:(id)arg1 completion:(CDUnknownBlockType)arg2;
-- (id)initWithLoginController:(struct LoginController *)arg1 scheduler:(struct Scheduler *)arg2 connectivity:(struct ApplicationScope *)arg3;
+- (id)initWithLoginController:(id)arg1 scheduler:(id)arg2;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

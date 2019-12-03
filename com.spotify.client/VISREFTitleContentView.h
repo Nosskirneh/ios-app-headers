@@ -8,14 +8,14 @@
 
 #import "VISREFHeaderComponent-Protocol.h"
 
-@class NSLayoutConstraint, NSString, TKNLabel, VISREFCustomBackButton, VISREFNavigationBarView;
+@class NSLayoutConstraint, NSString, SPTEncoreLabel, VISREFCustomBackButton, VISREFNavigationBarView;
 
 @interface VISREFTitleContentView : UIView <VISREFHeaderComponent>
 {
     NSString *_title;
     double _navigationBarNormalizedTitleFadeStartPosition;
     double _height;
-    TKNLabel *_titleLabel;
+    SPTEncoreLabel *_titleLabel;
     NSLayoutConstraint *_headerHeightConstraint;
     NSLayoutConstraint *_navigationBarHeightConstraint;
     NSLayoutConstraint *_titleTopConstraint;
@@ -32,7 +32,7 @@
 @property(retain, nonatomic) NSLayoutConstraint *titleTopConstraint; // @synthesize titleTopConstraint=_titleTopConstraint;
 @property(retain, nonatomic) NSLayoutConstraint *navigationBarHeightConstraint; // @synthesize navigationBarHeightConstraint=_navigationBarHeightConstraint;
 @property(retain, nonatomic) NSLayoutConstraint *headerHeightConstraint; // @synthesize headerHeightConstraint=_headerHeightConstraint;
-@property(retain, nonatomic) TKNLabel *titleLabel; // @synthesize titleLabel=_titleLabel;
+@property(retain, nonatomic) SPTEncoreLabel *titleLabel; // @synthesize titleLabel=_titleLabel;
 @property(nonatomic) double height; // @synthesize height=_height;
 @property(nonatomic) double navigationBarNormalizedTitleFadeStartPosition; // @synthesize navigationBarNormalizedTitleFadeStartPosition=_navigationBarNormalizedTitleFadeStartPosition;
 @property(copy, nonatomic) NSString *title; // @synthesize title=_title;

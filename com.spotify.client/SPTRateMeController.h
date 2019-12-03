@@ -39,7 +39,6 @@
 - (void)player:(id)arg1 stateDidChange:(id)arg2 fromState:(id)arg3;
 - (void)addRequirementSet:(id)arg1;
 - (void)cancelShowingAlert;
-- (void)showLegacyAlert;
 - (void)showAlert;
 - (void)actionNever;
 - (void)actionRate;

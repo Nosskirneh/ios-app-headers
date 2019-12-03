@@ -6,26 +6,34 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTGaiaConnectObserver-Protocol.h"
-#import "SPTRemoteVolumeController-Protocol.h"
+#import "SPTVolumeRemoteController-Protocol.h"
 
-@class NSString, SPTVolumeCosmosResolver;
-@protocol SPTGaiaConnectAPI, SPTRemoteVolumeDelegate;
+@class NSNumber, NSString, SPTVolumeCosmosResolver;
+@protocol SPTGaiaConnectAPI, SPTGaiaDeviceProtocol, SPTVolumeRemoteDelegate;
 
-@interface SPTVolumeConnectController : NSObject <SPTGaiaConnectObserver, SPTRemoteVolumeController>
+@interface SPTVolumeConnectController : NSObject <SPTVolumeRemoteController>
 {
-    double _volume;
-    id <SPTRemoteVolumeDelegate> delegate;
+    id <SPTVolumeRemoteDelegate> delegate;
     SPTVolumeCosmosResolver *_resolver;
     id <SPTGaiaConnectAPI> _connectManager;
+    double _cachedVolume;
+    id <SPTGaiaDeviceProtocol> _cachedDevice;
 }
 
+@property(retain, nonatomic) id <SPTGaiaDeviceProtocol> cachedDevice; // @synthesize cachedDevice=_cachedDevice;
+@property(nonatomic) double cachedVolume; // @synthesize cachedVolume=_cachedVolume;
 @property(readonly, nonatomic) id <SPTGaiaConnectAPI> connectManager; // @synthesize connectManager=_connectManager;
 @property(readonly, nonatomic) SPTVolumeCosmosResolver *resolver; // @synthesize resolver=_resolver;
-@property(nonatomic) __weak id <SPTRemoteVolumeDelegate> delegate; // @synthesize delegate;
-@property(nonatomic) double volume; // @synthesize volume=_volume;
+@property(nonatomic) __weak id <SPTVolumeRemoteDelegate> delegate; // @synthesize delegate;
 - (void).cxx_destruct;
 @property(readonly, nonatomic) double volumeStep; // @dynamic volumeStep;
+- (void)sendVolumeUpdate:(double)arg1;
+@property(readonly, nonatomic) NSNumber *lastKnownVolumeForActiveDevice;
+@property(readonly, nonatomic) _Bool activeDeviceSupportsVolume;
+@property(readonly, nonatomic) _Bool isActive;
+- (_Bool)isVolumeCacheValid;
+- (void)cacheVolumeForActiveDevice:(double)arg1;
+- (void)didReceiveRemoteVolume:(double)arg1;
 - (void)startObservingRemoteVolume;
 - (id)initWithResolver:(id)arg1 connectManager:(id)arg2;
 

@@ -6,24 +6,26 @@
 
 #import <UIKit/UIView.h>
 
-@class GLUEInteractiveAnimation, HUBContainerView, HUBView, NSLayoutConstraint, SPTHomeGradientBackgroundView;
+@class GLUEInteractiveAnimation, HUBContainerView, HUBView, NSLayoutConstraint, SPTHomeFeatureProperties, SPTHomeGradientBackgroundView;
 @protocol GLUETheme, HUBImageLoaderFactory, HUBOverlayViewComponentDelegate;
 
 @interface SPTHomeView : UIView
 {
     GLUEInteractiveAnimation *_headerAlphaAnimation;
-    NSLayoutConstraint *_heightConstraint;
     id <GLUETheme> _theme;
     id <HUBImageLoaderFactory> _imageLoaderFactory;
+    SPTHomeFeatureProperties *_featureProperties;
     HUBContainerView *_containerView;
+    NSLayoutConstraint *_heightConstraint;
     SPTHomeGradientBackgroundView *_gradientBackgroundView;
 }
 
 @property(retain, nonatomic) SPTHomeGradientBackgroundView *gradientBackgroundView; // @synthesize gradientBackgroundView=_gradientBackgroundView;
+@property(retain, nonatomic) NSLayoutConstraint *heightConstraint; // @synthesize heightConstraint=_heightConstraint;
 @property(readonly, nonatomic) HUBContainerView *containerView; // @synthesize containerView=_containerView;
+@property(readonly, nonatomic) SPTHomeFeatureProperties *featureProperties; // @synthesize featureProperties=_featureProperties;
 @property(readonly, nonatomic) id <HUBImageLoaderFactory> imageLoaderFactory; // @synthesize imageLoaderFactory=_imageLoaderFactory;
 @property(readonly, nonatomic) id <GLUETheme> theme; // @synthesize theme=_theme;
-@property(retain, nonatomic) NSLayoutConstraint *heightConstraint; // @synthesize heightConstraint=_heightConstraint;
 @property(retain, nonatomic) GLUEInteractiveAnimation *headerAlphaAnimation; // @synthesize headerAlphaAnimation=_headerAlphaAnimation;
 - (void).cxx_destruct;
 - (void)configureHubViewInset;
@@ -36,7 +38,7 @@
 @property(nonatomic) __weak id <HUBOverlayViewComponentDelegate> overlayComponentDelegate;
 @property(readonly, nonatomic) HUBView *hubView;
 - (void)loadViewModel:(id)arg1;
-- (id)initWithFrame:(struct CGRect)arg1 theme:(id)arg2 imageLoaderFactory:(id)arg3 componentLayoutManager:(id)arg4 componentRegistry:(id)arg5 componentEventHandler:(id)arg6;
+- (id)initWithFrame:(struct CGRect)arg1 theme:(id)arg2 imageLoaderFactory:(id)arg3 componentLayoutManager:(id)arg4 componentRegistry:(id)arg5 componentEventHandler:(id)arg6 featureProperties:(id)arg7;
 
 @end
 

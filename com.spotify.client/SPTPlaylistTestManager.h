@@ -6,10 +6,12 @@
 
 #import <objc/NSObject.h>
 
+#import "SPTFeatureFlagSignalObserver-Protocol.h"
+
 @class NSString, NSURL;
 @protocol SPTAbbaFeatureFlags, SPTFeatureFlagFactory, SPTFeatureFlagSignal, SPTLocalSettings, SPTProductState;
 
-@interface SPTPlaylistTestManager : NSObject
+@interface SPTPlaylistTestManager : NSObject <SPTFeatureFlagSignalObserver>
 {
     _Bool _shouldUseSnackbarForAddedToPlaylistConfirmation;
     _Bool _featureHandlesAddToPlaylistEnabled;

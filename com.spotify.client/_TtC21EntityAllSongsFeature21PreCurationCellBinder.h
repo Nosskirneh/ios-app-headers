@@ -11,20 +11,17 @@
     // Error parsing type: , name: cell
     // Error parsing type: , name: theme
     // Error parsing type: , name: audioPreview
-    // Error parsing type: , name: preCurationUIFactory
     // Error parsing type: , name: model
     // Error parsing type: , name: showContextMenu
     // Error parsing type: , name: interactionLogger
     // Error parsing type: , name: eventConsumer
-    // Error parsing type: , name: quickActionView.storage
-    // Error parsing type: , name: diffuser.storage
-    // Error parsing type: , name: trackDiffuser.storage
+    // Error parsing type: , name: $__lazy_storage_$_contextMenuView
+    // Error parsing type: , name: $__lazy_storage_$_diffuser
+    // Error parsing type: , name: $__lazy_storage_$_trackDiffuser
 }
 
 - (void)cellTappedWithTapGestureRecognizer:(id)arg1;
 - (void)contextMenuButtonTappedWithButton:(id)arg1;
-- (void)banButtonTappedWithButton:(id)arg1;
-- (void)likeButtonTappedWithButton:(id)arg1;
 
 @end
 

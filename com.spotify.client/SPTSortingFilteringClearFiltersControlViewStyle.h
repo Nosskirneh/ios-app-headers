@@ -6,22 +6,22 @@
 
 #import <objc/NSObject.h>
 
-#import "SPTSortingFilteringClearFiltersControlStyle-Protocol.h"
+#import "SPTSortingFilteringButtonsContainerStyle-Protocol.h"
 
 @class NSString, UIColor;
-@protocol SPTSortingFilteringClearFiltersControlButtonStyle;
+@protocol SPTSortingFilteringButtonStyle;
 
-@interface SPTSortingFilteringClearFiltersControlViewStyle : NSObject <SPTSortingFilteringClearFiltersControlStyle>
+@interface SPTSortingFilteringClearFiltersControlViewStyle : NSObject <SPTSortingFilteringButtonsContainerStyle>
 {
     UIColor *backgroundColor;
     double interItemSpacing;
     double topMargin;
     double bottomMargin;
     double height;
-    id <SPTSortingFilteringClearFiltersControlButtonStyle> clearFilterButtonStyle;
+    id <SPTSortingFilteringButtonStyle> clearFilterButtonStyle;
 }
 
-@property(copy, nonatomic) id <SPTSortingFilteringClearFiltersControlButtonStyle> clearFilterButtonStyle; // @synthesize clearFilterButtonStyle;
+@property(copy, nonatomic) id <SPTSortingFilteringButtonStyle> clearFilterButtonStyle; // @synthesize clearFilterButtonStyle;
 @property(nonatomic) double height; // @synthesize height;
 @property(nonatomic) double bottomMargin; // @synthesize bottomMargin;
 @property(nonatomic) double topMargin; // @synthesize topMargin;

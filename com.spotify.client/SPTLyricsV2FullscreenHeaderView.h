@@ -11,8 +11,10 @@
 @interface SPTLyricsV2FullscreenHeaderView : UIView
 {
     GLUEImageView *_imageView;
-    NSLayoutConstraint *_imageWidthConstraint;
-    NSLayoutConstraint *_imageHeightConstraint;
+    NSLayoutConstraint *_imageWidthCompactConstraint;
+    NSLayoutConstraint *_imageHeightCompactConstraint;
+    NSLayoutConstraint *_imageWidthRegularConstraint;
+    NSLayoutConstraint *_imageHeightRegularConstraint;
     GLUELabel *_titleLabel;
     NSLayoutConstraint *_titleHeightConstraint;
     NSLayoutConstraint *_titleLeadingConstraint;
@@ -31,12 +33,15 @@
 @property(retain, nonatomic) NSLayoutConstraint *titleLeadingConstraint; // @synthesize titleLeadingConstraint=_titleLeadingConstraint;
 @property(retain, nonatomic) NSLayoutConstraint *titleHeightConstraint; // @synthesize titleHeightConstraint=_titleHeightConstraint;
 @property(retain, nonatomic) GLUELabel *titleLabel; // @synthesize titleLabel=_titleLabel;
-@property(retain, nonatomic) NSLayoutConstraint *imageHeightConstraint; // @synthesize imageHeightConstraint=_imageHeightConstraint;
-@property(retain, nonatomic) NSLayoutConstraint *imageWidthConstraint; // @synthesize imageWidthConstraint=_imageWidthConstraint;
+@property(retain, nonatomic) NSLayoutConstraint *imageHeightRegularConstraint; // @synthesize imageHeightRegularConstraint=_imageHeightRegularConstraint;
+@property(retain, nonatomic) NSLayoutConstraint *imageWidthRegularConstraint; // @synthesize imageWidthRegularConstraint=_imageWidthRegularConstraint;
+@property(retain, nonatomic) NSLayoutConstraint *imageHeightCompactConstraint; // @synthesize imageHeightCompactConstraint=_imageHeightCompactConstraint;
+@property(retain, nonatomic) NSLayoutConstraint *imageWidthCompactConstraint; // @synthesize imageWidthCompactConstraint=_imageWidthCompactConstraint;
 @property(retain, nonatomic) GLUEImageView *imageView; // @synthesize imageView=_imageView;
 - (void).cxx_destruct;
 - (void)setupConstraints;
 - (void)glue_applyStyle:(id)arg1;
+- (void)updateLayout:(_Bool)arg1;
 - (void)updateWithTitle:(id)arg1 subtitle:(id)arg2 coverArtUrl:(id)arg3;
 - (id)initWithImageLoader:(id)arg1;
 

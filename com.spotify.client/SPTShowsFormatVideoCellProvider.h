@@ -9,7 +9,7 @@
 #import "SPTFreeTierPlaylistCellProvider-Protocol.h"
 
 @class NSString, SPTNetworkConnectivityController;
-@protocol BMPlaybackRequestFactory, GLUEImageLoader, GLUETheme, SPTFreeTierPlaylistCellProviderDelegate, SPTFreeTierPlaylistItemsViewModel, SPTVideoFeaturePlayerFactory, SPTVideoURLAssetLoader;
+@protocol BMPlaybackRequestFactory, GLUEImageLoader, GLUETheme, SPTFreeTierPlaylistCellProviderDelegate, SPTFreeTierPlaylistItemsViewModel, SPTVideoCacheOptions, SPTVideoFeaturePlayerFactory, SPTVideoURLAssetLoader;
 
 @interface SPTShowsFormatVideoCellProvider : NSObject <SPTFreeTierPlaylistCellProvider>
 {
@@ -21,10 +21,12 @@
     id <GLUETheme> _glueTheme;
     id <SPTVideoFeaturePlayerFactory> _playerFactory;
     id <BMPlaybackRequestFactory> _playbackRequestFactory;
+    id <SPTVideoCacheOptions> _videoCacheOptions;
     SPTNetworkConnectivityController *_networkConnectivityController;
 }
 
 @property(readonly, nonatomic) SPTNetworkConnectivityController *networkConnectivityController; // @synthesize networkConnectivityController=_networkConnectivityController;
+@property(readonly, nonatomic) id <SPTVideoCacheOptions> videoCacheOptions; // @synthesize videoCacheOptions=_videoCacheOptions;
 @property(readonly, nonatomic) id <BMPlaybackRequestFactory> playbackRequestFactory; // @synthesize playbackRequestFactory=_playbackRequestFactory;
 @property(readonly, nonatomic) id <SPTVideoFeaturePlayerFactory> playerFactory; // @synthesize playerFactory=_playerFactory;
 @property(readonly, nonatomic) _Bool useBetamaxPlayer; // @synthesize useBetamaxPlayer=_useBetamaxPlayer;
@@ -43,7 +45,7 @@
 - (_Bool)didSelectPlaylistCell:(id)arg1 atIndexPath:(id)arg2;
 - (id)reuseIdentifiers;
 - (double)heightForRowAtIndexPath:(id)arg1;
-- (id)initWithImageLoader:(id)arg1 videoAssetLoader:(id)arg2 itemsViewModel:(id)arg3 rowStyle:(id)arg4 theme:(id)arg5 playerFactory:(id)arg6 playbackRequestFactory:(id)arg7 networkConnectivityController:(id)arg8 useBetamaxPlayer:(_Bool)arg9;
+- (id)initWithImageLoader:(id)arg1 videoAssetLoader:(id)arg2 itemsViewModel:(id)arg3 rowStyle:(id)arg4 theme:(id)arg5 playerFactory:(id)arg6 videoCacheOptions:(id)arg7 playbackRequestFactory:(id)arg8 networkConnectivityController:(id)arg9 useBetamaxPlayer:(_Bool)arg10;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

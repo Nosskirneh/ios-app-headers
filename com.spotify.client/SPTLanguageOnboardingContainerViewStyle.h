@@ -13,7 +13,6 @@
 
 @interface SPTLanguageOnboardingContainerViewStyle : NSObject <GLUEStyle>
 {
-    GLUEGradientStyle *_backgroundGradientStyle;
     GLUEGradientStyle *_backgroundOverlayGradientStyle;
     SPTLanguageOnboardingHeaderViewStyle<GLUEStyle> *_headerViewStyle;
     double _headerViewLeadingMargin;
@@ -30,7 +29,6 @@
 @property(nonatomic) double headerViewLeadingMargin; // @synthesize headerViewLeadingMargin=_headerViewLeadingMargin;
 @property(copy, nonatomic) SPTLanguageOnboardingHeaderViewStyle<GLUEStyle> *headerViewStyle; // @synthesize headerViewStyle=_headerViewStyle;
 @property(copy, nonatomic) GLUEGradientStyle *backgroundOverlayGradientStyle; // @synthesize backgroundOverlayGradientStyle=_backgroundOverlayGradientStyle;
-@property(copy, nonatomic) GLUEGradientStyle *backgroundGradientStyle; // @synthesize backgroundGradientStyle=_backgroundGradientStyle;
 - (void).cxx_destruct;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 

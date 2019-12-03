@@ -6,11 +6,16 @@
 
 #import <objc/NSObject.h>
 
-@class NSString, NSURL;
+@class NSArray, NSString, NSURL;
 @protocol SPTShareEntityData;
 
 @interface SPTShareData : NSObject
 {
+    NSURL *_shareableURL;
+    NSString *_shareHeaderViewTitle;
+    NSString *_shareHeaderViewSubtitle;
+    NSString *_shareBrowselinkId;
+    NSArray *_itemDescriptionComponents;
     id <SPTShareEntityData> _entityData;
     NSURL *_currentlyPlayingTrackURI;
     NSString *_shareSessionID;
@@ -20,13 +25,18 @@
 @property(readonly, nonatomic) NSURL *currentlyPlayingTrackURI; // @synthesize currentlyPlayingTrackURI=_currentlyPlayingTrackURI;
 @property(readonly, nonatomic) id <SPTShareEntityData> entityData; // @synthesize entityData=_entityData;
 - (void).cxx_destruct;
+- (id)generateShareId;
+@property(readonly, nonatomic) NSArray *itemDescriptionComponents; // @synthesize itemDescriptionComponents=_itemDescriptionComponents;
+@property(readonly, nonatomic) NSString *shareHeaderViewSubtitle; // @synthesize shareHeaderViewSubtitle=_shareHeaderViewSubtitle;
+@property(readonly, nonatomic) NSString *shareHeaderViewTitle; // @synthesize shareHeaderViewTitle=_shareHeaderViewTitle;
+@property(readonly, nonatomic) NSURL *shareableURL; // @synthesize shareableURL=_shareableURL;
+@property(readonly, nonatomic) NSString *shareBrowselinkId; // @synthesize shareBrowselinkId=_shareBrowselinkId;
 - (id)initWithEntity:(id)arg1 currentlyPlayingTrackURI:(id)arg2 shareSessionID:(id)arg3;
 - (id)itemDescription;
 - (id)bodyString;
+- (id)freeTextBody;
 - (id)lineAppBody;
 - (id)whatsAppBody;
-- (id)mailBody;
-- (id)mailSubject;
 
 @end
 

@@ -15,7 +15,8 @@
 }
 
 + (id)serviceIdentifier;
-- (id)provideCosmosDataLoaderWithResolver:(id)arg1;
+- (id)provideDataLoaderWithResolver:(id)arg1;
+- (id)provideDictionaryDataLoaderWithResolver:(id)arg1;
 - (void)configureWithServices:(id)arg1;
 
 // Remaining properties

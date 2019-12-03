@@ -6,9 +6,10 @@
 
 #import "NSObject-Protocol.h"
 
-@protocol SPTSortingFilteringFilterBarStyle, SPTSortingFilteringSearchFieldStyle;
+@protocol SPTSortingFilteringButtonsCellStyle, SPTSortingFilteringFilterBarStyle, SPTSortingFilteringSearchFieldStyle;
 
 @protocol SPTSortingFilteringTheme <NSObject>
+- (id <SPTSortingFilteringButtonsCellStyle>)filterButtonsCellStyle;
 - (id <SPTSortingFilteringFilterBarStyle>)lightFilterBarStyle;
 - (id <SPTSortingFilteringFilterBarStyle>)darkFilterBarStyle;
 - (id <SPTSortingFilteringSearchFieldStyle>)darkSearchFieldStyle;

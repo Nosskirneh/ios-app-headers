@@ -6,10 +6,12 @@
 
 #import <objc/NSObject.h>
 
+#import "SPTFeatureFlagSignalObserver-Protocol.h"
+
 @class NSString;
 @protocol SPTAlertController, SPTCrashReporter, SPTFeatureFlagSignal, SPTLinkDispatcher, SPTLoginStateController, SPTMetaViewController, SPTSessionServicesLoader, SPTStateController, SPTUIModeTransitionCoordinator;
 
-@interface SPTUIModeSwitchManager : NSObject
+@interface SPTUIModeSwitchManager : NSObject <SPTFeatureFlagSignalObserver>
 {
     id <SPTFeatureFlagSignal> _theNewExperienceEnabledSignal;
     long long _currentState;

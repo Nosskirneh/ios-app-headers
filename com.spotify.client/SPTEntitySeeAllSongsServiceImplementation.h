@@ -7,11 +7,12 @@
 #import <objc/NSObject.h>
 
 #import "SPTEntitySeeAllSongsService-Protocol.h"
+#import "SPTFeatureFlagSignalObserver-Protocol.h"
 
 @class NSString, SPTAllocationContext;
-@protocol SPTCollectionPlatformService, SPTCoreService, SPTEntityAllSongsService, SPTEntitySeeAllSongsRegistry, SPTFeatureFlagSignal, SPTHubFrameworkService, SPTURIDispatchService;
+@protocol SPTCollectionPlatformService, SPTCoreService, SPTEntityAllSongsService, SPTEntitySeeAllSongsRegistry, SPTFeatureFlagSignal, SPTHubFrameworkService, SPTURIDispatchService, SPTUserBehaviourInstrumentationHubsEventMapper, SPTUserBehaviourInstrumentationService;
 
-@interface SPTEntitySeeAllSongsServiceImplementation : NSObject <SPTEntitySeeAllSongsService>
+@interface SPTEntitySeeAllSongsServiceImplementation : NSObject <SPTFeatureFlagSignalObserver, SPTEntitySeeAllSongsService>
 {
     _Bool _isSwiftAllSongEnabled;
     id <SPTURIDispatchService> _uriDispatchService;
@@ -20,12 +21,16 @@
     id <SPTEntityAllSongsService> _entityAllSongsService;
     id <SPTFeatureFlagSignal> _entityAllSongsSignal;
     id <SPTHubFrameworkService> _hubFrameworkService;
+    id <SPTUserBehaviourInstrumentationService> _ubiService;
+    id <SPTUserBehaviourInstrumentationHubsEventMapper> _eventMapper;
     id <SPTEntitySeeAllSongsRegistry> _registry;
 }
 
 + (id)serviceIdentifier;
 @property(retain, nonatomic) id <SPTEntitySeeAllSongsRegistry> registry; // @synthesize registry=_registry;
 @property(nonatomic) _Bool isSwiftAllSongEnabled; // @synthesize isSwiftAllSongEnabled=_isSwiftAllSongEnabled;
+@property(retain, nonatomic) id <SPTUserBehaviourInstrumentationHubsEventMapper> eventMapper; // @synthesize eventMapper=_eventMapper;
+@property(nonatomic) __weak id <SPTUserBehaviourInstrumentationService> ubiService; // @synthesize ubiService=_ubiService;
 @property(nonatomic) __weak id <SPTHubFrameworkService> hubFrameworkService; // @synthesize hubFrameworkService=_hubFrameworkService;
 @property(retain, nonatomic) id <SPTFeatureFlagSignal> entityAllSongsSignal; // @synthesize entityAllSongsSignal=_entityAllSongsSignal;
 @property(nonatomic) __weak id <SPTEntityAllSongsService> entityAllSongsService; // @synthesize entityAllSongsService=_entityAllSongsService;
@@ -34,7 +39,7 @@
 @property(nonatomic) __weak id <SPTURIDispatchService> uriDispatchService; // @synthesize uriDispatchService=_uriDispatchService;
 - (void).cxx_destruct;
 - (void)featureFlagSignal:(id)arg1 hasAssumedState:(long long)arg2;
-- (id)createCommandHandlersWithInteractionLogger:(id)arg1;
+- (id)createCommandHandlersWithViewURI:(id)arg1 referrerIdentifier:(id)arg2 interactionLogger:(id)arg3;
 - (id)provideRegistry;
 - (void)unload;
 - (void)load;

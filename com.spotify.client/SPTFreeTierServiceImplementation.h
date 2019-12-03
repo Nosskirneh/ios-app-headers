@@ -6,12 +6,13 @@
 
 #import <objc/NSObject.h>
 
+#import "SPTFreeTierService-Protocol.h"
 #import "SPTMetaViewControllerObserver-Protocol.h"
 
 @class NSString, SPTAllocationContext, SPTFreeTierTestManagerImplementation, SPTUIModeSwitchManager;
 @protocol SPTContainerService, SPTContainerUIService, SPTCrashReporterService, SPTDebugService, SPTFeatureFlagSignal, SPTFeatureFlaggingService, SPTLoginService, SPTServiceManagerService, SPTSessionService, SPTURIDispatchService;
 
-@interface SPTFreeTierServiceImplementation : NSObject <SPTMetaViewControllerObserver>
+@interface SPTFreeTierServiceImplementation : NSObject <SPTMetaViewControllerObserver, SPTFreeTierService>
 {
     _Bool _loaded;
     id <SPTContainerService> _containerService;
@@ -47,7 +48,6 @@
 @property(nonatomic) __weak id <SPTContainerUIService> containerUIService; // @synthesize containerUIService=_containerUIService;
 @property(nonatomic) __weak id <SPTContainerService> containerService; // @synthesize containerService=_containerService;
 - (void).cxx_destruct;
-- (id)provideFreeTierTestManager;
 - (id)provideNewExperienceEnabledSignal;
 - (void)unload;
 - (void)load;

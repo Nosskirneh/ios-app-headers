@@ -10,6 +10,7 @@
 @protocol SPTYourLibraryPage;
 
 @protocol SPTYourLibraryPageDelegate <NSObject>
+- (void)page:(id <SPTYourLibraryPage>)arg1 disablePagesScroll:(_Bool)arg2;
 - (void)pageDidStopScrolling:(id <SPTYourLibraryPage>)arg1;
 - (void)page:(id <SPTYourLibraryPage>)arg1 didScroll:(UIScrollView *)arg2;
 - (void)page:(id <SPTYourLibraryPage>)arg1 collapseTabControl:(_Bool)arg2;

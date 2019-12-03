@@ -6,11 +6,12 @@
 
 #import "NSObject-Protocol.h"
 
-@protocol SPTImpressionEvent, SPTInteractionEvent;
+@protocol SPTEventFactoryModelMapping, SPTImpressionEvent, SPTInteractionEvent;
 
 @protocol SPTNowPlayingViewDefault_PlaybackControls_ShuffleModeButtonEventFactory <NSObject>
 - (id <SPTInteractionEvent>)hitShuffleDisable;
 - (id <SPTInteractionEvent>)hitShuffleEnable;
 - (id <SPTImpressionEvent>)impression;
+- (id <SPTEventFactoryModelMapping>)_location;
 @end
 

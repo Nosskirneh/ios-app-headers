@@ -6,10 +6,12 @@
 
 #import <objc/NSObject.h>
 
+#import "SPTFeatureFlagSignalObserver-Protocol.h"
+
 @class NSString;
 @protocol SPTFeatureFlagSignal, SPTHomeMixTestManagerDelegate;
 
-@interface SPTHomeMixTestManager : NSObject
+@interface SPTHomeMixTestManager : NSObject <SPTFeatureFlagSignalObserver>
 {
     _Bool _settingsAvailable;
     _Bool _mixTuningEnabled;

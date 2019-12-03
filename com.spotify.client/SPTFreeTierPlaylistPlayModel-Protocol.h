@@ -10,6 +10,7 @@
 @protocol SPTPlaylistPlatformFieldURL><SPTPlaylistPlatformFieldRowId;
 
 @protocol SPTFreeTierPlaylistPlayModel <NSObject>
+- (void)fetchPlayContextWithCompletion:(void (^)(SPTPlayerContext *, NSError *))arg1;
 - (void)playTrackEntity:(id <SPTPlaylistPlatformFieldURL><SPTPlaylistPlatformFieldRowId>)arg1 andPlayOrigin:(SPTPlayOrigin *)arg2;
 - (void)playWithPlayOptions:(SPTPlayOptions *)arg1 andPlayOrigin:(SPTPlayOrigin *)arg2;
 - (void)playWithPlayOrigin:(SPTPlayOrigin *)arg1;

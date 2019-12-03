@@ -8,7 +8,7 @@
 #import "SPTPodcastUIButtonsDelegate-Protocol.h"
 
 @class GLUEAccessoryIconButton, NSIndexPath, NSURL, SPTContextMenuAccessoryButton, UITableViewCell, UIViewController;
-@protocol SPTPageController, SPTPodcastUIButtonWithIndex;
+@protocol SPTPageController, SPTPodcastEpisodeCellActionHandlerDelegate, SPTPodcastUIButtonWithIndex;
 
 @protocol SPTPodcastEpisodeCellActionTarget <NSObject, SPTPodcastUIButtonsDelegate>
 - (void)didSelectHeaderForCell:(UITableViewCell *)arg1 atIndexPath:(NSIndexPath *)arg2;
@@ -18,6 +18,8 @@
 - (void)offlineAccessoryButtonTapped:(GLUEAccessoryIconButton<SPTPodcastUIButtonWithIndex> *)arg1;
 
 @optional
+@property(nonatomic) __weak id <SPTPodcastEpisodeCellActionHandlerDelegate> delegate;
+- (void)configureForViewController:(UIViewController<SPTPageController> *)arg1;
 - (UIViewController<SPTPageController> *)episodeViewControllerWithURI:(NSURL *)arg1;
 - (void)navigateToEpisodeViewControllerWithURI:(NSURL *)arg1;
 - (void)removeButtonTapped:(GLUEAccessoryIconButton<SPTPodcastUIButtonWithIndex> *)arg1;

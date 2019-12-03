@@ -18,7 +18,6 @@
 {
     _Bool _isPlayingRemotely;
     _Bool _isAdsEnabled;
-    _Bool _isDataSaverEnabled;
     _Bool _isLanguageOnboardingEnabled;
     SettingsErrorHeaderView *_errorHeaderView;
     NSObject<SPTLoginStateController> *_loginStateController;
@@ -30,11 +29,10 @@
     SPSession *_session;
 }
 
-+ (id)rootSettingsViewControllerWithDictionaryRepresentation:(id)arg1 loginStateController:(id)arg2 connectManager:(id)arg3 isDataSaverEnabled:(_Bool)arg4 isLanguageOnboardingEnabled:(_Bool)arg5 productState:(id)arg6 featureFlags:(id)arg7 session:(id)arg8 navigationItem:(id)arg9 navigationRouter:(id)arg10 linkDispatcher:(id)arg11;
++ (id)rootSettingsViewControllerWithDictionaryRepresentation:(id)arg1 loginStateController:(id)arg2 connectManager:(id)arg3 isLanguageOnboardingEnabled:(_Bool)arg4 productState:(id)arg5 featureFlags:(id)arg6 session:(id)arg7 navigationItem:(id)arg8 navigationRouter:(id)arg9 linkDispatcher:(id)arg10;
 @property(nonatomic) __weak SPSession *session; // @synthesize session=_session;
 @property(nonatomic) __weak id <SPTAbbaFeatureFlags> featureFlags; // @synthesize featureFlags=_featureFlags;
 @property(nonatomic) _Bool isLanguageOnboardingEnabled; // @synthesize isLanguageOnboardingEnabled=_isLanguageOnboardingEnabled;
-@property(nonatomic) _Bool isDataSaverEnabled; // @synthesize isDataSaverEnabled=_isDataSaverEnabled;
 @property(nonatomic) _Bool isAdsEnabled; // @synthesize isAdsEnabled=_isAdsEnabled;
 @property(nonatomic) long long disabledSettingsIndex; // @synthesize disabledSettingsIndex=_disabledSettingsIndex;
 @property(nonatomic) _Bool isPlayingRemotely; // @synthesize isPlayingRemotely=_isPlayingRemotely;
@@ -46,8 +44,6 @@
 - (void).cxx_destruct;
 - (_Bool)shouldShowLanguageOnboardingRow;
 - (_Bool)isLanguageOnboardingRow:(id)arg1;
-- (_Bool)shouldShowDataSaverRow;
-- (_Bool)isDataSaverRow:(id)arg1;
 - (void)popAdsViewController;
 - (_Bool)shouldShowAdsRow;
 - (_Bool)isAdsRow:(id)arg1;
@@ -69,7 +65,7 @@
 - (void)featureFlagsDidChange:(id)arg1;
 - (void)productState:(id)arg1 stateDidChange:(id)arg2;
 - (void)connectActiveDeviceDidChange:(id)arg1;
-- (id)initWithDictionaryRepresentation:(id)arg1 loginStateController:(id)arg2 connectManager:(id)arg3 isDataSaverEnabled:(_Bool)arg4 isLanguageOnboardingEnabled:(_Bool)arg5 productState:(id)arg6 featureFlags:(id)arg7 session:(id)arg8 navigationItem:(id)arg9 navigationRouter:(id)arg10 linkDispatcher:(id)arg11;
+- (id)initWithDictionaryRepresentation:(id)arg1 loginStateController:(id)arg2 connectManager:(id)arg3 isLanguageOnboardingEnabled:(_Bool)arg4 productState:(id)arg5 featureFlags:(id)arg6 session:(id)arg7 navigationItem:(id)arg8 navigationRouter:(id)arg9 linkDispatcher:(id)arg10;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

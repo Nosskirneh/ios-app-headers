@@ -12,6 +12,7 @@
 
 - (id)potentialCountryCodeFromLocale:(id)arg1;
 - (id)potentialCountryCodesFromTelephonyNetworkInfo:(id)arg1;
+- (id)countryCodeFromTelephonyNetworkInfo:(id)arg1;
 - (id)countriesFromAllowedCallingCodes:(id)arg1;
 - (id)countriesFromLocalJSON;
 - (id)countryCodeFromTelephonyNetworkInfo:(id)arg1 locale:(id)arg2;

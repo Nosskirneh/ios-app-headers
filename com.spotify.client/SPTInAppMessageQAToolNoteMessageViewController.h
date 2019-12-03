@@ -8,7 +8,7 @@
 
 #import "SPTPageController-Protocol.h"
 
-@class GLUEButton, NSArray, NSString, NSURL, UIScrollView, UIView;
+@class GLUEButton, GLUELabel, NSArray, NSString, NSURL, UIScrollView, UIView;
 @protocol GLUETheme, SPTInAppMessageQAToolNoteViewDelegate, SPTPageContainer;
 
 @interface SPTInAppMessageQAToolNoteMessageViewController : UIViewController <SPTPageController>
@@ -19,12 +19,16 @@
     GLUEButton *_acceptCreativeButton;
     GLUEButton *_rejectCreativeButton;
     GLUEButton *_cancelButton;
+    GLUELabel *_languageLabel;
+    GLUELabel *_countryLabel;
     id <GLUETheme> _theme;
     NSArray *_layoutConstraints;
 }
 
 @property(copy, nonatomic) NSArray *layoutConstraints; // @synthesize layoutConstraints=_layoutConstraints;
 @property(retain, nonatomic) id <GLUETheme> theme; // @synthesize theme=_theme;
+@property(retain, nonatomic) GLUELabel *countryLabel; // @synthesize countryLabel=_countryLabel;
+@property(retain, nonatomic) GLUELabel *languageLabel; // @synthesize languageLabel=_languageLabel;
 @property(retain, nonatomic) GLUEButton *cancelButton; // @synthesize cancelButton=_cancelButton;
 @property(retain, nonatomic) GLUEButton *rejectCreativeButton; // @synthesize rejectCreativeButton=_rejectCreativeButton;
 @property(retain, nonatomic) GLUEButton *acceptCreativeButton; // @synthesize acceptCreativeButton=_acceptCreativeButton;
@@ -37,7 +41,9 @@
 - (void)cancelButtonPressed;
 - (void)rejectButtonPressed;
 - (void)acceptButtonPressed;
+- (void)setLanguage:(id)arg1 country:(id)arg2;
 - (id)createLayoutConstraints;
+- (void)setupLabels;
 - (void)setupButtons;
 - (void)setupContentView;
 - (void)setupScrollview;

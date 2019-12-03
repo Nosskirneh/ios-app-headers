@@ -6,9 +6,10 @@
 
 #import "NSObject-Protocol.h"
 
-@protocol SPTImpressionEvent;
+@protocol SPTEventFactoryModelMapping, SPTImpressionEvent;
 
 @protocol SPTNowPlayingViewDefault_ScrollComponentEventFactory <NSObject>
 - (id <SPTImpressionEvent>)impression;
+- (id <SPTEventFactoryModelMapping>)_location;
 @end
 

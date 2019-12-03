@@ -30,6 +30,7 @@
 @property(nonatomic) _Bool forgetUserAfterLogout; // @synthesize forgetUserAfterLogout;
 @property(nonatomic) _Bool performLogout; // @synthesize performLogout;
 - (void).cxx_destruct;
+- (void)traitCollectionDidChange:(id)arg1;
 - (void)viewModel:(id)arg1 didEndFullValidationWithError:(id)arg2;
 - (void)viewModelDidBeginFullValidation:(id)arg1;
 - (void)viewModel:(id)arg1 didValidateLocalyWithResult:(_Bool)arg2;

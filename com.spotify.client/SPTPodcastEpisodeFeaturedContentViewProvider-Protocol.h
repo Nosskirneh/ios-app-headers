@@ -7,9 +7,10 @@
 #import "NSObject-Protocol.h"
 
 @class NSURL, UIViewController;
-@protocol SPTPageCreationContext, SPTPodcastEpisodeFeaturedContentViewController;
+@protocol SPTPageCreationContext, SPTPodcastEpisodeFeaturedContentTrackListViewController, SPTPodcastEpisodeFeaturedContentViewController;
 
 @protocol SPTPodcastEpisodeFeaturedContentViewProvider <NSObject>
+- (UIViewController<SPTPodcastEpisodeFeaturedContentTrackListViewController> *)featuredContentTrackListForEpisodeURL:(NSURL *)arg1 withContext:(id <SPTPageCreationContext>)arg2;
 - (UIViewController<SPTPodcastEpisodeFeaturedContentViewController> *)featuredContentForEpisodeURL:(NSURL *)arg1 withContext:(id <SPTPageCreationContext>)arg2;
 @end
 

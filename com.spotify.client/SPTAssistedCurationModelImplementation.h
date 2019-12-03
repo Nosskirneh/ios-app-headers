@@ -11,7 +11,7 @@
 #import "SPTAssistedCurationModel-Protocol.h"
 
 @class NSArray, NSMutableArray, NSMutableSet, NSString, NSURL;
-@protocol SPTAssistedCurationAddTrackHandler, SPTAssistedCurationModelDelegate, SPTOfflineModeState, SPTPlaylistModel, SPTPlaylistPlatformPlaylistDataLoader;
+@protocol SPTAssistedCurationAddTrackHandler, SPTAssistedCurationDatasource, SPTAssistedCurationModelDelegate, SPTOfflineModeState;
 
 @interface SPTAssistedCurationModelImplementation : NSObject <SPTAssistedCurationCardModelActionsDelegate, SPTAssistedCurationModel, SPTAssistedCurationCardsProviderDelegate>
 {
@@ -19,8 +19,7 @@
     NSURL *_playlistURI;
     id <SPTAssistedCurationModelDelegate> _delegate;
     NSString *_playlistName;
-    id <SPTPlaylistModel> _playlistModel;
-    id <SPTPlaylistPlatformPlaylistDataLoader> _playlistDataLoader;
+    id <SPTAssistedCurationDatasource> _datasource;
     NSArray *_cardProviders;
     NSMutableSet *_providersWaitingSet;
     NSMutableArray *_cards;
@@ -33,8 +32,7 @@
 @property(retain, nonatomic) NSMutableArray *cards; // @synthesize cards=_cards;
 @property(retain, nonatomic) NSMutableSet *providersWaitingSet; // @synthesize providersWaitingSet=_providersWaitingSet;
 @property(retain, nonatomic) NSArray *cardProviders; // @synthesize cardProviders=_cardProviders;
-@property(retain, nonatomic) id <SPTPlaylistPlatformPlaylistDataLoader> playlistDataLoader; // @synthesize playlistDataLoader=_playlistDataLoader;
-@property(retain, nonatomic) id <SPTPlaylistModel> playlistModel; // @synthesize playlistModel=_playlistModel;
+@property(retain, nonatomic) id <SPTAssistedCurationDatasource> datasource; // @synthesize datasource=_datasource;
 @property(nonatomic, getter=isLoaded) _Bool loaded; // @synthesize loaded=_loaded;
 @property(copy, nonatomic) NSString *playlistName; // @synthesize playlistName=_playlistName;
 @property(nonatomic) __weak id <SPTAssistedCurationModelDelegate> delegate; // @synthesize delegate=_delegate;
@@ -55,7 +53,7 @@
 - (void)trackWasAddedNotToPlaylistBecauseError:(id)arg1;
 - (void)trackWasAddedNotToPlaylistBecauseDuplicated:(id)arg1;
 - (void)trackWasAddedToPlaylist:(id)arg1;
-- (id)initWithPlaylistURL:(id)arg1 playlistModel:(id)arg2 playlistDataLoader:(id)arg3 cardProviders:(id)arg4 addTrackHandler:(id)arg5 notificationCenter:(id)arg6 offlineModeState:(id)arg7;
+- (id)initWithPlaylistURL:(id)arg1 datasource:(id)arg2 cardProviders:(id)arg3 addTrackHandler:(id)arg4 notificationCenter:(id)arg5 offlineModeState:(id)arg6;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

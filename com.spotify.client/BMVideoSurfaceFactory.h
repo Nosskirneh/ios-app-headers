@@ -15,6 +15,7 @@
 - (id)createSurfaceWithFullscreen:(_Bool)arg1 gravity:(long long)arg2;
 - (id)createSurfaceWithFullscreen:(_Bool)arg1 priority:(long long)arg2;
 - (id)createSurfaceWithFullscreen:(_Bool)arg1 shouldDisplayVideoBlock:(CDUnknownBlockType)arg2;
+- (id)createSurfaceWithPriority:(long long)arg1;
 - (id)createSurfaceWithFullscreen:(_Bool)arg1;
 - (id)createSurfaceWithGravity:(long long)arg1;
 - (id)createSurface;

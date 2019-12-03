@@ -8,21 +8,23 @@
 
 #import "HUBCommandHandler-Protocol.h"
 
-@protocol SPTHubInteractionLogger, SPTHubsEventFactory, SPTLinkDispatcher;
+@protocol SPTEventFactoryMapper, SPTHubInteractionLogger, SPTLinkDispatcher, SPTUserBehaviourInstrumentationHubsEventMapper;
 
 @interface SPTHubNavigationCommandHandler : NSObject <HUBCommandHandler>
 {
     id <SPTLinkDispatcher> _linkDispatcher;
     id <SPTHubInteractionLogger> _interactionLogger;
-    id <SPTHubsEventFactory> _eventFactory;
+    id <SPTEventFactoryMapper> _eventFactory;
+    id <SPTUserBehaviourInstrumentationHubsEventMapper> _eventMapper;
 }
 
-@property(retain, nonatomic) id <SPTHubsEventFactory> eventFactory; // @synthesize eventFactory=_eventFactory;
+@property(retain, nonatomic) id <SPTUserBehaviourInstrumentationHubsEventMapper> eventMapper; // @synthesize eventMapper=_eventMapper;
+@property(retain, nonatomic) id <SPTEventFactoryMapper> eventFactory; // @synthesize eventFactory=_eventFactory;
 @property(readonly, nonatomic) id <SPTHubInteractionLogger> interactionLogger; // @synthesize interactionLogger=_interactionLogger;
 @property(readonly, nonatomic) id <SPTLinkDispatcher> linkDispatcher; // @synthesize linkDispatcher=_linkDispatcher;
 - (void).cxx_destruct;
 - (void)handleCommand:(id)arg1 event:(id)arg2;
-- (id)initWithLinkDispatcher:(id)arg1 interactionLogger:(id)arg2 eventFactory:(id)arg3;
+- (id)initWithLinkDispatcher:(id)arg1 interactionLogger:(id)arg2 eventFactory:(id)arg3 eventMapper:(id)arg4;
 
 @end
 

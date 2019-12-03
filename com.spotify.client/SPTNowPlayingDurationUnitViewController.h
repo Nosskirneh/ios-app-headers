@@ -39,6 +39,7 @@
 - (void)nowPlayingDurationViewDidTapSlider:(id)arg1;
 - (void)nowPlayingDurationViewDidEndScrubbing:(id)arg1;
 - (void)nowPlayingDurationViewProgressDidChange:(id)arg1;
+- (void)nowPlayingDurationViewDidScrub:(id)arg1;
 - (void)nowPlayingDurationViewDidBeginScrubbing:(id)arg1;
 - (void)nowPlayingDurationViewToggleTimeRemainingLabel:(id)arg1;
 - (void)nowPlayingDurationViewToggleAlwaysShowDurationLabels:(id)arg1;

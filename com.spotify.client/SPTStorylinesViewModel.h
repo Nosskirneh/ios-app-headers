@@ -58,7 +58,7 @@
 - (id)getCollectionViewCellFrom:(id)arg1;
 - (double)getPercentInViewFrom:(id)arg1;
 - (void)toggleFollowForStoryline;
-- (void)navigateToArtistPage;
+- (void)navigateToArtistPageFromAttribution:(_Bool)arg1;
 - (void)regressToPreviousCard;
 - (void)advanceToNextCard;
 - (void)resetStoryline;

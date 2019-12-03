@@ -24,8 +24,8 @@
 - (void).cxx_destruct;
 - (void)invalidateTimer;
 - (void)setupRefreshTimer;
-- (void)performRequestWithURL:(id)arg1 matchedPattern:(id)arg2 triggerType:(id)arg3;
-- (void)fetchMessagesForTriggers:(id)arg1 matchedPattern:(id)arg2 triggerType:(id)arg3;
+- (void)performRequestWithURL:(id)arg1 triggerPattern:(id)arg2 triggerType:(id)arg3 triggers:(id)arg4;
+- (void)fetchMessagesForTriggers:(id)arg1 triggerPattern:(id)arg2 triggerType:(id)arg3;
 - (void)fetchTriggerList;
 @property(readonly, nonatomic) id <SPTInAppMessageNetworkClientObserver> observerNotifierProxy;
 - (void)removeObserver:(id)arg1;

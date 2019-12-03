@@ -9,7 +9,7 @@
 @class NSURL;
 
 @protocol SPTCollectionPlatformStateItem <NSObject>
-@property(readonly, nonatomic) unsigned long long collectionState;
-@property(readonly, nonatomic) NSURL *URL;
+@property(nonatomic, readonly) unsigned long long collectionState;
+@property(nonatomic, readonly) NSURL *URL;
 @end
 

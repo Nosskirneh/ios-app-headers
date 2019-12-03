@@ -9,13 +9,14 @@
 #import "SPTStorylinesViewModelUIDelegate-Protocol.h"
 #import "UIGestureRecognizerDelegate-Protocol.h"
 
-@class GLUELabel, NSString, SPTStorylinesFailedView, SPTStorylinesLoadingView, SPTStorylinesOfflineView, SPTStorylinesView, SPTStorylinesViewBinder, SPTStorylinesViewModel;
+@class GLUELabel, NSString, SPTStorylinesFailedView, SPTStorylinesLoadingView, SPTStorylinesOfflineView, SPTStorylinesTestManager, SPTStorylinesView, SPTStorylinesViewBinder, SPTStorylinesViewModel;
 @protocol GLUETheme;
 
 @interface SPTStorylinesNowPlayingViewController : UIViewController <SPTStorylinesViewModelUIDelegate, UIGestureRecognizerDelegate>
 {
     SPTStorylinesViewModel *_viewModel;
     SPTStorylinesViewBinder *_viewBinder;
+    SPTStorylinesTestManager *_testManager;
     GLUELabel *_toplineLabel;
     SPTStorylinesView *_storylinesView;
     SPTStorylinesOfflineView *_offlineView;
@@ -30,6 +31,7 @@
 @property(retain, nonatomic) SPTStorylinesOfflineView *offlineView; // @synthesize offlineView=_offlineView;
 @property(retain, nonatomic) SPTStorylinesView *storylinesView; // @synthesize storylinesView=_storylinesView;
 @property(retain, nonatomic) GLUELabel *toplineLabel; // @synthesize toplineLabel=_toplineLabel;
+@property(retain, nonatomic) SPTStorylinesTestManager *testManager; // @synthesize testManager=_testManager;
 @property(retain, nonatomic) SPTStorylinesViewBinder *viewBinder; // @synthesize viewBinder=_viewBinder;
 @property(retain, nonatomic) SPTStorylinesViewModel *viewModel; // @synthesize viewModel=_viewModel;
 - (void).cxx_destruct;
@@ -37,6 +39,7 @@
 - (void)updateStorylinesFollowText:(id)arg1;
 - (void)updateProgressBarForStorylinesWithProgress:(double)arg1 atIndex:(unsigned long long)arg2 animated:(_Bool)arg3;
 - (void)updateStorylinesArtistAttributionWithName:(id)arg1 image:(id)arg2;
+- (void)viewArtistButtonTapped:(id)arg1;
 - (void)followButtonTapped:(id)arg1;
 - (void)artistAttributionTapped:(id)arg1;
 - (void)pauseGestureRecognizerChangedState:(id)arg1;
@@ -53,7 +56,7 @@
 - (void)viewWillDisappear:(_Bool)arg1;
 - (void)viewWillAppear:(_Bool)arg1;
 - (void)viewDidLoad;
-- (id)initWithViewModel:(id)arg1 theme:(id)arg2;
+- (id)initWithViewModel:(id)arg1 testManager:(id)arg2 theme:(id)arg3;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

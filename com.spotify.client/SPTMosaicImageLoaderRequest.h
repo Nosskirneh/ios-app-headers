@@ -41,7 +41,7 @@
 @property(nonatomic) _Bool cancelled; // @synthesize cancelled=_cancelled;
 @property(readonly, nonatomic) struct CGSize downloadSize; // @synthesize downloadSize=_downloadSize;
 @property(readonly, nonatomic) NSString *sourceIdentifier; // @synthesize sourceIdentifier=_sourceIdentifier;
-@property(readonly, nonatomic) id <SPTImageLoaderRemote> baseImageLoader; // @synthesize baseImageLoader=_baseImageLoader;
+@property(readonly, nonatomic) __weak id <SPTImageLoaderRemote> baseImageLoader; // @synthesize baseImageLoader=_baseImageLoader;
 @property(nonatomic) __weak id <SPTImageLoaderRequestDelegate> delegate; // @synthesize delegate=_delegate;
 @property(readonly, nonatomic) _Bool preventPersistentCaching; // @synthesize preventPersistentCaching=_preventPersistentCaching;
 @property(readonly, nonatomic) _Bool preventInMemoryCaching; // @synthesize preventInMemoryCaching=_preventInMemoryCaching;

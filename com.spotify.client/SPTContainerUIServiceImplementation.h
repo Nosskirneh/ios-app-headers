@@ -6,9 +6,11 @@
 
 #import <objc/NSObject.h>
 
+#import "SPTContainerUIService-Protocol.h"
+
 @class MessageBarController, NSString, SPTAlertControllerImplementation, SPTAlertQueueImplementation, SPTAllocationContext, SPTMainContentLayoutGuideController, SPTMainWindow;
 
-@interface SPTContainerUIServiceImplementation : NSObject
+@interface SPTContainerUIServiceImplementation : NSObject <SPTContainerUIService>
 {
     MessageBarController *_messageBarController;
     SPTMainWindow *_mainWindow;

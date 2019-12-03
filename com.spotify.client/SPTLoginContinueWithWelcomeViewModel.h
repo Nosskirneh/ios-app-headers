@@ -9,12 +9,12 @@
 #import "SPTLoginFacebookAuthenticationControllerDelegate-Protocol.h"
 
 @class NSString, SPTLoginContinueWithWelcomeViewLogger, SPTLoginFacebookAuthenticationController;
-@protocol SPTLoginContinueWithWelcomeViewModelDelegate, SPTLoginStateController, SPTNavigationRouter;
+@protocol SPTLoginContinueWithWelcomeViewModelDelegate, SPTLoginNavigationCoordinator, SPTLoginStateController;
 
 @interface SPTLoginContinueWithWelcomeViewModel : NSObject <SPTLoginFacebookAuthenticationControllerDelegate>
 {
     id <SPTLoginContinueWithWelcomeViewModelDelegate> _delegate;
-    id <SPTNavigationRouter> _navigationRouter;
+    id <SPTLoginNavigationCoordinator> _navigationCoordinator;
     id <SPTLoginStateController> _loginStateController;
     SPTLoginContinueWithWelcomeViewLogger *_logger;
     SPTLoginFacebookAuthenticationController *_facebookAuthController;
@@ -23,7 +23,7 @@
 @property(retain, nonatomic) SPTLoginFacebookAuthenticationController *facebookAuthController; // @synthesize facebookAuthController=_facebookAuthController;
 @property(retain, nonatomic) SPTLoginContinueWithWelcomeViewLogger *logger; // @synthesize logger=_logger;
 @property(retain, nonatomic) id <SPTLoginStateController> loginStateController; // @synthesize loginStateController=_loginStateController;
-@property(retain, nonatomic) id <SPTNavigationRouter> navigationRouter; // @synthesize navigationRouter=_navigationRouter;
+@property(retain, nonatomic) id <SPTLoginNavigationCoordinator> navigationCoordinator; // @synthesize navigationCoordinator=_navigationCoordinator;
 @property(nonatomic) __weak id <SPTLoginContinueWithWelcomeViewModelDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
 - (void)controller:(id)arg1 didCompleteFacebookLoginWithError:(id)arg2;
@@ -45,7 +45,7 @@
 - (id)continueWithEmailButtonTextWithStyle:(id)arg1;
 - (id)continueWithPhoneButtonTextWithStyle:(id)arg1;
 - (id)spotifyLogo;
-- (id)initWithNavigationRouter:(id)arg1 logger:(id)arg2 loginStateController:(id)arg3 facebookAuthController:(id)arg4;
+- (id)initWithNavigationCoordinator:(id)arg1 logger:(id)arg2 loginStateController:(id)arg3 facebookAuthController:(id)arg4;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

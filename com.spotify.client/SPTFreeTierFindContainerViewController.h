@@ -12,7 +12,6 @@
 #import "SPTPageContainer-Protocol.h"
 #import "SPTPageController-Protocol.h"
 #import "SPTScrollToTopViewController-Protocol.h"
-#import "SPTSearch2RootViewControllerDelegate-Protocol.h"
 #import "SPTSearchUISearchControlsDelegate-Protocol.h"
 #import "SPTViewControllerContainer-Protocol.h"
 #import "SPViewController-Protocol.h"
@@ -20,7 +19,7 @@
 @class NSArray, NSLayoutConstraint, NSString, NSURL, SPTFreeTierFindLogger, SPTSearchUISearchControls, UILayoutGuide, UIView;
 @protocol GLUETheme, SPTFreeTierFindInterfaceFactory, SPTFreeTierFindViewController><SPTPageController, SPTPageContainer, SPTPageController, SPTScannablesService, SPTSearch2RootViewControllerProtocol><SPTPageController, SPTVoiceService;
 
-@interface SPTFreeTierFindContainerViewController : UIViewController <SPTNavigationControllerNavigationBarState, SPTFreeTierFindViewControllerDelegate, SPTScrollToTopViewController, SPViewController, SPContentInsetViewController, SPTSearchUISearchControlsDelegate, SPTSearch2RootViewControllerDelegate, SPTPageContainer, SPTPageController, SPTViewControllerContainer>
+@interface SPTFreeTierFindContainerViewController : UIViewController <SPTNavigationControllerNavigationBarState, SPTFreeTierFindViewControllerDelegate, SPTScrollToTopViewController, SPViewController, SPContentInsetViewController, SPTSearchUISearchControlsDelegate, SPTPageContainer, SPTPageController, SPTViewControllerContainer>
 {
     NSArray *_viewControllers;
     UIViewController *_topViewController;
@@ -53,19 +52,17 @@
 @property(readonly, nonatomic) SPTFreeTierFindLogger *logger; // @synthesize logger=_logger;
 @property(readonly, nonatomic) id <SPTFreeTierFindInterfaceFactory> interfaceFactory; // @synthesize interfaceFactory=_interfaceFactory;
 @property(readonly, nonatomic) UIViewController<SPTFreeTierFindViewController><SPTPageController> *findViewController; // @synthesize findViewController=_findViewController;
-@property(readonly, nonatomic) UIViewController<SPTSearch2RootViewControllerProtocol><SPTPageController> *searchViewController; // @synthesize searchViewController=_searchViewController;
 @property(readonly, nonatomic) __weak UIViewController *topViewController; // @synthesize topViewController=_topViewController;
 @property(readonly, copy, nonatomic) NSArray *viewControllers; // @synthesize viewControllers=_viewControllers;
 - (void).cxx_destruct;
-- (void)searchRootViewController:(id)arg1 didUpdateQueryFrom:(id)arg2;
 - (void)searchControlsDidPressReturnKey:(id)arg1;
 - (void)searchControlsDidPressScannablesButton:(id)arg1;
 - (void)searchControlsDidPressCancelButton:(id)arg1;
 - (void)searchControls:(id)arg1 didChangeTextFrom:(id)arg2;
 - (void)setFocusedViewController:(id)arg1;
 - (void)spt_scrollToTop;
+@property(readonly, nonatomic) UIViewController<SPTSearch2RootViewControllerProtocol><SPTPageController> *searchViewController; // @synthesize searchViewController=_searchViewController;
 - (void)resetSearch;
-- (void)updateMainContentGuideConstraintConstantIfNeeded;
 - (struct CGRect)statusBarFrame;
 - (void)updateSearchControlsStyle;
 - (void)loadSearchControlsContainer;

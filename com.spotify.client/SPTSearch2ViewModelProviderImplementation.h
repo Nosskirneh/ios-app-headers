@@ -30,12 +30,12 @@
 - (void)updateState;
 - (void)removeExcessiveContexts;
 - (void)promoteContext:(id)arg1;
-- (id)getOrCreateContextForQuery:(id)arg1 autoCompleteRequestID:(id)arg2;
+- (id)getOrCreateContextForQuery:(id)arg1;
 - (unsigned long long)indexOfContextForQuery:(id)arg1;
 - (void)context:(id)arg1 didUpdateStateFrom:(unsigned long long)arg2;
 - (void)context:(id)arg1 didUpdateViewModelFrom:(id)arg2;
 - (void)loadNextPage;
-- (void)loadForQuery:(id)arg1 autoCompleteRequestID:(id)arg2;
+- (void)loadForQuery:(id)arg1;
 - (void)setViewModel:(id)arg1;
 - (id)initWithContextProvider:(id)arg1;
 

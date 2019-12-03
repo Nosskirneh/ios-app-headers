@@ -12,6 +12,7 @@
 
 + (void)setStartupSubdurationTracingEnabled:(_Bool)arg1;
 + (void)setStartupTracingEnabled:(_Bool)arg1;
++ (void)signalStartupFinishedWithState:(id)arg1 isForeground:(_Bool)arg2;
 + (void)signalStartupFinished:(id)arg1;
 + (void)setColdStartObserver:(id)arg1;
 

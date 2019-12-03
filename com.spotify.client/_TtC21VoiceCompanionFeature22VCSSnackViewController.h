@@ -8,9 +8,11 @@
 
 @interface _TtC21VoiceCompanionFeature22VCSSnackViewController : SPViewController
 {
+    // Error parsing type: , name: kSnackbarViewHeight
     // Error parsing type: , name: loopController
     // Error parsing type: , name: uri
     // Error parsing type: , name: viewBinder
+    // Error parsing type: , name: snackbarBottomConstraint
 }
 
 - (void).cxx_destruct;

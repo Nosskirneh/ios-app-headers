@@ -9,17 +9,15 @@
 #import "SPTShareEntityDataFactory-Protocol.h"
 
 @class NSString;
-@protocol SPTShareTestManager;
 
 @interface SPTShareEntityDataFactoryImplementation : NSObject <SPTShareEntityDataFactory>
 {
-    id <SPTShareTestManager> _testManager;
 }
 
-@property(retain, nonatomic) id <SPTShareTestManager> testManager; // @synthesize testManager=_testManager;
-- (void).cxx_destruct;
-- (id)provideEntityDataWithItemURI:(id)arg1 contextSourceURI:(id)arg2 itemName:(id)arg3 creatorName:(id)arg4 sourceName:(id)arg5 imageURL:(id)arg6 shareScreenshotImage:(id)arg7 itemType:(long long)arg8 clipboardLinkTitle:(id)arg9 logContext:(id)arg10;
-- (id)initWithTestManager:(id)arg1;
+- (id)provideLinkEntityDataWithItemURI:(id)arg1 itemType:(long long)arg2 contextSourceURI:(id)arg3 logContext:(id)arg4 extraQueryItems:(id)arg5;
+- (id)provideMessageEntityDataWithItemURI:(id)arg1 itemType:(long long)arg2 contextSourceURI:(id)arg3 text:(id)arg4 logContext:(id)arg5 extraQueryItems:(id)arg6;
+- (id)provideStoryEntityDataWithItemURI:(id)arg1 itemType:(long long)arg2 contextSourceURI:(id)arg3 backgroundImage:(id)arg4 logContext:(id)arg5 extraQueryItems:(id)arg6;
+- (id)provideEntityDataWithItemURI:(id)arg1 contextSourceURI:(id)arg2 itemName:(id)arg3 creatorName:(id)arg4 sourceName:(id)arg5 imageURL:(id)arg6 itemType:(long long)arg7 clipboardLinkTitle:(id)arg8 logContext:(id)arg9;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

@@ -6,10 +6,9 @@
 
 #import "SPTService-Protocol.h"
 
-@protocol SPTAppProtocolDelegateConnectionDelegate, SPTAuthController;
+@protocol SPTAuthController;
 
 @protocol SPTSpotifyAppProtocolService <SPTService>
 @property(nonatomic) __weak id <SPTAuthController> authController;
-- (void)connectWithDelegate:(id <SPTAppProtocolDelegateConnectionDelegate>)arg1 callback:(void (^)(id <SPTAppProtocolDelegateConnectionSending>))arg2;
 @end
 

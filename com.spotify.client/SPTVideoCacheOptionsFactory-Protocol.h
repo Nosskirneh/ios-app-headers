@@ -10,6 +10,6 @@
 @protocol SPTVideoCacheOptions;
 
 @protocol SPTVideoCacheOptionsFactory <NSObject>
-- (id <SPTVideoCacheOptions>)createOptions:(NSString *)arg1 cacheIdentifier:(NSString *)arg2 timeToLive:(unsigned long long)arg3;
+- (id <SPTVideoCacheOptions>)createWithCachePath:(NSString *)arg1 cacheIdentifier:(NSString *)arg2 timeToLive:(unsigned long long)arg3;
 @end
 

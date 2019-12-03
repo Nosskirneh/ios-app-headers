@@ -23,7 +23,6 @@
 - (void)logVideoError:(id)arg1;
 - (void)didFailWithFatalError:(id)arg1 atPosition:(double)arg2 timestamp:(double)arg3;
 - (void)didFailWithRecoverableError:(id)arg1 atPosition:(double)arg2 timestamp:(double)arg3;
-- (void)didEndPlaybackWithReason:(long long)arg1 atPosition:(double)arg2 timestamp:(double)arg3;
 - (void)didBecomeReadyAtPosition:(double)arg1 timestamp:(double)arg2;
 - (id)initWithLogger:(id)arg1 identity:(id)arg2 loggerDataProvider:(id)arg3;
 

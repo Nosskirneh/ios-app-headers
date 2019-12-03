@@ -6,11 +6,9 @@
 
 #import <objc/NSObject.h>
 
-#import "NSCoding-Protocol.h"
-
 @class NSNumber, NSString;
 
-@interface SPTConcertsLocationModel : NSObject <NSCoding>
+@interface SPTConcertsLocationModel : NSObject
 {
     NSNumber *_geonameId;
     NSString *_name;
@@ -20,8 +18,6 @@
 @property(readonly, copy, nonatomic) NSString *name; // @synthesize name=_name;
 @property(readonly, nonatomic) NSNumber *geonameId; // @synthesize geonameId=_geonameId;
 - (void).cxx_destruct;
-- (void)encodeWithCoder:(id)arg1;
-- (id)initWithCoder:(id)arg1;
 - (unsigned long long)hash;
 - (_Bool)isEqual:(id)arg1;
 - (id)initWithDictionary:(id)arg1;

@@ -7,7 +7,7 @@
 #import <objc/NSObject.h>
 
 @class HUBComponentDefaults, HUBComponentRegistry, SPTFreeTierArtistBarButtonFactory, SPTFreeTierArtistCommandHandlerFactory, SPTFreeTierArtistContentOperationFactory, SPTNetworkConnectivityController;
-@protocol GLUETheme, SPTBarButtonItemManager, SPTHubsRendererFactory, SPTHugsFactory, SPTPermissionsOnDemandState, SPTShelves, SPTVisualRefreshIntegrationService;
+@protocol GLUETheme, SPTBarButtonItemManager, SPTExplicitContentAccessManager, SPTHubsRendererFactory, SPTHugsFactory, SPTPermissionsOnDemandState, SPTShelves, SPTVisualRefreshIntegrationService;
 
 @interface SPTFreeTierArtistHubManager : NSObject
 {
@@ -24,8 +24,10 @@
     id <SPTShelves> _shelves;
     id <SPTVisualRefreshIntegrationService> _visualRefreshIntegrationService;
     SPTNetworkConnectivityController *_networkConnectivityController;
+    id <SPTExplicitContentAccessManager> _explicitContentAccessManager;
 }
 
+@property(nonatomic) __weak id <SPTExplicitContentAccessManager> explicitContentAccessManager; // @synthesize explicitContentAccessManager=_explicitContentAccessManager;
 @property(nonatomic) __weak SPTNetworkConnectivityController *networkConnectivityController; // @synthesize networkConnectivityController=_networkConnectivityController;
 @property(nonatomic) __weak id <SPTVisualRefreshIntegrationService> visualRefreshIntegrationService; // @synthesize visualRefreshIntegrationService=_visualRefreshIntegrationService;
 @property(readonly, nonatomic) id <SPTShelves> shelves; // @synthesize shelves=_shelves;
@@ -45,7 +47,7 @@
 - (id)createArtistViewControllerForViewURI:(id)arg1 referrerIdentifier:(id)arg2;
 - (id)createViewControllerForViewURI:(id)arg1 referrerIdentifier:(id)arg2;
 - (_Bool)canCreateViewControllerForViewURI:(id)arg1;
-- (id)initWithComponentRegistry:(id)arg1 hubsRendererFactory:(id)arg2 hugsFactory:(id)arg3 contentOperationFactory:(id)arg4 commandHandlerFactory:(id)arg5 barButtonFactory:(id)arg6 glueTheme:(id)arg7 artistHubComponentsFactory:(id)arg8 onDemandState:(id)arg9 barButtonItemManager:(id)arg10 shelves:(id)arg11 visualRefreshIntegrationService:(id)arg12 networkConnectivityController:(id)arg13;
+- (id)initWithComponentRegistry:(id)arg1 hubsRendererFactory:(id)arg2 hugsFactory:(id)arg3 contentOperationFactory:(id)arg4 commandHandlerFactory:(id)arg5 barButtonFactory:(id)arg6 glueTheme:(id)arg7 artistHubComponentsFactory:(id)arg8 onDemandState:(id)arg9 barButtonItemManager:(id)arg10 shelves:(id)arg11 visualRefreshIntegrationService:(id)arg12 networkConnectivityController:(id)arg13 explicitContentAccessService:(id)arg14;
 
 @end
 

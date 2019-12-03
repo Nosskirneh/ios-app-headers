@@ -7,7 +7,7 @@
 #import "SPTUIPageService.h"
 
 @class SPTFreeTierAlbumHubManager, SPTFreeTierTrackContextAwareURITypeManager;
-@protocol SPContextMenuFeature, SPTCollectionPlatformService, SPTContextDispatchService, SPTCoreService, SPTEntitySeeAllSongsService, SPTExplicitContentService, SPTFreeTierUIService, SPTGLUEService, SPTHubFrameworkService, SPTNetworkService, SPTOnDemandService, SPTOnDemandTrialService, SPTPermissionsService, SPTPlayerFeature, SPTSessionService, SPTShelfService, SPTUpsellExperimentationService, SPTVisualRefreshIntegrationService;
+@protocol SPContextMenuFeature, SPTCollectionPlatformService, SPTContainerUIService, SPTContextDispatchService, SPTCoreService, SPTEntitySeeAllSongsService, SPTExplicitContentService, SPTFreeTierUIService, SPTGLUEService, SPTHubFrameworkService, SPTNetworkService, SPTOnDemandService, SPTOnDemandTrialService, SPTPermissionsService, SPTPlayerFeature, SPTSessionService, SPTShelfService, SPTVisualRefreshIntegrationService;
 
 @interface SPTFreeTierAlbumService : SPTUIPageService
 {
@@ -26,7 +26,7 @@
     id <SPTPermissionsService> _permissionService;
     id <SPTContextDispatchService> _contextDispatchService;
     id <SPTShelfService> _shelfService;
-    id <SPTUpsellExperimentationService> _upsellExperimentationService;
+    id <SPTContainerUIService> _containerUIService;
     SPTFreeTierAlbumHubManager *_hubManager;
     SPTFreeTierTrackContextAwareURITypeManager *_nptTrackURITypeManager;
     id <SPTVisualRefreshIntegrationService> _visualRefreshIntegrationService;
@@ -38,7 +38,7 @@
 @property(nonatomic) __weak id <SPTVisualRefreshIntegrationService> visualRefreshIntegrationService; // @synthesize visualRefreshIntegrationService=_visualRefreshIntegrationService;
 @property(retain, nonatomic) SPTFreeTierTrackContextAwareURITypeManager *nptTrackURITypeManager; // @synthesize nptTrackURITypeManager=_nptTrackURITypeManager;
 @property(retain, nonatomic) SPTFreeTierAlbumHubManager *hubManager; // @synthesize hubManager=_hubManager;
-@property(nonatomic) __weak id <SPTUpsellExperimentationService> upsellExperimentationService; // @synthesize upsellExperimentationService=_upsellExperimentationService;
+@property(nonatomic) __weak id <SPTContainerUIService> containerUIService; // @synthesize containerUIService=_containerUIService;
 @property(nonatomic) __weak id <SPTShelfService> shelfService; // @synthesize shelfService=_shelfService;
 @property(nonatomic) __weak id <SPTContextDispatchService> contextDispatchService; // @synthesize contextDispatchService=_contextDispatchService;
 @property(nonatomic) __weak id <SPTPermissionsService> permissionService; // @synthesize permissionService=_permissionService;

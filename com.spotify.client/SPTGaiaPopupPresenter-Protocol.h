@@ -6,7 +6,10 @@
 
 #import "NSObject-Protocol.h"
 
+@protocol SPTGaiaAttachPopupControllerDelegate;
+
 @protocol SPTGaiaPopupPresenter <NSObject>
+@property(nonatomic) __weak id <SPTGaiaAttachPopupControllerDelegate> attachPopupDelegate;
 - (void)presentTransferPopupForCurrentActiveDevice;
 @end
 

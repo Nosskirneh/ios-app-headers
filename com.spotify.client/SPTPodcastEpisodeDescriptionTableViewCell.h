@@ -8,7 +8,7 @@
 
 #import "UITextViewDelegate-Protocol.h"
 
-@class GLUELabel, NSLayoutConstraint, NSString, NSURL, SPTPodcastEpisodeDescriptionTextView, UIStackView;
+@class GLUELabel, NSLayoutConstraint, NSString, NSURL, SPTPodcastEpisodeDescriptionTextView, SPTPodcastEpisodeTestManager, UIStackView;
 @protocol SPTPodcastEpisodeDescriptionTableViewCellDelegate;
 
 @interface SPTPodcastEpisodeDescriptionTableViewCell : UITableViewCell <UITextViewDelegate>
@@ -21,8 +21,10 @@
     NSLayoutConstraint *_bottomEdgeConstraint;
     SPTPodcastEpisodeDescriptionTextView *_descriptionTextView;
     GLUELabel *_metadataLabel;
+    SPTPodcastEpisodeTestManager *_testManager;
 }
 
+@property(retain, nonatomic) SPTPodcastEpisodeTestManager *testManager; // @synthesize testManager=_testManager;
 @property(retain, nonatomic) GLUELabel *metadataLabel; // @synthesize metadataLabel=_metadataLabel;
 @property(retain, nonatomic) SPTPodcastEpisodeDescriptionTextView *descriptionTextView; // @synthesize descriptionTextView=_descriptionTextView;
 @property(retain, nonatomic) NSLayoutConstraint *bottomEdgeConstraint; // @synthesize bottomEdgeConstraint=_bottomEdgeConstraint;
@@ -38,7 +40,7 @@
 @property(copy, nonatomic) NSString *episodeMetadata;
 @property(copy, nonatomic) NSString *episodeDescription;
 - (void)glue_applyStyle:(id)arg1;
-- (id)initWithStyle:(long long)arg1 reuseIdentifier:(id)arg2;
+- (id)initWithStyle:(long long)arg1 reuseIdentifier:(id)arg2 testManager:(id)arg3;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

@@ -12,7 +12,7 @@
 #import "SPTPageController-Protocol.h"
 
 @class NSString, NSURL, SPTHubViewController, SPTProgressView, SPTTheme;
-@protocol SPTBrowseLoadingLogger, SPTBrowseViewModelProvider, SPTPageContainer, VISREFIntegrationManager;
+@protocol SPTBrowseLoadingLogger, SPTBrowseViewModelProvider, SPTPageContainer, SPTPodcastUtteranceSurveyManager, VISREFIntegrationManager;
 
 @interface SPTBrowseViewController : UIViewController <SPTBrowseViewModelProviderObserver, SPTNavigationControllerNavigationBarState, HUBViewContentOffsetObserver, SPTPageController>
 {
@@ -23,9 +23,11 @@
     SPTTheme *_theme;
     id <SPTBrowseLoadingLogger> _loadingLogger;
     id <VISREFIntegrationManager> _visualRefreshIntegrationManager;
+    id <SPTPodcastUtteranceSurveyManager> _podcastUtteranceSurveyManager;
     struct CGRect _lastKnownHubContainerViewFrame;
 }
 
+@property(readonly, nonatomic) id <SPTPodcastUtteranceSurveyManager> podcastUtteranceSurveyManager; // @synthesize podcastUtteranceSurveyManager=_podcastUtteranceSurveyManager;
 @property(readonly, nonatomic) id <VISREFIntegrationManager> visualRefreshIntegrationManager; // @synthesize visualRefreshIntegrationManager=_visualRefreshIntegrationManager;
 @property(readonly, nonatomic) id <SPTBrowseLoadingLogger> loadingLogger; // @synthesize loadingLogger=_loadingLogger;
 @property(nonatomic) struct CGRect lastKnownHubContainerViewFrame; // @synthesize lastKnownHubContainerViewFrame=_lastKnownHubContainerViewFrame;
@@ -51,7 +53,7 @@
 - (void)viewDidAppear:(_Bool)arg1;
 - (void)viewWillAppear:(_Bool)arg1;
 @property(readonly, nonatomic) SPTProgressView *progressView; // @synthesize progressView=_progressView;
-- (id)initWithViewModelProvider:(id)arg1 theme:(id)arg2 pageIdentifier:(id)arg3 pageURI:(id)arg4 componentRegistry:(id)arg5 componentLayoutManager:(id)arg6 imageLoaderFactory:(id)arg7 commandHandler:(id)arg8 impressionLogger:(id)arg9 loadingLogger:(id)arg10 visualRefreshIntegrationManager:(id)arg11 shareDragDelegateFactory:(id)arg12;
+- (id)initWithViewModelProvider:(id)arg1 theme:(id)arg2 pageIdentifier:(id)arg3 pageURI:(id)arg4 componentRegistry:(id)arg5 componentLayoutManager:(id)arg6 imageLoaderFactory:(id)arg7 commandHandler:(id)arg8 impressionLogger:(id)arg9 loadingLogger:(id)arg10 visualRefreshIntegrationManager:(id)arg11 podcastUtteranceSurveyManager:(id)arg12 shareDragDelegateFactory:(id)arg13;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

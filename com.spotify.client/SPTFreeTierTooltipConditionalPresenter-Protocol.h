@@ -12,7 +12,7 @@
 - (_Bool)isTooltipPresented;
 - (void)dismissTooltipWithIdentifier:(NSString *)arg1;
 - (_Bool)isTooltipPresentedWithIdentifier:(NSString *)arg1;
-- (void)presentTooltipWithIdentifier:(NSString *)arg1 text:(NSString *)arg2 fromRect:(struct CGRect)arg3 inView:(UIView *)arg4 permittedArrowDirections:(unsigned long long)arg5 maxNumberOfTimes:(unsigned long long)arg6;
+- (void)presentTooltipWithIdentifier:(NSString *)arg1 text:(NSString *)arg2 fromRect:(struct CGRect)arg3 inView:(UIView *)arg4 permittedArrowDirections:(unsigned long long)arg5 duration:(long long)arg6 maxNumberOfTimes:(unsigned long long)arg7;
 - (void)presentTooltipWithIdentifier:(NSString *)arg1 contentView:(UIView *)arg2 fromRect:(struct CGRect)arg3 inView:(UIView *)arg4 permittedArrowDirections:(unsigned long long)arg5 duration:(long long)arg6 maxNumberOfTimes:(unsigned long long)arg7;
 @end
 

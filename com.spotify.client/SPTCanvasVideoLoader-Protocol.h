@@ -6,10 +6,7 @@
 
 #import "NSObject-Protocol.h"
 
-@protocol SPTCanvasVideoLoaderDelegate;
-
 @protocol SPTCanvasVideoLoader <NSObject>
-@property(nonatomic) __weak id <SPTCanvasVideoLoaderDelegate> delegate;
-- (void)load;
+- (void)load:(void (^)(SPTPlayerTrack *, NSData *, NSError *))arg1;
 @end
 

@@ -10,6 +10,8 @@
 @protocol SPTPodcastRequest, SPTPodcastUITestManager;
 
 @protocol SPTPodcastRequestFactory <NSObject>
+- (id <SPTPodcastRequest>)createMarkEpisodeAsPlayedRequestWithURLs:(NSArray *)arg1 markAsUnplayed:(_Bool)arg2;
+- (id <SPTPodcastRequest>)createCollectionEpisodesRequestWithURL:(NSURL *)arg1 subscribe:(_Bool)arg2 testManager:(id <SPTPodcastUITestManager>)arg3;
 - (id <SPTPodcastRequest>)createPodcastEntityRequestWithURL:(NSURL *)arg1 range:(struct _NSRange)arg2 subscribe:(_Bool)arg3 testManager:(id <SPTPodcastUITestManager>)arg4;
 - (id <SPTPodcastRequest>)createDecorateItemsRequestWithItemURIs:(NSArray *)arg1 subscribe:(_Bool)arg2;
 @end

@@ -10,16 +10,16 @@
 
 @interface SPTAudioVolumeControl : NSObject
 {
-    struct AudioVolumeControlManager *_volumeControlManager;
+    // Error parsing type: ^{AudioVolumeControlManager=^^?{atomic<spotify::playback::AudioVolumeControl *>=A^{AudioVolumeControl}}{connection={shared_ptr<spotify::signals::connection::shared_state>=^{shared_state}^{__shared_weak_count}}}{signal<void (spotify::playback::VolumeChangeReason), spotify::signals::optional_last_value<void>, int, std::__1::less<int> >={shared_ptr<void>=^v^{__shared_weak_count}}{mutex={_opaque_pthread_mutex_t=q[56c]}}{slot_vector={small_vector<spotify::signals::detail::connected_slot, 16, void, void>={vector_alloc_holder<boost::container::small_vector_allocator<spotify::signals::detail::connected_slot, boost::container::new_allocator<void>, void>, unsigned long, boost::move_detail::integral_constant<unsigned int, 1> >=^{connected_slot}QQ}(aligned_struct_wrapper<40, 8>={aligned_struct<40, 8>=[40C]}[40C])[15(aligned_struct_wrapper<40, 8>={aligned_struct<40, 8>=[40C]}[40C])]}B}{optional_last_value<void>=}{less<int>=}}i}, name: _volumeControlManager
     id <SPTAsyncScheduler> _scheduler;
 }
 
-+ (id)volumeControlWithVolumeControlManager:(struct AudioVolumeControlManager *)arg1 scheduler:(id)arg2;
++     // Error parsing type: @32@0:8^{AudioVolumeControlManager=^^?{atomic<spotify::playback::AudioVolumeControl *>=A^{AudioVolumeControl}}{connection={shared_ptr<spotify::signals::connection::shared_state>=^{shared_state}^{__shared_weak_count}}}{signal<void (spotify::playback::VolumeChangeReason), spotify::signals::optional_last_value<void>, int, std::__1::less<int> >={shared_ptr<void>=^v^{__shared_weak_count}}{mutex={_opaque_pthread_mutex_t=q[56c]}}{slot_vector={small_vector<spotify::signals::detail::connected_slot, 16, void, void>={vector_alloc_holder<boost::container::small_vector_allocator<spotify::signals::detail::connected_slot, boost::container::new_allocator<void>, void>, unsigned long, boost::move_detail::integral_constant<unsigned int, 1> >=^{connected_slot}QQ}(aligned_struct_wrapper<40, 8>={aligned_struct<40, 8>=[40C]}[40C])[15(aligned_struct_wrapper<40, 8>={aligned_struct<40, 8>=[40C]}[40C])]}B}{optional_last_value<void>=}{less<int>=}}i}16@24, name: volumeControlWithVolumeControlManager:scheduler:
 @property(nonatomic) __weak id <SPTAsyncScheduler> scheduler; // @synthesize scheduler=_scheduler;
 - (void).cxx_destruct;
 - (void)setAudioVolume:(float)arg1 systemInitiated:(_Bool)arg2;
 - (void)invalidate;
-- (id)initWithVolumeControlManager:(struct AudioVolumeControlManager *)arg1 scheduler:(id)arg2;
+-     // Error parsing type: @32@0:8^{AudioVolumeControlManager=^^?{atomic<spotify::playback::AudioVolumeControl *>=A^{AudioVolumeControl}}{connection={shared_ptr<spotify::signals::connection::shared_state>=^{shared_state}^{__shared_weak_count}}}{signal<void (spotify::playback::VolumeChangeReason), spotify::signals::optional_last_value<void>, int, std::__1::less<int> >={shared_ptr<void>=^v^{__shared_weak_count}}{mutex={_opaque_pthread_mutex_t=q[56c]}}{slot_vector={small_vector<spotify::signals::detail::connected_slot, 16, void, void>={vector_alloc_holder<boost::container::small_vector_allocator<spotify::signals::detail::connected_slot, boost::container::new_allocator<void>, void>, unsigned long, boost::move_detail::integral_constant<unsigned int, 1> >=^{connected_slot}QQ}(aligned_struct_wrapper<40, 8>={aligned_struct<40, 8>=[40C]}[40C])[15(aligned_struct_wrapper<40, 8>={aligned_struct<40, 8>=[40C]}[40C])]}B}{optional_last_value<void>=}{less<int>=}}i}16@24, name: initWithVolumeControlManager:scheduler:
 
 @end
 

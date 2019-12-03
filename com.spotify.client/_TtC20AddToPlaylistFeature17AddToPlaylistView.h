@@ -10,8 +10,8 @@
 {
     // Error parsing type: , name: theme
     // Error parsing type: , name: progressView
-    // Error parsing type: , name: tableView.storage
-    // Error parsing type: , name: infoView.storage
+    // Error parsing type: , name: $__lazy_storage_$_tableView
+    // Error parsing type: , name: $__lazy_storage_$_infoView
 }
 
 - (void).cxx_destruct;

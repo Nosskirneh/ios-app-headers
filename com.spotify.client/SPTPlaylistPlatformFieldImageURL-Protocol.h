@@ -9,6 +9,6 @@
 @class NSURL;
 
 @protocol SPTPlaylistPlatformFieldImageURL <SPTPlaylistPlatformDataLoaderField>
-@property(readonly, nonatomic) NSURL *imageURL;
+@property(nonatomic, readonly) NSURL *imageURL;
 @end
 

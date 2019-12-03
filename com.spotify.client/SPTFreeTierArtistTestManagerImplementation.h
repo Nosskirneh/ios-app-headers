@@ -6,12 +6,13 @@
 
 #import <objc/NSObject.h>
 
+#import "SPTFeatureFlagSignalObserver-Protocol.h"
 #import "SPTFreeTierArtistTestManager-Protocol.h"
 
 @class NSString;
 @protocol SPTFeatureFlagFactory, SPTFeatureFlagSignal;
 
-@interface SPTFreeTierArtistTestManagerImplementation : NSObject <SPTFreeTierArtistTestManager>
+@interface SPTFreeTierArtistTestManagerImplementation : NSObject <SPTFreeTierArtistTestManager, SPTFeatureFlagSignalObserver>
 {
     _Bool _isBanArtistActionDisabled;
     id <SPTFeatureFlagFactory> _featureFlagFactory;

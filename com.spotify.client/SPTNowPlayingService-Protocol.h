@@ -6,9 +6,10 @@
 
 #import "SPTService-Protocol.h"
 
-@protocol SPTNowPlayingAuxiliaryActionsHandler, SPTNowPlayingContainerIdleMonitorObservable, SPTNowPlayingDurationUnitViewModel, SPTNowPlayingInformationUnitViewModel, SPTNowPlayingManager, SPTNowPlayingNavigationBarModel, SPTNowPlayingPlaybackActionsHandler, SPTNowPlayingStateObservable;
+@protocol SPTNowPlayingAuxiliaryActionsHandler, SPTNowPlayingContainerIdleMonitorObservable, SPTNowPlayingDurationUnitViewModel, SPTNowPlayingInformationUnitViewModel, SPTNowPlayingManager, SPTNowPlayingNavigationBarModel, SPTNowPlayingNavigationBarUnitManager, SPTNowPlayingPlaybackActionsHandler, SPTNowPlayingStateObservable;
 
 @protocol SPTNowPlayingService <SPTService>
+- (id <SPTNowPlayingNavigationBarUnitManager>)navigationBarUnitManager;
 - (id <SPTNowPlayingPlaybackActionsHandler>)providePlaybackActionsHandler;
 - (id <SPTNowPlayingDurationUnitViewModel>)createDurationUnitViewModel;
 - (id <SPTNowPlayingInformationUnitViewModel>)createInformationUnitViewModel;

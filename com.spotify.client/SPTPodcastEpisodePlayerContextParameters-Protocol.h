@@ -6,9 +6,11 @@
 
 #import "NSObject-Protocol.h"
 
-@class NSDictionary, NSString, NSURL;
+@class NSDictionary, NSNumber, NSString, NSURL, SPTPlayerContext;
 
 @protocol SPTPodcastEpisodePlayerContextParameters <NSObject>
+@property(readonly, nonatomic) NSNumber *timestamp;
+@property(readonly, nonatomic) SPTPlayerContext *playerContext;
 @property(readonly, nonatomic) NSString *episodeItemID;
 @property(readonly, nonatomic) NSURL *playerContextURI;
 - (long long)getEpisodeContextType;

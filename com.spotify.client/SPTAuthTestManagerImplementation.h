@@ -7,11 +7,12 @@
 #import <objc/NSObject.h>
 
 #import "SPTAuthTestManager-Protocol.h"
+#import "SPTFeatureFlagSignalObserver-Protocol.h"
 
 @class NSString, SPTObserverManager;
 @protocol SPTFeatureFlagFactory, SPTFeatureFlagSignal;
 
-@interface SPTAuthTestManagerImplementation : NSObject <SPTAuthTestManager>
+@interface SPTAuthTestManagerImplementation : NSObject <SPTFeatureFlagSignalObserver, SPTAuthTestManager>
 {
     _Bool _stagingEnabled;
     _Bool _authWebViewUsingWebKit;

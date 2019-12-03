@@ -14,10 +14,8 @@
 {
     GLUELabelStyle *_titleLabelStyle;
     double _labelHorizontalMargin;
-    double _searchBottomMargin;
 }
 
-@property(nonatomic) double searchBottomMargin; // @synthesize searchBottomMargin=_searchBottomMargin;
 @property(nonatomic) double labelHorizontalMargin; // @synthesize labelHorizontalMargin=_labelHorizontalMargin;
 @property(copy, nonatomic) GLUELabelStyle *titleLabelStyle; // @synthesize titleLabelStyle=_titleLabelStyle;
 - (void).cxx_destruct;

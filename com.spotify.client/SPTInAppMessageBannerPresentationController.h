@@ -10,7 +10,7 @@
 #import "SPTOfflineModeStateObserver-Protocol.h"
 
 @class NSDictionary, NSString, SPTInAppMessageBannerMessageViewModel, SPTInAppMessageNotePresentationManager, SPTInAppMessageNowPlayingManagerRegistryImplementation, SPTInAppMessageServiceLogger;
-@protocol SPTBannerPresentationManager, SPTBannerPresentationManagerTicket, SPTCrashReporter, SPTExternalIntegrationDriverDistractionController, SPTOfflineModeState;
+@protocol SPTAuthController, SPTBannerPresentationManager, SPTBannerPresentationManagerTicket, SPTCrashReporter, SPTExternalIntegrationDriverDistractionController, SPTOfflineModeState;
 
 @interface SPTInAppMessageBannerPresentationController : NSObject <SPTInAppMessageBannerMessageWebViewContentDelegate, SPTOfflineModeStateObserver>
 {
@@ -26,8 +26,10 @@
     NSDictionary *_cancelationInfo;
     SPTInAppMessageNotePresentationManager *_notePresentationManager;
     id <SPTCrashReporter> _crashReporter;
+    id <SPTAuthController> _authController;
 }
 
+@property(readonly, nonatomic) id <SPTAuthController> authController; // @synthesize authController=_authController;
 @property(readonly, nonatomic) id <SPTCrashReporter> crashReporter; // @synthesize crashReporter=_crashReporter;
 @property(retain, nonatomic) SPTInAppMessageNotePresentationManager *notePresentationManager; // @synthesize notePresentationManager=_notePresentationManager;
 @property(nonatomic, getter=isOffline) _Bool offline; // @synthesize offline=_offline;
@@ -48,7 +50,7 @@
 - (void)presentBanner;
 - (void)offlineModeState:(id)arg1 updated:(_Bool)arg2;
 - (void)dealloc;
-- (id)initWithBannerPresentationManager:(id)arg1 bannerViewModel:(id)arg2 offlineModeState:(id)arg3 driverDistractionController:(id)arg4 nowPlayingManagerRegistry:(id)arg5 serviceLogger:(id)arg6 notePresentationManager:(id)arg7 crashReporter:(id)arg8;
+- (id)initWithBannerPresentationManager:(id)arg1 bannerViewModel:(id)arg2 offlineModeState:(id)arg3 driverDistractionController:(id)arg4 nowPlayingManagerRegistry:(id)arg5 serviceLogger:(id)arg6 notePresentationManager:(id)arg7 crashReporter:(id)arg8 authController:(id)arg9;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

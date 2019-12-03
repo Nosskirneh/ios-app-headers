@@ -11,7 +11,7 @@
 #import "SPTPodcastYourLibraryEpisodesViewModel-Protocol.h"
 
 @class NSCache, NSDictionary, NSMutableArray, NSString, NSURL;
-@protocol SPTExplicitContentAccessManager, SPTPodcastDataLoader, SPTPodcastDataLoaderRequestToken, SPTPodcastPlayer, SPTPodcastUITestManager, SPTPodcastYourLibraryEpisodesViewModelDelegate;
+@protocol SPTExplicitContentAccessManager, SPTPodcastDataLoader, SPTPodcastDataLoaderRequestToken, SPTPodcastEpisodeFactory, SPTPodcastPlayer, SPTPodcastRequestFactory, SPTPodcastUITestManager, SPTPodcastYourLibraryEpisodesViewModelDelegate;
 
 @interface SPTPodcastYourLibraryDownloadsViewModel : NSObject <SPTExplicitContentEnabledStateObserver, SPTPodcastYourLibraryEpisodesViewModel, SPTPodcastEpisodeProgressPolling>
 {
@@ -20,6 +20,8 @@
     id <SPTPodcastYourLibraryEpisodesViewModelDelegate> _delegate;
     NSCache *_progressCache;
     NSURL *_URL;
+    id <SPTPodcastRequestFactory> _podcastRequestFactory;
+    id <SPTPodcastEpisodeFactory> _episodeFactory;
     id <SPTPodcastDataLoader> _dataLoader;
     id <SPTPodcastPlayer> _player;
     id <SPTExplicitContentAccessManager> _explicitContentAccessManager;
@@ -38,6 +40,8 @@
 @property(retain, nonatomic) id <SPTExplicitContentAccessManager> explicitContentAccessManager; // @synthesize explicitContentAccessManager=_explicitContentAccessManager;
 @property(retain, nonatomic) id <SPTPodcastPlayer> player; // @synthesize player=_player;
 @property(retain, nonatomic) id <SPTPodcastDataLoader> dataLoader; // @synthesize dataLoader=_dataLoader;
+@property(retain, nonatomic) id <SPTPodcastEpisodeFactory> episodeFactory; // @synthesize episodeFactory=_episodeFactory;
+@property(retain, nonatomic) id <SPTPodcastRequestFactory> podcastRequestFactory; // @synthesize podcastRequestFactory=_podcastRequestFactory;
 @property(retain, nonatomic) NSURL *URL; // @synthesize URL=_URL;
 @property(readonly, nonatomic) NSCache *progressCache; // @synthesize progressCache=_progressCache;
 @property(nonatomic) __weak id <SPTPodcastYourLibraryEpisodesViewModelDelegate> delegate; // @synthesize delegate=_delegate;
@@ -60,7 +64,7 @@
 @property(readonly, nonatomic) double currentEpisodeProgress;
 - (id)episodeAtIndexPath:(id)arg1;
 @property(readonly, nonatomic, getter=isEmpty) _Bool empty;
-- (id)initWithURL:(id)arg1 dataLoader:(id)arg2 player:(id)arg3 explicitContentAccessManager:(id)arg4 podcastUITestManager:(id)arg5;
+- (id)initWithURL:(id)arg1 podcastRequestFactory:(id)arg2 dataLoader:(id)arg3 player:(id)arg4 episodeFactory:(id)arg5 explicitContentAccessManager:(id)arg6 podcastUITestManager:(id)arg7;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

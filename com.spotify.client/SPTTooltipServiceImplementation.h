@@ -6,13 +6,14 @@
 
 #import <objc/NSObject.h>
 
+#import "SPTFeatureFlagSignalObserver-Protocol.h"
 #import "SPTService-Protocol.h"
 #import "SPTTooltipService-Protocol.h"
 
 @class NSString, SPTAllocationContext;
 @protocol SPTFeatureFlagSignal, SPTFeatureFlaggingService, SPTFreeTierService;
 
-@interface SPTTooltipServiceImplementation : NSObject <SPTService, SPTTooltipService>
+@interface SPTTooltipServiceImplementation : NSObject <SPTFeatureFlagSignalObserver, SPTService, SPTTooltipService>
 {
     id <SPTFreeTierService> _freeTierService;
     id <SPTFeatureFlaggingService> _featureFlaggingService;

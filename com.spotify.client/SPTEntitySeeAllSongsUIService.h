@@ -6,13 +6,14 @@
 
 #import <objc/NSObject.h>
 
+#import "SPTFeatureFlagSignalObserver-Protocol.h"
 #import "SPTService-Protocol.h"
 #import "SPTURISubtypeHandler-Protocol.h"
 
 @class NSString, SPNavigationController, SPTAllocationContext;
 @protocol SPContextMenuFeature, SPTAudioPreviewService, SPTCollectionPlatformService, SPTContainerService, SPTEntityAllSongsService, SPTEntitySeeAllSongsRegistry, SPTEntitySeeAllSongsService, SPTExplicitContentService, SPTFeatureFlagSignal, SPTFeatureFlaggingService, SPTFreeTierPreCurationService, SPTFreeTierPresentationService, SPTGLUEService, SPTPerformanceMetricsService, SPTSelfPresentingViewController, SPTURIDispatchService;
 
-@interface SPTEntitySeeAllSongsUIService : NSObject <SPTService, SPTURISubtypeHandler>
+@interface SPTEntitySeeAllSongsUIService : NSObject <SPTFeatureFlagSignalObserver, SPTService, SPTURISubtypeHandler>
 {
     id <SPTContainerService> _containerService;
     id <SPTAudioPreviewService> _audioPreviewService;

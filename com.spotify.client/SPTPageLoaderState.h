@@ -10,11 +10,12 @@
 {
     // Error parsing type: , name: state
     // Error parsing type: , name: data
-    // Error parsing type: , name: retry
 }
 
 - (void).cxx_destruct;
 - (id)init;
+@property(nonatomic, retain) NSObject *data; // @synthesize data;
+@property(nonatomic, readonly) long long state; // @synthesize state;
 
 @end
 

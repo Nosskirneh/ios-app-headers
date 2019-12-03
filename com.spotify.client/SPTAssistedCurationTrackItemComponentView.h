@@ -8,13 +8,13 @@
 
 #import "HUBComponentViewWithEvents-Protocol.h"
 
-@class GLUEEntityRowCollectionViewCell, SPTAssistedCurationGLUETheme, UITapGestureRecognizer;
+@class GLUEEntityRowCollectionViewCell, SPTAssistedCurationCardStyle, UITapGestureRecognizer;
 @protocol GLUEImageLoader, HUBComponentEventHandler, SPTAudioPreviewModelFactory, SPTAudioPreviewUIFactory, SPTExplicitContentAccessManager;
 
 @interface SPTAssistedCurationTrackItemComponentView : HUBComponentView <HUBComponentViewWithEvents>
 {
     id <HUBComponentEventHandler> _eventHandler;
-    SPTAssistedCurationGLUETheme *_theme;
+    SPTAssistedCurationCardStyle *_cardStyle;
     id <SPTAudioPreviewModelFactory> _audioPreviewModelFactory;
     id <SPTAudioPreviewUIFactory> _audioPreviewUIFactory;
     id <SPTExplicitContentAccessManager> _explicitContentAccessManager;
@@ -29,7 +29,7 @@
 @property(readonly, nonatomic) id <SPTExplicitContentAccessManager> explicitContentAccessManager; // @synthesize explicitContentAccessManager=_explicitContentAccessManager;
 @property(readonly, nonatomic) id <SPTAudioPreviewUIFactory> audioPreviewUIFactory; // @synthesize audioPreviewUIFactory=_audioPreviewUIFactory;
 @property(readonly, nonatomic) id <SPTAudioPreviewModelFactory> audioPreviewModelFactory; // @synthesize audioPreviewModelFactory=_audioPreviewModelFactory;
-@property(readonly, nonatomic) SPTAssistedCurationGLUETheme *theme; // @synthesize theme=_theme;
+@property(readonly, nonatomic) SPTAssistedCurationCardStyle *cardStyle; // @synthesize cardStyle=_cardStyle;
 @property(retain, nonatomic) id <HUBComponentEventHandler> eventHandler; // @synthesize eventHandler=_eventHandler;
 - (void).cxx_destruct;
 - (void)didClickAddButton;
@@ -43,7 +43,7 @@
 - (void)setupTrailingAccessoryView;
 - (void)setupLeadingAccessoryView;
 - (void)configureWithModel:(id)arg1;
-- (id)initWithFrame:(struct CGRect)arg1 audioPreviewModelFactory:(id)arg2 audioPreviewUIFactory:(id)arg3 explicitContentAccessManager:(id)arg4 glueImageLoader:(id)arg5 theme:(id)arg6;
+- (id)initWithFrame:(struct CGRect)arg1 audioPreviewModelFactory:(id)arg2 audioPreviewUIFactory:(id)arg3 explicitContentAccessManager:(id)arg4 glueImageLoader:(id)arg5 cardStyle:(id)arg6;
 
 @end
 

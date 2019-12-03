@@ -6,35 +6,35 @@
 
 #import <objc/NSObject.h>
 
+#import "SPTFeatureFlagSignalObserver-Protocol.h"
 #import "SPTNowPlayingTestManager-Protocol.h"
 
 @class NSString, SPTNowPlayingScrollConfiguration, SPTObserverManager;
-@protocol SPTAbbaFeatureFlags, SPTFeatureFlagFactory, SPTFeatureFlagSignal, SPTLocalSettings, SPTNowPlayingShowsFormatOverriderRegistry;
+@protocol SPTAbbaFeatureFlags, SPTFeatureFlagFactory, SPTFeatureFlagSignal, SPTLocalSettings;
 
-@interface SPTNowPlayingTestManagerImplementation : NSObject <SPTNowPlayingTestManager>
+@interface SPTNowPlayingTestManagerImplementation : NSObject <SPTFeatureFlagSignalObserver, SPTNowPlayingTestManager>
 {
     _Bool _freeTierEnabled;
     _Bool _localBansEnabled;
     _Bool _noSkipLimitEnabled;
-    _Bool _newContentLayerEnabled;
     _Bool _musicSleepTimerEnabled;
     _Bool _nowPlayingBarImprovementsEnabled;
     _Bool _contextAwareEditorialTrackSharingEnabled;
-    _Bool _storylinesRolloutEnabled;
     _Bool _pivotsTestEnabled;
     _Bool _feedbackCardsTestEnabled;
     _Bool _podcastInspectorTestEnabled;
+    _Bool _podcastChaptersTestEnabled;
+    _Bool _concertCardsTestEnabled;
     id <SPTAbbaFeatureFlags> _featureFlags;
     id <SPTFeatureFlagFactory> _featureFlagFactory;
-    id <SPTNowPlayingShowsFormatOverriderRegistry> _showsFormatOverriderRegistry;
     id <SPTFeatureFlagSignal> _freeTierEnabledSignal;
     SPTObserverManager *_observerManager;
-    id <SPTFeatureFlagSignal> _contentLayerSignal;
     id <SPTFeatureFlagSignal> _scrollPivotsSignal;
     id <SPTFeatureFlagSignal> _feedbackCardsSignal;
     id <SPTFeatureFlagSignal> _contextAwareEditorialTrackSharingSignal;
-    id <SPTFeatureFlagSignal> _rolloutStorylinesSignal;
     id <SPTFeatureFlagSignal> _podcastInspectorSignal;
+    id <SPTFeatureFlagSignal> _podcastChaptersSignal;
+    id <SPTFeatureFlagSignal> _concertCardsSignal;
     id <SPTFeatureFlagSignal> _noSkipLimitEnabledSignal;
     id <SPTFeatureFlagSignal> _musicSleepTimerSignal;
     id <SPTFeatureFlagSignal> _nowPlayingBarImprovementsSignal;
@@ -42,10 +42,11 @@
     SPTNowPlayingScrollConfiguration *_scrollConfiguration;
 }
 
+@property(nonatomic) _Bool concertCardsTestEnabled; // @synthesize concertCardsTestEnabled=_concertCardsTestEnabled;
+@property(nonatomic) _Bool podcastChaptersTestEnabled; // @synthesize podcastChaptersTestEnabled=_podcastChaptersTestEnabled;
 @property(nonatomic) _Bool podcastInspectorTestEnabled; // @synthesize podcastInspectorTestEnabled=_podcastInspectorTestEnabled;
 @property(nonatomic) _Bool feedbackCardsTestEnabled; // @synthesize feedbackCardsTestEnabled=_feedbackCardsTestEnabled;
 @property(nonatomic) _Bool pivotsTestEnabled; // @synthesize pivotsTestEnabled=_pivotsTestEnabled;
-@property(nonatomic) _Bool storylinesRolloutEnabled; // @synthesize storylinesRolloutEnabled=_storylinesRolloutEnabled;
 @property(nonatomic, getter=isContextAwareEditorialTrackSharingEnabled) _Bool contextAwareEditorialTrackSharingEnabled; // @synthesize contextAwareEditorialTrackSharingEnabled=_contextAwareEditorialTrackSharingEnabled;
 @property(retain, nonatomic) SPTNowPlayingScrollConfiguration *scrollConfiguration; // @synthesize scrollConfiguration=_scrollConfiguration;
 @property(readonly, nonatomic) id <SPTLocalSettings> localSettings; // @synthesize localSettings=_localSettings;
@@ -53,20 +54,18 @@
 @property(nonatomic, getter=isNowPlayingBarImprovementsEnabled) _Bool nowPlayingBarImprovementsEnabled; // @synthesize nowPlayingBarImprovementsEnabled=_nowPlayingBarImprovementsEnabled;
 @property(retain, nonatomic) id <SPTFeatureFlagSignal> musicSleepTimerSignal; // @synthesize musicSleepTimerSignal=_musicSleepTimerSignal;
 @property(nonatomic, getter=isMusicSleepTimerEnabled) _Bool musicSleepTimerEnabled; // @synthesize musicSleepTimerEnabled=_musicSleepTimerEnabled;
-@property(nonatomic, getter=isNewContentLayerEnabled) _Bool newContentLayerEnabled; // @synthesize newContentLayerEnabled=_newContentLayerEnabled;
 @property(nonatomic, getter=isNoSkipLimitEnabled) _Bool noSkipLimitEnabled; // @synthesize noSkipLimitEnabled=_noSkipLimitEnabled;
 @property(retain, nonatomic) id <SPTFeatureFlagSignal> noSkipLimitEnabledSignal; // @synthesize noSkipLimitEnabledSignal=_noSkipLimitEnabledSignal;
 @property(nonatomic, getter=isLocalBansEnabled) _Bool localBansEnabled; // @synthesize localBansEnabled=_localBansEnabled;
+@property(retain, nonatomic) id <SPTFeatureFlagSignal> concertCardsSignal; // @synthesize concertCardsSignal=_concertCardsSignal;
+@property(retain, nonatomic) id <SPTFeatureFlagSignal> podcastChaptersSignal; // @synthesize podcastChaptersSignal=_podcastChaptersSignal;
 @property(retain, nonatomic) id <SPTFeatureFlagSignal> podcastInspectorSignal; // @synthesize podcastInspectorSignal=_podcastInspectorSignal;
-@property(retain, nonatomic) id <SPTFeatureFlagSignal> rolloutStorylinesSignal; // @synthesize rolloutStorylinesSignal=_rolloutStorylinesSignal;
 @property(retain, nonatomic) id <SPTFeatureFlagSignal> contextAwareEditorialTrackSharingSignal; // @synthesize contextAwareEditorialTrackSharingSignal=_contextAwareEditorialTrackSharingSignal;
 @property(retain, nonatomic) id <SPTFeatureFlagSignal> feedbackCardsSignal; // @synthesize feedbackCardsSignal=_feedbackCardsSignal;
 @property(retain, nonatomic) id <SPTFeatureFlagSignal> scrollPivotsSignal; // @synthesize scrollPivotsSignal=_scrollPivotsSignal;
-@property(retain, nonatomic) id <SPTFeatureFlagSignal> contentLayerSignal; // @synthesize contentLayerSignal=_contentLayerSignal;
 @property(nonatomic, getter=isFreeTierEnabled) _Bool freeTierEnabled; // @synthesize freeTierEnabled=_freeTierEnabled;
 @property(readonly, nonatomic) SPTObserverManager *observerManager; // @synthesize observerManager=_observerManager;
 @property(readonly, nonatomic) id <SPTFeatureFlagSignal> freeTierEnabledSignal; // @synthesize freeTierEnabledSignal=_freeTierEnabledSignal;
-@property(readonly, nonatomic) id <SPTNowPlayingShowsFormatOverriderRegistry> showsFormatOverriderRegistry; // @synthesize showsFormatOverriderRegistry=_showsFormatOverriderRegistry;
 @property(readonly, nonatomic) id <SPTFeatureFlagFactory> featureFlagFactory; // @synthesize featureFlagFactory=_featureFlagFactory;
 @property(readonly, nonatomic) id <SPTAbbaFeatureFlags> featureFlags; // @synthesize featureFlags=_featureFlags;
 - (void).cxx_destruct;
@@ -75,21 +74,20 @@
 - (_Bool)isScrollSignal:(id)arg1;
 - (void)featureFlagSignal:(id)arg1 hasAssumedState:(long long)arg2;
 - (_Bool)isPodcast:(id)arg1;
-- (_Bool)isShowsFormatEnabledForPlayerState:(id)arg1;
 @property(readonly, nonatomic, getter=isShowsFormatContextAwareSharingEnabled) _Bool showsFormatContextAwareSharingEnabled;
-- (void)createRolloutStorylinesSignal;
 - (void)createContextAwareEditorialTrackSharingSignal;
 - (void)createFeedbackCardsSignal;
 - (void)createScrollPivotsSignal;
+- (void)createConcertCardsSignal;
+- (void)createPodcastChaptersSignal;
 - (void)createPodcastInspectorSignal;
 - (void)createNowPlayingBarImprovementsSignal;
 - (void)createMusicSleepTimerSignal;
-- (void)createContentLayerSignal;
 - (void)createNoSkipLimitSignal;
 - (void)removeObserver:(id)arg1;
 - (void)addObserver:(id)arg1;
 - (void)dealloc;
-- (id)initWithAbbaFeatureFlags:(id)arg1 featureFlagFactory:(id)arg2 showsFormatOverriderRegistry:(id)arg3 freeTierEnabledSignal:(id)arg4 localSettings:(id)arg5;
+- (id)initWithAbbaFeatureFlags:(id)arg1 featureFlagFactory:(id)arg2 freeTierEnabledSignal:(id)arg3 localSettings:(id)arg4;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

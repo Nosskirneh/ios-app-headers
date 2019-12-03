@@ -25,9 +25,11 @@
     long long _keyboardAppearance;
     UIColor *_passwordToggleTintColor;
     UIColor *_invalidPasswordToggleTintColor;
+    long long _numberOfLines;
     struct CGSize _rightViewSize;
 }
 
+@property(nonatomic) long long numberOfLines; // @synthesize numberOfLines=_numberOfLines;
 @property(retain, nonatomic) UIColor *invalidPasswordToggleTintColor; // @synthesize invalidPasswordToggleTintColor=_invalidPasswordToggleTintColor;
 @property(retain, nonatomic) UIColor *passwordToggleTintColor; // @synthesize passwordToggleTintColor=_passwordToggleTintColor;
 @property(nonatomic, getter=isErrorOutlineEnabled) _Bool errorOutlineEnabled; // @synthesize errorOutlineEnabled=_errorOutlineEnabled;

@@ -8,5 +8,6 @@
 
 @interface NSNumber (BMWEOCEtch)
 - (id)BMW_etchObject;
+@property(readonly) double glue_cgfloatValue;
 @end
 

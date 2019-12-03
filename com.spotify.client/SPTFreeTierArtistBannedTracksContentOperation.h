@@ -26,6 +26,7 @@
 @property(nonatomic) __weak id <HUBContentOperationDelegate> delegate; // @synthesize delegate;
 - (void).cxx_destruct;
 - (void)followModel:(id)arg1 followDataDidChange:(id)arg2;
+- (void)updateTrackBuilders:(id)arg1 withFollowModel:(id)arg2;
 - (void)performForViewModelBuilder:(id)arg1 previousError:(id)arg2;
 - (id)initWithFollowModelFactory:(id)arg1 viewURI:(id)arg2;
 

@@ -6,17 +6,32 @@
 
 #import <objc/NSObject.h>
 
+#import "SPTOnDemandSetObserver-Protocol.h"
+
+@class NSString, SPTObserverManager;
 @protocol SPTOnDemandSet;
 
-@interface SPTDrivingModePivotSubtitleIconResolver : NSObject
+@interface SPTDrivingModePivotSubtitleIconResolver : NSObject <SPTOnDemandSetObserver>
 {
     id <SPTOnDemandSet> _onDemandSet;
+    SPTObserverManager *_observerManager;
 }
 
+@property(readonly, nonatomic) SPTObserverManager *observerManager; // @synthesize observerManager=_observerManager;
 @property(readonly, nonatomic) id <SPTOnDemandSet> onDemandSet; // @synthesize onDemandSet=_onDemandSet;
 - (void).cxx_destruct;
+- (void)onDemandSetDidUpdate:(id)arg1;
+- (void)removeObserver:(id)arg1;
+- (void)addObserver:(id)arg1;
 - (long long)subtitleIconForURI:(id)arg1;
-- (id)initWithOnDemandSet:(id)arg1;
+- (void)dealloc;
+- (id)initWithOnDemandSet:(id)arg1 observerManager:(id)arg2;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

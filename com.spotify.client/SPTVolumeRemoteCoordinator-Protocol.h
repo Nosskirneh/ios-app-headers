@@ -10,8 +10,8 @@
 
 @protocol SPTVolumeRemoteCoordinator <NSObject>
 @property(readonly, nonatomic) double volumeStep;
-@property(readonly, nonatomic) _Bool hasActiveRemoteVolumeController;
 @property(nonatomic) __weak id <SPTVolumeRemoteCoordinatorDelegate> delegate;
+- (void)remoteVolumeCommandSent;
 - (long long)sendRemoteVolumeSetCommand:(double)arg1;
 - (_Bool)isSystemVolumeChangeCausedByOutputRouteChange:(double)arg1;
 @end

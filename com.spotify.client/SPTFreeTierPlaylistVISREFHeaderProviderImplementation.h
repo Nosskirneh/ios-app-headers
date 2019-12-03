@@ -28,7 +28,7 @@
 @property(readonly, nonatomic) _Bool drawBottomLineLayer;
 - (id)provideHeader;
 - (void)configureBarButtonManagerDelegate:(id)arg1;
-- (void)configureWithPlayViewModel:(id)arg1 followViewModel:(id)arg2 defaultHeaderViewModel:(id)arg3 fullbleedHeaderViewModel:(id)arg4 filterSortBarView:(id)arg5;
+- (void)configureWithPlayViewModel:(id)arg1 followViewModel:(id)arg2 defaultHeaderViewModel:(id)arg3 fullbleedHeaderViewModel:(id)arg4 playlistOfflineViewModel:(id)arg5 filterSortBarView:(id)arg6;
 - (void)setupVISREFHeaderController;
 - (id)initWithTheme:(id)arg1 imageLoader:(id)arg2 visrefIntegrationManager:(id)arg3;
 

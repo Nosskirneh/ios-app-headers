@@ -7,10 +7,11 @@
 #import "NSObject-Protocol.h"
 
 @class NSURL;
-@protocol SPTInteractionEvent;
+@protocol SPTEventFactoryModelMapping, SPTInteractionEvent;
 
 @protocol SPTNowPlayingBar_PlayButtonEventFactory <NSObject>
 - (id <SPTInteractionEvent>)hitResumeWithItemToBeResumed:(NSURL *)arg1;
 - (id <SPTInteractionEvent>)hitPauseWithItemToBePaused:(NSURL *)arg1;
+- (id <SPTEventFactoryModelMapping>)_location;
 @end
 

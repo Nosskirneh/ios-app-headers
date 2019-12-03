@@ -17,7 +17,7 @@
 @property(retain, nonatomic) SPTInAppMessageServiceLogger *serviceLogger; // @synthesize serviceLogger=_serviceLogger;
 - (void).cxx_destruct;
 - (id)modelObjectFromJSONDictionary:(id)arg1 error:(out id *)arg2;
-- (id)triggerModelObjectsFromJSONData:(id)arg1;
+- (void)triggerModelObjectsFromJSONData:(id)arg1 completion:(CDUnknownBlockType)arg2;
 - (id)initWithServiceLogger:(id)arg1;
 
 @end

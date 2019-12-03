@@ -29,6 +29,7 @@
 - (id)createIconForConnectionType:(long long)arg1 connectionState:(long long)arg2 context:(unsigned long long)arg3 imageSize:(struct CGSize)arg4;
 - (id)tintColorForContext:(unsigned long long)arg1;
 - (id)createBaseImageForConnectionType:(long long)arg1;
+- (id)deviceIconForCurrentConnectionState:(struct CGSize)arg1;
 - (id)iconForCurrentConnectionStateWithContext:(unsigned long long)arg1 size:(struct CGSize)arg2;
 - (id)initWithConnectManager:(id)arg1 gaiaIconProvider:(id)arg2 theme:(id)arg3;
 

@@ -9,7 +9,7 @@
 #import "GLUEReusable-Protocol.h"
 #import "GLUEStyleable-Protocol.h"
 
-@class GLUEImageStyle, NSString, UIImage;
+@class GLUEImageStyle, NSString, NSURL, UIImage;
 @protocol GLUECancellableTask, GLUEImageLoader, GLUEImageViewDelegate;
 
 @interface GLUEImageView : UIImageView <GLUEStyleable, GLUEReusable>
@@ -20,8 +20,14 @@
     id <GLUEImageLoader> _imageLoader;
     UIImage *_placeholderImage;
     id <GLUECancellableTask> _imageLoaderTask;
+    NSURL *_currentImageURL;
+    UIImage *_currentImage;
+    struct CGSize _currentImageSize;
 }
 
+@property(nonatomic) struct CGSize currentImageSize; // @synthesize currentImageSize=_currentImageSize;
+@property(retain, nonatomic) UIImage *currentImage; // @synthesize currentImage=_currentImage;
+@property(retain, nonatomic) NSURL *currentImageURL; // @synthesize currentImageURL=_currentImageURL;
 @property(retain, nonatomic) id <GLUECancellableTask> imageLoaderTask; // @synthesize imageLoaderTask=_imageLoaderTask;
 @property(retain, nonatomic) UIImage *placeholderImage; // @synthesize placeholderImage=_placeholderImage;
 @property(retain, nonatomic) id <GLUEImageLoader> imageLoader; // @synthesize imageLoader=_imageLoader;

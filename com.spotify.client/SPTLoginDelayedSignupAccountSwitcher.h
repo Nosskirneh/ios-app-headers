@@ -6,13 +6,13 @@
 
 #import <objc/NSObject.h>
 
-@class NSError, SPTLoginMainViewLoader;
-@protocol SPTCrashReporter, SPTLoginStateController, SPTUIModeTransitionUIHandler;
+@class NSError, SPTLoginMainViewLoader, SPTLoginStateControllerImplementation;
+@protocol SPTCrashReporter, SPTUIModeTransitionUIHandler;
 
 @interface SPTLoginDelayedSignupAccountSwitcher : NSObject
 {
     id <SPTUIModeTransitionUIHandler> _transitionHandler;
-    id <SPTLoginStateController> _loginStateController;
+    SPTLoginStateControllerImplementation *_loginStateController;
     id <SPTCrashReporter> _crashReporter;
     SPTLoginMainViewLoader *_mainViewLoader;
     NSError *_lastError;
@@ -21,16 +21,16 @@
 @property(retain, nonatomic) NSError *lastError; // @synthesize lastError=_lastError;
 @property(retain, nonatomic) SPTLoginMainViewLoader *mainViewLoader; // @synthesize mainViewLoader=_mainViewLoader;
 @property(retain, nonatomic) id <SPTCrashReporter> crashReporter; // @synthesize crashReporter=_crashReporter;
-@property(retain, nonatomic) id <SPTLoginStateController> loginStateController; // @synthesize loginStateController=_loginStateController;
+@property(retain, nonatomic) SPTLoginStateControllerImplementation *loginStateController; // @synthesize loginStateController=_loginStateController;
 @property(retain, nonatomic) id <SPTUIModeTransitionUIHandler> transitionHandler; // @synthesize transitionHandler=_transitionHandler;
 - (void).cxx_destruct;
 - (id)buildErrorFromCredentials:(id)arg1 originalError:(id)arg2;
 - (void)completeUIModeSwitching;
-- (void)reloginWithCredentials:(id)arg1 completion:(CDUnknownBlockType)arg2;
+- (void)reloginWithCredentials:(id)arg1 userDidSignup:(_Bool)arg2 completion:(CDUnknownBlockType)arg3;
 - (void)reloginWithFallbackCredentials:(id)arg1 causedByError:(id)arg2 completion:(CDUnknownBlockType)arg3;
-- (void)reloginWithCredentials:(id)arg1 fallbackCredentials:(id)arg2 completion:(CDUnknownBlockType)arg3;
+- (void)reloginWithCredentials:(id)arg1 fallbackCredentials:(id)arg2 userDidSignup:(_Bool)arg3 completion:(CDUnknownBlockType)arg4;
 - (id)readAndClearLastError;
-- (void)switchToAccountWithCredentials:(id)arg1 currentCredentials:(id)arg2 completion:(CDUnknownBlockType)arg3;
+- (void)switchToAccountWithCredentials:(id)arg1 currentCredentials:(id)arg2 userDidSignup:(_Bool)arg3 completion:(CDUnknownBlockType)arg4;
 - (id)initWithTransitionHandler:(id)arg1 loginStateController:(id)arg2 crashReporter:(id)arg3 mainViewLoader:(id)arg4;
 
 @end

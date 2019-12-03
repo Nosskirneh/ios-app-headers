@@ -13,21 +13,22 @@
 #import "SPTScrollToTopViewController-Protocol.h"
 #import "SPTShowInfoViewProviderTarget-Protocol.h"
 #import "SPTYourLibraryPage-Protocol.h"
+#import "UIContextMenuInteractionDelegate-Protocol.h"
 #import "UITableViewDataSource-Protocol.h"
 #import "UITableViewDelegate-Protocol.h"
-#import "UIViewControllerPreviewingDelegate-Protocol.h"
 
-@class NSArray, NSString, NSURL, SPTPodcastEpisodeCellActionHandler, SPTPodcastYourLibraryDownloadsViewModel, SPTTheme, UITableView, UIView;
-@protocol SPTPageContainer, SPTPodcastEpisodeCellConfigurator, SPTPodcastPlayer, SPTPodcastTestManager, SPTShowInfoViewProvider, SPTViewLogger, SPTYourLibraryPageDelegate, UIViewControllerPreviewing;
+@class NSArray, NSString, NSURL, SPTPodcastYourLibraryDownloadsViewModel, SPTProgressView, SPTTheme, UITableView, UIView;
+@protocol SPTPageContainer, SPTPodcastEpisodeCellActionTarget, SPTPodcastEpisodeCellConfigurator, SPTPodcastPlayer, SPTPodcastTestManager, SPTShowInfoViewProvider, SPTViewLogger, SPTYourLibraryPageDelegate, UIViewControllerPreviewing;
 
-@interface SPTPodcastYourLibraryDownloadsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, SPTPodcastYourLibraryEpisodesViewModelDelegate, SPContentInsetViewController, SPTPodcastPlayerDelegate, UIViewControllerPreviewingDelegate, SPTShowInfoViewProviderTarget, SPTPageController, SPTYourLibraryPage, SPTScrollToTopViewController>
+@interface SPTPodcastYourLibraryDownloadsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, SPTPodcastYourLibraryEpisodesViewModelDelegate, SPContentInsetViewController, SPTPodcastPlayerDelegate, SPTShowInfoViewProviderTarget, UIContextMenuInteractionDelegate, SPTPageController, SPTYourLibraryPage, SPTScrollToTopViewController>
 {
     id <SPTYourLibraryPageDelegate> _pageDelegate;
     SPTPodcastYourLibraryDownloadsViewModel *_viewModel;
     id <SPTPodcastEpisodeCellConfigurator> _cellConfigurator;
-    SPTPodcastEpisodeCellActionHandler *_cellActionHandler;
+    id <SPTPodcastEpisodeCellActionTarget> _cellActionHandler;
     UITableView *_tableView;
     SPTTheme *_theme;
+    SPTProgressView *_progressView;
     id <SPTPodcastPlayer> _player;
     id <SPTViewLogger> _viewLogger;
     id <SPTPodcastTestManager> _testManager;
@@ -46,16 +47,18 @@
 @property(readonly, nonatomic) id <SPTPodcastTestManager> testManager; // @synthesize testManager=_testManager;
 @property(retain, nonatomic) id <SPTViewLogger> viewLogger; // @synthesize viewLogger=_viewLogger;
 @property(retain, nonatomic) id <SPTPodcastPlayer> player; // @synthesize player=_player;
+@property(retain, nonatomic) SPTProgressView *progressView; // @synthesize progressView=_progressView;
 @property(retain, nonatomic) SPTTheme *theme; // @synthesize theme=_theme;
 @property(retain, nonatomic) UITableView *tableView; // @synthesize tableView=_tableView;
-@property(retain, nonatomic) SPTPodcastEpisodeCellActionHandler *cellActionHandler; // @synthesize cellActionHandler=_cellActionHandler;
+@property(retain, nonatomic) id <SPTPodcastEpisodeCellActionTarget> cellActionHandler; // @synthesize cellActionHandler=_cellActionHandler;
 @property(retain, nonatomic) id <SPTPodcastEpisodeCellConfigurator> cellConfigurator; // @synthesize cellConfigurator=_cellConfigurator;
 @property(retain, nonatomic) SPTPodcastYourLibraryDownloadsViewModel *viewModel; // @synthesize viewModel=_viewModel;
 @property(nonatomic) __weak id <SPTYourLibraryPageDelegate> pageDelegate; // @synthesize pageDelegate=_pageDelegate;
 - (void).cxx_destruct;
-- (id)previewingContext:(id)arg1 viewControllerForLocation:(struct CGPoint)arg2;
-- (void)previewingContext:(id)arg1 commitViewController:(id)arg2;
 @property(readonly, nonatomic) double offscreenContentHeight;
+- (void)contextMenuInteraction:(id)arg1 willPerformPreviewActionForMenuWithConfiguration:(id)arg2 animator:(id)arg3;
+- (id)contextMenuInteraction:(id)arg1 configurationForMenuAtLocation:(struct CGPoint)arg2;
+- (id)contextMenuInteraction:(id)arg1 previewForHighlightingMenuWithConfiguration:(id)arg2;
 - (void)podcastPlayer:(id)arg1 didUpdateProgressForTrackURL:(id)arg2;
 - (double)podcastPlayer:(id)arg1 updateProgressIntervalForTrackURL:(id)arg2;
 - (void)podcastPlayer:(id)arg1 didChangePlayingTrackURL:(id)arg2;
@@ -86,7 +89,7 @@
 - (void)showInfoViewWithError:(id)arg1;
 - (void)showEmptyStateInfoView;
 - (struct UIEdgeInsets)insetsForInfoViewRespectingBottomLayoutGuide;
-- (void)registerFor3DTouch;
+- (void)addTableViewInteraction;
 - (void)updateProgressWithPlayer:(id)arg1;
 - (void)configureConstraints;
 - (void)setupTableView;

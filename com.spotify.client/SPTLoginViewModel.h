@@ -9,18 +9,17 @@
 #import "SPTLoginFailureHandlerDelegate-Protocol.h"
 #import "SPTLoginRecoverAccountDataLoaderDelegate-Protocol.h"
 
-@class NSString, SPTAuthenticationHandler, SPTLoginAttemptLogger, SPTLoginFailureHandler, SPTLoginMagicLinkRequestTracker, SPTLoginMagicLinkRequestWarningPresenter, SPTLoginMagicLinkTestManager, SPTLoginOnePasswordHandler, SPTLoginRecoverAccountDataLoader, SPTLoginViewLogger;
-@protocol SPTLoginViewModelDelegate, SPTNavigationRouter;
+@class NSString, SPTAuthenticationHandler, SPTLoginAttemptLogger, SPTLoginFailureHandler, SPTLoginMagicLinkRequestTracker, SPTLoginMagicLinkRequestWarningPresenter, SPTLoginOnePasswordHandler, SPTLoginRecoverAccountDataLoader, SPTLoginViewLogger;
+@protocol SPTLoginNavigationCoordinator, SPTLoginViewModelDelegate;
 
 @interface SPTLoginViewModel : NSObject <SPTLoginRecoverAccountDataLoaderDelegate, SPTLoginFailureHandlerDelegate>
 {
     id <SPTLoginViewModelDelegate> _delegate;
     SPTLoginViewLogger *_logger;
     SPTLoginOnePasswordHandler *_onePassword;
-    SPTLoginMagicLinkTestManager *_magicLinkTestManager;
     NSString *_userEmail;
     NSString *_initialErrorDescription;
-    id <SPTNavigationRouter> _navigationRouter;
+    id <SPTLoginNavigationCoordinator> _navigationCoordinator;
     SPTAuthenticationHandler *_authenticationHandler;
     SPTLoginMagicLinkRequestTracker *_magicLinkRequestTracker;
     SPTLoginMagicLinkRequestWarningPresenter *_magicLinkRequestWarningPresenter;
@@ -35,10 +34,9 @@
 @property(retain, nonatomic) SPTLoginMagicLinkRequestWarningPresenter *magicLinkRequestWarningPresenter; // @synthesize magicLinkRequestWarningPresenter=_magicLinkRequestWarningPresenter;
 @property(retain, nonatomic) SPTLoginMagicLinkRequestTracker *magicLinkRequestTracker; // @synthesize magicLinkRequestTracker=_magicLinkRequestTracker;
 @property(retain, nonatomic) SPTAuthenticationHandler *authenticationHandler; // @synthesize authenticationHandler=_authenticationHandler;
-@property(retain, nonatomic) id <SPTNavigationRouter> navigationRouter; // @synthesize navigationRouter=_navigationRouter;
+@property(retain, nonatomic) id <SPTLoginNavigationCoordinator> navigationCoordinator; // @synthesize navigationCoordinator=_navigationCoordinator;
 @property(copy, nonatomic) NSString *initialErrorDescription; // @synthesize initialErrorDescription=_initialErrorDescription;
 @property(copy, nonatomic) NSString *userEmail; // @synthesize userEmail=_userEmail;
-@property(retain, nonatomic) SPTLoginMagicLinkTestManager *magicLinkTestManager; // @synthesize magicLinkTestManager=_magicLinkTestManager;
 @property(readonly, nonatomic) SPTLoginOnePasswordHandler *onePassword; // @synthesize onePassword=_onePassword;
 @property(readonly, nonatomic) SPTLoginViewLogger *logger; // @synthesize logger=_logger;
 @property(nonatomic) __weak id <SPTLoginViewModelDelegate> delegate; // @synthesize delegate=_delegate;
@@ -57,7 +55,7 @@
 - (_Bool)shouldEnableLoginButtonForEmail:(id)arg1 password:(id)arg2;
 - (void)reportLoginCompletionWithError:(id)arg1;
 - (void)loginWithUser:(id)arg1 andPassword:(id)arg2;
-- (id)initWithNavigationRouter:(id)arg1 logger:(id)arg2 authenticationHandler:(id)arg3 onePasswordLogin:(id)arg4 userEmail:(id)arg5 initialErrorDescription:(id)arg6 magicLinkTestManager:(id)arg7 magicLinkRequestTracker:(id)arg8 magicLinkWarningPresenter:(id)arg9 magicLinkLoginFailurehandler:(id)arg10 recoverAccountDataLoader:(id)arg11 loginAttemptLogger:(id)arg12;
+- (id)initWithNavigationCoordinator:(id)arg1 logger:(id)arg2 authenticationHandler:(id)arg3 onePasswordLogin:(id)arg4 userEmail:(id)arg5 initialErrorDescription:(id)arg6 magicLinkRequestTracker:(id)arg7 magicLinkWarningPresenter:(id)arg8 magicLinkLoginFailurehandler:(id)arg9 recoverAccountDataLoader:(id)arg10 loginAttemptLogger:(id)arg11;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

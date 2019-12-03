@@ -8,5 +8,8 @@
 
 @interface NSSet (IDEventObserver)
 - (id)objectsForEventKey:(id)arg1;
+- (id)randomObject;
+- (id)bm_any:(CDUnknownBlockType)arg1;
+- (id)spt_any:(CDUnknownBlockType)arg1;
 @end
 

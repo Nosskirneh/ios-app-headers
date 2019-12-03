@@ -8,5 +8,7 @@
 
 @interface AVAudioSessionRouteDescription (SPTCarPlay)
 - (_Bool)spt_isAudioRoutingToCarPlay;
+- (id)spt_currentAudioOutputRoutes;
+- (id)spt_outputRoutesDescriptor;
 @end
 

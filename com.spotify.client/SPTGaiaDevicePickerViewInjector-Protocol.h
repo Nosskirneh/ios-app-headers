@@ -7,9 +7,10 @@
 #import "NSObject-Protocol.h"
 
 @class UIView;
+@protocol SPTGaiaDevicePickerViewFactory;
 
 @protocol SPTGaiaDevicePickerViewInjector <NSObject>
 @property(readonly, nonatomic) UIView *injectedVolumeSliderView;
-- (void)injectVolumeSliderView:(UIView *)arg1;
+- (void)injectVolumeSliderViewWithFactory:(id <SPTGaiaDevicePickerViewFactory>)arg1;
 @end
 

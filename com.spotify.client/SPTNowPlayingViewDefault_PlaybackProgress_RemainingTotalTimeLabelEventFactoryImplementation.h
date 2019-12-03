@@ -20,6 +20,7 @@
 - (void).cxx_destruct;
 - (id)hitUiElementToggle;
 - (id)impression;
+- (id)_location;
 - (id)initWithComponents:(id)arg1;
 
 // Remaining properties

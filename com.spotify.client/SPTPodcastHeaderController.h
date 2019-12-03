@@ -22,10 +22,12 @@
     id <GLUETheme> _theme;
     id <GLUEImageLoader> _imageLoader;
     double _navigationBarGradientEndPoint;
+    double _currentProgress;
     id <SPTPodcastTestManager> _podcastTestManager;
 }
 
 @property(nonatomic) __weak id <SPTPodcastTestManager> podcastTestManager; // @synthesize podcastTestManager=_podcastTestManager;
+@property(nonatomic) double currentProgress; // @synthesize currentProgress=_currentProgress;
 @property(nonatomic) double navigationBarGradientEndPoint; // @synthesize navigationBarGradientEndPoint=_navigationBarGradientEndPoint;
 @property(retain, nonatomic) id <GLUEImageLoader> imageLoader; // @synthesize imageLoader=_imageLoader;
 @property(retain, nonatomic) id <GLUETheme> theme; // @synthesize theme=_theme;
@@ -38,7 +40,7 @@
 @property(nonatomic) double navigationBarHeight; // @synthesize navigationBarHeight=_navigationBarHeight;
 @property(nonatomic) double headerHeight; // @synthesize headerHeight=_headerHeight;
 - (void).cxx_destruct;
-- (void)updateProgressPositions;
+- (void)updateProgressPositionsIfNeeded;
 - (void)extractColorFromImage:(id)arg1;
 - (void)updateColorsWithImage:(id)arg1;
 - (void)updateWithViewModel:(id)arg1;

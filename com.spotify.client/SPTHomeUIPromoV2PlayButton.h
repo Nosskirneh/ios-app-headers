@@ -12,6 +12,7 @@
 }
 
 @property(nonatomic) unsigned long long mode; // @synthesize mode=_mode;
+- (void)updateAccessibility:(unsigned long long)arg1;
 - (id)playButtonImage:(long long)arg1 color:(id)arg2 theme:(id)arg3;
 - (void)setColor:(id)arg1 withTheme:(id)arg2;
 - (void)setDefaultColorWithTheme:(id)arg1;

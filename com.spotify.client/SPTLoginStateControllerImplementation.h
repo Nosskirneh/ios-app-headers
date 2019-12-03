@@ -9,21 +9,22 @@
 #import "SPTCoreLoginControllerDelegate-Protocol.h"
 #import "SPTLoginStateController-Protocol.h"
 
-@class NSError, NSString, SPCore, SPTHTTPService, SPTImageLoaderServiceManager, SPTLoginDeferredDispatcher, SPTLoginDialogController, SPTLoginErrorDecorator, SPTNetworkConnectivityController, SPTStartupTracer;
-@protocol SPTAlertInterface, SPTCrashReporter, SPTLinkDispatcher, SPTLogCenter, SPTLoginKeychainManager, SPTLoginLogger, SPTMetaViewController, SPTStateController;
+@class NSError, NSString, SPCore, SPTHTTPService, SPTImageLoaderServiceManager, SPTLoginDeferredDispatcher, SPTLoginDialogController, SPTLoginErrorDecorator, SPTObserverManager, SPTStartupTracer;
+@protocol SPTAlertInterface, SPTCrashReporter, SPTLinkDispatcher, SPTLogCenter, SPTLoginKeychainManager, SPTLoginLogger, SPTLoginPhoneNumberLoginStateDelegate, SPTMetaViewController, SPTStateController;
 
 @interface SPTLoginStateControllerImplementation : NSObject <SPTCoreLoginControllerDelegate, SPTLoginStateController>
 {
     _Bool _userDidSignUp;
     NSError *_lastConnectionError;
+    id <SPTLoginPhoneNumberLoginStateDelegate> _phoneNumberLoginDelegate;
     SPCore *_core;
-    SPTNetworkConnectivityController *_networkConnectivityController;
     SPTImageLoaderServiceManager *_imageLoaderServiceManager;
     SPTHTTPService *_httpService;
     id <SPTLogCenter> _logCenter;
     id <SPTCrashReporter> _crashReporter;
     SPTStartupTracer *_startupTracer;
     CDUnknownBlockType _loginDoneBlock;
+    CDUnknownBlockType _signupRequiredBlock;
     id <SPTStateController> _stateController;
     id <SPTMetaViewController> _metaviewController;
     CDUnknownBlockType _containerLogoutHandler;
@@ -34,9 +35,11 @@
     SPTLoginDialogController *_errorDialogController;
     SPTLoginErrorDecorator *_errorDecorator;
     id <SPTLoginLogger> _loginLogger;
+    SPTObserverManager *_observerManager;
 }
 
 @property(nonatomic) _Bool userDidSignUp; // @synthesize userDidSignUp=_userDidSignUp;
+@property(readonly, nonatomic) SPTObserverManager *observerManager; // @synthesize observerManager=_observerManager;
 @property(retain, nonatomic) id <SPTLoginLogger> loginLogger; // @synthesize loginLogger=_loginLogger;
 @property(retain, nonatomic) SPTLoginErrorDecorator *errorDecorator; // @synthesize errorDecorator=_errorDecorator;
 @property(retain, nonatomic) SPTLoginDialogController *errorDialogController; // @synthesize errorDialogController=_errorDialogController;
@@ -47,41 +50,48 @@
 @property(readonly, nonatomic) CDUnknownBlockType containerLogoutHandler; // @synthesize containerLogoutHandler=_containerLogoutHandler;
 @property(retain, nonatomic) id <SPTMetaViewController> metaviewController; // @synthesize metaviewController=_metaviewController;
 @property(retain, nonatomic) id <SPTStateController> stateController; // @synthesize stateController=_stateController;
+@property(copy, nonatomic) CDUnknownBlockType signupRequiredBlock; // @synthesize signupRequiredBlock=_signupRequiredBlock;
 @property(copy, nonatomic) CDUnknownBlockType loginDoneBlock; // @synthesize loginDoneBlock=_loginDoneBlock;
 @property(nonatomic) __weak SPTStartupTracer *startupTracer; // @synthesize startupTracer=_startupTracer;
 @property(retain, nonatomic) id <SPTCrashReporter> crashReporter; // @synthesize crashReporter=_crashReporter;
 @property(retain, nonatomic) id <SPTLogCenter> logCenter; // @synthesize logCenter=_logCenter;
 @property(retain, nonatomic) SPTHTTPService *httpService; // @synthesize httpService=_httpService;
 @property(retain, nonatomic) SPTImageLoaderServiceManager *imageLoaderServiceManager; // @synthesize imageLoaderServiceManager=_imageLoaderServiceManager;
-@property(retain, nonatomic) SPTNetworkConnectivityController *networkConnectivityController; // @synthesize networkConnectivityController=_networkConnectivityController;
 @property(nonatomic) __weak SPCore *core; // @synthesize core=_core;
+@property(nonatomic) __weak id <SPTLoginPhoneNumberLoginStateDelegate> phoneNumberLoginDelegate; // @synthesize phoneNumberLoginDelegate=_phoneNumberLoginDelegate;
 @property(retain, nonatomic) NSError *lastConnectionError; // @synthesize lastConnectionError=_lastConnectionError;
 - (void).cxx_destruct;
 - (void)dealloc;
+- (void)sessionObserverDidReceiveSiARevocationUpdate;
 - (void)sessionObserverDidReceiveAutoUpdate;
 - (void)showAutoUpdateAlert;
 - (void)reportLoginDoneWithError:(id)arg1;
 - (void)reloginWithCredentials:(id)arg1 options:(id)arg2 completionHandler:(CDUnknownBlockType)arg3;
 - (void)reloginWithCompletionHandler:(CDUnknownBlockType)arg1;
 - (void)logoutForgetUser:(_Bool)arg1;
+- (void)loginWithAppleIDCredentials:(id)arg1 options:(id)arg2 onLoginComplete:(CDUnknownBlockType)arg3 onSignupRequired:(CDUnknownBlockType)arg4;
 - (void)loginWithCredentials:(id)arg1 options:(id)arg2 completion:(CDUnknownBlockType)arg3;
 - (void)loginWithCredentials:(id)arg1 options:(id)arg2 userDidSignUp:(_Bool)arg3 completion:(CDUnknownBlockType)arg4;
 - (void)loginWithStoredCredentials:(id)arg1 options:(id)arg2 completion:(CDUnknownBlockType)arg3;
+- (void)loginWithPhoneNumberIdentifier:(id)arg1;
 - (void)loginWithOneTimeToken:(id)arg1 userDidSignUp:(_Bool)arg2 completion:(CDUnknownBlockType)arg3;
-- (void)notifyServicesOnLoginWithCore:(id)arg1 logCenter:(id)arg2;
+- (void)notifyServicesOnLoginWithCore:(id)arg1;
 - (void)presentCoreReloginError:(id)arg1;
 - (id)core:(id)arg1 localizedDescriptionForLoginErrorCode:(int)arg2;
 - (void)coreDidLogout:(id)arg1;
 - (void)notifyThatWeWillLogOut;
 - (void)coreDidRelogin:(id)arg1 withError:(id)arg2 isPermanent:(_Bool)arg3;
-- (void)core:(id)arg1 failedLoginWithError:(id)arg2;
+- (void)core:(id)arg1 didReceiveSignupInformation:(id)arg2;
+- (void)core:(id)arg1 didReceiveChallenge:(id)arg2;
+- (void)core:(id)arg1 failedLoginWithError:(id)arg2 legacyError:(id)arg3;
 - (void)coreDidLogin:(id)arg1;
+- (void)removeLoginStateObserver:(id)arg1;
+- (void)addLoginStateObserver:(id)arg1;
 - (id)currentCredentials;
 - (void)didLogin;
 @property(readonly, nonatomic, getter=isLoggedIn) _Bool loggedIn;
-- (void)prepareForShutdown;
 @property(nonatomic) _Bool allowErrorDispatch;
-- (id)initWithCore:(id)arg1 logCenter:(id)arg2 crashReporter:(id)arg3 startupTracer:(id)arg4 stateController:(id)arg5 containerLogoutHandler:(CDUnknownBlockType)arg6 httpService:(id)arg7 imageLoaderServiceManager:(id)arg8 keychainManager:(id)arg9 networkConnectivityController:(id)arg10 metaViewController:(id)arg11 alertInterface:(id)arg12 deferredErrorDispatcher:(id)arg13 linkDispatcher:(id)arg14 errorDialogController:(id)arg15 errorDecorator:(id)arg16 loginLogger:(id)arg17;
+- (id)initWithCore:(id)arg1 logCenter:(id)arg2 crashReporter:(id)arg3 startupTracer:(id)arg4 stateController:(id)arg5 containerLogoutHandler:(CDUnknownBlockType)arg6 httpService:(id)arg7 imageLoaderServiceManager:(id)arg8 keychainManager:(id)arg9 metaViewController:(id)arg10 alertInterface:(id)arg11 deferredErrorDispatcher:(id)arg12 linkDispatcher:(id)arg13 errorDialogController:(id)arg14 errorDecorator:(id)arg15 loginLogger:(id)arg16;
 - (id)sessionStateAwaiter;
 - (id)waitForLoginCompletion;
 - (id)waitForLogoutCompletion;

@@ -16,15 +16,18 @@
     id <SPTInAppMessageSDKMessageReceiver> _messageReceiver;
     id <SPTInAppMessageLogger> _logger;
     NSDictionary *_actionHandlers;
+    NSString *_matchedPattern;
 }
 
+@property(copy, nonatomic) NSString *matchedPattern; // @synthesize matchedPattern=_matchedPattern;
 @property(copy, nonatomic) NSDictionary *actionHandlers; // @synthesize actionHandlers=_actionHandlers;
 @property(readonly, nonatomic) id <SPTInAppMessageLogger> logger; // @synthesize logger=_logger;
 @property(readonly, nonatomic) id <SPTInAppMessageSDKMessageReceiver> messageReceiver; // @synthesize messageReceiver=_messageReceiver;
 - (void).cxx_destruct;
+- (id)unlockMessageDictionary:(id)arg1 triggers:(id)arg2 messageFormat:(id)arg3;
 - (id)clickActionFromDictionary:(id)arg1;
-- (id)modelObjectFromJSONData:(id)arg1 messageFormat:(id)arg2 matchedPattern:(id)arg3 error:(out id *)arg4;
-- (void)networkClient:(id)arg1 didFetchMessage:(id)arg2 messageFormat:(id)arg3 matchedPattern:(id)arg4 triggerType:(id)arg5;
+- (id)modelObjectFromJSONData:(id)arg1 messageFormat:(id)arg2 triggers:(id)arg3 error:(out id *)arg4;
+- (void)networkClient:(id)arg1 didFetchMessage:(id)arg2 messageFormat:(id)arg3 triggers:(id)arg4 triggerType:(id)arg5;
 - (id)initWithMessageReceiver:(id)arg1 actionHandlers:(id)arg2 logger:(id)arg3;
 
 // Remaining properties

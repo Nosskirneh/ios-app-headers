@@ -8,32 +8,38 @@
 
 #import "SPTOfflineContentModel-Protocol.h"
 
-@class NSDictionary, NSString;
-@protocol SPTCosmosDictionaryDataLoader, SPTCosmosDictionaryDataLoaderRequestToken, SPTOfflineContentModelDelegate;
+@class NSDictionary, NSString, SPTOfflinePodcastModelEntity;
+@protocol SPTCosmosDictionaryDataLoader, SPTCosmosDictionaryDataLoaderRequestToken, SPTLocalSettings, SPTOfflineContentModelDelegate;
 
 @interface SPTOfflinePodcastModel : NSObject <SPTOfflineContentModel>
 {
     _Bool _loaded;
     id <SPTOfflineContentModelDelegate> delegate;
     id <SPTCosmosDictionaryDataLoader> _cosmosDataLoader;
+    id <SPTLocalSettings> _localSettings;
     id <SPTCosmosDictionaryDataLoaderRequestToken> _requestToken;
     NSDictionary *_currentResponse;
+    SPTOfflinePodcastModelEntity *_currentEntity;
 }
 
 + (id)policy;
 + (id)requestURL;
+@property(retain, nonatomic) SPTOfflinePodcastModelEntity *currentEntity; // @synthesize currentEntity=_currentEntity;
 @property(copy, nonatomic) NSDictionary *currentResponse; // @synthesize currentResponse=_currentResponse;
 @property(retain, nonatomic) id <SPTCosmosDictionaryDataLoaderRequestToken> requestToken; // @synthesize requestToken=_requestToken;
 @property(nonatomic, getter=isLoaded) _Bool loaded; // @synthesize loaded=_loaded;
+@property(readonly, nonatomic) id <SPTLocalSettings> localSettings; // @synthesize localSettings=_localSettings;
 @property(readonly, nonatomic) id <SPTCosmosDictionaryDataLoader> cosmosDataLoader; // @synthesize cosmosDataLoader=_cosmosDataLoader;
 @property(nonatomic) __weak id <SPTOfflineContentModelDelegate> delegate; // @synthesize delegate;
 - (void).cxx_destruct;
 - (void)handleError:(id)arg1 withContext:(id)arg2;
 - (void)updateModelEntity;
 - (void)loadOfflinePodcastEpisodes;
+- (void)storeEntity:(id)arg1;
+- (void)loadLocallyStoredEntity;
 - (void)tearDown;
 - (void)loadModel;
-- (id)initWithCosmosDictionaryDataLoader:(id)arg1;
+- (id)initWithCosmosDictionaryDataLoader:(id)arg1 localSettings:(id)arg2;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

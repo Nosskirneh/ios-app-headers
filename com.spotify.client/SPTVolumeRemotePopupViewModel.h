@@ -9,31 +9,38 @@
 #import "SPTGaiaConnectObserver-Protocol.h"
 #import "SPTVolumeObserver-Protocol.h"
 
-@class NSString;
-@protocol SPTGaiaConnectAPI, SPTVolumeAPI, SPTVolumeRemotePopupViewModelDelegate;
+@class NSString, SPTTheme, UIImage;
+@protocol SPTGaiaConnectAPI, SPTGaiaIconProvider, SPTVolumeAPI, SPTVolumeRemotePopupViewModelDelegate;
 
 @interface SPTVolumeRemotePopupViewModel : NSObject <SPTVolumeObserver, SPTGaiaConnectObserver>
 {
     id <SPTVolumeRemotePopupViewModelDelegate> _delegate;
     double _volumePercentage;
     NSString *_deviceString;
+    UIImage *_icon;
     id <SPTVolumeAPI> _volumeManager;
     id <SPTGaiaConnectAPI> _connectManager;
+    id <SPTGaiaIconProvider> _iconProvider;
+    SPTTheme *_theme;
 }
 
+@property(retain, nonatomic) SPTTheme *theme; // @synthesize theme=_theme;
+@property(readonly, nonatomic) id <SPTGaiaIconProvider> iconProvider; // @synthesize iconProvider=_iconProvider;
 @property(readonly, nonatomic) id <SPTGaiaConnectAPI> connectManager; // @synthesize connectManager=_connectManager;
 @property(readonly, nonatomic) id <SPTVolumeAPI> volumeManager; // @synthesize volumeManager=_volumeManager;
+@property(copy, nonatomic) UIImage *icon; // @synthesize icon=_icon;
 @property(copy, nonatomic) NSString *deviceString; // @synthesize deviceString=_deviceString;
 @property(nonatomic) double volumePercentage; // @synthesize volumePercentage=_volumePercentage;
 @property(nonatomic) __weak id <SPTVolumeRemotePopupViewModelDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
 - (void)connectActiveDeviceDidChange:(id)arg1;
 - (void)volumeUpdated:(id)arg1;
+- (void)updateIcon;
 - (void)updateDeviceString;
 - (void)updateVolumePercentage;
 - (void)dealloc;
 - (void)setupObserving;
-- (id)initWithVolumeManager:(id)arg1 connectManager:(id)arg2;
+- (id)initWithVolumeManager:(id)arg1 connectManager:(id)arg2 iconProvider:(id)arg3;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

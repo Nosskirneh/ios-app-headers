@@ -14,7 +14,7 @@
 #import "UITableViewDataSource-Protocol.h"
 #import "UITableViewDelegate-Protocol.h"
 
-@class NSString, NSURL, SPTEntityHeaderViewController, SPTFreeTierAllSongsCellConfigurator, SPTFreeTierAllSongsHeaderViewController, SPTFreeTierAllSongsTheme, SPTFreeTierAllSongsViewModel, SPTInfoView, SPTProgressView, SPTTableView;
+@class NSString, NSURL, SPTEntityHeaderViewController, SPTFreeTierAllSongsCellConfigurator, SPTFreeTierAllSongsFeatureProperties, SPTFreeTierAllSongsHeaderViewController, SPTFreeTierAllSongsTheme, SPTFreeTierAllSongsViewModel, SPTInfoView, SPTProgressView, SPTTableView;
 @protocol SPTPageContainer;
 
 @interface SPTFreeTierAllSongsViewControllerImplementation : UIViewController <UITableViewDataSource, UITableViewDelegate, SPContentInsetViewController, SPTNavigationControllerNavigationBarState, SPTFreeTierAllSongsCellConfiguratorDelegate, SPTPageController, SPTFreeTierAllSongsViewModelDelegate>
@@ -28,9 +28,11 @@
     SPTFreeTierAllSongsTheme *_theme;
     SPTFreeTierAllSongsHeaderViewController *_allSongsHeaderViewController;
     SPTEntityHeaderViewController *_headerContainerViewController;
+    SPTFreeTierAllSongsFeatureProperties *_featureProperties;
 }
 
 @property(nonatomic, getter=isContextMenuToBePresented) _Bool contextMenuToBePresented; // @synthesize contextMenuToBePresented=_contextMenuToBePresented;
+@property(retain, nonatomic) SPTFreeTierAllSongsFeatureProperties *featureProperties; // @synthesize featureProperties=_featureProperties;
 @property(retain, nonatomic) SPTEntityHeaderViewController *headerContainerViewController; // @synthesize headerContainerViewController=_headerContainerViewController;
 @property(retain, nonatomic) SPTFreeTierAllSongsHeaderViewController *allSongsHeaderViewController; // @synthesize allSongsHeaderViewController=_allSongsHeaderViewController;
 @property(retain, nonatomic) SPTFreeTierAllSongsTheme *theme; // @synthesize theme=_theme;
@@ -66,7 +68,7 @@
 - (void)viewDidLoad;
 @property(readonly, nonatomic, getter=spt_pageURI) NSURL *pageURI;
 @property(readonly, nonatomic, getter=spt_pageIdentifier) NSString *pageIdentifier;
-- (id)initWithViewModel:(id)arg1 cellConfigurator:(id)arg2 theme:(id)arg3;
+- (id)initWithViewModel:(id)arg1 cellConfigurator:(id)arg2 theme:(id)arg3 featureProperties:(id)arg4;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

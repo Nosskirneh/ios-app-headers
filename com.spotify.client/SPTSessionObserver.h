@@ -10,7 +10,7 @@
 #import "SPTIncognitoModeHandlerObserver-Protocol.h"
 
 @class NSString, SPCore, SPSession, SPTIncognitoModeHandler, SPTNetworkConnectivityController;
-@protocol SPTAlertController, SPTLogCenter;
+@protocol SPTAlertInterface, SPTLogCenter;
 
 @interface SPTSessionObserver : NSObject <SPSessionObserver, SPTIncognitoModeHandlerObserver>
 {
@@ -19,16 +19,19 @@
     SPSession *_session;
     SPTIncognitoModeHandler *_incognitoModeHandler;
     id <SPTLogCenter> _logCenter;
-    id <SPTAlertController> _alertController;
+    id <SPTAlertInterface> _alertInterface;
 }
 
-@property(retain, nonatomic) id <SPTAlertController> alertController; // @synthesize alertController=_alertController;
+@property(retain, nonatomic) id <SPTAlertInterface> alertInterface; // @synthesize alertInterface=_alertInterface;
 @property(retain, nonatomic) id <SPTLogCenter> logCenter; // @synthesize logCenter=_logCenter;
 @property(nonatomic) __weak SPTIncognitoModeHandler *incognitoModeHandler; // @synthesize incognitoModeHandler=_incognitoModeHandler;
 @property(nonatomic) __weak SPSession *session; // @synthesize session=_session;
 @property(nonatomic) __weak SPCore *core; // @synthesize core=_core;
 @property(retain, nonatomic) SPTNetworkConnectivityController *networkConnectivityController; // @synthesize networkConnectivityController=_networkConnectivityController;
 - (void).cxx_destruct;
+- (void)showDialogWithTitle:(id)arg1 message:(id)arg2;
+- (void)showDialogOfflineLicenseLost;
+- (void)showDialogOfflineModeExpired;
 - (void)syncErrorNotEnoughSpaceOnDevice;
 - (void)logOfflineErrorAlertUIImpressionWithTargetUri:(id)arg1 impressionType:(id)arg2;
 - (void)session:(id)arg1 offlineSyncError:(id)arg2;
@@ -38,7 +41,7 @@
 - (void)applicationStateChanged:(id)arg1;
 - (void)updateApplicationState;
 - (void)dealloc;
-- (id)initWithCore:(id)arg1 session:(id)arg2 incognitoModeHandler:(id)arg3 withLogCenter:(id)arg4 networkConnectivityController:(id)arg5 alertController:(id)arg6;
+- (id)initWithCore:(id)arg1 session:(id)arg2 incognitoModeHandler:(id)arg3 logCenter:(id)arg4 networkConnectivityController:(id)arg5 alertInterface:(id)arg6;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

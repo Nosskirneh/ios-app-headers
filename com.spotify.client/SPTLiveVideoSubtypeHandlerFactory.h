@@ -10,7 +10,7 @@
 {
 }
 
-- (id)createVideoSubtypeHandlerWithPlayer:(id)arg1 metaViewController:(id)arg2;
+- (id)createVideoSubtypeHandlerWithPlayer:(id)arg1 metaViewController:(id)arg2 dataLoader:(id)arg3;
 
 @end
 

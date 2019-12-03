@@ -9,24 +9,26 @@
 #import "SPTPodcastUIContinueListeningService-Protocol.h"
 
 @class NSString, SPTAllocationContext;
-@protocol SPTFeatureFlagSignal, SPTFeatureFlaggingService, SPTPodcastFeature;
+@protocol SPTAbbaService, SPTEventSenderService, SPTFeatureFlagSignal, SPTPodcastFeature, SPTPodcastUITestManager;
 
 @interface SPTPodcastUIContinueListeningServiceImplementation : NSObject <SPTPodcastUIContinueListeningService>
 {
     _Bool _forceShowContinueListeningInDebugMode;
     id <SPTPodcastFeature> _podcastFeature;
-    id <SPTFeatureFlaggingService> _featureFlaggingService;
+    id <SPTEventSenderService> _eventSenderService;
     id <SPTFeatureFlagSignal> _enabledSignal;
+    id <SPTPodcastUITestManager> _testManager;
+    id <SPTAbbaService> _abbaService;
 }
 
 + (id)serviceIdentifier;
+@property(nonatomic) __weak id <SPTAbbaService> abbaService; // @synthesize abbaService=_abbaService;
+@property(retain, nonatomic) id <SPTPodcastUITestManager> testManager; // @synthesize testManager=_testManager;
 @property(nonatomic) _Bool forceShowContinueListeningInDebugMode; // @synthesize forceShowContinueListeningInDebugMode=_forceShowContinueListeningInDebugMode;
 @property(retain, nonatomic) id <SPTFeatureFlagSignal> enabledSignal; // @synthesize enabledSignal=_enabledSignal;
-@property(nonatomic) __weak id <SPTFeatureFlaggingService> featureFlaggingService; // @synthesize featureFlaggingService=_featureFlaggingService;
+@property(nonatomic) __weak id <SPTEventSenderService> eventSenderService; // @synthesize eventSenderService=_eventSenderService;
 @property(nonatomic) __weak id <SPTPodcastFeature> podcastFeature; // @synthesize podcastFeature=_podcastFeature;
 - (void).cxx_destruct;
-- (void)enabledSignalHasAssumedState:(long long)arg1;
-- (void)featureFlagSignal:(id)arg1 hasAssumedState:(long long)arg2;
 - (id)providePodcastContinueListeningContentOperation;
 - (void)load;
 - (void)configureWithServices:(id)arg1;

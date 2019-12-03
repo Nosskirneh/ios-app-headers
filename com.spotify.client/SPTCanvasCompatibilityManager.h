@@ -6,10 +6,12 @@
 
 #import <objc/NSObject.h>
 
+#import "SPTFeatureFlagSignalObserver-Protocol.h"
+
 @class NSString, SPTObserverManager;
 @protocol SPTFeatureFlagSignal;
 
-@interface SPTCanvasCompatibilityManager : NSObject
+@interface SPTCanvasCompatibilityManager : NSObject <SPTFeatureFlagSignalObserver>
 {
     _Bool _enableCanvasForDevice;
     id <SPTFeatureFlagSignal> _featureFlagSignal;

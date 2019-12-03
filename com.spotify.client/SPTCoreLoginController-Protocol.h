@@ -6,21 +6,20 @@
 
 #import "NSObject-Protocol.h"
 
-@class NSString, SPTLoginCredentials, SPTLoginIdentifier, SPTLoginOptions, SPTLoginParentChild, SPTSerializableCredentials;
-@protocol SPTCoreLoginControllerDelegate, SPTCoreLoginIdentifierControllerDelegate;
+@class NSString, SPTAuthAppleSignInCredential, SPTAuthLoginCredentials, SPTAuthLoginOptions, SPTAuthOneTimeTokenCredential, SPTAuthParentChildCredential, SPTAuthPhoneNumberIdentifier, SPTAuthSerializableCredentials;
+@protocol SPTCoreLoginControllerDelegate;
 
 @protocol SPTCoreLoginController <NSObject>
-@property(nonatomic) __weak id <SPTCoreLoginIdentifierControllerDelegate> loginIdentifierControllerDelegate;
 @property(nonatomic) __weak id <SPTCoreLoginControllerDelegate> loginControllerDelegate;
 - (void)eraseOfflineUser:(NSString *)arg1;
 - (void)forgetStoredCredentials;
 - (_Bool)hasStoredCredentials;
-- (SPTSerializableCredentials *)serializableCredentialsAndCanonicalUsername:(id *)arg1;
-- (SPTLoginCredentials *)storedCredentialsAndCanonicalUsername:(id *)arg1;
-- (void)loginWithParentChild:(SPTLoginParentChild *)arg1 options:(SPTLoginOptions *)arg2;
-- (void)loginWithCredentials:(SPTLoginCredentials *)arg1 options:(SPTLoginOptions *)arg2;
-- (void)requestNewChallenge;
-- (void)respondToIdentityLoginChallengeWithCode:(NSString *)arg1;
-- (void)loginWithIdentifier:(SPTLoginIdentifier *)arg1;
+- (SPTAuthSerializableCredentials *)serializableCredentialsAndCanonicalUsername:(id *)arg1;
+- (SPTAuthLoginCredentials *)storedCredentialsAndCanonicalUsername:(id *)arg1;
+- (void)loginWithAppleSignInCredential:(SPTAuthAppleSignInCredential *)arg1 options:(SPTAuthLoginOptions *)arg2;
+- (void)loginWithParentChildCredential:(SPTAuthParentChildCredential *)arg1 options:(SPTAuthLoginOptions *)arg2;
+- (void)loginWithOneTimeTokenCredential:(SPTAuthOneTimeTokenCredential *)arg1 options:(SPTAuthLoginOptions *)arg2;
+- (void)loginWithCredentials:(SPTAuthLoginCredentials *)arg1 options:(SPTAuthLoginOptions *)arg2;
+- (void)loginWithPhoneNumberIdentifier:(SPTAuthPhoneNumberIdentifier *)arg1 options:(SPTAuthLoginOptions *)arg2;
 @end
 

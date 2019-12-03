@@ -6,12 +6,13 @@
 
 #import <objc/NSObject.h>
 
+#import "SPTFeatureFlagSignalObserver-Protocol.h"
 #import "SPTUICompletionNotifierObserver-Protocol.h"
 
 @class NSString, SPTResubModalProductExpiry;
 @protocol SPTFeatureFlagFactory, SPTFeatureFlagSignal, SPTLocalSettings, SPTResubModalShowManagerDelegate, SPTUICompletionNotifier;
 
-@interface SPTResubModalShowManager : NSObject <SPTUICompletionNotifierObserver>
+@interface SPTResubModalShowManager : NSObject <SPTFeatureFlagSignalObserver, SPTUICompletionNotifierObserver>
 {
     _Bool _UIReady;
     id <SPTResubModalShowManagerDelegate> _delegate;

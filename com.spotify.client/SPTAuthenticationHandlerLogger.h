@@ -15,6 +15,9 @@
 
 @property(retain, nonatomic) id <SPTLoginLogger> logger; // @synthesize logger=_logger;
 - (void).cxx_destruct;
+- (void)logAuthAttemptCompletedWithSource:(unsigned long long)arg1 error:(id)arg2 attemptId:(id)arg3;
+- (id)logAuthAttemptStartedWithSource:(unsigned long long)arg1;
+- (id)requestTypeWithSourceType:(unsigned long long)arg1;
 - (id)screenIdentifierFromScreen:(unsigned long long)arg1;
 - (void)logGuestUserDidAuthFromScreen:(unsigned long long)arg1;
 - (void)logUserDidAuthFromScreen:(unsigned long long)arg1;

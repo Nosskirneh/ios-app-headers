@@ -13,7 +13,7 @@
 #import "SPTScrollToTopViewController-Protocol.h"
 
 @class NSArray, NSString, NSURL, SPTAccountErrorDialog, SPTAccountUpsellHeaderView, SPTAccountUpsellViewModel, SPTEntityHeaderContentViewController, SPTEntityHeaderViewController, UIScrollView;
-@protocol SPTNavigationListProvider, SPTPageContainer;
+@protocol SPTNavigationListProvider, SPTPageContainer, SPTPremiumDestinationExperiments;
 
 @interface SPTAccountUpsellViewController : SPViewController <SPTNavigationControllerNavigationBarState, SPTAccountUpsellViewModelDelegate, SPTAccountErrorDialogDelegate, SPTPageController, SPTScrollToTopViewController>
 {
@@ -27,8 +27,10 @@
     SPTAccountUpsellHeaderView *_headerView;
     SPTAccountErrorDialog *_presentedErrorDialog;
     id <SPTNavigationListProvider> _navigationListProvider;
+    id <SPTPremiumDestinationExperiments> _experiments;
 }
 
+@property(readonly, nonatomic) id <SPTPremiumDestinationExperiments> experiments; // @synthesize experiments=_experiments;
 @property(readonly, nonatomic) id <SPTNavigationListProvider> navigationListProvider; // @synthesize navigationListProvider=_navigationListProvider;
 @property(retain, nonatomic) SPTAccountErrorDialog *presentedErrorDialog; // @synthesize presentedErrorDialog=_presentedErrorDialog;
 @property(retain, nonatomic) SPTAccountUpsellHeaderView *headerView; // @synthesize headerView=_headerView;
@@ -61,7 +63,7 @@
 - (void)viewWillAppear:(_Bool)arg1;
 - (void)dealloc;
 - (void)viewDidLoad;
-- (id)initWithViewModel:(id)arg1 navigationListProvider:(id)arg2;
+- (id)initWithViewModel:(id)arg1 navigationListProvider:(id)arg2 experiments:(id)arg3;
 - (unsigned long long)preferredNavigationBarState;
 
 // Remaining properties

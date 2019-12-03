@@ -6,24 +6,23 @@
 
 #import "GLUEThemeBase.h"
 
-@class SPTFreeTierTasteOnboardingArtistPickerOfflineViewStyle, SPTFreeTierTasteOnboardingArtistSearchInfoViewStyle;
+@class SPTFreeTierTasteOnboardingArtistCellStyle, SPTFreeTierTasteOnboardingArtistPickerHeaderViewStyle, SPTFreeTierTasteOnboardingArtistPickerOfflineViewStyle, SPTFreeTierTasteOnboardingArtistSearchInfoViewStyle, SPTFreeTierTasteOnboardingGenreCellStyle, SPTFreeTierTasteOnboardingUpdateTasteViewStyle;
 @protocol GLUEStyle;
 
 @interface SPTFreeTierTasteOnboardingTheme : GLUEThemeBase
 {
 }
 
-- (id)artistPickerHeaderViewStyleWithIsStockholmBlackStyleEnabled:(_Bool)arg1;
-- (id)stockholmBlackLabelStyle;
-- (id)updateTasteViewStyleWithIsStockholmBlackStyleEnabled:(_Bool)arg1;
+@property(readonly, copy, nonatomic) SPTFreeTierTasteOnboardingArtistPickerHeaderViewStyle<GLUEStyle> *artistPickerHeaderViewStyle;
+@property(readonly, copy, nonatomic) SPTFreeTierTasteOnboardingUpdateTasteViewStyle<GLUEStyle> *updateTasteViewStyle;
 @property(readonly, copy, nonatomic) SPTFreeTierTasteOnboardingArtistSearchInfoViewStyle<GLUEStyle> *artistSearchNoResultsInfoViewStyle;
-- (id)artistSearchInitialInfoViewStyleWithIsStockholmBlackStyleEnabled:(_Bool)arg1;
-- (id)artistSearchResultCellStyleForTraitCollection:(id)arg1 isStockholmBlackStyleEnabled:(_Bool)arg2;
-- (id)artistSearchViewStyleForTraitCollection:(id)arg1 isStockholmBlackStyleEnabled:(_Bool)arg2;
-- (id)genreCellStyleIsStockholmBlackStyleEnabled:(_Bool)arg1;
-- (id)artistCellStyleIsStockholmBlackEnabled:(_Bool)arg1;
+@property(readonly, copy, nonatomic) SPTFreeTierTasteOnboardingArtistSearchInfoViewStyle<GLUEStyle> *artistSearchInitialInfoViewStyle;
+- (id)artistSearchResultCellStyleForTraitCollection:(id)arg1;
+- (id)artistSearchViewStyleForTraitCollection:(id)arg1;
+@property(readonly, copy, nonatomic) SPTFreeTierTasteOnboardingGenreCellStyle<GLUEStyle> *genreCellStyle;
+@property(readonly, copy, nonatomic) SPTFreeTierTasteOnboardingArtistCellStyle<GLUEStyle> *artistCellStyle;
 @property(readonly, copy, nonatomic) SPTFreeTierTasteOnboardingArtistPickerOfflineViewStyle<GLUEStyle> *artistPickerOfflineViewStyle;
-- (id)artistPickerViewStyleForTraitCollection:(id)arg1 isStockholmBlackStyleEnabled:(_Bool)arg2;
+- (id)artistPickerViewStyleForTraitCollection:(id)arg1;
 
 @end
 

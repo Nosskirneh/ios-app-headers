@@ -9,7 +9,6 @@
 #import "SPTVoiceCompanionService-Protocol.h"
 
 @interface _TtC21VoiceCompanionFeature21VoiceCompanionService (VoiceCompanionFeature1) <SPTVoiceCompanionService>
-- (id)provideConfiguration;
-- (id)provideSnackViewController;
+- (id)provideSession;
 @end
 

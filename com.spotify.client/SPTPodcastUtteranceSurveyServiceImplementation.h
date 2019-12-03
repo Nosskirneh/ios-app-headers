@@ -6,13 +6,14 @@
 
 #import <objc/NSObject.h>
 
+#import "SPTPodcastSurveyTestManager-Protocol.h"
 #import "SPTPodcastUtteranceSurveyDataLoaderDelegate-Protocol.h"
 #import "SPTPodcastUtteranceSurveyService-Protocol.h"
 
 @class NSString, SPTAllocationContext, SPTPodcastUtteranceSurveyDataLoader, SPTPodcastUtteranceSurveyLogger, SPTPodcastUtteranceSurveyManagerImplementation, SPTPodcastUtteranceSurveyPresenter, SPTPodcastUtteranceSurveyTestManager, SPTPodcastUtteranceSurveyViewModel;
-@protocol SPTContainerService, SPTFeatureFlaggingService, SPTGLUEService, SPTLocalSettings, SPTNetworkService, SPTSessionService, SPTSettingsFeature, SPTSpeakerCompanionService, SPTVoiceService, SlateFeature;
+@protocol SPTContainerService, SPTFeatureFlaggingService, SPTGLUEService, SPTLocalSettings, SPTNetworkService, SPTSessionService, SPTSettingsFeature, SPTSpeakerCompanionService, SPTVoiceLibraryService, SlateFeature;
 
-@interface SPTPodcastUtteranceSurveyServiceImplementation : NSObject <SPTPodcastUtteranceSurveyDataLoaderDelegate, SPTPodcastUtteranceSurveyService>
+@interface SPTPodcastUtteranceSurveyServiceImplementation : NSObject <SPTPodcastUtteranceSurveyDataLoaderDelegate, SPTPodcastSurveyTestManager, SPTPodcastUtteranceSurveyService>
 {
     id <SPTFeatureFlaggingService> _featureFlaggingService;
     id <SPTSessionService> _sessionService;
@@ -22,7 +23,7 @@
     id <SlateFeature> _slateFeature;
     id <SPTGLUEService> _glueService;
     id <SPTSpeakerCompanionService> _speakerCompanionService;
-    id <SPTVoiceService> _voiceService;
+    id <SPTVoiceLibraryService> _voiceLibraryService;
     SPTPodcastUtteranceSurveyTestManager *_testManager;
     SPTPodcastUtteranceSurveyLogger *_logger;
     SPTPodcastUtteranceSurveyDataLoader *_dataLoader;
@@ -40,7 +41,7 @@
 @property(retain, nonatomic) SPTPodcastUtteranceSurveyDataLoader *dataLoader; // @synthesize dataLoader=_dataLoader;
 @property(retain, nonatomic) SPTPodcastUtteranceSurveyLogger *logger; // @synthesize logger=_logger;
 @property(retain, nonatomic) SPTPodcastUtteranceSurveyTestManager *testManager; // @synthesize testManager=_testManager;
-@property(nonatomic) __weak id <SPTVoiceService> voiceService; // @synthesize voiceService=_voiceService;
+@property(nonatomic) __weak id <SPTVoiceLibraryService> voiceLibraryService; // @synthesize voiceLibraryService=_voiceLibraryService;
 @property(nonatomic) __weak id <SPTSpeakerCompanionService> speakerCompanionService; // @synthesize speakerCompanionService=_speakerCompanionService;
 @property(nonatomic) __weak id <SPTGLUEService> glueService; // @synthesize glueService=_glueService;
 @property(nonatomic) __weak id <SlateFeature> slateFeature; // @synthesize slateFeature=_slateFeature;
@@ -50,6 +51,7 @@
 @property(nonatomic) __weak id <SPTSessionService> sessionService; // @synthesize sessionService=_sessionService;
 @property(nonatomic) __weak id <SPTFeatureFlaggingService> featureFlaggingService; // @synthesize featureFlaggingService=_featureFlaggingService;
 - (void).cxx_destruct;
+- (void)didChangeSurveyEnabledStateWithTestManager:(id)arg1;
 - (void)podcastUtteranceSurveyDataLoader:(id)arg1 eligibilityResponse:(id)arg2;
 - (id)provideSurveyManager;
 - (void)getEligibility;

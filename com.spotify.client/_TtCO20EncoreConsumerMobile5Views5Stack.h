@@ -6,11 +6,16 @@
 
 #import <swiftCore/_TtCs12_SwiftObject.h>
 
+@class UIView;
+
 @interface _TtCO20EncoreConsumerMobile5Views5Stack : _TtCs12_SwiftObject
 {
     // Error parsing type: , name: viewHolders
+    // Error parsing type: , name: uiView
     // Error parsing type: , name: uiStack
 }
+
+@property(nonatomic, readonly) UIView *uiView; // @synthesize uiView;
 
 @end
 

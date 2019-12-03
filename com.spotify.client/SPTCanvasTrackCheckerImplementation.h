@@ -21,6 +21,8 @@
 - (id)canvasModelForTrackMetadata:(id)arg1 withPlaceholderURI:(id)arg2;
 - (_Bool)isCanvasEnabledForTrackMetadata:(id)arg1;
 - (_Bool)isCanvasEnabledForTrack:(id)arg1;
+- (_Bool)trackHasCanvasMetadataForTrackMetadata:(id)arg1;
+- (_Bool)trackHasCanvasMetadata:(id)arg1;
 - (id)initWithTestManager:(id)arg1;
 
 // Remaining properties

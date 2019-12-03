@@ -9,13 +9,14 @@
 #import "SPTEventSenderService-Protocol.h"
 
 @class INSEventSender, NSString, SPTAllocationContext, SPTEventSenderDebugState, SPTEventSenderImplementation, SPTEventSenderTransportImplementation;
-@protocol SPTContainerService, SPTDebugService, SPTNetworkService;
+@protocol SPTContainerService, SPTCoreService, SPTDebugService, SPTNetworkService;
 
 @interface SPTEventSenderServiceImplementation : NSObject <SPTEventSenderService>
 {
     id <SPTContainerService> _containerService;
     id <SPTDebugService> _debugService;
     id <SPTNetworkService> _networkService;
+    id <SPTCoreService> _coreService;
     SPTEventSenderTransportImplementation *_transport;
     INSEventSender *_sdk;
     SPTEventSenderImplementation *_eventSender;
@@ -27,6 +28,7 @@
 @property(retain, nonatomic) SPTEventSenderImplementation *eventSender; // @synthesize eventSender=_eventSender;
 @property(retain, nonatomic) INSEventSender *sdk; // @synthesize sdk=_sdk;
 @property(retain, nonatomic) SPTEventSenderTransportImplementation *transport; // @synthesize transport=_transport;
+@property(nonatomic) __weak id <SPTCoreService> coreService; // @synthesize coreService=_coreService;
 @property(nonatomic) __weak id <SPTNetworkService> networkService; // @synthesize networkService=_networkService;
 @property(nonatomic) __weak id <SPTDebugService> debugService; // @synthesize debugService=_debugService;
 @property(nonatomic) __weak id <SPTContainerService> containerService; // @synthesize containerService=_containerService;

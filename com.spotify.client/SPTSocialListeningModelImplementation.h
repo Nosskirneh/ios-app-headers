@@ -10,15 +10,15 @@
 #import "SPTSocialListeningDataLoaderDelegate-Protocol.h"
 #import "SPTSocialListeningModel-Protocol.h"
 
-@class NSString, SPTObserverManager, SPTSocialListeningDataLoader, SPTSocialListeningSession;
+@class NSString, SPTObserverManager, SPTSocialListeningDataLoader, SPTSocialListeningSession, SPTSocialListeningUpdateEvent;
 @protocol GLUEImageLoader, SPTPlayer, SPTScannablesDataSource;
 
 @interface SPTSocialListeningModelImplementation : NSObject <SPTSocialListeningModel, SPTSocialListeningDataLoaderDelegate, SPTScannablesDataSourceDelegate>
 {
-    _Bool _currentActiveDeviceIsSocialConnectDevice;
     SPTObserverManager *_observers;
     SPTSocialListeningDataLoader *_dataLoader;
     SPTSocialListeningSession *_session;
+    SPTSocialListeningUpdateEvent *_updateEvent;
     id <SPTScannablesDataSource> _scannablesDataSource;
     id <GLUEImageLoader> _imageLoader;
     long long _state;
@@ -29,21 +29,21 @@
 @property(nonatomic) long long state; // @synthesize state=_state;
 @property(retain, nonatomic) id <GLUEImageLoader> imageLoader; // @synthesize imageLoader=_imageLoader;
 @property(nonatomic) __weak id <SPTScannablesDataSource> scannablesDataSource; // @synthesize scannablesDataSource=_scannablesDataSource;
+@property(retain, nonatomic) SPTSocialListeningUpdateEvent *updateEvent; // @synthesize updateEvent=_updateEvent;
 @property(retain, nonatomic) SPTSocialListeningSession *session; // @synthesize session=_session;
 @property(retain, nonatomic) SPTSocialListeningDataLoader *dataLoader; // @synthesize dataLoader=_dataLoader;
 @property(readonly, nonatomic) SPTObserverManager *observers; // @synthesize observers=_observers;
-@property(nonatomic) _Bool currentActiveDeviceIsSocialConnectDevice; // @synthesize currentActiveDeviceIsSocialConnectDevice=_currentActiveDeviceIsSocialConnectDevice;
 - (void).cxx_destruct;
 - (void)scannablesDataSource:(id)arg1 didFinishFetchingScannable:(id)arg2;
 - (void)scannablesDataSource:(id)arg1 didFailFetchingScannableWithError:(id)arg2;
 - (void)socialListeningDataLoader:(id)arg1 didFailWithError:(id)arg2;
 - (void)socialListeningDataLoader:(id)arg1 didDeleteSession:(id)arg2;
-- (void)socialListeningDataLoader:(id)arg1 didEndSession:(id)arg2;
-- (void)socialListeningDataLoader:(id)arg1 didObtainSession:(id)arg2;
+- (void)socialListeningDataLoader:(id)arg1 didEndSession:(id)arg2 updateEvent:(id)arg3;
+- (void)socialListeningDataLoader:(id)arg1 didObtainSession:(id)arg2 updateEvent:(id)arg3;
 - (void)updateCoreSocialListeningState;
 - (void)requestScannableForSession:(id)arg1;
 - (void)fetchScannablesImageForSession:(id)arg1;
-- (void)handleSession:(id)arg1;
+- (void)handleSession:(id)arg1 updateEvent:(id)arg2;
 - (void)notifyIfLoaded;
 @property(readonly, nonatomic) unsigned long long connectedParticipants;
 @property(readonly, nonatomic, getter=isSessionHost) _Bool sessionHost;

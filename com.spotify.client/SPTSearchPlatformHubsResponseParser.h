@@ -13,21 +13,19 @@
 
 @interface SPTSearchPlatformHubsResponseParser : NSObject <SPTSearchPlatformResponseParser>
 {
-    _Bool _trackPreviewEnabled;
     NSURL *_pageURI;
     HUBViewModelBuilderFactory *_viewModelBuilderFactory;
     id <HUBContentOperation> _hubs2MigrationContentOperation;
     id <SPTSearchViewModelPatching> _patcher;
 }
 
-@property(readonly, nonatomic, getter=isTrackPreviewEnabled) _Bool trackPreviewEnabled; // @synthesize trackPreviewEnabled=_trackPreviewEnabled;
 @property(readonly, nonatomic) id <SPTSearchViewModelPatching> patcher; // @synthesize patcher=_patcher;
 @property(readonly, nonatomic) id <HUBContentOperation> hubs2MigrationContentOperation; // @synthesize hubs2MigrationContentOperation=_hubs2MigrationContentOperation;
 @property(readonly, nonatomic) HUBViewModelBuilderFactory *viewModelBuilderFactory; // @synthesize viewModelBuilderFactory=_viewModelBuilderFactory;
 @property(readonly, copy, nonatomic) NSURL *pageURI; // @synthesize pageURI=_pageURI;
 - (void).cxx_destruct;
 - (id)parse:(id)arg1 requestID:(id)arg2 offset:(unsigned long long)arg3 error:(id *)arg4;
-- (id)initWithPageURI:(id)arg1 viewModelBuilderFactory:(id)arg2 hubs2MigrationContentOperation:(id)arg3 patcher:(id)arg4 trackPreviewEnabled:(_Bool)arg5;
+- (id)initWithPageURI:(id)arg1 viewModelBuilderFactory:(id)arg2 hubs2MigrationContentOperation:(id)arg3 patcher:(id)arg4;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

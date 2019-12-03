@@ -6,10 +6,12 @@
 
 #import <objc/NSObject.h>
 
+#import "SPTFeatureFlagSignalObserver-Protocol.h"
+
 @class NSString, SPTObserverManager;
 @protocol SPTFeatureFlagFactory, SPTFeatureFlagSignal, SPTLocalSettings;
 
-@interface SPTCarPlayTestManager : NSObject
+@interface SPTCarPlayTestManager : NSObject <SPTFeatureFlagSignalObserver>
 {
     _Bool _carPlayEnabled;
     _Bool _offlineExperienceEnabled;

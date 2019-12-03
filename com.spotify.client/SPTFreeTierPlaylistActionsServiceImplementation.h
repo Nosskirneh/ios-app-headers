@@ -9,24 +9,30 @@
 #import "SPTFreeTierPlaylistActionsService-Protocol.h"
 
 @class NSString, SPTAllocationContext;
-@protocol SPContextMenuFeature, SPTCollectionLogger, SPTCollectionPlatformService, SPTContainerService, SPTContainerUIService, SPTPlaylistPlatformService;
+@protocol SPContextMenuFeature, SPTCollectionLogger, SPTCollectionPlatformService, SPTCollectionSortingEntityManager, SPTContainerService, SPTContainerUIService, SPTFreeTierPlaylistService, SPTPlayerFeature, SPTPlaylistPlatformService;
 
 @interface SPTFreeTierPlaylistActionsServiceImplementation : NSObject <SPTFreeTierPlaylistActionsService>
 {
     id <SPTCollectionPlatformService> _collectionPlatformService;
+    id <SPTCollectionSortingEntityManager> _collectionSortingEntityManager;
     id <SPTContainerService> _containerService;
     id <SPTContainerUIService> _containerUIService;
     id <SPContextMenuFeature> _contextMenuService;
+    id <SPTPlayerFeature> _playerService;
     id <SPTPlaylistPlatformService> _playlistPlatformService;
+    id <SPTFreeTierPlaylistService> _freeTierPlaylistService;
     id <SPTCollectionLogger> _collectionLogger;
 }
 
 + (id)serviceIdentifier;
 @property(retain, nonatomic) id <SPTCollectionLogger> collectionLogger; // @synthesize collectionLogger=_collectionLogger;
+@property(nonatomic) __weak id <SPTFreeTierPlaylistService> freeTierPlaylistService; // @synthesize freeTierPlaylistService=_freeTierPlaylistService;
 @property(nonatomic) __weak id <SPTPlaylistPlatformService> playlistPlatformService; // @synthesize playlistPlatformService=_playlistPlatformService;
+@property(nonatomic) __weak id <SPTPlayerFeature> playerService; // @synthesize playerService=_playerService;
 @property(nonatomic) __weak id <SPContextMenuFeature> contextMenuService; // @synthesize contextMenuService=_contextMenuService;
 @property(nonatomic) __weak id <SPTContainerUIService> containerUIService; // @synthesize containerUIService=_containerUIService;
 @property(nonatomic) __weak id <SPTContainerService> containerService; // @synthesize containerService=_containerService;
+@property(retain, nonatomic) id <SPTCollectionSortingEntityManager> collectionSortingEntityManager; // @synthesize collectionSortingEntityManager=_collectionSortingEntityManager;
 @property(nonatomic) __weak id <SPTCollectionPlatformService> collectionPlatformService; // @synthesize collectionPlatformService=_collectionPlatformService;
 - (void).cxx_destruct;
 - (id)selectedActionIconColor;
@@ -37,6 +43,7 @@
 - (void)registerRenameAction;
 - (void)collaborativeAction;
 - (void)registerPrivacyAction;
+- (void)registerQueueAction;
 - (void)load;
 - (void)configureWithServices:(id)arg1;
 

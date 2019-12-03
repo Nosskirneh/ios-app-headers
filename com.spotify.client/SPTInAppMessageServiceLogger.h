@@ -29,7 +29,6 @@
 - (void)logInAppMessageInteractionWithMessageUUID:(id)arg1 actionType:(id)arg2;
 - (void)logInAppMessagePresentedWithMessageUUID:(id)arg1 messageFormat:(id)arg2;
 - (void)logInAppMessageTriggerMessageDiscardedWithReason:(id)arg1 triggerPattern:(id)arg2 triggerType:(id)arg3 messageFormat:(id)arg4 messsageID:(id)arg5;
-- (void)logInAppMessageRegularExpressionPerformanceWithTriggersCount:(long long)arg1 performanceTime:(id)arg2;
 - (void)logInAppMessageTriggerMessagePresentationPerformanceWithTriggerMessageId:(id)arg1 performanceTime:(id)arg2 messageFormat:(id)arg3 triggerPattern:(id)arg4 triggerType:(id)arg5;
 - (void)logInAppMessageBackendRequestPerformanceWithRequestUri:(id)arg1 performanceTime:(id)arg2 requestType:(long long)arg3 messageFormat:(id)arg4;
 - (void)logInAppMessageParserErrorOfType:(long long)arg1 error:(id)arg2 triggerID:(id)arg3 triggerMessageFormat:(id)arg4;

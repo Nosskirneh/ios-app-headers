@@ -8,25 +8,17 @@
 
 #import "GLUEStyleable-Protocol.h"
 
-@class GLUELabel, NSLayoutConstraint, NSString;
+@class GLUELabel, NSString;
 
 @interface SPTLanguageOnboardingHeaderView : UIView <GLUEStyleable>
 {
     GLUELabel *_titleLabel;
-    GLUELabel *_subtitleLabel;
-    NSLayoutConstraint *_titleLabelTopConstraint;
-    NSLayoutConstraint *_subtitleLabelTopConstraint;
-    NSLayoutConstraint *_subtitleLabelBottomConstraint;
 }
 
-@property(retain, nonatomic) NSLayoutConstraint *subtitleLabelBottomConstraint; // @synthesize subtitleLabelBottomConstraint=_subtitleLabelBottomConstraint;
-@property(retain, nonatomic) NSLayoutConstraint *subtitleLabelTopConstraint; // @synthesize subtitleLabelTopConstraint=_subtitleLabelTopConstraint;
-@property(retain, nonatomic) NSLayoutConstraint *titleLabelTopConstraint; // @synthesize titleLabelTopConstraint=_titleLabelTopConstraint;
-@property(readonly, nonatomic) GLUELabel *subtitleLabel; // @synthesize subtitleLabel=_subtitleLabel;
 @property(readonly, nonatomic) GLUELabel *titleLabel; // @synthesize titleLabel=_titleLabel;
 - (void).cxx_destruct;
 - (void)glue_applyStyle:(id)arg1;
-- (void)setUpConstraints;
+- (void)setUpConstraintsWithStyle:(id)arg1;
 - (id)initWithFrame:(struct CGRect)arg1 style:(id)arg2;
 
 // Remaining properties

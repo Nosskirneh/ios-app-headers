@@ -9,18 +9,18 @@
 #import "HUBComponentViewWithEvents-Protocol.h"
 #import "HUBComponentViewWithImageHandling-Protocol.h"
 
-@class SPTHomeUICardView, UITapGestureRecognizer;
+@class SPTHomeUICardView;
 @protocol HUBComponentEventHandler;
 
 @interface SPTHomeUICardComponentView : HUGSThemableComponentView <HUBComponentViewWithImageHandling, HUBComponentViewWithEvents>
 {
+    _Bool _twoLinesSubtitleEnabled;
     id <HUBComponentEventHandler> _eventHandler;
     unsigned long long _type;
     SPTHomeUICardView *_cardView;
-    UITapGestureRecognizer *_tapGestureRecognizer;
 }
 
-+ (id)defaultHomeCardStyleForTheme:(id)arg1 model:(id)arg2 type:(unsigned long long)arg3;
++ (id)defaultHomeCardStyleForTheme:(id)arg1 model:(id)arg2 type:(unsigned long long)arg3 twoLinesSubtitleEnabled:(_Bool)arg4;
 + (double)maxCardViewWidthForContainerViewSize:(struct CGSize)arg1 theme:(id)arg2 type:(unsigned long long)arg3;
 + (id)attributedString:(id)arg1 foregroundColor:(id)arg2 alignment:(long long)arg3 shuffleEnabled:(_Bool)arg4 font:(id)arg5;
 + (_Bool)isShuffleBadgeEnabledForModel:(id)arg1;
@@ -28,14 +28,14 @@
 + (_Bool)shouldAddShuffleBadgeForTitle:(id)arg1;
 + (id)attributedSubtitleForModel:(id)arg1 theme:(id)arg2;
 + (id)attributedTitleForModel:(id)arg1 theme:(id)arg2 textAlignment:(long long)arg3 type:(unsigned long long)arg4;
-+ (struct CGSize)preferredSizeForModel:(id)arg1 containerViewSize:(struct CGSize)arg2 theme:(id)arg3 type:(unsigned long long)arg4;
-@property(retain, nonatomic) UITapGestureRecognizer *tapGestureRecognizer; // @synthesize tapGestureRecognizer=_tapGestureRecognizer;
++ (struct CGSize)preferredSizeForModel:(id)arg1 containerViewSize:(struct CGSize)arg2 theme:(id)arg3 type:(unsigned long long)arg4 twoLinesSubtitleEnabled:(_Bool)arg5;
+@property(nonatomic) _Bool twoLinesSubtitleEnabled; // @synthesize twoLinesSubtitleEnabled=_twoLinesSubtitleEnabled;
 @property(readonly, nonatomic) SPTHomeUICardView *cardView; // @synthesize cardView=_cardView;
 @property(readonly, nonatomic) unsigned long long type; // @synthesize type=_type;
 @property(retain, nonatomic) id <HUBComponentEventHandler> eventHandler; // @synthesize eventHandler=_eventHandler;
 - (void).cxx_destruct;
 - (void)sendSelectionEvent;
-- (id)defaultHomeCardStyleForModel:(id)arg1;
+- (id)defaultHomeCardStyleForModel:(id)arg1 twoLinesSubtitleEnabled:(_Bool)arg2;
 - (double)maxCardViewWidthForContainerViewSize:(struct CGSize)arg1;
 - (void)updateAccessibilityWithModel:(id)arg1;
 - (void)setupConstraints;
@@ -43,7 +43,7 @@
 - (struct CGSize)preferredSizeForImageFromData:(id)arg1 model:(id)arg2 containerViewSize:(struct CGSize)arg3;
 - (void)prepareForReuse;
 - (void)configureWithModel:(id)arg1;
-- (id)initWithTheme:(id)arg1 frame:(struct CGRect)arg2 type:(unsigned long long)arg3;
+- (id)initWithTheme:(id)arg1 frame:(struct CGRect)arg2 type:(unsigned long long)arg3 twoLinesSubtitleEnabled:(_Bool)arg4;
 
 @end
 

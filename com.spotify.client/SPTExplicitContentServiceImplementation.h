@@ -6,10 +6,12 @@
 
 #import <objc/NSObject.h>
 
-@class NSString, SPTAllocationContext, SPTExplicitContentAccessManagerImplementation, SPTExplicitContentHubCommandHandlerFactoryImplementation, SPTExplicitContentHubContentOperationFactoryImplementation, SPTExplicitContentLogger, SPTExplicitContentPopupPresenter;
+#import "SPTExplicitContentService-Protocol.h"
+
+@class NSString, SPTAllocationContext, SPTExplicitContentAccessManagerImplementation, SPTExplicitContentLogger, SPTExplicitContentPopupPresenter;
 @protocol SPTContainerService, SPTGLUEService, SPTPlayerFeature, SPTSessionService, SPTSettingsFeature, SPTURIDispatchService;
 
-@interface SPTExplicitContentServiceImplementation : NSObject
+@interface SPTExplicitContentServiceImplementation : NSObject <SPTExplicitContentService>
 {
     id <SPTContainerService> _containerService;
     id <SPTGLUEService> _glueService;
@@ -18,8 +20,6 @@
     id <SPTSettingsFeature> _settingsService;
     id <SPTURIDispatchService> _uriDispatchService;
     SPTExplicitContentAccessManagerImplementation *_accessManager;
-    SPTExplicitContentHubCommandHandlerFactoryImplementation *_hubCommandHandlerFactory;
-    SPTExplicitContentHubContentOperationFactoryImplementation *_hubContentOperationFactory;
     SPTExplicitContentLogger *_logger;
     SPTExplicitContentPopupPresenter *_popupPresenter;
 }
@@ -27,8 +27,6 @@
 + (id)serviceIdentifier;
 @property(retain, nonatomic) SPTExplicitContentPopupPresenter *popupPresenter; // @synthesize popupPresenter=_popupPresenter;
 @property(retain, nonatomic) SPTExplicitContentLogger *logger; // @synthesize logger=_logger;
-@property(retain, nonatomic) SPTExplicitContentHubContentOperationFactoryImplementation *hubContentOperationFactory; // @synthesize hubContentOperationFactory=_hubContentOperationFactory;
-@property(retain, nonatomic) SPTExplicitContentHubCommandHandlerFactoryImplementation *hubCommandHandlerFactory; // @synthesize hubCommandHandlerFactory=_hubCommandHandlerFactory;
 @property(retain, nonatomic) SPTExplicitContentAccessManagerImplementation *accessManager; // @synthesize accessManager=_accessManager;
 @property(nonatomic) __weak id <SPTURIDispatchService> uriDispatchService; // @synthesize uriDispatchService=_uriDispatchService;
 @property(nonatomic) __weak id <SPTSettingsFeature> settingsService; // @synthesize settingsService=_settingsService;
@@ -40,8 +38,6 @@
 - (id)provideSettingsExplanationSection:(id)arg1;
 - (id)provideSettingsSection:(id)arg1;
 - (void)registerSettingsSection;
-- (id)provideHubContentOperationFactory;
-- (id)provideHubCommandHandlerFactory;
 - (id)provideAccessManager;
 - (void)unload;
 - (void)load;

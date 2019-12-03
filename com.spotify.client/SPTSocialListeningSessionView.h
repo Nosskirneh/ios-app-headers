@@ -22,16 +22,10 @@
     GLUEButton *_leaveSessionButton;
     UIActivityIndicatorView *_activityIndicatorView;
     UIStackView *_facepileStackView;
-    UIView *_tryAgainView;
     UIStackView *_stackView;
-    UIStackView *_tryAgainStackView;
-    UIView *_spacerView;
 }
 
-@property(readonly, nonatomic) UIView *spacerView; // @synthesize spacerView=_spacerView;
-@property(readonly, nonatomic) UIStackView *tryAgainStackView; // @synthesize tryAgainStackView=_tryAgainStackView;
 @property(readonly, nonatomic) UIStackView *stackView; // @synthesize stackView=_stackView;
-@property(readonly, nonatomic) UIView *tryAgainView; // @synthesize tryAgainView=_tryAgainView;
 @property(readonly, nonatomic) UIStackView *facepileStackView; // @synthesize facepileStackView=_facepileStackView;
 @property(readonly, nonatomic) UIActivityIndicatorView *activityIndicatorView; // @synthesize activityIndicatorView=_activityIndicatorView;
 @property(readonly, nonatomic) GLUEButton *leaveSessionButton; // @synthesize leaveSessionButton=_leaveSessionButton;
@@ -51,7 +45,6 @@
 - (void)setupTryAgainButton;
 - (void)setupTryAgainLabel;
 - (void)setupFacepileStackView;
-- (void)setupTryAgainStackView;
 - (void)setupActivityIndicatorView;
 - (void)setupScannableView;
 - (void)setupDescriptionLabel;

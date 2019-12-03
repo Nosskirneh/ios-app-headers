@@ -7,26 +7,30 @@
 #import <objc/NSObject.h>
 
 #import "GCKSessionManagerListener-Protocol.h"
-#import "SPTRemoteVolumeController-Protocol.h"
+#import "SPTVolumeRemoteController-Protocol.h"
 
-@class GCKCastContext, NSString;
-@protocol SPTRemoteVolumeDelegate;
+@class GCKCastContext, NSNumber, NSString;
+@protocol SPTGaiaConnectAPI, SPTVolumeRemoteDelegate;
 
-@interface SPTVolumeCastController : NSObject <GCKSessionManagerListener, SPTRemoteVolumeController>
+@interface SPTVolumeCastController : NSObject <GCKSessionManagerListener, SPTVolumeRemoteController>
 {
-    double _volume;
-    id <SPTRemoteVolumeDelegate> delegate;
+    id <SPTVolumeRemoteDelegate> delegate;
     GCKCastContext *_castContext;
+    id <SPTGaiaConnectAPI> _connectManager;
 }
 
-@property(retain, nonatomic) GCKCastContext *castContext; // @synthesize castContext=_castContext;
-@property(nonatomic) __weak id <SPTRemoteVolumeDelegate> delegate; // @synthesize delegate;
-@property(nonatomic) double volume; // @synthesize volume=_volume;
+@property(readonly, nonatomic) id <SPTGaiaConnectAPI> connectManager; // @synthesize connectManager=_connectManager;
+@property(readonly, nonatomic) GCKCastContext *castContext; // @synthesize castContext=_castContext;
+@property(nonatomic) __weak id <SPTVolumeRemoteDelegate> delegate; // @synthesize delegate;
 - (void).cxx_destruct;
 - (void)sessionManager:(id)arg1 castSession:(id)arg2 didReceiveDeviceVolume:(float)arg3 muted:(_Bool)arg4;
+- (void)sendVolumeUpdate:(double)arg1;
+@property(readonly, nonatomic) NSNumber *lastKnownVolumeForActiveDevice;
 @property(readonly, nonatomic) double volumeStep;
+@property(readonly, nonatomic) _Bool activeDeviceSupportsVolume;
+@property(readonly, nonatomic) _Bool isActive;
 - (void)startObservingRemoteVolume;
-- (id)initWithCastContext:(id)arg1;
+- (id)initWithCastContext:(id)arg1 connectManager:(id)arg2;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

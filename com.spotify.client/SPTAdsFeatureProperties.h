@@ -13,8 +13,10 @@
 @interface SPTAdsFeatureProperties : NSObject <SPTRemoteConfigurationProperties>
 {
     _Bool _creamMobileOverlayInAppBrowserIos;
+    _Bool _creamBookmarkAudioAdsIos;
 }
 
+@property(readonly, nonatomic) _Bool creamBookmarkAudioAdsIos; // @synthesize creamBookmarkAudioAdsIos=_creamBookmarkAudioAdsIos;
 @property(readonly, nonatomic) _Bool creamMobileOverlayInAppBrowserIos; // @synthesize creamMobileOverlayInAppBrowserIos=_creamMobileOverlayInAppBrowserIos;
 - (id)propertyModels;
 - (id)initWithPropertyValuesDictionary:(id)arg1;

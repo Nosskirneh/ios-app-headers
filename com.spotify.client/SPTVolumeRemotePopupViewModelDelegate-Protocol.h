@@ -7,6 +7,7 @@
 #import "NSObject-Protocol.h"
 
 @protocol SPTVolumeRemotePopupViewModelDelegate <NSObject>
+- (void)activeDeviceDidUpdate;
 - (void)volumeDidUpdate;
 @end
 

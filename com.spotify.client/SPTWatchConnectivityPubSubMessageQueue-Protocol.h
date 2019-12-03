@@ -6,10 +6,10 @@
 
 #import "NSObject-Protocol.h"
 
-@class NSDictionary, NSString;
+@class NSDictionary, NSError, NSString;
 
 @protocol SPTWatchConnectivityPubSubMessageQueue <NSObject>
 - (NSDictionary *)latestMessageForTopic:(NSString *)arg1;
-- (void)publishMessage:(NSDictionary *)arg1 toTopic:(NSString *)arg2;
+- (NSError *)publishMessage:(NSDictionary *)arg1 toTopic:(NSString *)arg2;
 @end
 

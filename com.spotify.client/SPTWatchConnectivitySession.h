@@ -45,6 +45,7 @@
 @property(readonly, copy, nonatomic) NSDictionary *receivedApplicationContext;
 @property(readonly, copy, nonatomic) NSDictionary *applicationContext;
 @property(readonly, nonatomic) _Bool iOSDeviceNeedsUnlockAfterRebootForReachability;
+@property(readonly, nonatomic) _Bool hasContentPending;
 @property(readonly, nonatomic) long long activationState;
 @property(readonly, nonatomic, getter=isReachable) _Bool reachable;
 @property(readonly, nonatomic, getter=isWatchAppInstalled) _Bool watchAppInstalled;

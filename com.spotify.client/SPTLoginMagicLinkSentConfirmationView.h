@@ -14,8 +14,8 @@
 {
     GLUELabel *_titleLabel;
     GLUELabel *_upperTextLabel;
+    GLUELabel *_bodyTextLabel;
     UIImageView *_emailImage;
-    GLUELabel *_lowerTextLabel;
     GLUEButton *_openEmailButton;
     GLUEGradientView *_backgroundGradientView;
     UIScrollView *_scrollView;
@@ -24,16 +24,16 @@
     NSLayoutConstraint *_titleLabelEdgeMargin;
     NSLayoutConstraint *_upperTextLabelTopMargin;
     NSLayoutConstraint *_upperTextLabelEdgeMargin;
-    NSLayoutConstraint *_lowerTextLabelTopMargin;
-    NSLayoutConstraint *_lowerTextLabelEdgeMargin;
+    NSLayoutConstraint *_bodyTextLabelTopMargin;
+    NSLayoutConstraint *_bodyTextLabelEdgeMargin;
     NSLayoutConstraint *_emailImageTopMargin;
     NSLayoutConstraint *_openEmailButtonTopMargin;
 }
 
 @property(retain, nonatomic) NSLayoutConstraint *openEmailButtonTopMargin; // @synthesize openEmailButtonTopMargin=_openEmailButtonTopMargin;
 @property(retain, nonatomic) NSLayoutConstraint *emailImageTopMargin; // @synthesize emailImageTopMargin=_emailImageTopMargin;
-@property(retain, nonatomic) NSLayoutConstraint *lowerTextLabelEdgeMargin; // @synthesize lowerTextLabelEdgeMargin=_lowerTextLabelEdgeMargin;
-@property(retain, nonatomic) NSLayoutConstraint *lowerTextLabelTopMargin; // @synthesize lowerTextLabelTopMargin=_lowerTextLabelTopMargin;
+@property(retain, nonatomic) NSLayoutConstraint *bodyTextLabelEdgeMargin; // @synthesize bodyTextLabelEdgeMargin=_bodyTextLabelEdgeMargin;
+@property(retain, nonatomic) NSLayoutConstraint *bodyTextLabelTopMargin; // @synthesize bodyTextLabelTopMargin=_bodyTextLabelTopMargin;
 @property(retain, nonatomic) NSLayoutConstraint *upperTextLabelEdgeMargin; // @synthesize upperTextLabelEdgeMargin=_upperTextLabelEdgeMargin;
 @property(retain, nonatomic) NSLayoutConstraint *upperTextLabelTopMargin; // @synthesize upperTextLabelTopMargin=_upperTextLabelTopMargin;
 @property(retain, nonatomic) NSLayoutConstraint *titleLabelEdgeMargin; // @synthesize titleLabelEdgeMargin=_titleLabelEdgeMargin;
@@ -42,8 +42,8 @@
 @property(readonly, nonatomic) UIScrollView *scrollView; // @synthesize scrollView=_scrollView;
 @property(readonly, nonatomic) GLUEGradientView *backgroundGradientView; // @synthesize backgroundGradientView=_backgroundGradientView;
 @property(readonly, nonatomic) GLUEButton *openEmailButton; // @synthesize openEmailButton=_openEmailButton;
-@property(readonly, nonatomic) GLUELabel *lowerTextLabel; // @synthesize lowerTextLabel=_lowerTextLabel;
 @property(readonly, nonatomic) UIImageView *emailImage; // @synthesize emailImage=_emailImage;
+@property(readonly, nonatomic) GLUELabel *bodyTextLabel; // @synthesize bodyTextLabel=_bodyTextLabel;
 @property(readonly, nonatomic) GLUELabel *upperTextLabel; // @synthesize upperTextLabel=_upperTextLabel;
 @property(readonly, nonatomic) GLUELabel *titleLabel; // @synthesize titleLabel=_titleLabel;
 - (void).cxx_destruct;

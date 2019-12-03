@@ -20,7 +20,7 @@
 - (void)setRootItemsShouldRefreshOnUpdate:(id)arg1;
 - (void)insertListOfRootItems:(id)arg1;
 - (void)insertItem:(id)arg1 atIndexPath:(id)arg2;
-- (long long)numberOfChildItemsAtIndexPath:(id)arg1 enforcedDepth:(long long)arg2;
+- (long long)numberOfChildItemsAtIndexPath:(id)arg1 enforcedDepth:(long long)arg2 filterOutErrors:(_Bool)arg3;
 - (id)contentItemForIndexPath:(id)arg1 enforcedDepth:(long long)arg2;
 
 @end

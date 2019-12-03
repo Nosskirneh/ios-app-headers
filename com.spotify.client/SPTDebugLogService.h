@@ -25,7 +25,7 @@
 - (void).cxx_destruct;
 - (void)log:(id)arg1 wroteLine:(const char *)arg2 fromModule:(const char *)arg3 file:(const char *)arg4 line:(long long)arg5 threadId:(unsigned long long)arg6 at:(id)arg7 logLevel:(int)arg8;
 - (id)applicationLogsDirectory;
-- (void)pushLog:(id)arg1 severity:(int)arg2;
+- (void)pushLog:(id)arg1 severity:(long long)arg2;
 - (void)writeToFileContentOfBuffer:(const char *)arg1 length:(int)arg2;
 - (id)logsList;
 - (id)currentLogFilePath;

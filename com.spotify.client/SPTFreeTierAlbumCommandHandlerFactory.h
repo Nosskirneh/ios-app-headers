@@ -22,7 +22,7 @@
 @property(readonly, nonatomic) id <SPTHubCommandHandlerFactory> defaultCommandHandlerFactory; // @synthesize defaultCommandHandlerFactory=_defaultCommandHandlerFactory;
 - (void).cxx_destruct;
 - (id)createLoggerForViewURI:(id)arg1;
-- (id)createCommandHandlerForViewURI:(id)arg1 referrerIdentifier:(id)arg2 offlineModel:(id)arg3 reloadPageSignalSource:(id)arg4;
+- (id)createCommandHandlerForViewURI:(id)arg1 referrerIdentifier:(id)arg2 offlineModel:(id)arg3 reloadPageSignalSource:(id)arg4 explicitContentAccessManager:(id)arg5;
 - (id)initWithDefaultCommandHandlerFactory:(id)arg1 playerService:(id)arg2 hubsRendererFactory:(id)arg3 allSongsService:(id)arg4;
 
 @end

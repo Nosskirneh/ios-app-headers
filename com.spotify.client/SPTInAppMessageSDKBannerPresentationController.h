@@ -10,7 +10,7 @@
 #import "SPTOfflineModeStateObserver-Protocol.h"
 
 @class NSDictionary, NSString, SPTInAppMessageNoteOverlayController, SPTInAppMessageNowPlayingManagerRegistryImplementation, SPTInAppMessageServiceLogger;
-@protocol SPTBannerPresentationManager, SPTBannerPresentationManagerTicket, SPTCrashReporter, SPTExternalIntegrationDriverDistractionController, SPTInAppMessageSDKMessageViewModel, SPTOfflineModeState;
+@protocol SPTAuthController, SPTBannerPresentationManager, SPTBannerPresentationManagerTicket, SPTCrashReporter, SPTExternalIntegrationDriverDistractionController, SPTInAppMessageSDKMessageViewModel, SPTOfflineModeState;
 
 @interface SPTInAppMessageSDKBannerPresentationController : NSObject <SPTOfflineModeStateObserver, SPTInAppMessagePresenter>
 {
@@ -28,8 +28,10 @@
     id <SPTCrashReporter> _crashReporter;
     NSString *_matchedPattern;
     NSString *_triggerType;
+    id <SPTAuthController> _authController;
 }
 
+@property(readonly, nonatomic) id <SPTAuthController> authController; // @synthesize authController=_authController;
 @property(copy, nonatomic) NSString *triggerType; // @synthesize triggerType=_triggerType;
 @property(copy, nonatomic) NSString *matchedPattern; // @synthesize matchedPattern=_matchedPattern;
 @property(readonly, nonatomic) id <SPTCrashReporter> crashReporter; // @synthesize crashReporter=_crashReporter;
@@ -52,7 +54,7 @@
 - (void)cancelBannerMessagePresentation:(id)arg1;
 - (void)offlineModeState:(id)arg1 updated:(_Bool)arg2;
 - (void)dealloc;
-- (id)initWithBannerPresentationManager:(id)arg1 messageViewModel:(id)arg2 matchedPattern:(id)arg3 triggerType:(id)arg4 offlineModeState:(id)arg5 driverDistractionController:(id)arg6 nowPlayingManagerRegistry:(id)arg7 serviceLogger:(id)arg8 noteOverlayController:(id)arg9 crashReporter:(id)arg10;
+- (id)initWithBannerPresentationManager:(id)arg1 messageViewModel:(id)arg2 matchedPattern:(id)arg3 triggerType:(id)arg4 offlineModeState:(id)arg5 driverDistractionController:(id)arg6 nowPlayingManagerRegistry:(id)arg7 serviceLogger:(id)arg8 noteOverlayController:(id)arg9 crashReporter:(id)arg10 authController:(id)arg11;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

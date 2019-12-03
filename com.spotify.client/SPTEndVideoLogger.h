@@ -44,6 +44,7 @@
 - (id)reasonEnd;
 - (id)reasonStartForIdentity:(id)arg1;
 - (id)reasonStart;
+- (_Bool)shouldLogEngVideo;
 - (void)updatePendingMessageWithStatistics:(id)arg1;
 - (void)updatePendingMessageAtPosition:(double)arg1;
 - (void)updatePendingMessage;

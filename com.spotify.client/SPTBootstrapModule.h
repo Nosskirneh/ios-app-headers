@@ -9,19 +9,23 @@
 #import "SPTSessionBootstrapDelegate-Protocol.h"
 
 @class NSData;
+@protocol SPTRemoteConfigurationContext;
 
 @interface SPTBootstrapModule : NSObject <SPTSessionBootstrapDelegate>
 {
+    id <SPTRemoteConfigurationContext> _remoteConfigurationContext;
     NSData *_remoteConfigurationData;
 }
 
 @property(copy, nonatomic) NSData *remoteConfigurationData; // @synthesize remoteConfigurationData=_remoteConfigurationData;
+@property(retain, nonatomic) id <SPTRemoteConfigurationContext> remoteConfigurationContext; // @synthesize remoteConfigurationContext=_remoteConfigurationContext;
 - (void).cxx_destruct;
 - (void)parseWebGateResponse:(id)arg1;
 - (id)createBootStrapRequestPayload;
 - (id)createWebGateRequest;
 - (void)bootstrap:(id)arg1 completion:(CDUnknownBlockType)arg2;
 - (id)provideRemoteConfigurationPayload;
+- (id)initWithRemoteConfigurationContext:(id)arg1;
 
 @end
 

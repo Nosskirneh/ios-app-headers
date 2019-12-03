@@ -73,6 +73,7 @@
 @property(nonatomic) __weak id <SPTPodcastEpisodeViewModelDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
 @property(readonly, nonatomic) id <SPTShareEntityData> shareEntityData;
+- (void)autoPlayEpisodeIfNeeded;
 @property(readonly, nonatomic) double syncProgress;
 @property(readonly, nonatomic) long long offlineSyncStatus;
 - (void)resetOfflineAvailability;

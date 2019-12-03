@@ -17,6 +17,7 @@
     _Bool _inCollection;
     _Bool _isBanned;
     _Bool _isExplicit;
+    _Bool _is19PlusOnly;
     _Bool _isLocalTrack;
     _Bool _isPremiumOnly;
     _Bool _isBackgroundable;
@@ -62,6 +63,7 @@
 @property(nonatomic) _Bool isBackgroundable; // @synthesize isBackgroundable=_isBackgroundable;
 @property(nonatomic) _Bool isPremiumOnly; // @synthesize isPremiumOnly=_isPremiumOnly;
 @property(nonatomic) _Bool isLocalTrack; // @synthesize isLocalTrack=_isLocalTrack;
+@property(nonatomic) _Bool is19PlusOnly; // @synthesize is19PlusOnly=_is19PlusOnly;
 @property(nonatomic) _Bool isExplicit; // @synthesize isExplicit=_isExplicit;
 @property(nonatomic) _Bool isBanned; // @synthesize isBanned=_isBanned;
 @property(nonatomic) _Bool inCollection; // @synthesize inCollection=_inCollection;

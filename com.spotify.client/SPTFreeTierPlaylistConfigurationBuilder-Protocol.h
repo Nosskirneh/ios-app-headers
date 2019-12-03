@@ -11,6 +11,7 @@
 
 @protocol SPTFreeTierPlaylistConfigurationBuilder <NSObject>
 @property(copy, nonatomic) GLUEEntityRowStyle *rowStyle;
+@property(nonatomic) _Bool useBarButtons;
 @property(nonatomic) _Bool showTrackArtwork;
 @property(nonatomic) long long headerType;
 - (id <SPTFreeTierPlaylistConfiguration>)build;

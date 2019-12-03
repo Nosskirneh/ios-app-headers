@@ -21,6 +21,7 @@
 - (void)playbackEnded;
 - (void)playbackStarted;
 - (void)startComScoreManager;
+- (_Bool)isEnabled;
 - (id)initWithQueue:(id)arg1;
 
 // Remaining properties

@@ -13,9 +13,9 @@
 @interface SPTCppResolver : NSObject <SPTResolver>
 {
     struct Resolve _resolve;
-    function_b41bc498 _schedule;
-    struct shared_ptr<void> _resolver_lifetime;
-    function_b41bc498 _dispatch;
+    function_e8ecaf02 _schedule;
+    shared_ptr_b60d0e1e _resolver_lifetime;
+    function_e8ecaf02 _dispatch;
     struct vector<(anonymous namespace)::LifetimeStorageEntry, std::__1::allocator<(anonymous namespace)::LifetimeStorageEntry>> _lifetimes;
 }
 
@@ -25,7 +25,7 @@
 - (void)scheduleCleanup;
 - (void)cleanup;
 - (void)invalidate;
-- (id)initWithResolve:(const struct Resolve *)arg1 schedule:(const function_b41bc498 *)arg2 dispatch:(const function_b41bc498 *)arg3;
+- (id)initWithResolve:(const struct Resolve *)arg1 schedule:(const function_e8ecaf02 *)arg2 dispatch:(const function_e8ecaf02 *)arg3;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

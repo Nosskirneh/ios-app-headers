@@ -9,11 +9,12 @@
 #import "SPTAuthController-Protocol.h"
 #import "SPTAuthRequestDelegate-Protocol.h"
 
-@class NSString, SPSession, SPTAuthCache, SPTAuthLogger, SPTAuthPostAuthPlayerController, SPTAuthRequest, SPTHermesController, SPTNetworkConnectivityController, SPTObserverManager, SPTProgressView;
+@class NSString, SPSession, SPTAuthCache, SPTAuthLogger, SPTAuthPostAuthPlayerController, SPTAuthRequest, SPTDefaultPopupPermissionManager, SPTHermesController, SPTNetworkConnectivityController, SPTObserverManager, SPTProgressView;
 @protocol SPTAlertInterface, SPTAuthTestManager, SPTContainerUIService, SPTLinkDispatcher;
 
 @interface SPTAuthControllerImplementation : NSObject <SPTAuthRequestDelegate, SPTAuthController>
 {
+    _Bool _authRequestInProgress;
     SPSession *_session;
     SPTHermesController *_hermesController;
     id <SPTContainerUIService> _containerUIService;
@@ -28,8 +29,11 @@
     CDUnknownBlockType _completionHandler;
     SPTAuthLogger *_authLogger;
     SPTAuthPostAuthPlayerController *_postAuthPlayerController;
+    SPTDefaultPopupPermissionManager *_popupPermissionsManager;
 }
 
+@property(nonatomic, getter=isAuthRequestInProgress) _Bool authRequestInProgress; // @synthesize authRequestInProgress=_authRequestInProgress;
+@property(nonatomic) __weak SPTDefaultPopupPermissionManager *popupPermissionsManager; // @synthesize popupPermissionsManager=_popupPermissionsManager;
 @property(retain, nonatomic) SPTAuthPostAuthPlayerController *postAuthPlayerController; // @synthesize postAuthPlayerController=_postAuthPlayerController;
 @property(readonly, nonatomic) SPTAuthLogger *authLogger; // @synthesize authLogger=_authLogger;
 @property(copy, nonatomic) CDUnknownBlockType completionHandler; // @synthesize completionHandler=_completionHandler;
